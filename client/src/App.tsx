@@ -44,7 +44,7 @@ function Router() {
       <Route path="/terms" component={Terms} />
       <Route path="/environmental" component={Environmental} />
       <Route path="/products" component={Products} />
-      <Route path="/dubai-rewards" component={DubaiRewards} />
+      <Route path="/dubai-rewards" component={ImpactDashboard} />
       <Route component={NotFound} />
     </Switch>
   );

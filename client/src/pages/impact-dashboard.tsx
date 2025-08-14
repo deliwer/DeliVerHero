@@ -1,6 +1,7 @@
 import { Globe, Calculator, TrendingUp, Zap } from "lucide-react";
 import { ImpactStats } from "@/components/impact-stats";
 import { DeviceSimulator } from "@/components/device-simulator";
+import { DubaiRewardsSystem } from "@/components/dubai-rewards-system";
 import { useState } from "react";
 import type { TradeCalculation } from "@/types/hero";
 
@@ -18,9 +19,9 @@ export default function ImpactDashboard() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4" data-testid="page-title">
             <Globe className="inline w-8 h-8 text-hero-green-500 mr-3" />
-            LIVE PLANET IMPACT DASHBOARD
+            IMPACT & REWARDS DASHBOARD
           </h1>
-          <p className="text-gray-300 text-lg">Real-time environmental superpowers unleashed by our heroes</p>
+          <p className="text-gray-300 text-lg">Real-time environmental impact and hero rewards system</p>
         </div>
 
         {/* Global Impact Stats */}
@@ -146,6 +147,11 @@ export default function ImpactDashboard() {
               Data updated in real-time from Dubai Municipality Environmental Department
             </div>
           </div>
+        </div>
+
+        {/* Dubai Rewards System */}
+        <div className="mt-12">
+          <DubaiRewardsSystem />
         </div>
       </div>
     </div>

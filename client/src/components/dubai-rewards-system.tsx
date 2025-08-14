@@ -214,7 +214,7 @@ export function DubaiRewardsSystem() {
                         <div className="flex items-center justify-between text-sm text-gray-500">
                           <div className="flex items-center gap-1">
                             <Clock className="h-4 w-4" />
-                            {formatTimeLeft(challenge.expiresAt)}
+                            {formatTimeLeft(challenge.expiresAt.toString())}
                           </div>
                           <div className="flex items-center gap-1">
                             <Users className="h-4 w-4" />
@@ -331,7 +331,7 @@ export function DubaiRewardsSystem() {
                         <div className="flex items-center justify-between text-sm text-gray-500">
                           <div className="flex items-center gap-1">
                             <Clock className="h-4 w-4" />
-                            {formatTimeLeft(reward.expiresAt)}
+                            {formatTimeLeft(reward.expiresAt.toString())}
                           </div>
                           {reward.availableQuantity && (
                             <div className="flex items-center gap-1">
@@ -360,7 +360,7 @@ export function DubaiRewardsSystem() {
                         <Button 
                           onClick={() => handleClaimReward(reward.id)}
                           disabled={claimReward.isPending || 
-                            (reward.availableQuantity && reward.claimedQuantity >= reward.availableQuantity)}
+                            Boolean(reward.availableQuantity && reward.claimedQuantity >= reward.availableQuantity)}
                           className="w-full bg-purple-600 hover:bg-purple-700"
                           data-testid={`button-claim-reward-${reward.id}`}
                         >

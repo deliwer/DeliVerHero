@@ -63,14 +63,11 @@ export function HeroSection() {
           
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              The Sustainability Game of Dubai
+              AquaCafe the sustainability game of Dubai — complete missions, save money, save the planet -- Become The Planet Hero
             </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-300 mb-4">
-              Complete real-world eco-missions to earn rewards, level up, and make the planet proud
+            <h2 className="text-xl md:text-2xl text-gray-300 mb-4">
+              The worlds first sustainability game where you complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud
             </h2>
-            <div className="text-xl md:text-2xl font-semibold text-hero-green-400 mb-4">
-              Complete Missions • Save Money • Save the Planet
-            </div>
           </div>
           
           {/* AI-First Welcome Widget */}
