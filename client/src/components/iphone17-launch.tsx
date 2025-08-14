@@ -206,7 +206,7 @@ export function IPhone17Launch() {
               
               <div className="mt-6 pt-6 border-t border-slate-700">
                 <Link href="/community">
-                  <Button variant="outline" className="w-full border-slate-600 text-white hover:bg-slate-800">
+                  <Button variant="outline" className="w-full border-slate-600 text-white hover:bg-slate-800 bg-[#043059]">
                     View Full Leaderboard
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
