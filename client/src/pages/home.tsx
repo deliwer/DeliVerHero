@@ -7,6 +7,7 @@ import { LeaderboardWidget } from "@/components/leaderboard-widget";
 import { AIConcierge } from "@/components/ai-concierge";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
+import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { Flame, Clock, TrendingUp, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -148,7 +149,10 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-2 gap-8">
             <LeaderboardWidget showHeader={false} data-testid="leaderboard" />
-            <LiveChallengeWidget />
+            <div className="space-y-6">
+              <LiveChallengeWidget />
+              <LiveActivityFeed />
+            </div>
           </div>
         </div>
       </section>

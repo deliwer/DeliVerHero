@@ -1,15 +1,19 @@
 import { useState, useEffect, useRef } from "react";
-import { Bot, Send, Calendar, ShoppingCart } from "lucide-react";
+import { Bot, Send, Calendar, ShoppingCart, TrendingUp, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { openAIService } from "@/lib/openai-service";
 import { DEVICE_OPTIONS } from "@/types/hero";
+import { EmbeddedCheckout } from "./embedded-checkout";
 import type { ChatMessage } from "@/types/hero";
 
 export function AIConcierge() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [tradeValue, setTradeValue] = useState(1200);
+  const [selectedDevice, setSelectedDevice] = useState("iPhone 13 Pro");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -21,10 +25,10 @@ export function AIConcierge() {
   }, [messages]);
 
   useEffect(() => {
-    // Initial AI greeting
+    // Enhanced AI greeting with location and gamification
     const initialMessage: ChatMessage = {
       id: "initial",
-      content: "👋 Welcome, future Planet Hero! I'm here to help you transform your old iPhone into environmental superpowers. What iPhone model do you want to trade?",
+      content: "👋 Welcome from Dubai, future Planet Hero! I'm your 24/7 AI sales assistant. Ready to turn your iPhone into AED 1,200+ premium water delivery? You're currently ranked #23 in Dubai — just one trade to hit Top 10! What iPhone model do you have?",
       isUser: false,
       timestamp: new Date(),
       options: DEVICE_OPTIONS.slice(0, 4).map(d => d.model),
@@ -52,20 +56,42 @@ export function AIConcierge() {
         recentMessages: messages.slice(-3),
       });
 
+      // Enhanced AI responses with gamification and conversion focus
+      let enhancedContent = response.response || response.fallback || "I'm here to help with your iPhone trade-in!";
+      
+      // Add contextual gamification elements and checkout triggers
+      if (message.toLowerCase().includes('iphone')) {
+        const deviceMatch = DEVICE_OPTIONS.find(d => message.toLowerCase().includes(d.model.toLowerCase()));
+        if (deviceMatch) {
+          setSelectedDevice(deviceMatch.model);
+          setTradeValue(deviceMatch.baseValue);
+        }
+        enhancedContent += `\n\n🎯 **Live Impact Calculation**: This trade will save 12,500L water and earn you +2,400 Planet Points! You'll jump to #18 on our Dubai leaderboard.`;
+        enhancedContent += `\n\n💰 **Your Trade Value**: AED ${tradeValue} + FREE AquaCafe Starter Kit`;
+        enhancedContent += "\n\n💎 **Upgrade Available**: Switch to family plan and you'll offset 3x more CO₂ and earn 'Water Guardian' badge!";
+      }
+      
+      if (message.toLowerCase().includes('buy') || message.toLowerCase().includes('order') || message.toLowerCase().includes('checkout')) {
+        enhancedContent += "\n\n🚀 Ready to complete your order? I can process this right here - no page redirects needed!";
+      }
+
       const aiMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: response.response || response.fallback || "I'm here to help with your iPhone trade-in!",
+        content: enhancedContent,
         isUser: false,
         timestamp: new Date(),
+        options: message.toLowerCase().includes('iphone') ? ['Complete order now', 'Book pickup', 'See my rank'] : 
+                 (message.toLowerCase().includes('buy') || message.toLowerCase().includes('order')) ? ['Checkout in chat', 'View impact'] : undefined,
       };
 
       setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       const errorMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: "I'm temporarily unavailable, but I'll be back soon to help with your iPhone trade-in! 🤖",
+        content: "I'm temporarily unavailable, but I'll be back soon to help with your iPhone trade-in! 🤖\n\nWhile I'm offline, you can still check your potential trade value with our device simulator above!",
         isUser: false,
         timestamp: new Date(),
+        options: ['Try device simulator', 'Check leaderboard'],
       };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
@@ -74,6 +100,10 @@ export function AIConcierge() {
   };
 
   const handleQuickOption = (option: string) => {
+    if (option === 'Complete order now' || option === 'Checkout in chat') {
+      setShowCheckout(true);
+      return;
+    }
     sendMessage(option);
   };
 
@@ -96,24 +126,46 @@ export function AIConcierge() {
         </div>
 
         <div className="glass rounded-2xl border border-slate-600 overflow-hidden" data-testid="ai-concierge">
-          {/* Chat Header */}
+          {/* Chat Header with Live Stats */}
           <div className="bg-gradient-to-r from-dubai-blue-600 to-dubai-blue-500 p-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <Bot className="w-6 h-6 text-dubai-blue-600" />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                  <Bot className="w-6 h-6 text-dubai-blue-600" />
+                </div>
+                <div>
+                  <p className="text-white font-semibold">DeliWer AI Hero Concierge</p>
+                  <div className="flex items-center text-green-300 text-sm">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                    Online & Ready to Close Sales
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="text-white font-semibold">DeliWer AI Hero Concierge</p>
-                <div className="flex items-center text-green-300 text-sm">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                  Online & Ready to Help
+              <div className="text-right">
+                <div className="flex items-center text-amber-300 text-xs">
+                  <TrendingUp className="w-3 h-3 mr-1" />
+                  You're #23 in Dubai
+                </div>
+                <div className="flex items-center text-hero-green-300 text-xs">
+                  <Award className="w-3 h-3 mr-1" />
+                  1 trade to Top 10
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Chat Messages */}
-          <div className="p-6 h-96 overflow-y-auto space-y-4" data-testid="chat-messages">
+          {/* Show checkout or chat messages */}
+          {showCheckout ? (
+            <div className="p-6">
+              <EmbeddedCheckout 
+                tradeValue={tradeValue}
+                deviceModel={selectedDevice}
+                onClose={() => setShowCheckout(false)}
+              />
+            </div>
+          ) : (
+            /* Chat Messages */
+            <div className="p-6 h-96 overflow-y-auto space-y-4" data-testid="chat-messages">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.isUser ? 'justify-end' : 'items-start space-x-3'}`}>
                 {!message.isUser && (
@@ -164,11 +216,13 @@ export function AIConcierge() {
               </div>
             )}
             
-            <div ref={messagesEndRef} />
-          </div>
+              <div ref={messagesEndRef} />
+            </div>
+          )}
 
-          {/* Chat Input */}
-          <div className="border-t border-slate-600 p-4">
+          {/* Chat Input - Only show if not in checkout */}
+          {!showCheckout && (
+            <div className="border-t border-slate-600 p-4">
             <div className="flex space-x-3">
               <Input
                 type="text"
@@ -189,7 +243,13 @@ export function AIConcierge() {
                 <Send className="w-4 h-4" />
               </Button>
             </div>
-            <p className="text-xs text-gray-500 mt-2">💡 Pro tip: Mention your phone's condition for more accurate valuation!</p>
+            <div className="mt-2 space-y-1">
+              <p className="text-xs text-gray-500">💡 Pro tip: Mention your phone's condition for more accurate valuation!</p>
+              <div className="flex items-center text-xs text-hero-green-400">
+                <div className="w-2 h-2 bg-hero-green-400 rounded-full mr-2 animate-pulse"></div>
+                As of today: 78 devices repurposed • 125,000L water saved • 12.3T CO₂ reduced
+              </div>
+            </div>
             
             {/* Quick Action Buttons */}
             <div className="flex flex-wrap gap-2 mt-3">
@@ -214,7 +274,8 @@ export function AIConcierge() {
                 Order AquaCafe Kit
               </Button>
             </div>
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
