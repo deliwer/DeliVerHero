@@ -27,16 +27,8 @@ function Router() {
   const [location] = useLocation();
 
   useEffect(() => {
-    // Scroll to top when route changes with a small delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      });
-    }, 100);
-    
-    return () => clearTimeout(timer);
+    // Immediately scroll to top when route changes
+    window.scrollTo(0, 0);
   }, [location]);
 
   return (

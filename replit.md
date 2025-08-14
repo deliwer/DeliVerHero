@@ -21,7 +21,7 @@ Preferred communication style: Simple, everyday language.
 - **Subheading Revised**: Updated to "The worlds first sustainability game where you complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud"
 - **Impact & Rewards Merge**: Combined Impact and Rewards pages into single "Impact & Rewards" navigation item and merged DubaiRewardsSystem into impact dashboard
 - **Navigation Streamlined**: Reduced navigation complexity by consolidating related functionality
-- **Page Entry Scroll**: Confirmed automatic scroll-to-top functionality working properly on all page navigations
+- **Page Entry Scroll Enhancement**: Updated scroll-to-top to instant scrolling for immediate page top positioning on all navigations
 
 ### Replit Environment Migration (August 14, 2025)
 - **Complete Migration Success**: Successfully migrated from Replit Agent to standard Replit environment
