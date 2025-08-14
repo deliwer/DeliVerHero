@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import express from 'express';
 import { storage } from '../server/storage';
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema } from '../shared/schema';
