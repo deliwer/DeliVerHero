@@ -96,7 +96,6 @@ export function HeroChallengeLanding() {
         <div className="absolute top-20 right-20 w-24 h-24 bg-amber-500/10 rounded-full blur-xl animate-bounce-slow"></div>
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-dubai-blue-500/10 rounded-full blur-xl animate-spin-slow"></div>
       </div>
-      
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Mission Header */}
         <div className="text-center mb-12" data-testid="challenge-header">
@@ -110,7 +109,7 @@ export function HeroChallengeLanding() {
               Sustainability Game of Dubai
             </span>
             <br />
-            <span className="text-gray-300">— complete missions, save money, save the planet --</span>
+            <span className="text-gray-300">save money, save the planet</span>
             <br />
             <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
               Become The Planet Hero
