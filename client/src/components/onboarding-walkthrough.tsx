@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, ArrowLeft, Smartphone, Droplets, Star, Gift, MapPin, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -90,6 +90,7 @@ export function OnboardingWalkthrough({ isOpen, onClose, onComplete }: Onboardin
   });
 
   const [isAnimating, setIsAnimating] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const progress = ((currentStep + 1) / steps.length) * 100;
   const currentStepData = steps[currentStep];
@@ -143,6 +144,12 @@ export function OnboardingWalkthrough({ isOpen, onClose, onComplete }: Onboardin
     onClose();
   };
 
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+      onClose();
+    }
+  };
+
   const updateFormData = (field: string, value: string) => {
     const newFormData = { ...formData, [field]: value };
     
@@ -183,12 +190,17 @@ export function OnboardingWalkthrough({ isOpen, onClose, onComplete }: Onboardin
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={handleBackdropClick}
+    >
       <motion.div
+        ref={cardRef}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         className="w-full max-w-2xl"
+        onClick={(e) => e.stopPropagation()}
       >
         <Card className="border-0 shadow-2xl bg-white dark:bg-gray-900">
           <CardHeader className="pb-2">

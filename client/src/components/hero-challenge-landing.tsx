@@ -109,7 +109,7 @@ export function HeroChallengeLanding() {
               Sustainability Game of Dubai
             </span>
             <br />
-            <span className="text-gray-300">save money</span>
+            <span className="text-gray-300 text-[36px]">— complete missions, save money, save the planet --</span>
             <br />
             <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">Become a Planet Hero</span>
           </h1>
