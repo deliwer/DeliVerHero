@@ -53,7 +53,7 @@ export function Navigation() {
                 Join
               </Link>
               <Link
-                href="/"
+                href="/aquacafe"
                 className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
                 data-testid="button-start-mission-mobile"
               >
@@ -73,7 +73,7 @@ export function Navigation() {
                 Join Heroes
               </Link>
               <Link
-                href="/"
+                href="/aquacafe"
                 className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 data-testid="button-start-mission"
               >
