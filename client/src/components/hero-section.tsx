@@ -63,14 +63,14 @@ export function HeroSection() {
           
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Complete Missions
+              Dubai's First Sustainability Game
             </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-300 mb-2">
-              Save Money • Save the Planet
+            <h2 className="text-2xl md:text-3xl text-gray-300 mb-4">
+              Complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Dubai's first sustainability game where you complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud
-            </p>
+            <div className="text-xl md:text-2xl font-semibold text-hero-green-400 mb-4">
+              Complete Missions • Save Money • Save the Planet
+            </div>
           </div>
           
           {/* AI-First Welcome Widget */}
@@ -84,7 +84,7 @@ export function HeroSection() {
                   <MapPin className="w-5 h-5 text-hero-green-500 mr-2" />
                   Welcome from Dubai
                 </p>
-                <p className="text-lg text-gray-300">Choose your first real-world eco-mission and start leveling up!</p>
+                <p className="text-lg text-gray-300">Ready to upgrade your tech or purify water at home? Choose your first eco-mission!</p>
               </div>
             </div>
 
@@ -102,8 +102,8 @@ export function HeroSection() {
                   <Timer className="w-5 h-5 text-amber-500 mr-2" />
                   Tech Upgrade Mission
                 </h3>
-                <p className="text-gray-300 mb-4">Upgrade your tech, get water systems, earn rewards</p>
-                <div className="text-amber-500 font-semibold">⚡ Tech upgrade eco-mission</div>
+                <p className="text-gray-300 mb-4">Trade your old iPhone for premium water systems while earning rewards</p>
+                <div className="text-amber-500 font-semibold">⚡ Real-world tech upgrade mission</div>
               </div>
 
               {/* Gamified Path */}
@@ -119,8 +119,8 @@ export function HeroSection() {
                   <Star className="w-5 h-5 text-hero-green-500 mr-2" />
                   Water Purification Mission
                 </h3>
-                <p className="text-gray-300 mb-4">Purify water at home, level up, earn rewards</p>
-                <div className="text-hero-green-500 font-semibold">🏆 Water purification eco-mission</div>
+                <p className="text-gray-300 mb-4">Get premium water filtration systems delivered to your home</p>
+                <div className="text-hero-green-500 font-semibold">🏆 Real-world water purification mission</div>
               </div>
             </div>
 

@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { TopBanner } from "@/components/top-banner";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
 import Home from "@/pages/home";
 import Leaderboard from "@/pages/leaderboard";
 import ImpactDashboard from "@/pages/impact-dashboard";
@@ -43,6 +44,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen bg-dubai-gradient">
+          <StickyNeonHeadline />
           <TopBanner />
           <Navigation />
           <main>
