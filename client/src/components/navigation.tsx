@@ -41,39 +41,61 @@ export function Navigation() {
             </div>
           </div>
           
-          {/* Desktop Action Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link
-              href="/leaderboard"
-              className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-              data-testid="button-join-heroes"
-            >
-              <Users className="inline w-4 h-4 mr-2" />
-              Join Heroes
-            </Link>
-            <Link
-              href="/"
-              className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-              data-testid="button-start-mission"
-            >
-              <Rocket className="inline w-4 h-4 mr-2" />
-              Start Mission
-            </Link>
-          </div>
+          <div className="flex items-center space-x-2">
+            {/* Mobile Action Buttons - Compact */}
+            <div className="flex md:hidden items-center space-x-2">
+              <Link
+                href="/leaderboard"
+                className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
+                data-testid="button-join-heroes-mobile"
+              >
+                <Users className="inline w-3 h-3 mr-1" />
+                Join
+              </Link>
+              <Link
+                href="/"
+                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
+                data-testid="button-start-mission-mobile"
+              >
+                <Rocket className="inline w-3 h-3 mr-1" />
+                Start
+              </Link>
+            </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              data-testid="button-mobile-menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="block h-6 w-6" />
-              ) : (
-                <Menu className="block h-6 w-6" />
-              )}
-            </button>
+            {/* Desktop Action Buttons */}
+            <div className="hidden md:flex items-center space-x-4">
+              <Link
+                href="/leaderboard"
+                className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                data-testid="button-join-heroes"
+              >
+                <Users className="inline w-4 h-4 mr-2" />
+                Join Heroes
+              </Link>
+              <Link
+                href="/"
+                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                data-testid="button-start-mission"
+              >
+                <Rocket className="inline w-4 h-4 mr-2" />
+                Start Mission
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                data-testid="button-mobile-menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="block h-6 w-6" />
+                ) : (
+                  <Menu className="block h-6 w-6" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -92,28 +114,7 @@ export function Navigation() {
                   {item.label}
                 </Link>
               ))}
-              <div className="border-t border-slate-700 pt-4 pb-3">
-                <div className="flex flex-col space-y-3 px-3">
-                  <Link
-                    href="/leaderboard"
-                    className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors text-center"
-                    data-testid="button-mobile-join-heroes"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Users className="inline w-4 h-4 mr-2" />
-                    Join Heroes
-                  </Link>
-                  <Link
-                    href="/"
-                    className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors text-center"
-                    data-testid="button-mobile-start-mission"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Rocket className="inline w-4 h-4 mr-2" />
-                    Start Mission
-                  </Link>
-                </div>
-              </div>
+
             </div>
           </div>
         )}
