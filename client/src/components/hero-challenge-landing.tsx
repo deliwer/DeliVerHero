@@ -106,14 +106,14 @@ export function HeroChallengeLanding() {
           </div>
           
           <h1 className="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
-            Trade Your Old iPhone for <br />
-            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
-              AED 1,000+
-            </span>{" "}
-            in Premium Water
-            <br />
             <span className="text-hero-green-500 text-glow">
-              Become a Dubai Planet Hero
+              Sustainability Game of Dubai
+            </span>
+            <br />
+            <span className="text-gray-300">— complete missions, save money, save the planet --</span>
+            <br />
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+              Become The Planet Hero
             </span>
           </h1>
           
