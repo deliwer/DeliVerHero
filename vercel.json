@@ -4,8 +4,7 @@
   "outputDirectory": "dist",
   "functions": {
     "api/index.ts": {
-      "runtime": "@vercel/node@3.0.0",
-      "memory": 1024
+      "runtime": "@vercel/node@20.x"
     }
   },
   "routes": [
