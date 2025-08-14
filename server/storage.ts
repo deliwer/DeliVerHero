@@ -473,6 +473,8 @@ export class MemStorage implements IStorage {
     const tradeIn: TradeIn = {
       id,
       ...insertTradeIn,
+      pickupAddress: insertTradeIn.pickupAddress || null,
+      pickupDate: insertTradeIn.pickupDate || null,
       status: "pending",
       completedAt: null,
       createdAt: new Date(),
