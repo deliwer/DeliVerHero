@@ -164,16 +164,28 @@ export function HeroOnboardingTutorial({ onComplete, onSkip }: HeroOnboardingTut
     onSkip();
   };
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    // Only close if clicking the backdrop, not the modal content
+    if (e.target === e.currentTarget) {
+      handleSkip();
+    }
+  };
+
   if (!isVisible) return null;
 
   return (
     <>
-      {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50" />
-      
-      {/* Tutorial Modal */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <Card className="w-full max-w-2xl bg-gradient-to-br from-slate-800/95 to-slate-900/98 backdrop-blur-lg border-slate-600/70 shadow-2xl">
+      {/* Tutorial Modal with Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        onClick={handleBackdropClick}
+        data-testid="tutorial-backdrop"
+      >
+        <Card 
+          className="w-full max-w-2xl bg-gradient-to-br from-slate-800/95 to-slate-900/98 backdrop-blur-lg border-slate-600/70 shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+          data-testid="tutorial-modal"
+        >
           <CardContent className="p-8">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
