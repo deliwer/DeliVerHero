@@ -135,7 +135,7 @@ export function HeroSection() {
                     🚀 START TECH UPGRADE
                   </Button>
                   {hasCompletedOnboarding && (
-                    <Link href="#trade">
+                    <Link href="/">
                       <Button variant="outline" className="w-full">
                         Skip to Calculator
                       </Button>

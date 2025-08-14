@@ -6,6 +6,10 @@ export const scrollToTop = () => {
   });
 };
 
+export const scrollToTopInstant = () => {
+  window.scrollTo(0, 0);
+};
+
 export const useScrollToTop = () => {
   return scrollToTop;
 };

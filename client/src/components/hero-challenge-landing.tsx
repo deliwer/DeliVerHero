@@ -299,7 +299,7 @@ export function HeroChallengeLanding() {
         {/* Final CTA Buttons */}
         <div className="text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <Link href="#trade">
+            <Link href="/">
               <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-12 py-4 rounded-xl font-bold text-xl transform hover:scale-105 transition-all" data-testid="button-check-value">
                 <Zap className="mr-2 w-6 h-6" />
                 CHECK YOUR TRADE-IN VALUE NOW
