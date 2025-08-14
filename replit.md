@@ -16,6 +16,13 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (August 14, 2025)
 
+### Hero Section & Navigation Fixes (August 14, 2025)
+- **Hero Text Refinement**: Updated main headline to "The Sustainability Game of Dubai" with cleaner subheading to avoid duplication
+- **Sticky Neon Headline**: Created animated neon-style sticky header that appears during scroll with glowing effects and rotating icons
+- **Page Navigation Fix**: Added automatic scroll-to-top functionality when navigating between pages to prevent landing at bottom
+- **Tutorial Enhancement**: Added "Skip" button and improved close functionality to allow users to exit tutorial at any step
+- **Mission Messaging**: Updated mission descriptions to emphasize real-world eco-actions (tech upgrade, water purification at home)
+
 ### Replit Environment Migration (August 14, 2025)
 - **Successful Migration**: Completed migration from Replit Agent to standard Replit environment
 - **TypeScript Fixes**: Resolved type compatibility issues in storage layer for proper null handling

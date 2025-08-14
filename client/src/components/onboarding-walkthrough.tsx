@@ -139,6 +139,10 @@ export function OnboardingWalkthrough({ isOpen, onClose, onComplete }: Onboardin
     onClose();
   };
 
+  const handleSkip = () => {
+    onClose();
+  };
+
   const updateFormData = (field: string, value: string) => {
     const newFormData = { ...formData, [field]: value };
     
@@ -206,15 +210,26 @@ export function OnboardingWalkthrough({ isOpen, onClose, onComplete }: Onboardin
                   </p>
                 </div>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={onClose}
-                className="text-gray-500 hover:text-gray-700"
-                data-testid="button-close-onboarding"
-              >
-                <X className="w-5 h-5" />
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleSkip}
+                  className="text-gray-500 hover:text-gray-700"
+                  data-testid="button-skip-onboarding"
+                >
+                  Skip
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={onClose}
+                  className="text-gray-500 hover:text-gray-700"
+                  data-testid="button-close-onboarding"
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </div>
             </div>
             
             <div className="mt-4">

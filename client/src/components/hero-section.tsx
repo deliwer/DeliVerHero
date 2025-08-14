@@ -58,15 +58,15 @@ export function HeroSection() {
         <div className="text-center mb-12" data-testid="mission-header">
           <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
             <Star className="w-5 h-5 text-amber-500 mr-2" />
-            <span className="text-white font-medium">THE SUSTAINABILITY GAME OF DUBAI</span>
+            <span className="text-white font-medium">DELIWER</span>
           </div>
           
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Dubai's First Sustainability Game
+              The Sustainability Game of Dubai
             </h1>
             <h2 className="text-2xl md:text-3xl text-gray-300 mb-4">
-              Complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud
+              Complete real-world eco-missions to earn rewards, level up, and make the planet proud
             </h2>
             <div className="text-xl md:text-2xl font-semibold text-hero-green-400 mb-4">
               Complete Missions • Save Money • Save the Planet

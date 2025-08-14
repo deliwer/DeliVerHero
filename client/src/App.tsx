@@ -7,6 +7,8 @@ import { TopBanner } from "@/components/top-banner";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
+import { useEffect } from "react";
+import { useLocation } from "wouter";
 import Home from "@/pages/home";
 import Leaderboard from "@/pages/leaderboard";
 import ImpactDashboard from "@/pages/impact-dashboard";
@@ -21,6 +23,13 @@ import Products from "@/pages/products";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    // Scroll to top when route changes
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <Switch>
       <Route path="/" component={Home} />
