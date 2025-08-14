@@ -1,8 +1,10 @@
 import { Link, useLocation } from "wouter";
-import { Users, Rocket } from "lucide-react";
+import { Users, Rocket, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 export function Navigation() {
   const [location] = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
     { path: "/", label: "Trade iPhone", id: "trade" },
@@ -38,7 +40,9 @@ export function Navigation() {
               ))}
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          
+          {/* Desktop Action Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
             <Link
               href="/leaderboard"
               className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
@@ -56,7 +60,63 @@ export function Navigation() {
               Start Mission
             </Link>
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              data-testid="button-mobile-menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="block h-6 w-6" />
+              ) : (
+                <Menu className="block h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-700">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                  data-testid={`link-mobile-${item.id}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <div className="border-t border-slate-700 pt-4 pb-3">
+                <div className="flex flex-col space-y-3 px-3">
+                  <Link
+                    href="/leaderboard"
+                    className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors text-center"
+                    data-testid="button-mobile-join-heroes"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Users className="inline w-4 h-4 mr-2" />
+                    Join Heroes
+                  </Link>
+                  <Link
+                    href="/"
+                    className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors text-center"
+                    data-testid="button-mobile-start-mission"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Rocket className="inline w-4 h-4 mr-2" />
+                    Start Mission
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
