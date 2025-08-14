@@ -36,7 +36,7 @@ const steps = [
     title: "Welcome to DeliWer!",
     subtitle: "Join Dubai's environmental heroes",
     icon: Star,
-    content: "Transform your old iPhone into clean water solutions while earning rewards and making environmental impact!"
+    content: "Welcome to Dubai's sustainability game! Complete environmental missions, earn rewards, and make real impact while saving money."
   },
   {
     id: "profile",
@@ -50,21 +50,21 @@ const steps = [
     title: "Your iPhone Details",
     subtitle: "What device are you trading?",
     icon: Smartphone,
-    content: "Select your iPhone model and condition to calculate your trade value."
+    content: "Select your iPhone model and condition to see your mission rewards and environmental impact."
   },
   {
     id: "impact",
     title: "Environmental Impact",
     subtitle: "See your potential impact",
     icon: Droplets,
-    content: "Discover how your trade-in will help prevent plastic bottles and reduce CO2 emissions."
+    content: "See your mission impact! Discover how completing this sustainability challenge helps prevent plastic bottles and reduces CO2 emissions."
   },
   {
     id: "pickup",
     title: "Pickup & Delivery",
     subtitle: "Schedule your trade-in",
     icon: MapPin,
-    content: "Choose how you'd like to complete your trade-in process."
+    content: "Choose how you'd like to complete your sustainability mission - we'll handle the pickup and delivery!"
   },
   {
     id: "complete",

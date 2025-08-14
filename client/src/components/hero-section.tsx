@@ -58,7 +58,19 @@ export function HeroSection() {
         <div className="text-center mb-12" data-testid="mission-header">
           <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
             <Star className="w-5 h-5 text-amber-500 mr-2" />
-            <span className="text-white font-medium">WELCOME TO MISSION: SAVE DUBAI 2030</span>
+            <span className="text-white font-medium">THE SUSTAINABILITY GAME OF DUBAI</span>
+          </div>
+          
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+              Complete Missions
+            </h1>
+            <h2 className="text-2xl md:text-3xl text-gray-300 mb-2">
+              Save Money • Save the Planet
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Dubai's first gamified sustainability platform where every environmental action earns rewards
+            </p>
           </div>
           
           {/* AI-First Welcome Widget */}
@@ -72,7 +84,7 @@ export function HeroSection() {
                   <MapPin className="w-5 h-5 text-hero-green-500 mr-2" />
                   Welcome from Dubai
                 </p>
-                <p className="text-lg text-gray-300">Ready to turn your old iPhone into premium water delivery?</p>
+                <p className="text-lg text-gray-300">Choose your first sustainability mission and start earning rewards!</p>
               </div>
             </div>
 
@@ -88,10 +100,10 @@ export function HeroSection() {
               >
                 <h3 className="text-xl font-bold text-white mb-3 flex items-center">
                   <Timer className="w-5 h-5 text-amber-500 mr-2" />
-                  Quick Trade-In Now
+                  iPhone Trade Mission
                 </h3>
-                <p className="text-gray-300 mb-4">Get instant AED 1,200+ valuation in 2 minutes</p>
-                <div className="text-amber-500 font-semibold">⚡ Fastest path to rewards</div>
+                <p className="text-gray-300 mb-4">Trade your old iPhone for water systems & earn points</p>
+                <div className="text-amber-500 font-semibold">⚡ Quick impact mission</div>
               </div>
 
               {/* Gamified Path */}
@@ -105,10 +117,10 @@ export function HeroSection() {
               >
                 <h3 className="text-xl font-bold text-white mb-3 flex items-center">
                   <Star className="w-5 h-5 text-hero-green-500 mr-2" />
-                  Learn & Earn Rewards
+                  Water Delivery Mission
                 </h3>
-                <p className="text-gray-300 mb-4">Join leaderboard, unlock badges, double points</p>
-                <div className="text-hero-green-500 font-semibold">🏆 Maximum rewards & status</div>
+                <p className="text-gray-300 mb-4">Subscribe to premium water & climb leaderboards</p>
+                <div className="text-hero-green-500 font-semibold">🏆 Ongoing rewards mission</div>
               </div>
             </div>
 
@@ -123,7 +135,7 @@ export function HeroSection() {
                     data-testid="button-start-trade-onboarding"
                   >
                     <UserPlus className="w-5 h-5 mr-2" />
-                    🚀 START INSTANT TRADE-IN
+                    🚀 START IPHONE MISSION
                   </Button>
                   {hasCompletedOnboarding && (
                     <Link href="#trade">
@@ -143,7 +155,7 @@ export function HeroSection() {
                     data-testid="button-start-rewards-onboarding"
                   >
                     <UserPlus className="w-5 h-5 mr-2" />
-                    🏆 JOIN PLANET HEROES
+                    🏆 START WATER MISSION
                   </Button>
                   {hasCompletedOnboarding && (
                     <Link href="/leaderboard">
