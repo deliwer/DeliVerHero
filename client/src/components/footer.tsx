@@ -169,7 +169,7 @@ export function Footer() {
                 >
                   <Mail className="w-4 h-4 mr-3 text-hero-green-500" />
                   <div>
-                    <div className="text-sm">partners@deliwer.com</div>
+                    <div className="text-sm">info@deliwer.com</div>
                     <div className="text-xs text-gray-500">Partnership Inquiries</div>
                   </div>
                 </a>
@@ -198,7 +198,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-
       {/* Bottom Bar */}
       <div className="border-t border-slate-700 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 py-6">
