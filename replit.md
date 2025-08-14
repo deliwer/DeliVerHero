@@ -2,7 +2,13 @@
 
 ## Overview
 
-DeliWer is the sustainability game of Dubai where users complete missions to save money and save the planet. The platform gamifies environmental actions through various mission types including iPhone trade-ins, water delivery, and future sustainable services. Users earn environmental impact points, climb leaderboards, and unlock rewards while making real positive impact on Dubai's environment through engaging gameplay mechanics.
+DeliWer is Dubai's first sustainability game where you complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud. The platform gamifies environmental actions through various mission types including iPhone trade-ins, water delivery, and future sustainable services. Users earn environmental impact points, climb leaderboards, and unlock rewards while making real positive impact on Dubai's environment through engaging gameplay mechanics.
+
+## Brand Positioning
+
+"We are the sustainability game of Dubai — complete missions, save money, save the planet."
+
+The services (water, iPhones, future products) are mission types, not separate businesses. This positioning provides clarity: Dubai's first gamified sustainability platform where real-world eco-actions earn rewards and level progression.
 
 ## User Preferences
 

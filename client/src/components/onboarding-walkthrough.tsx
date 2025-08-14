@@ -34,9 +34,9 @@ const steps = [
   {
     id: "welcome",
     title: "Welcome to DeliWer!",
-    subtitle: "Join Dubai's environmental heroes",
+    subtitle: "Dubai's first sustainability game",
     icon: Star,
-    content: "Welcome to Dubai's sustainability game! Complete environmental missions, earn rewards, and make real impact while saving money."
+    content: "Welcome to Dubai's first sustainability game! Complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud."
   },
   {
     id: "profile",
@@ -460,10 +460,10 @@ export function OnboardingWalkthrough({ isOpen, onClose, onComplete }: Onboardin
                     </motion.div>
                     <div>
                       <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        Welcome to DeliWer, {formData.name}! 🎉
+                        Welcome to the game, {formData.name}! 🎉
                       </h3>
                       <p className="text-lg text-gray-600 dark:text-gray-300">
-                        You're now part of Dubai's environmental hero community!
+                        You're now ready to complete eco-missions and level up!
                       </p>
                     </div>
                     <div className="bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 p-6 rounded-lg">

@@ -69,7 +69,7 @@ export function HeroSection() {
               Save Money • Save the Planet
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Dubai's first gamified sustainability platform where every environmental action earns rewards
+              Dubai's first sustainability game where you complete real-world eco-missions — like upgrading tech or purifying water at home — to earn rewards, level up, and make the planet proud
             </p>
           </div>
           
@@ -84,7 +84,7 @@ export function HeroSection() {
                   <MapPin className="w-5 h-5 text-hero-green-500 mr-2" />
                   Welcome from Dubai
                 </p>
-                <p className="text-lg text-gray-300">Choose your first sustainability mission and start earning rewards!</p>
+                <p className="text-lg text-gray-300">Choose your first real-world eco-mission and start leveling up!</p>
               </div>
             </div>
 
@@ -100,10 +100,10 @@ export function HeroSection() {
               >
                 <h3 className="text-xl font-bold text-white mb-3 flex items-center">
                   <Timer className="w-5 h-5 text-amber-500 mr-2" />
-                  iPhone Trade Mission
+                  Tech Upgrade Mission
                 </h3>
-                <p className="text-gray-300 mb-4">Trade your old iPhone for water systems & earn points</p>
-                <div className="text-amber-500 font-semibold">⚡ Quick impact mission</div>
+                <p className="text-gray-300 mb-4">Upgrade your tech, get water systems, earn rewards</p>
+                <div className="text-amber-500 font-semibold">⚡ Tech upgrade eco-mission</div>
               </div>
 
               {/* Gamified Path */}
@@ -117,10 +117,10 @@ export function HeroSection() {
               >
                 <h3 className="text-xl font-bold text-white mb-3 flex items-center">
                   <Star className="w-5 h-5 text-hero-green-500 mr-2" />
-                  Water Delivery Mission
+                  Water Purification Mission
                 </h3>
-                <p className="text-gray-300 mb-4">Subscribe to premium water & climb leaderboards</p>
-                <div className="text-hero-green-500 font-semibold">🏆 Ongoing rewards mission</div>
+                <p className="text-gray-300 mb-4">Purify water at home, level up, earn rewards</p>
+                <div className="text-hero-green-500 font-semibold">🏆 Water purification eco-mission</div>
               </div>
             </div>
 
@@ -135,7 +135,7 @@ export function HeroSection() {
                     data-testid="button-start-trade-onboarding"
                   >
                     <UserPlus className="w-5 h-5 mr-2" />
-                    🚀 START IPHONE MISSION
+                    🚀 START TECH UPGRADE
                   </Button>
                   {hasCompletedOnboarding && (
                     <Link href="#trade">
@@ -155,7 +155,7 @@ export function HeroSection() {
                     data-testid="button-start-rewards-onboarding"
                   >
                     <UserPlus className="w-5 h-5 mr-2" />
-                    🏆 START WATER MISSION
+                    🏆 START WATER PURIFICATION
                   </Button>
                   {hasCompletedOnboarding && (
                     <Link href="/leaderboard">
