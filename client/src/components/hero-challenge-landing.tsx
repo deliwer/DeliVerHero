@@ -109,7 +109,7 @@ export function HeroChallengeLanding() {
             <br />
             <span className="text-gray-300 text-[36px]">complete missions, save money</span>
             <br />
-            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">Become a Planet Hero</span>
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-[48px]">Become a Planet Hero</span>
           </h1>
           
           <div className="flex flex-col items-center space-y-4 mb-8">
