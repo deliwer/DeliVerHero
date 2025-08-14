@@ -30,11 +30,7 @@ export function Navigation() {
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`transition-colors ${
-                    location === item.path
-                      ? "text-hero-green-500"
-                      : "text-gray-300 hover:text-white"
-                  }`}
+                  className="transition-colors text-gray-300 hover:text-white text-center"
                   data-testid={`link-${item.id}`}
                 >
                   {item.label}
