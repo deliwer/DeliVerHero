@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -23,6 +23,16 @@ export interface IStorage {
   createReferral(referrerId: string, refereeId: string): Promise<Referral>;
   getReferralsByHero(heroId: string): Promise<Referral[]>;
 
+  // Dubai challenges operations
+  getDubaiChallenges(): Promise<DubaiChallenge[]>;
+  getDubaiChallenge(id: string): Promise<DubaiChallenge | undefined>;
+  joinDubaiChallenge(challengeId: string, heroId: string): Promise<boolean>;
+  
+  // Dubai rewards operations
+  getDubaiRewards(): Promise<DubaiReward[]>;
+  getDubaiReward(id: string): Promise<DubaiReward | undefined>;
+  claimDubaiReward(rewardId: string, heroId: string): Promise<boolean>;
+
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
 }
@@ -32,11 +42,15 @@ export class MemStorage implements IStorage {
   private tradeIns: Map<string, TradeIn>;
   private impactStats: ImpactStats;
   private referrals: Map<string, Referral>;
+  private dubaiChallenges: Map<string, DubaiChallenge>;
+  private dubaiRewards: Map<string, DubaiReward>;
 
   constructor() {
     this.heroes = new Map();
     this.tradeIns = new Map();
     this.referrals = new Map();
+    this.dubaiChallenges = new Map();
+    this.dubaiRewards = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -50,6 +64,7 @@ export class MemStorage implements IStorage {
 
     // Seed some initial heroes for the leaderboard
     this.seedInitialData();
+    this.seedDubaiRewardsData();
   }
 
   private seedInitialData() {
@@ -67,6 +82,14 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 5247,
         co2Saved: 2623,
         referralCount: 23,
+        dubaiZone: "Dubai Marina",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 15,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-01-15"),
         updatedAt: new Date(),
@@ -84,6 +107,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 4891,
         co2Saved: 2445,
         referralCount: 18,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-01-20"),
         updatedAt: new Date(),
@@ -101,6 +128,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 4156,
         co2Saved: 2078,
         referralCount: 15,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-02-01"),
         updatedAt: new Date(),
@@ -118,6 +149,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 3789,
         co2Saved: 1894,
         referralCount: 14,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-02-15"),
         updatedAt: new Date(),
@@ -135,6 +170,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 3456,
         co2Saved: 1728,
         referralCount: 12,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-03-01"),
         updatedAt: new Date(),
@@ -152,6 +191,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 3123,
         co2Saved: 1561,
         referralCount: 11,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-03-15"),
         updatedAt: new Date(),
@@ -169,6 +212,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 2891,
         co2Saved: 1445,
         referralCount: 10,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-04-01"),
         updatedAt: new Date(),
@@ -186,6 +233,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 2657,
         co2Saved: 1328,
         referralCount: 9,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-04-15"),
         updatedAt: new Date(),
@@ -203,6 +254,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 2423,
         co2Saved: 1211,
         referralCount: 8,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-05-01"),
         updatedAt: new Date(),
@@ -220,6 +275,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 2234,
         co2Saved: 1117,
         referralCount: 7,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-05-15"),
         updatedAt: new Date(),
@@ -237,6 +296,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 2001,
         co2Saved: 1000,
         referralCount: 6,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-06-01"),
         updatedAt: new Date(),
@@ -254,6 +317,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 1834,
         co2Saved: 917,
         referralCount: 5,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-06-15"),
         updatedAt: new Date(),
@@ -271,6 +338,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 1723,
         co2Saved: 861,
         referralCount: 4,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-07-01"),
         updatedAt: new Date(),
@@ -288,6 +359,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 1567,
         co2Saved: 783,
         referralCount: 4,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-07-15"),
         updatedAt: new Date(),
@@ -305,6 +380,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 1389,
         co2Saved: 694,
         referralCount: 3,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-08-01"),
         updatedAt: new Date(),
@@ -322,6 +401,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 1234,
         co2Saved: 617,
         referralCount: 2,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-08-05"),
         updatedAt: new Date(),
@@ -339,6 +422,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 1098,
         co2Saved: 549,
         referralCount: 2,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-08-08"),
         updatedAt: new Date(),
@@ -356,6 +443,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 967,
         co2Saved: 483,
         referralCount: 1,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-08-10"),
         updatedAt: new Date(),
@@ -373,6 +464,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 834,
         co2Saved: 417,
         referralCount: 1,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-08-12"),
         updatedAt: new Date(),
@@ -390,6 +485,10 @@ export class MemStorage implements IStorage {
         bottlesPrevented: 723,
         co2Saved: 361,
         referralCount: 1,
+        dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-08-13"),
         updatedAt: new Date(),
@@ -397,6 +496,79 @@ export class MemStorage implements IStorage {
     ];
 
     initialHeroes.forEach(hero => this.heroes.set(hero.id, hero));
+  }
+
+  private seedDubaiRewardsData() {
+    // Seed Dubai challenges
+    const challenges: DubaiChallenge[] = [
+      {
+        id: "challenge-1",
+        title: "Dubai Marina Water Challenge",
+        description: "Install AquaCafe system and reduce 100 plastic bottles this month",
+        category: "water",
+        targetZone: "Dubai Marina",
+        pointsReward: 500,
+        rewardItem: "AED 50 voucher + Water Hero badge",
+        timeLimit: 30,
+        participantLimit: 100,
+        currentParticipants: 67,
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "challenge-2",
+        title: "Business Bay Energy Mission",
+        description: "Reduce energy consumption by 20% using smart home tech",
+        category: "energy",
+        targetZone: "Business Bay",
+        pointsReward: 750,
+        rewardItem: "Smart device upgrade + Energy Hero badge",
+        timeLimit: 45,
+        participantLimit: 50,
+        currentParticipants: 23,
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000),
+      }
+    ];
+
+    // Seed Dubai rewards
+    const rewards: DubaiReward[] = [
+      {
+        id: "reward-1",
+        title: "Burj Khalifa Observation Deck",
+        description: "Skip-the-line tickets for Level 148 + 125",
+        category: "experience",
+        partner: "Emaar Entertainment",
+        value: 35000,
+        pointsCost: 2500,
+        availableQuantity: 10,
+        claimedQuantity: 3,
+        zoneRestriction: "Downtown Dubai",
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "reward-2",
+        title: "Gold Souk Sustainability Shopping",
+        description: "AED 200 voucher for eco-certified jewelry",
+        category: "voucher",
+        partner: "Dubai Gold & Jewellery Group",
+        value: 20000,
+        pointsCost: 1500,
+        availableQuantity: 25,
+        claimedQuantity: 8,
+        zoneRestriction: null,
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+      }
+    ];
+
+    challenges.forEach(challenge => this.dubaiChallenges.set(challenge.id, challenge));
+    rewards.forEach(reward => this.dubaiRewards.set(reward.id, reward));
   }
 
   async getHero(id: string): Promise<Hero | undefined> {
@@ -426,7 +598,11 @@ export class MemStorage implements IStorage {
       bottlesPrevented,
       co2Saved,
       referralCount: 0,
-      isActive: true,
+      dubaiZone: "Business Bay",
+        rewardsEarned: [],
+        challengesCompleted: [],
+        sustainabilityStreak: 8,
+        isActive: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -541,6 +717,85 @@ export class MemStorage implements IStorage {
 
   async getReferralsByHero(heroId: string): Promise<Referral[]> {
     return Array.from(this.referrals.values()).filter(referral => referral.referrerId === heroId);
+  }
+
+  async getDubaiChallenges(): Promise<DubaiChallenge[]> {
+    return Array.from(this.dubaiChallenges.values()).filter(challenge => challenge.isActive);
+  }
+
+  async getDubaiChallenge(id: string): Promise<DubaiChallenge | undefined> {
+    return this.dubaiChallenges.get(id);
+  }
+
+  async joinDubaiChallenge(challengeId: string, heroId: string): Promise<boolean> {
+    const challenge = this.dubaiChallenges.get(challengeId);
+    const hero = this.heroes.get(heroId);
+    
+    if (!challenge || !hero || !challenge.isActive) {
+      return false;
+    }
+
+    if (challenge.participantLimit && challenge.currentParticipants >= challenge.participantLimit) {
+      return false;
+    }
+
+    const updatedChallenge = {
+      ...challenge,
+      currentParticipants: challenge.currentParticipants + 1
+    };
+    this.dubaiChallenges.set(challengeId, updatedChallenge);
+
+    const challengesCompleted = Array.isArray(hero.challengesCompleted) ? hero.challengesCompleted : [];
+    const updatedHero = {
+      ...hero,
+      challengesCompleted: [...challengesCompleted, challengeId],
+      updatedAt: new Date()
+    };
+    this.heroes.set(heroId, updatedHero);
+
+    return true;
+  }
+
+  async getDubaiRewards(): Promise<DubaiReward[]> {
+    return Array.from(this.dubaiRewards.values()).filter(reward => reward.isActive);
+  }
+
+  async getDubaiReward(id: string): Promise<DubaiReward | undefined> {
+    return this.dubaiRewards.get(id);
+  }
+
+  async claimDubaiReward(rewardId: string, heroId: string): Promise<boolean> {
+    const reward = this.dubaiRewards.get(rewardId);
+    const hero = this.heroes.get(heroId);
+    
+    if (!reward || !hero || !reward.isActive) {
+      return false;
+    }
+
+    if (hero.points < reward.pointsCost) {
+      return false;
+    }
+
+    if (reward.availableQuantity && reward.claimedQuantity >= reward.availableQuantity) {
+      return false;
+    }
+
+    const updatedReward = {
+      ...reward,
+      claimedQuantity: reward.claimedQuantity + 1
+    };
+    this.dubaiRewards.set(rewardId, updatedReward);
+
+    const rewardsEarned = Array.isArray(hero.rewardsEarned) ? hero.rewardsEarned : [];
+    const updatedHero = {
+      ...hero,
+      points: hero.points - reward.pointsCost,
+      rewardsEarned: [...rewardsEarned, rewardId],
+      updatedAt: new Date()
+    };
+    this.heroes.set(heroId, updatedHero);
+
+    return true;
   }
 
   async calculateTradeValue(phoneModel: string, condition: string): Promise<number> {

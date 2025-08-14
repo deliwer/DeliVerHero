@@ -20,6 +20,7 @@ import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Environmental from "@/pages/environmental";
 import Products from "@/pages/products";
+import DubaiRewards from "@/pages/dubai-rewards";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/terms" component={Terms} />
       <Route path="/environmental" component={Environmental} />
       <Route path="/products" component={Products} />
+      <Route path="/dubai-rewards" component={DubaiRewards} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -22,6 +22,10 @@ export const heroes = pgTable("heroes", {
   bottlesPrevented: integer("bottles_prevented").notNull().default(0),
   co2Saved: integer("co2_saved").notNull().default(0), // in grams
   referralCount: integer("referral_count").notNull().default(0),
+  dubaiZone: text("dubai_zone").default("Dubai Marina"),
+  rewardsEarned: jsonb("rewards_earned").default([]),
+  challengesCompleted: jsonb("challenges_completed").default([]),
+  sustainabilityStreak: integer("sustainability_streak").notNull().default(0),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
@@ -55,6 +59,38 @@ export const referrals = pgTable("referrals", {
   refereeId: varchar("referee_id").notNull().references(() => heroes.id),
   pointsEarned: integer("points_earned").notNull().default(50),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const dubaiChallenges = pgTable("dubai_challenges", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(), // water, energy, transport, waste
+  targetZone: text("target_zone"), // specific Dubai zone or null for city-wide
+  pointsReward: integer("points_reward").notNull(),
+  rewardItem: text("reward_item"), // specific reward description
+  timeLimit: integer("time_limit"), // in days
+  participantLimit: integer("participant_limit"),
+  currentParticipants: integer("current_participants").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at"),
+});
+
+export const dubaiRewards = pgTable("dubai_rewards", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(), // voucher, experience, product, service
+  partner: text("partner"), // Dubai business partner
+  value: integer("value").notNull(), // in AED fils
+  pointsCost: integer("points_cost").notNull(),
+  availableQuantity: integer("available_quantity"),
+  claimedQuantity: integer("claimed_quantity").notNull().default(0),
+  zoneRestriction: text("zone_restriction"), // specific Dubai zone or null
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at"),
 });
 
 // Zod schemas
@@ -92,3 +128,5 @@ export type TradeIn = typeof tradeIns.$inferSelect;
 export type ImpactStats = typeof impactStats.$inferSelect;
 export type Referral = typeof referrals.$inferSelect;
 export type UpdateHero = z.infer<typeof updateHeroSchema>;
+export type DubaiChallenge = typeof dubaiChallenges.$inferSelect;
+export type DubaiReward = typeof dubaiRewards.$inferSelect;
