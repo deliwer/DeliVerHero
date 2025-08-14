@@ -10,6 +10,12 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes (August 14, 2025)
 
+### Vercel Deployment Configuration Fix
+- **Resolved Runtime Conflicts**: Fixed conflicting builds/functions configuration causing "Function Runtimes must have a valid version" error
+- **Simplified Configuration**: Removed complex runtime specifications and used Vercel auto-detection for Node.js functions
+- **Compiled API Endpoints**: Built TypeScript API files to JavaScript for serverless deployment compatibility
+- **Path Conflict Resolution**: Eliminated file path conflicts between source and compiled files for clean deployment
+
 ### AI-First Conversion Strategy Implementation
 - **AI-Powered Welcome Widget**: Transformed hero section from generic landing page to conversational, guided trade-in assistant with location-based greeting and dual conversion paths
 - **Enhanced AI Concierge**: Upgraded chatbot with real-time gamification elements, live impact calculations, leaderboard positioning, and embedded checkout functionality
