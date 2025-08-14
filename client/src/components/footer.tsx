@@ -177,7 +177,7 @@ export function Footer() {
                 <div className="flex items-start text-gray-400">
                   <MapPin className="w-4 h-4 mr-3 text-amber-500 mt-1" />
                   <div>
-                    <div className="text-sm">Dubai, UAE</div>
+                    <div className="text-sm">Dubai Airport Freezone UAE</div>
                     <div className="text-xs text-gray-500">Serving all Emirates</div>
                   </div>
                 </div>
