@@ -1,10 +1,50 @@
-import { Star, Bot, MapPin, Timer } from "lucide-react";
+import { Star, Bot, MapPin, Timer, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
+import { OnboardingWalkthrough } from "./onboarding-walkthrough";
+import { useOnboarding } from "@/hooks/use-onboarding";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 export function HeroSection() {
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
+  const { isOnboardingOpen, hasCompletedOnboarding, startOnboarding, completeOnboarding, closeOnboarding } = useOnboarding();
+  const queryClient = useQueryClient();
+  const { toast } = useToast();
+
+  const createHeroMutation = useMutation({
+    mutationFn: (heroData: any) => apiRequest("/api/heroes", "POST", heroData),
+    onSuccess: (hero: any) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/heroes"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/heroes/leaderboard"] });
+      toast({
+        title: "Welcome to DeliWer!",
+        description: `Your hero profile has been created successfully. You're now a ${hero.level}!`,
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: "Failed to create hero profile. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleOnboardingComplete = (heroData: any) => {
+    const heroPayload = {
+      name: heroData.name,
+      email: heroData.email,
+      phoneModel: heroData.phoneModel,
+      phoneCondition: heroData.phoneCondition,
+      tradeValue: heroData.tradeValue,
+    };
+    
+    createHeroMutation.mutate(heroPayload);
+    completeOnboarding();
+  };
 
   return (
     <section className="relative py-20 px-4 overflow-hidden">
@@ -75,22 +115,59 @@ export function HeroSection() {
             {/* Dynamic CTA based on selection */}
             <div className="mt-8">
               {selectedPath === 'trade' && (
-                <Link href="#trade">
-                  <Button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg">
+                <div className="space-y-4">
+                  <Button 
+                    onClick={startOnboarding}
+                    className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg"
+                    disabled={createHeroMutation.isPending}
+                    data-testid="button-start-trade-onboarding"
+                  >
+                    <UserPlus className="w-5 h-5 mr-2" />
                     🚀 START INSTANT TRADE-IN
                   </Button>
-                </Link>
+                  {hasCompletedOnboarding && (
+                    <Link href="#trade">
+                      <Button variant="outline" className="w-full">
+                        Skip to Calculator
+                      </Button>
+                    </Link>
+                  )}
+                </div>
               )}
               {selectedPath === 'rewards' && (
-                <Link href="/leaderboard">
-                  <Button className="w-full bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg">
+                <div className="space-y-4">
+                  <Button 
+                    onClick={startOnboarding}
+                    className="w-full bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg"
+                    disabled={createHeroMutation.isPending}
+                    data-testid="button-start-rewards-onboarding"
+                  >
+                    <UserPlus className="w-5 h-5 mr-2" />
                     🏆 JOIN PLANET HEROES
                   </Button>
-                </Link>
+                  {hasCompletedOnboarding && (
+                    <Link href="/leaderboard">
+                      <Button variant="outline" className="w-full">
+                        View Leaderboard
+                      </Button>
+                    </Link>
+                  )}
+                </div>
               )}
               {!selectedPath && (
-                <div className="text-center text-gray-400">
-                  Choose your path above to continue →
+                <div className="text-center">
+                  <div className="text-gray-400 mb-4">
+                    Choose your path above to continue →
+                  </div>
+                  <Button
+                    onClick={startOnboarding}
+                    variant="outline"
+                    className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                    data-testid="button-start-general-onboarding"
+                  >
+                    <UserPlus className="w-4 h-4 mr-2" />
+                    Get Started with Onboarding
+                  </Button>
                 </div>
               )}
             </div>
@@ -107,6 +184,13 @@ export function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Onboarding Walkthrough */}
+      <OnboardingWalkthrough 
+        isOpen={isOnboardingOpen}
+        onClose={closeOnboarding}
+        onComplete={handleOnboardingComplete}
+      />
     </section>
   );
 }
