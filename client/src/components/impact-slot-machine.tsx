@@ -206,7 +206,7 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
               <div className="text-3xl font-bold text-hero-green-500 mb-4">60% Complete</div>
               
               <div className="w-full bg-slate-700 rounded-full h-4 mb-6">
-                <div className="from-hero-green-500 to-hero-green-600 h-4 rounded-full text-[#2463eb] bg-[#fabc23]" style={{width: '60%'}}></div>
+                <div className="from-hero-green-500 to-hero-green-600 h-4 rounded-full text-[#2463eb] bg-[#36d399]" style={{width: '60%'}}></div>
               </div>
             </div>
             
