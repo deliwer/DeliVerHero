@@ -9,8 +9,63 @@ import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { TooltipHintsDemo } from "@/components/tooltip-hints-demo";
-import { Flame, Clock, TrendingUp, Play } from "lucide-react";
+import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+
+function SponsorshipCallout() {
+  return (
+    <section className="py-8 px-4">
+      <div className="max-w-5xl mx-auto">
+        <div className="glass rounded-2xl p-8 border border-emerald-500/30 bg-gradient-to-r from-emerald-600/10 via-blue-600/10 to-purple-600/10">
+          <div className="text-center mb-6">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Building className="w-7 h-7 text-emerald-400" />
+              <h3 className="text-2xl font-bold text-white">Partner with Planet Heroes</h3>
+              <Heart className="w-7 h-7 text-red-400" />
+            </div>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Sustainability organizations: amplify your environmental impact by sponsoring missions across Dubai
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="text-center p-4">
+              <Users className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+              <div className="text-xl font-bold text-white">50+ Partners</div>
+              <div className="text-sm text-gray-400">Organizations funding missions</div>
+            </div>
+            <div className="text-center p-4">
+              <Award className="w-8 h-8 text-yellow-400 mx-auto mb-3" />
+              <div className="text-xl font-bold text-white">200+ Missions</div>
+              <div className="text-sm text-gray-400">Environmental challenges funded</div>
+            </div>
+            <div className="text-center p-4">
+              <Building className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
+              <div className="text-xl font-bold text-white">AED 50K+</div>
+              <div className="text-sm text-gray-400">Total impact investment</div>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <Link
+              href="/sponsorships"
+              className="inline-flex items-center bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25"
+              data-testid="button-explore-sponsorship"
+            >
+              <Building className="w-5 h-5 mr-2" />
+              Explore Sponsorship Opportunities
+              <ChevronRight className="w-5 h-5 ml-2" />
+            </Link>
+            <div className="mt-3 text-sm text-gray-400">
+              From AED 500 • Bronze, Silver, Gold & Platinum tiers available
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function LiveChallengeWidget() {
   return (
@@ -159,6 +214,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Sponsorship Callout */}
+      <SponsorshipCallout />
 
       {/* AI Concierge */}
       <AIConcierge />

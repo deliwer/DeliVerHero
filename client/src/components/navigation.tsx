@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Users, Rocket, Menu, X } from "lucide-react";
+import { Users, Rocket, Menu, X, Building, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 export function Navigation() {
@@ -29,16 +29,36 @@ export function Navigation() {
               </span>
             </Link>
             <div className="hidden md:flex space-x-6">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className="transition-colors text-gray-300 hover:text-white text-center"
-                  data-testid={`link-${item.id}`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                // Special styling for sponsorship link
+                if (item.id === "sponsorships") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border border-emerald-500/30 rounded-lg text-emerald-300 hover:text-white hover:from-emerald-600/30 hover:to-blue-600/30 hover:border-emerald-400/50 transition-all">
+                        <Building className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                        <Sparkles className="w-3 h-3 text-yellow-400" />
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                return (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    className="transition-colors text-gray-300 hover:text-white text-center"
+                    data-testid={`link-${item.id}`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
           </div>
           
@@ -104,17 +124,38 @@ export function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-700">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
-                  data-testid={`link-mobile-${item.id}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                // Special styling for sponsorship link in mobile
+                if (item.id === "sponsorships") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                      data-testid={`link-mobile-${item.id}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border border-emerald-500/30 rounded-lg text-emerald-300">
+                        <Building className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                        <Sparkles className="w-3 h-3 text-yellow-400 ml-auto" />
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                return (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                    data-testid={`link-mobile-${item.id}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
 
             </div>
           </div>

@@ -13,7 +13,11 @@ import {
   Users,
   Star,
   Heart,
-  ChevronRight
+  ChevronRight,
+  Building,
+  Award,
+  Sparkles,
+  Globe
 } from "lucide-react";
 
 export function Footer() {
@@ -29,6 +33,13 @@ export function Footer() {
     { label: "Partnership Programs", url: "/partners" },
     { label: "Delivery Network", url: "/delivery" },
     { label: "Impact Dashboard", url: "/impact" }
+  ];
+
+  const sponsorshipTiers = [
+    { name: "Bronze Sponsor", amount: "AED 500+", impact: "Fund 5 missions", color: "text-amber-600" },
+    { name: "Silver Sponsor", amount: "AED 1,500+", impact: "Fund 15 missions", color: "text-gray-400" },
+    { name: "Gold Sponsor", amount: "AED 5,000+", impact: "Fund 50 missions", color: "text-yellow-500" },
+    { name: "Platinum Sponsor", amount: "AED 15,000+", impact: "Fund 150 missions", color: "text-purple-400" }
   ];
 
   const partnershipPrograms = [
@@ -49,6 +60,46 @@ export function Footer() {
     <footer className="bg-slate-900 border-t border-slate-700">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* Highlighted Sponsorship Banner */}
+        <div className="mb-12 bg-gradient-to-r from-emerald-600/20 via-blue-600/20 to-purple-600/20 border border-emerald-500/30 rounded-xl p-8">
+          <div className="text-center mb-6">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Building className="w-8 h-8 text-emerald-400" />
+              <h2 className="text-2xl font-bold text-white">Sponsor Environmental Missions</h2>
+              <Sparkles className="w-8 h-8 text-yellow-400" />
+            </div>
+            <p className="text-gray-300 max-w-3xl mx-auto text-lg">
+              Partner with sustainability groups across Dubai to fund impactful environmental missions. 
+              Choose your sponsorship level and track real-time impact of your contribution.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-4 mb-6">
+            {sponsorshipTiers.map((tier, index) => (
+              <div key={index} className="bg-slate-800/50 border border-slate-600 rounded-lg p-4 text-center hover:border-emerald-500/50 transition-colors">
+                <Award className={`w-6 h-6 mx-auto mb-2 ${tier.color}`} />
+                <div className="text-white font-medium text-sm">{tier.name}</div>
+                <div className="text-emerald-400 text-xs font-bold">{tier.amount}</div>
+                <div className="text-gray-400 text-xs mt-1">{tier.impact}</div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Link 
+              href="/sponsorships" 
+              className="inline-flex items-center bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25"
+            >
+              <Building className="w-5 h-5 mr-2" />
+              Become a Mission Sponsor
+              <ChevronRight className="w-5 h-5 ml-2" />
+            </Link>
+            <div className="mt-3 text-xs text-gray-400">
+              Join 50+ organizations funding Dubai's environmental future
+            </div>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12">
           
           {/* Brand & Mission */}
@@ -113,6 +164,18 @@ export function Footer() {
                   {link.label}
                 </Link>
               ))}
+              
+              {/* Highlighted Sponsorship Link */}
+              <Link
+                href="/sponsorships"
+                className="flex items-center text-emerald-400 hover:text-emerald-300 transition-colors group mt-4 p-3 bg-emerald-900/30 border border-emerald-500/30 rounded-lg"
+              >
+                <Building className="w-4 h-4 mr-2 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+                <div>
+                  <div className="font-medium">Mission Sponsorship Hub</div>
+                  <div className="text-xs text-emerald-500">Fund Environmental Impact ✨</div>
+                </div>
+              </Link>
             </div>
 
             {/* Environmental Impact Stats */}
