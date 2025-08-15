@@ -57,3 +57,27 @@ Key features include an interactive onboarding walkthrough with real-time impact
 
 ### Current Third-Party Integrations
 - **Shopify Headless (via shopify.app.toml)**: E-commerce backend.
+
+## Recent Changes
+
+### Planet Hero Program Entry Gateway (January 2025)
+AquaCafe has been transformed into the primary Planet Hero Program entry gateway, serving as the main revenue-generating section:
+
+**Key Features Implemented:**
+- **AED 99 Starter Kit**: Entry-level Planet Hero program with instant AED 1000+ value proposition
+- **FREE Shower Filter Gift**: AquaCafe Beauty Hair & Skincare Ionic Shower Filter (AED 399 value) with free installation (AED 299 value) 
+- **Planet Hero Benefits**: Instant Level 2 status, 1000 Planet Points with 2X multiplier, 20% discount on all future plans
+- **Referral Program**: AED 100 Bakers Kitchen meal vouchers for successful referrals plus 500 bonus Planet Points each
+- **Revenue Urgency**: Limited-time messaging with stock scarcity (47 starter kits left)
+- **"Love is in the Hair" Campaign**: Showcasing the 4-level filtration ionic shower filter as primary gift
+
+**Ambassador Program Enhancements:**
+- **Enhanced Commission Structure**: 35% commission on AED 99 starter kit sales + 25% on iPhone trade-in values
+- **Projected Earnings**: AED 4,200+ monthly potential (up from AED 3,465+)
+- **Bakers Kitchen Integration**: Ambassadors share in voucher rewards for referrals they generate
+- **Revenue Model**: Focus on high-conversion AED 99 entry point with immediate value delivery
+
+**Partnership Program Terminology:**
+- **Affiliates → Ambassadors**: Individual entrepreneurs earning 35% commission on Planet Hero starter kits
+- **Restaurant Partners → Champions**: Collection points earning AED 25 per trade-in with foot traffic benefits
+- **Eco-Trade Partners**: Wholesale program for pre-owned electronics retailers with AI sourcing and bulk pricing

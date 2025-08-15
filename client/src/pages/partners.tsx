@@ -115,7 +115,13 @@ export default function Partners() {
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
-                    <span className="text-white">Earn <strong className="text-amber-500">35%</strong> commission on every iPhone trade-in</span>
+                    <span className="text-white">Earn <strong className="text-amber-500">35%</strong> commission on every AED 99 Planet Hero starter kit sale</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                    <span className="text-white">Additional <strong className="text-hero-green-500">25%</strong> commission on iPhone trade-in values</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
@@ -141,13 +147,20 @@ export default function Partners() {
                     </div>
                     <span className="text-white">AI marketing automation tools & Ambassador dashboard</span>
                   </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                    <span className="text-white">Share in <strong className="text-amber-500">Bakers Kitchen voucher rewards</strong> for referrals you generate</span>
+                  </div>
                 </div>
 
                 <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 mb-6" data-testid="ambassador-earnings">
                   <div className="text-center">
-                    <div className="text-sm text-gray-400 mb-2">Your potential monthly earnings:</div>
-                    <div className="text-3xl font-bold text-amber-500 mb-2">AED 3,465+</div>
-                    <div className="text-sm text-gray-400">Based on 10 sales/month at AED 99 each (35% commission)</div>
+                    <div className="text-sm text-gray-400 mb-2">Your potential monthly earnings from Planet Hero Program:</div>
+                    <div className="text-3xl font-bold text-amber-500 mb-1">AED 4,200+</div>
+                    <div className="text-sm text-gray-400 mb-3">Based on 10 starter kits/month: AED 346.50 (35% of AED 99) + AED 75 average iPhone commission</div>
+                    <div className="text-xs text-amber-300 font-bold">💰 BONUS: AED 100 Bakers Kitchen vouchers for referrals you generate!</div>
                   </div>
                 </div>
               </>

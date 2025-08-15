@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Truck, Users, Recycle, Store, Phone, Mail, MessageSquare, Send } from "lucide-react";
+import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Truck, Users, Recycle, Store, Phone, Mail, MessageSquare, Send, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -42,19 +42,25 @@ export default function AquaCafe() {
   const plans = [
     {
       id: "hero-starter",
-      name: "AquaCafe Hero Starter",
-      price: 999,
-      originalPrice: 1399,
+      name: "AquaCafe Hero Starter - PLANET HERO ENTRY",
+      price: 99,
+      originalPrice: 1398,
+      heroDiscount: 20,
       features: [
-        "Premium 3-stage filtration system",
-        "12-month filter supply",
-        "Planet Hero Level 2 status",
-        "1000 starter points + Hero multiplier",
-        "Priority support",
-        "Smart monitoring app",
-        "Hero member exclusive badge"
+        "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 399 value)",
+        "🔧 FREE Professional Installation (AED 299 value)",
+        "💧 Premium 3-stage filtration system",
+        "📦 12-month filter supply included",
+        "⭐ Instant Planet Hero Level 2 status",
+        "🎯 1000 starter points + 2X Hero multiplier",
+        "📞 24/7 Planet Hero priority support",
+        "📱 Smart monitoring app with Hero dashboard",
+        "🏆 Exclusive Hero member badge",
+        "💰 20% discount on ALL future plans",
+        "🍰 Referral rewards: AED 100 Bakers Kitchen voucher"
       ],
-      badge: "🌟 HERO ENTRY"
+      badge: "🚀 PLANET HERO GATEWAY",
+      isHeroEntry: true
     },
     {
       id: "hero-premium",
@@ -203,21 +209,193 @@ export default function AquaCafe() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-slate-900/95 to-slate-800/90 backdrop-blur-sm" data-testid="aquacafe-hero">
+      {/* Planet Hero Program Entry Gateway - MAIN REVENUE SECTION */}
+      <section className="py-16 px-4 bg-gradient-to-br from-amber-900/40 via-hero-green-900/30 to-dubai-blue-900/40 backdrop-blur-sm border-b-4 border-amber-500/50" data-testid="planet-hero-gateway">
+        <div className="max-w-7xl mx-auto">
+          {/* URGENT Revenue Banner */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full px-8 py-4 mb-6 font-bold text-lg shadow-2xl animate-pulse">
+              <Gift className="w-6 h-6 mr-3" />
+              <span>🚨 LIMITED TIME: 100% FREE SHOWER FILTER + INSTALLATION 🚨</span>
+              <Gift className="w-6 h-6 ml-3" />
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Value Proposition */}
+            <div className="text-center lg:text-left">
+              <div className="mb-6">
+                <div className="inline-flex items-center bg-hero-green-500/20 border border-hero-green-500/50 rounded-full px-6 py-3 mb-4">
+                  <Award className="w-5 h-5 text-hero-green-500 mr-2" />
+                  <span className="text-hero-green-500 font-bold">PLANET HERO PROGRAM ENTRY</span>
+                </div>
+                
+                <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                  <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                    AED 99
+                  </span>
+                  <br />
+                  <span className="text-3xl md:text-4xl text-gray-200">Starter Kit</span>
+                </h1>
+                
+                <div className="bg-gradient-to-r from-hero-green-500 to-blue-500 bg-clip-text text-transparent text-2xl md:text-3xl font-bold mb-6">
+                  GET AED 1000+ INSTANT VALUE!
+                </div>
+              </div>
+
+              {/* Key Benefits */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center justify-center lg:justify-start text-lg">
+                  <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
+                    <Gift className="w-5 h-5 text-black" />
+                  </div>
+                  <span className="text-white font-bold">FREE AquaCafe Beauty Hair & Skincare Ionic Shower Filter</span>
+                </div>
+                <div className="flex items-center justify-center lg:justify-start text-lg">
+                  <div className="w-8 h-8 bg-hero-green-500 rounded-full flex items-center justify-center mr-4">
+                    <CheckCircle className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white font-bold">FREE Professional Installation (AED 299 value)</span>
+                </div>
+                <div className="flex items-center justify-center lg:justify-start text-lg">
+                  <div className="w-8 h-8 bg-dubai-blue-500 rounded-full flex items-center justify-center mr-4">
+                    <Star className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white font-bold">Instant Planet Hero Level 2 Status</span>
+                </div>
+                <div className="flex items-center justify-center lg:justify-start text-lg">
+                  <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                    <Target className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-white font-bold">1000 Planet Points + Hero Multiplier</span>
+                </div>
+                <div className="flex items-center justify-center lg:justify-start text-lg">
+                  <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
+                    <Heart className="w-5 h-5 text-black" />
+                  </div>
+                  <span className="text-white font-bold">20% Discount on ALL Future AquaCafe Plans</span>
+                </div>
+              </div>
+
+              {/* URGENT CTA */}
+              <div className="space-y-4">
+                <Button
+                  onClick={() => handleOrderNow('hero-starter')}
+                  disabled={isOrderLoading === 'hero-starter'}
+                  className="w-full lg:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-12 py-6 text-2xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all disabled:opacity-70"
+                  data-testid="button-join-planet-heroes"
+                >
+                  {isOrderLoading === 'hero-starter' ? (
+                    <>
+                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-current mr-3"></div>
+                      PROCESSING...
+                    </>
+                  ) : (
+                    <>
+                      <Rocket className="mr-3 w-6 h-6" />
+                      JOIN PLANET HEROES NOW - AED 99
+                    </>
+                  )}
+                </Button>
+                
+                <p className="text-amber-300 font-bold text-lg">
+                  🔥 Only 47 starter kits left in Dubai! 🔥
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Shower Filter Showcase */}
+            <div className="relative">
+              <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-3xl p-8 border border-blue-500/30">
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">💝 FREE GIFT WITH EVERY STARTER KIT</div>
+                  <div className="text-amber-400 text-xl font-bold">"LOVE IS IN THE HAIR" Campaign</div>
+                </div>
+                
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 mb-6">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white mb-3">AquaCafe Beauty Hair & Skincare</div>
+                    <div className="text-lg text-blue-300 mb-4">Ionic Shower Filter</div>
+                    <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
+                      <div>✨ 4-Level Filtration</div>
+                      <div>💧 Removes Chlorine</div>
+                      <div>🌟 Softer Hair</div>
+                      <div>💎 Healthier Skin</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <div className="text-gray-400 line-through text-lg mb-1">Regular Price: AED 399</div>
+                  <div className="text-3xl font-bold text-hero-green-500 mb-2">FREE with Starter Kit!</div>
+                  <div className="text-amber-400 font-bold">+ FREE Installation (AED 299 value)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Referral Program & Bakers Kitchen Voucher */}
+      <section className="py-12 px-4 bg-gradient-to-br from-purple-900/30 to-pink-900/20 backdrop-blur-sm border-y border-purple-500/30" data-testid="referral-program">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="inline-flex items-center bg-purple-500/20 border border-purple-500/50 rounded-full px-6 py-3 mb-6">
+            <Users className="w-5 h-5 text-purple-400 mr-2" />
+            <span className="text-purple-400 font-bold">HERO REFERRAL REWARDS</span>
+          </div>
+          
+          <h2 className="text-3xl font-bold text-white mb-6">
+            Refer Friends & Get <span className="text-amber-500">AED 100 FREE MEAL</span> from Bakers Kitchen!
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-purple-500/20">
+              <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">1</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Share Your Code</h3>
+              <p className="text-gray-300 text-sm">Every Planet Hero gets a unique referral code to share with friends</p>
+            </div>
+            
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-hero-green-500/20">
+              <div className="w-12 h-12 bg-hero-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">2</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Friend Joins</h3>
+              <p className="text-gray-300 text-sm">When they purchase any AquaCafe plan using your code</p>
+            </div>
+            
+            <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-amber-500/20">
+              <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-black font-bold text-xl">3</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">You Both Win!</h3>
+              <p className="text-gray-300 text-sm">AED 100 Bakers Kitchen voucher + 500 bonus Planet Points each</p>
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-amber-500/10 to-purple-500/10 border border-amber-500/30 rounded-xl p-6">
+            <div className="text-amber-400 font-bold text-lg mb-2">🍰 Partnership with Bakers Kitchen Dubai 🍰</div>
+            <p className="text-gray-300">Use your AED 100 voucher at any Bakers Kitchen location across Dubai for premium cakes, pastries, and gourmet meals!</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero Section - Now Secondary */}
+      <section className="py-16 px-4 bg-gradient-to-br from-slate-900/95 to-slate-800/90 backdrop-blur-sm" data-testid="aquacafe-hero">
         <div className="max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center glass rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
             <Star className="w-5 h-5 text-amber-500 mr-2" />
             <span className="text-white font-medium">DUBAI'S #1 WATER FILTRATION SYSTEM</span>
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
             AquaCafe
             <br />
             <span className="bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">
               Premium Water Systems
             </span>
-          </h1>
+          </h2>
           
           <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
             Transform your old iPhone into premium clean water for your family. 
@@ -317,8 +495,10 @@ export default function AquaCafe() {
           
           <div className="grid md:grid-cols-3 gap-8 mb-12" data-testid="aquacafe-packages">
             {plans.map((plan) => {
-              const finalPrice = plan.price - (calculation?.tradeValue || 0);
-              const savings = plan.originalPrice - plan.price + (calculation?.tradeValue || 0);
+              const basePrice = plan.price;
+              const heroDiscountAmount = plan.heroDiscount ? (plan.price * plan.heroDiscount / 100) : 0;
+              const finalPrice = basePrice - heroDiscountAmount - (calculation?.tradeValue || 0);
+              const totalSavings = plan.originalPrice - plan.price + heroDiscountAmount + (calculation?.tradeValue || 0);
               
               return (
                 <Card 
@@ -350,17 +530,38 @@ export default function AquaCafe() {
                         <div className="text-gray-400 line-through text-lg mb-1">
                           AED {plan.originalPrice.toLocaleString()}
                         </div>
-                        <div className="text-3xl font-bold text-white mb-2">
-                          AED {plan.price.toLocaleString()}
-                        </div>
-                        {calculation && (
-                          <div className="text-hero-green-500 font-bold text-lg">
-                            Your Price: AED {Math.max(0, finalPrice).toLocaleString()}
-                          </div>
+                        {plan.isHeroEntry ? (
+                          <>
+                            <div className="text-6xl font-bold text-amber-500 mb-2">
+                              AED {plan.price}
+                            </div>
+                            <div className="text-hero-green-500 font-bold text-lg mb-1">
+                              Planet Hero Price: AED {Math.max(0, finalPrice).toLocaleString()}
+                            </div>
+                            {calculation && (
+                              <div className="text-blue-400 font-bold text-lg">
+                                With iPhone Trade: AED {Math.max(0, finalPrice).toLocaleString()}
+                              </div>
+                            )}
+                            <div className="text-sm text-amber-500 font-bold">
+                              TOTAL VALUE: AED {totalSavings.toLocaleString()}+ FREE!
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="text-3xl font-bold text-white mb-2">
+                              AED {plan.price.toLocaleString()}
+                            </div>
+                            {calculation && (
+                              <div className="text-hero-green-500 font-bold text-lg">
+                                Your Price: AED {Math.max(0, finalPrice).toLocaleString()}
+                              </div>
+                            )}
+                            <div className="text-sm text-amber-500 font-bold">
+                              Save AED {totalSavings.toLocaleString()}
+                            </div>
+                          </>
                         )}
-                        <div className="text-sm text-amber-500 font-bold">
-                          Save AED {savings.toLocaleString()}
-                        </div>
                       </div>
                     </div>
                     
@@ -376,8 +577,10 @@ export default function AquaCafe() {
                     <Button
                       onClick={() => handleOrderNow(plan.id)}
                       disabled={isOrderLoading === plan.id}
-                      className={`w-full py-3 font-bold text-lg rounded-xl transition-all ${
-                        plan.popular
+                      className={`w-full py-4 font-bold text-lg rounded-xl transition-all transform hover:scale-105 ${
+                        plan.isHeroEntry
+                          ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70 shadow-2xl animate-pulse'
+                          : plan.popular
                           ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70'
                           : 'bg-hero-green-500 hover:bg-hero-green-600 text-white disabled:opacity-70'
                       }`}
@@ -387,6 +590,11 @@ export default function AquaCafe() {
                         <>
                           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-current mr-2"></div>
                           PROCESSING...
+                        </>
+                      ) : plan.isHeroEntry ? (
+                        <>
+                          <Rocket className="mr-2 w-5 h-5" />
+                          🚀 JOIN PLANET HEROES NOW!
                         </>
                       ) : (
                         <>
