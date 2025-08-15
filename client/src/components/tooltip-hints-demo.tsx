@@ -1,9 +1,13 @@
+import { useState, useEffect, useRef } from "react";
 import { useTooltipHints } from "@/hooks/use-tooltip-hints";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { RotateCcw, Eye, Target, X } from "lucide-react";
 
 export function TooltipHintsDemo() {
+  const [isVisible, setIsVisible] = useState(true);
+  const panelRef = useRef<HTMLDivElement>(null);
+  
   const { 
     activeHints, 
     dismissAllHints, 
@@ -44,11 +48,44 @@ export function TooltipHintsDemo() {
     }
   };
 
+  const handleClose = () => {
+    setIsVisible(false);
+  };
+
+  // Handle click outside to close panel
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
+        setIsVisible(false);
+      }
+    };
+
+    if (isVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isVisible]);
+
+  if (!isVisible) {
+    return null;
+  }
+
   return (
-    <div className="fixed bottom-20 right-6 z-40">
+    <div className="fixed bottom-20 right-6 z-40" ref={panelRef}>
       <Card className="w-72 bg-slate-800/95 backdrop-blur-lg border-slate-600/70 shadow-2xl">
-        <CardContent className="p-4">
-          <div className="text-center mb-4">
+        <CardContent className="p-4 relative">
+          <Button
+            onClick={handleClose}
+            variant="ghost"
+            size="sm"
+            className="absolute top-2 right-2 h-6 w-6 p-0 text-gray-400 hover:text-white hover:bg-slate-700 rounded-full"
+          >
+            <X className="h-3 w-3" />
+          </Button>
+          <div className="text-center mb-4 pr-6">
             <h4 className="text-white font-semibold mb-2">Tooltip Hints System</h4>
             <div className="text-sm text-gray-300 space-y-1">
               <p>Active: {activeHints.length} hints</p>
