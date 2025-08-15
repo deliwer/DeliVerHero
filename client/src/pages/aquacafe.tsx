@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
 import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Truck, Users, Recycle, Store, Phone, Mail, MessageSquare, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,6 +28,16 @@ function ProductFeature({ icon, title, description }: ProductFeatureProps) {
 export default function AquaCafe() {
   const [calculation, setCalculation] = useState<TradeCalculation | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<string>("premium");
+  const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    partnershipType: "",
+    message: ""
+  });
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const plans = [
     {
@@ -105,9 +117,88 @@ export default function AquaCafe() {
     }
   ];
 
-  const handleOrderNow = (planId: string) => {
-    // In a real implementation, this would integrate with Shopify
-    alert(`Ordering ${plans.find(p => p.id === planId)?.name}! This would integrate with Shopify checkout.`);
+  const handleOrderNow = async (planId: string) => {
+    const plan = plans.find(p => p.id === planId);
+    if (!plan) return;
+    
+    setIsOrderLoading(planId);
+    
+    try {
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Redirect to Shopify with proper product variant
+      const shopifyUrl = `https://www.deliwer.com/products/aquacafe?variant=${planId}`;
+      window.open(shopifyUrl, '_blank');
+      
+      toast({
+        title: "Redirecting to Checkout",
+        description: `Opening Shopify checkout for ${plan.name}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to process order. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsOrderLoading(null);
+    }
+  };
+
+  const handlePartnershipClick = (programType: string) => {
+    // Scroll to contact form or redirect to partners page
+    const contactSection = document.querySelector('[data-testid="contact-support"]');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      setFormData(prev => ({ ...prev, partnershipType: programType }));
+    }
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.phone || !formData.partnershipType) {
+      toast({
+        title: "Required Fields Missing",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    setIsFormSubmitting(true);
+    
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast({
+        title: "Partnership Inquiry Sent!",
+        description: "We'll contact you within 4-6 hours during business hours.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        partnershipType: "",
+        message: ""
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "Please try again or contact us directly.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsFormSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -284,15 +375,25 @@ export default function AquaCafe() {
                     
                     <Button
                       onClick={() => handleOrderNow(plan.id)}
+                      disabled={isOrderLoading === plan.id}
                       className={`w-full py-3 font-bold text-lg rounded-xl transition-all ${
                         plan.popular
-                          ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black'
-                          : 'bg-hero-green-500 hover:bg-hero-green-600 text-white'
+                          ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70'
+                          : 'bg-hero-green-500 hover:bg-hero-green-600 text-white disabled:opacity-70'
                       }`}
                       data-testid={`button-order-${plan.id}`}
                     >
-                      <ShoppingCart className="mr-2 w-5 h-5" />
-                      ORDER NOW
+                      {isOrderLoading === plan.id ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-current mr-2"></div>
+                          PROCESSING...
+                        </>
+                      ) : (
+                        <>
+                          <ShoppingCart className="mr-2 w-5 h-5" />
+                          ORDER NOW
+                        </>
+                      )}
                     </Button>
                   </CardContent>
                 </Card>
@@ -374,7 +475,11 @@ export default function AquaCafe() {
                   </div>
                 </div>
 
-                <Button className="w-full bg-amber-500 hover:bg-amber-600 text-black py-3 font-bold">
+                <Button 
+                  onClick={() => handlePartnershipClick('delivery-agent')}
+                  className="w-full bg-amber-500 hover:bg-amber-600 text-black py-3 font-bold transition-all"
+                  data-testid="button-delivery-agent"
+                >
                   <Users className="mr-2 w-5 h-5" />
                   BECOME A DELIVERY AGENT
                 </Button>
@@ -428,7 +533,11 @@ export default function AquaCafe() {
                   </div>
                 </div>
 
-                <Button className="w-full bg-hero-green-500 hover:bg-hero-green-600 text-white py-3 font-bold">
+                <Button 
+                  onClick={() => handlePartnershipClick('eco-recycling')}
+                  className="w-full bg-hero-green-500 hover:bg-hero-green-600 text-white py-3 font-bold transition-all"
+                  data-testid="button-eco-recycling"
+                >
                   <Recycle className="mr-2 w-5 h-5" />
                   JOIN ECO-RECYCLING PROGRAM
                 </Button>
@@ -488,7 +597,11 @@ export default function AquaCafe() {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-dubai-blue-500 hover:bg-dubai-blue-600 text-white py-3 font-bold">
+                  <Button 
+                    onClick={() => handlePartnershipClick('restaurant-collection')}
+                    className="w-full bg-dubai-blue-500 hover:bg-dubai-blue-600 text-white py-3 font-bold transition-all"
+                    data-testid="button-collection-partner"
+                  >
                     <Store className="mr-2 w-5 h-5" />
                     BECOME A COLLECTION PARTNER
                   </Button>
@@ -512,7 +625,11 @@ export default function AquaCafe() {
               <CardContent className="p-6 bg-gradient-to-br from-slate-800/70 to-slate-900/80 backdrop-blur-sm text-center">
                 <Phone className="w-12 h-12 text-dubai-blue-500 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-white mb-2">Emergency Support</h3>
-                <a href="tel:+971523946311" className="text-dubai-blue-500 hover:underline text-lg">
+                <a 
+                  href="tel:+971523946311" 
+                  className="text-dubai-blue-500 hover:underline text-lg"
+                  data-testid="link-phone-support"
+                >
                   +971 52 394 6311
                 </a>
                 <p className="text-sm text-gray-400 mt-2">24/7 Hotline for urgent issues</p>
@@ -528,7 +645,11 @@ export default function AquaCafe() {
               <CardContent className="p-6 bg-gradient-to-br from-slate-800/70 to-slate-900/80 backdrop-blur-sm text-center">
                 <Mail className="w-12 h-12 text-hero-green-500 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-white mb-2">Business Partnerships</h3>
-                <a href="mailto:partners@deliwer.com" className="text-hero-green-500 hover:underline text-lg">
+                <a 
+                  href="mailto:partners@deliwer.com" 
+                  className="text-hero-green-500 hover:underline text-lg"
+                  data-testid="link-email-support"
+                >
                   partners@deliwer.com
                 </a>
                 <p className="text-sm text-gray-400 mt-2">Partnership applications & support</p>
@@ -544,7 +665,13 @@ export default function AquaCafe() {
               <CardContent className="p-6 bg-gradient-to-br from-slate-800/70 to-slate-900/80 backdrop-blur-sm text-center">
                 <MessageSquare className="w-12 h-12 text-amber-500 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-white mb-2">WhatsApp Support</h3>
-                <a href="https://wa.me/971523946311" className="text-amber-500 hover:underline text-lg">
+                <a 
+                  href="https://wa.me/971523946311" 
+                  className="text-amber-500 hover:underline text-lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="link-whatsapp-support"
+                >
                   Chat Now
                 </a>
                 <p className="text-sm text-gray-400 mt-2">Instant messaging support</p>
@@ -562,68 +689,105 @@ export default function AquaCafe() {
             <CardContent className="p-8 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
               <h3 className="text-2xl font-bold text-white text-center mb-8">Quick Partnership Inquiry</h3>
               
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-gray-300 text-sm font-medium mb-2">Full Name</label>
-                      <input
-                        type="text"
-                        className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
-                        placeholder="Your full name"
-                      />
+              <form onSubmit={handleFormSubmit} className="space-y-6" data-testid="partnership-form">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-gray-300 text-sm font-medium mb-2">Full Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={(e) => handleInputChange('name', e.target.value)}
+                          className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
+                          placeholder="Your full name"
+                          data-testid="input-name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-300 text-sm font-medium mb-2">Email Address *</label>
+                        <input
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => handleInputChange('email', e.target.value)}
+                          className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
+                          placeholder="your.email@example.com"
+                          data-testid="input-email"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-300 text-sm font-medium mb-2">Phone Number *</label>
+                        <input
+                          type="tel"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => handleInputChange('phone', e.target.value)}
+                          className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
+                          placeholder="+971 XX XXX XXXX"
+                          data-testid="input-phone"
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-gray-300 text-sm font-medium mb-2">Email Address</label>
-                      <input
-                        type="email"
-                        className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-300 text-sm font-medium mb-2">Phone Number</label>
-                      <input
-                        type="tel"
-                        className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
-                        placeholder="+971 XX XXX XXXX"
-                      />
+                  </div>
+                  
+                  <div>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-gray-300 text-sm font-medium mb-2">Partnership Type *</label>
+                        <select 
+                          required
+                          value={formData.partnershipType}
+                          onChange={(e) => handleInputChange('partnershipType', e.target.value)}
+                          className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
+                          data-testid="select-partnership-type"
+                        >
+                          <option value="">Select partnership type</option>
+                          <option value="delivery-agent">Delivery Agent</option>
+                          <option value="eco-recycling">Eco-Recycling Partner</option>
+                          <option value="restaurant-collection">Restaurant Collection</option>
+                          <option value="other">Other Partnership</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-gray-300 text-sm font-medium mb-2">Message</label>
+                        <textarea
+                          value={formData.message}
+                          onChange={(e) => handleInputChange('message', e.target.value)}
+                          className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none h-24 resize-none"
+                          placeholder="Tell us about your interest and experience..."
+                          data-testid="textarea-message"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                <div>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-gray-300 text-sm font-medium mb-2">Partnership Type</label>
-                      <select className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none">
-                        <option value="">Select partnership type</option>
-                        <option value="delivery-agent">Delivery Agent</option>
-                        <option value="eco-recycling">Eco-Recycling Partner</option>
-                        <option value="restaurant-collection">Restaurant Collection</option>
-                        <option value="other">Other Partnership</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-gray-300 text-sm font-medium mb-2">Message</label>
-                      <textarea
-                        className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none h-24 resize-none"
-                        placeholder="Tell us about your interest and experience..."
-                      />
-                    </div>
-                  </div>
+                <div className="text-center mt-8">
+                  <Button 
+                    type="submit"
+                    disabled={isFormSubmitting}
+                    className="bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white px-8 py-3 font-bold disabled:opacity-70 transition-all"
+                    data-testid="button-submit-partnership"
+                  >
+                    {isFormSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        SUBMITTING...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 w-5 h-5" />
+                        Submit Partnership Inquiry
+                      </>
+                    )}
+                  </Button>
+                  <p className="text-sm text-gray-400 mt-4">
+                    We typically respond within 4-6 hours during business hours
+                  </p>
                 </div>
-              </div>
-              
-              <div className="text-center mt-8">
-                <Button className="bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white px-8 py-3 font-bold">
-                  <Send className="mr-2 w-5 h-5" />
-                  Submit Partnership Inquiry
-                </Button>
-                <p className="text-sm text-gray-400 mt-4">
-                  We typically respond within 4-6 hours during business hours
-                </p>
-              </div>
+              </form>
             </CardContent>
           </Card>
         </div>
