@@ -1,0 +1,17 @@
+node_modules
+.env*
+.git
+client/src
+server/routes
+server/storage.ts
+server/vite.ts
+shared
+*.md
+*.log
+.replit
+components.json
+drizzle.config.ts
+postcss.config.js
+tailwind.config.ts
+tsconfig.json
+vite.config.ts

@@ -1,8 +1,10 @@
 {
   "version": 2,
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "dist/public",
   "functions": {
     "api/index.js": {
-      "runtime": "@vercel/node@18"
+      "runtime": "@vercel/node@20"
     }
   },
   "routes": [
@@ -12,15 +14,30 @@
     },
     {
       "src": "/assets/(.*)",
-      "dest": "/dist/public/assets/$1"
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg))",
-      "dest": "/dist/public/$1"
+      "dest": "/assets/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/public/index.html"
+      "dest": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
     }
   ]
 }
