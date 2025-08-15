@@ -14,7 +14,21 @@ The services (water, iPhones, future products) are mission types, not separate b
 
 Preferred communication style: Simple, everyday language.
 
-## Recent Changes (August 14, 2025)
+## Recent Changes (August 15, 2025)
+
+### Contextual Tooltip Hints System Implementation (August 15, 2025)
+- **Tooltip System Architecture**: Built comprehensive contextual tooltip system with TooltipHint component, useTooltipHints hook, and TooltipHintsManager
+- **Smart Targeting**: Tooltips automatically target UI elements using data-testid attributes for precise positioning and context-aware guidance
+- **Six Tooltip Types**: Configured welcome intro, mission guidance, navigation help, leaderboard introduction, impact stats explanation, and AI concierge assistance
+- **Intelligent Triggers**: Tooltips appear based on timing delays, user conditions (first visit, page context), and priority levels (high/medium/low)
+- **Demo Control Panel**: Added interactive demo panel with custom hint creation, system reset, impact highlighting, and tooltip management controls
+- **Performance Optimized**: Uses React hooks for state management with localStorage persistence and automatic cleanup
+
+### Vercel Deployment Enhancement (August 15, 2025)
+- **Serverless API Functions**: Updated Vercel configuration to use proper serverless functions with @vercel/node runtime
+- **Static Asset Routing**: Configured precise route matching for CSS, JS, and image assets with fallback to index.html for SPA routing
+- **CORS Configuration**: Enhanced API handler with comprehensive CORS headers for cross-origin requests
+- **Production Build Optimization**: Streamlined build process with ESBuild for server compilation and Vite for frontend bundling
 
 ### Hero Content Updates & Navigation Merge (August 14, 2025)
 - **Hero Headline Updated**: Changed main headline to "AquaCafe the sustainability game of Dubai — complete missions, save money, save the planet -- Become The Planet Hero"
