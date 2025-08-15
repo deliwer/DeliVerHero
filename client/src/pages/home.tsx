@@ -8,6 +8,7 @@ import { AIConcierge } from "@/components/ai-concierge";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
+import { TooltipHintsDemo } from "@/components/tooltip-hints-demo";
 import { Flame, Clock, TrendingUp, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -148,7 +149,9 @@ export default function Home() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
-            <LeaderboardWidget showHeader={false} data-testid="leaderboard" />
+            <div data-testid="leaderboard">
+              <LeaderboardWidget showHeader={false} />
+            </div>
             <div className="space-y-6">
               <LiveChallengeWidget />
               <LiveActivityFeed />
@@ -172,6 +175,9 @@ export default function Home() {
           <ImpactStats />
         </div>
       </section>
+
+      {/* Tooltip Hints Demo Panel */}
+      <TooltipHintsDemo />
     </div>
   );
 }
