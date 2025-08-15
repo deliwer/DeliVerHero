@@ -222,27 +222,42 @@ export function AIConcierge() {
 
           {/* Chat Input - Only show if not in checkout */}
           {!showCheckout && (
-            <div className="border-t border-slate-600 p-4">
-            <div className="flex space-x-3">
-              <Input
-                type="text"
-                placeholder="Type your message..."
-                value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
-                onKeyDown={handleKeyPress}
-                className="flex-1 bg-slate-700 text-white border-slate-600 focus:border-dubai-blue-500"
-                disabled={isLoading}
-                data-testid="input-chat-message"
-              />
-              <Button
-                onClick={() => sendMessage(inputMessage)}
-                disabled={isLoading || !inputMessage.trim()}
-                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-6"
-                data-testid="button-send-message"
-              >
-                <Send className="w-4 h-4" />
-              </Button>
-            </div>
+            <div className="border-t border-slate-600 p-6 bg-gradient-to-r from-slate-800/50 to-slate-700/50">
+              {/* Enhanced Input Section */}
+              <div className="mb-4">
+                <div className="text-center mb-3">
+                  <p className="text-lg font-bold text-white mb-1">💬 Chat with Your AI Trade Assistant</p>
+                  <p className="text-sm text-gray-300">Ask about iPhone models, trade values, or start your order!</p>
+                </div>
+                
+                <div className="flex space-x-3">
+                  <div className="flex-1 relative">
+                    <Input
+                      type="text"
+                      placeholder="👋 Hi! What iPhone model do you want to trade?"
+                      value={inputMessage}
+                      onChange={(e) => setInputMessage(e.target.value)}
+                      onKeyDown={handleKeyPress}
+                      className="h-14 px-6 text-lg bg-white/95 text-slate-900 border-2 border-emerald-400/50 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 rounded-xl shadow-xl placeholder:text-slate-500 transition-all duration-300"
+                      disabled={isLoading}
+                      data-testid="input-chat-message"
+                    />
+                    {!inputMessage && (
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 animate-pulse">
+                        <Bot className="w-6 h-6" />
+                      </div>
+                    )}
+                  </div>
+                  <Button
+                    onClick={() => sendMessage(inputMessage)}
+                    disabled={isLoading || !inputMessage.trim()}
+                    className="h-14 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-8 rounded-xl shadow-xl font-bold text-lg transition-all duration-300 transform hover:scale-105"
+                    data-testid="button-send-message"
+                  >
+                    <Send className="w-5 h-5" />
+                  </Button>
+                </div>
+              </div>
             <div className="mt-2 space-y-1">
               <p className="text-xs text-gray-500">💡 Pro tip: Mention your phone's condition for more accurate valuation!</p>
               <div className="flex items-center text-xs text-hero-green-400">
