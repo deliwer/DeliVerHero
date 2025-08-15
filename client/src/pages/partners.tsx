@@ -425,45 +425,45 @@ export default function Partners() {
           </div>
         </div>
 
-        {/* DeliWer Dawn Integration */}
-        <div className="mt-16 glass rounded-2xl p-8 border border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-orange-500/5" data-testid="deliwerdawn-integration">
+        {/* Eco-Trade Partners Wholesale Program */}
+        <div className="mt-16 glass rounded-2xl p-8 border border-purple-500/30 bg-gradient-to-br from-purple-500/5 to-indigo-500/5" data-testid="ecotrade-wholesale-program">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Star className="w-10 h-10 text-black" />
+            <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Users className="w-10 h-10 text-white" />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">DeliWer Dawn: The Future of Eco-Trade</h2>
-            <Badge className="bg-amber-500/20 text-amber-500 border-amber-500/30 px-4 py-2">
-              COMING Q3 2025
+            <h2 className="text-3xl font-bold text-white mb-4">Eco-Trade Partners: Wholesale Program</h2>
+            <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2">
+              ACCEPTING REGISTRATIONS
             </Badge>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div className="text-center p-6 bg-slate-700/30 rounded-xl border border-amber-500/20">
-              <TrendingUp className="w-8 h-8 text-amber-500 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">AI-Powered Trading</h3>
-              <p className="text-gray-400 text-sm">Machine learning algorithms optimize every trade for maximum environmental and financial impact</p>
+            <div className="text-center p-6 bg-slate-700/30 rounded-xl border border-purple-500/20">
+              <TrendingUp className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-white mb-2">AI Sourcing Access</h3>
+              <p className="text-gray-400 text-sm">Advanced AI algorithms help you source premium refurbished electronics with quality scoring and price optimization</p>
             </div>
             
             <div className="text-center p-6 bg-slate-700/30 rounded-xl border border-hero-green-500/20">
-              <Users className="w-8 h-8 text-hero-green-500 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">Community Governance</h3>
-              <p className="text-gray-400 text-sm">Community-driven decisions on expansion, partnerships, and environmental initiatives</p>
+              <DollarSign className="w-8 h-8 text-hero-green-500 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-white mb-2">Wholesale Rates</h3>
+              <p className="text-gray-400 text-sm">Access exclusive wholesale pricing tiers with volume discounts up to 40% off retail prices for bulk orders</p>
             </div>
             
             <div className="text-center p-6 bg-slate-700/30 rounded-xl border border-dubai-blue-500/20">
               <Gift className="w-8 h-8 text-dubai-blue-500 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">Token Rewards</h3>
-              <p className="text-gray-400 text-sm">Earn DeliWer tokens for every sustainable action, redeemable for exclusive rewards</p>
+              <h3 className="text-lg font-bold text-white mb-2">Trade Incentives</h3>
+              <p className="text-gray-400 text-sm">Earn 5-15% commission on every successful trade plus priority access to high-demand refurbished electronics</p>
             </div>
           </div>
           
           <div className="text-center">
             <p className="text-gray-300 mb-6">
-              Early partners get lifetime access to Dawn features and founding member status in our eco-governance system
+              Register your electronics retail or wholesale business to access our AI-powered sourcing platform and exclusive trade rates
             </p>
-            <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-8 py-3 font-bold">
-              <Star className="mr-2 w-5 h-5" />
-              Reserve Early Access
+            <Button className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-8 py-3 font-bold" data-testid="button-wholesale-inquiry">
+              <Users className="mr-2 w-5 h-5" />
+              Register Wholesale Account
             </Button>
           </div>
         </div>
