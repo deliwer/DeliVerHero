@@ -13,7 +13,7 @@ export function Navigation() {
     { path: "/sponsorships", label: "Sponsor Missions", id: "sponsorships" },
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
     { path: "/community", label: "Community", id: "community" },
-    { path: "/partners", label: "Partners", id: "partners" },
+    { path: "/partners", label: "Champions & Ambassadors", id: "partners" },
     { path: "/delivery", label: "Delivery", id: "delivery" },
   ];
 

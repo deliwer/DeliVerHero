@@ -76,10 +76,10 @@ export default function Partners() {
                   ? "bg-amber-500 text-black"
                   : "text-gray-300 hover:text-white"
               }`}
-              data-testid="button-affiliate-program"
+              data-testid="button-ambassador-program"
             >
               <Briefcase className="inline w-5 h-5 mr-2" />
-              Affiliate Program
+              Ambassador Program
             </button>
             <button
               onClick={() => setIsAffiliate(false)}
@@ -88,10 +88,10 @@ export default function Partners() {
                   ? "bg-hero-green-500 text-white"
                   : "text-gray-300 hover:text-white"
               }`}
-              data-testid="button-restaurant-program"
+              data-testid="button-champion-program"
             >
               <Store className="inline w-5 h-5 mr-2" />
-              Restaurant Partner
+              Champions
             </button>
           </div>
         </div>
@@ -101,21 +101,21 @@ export default function Partners() {
           <div className="glass rounded-2xl p-8 border border-slate-600" data-testid="program-details">
             {isAffiliate ? (
               <>
-                {/* Affiliate Program */}
+                {/* Ambassador Program */}
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Briefcase className="w-8 h-8 text-amber-500" />
                   </div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Affiliate Agent Program</h2>
+                  <h2 className="text-2xl font-bold text-white mb-2">Ambassador Agent Program</h2>
                   <p className="text-gray-400">Build your own community network and earn commission on every trade-in</p>
                 </div>
 
-                <div className="space-y-4 mb-8" data-testid="affiliate-benefits">
+                <div className="space-y-4 mb-8" data-testid="ambassador-benefits">
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
-                    <span className="text-white">Earn <strong className="text-amber-500">30%</strong> commission on every iPhone trade-in</span>
+                    <span className="text-white">Earn <strong className="text-amber-500">35%</strong> commission on every iPhone trade-in</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
@@ -139,30 +139,30 @@ export default function Partners() {
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
-                    <span className="text-white">AI marketing automation tools</span>
+                    <span className="text-white">AI marketing automation tools & Ambassador dashboard</span>
                   </div>
                 </div>
 
-                <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 mb-6" data-testid="affiliate-earnings">
+                <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 mb-6" data-testid="ambassador-earnings">
                   <div className="text-center">
                     <div className="text-sm text-gray-400 mb-2">Your potential monthly earnings:</div>
-                    <div className="text-3xl font-bold text-amber-500 mb-2">AED 2,970+</div>
-                    <div className="text-sm text-gray-400">Based on 10 sales/month at AED 99 each</div>
+                    <div className="text-3xl font-bold text-amber-500 mb-2">AED 3,465+</div>
+                    <div className="text-sm text-gray-400">Based on 10 sales/month at AED 99 each (35% commission)</div>
                   </div>
                 </div>
               </>
             ) : (
               <>
-                {/* Restaurant Partner Program */}
+                {/* Champions Program */}
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-hero-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Store className="w-8 h-8 text-hero-green-500" />
                   </div>
-                  <h2 className="text-2xl font-bold text-white mb-2">Restaurant Collection Partner</h2>
+                  <h2 className="text-2xl font-bold text-white mb-2">Champion Collection Partner</h2>
                   <p className="text-gray-400">Become a certified AquaCafe collection point and reward customers</p>
                 </div>
 
-                <div className="space-y-4 mb-8" data-testid="restaurant-benefits">
+                <div className="space-y-4 mb-8" data-testid="champion-benefits">
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
@@ -173,7 +173,7 @@ export default function Partners() {
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
-                    <span className="text-white">Offer loyalty points for every trade-in</span>
+                    <span className="text-white">Earn <strong className="text-hero-green-500">AED 25</strong> reward for every successful trade-in</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
@@ -185,21 +185,21 @@ export default function Partners() {
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
-                    <span className="text-white">Access to exclusive member offers</span>
+                    <span className="text-white">Priority access to new product launches & exclusive Champion pricing</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center">
                       <span className="text-white text-xs">✓</span>
                     </div>
-                    <span className="text-white">Co-branded marketing materials</span>
+                    <span className="text-white">Co-branded marketing materials & Champion certification badge</span>
                   </div>
                 </div>
 
-                <div className="bg-hero-green-500/10 border border-hero-green-500/30 rounded-xl p-6 mb-6" data-testid="restaurant-benefits-stats">
+                <div className="bg-hero-green-500/10 border border-hero-green-500/30 rounded-xl p-6 mb-6" data-testid="champion-benefits-stats">
                   <div className="text-center">
                     <div className="text-sm text-gray-400 mb-2">Average partner benefits:</div>
-                    <div className="text-3xl font-bold text-hero-green-500 mb-2">+40% Traffic</div>
-                    <div className="text-sm text-gray-400">Increased customer visits & loyalty</div>
+                    <div className="text-3xl font-bold text-hero-green-500 mb-2">+65% Revenue</div>
+                    <div className="text-sm text-gray-400">Average monthly earnings: AED 2,500+ from rewards</div>
                   </div>
                 </div>
               </>
@@ -228,7 +228,7 @@ export default function Partners() {
           {/* Application Form */}
           <div className="glass rounded-2xl p-8 border border-slate-600" data-testid="application-form">
             <h3 className="text-2xl font-bold text-white mb-6 text-center">
-              Apply to Become a {isAffiliate ? "Affiliate Agent" : "Restaurant Partner"}
+              Apply to Become a {isAffiliate ? "Ambassador Agent" : "Champion"}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -279,7 +279,7 @@ export default function Partners() {
 
               <div>
                 <label className="block text-gray-300 text-sm font-medium mb-2">
-                  {isAffiliate ? "Business Type" : "Restaurant Type"} *
+                  {isAffiliate ? "Business Type" : "Champion Type"} *
                 </label>
                 <select
                   required
@@ -334,7 +334,7 @@ export default function Partners() {
                   className="w-full bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-dubai-blue-500 focus:outline-none h-24 resize-none"
                   placeholder={isAffiliate 
                     ? "Tell us about your sales/marketing experience..."
-                    : "Tell us about your restaurant and customer base..."
+                    : "Tell us about your champion network and customer base..."
                   }
                   data-testid="textarea-experience"
                 />
@@ -355,7 +355,7 @@ export default function Partners() {
                 ) : (
                   <>
                     <Users className="mr-2 w-5 h-5" />
-                    {isAffiliate ? "BECOME AN AGENT" : "PARTNER WITH US"}
+                    {isAffiliate ? "BECOME AN AMBASSADOR" : "BECOME A CHAMPION"}
                   </>
                 )}
               </Button>

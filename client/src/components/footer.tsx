@@ -30,7 +30,7 @@ export function Footer() {
     { label: "AquaCafe Systems", url: "/aquacafe" },
     { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
     { label: "Community Hub", url: "/community" },
-    { label: "Partnership Programs", url: "/partners" },
+    { label: "Champion & Ambassador Programs", url: "/partners" },
     { label: "Delivery Network", url: "/delivery" },
     { label: "Impact Dashboard", url: "/impact" }
   ];
@@ -199,7 +199,7 @@ export function Footer() {
 
           {/* Partnership & Contact */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6">Partnership Opportunities</h3>
+            <h3 className="text-lg font-bold text-white mb-6">Champion & Ambassador Opportunities</h3>
             
             <div className="space-y-3 mb-8">
               {partnershipPrograms.map((program, index) => (
@@ -233,7 +233,7 @@ export function Footer() {
                   <Mail className="w-4 h-4 mr-3 text-hero-green-500" />
                   <div>
                     <div className="text-sm">info@deliwer.com</div>
-                    <div className="text-xs text-gray-500">Partnership Inquiries</div>
+                    <div className="text-xs text-gray-500">Champion & Ambassador Inquiries</div>
                   </div>
                 </a>
                 
