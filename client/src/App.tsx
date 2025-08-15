@@ -22,6 +22,7 @@ import Terms from "@/pages/terms";
 import Environmental from "@/pages/environmental";
 import Products from "@/pages/products";
 import DubaiRewards from "@/pages/dubai-rewards";
+import Sponsorships from "@/pages/sponsorships";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -46,6 +47,7 @@ function Router() {
       <Route path="/environmental" component={Environmental} />
       <Route path="/products" component={Products} />
       <Route path="/dubai-rewards" component={ImpactDashboard} />
+      <Route path="/sponsorships" component={Sponsorships} />
       <Route component={NotFound} />
     </Switch>
   );

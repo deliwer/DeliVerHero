@@ -93,6 +93,67 @@ export const dubaiRewards = pgTable("dubai_rewards", {
   expiresAt: timestamp("expires_at"),
 });
 
+export const sponsors = pgTable("sponsors", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  organizationType: text("organization_type").notNull(), // ngo, government, corporate, foundation
+  description: text("description").notNull(),
+  logoUrl: text("logo_url"),
+  website: text("website"),
+  contactPerson: text("contact_person").notNull(),
+  phone: text("phone"),
+  isVerified: boolean("is_verified").notNull().default(false),
+  totalFunded: integer("total_funded").notNull().default(0), // in AED fils
+  missionsSponsored: integer("missions_sponsored").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const sponsorshipTiers = pgTable("sponsorship_tiers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(), // Bronze Sponsor, Silver Sponsor, Gold Sponsor, Platinum Sponsor
+  minAmount: integer("min_amount").notNull(), // minimum funding in AED fils
+  maxAmount: integer("max_amount"), // maximum funding in AED fils (null for unlimited)
+  benefits: jsonb("benefits").notNull().default([]), // array of benefits
+  badgeColor: text("badge_color").notNull().default("#666666"),
+  priority: integer("priority").notNull().default(1), // higher priority gets better placement
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const sponsoredMissions = pgTable("sponsored_missions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(), // water, energy, transport, waste, biodiversity
+  targetZone: text("target_zone"), // specific Dubai zone or null for city-wide
+  fundingGoal: integer("funding_goal").notNull(), // in AED fils
+  currentFunding: integer("current_funding").notNull().default(0), // in AED fils
+  participantLimit: integer("participant_limit"),
+  currentParticipants: integer("current_participants").notNull().default(0),
+  pointsReward: integer("points_reward").notNull(),
+  environmentalGoal: text("environmental_goal").notNull(), // e.g., "Save 1000 plastic bottles"
+  timeLimit: integer("time_limit"), // in days
+  status: text("status").notNull().default("funding"), // funding, active, completed, cancelled
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  startsAt: timestamp("starts_at"),
+  expiresAt: timestamp("expires_at"),
+});
+
+export const missionSponsorships = pgTable("mission_sponsorships", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sponsorId: varchar("sponsor_id").notNull().references(() => sponsors.id),
+  missionId: varchar("mission_id").notNull().references(() => sponsoredMissions.id),
+  tierId: varchar("tier_id").notNull().references(() => sponsorshipTiers.id),
+  amount: integer("amount").notNull(), // sponsored amount in AED fils
+  message: text("message"), // optional message from sponsor
+  isAnonymous: boolean("is_anonymous").notNull().default(false),
+  status: text("status").notNull().default("pending"), // pending, confirmed, cancelled
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
 // Zod schemas
 export const insertHeroSchema = createInsertSchema(heroes).pick({
   name: true,
@@ -100,6 +161,40 @@ export const insertHeroSchema = createInsertSchema(heroes).pick({
   phoneModel: true,
   phoneCondition: true,
   tradeValue: true,
+});
+
+export const insertSponsorSchema = createInsertSchema(sponsors).pick({
+  name: true,
+  email: true,
+  organizationType: true,
+  description: true,
+  logoUrl: true,
+  website: true,
+  contactPerson: true,
+  phone: true,
+});
+
+export const insertSponsoredMissionSchema = createInsertSchema(sponsoredMissions).pick({
+  title: true,
+  description: true,
+  category: true,
+  targetZone: true,
+  fundingGoal: true,
+  participantLimit: true,
+  pointsReward: true,
+  environmentalGoal: true,
+  timeLimit: true,
+  startsAt: true,
+  expiresAt: true,
+});
+
+export const insertMissionSponsorshipSchema = createInsertSchema(missionSponsorships).pick({
+  sponsorId: true,
+  missionId: true,
+  tierId: true,
+  amount: true,
+  message: true,
+  isAnonymous: true,
 });
 
 export const insertTradeInSchema = createInsertSchema(tradeIns).pick({
@@ -130,3 +225,10 @@ export type Referral = typeof referrals.$inferSelect;
 export type UpdateHero = z.infer<typeof updateHeroSchema>;
 export type DubaiChallenge = typeof dubaiChallenges.$inferSelect;
 export type DubaiReward = typeof dubaiRewards.$inferSelect;
+export type InsertSponsor = z.infer<typeof insertSponsorSchema>;
+export type Sponsor = typeof sponsors.$inferSelect;
+export type SponsorshipTier = typeof sponsorshipTiers.$inferSelect;
+export type InsertSponsoredMission = z.infer<typeof insertSponsoredMissionSchema>;
+export type SponsoredMission = typeof sponsoredMissions.$inferSelect;
+export type InsertMissionSponsorship = z.infer<typeof insertMissionSponsorshipSchema>;
+export type MissionSponsorship = typeof missionSponsorships.$inferSelect;

@@ -10,6 +10,7 @@ export function Navigation() {
     { path: "/", label: "Trade iPhone", id: "trade" },
     { path: "/products", label: "Shop", id: "products" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
+    { path: "/sponsorships", label: "Sponsor Missions", id: "sponsorships" },
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema } from "@shared/schema";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -263,6 +263,158 @@ Context: ${JSON.stringify(context || {})}`
     } catch (error) {
       console.error("Error claiming Dubai reward:", error);
       res.status(500).json({ error: "Failed to claim reward" });
+    }
+  });
+
+  // Sponsor routes
+  app.get("/api/sponsors", async (req, res) => {
+    try {
+      const sponsors = await storage.getAllSponsors();
+      res.json(sponsors);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch sponsors" });
+    }
+  });
+
+  app.get("/api/sponsors/:id", async (req, res) => {
+    try {
+      const sponsor = await storage.getSponsor(req.params.id);
+      if (!sponsor) {
+        return res.status(404).json({ error: "Sponsor not found" });
+      }
+      res.json(sponsor);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch sponsor" });
+    }
+  });
+
+  app.post("/api/sponsors", async (req, res) => {
+    try {
+      const validatedData = insertSponsorSchema.parse(req.body);
+      const sponsor = await storage.createSponsor(validatedData);
+      res.json(sponsor);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create sponsor" });
+    }
+  });
+
+  app.patch("/api/sponsors/:id/verify", async (req, res) => {
+    try {
+      const sponsor = await storage.verifySponsor(req.params.id);
+      if (!sponsor) {
+        return res.status(404).json({ error: "Sponsor not found" });
+      }
+      res.json(sponsor);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to verify sponsor" });
+    }
+  });
+
+  // Sponsorship tier routes
+  app.get("/api/sponsorship-tiers", async (req, res) => {
+    try {
+      const tiers = await storage.getSponsorshipTiers();
+      res.json(tiers);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch sponsorship tiers" });
+    }
+  });
+
+  app.get("/api/sponsorship-tiers/:id", async (req, res) => {
+    try {
+      const tier = await storage.getSponsorshipTier(req.params.id);
+      if (!tier) {
+        return res.status(404).json({ error: "Sponsorship tier not found" });
+      }
+      res.json(tier);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch sponsorship tier" });
+    }
+  });
+
+  // Sponsored mission routes
+  app.get("/api/sponsored-missions", async (req, res) => {
+    try {
+      const missions = await storage.getSponsoredMissions();
+      res.json(missions);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch sponsored missions" });
+    }
+  });
+
+  app.get("/api/sponsored-missions/:id", async (req, res) => {
+    try {
+      const mission = await storage.getSponsoredMission(req.params.id);
+      if (!mission) {
+        return res.status(404).json({ error: "Sponsored mission not found" });
+      }
+      res.json(mission);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch sponsored mission" });
+    }
+  });
+
+  app.post("/api/sponsored-missions", async (req, res) => {
+    try {
+      const validatedData = insertSponsoredMissionSchema.parse(req.body);
+      const mission = await storage.createSponsoredMission(validatedData);
+      res.json(mission);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create sponsored mission" });
+    }
+  });
+
+  app.post("/api/sponsored-missions/:id/join", async (req, res) => {
+    try {
+      const { heroId } = req.body;
+      const missionId = req.params.id;
+
+      if (!heroId) {
+        return res.status(400).json({ error: "Hero ID is required" });
+      }
+
+      const success = await storage.joinSponsoredMission(missionId, heroId);
+      
+      if (success) {
+        res.json({ success: true, message: "Successfully joined sponsored mission" });
+      } else {
+        res.status(400).json({ error: "Failed to join sponsored mission" });
+      }
+    } catch (error) {
+      console.error("Error joining sponsored mission:", error);
+      res.status(500).json({ error: "Failed to join sponsored mission" });
+    }
+  });
+
+  // Mission sponsorship routes
+  app.get("/api/sponsored-missions/:id/sponsorships", async (req, res) => {
+    try {
+      const sponsorships = await storage.getMissionSponsorships(req.params.id);
+      res.json(sponsorships);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch mission sponsorships" });
+    }
+  });
+
+  app.post("/api/mission-sponsorships", async (req, res) => {
+    try {
+      const validatedData = insertMissionSponsorshipSchema.parse(req.body);
+      const sponsorship = await storage.createMissionSponsorship(validatedData);
+      res.json(sponsorship);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create mission sponsorship" });
+    }
+  });
+
+  app.patch("/api/mission-sponsorships/:id/confirm", async (req, res) => {
+    try {
+      const sponsorship = await storage.confirmMissionSponsorship(req.params.id);
+      if (!sponsorship) {
+        return res.status(404).json({ error: "Mission sponsorship not found" });
+      }
+      res.json(sponsorship);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to confirm mission sponsorship" });
     }
   });
 

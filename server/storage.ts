@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -33,6 +33,29 @@ export interface IStorage {
   getDubaiReward(id: string): Promise<DubaiReward | undefined>;
   claimDubaiReward(rewardId: string, heroId: string): Promise<boolean>;
 
+  // Sponsor operations
+  createSponsor(sponsor: InsertSponsor): Promise<Sponsor>;
+  getSponsor(id: string): Promise<Sponsor | undefined>;
+  getSponsorByEmail(email: string): Promise<Sponsor | undefined>;
+  getAllSponsors(): Promise<Sponsor[]>;
+  verifySponsor(id: string): Promise<Sponsor | undefined>;
+
+  // Sponsorship tier operations
+  getSponsorshipTiers(): Promise<SponsorshipTier[]>;
+  getSponsorshipTier(id: string): Promise<SponsorshipTier | undefined>;
+
+  // Sponsored mission operations
+  createSponsoredMission(mission: InsertSponsoredMission): Promise<SponsoredMission>;
+  getSponsoredMissions(): Promise<SponsoredMission[]>;
+  getSponsoredMission(id: string): Promise<SponsoredMission | undefined>;
+  updateSponsoredMissionFunding(id: string, amount: number): Promise<SponsoredMission | undefined>;
+  joinSponsoredMission(missionId: string, heroId: string): Promise<boolean>;
+
+  // Mission sponsorship operations
+  createMissionSponsorship(sponsorship: InsertMissionSponsorship): Promise<MissionSponsorship>;
+  getMissionSponsorships(missionId: string): Promise<MissionSponsorship[]>;
+  confirmMissionSponsorship(id: string): Promise<MissionSponsorship | undefined>;
+
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
 }
@@ -44,6 +67,10 @@ export class MemStorage implements IStorage {
   private referrals: Map<string, Referral>;
   private dubaiChallenges: Map<string, DubaiChallenge>;
   private dubaiRewards: Map<string, DubaiReward>;
+  private sponsors: Map<string, Sponsor>;
+  private sponsorshipTiers: Map<string, SponsorshipTier>;
+  private sponsoredMissions: Map<string, SponsoredMission>;
+  private missionSponsorships: Map<string, MissionSponsorship>;
 
   constructor() {
     this.heroes = new Map();
@@ -51,6 +78,10 @@ export class MemStorage implements IStorage {
     this.referrals = new Map();
     this.dubaiChallenges = new Map();
     this.dubaiRewards = new Map();
+    this.sponsors = new Map();
+    this.sponsorshipTiers = new Map();
+    this.sponsoredMissions = new Map();
+    this.missionSponsorships = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -65,6 +96,7 @@ export class MemStorage implements IStorage {
     // Seed some initial heroes for the leaderboard
     this.seedInitialData();
     this.seedDubaiRewardsData();
+    this.seedSponsorshipData();
   }
 
   private seedInitialData() {
@@ -86,10 +118,6 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 15,
-        dubaiZone: "Business Bay",
-        rewardsEarned: [],
-        challengesCompleted: [],
-        sustainabilityStreak: 8,
         isActive: true,
         createdAt: new Date("2024-01-15"),
         updatedAt: new Date(),
@@ -571,6 +599,173 @@ export class MemStorage implements IStorage {
     rewards.forEach(reward => this.dubaiRewards.set(reward.id, reward));
   }
 
+  private seedSponsorshipData() {
+    // Seed sponsorship tiers
+    const tiers: SponsorshipTier[] = [
+      {
+        id: "tier-bronze",
+        name: "Bronze Sponsor",
+        minAmount: 50000, // AED 500
+        maxAmount: 199900, // AED 1,999
+        benefits: ["Logo on mission page", "Monthly impact report", "Community recognition"],
+        badgeColor: "#CD7F32",
+        priority: 1,
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: "tier-silver", 
+        name: "Silver Sponsor",
+        minAmount: 200000, // AED 2,000
+        maxAmount: 499900, // AED 4,999
+        benefits: ["Featured logo placement", "Weekly impact reports", "Sponsor spotlight", "Direct hero engagement"],
+        badgeColor: "#C0C0C0",
+        priority: 2,
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: "tier-gold",
+        name: "Gold Sponsor",
+        minAmount: 500000, // AED 5,000
+        maxAmount: 999900, // AED 9,999
+        benefits: ["Premium logo placement", "Real-time dashboard access", "Monthly sponsor meetup", "Media coverage", "Custom impact metrics"],
+        badgeColor: "#FFD700",
+        priority: 3,
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: "tier-platinum",
+        name: "Platinum Sponsor",
+        minAmount: 1000000, // AED 10,000+
+        maxAmount: null,
+        benefits: ["Exclusive branding opportunity", "Dedicated success manager", "Quarterly strategy sessions", "VIP event access", "Co-marketing opportunities", "Custom mission creation"],
+        badgeColor: "#E5E4E2",
+        priority: 4,
+        isActive: true,
+        createdAt: new Date(),
+      }
+    ];
+
+    // Seed some initial sponsors
+    const sponsors: Sponsor[] = [
+      {
+        id: "sponsor-1",
+        name: "Emirates Wildlife Society",
+        email: "partnerships@ews-wwf.ae",
+        organizationType: "ngo",
+        description: "Leading conservation organization dedicated to protecting Dubai's natural heritage and promoting sustainable practices.",
+        logoUrl: null,
+        website: "https://www.ews-wwf.ae",
+        contactPerson: "Dr. Laila Mostafa Abdullatif",
+        phone: "+971-4-315-2777",
+        isVerified: true,
+        totalFunded: 2500000, // AED 25,000
+        missionsSponsored: 5,
+        createdAt: new Date("2024-01-15"),
+        updatedAt: new Date(),
+      },
+      {
+        id: "sponsor-2",
+        name: "Dubai Municipality",
+        email: "sustainability@dm.gov.ae",
+        organizationType: "government",
+        description: "Dubai's municipal authority committed to creating a sustainable and environmentally friendly city.",
+        logoUrl: null,
+        website: "https://www.dm.gov.ae",
+        contactPerson: "Eng. Dawood Abdul Rahman Al Hajri",
+        phone: "+971-4-221-5555",
+        isVerified: true,
+        totalFunded: 5000000, // AED 50,000
+        missionsSponsored: 12,
+        createdAt: new Date("2024-02-01"),
+        updatedAt: new Date(),
+      },
+      {
+        id: "sponsor-3",
+        name: "Emirates Green Development Corp",
+        email: "impact@emiratesgreen.ae",
+        organizationType: "corporate",
+        description: "Pioneering sustainable development initiatives across the UAE with focus on environmental innovation.",
+        logoUrl: null,
+        website: "https://www.emiratesgreen.ae",
+        contactPerson: "Fatima Al Zahra",
+        phone: "+971-4-123-4567",
+        isVerified: true,
+        totalFunded: 1500000, // AED 15,000
+        missionsSponsored: 3,
+        createdAt: new Date("2024-03-01"),
+        updatedAt: new Date(),
+      }
+    ];
+
+    // Seed sponsored missions
+    const missions: SponsoredMission[] = [
+      {
+        id: "mission-1",
+        title: "Dubai Creek Harbor Plastic-Free Initiative",
+        description: "Transform Dubai Creek Harbor into a completely plastic-free zone by installing AquaCafe stations and organizing community cleanup drives.",
+        category: "water",
+        targetZone: "Dubai Creek Harbor",
+        fundingGoal: 1000000, // AED 10,000
+        currentFunding: 750000, // AED 7,500 (75% funded)
+        participantLimit: 500,
+        currentParticipants: 287,
+        pointsReward: 1000,
+        environmentalGoal: "Eliminate 50,000 plastic bottles from Dubai Creek Harbor",
+        timeLimit: 90,
+        status: "active",
+        isActive: true,
+        createdAt: new Date("2024-07-01"),
+        startsAt: new Date("2024-08-01"),
+        expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "mission-2",
+        title: "Business Bay Solar Heroes Challenge",
+        description: "Promote renewable energy adoption in Business Bay by helping residents install solar panels and smart energy management systems.",
+        category: "energy",
+        targetZone: "Business Bay",
+        fundingGoal: 2000000, // AED 20,000
+        currentFunding: 500000, // AED 5,000 (25% funded)
+        participantLimit: 200,
+        currentParticipants: 45,
+        pointsReward: 1500,
+        environmentalGoal: "Reduce CO2 emissions by 10 tons through solar installations",
+        timeLimit: 120,
+        status: "funding",
+        isActive: true,
+        createdAt: new Date("2024-07-15"),
+        startsAt: new Date("2024-09-01"),
+        expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "mission-3",
+        title: "Dubai Marina Biodiversity Restoration",
+        description: "Restore marine biodiversity in Dubai Marina by creating artificial reefs and organizing underwater cleanup missions.",
+        category: "biodiversity",
+        targetZone: "Dubai Marina",
+        fundingGoal: 3000000, // AED 30,000
+        currentFunding: 300000, // AED 3,000 (10% funded)
+        participantLimit: 100,
+        currentParticipants: 12,
+        pointsReward: 2000,
+        environmentalGoal: "Restore 5 coral reef sites and remove 2 tons of underwater debris",
+        timeLimit: 180,
+        status: "funding",
+        isActive: true,
+        createdAt: new Date("2024-08-01"),
+        startsAt: new Date("2024-10-01"),
+        expiresAt: new Date(Date.now() + 150 * 24 * 60 * 60 * 1000),
+      }
+    ];
+
+    tiers.forEach(tier => this.sponsorshipTiers.set(tier.id, tier));
+    sponsors.forEach(sponsor => this.sponsors.set(sponsor.id, sponsor));
+    missions.forEach(mission => this.sponsoredMissions.set(mission.id, mission));
+  }
+
   async getHero(id: string): Promise<Hero | undefined> {
     return this.heroes.get(id);
   }
@@ -796,6 +991,185 @@ export class MemStorage implements IStorage {
     this.heroes.set(heroId, updatedHero);
 
     return true;
+  }
+
+  // Sponsor operations
+  async createSponsor(insertSponsor: InsertSponsor): Promise<Sponsor> {
+    const id = randomUUID();
+    const sponsor: Sponsor = {
+      id,
+      ...insertSponsor,
+      logoUrl: insertSponsor.logoUrl || null,
+      website: insertSponsor.website || null,
+      phone: insertSponsor.phone || null,
+      isVerified: false,
+      totalFunded: 0,
+      missionsSponsored: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.sponsors.set(id, sponsor);
+    return sponsor;
+  }
+
+  async getSponsor(id: string): Promise<Sponsor | undefined> {
+    return this.sponsors.get(id);
+  }
+
+  async getSponsorByEmail(email: string): Promise<Sponsor | undefined> {
+    return Array.from(this.sponsors.values()).find(sponsor => sponsor.email === email);
+  }
+
+  async getAllSponsors(): Promise<Sponsor[]> {
+    return Array.from(this.sponsors.values());
+  }
+
+  async verifySponsor(id: string): Promise<Sponsor | undefined> {
+    const sponsor = this.sponsors.get(id);
+    if (!sponsor) return undefined;
+
+    const updatedSponsor: Sponsor = {
+      ...sponsor,
+      isVerified: true,
+      updatedAt: new Date(),
+    };
+
+    this.sponsors.set(id, updatedSponsor);
+    return updatedSponsor;
+  }
+
+  // Sponsorship tier operations
+  async getSponsorshipTiers(): Promise<SponsorshipTier[]> {
+    return Array.from(this.sponsorshipTiers.values()).filter(tier => tier.isActive);
+  }
+
+  async getSponsorshipTier(id: string): Promise<SponsorshipTier | undefined> {
+    return this.sponsorshipTiers.get(id);
+  }
+
+  // Sponsored mission operations
+  async createSponsoredMission(insertMission: InsertSponsoredMission): Promise<SponsoredMission> {
+    const id = randomUUID();
+    const mission: SponsoredMission = {
+      id,
+      ...insertMission,
+      targetZone: insertMission.targetZone || null,
+      participantLimit: insertMission.participantLimit || null,
+      timeLimit: insertMission.timeLimit || null,
+      startsAt: insertMission.startsAt || null,
+      expiresAt: insertMission.expiresAt || null,
+      currentFunding: 0,
+      currentParticipants: 0,
+      status: "funding",
+      isActive: true,
+      createdAt: new Date(),
+    };
+    
+    this.sponsoredMissions.set(id, mission);
+    return mission;
+  }
+
+  async getSponsoredMissions(): Promise<SponsoredMission[]> {
+    return Array.from(this.sponsoredMissions.values()).filter(mission => mission.isActive);
+  }
+
+  async getSponsoredMission(id: string): Promise<SponsoredMission | undefined> {
+    return this.sponsoredMissions.get(id);
+  }
+
+  async updateSponsoredMissionFunding(id: string, amount: number): Promise<SponsoredMission | undefined> {
+    const mission = this.sponsoredMissions.get(id);
+    if (!mission) return undefined;
+
+    const updatedMission: SponsoredMission = {
+      ...mission,
+      currentFunding: mission.currentFunding + amount,
+      status: mission.currentFunding + amount >= mission.fundingGoal ? "active" : mission.status,
+    };
+
+    this.sponsoredMissions.set(id, updatedMission);
+    return updatedMission;
+  }
+
+  async joinSponsoredMission(missionId: string, heroId: string): Promise<boolean> {
+    const mission = this.sponsoredMissions.get(missionId);
+    const hero = this.heroes.get(heroId);
+    
+    if (!mission || !hero || mission.status !== "active") {
+      return false;
+    }
+
+    if (mission.participantLimit && mission.currentParticipants >= mission.participantLimit) {
+      return false;
+    }
+
+    const updatedMission = {
+      ...mission,
+      currentParticipants: mission.currentParticipants + 1
+    };
+    this.sponsoredMissions.set(missionId, updatedMission);
+
+    const challengesCompleted = Array.isArray(hero.challengesCompleted) ? hero.challengesCompleted : [];
+    const updatedHero = {
+      ...hero,
+      challengesCompleted: [...challengesCompleted, missionId],
+      points: hero.points + mission.pointsReward,
+      updatedAt: new Date()
+    };
+    this.heroes.set(heroId, updatedHero);
+
+    return true;
+  }
+
+  // Mission sponsorship operations
+  async createMissionSponsorship(insertSponsorship: InsertMissionSponsorship): Promise<MissionSponsorship> {
+    const id = randomUUID();
+    const sponsorship: MissionSponsorship = {
+      id,
+      ...insertSponsorship,
+      message: insertSponsorship.message || null,
+      isAnonymous: insertSponsorship.isAnonymous || false,
+      status: "pending",
+      createdAt: new Date(),
+    };
+    
+    this.missionSponsorships.set(id, sponsorship);
+    return sponsorship;
+  }
+
+  async getMissionSponsorships(missionId: string): Promise<MissionSponsorship[]> {
+    return Array.from(this.missionSponsorships.values())
+      .filter(sponsorship => sponsorship.missionId === missionId);
+  }
+
+  async confirmMissionSponsorship(id: string): Promise<MissionSponsorship | undefined> {
+    const sponsorship = this.missionSponsorships.get(id);
+    if (!sponsorship) return undefined;
+
+    const updatedSponsorship: MissionSponsorship = {
+      ...sponsorship,
+      status: "confirmed",
+    };
+
+    this.missionSponsorships.set(id, updatedSponsorship);
+
+    // Update mission funding
+    await this.updateSponsoredMissionFunding(sponsorship.missionId, sponsorship.amount);
+
+    // Update sponsor stats
+    const sponsor = this.sponsors.get(sponsorship.sponsorId);
+    if (sponsor) {
+      const updatedSponsor: Sponsor = {
+        ...sponsor,
+        totalFunded: sponsor.totalFunded + sponsorship.amount,
+        missionsSponsored: sponsor.missionsSponsored + 1,
+        updatedAt: new Date(),
+      };
+      this.sponsors.set(sponsorship.sponsorId, updatedSponsor);
+    }
+
+    return updatedSponsorship;
   }
 
   async calculateTradeValue(phoneModel: string, condition: string): Promise<number> {
