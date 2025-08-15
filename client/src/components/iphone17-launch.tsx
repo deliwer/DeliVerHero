@@ -138,10 +138,12 @@ export function IPhone17Launch() {
                 </div>
               </div>
               
-              <Button className="w-full mt-8 bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold text-lg py-4 shadow-xl transform hover:scale-105 transition-all animate-pulse-glow">
-                Start Collecting Points
-                <ChevronRight className="w-5 h-5 ml-3" />
-              </Button>
+              <Link href="/" className="block w-full">
+                <Button className="w-full mt-8 bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold text-lg py-4 shadow-xl transform hover:scale-105 transition-all animate-pulse-glow">
+                  Start Collecting Points
+                  <ChevronRight className="w-5 h-5 ml-3" />
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -230,10 +232,12 @@ export function IPhone17Launch() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-12 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all animate-pulse-glow">
-                Trade iPhone Now
-                <Smartphone className="w-6 h-6 ml-3" />
-              </Button>
+              <Link href="/" className="inline-block">
+                <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-12 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all animate-pulse-glow">
+                  Trade iPhone Now
+                  <Smartphone className="w-6 h-6 ml-3" />
+                </Button>
+              </Link>
               
               <Link href="/community">
                 <Button size="lg" variant="outline" className="border-2 border-purple-400 text-purple-200 hover:bg-purple-500/20 px-12 py-4 text-xl font-bold shadow-xl transform hover:scale-105 transition-all">

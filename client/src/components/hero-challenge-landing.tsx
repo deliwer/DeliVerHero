@@ -219,10 +219,12 @@ export function HeroChallengeLanding() {
 
                 {/* Action Button */}
                 <div className="pt-2">
-                  <Button className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white py-3 font-bold rounded-xl">
-                    <ShoppingCart className="mr-2 w-5 h-5" />
-                    CONFIRM TRADE & ORDER AQUACAFE
-                  </Button>
+                  <Link href="/aquacafe" className="block w-full">
+                    <Button className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white py-3 font-bold rounded-xl">
+                      <ShoppingCart className="mr-2 w-5 h-5" />
+                      CONFIRM TRADE & ORDER AQUACAFE
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>

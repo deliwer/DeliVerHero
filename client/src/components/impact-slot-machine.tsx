@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Dices, Sparkles, Gift, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "wouter";
 
 interface SlotValue {
   icon: string;
@@ -234,10 +235,12 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
             </div>
             
             <div className="text-center">
-              <Button className="bg-gradient-to-r from-hero-green-500 to-hero-green-600 hover:from-hero-green-600 hover:to-hero-green-700 text-white px-8 py-3 rounded-xl font-bold transition-all" data-testid="button-boost-progress">
-                <Gift className="mr-2 w-5 h-5" />
-                🚀 BOOST PROGRESS: ORDER AQUACAFE NOW
-              </Button>
+              <Link href="/aquacafe">
+                <Button className="bg-gradient-to-r from-hero-green-500 to-hero-green-600 hover:from-hero-green-600 hover:to-hero-green-700 text-white px-8 py-3 rounded-xl font-bold transition-all" data-testid="button-boost-progress">
+                  <Gift className="mr-2 w-5 h-5" />
+                  🚀 BOOST PROGRESS: ORDER AQUACAFE NOW
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

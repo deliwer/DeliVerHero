@@ -8,7 +8,6 @@ import { AIConcierge } from "@/components/ai-concierge";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
-import { TooltipHintsDemo } from "@/components/tooltip-hints-demo";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -234,8 +233,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tooltip Hints Demo Panel */}
-      <TooltipHintsDemo />
     </div>
   );
 }
