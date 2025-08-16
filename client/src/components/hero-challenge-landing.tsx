@@ -130,37 +130,7 @@ export function HeroChallengeLanding() {
           <DeliAIInput />
         </div>
 
-        {/* Live Stats Banner */}
-        {stats && (
-          <div className="glass rounded-2xl p-6 mb-12 border border-slate-600" data-testid="live-stats-banner">
-            <div className="grid md:grid-cols-4 gap-6 text-center">
-              <div className="border-r border-slate-600 last:border-r-0">
-                <div className="text-2xl font-bold text-hero-green-500 mb-1">
-                  {(stats.totalBottlesPrevented / 1000).toFixed(0)}K+
-                </div>
-                <div className="text-sm text-gray-400">Bottles Prevented</div>
-              </div>
-              <div className="border-r border-slate-600 last:border-r-0">
-                <div className="text-2xl font-bold text-blue-400 mb-1">
-                  {(stats.totalCo2Saved / 1000000).toFixed(1)}T
-                </div>
-                <div className="text-sm text-gray-400">CO₂ Saved</div>
-              </div>
-              <div className="border-r border-slate-600 last:border-r-0">
-                <div className="text-2xl font-bold text-amber-500 mb-1">
-                  AED {(stats.totalRewards / 100 / 1000).toFixed(0)}K+
-                </div>
-                <div className="text-sm text-gray-400">Hero Rewards</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-purple-400 mb-1">
-                  {(stats.activeHeroes / 1000).toFixed(1)}K
-                </div>
-                <div className="text-sm text-gray-400">Active Heroes</div>
-              </div>
-            </div>
-          </div>
-        )}
+
 
         {/* Hero Challenge CTA Section */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
