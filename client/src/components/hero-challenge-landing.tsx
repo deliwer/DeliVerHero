@@ -106,9 +106,9 @@ export function HeroChallengeLanding() {
           </div>
           
           <h1 className="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
-            <span className="text-hero-green-500 text-glow">Trade Your iPhone 17 Today</span>
+            <span className="text-hero-green-500 text-glow">Dubai's First Sustainability Game</span>
             <br />
-            <span className="text-gray-300 text-[36px]">Collect Free Points • No Investment</span>
+            <span className="text-gray-300 text-[36px]">complete missions, save money</span>
             <br />
             <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-[48px]">Become a Planet Hero</span>
           </h1>
@@ -119,9 +119,8 @@ export function HeroChallengeLanding() {
           </div>
           
           <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-8">
-            🎯 <strong>iPhone 17 Owners:</strong> Trade today and collect <strong>FREE Planet Points</strong> instantly! No upfront costs, 
-            premium AquaCafe water system included, and join Dubai's biggest environmental mission. 
-            <span className="text-amber-400 font-bold">100% FREE to join</span> - Limited Founding Hero spots available.
+            Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
+            and become part of Dubai's biggest environmental mission. Limited spots available.
           </p>
         </div>
 
@@ -184,16 +183,16 @@ export function HeroChallengeLanding() {
                 {/* Device Info Display */}
                 <div className="flex items-center justify-between p-4 bg-slate-700/50 rounded-xl">
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center mr-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center mr-4">
                       <Smartphone className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="text-white font-bold">iPhone 17 Pro</div>
-                      <div className="text-amber-400 text-sm font-medium">💎 Premium Trade Value</div>
+                      <div className="text-white font-bold">iPhone 13 Pro</div>
+                      <div className="text-gray-400 text-sm">Excellent Condition</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-hero-green-500">AED 1,800</div>
+                    <div className="text-2xl font-bold text-hero-green-500">AED 1,200</div>
                     <div className="text-gray-400 text-sm">Trade Value</div>
                   </div>
                 </div>
@@ -201,11 +200,11 @@ export function HeroChallengeLanding() {
                 {/* Impact Breakdown */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-amber-500/10 rounded-xl border border-amber-500/30">
-                    <div className="text-xl font-bold text-amber-500">+3,600 🆓</div>
-                    <div className="text-gray-300 text-sm">FREE Planet Points</div>
+                    <div className="text-xl font-bold text-amber-500">+2,400</div>
+                    <div className="text-gray-300 text-sm">Planet Points</div>
                   </div>
                   <div className="text-center p-4 bg-hero-green-500/10 rounded-xl border border-hero-green-500/30">
-                    <div className="text-xl font-bold text-hero-green-500">24 Months</div>
+                    <div className="text-xl font-bold text-hero-green-500">18 Months</div>
                     <div className="text-gray-300 text-sm">Water Protection</div>
                   </div>
                 </div>

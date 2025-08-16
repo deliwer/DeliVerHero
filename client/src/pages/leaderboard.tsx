@@ -4,45 +4,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-// Founder placeholders for leaderboard
-const founderHeroes = [
-  {
-    id: "founder-1",
-    name: "Ahmed Al-Mansouri (Founder)",
-    points: 50000,
-    level: "Platinum Founder",
-    bottlesPrevented: 25000,
-    co2Saved: 125000,
-    referralCount: 15,
-    badges: ["Platform Founder", "First Hero", "Dubai Pioneer"]
-  },
-  {
-    id: "founder-2", 
-    name: "Sarah Al-Zahra (Co-Founder)",
-    points: 48000,
-    level: "Platinum Founder",
-    bottlesPrevented: 22000,
-    co2Saved: 115000,
-    referralCount: 12,
-    badges: ["Tech Visionary", "Sustainability Champion", "Community Builder"]
-  },
-  {
-    id: "founder-3",
-    name: "Omar Al-Rashid (CTO)",
-    points: 45000,
-    level: "Gold Founder", 
-    bottlesPrevented: 20000,
-    co2Saved: 105000,
-    referralCount: 8,
-    badges: ["Innovation Leader", "Green Tech Pioneer"]
-  }
-];
-
 export default function Leaderboard() {
-  const { data: apiHeroes, isLoading, error } = useLeaderboard(50);
-  
-  // Combine founders with API heroes, founders always at top
-  const heroes = apiHeroes ? [...founderHeroes, ...apiHeroes] : founderHeroes;
+  const { data: heroes, isLoading, error } = useLeaderboard(50);
 
   const getRankIcon = (index: number) => {
     switch (index) {
