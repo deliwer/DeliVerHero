@@ -361,7 +361,7 @@ export default function Community() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 bg-clip-text text-[#3b82f6]">
                 Planet Heroes
               </span>
               <br />
