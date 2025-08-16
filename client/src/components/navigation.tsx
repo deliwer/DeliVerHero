@@ -7,13 +7,12 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { path: "/", label: "Trade iPhone", id: "trade" },
-    { path: "/products", label: "Shop", id: "products" },
-    { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
+    { path: "/", label: "🚀 Trade iPhone (Free Entry)", id: "trade" },
+    { path: "/products", label: "Shop & AquaCafe", id: "products" },
     { path: "/sponsorships", label: "Sponsor Missions", id: "sponsorships" },
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
-    { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Champions & Ambassadors", id: "partners" },
+    { path: "/community", label: "Community", id: "community" },
   ];
 
   return (
@@ -65,40 +64,40 @@ export function Navigation() {
             {/* Mobile Action Buttons - Compact */}
             <div className="flex md:hidden items-center space-x-2">
               <Link
+                href="/"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-2 py-1.5 rounded-lg text-sm font-bold transition-colors"
+                data-testid="button-free-entry-mobile"
+              >
+                <Sparkles className="inline w-3 h-3 mr-1" />
+                FREE Entry
+              </Link>
+              <Link
                 href="/leaderboard"
                 className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
                 data-testid="button-join-heroes-mobile"
               >
                 <Users className="inline w-3 h-3 mr-1" />
-                Join
-              </Link>
-              <Link
-                href="/aquacafe"
-                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
-                data-testid="button-start-mission-mobile"
-              >
-                <Rocket className="inline w-3 h-3 mr-1" />
-                Start
+                Heroes
               </Link>
             </div>
 
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <Link
+                href="/"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-4 py-2 rounded-lg font-bold transition-colors shadow-lg"
+                data-testid="button-free-entry"
+              >
+                <Sparkles className="inline w-4 h-4 mr-2" />
+                FREE Entry - Trade iPhone
+              </Link>
+              <Link
                 href="/leaderboard"
                 className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 data-testid="button-join-heroes"
               >
                 <Users className="inline w-4 h-4 mr-2" />
-                Join Heroes
-              </Link>
-              <Link
-                href="/aquacafe"
-                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                data-testid="button-start-mission"
-              >
-                <Rocket className="inline w-4 h-4 mr-2" />
-                Start Mission
+                View Heroes
               </Link>
             </div>
 
