@@ -223,14 +223,35 @@ export function HeroChallengeLanding() {
                   </div>
                 </div>
 
-                {/* Action Button */}
-                <div className="pt-2">
+                {/* User Journey Options */}
+                <div className="pt-2 space-y-3">
                   <Link href="/aquacafe" className="block w-full">
                     <Button className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white py-3 font-bold rounded-xl">
                       <ShoppingCart className="mr-2 w-5 h-5" />
-                      CONFIRM TRADE & ORDER AQUACAFE
+                      TRADE & SHOP AQUACAFE PRODUCTS
                     </Button>
                   </Link>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <Link href="/aquacafe" className="block">
+                      <Button variant="outline" className="w-full border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black py-2.5 rounded-lg font-medium">
+                        <Star className="mr-2 w-4 h-4" />
+                        Buy Starter Kit Only
+                      </Button>
+                    </Link>
+                    
+                    <Link href="/leaderboard" className="block">
+                      <Button variant="outline" className="w-full border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-2.5 rounded-lg font-medium">
+                        <Trophy className="mr-2 w-4 h-4" />
+                        Join Heroes & Collect Points
+                      </Button>
+                    </Link>
+                  </div>
+                  
+                  <div className="text-center pt-2">
+                    <p className="text-xs text-gray-400 mb-1">Choose Your Hero Journey:</p>
+                    <p className="text-xs text-emerald-400">✓ Trade iPhone + Buy Products • ✓ Buy Starter Kit & Share • ✓ Join Heroes & Earn Points</p>
+                  </div>
                 </div>
               </div>
             </div>

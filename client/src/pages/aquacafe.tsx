@@ -5,9 +5,7 @@ import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Targe
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { DeviceSimulator } from "@/components/device-simulator";
-import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
-import type { TradeCalculation } from "@/types/hero";
+import { AquaCafeProductsSection } from "@/components/aquacafe-products-section";
 
 interface ProductFeatureProps {
   icon: React.ReactNode;
@@ -26,7 +24,6 @@ function ProductFeature({ icon, title, description }: ProductFeatureProps) {
 }
 
 export default function AquaCafe() {
-  const [calculation, setCalculation] = useState<TradeCalculation | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<string>("premium");
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
   const { toast } = useToast();
@@ -378,37 +375,8 @@ export default function AquaCafe() {
         </div>
       </section>
 
-      {/* Device Trade-In Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-emerald-950/30 to-slate-800/70 backdrop-blur-sm border-y border-slate-700/50" data-testid="trade-in-section">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 bg-slate-800/70 backdrop-blur-sm rounded-2xl p-8 border border-emerald-500/30">
-            <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-md">
-              💰 INSTANT TRADE-IN VALUE CALCULATOR
-            </h2>
-            <p className="text-gray-100 text-lg leading-relaxed">
-              See exactly how much your iPhone is worth towards your AquaCafe system
-            </p>
-          </div>
-          
-          <DeviceSimulator onCalculation={setCalculation} />
-          
-          {calculation && (
-            <div className="text-center mt-8">
-              <div className="glass rounded-xl p-6 border border-hero-green-500/30 inline-block">
-                <p className="text-white text-lg mb-2">
-                  🎉 Your iPhone in {calculation.condition} condition is worth:
-                </p>
-                <div className="text-3xl font-bold text-amber-500 mb-2">
-                  AED {calculation.tradeValue.toLocaleString()}
-                </div>
-                <p className="text-gray-300 text-sm">
-                  Plus {calculation.points.toLocaleString()} Planet Points and exclusive benefits!
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
+      {/* AquaCafe Products Section */}
+      <AquaCafeProductsSection />
 
       {/* Pricing Plans */}
       <section className="py-16 px-4 bg-gradient-to-br from-amber-950/20 to-slate-900/80 backdrop-blur-sm" data-testid="pricing-plans">
@@ -418,25 +386,17 @@ export default function AquaCafe() {
               🏆 CHOOSE YOUR HERO PACKAGE
             </h2>
             <p className="text-gray-100 text-lg leading-relaxed">
-              Every package includes your iPhone trade-in value as instant credit
+  Choose the perfect AquaCafe package for your family's needs
             </p>
             
-            {calculation && (
-              <div className="inline-flex items-center bg-hero-green-500/20 border border-hero-green-500/50 rounded-full px-6 py-3 mt-4">
-                <Gift className="w-5 h-5 text-hero-green-500 mr-2" />
-                <span className="text-hero-green-500 font-bold">
-                  Your Trade Credit: AED {calculation.tradeValue.toLocaleString()}
-                </span>
-              </div>
-            )}
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 mb-12" data-testid="aquacafe-packages">
             {plans.map((plan) => {
               const basePrice = plan.price;
               const heroDiscountAmount = plan.heroDiscount ? (plan.price * plan.heroDiscount / 100) : 0;
-              const finalPrice = basePrice - heroDiscountAmount - (calculation?.tradeValue || 0);
-              const totalSavings = plan.originalPrice - plan.price + heroDiscountAmount + (calculation?.tradeValue || 0);
+              const finalPrice = basePrice - heroDiscountAmount;
+              const totalSavings = plan.originalPrice - plan.price + heroDiscountAmount;
               
               return (
                 <Card 
@@ -476,11 +436,6 @@ export default function AquaCafe() {
                             <div className="text-hero-green-500 font-bold text-lg mb-1">
                               Planet Hero Price: AED {Math.max(0, finalPrice).toLocaleString()}
                             </div>
-                            {calculation && (
-                              <div className="text-blue-400 font-bold text-lg">
-                                With iPhone Trade: AED {Math.max(0, finalPrice).toLocaleString()}
-                              </div>
-                            )}
                             <div className="text-sm text-amber-500 font-bold">
                               TOTAL VALUE: AED {totalSavings.toLocaleString()}+ FREE!
                             </div>
@@ -490,11 +445,6 @@ export default function AquaCafe() {
                             <div className="text-3xl font-bold text-white mb-2">
                               AED {plan.price.toLocaleString()}
                             </div>
-                            {calculation && (
-                              <div className="text-hero-green-500 font-bold text-lg">
-                                Your Price: AED {Math.max(0, finalPrice).toLocaleString()}
-                              </div>
-                            )}
                             <div className="text-sm text-amber-500 font-bold">
                               Save AED {totalSavings.toLocaleString()}
                             </div>
@@ -560,8 +510,6 @@ export default function AquaCafe() {
         </div>
       </section>
 
-      {/* Instant Impact Unlocks */}
-      <InstantImpactUnlocks calculation={calculation || undefined} onOrderNow={() => handleOrderNow(selectedPlan)} />
 
       {/* Final CTA Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-orange-950/30 to-slate-900/90 backdrop-blur-sm border-t border-slate-700/50" data-testid="final-cta">
