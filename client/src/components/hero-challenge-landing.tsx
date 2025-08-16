@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DeviceSimulator } from "./device-simulator";
 import { DeliAIInput } from "./deli-ai-input";
 import { useImpactStats } from "@/hooks/use-impact-stats";
+import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { Link } from "wouter";
 
 interface HeroSpotCounterProps {
@@ -258,70 +259,8 @@ export function HeroChallengeLanding() {
           </div>
         </div>
 
-        {/* Founding Hero Perks */}
-        <div className="glass rounded-3xl p-8 border border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-orange-500/5 mb-12" data-testid="founding-hero-perks">
-          <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Trophy className="w-10 h-10 text-black" />
-            </div>
-            <h2 className="text-3xl font-bold text-white mb-4">FOUNDING HERO EXCLUSIVE PERKS</h2>
-            <p className="text-gray-300">Limited to first 100 heroes only</p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="text-center p-6 bg-slate-700/30 rounded-xl border border-amber-500/20">
-              <Zap className="w-8 h-8 text-amber-500 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">Lifetime Double Points</h3>
-              <p className="text-gray-400 text-sm">All future trades earn 2x points forever</p>
-            </div>
-            <div className="text-center p-6 bg-slate-700/30 rounded-xl border border-hero-green-500/20">
-              <Star className="w-8 h-8 text-hero-green-500 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">Priority Access</h3>
-              <p className="text-gray-400 text-sm">First access to limited edition rewards</p>
-            </div>
-            <div className="text-center p-6 bg-slate-700/30 rounded-xl border border-dubai-blue-500/20">
-              <Target className="w-8 h-8 text-dubai-blue-500 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">Exclusive Badge</h3>
-              <p className="text-gray-400 text-sm">Founding Hero status on all profiles</p>
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <div className="inline-flex items-center bg-red-500/20 border border-red-500/50 rounded-full px-6 py-3 mb-6">
-              <Clock className="w-4 h-4 text-red-400 mr-2" />
-              <span className="text-red-400 font-bold">Founding Hero status expires in 6 days</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Social Proof Activity Feed */}
-        <div className="glass rounded-2xl p-6 border border-slate-600 mb-12" data-testid="live-activity-feed">
-          <div className="flex items-center mb-4">
-            <div className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></div>
-            <h3 className="text-lg font-bold text-white">LIVE: Planet Heroes in Action</h3>
-          </div>
-          
-          <div className="space-y-3">
-            <div className="flex items-center space-x-3 text-sm">
-              <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-black font-bold text-xs">SM</div>
-              <span className="text-gray-300">🎉 Sarah M. just became Level 2 Hero!</span>
-              <span className="text-gray-500 text-xs">2 min ago</span>
-            </div>
-            <div className="flex items-center space-x-3 text-sm">
-              <div className="w-8 h-8 bg-hero-green-500 rounded-full flex items-center justify-center text-white font-bold text-xs">AK</div>
-              <span className="text-gray-300">🏅 Ahmed K. earned "Water Warrior" badge</span>
-              <span className="text-gray-500 text-xs">5 min ago</span>
-            </div>
-            <div className="flex items-center space-x-3 text-sm">
-              <div className="w-8 h-8 bg-dubai-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xs">FA</div>
-              <span className="text-gray-300">⚡ Fatima A. prevented 500 bottles today</span>
-              <span className="text-gray-500 text-xs">8 min ago</span>
-            </div>
-            <div className="text-center py-2">
-              <span className="text-hero-green-500 font-bold">🚀 YOU could be next! Start your hero journey</span>
-            </div>
-          </div>
-        </div>
+        {/* Founding Heroes Program & Leaderboard */}
+        <FoundingHeroesSection stats={stats} />
 
         {/* Final CTA Buttons */}
         <div className="text-center">
@@ -350,5 +289,113 @@ export function HeroChallengeLanding() {
         </div>
       </div>
     </section>
+  );
+}
+
+function FoundingHeroesSection({ stats }: { stats: any }) {
+  const { data: topHeroes } = useLeaderboard(3);
+
+  return (
+    <div className="glass rounded-3xl p-8 border border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-orange-500/5 mb-12" data-testid="founding-heroes-section">
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Left: Founding Hero Perks */}
+        <div>
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Trophy className="w-8 h-8 text-black" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2">FOUNDING HERO PROGRAM</h2>
+            <p className="text-gray-300 text-sm">Limited to first 100 heroes only</p>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-amber-500/20">
+              <Zap className="w-6 h-6 text-amber-500 mr-3" />
+              <div>
+                <h3 className="text-white font-bold text-sm">Lifetime Double Points</h3>
+                <p className="text-gray-400 text-xs">All future trades earn 2x points forever</p>
+              </div>
+            </div>
+            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-hero-green-500/20">
+              <Star className="w-6 h-6 text-hero-green-500 mr-3" />
+              <div>
+                <h3 className="text-white font-bold text-sm">Priority Access</h3>
+                <p className="text-gray-400 text-xs">First access to limited edition rewards</p>
+              </div>
+            </div>
+            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-dubai-blue-500/20">
+              <Target className="w-6 h-6 text-dubai-blue-500 mr-3" />
+              <div>
+                <h3 className="text-white font-bold text-sm">Exclusive Founding Badge</h3>
+                <p className="text-gray-400 text-xs">Permanent status on all profiles</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-6">
+            <div className="inline-flex items-center bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2">
+              <Clock className="w-4 h-4 text-red-400 mr-2" />
+              <span className="text-red-400 font-bold text-sm">Expires in 6 days</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Top Heroes Leaderboard */}
+        <div>
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <Crown className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2">TOP PLANET HEROES</h2>
+            <p className="text-gray-300 text-sm">Join {stats?.activeHeroes?.toLocaleString() || '12,847'} active heroes</p>
+          </div>
+          
+          <div className="space-y-3">
+            {topHeroes?.map((hero, index) => (
+              <div key={hero.id} className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/50">
+                <div className="flex items-center mr-4">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                    index === 0 ? 'bg-amber-500' : index === 1 ? 'bg-gray-400' : 'bg-orange-600'
+                  }`}>
+                    {index + 1}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex justify-between items-center">
+                    <span className="text-white font-bold text-sm">{hero.name}</span>
+                    <span className="text-hero-green-500 font-bold text-sm">{hero.points.toLocaleString()} pts</span>
+                  </div>
+                  <div className="flex justify-between items-center mt-1">
+                    <span className="text-gray-400 text-xs">{hero.level}</span>
+                    <span className="text-gray-400 text-xs">{hero.bottlesPrevented.toLocaleString()} bottles saved</span>
+                  </div>
+                </div>
+              </div>
+            )) || (
+              // Fallback display while loading
+              Array.from({ length: 3 }, (_, index) => (
+                <div key={index} className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/50">
+                  <div className="flex items-center mr-4">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
+                      index === 0 ? 'bg-amber-500' : index === 1 ? 'bg-gray-400' : 'bg-orange-600'
+                    }`}>
+                      {index + 1}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <div className="h-4 bg-slate-600 rounded animate-pulse mb-2"></div>
+                    <div className="h-3 bg-slate-600 rounded animate-pulse w-3/4"></div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+          
+          <div className="text-center mt-6">
+            <span className="text-hero-green-500 font-bold text-sm">Start your hero journey today!</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
