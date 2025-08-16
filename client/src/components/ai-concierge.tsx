@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { openAIService } from "@/lib/openai-service";
 import { DEVICE_OPTIONS } from "@/types/hero";
 import { EmbeddedCheckout } from "./embedded-checkout";
+import { ProgressCelebrationModal, sampleAchievements } from "@/components/progress-celebration-modal";
+import { useProgressCelebration } from "@/hooks/use-progress-celebration";
 import type { ChatMessage } from "@/types/hero";
 
 export function AIConcierge() {
@@ -15,6 +17,13 @@ export function AIConcierge() {
   const [tradeValue, setTradeValue] = useState(1200);
   const [selectedDevice, setSelectedDevice] = useState("iPhone 13 Pro");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  const { 
+    isModalOpen, 
+    celebrationData, 
+    hideCelebration, 
+    triggerTradeSuccessCelebration 
+  } = useProgressCelebration();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -288,11 +297,32 @@ export function AIConcierge() {
                 <ShoppingCart className="w-4 h-4 mr-2" />
                 Order AquaCafe Kit
               </Button>
+              <Button
+                onClick={() => triggerTradeSuccessCelebration(1500, "iPhone 14 Pro")}
+                variant="outline"
+                size="sm"
+                className="bg-purple-500 hover:bg-purple-600 text-white border-purple-500"
+                data-testid="button-demo-celebration"
+              >
+                <Award className="w-4 h-4 mr-2" />
+                Demo Achievement
+              </Button>
             </div>
             </div>
           )}
         </div>
       </div>
+      
+      {/* Progress Celebration Modal */}
+      {celebrationData && (
+        <ProgressCelebrationModal
+          isOpen={isModalOpen}
+          onClose={hideCelebration}
+          achievements={celebrationData.achievements}
+          progressChange={celebrationData.progressChange}
+          impactStats={celebrationData.impactStats}
+        />
+      )}
     </section>
   );
 }

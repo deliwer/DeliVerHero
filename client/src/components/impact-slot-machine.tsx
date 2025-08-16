@@ -3,6 +3,8 @@ import { Dices, Sparkles, Gift, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
+import { ProgressCelebrationModal, sampleAchievements } from "@/components/progress-celebration-modal";
+import { useProgressCelebration } from "@/hooks/use-progress-celebration";
 
 interface SlotValue {
   icon: string;
@@ -29,6 +31,14 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
   const [currentValues, setCurrentValues] = useState([0, 1, 2, 3]);
   const [isJackpot, setIsJackpot] = useState(false);
   const [spinCount, setSpinCount] = useState(0);
+  
+  const { 
+    isModalOpen, 
+    celebrationData, 
+    hideCelebration, 
+    triggerTradeSuccessCelebration,
+    triggerMilestoneCelebration 
+  } = useProgressCelebration();
 
   const spin = () => {
     if (spinning) return;
@@ -70,6 +80,16 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
         if (isJackpotSpin) {
           setIsJackpot(true);
           onJackpot?.();
+          
+          // Trigger celebration modal for jackpot
+          setTimeout(() => {
+            triggerMilestoneCelebration("Environmental Impact Jackpot", 75);
+          }, 1000);
+        } else {
+          // Trigger smaller celebration for regular spins
+          setTimeout(() => {
+            triggerTradeSuccessCelebration(1200, "iPhone 13 Pro");
+          }, 500);
         }
         
         setSpinCount(prev => prev + 1);
@@ -171,6 +191,17 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Progress Celebration Modal */}
+      {celebrationData && (
+        <ProgressCelebrationModal
+          isOpen={isModalOpen}
+          onClose={hideCelebration}
+          achievements={celebrationData.achievements}
+          progressChange={celebrationData.progressChange}
+          impactStats={celebrationData.impactStats}
+        />
+      )}
     </section>
   );
 }
