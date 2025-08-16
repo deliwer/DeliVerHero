@@ -191,27 +191,7 @@ export default function Home() {
       {/* Interactive Slot Machine */}
       <ImpactSlotMachine />
 
-      {/* Leaderboard & Challenge Section */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              🏆 DUBAI ENVIRONMENTAL CHAMPIONS
-            </h2>
-            <p className="text-gray-300 text-lg">Real-time leaderboard of planet heroes making impact</p>
-          </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            <div data-testid="leaderboard">
-              <LeaderboardWidget showHeader={false} />
-            </div>
-            <div className="space-y-6">
-              <LiveChallengeWidget />
-              <LiveActivityFeed />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Sponsorship Callout */}
       <SponsorshipCallout />

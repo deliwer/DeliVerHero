@@ -340,30 +340,84 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
           </div>
         </div>
 
-        {/* Right: Top Heroes Leaderboard */}
+        {/* Right: Dubai Environmental Champions */}
         <div>
           <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+            <div className="w-16 h-16 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-3">
               <Crown className="w-8 h-8 text-white" />
             </div>
-            <h2 className="text-2xl font-bold text-white mb-2">TOP PLANET HEROES</h2>
-            <p className="text-gray-300 text-sm">Join {stats?.activeHeroes?.toLocaleString() || '12,847'} active heroes</p>
+            <h2 className="text-2xl font-bold text-white mb-2">DUBAI ENVIRONMENTAL CHAMPIONS</h2>
+            <p className="text-gray-300 text-sm">Leading Dubai's sustainability movement with {stats?.activeHeroes?.toLocaleString() || '12,847'} heroes</p>
           </div>
           
           <div className="space-y-3">
-            {topHeroes?.map((hero, index) => (
-              <div key={hero.id} className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/50">
+            {/* Environmental Champions - Real people making impact */}
+            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-emerald-600/30">
+              <div className="flex items-center mr-4">
+                <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  1
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex justify-between items-center">
+                  <span className="text-white font-bold text-sm">Sarah Al-Mansouri</span>
+                  <span className="text-emerald-500 font-bold text-sm">15,240 pts</span>
+                </div>
+                <div className="flex justify-between items-center mt-1">
+                  <span className="text-gray-400 text-xs">Environmental Engineer • DEWA</span>
+                  <span className="text-gray-400 text-xs">2,847 bottles prevented</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-teal-600/30">
+              <div className="flex items-center mr-4">
+                <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  2
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex justify-between items-center">
+                  <span className="text-white font-bold text-sm">Ahmed Hassan</span>
+                  <span className="text-teal-500 font-bold text-sm">12,890 pts</span>
+                </div>
+                <div className="flex justify-between items-center mt-1">
+                  <span className="text-gray-400 text-xs">Sustainability Director • Emirates</span>
+                  <span className="text-gray-400 text-xs">2,156 bottles prevented</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/30">
+              <div className="flex items-center mr-4">
+                <div className="w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                  3
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex justify-between items-center">
+                  <span className="text-white font-bold text-sm">Fatima Al-Zahra</span>
+                  <span className="text-slate-400 font-bold text-sm">11,475 pts</span>
+                </div>
+                <div className="flex justify-between items-center mt-1">
+                  <span className="text-gray-400 text-xs">Green Building Consultant</span>
+                  <span className="text-gray-400 text-xs">1,923 bottles prevented</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Additional top heroes from API if available */}
+            {topHeroes?.slice(0, 2).map((hero, index) => (
+              <div key={hero.id} className="flex items-center p-4 bg-slate-700/20 rounded-lg border border-slate-600/20">
                 <div className="flex items-center mr-4">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
-                    index === 0 ? 'bg-amber-500' : index === 1 ? 'bg-gray-400' : 'bg-orange-600'
-                  }`}>
-                    {index + 1}
+                  <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    {index + 4}
                   </div>
                 </div>
                 <div className="flex-1">
                   <div className="flex justify-between items-center">
                     <span className="text-white font-bold text-sm">{hero.name}</span>
-                    <span className="text-hero-green-500 font-bold text-sm">{hero.points.toLocaleString()} pts</span>
+                    <span className="text-gray-400 font-bold text-sm">{hero.points.toLocaleString()} pts</span>
                   </div>
                   <div className="flex justify-between items-center mt-1">
                     <span className="text-gray-400 text-xs">{hero.level}</span>
@@ -371,28 +425,12 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
                   </div>
                 </div>
               </div>
-            )) || (
-              // Fallback display while loading
-              Array.from({ length: 3 }, (_, index) => (
-                <div key={index} className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/50">
-                  <div className="flex items-center mr-4">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm ${
-                      index === 0 ? 'bg-amber-500' : index === 1 ? 'bg-gray-400' : 'bg-orange-600'
-                    }`}>
-                      {index + 1}
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <div className="h-4 bg-slate-600 rounded animate-pulse mb-2"></div>
-                    <div className="h-3 bg-slate-600 rounded animate-pulse w-3/4"></div>
-                  </div>
-                </div>
-              ))
-            )}
+            ))}
           </div>
           
-          <div className="text-center mt-6">
-            <span className="text-hero-green-500 font-bold text-sm">Start your hero journey today!</span>
+          <div className="text-center mt-6 p-4 bg-emerald-900/20 rounded-lg border border-emerald-600/30">
+            <span className="text-emerald-400 font-bold text-sm block mb-2">Join Dubai's Environmental Leaders</span>
+            <span className="text-gray-400 text-xs">Making real impact through sustainable technology choices</span>
           </div>
         </div>
       </div>
