@@ -19,7 +19,6 @@ import Community from "@/pages/community";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Environmental from "@/pages/environmental";
-import HeroesCommunity from "@/pages/heroes-community";
 import DubaiRewards from "@/pages/dubai-rewards";
 import Sponsorships from "@/pages/sponsorships";
 import NotFound from "@/pages/not-found";
@@ -43,7 +42,6 @@ function Router() {
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/environmental" component={Environmental} />
-      <Route path="/heroes-community" component={HeroesCommunity} />
       <Route path="/dubai-rewards" component={ImpactDashboard} />
       <Route path="/sponsorships" component={Sponsorships} />
       <Route component={NotFound} />
