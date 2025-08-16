@@ -22,7 +22,12 @@ import {
   MapPin,
   Camera,
   Hash,
-  Clock
+  Clock,
+  Truck,
+  Phone,
+  Navigation,
+  AlertCircle,
+  Headphones
 } from 'lucide-react';
 
 interface CommunityEvent {
@@ -47,6 +52,14 @@ interface SocialPost {
   shares: number;
   timeAgo: string;
   badges: string[];
+}
+
+interface DeliveryZone {
+  name: string;
+  areas: string[];
+  timeSlots: string[];
+  fee: number;
+  nextDay: boolean;
 }
 
 export default function Community() {
@@ -171,6 +184,30 @@ export default function Community() {
     }
   ];
 
+  const deliveryZones: Record<string, DeliveryZone> = {
+    zone1: {
+      name: "Dubai City Center",
+      areas: ["Downtown Dubai", "DIFC", "Business Bay", "Marina", "JBR"],
+      timeSlots: ["9:00-11:00", "11:00-13:00", "14:00-16:00", "16:00-18:00", "18:00-20:00"],
+      fee: 0,
+      nextDay: true
+    },
+    zone2: {
+      name: "Dubai Suburbs",
+      areas: ["Jumeirah", "Umm Suqeim", "Al Barsha", "Motor City", "Sports City"],
+      timeSlots: ["10:00-12:00", "14:00-16:00", "16:00-18:00"],
+      fee: 25,
+      nextDay: false
+    },
+    zone3: {
+      name: "Extended Dubai",
+      areas: ["Dubai Investment Park", "Dubailand", "Dubai South", "International City"],
+      timeSlots: ["10:00-14:00", "14:00-18:00"],
+      fee: 50,
+      nextDay: false
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       {/* Hero Section */}
@@ -215,7 +252,8 @@ export default function Community() {
               { id: "events", label: "Events", icon: Calendar },
               { id: "social", label: "Social Feed", icon: MessageSquare },
               { id: "leaderboard", label: "Leaderboard", icon: Trophy },
-              { id: "achievements", label: "Achievements", icon: Star }
+              { id: "achievements", label: "Achievements", icon: Star },
+              { id: "delivery", label: "Delivery Areas", icon: Truck }
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
@@ -503,6 +541,99 @@ export default function Community() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          )}
+
+          {/* Delivery Areas Tab */}
+          {activeTab === "delivery" && (
+            <div className="space-y-8">
+              {/* Delivery Coverage */}
+              <Card className="glass border-slate-600">
+                <CardContent className="p-8 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
+                  <h2 className="text-2xl font-bold text-white mb-6 text-center flex items-center justify-center">
+                    <Truck className="w-6 h-6 text-hero-green-500 mr-2" />
+                    Dubai Delivery Coverage Areas
+                  </h2>
+                  
+                  <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    {Object.entries(deliveryZones).map(([zoneId, zone]) => (
+                      <div 
+                        key={zoneId}
+                        className="p-6 rounded-xl border-2 border-slate-600 bg-slate-700/30 hover:border-slate-500 transition-all"
+                      >
+                        <h3 className="text-lg font-bold text-white mb-2">{zone.name}</h3>
+                        <div className="space-y-2 mb-4">
+                          {zone.areas.map((area, index) => (
+                            <div key={index} className="text-sm text-gray-300">{area}</div>
+                          ))}
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className={`text-sm font-bold ${zone.fee === 0 ? 'text-hero-green-500' : 'text-amber-500'}`}>
+                            {zone.fee === 0 ? 'FREE' : `AED ${zone.fee}`}
+                          </span>
+                          {zone.nextDay && (
+                            <Badge className="bg-amber-500/20 text-amber-500 border-amber-500/30">
+                              Next Day
+                            </Badge>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="text-center">
+                    <p className="text-gray-300 mb-4">
+                      All AquaCafe systems include free installation and setup by certified technicians
+                    </p>
+                    <Button className="bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white px-8 py-3 font-bold">
+                      <Navigation className="mr-2 w-5 h-5" />
+                      Track Your Delivery
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Delivery Features */}
+              <div className="grid md:grid-cols-3 gap-6">
+                <Card className="glass border-slate-600">
+                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/70 to-slate-800/80 backdrop-blur-sm text-center">
+                    <div className="w-16 h-16 bg-hero-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Truck className="w-8 h-8 text-hero-green-500" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">Eco-Friendly Fleet</h3>
+                    <p className="text-gray-300 text-sm mb-4">100% electric delivery vehicles reducing carbon footprint</p>
+                    <Badge className="bg-hero-green-500/20 text-hero-green-500 border-hero-green-500/30">
+                      Zero Emissions
+                    </Badge>
+                  </CardContent>
+                </Card>
+
+                <Card className="glass border-slate-600">
+                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/70 to-slate-800/80 backdrop-blur-sm text-center">
+                    <div className="w-16 h-16 bg-dubai-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Shield className="w-8 h-8 text-dubai-blue-500" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">Secure Installation</h3>
+                    <p className="text-gray-300 text-sm mb-4">Professional setup by certified technicians</p>
+                    <Badge className="bg-dubai-blue-500/20 text-dubai-blue-500 border-dubai-blue-500/30">
+                      Expert Setup
+                    </Badge>
+                  </CardContent>
+                </Card>
+
+                <Card className="glass border-slate-600">
+                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/70 to-slate-800/80 backdrop-blur-sm text-center">
+                    <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Phone className="w-8 h-8 text-amber-500" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">24/7 Support</h3>
+                    <p className="text-gray-300 text-sm mb-4">Round-the-clock delivery and installation support</p>
+                    <Badge className="bg-amber-500/20 text-amber-500 border-amber-500/30">
+                      Always Available
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           )}
 

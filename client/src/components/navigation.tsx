@@ -14,7 +14,6 @@ export function Navigation() {
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Champions & Ambassadors", id: "partners" },
-    { path: "/delivery", label: "Delivery", id: "delivery" },
   ];
 
   return (

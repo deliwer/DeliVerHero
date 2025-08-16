@@ -15,7 +15,6 @@ import Leaderboard from "@/pages/leaderboard";
 import ImpactDashboard from "@/pages/impact-dashboard";
 import AquaCafe from "@/pages/aquacafe";
 import Partners from "@/pages/partners";
-import Delivery from "@/pages/delivery";
 import Community from "@/pages/community";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -40,7 +39,6 @@ function Router() {
       <Route path="/impact-dashboard" component={ImpactDashboard} />
       <Route path="/aquacafe" component={AquaCafe} />
       <Route path="/partners" component={Partners} />
-      <Route path="/delivery" component={Delivery} />
       <Route path="/community" component={Community} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
