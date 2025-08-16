@@ -266,142 +266,92 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
   const { data: topHeroes } = useLeaderboard(3);
 
   return (
-    <div className="glass rounded-3xl p-8 border border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-orange-500/5 mb-12" data-testid="founding-heroes-section">
-      <div className="grid lg:grid-cols-2 gap-8">
-        {/* Left: Founding Hero Perks */}
-        <div>
-          <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Trophy className="w-8 h-8 text-black" />
-            </div>
-            <h2 className="text-2xl font-bold text-white mb-2">FOUNDING HERO PROGRAM</h2>
-            <p className="text-gray-300 text-sm">Limited to first 100 heroes only</p>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-amber-500/20">
-              <Zap className="w-6 h-6 text-amber-500 mr-3" />
-              <div>
-                <h3 className="text-white font-bold text-sm">Lifetime Double Points</h3>
-                <p className="text-gray-400 text-xs">All future trades earn 2x points forever</p>
-              </div>
-            </div>
-            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-hero-green-500/20">
-              <Star className="w-6 h-6 text-hero-green-500 mr-3" />
-              <div>
-                <h3 className="text-white font-bold text-sm">Priority Access</h3>
-                <p className="text-gray-400 text-xs">First access to limited edition rewards</p>
-              </div>
-            </div>
-            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-dubai-blue-500/20">
-              <Target className="w-6 h-6 text-dubai-blue-500 mr-3" />
-              <div>
-                <h3 className="text-white font-bold text-sm">Exclusive Founding Badge</h3>
-                <p className="text-gray-400 text-xs">Permanent status on all profiles</p>
-              </div>
+    <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 mb-12" data-testid="founding-heroes-section">
+      <div className="text-center mb-8">
+        <div className="w-20 h-20 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Crown className="w-10 h-10 text-white" />
+        </div>
+        <h2 className="text-3xl font-bold text-white mb-3">DUBAI ENVIRONMENTAL CHAMPIONS</h2>
+        <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+          Join {stats?.activeHeroes?.toLocaleString() || '12,847'} sustainability leaders making real environmental impact across Dubai
+        </p>
+      </div>
+
+      {/* Top Environmental Champions */}
+      <div className="grid md:grid-cols-3 gap-4 mb-8">
+        <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-emerald-600/30">
+          <div className="flex items-center mr-4">
+            <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
+              1
             </div>
           </div>
-          
-          <div className="text-center mt-6">
-            <div className="inline-flex items-center bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2">
-              <Clock className="w-4 h-4 text-red-400 mr-2" />
-              <span className="text-red-400 font-bold text-sm">Expires in 6 days</span>
-            </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-white font-bold text-sm mb-1">Sarah Al-Mansouri</div>
+            <div className="text-gray-400 text-xs truncate">Environmental Engineer • DEWA</div>
+            <div className="text-emerald-500 font-bold text-sm">15,240 pts</div>
           </div>
         </div>
 
-        {/* Right: Dubai Environmental Champions */}
-        <div>
-          <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Crown className="w-8 h-8 text-white" />
+        <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-teal-600/30">
+          <div className="flex items-center mr-4">
+            <div className="w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold">
+              2
             </div>
-            <h2 className="text-2xl font-bold text-white mb-2">DUBAI ENVIRONMENTAL CHAMPIONS</h2>
-            <p className="text-gray-300 text-sm">Leading Dubai's sustainability movement with {stats?.activeHeroes?.toLocaleString() || '12,847'} heroes</p>
           </div>
-          
-          <div className="space-y-3">
-            {/* Environmental Champions - Real people making impact */}
-            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-emerald-600/30">
-              <div className="flex items-center mr-4">
-                <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  1
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-center">
-                  <span className="text-white font-bold text-sm">Sarah Al-Mansouri</span>
-                  <span className="text-emerald-500 font-bold text-sm">15,240 pts</span>
-                </div>
-                <div className="flex justify-between items-center mt-1">
-                  <span className="text-gray-400 text-xs">Environmental Engineer • DEWA</span>
-                  <span className="text-gray-400 text-xs">2,847 bottles prevented</span>
-                </div>
-              </div>
-            </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-white font-bold text-sm mb-1">Ahmed Hassan</div>
+            <div className="text-gray-400 text-xs truncate">Sustainability Director • Emirates</div>
+            <div className="text-teal-500 font-bold text-sm">12,890 pts</div>
+          </div>
+        </div>
 
-            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-teal-600/30">
-              <div className="flex items-center mr-4">
-                <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  2
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-center">
-                  <span className="text-white font-bold text-sm">Ahmed Hassan</span>
-                  <span className="text-teal-500 font-bold text-sm">12,890 pts</span>
-                </div>
-                <div className="flex justify-between items-center mt-1">
-                  <span className="text-gray-400 text-xs">Sustainability Director • Emirates</span>
-                  <span className="text-gray-400 text-xs">2,156 bottles prevented</span>
-                </div>
-              </div>
+        <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/30">
+          <div className="flex items-center mr-4">
+            <div className="w-10 h-10 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold">
+              3
             </div>
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="text-white font-bold text-sm mb-1">Fatima Al-Zahra</div>
+            <div className="text-gray-400 text-xs truncate">Green Building Consultant</div>
+            <div className="text-slate-400 font-bold text-sm">11,475 pts</div>
+          </div>
+        </div>
+      </div>
 
-            <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/30">
-              <div className="flex items-center mr-4">
-                <div className="w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  3
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-center">
-                  <span className="text-white font-bold text-sm">Fatima Al-Zahra</span>
-                  <span className="text-slate-400 font-bold text-sm">11,475 pts</span>
-                </div>
-                <div className="flex justify-between items-center mt-1">
-                  <span className="text-gray-400 text-xs">Green Building Consultant</span>
-                  <span className="text-gray-400 text-xs">1,923 bottles prevented</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Additional top heroes from API if available */}
-            {topHeroes?.slice(0, 2).map((hero, index) => (
-              <div key={hero.id} className="flex items-center p-4 bg-slate-700/20 rounded-lg border border-slate-600/20">
-                <div className="flex items-center mr-4">
-                  <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                    {index + 4}
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white font-bold text-sm">{hero.name}</span>
-                    <span className="text-gray-400 font-bold text-sm">{hero.points.toLocaleString()} pts</span>
-                  </div>
-                  <div className="flex justify-between items-center mt-1">
-                    <span className="text-gray-400 text-xs">{hero.level}</span>
-                    <span className="text-gray-400 text-xs">{hero.bottlesPrevented.toLocaleString()} bottles saved</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+      {/* Founding Hero Benefits */}
+      <div className="grid md:grid-cols-3 gap-4 mb-6">
+        <div className="flex items-center p-4 bg-amber-500/10 rounded-lg border border-amber-500/30">
+          <Zap className="w-6 h-6 text-amber-500 mr-3 flex-shrink-0" />
+          <div>
+            <h3 className="text-white font-bold text-sm mb-1">Lifetime Double Points</h3>
+            <p className="text-gray-400 text-xs">All future trades earn 2x points forever</p>
           </div>
-          
-          <div className="text-center mt-6 p-4 bg-emerald-900/20 rounded-lg border border-emerald-600/30">
-            <span className="text-emerald-400 font-bold text-sm block mb-2">Join Dubai's Environmental Leaders</span>
-            <span className="text-gray-400 text-xs">Making real impact through sustainable technology choices</span>
+        </div>
+        <div className="flex items-center p-4 bg-hero-green-500/10 rounded-lg border border-hero-green-500/30">
+          <Star className="w-6 h-6 text-hero-green-500 mr-3 flex-shrink-0" />
+          <div>
+            <h3 className="text-white font-bold text-sm mb-1">Priority Access</h3>
+            <p className="text-gray-400 text-xs">First access to limited edition rewards</p>
           </div>
+        </div>
+        <div className="flex items-center p-4 bg-dubai-blue-500/10 rounded-lg border border-dubai-blue-500/30">
+          <Trophy className="w-6 h-6 text-dubai-blue-500 mr-3 flex-shrink-0" />
+          <div>
+            <h3 className="text-white font-bold text-sm mb-1">Exclusive Founding Badge</h3>
+            <p className="text-gray-400 text-xs">Permanent status on all profiles</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="text-center">
+        <div className="inline-flex items-center bg-emerald-900/30 border border-emerald-500/50 rounded-full px-6 py-3 mb-4">
+          <Crown className="w-5 h-5 text-emerald-400 mr-2" />
+          <span className="text-emerald-400 font-bold">Join Dubai's Environmental Leaders Today</span>
+        </div>
+        <div className="inline-flex items-center bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2">
+          <Clock className="w-4 h-4 text-red-400 mr-2" />
+          <span className="text-red-400 font-bold text-sm">Founding Hero Program Expires in 6 days</span>
         </div>
       </div>
     </div>
