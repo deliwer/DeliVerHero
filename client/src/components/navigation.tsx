@@ -8,7 +8,7 @@ export function Navigation() {
 
   const navItems = [
     { path: "/", label: "Trade iPhone", id: "trade" },
-    { path: "/products", label: "Shop", id: "products" },
+    { path: "/heroes-community", label: "Heroes Community", id: "heroes-community" },
     { path: "/aquacafe", label: "Shop AquaCafe", id: "aquacafe" },
     { path: "/sponsorships", label: "Sponsor Missions", id: "sponsorships" },
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
