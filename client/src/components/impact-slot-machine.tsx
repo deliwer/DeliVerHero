@@ -79,89 +79,97 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
 
   return (
     <section className="py-12 px-4 bg-slate-900/95" data-testid="impact-slot-machine">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-white mb-2">
-            🎰 Spin for Impact
+            Your Environmental Impact Calculator
           </h2>
-          <p className="text-gray-400 text-sm">
-            See your environmental superpowers
+          <p className="text-gray-400 text-lg">
+            See real-time environmental progress from your trade-ins
           </p>
         </div>
 
         <Card className="glass border-slate-600">
-          <CardContent className="p-6">
-            {isJackpot && (
-              <div className="bg-amber-500 text-black px-4 py-2 rounded-lg font-bold text-center mb-4 animate-pulse">
-                🎊 JACKPOT!
-              </div>
-            )}
-
-            <div className="bg-slate-800 rounded-xl p-6 mb-6 border border-amber-500/30" data-testid="slot-display">
-              <div className="grid grid-cols-3 gap-3 mb-4">
+          <CardContent className="p-8">
+            {/* Current Impact Display */}
+            <div className="bg-slate-800 rounded-xl p-6 mb-6 border border-emerald-500/30" data-testid="impact-display">
+              <div className="grid md:grid-cols-3 gap-4 mb-6">
                 {currentValues.slice(0, 3).map((valueIndex, slotIndex) => {
                   const slotValue = slotValues[valueIndex];
                   return (
                     <div 
                       key={slotIndex} 
-                      className={`bg-slate-900 rounded-lg p-4 text-center border ${
-                        spinning ? 'border-amber-500 animate-pulse' : 'border-slate-600'
+                      className={`bg-slate-900 rounded-lg p-6 text-center border ${
+                        spinning ? 'border-emerald-500 animate-pulse' : 'border-slate-600'
                       }`}
-                      data-testid={`slot-${slotIndex}`}
+                      data-testid={`impact-${slotIndex}`}
                     >
-                      <div className="text-2xl mb-1">{slotValue.icon}</div>
-                      <div className={`text-lg font-bold ${slotValue.color}`}>
+                      <div className="text-3xl mb-2">{slotValue.icon}</div>
+                      <div className={`text-xl font-bold ${slotValue.color} mb-1`}>
                         {slotValue.value}
                       </div>
-                      <div className="text-xs text-gray-400">{slotValue.label}</div>
+                      <div className="text-sm text-gray-400">{slotValue.label}</div>
                     </div>
                   );
                 })}
               </div>
-              
-              <div className="text-center">
-                <Button 
-                  onClick={spin}
-                  disabled={spinning}
-                  className="bg-amber-500 hover:bg-amber-600 text-black px-6 py-2 rounded-lg font-bold transform hover:scale-105 transition-all"
-                  data-testid="button-spin"
-                >
-                  {spinning ? (
-                    <>
-                      <Sparkles className="mr-2 w-4 h-4 animate-spin" />
-                      Spinning...
-                    </>
-                  ) : (
-                    <>
-                      <Dices className="mr-2 w-4 h-4" />
-                      Spin
-                    </>
-                  )}
-                </Button>
+
+              {/* Dubai 2030 Progress Integration */}
+              <div className="bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-blue-600/20 rounded-xl p-6 border border-emerald-500/30">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-white font-bold text-lg">Dubai 2030 Environmental Progress</h3>
+                    <p className="text-gray-400 text-sm">Your contribution to Dubai's sustainability goals</p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-emerald-500">60%</div>
+                    <div className="text-xs text-gray-400">Goal Achievement</div>
+                  </div>
+                </div>
+                
+                <div className="w-full bg-slate-700 rounded-full h-3 mb-4">
+                  <div className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-1000" style={{width: '60%'}}></div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 text-center">
+                  <Link href="/aquacafe" className="block">
+                    <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-lg transition-all transform hover:scale-105" data-testid="button-boost-progress">
+                      <Gift className="mr-2 w-5 h-5" />
+                      Boost Your Impact
+                    </Button>
+                  </Link>
+                  
+                  <Button 
+                    onClick={spin}
+                    disabled={spinning}
+                    variant="outline"
+                    className="w-full border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white font-bold py-3 rounded-lg transition-all"
+                    data-testid="button-calculate"
+                  >
+                    {spinning ? (
+                      <>
+                        <Sparkles className="mr-2 w-5 h-5 animate-spin" />
+                        Calculating...
+                      </>
+                    ) : (
+                      <>
+                        <Dices className="mr-2 w-5 h-5" />
+                        Calculate New Impact
+                      </>
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
+
+            {isJackpot && (
+              <div className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-6 py-3 rounded-lg font-bold text-center mb-4 animate-pulse">
+                <span className="text-xl">🌟 MAXIMUM IMPACT ACHIEVED! 🌟</span>
+                <div className="text-sm mt-1">Your trade contributes significantly to Dubai's 2030 goals</div>
+              </div>
+            )}
           </CardContent>
         </Card>
-
-        {/* Simple Progress */}
-        <div className="text-center mt-6">
-          <div className="glass rounded-xl p-4 border border-slate-600 mb-4">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-400">Dubai 2030 Progress</span>
-              <span className="text-hero-green-500 font-bold">60%</span>
-            </div>
-            <div className="w-full bg-slate-700 rounded-full h-2 mt-2">
-              <div className="bg-hero-green-500 h-2 rounded-full" style={{width: '60%'}}></div>
-            </div>
-          </div>
-          
-          <Link href="/aquacafe">
-            <Button className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-6 py-2 rounded-lg transition-all" data-testid="button-boost-progress">
-              <Gift className="mr-2 w-4 h-4" />
-              Boost Progress
-            </Button>
-          </Link>
-        </div>
       </div>
     </section>
   );
