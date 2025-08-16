@@ -7,57 +7,122 @@ import { LeaderboardWidget } from "@/components/leaderboard-widget";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
-import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight } from "lucide-react";
+import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
-function SponsorshipCallout() {
+function OpportunitiesSection() {
   return (
-    <section className="py-8 px-4">
-      <div className="max-w-5xl mx-auto">
-        <div className="glass rounded-2xl p-8 border border-emerald-500/30 bg-gradient-to-r from-emerald-600/10 via-blue-600/10 to-purple-600/10">
-          <div className="text-center mb-6">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <Building className="w-7 h-7 text-emerald-400" />
-              <h3 className="text-2xl font-bold text-white">Partner with Planet Heroes</h3>
-              <Heart className="w-7 h-7 text-red-400" />
+    <section className="py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Building className="w-8 h-8 text-emerald-400" />
+              <h2 className="text-3xl font-bold text-white">JOIN THE MOVEMENT</h2>
+              <Handshake className="w-8 h-8 text-blue-400" />
             </div>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-              Sustainability organizations: amplify your environmental impact by sponsoring missions across Dubai
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+              Multiple ways to contribute to Dubai's environmental transformation
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="text-center p-4">
-              <Users className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-              <div className="text-xl font-bold text-white">50+ Partners</div>
-              <div className="text-sm text-gray-400">Organizations funding missions</div>
+          <div className="grid lg:grid-cols-3 gap-6 mb-8">
+            {/* Partnership Opportunities */}
+            <div className="glass rounded-2xl p-6 border border-emerald-500/30 bg-emerald-600/5">
+              <div className="text-center mb-4">
+                <Building className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">PARTNER WITH US</h3>
+                <p className="text-gray-300 text-sm">Organizations & businesses</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Active Partners</span>
+                  <span className="text-emerald-400 font-bold">50+</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Funded Missions</span>
+                  <span className="text-emerald-400 font-bold">200+</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Total Investment</span>
+                  <span className="text-emerald-400 font-bold">AED 50K+</span>
+                </div>
+              </div>
+              <Link
+                href="/partners"
+                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                data-testid="button-become-partner"
+              >
+                Become a Partner
+              </Link>
             </div>
-            <div className="text-center p-4">
-              <Award className="w-8 h-8 text-yellow-400 mx-auto mb-3" />
-              <div className="text-xl font-bold text-white">200+ Missions</div>
-              <div className="text-sm text-gray-400">Environmental challenges funded</div>
+
+            {/* Sponsorship Opportunities */}
+            <div className="glass rounded-2xl p-6 border border-blue-500/30 bg-blue-600/5">
+              <div className="text-center mb-4">
+                <Heart className="w-10 h-10 text-blue-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">SPONSOR MISSIONS</h3>
+                <p className="text-gray-300 text-sm">Fund environmental challenges</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Bronze Tier</span>
+                  <span className="text-blue-400 font-bold">AED 500</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Silver Tier</span>
+                  <span className="text-blue-400 font-bold">AED 2K</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Gold & Platinum</span>
+                  <span className="text-blue-400 font-bold">AED 5K+</span>
+                </div>
+              </div>
+              <Link
+                href="/sponsorships"
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                data-testid="button-sponsor-mission"
+              >
+                Sponsor a Mission
+              </Link>
             </div>
-            <div className="text-center p-4">
-              <Building className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
-              <div className="text-xl font-bold text-white">AED 50K+</div>
-              <div className="text-sm text-gray-400">Total impact investment</div>
+
+            {/* Ambassador Program */}
+            <div className="glass rounded-2xl p-6 border border-amber-500/30 bg-amber-600/5">
+              <div className="text-center mb-4">
+                <Users className="w-10 h-10 text-amber-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">BECOME AMBASSADOR</h3>
+                <p className="text-gray-300 text-sm">Earn while making impact</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Starter Kit Commission</span>
+                  <span className="text-amber-400 font-bold">35%</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Trade-in Commission</span>
+                  <span className="text-amber-400 font-bold">25%</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Monthly Potential</span>
+                  <span className="text-amber-400 font-bold">AED 4,200+</span>
+                </div>
+              </div>
+              <Link
+                href="/partners"
+                className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                data-testid="button-join-ambassadors"
+              >
+                Join Ambassadors
+              </Link>
             </div>
           </div>
           
           <div className="text-center">
-            <Link
-              href="/sponsorships"
-              className="inline-flex items-center bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25"
-              data-testid="button-explore-sponsorship"
-            >
-              <Building className="w-5 h-5 mr-2" />
-              Explore Sponsorship Opportunities
-              <ChevronRight className="w-5 h-5 ml-2" />
-            </Link>
-            <div className="mt-3 text-sm text-gray-400">
-              From AED 500 • Bronze, Silver, Gold & Platinum tiers available
-            </div>
+            <p className="text-gray-400 text-sm">
+              🤝 Multiple partnership models available • 📈 Performance-based rewards • 🌍 Measurable environmental impact
+            </p>
           </div>
         </div>
       </div>
@@ -193,8 +258,8 @@ export default function Home() {
 
 
 
-      {/* Sponsorship Callout */}
-      <SponsorshipCallout />
+      {/* Opportunities Section */}
+      <OpportunitiesSection />
 
 
       {/* Impact Stats */}
