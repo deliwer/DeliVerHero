@@ -583,7 +583,7 @@ export default function Community() {
           {activeTab === "connect" && (
             <div className="space-y-6">
               <Card className="glass border-slate-600">
-                <CardContent className="p-6 bg-gradient-to-br from-emerald-600/20 to-cyan-600/20">
+                <CardContent className="p-6 from-emerald-600/20 to-cyan-600/20 bg-[#152e35]">
                   <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
                     <ExternalLink className="w-6 h-6 text-emerald-400 mr-2" />
                     Connect with DeliWer Communities Worldwide
