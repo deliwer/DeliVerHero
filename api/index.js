@@ -93,15 +93,40 @@ export default async function handler(req, res) {
       return res.status(200).json(impactStats);
     }
 
-    // Leaderboard endpoint
-    if (method === 'GET' && path.startsWith('/api/heroes/leaderboard/')) {
-      const limit = parseInt(path.split('/').pop()) || 10;
+    // Leaderboard endpoints - handle both patterns
+    if (method === 'GET' && (path.startsWith('/api/heroes/leaderboard/') || path === '/api/heroes/leaderboard')) {
+      let limit = 10;
+      if (path.includes('/')) {
+        const segments = path.split('/');
+        limit = parseInt(segments[segments.length - 1]) || 10;
+      }
+      if (req.query && req.query.limit) {
+        limit = parseInt(req.query.limit) || 10;
+      }
+      
       const topHeroes = sampleHeroes
         .filter(hero => hero.isActive)
         .sort((a, b) => b.points - a.points)
         .slice(0, limit);
       
       return res.status(200).json(topHeroes);
+    }
+
+    // Heroes endpoint
+    if (method === 'GET' && path === '/api/heroes') {
+      return res.status(200).json(sampleHeroes.filter(hero => hero.isActive));
+    }
+
+    // Single hero endpoint
+    if (method === 'GET' && path.startsWith('/api/heroes/') && !path.includes('leaderboard')) {
+      const heroId = path.split('/').pop();
+      const hero = sampleHeroes.find(h => h.id === heroId);
+      
+      if (!hero) {
+        return res.status(404).json({ error: 'Hero not found' });
+      }
+      
+      return res.status(200).json(hero);
     }
 
     // Trade value calculation
@@ -136,8 +161,31 @@ export default async function handler(req, res) {
       const baseValue = baseValues[phoneModel] || 300;
       const multiplier = conditionMultipliers[condition] || 0.4;
       const tradeValue = Math.floor(baseValue * multiplier);
+      const bottlesPrevented = Math.floor(tradeValue / 0.5);
+      const co2Saved = Math.floor(bottlesPrevented * 0.5);
+      const points = 100 + Math.floor(tradeValue / 10);
       
-      return res.status(200).json({ tradeValue });
+      return res.status(200).json({
+        tradeValue,
+        bottlesPrevented,
+        co2Saved,
+        points,
+        level: points >= 600 ? "Gold Hero" : points >= 300 ? "Silver Hero" : "Bronze Hero",
+        phoneModel,
+        condition
+      });
+    }
+
+    // AI Chat endpoint
+    if (method === 'POST' && path === '/api/ai-chat') {
+      const { message } = req.body || {};
+      
+      // Fallback response for production (OpenAI requires API key)
+      const fallbackResponse = {
+        response: `Hi! I'm the DeliWer AI Concierge 🤖 I can help you calculate your iPhone trade-in value and start your hero journey. What iPhone model would you like to trade? Available models: iPhone 15 Pro Max, iPhone 15 Pro, iPhone 15, iPhone 14 series, iPhone 13 series, iPhone 12 series, iPhone 11 series.`
+      };
+      
+      return res.status(200).json(fallbackResponse);
     }
 
     // Hero creation endpoint
@@ -149,8 +197,8 @@ export default async function handler(req, res) {
         points: 100,
         level: "Bronze Hero",
         badges: ["Water Warrior"],
-        bottlesPrevented: Math.floor(heroData.tradeValue / 0.5),
-        co2Saved: Math.floor((heroData.tradeValue / 0.5) * 0.5),
+        bottlesPrevented: Math.floor((heroData.tradeValue || 500) / 0.5),
+        co2Saved: Math.floor(((heroData.tradeValue || 500) / 0.5) * 0.5),
         referralCount: 0,
         isActive: true,
         createdAt: new Date(),
@@ -160,8 +208,37 @@ export default async function handler(req, res) {
       return res.status(201).json(newHero);
     }
 
+    // Dubai challenges and rewards endpoints
+    if (method === 'GET' && path === '/api/dubai/challenges') {
+      const challenges = [
+        {
+          id: "water-month-challenge",
+          title: "Water Conservation Month",
+          description: "Save 1000 bottles this month",
+          reward: "AED 500 voucher",
+          progress: 0.67,
+          participants: 156,
+          endDate: "2025-02-28"
+        }
+      ];
+      return res.status(200).json(challenges);
+    }
+
+    if (method === 'GET' && path === '/api/dubai/rewards') {
+      const rewards = [
+        {
+          id: "gold-tier-reward",
+          title: "Gold Hero Badge",
+          description: "Exclusive Dubai sustainability champion recognition",
+          pointsRequired: 1000,
+          available: true
+        }
+      ];
+      return res.status(200).json(rewards);
+    }
+
     // Default 404
-    return res.status(404).json({ error: 'Not found' });
+    return res.status(404).json({ error: 'API endpoint not found', path, method });
 
   } catch (error) {
     console.error('API Error:', error);
