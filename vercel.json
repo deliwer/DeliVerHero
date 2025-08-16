@@ -6,8 +6,11 @@
       "use": "@vercel/node"
     },
     {
-      "src": "dist/public/**",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/public"
+      }
     }
   ],
   "routes": [
@@ -16,28 +19,21 @@
       "dest": "/api/index.js"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "/dist/public/static/$1"
-    },
-    {
       "src": "/assets/(.*)",
-      "dest": "/dist/public/assets/$1"
+      "dest": "/assets/$1"
     },
     {
-      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
-      "dest": "/dist/public/$1"
+      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|webp|avif))",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/public/index.html"
+      "dest": "/index.html"
     }
   ],
   "functions": {
     "api/index.js": {
       "maxDuration": 30
-    },
-    "api/test.js": {
-      "maxDuration": 10
     }
   }
 }
