@@ -4,7 +4,6 @@ import { IPhone17Launch } from "@/components/iphone17-launch";
 import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
 import { ImpactSlotMachine } from "@/components/impact-slot-machine";
 import { LeaderboardWidget } from "@/components/leaderboard-widget";
-import { AIConcierge } from "@/components/ai-concierge";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
@@ -217,8 +216,6 @@ export default function Home() {
       {/* Sponsorship Callout */}
       <SponsorshipCallout />
 
-      {/* AI Concierge */}
-      <AIConcierge />
 
       {/* Impact Stats */}
       <section className="py-16 px-4">

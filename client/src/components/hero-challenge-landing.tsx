@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DeviceSimulator } from "./device-simulator";
+import { DeliAIInput } from "./deli-ai-input";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { Link } from "wouter";
 
@@ -121,6 +122,11 @@ export function HeroChallengeLanding() {
             Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
             and become part of Dubai's biggest environmental mission. Limited spots available.
           </p>
+        </div>
+
+        {/* Deli AI Input Section */}
+        <div className="mb-16">
+          <DeliAIInput />
         </div>
 
         {/* Live Stats Banner */}

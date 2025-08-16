@@ -52,10 +52,12 @@ export function useJoinChallenge() {
   
   return useMutation({
     mutationFn: async ({ challengeId, heroId }: { challengeId: string; heroId: string }) => {
-      return apiRequest(`/api/dubai/challenges/${challengeId}/join`, {
+      const response = await fetch(`/api/dubai/challenges/${challengeId}/join`, {
         method: "POST",
-        body: { heroId },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ heroId }),
       });
+      return response.json();
     },
     onSuccess: () => {
       // Invalidate challenges to get updated participant count
@@ -70,10 +72,12 @@ export function useClaimReward() {
   
   return useMutation({
     mutationFn: async ({ rewardId, heroId }: { rewardId: string; heroId: string }) => {
-      return apiRequest(`/api/dubai/rewards/${rewardId}/claim`, {
+      const response = await fetch(`/api/dubai/rewards/${rewardId}/claim`, {
         method: "POST",
-        body: { heroId },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ heroId }),
       });
+      return response.json();
     },
     onSuccess: () => {
       // Invalidate rewards to get updated availability

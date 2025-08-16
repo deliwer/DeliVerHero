@@ -310,7 +310,7 @@ export default function SponsorshipsPage() {
                 <label className="block text-sm font-medium mb-2">Sponsorship Amount (AED)</label>
                 <Input
                   type="number"
-                  min={(tiers as SponsorshipTier[] || []).find((t: SponsorshipTier) => t.id === selectedTier)?.minAmount / 100 || 500}
+                  min={((tiers as SponsorshipTier[] || []).find((t: SponsorshipTier) => t.id === selectedTier)?.minAmount || 50000) / 100}
                   max={(tiers as SponsorshipTier[] || []).find((t: SponsorshipTier) => t.id === selectedTier)?.maxAmount ? 
                        (((tiers as SponsorshipTier[] || []).find((t: SponsorshipTier) => t.id === selectedTier)?.maxAmount || 0) / 100) : 
                        undefined}
