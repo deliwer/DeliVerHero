@@ -81,18 +81,28 @@ export function Navigation() {
               </Link>
             </div>
 
-            {/* Desktop Action Buttons */}
+            {/* Desktop Action Buttons with GOAFFPRO */}
             <div className="hidden md:flex items-center space-x-4">
-              <Link
-                href="/leaderboard"
+              <button
+                onClick={() => {
+                  const affiliateLink = `https://deliwer.com/leaderboard?ref=NAV${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+                  const shareText = `🏆 Join 12,847 Planet Heroes on the leaderboard! Earn Bakers Kitchen AED100 Kangen Water vouchers and climb the ranks! ${affiliateLink}`;
+                  
+                  if (navigator.share) {
+                    navigator.share({ title: 'Join Planet Heroes Leaderboard', text: shareText, url: affiliateLink });
+                  } else {
+                    navigator.clipboard.writeText(shareText);
+                    window.open('/leaderboard', '_blank');
+                  }
+                }}
                 className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 data-testid="button-join-heroes"
               >
                 <Users className="inline w-4 h-4 mr-2" />
-                Join Heroes
-              </Link>
+                Share & Join Heroes
+              </button>
               <Link
-                href="/aquacafe"
+                href="/aquacafe?utm_source=nav&utm_medium=cta&utm_campaign=goaffpro"
                 className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 data-testid="button-start-mission"
               >

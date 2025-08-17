@@ -137,16 +137,23 @@ export function AquaCafeProductsSection() {
                     </div>
                   </div>
 
-                  {/* CTA Button */}
-                  <a
-                    href={product.shopifyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  {/* CTA Button with GOAFFPRO Tracking */}
+                  <button
+                    onClick={() => {
+                      const affiliateLink = `${product.shopifyUrl}?ref=AQUA${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+                      const shareText = `💧 Check out this amazing ${product.name} - ${product.description}! Get yours with FREE Bakers Kitchen AED100 Kangen Water voucher when you refer friends! ${affiliateLink}`;
+                      
+                      if (navigator.share) {
+                        navigator.share({ title: `${product.name} - DeliWer AquaCafe`, text: shareText, url: affiliateLink });
+                      } else {
+                        window.open(affiliateLink, '_blank');
+                      }
+                    }}
                     className="w-full bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white py-3 rounded-lg font-medium transition-all inline-flex items-center justify-center group"
                   >
                     <ShoppingCart className="w-4 h-4 mr-2" />
-                    Order Now
-                  </a>
+                    Order & Share
+                  </button>
                 </div>
               </CardContent>
             </Card>
@@ -163,21 +170,28 @@ export function AquaCafeProductsSection() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/products"
+                href="/products?utm_source=aquacafe&utm_medium=cta&utm_campaign=goaffpro"
                 className="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-xl font-bold transition-all"
               >
                 <Shield className="w-5 h-5 mr-2" />
                 View All Products
               </a>
-              <a
-                href="https://wa.me/971523946311"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => {
+                  const affiliateLink = `https://wa.me/971523946311?text=Hi! I'm interested in AquaCafe products and the Bakers Kitchen AED100 Kangen Water voucher offer. Can you help me choose the right system? (Referred via DeliWer GOAFFPRO)`;
+                  const shareText = `💧 Need expert advice on water systems? Chat with DeliWer experts and get FREE Bakers Kitchen AED100 Kangen Water voucher! ${affiliateLink}`;
+                  
+                  if (navigator.share) {
+                    navigator.share({ title: 'Get AquaCafe Expert Advice', text: shareText, url: affiliateLink });
+                  } else {
+                    window.open(affiliateLink, '_blank');
+                  }
+                }}
                 className="inline-flex items-center justify-center border-2 border-hero-green-500 text-hero-green-500 hover:bg-hero-green-500 hover:text-white px-8 py-3 rounded-xl font-bold transition-all"
               >
                 <Award className="w-5 h-5 mr-2" />
-                Get Expert Advice
-              </a>
+                Share & Get Advice
+              </button>
             </div>
           </div>
         </div>

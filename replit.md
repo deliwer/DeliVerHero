@@ -118,6 +118,16 @@ Successfully migrated the project from Replit Agent to standard Replit environme
 - **Environmental Champions**: Added realistic Dubai professionals with authentic job titles and sober color schemes
 - **Device Calculator Merger**: Unified Device Simulator and Trade Calculator into single comprehensive component to eliminate duplication, featuring side-by-side device selection and detailed impact breakdown with complete user journey options
 
+**GOAFFPRO Affiliate Integration & Bakers Kitchen Enhancement (August 2025):**
+- **Enhanced Welcome Bonus**: Updated to "Bakers Kitchen AED100 Kangen Water voucher when a friend signs up" with shareable links
+- **Viral Marketing Features**: Integrated GOAFFPRO affiliate tracking across all major CTAs for maximum shareability
+- **Smart Share Buttons**: Added one-click sharing with auto-generated affiliate links and branded messaging
+- **Social Media Integration**: Enhanced navigation and product CTAs with share functionality and referral tracking
+- **WhatsApp Integration**: Pre-filled messages with affiliate tracking for expert consultation requests
+- **Cross-Platform Consistency**: Updated all Bakers Kitchen mentions across AquaCafe and other components
+- **UTM Parameter Tracking**: Added comprehensive campaign tracking for conversion optimization
+- **Dubaican Initiative**: Replaced Dubai Municipality certification with highlighted Dubaican Initiative support
+
 ### Vercel + Shopify Horizon Integration (August 2025)
 Converted the project for optimal Vercel deployment with comprehensive Shopify Horizon integration:
 
