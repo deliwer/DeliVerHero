@@ -53,7 +53,7 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - **Vite**: Build tool.
 - **Replit**: Development environment.
 - **TypeScript**: Static type checking.
-- **Vercel**: Production deployment.
+- **Vercel**: Production deployment optimized for Shopify Hydrogen with direct homepage routing.
 
 ### Current Third-Party Integrations
 - **Shopify Headless (via shopify.app.toml)**: E-commerce backend, with dedicated Shopify API handler for webhooks and product sync.

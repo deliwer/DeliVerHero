@@ -44,7 +44,7 @@ function Router() {
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/environmental" component={Environmental} />
-      <Route path="/dubai-rewards" component={ImpactDashboard} />
+      <Route path="/dubai-rewards" component={DubaiRewards} />
       <Route path="/sponsorships" component={Sponsorships} />
       <Route component={NotFound} />
     </Switch>
