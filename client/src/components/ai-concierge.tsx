@@ -86,11 +86,13 @@ export function AIConcierge() {
 
       const aiMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: enhancedContent,
+        content: enhancedContent + `\n\n💰 BONUS: Get Bakers Kitchen AED100 Kangen Water voucher when you refer friends! Join GOAFFPRO as Ambassador to earn AED 4,200+ monthly.`,
         isUser: false,
         timestamp: new Date(),
-        options: message.toLowerCase().includes('iphone') ? ['Complete order now', 'Book pickup', 'See my rank'] : 
-                 (message.toLowerCase().includes('buy') || message.toLowerCase().includes('order')) ? ['Checkout in chat', 'View impact'] : undefined,
+        options: message.toLowerCase().includes('iphone') ? ['Complete order now', 'Share & earn', 'Join GOAFFPRO', 'Book pickup'] : 
+                 (message.toLowerCase().includes('buy') || message.toLowerCase().includes('order')) ? ['Checkout in chat', 'Share deal', 'View impact'] : 
+                 (message.toLowerCase().includes('ambassador') || message.toLowerCase().includes('earn')) ? ['GOAFFPRO signup', 'WhatsApp info', 'Watch training'] : 
+                 ['Get voucher', 'Share platform', 'Join Ambassadors'],
       };
 
       setMessages(prev => [...prev, aiMessage]);
@@ -113,6 +115,52 @@ export function AIConcierge() {
       setShowCheckout(true);
       return;
     }
+    
+    // Handle GOAFFPRO and sharing options
+    if (option === 'GOAFFPRO signup' || option === 'Join GOAFFPRO') {
+      const affiliateSignupLink = `https://goaffpro.com/signup/deliwer?ref=AI${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+      const shareText = `💰 Join DeliWer GOAFFPRO Ambassador Program! Earn AED 4,200+ monthly promoting sustainable tech trades and Bakers Kitchen vouchers: ${affiliateSignupLink}`;
+      
+      if (navigator.share) {
+        navigator.share({ title: 'Join GOAFFPRO Ambassador Program', text: shareText, url: affiliateSignupLink });
+      } else {
+        navigator.clipboard.writeText(shareText);
+        window.open('/partners?utm_source=ai_concierge&utm_medium=goaffpro&utm_campaign=ambassador_signup', '_blank');
+      }
+      return;
+    }
+    
+    if (option === 'Share & earn' || option === 'Share deal' || option === 'Share platform') {
+      const shareLink = `https://deliwer.com/?ref=SHARE${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+      const shareText = `🚀 Check out DeliWer - World's First Sustainability Game! Trade iPhones for premium water systems + Bakers Kitchen AED100 Kangen Water vouchers: ${shareLink}`;
+      
+      if (navigator.share) {
+        navigator.share({ title: 'DeliWer - Sustainability Game', text: shareText, url: shareLink });
+      } else {
+        navigator.clipboard.writeText(shareText);
+        alert('Link copied! Share with friends to earn Bakers Kitchen vouchers.');
+      }
+      return;
+    }
+    
+    if (option === 'WhatsApp info') {
+      const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in the GOAFFPRO Ambassador Program. Can you share details about earning AED 4,200+ monthly and the Bakers Kitchen partnership?`;
+      window.open(whatsappLink, '_blank');
+      return;
+    }
+    
+    if (option === 'Get voucher') {
+      const voucherLink = `https://deliwer.com/aquacafe?voucher=true&ref=AI${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+      const shareText = `🎁 Get FREE Bakers Kitchen AED100 Kangen Water voucher! Planet Hero Starter Kit: ${voucherLink}`;
+      
+      if (navigator.share) {
+        navigator.share({ title: 'Free Bakers Kitchen Voucher', text: shareText, url: voucherLink });
+      } else {
+        window.open('/aquacafe', '_blank');
+      }
+      return;
+    }
+    
     sendMessage(option);
   };
 
