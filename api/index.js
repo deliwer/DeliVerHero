@@ -343,38 +343,38 @@ export default async function handler(req, res) {
         id: randomUUID(),
         ...shareData,
         sharerId: 'current-user-id', // Would come from auth
-        clickCount: 0,
-        referralSignups: 0,
-        pointsEarned: 10, // Base points for sharing
-        createdAt: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        platform: shareData.platform || 'whatsapp',
+        success: true
       };
       
-      return res.status(201).json(newShare);
+      return res.status(200).json(newShare);
     }
 
-    // Get social shares stats
-    if (method === 'GET' && path === '/api/social-shares/stats') {
-      const stats = {
-        totalShares: 1247,
-        totalClicks: 3891,
-        totalReferrals: 456,
-        totalPointsEarned: 12470,
-        topPlatforms: [
-          { platform: 'whatsapp', shares: 523, clicks: 1567 },
-          { platform: 'twitter', shares: 287, clicks: 891 },
-          { platform: 'facebook', shares: 234, clicks: 743 },
-          { platform: 'instagram', shares: 203, clicks: 690 }
-        ]
-      };
-      
-      return res.status(200).json(stats);
-    }
-
-    // Default 404
-    return res.status(404).json({ error: 'API endpoint not found', path, method });
+    // Fallback for any other API requests
+    return res.status(404).json({ 
+      error: 'Endpoint not found', 
+      message: 'The requested API endpoint does not exist.',
+      availableEndpoints: [
+        'GET /api/impact-stats',
+        'GET /api/heroes/leaderboard/:limit',
+        'GET /api/heroes',
+        'POST /api/calculate-trade-value',
+        'POST /api/ai-chat',
+        'POST /api/heroes',
+        'GET /api/dubai/challenges',
+        'GET /api/dubai/rewards',
+        'GET /api/social-challenges',
+        'POST /api/social-challenges',
+        'POST /api/social-shares'
+      ]
+    });
 
   } catch (error) {
     console.error('API Error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ 
+      error: 'Internal server error',
+      message: 'An unexpected error occurred while processing your request.'
+    });
   }
 }

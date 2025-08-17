@@ -2,6 +2,33 @@
   "buildCommand": "npx vite build --outDir=dist/public",
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
+  "functions": {
+    "api/index.js": {
+      "memory": 1024
+    },
+    "api/shopify.js": {
+      "memory": 1024
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization, X-Shopify-Hmac-Sha256, X-Shopify-Topic, X-Shopify-Shop-Domain"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -10,6 +37,10 @@
     {
       "source": "/shopify/(.*)",
       "destination": "/api/shopify.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
