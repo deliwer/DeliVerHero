@@ -113,7 +113,14 @@ export function HeroChallengeLanding() {
             <br />
             <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-[42px]">Dubai's First Sustainability Game</span>
           </h1>
-          
+        </div>
+
+        {/* Deli AI Input Section */}
+        <div className="mb-16">
+          <DeliAIInput />
+        </div>
+
+        <div className="text-center mb-12">
           <div className="flex flex-col items-center space-y-4 mb-8">
             <HeroSpotCounter />
             <CountdownTimer />
@@ -123,11 +130,6 @@ export function HeroChallengeLanding() {
             Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
             and become part of Dubai's biggest environmental mission. Limited spots available.
           </p>
-        </div>
-
-        {/* Deli AI Input Section */}
-        <div className="mb-16">
-          <DeliAIInput />
         </div>
 
 
