@@ -32,7 +32,6 @@ export function Footer() {
     { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
     { label: "Community Hub", url: "/community" },
     { label: "Ambassador & Champion Programs", url: "/partners" },
-    { label: "Delivery Network", url: "/delivery" },
     { label: "Dubai Rewards System", url: "/dubai-rewards" }
   ];
 
