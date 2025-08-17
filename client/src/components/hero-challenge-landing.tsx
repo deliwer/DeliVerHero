@@ -108,7 +108,7 @@ export function HeroChallengeLanding() {
           
           <h1 className="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
             <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-[42px]">
-              <span className="line-through opacity-60 text-[#ffffff00]">Dubai's</span> World's First Sustainability Game
+              <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
             </span>
             <br />
             <span className="text-hero-green-500 text-glow">Become a Planet Hero</span>
