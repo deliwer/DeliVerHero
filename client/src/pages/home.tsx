@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
 import { IPhone17Launch } from "@/components/iphone17-launch";
 import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
-import { ImpactSlotMachine } from "@/components/impact-slot-machine";
+
 import { LeaderboardWidget } from "@/components/leaderboard-widget";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
@@ -252,11 +252,6 @@ export default function Home() {
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
-
-      {/* Interactive Slot Machine */}
-      <ImpactSlotMachine />
-
-
 
       {/* Opportunities Section */}
       <OpportunitiesSection />

@@ -107,6 +107,7 @@ Successfully migrated the project from Replit Agent to standard Replit environme
 **UI/UX Enhancement (August 2025):**
 - **AI Concierge Repositioning**: Moved Deli AI Input component to appear directly below "Become a Planet Hero" heading for better user flow and immediate accessibility
 - **Enhanced User Journey**: Streamlined hero challenge landing page layout to prioritize AI assistance and trade calculation flow
+- **Impact Calculator Organization**: Removed Interactive Impact Randomizer from homepage and consolidated it exclusively on Impact & Rewards Dashboard page to eliminate redundancy and improve focused user experience
 
 **UI/UX Consolidation (August 2025):**
 - **Merged Components**: Combined founding hero perks and leaderboard into single compact section
