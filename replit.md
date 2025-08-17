@@ -121,6 +121,7 @@ Successfully migrated the project from Replit Agent to standard Replit environme
 - **Opportunities Consolidation**: Combined partnership, sponsorship, and ambassador programs into unified "Join the Movement" section
 - **Environmental Champions**: Added realistic Dubai professionals with authentic job titles and sober color schemes
 - **Device Calculator Merger**: Unified Device Simulator and Trade Calculator into single comprehensive component to eliminate duplication, featuring side-by-side device selection and detailed impact breakdown with complete user journey options
+- **Onboarding Modal Removal**: Disabled automatic onboarding tutorial display to show homepage content immediately, keeping tutorial available via manual trigger button
 
 **GOAFFPRO Affiliate Integration & Bakers Kitchen Enhancement (August 2025):**
 - **Enhanced Welcome Bonus**: Updated to "Bakers Kitchen AED100 Kangen Water voucher when a friend signs up" with shareable links

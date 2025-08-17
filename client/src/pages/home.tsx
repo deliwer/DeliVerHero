@@ -269,14 +269,11 @@ export default function Home() {
   // Check if user has seen onboarding before
   useEffect(() => {
     const seenOnboarding = localStorage.getItem('hero-onboarding-completed');
+    // Always mark as seen to prevent automatic onboarding display
+    setHasSeenOnboarding(true);
+    // Set onboarding as completed if not already
     if (!seenOnboarding) {
-      // Show onboarding after a brief delay for better UX
-      const timer = setTimeout(() => {
-        setShowOnboarding(true);
-      }, 1500);
-      return () => clearTimeout(timer);
-    } else {
-      setHasSeenOnboarding(true);
+      localStorage.setItem('hero-onboarding-completed', 'true');
     }
   }, []);
 
