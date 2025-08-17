@@ -54,7 +54,9 @@ export function Footer() {
     { icon: SiFacebook, url: "https://facebook.com/deliwer", label: "Facebook" },
     { icon: Instagram, url: "https://instagram.com/vdeliwer", label: "Instagram" },
     { icon: Youtube, url: "https://youtube.com/@vdeliwer", label: "YouTube" },
-    { icon: SiTiktok, url: "https://tiktok.com/@vdeliwer", label: "TikTok" }
+    { icon: SiTiktok, url: "https://tiktok.com/@vdeliwer", label: "TikTok" },
+    { icon: Twitter, url: "https://twitter.com/vdeliwer", label: "Twitter" },
+    { icon: Linkedin, url: "https://linkedin.com/company/deliwer", label: "LinkedIn" }
   ];
 
   return (
