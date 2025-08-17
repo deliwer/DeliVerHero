@@ -2,6 +2,7 @@ import { Globe, Calculator, TrendingUp, Zap } from "lucide-react";
 import { ImpactStats } from "@/components/impact-stats";
 import { DeviceSimulator } from "@/components/device-simulator";
 import { DubaiRewardsSystem } from "@/components/dubai-rewards-system";
+import { ImpactSlotMachine } from "@/components/impact-slot-machine";
 import { useState } from "react";
 import type { TradeCalculation } from "@/types/hero";
 
@@ -26,6 +27,9 @@ export default function ImpactDashboard() {
 
         {/* Global Impact Stats */}
         <ImpactStats />
+
+        {/* Interactive Impact Calculator */}
+        <ImpactSlotMachine />
 
         {/* Personal Impact Calculator */}
         <div className="glass rounded-2xl p-8 border border-slate-600 mb-12" data-testid="personal-calculator">

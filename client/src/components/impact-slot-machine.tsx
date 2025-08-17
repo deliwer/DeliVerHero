@@ -102,10 +102,10 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-white mb-2">
-            Your Environmental Impact Calculator
+            Interactive Impact Randomizer
           </h2>
           <p className="text-gray-400 text-lg">
-            See real-time environmental progress from your trade-ins
+            Spin to discover the environmental potential of your trades
           </p>
         </div>
 
@@ -134,21 +134,11 @@ export function ImpactSlotMachine({ onJackpot }: ImpactSlotMachineProps) {
                 })}
               </div>
 
-              {/* Dubai 2030 Progress Integration */}
+              {/* Action Buttons */}
               <div className="bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-blue-600/20 rounded-xl p-6 border border-emerald-500/30">
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <h3 className="text-white font-bold text-lg">Dubai 2030 Environmental Progress</h3>
-                    <p className="text-gray-400 text-sm">Your contribution to Dubai's sustainability goals</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-emerald-500">60%</div>
-                    <div className="text-xs text-gray-400">Goal Achievement</div>
-                  </div>
-                </div>
-                
-                <div className="w-full bg-slate-700 rounded-full h-3 mb-4">
-                  <div className="bg-gradient-to-r from-emerald-500 to-teal-500 h-3 rounded-full transition-all duration-1000" style={{width: '60%'}}></div>
+                <div className="text-center mb-4">
+                  <h3 className="text-white font-bold text-lg">Interactive Impact Simulation</h3>
+                  <p className="text-gray-400 text-sm">Experience the randomized environmental benefits of your trades</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 text-center">
