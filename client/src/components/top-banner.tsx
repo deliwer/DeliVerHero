@@ -38,10 +38,7 @@ export function TopBanner() {
           <span className="text-xs font-bold">SHARE</span>
         </button>
       </div>
-      <div className="absolute right-2 top-1/2 -translate-y-1/2 text-xs opacity-75">
-        <Users className="inline w-3 h-3 mr-1" />
-        GOAFFPRO
-      </div>
+      
     </div>
   );
 }
