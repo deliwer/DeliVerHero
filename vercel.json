@@ -7,7 +7,7 @@
   "framework": null,
   "functions": {
     "api/index.js": {
-      "runtime": "nodejs20.x",
+      "runtime": "nodejs18.x",
       "maxDuration": 30,
       "memory": 1024
     }
@@ -15,7 +15,7 @@
   "builds": [
     {
       "src": "api/index.js",
-      "use": "@vercel/node@3.0.0"
+      "use": "@vercel/node"
     },
     {
       "src": "package.json",
