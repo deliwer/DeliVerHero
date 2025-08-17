@@ -310,7 +310,7 @@ export default function AquaCafe() {
           
           <div className="bg-gradient-to-r from-amber-500/10 to-purple-500/10 border border-amber-500/30 rounded-xl p-6">
             <div className="text-amber-400 font-bold text-lg mb-2">🍰 Partnership with Bakers Kitchen Dubai 🍰</div>
-            <p className="text-gray-300">Use your AED 100 voucher at any Bakers Kitchen location across Dubai for premium cakes, pastries, and gourmet meals!</p>
+            <p className="text-gray-300">Use your AED 100 Kangen Water voucher at Bakers Kitchen Dubai for premium cakes, pastries, and gourmet meals!</p>
           </div>
         </div>
       </section>
