@@ -92,8 +92,15 @@ export function HeroChallengeLanding() {
   
   return (
     <section className="relative py-20 px-4 overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Hero Background Image */}
       <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/90 via-slate-900/95 to-blue-900/90 z-10"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23064e3b'/%3E%3Cstop offset='50%25' stop-color='%230f172a'/%3E%3Cstop offset='100%25' stop-color='%23172554'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23bg)'/%3E%3Cg opacity='0.4'%3E%3Ccircle cx='200' cy='200' r='120' fill='%2310b981' opacity='0.3'/%3E%3Ccircle cx='1600' cy='300' r='80' fill='%23f59e0b' opacity='0.3'/%3E%3Ccircle cx='800' cy='600' r='100' fill='%233b82f6' opacity='0.3'/%3E%3Ccircle cx='1400' cy='800' r='60' fill='%2306d6a0' opacity='0.3'/%3E%3C/g%3E%3Cg opacity='0.6'%3E%3Cpath d='M100,400 Q300,200 500,400 T900,400' stroke='%2310b981' stroke-width='2' fill='none' opacity='0.5'/%3E%3Cpath d='M1000,600 Q1200,400 1400,600 T1800,600' stroke='%233b82f6' stroke-width='2' fill='none' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        ></div>
         <div className="absolute top-10 left-10 w-32 h-32 bg-hero-green-500/10 rounded-full blur-xl animate-pulse-glow"></div>
         <div className="absolute top-20 right-20 w-24 h-24 bg-amber-500/10 rounded-full blur-xl animate-bounce-slow"></div>
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-dubai-blue-500/10 rounded-full blur-xl animate-spin-slow"></div>
@@ -103,17 +110,15 @@ export function HeroChallengeLanding() {
         <div className="text-center mb-12" data-testid="challenge-header">
           <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
             <Star className="w-5 h-5 text-amber-500 mr-2 animate-pulse" />
-            <span className="text-white font-medium">WELCOME TO MISSION: SAVE DUBAI 2030</span>
+            <span className="text-white font-medium">DUBAI'S SUSTAINABILITY GAME</span>
           </div>
           
-          <h1 className="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
-            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-[36px]">
-              <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">
+              Trade iPhone → Get Water
             </span>
             <br />
-            <span className="text-hero-green-500 text-glow">Become a Planet Hero</span>
-            <br />
-            <span className="text-gray-300 text-[36px]">complete missions, save money</span>
+            <span className="text-hero-green-500 text-glow">Earn AED 1000+</span>
           </h1>
         </div>
 
@@ -128,9 +133,8 @@ export function HeroChallengeLanding() {
             <CountdownTimer />
           </div>
           
-          <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-8">
-            Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
-            and become part of Dubai's biggest environmental mission. Limited spots available.
+          <p className="text-lg text-gray-200 max-w-2xl mx-auto mb-8">
+            Join 12,000+ heroes trading phones for premium water delivery. Save money, save planet.
           </p>
         </div>
 
@@ -180,12 +184,12 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
   return (
     <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 mb-12" data-testid="founding-heroes-section">
       <div className="text-center mb-8">
-        <div className="w-20 h-20 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Crown className="w-10 h-10 text-white" />
+        <div className="w-16 h-16 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+          <Crown className="w-8 h-8 text-white" />
         </div>
-        <h2 className="text-3xl font-bold text-white mb-3">DUBAI ENVIRONMENTAL CHAMPIONS</h2>
-        <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-          Join {stats?.activeHeroes?.toLocaleString() || '12,847'} sustainability leaders making real environmental impact across Dubai
+        <h2 className="text-2xl font-bold text-white mb-3">TOP HEROES</h2>
+        <p className="text-gray-300 max-w-2xl mx-auto">
+          {stats?.activeHeroes?.toLocaleString() || '12,847'} heroes earning rewards
         </p>
       </div>
 
