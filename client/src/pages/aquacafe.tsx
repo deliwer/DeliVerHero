@@ -270,7 +270,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Referral Program & Bakers Kitchen Voucher */}
       <section className="py-12 px-4 bg-gradient-to-br from-purple-900/30 to-pink-900/20 backdrop-blur-sm border-y border-purple-500/30" data-testid="referral-program">
         <div className="max-w-6xl mx-auto text-center">
@@ -280,7 +279,7 @@ export default function AquaCafe() {
           </div>
           
           <h2 className="text-3xl font-bold text-white mb-6">
-            Refer Friends & Get <span className="text-amber-500">AED 100 FREE MEAL</span> from Bakers Kitchen!
+            Refer Friends & Get <span className="text-amber-500">AED 100 FREE KANGENWATER</span> from Bakers Kitchen!
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -315,7 +314,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Hero Section - Now Secondary */}
       <section className="py-16 px-4 bg-gradient-to-br from-slate-900/95 to-slate-800/90 backdrop-blur-sm" data-testid="aquacafe-hero">
         <div className="max-w-7xl mx-auto text-center">
@@ -358,7 +356,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Product Features Grid */}
       <section className="py-16 px-4 bg-gradient-to-br from-blue-950/40 to-slate-900/60 backdrop-blur-sm" data-testid="product-features">
         <div className="max-w-6xl mx-auto">
@@ -374,10 +371,8 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* AquaCafe Products Section */}
       <AquaCafeProductsSection />
-
       {/* Pricing Plans */}
       <section className="py-16 px-4 bg-gradient-to-br from-amber-950/20 to-slate-900/80 backdrop-blur-sm" data-testid="pricing-plans">
         <div className="max-w-7xl mx-auto">
@@ -509,8 +504,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
-
       {/* Final CTA Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-orange-950/30 to-slate-900/90 backdrop-blur-sm border-t border-slate-700/50" data-testid="final-cta">
         <div className="max-w-4xl mx-auto text-center">
