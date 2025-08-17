@@ -98,20 +98,7 @@ export function HeroChallengeLanding() {
         <div className="absolute top-20 right-20 w-24 h-24 bg-amber-500/10 rounded-full blur-xl animate-bounce-slow"></div>
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-dubai-blue-500/10 rounded-full blur-xl animate-spin-slow"></div>
       </div>
-      <div 
-        className="max-w-7xl mx-auto relative z-10"
-        style={{
-          backgroundImage: 'url("/mobile-water-purification-hero_1755469593210.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/60 rounded-lg"></div>
-        
-        {/* Content wrapper with relative positioning */}
-        <div className="relative z-10 p-8"></div>
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Mission Header */}
         <div className="text-center mb-12" data-testid="challenge-header">
           <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
@@ -135,7 +122,17 @@ export function HeroChallengeLanding() {
           <DeliAIInput />
         </div>
 
-
+        <div className="text-center mb-12">
+          <div className="flex flex-col items-center space-y-4 mb-8">
+            <HeroSpotCounter />
+            <CountdownTimer />
+          </div>
+          
+          <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-8">
+            Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
+            and become part of Dubai's biggest environmental mission. Limited spots available.
+          </p>
+        </div>
 
 
 
