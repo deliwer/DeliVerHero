@@ -39,24 +39,25 @@ export function DeviceSimulator({ onCalculation }: DeviceSimulatorProps) {
 
   return (
     <div className="glass rounded-2xl p-8 border border-slate-600" data-testid="device-simulator">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-white mb-4 flex items-center justify-center">
-          <Calculator className="w-6 h-6 text-hero-green-500 mr-2" />
-          YOUR DEVICE → PLANET IMPACT CALCULATOR
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl font-bold text-white mb-4">
+          <span className="text-hero-green-500">Trade-in Your iPhone</span> with Planet Impact Calculator
         </h2>
-        <p className="text-gray-300 text-center">Select your device and get real-time trade valuation with environmental impact</p>
+        <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+          Submit your device and contribute to Dubai's environmental missions. Get instant trade value plus make real environmental impact.
+        </p>
       </div>
       
       <div className="grid lg:grid-cols-2 gap-8 mb-8">
         {/* Device Selection Side */}
-        <div>
-          <div className="grid md:grid-cols-3 gap-6 items-center mb-6">
+        <div className="flex flex-col items-center">
+          <div className="grid md:grid-cols-2 gap-6 items-center mb-8 w-full max-w-lg">
             {/* Device Selection */}
             <div className="text-center" data-testid="device-selection">
-              <div className="bg-slate-700 rounded-xl p-4 mb-4 hover:bg-slate-600 transition-colors">
-                <Smartphone className="w-10 h-10 text-white mx-auto mb-3" />
+              <div className="bg-slate-700 rounded-xl p-6 mb-4 hover:bg-slate-600 transition-colors">
+                <Smartphone className="w-12 h-12 text-white mx-auto mb-4" />
                 <Select value={selectedDevice} onValueChange={setSelectedDevice}>
-                  <SelectTrigger className="bg-slate-600 text-white border-slate-500" data-testid="select-device">
+                  <SelectTrigger className="bg-slate-600 text-white border-slate-500 mb-3" data-testid="select-device">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -68,63 +69,52 @@ export function DeviceSimulator({ onCalculation }: DeviceSimulatorProps) {
                   </SelectContent>
                 </Select>
                 
-                <div className="mt-3">
-                  <Select value={selectedCondition} onValueChange={setSelectedCondition}>
-                    <SelectTrigger className="bg-slate-600 text-white border-slate-500" data-testid="select-condition">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {CONDITION_OPTIONS.map((condition) => (
-                        <SelectItem key={condition.condition} value={condition.condition}>
-                          {condition.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+                <Select value={selectedCondition} onValueChange={setSelectedCondition}>
+                  <SelectTrigger className="bg-slate-600 text-white border-slate-500" data-testid="select-condition">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {CONDITION_OPTIONS.map((condition) => (
+                      <SelectItem key={condition.condition} value={condition.condition}>
+                        {condition.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
-              <p className="text-gray-400 text-sm">Your Device</p>
+              <p className="text-gray-400">Select Your Device</p>
             </div>
 
-            {/* Arrow & Action */}
+            {/* Calculate Button */}
             <div className="text-center">
               <div className="flex justify-center mb-4">
-                <ArrowRight className="w-6 h-6 text-hero-green-500 animate-pulse" />
+                <ArrowRight className="w-8 h-8 text-hero-green-500 animate-pulse" />
               </div>
               <Button
                 onClick={handleCalculate}
                 disabled={calculationMutation.isPending}
-                className="bg-amber-500 hover:bg-amber-600 text-black px-4 py-2 rounded-lg font-bold transition-colors text-sm"
+                className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-6 py-3 rounded-lg font-bold transition-colors"
                 data-testid="button-calculate"
               >
-                {calculationMutation.isPending ? "CALCULATING..." : (
-                  <>CALCULATE <Rocket className="ml-1 w-4 h-4" /></>
+                {calculationMutation.isPending ? (
+                  <>
+                    <Rocket className="mr-2 w-5 h-5 animate-spin" />
+                    CALCULATING...
+                  </>
+                ) : (
+                  <>
+                    <Calculator className="mr-2 w-5 h-5" />
+                    CALCULATE IMPACT
+                  </>
                 )}
               </Button>
             </div>
-
-            {/* Quick Impact Display */}
-            <div className="bg-gradient-to-br from-hero-green-500 to-hero-green-600 rounded-xl p-4 text-white text-center" data-testid="impact-display">
-              {result ? (
-                <>
-                  <div className="text-xs font-medium mb-1">+{result.points} Points</div>
-                  <div className="text-sm font-bold mb-1">+AED {result.tradeValue}</div>
-                  <div className="text-xs">+{Math.floor(result.bottlesPrevented / 200)} Months Protection</div>
-                </>
-              ) : (
-                <>
-                  <div className="text-xs font-medium mb-1">+2,400 Points</div>
-                  <div className="text-sm font-bold mb-1">+AED 1,200</div>
-                  <div className="text-xs">+18 Months Protection</div>
-                </>
-              )}
-            </div>
           </div>
 
-          {/* Power-up Banner */}
-          <div className="bg-gradient-to-r from-red-500 to-orange-500 rounded-lg p-3 text-center">
-            <p className="text-white font-bold text-sm" data-testid="text-powerup">
-              🔥 POWER-UP: Order now = DOUBLE POINTS!
+          {/* Mission Contribution Message */}
+          <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-lg p-4 border border-emerald-500/30 text-center mb-6">
+            <p className="text-emerald-400 font-medium">
+              🌍 Every trade-in contributes to Dubai's 2030 sustainability missions
             </p>
           </div>
         </div>
@@ -180,15 +170,18 @@ export function DeviceSimulator({ onCalculation }: DeviceSimulatorProps) {
         </div>
       </div>
 
-      {/* User Journey Options */}
-      <div className="space-y-3">
+      {/* Main CTA and Journey Options */}
+      <div className="space-y-4">
+        {/* Primary CTA - Trade & Shop */}
         <Link href="/aquacafe" className="block w-full">
-          <Button className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white py-3 font-bold rounded-xl">
-            <ShoppingCart className="mr-2 w-5 h-5" />
+          <Button className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white py-4 font-bold rounded-xl text-lg shadow-lg border-2 border-hero-green-400 transform hover:scale-[1.02] transition-all">
+            <ShoppingCart className="mr-3 w-6 h-6" />
             TRADE & SHOP AQUACAFE PRODUCTS
+            <ArrowRight className="ml-3 w-5 h-5" />
           </Button>
         </Link>
         
+        {/* Secondary Options */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link href="/aquacafe" className="block">
             <Button variant="outline" className="w-full border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black py-2.5 rounded-lg font-medium">
@@ -200,14 +193,22 @@ export function DeviceSimulator({ onCalculation }: DeviceSimulatorProps) {
           <Link href="/leaderboard" className="block">
             <Button variant="outline" className="w-full border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-2.5 rounded-lg font-medium">
               <Trophy className="mr-2 w-4 h-4" />
-              Join Heroes & Collect Points
+              Join Planet Heroes
             </Button>
           </Link>
         </div>
         
-        <div className="text-center pt-2">
-          <p className="text-xs text-gray-400 mb-1">Choose Your Hero Journey:</p>
-          <p className="text-xs text-emerald-400">✓ Trade iPhone + Buy Products • ✓ Buy Starter Kit & Share • ✓ Join Heroes & Earn Points</p>
+        {/* Value Proposition */}
+        <div className="text-center pt-3 px-4">
+          <p className="text-gray-300 text-sm mb-2">
+            <span className="text-hero-green-400 font-bold">Why trade with us?</span>
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-xs text-emerald-400">
+            <span>✓ Instant AED value</span>
+            <span>✓ Environmental impact</span>
+            <span>✓ Premium water systems</span>
+            <span>✓ Dubai mission contribution</span>
+          </div>
         </div>
       </div>
     </div>
