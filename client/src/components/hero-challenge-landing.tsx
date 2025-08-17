@@ -122,7 +122,17 @@ export function HeroChallengeLanding() {
           <DeliAIInput />
         </div>
 
-
+        <div className="text-center mb-12">
+          <div className="flex flex-col items-center space-y-4 mb-8">
+            <HeroSpotCounter />
+            <CountdownTimer />
+          </div>
+          
+          <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-8">
+            Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
+            and become part of Dubai's biggest environmental mission. Limited spots available.
+          </p>
+        </div>
 
 
 
