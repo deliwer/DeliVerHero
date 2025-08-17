@@ -26,13 +26,14 @@ export function Footer() {
 
 
   const quickLinks = [
-    { label: "iPhone Trade Calculator", url: "/" },
-    { label: "AquaCafe Systems", url: "/aquacafe" },
+    { label: "Trade-in iPhone Calculator", url: "/" },
+    { label: "AquaCafe Planet Hero Program", url: "/aquacafe" },
     { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
+    { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
     { label: "Community Hub", url: "/community" },
-    { label: "Champion & Ambassador Programs", url: "/partners" },
+    { label: "Ambassador & Champion Programs", url: "/partners" },
     { label: "Delivery Network", url: "/delivery" },
-    { label: "Impact Dashboard", url: "/impact" }
+    { label: "Dubai Rewards System", url: "/dubai-rewards" }
   ];
 
   const sponsorshipTiers = [
@@ -75,7 +76,7 @@ export function Footer() {
             </div>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Dubai's leading environmental sustainability platform. Trade your iPhone for premium water systems while earning Planet Hero status and building a greener future.
+              World's First Sustainability Game. Trade your iPhone for premium water systems while earning Planet Hero status and contributing to Dubai's environmental missions.
             </p>
             
             <div className="space-y-3 mb-6">
@@ -114,7 +115,10 @@ export function Footer() {
 
           {/* Quick Navigation */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6">Platform Navigation</h3>
+            <h3 className="text-lg font-bold text-white mb-6 flex items-center">
+              <Globe className="w-5 h-5 mr-2 text-hero-green-500" />
+              Platform Navigation
+            </h3>
             
             <div className="space-y-3">
               {quickLinks.map((link, index) => (
@@ -131,11 +135,27 @@ export function Footer() {
 
             </div>
 
+            {/* Platform Features */}
+            <div className="mt-8 space-y-3">
+              <div className="flex items-center text-sm text-emerald-400">
+                <Sparkles className="w-4 h-4 mr-2" />
+                Unified Device Trade Calculator
+              </div>
+              <div className="flex items-center text-sm text-amber-400">
+                <Award className="w-4 h-4 mr-2" />
+                AED 99 Planet Hero Starter Kit
+              </div>
+              <div className="flex items-center text-sm text-blue-400">
+                <Users className="w-4 h-4 mr-2" />
+                Ambassador Earnings Program
+              </div>
+            </div>
+
             {/* Environmental Impact Stats */}
-            <div className="mt-8 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+            <div className="mt-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
               <h4 className="text-sm font-bold text-white mb-3 flex items-center">
                 <Recycle className="w-4 h-4 mr-2 text-hero-green-500" />
-                Real-Time Impact
+                Mission Impact
               </h4>
               <div className="grid grid-cols-2 gap-3 text-center">
                 <div>
@@ -144,7 +164,7 @@ export function Footer() {
                 </div>
                 <div>
                   <div className="text-lg font-bold text-blue-500">2.4M</div>
-                  <div className="text-xs text-gray-400">Bottles</div>
+                  <div className="text-xs text-gray-400">Bottles Prevented</div>
                 </div>
               </div>
             </div>
@@ -219,13 +239,19 @@ export function Footer() {
                 <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms of Service</Link>
                 <span>•</span>
                 <Link href="/environmental" className="hover:text-gray-300 transition-colors">Environmental Impact</Link>
+                <span>•</span>
+                <Link href="/sponsorships" className="hover:text-gray-300 transition-colors">Sponsorships</Link>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
               <div className="flex items-center text-xs text-gray-500">
+                <Globe className="w-3 h-3 mr-1 text-emerald-500" />
+                World's First Sustainability Game
+              </div>
+              <div className="flex items-center text-xs text-gray-500">
                 <Star className="w-3 h-3 mr-1 text-amber-500" />
-                Dubai Municipality Certified Platform
+                Dubai Municipality Certified
               </div>
               <div className="flex items-center text-xs text-gray-500">
                 <Shield className="w-3 h-3 mr-1 text-hero-green-500" />
