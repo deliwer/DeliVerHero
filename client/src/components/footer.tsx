@@ -19,6 +19,7 @@ import {
   Sparkles,
   Globe
 } from "lucide-react";
+import { SiFacebook, SiTiktok } from "react-icons/si";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -50,10 +51,10 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Twitter, url: "https://twitter.com/deliwerdubai", label: "Twitter" },
-    { icon: Instagram, url: "https://instagram.com/deliwerdubai", label: "Instagram" },
-    { icon: Linkedin, url: "https://linkedin.com/company/deliwer", label: "LinkedIn" },
-    { icon: Youtube, url: "https://youtube.com/@deliwerdubai", label: "YouTube" }
+    { icon: SiFacebook, url: "https://facebook.com/deliwer", label: "Facebook" },
+    { icon: Instagram, url: "https://instagram.com/vdeliwer", label: "Instagram" },
+    { icon: Youtube, url: "https://youtube.com/@vdeliwer", label: "YouTube" },
+    { icon: SiTiktok, url: "https://tiktok.com/@vdeliwer", label: "TikTok" }
   ];
 
   return (
@@ -79,9 +80,9 @@ export function Footer() {
             </p>
             
             <div className="space-y-3 mb-6">
-              <div className="flex items-center text-sm text-gray-400">
-                <Shield className="w-4 h-4 mr-2 text-hero-green-500" />
-                Dubai Municipality Certified
+              <div className="flex items-center text-sm text-emerald-400 font-semibold">
+                <Shield className="w-4 h-4 mr-2 text-emerald-500" />
+                We support Dubaican Initiative
               </div>
               <div className="flex items-center text-sm text-gray-400">
                 <Zap className="w-4 h-4 mr-2 text-amber-500" />
@@ -130,8 +131,6 @@ export function Footer() {
                   {link.label}
                 </Link>
               ))}
-              
-
             </div>
 
             {/* Platform Features */}
@@ -248,9 +247,9 @@ export function Footer() {
                 <Globe className="w-3 h-3 mr-1 text-emerald-500" />
                 World's First Sustainability Game
               </div>
-              <div className="flex items-center text-xs text-gray-500">
-                <Star className="w-3 h-3 mr-1 text-amber-500" />
-                Dubai Municipality Certified
+              <div className="flex items-center text-xs text-emerald-400">
+                <Star className="w-3 h-3 mr-1 text-emerald-500" />
+                We support Dubaican Initiative
               </div>
               <div className="flex items-center text-xs text-gray-500">
                 <Shield className="w-3 h-3 mr-1 text-hero-green-500" />
