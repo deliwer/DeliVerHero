@@ -61,6 +61,49 @@ export const referrals = pgTable("referrals", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+export const socialChallenges = pgTable("social_challenges", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  creatorId: varchar("creator_id").notNull().references(() => heroes.id),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  challengeType: text("challenge_type").notNull(), // bottles_prevented, co2_saved, trade_value, points_earned
+  targetValue: integer("target_value").notNull(),
+  duration: integer("duration").notNull(), // in days
+  pointsReward: integer("points_reward").notNull().default(100),
+  participantLimit: integer("participant_limit").default(50),
+  currentParticipants: integer("current_participants").notNull().default(0),
+  completedParticipants: integer("completed_participants").notNull().default(0),
+  shareCount: integer("share_count").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at").notNull(),
+});
+
+export const challengeParticipants = pgTable("challenge_participants", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  challengeId: varchar("challenge_id").notNull().references(() => socialChallenges.id),
+  participantId: varchar("participant_id").notNull().references(() => heroes.id),
+  status: text("status").notNull().default("active"), // active, completed, failed
+  currentProgress: integer("current_progress").notNull().default(0),
+  completedAt: timestamp("completed_at"),
+  pointsEarned: integer("points_earned").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const socialShares = pgTable("social_shares", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sharerId: varchar("sharer_id").notNull().references(() => heroes.id),
+  shareType: text("share_type").notNull(), // challenge, achievement, trade, milestone
+  contentId: varchar("content_id").notNull(), // ID of the shared content
+  platform: text("platform").notNull(), // whatsapp, twitter, facebook, instagram, linkedin, native
+  shareUrl: text("share_url").notNull(),
+  shareText: text("share_text").notNull(),
+  clickCount: integer("click_count").notNull().default(0),
+  referralSignups: integer("referral_signups").notNull().default(0),
+  pointsEarned: integer("points_earned").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
 export const dubaiChallenges = pgTable("dubai_challenges", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
@@ -206,6 +249,31 @@ export const insertTradeInSchema = createInsertSchema(tradeIns).pick({
   pickupDate: true,
 });
 
+export const insertSocialChallengeSchema = createInsertSchema(socialChallenges).pick({
+  creatorId: true,
+  title: true,
+  description: true,
+  challengeType: true,
+  targetValue: true,
+  duration: true,
+  pointsReward: true,
+  participantLimit: true,
+});
+
+export const insertChallengeParticipantSchema = createInsertSchema(challengeParticipants).pick({
+  challengeId: true,
+  participantId: true,
+});
+
+export const insertSocialShareSchema = createInsertSchema(socialShares).pick({
+  sharerId: true,
+  shareType: true,
+  contentId: true,
+  platform: true,
+  shareUrl: true,
+  shareText: true,
+});
+
 export const updateHeroSchema = createInsertSchema(heroes).pick({
   points: true,
   level: true,
@@ -232,3 +300,9 @@ export type InsertSponsoredMission = z.infer<typeof insertSponsoredMissionSchema
 export type SponsoredMission = typeof sponsoredMissions.$inferSelect;
 export type InsertMissionSponsorship = z.infer<typeof insertMissionSponsorshipSchema>;
 export type MissionSponsorship = typeof missionSponsorships.$inferSelect;
+export type InsertSocialChallenge = z.infer<typeof insertSocialChallengeSchema>;
+export type SocialChallenge = typeof socialChallenges.$inferSelect;
+export type InsertChallengeParticipant = z.infer<typeof insertChallengeParticipantSchema>;
+export type ChallengeParticipant = typeof challengeParticipants.$inferSelect;
+export type InsertSocialShare = z.infer<typeof insertSocialShareSchema>;
+export type SocialShare = typeof socialShares.$inferSelect;

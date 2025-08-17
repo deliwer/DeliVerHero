@@ -237,6 +237,139 @@ export default async function handler(req, res) {
       return res.status(200).json(rewards);
     }
 
+    // Social challenges endpoints
+    if (method === 'GET' && path === '/api/social-challenges') {
+      const challenges = [
+        {
+          id: "water-save-challenge",
+          creatorId: "founder-1",
+          creatorName: "Khalid Al-Mansoori",
+          creatorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=khalid",
+          title: "Save 500 Bottles in 7 Days",
+          description: "Challenge your friends to prevent 500 plastic bottles from entering Dubai's environment this week!",
+          challengeType: "bottles_prevented",
+          targetValue: 500,
+          duration: 7,
+          pointsReward: 250,
+          participantLimit: 50,
+          currentParticipants: 23,
+          completedParticipants: 8,
+          shareCount: 45,
+          isActive: true,
+          createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+          expiresAt: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: "co2-reduction-challenge",
+          creatorId: "founder-2",
+          creatorName: "Amira Bin Rashid",
+          creatorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=amira",
+          title: "Reduce 100kg CO2 This Month",
+          description: "Join the Dubai carbon footprint reduction challenge. Every trade and eco-action counts!",
+          challengeType: "co2_saved",
+          targetValue: 100,
+          duration: 30,
+          pointsReward: 500,
+          participantLimit: 100,
+          currentParticipants: 67,
+          completedParticipants: 12,
+          shareCount: 89,
+          isActive: true,
+          createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+          expiresAt: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: "trade-value-challenge",
+          creatorId: "founder-3",
+          creatorName: "Omar Al-Zaabi",
+          creatorAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=omar",
+          title: "AED 5000 Trade Value Challenge",
+          description: "Let's see who can achieve the highest sustainable trade value this quarter!",
+          challengeType: "trade_value",
+          targetValue: 5000,
+          duration: 90,
+          pointsReward: 1000,
+          participantLimit: 30,
+          currentParticipants: 18,
+          completedParticipants: 3,
+          shareCount: 34,
+          isActive: true,
+          createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
+          expiresAt: new Date(Date.now() + 80 * 24 * 60 * 60 * 1000).toISOString()
+        }
+      ];
+      
+      return res.status(200).json(challenges);
+    }
+
+    // Create social challenge
+    if (method === 'POST' && path === '/api/social-challenges') {
+      const challengeData = req.body;
+      const newChallenge = {
+        id: randomUUID(),
+        ...challengeData,
+        currentParticipants: 0,
+        completedParticipants: 0,
+        shareCount: 0,
+        isActive: true,
+        createdAt: new Date().toISOString(),
+        expiresAt: new Date(Date.now() + challengeData.duration * 24 * 60 * 60 * 1000).toISOString()
+      };
+      
+      return res.status(201).json(newChallenge);
+    }
+
+    // Join challenge
+    if (method === 'POST' && path.startsWith('/api/social-challenges/') && path.endsWith('/join')) {
+      const challengeId = path.split('/')[3];
+      
+      const participation = {
+        id: randomUUID(),
+        challengeId,
+        participantId: 'current-user-id', // Would come from auth
+        status: 'active',
+        currentProgress: 0,
+        pointsEarned: 0,
+        createdAt: new Date().toISOString()
+      };
+      
+      return res.status(200).json(participation);
+    }
+
+    // Social shares endpoint
+    if (method === 'POST' && path === '/api/social-shares') {
+      const shareData = req.body;
+      const newShare = {
+        id: randomUUID(),
+        ...shareData,
+        sharerId: 'current-user-id', // Would come from auth
+        clickCount: 0,
+        referralSignups: 0,
+        pointsEarned: 10, // Base points for sharing
+        createdAt: new Date().toISOString()
+      };
+      
+      return res.status(201).json(newShare);
+    }
+
+    // Get social shares stats
+    if (method === 'GET' && path === '/api/social-shares/stats') {
+      const stats = {
+        totalShares: 1247,
+        totalClicks: 3891,
+        totalReferrals: 456,
+        totalPointsEarned: 12470,
+        topPlatforms: [
+          { platform: 'whatsapp', shares: 523, clicks: 1567 },
+          { platform: 'twitter', shares: 287, clicks: 891 },
+          { platform: 'facebook', shares: 234, clicks: 743 },
+          { platform: 'instagram', shares: 203, clicks: 690 }
+        ]
+      };
+      
+      return res.status(200).json(stats);
+    }
+
     // Default 404
     return res.status(404).json({ error: 'API endpoint not found', path, method });
 
