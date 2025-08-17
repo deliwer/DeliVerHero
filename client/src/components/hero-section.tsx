@@ -7,6 +7,7 @@ import { useOnboarding } from "@/hooks/use-onboarding";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import heroImage from "@assets/mobile-water-purification-hero_1755470561445.jpg";
 
 export function HeroSection() {
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
@@ -48,10 +49,25 @@ export function HeroSection() {
 
   return (
     <section className="relative py-20 px-4 overflow-hidden">
+      {/* Hero Background Image */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            backgroundPosition: 'center right',
+            filter: 'brightness(0.8) contrast(1.1)'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-dubai-blue-900/90 via-dubai-blue-900/60 to-dubai-blue-900/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
+      </div>
+      
       {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-dubai-blue-900/50 to-transparent"></div>
-      <div className="absolute top-10 left-10 w-32 h-32 bg-hero-green-500/20 rounded-full blur-xl animate-pulse-glow"></div>
-      <div className="absolute bottom-20 right-20 w-24 h-24 bg-amber-500/20 rounded-full blur-xl animate-bounce-slow"></div>
+      <div className="absolute inset-0">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-hero-green-500/20 rounded-full blur-xl animate-pulse-glow"></div>
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-amber-500/20 rounded-full blur-xl animate-bounce-slow"></div>
+      </div>
       
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Mission Header */}

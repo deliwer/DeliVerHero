@@ -6,6 +6,7 @@ import { DeliAIInput } from "./deli-ai-input";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { Link } from "wouter";
+import heroImage from "@assets/mobile-water-purification-hero_1755470561445.jpg";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -92,6 +93,20 @@ export function HeroChallengeLanding() {
   
   return (
     <section className="relative py-20 px-4 overflow-hidden">
+      {/* Hero Background Image */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            backgroundPosition: 'right center',
+            filter: 'brightness(0.7) contrast(1.2)'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-dubai-blue-900/90 via-dubai-blue-900/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/30"></div>
+      </div>
+      
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-32 h-32 bg-hero-green-500/10 rounded-full blur-xl animate-pulse-glow"></div>
