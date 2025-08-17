@@ -6,6 +6,7 @@ import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
 import { LeaderboardWidget } from "@/components/leaderboard-widget";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
+import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -111,8 +112,8 @@ function OpportunitiesSection() {
               </div>
               <button
                 onClick={() => {
-                  const affiliateSignupLink = `https://goaffpro.com/signup/deliwer?ref=AMBASSADOR${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
-                  const shareText = `💰 Become a DeliWer Ambassador! Earn AED 4,200+ monthly promoting sustainable tech trades and Bakers Kitchen AED100 Kangen Water vouchers. Join the affiliate network: ${affiliateSignupLink}`;
+                  const affiliateSignupLink = `https://deliwer.com/partners?ref=AMBASSADOR${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+                  const shareText = `💰 Become a DeliWer Ambassador! Earn AED 4,200+ monthly promoting sustainable tech trades and Bakers Kitchen AED100 Kangen Water vouchers. Join the program: ${affiliateSignupLink}`;
                   
                   if (navigator.share) {
                     navigator.share({ 
@@ -122,7 +123,7 @@ function OpportunitiesSection() {
                     });
                   } else {
                     navigator.clipboard.writeText(shareText);
-                    window.open('/partners?utm_source=home&utm_medium=ambassador_cta&utm_campaign=goaffpro_signup', '_blank');
+                    window.open('/partners?utm_source=home&utm_medium=ambassador_cta&utm_campaign=signup', '_blank');
                   }
                 }}
                 className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center"
@@ -140,7 +141,7 @@ function OpportunitiesSection() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={() => {
-                  const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in becoming a GOAFFPRO Ambassador for DeliWer. Can you share more details about the AED 4,200+ monthly earning potential and the Bakers Kitchen partnership program?`;
+                  const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in becoming an Ambassador for DeliWer. Can you share more details about the AED 4,200+ monthly earning potential and the Bakers Kitchen partnership program?`;
                   const shareText = `💬 Get instant info on DeliWer Ambassador Program! WhatsApp for AED 4,200+ earning details: ${whatsappLink}`;
                   
                   if (navigator.share) {
@@ -425,6 +426,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Founders Section */}
+      <FoundersSection />
 
     </div>
   );

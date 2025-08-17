@@ -170,7 +170,7 @@ export function AquaCafeProductsSection() {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/products?utm_source=aquacafe&utm_medium=cta&utm_campaign=goaffpro"
+                href="/products?utm_source=aquacafe&utm_medium=cta&utm_campaign=ambassador"
                 className="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-xl font-bold transition-all"
               >
                 <Shield className="w-5 h-5 mr-2" />
@@ -178,7 +178,7 @@ export function AquaCafeProductsSection() {
               </a>
               <button
                 onClick={() => {
-                  const affiliateLink = `https://wa.me/971523946311?text=Hi! I'm interested in AquaCafe products and the Bakers Kitchen AED100 Kangen Water voucher offer. Can you help me choose the right system? (Referred via DeliWer GOAFFPRO)`;
+                  const affiliateLink = `https://wa.me/971523946311?text=Hi! I'm interested in AquaCafe products and the Bakers Kitchen AED100 Kangen Water voucher offer. Can you help me choose the right system?`;
                   const shareText = `💧 Need expert advice on water systems? Chat with DeliWer experts and get FREE Bakers Kitchen AED100 Kangen Water voucher! ${affiliateLink}`;
                   
                   if (navigator.share) {

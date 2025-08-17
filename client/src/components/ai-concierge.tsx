@@ -86,12 +86,12 @@ export function AIConcierge() {
 
       const aiMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: enhancedContent + `\n\n💰 BONUS: Get Bakers Kitchen AED100 Kangen Water voucher when you refer friends! Join GOAFFPRO as Ambassador to earn AED 4,200+ monthly.`,
+        content: enhancedContent + `\n\n💰 BONUS: Get Bakers Kitchen AED100 Kangen Water voucher when you refer friends! Join our Ambassador program to earn AED 4,200+ monthly.`,
         isUser: false,
         timestamp: new Date(),
-        options: message.toLowerCase().includes('iphone') ? ['Complete order now', 'Share & earn', 'Join GOAFFPRO', 'Book pickup'] : 
+        options: message.toLowerCase().includes('iphone') ? ['Complete order now', 'Share & earn', 'Join Ambassadors', 'Book pickup'] : 
                  (message.toLowerCase().includes('buy') || message.toLowerCase().includes('order')) ? ['Checkout in chat', 'Share deal', 'View impact'] : 
-                 (message.toLowerCase().includes('ambassador') || message.toLowerCase().includes('earn')) ? ['GOAFFPRO signup', 'WhatsApp info', 'Watch training'] : 
+                 (message.toLowerCase().includes('ambassador') || message.toLowerCase().includes('earn')) ? ['Ambassador signup', 'WhatsApp info', 'Watch training'] : 
                  ['Get voucher', 'Share platform', 'Join Ambassadors'],
       };
 
@@ -116,16 +116,16 @@ export function AIConcierge() {
       return;
     }
     
-    // Handle GOAFFPRO and sharing options
-    if (option === 'GOAFFPRO signup' || option === 'Join GOAFFPRO') {
-      const affiliateSignupLink = `https://goaffpro.com/signup/deliwer?ref=AI${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
-      const shareText = `💰 Join DeliWer GOAFFPRO Ambassador Program! Earn AED 4,200+ monthly promoting sustainable tech trades and Bakers Kitchen vouchers: ${affiliateSignupLink}`;
+    // Handle Ambassador and sharing options
+    if (option === 'Ambassador signup' || option === 'Join Ambassadors') {
+      const affiliateSignupLink = `https://deliwer.com/partners?ref=AI${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+      const shareText = `💰 Join DeliWer Ambassador Program! Earn AED 4,200+ monthly promoting sustainable tech trades and Bakers Kitchen vouchers: ${affiliateSignupLink}`;
       
       if (navigator.share) {
-        navigator.share({ title: 'Join GOAFFPRO Ambassador Program', text: shareText, url: affiliateSignupLink });
+        navigator.share({ title: 'Join Ambassador Program', text: shareText, url: affiliateSignupLink });
       } else {
         navigator.clipboard.writeText(shareText);
-        window.open('/partners?utm_source=ai_concierge&utm_medium=goaffpro&utm_campaign=ambassador_signup', '_blank');
+        window.open('/partners?utm_source=ai_concierge&utm_medium=ambassador&utm_campaign=signup', '_blank');
       }
       return;
     }
@@ -144,7 +144,7 @@ export function AIConcierge() {
     }
     
     if (option === 'WhatsApp info') {
-      const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in the GOAFFPRO Ambassador Program. Can you share details about earning AED 4,200+ monthly and the Bakers Kitchen partnership?`;
+      const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in the Ambassador Program. Can you share details about earning AED 4,200+ monthly and the Bakers Kitchen partnership?`;
       window.open(whatsappLink, '_blank');
       return;
     }

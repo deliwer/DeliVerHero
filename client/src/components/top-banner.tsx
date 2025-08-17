@@ -2,7 +2,7 @@ import { Gift, Share, Users } from "lucide-react";
 
 export function TopBanner() {
   const generateAffiliateLink = () => {
-    // GOAFFPRO integration: Generate shareable affiliate link
+    // Generate shareable referral link
     const baseUrl = 'https://deliwer.com/join';
     const referralCode = 'HERO' + Math.random().toString(36).substr(2, 6).toUpperCase();
     return `${baseUrl}?ref=${referralCode}`;
@@ -32,7 +32,7 @@ export function TopBanner() {
         <button 
           onClick={handleShareOffer}
           className="ml-2 bg-black/20 hover:bg-black/30 px-2 py-1 rounded-full transition-colors flex items-center gap-1"
-          title="Share & Earn with GOAFFPRO"
+          title="Share & Earn with Friends"
         >
           <Share className="w-3 h-3" />
           <span className="text-xs font-bold">SHARE</span>
