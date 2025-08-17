@@ -117,3 +117,24 @@ Successfully migrated the project from Replit Agent to standard Replit environme
 - **Opportunities Consolidation**: Combined partnership, sponsorship, and ambassador programs into unified "Join the Movement" section
 - **Environmental Champions**: Added realistic Dubai professionals with authentic job titles and sober color schemes
 - **Device Calculator Merger**: Unified Device Simulator and Trade Calculator into single comprehensive component to eliminate duplication, featuring side-by-side device selection and detailed impact breakdown with complete user journey options
+
+### Vercel + Shopify Horizon Integration (August 2025)
+Converted the project for optimal Vercel deployment with comprehensive Shopify Horizon integration:
+
+**Shopify Integration Architecture:**
+- **Dedicated Shopify API Handler**: Created `/api/shopify.js` with comprehensive webhook handling for orders, customers, and app lifecycle events
+- **Enhanced Product Sync**: AquaCafe Planet Hero Starter Kit configured as Shopify product with metafields for hero level upgrades and planet points
+- **Webhook Processing**: Automated hero profile creation from Shopify order payments with proper HMAC verification structure
+- **Extended Scopes**: Added inventory, fulfillment, and draft order permissions for complete e-commerce integration
+
+**Vercel Production Optimization:**
+- **Advanced Routing**: Updated vercel.json with dedicated Shopify routes, enhanced CORS headers, and serverless function optimization
+- **Memory Allocation**: Increased serverless function memory to 1024MB for complex order processing
+- **Environment Configuration**: Added comprehensive .env.example with all required Shopify API keys and webhook secrets
+- **Build Process**: Optimized for both development (Express server) and production (serverless functions) environments
+
+**Security & Compliance:**
+- **Webhook Verification**: Structure in place for Shopify HMAC signature verification
+- **CORS Configuration**: Shopify-specific CORS headers for secure app embedding
+- **API Segmentation**: Separated Shopify endpoints from core DeliWer API for better security isolation
+- **Environment Variables**: Secure configuration management for API keys and secrets
