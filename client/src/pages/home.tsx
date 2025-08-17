@@ -127,9 +127,7 @@ function OpportunitiesSection() {
                 }}
                 className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center"
                 data-testid="button-join-ambassadors"
-              >
-                Join GOAFFPRO Ambassadors
-              </button>
+              >Join Ambassadors</button>
             </div>
           </div>
           
