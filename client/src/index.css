@@ -52,10 +52,6 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(168, 85, 247, 0.3), 0 0 30px rgba(59, 130, 246, 0.2);
 }
 
-.hero-bg-water {
-  background-image: url('/attached_assets/mobile-water-purification-hero_1755470205501.jpg');
-}
-
 /* Onboarding Tutorial Styles */
 @layer components {
   .onboarding-highlight {

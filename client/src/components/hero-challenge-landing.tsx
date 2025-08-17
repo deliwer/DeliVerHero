@@ -100,10 +100,7 @@ export function HeroChallengeLanding() {
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Mission Header */}
-        <div className="text-center mb-12 relative bg-cover bg-center bg-no-repeat rounded-3xl p-8 overflow-hidden hero-bg-water" 
-             data-testid="challenge-header">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 rounded-3xl"></div>
-          <div className="relative z-10">
+        <div className="text-center mb-12" data-testid="challenge-header">
           <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
             <Star className="w-5 h-5 text-amber-500 mr-2 animate-pulse" />
             <span className="text-white font-medium">WELCOME TO MISSION: SAVE DUBAI 2030</span>
@@ -118,7 +115,6 @@ export function HeroChallengeLanding() {
             <br />
             <span className="text-gray-300 text-[36px]">complete missions, save money</span>
           </h1>
-          </div>
         </div>
 
         {/* Deli AI Input Section */}
