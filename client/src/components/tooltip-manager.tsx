@@ -55,7 +55,7 @@ export function TooltipManager() {
     <>
       {/* Floating Help Button */}
       {!showTooltipMenu && activeHints.length > 0 && (
-        <div className="fixed bottom-6 right-20 z-40">
+        <div className="fixed bottom-20 right-6 z-40">
           <Button
             onClick={() => setShowTooltipMenu(true)}
             className="rounded-full w-14 h-14 bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 shadow-lg border-2 border-white/20"
