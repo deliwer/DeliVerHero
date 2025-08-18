@@ -231,12 +231,12 @@ export function HeroChallengeLanding() {
         <div className="text-center mb-12" data-testid="challenge-header">
           <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
             <Star className="w-5 h-5 text-amber-500 mr-2 animate-pulse" />
-            <span className="text-white font-medium">WELCOME TO MISSION: SAVE DUBAI 2030</span>
+            <span className="text-white font-medium">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
-            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-2xl sm:text-3xl md:text-4xl">
-              <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
+            <span className="bg-gradient-to-r from-hero-green-400 via-blue-400 to-emerald-300 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">
+              ReFlow:
             </span>
             <br />
             <span className="relative inline-block group transform hover:scale-105 transition-transform duration-500">
@@ -255,7 +255,7 @@ export function HeroChallengeLanding() {
               </span>
               
               {/* Main text with neon effect */}
-              <span className="relative text-white font-black tracking-wider sm:tracking-widest text-shadow-neon px-3 sm:px-6 py-2 sm:py-3 block z-10" style={{
+              <span className="relative text-white font-black tracking-wider sm:tracking-widest text-shadow-neon px-3 sm:px-6 py-2 sm:py-3 block z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" style={{
                 textShadow: `
                   0 0 5px #10b981,
                   0 0 10px #10b981,
@@ -266,14 +266,16 @@ export function HeroChallengeLanding() {
                   0 0 50px #10b981
                 `
               }}>
-                Become a Planet Hero
+                From iPhones to Water,
               </span>
               
               {/* Animated sparkle overlay */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse opacity-50 skew-x-12 transform group-hover:animate-ping"></span>
             </span>
             <br />
-            <span className="text-gray-300 text-xl sm:text-2xl md:text-3xl lg:text-4xl">complete missions, save money</span>
+            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl bg-gradient-to-r from-blue-300 to-emerald-300 bg-clip-text text-transparent font-bold">
+              a Circular Exchange
+            </span>
           </h1>
         </div>
 
@@ -289,9 +291,23 @@ export function HeroChallengeLanding() {
           </div>
           
           <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-8">
-            Join the exclusive Founding Heroes program. Get instant trade-in value, premium AquaCafe water system, 
-            and become part of Dubai's biggest environmental mission. Limited spots available.
+            Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform. 
+            Join <strong className="text-hero-green-400">12,847 Planet Heroes</strong> creating measurable environmental impact 
+            while earning exclusive rewards and climbing the leaderboard.
           </p>
+          
+          {/* Value Proposition Pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            <div className="bg-gradient-to-r from-hero-green-500/20 to-emerald-500/20 border border-hero-green-400/50 rounded-full px-4 py-2">
+              <span className="text-hero-green-300 font-bold text-sm">🔄 Circular Economy</span>
+            </div>
+            <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/50 rounded-full px-4 py-2">
+              <span className="text-blue-300 font-bold text-sm">💧 Premium Water Systems</span>
+            </div>
+            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/50 rounded-full px-4 py-2">
+              <span className="text-purple-300 font-bold text-sm">🏆 Environmental Impact</span>
+            </div>
+          </div>
         </div>
 
 
