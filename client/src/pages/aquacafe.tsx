@@ -173,8 +173,12 @@ export default function AquaCafe() {
                   <span className="text-3xl md:text-4xl text-gray-200">Starter Kit</span>
                 </h1>
                 
-                <div className="bg-gradient-to-r from-hero-green-500 to-blue-500 bg-clip-text text-transparent text-2xl md:text-3xl font-bold mb-6">
-                  GET AED 1000+ INSTANT VALUE!
+                <div className="relative mb-6 group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-yellow-400 to-pink-400 rounded-2xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity animate-pulse"></div>
+                  <div className="relative bg-gradient-to-r from-cyan-400 via-yellow-400 to-pink-400 bg-clip-text text-transparent text-3xl md:text-5xl font-black tracking-wider text-center py-4 px-6 bg-black/80 rounded-2xl border-2 border-cyan-400 shadow-2xl shadow-cyan-400/50 animate-pulse">
+                    💎 GET AED 1000+ INSTANT VALUE! 💎
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-yellow-400/20 to-pink-400/20 rounded-2xl animate-ping"></div>
                 </div>
               </div>
 
