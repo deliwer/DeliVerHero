@@ -195,6 +195,10 @@
   .bg-amber-gradient {
     background: linear-gradient(to right, var(--amber-500), var(--orange-500));
   }
+  
+  .bg-radial-gradient {
+    background: radial-gradient(circle, var(--hero-green-900) 0%, transparent 70%);
+  }
 
   /* Glassmorphism effects */
   .glass {

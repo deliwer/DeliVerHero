@@ -220,21 +220,54 @@ export function HeroChallengeLanding() {
   const { data: stats } = useImpactStats();
   
   return (
-    <section className="relative py-20 px-4 overflow-hidden">
-      {/* Hero Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-        }}
-      >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/65 to-black/75"></div>
-        {/* Additional gradient overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-dubai-blue-900/40 to-hero-green-900/40"></div>
+    <section className="relative py-20 px-4 overflow-hidden min-h-screen">
+      {/* Multi-layer Background Story Visualization */}
+      <div className="absolute inset-0">
+        {/* Primary Hero Image - Mobile Optimized */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110 lg:scale-100"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            filter: 'brightness(0.7) contrast(1.1)',
+          }}
+        />
+        
+        {/* Enhanced Mobile Background for smaller screens */}
+        <div 
+          className="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            backgroundSize: '150% auto',
+            backgroundPosition: 'center top',
+            opacity: 0.8,
+            filter: 'brightness(0.6) contrast(1.2)',
+          }}
+        />
+        
+        {/* Storytelling Gradient Overlays */}
+        {/* iPhone side (left) - amber/orange tones */}
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-900/60 via-transparent to-transparent"></div>
+        
+        {/* Water side (right) - blue/teal tones */}
+        <div className="absolute inset-0 bg-gradient-to-l from-teal-900/60 via-transparent to-transparent"></div>
+        
+        {/* Central circular exchange emphasis */}
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-hero-green-900/30 to-transparent"></div>
+        
+        {/* Text readability overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+        
+        {/* Dubai skyline enhancement (bottom) */}
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        
+        {/* Dynamic visual elements */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-amber-500/20 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-bounce-slow"></div>
+        <div className="absolute bottom-32 left-1/4 w-28 h-28 bg-hero-green-500/20 rounded-full blur-xl animate-spin-slow"></div>
       </div>
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 flex flex-col justify-center min-h-screen">
         {/* Mission Header */}
         <div className="text-center mb-12" data-testid="challenge-header">
           <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
