@@ -127,7 +127,17 @@ export function HeroChallengeLanding() {
               </span>
               
               {/* Main text with neon effect */}
-              <span className="relative bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent font-black tracking-widest text-shadow-neon px-6 py-3 block">
+              <span className="relative text-white font-black tracking-widest text-shadow-neon px-6 py-3 block z-10" style={{
+                textShadow: `
+                  0 0 5px #10b981,
+                  0 0 10px #10b981,
+                  0 0 15px #10b981,
+                  0 0 20px #10b981,
+                  0 0 35px #10b981,
+                  0 0 40px #10b981,
+                  0 0 50px #10b981
+                `
+              }}>
                 Become a Planet Hero
               </span>
               
