@@ -32,8 +32,7 @@ export function Footer() {
     { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
     { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
     { label: "Community Hub", url: "/community" },
-    { label: "Ambassador & Champion Programs", url: "/partners" },
-    { label: "Dubai Rewards System", url: "/dubai-rewards" }
+    { label: "Ambassador & Champion Programs", url: "/partners" }
   ];
 
   const sponsorshipTiers = [
