@@ -227,18 +227,15 @@ export function HeroChallengeLanding() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
+            backgroundImage: `url('/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png')`,
+            backgroundSize: 'contain',
             backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat'
           }}
         />
         
-        {/* Light gradient overlay for text readability - keeping minimal */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/40"></div>
-        
-        {/* Subtle brand accent gradients */}
-        <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/15 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/15 to-transparent"></div>
+        {/* Light overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/10"></div>
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
