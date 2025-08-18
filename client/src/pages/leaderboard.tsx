@@ -77,17 +77,62 @@ export default function Leaderboard() {
           <p className="text-gray-300 text-lg">Environmental champions making Dubai sustainable</p>
         </div>
 
-        {/* You Could Be Here Banner */}
+        {/* Enhanced Join Banner with Free Actions */}
         <div className="glass rounded-2xl p-8 mb-8 border border-amber-500/30 bg-gradient-to-r from-amber-500/10 to-orange-500/10">
-          <div className="text-center">
+          <div className="text-center mb-6">
             <Star className="w-12 h-12 text-amber-500 mx-auto mb-4" />
-            <h2 className="text-3xl font-bold text-white mb-4">JOIN THE HEROES!</h2>
-            <p className="text-gray-300 mb-6">Trade your iPhone today and see your name on this leaderboard tomorrow</p>
+            <h2 className="text-3xl font-bold text-white mb-4">JOIN 12,847 HEROES FOR FREE!</h2>
+            <p className="text-gray-300 mb-6">Start collecting points immediately with these 100% free actions</p>
+          </div>
+          
+          {/* Free Actions Grid */}
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-slate-800/50 rounded-lg p-4 border border-hero-green-500/30">
+              <div className="text-center">
+                <div className="w-8 h-8 bg-hero-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-black font-bold text-sm">1</span>
+                </div>
+                <h3 className="text-white font-bold text-sm mb-1">Join Leaderboard</h3>
+                <p className="text-hero-green-400 font-bold">+25 points</p>
+                <p className="text-gray-400 text-xs">Instant on signup</p>
+              </div>
+            </div>
+            
+            <div className="bg-slate-800/50 rounded-lg p-4 border border-blue-500/30">
+              <div className="text-center">
+                <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-white font-bold text-sm">2</span>
+                </div>
+                <h3 className="text-white font-bold text-sm mb-1">Complete Profile</h3>
+                <p className="text-blue-400 font-bold">+75 points</p>
+                <p className="text-gray-400 text-xs">Basic info only</p>
+              </div>
+            </div>
+            
+            <div className="bg-slate-800/50 rounded-lg p-4 border border-purple-500/30">
+              <div className="text-center">
+                <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-white font-bold text-sm">3</span>
+                </div>
+                <h3 className="text-white font-bold text-sm mb-1">Share with Friends</h3>
+                <p className="text-purple-400 font-bold">+50 each</p>
+                <p className="text-gray-400 text-xs">Unlimited referrals</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <p className="text-sm text-gray-300 mb-4">
+              Earn <strong className="text-hero-green-400">150+ FREE points</strong> in under 5 minutes • No credit card required
+            </p>
             <Link href="/">
-              <Button className="bg-amber-500 hover:bg-amber-600 text-black px-8 py-3 rounded-xl font-bold text-lg" data-testid="button-join-leaderboard">
-                START YOUR HERO JOURNEY
+              <Button className="bg-amber-500 hover:bg-amber-600 text-black px-8 py-3 rounded-xl font-bold text-lg transform hover:scale-105 transition-all" data-testid="button-join-leaderboard">
+                JOIN FREE & START EARNING
               </Button>
             </Link>
+            <p className="text-xs text-gray-500 mt-2">
+              Join now • Climb leaderboard • Win iPhone 17 priority access
+            </p>
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DeviceSimulator } from "./device-simulator";
 import { DeliAIInput } from "./deli-ai-input";
@@ -304,6 +304,9 @@ export function HeroChallengeLanding() {
         {/* Opportunities Section */}
         <OpportunitiesSection />
 
+        {/* iPhone 17 Launch Section */}
+        <IPhone17LaunchSection />
+
         {/* Founding Heroes Program & Leaderboard */}
         <FoundingHeroesSection stats={stats} />
 
@@ -331,6 +334,233 @@ export function HeroChallengeLanding() {
           <p className="text-gray-400 text-sm">
             🔒 Secure • ⚡ Instant • 🌍 Environmental Impact Guaranteed
           </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function IPhone17LaunchSection() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    // iPhone 17 Apple Event - Tuesday, September 9, 2025 at 10 AM PDT (6 PM GMT+4 Dubai)
+    const eventDate = new Date('2025-09-09T18:00:00+04:00'); // 6 PM Dubai time
+    
+    const updateCountdown = () => {
+      const now = new Date();
+      const difference = eventDate.getTime() - now.getTime();
+      
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((difference % (1000 * 60)) / 1000)
+        });
+      }
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="py-16 px-4 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900/30 to-blue-900/30 mb-12">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-3xl"></div>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-hero-green-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse-glow"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header with Apple Event Integration */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center bg-gradient-to-r from-hero-green-500/30 to-blue-500/30 border border-hero-green-400/50 rounded-full px-6 py-2 mb-6 shadow-lg backdrop-blur-sm">
+            <Sparkles className="w-4 h-4 text-hero-green-300 mr-2" />
+            <span className="text-hero-green-200 font-bold text-sm tracking-wide">APPLE EVENT • SEPTEMBER 9, 2025</span>
+            <Sparkles className="w-4 h-4 text-hero-green-300 ml-2" />
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl font-black mb-4 leading-tight">
+            <span className="bg-gradient-to-r from-white via-hero-green-200 to-blue-200 bg-clip-text text-transparent">
+              iPhone 17 Launch
+            </span>
+            <br />
+            <span className="text-2xl md:text-3xl text-gray-200 font-bold">Free Points Collection Starts Now</span>
+          </h2>
+          
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+            Join <strong className="text-hero-green-400">12,847 Planet Heroes</strong> earning points for iPhone 17 preorder priority. 
+            <strong className="text-white"> 100% free to start collecting points today!</strong>
+          </p>
+
+          {/* Simplified Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link href="/leaderboard" className="inline-block">
+              <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 text-lg shadow-xl transform hover:scale-105 transition-all">
+                <Trophy className="w-5 h-5 mr-2" />
+                Join Leaderboard FREE
+              </Button>
+            </Link>
+            
+            <Link href="/" className="inline-block">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-hero-green-400 text-hero-green-200 hover:bg-hero-green-500/20 px-8 py-3 text-lg font-bold shadow-lg transform hover:scale-105 transition-all"
+              >
+                <Zap className="w-5 h-5 mr-2" />
+                Start Earning Points
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Free Actions Grid */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          
+          {/* Apple Event Countdown */}
+          <div className="glass rounded-2xl p-6 border border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-blue-500/10 backdrop-blur-sm">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-center">
+              <Clock className="w-5 h-5 text-purple-400 mr-2" />
+              Apple Event Countdown
+            </h3>
+            
+            <div className="grid grid-cols-2 gap-2 text-center mb-4">
+              <div>
+                <div className="bg-purple-500/30 border border-purple-400/50 rounded-lg p-3">
+                  <div className="text-2xl font-black text-white">{timeLeft.days}</div>
+                  <div className="text-xs text-gray-300">Days</div>
+                </div>
+              </div>
+              <div>
+                <div className="bg-purple-500/30 border border-purple-400/50 rounded-lg p-3">
+                  <div className="text-2xl font-black text-white">{timeLeft.hours}</div>
+                  <div className="text-xs text-gray-300">Hours</div>
+                </div>
+              </div>
+            </div>
+            <p className="text-xs text-gray-400 text-center">Sep 9, 6PM Dubai • Pre-orders Sep 12</p>
+          </div>
+
+          {/* Free Points Collection */}
+          <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 backdrop-blur-sm">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-center">
+              <Gift className="w-5 h-5 text-hero-green-500 mr-2" />
+              FREE Point Collection
+            </h3>
+            
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center">
+                  <Users className="w-4 h-4 text-blue-500 mr-2" />
+                  <span className="text-white">Join Leaderboard</span>
+                </div>
+                <span className="font-bold text-blue-500">+25 FREE</span>
+              </div>
+              
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center">
+                  <Heart className="w-4 h-4 text-purple-500 mr-2" />
+                  <span className="text-white">Share with Friend</span>
+                </div>
+                <span className="font-bold text-purple-500">+50 FREE</span>
+              </div>
+              
+              <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center">
+                  <Award className="w-4 h-4 text-amber-500 mr-2" />
+                  <span className="text-white">Complete Profile</span>
+                </div>
+                <span className="font-bold text-amber-500">+75 FREE</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Leaderboard Benefits */}
+          <div className="glass rounded-2xl p-6 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-yellow-500/10 backdrop-blur-sm">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-center">
+              <Trophy className="w-5 h-5 text-amber-500 mr-2" />
+              Top 100 Benefits
+            </h3>
+            
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start space-x-2">
+                <Star className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                <span className="text-white">Priority iPhone 17 access</span>
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Gift className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                <span className="text-white">AED 2,500 trade bonus</span>
+              </div>
+              
+              <div className="flex items-start space-x-2">
+                <Crown className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                <span className="text-white">VIP Planet Hero status</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* How to Join Guide */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Simple Steps to Join */}
+          <div className="glass rounded-2xl p-6 border border-slate-600/50 bg-slate-800/30">
+            <h3 className="text-lg font-bold text-white mb-4 flex items-center">
+              <Users className="w-5 h-5 text-hero-green-400 mr-2" />
+              How to Join Leaderboard (FREE)
+            </h3>
+            
+            <div className="space-y-3">
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 bg-hero-green-500 rounded-full flex items-center justify-center text-black font-bold text-sm">1</div>
+                <div>
+                  <p className="text-white text-sm font-medium">Click "Join Leaderboard FREE"</p>
+                  <p className="text-gray-400 text-xs">Instant +25 points just for joining</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                <div>
+                  <p className="text-white text-sm font-medium">Complete your profile</p>
+                  <p className="text-gray-400 text-xs">Get +75 points for basic info</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                <div>
+                  <p className="text-white text-sm font-medium">Share with friends</p>
+                  <p className="text-gray-400 text-xs">Earn +50 points per referral</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Current Status & CTA */}
+          <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 text-center">
+            <h3 className="text-xl font-bold text-white mb-2">Ready for iPhone 17?</h3>
+            <div className="mb-4">
+              <div className="text-sm text-gray-300 mb-2">Your potential starting position:</div>
+              <div className="text-3xl font-bold text-hero-green-400">#150</div>
+              <div className="text-xs text-gray-400">out of 12,847 heroes</div>
+            </div>
+            
+            <p className="text-sm text-gray-300 mb-4">Join now • Collect free points • Climb to Top 100</p>
+            
+            <Link href="/leaderboard" className="block">
+              <Button className="w-full bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold py-3 shadow-lg transform hover:scale-105 transition-all">
+                Join Leaderboard FREE
+                <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+            
+            <p className="text-xs text-gray-500 mt-2">
+              No credit card • Instant access • Free forever
+            </p>
+          </div>
         </div>
       </div>
     </section>

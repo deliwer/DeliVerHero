@@ -275,9 +275,6 @@ export default function Home() {
       {/* Enhanced Hero Challenge Landing */}
       <HeroChallengeLanding />
 
-      {/* iPhone 17 Launch Section */}
-      <IPhone17Launch />
-
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
 

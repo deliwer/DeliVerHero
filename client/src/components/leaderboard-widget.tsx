@@ -60,16 +60,24 @@ export function LeaderboardWidget({ limit = 3, showHeader = true }: LeaderboardW
         </div>
       )}
       
-      {/* You Could Be Here Banner */}
+      {/* Enhanced You Could Be Here Banner */}
       <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/50 rounded-lg p-4 mb-6" data-testid="could-be-here-banner">
         <div className="text-center">
           <Star className="w-6 h-6 text-amber-500 mx-auto mb-2" />
           <p className="text-white font-bold text-lg">YOU COULD BE HERE!</p>
-          <Link href="/">
-            <Button className="bg-amber-500 hover:bg-amber-600 text-black px-6 py-2 rounded-lg font-bold mt-2" data-testid="button-start-now">
-              START NOW
-            </Button>
-          </Link>
+          <p className="text-gray-300 text-sm mb-3">Start with +150 FREE points today</p>
+          <div className="flex justify-center gap-2 mb-3">
+            <Link href="/leaderboard">
+              <Button className="bg-amber-500 hover:bg-amber-600 text-black px-4 py-2 rounded-lg font-bold text-sm" data-testid="button-join-leaderboard">
+                JOIN FREE
+              </Button>
+            </Link>
+            <Link href="/">
+              <Button variant="outline" className="border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black px-4 py-2 rounded-lg font-bold text-sm" data-testid="button-start-earning">
+                START EARNING
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 
