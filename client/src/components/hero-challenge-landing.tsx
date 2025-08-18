@@ -227,39 +227,62 @@ export function HeroChallengeLanding() {
         <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-dubai-blue-500/10 rounded-full blur-xl animate-spin-slow"></div>
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Clean Hero Header */}
-        <div className="text-center mb-16" data-testid="challenge-header">
-          {/* Strong Two-Line Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight" data-testid="hero-challenge-title">
-            <span className="block text-white">
-              Complete missions. Earn liters.
-            </span>
-            <span className="block text-white">
-              Save money.
-            </span>
-          </h1>
-
-          {/* Clean CTA Button */}
-          <div className="mb-8">
-            <Link href="/">
-              <Button 
-                size="lg" 
-                className="bg-hero-green-500 hover:bg-hero-green-600 text-black px-12 py-4 rounded-xl font-bold text-xl transform hover:scale-105 transition-all shadow-lg" 
-                data-testid="button-start-quest"
-              >
-                Start Your Quest
-              </Button>
-            </Link>
+        {/* Mission Header */}
+        <div className="text-center mb-12" data-testid="challenge-header">
+          <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
+            <Star className="w-5 h-5 text-amber-500 mr-2 animate-pulse" />
+            <span className="text-white font-medium">WELCOME TO MISSION: SAVE DUBAI 2030</span>
           </div>
-
-          {/* Short Subtext */}
-          <p className="text-gray-300 text-lg max-w-lg mx-auto">
-            Complete missions. Earn liters. Save money.
-          </p>
+          
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-2xl sm:text-3xl md:text-4xl">
+              <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
+            </span>
+            <br />
+            <span className="relative inline-block group transform hover:scale-105 transition-transform duration-500">
+              {/* Outer glow - largest blur */}
+              <span className="absolute -inset-4 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-3xl opacity-60 animate-pulse group-hover:opacity-90 transition-opacity duration-700"></span>
+              
+              {/* Medium glow */}
+              <span className="absolute -inset-2 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-xl opacity-70 animate-pulse animation-delay-300"></span>
+              
+              {/* Inner glow */}
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-sm opacity-80 animate-ping"></span>
+              
+              {/* Neon border */}
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 rounded-2xl p-0.5 animate-pulse">
+                <span className="block bg-black/90 rounded-2xl h-full w-full"></span>
+              </span>
+              
+              {/* Main text with neon effect */}
+              <span className="relative text-white font-black tracking-wider sm:tracking-widest text-shadow-neon px-3 sm:px-6 py-2 sm:py-3 block z-10" style={{
+                textShadow: `
+                  0 0 5px #10b981,
+                  0 0 10px #10b981,
+                  0 0 15px #10b981,
+                  0 0 20px #10b981,
+                  0 0 35px #10b981,
+                  0 0 40px #10b981,
+                  0 0 50px #10b981
+                `
+              }}>
+                Become a Planet Hero
+              </span>
+              
+              {/* Animated sparkle overlay */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse opacity-50 skew-x-12 transform group-hover:animate-ping"></span>
+            </span>
+            <br />
+            <span className="text-gray-300 text-xl sm:text-2xl md:text-3xl lg:text-4xl">complete missions, save money</span>
+          </h1>
         </div>
 
-        {/* Progress Section */}
-        <div className="text-center mb-16">
+        {/* Deli AI Input Section */}
+        <div className="mb-16">
+          <DeliAIInput />
+        </div>
+
+        <div className="text-center mb-12">
           <div className="flex flex-col items-center space-y-4 mb-8">
             <HeroSpotCounter />
             <CountdownTimer />
@@ -271,14 +294,11 @@ export function HeroChallengeLanding() {
           </p>
         </div>
 
+
+
         {/* Unified Device Calculator */}
         <div className="mb-16">
           <DeviceSimulator />
-        </div>
-
-        {/* Meet Deli - Below the Fold */}
-        <div className="mb-16">
-          <DeliAIInput />
         </div>
 
         {/* Opportunities Section */}
@@ -290,15 +310,28 @@ export function HeroChallengeLanding() {
         {/* Founding Heroes Program & Leaderboard */}
         <FoundingHeroesSection stats={stats} />
 
-        {/* Simplified Final CTA */}
+        {/* Final CTA Buttons */}
         <div className="text-center">
-          <Link href="/">
-            <Button className="bg-hero-green-500 hover:bg-hero-green-600 text-black px-12 py-4 rounded-xl font-bold text-xl transform hover:scale-105 transition-all shadow-lg" data-testid="button-start-quest-final">
-              Start Your Quest
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6">
+            <Link href="/">
+              <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-6 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl transform hover:scale-105 transition-all" data-testid="button-check-value">
+                <Zap className="mr-2 w-6 h-6" />
+                CHECK YOUR TRADE-IN VALUE NOW
+              </Button>
+            </Link>
+            <Link href="/leaderboard">
+              <Button 
+                variant="outline" 
+                className="border-2 border-hero-green-500 text-hero-green-500 hover:bg-hero-green-500 hover:text-white px-6 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl transition-all"
+                data-testid="button-join-heroes"
+              >
+                <Users className="mr-2 w-6 h-6" />
+                JOIN {stats?.activeHeroes.toLocaleString() || '12,847'} HEROES
+              </Button>
+            </Link>
+          </div>
           
-          <p className="text-gray-400 text-sm mt-4">
+          <p className="text-gray-400 text-sm">
             🔒 Secure • ⚡ Instant • 🌍 Environmental Impact Guaranteed
           </p>
         </div>
