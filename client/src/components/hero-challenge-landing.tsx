@@ -220,135 +220,124 @@ export function HeroChallengeLanding() {
   const { data: stats } = useImpactStats();
   
   return (
-    <section className="relative py-20 px-4 overflow-hidden min-h-screen">
-      {/* Multi-layer Background Story Visualization */}
+    <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
+      {/* Clean Background Implementation */}
       <div className="absolute inset-0">
-        {/* Primary Hero Image - Mobile Optimized */}
+        {/* Hero Image as Subtle Background */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-110 lg:scale-100"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
           style={{
             backgroundImage: `url(${heroImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
-            filter: 'brightness(0.7) contrast(1.1)',
+            filter: 'brightness(0.4) contrast(1.3) blur(1px)',
           }}
         />
         
-        {/* Enhanced Mobile Background for smaller screens */}
-        <div 
-          className="absolute inset-0 md:hidden bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: '150% auto',
-            backgroundPosition: 'center top',
-            opacity: 0.8,
-            filter: 'brightness(0.6) contrast(1.2)',
-          }}
-        />
+        {/* Clean Gradient Base */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         
-        {/* Storytelling Gradient Overlays */}
-        {/* iPhone side (left) - amber/orange tones */}
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-900/60 via-transparent to-transparent"></div>
+        {/* Subtle Brand Color Accents */}
+        <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-hero-green-900/20 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-dubai-blue-900/20 to-transparent"></div>
         
-        {/* Water side (right) - blue/teal tones */}
-        <div className="absolute inset-0 bg-gradient-to-l from-teal-900/60 via-transparent to-transparent"></div>
-        
-        {/* Central circular exchange emphasis */}
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-hero-green-900/30 to-transparent"></div>
-        
-        {/* Text readability overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
-        
-        {/* Dubai skyline enhancement (bottom) */}
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-        
-        {/* Dynamic visual elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-amber-500/20 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-teal-500/20 rounded-full blur-xl animate-bounce-slow"></div>
-        <div className="absolute bottom-32 left-1/4 w-28 h-28 bg-hero-green-500/20 rounded-full blur-xl animate-spin-slow"></div>
+        {/* Minimal Visual Elements */}
+        <div className="absolute top-20 right-20 w-16 h-16 bg-hero-green-500/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-12 h-12 bg-amber-500/10 rounded-full blur-lg animate-bounce-slow"></div>
       </div>
-      <div className="max-w-7xl mx-auto relative z-10 flex flex-col justify-center min-h-screen">
-        {/* Mission Header */}
-        <div className="text-center mb-12" data-testid="challenge-header">
-          <div className="inline-flex items-center glass-light rounded-full px-6 py-3 mb-6 border border-hero-green-500/30">
-            <Star className="w-5 h-5 text-amber-500 mr-2 animate-pulse" />
-            <span className="text-white font-medium">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Clean Mission Header */}
+        <div className="text-center mb-16" data-testid="challenge-header">
+          <div className="inline-flex items-center bg-slate-800/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-hero-green-500/50 shadow-lg">
+            <Star className="w-5 h-5 text-hero-green-400 mr-2" />
+            <span className="text-white font-semibold tracking-wide">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
-            <span className="bg-gradient-to-r from-hero-green-400 via-blue-400 to-emerald-300 bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black">
-              ReFlow:
-            </span>
-            <br />
-            <span className="relative inline-block group transform hover:scale-105 transition-transform duration-500">
-              {/* Outer glow - largest blur */}
-              <span className="absolute -inset-4 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-3xl opacity-60 animate-pulse group-hover:opacity-90 transition-opacity duration-700"></span>
-              
-              {/* Medium glow */}
-              <span className="absolute -inset-2 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-xl opacity-70 animate-pulse animation-delay-300"></span>
-              
-              {/* Inner glow */}
-              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-sm opacity-80 animate-ping"></span>
-              
-              {/* Neon border */}
-              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 rounded-2xl p-0.5 animate-pulse">
-                <span className="block bg-black/90 rounded-2xl h-full w-full"></span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
+            <span className="block mb-2">
+              <span className="bg-gradient-to-r from-hero-green-400 to-emerald-400 bg-clip-text text-transparent">
+                ReFlow:
               </span>
-              
-              {/* Main text with neon effect */}
-              <span className="relative text-white font-black tracking-wider sm:tracking-widest text-shadow-neon px-3 sm:px-6 py-2 sm:py-3 block z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" style={{
-                textShadow: `
-                  0 0 5px #10b981,
-                  0 0 10px #10b981,
-                  0 0 15px #10b981,
-                  0 0 20px #10b981,
-                  0 0 35px #10b981,
-                  0 0 40px #10b981,
-                  0 0 50px #10b981
-                `
-              }}>
-                From iPhones to Water,
-              </span>
-              
-              {/* Animated sparkle overlay */}
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse opacity-50 skew-x-12 transform group-hover:animate-ping"></span>
             </span>
-            <br />
-            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl bg-gradient-to-r from-blue-300 to-emerald-300 bg-clip-text text-transparent font-bold">
+            <span className="block mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+              From iPhones to Water,
+            </span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent font-bold">
               a Circular Exchange
             </span>
           </h1>
+          
+          <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+            Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform.
+          </p>
         </div>
 
-        {/* Deli AI Input Section */}
-        <div className="mb-16">
-          <DeliAIInput />
-        </div>
-
-        <div className="text-center mb-12">
-          <div className="flex flex-col items-center space-y-4 mb-8">
+        {/* Clean Value Proposition */}
+        <div className="text-center mb-16">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
             <HeroSpotCounter />
             <CountdownTimer />
           </div>
           
-          <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-8">
-            Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform. 
-            Join <strong className="text-hero-green-400">12,847 Planet Heroes</strong> creating measurable environmental impact 
-            while earning exclusive rewards and climbing the leaderboard.
-          </p>
-          
-          {/* Value Proposition Pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <div className="bg-gradient-to-r from-hero-green-500/20 to-emerald-500/20 border border-hero-green-400/50 rounded-full px-4 py-2">
-              <span className="text-hero-green-300 font-bold text-sm">🔄 Circular Economy</span>
-            </div>
-            <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/50 rounded-full px-4 py-2">
-              <span className="text-blue-300 font-bold text-sm">💧 Premium Water Systems</span>
-            </div>
-            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/50 rounded-full px-4 py-2">
-              <span className="text-purple-300 font-bold text-sm">🏆 Environmental Impact</span>
+          <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 border border-slate-600/50 max-w-4xl mx-auto mb-8">
+            <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+              Join <strong className="text-hero-green-400">12,847 Planet Heroes</strong> creating measurable environmental impact 
+              while earning exclusive rewards and climbing the leaderboard.
+            </p>
+            
+            {/* Simplified Value Props */}
+            <div className="grid sm:grid-cols-3 gap-4">
+              <div className="text-center p-4">
+                <div className="w-12 h-12 bg-hero-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">🔄</span>
+                </div>
+                <h3 className="text-white font-semibold mb-1">Circular Economy</h3>
+                <p className="text-gray-400 text-sm">Transform waste into value</p>
+              </div>
+              
+              <div className="text-center p-4">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">💧</span>
+                </div>
+                <h3 className="text-white font-semibold mb-1">Premium Water</h3>
+                <p className="text-gray-400 text-sm">AquaCafe filtration systems</p>
+              </div>
+              
+              <div className="text-center p-4">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">🏆</span>
+                </div>
+                <h3 className="text-white font-semibold mb-1">Impact Tracking</h3>
+                <p className="text-gray-400 text-sm">Real environmental results</p>
+              </div>
             </div>
           </div>
+          
+          {/* Primary CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link href="/">
+              <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-4 text-lg shadow-xl transform hover:scale-105 transition-all">
+                <Zap className="mr-2 w-5 h-5" />
+                Get Your Trade Value
+              </Button>
+            </Link>
+            <Link href="/leaderboard">
+              <Button 
+                size="lg"
+                variant="outline" 
+                className="border-2 border-hero-green-500 text-hero-green-400 hover:bg-hero-green-500 hover:text-black px-8 py-4 text-lg font-bold transition-all"
+              >
+                <Users className="mr-2 w-5 h-5" />
+                Join {stats?.activeHeroes?.toLocaleString() || '12,847'} Heroes
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* AI Assistant */}
+        <div className="mb-16">
+          <DeliAIInput />
         </div>
 
 
@@ -367,27 +356,8 @@ export function HeroChallengeLanding() {
         {/* Founding Heroes Program & Leaderboard */}
         <FoundingHeroesSection stats={stats} />
 
-        {/* Final CTA Buttons */}
+        {/* Trust Indicators */}
         <div className="text-center">
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6">
-            <Link href="/">
-              <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-6 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl transform hover:scale-105 transition-all" data-testid="button-check-value">
-                <Zap className="mr-2 w-6 h-6" />
-                CHECK YOUR TRADE-IN VALUE NOW
-              </Button>
-            </Link>
-            <Link href="/leaderboard">
-              <Button 
-                variant="outline" 
-                className="border-2 border-hero-green-500 text-hero-green-500 hover:bg-hero-green-500 hover:text-white px-6 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl transition-all"
-                data-testid="button-join-heroes"
-              >
-                <Users className="mr-2 w-6 h-6" />
-                JOIN {stats?.activeHeroes.toLocaleString() || '12,847'} HEROES
-              </Button>
-            </Link>
-          </div>
-          
           <p className="text-gray-400 text-sm">
             🔒 Secure • ⚡ Instant • 🌍 Environmental Impact Guaranteed
           </p>
