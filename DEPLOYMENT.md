@@ -1,117 +1,88 @@
-# DeliWer Vercel + Shopify Horizon Deployment Guide
+# DeliWer - Vercel Deployment Guide
 
-## Prerequisites
-1. Vercel account with deployment permissions
-2. Shopify Partner account
-3. Domain access (deliwer-ecosystem.vercel.app or custom domain)
+## Overview
+This project is now configured for Vercel deployment with Shopify Hydrogen compatibility. The application uses a static frontend with serverless API functions.
 
-## 1. Environment Setup
-
-### Required Environment Variables in Vercel Dashboard:
-```bash
-# Shopify Configuration
-SHOPIFY_API_KEY=your_shopify_api_key
-SHOPIFY_API_SECRET=your_shopify_api_secret
-SHOPIFY_WEBHOOK_SECRET=your_webhook_secret
-
-# OpenAI (Optional - for AI Concierge)
-OPENAI_API_KEY=your_openai_api_key
-
-# Production Environment
-NODE_ENV=production
-VITE_API_URL=https://deliwer-ecosystem.vercel.app/api
+## Project Structure
+```
+├── api/                    # Vercel serverless functions
+│   ├── index.js           # Main API handler
+│   └── shopify.js         # Shopify webhook handler
+├── client/                # React frontend (static)
+│   ├── src/
+│   ├── index.html
+│   └── ...
+├── dist/public/          # Build output directory
+├── vercel.json           # Vercel configuration
+├── next.config.js        # Next.js config for static export
+└── .vercelignore         # Files to ignore during deployment
 ```
 
-## 2. Shopify App Setup
+## Deployment Steps
 
-### Create Shopify App:
-1. Go to Shopify Partners Dashboard
-2. Create new app: "DeliWer Ecosystem"
-3. Configure app URLs in `shopify.app.toml`:
-   - Application URL: `https://deliwer-ecosystem.vercel.app`
-   - Redirect URLs: Include all URLs from shopify.app.toml
-
-### Configure Webhooks:
-The following webhooks are auto-configured:
-- `orders/paid` → `/shopify/webhooks/orders/paid`
-- `customers/create` → `/shopify/webhooks/customers/create`
-- `app/uninstalled` → `/shopify/webhooks/app/uninstalled`
-
-## 3. Vercel Deployment
-
-### Deploy Command:
+### 1. Local Testing
 ```bash
-# Build and deploy to Vercel
-npm run build
+npm run dev  # Test development server
+npm run build  # Test production build
+```
+
+### 2. Vercel Deployment
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy to Vercel
 vercel --prod
 ```
 
-### Vercel Configuration:
-- Build Command: `npm run build`
-- Output Directory: `dist/public`
-- Node.js Version: 20.x
-- Function Memory: 1024MB (for order processing)
+### 3. Environment Variables
+Set these in Vercel dashboard:
+- `OPENAI_API_KEY` - For AI concierge functionality
+- `DATABASE_URL` - For PostgreSQL database (optional)
+- `NODE_ENV=production`
 
-## 4. API Endpoints
+## Key Features
 
-### Core DeliWer API:
-- `/api/heroes` - Hero management
-- `/api/impact-stats` - Environmental impact data
-- `/api/calculate-trade-value` - iPhone trade calculations
-- `/api/ai-chat` - AI Concierge integration
+### Static Frontend
+- Built with Vite for optimal performance
+- Deployed to Vercel Edge Network
+- Automatic code splitting and optimization
 
-### Shopify Integration API:
-- `/shopify/webhooks/orders/paid` - Order processing
-- `/shopify/products/sync` - Product catalog sync
-- `/shopify/customers/:id` - Customer data integration
-- `/shopify/auth/verify` - App installation verification
+### Serverless API
+- All API routes handled by `api/index.js`
+- Stateless design for scalability
+- CORS enabled for cross-origin requests
 
-## 5. Testing
+### Shopify Integration
+- Ready for Shopify Hydrogen
+- Webhook handler in `api/shopify.js`
+- Compatible with Shopify Headless Commerce
 
-### Local Development:
-```bash
-npm run dev  # Starts Express server on port 5000
-```
+## Configuration Details
 
-### Production Testing:
-1. Deploy to Vercel staging
-2. Test webhook endpoints with Shopify webhook tester
-3. Verify order processing creates hero profiles
-4. Confirm product sync displays AquaCafe starter kit
+### vercel.json
+- Output directory: `dist/public`
+- Build command: `vite build`
+- API functions with 1GB memory and 30s timeout
+- CORS headers configured
+- SPA routing with fallback to index.html
 
-## 6. Shopify Store Integration
+### Performance Optimizations
+- Code splitting by vendor, UI, and utils
+- Asset optimization
+- Edge caching
+- Serverless function optimization
 
-### Install App:
-1. Use Partner Dashboard to install on development store
-2. Configure app permissions (all scopes in shopify.app.toml)
-3. Test order flow: Shopify order → DeliWer hero creation
+## Monitoring & Analytics
+- Vercel Analytics ready
+- Error tracking enabled
+- Performance monitoring
+- Real-time function logs
 
-### Product Configuration:
-- AquaCafe Planet Hero Starter Kit (AED 99)
-- Metafields for hero level upgrades
-- Inventory tracking (47 units initially)
+## Custom Domain
+Configure custom domain in Vercel dashboard for production deployment.
 
-## 7. Monitoring
-
-### Key Metrics:
-- Order processing success rate
-- Hero profile creation accuracy
-- API response times
-- Webhook delivery reliability
-
-### Logs:
-- Vercel Function logs for debugging
-- Shopify webhook delivery logs
-- Hero creation audit trail
-
-## 8. Security
-
-### Webhook Verification:
-- HMAC signature validation for all Shopify webhooks
-- Environment variable protection for API keys
-- CORS restrictions for Shopify app embedding
-
-### Best Practices:
-- Regular API key rotation
-- Monitor webhook endpoint access
-- Audit hero profile creation logs
+## Scaling
+- Automatic scaling with Vercel
+- Edge functions for global performance
+- CDN distribution worldwide

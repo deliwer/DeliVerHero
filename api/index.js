@@ -1,4 +1,4 @@
-// Simple serverless API handler for DeliWer
+// Vercel serverless API handler for DeliWer - Shopify Hydrogen ready
 import { randomUUID } from "crypto";
 
 // In-memory storage for serverless

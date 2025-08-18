@@ -50,10 +50,12 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - **TanStack Query**: Data synchronization and caching.
 
 ### Development & Deployment
-- **Vite**: Build tool.
+- **Vite**: Build tool for static frontend.
 - **Replit**: Development environment.
 - **TypeScript**: Static type checking.
-- **Vercel**: Production deployment optimized for Shopify Hydrogen with direct homepage routing.
+- **Vercel**: Production deployment optimized for Shopify Hydrogen with serverless API functions and static frontend.
+- **Static Build**: Frontend built as static assets for CDN distribution.
+- **Serverless API**: Backend functions deployed as Vercel serverless functions.
 
 ### Current Third-Party Integrations
 - **Shopify Headless (via shopify.app.toml)**: E-commerce backend, with dedicated Shopify API handler for webhooks and product sync.

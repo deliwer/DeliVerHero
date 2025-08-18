@@ -7,6 +7,7 @@ async function throwIfResNotOk(res: Response) {
   }
 }
 
+// Enhanced API request helper for Vercel deployment
 export async function apiRequest(
   method: string,
   url: string,
@@ -21,6 +22,31 @@ export async function apiRequest(
 
   await throwIfResNotOk(res);
   return res;
+}
+
+// Simplified API request for POST/PATCH/DELETE operations
+export async function apiCall(path: string, options: RequestInit = {}) {
+  const url = path.startsWith('/') ? path : `/${path}`;
+  
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
+  };
+
+  const config: RequestInit = {
+    ...options,
+    headers: {
+      ...defaultHeaders,
+      ...options.headers,
+    },
+  };
+
+  const response = await fetch(url, config);
+  
+  if (!response.ok) {
+    throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
 }
 
 type UnauthorizedBehavior = "returnNull" | "throw";
