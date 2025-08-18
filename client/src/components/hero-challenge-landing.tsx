@@ -6,6 +6,7 @@ import { DeliAIInput } from "./deli-ai-input";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { Link } from "wouter";
+import heroImage from "@assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -220,11 +221,18 @@ export function HeroChallengeLanding() {
   
   return (
     <section className="relative py-20 px-4 overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-hero-green-500/10 rounded-full blur-xl animate-pulse-glow"></div>
-        <div className="absolute top-20 right-20 w-24 h-24 bg-amber-500/10 rounded-full blur-xl animate-bounce-slow"></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-dubai-blue-500/10 rounded-full blur-xl animate-spin-slow"></div>
+      {/* Hero Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${heroImage})`,
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/65 to-black/75"></div>
+        {/* Additional gradient overlays for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-dubai-blue-900/40 to-hero-green-900/40"></div>
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Mission Header */}
