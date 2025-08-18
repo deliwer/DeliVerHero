@@ -222,6 +222,20 @@
   .text-glow {
     text-shadow: 0 0 10px currentColor;
   }
+
+  .text-shadow-neon {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px currentColor,
+      0 0 35px currentColor,
+      0 0 40px currentColor;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
   
   .text-hero-glow {
     text-shadow: 0 0 10px var(--hero-green-500);

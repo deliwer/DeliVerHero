@@ -111,13 +111,28 @@ export function HeroChallengeLanding() {
               <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
             </span>
             <br />
-            <span className="relative inline-block group">
-              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-2xl opacity-80 animate-pulse group-hover:opacity-100 transition-opacity"></span>
-              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-sm opacity-60 animate-ping"></span>
-              <span className="relative bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent font-black tracking-wider drop-shadow-2xl">
+            <span className="relative inline-block group transform hover:scale-105 transition-transform duration-500">
+              {/* Outer glow - largest blur */}
+              <span className="absolute -inset-4 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-3xl opacity-60 animate-pulse group-hover:opacity-90 transition-opacity duration-700"></span>
+              
+              {/* Medium glow */}
+              <span className="absolute -inset-2 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-xl opacity-70 animate-pulse animation-delay-300"></span>
+              
+              {/* Inner glow */}
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-sm opacity-80 animate-ping"></span>
+              
+              {/* Neon border */}
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 rounded-2xl p-0.5 animate-pulse">
+                <span className="block bg-black/90 rounded-2xl h-full w-full"></span>
+              </span>
+              
+              {/* Main text with neon effect */}
+              <span className="relative bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent font-black tracking-widest text-shadow-neon px-6 py-3 block">
                 Become a Planet Hero
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400/30 via-emerald-400/30 to-cyan-400/30 rounded-lg animate-pulse"></span>
+              
+              {/* Animated sparkle overlay */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse opacity-50 skew-x-12 transform group-hover:animate-ping"></span>
             </span>
             <br />
             <span className="text-gray-300 text-[36px]">complete missions, save money</span>
