@@ -221,29 +221,24 @@ export function HeroChallengeLanding() {
   
   return (
     <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
-      {/* Clean Background Implementation */}
+      {/* iPhone Water Circular Exchange Background */}
       <div className="absolute inset-0">
-        {/* Hero Image as Subtle Background */}
+        {/* Main Hero Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${heroImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
-            filter: 'brightness(0.4) contrast(1.3) blur(1px)',
           }}
         />
         
-        {/* Clean Gradient Base */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+        {/* Light gradient overlay for text readability - keeping minimal */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/40"></div>
         
-        {/* Subtle Brand Color Accents */}
-        <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-hero-green-900/20 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-dubai-blue-900/20 to-transparent"></div>
-        
-        {/* Minimal Visual Elements */}
-        <div className="absolute top-20 right-20 w-16 h-16 bg-hero-green-500/10 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-12 h-12 bg-amber-500/10 rounded-full blur-lg animate-bounce-slow"></div>
+        {/* Subtle brand accent gradients */}
+        <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/15 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/15 to-transparent"></div>
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -254,16 +249,16 @@ export function HeroChallengeLanding() {
             <span className="text-white font-semibold tracking-wide">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
-            <span className="block mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
+            <span className="block mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-lg">
               From iPhones to Water,
             </span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent font-bold">
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent font-bold drop-shadow-lg">
               a Circular Exchange
             </span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+          <p className="text-xl sm:text-2xl text-white max-w-4xl mx-auto mb-8 leading-relaxed drop-shadow-lg">
             Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform.
           </p>
         </div>
