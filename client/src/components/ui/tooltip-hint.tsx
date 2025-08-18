@@ -14,6 +14,8 @@ interface TooltipHintProps {
   delay?: number;
   showOnce?: boolean;
   priority?: "low" | "medium" | "high";
+  autoShow?: boolean; // Control whether to show automatically
+  isVisible?: boolean; // External control of visibility
   onDismiss?: () => void;
   onAction?: () => void;
   actionText?: string;
@@ -52,15 +54,20 @@ export function TooltipHint({
   delay = 1000,
   showOnce = true,
   priority = "medium",
+  autoShow = false, // Default to manual control
+  isVisible: externalIsVisible,
   onDismiss,
   onAction,
   actionText
 }: TooltipHintProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [internalIsVisible, setInternalIsVisible] = useState(false);
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
   const tooltipRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  // Use external visibility control if provided, otherwise use internal state
+  const isVisible = externalIsVisible !== undefined ? externalIsVisible : internalIsVisible;
 
   const config = typeConfig[type];
   const IconComponent = config.icon;
@@ -82,11 +89,13 @@ export function TooltipHint({
 
     setTargetElement(element);
 
-    // Show tooltip after delay
-    timeoutRef.current = setTimeout(() => {
-      setIsVisible(true);
-      calculatePosition(element);
-    }, delay);
+    // Only auto-show if autoShow is enabled
+    if (autoShow) {
+      timeoutRef.current = setTimeout(() => {
+        setInternalIsVisible(true);
+        calculatePosition(element);
+      }, delay);
+    }
 
     // Recalculate position on window resize
     const handleResize = () => {
@@ -103,7 +112,32 @@ export function TooltipHint({
       }
       window.removeEventListener('resize', handleResize);
     };
-  }, [id, target, delay, showOnce, isVisible]);
+  }, [id, target, delay, showOnce, autoShow, isVisible]);
+
+  // Handle click outside to dismiss
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target as Node)) {
+        handleDismiss();
+      }
+    };
+
+    const handleEscapeKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleDismiss();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [isVisible]);
 
   const calculatePosition = (element: HTMLElement) => {
     if (!tooltipRef.current) return;
@@ -146,7 +180,14 @@ export function TooltipHint({
   };
 
   const handleDismiss = () => {
-    setIsVisible(false);
+    if (externalIsVisible !== undefined) {
+      // If externally controlled, call onDismiss to let parent handle
+      onDismiss?.();
+    } else {
+      // If internally controlled, update internal state
+      setInternalIsVisible(false);
+    }
+    
     if (showOnce) {
       localStorage.setItem(`tooltip_dismissed_${id}`, 'true');
     }

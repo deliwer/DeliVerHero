@@ -7,7 +7,7 @@ import { TopBanner } from "@/components/top-banner";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
-import { TooltipHintsManager } from "@/components/tooltip-hints-manager";
+import { TooltipManager } from "@/components/tooltip-manager";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import Home from "@/pages/home";
@@ -64,7 +64,7 @@ function App() {
           <Footer />
         </div>
         <Toaster />
-        <TooltipHintsManager />
+        <TooltipManager />
       </TooltipProvider>
     </QueryClientProvider>
   );
