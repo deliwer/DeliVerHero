@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DeviceSimulator } from "./device-simulator";
 import { DeliAIInput } from "./deli-ai-input";
@@ -84,6 +84,134 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
       </span>
       <span className="text-sm text-gray-400">until double points end</span>
     </div>
+  );
+}
+
+function OpportunitiesSection() {
+  return (
+    <section className="py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 ring-4 ring-yellow-400/50 shadow-lg shadow-yellow-400/20">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Building className="w-8 h-8 text-emerald-400" />
+              <h2 className="text-3xl font-bold text-white">BEYOND ETISALAT & DU</h2>
+              <Handshake className="w-8 h-8 text-blue-400" />
+            </div>
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+              World's first cross-category trade platform. While others stay in electronics, we connect your iPhone to life essentials.
+            </p>
+          </div>
+          
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+            {/* iPhone Trade Advantage */}
+            <div className="glass rounded-2xl p-6 border border-amber-500/30 bg-amber-600/5">
+              <div className="text-center mb-4">
+                <Building className="w-10 h-10 text-amber-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">iPHONE TRADE LEADERS</h3>
+                <p className="text-gray-300 text-sm">Cross-category advantage</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">vs Etisalat/Du</span>
+                  <span className="text-amber-400 font-bold">+Water Systems</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Trade Categories</span>
+                  <span className="text-amber-400 font-bold">Cross-Category</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Global First</span>
+                  <span className="text-amber-400 font-bold">iPhone→Water</span>
+                </div>
+              </div>
+              <Link
+                href="/"
+                className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                data-testid="button-trade-iphone"
+              >
+                Trade iPhone Now
+              </Link>
+            </div>
+
+            {/* Gitex Launch Special */}
+            <div className="glass rounded-2xl p-6 border border-hero-green-500/30 bg-hero-green-600/5">
+              <div className="text-center mb-4">
+                <Heart className="w-10 h-10 text-hero-green-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">GITEX 2025 LAUNCH</h3>
+                <p className="text-gray-300 text-sm">iPhone 17 cash preparation</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Trade Now</span>
+                  <span className="text-hero-green-400 font-bold">Get Cash</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">iPhone 17 Launch</span>
+                  <span className="text-hero-green-400 font-bold">First in Line</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Water Systems</span>
+                  <span className="text-hero-green-400 font-bold">Included</span>
+                </div>
+              </div>
+              <Link
+                href="/"
+                className="w-full bg-hero-green-600 hover:bg-hero-green-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                data-testid="button-gitex-launch"
+              >
+                Join Launch Campaign
+              </Link>
+            </div>
+
+            {/* Media Story */}
+            <div className="glass rounded-2xl p-6 border border-purple-500/30 bg-purple-600/5">
+              <div className="text-center mb-4">
+                <Users className="w-10 h-10 text-purple-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">MEDIA SPOTLIGHT</h3>
+                <p className="text-gray-300 text-sm">Revolutionary trade story</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Global First</span>
+                  <span className="text-purple-400 font-bold">Cross-Category</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Market Disruption</span>
+                  <span className="text-purple-400 font-bold">Beyond Telcos</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Rally Story</span>
+                  <span className="text-purple-400 font-bold">iPhone→Water</span>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  const mediaKit = `https://deliwer.com/media-kit?story=iphone-water-trade`;
+                  const shareText = `📰 BREAKING: World's first iPhone-to-Water trade platform launches at GITEX 2025! DeliWer disrupts Etisalat/Du with cross-category trading. Media kit: ${mediaKit}`;
+                  
+                  if (navigator.share) {
+                    navigator.share({ title: 'DeliWer Media Story', text: shareText, url: mediaKit });
+                  } else {
+                    navigator.clipboard.writeText(shareText);
+                  }
+                }}
+                className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center"
+                data-testid="button-media-kit"
+              >
+                Download Media Kit
+              </button>
+            </div>
+          </div>
+          
+          <div className="text-center space-y-4">
+            <p className="text-gray-400 text-sm">
+              🤝 Cross-category trade advantage • 📈 iPhone 17 launch campaign • 🌍 Media ready sustainability story
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -172,6 +300,9 @@ export function HeroChallengeLanding() {
         <div className="mb-16">
           <DeviceSimulator />
         </div>
+
+        {/* Opportunities Section */}
+        <OpportunitiesSection />
 
         {/* Founding Heroes Program & Leaderboard */}
         <FoundingHeroesSection stats={stats} />

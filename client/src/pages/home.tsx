@@ -281,10 +281,6 @@ export default function Home() {
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
 
-      {/* Opportunities Section */}
-      <OpportunitiesSection />
-
-
       {/* Impact Stats */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
