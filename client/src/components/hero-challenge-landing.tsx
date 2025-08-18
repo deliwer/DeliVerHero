@@ -313,7 +313,7 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
           <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
             <div className="flex-1 w-full">
               <img 
-                src="/attached_assets/washing-face-01 (1)_1755482888902.jpg" 
+                src="/attached_assets/washing-face-01 (1)_1755485447693.jpg" 
                 alt="AquaCafe Hair Shower Filter - Free Gift" 
                 className="w-full max-w-sm sm:max-w-md mx-auto rounded-xl shadow-2xl"
               />
