@@ -50,13 +50,28 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - **TanStack Query**: Data synchronization and caching.
 
 ### Development & Deployment
-- **Vite**: Build tool for static frontend.
-- **Replit**: Development environment.
-- **TypeScript**: Static type checking.
-- **Vercel**: Production deployment optimized for Shopify Hydrogen with serverless API functions and static frontend.
-- **Static Build**: Frontend built as static assets for CDN distribution.
-- **Serverless API**: Backend functions deployed as Vercel serverless functions.
+- **Vite**: Build tool for static frontend optimized for Vercel deployment.
+- **Replit**: Development environment with hot-reload capabilities.
+- **TypeScript**: Static type checking across full-stack.
+- **Vercel Deployment**: Production-ready static site with serverless API functions.
+  - **Static Frontend**: Built as static assets served via CDN for optimal performance.
+  - **Serverless Functions**: API endpoints deployed as Edge Functions in `/api` directory.
+  - **Shopify Integration**: Dedicated serverless handlers for webhooks and product sync.
+- **Build Configuration**: Optimized for static deployment with automatic redeployment triggers.
 
 ### Current Third-Party Integrations
-- **Shopify Headless (via shopify.app.toml)**: E-commerce backend, with dedicated Shopify API handler for webhooks and product sync.
+- **Shopify Headless (via shopify.app.toml)**: E-commerce backend with complete webhook integration for order processing and customer management.
+  - Webhook handlers: `/shopify/webhooks/orders/paid`, `/shopify/webhooks/customers/create`
+  - Product sync endpoint: `/shopify/products/sync`
+  - OAuth verification: `/shopify/auth/verify`
 - **GOAFFPRO**: Integrated for affiliate tracking and viral marketing features.
+- **Vercel Edge Functions**: Serverless API architecture for scalable deployment.
+
+### Migration Status
+**Project migrated from Replit Agent to standard Replit environment on August 18, 2025**
+- ✅ Dependencies and packages verified and installed
+- ✅ Workflow configuration optimized for development
+- ✅ Static build configuration ready for Vercel deployment
+- ✅ Serverless API functions optimized for production
+- ✅ Shopify Hydrogen integration fully configured
+- ✅ Security best practices implemented with client/server separation
