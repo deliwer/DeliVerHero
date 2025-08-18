@@ -239,15 +239,9 @@ export function HeroChallengeLanding() {
               <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
             </span>
             <br />
-            <span className="relative inline-block group transform hover:scale-105 transition-all duration-700 cursor-pointer">
-              {/* Rotating ring effect */}
-              <span className="absolute -inset-8 bg-gradient-to-r from-hero-green-400 via-cyan-400 to-purple-400 rounded-full blur-2xl opacity-40 animate-spin-slow group-hover:opacity-70 transition-opacity duration-500"></span>
-              
+            <span className="relative inline-block group transform hover:scale-105 transition-transform duration-500">
               {/* Outer glow - largest blur */}
               <span className="absolute -inset-4 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-3xl opacity-60 animate-pulse group-hover:opacity-90 transition-opacity duration-700"></span>
-              
-              {/* Pulsing energy field */}
-              <span className="absolute -inset-3 bg-gradient-to-r from-purple-500/30 via-hero-green-500/40 to-cyan-500/30 blur-xl opacity-50 animate-pulse animation-delay-300 group-hover:animate-ping"></span>
               
               {/* Medium glow */}
               <span className="absolute -inset-2 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-xl opacity-70 animate-pulse animation-delay-300"></span>
@@ -255,25 +249,13 @@ export function HeroChallengeLanding() {
               {/* Inner glow */}
               <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-sm opacity-80 animate-ping"></span>
               
-              {/* Dynamic border with animation */}
-              <span className="absolute inset-0 rounded-2xl p-0.5 animate-pulse group-hover:animate-ping">
-                <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 rounded-2xl animate-border-glow"></span>
-                <span className="block bg-gradient-to-br from-black/95 via-slate-900/95 to-black/95 rounded-2xl h-full w-full backdrop-blur-sm border border-white/10"></span>
+              {/* Neon border */}
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 rounded-2xl p-0.5 animate-pulse">
+                <span className="block bg-black/90 rounded-2xl h-full w-full"></span>
               </span>
               
-              {/* Floating particles effect */}
-              <span className="absolute -inset-2 pointer-events-none">
-                <span className="absolute top-2 left-4 w-1 h-1 bg-cyan-400 rounded-full animate-ping opacity-60"></span>
-                <span className="absolute top-6 right-6 w-1 h-1 bg-emerald-400 rounded-full animate-pulse opacity-70 animation-delay-300"></span>
-                <span className="absolute bottom-4 left-6 w-1 h-1 bg-hero-green-400 rounded-full animate-bounce opacity-80"></span>
-                <span className="absolute bottom-2 right-4 w-1 h-1 bg-purple-400 rounded-full animate-ping opacity-50 animation-delay-300"></span>
-              </span>
-              
-              {/* Premium holographic effect */}
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-30 skew-x-12 transform -translate-x-full animate-sweep group-hover:translate-x-full transition-transform duration-1000"></span>
-              
-              {/* Main text with enhanced neon effect */}
-              <span className="relative text-white font-black tracking-wider sm:tracking-widest px-4 sm:px-8 py-3 sm:py-4 block z-10 group-hover:text-shadow-enhanced transition-all duration-300" style={{
+              {/* Main text with neon effect */}
+              <span className="relative text-white font-black tracking-wider sm:tracking-widest text-shadow-neon px-3 sm:px-6 py-2 sm:py-3 block z-10" style={{
                 textShadow: `
                   0 0 5px #10b981,
                   0 0 10px #10b981,
@@ -281,25 +263,14 @@ export function HeroChallengeLanding() {
                   0 0 20px #10b981,
                   0 0 35px #10b981,
                   0 0 40px #10b981,
-                  0 0 50px #10b981,
-                  0 0 75px #06d6a0,
-                  0 0 100px #06d6a0
-                `,
-                background: 'linear-gradient(90deg, #ffffff 0%, #10b981 25%, #06d6a0 50%, #10b981 75%, #ffffff 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundSize: '200% auto',
-                animation: 'shimmer 3s linear infinite'
-              }}>Prestige Health</span>
+                  0 0 50px #10b981
+                `
+              }}>
+                Become a Planet Hero
+              </span>
               
-              {/* Dynamic sparkle overlay */}
+              {/* Animated sparkle overlay */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse opacity-50 skew-x-12 transform group-hover:animate-ping"></span>
-              
-              {/* Corner accents */}
-              <span className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg opacity-60 group-hover:opacity-100 transition-opacity"></span>
-              <span className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-emerald-400 rounded-tr-lg opacity-60 group-hover:opacity-100 transition-opacity"></span>
-              <span className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-hero-green-400 rounded-bl-lg opacity-60 group-hover:opacity-100 transition-opacity"></span>
-              <span className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-purple-400 rounded-br-lg opacity-60 group-hover:opacity-100 transition-opacity"></span>
             </span>
             <br />
             <span className="text-gray-300 text-xl sm:text-2xl md:text-3xl lg:text-4xl">complete missions, save money</span>
