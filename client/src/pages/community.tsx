@@ -39,8 +39,11 @@ import {
   Settings,
   Plus,
   ExternalLink,
-  MessageCircle
+  MessageCircle,
+  Play,
+  Award
 } from 'lucide-react';
+import { SocialChallengesFeed } from '@/components/social-challenges-feed';
 
 interface CommunityEvent {
   id: string;
@@ -395,6 +398,7 @@ export default function Community() {
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {[
               { id: "overview", label: "Overview", icon: Globe },
+              { id: "challenges", label: "Challenge Friends", icon: Target },
               { id: "forum", label: "Heroes Forum", icon: MessageCircle },
               { id: "events", label: "Events", icon: Calendar },
               { id: "social", label: "Social Feed", icon: MessageSquare },
@@ -418,6 +422,26 @@ export default function Community() {
               </button>
             ))}
           </div>
+
+          {/* Challenge Friends Tab */}
+          {activeTab === "challenges" && (
+            <div className="space-y-6">
+              <Card className="glass border-slate-600">
+                <CardContent className="p-6 bg-gradient-to-br from-hero-green-900/20 to-dubai-blue-900/20 backdrop-blur-sm">
+                  <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
+                    <Target className="w-6 h-6 text-hero-green-400 mr-2" />
+                    Challenge Friends & Social Impact
+                  </h2>
+                  <p className="text-gray-300 mb-6">
+                    Create and join environmental challenges with friends. Amplify your sustainability impact through social competition and collaboration.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Social Challenges Feed Component */}
+              <SocialChallengesFeed />
+            </div>
+          )}
 
           {/* Heroes Forum Tab */}
           {activeTab === "forum" && (

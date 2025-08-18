@@ -9,7 +9,6 @@ export function Navigation() {
   const navItems = [
     { path: "/", label: "Trade iPhone", id: "trade" },
     { path: "/aquacafe", label: "Shop AquaCafe", id: "aquacafe" },
-    { path: "/social-challenges", label: "Challenge Friends", id: "challenges" },
     { path: "/sponsorships", label: "Sponsor Missions", id: "sponsorships" },
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
     { path: "/community", label: "Heroes Community", id: "community" },
