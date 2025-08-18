@@ -261,7 +261,24 @@ export function HeroChallengeLanding() {
             <span className="text-white font-semibold tracking-wide">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
           </div>
           
-
+          {/* Hero Image - Prominently Displayed */}
+          <div className="mb-12 flex justify-center">
+            <div className="relative w-full max-w-4xl">
+              <img
+                src="/iPhone_water_circular_exchange_e4541c3c.png"
+                alt="iPhone Water Circular Exchange"
+                className="w-full h-auto rounded-2xl shadow-2xl border border-hero-green-500/30"
+                style={{ maxHeight: '500px', objectFit: 'contain' }}
+                loading="eager"
+                data-testid="hero-main-image"
+                onError={(e) => {
+                  console.error('Image failed to load:', e);
+                  e.currentTarget.src = '/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png';
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent rounded-2xl pointer-events-none"></div>
+            </div>
+          </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
             <span className="block mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-lg">
