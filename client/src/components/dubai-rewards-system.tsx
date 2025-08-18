@@ -131,24 +131,49 @@ export function DubaiRewardsSystem() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center space-y-4"
+        className="text-center space-y-6 mb-8"
       >
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Dubai Sustainability Rewards
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Exclusive challenges and rewards for Dubai's Planet Heroes. Complete local missions, earn points, and unlock amazing experiences across the city.
-        </p>
+        <div className="bg-gradient-to-r from-hero-green-500/20 to-dubai-blue-500/20 border border-hero-green-500/30 rounded-2xl p-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            🏆 Dubai Sustainability Rewards
+          </h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
+            Exclusive challenges and rewards for Dubai's Planet Heroes. Complete local missions, earn points, and unlock amazing experiences across the city.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={() => setSelectedTab("challenges")}
+              className="bg-hero-green-500 hover:bg-hero-green-600 text-white font-bold px-8 py-3 text-lg"
+              data-testid="button-view-challenges"
+            >
+              View Dubai Challenges
+            </Button>
+            <Button 
+              onClick={() => setSelectedTab("rewards")}
+              variant="outline"
+              className="border-white text-white hover:bg-white/10 font-bold px-8 py-3 text-lg"
+              data-testid="button-view-rewards"
+            >
+              Browse Rewards
+            </Button>
+          </div>
+        </div>
       </motion.div>
 
       {/* Tabs */}
       <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-2 bg-white border">
-          <TabsTrigger value="challenges" className="flex items-center gap-2">
+        <TabsList className="grid w-full grid-cols-2 bg-black/20 border-gray-700 p-1">
+          <TabsTrigger 
+            value="challenges" 
+            className="flex items-center gap-2 text-white data-[state=active]:bg-hero-green-500 data-[state=active]:text-white"
+          >
             <Trophy className="h-4 w-4" />
             Dubai Challenges
           </TabsTrigger>
-          <TabsTrigger value="rewards" className="flex items-center gap-2">
+          <TabsTrigger 
+            value="rewards" 
+            className="flex items-center gap-2 text-white data-[state=active]:bg-dubai-blue-500 data-[state=active]:text-white"
+          >
             <Gift className="h-4 w-4" />
             Dubai Rewards
           </TabsTrigger>
@@ -183,23 +208,23 @@ export function DubaiRewardsSystem() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-blue-500">
+                    <Card className="h-full hover:shadow-xl transition-all duration-300 bg-black/20 border-gray-700 border-l-4 border-l-hero-green-500">
                       <CardHeader className="pb-3">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
-                            <div className={`p-2 rounded-lg ${getCategoryColor(challenge.category)} text-white`}>
-                              <Icon className="h-5 w-5" />
+                            <div className={`p-3 rounded-xl ${getCategoryColor(challenge.category)} text-white shadow-lg`}>
+                              <Icon className="h-6 w-6" />
                             </div>
                             <div>
-                              <CardTitle className="text-lg font-semibold">{challenge.title}</CardTitle>
+                              <CardTitle className="text-xl font-bold text-white mb-2">{challenge.title}</CardTitle>
                               <div className="flex items-center gap-2 mt-1">
                                 {challenge.targetZone && (
-                                  <Badge variant="outline" className="text-xs">
+                                  <Badge variant="outline" className="text-xs border-hero-green-500 text-hero-green-400">
                                     <MapPin className="h-3 w-3 mr-1" />
                                     {challenge.targetZone}
                                   </Badge>
                                 )}
-                                <Badge className="bg-green-100 text-green-800">
+                                <Badge className="bg-hero-green-500/20 text-hero-green-400 border border-hero-green-500">
                                   +{challenge.pointsReward} pts
                                 </Badge>
                               </div>
@@ -209,17 +234,25 @@ export function DubaiRewardsSystem() {
                       </CardHeader>
 
                       <CardContent className="space-y-4">
-                        <p className="text-gray-600 text-sm">{challenge.description}</p>
+                        <p className="text-gray-300 text-base leading-relaxed">{challenge.description}</p>
                         
-                        <div className="flex items-center justify-between text-sm text-gray-500">
+                        <div className="bg-hero-green-500/10 border border-hero-green-500/30 p-4 rounded-lg">
+                          <div className="text-hero-green-400 font-bold text-lg mb-1">
+                            🎁 Reward: {challenge.rewardItem}
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between text-sm text-gray-400">
                           <div className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            {formatTimeLeft(challenge.expiresAt.toString())}
+                            <Clock className="h-4 w-4 text-dubai-blue-500" />
+                            <span className="text-white font-medium">{formatTimeLeft(challenge.expiresAt.toString())}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <Users className="h-4 w-4" />
-                            {challenge.currentParticipants}
-                            {challenge.participantLimit && `/${challenge.participantLimit}`}
+                            <Users className="h-4 w-4 text-purple-500" />
+                            <span className="text-white font-medium">
+                              {challenge.currentParticipants}
+                              {challenge.participantLimit && `/${challenge.participantLimit}`}
+                            </span>
                           </div>
                         </div>
 
@@ -227,30 +260,24 @@ export function DubaiRewardsSystem() {
                           <div className="space-y-2">
                             <Progress 
                               value={(challenge.currentParticipants / challenge.participantLimit) * 100} 
-                              className="h-2"
+                              className="h-3 bg-gray-700"
                             />
                             {isNearCapacity && (
-                              <p className="text-xs text-amber-600 font-medium">
+                              <p className="text-xs text-amber-400 font-bold bg-amber-500/20 border border-amber-500/30 p-2 rounded">
                                 ⚡ Almost full! Join now to secure your spot
                               </p>
                             )}
                           </div>
                         )}
 
-                        <div className="flex items-center justify-between pt-2">
-                          <div className="text-sm font-medium text-gray-700">
-                            Reward: {challenge.rewardItem}
-                          </div>
-                          <Button 
-                            onClick={() => handleJoinChallenge(challenge.id)}
-                            disabled={joinChallenge.isPending}
-                            size="sm"
-                            className="bg-blue-600 hover:bg-blue-700"
-                            data-testid={`button-join-challenge-${challenge.id}`}
-                          >
-                            {joinChallenge.isPending ? "Joining..." : "Join Challenge"}
-                          </Button>
-                        </div>
+                        <Button 
+                          onClick={() => handleJoinChallenge(challenge.id)}
+                          disabled={joinChallenge.isPending}
+                          className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white font-bold py-3 text-lg"
+                          data-testid={`button-join-challenge-${challenge.id}`}
+                        >
+                          {joinChallenge.isPending ? "🔄 Joining..." : "🚀 Join Challenge Now"}
+                        </Button>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -294,65 +321,65 @@ export function DubaiRewardsSystem() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Card className="h-full hover:shadow-lg transition-shadow border-l-4 border-l-purple-500">
+                    <Card className="h-full hover:shadow-xl transition-all duration-300 bg-black/20 border-gray-700 border-l-4 border-l-dubai-blue-500">
                       <CardHeader className="pb-3">
                         <div className="flex items-start justify-between">
                           <div className="flex items-center gap-3">
-                            <div className={`p-2 rounded-lg ${getCategoryColor(reward.category)} text-white`}>
-                              <Icon className="h-5 w-5" />
+                            <div className={`p-3 rounded-xl ${getCategoryColor(reward.category)} text-white shadow-lg`}>
+                              <Icon className="h-6 w-6" />
                             </div>
                             <div className="flex-1">
-                              <CardTitle className="text-base font-semibold">{reward.title}</CardTitle>
-                              <p className="text-sm text-gray-500">by {reward.partner}</p>
+                              <CardTitle className="text-lg font-bold text-white">{reward.title}</CardTitle>
+                              <p className="text-sm text-gray-400">by {reward.partner}</p>
                             </div>
                           </div>
                         </div>
                       </CardHeader>
 
                       <CardContent className="space-y-4">
-                        <p className="text-gray-600 text-sm">{reward.description}</p>
+                        <p className="text-gray-300 text-sm leading-relaxed">{reward.description}</p>
                         
-                        <div className="space-y-2">
+                        <div className="bg-gradient-to-r from-dubai-blue-500/20 to-purple-500/20 border border-dubai-blue-500/30 p-4 rounded-lg space-y-2">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">Value:</span>
-                            <span className="text-lg font-bold text-green-600">
+                            <span className="text-sm font-medium text-gray-300">Value:</span>
+                            <span className="text-xl font-bold text-hero-green-400">
                               {formatValue(reward.value)}
                             </span>
                           </div>
                           
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">Cost:</span>
-                            <span className="text-lg font-bold text-blue-600">
+                            <span className="text-sm font-medium text-gray-300">Cost:</span>
+                            <span className="text-xl font-bold text-dubai-blue-400">
                               {reward.pointsCost} pts
                             </span>
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between text-sm text-gray-500">
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            {formatTimeLeft(reward.expiresAt.toString())}
+                        <div className="flex items-center justify-between text-sm">
+                          <div className="flex items-center gap-1 text-gray-400">
+                            <Clock className="h-4 w-4 text-dubai-blue-500" />
+                            <span className="text-white">{formatTimeLeft(reward.expiresAt.toString())}</span>
                           </div>
                           {reward.availableQuantity && (
-                            <div className="flex items-center gap-1">
-                              <Gift className="h-4 w-4" />
-                              {reward.availableQuantity - reward.claimedQuantity} left
+                            <div className="flex items-center gap-1 text-gray-400">
+                              <Gift className="h-4 w-4 text-purple-500" />
+                              <span className="text-white font-bold">{reward.availableQuantity - reward.claimedQuantity} left</span>
                             </div>
                           )}
                         </div>
 
                         {reward.zoneRestriction && (
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs border-gray-500 text-gray-300">
                             <MapPin className="h-3 w-3 mr-1" />
                             {reward.zoneRestriction} only
                           </Badge>
                         )}
 
                         {isLowStock && (
-                          <div className="bg-amber-50 border border-amber-200 rounded-md p-2">
-                            <p className="text-xs text-amber-700 font-medium flex items-center gap-1">
-                              <AlertCircle className="h-3 w-3" />
-                              Limited quantity remaining!
+                          <div className="bg-amber-500/20 border border-amber-500/50 rounded-lg p-3">
+                            <p className="text-sm text-amber-400 font-bold flex items-center gap-2">
+                              <AlertCircle className="h-4 w-4" />
+                              🔥 Limited quantity remaining!
                             </p>
                           </div>
                         )}
@@ -361,12 +388,12 @@ export function DubaiRewardsSystem() {
                           onClick={() => handleClaimReward(reward.id)}
                           disabled={claimReward.isPending || 
                             Boolean(reward.availableQuantity && reward.claimedQuantity >= reward.availableQuantity)}
-                          className="w-full bg-purple-600 hover:bg-purple-700"
+                          className="w-full bg-gradient-to-r from-dubai-blue-500 to-purple-600 hover:from-dubai-blue-600 hover:to-purple-700 text-white font-bold py-3 text-lg"
                           data-testid={`button-claim-reward-${reward.id}`}
                         >
-                          {claimReward.isPending ? "Claiming..." : 
+                          {claimReward.isPending ? "🔄 Claiming..." : 
                            (reward.availableQuantity && reward.claimedQuantity >= reward.availableQuantity) ? 
-                           "Sold Out" : "Claim Reward"}
+                           "❌ Sold Out" : "🎁 Claim Reward"}
                         </Button>
                       </CardContent>
                     </Card>

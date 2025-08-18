@@ -558,6 +558,21 @@ export class MemStorage implements IStorage {
         isActive: true,
         createdAt: new Date(),
         expiresAt: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "challenge-3",
+        title: "Dubai Creek Harbour Plastic-Free Mission",
+        description: "Transform Dubai Creek Harbour into a plastic-free zone with AquaCafe installations and community cleanup drives",
+        category: "water",
+        targetZone: "Dubai Creek Harbour",
+        pointsReward: 1000,
+        rewardItem: "AED 100 voucher + Creek Hero badge + FREE lunch",
+        timeLimit: 60,
+        participantLimit: 200,
+        currentParticipants: 45,
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
       }
     ];
 
