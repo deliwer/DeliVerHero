@@ -16,7 +16,7 @@ function OpportunitiesSection() {
   return (
     <section className="py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10">
+        <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 ring-4 ring-yellow-400/50 shadow-lg shadow-yellow-400/20">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Building className="w-8 h-8 text-emerald-400" />
