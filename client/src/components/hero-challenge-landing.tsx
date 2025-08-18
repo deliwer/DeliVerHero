@@ -265,9 +265,7 @@ export function HeroChallengeLanding() {
                   0 0 40px #10b981,
                   0 0 50px #10b981
                 `
-              }}>
-                Become a Planet Hero
-              </span>
+              }}>Prestige Health</span>
               
               {/* Animated sparkle overlay */}
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse opacity-50 skew-x-12 transform group-hover:animate-ping"></span>
