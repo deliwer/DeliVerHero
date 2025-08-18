@@ -270,7 +270,7 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
           <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
             <div className="flex-1 w-full">
               <img 
-                src="/attached_assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png" 
+                src="/attached_assets/Aquacafe_byDeliWer_Card_Corners_1755485915603.png" 
                 alt="AquaCafe Planet Heroes Membership Card" 
                 className="w-full max-w-sm sm:max-w-md mx-auto rounded-xl shadow-2xl"
               />
