@@ -77,3 +77,4 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - ✅ Security best practices implemented with client/server separation
 - ✅ **Migration completed successfully** - All systems operational
 - ✅ OpportunitiesSection repositioned above "Dubai Environmental Champions"
+- ✅ Enhanced tooltip system with user-controlled display and click-outside dismissal (August 18, 2025)
