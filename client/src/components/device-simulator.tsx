@@ -48,10 +48,10 @@ export function DeviceSimulator({ onCalculation }: DeviceSimulatorProps) {
         </p>
       </div>
       
-      <div className="grid lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-8">
         {/* Device Selection Side */}
         <div className="flex flex-col items-center">
-          <div className="grid md:grid-cols-2 gap-6 items-center mb-8 w-full max-w-lg">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 items-center mb-8 w-full max-w-lg">
             {/* Device Selection */}
             <div className="text-center" data-testid="device-selection">
               <div className="bg-slate-700 rounded-xl p-6 mb-4 hover:bg-slate-600 transition-colors">

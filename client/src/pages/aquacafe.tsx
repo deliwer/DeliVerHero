@@ -156,21 +156,21 @@ export default function AquaCafe() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left: Value Proposition */}
             <div className="text-center lg:text-left">
-              <div className="mb-6">
-                <div className="inline-flex items-center bg-hero-green-500/20 border border-hero-green-500/50 rounded-full px-6 py-3 mb-4">
-                  <Award className="w-5 h-5 text-hero-green-500 mr-2" />
-                  <span className="text-hero-green-500 font-bold">PLANET HERO PROGRAM ENTRY</span>
+              <div className="mb-4 lg:mb-6">
+                <div className="inline-flex items-center bg-hero-green-500/20 border border-hero-green-500/50 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-3 sm:mb-4">
+                  <Award className="w-4 sm:w-5 h-4 sm:h-5 text-hero-green-500 mr-2" />
+                  <span className="text-hero-green-500 font-bold text-sm sm:text-base">PLANET HERO PROGRAM ENTRY</span>
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-3 sm:mb-4 leading-tight">
                   <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
                     AED 99
                   </span>
                   <br />
-                  <span className="text-3xl md:text-4xl text-gray-200">Starter Kit</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-200">Starter Kit</span>
                 </h1>
                 
                 <div className="relative mb-6 group">

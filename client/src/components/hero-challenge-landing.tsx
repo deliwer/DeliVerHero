@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DeviceSimulator } from "./device-simulator";
 import { DeliAIInput } from "./deli-ai-input";
@@ -106,8 +106,8 @@ export function HeroChallengeLanding() {
             <span className="text-white font-medium">WELCOME TO MISSION: SAVE DUBAI 2030</span>
           </div>
           
-          <h1 className="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
-            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-[36px]">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight" data-testid="hero-challenge-title">
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent text-2xl sm:text-3xl md:text-4xl">
               <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
             </span>
             <br />
@@ -127,7 +127,7 @@ export function HeroChallengeLanding() {
               </span>
               
               {/* Main text with neon effect */}
-              <span className="relative text-white font-black tracking-widest text-shadow-neon px-6 py-3 block z-10" style={{
+              <span className="relative text-white font-black tracking-wider sm:tracking-widest text-shadow-neon px-3 sm:px-6 py-2 sm:py-3 block z-10" style={{
                 textShadow: `
                   0 0 5px #10b981,
                   0 0 10px #10b981,
@@ -145,7 +145,7 @@ export function HeroChallengeLanding() {
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse opacity-50 skew-x-12 transform group-hover:animate-ping"></span>
             </span>
             <br />
-            <span className="text-gray-300 text-[36px]">complete missions, save money</span>
+            <span className="text-gray-300 text-xl sm:text-2xl md:text-3xl lg:text-4xl">complete missions, save money</span>
           </h1>
         </div>
 
@@ -178,9 +178,9 @@ export function HeroChallengeLanding() {
 
         {/* Final CTA Buttons */}
         <div className="text-center">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6">
             <Link href="/">
-              <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-12 py-4 rounded-xl font-bold text-xl transform hover:scale-105 transition-all" data-testid="button-check-value">
+              <Button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-6 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl transform hover:scale-105 transition-all" data-testid="button-check-value">
                 <Zap className="mr-2 w-6 h-6" />
                 CHECK YOUR TRADE-IN VALUE NOW
               </Button>
@@ -188,7 +188,7 @@ export function HeroChallengeLanding() {
             <Link href="/leaderboard">
               <Button 
                 variant="outline" 
-                className="border-2 border-hero-green-500 text-hero-green-500 hover:bg-hero-green-500 hover:text-white px-12 py-4 rounded-xl font-bold text-xl transition-all"
+                className="border-2 border-hero-green-500 text-hero-green-500 hover:bg-hero-green-500 hover:text-white px-6 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl transition-all"
                 data-testid="button-join-heroes"
               >
                 <Users className="mr-2 w-6 h-6" />
@@ -222,7 +222,7 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
       </div>
 
       {/* Top Environmental Champions */}
-      <div className="grid md:grid-cols-3 gap-4 mb-8">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-8">
         <div className="flex items-center p-4 bg-slate-700/30 rounded-lg border border-emerald-600/30">
           <div className="flex items-center mr-4">
             <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -263,8 +263,90 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
         </div>
       </div>
 
+      {/* Planet Heroes Membership Card */}
+      <div className="mb-8 text-center">
+        <div className="bg-gradient-to-r from-pink-600/20 to-purple-600/20 border border-pink-500/30 rounded-2xl p-6 mb-6">
+          <h3 className="text-xl font-bold text-white mb-4">🏆 Exclusive Planet Heroes Membership</h3>
+          <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
+            <div className="flex-1 w-full">
+              <img 
+                src="/attached_assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png" 
+                alt="AquaCafe Planet Heroes Membership Card" 
+                className="w-full max-w-sm sm:max-w-md mx-auto rounded-xl shadow-2xl"
+              />
+            </div>
+            <div className="flex-1 text-left w-full">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex items-center text-emerald-400">
+                  <Gift className="w-5 h-5 mr-2" />
+                  <span className="font-semibold">FREE AquaCafe Hair Shower Filter (AED 399 value)</span>
+                </div>
+                <div className="flex items-center text-pink-400">
+                  <Star className="w-5 h-5 mr-2" />
+                  <span className="font-semibold">Exclusive #SAYNOTO PLASTIC Campaign Member</span>
+                </div>
+                <div className="flex items-center text-blue-400">
+                  <Shield className="w-5 h-5 mr-2" />
+                  <span className="font-semibold">FREE Premium Demo & Installation</span>
+                </div>
+                <div className="flex items-center text-yellow-400">
+                  <Zap className="w-5 h-5 mr-2" />
+                  <span className="font-semibold">Young & Healthy with Water Program Access</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* FREE Gift Showcase */}
+      <div className="mb-8">
+        <div className="bg-gradient-to-br from-blue-600/20 via-cyan-600/20 to-teal-600/20 border border-cyan-500/30 rounded-2xl p-6">
+          <div className="text-center mb-4">
+            <div className="inline-flex items-center bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2 mb-3">
+              <Gift className="w-5 h-5 text-red-400 mr-2" />
+              <span className="text-red-400 font-bold">FREE GIFT WITH MEMBERSHIP</span>
+            </div>
+            <h3 className="text-xl font-bold text-white">AquaCafe Hair Shower Filter</h3>
+            <p className="text-cyan-300">Transform your daily routine with premium filtered water</p>
+          </div>
+          <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
+            <div className="flex-1 w-full">
+              <img 
+                src="/attached_assets/washing-face-01 (1)_1755482888902.jpg" 
+                alt="AquaCafe Hair Shower Filter - Free Gift" 
+                className="w-full max-w-sm sm:max-w-md mx-auto rounded-xl shadow-2xl"
+              />
+            </div>
+            <div className="flex-1 text-left w-full space-y-3 sm:space-y-4">
+              <div className="text-white">
+                <h4 className="font-bold text-lg mb-2">✨ Premium Benefits:</h4>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
+                    Removes chlorine & harmful chemicals
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
+                    Softer, healthier hair & skin
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
+                    Easy installation with beautiful design
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
+                    Worth AED 399 - yours FREE as Planet Hero
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Founding Hero Benefits */}
-      <div className="grid md:grid-cols-3 gap-4 mb-6">
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-6">
         <div className="flex items-center p-4 bg-amber-500/10 rounded-lg border border-amber-500/30">
           <Zap className="w-6 h-6 text-amber-500 mr-3 flex-shrink-0" />
           <div>
