@@ -1,0 +1,101 @@
+1. Core Value Stack
+Your “Why this exists” + “Why it’s irresistible” in one package.
+
+Tagline:
+
+“Trade your old iPhone for AED 1,000+ in premium water — become a Dubai Planet Hero.”
+
+Key Pillars:
+
+Instant Tangible Reward: Premium AquaCafe water starter kit on the spot.
+
+Massive Social Status: Public leaderboard + Hero badge.
+
+Environmental Impact: CO₂ savings + plastic reduction, tracked live.
+
+Zero-Risk Process: AI calculates value instantly, live inspection ensures trust.
+
+2. User Journey Funnel
+Step 1 — Awareness:
+
+PR headlines + influencer posts: “Dubai startup swaps your phone for water.”
+
+Street-level co-marketing: Posters at gyms, cafés, and eco-markets with QR to Hero signup.
+
+Step 2 — Curiosity Hook:
+
+QR or link lands on Hero Challenge landing page (headless Shopify).
+
+Countdown timer + leaderboard + “Only 100 Founding Hero spots.”
+
+Step 3 — AI Concierge:
+
+User chats with embedded AI agent:
+
+Asks what phone they have.
+
+Instantly calculates trade-in reward.
+
+Books pick-up/drop-off time.
+
+Generates personalized “Hero Profile.”
+
+Step 4 — Conversion Trigger:
+
+Limited Hero spots visible (social proof + scarcity).
+
+“Double reward if you join before midnight” banners.
+
+Step 5 — Fulfillment & Share Loop:
+
+Trade-in completed → user receives Hero Kit → AI generates:
+
+Personalized impact story (“You saved 312 bottles of plastic”).
+
+Shareable badge + video clip for Instagram/TikTok.
+
+Referrals bump them up leaderboard.
+
+3. Tech + Shopify Headless Build
+Base Stack:
+
+Shopify (products, checkout, fulfillment).
+
+Headless storefront (Next.js / Hydrogen for speed + control).
+
+Embedded AI Concierge (OpenAI API / Shopify Functions for instant calculations).
+
+Airtable / Firebase for leaderboard + impact tracking.
+
+Key Pages:
+
+Hero Challenge Landing Page — countdown, leaderboard, join button.
+
+AI Concierge Widget — conversational trade-in process.
+
+Impact Dashboard — real-time liters saved + CO₂ avoided.
+
+Founding Hero Wall — profile pics & ranks.
+
+4. Gamification Layer
+Game Mechanics:
+
+Leaderboard — points from:
+
+Trade-in (base points).
+
+Referrals (bonus points).
+
+Social shares (AI scans and awards points).
+
+Founding Hero Perks:
+
+Lifetime double points on future rewards.
+
+Priority access to limited edition perks.
+
+Story Mode:
+
+AI narrator builds your “Planet Hero Saga.”
+
+Each stage unlocked with new eco actions.
