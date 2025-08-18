@@ -20,164 +20,119 @@ function OpportunitiesSection() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-3 mb-4">
               <Building className="w-8 h-8 text-emerald-400" />
-              <h2 className="text-3xl font-bold text-white">JOIN THE MOVEMENT</h2>
+              <h2 className="text-3xl font-bold text-white">BEYOND ETISALAT & DU</h2>
               <Handshake className="w-8 h-8 text-blue-400" />
             </div>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-              Multiple ways to contribute to Dubai's environmental transformation
+              World's first cross-category trade platform. While others stay in electronics, we connect your iPhone to life essentials.
             </p>
           </div>
           
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
-            {/* Partnership Opportunities */}
-            <div className="glass rounded-2xl p-6 border border-emerald-500/30 bg-emerald-600/5">
-              <div className="text-center mb-4">
-                <Building className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-white mb-2">PARTNER WITH US</h3>
-                <p className="text-gray-300 text-sm">Organizations & businesses</p>
-              </div>
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Active Partners</span>
-                  <span className="text-emerald-400 font-bold">50+</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Funded Missions</span>
-                  <span className="text-emerald-400 font-bold">200+</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Total Investment</span>
-                  <span className="text-emerald-400 font-bold">AED 50K+</span>
-                </div>
-              </div>
-              <Link
-                href="/partners"
-                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
-                data-testid="button-become-partner"
-              >
-                Become a Partner
-              </Link>
-            </div>
-
-            {/* Sponsorship Opportunities */}
-            <div className="glass rounded-2xl p-6 border border-blue-500/30 bg-blue-600/5">
-              <div className="text-center mb-4">
-                <Heart className="w-10 h-10 text-blue-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-white mb-2">SPONSOR MISSIONS</h3>
-                <p className="text-gray-300 text-sm">Fund environmental challenges</p>
-              </div>
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Bronze Tier</span>
-                  <span className="text-blue-400 font-bold">AED 500</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Silver Tier</span>
-                  <span className="text-blue-400 font-bold">AED 2K</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Gold & Platinum</span>
-                  <span className="text-blue-400 font-bold">AED 5K+</span>
-                </div>
-              </div>
-              <Link
-                href="/sponsorships"
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
-                data-testid="button-sponsor-mission"
-              >
-                Sponsor a Mission
-              </Link>
-            </div>
-
-            {/* Ambassador Program */}
+            {/* iPhone Trade Advantage */}
             <div className="glass rounded-2xl p-6 border border-amber-500/30 bg-amber-600/5">
               <div className="text-center mb-4">
-                <Users className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-white mb-2">BECOME AMBASSADOR</h3>
-                <p className="text-gray-300 text-sm">Earn while making impact</p>
+                <Building className="w-10 h-10 text-amber-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">iPHONE TRADE LEADERS</h3>
+                <p className="text-gray-300 text-sm">Cross-category advantage</p>
               </div>
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Starter Kit Commission</span>
-                  <span className="text-amber-400 font-bold">35%</span>
+                  <span className="text-gray-400">vs Etisalat/Du</span>
+                  <span className="text-amber-400 font-bold">+Water Systems</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Trade-in Commission</span>
-                  <span className="text-amber-400 font-bold">25%</span>
+                  <span className="text-gray-400">Trade Categories</span>
+                  <span className="text-amber-400 font-bold">Cross-Category</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Monthly Potential</span>
-                  <span className="text-amber-400 font-bold">AED 4,200+</span>
+                  <span className="text-gray-400">Global First</span>
+                  <span className="text-amber-400 font-bold">iPhone→Water</span>
+                </div>
+              </div>
+              <Link
+                href="/"
+                className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                data-testid="button-trade-iphone"
+              >
+                Trade iPhone Now
+              </Link>
+            </div>
+
+            {/* Gitex Launch Special */}
+            <div className="glass rounded-2xl p-6 border border-hero-green-500/30 bg-hero-green-600/5">
+              <div className="text-center mb-4">
+                <Heart className="w-10 h-10 text-hero-green-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">GITEX 2025 LAUNCH</h3>
+                <p className="text-gray-300 text-sm">iPhone 17 cash preparation</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Trade Now</span>
+                  <span className="text-hero-green-400 font-bold">Get Cash</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">iPhone 17 Launch</span>
+                  <span className="text-hero-green-400 font-bold">First in Line</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Water Systems</span>
+                  <span className="text-hero-green-400 font-bold">Included</span>
+                </div>
+              </div>
+              <Link
+                href="/"
+                className="w-full bg-hero-green-600 hover:bg-hero-green-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                data-testid="button-gitex-launch"
+              >
+                Join Launch Campaign
+              </Link>
+            </div>
+
+            {/* Media Story */}
+            <div className="glass rounded-2xl p-6 border border-purple-500/30 bg-purple-600/5">
+              <div className="text-center mb-4">
+                <Users className="w-10 h-10 text-purple-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-white mb-2">MEDIA SPOTLIGHT</h3>
+                <p className="text-gray-300 text-sm">Revolutionary trade story</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Global First</span>
+                  <span className="text-purple-400 font-bold">Cross-Category</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Market Disruption</span>
+                  <span className="text-purple-400 font-bold">Beyond Telcos</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-400">Rally Story</span>
+                  <span className="text-purple-400 font-bold">iPhone→Water</span>
                 </div>
               </div>
               <button
                 onClick={() => {
-                  const affiliateSignupLink = `https://deliwer.com/partners?ref=AMBASSADOR${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
-                  const shareText = `💰 Become a DeliWer Ambassador! Earn AED 4,200+ monthly promoting sustainable tech trades and Bakers Kitchen AED100 Kangen Water vouchers. Join the program: ${affiliateSignupLink}`;
+                  const mediaKit = `https://deliwer.com/media-kit?story=iphone-water-trade`;
+                  const shareText = `📰 BREAKING: World's first iPhone-to-Water trade platform launches at GITEX 2025! DeliWer disrupts Etisalat/Du with cross-category trading. Media kit: ${mediaKit}`;
                   
                   if (navigator.share) {
-                    navigator.share({ 
-                      title: 'Join DeliWer Ambassador Program', 
-                      text: shareText, 
-                      url: affiliateSignupLink 
-                    });
+                    navigator.share({ title: 'DeliWer Media Story', text: shareText, url: mediaKit });
                   } else {
                     navigator.clipboard.writeText(shareText);
-                    window.open('/partners?utm_source=home&utm_medium=ambassador_cta&utm_campaign=signup', '_blank');
                   }
                 }}
-                className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center"
-                data-testid="button-join-ambassadors"
-              >Join Ambassadors</button>
+                className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center"
+                data-testid="button-media-kit"
+              >
+                Download Media Kit
+              </button>
             </div>
           </div>
           
           <div className="text-center space-y-4">
             <p className="text-gray-400 text-sm">
-              🤝 Multiple partnership models available • 📈 Performance-based rewards • 🌍 Measurable environmental impact
+              🤝 Cross-category trade advantage • 📈 iPhone 17 launch campaign • 🌍 Media ready sustainability story
             </p>
-            
-            {/* Additional Ambassador CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <button
-                onClick={() => {
-                  const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in becoming an Ambassador for DeliWer. Can you share more details about the AED 4,200+ monthly earning potential and the Bakers Kitchen partnership program?`;
-                  const shareText = `💬 Get instant info on DeliWer Ambassador Program! WhatsApp for AED 4,200+ earning details: ${whatsappLink}`;
-                  
-                  if (navigator.share) {
-                    navigator.share({ title: 'Ambassador Program Info', text: shareText, url: whatsappLink });
-                  } else {
-                    window.open(whatsappLink, '_blank');
-                  }
-                }}
-                className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-              >
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.515z"/>
-                </svg>
-                WhatsApp Info
-              </button>
-              
-              <button
-                onClick={() => {
-                  const videoLink = 'https://deliwer.com/ambassador-training?ref=HOME_CTA';
-                  const shareText = `🎬 Watch how to earn AED 4,200+ monthly as DeliWer Ambassador! Free training video: ${videoLink}`;
-                  
-                  if (navigator.share) {
-                    navigator.share({ title: 'Ambassador Training Video', text: shareText, url: videoLink });
-                  } else {
-                    navigator.clipboard.writeText(shareText);
-                    alert('Training link copied! Share with friends to earn referral bonuses.');
-                  }
-                }}
-                className="inline-flex items-center border border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-              >
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-                Watch Training
-              </button>
-            </div>
           </div>
         </div>
       </div>
