@@ -226,17 +226,31 @@ export function HeroChallengeLanding() {
     <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
       {/* iPhone Water Circular Exchange Background */}
       <div className="absolute inset-0">
-        {/* Subtle Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+        {/* Main Hero Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+          }}
+        />
         
-        {/* Minimal gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-slate-900/20"></div>
+        {/* Overlay pattern with original colors */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(34,197,94,0.3)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(59,130,246,0.3)_0%,transparent_50%)]"></div>
+        </div>
         
         {/* Animated floating elements */}
         <div className="absolute top-10 right-10 w-20 h-20 bg-hero-green-500/10 rounded-full blur-xl animate-float"></div>
         <div className="absolute top-32 left-10 w-16 h-16 bg-blue-500/10 rounded-full blur-lg animate-float-delayed"></div>
         <div className="absolute bottom-32 right-32 w-24 h-24 bg-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
         <div className="absolute bottom-20 left-20 w-12 h-12 bg-amber-500/10 rounded-full blur-lg animate-bounce-slow"></div>
+        
+        {/* Subtle brand accent gradients without dark overlay */}
+        <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/10 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/10 to-transparent"></div>
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -247,17 +261,7 @@ export function HeroChallengeLanding() {
             <span className="text-white font-semibold tracking-wide">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
           </div>
           
-          {/* Hero Image - Responsive and Properly Sized */}
-          <div className="mb-8">
-            <OptimizedImage
-              src="/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png"
-              alt="iPhone Water Circular Exchange"
-              className="mx-auto max-w-full h-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl rounded-2xl shadow-2xl"
-              sizes="(max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 70vw, (max-width: 1280px) 60vw, 50vw"
-              priority={true}
-              quality={90}
-            />
-          </div>
+
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
             <span className="block mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-lg">
