@@ -226,17 +226,8 @@ export function HeroChallengeLanding() {
     <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
       {/* iPhone Water Circular Exchange Background */}
       <div className="absolute inset-0">
-        {/* Main Hero Background Image - Responsive Sizing */}
-        <div className="absolute inset-0">
-          <OptimizedImage
-            src="/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png"
-            alt="iPhone Water Circular Exchange"
-            className="w-full h-full object-contain sm:object-cover"
-            sizes="100vw"
-            priority={true}
-            quality={90}
-          />
-        </div>
+        {/* Subtle Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
         
         {/* Minimal gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-slate-900/20"></div>
@@ -254,6 +245,18 @@ export function HeroChallengeLanding() {
           <div className="inline-flex items-center bg-slate-800/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-hero-green-500/50 shadow-lg">
             <Star className="w-5 h-5 text-hero-green-400 mr-2" />
             <span className="text-white font-semibold tracking-wide">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
+          </div>
+          
+          {/* Hero Image - Responsive and Properly Sized */}
+          <div className="mb-8">
+            <OptimizedImage
+              src="/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png"
+              alt="iPhone Water Circular Exchange"
+              className="mx-auto max-w-full h-auto w-full max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl rounded-2xl shadow-2xl"
+              sizes="(max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 70vw, (max-width: 1280px) 60vw, 50vw"
+              priority={true}
+              quality={90}
+            />
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
