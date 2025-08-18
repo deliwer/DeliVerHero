@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 import { DeviceSimulator } from "./device-simulator";
 import { DeliAIInput } from "./deli-ai-input";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
+import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
 import { Link } from "wouter";
 import heroImage from "@assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png";
 
@@ -218,20 +220,23 @@ function OpportunitiesSection() {
 
 export function HeroChallengeLanding() {
   const { data: stats } = useImpactStats();
+  const { isRegistered } = useImageServiceWorker();
   
   return (
     <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
       {/* iPhone Water Circular Exchange Background */}
       <div className="absolute inset-0">
         {/* Main Hero Background Image - Responsive Sizing */}
-        <div 
-          className="absolute inset-0 bg-contain sm:bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png')`,
-            backgroundSize: 'contain',
-            backgroundPosition: 'center center',
-          }}
-        />
+        <div className="absolute inset-0">
+          <OptimizedImage
+            src="/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png"
+            alt="iPhone Water Circular Exchange"
+            className="w-full h-full object-contain sm:object-cover"
+            sizes="100vw"
+            priority={true}
+            quality={90}
+          />
+        </div>
         
         {/* Minimal gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-slate-900/20"></div>
@@ -649,10 +654,13 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
           <h3 className="text-xl font-bold text-white mb-4">🏆 Exclusive Planet Heroes Membership</h3>
           <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
             <div className="flex-1 w-full">
-              <img 
-                src="/attached_assets/Aquacafe_byDeliWer_Card_Corners_1755485915603.png" 
-                alt="AquaCafe Planet Heroes Membership Card" 
+              <OptimizedImage
+                src="/attached_assets/Aquacafe_byDeliWer_Card_Corners_1755485915603.png"
+                alt="AquaCafe Planet Heroes Membership Card"
                 className="w-full max-w-sm sm:max-w-md mx-auto rounded-xl shadow-2xl"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority={false}
+                quality={85}
               />
             </div>
             <div className="flex-1 text-left w-full">
@@ -692,10 +700,13 @@ function FoundingHeroesSection({ stats }: { stats: any }) {
           </div>
           <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6">
             <div className="flex-1 w-full">
-              <img 
-                src="/attached_assets/washing-face-01 (1)_1755485447693.jpg" 
-                alt="AquaCafe Hair Shower Filter - Free Gift" 
+              <OptimizedImage
+                src="/attached_assets/washing-face-01 (1)_1755485447693.jpg"
+                alt="AquaCafe Hair Shower Filter - Free Gift"
                 className="w-full max-w-sm sm:max-w-md mx-auto rounded-xl shadow-2xl"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority={false}
+                quality={80}
               />
             </div>
             <div className="flex-1 text-left w-full space-y-3 sm:space-y-4">

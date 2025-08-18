@@ -8,6 +8,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
 import { TooltipManager } from "@/components/tooltip-manager";
+import { ImagePerformanceMonitor } from "@/components/image-performance-monitor";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
 import Home from "@/pages/home";
@@ -65,6 +66,7 @@ function App() {
         </div>
         <Toaster />
         <TooltipManager />
+        <ImagePerformanceMonitor />
       </TooltipProvider>
     </QueryClientProvider>
   );
