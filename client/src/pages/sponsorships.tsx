@@ -174,7 +174,7 @@ export default function SponsorshipsPage() {
 
         {/* Sponsorship Tiers */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-center mb-8 bg-[#004bcc00]">Choose Your Sponsorship Level</h2>
+          <h2 className="text-2xl font-bold text-center mb-8 bg-[#2ca4c7]">Choose Your Sponsorship Level</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {(tiers as SponsorshipTier[] || []).map((tier: SponsorshipTier) => (
               <Card 
