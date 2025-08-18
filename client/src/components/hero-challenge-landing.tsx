@@ -111,7 +111,14 @@ export function HeroChallengeLanding() {
               <span className="line-through opacity-60 text-[#ffffff]">Dubai's</span> World's First Sustainability Game
             </span>
             <br />
-            <span className="text-hero-green-500 text-glow">Become a Planet Hero</span>
+            <span className="relative inline-block group">
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-2xl opacity-80 animate-pulse group-hover:opacity-100 transition-opacity"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 blur-sm opacity-60 animate-ping"></span>
+              <span className="relative bg-gradient-to-r from-hero-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent font-black tracking-wider drop-shadow-2xl">
+                Become a Planet Hero
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-hero-green-400/30 via-emerald-400/30 to-cyan-400/30 rounded-lg animate-pulse"></span>
+            </span>
             <br />
             <span className="text-gray-300 text-[36px]">complete missions, save money</span>
           </h1>
