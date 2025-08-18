@@ -255,11 +255,6 @@ export function HeroChallengeLanding() {
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
-            <span className="block mb-2">
-              <span className="bg-gradient-to-r from-hero-green-400 to-emerald-400 bg-clip-text text-transparent">
-                ReFlow:
-              </span>
-            </span>
             <span className="block mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               From iPhones to Water,
             </span>
