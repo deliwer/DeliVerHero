@@ -1,4 +1,5 @@
-import { Star, Bot, MapPin, Timer, UserPlus } from "lucide-react";
+import { Star, Bot, MapPin, Timer, UserPlus, Recycle, Droplets } from "lucide-react";
+import heroImage from "@assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
@@ -63,14 +64,47 @@ export function HeroSection() {
           
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Trade Your iPhone for Clean Water
+              From iPhones to Water, a Circular Exchange
             </h1>
             <h2 className="text-xl md:text-2xl text-hero-green-400 mb-4 font-bold">
-              World's First Cross-Category Trade Platform
+              Saving Emissions • Reuse ↔ Reflow • Save Money & Planet
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
-              Get iPhone 17 launch cash + premium AquaCafe water systems. The revolutionary trade that beats Etisalat & Du by going beyond electronics into life essentials.
+              Dubai's electronics trade hub meets water scarcity innovation. Transform your iPhone into premium water systems while reducing e-waste and supporting circular economy.
             </p>
+          </div>
+
+          {/* Hero Image - Circular Exchange Visualization */}
+          <div className="mb-12 relative">
+            <div className="max-w-4xl mx-auto">
+              <img 
+                src={heroImage} 
+                alt="iPhone to water circular exchange concept showing reuse and reflow cycle"
+                className="w-full h-auto rounded-2xl shadow-2xl border border-hero-green-500/30"
+                data-testid="hero-circular-exchange-image"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+            </div>
+            
+            {/* Value Proposition Overlay */}
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="glass-light rounded-xl p-4 border border-hero-green-500/50">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <div className="text-amber-400 font-bold text-lg">Reuse</div>
+                    <div className="text-gray-300 text-sm">iPhone Refurbishment</div>
+                  </div>
+                  <div>
+                    <div className="text-hero-green-400 font-bold text-lg">↔</div>
+                    <div className="text-gray-300 text-sm">Circular Exchange</div>
+                  </div>
+                  <div>
+                    <div className="text-dubai-blue-400 font-bold text-lg">Reflow</div>
+                    <div className="text-gray-300 text-sm">Clean Water Systems</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
           {/* iPhone 17 Launch Campaign */}
@@ -80,10 +114,10 @@ export function HeroSection() {
                 <span className="text-amber-400 font-bold text-sm">🚀 GITEX 2025 EXCLUSIVE LAUNCH</span>
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                iPhone 17 Launch Cash Ready
+                Dubai's Circular Economy Innovation
               </h3>
               <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                Trade your current iPhone now, get cash + water systems, and be first in line for iPhone 17 with your upgrade credit
+                Leverage Dubai Airport Freezone electronics hub + address water scarcity through sustainable tech-to-water exchange
               </p>
             </div>
 
@@ -98,16 +132,16 @@ export function HeroSection() {
                 onClick={() => setSelectedPath('trade')}
               >
                 <h3 className="text-xl font-bold text-white mb-3 flex items-center">
-                  <Timer className="w-5 h-5 text-amber-500 mr-2" />
+                  <Recycle className="w-5 h-5 text-amber-500 mr-2" />
                   📱 iPhone → 💰 Cash + 💧 Water
                 </h3>
-                <p className="text-gray-300 mb-4">Get instant trade value for any iPhone model PLUS premium AquaCafe water systems</p>
+                <p className="text-gray-300 mb-4">Dubai Airport Freezone electronics expertise meets water innovation. Sustainable refurbishment creates value for life essentials.</p>
                 <div className="bg-amber-500/20 border border-amber-500/30 rounded-lg p-3 mb-4">
                   <div className="text-amber-400 font-bold">iPhone 15 Pro Max: Up to AED 1,500</div>
                   <div className="text-amber-400 font-bold">iPhone 14 Pro: Up to AED 1,200</div>
                   <div className="text-amber-400 font-bold">iPhone 13: Up to AED 900</div>
                 </div>
-                <div className="text-amber-500 font-semibold">⚡ Cross-category advantage vs competitors</div>
+                <div className="text-amber-500 font-semibold">⚡ Dubai's first tech-to-water circular exchange</div>
               </div>
 
               {/* Water System Value */}
@@ -120,16 +154,16 @@ export function HeroSection() {
                 onClick={() => setSelectedPath('rewards')}
               >
                 <h3 className="text-xl font-bold text-white mb-3 flex items-center">
-                  <Star className="w-5 h-5 text-hero-green-500 mr-2" />
+                  <Droplets className="w-5 h-5 text-hero-green-500 mr-2" />
                   💧 AquaCafe Water Systems
                 </h3>
-                <p className="text-gray-300 mb-4">Premium water filtration + alkalization delivered to your Dubai home</p>
+                <p className="text-gray-300 mb-4">Address Dubai's water scarcity with advanced filtration. Transform tech trade into home health solutions.</p>
                 <div className="bg-hero-green-500/20 border border-hero-green-500/30 rounded-lg p-3 mb-4">
                   <div className="text-hero-green-400 font-bold">🚿 Shower Filter: AED 299 value</div>
                   <div className="text-hero-green-400 font-bold">🥤 Drinking System: AED 799 value</div>
                   <div className="text-hero-green-400 font-bold">🏠 Whole Home: AED 1,999 value</div>
                 </div>
-                <div className="text-hero-green-500 font-semibold">🏆 Health + sustainability in one trade</div>
+                <div className="text-hero-green-500 font-semibold">🏆 Solving water scarcity through tech reuse</div>
               </div>
             </div>
 
@@ -147,7 +181,7 @@ export function HeroSection() {
                     📱 Trade iPhone for Water + Cash
                   </Button>
                   <div className="text-center text-gray-300">
-                    <span className="text-amber-400 font-bold">DeliWer Advantage:</span> First cross-category trade platform globally
+                    <span className="text-amber-400 font-bold">Circular Innovation:</span> Electronics expertise → Water sustainability solutions
                   </div>
                   {hasCompletedOnboarding && (
                     <Link href="/">
@@ -170,7 +204,7 @@ export function HeroSection() {
                     💧 Get AquaCafe Water System
                   </Button>
                   <div className="text-center text-gray-300">
-                    <span className="text-hero-green-400 font-bold">Health Impact:</span> Premium water filtration for your Dubai home
+                    <span className="text-hero-green-400 font-bold">Sustainability Impact:</span> Reducing e-waste while improving water quality
                   </div>
                   {hasCompletedOnboarding && (
                     <Link href="/leaderboard">
