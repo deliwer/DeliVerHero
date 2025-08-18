@@ -223,22 +223,24 @@ export function HeroChallengeLanding() {
     <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
       {/* iPhone Water Circular Exchange Background */}
       <div className="absolute inset-0">
-        {/* Main Hero Background Image */}
+        {/* Main Hero Background Image - Responsive Sizing */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-contain sm:bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
+            backgroundImage: `url('/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png')`,
+            backgroundSize: 'contain',
             backgroundPosition: 'center center',
           }}
         />
         
-        {/* Light gradient overlay for text readability - keeping minimal */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-transparent to-slate-900/40"></div>
+        {/* Minimal gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-slate-900/20"></div>
         
-        {/* Subtle brand accent gradients */}
-        <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/15 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/15 to-transparent"></div>
+        {/* Animated floating elements */}
+        <div className="absolute top-10 right-10 w-20 h-20 bg-hero-green-500/10 rounded-full blur-xl animate-float"></div>
+        <div className="absolute top-32 left-10 w-16 h-16 bg-blue-500/10 rounded-full blur-lg animate-float-delayed"></div>
+        <div className="absolute bottom-32 right-32 w-24 h-24 bg-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
+        <div className="absolute bottom-20 left-20 w-12 h-12 bg-amber-500/10 rounded-full blur-lg animate-bounce-slow"></div>
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
