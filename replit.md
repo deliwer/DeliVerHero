@@ -89,3 +89,6 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - ✅ Navigation simplified: "Shop AquaCafe" changed to "Shop" for cleaner menu (August 19, 2025)
 - ✅ Sponsorship page merged into Partners page for unified partnership experience
 - ✅ "Share & Join Heroes" button removed from navigation to streamline user interface
+- ✅ "Trade iPhone" menu item removed from navigation (August 19, 2025)
+- ✅ "Impact & Rewards" renamed to "Rewards" and repositioned before "Partners" for better flow
+- ✅ "Get My Trade Value" button updated to scroll to Meet Deli interactive section with input focus
