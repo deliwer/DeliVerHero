@@ -254,21 +254,17 @@ export function HeroChallengeLanding() {
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Clean Mission Header */}
-        <div className="text-center mb-16" data-testid="challenge-header">
-          <div className="inline-flex items-center bg-slate-800/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-hero-green-500/50 shadow-lg">
-            <Star className="w-5 h-5 text-hero-green-400 mr-2" />
-            <span className="text-white font-semibold tracking-wide">DUBAI'S CIRCULAR EXCHANGE PLATFORM</span>
-          </div>
+        {/* Simplified Hero Section */}
+        <div className="text-center mb-12" data-testid="challenge-header">
           
-          {/* Hero Image - Prominently Displayed */}
-          <div className="mb-12 flex justify-center">
-            <div className="relative w-full max-w-4xl">
+          {/* Hero Image - Central Focus */}
+          <div className="mb-8 flex justify-center">
+            <div className="relative w-full max-w-3xl">
               <img
                 src="/iPhone_water_circular_exchange_e4541c3c.png"
-                alt="iPhone Water Circular Exchange"
-                className="w-full h-auto rounded-2xl shadow-2xl border border-hero-green-500/30"
-                style={{ maxHeight: '500px', objectFit: 'contain' }}
+                alt="iPhone Water Circular Exchange - Transform your iPhone into premium water systems"
+                className="w-full h-auto rounded-3xl shadow-2xl border-2 border-hero-green-500/50"
+                style={{ maxHeight: '400px', objectFit: 'contain' }}
                 loading="eager"
                 data-testid="hero-main-image"
                 onError={(e) => {
@@ -276,83 +272,85 @@ export function HeroChallengeLanding() {
                   e.currentTarget.src = '/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png';
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent rounded-2xl pointer-events-none"></div>
             </div>
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight max-w-5xl mx-auto" data-testid="hero-challenge-title">
-            <span className="block mb-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-lg">
-              From iPhones to Water,
+          {/* Simplified Badge */}
+          <div className="inline-flex items-center bg-hero-green-500/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-hero-green-500/50">
+            <span className="text-hero-green-300 font-bold text-sm tracking-wide">🔄 WORLD'S FIRST CIRCULAR EXCHANGE</span>
+          </div>
+          
+          {/* Powerful, Direct Headline */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight max-w-4xl mx-auto" data-testid="hero-challenge-title">
+            <span className="block text-white drop-shadow-lg">
+              Trade Your iPhone
             </span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent font-bold drop-shadow-lg">
-              a Circular Exchange
+            <span className="block bg-gradient-to-r from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
+              for Premium Water
             </span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-white max-w-4xl mx-auto mb-8 leading-relaxed drop-shadow-lg">
-            Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform.
+          <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Dubai's revolutionary platform turning electronics into life essentials. Beyond Etisalat & Du.
           </p>
         </div>
 
-        {/* Clean Value Proposition */}
-        <div className="text-center mb-16">
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
-            <HeroSpotCounter />
-            <CountdownTimer />
-          </div>
-          
-          <div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-8 border border-slate-600/50 max-w-4xl mx-auto mb-8">
-            <p className="text-lg text-gray-300 mb-6 leading-relaxed">
-              Join <strong className="text-hero-green-400">12,847 Planet Heroes</strong> creating measurable environmental impact 
-              while earning exclusive rewards and climbing the leaderboard.
-            </p>
+        {/* Simplified Circular Economy Benefits */}
+        <div className="text-center mb-12">
+          <div className="bg-slate-900/80 backdrop-blur-sm rounded-3xl p-6 border border-hero-green-500/30 max-w-5xl mx-auto mb-8">
             
-            {/* Simplified Value Props */}
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="text-center p-4">
-                <div className="w-12 h-12 bg-hero-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">🔄</span>
+            {/* Key Stats */}
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 mb-6">
+              <HeroSpotCounter />
+              <CountdownTimer />
+            </div>
+            
+            {/* Circular Economy Value Props - Streamlined */}
+            <div className="grid sm:grid-cols-3 gap-6 mb-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-hero-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-3xl">🔄</span>
                 </div>
-                <h3 className="text-white font-semibold mb-1">Circular Economy</h3>
-                <p className="text-gray-400 text-sm">Transform waste into value</p>
+                <h3 className="text-white font-bold text-lg mb-1">Circular Trade</h3>
+                <p className="text-gray-300 text-sm">iPhone → Water Systems</p>
               </div>
               
-              <div className="text-center p-4">
-                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">💧</span>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-3xl">💧</span>
                 </div>
-                <h3 className="text-white font-semibold mb-1">Premium Water</h3>
-                <p className="text-gray-400 text-sm">AquaCafe filtration systems</p>
+                <h3 className="text-white font-bold text-lg mb-1">Premium Quality</h3>
+                <p className="text-gray-300 text-sm">AquaCafe Filtration</p>
               </div>
               
-              <div className="text-center p-4">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-2xl">🏆</span>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-3xl">⚡</span>
                 </div>
-                <h3 className="text-white font-semibold mb-1">Impact Tracking</h3>
-                <p className="text-gray-400 text-sm">Real environmental results</p>
+                <h3 className="text-white font-bold text-lg mb-1">Instant Impact</h3>
+                <p className="text-gray-300 text-sm">Join {stats?.activeHeroes?.toLocaleString() || '12,847'} Heroes</p>
               </div>
             </div>
-          </div>
-          
-          {/* Primary CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link href="/">
-              <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-4 text-lg shadow-xl transform hover:scale-105 transition-all">
-                <Zap className="mr-2 w-5 h-5" />
-                Get Your Trade Value
-              </Button>
-            </Link>
-            <Link href="/leaderboard">
-              <Button 
-                size="lg"
-                variant="outline" 
-                className="border-2 border-hero-green-500 text-hero-green-400 hover:bg-hero-green-500 hover:text-black px-8 py-4 text-lg font-bold transition-all"
-              >
-                <Users className="mr-2 w-5 h-5" />
-                Join {stats?.activeHeroes?.toLocaleString() || '12,847'} Heroes
-              </Button>
-            </Link>
+            
+            {/* Clear Main CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/">
+                <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full">
+                  <Smartphone className="mr-3 w-6 h-6" />
+                  Get My Trade Value
+                </Button>
+              </Link>
+              <Link href="/leaderboard">
+                <Button 
+                  size="lg"
+                  variant="outline" 
+                  className="border-2 border-white text-white hover:bg-white hover:text-black px-10 py-4 text-xl font-bold transition-all rounded-full"
+                >
+                  <Trophy className="mr-3 w-6 h-6" />
+                  Join Heroes
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
