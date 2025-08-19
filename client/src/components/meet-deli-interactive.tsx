@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bot, Send, Calendar, ShoppingCart, Smartphone, Calculator, ArrowRight, Leaf, Star, Trophy, Rocket, MessageCircle, Zap } from "lucide-react";
+import { Bot, Send, Calendar, ShoppingCart, Smartphone, Calculator, ArrowRight, Leaf, Star, Trophy, Rocket, MessageCircle, Zap, Target, Droplets, Users, Crown, Gamepad2, CheckCircle, Clock, TrendingUp, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -24,13 +24,21 @@ export function MeetDeliInteractive() {
   const [isAILoading, setIsAILoading] = useState(false);
   const [aiResponse, setAIResponse] = useState<string>("");
 
-  // Calculator State
+  // Trade-in Offer State (integrated from GetTradeOffer component)
+  const [selectedTradeDevice, setSelectedTradeDevice] = useState("");
+  const [selectedTradeCondition, setSelectedTradeCondition] = useState("");
+  const [activeStep, setActiveStep] = useState(1);
+  const [calculatedTradeValue, setCalculatedTradeValue] = useState<number | null>(null);
+  const [calculatedTradePoints, setCalculatedTradePoints] = useState<number | null>(null);
+  const [showTradeDetails, setShowTradeDetails] = useState(false);
+
+  // Calculator State (for quick calculator tab)
   const [selectedDevice, setSelectedDevice] = useState(DEVICE_OPTIONS[0].model);
   const [selectedCondition, setSelectedCondition] = useState(CONDITION_OPTIONS[0].condition);
   const [calculationResult, setCalculationResult] = useState<TradeCalculationResult | null>(null);
 
   // Active interaction mode
-  const [activeTab, setActiveTab] = useState("chat");
+  const [activeTab, setActiveTab] = useState("trade-offer");
 
   // AI Chat Functions
   const sendMessage = async (message: string) => {
@@ -70,7 +78,35 @@ export function MeetDeliInteractive() {
     }
   };
 
-  // Calculator Functions
+  // Trade-in Offer Functions (integrated from GetTradeOffer)
+  const handleTradeCalculate = () => {
+    if (selectedTradeDevice && selectedTradeCondition) {
+      const device = DEVICE_OPTIONS.find(d => d.model === selectedTradeDevice);
+      const condition = CONDITION_OPTIONS.find(c => c.condition === selectedTradeCondition);
+      
+      if (device && condition) {
+        const value = Math.round(device.baseValue * condition.multiplier);
+        const points = Math.round(device.points * condition.multiplier);
+        setCalculatedTradeValue(value);
+        setCalculatedTradePoints(points);
+        setActiveStep(2);
+        setShowTradeDetails(true);
+      }
+    }
+  };
+
+  const handleStepClick = (step: number) => {
+    if (step === 1) {
+      setActiveStep(1);
+      setShowTradeDetails(false);
+    } else if (step === 2 && calculatedTradeValue) {
+      setActiveStep(2);
+    } else if (step === 3 && calculatedTradeValue) {
+      setActiveStep(3);
+    }
+  };
+
+  // Calculator Functions (for quick calculator tab)
   const calculationMutation = useMutation({
     mutationFn: async (data: { device: string; condition: string }): Promise<TradeCalculationResult> => {
       const response = await apiRequest('/api/calculate-trade', 'POST', data);
@@ -93,10 +129,6 @@ export function MeetDeliInteractive() {
     <div className="glass rounded-2xl p-8 border border-slate-600" data-testid="meet-deli-interactive" data-section="meet-deli">
       {/* Unified Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm mb-6">
-          <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
-          <span className="text-blue-200 font-bold text-sm tracking-wide">STEP 2 IN THE PROCESS</span>
-        </div>
         <div className="flex items-center justify-center mb-4">
           <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
             <Bot className="w-8 h-8 text-white" />
@@ -110,13 +142,21 @@ export function MeetDeliInteractive() {
           </div>
         </div>
         <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-          Choose how you want to interact: Chat naturally with Deli or use our quick calculator for instant device valuation
+          Get instant iPhone trade valuation, collect Planet Points, and join the challenge for iPhone 17 upgrade
         </p>
       </div>
 
       {/* Interactive Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-8 bg-slate-700">
+        <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-700">
+          <TabsTrigger 
+            value="trade-offer" 
+            className="flex items-center gap-2 data-[state=active]:bg-hero-green-500 data-[state=active]:text-black"
+            data-testid="tab-trade-offer"
+          >
+            <Smartphone className="w-4 h-4" />
+            Trade-in Offer
+          </TabsTrigger>
           <TabsTrigger 
             value="chat" 
             className="flex items-center gap-2 data-[state=active]:bg-emerald-500 data-[state=active]:text-white"
@@ -134,6 +174,326 @@ export function MeetDeliInteractive() {
             Quick Calculator
           </TabsTrigger>
         </TabsList>
+
+        {/* Trade-in Offer Tab - Integrated from GetTradeOffer component */}
+        <TabsContent value="trade-offer" className="space-y-6">
+          {/* Three-Step Interactive Process */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Step 1: Input & Calculate */}
+            <div 
+              className={`glass rounded-2xl p-6 border backdrop-blur-sm relative cursor-pointer transition-all duration-300 ${
+                activeStep === 1 
+                  ? 'border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 transform scale-105 z-10' 
+                  : 'border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10'
+              }`}
+              onClick={() => handleStepClick(1)}
+            >
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <div className={`font-bold px-4 py-1 rounded-full text-sm ${
+                  activeStep === 1 
+                    ? 'bg-hero-green-500 text-black' 
+                    : 'bg-blue-500 text-white'
+                }`}>
+                  {activeStep === 1 ? 'STEP 1 - ACTIVE' : 'STEP 1'}
+                </div>
+              </div>
+              
+              <div className="text-center mt-4">
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                  activeStep === 1 
+                    ? 'bg-gradient-to-r from-hero-green-500 to-emerald-500' 
+                    : 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                }`}>
+                  <Calculator className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">INPUT & CALCULATE</h3>
+                <p className="text-gray-300 mb-4">Select your iPhone model and get instant trade value</p>
+                
+                {activeStep === 1 && (
+                  <div className="space-y-4 mt-6">
+                    <Select value={selectedTradeDevice} onValueChange={setSelectedTradeDevice}>
+                      <SelectTrigger className={`text-white transition-colors ${
+                        selectedTradeDevice 
+                          ? 'bg-hero-green-600/20 border-hero-green-400 ring-2 ring-hero-green-400/30' 
+                          : 'bg-slate-700 border-hero-green-500/50 hover:border-hero-green-500'
+                      }`}>
+                        <SelectValue placeholder="Choose iPhone Model" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {DEVICE_OPTIONS.map((device) => (
+                          <SelectItem key={device.model} value={device.model}>
+                            <div className="flex justify-between items-center w-full">
+                              <span>{device.model}</span>
+                              <span className="text-xs text-gray-400 ml-2">AED {device.baseValue}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    <Select value={selectedTradeCondition} onValueChange={setSelectedTradeCondition}>
+                      <SelectTrigger className={`text-white transition-colors ${
+                        selectedTradeCondition 
+                          ? 'bg-hero-green-600/20 border-hero-green-400 ring-2 ring-hero-green-400/30' 
+                          : 'bg-slate-700 border-hero-green-500/50 hover:border-hero-green-500'
+                      }`}>
+                        <SelectValue placeholder="Device Condition" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CONDITION_OPTIONS.map((condition) => (
+                          <SelectItem key={condition.condition} value={condition.condition}>
+                            <div className="flex justify-between items-center w-full">
+                              <span>{condition.label}</span>
+                              <span className="text-xs text-amber-400 ml-2">{Math.round(condition.multiplier * 100)}%</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    
+                    <Button
+                      onClick={handleTradeCalculate}
+                      disabled={!selectedTradeDevice || !selectedTradeCondition}
+                      className="w-full bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold py-3 rounded-lg transition-all"
+                    >
+                      <Calculator className="w-5 h-5 mr-2" />
+                      CALCULATE VALUE
+                    </Button>
+                  </div>
+                )}
+                
+                <div className="flex items-center justify-center gap-2 mt-4">
+                  <div className={`w-5 h-5 ${activeStep === 1 ? 'text-hero-green-500' : 'text-blue-500'}`}>
+                    {activeStep === 1 ? <Target /> : <CheckCircle />}
+                  </div>
+                  <span className={`font-semibold ${activeStep === 1 ? 'text-hero-green-400' : 'text-blue-400'}`}>
+                    {activeStep === 1 ? 'Enter Details' : 'Ready'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2: Collect Planet Points */}
+            <div 
+              className={`glass rounded-2xl p-6 border backdrop-blur-sm relative cursor-pointer transition-all duration-300 ${
+                activeStep === 2 
+                  ? 'border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 transform scale-105 z-10' 
+                  : calculatedTradeValue 
+                    ? 'border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10' 
+                    : 'border-gray-500/50 bg-gradient-to-br from-gray-500/10 to-slate-500/10'
+              }`}
+              onClick={() => calculatedTradeValue && handleStepClick(2)}
+            >
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <div className={`font-bold px-4 py-1 rounded-full text-sm ${
+                  activeStep === 2 
+                    ? 'bg-hero-green-500 text-black' 
+                    : calculatedTradeValue 
+                      ? 'bg-amber-500 text-black'
+                      : 'bg-gray-500 text-white'
+                }`}>
+                  {activeStep === 2 ? 'STEP 2 - ACTIVE' : 'STEP 2'}
+                </div>
+              </div>
+              
+              <div className="text-center mt-4">
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                  activeStep === 2 
+                    ? 'bg-gradient-to-r from-hero-green-500 to-emerald-500' 
+                    : calculatedTradeValue 
+                      ? 'bg-gradient-to-r from-amber-500 to-orange-500'
+                      : 'bg-gradient-to-r from-gray-500 to-slate-500'
+                }`}>
+                  <Target className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">COLLECT POINTS</h3>
+                <p className="text-gray-300 mb-4">Complete eco-missions and level up to meet iPhone 17 shortfall</p>
+                
+                {calculatedTradeValue && activeStep === 2 && (
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between items-center bg-hero-green-500/20 rounded-lg p-2">
+                      <div className="flex items-center">
+                        <Droplets className="w-4 h-4 text-blue-400 mr-2" />
+                        <span className="text-gray-300">AquaCafe Mission</span>
+                      </div>
+                      <span className="text-hero-green-400 font-bold">+1,500</span>
+                    </div>
+                    <div className="flex justify-between items-center bg-hero-green-500/20 rounded-lg p-2">
+                      <div className="flex items-center">
+                        <Users className="w-4 h-4 text-purple-400 mr-2" />
+                        <span className="text-gray-300">Referral Bonus</span>
+                      </div>
+                      <span className="text-hero-green-400 font-bold">+800</span>
+                    </div>
+                    <div className="flex justify-between items-center bg-gradient-to-r from-hero-green-500/30 to-amber-500/30 rounded-lg p-2 border border-amber-400/50">
+                      <div className="flex items-center">
+                        <Star className="w-4 h-4 text-amber-400 mr-2" />
+                        <span className="text-gray-200 font-medium">Media Share</span>
+                      </div>
+                      <span className="text-amber-400 font-black">+1,200</span>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="flex items-center justify-center gap-2 mt-4">
+                  <div className={`w-5 h-5 ${
+                    activeStep === 2 
+                      ? 'text-hero-green-500' 
+                      : calculatedTradeValue 
+                        ? 'text-amber-500' 
+                        : 'text-gray-500'
+                  }`}>
+                    {calculatedTradeValue ? <TrendingUp /> : <Clock />}
+                  </div>
+                  <span className={`font-semibold ${
+                    activeStep === 2 
+                      ? 'text-hero-green-400' 
+                      : calculatedTradeValue 
+                        ? 'text-amber-400' 
+                        : 'text-gray-400'
+                  }`}>
+                    {calculatedTradeValue ? 'Keep Growing' : 'Waiting'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3: Redeem iPhone 17 */}
+            <div 
+              className={`glass rounded-2xl p-6 border backdrop-blur-sm relative cursor-pointer transition-all duration-300 ${
+                activeStep === 3 
+                  ? 'border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-pink-500/10 transform scale-105 z-10' 
+                  : calculatedTradeValue 
+                    ? 'border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-blue-500/10' 
+                    : 'border-gray-500/50 bg-gradient-to-br from-gray-500/10 to-slate-500/10'
+              }`}
+              onClick={() => calculatedTradeValue && handleStepClick(3)}
+            >
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <div className={`font-bold px-4 py-1 rounded-full text-sm ${
+                  activeStep === 3 
+                    ? 'bg-purple-500 text-white' 
+                    : calculatedTradeValue 
+                      ? 'bg-hero-green-500 text-black'
+                      : 'bg-gray-500 text-white'
+                }`}>
+                  {activeStep === 3 ? 'STEP 3 - ACTIVE' : 'STEP 3'}
+                </div>
+              </div>
+              
+              <div className="text-center mt-4">
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                  activeStep === 3 
+                    ? 'bg-gradient-to-r from-purple-500 to-pink-500' 
+                    : calculatedTradeValue 
+                      ? 'bg-gradient-to-r from-hero-green-500 to-blue-500'
+                      : 'bg-gradient-to-r from-gray-500 to-slate-500'
+                }`}>
+                  <Gift className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">REDEEM</h3>
+                <p className="text-gray-300 mb-4">Use points as store credit to minimize cash for iPhone 17</p>
+                
+                {calculatedTradeValue && activeStep === 3 && (
+                  <div className="space-y-2 text-sm">
+                    <div className="bg-purple-500/20 rounded-lg p-3">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-gray-300">iPhone 17 Pro</span>
+                        <span className="text-white font-bold">AED 4,999</span>
+                      </div>
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-hero-green-400">Store Credit</span>
+                        <span className="text-hero-green-400">-AED {calculatedTradeValue}</span>
+                      </div>
+                      <div className="border-t border-purple-400/30 pt-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-purple-300 font-bold">Cash Needed</span>
+                          <span className="text-purple-400 font-black text-lg">AED {4999 - calculatedTradeValue}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="flex items-center justify-center gap-2 mt-4">
+                  <div className={`w-5 h-5 ${
+                    activeStep === 3 
+                      ? 'text-purple-500' 
+                      : calculatedTradeValue 
+                        ? 'text-hero-green-500' 
+                        : 'text-gray-500'
+                  }`}>
+                    {calculatedTradeValue ? <ArrowRight /> : <Clock />}
+                  </div>
+                  <span className={`font-semibold ${
+                    activeStep === 3 
+                      ? 'text-purple-400' 
+                      : calculatedTradeValue 
+                        ? 'text-hero-green-400' 
+                        : 'text-gray-400'
+                  }`}>
+                    {calculatedTradeValue ? 'Unlock Rewards' : 'Complete Steps'}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Trade Value Display */}
+          {calculatedTradeValue && (
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center bg-hero-green-900/30 border border-hero-green-500/50 rounded-full px-6 py-3">
+                <Trophy className="w-5 h-5 text-hero-green-400 mr-2" />
+                <span className="text-hero-green-400 font-bold">Your Trade Value: AED {calculatedTradeValue} + {calculatedTradePoints} Planet Points</span>
+              </div>
+            </div>
+          )}
+
+          {/* Enter the Game Section - Integrated within Meet Deli */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 p-8 border-2 border-cyan-400/50 shadow-2xl">
+            {/* Neon glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 via-purple-400/10 to-pink-400/10 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 rounded-3xl blur-xl animate-pulse"></div>
+            
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-black mb-4 leading-tight">
+                <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
+                  ENTER THE GAME
+                </span>
+              </h3>
+              
+              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Join the Planet Points Challenge and compete for iPhone 17 • Sep 9 Launch
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={() => {
+                    document.getElementById('planet-points-challenge')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="relative group bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-black font-black px-12 py-6 text-2xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="relative flex items-center">
+                    <Gamepad2 className="w-8 h-8 mr-3" />
+                    JOIN CHALLENGE
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => {
+                    setActiveStep(3);
+                    handleStepClick(3);
+                  }}
+                  className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 font-bold px-8 py-6 text-xl rounded-full backdrop-blur-sm transition-all"
+                >
+                  <Crown className="w-6 h-6 mr-2 inline" />
+                  SKIP TO REDEEM
+                </button>
+              </div>
+            </div>
+          </div>
+        </TabsContent>
 
         {/* AI Chat Tab */}
         <TabsContent value="chat" className="space-y-6">
@@ -341,25 +701,11 @@ export function MeetDeliInteractive() {
         </TabsContent>
       </Tabs>
 
-      {/* Unified CTAs */}
-      <div className="space-y-4 mt-8">
-        {/* Primary CTA - Trade & Shop */}
-        <Link href="/aquacafe" className="block w-full">
-          <Button className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white py-4 font-bold rounded-xl text-lg shadow-lg border-2 border-hero-green-400 transform hover:scale-[1.02] transition-all">
-            <ShoppingCart className="mr-3 w-6 h-6" />
-            TRADE-IN & SHOP AQUACAFE
-            <ArrowRight className="ml-3 w-5 h-5" />
-          </Button>
-        </Link>
-        
-
-        
-        {/* Live Stats & Value Proposition */}
-        <div className="text-center pt-3 px-4 space-y-3">
-          <div className="flex items-center justify-center text-xs text-hero-green-400">
-            <div className="w-2 h-2 bg-hero-green-400 rounded-full mr-2 animate-pulse"></div>
-            Live: 78 devices traded today • 125,000L water saved • 12.3T CO₂ reduced
-          </div>
+      {/* Live Stats & Value Proposition */}
+      <div className="text-center pt-6 px-4 space-y-3">
+        <div className="flex items-center justify-center text-xs text-hero-green-400">
+          <div className="w-2 h-2 bg-hero-green-400 rounded-full mr-2 animate-pulse"></div>
+          Live: 78 devices traded today • 125,000L water saved • 12.3T CO₂ reduced
         </div>
       </div>
     </div>

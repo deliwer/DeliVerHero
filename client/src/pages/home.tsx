@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
 import { IPhone17Launch } from "@/components/iphone17-launch";
 import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
-
+import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
 
 import { LeaderboardWidget } from "@/components/leaderboard-widget";
 import { ImpactStats } from "@/components/impact-stats";
@@ -10,7 +10,6 @@ import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
-import { GetTradeOffer } from "@/components/get-trade-offer";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -278,8 +277,12 @@ export default function Home() {
       {/* Enhanced Hero Challenge Landing */}
       <HeroChallengeLanding />
 
-      {/* Get Trade-in Offer Section - Now positioned below hero */}
-      <GetTradeOffer />
+      {/* Meet Deli Interactive - Now includes integrated Trade-in Offer functionality */}
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <MeetDeliInteractive />
+        </div>
+      </section>
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
