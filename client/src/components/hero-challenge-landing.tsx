@@ -282,7 +282,7 @@ export function HeroChallengeLanding() {
           {/* Powerful, Direct Headline */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight max-w-4xl mx-auto" data-testid="hero-challenge-title">
             <span className="block text-white drop-shadow-lg">From iPhones to Water,</span>
-            <span className="block bg-gradient-to-r from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">a Circular Exchange</span>
+            <span className="block from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg text-[44px] font-extrabold bg-[#3688e9]">a Circular Exchange</span>
           </h1>
           
           <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform.</p>
