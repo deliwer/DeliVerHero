@@ -257,7 +257,7 @@ export function HeroChallengeLanding() {
         <div className="text-center mb-8" data-testid="challenge-header">
           {/* Simplified Badge */}
           <div className="inline-flex items-center bg-hero-green-500/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-hero-green-500/50">
-            <span className="text-hero-green-300 font-bold text-sm tracking-wide">🔄 WORLD'S FIRST CIRCULAR EXCHANGE</span>
+            <span className="text-hero-green-300 font-bold text-sm tracking-wide">🔄 WORLD'S FIRST SUSTAINABILITY GAME</span>
           </div>
           
           {/* Powerful, Direct Headline */}
