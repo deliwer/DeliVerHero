@@ -72,7 +72,7 @@ export function MeetDeliInteractive() {
 
   // Calculator Functions
   const calculationMutation = useMutation({
-    mutationFn: async (data: { device: string; condition: string }) => {
+    mutationFn: async (data: { device: string; condition: string }): Promise<TradeCalculationResult> => {
       const result = await apiRequest('/api/calculate-trade', 'POST', data);
       return result as TradeCalculationResult;
     },
@@ -89,7 +89,7 @@ export function MeetDeliInteractive() {
   };
 
   return (
-    <div className="glass rounded-2xl p-8 border border-slate-600" data-testid="meet-deli-interactive">
+    <div className="glass rounded-2xl p-8 border border-slate-600" data-testid="meet-deli-interactive" data-section="meet-deli">
       {/* Unified Header */}
       <div className="text-center mb-8">
         <div className="flex items-center justify-center mb-4">

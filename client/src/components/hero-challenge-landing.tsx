@@ -442,12 +442,27 @@ export function HeroChallengeLanding() {
                 
                 {/* Clear Main CTAs */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/">
-                    <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full">
-                      <Smartphone className="mr-3 w-6 h-6" />
-                      Get My Trade Value
-                    </Button>
-                  </Link>
+                  <Button 
+                    size="lg" 
+                    className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                    onClick={() => {
+                      const meetDeliSection = document.querySelector('[data-section="meet-deli"]');
+                      if (meetDeliSection) {
+                        meetDeliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // Focus on the input after scrolling
+                        setTimeout(() => {
+                          const input = meetDeliSection.querySelector('input, textarea, select');
+                          if (input) {
+                            (input as HTMLElement).focus();
+                          }
+                        }, 500);
+                      }
+                    }}
+                    data-testid="button-get-trade-value"
+                  >
+                    <Smartphone className="mr-3 w-6 h-6" />
+                    Get My Trade Value
+                  </Button>
                   <Link href="/leaderboard">
                     <Button 
                       size="lg"
