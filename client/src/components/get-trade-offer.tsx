@@ -145,9 +145,7 @@ export function GetTradeOffer() {
           </div>
           
           <h2 className="text-4xl md:text-6xl font-black mb-4 leading-tight">
-            <span className="bg-gradient-to-r from-white via-hero-green-200 to-blue-200 bg-clip-text text-transparent">
-              STEP 1: GET TRADE-IN OFFER
-            </span>
+            <span className="bg-gradient-to-r from-white via-hero-green-200 to-blue-200 bg-clip-text text-transparent">GET TRADE-IN OFFER</span>
             <br />
             <span className="text-2xl md:text-3xl text-hero-green-400 font-bold">Trade iPhone • Win iPhone 17 • Collect Points</span>
           </h2>
