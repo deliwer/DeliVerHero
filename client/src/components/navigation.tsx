@@ -9,8 +9,8 @@ export function Navigation() {
   const navItems = [
     { path: "/aquacafe", label: "Shop", id: "aquacafe" },
     { path: "/impact-dashboard", label: "Rewards", id: "impact" },
+    { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },
-    { path: "/community", label: "Heroes Community", id: "community" },
   ];
 
   return (

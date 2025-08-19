@@ -92,3 +92,4 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - ✅ "Trade iPhone" menu item removed from navigation (August 19, 2025)
 - ✅ "Impact & Rewards" renamed to "Rewards" and repositioned before "Partners" for better flow
 - ✅ "Get My Trade Value" button updated to scroll to Meet Deli interactive section with input focus
+- ✅ "Heroes Community" renamed to "Community" and positioned before "Partners" for cleaner navigation flow
