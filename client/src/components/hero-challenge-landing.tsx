@@ -252,7 +252,6 @@ export function HeroChallengeLanding() {
         <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/10 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/10 to-transparent"></div>
       </div>
-      
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Simplified Hero Section */}
         <div className="text-center mb-12" data-testid="challenge-header">
@@ -290,9 +289,7 @@ export function HeroChallengeLanding() {
             </span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Dubai's revolutionary platform turning electronics into life essentials. Beyond Etisalat & Du.
-          </p>
+          <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform.</p>
         </div>
 
         {/* Simplified Circular Economy Benefits */}
