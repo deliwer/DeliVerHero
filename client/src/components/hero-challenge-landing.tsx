@@ -281,7 +281,7 @@ export function HeroChallengeLanding() {
           
           {/* Powerful, Direct Headline */}
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight max-w-4xl mx-auto" data-testid="hero-challenge-title">
-            <span className="block text-white drop-shadow-lg">From iPhones to Water,</span>
+            <span className="block text-white drop-shadow-lg font-bold">From iPhones to Water,</span>
             <span className="block from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg text-[44px] font-extrabold bg-[#3688e9]">a Circular Exchange</span>
           </h1>
           
