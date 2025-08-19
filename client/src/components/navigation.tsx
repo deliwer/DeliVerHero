@@ -87,7 +87,7 @@ export function Navigation() {
                 data-testid="button-start-mission"
               >
                 <Rocket className="inline w-4 h-4 mr-2" />
-                Start Mission
+                Start
               </Link>
             </div>
 
