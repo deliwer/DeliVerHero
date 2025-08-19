@@ -347,40 +347,13 @@ export function MeetDeliInteractive() {
           </Button>
         </Link>
         
-        {/* Secondary Options */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <Link href="/aquacafe" className="block">
-            <Button variant="outline" className="w-full border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black py-2.5 rounded-lg font-medium">
-              <Star className="mr-2 w-4 h-4" />
-              Buy Starter Kit Only
-            </Button>
-          </Link>
-          
-          <Link href="/leaderboard" className="block">
-            <Button variant="outline" className="w-full border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-2.5 rounded-lg font-medium">
-              <Trophy className="mr-2 w-4 h-4" />
-              Join Planet Heroes
-            </Button>
-          </Link>
-        </div>
+
         
         {/* Live Stats & Value Proposition */}
         <div className="text-center pt-3 px-4 space-y-3">
           <div className="flex items-center justify-center text-xs text-hero-green-400">
             <div className="w-2 h-2 bg-hero-green-400 rounded-full mr-2 animate-pulse"></div>
             Live: 78 devices traded today • 125,000L water saved • 12.3T CO₂ reduced
-          </div>
-          
-          <div>
-            <p className="text-gray-300 text-sm mb-2">
-              <span className="text-hero-green-400 font-bold">Why trade with us?</span>
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-xs text-emerald-400">
-              <span>✓ Instant AED value</span>
-              <span>✓ Environmental impact</span>
-              <span>✓ Premium water systems</span>
-              <span>✓ Dubai mission contribution</span>
-            </div>
           </div>
         </div>
       </div>

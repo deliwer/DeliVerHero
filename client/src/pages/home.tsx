@@ -10,6 +10,7 @@ import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
+import { GetTradeOffer } from "@/components/get-trade-offer";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -276,6 +277,9 @@ export default function Home() {
 
       {/* Enhanced Hero Challenge Landing */}
       <HeroChallengeLanding />
+
+      {/* Get Trade-in Offer Section */}
+      <GetTradeOffer />
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
