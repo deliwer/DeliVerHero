@@ -73,7 +73,8 @@ export function MeetDeliInteractive() {
   // Calculator Functions
   const calculationMutation = useMutation({
     mutationFn: async (data: { device: string; condition: string }): Promise<TradeCalculationResult> => {
-      const result = await apiRequest('/api/calculate-trade', 'POST', data) as TradeCalculationResult;
+      const response = await apiRequest('/api/calculate-trade', 'POST', data);
+      const result = await response.json() as TradeCalculationResult;
       return result;
     },
     onSuccess: (result: TradeCalculationResult) => {
@@ -92,6 +93,10 @@ export function MeetDeliInteractive() {
     <div className="glass rounded-2xl p-8 border border-slate-600" data-testid="meet-deli-interactive" data-section="meet-deli">
       {/* Unified Header */}
       <div className="text-center mb-8">
+        <div className="inline-flex items-center bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm mb-6">
+          <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+          <span className="text-blue-200 font-bold text-sm tracking-wide">STEP 2 IN THE PROCESS</span>
+        </div>
         <div className="flex items-center justify-center mb-4">
           <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
             <Bot className="w-8 h-8 text-white" />

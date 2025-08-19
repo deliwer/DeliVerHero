@@ -11,6 +11,7 @@ import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { GetTradeOffer } from "@/components/get-trade-offer";
+import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -278,8 +279,15 @@ export default function Home() {
       {/* Enhanced Hero Challenge Landing */}
       <HeroChallengeLanding />
 
-      {/* Get Trade-in Offer Section */}
+      {/* Get Trade-in Offer Section - Now positioned below hero */}
       <GetTradeOffer />
+
+      {/* Meet Deli Interactive - Now Step 2 in the process */}
+      <section className="py-12 px-4 bg-slate-900/95">
+        <div className="max-w-6xl mx-auto">
+          <MeetDeliInteractive />
+        </div>
+      </section>
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
