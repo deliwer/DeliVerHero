@@ -1,7 +1,7 @@
-import { Globe, Calculator, TrendingUp, Zap } from "lucide-react";
+import { Globe, Calculator, TrendingUp, Zap, Target, CheckCircle, ArrowRight } from "lucide-react";
 import { ImpactStats } from "@/components/impact-stats";
 import { DeviceSimulator } from "@/components/device-simulator";
-import { DubaiRewardsSystem } from "@/components/dubai-rewards-system";
+import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { ImpactSlotMachine } from "@/components/impact-slot-machine";
 import { useState } from "react";
 import type { TradeCalculation } from "@/types/hero";
@@ -153,10 +153,59 @@ export default function ImpactDashboard() {
           </div>
         </div>
 
-        {/* Dubai Rewards System */}
-        <div className="mt-12">
-          <DubaiRewardsSystem />
+        {/* Consolidated Sustainability Path */}
+        <div className="glass rounded-2xl p-8 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-blue-500/10 mb-12 mt-12" data-testid="sustainability-path">
+          <h2 className="text-3xl font-bold text-center text-white mb-8">
+            <Target className="inline w-8 h-8 text-hero-green-500 mr-3" />
+            Your Path to Sustainability
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-white">1</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Start at Home</h3>
+              <p className="text-gray-300 mb-4">Exchange your old iPhone for AquaCafe products with instant rewards</p>
+              <div className="flex items-center justify-center gap-2">
+                <CheckCircle className="w-5 h-5 text-hero-green-500" />
+                <span className="text-hero-green-400 font-semibold">Begin Today</span>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-white">2</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Collect Planet Points</h3>
+              <p className="text-gray-300 mb-4">Continue earning through missions and eco-friendly actions</p>
+              <div className="flex items-center justify-center gap-2">
+                <TrendingUp className="w-5 h-5 text-hero-green-500" />
+                <span className="text-hero-green-400 font-semibold">Keep Growing</span>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-white">3</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Redeem & Evolve</h3>
+              <p className="text-gray-300 mb-4">Use points in our evolving ecosystem of partner campaigns</p>
+              <div className="flex items-center justify-center gap-2">
+                <ArrowRight className="w-5 h-5 text-hero-green-500" />
+                <span className="text-hero-green-400 font-semibold">Unlock Rewards</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mt-8">
+            <p className="text-lg text-hero-green-400 font-semibold">That's How it Works!</p>
+            <p className="text-gray-300 mt-2">Join the movement for Dubai's sustainable future</p>
+          </div>
         </div>
+
+        {/* Planet Heroes Rewards System */}
+        <PlanetHeroesRewards />
       </div>
     </div>
   );

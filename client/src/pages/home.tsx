@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
 import { IPhone17Launch } from "@/components/iphone17-launch";
 import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
+import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 
 import { LeaderboardWidget } from "@/components/leaderboard-widget";
 import { ImpactStats } from "@/components/impact-stats";
@@ -371,6 +372,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Planet Heroes Rewards - New impressive rewards system */}
+      <PlanetHeroesRewards />
 
       {/* Founders Section */}
       <FoundersSection />
