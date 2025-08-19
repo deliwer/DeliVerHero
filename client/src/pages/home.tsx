@@ -284,12 +284,12 @@ export default function Home() {
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
 
-      {/* Impact Stats */}
-      <section className="py-16 px-4">
+      {/* Impact Stats / Planet Points Challenge */}
+      <section id="planet-points-challenge" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
-              🌍 LIVE PLANET IMPACT DASHBOARD
+              🌍 PLANET POINTS CHALLENGE
             </h2>
             <p className="text-gray-300 text-lg">Real-time environmental superpowers unleashed by our heroes</p>
           </div>
