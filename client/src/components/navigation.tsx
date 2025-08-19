@@ -7,7 +7,6 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { path: "/", label: "Trade iPhone", id: "trade" },
     { path: "/aquacafe", label: "Shop", id: "aquacafe" },
     { path: "/partners", label: "Partners", id: "partners" },
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
