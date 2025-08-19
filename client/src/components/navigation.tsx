@@ -9,10 +9,9 @@ export function Navigation() {
   const navItems = [
     { path: "/", label: "Trade iPhone", id: "trade" },
     { path: "/aquacafe", label: "Shop AquaCafe", id: "aquacafe" },
-    { path: "/sponsorships", label: "Sponsor Missions", id: "sponsorships" },
+    { path: "/partners", label: "Partners", id: "partners" },
     { path: "/impact-dashboard", label: "Impact & Rewards", id: "impact" },
     { path: "/community", label: "Heroes Community", id: "community" },
-    { path: "/partners", label: "Champions & Ambassadors", id: "partners" },
   ];
 
   return (
@@ -28,8 +27,8 @@ export function Navigation() {
             </Link>
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
-                // Special styling for sponsorship link
-                if (item.id === "sponsorships") {
+                // Special styling for partners link
+                if (item.id === "partners") {
                   return (
                     <Link
                       key={item.path}
@@ -115,8 +114,8 @@ export function Navigation() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-700">
               {navItems.map((item) => {
-                // Special styling for sponsorship link in mobile
-                if (item.id === "sponsorships") {
+                // Special styling for partners link in mobile
+                if (item.id === "partners") {
                   return (
                     <Link
                       key={item.path}
