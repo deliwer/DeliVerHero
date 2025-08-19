@@ -101,3 +101,8 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - ✅ Partner ecosystem integration: AquaCafe, Bakers Kitchen, and expanding network
 - ✅ Impact dashboard updated with consolidated sustainability path replacing old Dubai rewards system
 - ✅ Comprehensive product categories: Technology, Water Systems, Healthy Food with point-based redemption
+- ✅ **"How to Participate" section merged with Planet Heroes Rewards** maintaining neon CTA style (August 19, 2025)
+- ✅ Dubai Environmental Champions replaced to avoid repetition and streamline user journey
+- ✅ Products removed from main landing page - dedicated to AquaCafe shop page
+- ✅ Neon-style "SHOP AQUACAFE NOW" CTA prominently placed for conversion optimization
+- ✅ Three-step participation process: Exchange → Collect → Redeem with clear visual progression
