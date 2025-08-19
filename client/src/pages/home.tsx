@@ -374,8 +374,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Planet Heroes Rewards Section */}
-      <PlanetHeroesRewards />
+
 
       {/* Founders Section */}
       <FoundersSection />

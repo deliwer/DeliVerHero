@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { MeetDeliInteractive } from "./meet-deli-interactive";
@@ -528,26 +528,46 @@ export function HeroChallengeLanding() {
         {/* Planet Heroes Rewards - Unified Section */}
         <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 mb-12" data-testid="planet-heroes-rewards-section">
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <Trophy className="w-8 h-8 text-amber-500" />
-              <div className="inline-flex items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 border border-amber-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm">
-                <Sparkles className="w-4 h-4 text-amber-300 mr-2" />
-                <span className="text-amber-200 font-bold text-sm tracking-wide">DUBAI ENVIRONMENTAL CHAMPIONS</span>
-                <Sparkles className="w-4 h-4 text-amber-300 ml-2" />
+            <div className="flex items-center justify-center gap-6 mb-8">
+              <img 
+                src="/attached_assets/deliwer logo_1755631863675.png" 
+                alt="DeliWer" 
+                className="h-16 w-auto"
+              />
+              <div className="inline-flex items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 border border-amber-400/50 rounded-2xl px-8 py-4 shadow-lg backdrop-blur-sm">
+                <Trophy className="w-6 h-6 text-amber-300 mr-3" />
+                <span className="text-amber-200 font-black text-lg tracking-wide">DUBAI ENVIRONMENTAL CHAMPIONS</span>
               </div>
-              <Award className="w-8 h-8 text-amber-500" />
             </div>
             <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
               <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
                 PLANET HEROES REWARDS
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-              Join {stats?.activeHeroes?.toLocaleString() || '12,847'} sustainability leaders earning rewards through environmental impact across Dubai
-            </p>
+            <div className="glass rounded-3xl p-8 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 backdrop-blur-sm max-w-4xl mx-auto mb-8">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <Home className="w-8 h-8 text-hero-green-400" />
+                <span className="text-3xl font-black text-white">All at the convenience of your home</span>
+                <Package className="w-8 h-8 text-blue-400" />
+              </div>
+              <div className="flex items-center justify-center gap-8 text-lg text-gray-300">
+                <div className="flex items-center gap-2">
+                  <Truck className="w-5 h-5 text-hero-green-400" />
+                  <span>Free Delivery</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-5 h-5 text-blue-400" />
+                  <span>Same Day</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-amber-400" />
+                  <span>Instant Rewards</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Three-Step Process */}
+          {/* Three-Step Process - Enhanced Step 3 */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -573,15 +593,42 @@ export function HeroChallengeLanding() {
               </div>
             </div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-white">3</span>
+            {/* Enhanced Step 3 - Matching Step 2 Style */}
+            <div className="glass rounded-2xl p-6 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 backdrop-blur-sm relative transform scale-105 z-10">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <div className="bg-amber-500 text-black font-bold px-4 py-1 rounded-full text-sm">STEP 3 - REDEEM</div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Redeem</h3>
-              <p className="text-gray-300 mb-4">Use points for exclusive products and partner ecosystem rewards</p>
-              <div className="flex items-center justify-center gap-2">
-                <ArrowRight className="w-5 h-5 text-hero-green-500" />
-                <span className="text-hero-green-400 font-semibold">Unlock Rewards</span>
+              <div className="text-center mt-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Gift className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">REDEEM & EVOLVE</h3>
+                <p className="text-gray-300 mb-4">Transform points into exclusive eco-rewards delivered to your home</p>
+                
+                {/* Reward Options */}
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between items-center bg-amber-500/20 rounded-lg p-2">
+                    <div className="flex items-center">
+                      <Smartphone className="w-4 h-4 text-blue-400 mr-2" />
+                      <span className="text-gray-300">iPhone 17 Pro Max</span>
+                    </div>
+                    <span className="text-amber-400 font-bold">45,000 PTS</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-amber-500/20 rounded-lg p-2">
+                    <div className="flex items-center">
+                      <Droplets className="w-4 h-4 text-blue-400 mr-2" />
+                      <span className="text-gray-300">AquaCafe System</span>
+                    </div>
+                    <span className="text-amber-400 font-bold">15,000 PTS</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 rounded-lg p-2 border border-orange-400/50">
+                    <div className="flex items-center">
+                      <Utensils className="w-4 h-4 text-orange-400 mr-2" />
+                      <span className="text-gray-200 font-medium">Bakers Kitchen</span>
+                    </div>
+                    <span className="text-orange-400 font-black">3,500 PTS</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -647,30 +694,7 @@ export function HeroChallengeLanding() {
             </div>
           </div>
 
-          {/* Founding Hero Benefits */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-6">
-            <div className="flex items-center p-4 bg-amber-500/10 rounded-lg border border-amber-500/30">
-              <Zap className="w-6 h-6 text-amber-500 mr-3 flex-shrink-0" />
-              <div>
-                <h3 className="text-white font-bold text-sm mb-1">Lifetime Double Points</h3>
-                <p className="text-gray-400 text-xs">All future trades earn 2x points forever</p>
-              </div>
-            </div>
-            <div className="flex items-center p-4 bg-hero-green-500/10 rounded-lg border border-hero-green-500/30">
-              <Star className="w-6 h-6 text-hero-green-500 mr-3 flex-shrink-0" />
-              <div>
-                <h3 className="text-white font-bold text-sm mb-1">Priority Access</h3>
-                <p className="text-gray-400 text-xs">First access to limited edition rewards</p>
-              </div>
-            </div>
-            <div className="flex items-center p-4 bg-dubai-blue-500/10 rounded-lg border border-dubai-blue-500/30">
-              <Trophy className="w-6 h-6 text-dubai-blue-500 mr-3 flex-shrink-0" />
-              <div>
-                <h3 className="text-white font-bold text-sm mb-1">Exclusive Founding Badge</h3>
-                <p className="text-gray-400 text-xs">Permanent status on all profiles</p>
-              </div>
-            </div>
-          </div>
+
 
           <div className="text-center">
             <div className="inline-flex items-center bg-emerald-900/30 border border-emerald-500/50 rounded-full px-6 py-3 mb-4">
