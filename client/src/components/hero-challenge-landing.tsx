@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { MeetDeliInteractive } from "./meet-deli-interactive";
@@ -122,232 +122,269 @@ function ComprehensiveCampaignSection() {
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-hero-green-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse-glow"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Unified Header: Beyond Telcos + iPhone 17 Launch */}
+        {/* Gamified iPhone 17 Challenge Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Building className="w-8 h-8 text-emerald-400" />
-            <div className="inline-flex items-center bg-gradient-to-r from-hero-green-500/30 to-blue-500/30 border border-hero-green-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-hero-green-300 mr-2" />
-              <span className="text-hero-green-200 font-bold text-sm tracking-wide">APPLE EVENT • SEPTEMBER 9, 2025</span>
-              <Sparkles className="w-4 h-4 text-hero-green-300 ml-2" />
+            <Gamepad2 className="w-8 h-8 text-emerald-400" />
+            <div className="inline-flex items-center bg-gradient-to-r from-hero-green-500/30 to-purple-500/30 border border-hero-green-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm">
+              <Zap className="w-4 h-4 text-hero-green-300 mr-2" />
+              <span className="text-hero-green-200 font-bold text-sm tracking-wide">BEAT ETISALAT & DU AT THEIR GAME</span>
+              <Zap className="w-4 h-4 text-hero-green-300 ml-2" />
             </div>
-            <Handshake className="w-8 h-8 text-blue-400" />
+            <Trophy className="w-8 h-8 text-amber-400" />
           </div>
           
           <h2 className="text-4xl md:text-6xl font-black mb-4 leading-tight">
-            <span className="bg-gradient-to-r from-white via-hero-green-200 to-blue-200 bg-clip-text text-transparent">
-              BEYOND ETISALAT & DU
+            <span className="bg-gradient-to-r from-white via-hero-green-200 to-purple-200 bg-clip-text text-transparent">
+              PLANET POINTS CHALLENGE
             </span>
             <br />
-            <span className="text-2xl md:text-3xl text-gray-200 font-bold">iPhone 17 Launch Campaign</span>
+            <span className="text-2xl md:text-3xl text-amber-400 font-bold">Win iPhone 17 • Sep 9 Launch</span>
           </h2>
           
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-            World's first cross-category trade platform leveraging iPhone 17 launch limelight. Join <strong className="text-hero-green-400">12,847 Planet Heroes</strong> in media-ready sustainability campaign.
+          <p className="text-lg text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+            Play the AquaCafe game - collect Planet Points through trade-ins and eco-missions. 
+            <strong className="text-hero-green-400"> Maximize store credit to minimize cash</strong> for iPhone 17 upgrade at GITEX 2025.
           </p>
+        </div>
 
-          {/* Simplified Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link href="/leaderboard" className="inline-block">
-              <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 text-lg shadow-xl transform hover:scale-105 transition-all">
-                <Trophy className="w-5 h-5 mr-2" />
-                Join Campaign FREE
-              </Button>
-            </Link>
-            
-            <button
-              onClick={() => {
-                const mediaKit = `https://deliwer.com/media-kit?story=iphone-water-trade`;
-                const shareText = `📰 BREAKING: World's first iPhone-to-Water trade platform launches at GITEX 2025! DeliWer disrupts Etisalat/Du with cross-category trading. Media kit: ${mediaKit}`;
-                
-                if (navigator.share) {
-                  navigator.share({ title: 'DeliWer Media Story', text: shareText, url: mediaKit });
-                } else {
-                  navigator.clipboard.writeText(shareText);
-                }
-              }}
-              className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-3 text-lg font-bold shadow-lg transform hover:scale-105 transition-all rounded-lg"
-              data-testid="button-media-kit"
-            >
-              <Users className="w-5 h-5 mr-2 inline" />
-              Download Media Kit
-            </button>
+        {/* Three-Step Gamified Participation Process */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
+          {/* Step 1: Exchange/Trade-In */}
+          <div className="glass rounded-2xl p-6 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm relative">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <div className="bg-blue-500 text-white font-bold px-4 py-1 rounded-full text-sm">STEP 1</div>
+            </div>
+            <div className="text-center mt-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Repeat className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">EXCHANGE</h3>
+              <p className="text-gray-300 mb-4">Trade your old iPhone for instant Planet Points + store credit</p>
+              
+              {/* Points Breakdown */}
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between items-center bg-blue-500/20 rounded-lg p-2">
+                  <span className="text-gray-300">iPhone 14</span>
+                  <span className="text-blue-400 font-bold">2,500 PTS</span>
+                </div>
+                <div className="flex justify-between items-center bg-blue-500/20 rounded-lg p-2">
+                  <span className="text-gray-300">iPhone 15</span>
+                  <span className="text-blue-400 font-bold">3,200 PTS</span>
+                </div>
+                <div className="flex justify-between items-center bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-lg p-2 border border-purple-400/50">
+                  <span className="text-gray-200 font-medium">iPhone 16</span>
+                  <span className="text-purple-400 font-black">4,000 PTS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 2: Collect Planet Points */}
+          <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 backdrop-blur-sm relative transform scale-105 z-10">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <div className="bg-hero-green-500 text-black font-bold px-4 py-1 rounded-full text-sm">STEP 2 - ACTIVE</div>
+            </div>
+            <div className="text-center mt-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-hero-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">COLLECT POINTS</h3>
+              <p className="text-gray-300 mb-4">Complete eco-missions and level up to meet iPhone 17 shortfall</p>
+              
+              {/* Mission Options */}
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between items-center bg-hero-green-500/20 rounded-lg p-2">
+                  <div className="flex items-center">
+                    <Droplets className="w-4 h-4 text-blue-400 mr-2" />
+                    <span className="text-gray-300">AquaCafe Mission</span>
+                  </div>
+                  <span className="text-hero-green-400 font-bold">+1,500</span>
+                </div>
+                <div className="flex justify-between items-center bg-hero-green-500/20 rounded-lg p-2">
+                  <div className="flex items-center">
+                    <Users className="w-4 h-4 text-purple-400 mr-2" />
+                    <span className="text-gray-300">Referral Bonus</span>
+                  </div>
+                  <span className="text-hero-green-400 font-bold">+800</span>
+                </div>
+                <div className="flex justify-between items-center bg-gradient-to-r from-hero-green-500/30 to-amber-500/30 rounded-lg p-2 border border-amber-400/50">
+                  <div className="flex items-center">
+                    <Star className="w-4 h-4 text-amber-400 mr-2" />
+                    <span className="text-gray-200 font-medium">Media Share</span>
+                  </div>
+                  <span className="text-amber-400 font-black">+1,200</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 3: Redeem iPhone 17 */}
+          <div className="glass rounded-2xl p-6 border border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm relative">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <div className="bg-purple-500 text-white font-bold px-4 py-1 rounded-full text-sm">STEP 3</div>
+            </div>
+            <div className="text-center mt-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Crown className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">REDEEM</h3>
+              <p className="text-gray-300 mb-4">Use points as store credit to minimize cash for iPhone 17</p>
+              
+              {/* iPhone 17 Pricing Strategy */}
+              <div className="space-y-2 text-sm">
+                <div className="bg-purple-500/20 rounded-lg p-3">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-gray-300">iPhone 17 Pro</span>
+                    <span className="text-white font-bold">AED 4,999</span>
+                  </div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-hero-green-400">Store Credit</span>
+                    <span className="text-hero-green-400">-AED 3,200</span>
+                  </div>
+                  <div className="border-t border-purple-400/30 pt-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-purple-300 font-bold">Cash Needed</span>
+                      <span className="text-purple-400 font-black text-lg">AED 1,799</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Cross-Category Advantage + Apple Event Integration */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          
-          {/* Cross-Category Trade Leaders */}
-          <div className="glass rounded-2xl p-6 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-yellow-500/10 backdrop-blur-sm">
-            <div className="text-center mb-4">
-              <Building className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">TELCO DISRUPTION</h3>
-              <p className="text-gray-300 text-xs">Beyond Etisalat/Du limitations</p>
-            </div>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400">vs Telcos</span>
-                <span className="text-amber-400 font-bold">+Water Systems</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400">Global First</span>
-                <span className="text-amber-400 font-bold">Cross-Category</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-400">Media Story</span>
-                <span className="text-amber-400 font-bold">iPhone→Water</span>
-              </div>
-            </div>
-          </div>
-
+        {/* Strategic Timing - Apple Event & GITEX 2025 */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* Apple Event Countdown */}
-          <div className="glass rounded-2xl p-6 border border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-blue-500/10 backdrop-blur-sm">
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-center">
-              <Clock className="w-5 h-5 text-purple-400 mr-2" />
-              Apple Event
+          <div className="glass rounded-2xl p-6 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10">
+            <h3 className="text-xl font-bold text-white mb-4 flex items-center justify-center">
+              <Clock className="w-6 h-6 text-amber-400 mr-3" />
+              iPhone 17 Launch Event
             </h3>
             
-            <div className="grid grid-cols-2 gap-2 text-center mb-3">
+            <div className="grid grid-cols-2 gap-3 text-center mb-4">
               <div>
-                <div className="bg-purple-500/30 border border-purple-400/50 rounded-lg p-2">
-                  <div className="text-xl font-black text-white">{timeLeft.days}</div>
-                  <div className="text-xs text-gray-300">Days</div>
+                <div className="bg-amber-500/30 border border-amber-400/50 rounded-xl p-3">
+                  <div className="text-2xl font-black text-white">{timeLeft.days}</div>
+                  <div className="text-sm text-gray-300">Days</div>
                 </div>
               </div>
               <div>
-                <div className="bg-purple-500/30 border border-purple-400/50 rounded-lg p-2">
-                  <div className="text-xl font-black text-white">{timeLeft.hours}</div>
-                  <div className="text-xs text-gray-300">Hours</div>
+                <div className="bg-amber-500/30 border border-amber-400/50 rounded-xl p-3">
+                  <div className="text-2xl font-black text-white">{timeLeft.hours}</div>
+                  <div className="text-sm text-gray-300">Hours</div>
                 </div>
               </div>
             </div>
-            <p className="text-xs text-gray-400 text-center">Sep 9, 6PM Dubai</p>
-          </div>
-
-          {/* FREE Community Growth */}
-          <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 backdrop-blur-sm">
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-center">
-              <Gift className="w-5 h-5 text-hero-green-500 mr-2" />
-              FREE Growth
-            </h3>
             
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center">
-                  <Users className="w-4 h-4 text-blue-500 mr-2" />
-                  <span className="text-white">Join Campaign</span>
-                </div>
-                <span className="font-bold text-blue-500">+25</span>
-              </div>
-              
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center">
-                  <Heart className="w-4 h-4 text-purple-500 mr-2" />
-                  <span className="text-white">Share Story</span>
-                </div>
-                <span className="font-bold text-purple-500">+50</span>
-              </div>
-              
-              <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center">
-                  <Award className="w-4 h-4 text-amber-500 mr-2" />
-                  <span className="text-white">Media Kit</span>
-                </div>
-                <span className="font-bold text-amber-500">+75</span>
-              </div>
+            <div className="text-center">
+              <p className="text-amber-300 text-sm font-medium mb-2">Tuesday, Sep 9 • 6PM Dubai Time</p>
+              <p className="text-gray-400 text-xs">Pre-order opens immediately after event</p>
             </div>
           </div>
 
-          {/* GITEX + Launch Benefits */}
-          <div className="glass rounded-2xl p-6 border border-hero-green-500/30 bg-gradient-to-br from-hero-green-500/10 to-teal-500/10 backdrop-blur-sm">
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-hero-green-400 mr-2" />
-              GITEX Launch
+          {/* GITEX 2025 Opportunity */}
+          <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-teal-500/10">
+            <h3 className="text-xl font-bold text-white mb-4 flex items-center justify-center">
+              <Sparkles className="w-6 h-6 text-hero-green-400 mr-3" />
+              GITEX 2025 Launch Benefits
             </h3>
             
-            <div className="space-y-2 text-sm">
-              <div className="flex items-start space-x-2">
-                <Star className="w-4 h-4 text-hero-green-500 mt-0.5 flex-shrink-0" />
-                <span className="text-white">iPhone 17 Priority</span>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between p-3 bg-hero-green-500/20 rounded-lg">
+                <div className="flex items-center">
+                  <Star className="w-5 h-5 text-amber-400 mr-2" />
+                  <span className="text-white">iPhone 17 Priority</span>
+                </div>
+                <span className="text-hero-green-400 font-bold">Guaranteed</span>
               </div>
               
-              <div className="flex items-start space-x-2">
-                <Gift className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                <span className="text-white">AED 2,500 Bonus</span>
+              <div className="flex items-center justify-between p-3 bg-hero-green-500/20 rounded-lg">
+                <div className="flex items-center">
+                  <Gift className="w-5 h-5 text-purple-400 mr-2" />
+                  <span className="text-white">Bonus Points</span>
+                </div>
+                <span className="text-purple-400 font-bold">+2,500 PTS</span>
               </div>
               
-              <div className="flex items-start space-x-2">
-                <Crown className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
-                <span className="text-white">Media Coverage</span>
+              <div className="flex items-center justify-between p-3 bg-gradient-to-r from-hero-green-500/30 to-amber-500/30 rounded-lg border border-amber-400/50">
+                <div className="flex items-center">
+                  <Crown className="w-5 h-5 text-amber-400 mr-2" />
+                  <span className="text-white">Media Coverage</span>
+                </div>
+                <span className="text-amber-400 font-bold">Viral Story</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Community GTM Strategy */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          {/* Media Campaign Integration */}
-          <div className="glass rounded-2xl p-6 border border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-pink-500/10">
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center">
-              <Users className="w-6 h-6 text-purple-400 mr-3" />
-              Media Campaign & GTM Strategy
+        {/* Main CTA - Fulfill Your Dreams */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-hero-green-600/20 p-8 border-2 border-hero-green-400/50 shadow-2xl mb-8">
+          {/* Neon glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-400/10 via-blue-400/10 to-hero-green-400/10 animate-pulse"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-400/20 via-blue-400/20 to-hero-green-400/20 rounded-3xl blur-xl animate-pulse"></div>
+          
+          <div className="relative z-10 text-center">
+            <div className="inline-flex items-center bg-hero-green-500/30 border border-hero-green-400/50 rounded-full px-6 py-2 mb-6 backdrop-blur-sm">
+              <Target className="w-5 h-5 text-hero-green-300 mr-2 animate-pulse" />
+              <span className="text-hero-green-200 font-bold text-sm tracking-wide">MISSION MONTH • LIMITED TIME</span>
+              <Target className="w-5 h-5 text-hero-green-300 ml-2 animate-pulse" />
+            </div>
+            
+            <h3 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
+              <span className="bg-gradient-to-r from-hero-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                FULFILL YOUR DREAMS
+              </span>
             </h3>
             
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
-                <div>
-                  <p className="text-white text-sm font-medium">Apple Event Limelight (Sep 9)</p>
-                  <p className="text-gray-400 text-xs">Leverage global iPhone 17 launch attention</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 bg-hero-green-500 rounded-full flex items-center justify-center text-black font-bold text-sm">2</div>
-                <div>
-                  <p className="text-white text-sm font-medium">GITEX 2025 Launch Campaign</p>
-                  <p className="text-gray-400 text-xs">Cross-category disruption story at tech summit</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
-                <div>
-                  <p className="text-white text-sm font-medium">Community Viral Growth</p>
-                  <p className="text-gray-400 text-xs">12,847 heroes sharing iPhone→Water story</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Community Traction & Benefits */}
-          <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-blue-500/10">
-            <h3 className="text-xl font-bold text-white mb-4">Ready for Launch Campaign?</h3>
-            <div className="mb-4">
-              <div className="text-sm text-gray-300 mb-2">Current campaign traction:</div>
-              <div className="text-3xl font-bold text-hero-green-400">#12,847</div>
-              <div className="text-xs text-gray-400">active community members</div>
-            </div>
-            
-            <p className="text-sm text-gray-300 mb-4">Join campaign • Collect media points • Get iPhone 17 priority</p>
-            
-            <Link href="/" className="block mb-3">
-              <Button className="w-full bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold py-3 shadow-lg transform hover:scale-105 transition-all">
-                Start Trading Campaign
-                <ChevronRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-            
-            <p className="text-xs text-gray-500 text-center">
-              Cross-category advantage • Media-ready story • Free to join
+            <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Transform your old iPhone into iPhone 17 with <strong className="text-hero-green-400">minimal cash</strong>. 
+              Upgrade communication & health essentials through Planet Points system.
             </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => {
+                  const meetDeliSection = document.querySelector('[data-section="meet-deli"]');
+                  if (meetDeliSection) {
+                    meetDeliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Focus on the input after scrolling
+                    setTimeout(() => {
+                      const input = meetDeliSection.querySelector('input, textarea, select');
+                      if (input) {
+                        (input as HTMLElement).focus();
+                      }
+                    }, 500);
+                  }
+                }}
+                className="relative group bg-gradient-to-r from-hero-green-500 to-emerald-500 hover:from-hero-green-400 hover:to-emerald-400 text-black font-black px-12 py-6 text-2xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                data-testid="button-start-planet-mission"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-r from-hero-green-400 to-emerald-400 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative flex items-center">
+                  <Gamepad2 className="w-8 h-8 mr-3" />
+                  START PLANET MISSION
+                </div>
+              </button>
+              
+              <Link href="/leaderboard">
+                <button className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 font-bold px-8 py-6 text-xl rounded-full backdrop-blur-sm transition-all">
+                  <Trophy className="w-6 h-6 mr-2 inline" />
+                  View Leaderboard
+                </button>
+              </Link>
+            </div>
+            
+            <div className="mt-6 text-hero-green-300 text-sm">
+              🎮 Play • 📱 Upgrade • 💧 Transform • 🏆 Win iPhone 17
+            </div>
           </div>
         </div>
         
         <div className="text-center">
           <p className="text-gray-400 text-sm">
-            🚀 iPhone 17 launch limelight • 🤝 Beyond telco limitations • 📈 GITEX 2025 media campaign • 🌍 Viral sustainability story
+            🚀 Apple Event Sep 9 • 🎯 GITEX 2025 media campaign • 💎 Maximum store credit strategy • ⚡ Beat telco limitations
           </p>
         </div>
       </div>
