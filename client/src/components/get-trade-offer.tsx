@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Smartphone, ArrowRight, Calculator, Bot, Gift, Trophy, Target, Clock, CheckCircle, Zap, Star, TrendingUp, Droplets, Package, Home } from "lucide-react";
+import { Smartphone, ArrowRight, Calculator, Bot, Gift, Trophy, Target, Clock, CheckCircle, Zap, Star, TrendingUp, Droplets, Package, Home, Users, Crown, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
@@ -77,12 +77,12 @@ export function GetTradeOffer() {
               GET TRADE-IN OFFER
             </span>
             <br />
-            <span className="text-2xl md:text-3xl text-hero-green-400 font-bold">Instant Value • Planet Points • Rewards</span>
+            <span className="text-2xl md:text-3xl text-hero-green-400 font-bold">Trade iPhone • Win iPhone 17 • Collect Points</span>
           </h2>
           
           <p className="text-lg text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-            Calculate your iPhone's value and discover your Planet Points potential. 
-            <strong className="text-hero-green-400"> Start your sustainability journey with instant rewards</strong>.
+            Get instant iPhone trade value and start collecting Planet Points through eco-missions. 
+            <strong className="text-hero-green-400"> Maximize store credit to minimize cash</strong> for iPhone 17 upgrade at GITEX 2025.
           </p>
         </div>
 
@@ -170,13 +170,13 @@ export function GetTradeOffer() {
             </div>
           </div>
 
-          {/* Step 2: View Results - Enhanced when Active */}
+          {/* Step 2: Collect Planet Points - Enhanced when Active */}
           <div 
             className={`glass rounded-2xl p-6 border backdrop-blur-sm relative cursor-pointer transition-all duration-300 ${
               activeStep === 2 
-                ? 'border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 transform scale-105 z-10' 
+                ? 'border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 transform scale-105 z-10' 
                 : calculatedValue 
-                  ? 'border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10' 
+                  ? 'border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10' 
                   : 'border-gray-500/50 bg-gradient-to-br from-gray-500/10 to-slate-500/10'
             }`}
             onClick={() => calculatedValue && handleStepClick(2)}
@@ -184,9 +184,9 @@ export function GetTradeOffer() {
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
               <div className={`font-bold px-4 py-1 rounded-full text-sm ${
                 activeStep === 2 
-                  ? 'bg-amber-500 text-black' 
+                  ? 'bg-hero-green-500 text-black' 
                   : calculatedValue 
-                    ? 'bg-hero-green-500 text-black'
+                    ? 'bg-amber-500 text-black'
                     : 'bg-gray-500 text-white'
               }`}>
                 {activeStep === 2 ? 'STEP 2 - ACTIVE' : 'STEP 2'}
@@ -196,35 +196,38 @@ export function GetTradeOffer() {
             <div className="text-center mt-4">
               <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${
                 activeStep === 2 
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-500' 
+                  ? 'bg-gradient-to-r from-hero-green-500 to-emerald-500' 
                   : calculatedValue 
-                    ? 'bg-gradient-to-r from-hero-green-500 to-emerald-500'
+                    ? 'bg-gradient-to-r from-amber-500 to-orange-500'
                     : 'bg-gradient-to-r from-gray-500 to-slate-500'
               }`}>
-                <Gift className="w-8 h-8 text-white" />
+                <Target className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">VIEW RESULTS</h3>
-              <p className="text-gray-300 mb-4">See your trade value, points, and environmental impact</p>
+              <h3 className="text-xl font-bold text-white mb-3">COLLECT POINTS</h3>
+              <p className="text-gray-300 mb-4">Complete eco-missions and level up to meet iPhone 17 shortfall</p>
               
               {calculatedValue && activeStep === 2 && (
-                <div className="space-y-3 mt-6">
-                  <div className="bg-amber-500/20 rounded-lg p-3">
-                    <div className="text-2xl font-black text-amber-400">AED {calculatedValue}</div>
-                    <div className="text-gray-300 text-sm">Trade Value</div>
-                  </div>
-                  <div className="flex justify-between items-center bg-amber-500/20 rounded-lg p-2">
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between items-center bg-hero-green-500/20 rounded-lg p-2">
                     <div className="flex items-center">
-                      <Star className="w-4 h-4 text-amber-400 mr-2" />
-                      <span className="text-gray-300">Planet Points</span>
+                      <Droplets className="w-4 h-4 text-blue-400 mr-2" />
+                      <span className="text-gray-300">AquaCafe Mission</span>
                     </div>
-                    <span className="text-amber-400 font-bold">+{calculatedPoints}</span>
+                    <span className="text-hero-green-400 font-bold">+1,500</span>
                   </div>
                   <div className="flex justify-between items-center bg-hero-green-500/20 rounded-lg p-2">
                     <div className="flex items-center">
-                      <Droplets className="w-4 h-4 text-hero-green-400 mr-2" />
-                      <span className="text-gray-300">Water Saved</span>
+                      <Users className="w-4 h-4 text-purple-400 mr-2" />
+                      <span className="text-gray-300">Referral Bonus</span>
                     </div>
-                    <span className="text-hero-green-400 font-bold">520L</span>
+                    <span className="text-hero-green-400 font-bold">+800</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-gradient-to-r from-hero-green-500/30 to-amber-500/30 rounded-lg p-2 border border-amber-400/50">
+                    <div className="flex items-center">
+                      <Star className="w-4 h-4 text-amber-400 mr-2" />
+                      <span className="text-gray-200 font-medium">Media Share</span>
+                    </div>
+                    <span className="text-amber-400 font-black">+1,200</span>
                   </div>
                 </div>
               )}
@@ -232,27 +235,27 @@ export function GetTradeOffer() {
               <div className="flex items-center justify-center gap-2 mt-4">
                 <div className={`w-5 h-5 ${
                   activeStep === 2 
-                    ? 'text-amber-500' 
+                    ? 'text-hero-green-500' 
                     : calculatedValue 
-                      ? 'text-hero-green-500' 
+                      ? 'text-amber-500' 
                       : 'text-gray-500'
                 }`}>
-                  {calculatedValue ? <CheckCircle /> : <Clock />}
+                  {calculatedValue ? <TrendingUp /> : <Clock />}
                 </div>
                 <span className={`font-semibold ${
                   activeStep === 2 
-                    ? 'text-amber-400' 
+                    ? 'text-hero-green-400' 
                     : calculatedValue 
-                      ? 'text-hero-green-400' 
+                      ? 'text-amber-400' 
                       : 'text-gray-400'
                 }`}>
-                  {calculatedValue ? 'Value Ready' : 'Waiting'}
+                  {calculatedValue ? 'Keep Growing' : 'Waiting'}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Step 3: Complete Trade */}
+          {/* Step 3: Redeem iPhone 17 */}
           <div 
             className={`glass rounded-2xl p-6 border backdrop-blur-sm relative cursor-pointer transition-all duration-300 ${
               activeStep === 3 
@@ -283,34 +286,29 @@ export function GetTradeOffer() {
                     ? 'bg-gradient-to-r from-hero-green-500 to-blue-500'
                     : 'bg-gradient-to-r from-gray-500 to-slate-500'
               }`}>
-                <Trophy className="w-8 h-8 text-white" />
+                <Gift className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">COMPLETE TRADE</h3>
-              <p className="text-gray-300 mb-4">Book pickup and join the Planet Heroes community</p>
+              <h3 className="text-xl font-bold text-white mb-3">REDEEM</h3>
+              <p className="text-gray-300 mb-4">Use points as store credit to minimize cash for iPhone 17</p>
               
               {calculatedValue && activeStep === 3 && (
-                <div className="space-y-3 mt-6">
+                <div className="space-y-2 text-sm">
                   <div className="bg-purple-500/20 rounded-lg p-3">
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <Home className="w-5 h-5 text-purple-400" />
-                      <span className="text-purple-200 font-medium">Home Pickup</span>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-300">iPhone 17 Pro</span>
+                      <span className="text-white font-bold">AED 4,999</span>
                     </div>
-                    <div className="flex items-center justify-center gap-4 text-sm text-gray-300">
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4 text-blue-400" />
-                        <span>Same Day</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Package className="w-4 h-4 text-hero-green-400" />
-                        <span>Free</span>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-hero-green-400">Store Credit</span>
+                      <span className="text-hero-green-400">-AED {calculatedValue}</span>
+                    </div>
+                    <div className="border-t border-purple-400/30 pt-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-purple-300 font-bold">Cash Needed</span>
+                        <span className="text-purple-400 font-black text-lg">AED {4999 - calculatedValue}</span>
                       </div>
                     </div>
                   </div>
-                  
-                  <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 rounded-lg">
-                    <Trophy className="w-5 h-5 mr-2" />
-                    BOOK PICKUP NOW
-                  </Button>
                 </div>
               )}
               
@@ -331,22 +329,67 @@ export function GetTradeOffer() {
                       ? 'text-hero-green-400' 
                       : 'text-gray-400'
                 }`}>
-                  {calculatedValue ? 'Ready to Trade' : 'Complete Steps'}
+                  {calculatedValue ? 'Unlock Rewards' : 'Complete Steps'}
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Call to Action */}
-        {calculatedValue && (
-          <div className="text-center">
-            <div className="inline-flex items-center bg-hero-green-900/30 border border-hero-green-500/50 rounded-full px-6 py-3 mb-4">
+        {/* Neon-Style CTAs */}
+        <div className="text-center space-y-6">
+          {calculatedValue && (
+            <div className="inline-flex items-center bg-hero-green-900/30 border border-hero-green-500/50 rounded-full px-6 py-3 mb-6">
               <Trophy className="w-5 h-5 text-hero-green-400 mr-2" />
               <span className="text-hero-green-400 font-bold">Your Trade Value: AED {calculatedValue} + {calculatedPoints} Planet Points</span>
             </div>
+          )}
+          
+          {/* Neon "Enter the Game" CTA */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 p-8 border-2 border-cyan-400/50 shadow-2xl">
+            {/* Neon glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 via-purple-400/10 to-pink-400/10 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 rounded-3xl blur-xl animate-pulse"></div>
+            
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-black mb-4 leading-tight">
+                <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
+                  ENTER THE GAME
+                </span>
+              </h3>
+              
+              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Join the Planet Points Challenge and compete for iPhone 17 • Sep 9 Launch
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={() => {
+                    document.getElementById('planet-points-challenge')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="relative group bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-black font-black px-12 py-6 text-2xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="relative flex items-center">
+                    <Gamepad2 className="w-8 h-8 mr-3" />
+                    JOIN CHALLENGE
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => {
+                    setActiveStep(3);
+                    document.getElementById('step-3')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 font-bold px-8 py-6 text-xl rounded-full backdrop-blur-sm transition-all"
+                >
+                  <Crown className="w-6 h-6 mr-2 inline" />
+                  SKIP TO REDEEM
+                </button>
+              </div>
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

@@ -73,7 +73,7 @@ export function MeetDeliInteractive() {
   // Calculator Functions
   const calculationMutation = useMutation({
     mutationFn: async (data: { device: string; condition: string }): Promise<TradeCalculationResult> => {
-      const result = await apiRequest('/api/calculate-trade', 'POST', data);
+      const result = await apiRequest('/api/calculate-trade', 'POST', data) as TradeCalculationResult;
       return result;
     },
     onSuccess: (result: TradeCalculationResult) => {
