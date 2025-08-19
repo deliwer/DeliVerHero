@@ -351,7 +351,7 @@ export function MeetDeliInteractive() {
         <Link href="/aquacafe" className="block w-full">
           <Button className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700 text-white py-4 font-bold rounded-xl text-lg shadow-lg border-2 border-hero-green-400 transform hover:scale-[1.02] transition-all">
             <ShoppingCart className="mr-3 w-6 h-6" />
-            TRADE & SHOP AQUACAFE PRODUCTS
+            TRADE-IN & SHOP AQUACAFE
             <ArrowRight className="ml-3 w-5 h-5" />
           </Button>
         </Link>
