@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import { DeviceSimulator } from "./device-simulator";
-import { DeliAIInput } from "./deli-ai-input";
+import { MeetDeliInteractive } from "./meet-deli-interactive";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
@@ -465,16 +464,9 @@ export function HeroChallengeLanding() {
           </div>
         </div>
 
-        {/* AI Assistant */}
+        {/* Meet Deli - Interactive Trade Assistant */}
         <div className="mb-16">
-          <DeliAIInput />
-        </div>
-
-
-
-        {/* Unified Device Calculator */}
-        <div className="mb-16">
-          <DeviceSimulator />
+          <MeetDeliInteractive />
         </div>
 
         {/* Comprehensive Campaign Section */}
