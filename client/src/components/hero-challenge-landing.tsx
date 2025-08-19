@@ -488,15 +488,25 @@ export function HeroChallengeLanding() {
         <ComprehensiveCampaignSection />
 
 
-        {/* How to Participate - Planet Heroes Rewards */}
-        <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 mb-12" data-testid="how-to-participate-section">
+        {/* Planet Heroes Rewards - Unified Section */}
+        <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 mb-12" data-testid="planet-heroes-rewards-section">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Crown className="w-10 h-10 text-white" />
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Trophy className="w-8 h-8 text-amber-500" />
+              <div className="inline-flex items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 border border-amber-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm">
+                <Sparkles className="w-4 h-4 text-amber-300 mr-2" />
+                <span className="text-amber-200 font-bold text-sm tracking-wide">DUBAI ENVIRONMENTAL CHAMPIONS</span>
+                <Sparkles className="w-4 h-4 text-amber-300 ml-2" />
+              </div>
+              <Award className="w-8 h-8 text-amber-500" />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-3">HOW TO PARTICIPATE</h2>
-            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-              Join {stats?.activeHeroes?.toLocaleString() || '12,847'} sustainability leaders making real environmental impact across Dubai
+            <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
+                PLANET HEROES REWARDS
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+              Join {stats?.activeHeroes?.toLocaleString() || '12,847'} sustainability leaders earning rewards through environmental impact across Dubai
             </p>
           </div>
 

@@ -106,3 +106,6 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - ✅ Products removed from main landing page - dedicated to AquaCafe shop page
 - ✅ Neon-style "SHOP AQUACAFE NOW" CTA prominently placed for conversion optimization
 - ✅ Three-step participation process: Exchange → Collect → Redeem with clear visual progression
+- ✅ **Redundant Planet Heroes Rewards sections merged into single unified section** (August 19, 2025)
+- ✅ Section repositioned after Etisalat & Du section with focus on "start now and earn rewards"
+- ✅ All product displays removed from main page to streamline user journey to AquaCafe
