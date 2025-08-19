@@ -275,11 +275,11 @@ export default function Home() {
         </div>
       )}
 
-      {/* Enhanced Hero Challenge Landing */}
-      <HeroChallengeLanding />
-
-      {/* Get Trade-in Offer Section - Now positioned below hero */}
+      {/* Get Trade-in Offer Section - Now positioned above Planet Points Challenge */}
       <GetTradeOffer />
+
+      {/* Enhanced Hero Challenge Landing with Planet Points Challenge */}
+      <HeroChallengeLanding />
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
