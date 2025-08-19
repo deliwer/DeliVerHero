@@ -284,9 +284,7 @@ export function HeroChallengeLanding() {
             <span className="block text-white drop-shadow-lg">
               Trade Your iPhone
             </span>
-            <span className="block bg-gradient-to-r from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">
-              for Premium Water
-            </span>
+            <span className="block bg-gradient-to-r from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg">a Circular Exchange</span>
           </h1>
           
           <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">Transform your iPhone into Dubai's premium AquaCafe water system through our revolutionary circular trade platform.</p>
