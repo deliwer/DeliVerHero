@@ -23,8 +23,13 @@ import {
   ArrowRight,
   CheckCircle,
   Users,
-  Building
+  Building,
+  Home,
+  Package,
+  Clock,
+  Truck
 } from "lucide-react";
+import deliwerLogoPath from "@assets/deliwer logo_1755631863675.png";
 
 interface Product {
   id: string;
@@ -224,170 +229,207 @@ function ParticipationStep({ step, index }: { step: Step; index: number }) {
 
 export function PlanetHeroesRewards() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [userPoints] = useState(12450); // Mock user points
+  const [userPoints] = useState(12450);
   
   const filteredProducts = selectedCategory === 'all' 
     ? ecoProducts 
     : ecoProducts.filter(p => p.category === selectedCategory);
 
   const categories = [
-    { id: 'all', name: 'All Products', icon: ShoppingBag },
-    { id: 'tech', name: 'Technology', icon: Smartphone },
-    { id: 'water', name: 'Water Systems', icon: Droplets },
-    { id: 'food', name: 'Healthy Food', icon: Utensils },
+    { id: 'all', name: 'All Rewards', icon: Gift },
+    { id: 'tech', name: 'Tech', icon: Smartphone },
+    { id: 'water', name: 'Water', icon: Droplets },
+    { id: 'food', name: 'Food', icon: Utensils },
   ];
 
   return (
     <div className="py-16 px-4 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-blue-900/20"></div>
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/10 to-blue-900/10"></div>
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-amber-500/5 to-orange-500/5 rounded-full blur-3xl"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Trophy className="w-8 h-8 text-amber-500" />
-            <div className="inline-flex items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 border border-amber-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-amber-300 mr-2" />
-              <span className="text-amber-200 font-bold text-sm tracking-wide">DUBAI ENVIRONMENTAL CHAMPIONS</span>
-              <Sparkles className="w-4 h-4 text-amber-300 ml-2" />
+        {/* Header with DeliWer Branding */}
+        <div className="text-center mb-12">
+          {/* DeliWer Logo & Step 3 Badge */}
+          <div className="flex items-center justify-center gap-6 mb-8">
+            <img 
+              src={deliwerLogoPath} 
+              alt="DeliWer" 
+              className="h-16 w-auto"
+            />
+            <div className="inline-flex items-center bg-gradient-to-r from-amber-500/30 to-orange-500/30 border border-amber-400/50 rounded-2xl px-8 py-4 shadow-lg backdrop-blur-sm">
+              <Trophy className="w-6 h-6 text-amber-300 mr-3" />
+              <span className="text-amber-200 font-black text-lg tracking-wide">STEP 3: REDEEM & EVOLVE</span>
             </div>
-            <Award className="w-8 h-8 text-amber-500" />
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight">
+          {/* Main Heading */}
+          <h2 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
             <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
-              PLANET HEROES REWARDS
+              PLANET REWARDS
             </span>
           </h2>
           
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-            Rewarding Dubai Environmental Champions (Planet Heroes) with exclusive offers from 
-            <strong className="text-hero-green-400"> AquaCafe</strong> and Partners like 
-            <strong className="text-blue-400"> Bakers Kitchen</strong> and more
-          </p>
-
-          {/* Starter Kit Value Highlight */}
-          <div className="glass rounded-2xl p-6 border border-amber-500/50 bg-gradient-to-r from-amber-500/10 to-orange-500/10 backdrop-blur-sm max-w-2xl mx-auto mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Gift className="w-6 h-6 text-amber-400" />
-              <span className="text-2xl font-bold text-white">Starter Kit Value</span>
+          {/* USP Highlight */}
+          <div className="glass rounded-3xl p-8 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 backdrop-blur-sm max-w-4xl mx-auto mb-8">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <Home className="w-8 h-8 text-hero-green-400" />
+              <span className="text-3xl font-black text-white">All at the convenience of your home</span>
+              <Package className="w-8 h-8 text-blue-400" />
             </div>
-            <div className="text-4xl font-black text-amber-400 mb-2">AED 1,000+</div>
-            <p className="text-gray-300">Including AquaCafe Shower Filter Gift & Premium Welcome Package</p>
-          </div>
-
-          {/* User Points Display */}
-          <div className="flex items-center justify-center gap-6 mb-12">
-            <div className="glass rounded-2xl p-4 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 backdrop-blur-sm">
+            <div className="flex items-center justify-center gap-8 text-lg text-gray-300">
               <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-amber-500" />
-                <span className="text-lg text-gray-300">Your Planet Points:</span>
-                <span className="text-2xl font-bold text-amber-400">{userPoints.toLocaleString()}</span>
+                <Truck className="w-5 h-5 text-hero-green-400" />
+                <span>Free Delivery</span>
               </div>
-            </div>
-            <div className="glass rounded-2xl p-4 border border-purple-500/50 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm">
               <div className="flex items-center gap-2">
-                <Users className="w-5 h-5 text-purple-400" />
-                <span className="text-lg text-gray-300">Active Heroes:</span>
-                <span className="text-2xl font-bold text-purple-400">12,847</span>
+                <Clock className="w-5 h-5 text-blue-400" />
+                <span>Same Day</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-amber-400" />
+                <span>Instant Rewards</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* How It Works Section */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center text-white mb-12">
-            <Globe className="inline w-8 h-8 text-hero-green-500 mr-3" />
-            How Participation Works
-          </h3>
+        {/* Visual Points Display */}
+        <div className="flex items-center justify-center gap-8 mb-12">
+          <motion.div 
+            className="glass rounded-3xl p-6 border border-amber-500/50 bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-sm"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="text-center">
+              <Star className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+              <div className="text-3xl font-black text-amber-400">{userPoints.toLocaleString()}</div>
+              <div className="text-sm text-gray-300">Your Points</div>
+            </div>
+          </motion.div>
           
-          <div className="space-y-12 max-w-4xl mx-auto">
-            {participationSteps.map((step, index) => (
-              <ParticipationStep key={step.number} step={step} index={index} />
-            ))}
-          </div>
+          <div className="text-4xl text-amber-400">→</div>
+          
+          <motion.div 
+            className="glass rounded-3xl p-6 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/20 to-emerald-500/20 backdrop-blur-sm"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="text-center">
+              <Gift className="w-8 h-8 text-hero-green-400 mx-auto mb-2" />
+              <div className="text-3xl font-black text-hero-green-400">AED 1,245</div>
+              <div className="text-sm text-gray-300">Reward Value</div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Product Categories */}
-        <div className="mb-8">
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-hero-green-500 to-blue-500 text-black'
-                    : 'glass border border-slate-600 text-gray-300 hover:border-hero-green-500/50'
-                }`}
-                data-testid={`category-${category.id}`}
+        {/* Category Filters - Visual */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {categories.map((category) => (
+            <motion.button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-bold transition-all ${
+                selectedCategory === category.id
+                  ? 'bg-gradient-to-r from-hero-green-500 to-blue-500 text-black shadow-xl'
+                  : 'glass border border-slate-600 text-gray-300 hover:border-hero-green-500/50'
+              }`}
+            >
+              <category.icon className="w-6 h-6" />
+              {category.name}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Product Grid - Visual Focus */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {filteredProducts.map((product, index) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="relative glass rounded-3xl p-8 border border-slate-600 bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm shadow-2xl"
+            >
+              {product.popular && (
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black px-4 py-2 rounded-2xl text-sm font-black shadow-lg">
+                  <Sparkles className="w-4 h-4 inline mr-1" />
+                  POPULAR
+                </div>
+              )}
+              
+              {/* Product Visual */}
+              <div className="text-center mb-6">
+                <div className={`w-20 h-20 mx-auto rounded-3xl bg-gradient-to-r ${
+                  product.category === 'tech' ? 'from-blue-500 to-cyan-500' :
+                  product.category === 'water' ? 'from-blue-500 to-teal-500' :
+                  product.category === 'food' ? 'from-green-500 to-emerald-500' :
+                  'from-purple-500 to-pink-500'
+                } flex items-center justify-center mb-4 shadow-lg`}>
+                  <CategoryIcon category={product.category} />
+                </div>
+                <h3 className="font-black text-white text-xl mb-2">{product.name}</h3>
+                <p className="text-gray-400 text-lg">{product.value}</p>
+              </div>
+
+              {/* Points Display */}
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <Star className="w-6 h-6 text-amber-500" />
+                <span className="font-black text-amber-500 text-2xl">{product.points.toLocaleString()}</span>
+                <span className="text-gray-400">pts</span>
+              </div>
+
+              {/* Redeem Button */}
+              <Button 
+                className="w-full bg-gradient-to-r from-hero-green-500 to-blue-500 hover:from-hero-green-600 hover:to-blue-600 text-black font-black py-6 text-lg shadow-xl transform hover:scale-105 transition-all"
+                disabled={!product.available}
               >
-                <category.icon className="w-4 h-4" />
-                {category.name}
-              </button>
-            ))}
-          </div>
+                {product.available ? 'REDEEM NOW' : 'COMING SOON'}
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Eco-Friendly Products Visualization */}
-        <div className="mb-16">
-          <h3 className="text-3xl font-bold text-center text-white mb-8">
-            <ShoppingBag className="inline w-8 h-8 text-blue-500 mr-3" />
-            Eco-Friendly Rewards Store
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-
-        {/* Online Shop CTA */}
+        {/* Main CTA - Conversion Focused */}
         <div className="text-center">
-          <div className="glass rounded-2xl p-8 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 backdrop-blur-sm max-w-3xl mx-auto">
-            <Building className="w-12 h-12 text-hero-green-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-4">Shop Online at AquaCafe</h3>
-            <p className="text-gray-300 mb-6">
-              All eco-friendly products can also be ordered directly from our AquaCafe Shop online. 
-              Earn points with every purchase and contribute to Dubai's sustainability goals.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-hero-green-500 to-blue-500 hover:from-hero-green-600 hover:to-blue-600 text-black font-bold px-8 py-3 shadow-xl transform hover:scale-105 transition-all"
-                data-testid="button-shop-online"
-              >
-                <ShoppingBag className="w-5 h-5 mr-2" />
-                Shop AquaCafe Online
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-amber-500/50 text-amber-400 hover:bg-amber-500/10 px-8 py-3 font-bold"
-                data-testid="button-earn-points"
-              >
-                <TrendingUp className="w-5 h-5 mr-2" />
-                Start Earning Points
-              </Button>
+          <motion.div 
+            className="glass rounded-3xl p-12 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/20 to-blue-500/20 backdrop-blur-sm max-w-4xl mx-auto"
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <img src={deliwerLogoPath} alt="DeliWer" className="h-12 w-auto" />
+              <div className="text-4xl font-black text-white">×</div>
+              <Droplets className="w-12 h-12 text-blue-400" />
+              <div className="text-2xl font-bold text-blue-400">AquaCafe</div>
             </div>
-          </div>
-        </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              <div className="text-center">
+                <Home className="w-12 h-12 text-hero-green-400 mx-auto mb-4" />
+                <div className="text-xl font-bold text-white">Home Delivery</div>
+              </div>
+              <div className="text-center">
+                <Clock className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+                <div className="text-xl font-bold text-white">Same Day</div>
+              </div>
+              <div className="text-center">
+                <Gift className="w-12 h-12 text-amber-400 mx-auto mb-4" />
+                <div className="text-xl font-bold text-white">Instant Rewards</div>
+              </div>
+            </div>
 
-        {/* Engagement Message */}
-        <div className="text-center mt-12">
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            <strong className="text-hero-green-400">The whole concept revolves around engaging people for eco-friendly initiatives</strong> and 
-            practices enablement by the <strong className="text-blue-400">DeliWer platform</strong>. 
-            Join our community of Planet Heroes and make a real impact on Dubai's environmental future.
-          </p>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <CheckCircle className="w-5 h-5 text-hero-green-500" />
-            <span className="text-hero-green-400 font-semibold">That's How it Works!</span>
-          </div>
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-black px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all"
+            >
+              <Trophy className="w-6 h-6 mr-3" />
+              START REDEEMING NOW
+              <ArrowRight className="w-6 h-6 ml-3" />
+            </Button>
+          </motion.div>
         </div>
       </div>
     </div>
