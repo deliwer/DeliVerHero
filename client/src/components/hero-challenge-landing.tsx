@@ -488,8 +488,76 @@ export function HeroChallengeLanding() {
         <ComprehensiveCampaignSection />
 
 
-        {/* Founding Heroes Program & Leaderboard */}
-        <FoundingHeroesSection stats={stats} />
+        {/* Planet Heroes Rewards - Replacing Dubai Environmental Champions */}
+        <div className="mb-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-white mb-3">PLANET HEROES REWARDS</h2>
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+              Transform your environmental impact into exclusive rewards. Join the movement for Dubai's sustainable future.
+            </p>
+          </div>
+          
+          {/* Prominent Neon-Style CTA for Starter Kit */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 p-8 border-2 border-cyan-400/50 shadow-2xl mb-8">
+            {/* Neon glow effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 via-blue-400/10 to-purple-400/10 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400/20 via-blue-400/20 to-purple-400/20 rounded-3xl blur-xl animate-pulse"></div>
+            
+            <div className="relative z-10 text-center">
+              <div className="inline-flex items-center bg-cyan-500/30 border border-cyan-400/50 rounded-full px-6 py-2 mb-6 backdrop-blur-sm">
+                <Sparkles className="w-5 h-5 text-cyan-300 mr-2 animate-pulse" />
+                <span className="text-cyan-200 font-bold text-sm tracking-wide">LIMITED TIME - STARTER KIT</span>
+                <Sparkles className="w-5 h-5 text-cyan-300 ml-2 animate-pulse" />
+              </div>
+              
+              <h3 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+                  AED 1,000+ VALUE
+                </span>
+              </h3>
+              
+              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Planet Hero Starter Kit with FREE AquaCafe Shower Filter + Exclusive Partner Benefits
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={() => {
+                    window.open('/aquacafe?starter=true&ref=NEON', '_blank');
+                  }}
+                  className="relative group bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black font-black px-12 py-6 text-2xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
+                  data-testid="button-neon-starter-kit"
+                >
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="relative flex items-center">
+                    <Gift className="w-8 h-8 mr-3" />
+                    ORDER STARTER KIT NOW
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => {
+                    const shareText = `🔥 Get the Planet Hero AED1000+ Starter Kit! FREE AquaCafe Shower Filter + Partner Benefits! Limited time: https://deliwer.com/aquacafe?starter=true`;
+                    if (navigator.share) {
+                      navigator.share({ title: 'Planet Hero Starter Kit', text: shareText });
+                    } else {
+                      navigator.clipboard.writeText(shareText);
+                    }
+                  }}
+                  className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 font-bold px-8 py-6 text-xl rounded-full backdrop-blur-sm transition-all"
+                  data-testid="button-share-starter-kit"
+                >
+                  <Users className="w-6 h-6 mr-2 inline" />
+                  Share Deal
+                </button>
+              </div>
+              
+              <div className="mt-6 text-cyan-300 text-sm">
+                🎁 Includes: AED 399 Shower Filter + Premium Demo + Partner Vouchers
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Trust Indicators */}
         <div className="text-center">

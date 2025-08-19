@@ -74,7 +74,7 @@ export function MeetDeliInteractive() {
   const calculationMutation = useMutation({
     mutationFn: async (data: { device: string; condition: string }): Promise<TradeCalculationResult> => {
       const result = await apiRequest('/api/calculate-trade', 'POST', data);
-      return result as TradeCalculationResult;
+      return result;
     },
     onSuccess: (result: TradeCalculationResult) => {
       setCalculationResult(result);
@@ -206,16 +206,7 @@ export function MeetDeliInteractive() {
               <Calendar className="w-4 h-4 mr-2" />
               Book Pickup
             </Button>
-            <Button
-              onClick={() => sendMessage("Order AquaCafe Starter Kit")}
-              variant="outline"
-              size="sm"
-              className="bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-white border-amber-500/50 hover:border-amber-500 transition-all"
-              data-testid="button-order-aquacafe"
-            >
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              Order AquaCafe
-            </Button>
+
           </div>
         </TabsContent>
 
