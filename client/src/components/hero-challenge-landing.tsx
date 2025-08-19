@@ -302,15 +302,7 @@ export function HeroChallengeLanding() {
                 </div>
                 
                 {/* Circular Economy Value Props - Streamlined */}
-                <div className="grid sm:grid-cols-3 gap-4 md:gap-6 mb-6">
-                  <div className="text-center bg-slate-900/70 backdrop-blur-sm rounded-2xl p-4">
-                    <div className="w-16 h-16 bg-hero-green-500/30 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <span className="text-3xl">🔄</span>
-                    </div>
-                    <h3 className="text-white font-bold text-lg mb-1">Circular Trade</h3>
-                    <p className="text-gray-200 text-sm">iPhone → Water Systems</p>
-                  </div>
-                  
+                <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mb-6">
                   <div className="text-center bg-slate-900/70 backdrop-blur-sm rounded-2xl p-4">
                     <div className="w-16 h-16 bg-blue-500/30 rounded-full flex items-center justify-center mx-auto mb-3">
                       <span className="text-3xl">💧</span>
