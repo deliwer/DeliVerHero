@@ -29,6 +29,8 @@ export function GetTradeOffer() {
   const [calculatedValue, setCalculatedValue] = useState<number | null>(null);
   const [calculatedPoints, setCalculatedPoints] = useState<number | null>(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [showInputDetails, setShowInputDetails] = useState(false);
+  const [hoveredDevice, setHoveredDevice] = useState<string | null>(null);
 
   const handleCalculate = () => {
     if (selectedDevice && selectedCondition) {
@@ -118,29 +120,117 @@ export function GetTradeOffer() {
               <h3 className="text-xl font-bold text-white mb-3">INPUT & CALCULATE</h3>
               <p className="text-gray-300 mb-4">Select your iPhone model and get instant trade value</p>
               
+              {/* Interactive Details Toggle */}
+              <div 
+                className="mb-4 cursor-pointer"
+                onMouseEnter={() => setShowInputDetails(true)}
+                onMouseLeave={() => setShowInputDetails(false)}
+                onClick={() => setShowInputDetails(!showInputDetails)}
+              >
+                <div className="flex items-center justify-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors">
+                  <Target className="w-4 h-4" />
+                  <span className="font-medium">View Details</span>
+                  <ArrowRight className={`w-4 h-4 transition-transform ${showInputDetails ? 'rotate-90' : ''}`} />
+                </div>
+              </div>
+              
+              {/* Expandable Details Section */}
+              {showInputDetails && (
+                <div className="mb-6 p-4 bg-slate-800/50 rounded-lg border border-blue-500/30">
+                  <h4 className="text-sm font-bold text-blue-300 mb-3">📱 SUPPORTED MODELS & VALUES</h4>
+                  <div className="grid grid-cols-1 gap-2 text-xs">
+                    {DEVICE_OPTIONS.slice(0, 4).map((device) => (
+                      <div 
+                        key={device.model}
+                        className={`flex justify-between items-center p-2 rounded ${
+                          hoveredDevice === device.model 
+                            ? 'bg-hero-green-500/20 border border-hero-green-400/30' 
+                            : 'bg-slate-700/50'
+                        } transition-all cursor-pointer`}
+                        onMouseEnter={() => setHoveredDevice(device.model)}
+                        onMouseLeave={() => setHoveredDevice(null)}
+                        onClick={() => {
+                          setSelectedDevice(device.model);
+                          setShowInputDetails(false);
+                        }}
+                      >
+                        <span className="text-gray-200">{device.model}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-hero-green-400 font-bold">AED {device.baseValue}</span>
+                          <span className="text-blue-400 text-xs">+{device.points}pts</span>
+                        </div>
+                      </div>
+                    ))}
+                    {DEVICE_OPTIONS.length > 4 && (
+                      <div className="text-center text-gray-400 text-xs py-1">
+                        +{DEVICE_OPTIONS.length - 4} more models...
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="mt-4 pt-3 border-t border-blue-500/20">
+                    <h5 className="text-xs font-bold text-blue-300 mb-2">🔍 CONDITION GUIDE</h5>
+                    <div className="space-y-1">
+                      {CONDITION_OPTIONS.map((condition) => (
+                        <div key={condition.condition} className="flex justify-between items-center text-xs">
+                          <span className="text-gray-300">{condition.label}</span>
+                          <span className="text-amber-400 font-medium">{Math.round(condition.multiplier * 100)}% value</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="mt-3 p-2 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 rounded border border-hero-green-400/20">
+                    <div className="text-xs text-hero-green-300 font-medium">💡 Pro Tip: Excellent condition iPhones get full value + maximum Planet Points!</div>
+                  </div>
+                </div>
+              )}
+              
               {activeStep === 1 && (
                 <div className="space-y-4 mt-6">
                   <Select value={selectedDevice} onValueChange={setSelectedDevice}>
-                    <SelectTrigger className="bg-slate-700 text-white border-hero-green-500/50 hover:border-hero-green-500 transition-colors">
+                    <SelectTrigger className={`text-white transition-colors ${
+                      selectedDevice 
+                        ? 'bg-hero-green-600/20 border-hero-green-400 ring-2 ring-hero-green-400/30' 
+                        : 'bg-slate-700 border-hero-green-500/50 hover:border-hero-green-500'
+                    }`}>
                       <SelectValue placeholder="Choose iPhone Model" />
                     </SelectTrigger>
                     <SelectContent>
                       {DEVICE_OPTIONS.map((device) => (
-                        <SelectItem key={device.model} value={device.model}>
-                          {device.model}
+                        <SelectItem 
+                          key={device.model} 
+                          value={device.model}
+                          className={`${
+                            hoveredDevice === device.model 
+                              ? 'bg-hero-green-500/20 text-hero-green-300' 
+                              : ''
+                          }`}
+                        >
+                          <div className="flex justify-between items-center w-full">
+                            <span>{device.model}</span>
+                            <span className="text-xs text-gray-400 ml-2">AED {device.baseValue}</span>
+                          </div>
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                   
                   <Select value={selectedCondition} onValueChange={setSelectedCondition}>
-                    <SelectTrigger className="bg-slate-700 text-white border-hero-green-500/50 hover:border-hero-green-500 transition-colors">
+                    <SelectTrigger className={`text-white transition-colors ${
+                      selectedCondition 
+                        ? 'bg-hero-green-600/20 border-hero-green-400 ring-2 ring-hero-green-400/30' 
+                        : 'bg-slate-700 border-hero-green-500/50 hover:border-hero-green-500'
+                    }`}>
                       <SelectValue placeholder="Device Condition" />
                     </SelectTrigger>
                     <SelectContent>
                       {CONDITION_OPTIONS.map((condition) => (
                         <SelectItem key={condition.condition} value={condition.condition}>
-                          {condition.label}
+                          <div className="flex justify-between items-center w-full">
+                            <span>{condition.label}</span>
+                            <span className="text-xs text-amber-400 ml-2">{Math.round(condition.multiplier * 100)}%</span>
+                          </div>
                         </SelectItem>
                       ))}
                     </SelectContent>
