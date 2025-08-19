@@ -2,15 +2,13 @@ import { useState, useEffect } from "react";
 import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
 import { IPhone17Launch } from "@/components/iphone17-launch";
 import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
-
-
 import { LeaderboardWidget } from "@/components/leaderboard-widget";
 import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
-import { GetTradeOffer } from "@/components/get-trade-offer";
+import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -275,11 +273,11 @@ export default function Home() {
         </div>
       )}
 
-      {/* Get Trade-in Offer Section - Now positioned above Planet Points Challenge */}
-      <GetTradeOffer />
-
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge */}
       <HeroChallengeLanding />
+
+      {/* Get Trade-in Offer Section - Now positioned after hero and above Planet Points Challenge */}
+      <MeetDeliInteractive />
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
