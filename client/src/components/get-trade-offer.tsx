@@ -560,33 +560,6 @@ export function GetTradeOffer() {
               </div>
             </div>
           </div>
-
-          {/* Planet Points Challenge Link */}
-          <div 
-            className="glass rounded-2xl p-6 border border-cyan-500/50 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 relative cursor-pointer transition-all duration-300 hover:scale-105"
-            onClick={() => {
-              document.getElementById('planet-points-challenge')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-              <div className="bg-cyan-500 text-black font-bold px-4 py-1 rounded-full text-sm">
-                CHALLENGE
-              </div>
-            </div>
-            
-            <div className="text-center mt-4">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gradient-to-r from-cyan-500 to-purple-500">
-                <Crown className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">PLANET POINTS</h3>
-              <p className="text-gray-300 mb-4">Join the challenge below and compete for iPhone 17</p>
-              
-              <div className="flex items-center justify-center gap-2 mt-4">
-                <ArrowRight className="w-5 h-5 text-cyan-500" />
-                <span className="font-semibold text-cyan-400">View Challenge</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Neon-Style CTAs */}
