@@ -8,7 +8,7 @@ import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
-import MeetDeliInteractive from "@/components/meet-deli-interactive";
+import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
