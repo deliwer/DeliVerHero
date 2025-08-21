@@ -387,7 +387,7 @@ export function HeroChallengeLanding() {
                     </span>
                   </h1>
                   <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 font-bold neon-text-green">
-                    <span className="text-hero-green-400 drop-shadow-lg">Saving Emissions</span> • 
+                    <span className="text-hero-green-400 drop-shadow-lg">Dubai's First Trade-in Platform</span> • 
                     <span className="text-dubai-blue-400 drop-shadow-lg">Reuse ↔ Reflow</span> • 
                     <span className="text-amber-400 drop-shadow-lg">Save Money & Planet</span>
                   </h2>
