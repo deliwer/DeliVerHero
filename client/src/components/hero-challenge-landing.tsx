@@ -407,7 +407,7 @@ export function HeroChallengeLanding() {
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-md sm:max-w-none">
                   <Button 
                     size="lg" 
-                    className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full neon-glow w-full sm:w-auto"
+                    className="bg-hero-green-500 hover:bg-hero-green-600 text-[#cedb00] font-bold px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full neon-glow w-full sm:w-auto"
                     onClick={() => {
                       const step1Section = document.querySelector('[data-section="step-1"]');
                       if (step1Section) {
