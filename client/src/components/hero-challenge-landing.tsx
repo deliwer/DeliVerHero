@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
-import { MeetDeliInteractive } from "./meet-deli-interactive";
+import MeetDeliInteractive from "./meet-deli-interactive";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
