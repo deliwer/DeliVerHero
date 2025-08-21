@@ -382,8 +382,8 @@ export function HeroChallengeLanding() {
                 <div className="mb-8 sm:mb-12">
                   <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
                     <span className="text-white drop-shadow-2xl neon-text-white text-[72px]">From iPhones to Water,</span><br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 neon-glow animate-pulse">
-                      a Circular Exchange
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 text-3xl sm:text-4xl md:text-5xl lg:text-6xl drop-shadow-lg">
+                      a Sustainability Game
                     </span>
                   </h1>
                   <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 font-bold neon-text-green">
