@@ -18,6 +18,62 @@
   }
 }
 
+/* Neon Text Effects */
+@keyframes neon-glow-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px #10b981,
+      0 0 35px #10b981,
+      0 0 40px #10b981;
+  }
+  50% {
+    text-shadow: 
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 8px currentColor,
+      0 0 12px #10b981,
+      0 0 20px #10b981,
+      0 0 25px #10b981;
+  }
+}
+
+.neon-glow {
+  animation: neon-glow-pulse 2s ease-in-out infinite alternate;
+}
+
+.neon-text-white {
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.6),
+    0 0 15px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.neon-text-green {
+  text-shadow: 
+    0 0 5px rgba(16, 185, 129, 0.8),
+    0 0 10px rgba(16, 185, 129, 0.6),
+    0 0 15px rgba(16, 185, 129, 0.4),
+    0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.neon-button {
+  box-shadow: 
+    0 0 20px rgba(245, 158, 11, 0.3),
+    0 0 40px rgba(249, 115, 22, 0.2),
+    0 0 60px rgba(16, 185, 129, 0.1);
+}
+
+.neon-button:hover {
+  box-shadow: 
+    0 0 25px rgba(245, 158, 11, 0.5),
+    0 0 50px rgba(249, 115, 22, 0.3),
+    0 0 75px rgba(16, 185, 129, 0.2);
+}
+
 @keyframes iphone-border-glow {
   0%, 100% {
     opacity: 0.5;

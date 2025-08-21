@@ -49,18 +49,20 @@ export function HeroSection() {
 
   return (
     <section className="relative py-20 px-4 overflow-hidden min-h-screen">
-      {/* Hero Background Image */}
+      {/* Hero Background Image - Mobile Water Purification */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
         style={{
           backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
         }}
       >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70"></div>
-        {/* Additional gradient overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-dubai-blue-900/30 to-hero-green-900/30"></div>
+        {/* Lighter overlay for better image visibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40"></div>
+        {/* Subtle neon accent overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-hero-green-900/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-dubai-blue-900/10 to-hero-green-900/10"></div>
       </div>
       
       <div className="max-w-6xl mx-auto relative z-10 flex flex-col justify-center min-h-screen">
@@ -72,16 +74,18 @@ export function HeroSection() {
           </div>
           
           <div className="mb-12">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              From iPhones to Water,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 to-dubai-blue-400">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="text-white drop-shadow-2xl neon-text-white">From iPhones to Water,</span><br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 neon-glow animate-pulse">
                 a Circular Exchange
               </span>
             </h1>
-            <h2 className="text-2xl md:text-3xl text-hero-green-400 mb-6 font-bold">
-              Saving Emissions • Reuse ↔ Reflow • Save Money & Planet
+            <h2 className="text-xl sm:text-2xl md:text-3xl mb-6 font-bold neon-text-green">
+              <span className="text-hero-green-400 drop-shadow-lg">Saving Emissions</span> • 
+              <span className="text-dubai-blue-400 drop-shadow-lg">Reuse ↔ Reflow</span> • 
+              <span className="text-amber-400 drop-shadow-lg">Save Money & Planet</span>
             </h2>
-            <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg backdrop-blur-sm bg-black/20 rounded-xl p-4 border border-white/10">
               Dubai's electronics trade hub meets water scarcity innovation. Transform your iPhone into premium water systems while reducing e-waste and supporting circular economy.
             </p>
           </div>
@@ -105,35 +109,32 @@ export function HeroSection() {
             </div>
           </div>
           
-          {/* Main CTA Section */}
+          {/* Merged CTA Section */}
           <div className="text-center mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {/* Primary CTA */}
+            <div className="max-w-2xl mx-auto mb-8">
               <Button 
                 onClick={startOnboarding}
-                className="h-20 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-6 rounded-2xl font-bold text-xl shadow-2xl border-2 border-amber-400/50 backdrop-blur-md transform hover:scale-105 transition-all duration-300"
+                className="w-full h-24 bg-gradient-to-r from-amber-500 via-orange-500 to-hero-green-500 hover:from-amber-400 hover:via-orange-400 hover:to-hero-green-400 text-white px-8 py-6 rounded-3xl font-bold text-xl lg:text-2xl shadow-2xl border-2 border-amber-400/50 backdrop-blur-md transform hover:scale-105 transition-all duration-300 neon-button"
                 disabled={createHeroMutation.isPending}
                 data-testid="button-start-trade-onboarding"
               >
-                <Recycle className="w-6 h-6 mr-3" />
-                Trade iPhone for Water + Cash
-              </Button>
-              
-              {/* Secondary CTA */}
-              <Button 
-                onClick={startOnboarding}
-                className="h-20 bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white px-8 py-6 rounded-2xl font-bold text-xl shadow-2xl border-2 border-hero-green-400/50 backdrop-blur-md transform hover:scale-105 transition-all duration-300"
-                disabled={createHeroMutation.isPending}
-                data-testid="button-start-rewards-onboarding"
-              >
-                <Droplets className="w-6 h-6 mr-3" />
-                Get AquaCafe Water System
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                  <div className="flex items-center">
+                    <Recycle className="w-6 h-6 mr-2" />
+                    <span>Trade iPhone</span>
+                  </div>
+                  <span className="text-2xl">↔</span>
+                  <div className="flex items-center">
+                    <Droplets className="w-6 h-6 mr-2" />
+                    <span>Get Water + Cash</span>
+                  </div>
+                </div>
               </Button>
             </div>
             
-            <div className="mt-8 text-center">
-              <p className="text-gray-300 text-lg">
-                <span className="text-hero-green-400 font-bold">Circular Innovation:</span> Electronics expertise → Water sustainability solutions
+            <div className="text-center">
+              <p className="text-lg sm:text-xl text-gray-100 drop-shadow-lg backdrop-blur-sm bg-black/20 rounded-xl p-4 border border-white/10">
+                <span className="text-hero-green-400 font-bold neon-text-green">Circular Innovation:</span> Electronics expertise → Water sustainability solutions
               </p>
             </div>
           </div>
