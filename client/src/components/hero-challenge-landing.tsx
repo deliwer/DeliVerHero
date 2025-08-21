@@ -396,19 +396,7 @@ export function HeroChallengeLanding() {
                   </p>
                 </div>
 
-                {/* Value Proposition Cards - Compact for mobile */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-8 sm:mb-12 max-w-4xl mx-auto w-full">
-                  <div className="glass-light rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-hero-green-500/50 backdrop-blur-md">
-                    <div className="text-hero-green-400 font-bold text-lg sm:text-2xl mb-1 sm:mb-2">Reflow</div>
-                    <div className="text-white text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Water Purification</div>
-                    <div className="text-gray-300 text-xs sm:text-sm">Advanced filtration technology</div>
-                  </div>
-                  <div className="glass-light rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-dubai-blue-500/50 backdrop-blur-md">
-                    <div className="text-dubai-blue-400 font-bold text-lg sm:text-2xl mb-1 sm:mb-2">Impact</div>
-                    <div className="text-white text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Planet Heroes</div>
-                    <div className="text-gray-300 text-xs sm:text-sm">Measurable environmental benefits</div>
-                  </div>
-                </div>
+                
 
                 {/* Action Buttons - Bottom Overlay */}
                 <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 mb-6">
