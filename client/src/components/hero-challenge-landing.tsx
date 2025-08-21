@@ -346,28 +346,17 @@ export function HeroChallengeLanding() {
         <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/10 to-transparent"></div>
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Simplified Header Text */}
-        <div className="text-center mb-8" data-testid="challenge-header">
-          <div className="inline-flex items-center bg-hero-green-500/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-hero-green-500/50">
-            <span className="text-hero-green-300 font-bold text-sm tracking-wide">🔄 WORLD'S FIRST SUSTAINABILITY GAME</span>
-          </div>
-          
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight max-w-4xl mx-auto" data-testid="hero-challenge-title">
-            <span className="block text-white drop-shadow-lg font-extrabold">From iPhones to Water,</span>
-            <span className="block from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg font-bold bg-[#3787eb] text-[50px]">a Circular Exchange</span>
-          </h1>
-          
-          <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">Join Dubai's first sustainable trade-in → Unlock Clean Water for Your Home</p>
-        </div>
 
-        {/* Hero Image with Overlaid Benefits - Mobile Responsive */}
+
+        {/* Merged Hero Section with Image Background and Overlaid Content */}
         <div className="text-center mb-12">
           <div className="relative max-w-6xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden border-2 border-hero-green-500/50 shadow-2xl">
+            <div className="relative rounded-3xl overflow-hidden border-2 border-hero-green-500/50 shadow-2xl min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
+              {/* Background Image */}
               <img
                 src={mobile_water_purification_hero}
                 alt="iPhone Water Circular Exchange - Transform your iPhone into premium water systems"
-                className="w-full h-auto object-cover object-center min-h-[300px] max-h-[500px] sm:min-h-[400px] sm:max-h-[600px] md:min-h-[500px] md:max-h-[700px]"
+                className="absolute inset-0 w-full h-full object-cover object-center"
                 loading="eager"
                 data-testid="hero-main-image"
                 onError={(e) => {
@@ -376,9 +365,89 @@ export function HeroChallengeLanding() {
                 }}
               />
               
+              {/* Dark overlay for better text visibility */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70"></div>
               
-              
-              
+              {/* Hero Content Overlaid on Image */}
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4 sm:p-6 md:p-8 lg:p-12">
+                {/* Mission Header */}
+                <div className="mb-8" data-testid="mission-header">
+                  <div className="inline-flex items-center glass-light rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 border border-hero-green-500/50 backdrop-blur-md">
+                    <Star className="w-4 sm:w-5 h-4 sm:h-5 text-amber-500 mr-2" />
+                    <span className="text-white font-medium text-sm sm:text-base">LAUNCHING AT GITEX 2025</span>
+                  </div>
+                </div>
+
+                {/* Main Headlines with Neon Styling */}
+                <div className="mb-8 sm:mb-12">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+                    <span className="text-white drop-shadow-2xl neon-text-white">From iPhones to Water,</span><br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 neon-glow animate-pulse">
+                      a Circular Exchange
+                    </span>
+                  </h1>
+                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 font-bold neon-text-green">
+                    <span className="text-hero-green-400 drop-shadow-lg">Saving Emissions</span> • 
+                    <span className="text-dubai-blue-400 drop-shadow-lg">Reuse ↔ Reflow</span> • 
+                    <span className="text-amber-400 drop-shadow-lg">Save Money & Planet</span>
+                  </h2>
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg backdrop-blur-sm bg-black/30 rounded-xl p-3 sm:p-4 border border-white/20">
+                    Dubai's electronics trade hub meets water scarcity innovation. Transform your iPhone into premium water systems while reducing e-waste and supporting circular economy.
+                  </p>
+                </div>
+
+                {/* Value Proposition Cards - Compact for mobile */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-8 sm:mb-12 max-w-4xl mx-auto w-full">
+                  <div className="glass-light rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-amber-500/50 backdrop-blur-md">
+                    <div className="text-amber-400 font-bold text-lg sm:text-2xl mb-1 sm:mb-2">Reuse</div>
+                    <div className="text-white text-sm sm:text-lg font-semibold mb-1 sm:mb-2">iPhone Refurbishment</div>
+                    <div className="text-gray-300 text-xs sm:text-sm">Dubai Airport Freezone electronics expertise</div>
+                  </div>
+                  <div className="glass-light rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-hero-green-500/50 backdrop-blur-md">
+                    <div className="text-hero-green-400 font-bold text-lg sm:text-2xl mb-1 sm:mb-2">Reflow</div>
+                    <div className="text-white text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Water Purification</div>
+                    <div className="text-gray-300 text-xs sm:text-sm">Advanced filtration technology</div>
+                  </div>
+                  <div className="glass-light rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-dubai-blue-500/50 backdrop-blur-md">
+                    <div className="text-dubai-blue-400 font-bold text-lg sm:text-2xl mb-1 sm:mb-2">Impact</div>
+                    <div className="text-white text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Planet Heroes</div>
+                    <div className="text-gray-300 text-xs sm:text-sm">Measurable environmental benefits</div>
+                  </div>
+                </div>
+
+                {/* Action Buttons - Bottom Overlay */}
+                <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 mb-6">
+                  <HeroSpotCounter />
+                  <CountdownTimer />
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-md sm:max-w-none">
+                  <Button 
+                    size="lg" 
+                    className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full neon-glow w-full sm:w-auto"
+                    onClick={() => {
+                      const step1Section = document.querySelector('[data-section="step-1"]');
+                      if (step1Section) {
+                        step1Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                    data-testid="button-get-trade-value"
+                  >
+                    <Smartphone className="mr-2 sm:mr-3 w-4 sm:w-6 h-4 sm:h-6" />
+                    Get My Trade Value
+                  </Button>
+                  <Link href="/leaderboard">
+                    <Button 
+                      size="lg"
+                      variant="outline" 
+                      className="border-2 border-white text-white hover:bg-white hover:text-black px-6 sm:px-10 py-3 sm:py-4 text-base sm:text-xl font-bold transition-all rounded-full backdrop-blur-sm bg-black/30 hover:bg-white w-full sm:w-auto"
+                    >
+                      <Trophy className="mr-2 sm:mr-3 w-4 sm:w-6 h-4 sm:h-6" />
+                      Join Heroes
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
