@@ -1,5 +1,5 @@
 import { Star, Bot, MapPin, Timer, UserPlus, Recycle, Droplets } from "lucide-react";
-import heroImage from "@assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png";
+import heroImage from "@assets/mobile-water-purification-hero_1755786909344.jpg";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
