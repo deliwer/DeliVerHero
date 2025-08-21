@@ -401,51 +401,7 @@ export function MeetDeliInteractive() {
 
         </div>
 
-        {/* Neon "Enter the Game" CTA */}
-        <div className="text-center mt-12">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 p-8 border-2 border-cyan-400/50 shadow-2xl">
-            
-            
-            
-            <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl font-black mb-4 leading-tight">
-                <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
-                  ENTER THE GAME
-                </span>
-              </h3>
-              
-              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-                Join the Planet Points Challenge and compete for iPhone 17 • Sep 9 Launch
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={() => {
-                    document.getElementById('planet-points-challenge')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="relative group bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-black font-black px-12 py-6 text-2xl rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300"
-                >
-                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative flex items-center">
-                    <Gamepad2 className="w-8 h-8 mr-3" />
-                    JOIN CHALLENGE
-                  </div>
-                </button>
-                
-                <button
-                  onClick={() => {
-                    setActiveStep(3);
-                    document.getElementById('step-3')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400/10 font-bold px-8 py-6 text-xl rounded-full backdrop-blur-sm transition-all"
-                >
-                  <Crown className="w-6 h-6 mr-2 inline" />
-                  SKIP TO REDEEM
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </section>
   );
