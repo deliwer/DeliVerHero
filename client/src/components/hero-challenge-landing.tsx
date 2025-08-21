@@ -7,7 +7,7 @@ import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
 import { Link } from "wouter";
-import heroImage from "@assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png";
+// Old circular image removed - using new mobile water purification image in main hero
 
 interface HeroSpotCounterProps {
   initialCount?: number;

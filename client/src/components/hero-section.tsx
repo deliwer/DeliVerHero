@@ -51,18 +51,19 @@ export function HeroSection() {
     <section className="relative py-20 px-4 overflow-hidden min-h-screen">
       {/* Hero Background Image - Mobile Water Purification */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
+        className="absolute inset-0 transition-all duration-1000"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
         }}
       >
-        {/* Lighter overlay for better image visibility */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40"></div>
+        {/* Much lighter overlay to show image clearly */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30"></div>
         {/* Subtle neon accent overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-hero-green-900/20 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-dubai-blue-900/10 to-hero-green-900/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-hero-green-900/10 to-transparent"></div>
       </div>
       
       <div className="max-w-6xl mx-auto relative z-10 flex flex-col justify-center min-h-screen">
