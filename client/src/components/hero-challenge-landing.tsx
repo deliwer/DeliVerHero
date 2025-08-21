@@ -7,7 +7,7 @@ import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
 import { Link } from "wouter";
-import heroImage from "@assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png";
+// Old circular image removed - using new mobile water purification image in main hero
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -328,7 +328,7 @@ export function HeroChallengeLanding() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${heroImage})`,
+            backgroundImage: `url('/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
           }}
@@ -352,20 +352,12 @@ export function HeroChallengeLanding() {
             <span className="text-hero-green-300 font-bold text-sm tracking-wide">🔄 WORLD'S FIRST SUSTAINABILITY GAME</span>
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight max-w-4xl mx-auto" data-testid="hero-challenge-title">
-            <span className="block text-white drop-shadow-2xl neon-text-white">From iPhones to Water,</span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 neon-glow animate-pulse">a Circular Exchange</span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 leading-tight max-w-4xl mx-auto" data-testid="hero-challenge-title">
+            <span className="block text-white drop-shadow-lg font-extrabold">From iPhones to Water,</span>
+            <span className="block from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg font-bold bg-[#3787eb] text-[50px]">a Circular Exchange</span>
           </h1>
           
-          <h2 className="text-xl sm:text-2xl md:text-3xl mb-6 font-bold neon-text-green">
-            <span className="text-hero-green-400 drop-shadow-lg">Saving Emissions</span> • 
-            <span className="text-dubai-blue-400 drop-shadow-lg">Reuse ↔ Reflow</span> • 
-            <span className="text-amber-400 drop-shadow-lg">Save Money & Planet</span>
-          </h2>
-          
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-100 max-w-4xl mx-auto mb-8 leading-relaxed drop-shadow-lg backdrop-blur-sm bg-black/20 rounded-xl p-4 border border-white/10">
-            Dubai's electronics trade hub meets water scarcity innovation. Transform your iPhone into premium water systems while reducing e-waste and supporting circular economy.
-          </p>
+          <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">Join Dubai's first sustainable trade-in → Unlock Clean Water for Your Home</p>
         </div>
 
         {/* Hero Image with Overlaid Benefits - Mobile Responsive */}
@@ -373,11 +365,15 @@ export function HeroChallengeLanding() {
           <div className="relative max-w-6xl mx-auto">
             <div className="relative rounded-3xl overflow-hidden border-2 border-hero-green-500/50 shadow-2xl">
               <img
-                src={heroImage}
+                src="/iPhone_water_circular_exchange_e4541c3c.png"
                 alt="iPhone Water Circular Exchange - Transform your iPhone into premium water systems"
                 className="w-full h-auto object-cover object-center min-h-[300px] max-h-[500px] sm:min-h-[400px] sm:max-h-[600px] md:min-h-[500px] md:max-h-[700px]"
                 loading="eager"
                 data-testid="hero-main-image"
+                onError={(e) => {
+                  console.error('Image failed to load:', e);
+                  e.currentTarget.src = '/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png';
+                }}
               />
               
               <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-slate-900/50 to-slate-900/80"></div>
