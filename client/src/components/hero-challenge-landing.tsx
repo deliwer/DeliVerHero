@@ -7,6 +7,7 @@ import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
 import { Link } from "wouter";
+import mobile_water_purification_hero from "@assets/mobile-water-purification-hero.jpg";
 // Old circular image removed - using new mobile water purification image in main hero
 
 interface HeroSpotCounterProps {
@@ -344,7 +345,6 @@ export function HeroChallengeLanding() {
         <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/10 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/10 to-transparent"></div>
       </div>
-      
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Simplified Header Text */}
         <div className="text-center mb-8" data-testid="challenge-header">
@@ -365,7 +365,7 @@ export function HeroChallengeLanding() {
           <div className="relative max-w-6xl mx-auto">
             <div className="relative rounded-3xl overflow-hidden border-2 border-hero-green-500/50 shadow-2xl">
               <img
-                src="/iPhone_water_circular_exchange_e4541c3c.png"
+                src={mobile_water_purification_hero}
                 alt="iPhone Water Circular Exchange - Transform your iPhone into premium water systems"
                 className="w-full h-auto object-cover object-center min-h-[300px] max-h-[500px] sm:min-h-[400px] sm:max-h-[600px] md:min-h-[500px] md:max-h-[700px]"
                 loading="eager"
