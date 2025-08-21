@@ -256,33 +256,7 @@ function ComprehensiveCampaignSection() {
 
         {/* Strategic Timing - Apple Event & GITEX 2025 */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {/* Apple Event Countdown */}
-          <div className="glass rounded-2xl p-6 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10">
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center justify-center">
-              <Clock className="w-6 h-6 text-amber-400 mr-3" />
-              iPhone 17 Launch Event
-            </h3>
-            
-            <div className="grid grid-cols-2 gap-3 text-center mb-4">
-              <div>
-                <div className="bg-amber-500/30 border border-amber-400/50 rounded-xl p-3">
-                  <div className="text-2xl font-black text-white">{timeLeft.days}</div>
-                  <div className="text-sm text-gray-300">Days</div>
-                </div>
-              </div>
-              <div>
-                <div className="bg-amber-500/30 border border-amber-400/50 rounded-xl p-3">
-                  <div className="text-2xl font-black text-white">{timeLeft.hours}</div>
-                  <div className="text-sm text-gray-300">Hours</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center">
-              <p className="text-amber-300 text-sm font-medium mb-2">Tuesday, Sep 9 • 6PM Dubai Time</p>
-              <p className="text-gray-400 text-xs">Pre-order opens immediately after event</p>
-            </div>
-          </div>
+          
 
           {/* GITEX 2025 Opportunity */}
           <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-teal-500/10">
