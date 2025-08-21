@@ -440,9 +440,7 @@ export function HeroChallengeLanding() {
             <span className="block from-hero-green-400 to-blue-400 bg-clip-text text-transparent drop-shadow-lg font-bold bg-[#3787eb] text-[50px]">a Circular Exchange</span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Dubai's revolutionary platform turning electronics into life essentials. Beyond Etisalat & Du.
-          </p>
+          <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">Join Dubai’s first sustainable trade-in → Unlock Clean Water for Your Home</p>
         </div>
 
         {/* Hero Image with Overlaid Benefits */}
