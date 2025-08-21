@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MeetDeliInteractive } from "./meet-deli-interactive";
+import { AquaCafeTab } from "./aquacafe-tab";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
@@ -315,7 +317,17 @@ function StepThreeRedeem() {
                 <Button 
                   size="lg" 
                   className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full w-full"
-                  onClick={() => window.open('/aquacafe?starter=true&ref=STEP3', '_blank')}
+                  onClick={() => {
+                    const tabsSection = document.querySelector('[data-section="main-tabs"]');
+                    if (tabsSection) {
+                      tabsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      // Programmatically switch to AquaCafe tab
+                      const aquacafeTab = document.querySelector('[data-value="aquacafe"]') as HTMLElement;
+                      if (aquacafeTab) {
+                        aquacafeTab.click();
+                      }
+                    }
+                  }}
                 >
                   <Gift className="mr-3 w-6 h-6" />
                   Shop AquaCafe Kit
@@ -458,6 +470,158 @@ export function HeroChallengeLanding() {
 
         <div data-section="step-3">
           <StepThreeRedeem />
+        </div>
+
+        {/* Main Tabs Section */}
+        <div data-section="main-tabs" className="mt-16 mb-12">
+          <Tabs defaultValue="explore" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-2 border border-slate-600/50">
+              <TabsTrigger 
+                value="explore" 
+                className="flex items-center gap-2 data-[state=active]:bg-hero-green-500 data-[state=active]:text-black text-white font-bold py-3 px-6 rounded-xl transition-all"
+                data-testid="tab-explore"
+              >
+                <Target className="w-5 h-5" />
+                <span className="hidden sm:inline">Explore</span> Missions
+              </TabsTrigger>
+              <TabsTrigger 
+                value="aquacafe"
+                data-value="aquacafe"
+                className="flex items-center gap-2 data-[state=active]:bg-blue-500 data-[state=active]:text-white text-white font-bold py-3 px-6 rounded-xl transition-all"
+                data-testid="tab-aquacafe"
+              >
+                <Droplets className="w-5 h-5" />
+                <span className="hidden sm:inline">Shop</span> AquaCafe
+              </TabsTrigger>
+              <TabsTrigger 
+                value="heroes" 
+                className="flex items-center gap-2 data-[state=active]:bg-amber-500 data-[state=active]:text-black text-white font-bold py-3 px-6 rounded-xl transition-all"
+                data-testid="tab-heroes"
+              >
+                <Trophy className="w-5 h-5" />
+                <span className="hidden sm:inline">Planet</span> Heroes
+              </TabsTrigger>
+            </TabsList>
+
+            {/* Explore Missions Tab */}
+            <TabsContent value="explore" className="space-y-8">
+              <div className="text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <span className="bg-gradient-to-r from-hero-green-400 to-blue-400 bg-clip-text text-transparent">
+                    Explore Eco Missions
+                  </span>
+                </h2>
+                <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+                  Discover ways to earn Planet Points and contribute to Dubai's sustainability goals
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-2xl p-6 border border-emerald-500/30">
+                  <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
+                    <Droplets className="w-8 h-8 text-emerald-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Water Conservation</h3>
+                  <p className="text-gray-300 mb-4">Install smart water systems and track usage</p>
+                  <div className="text-emerald-400 font-bold">+500 PTS/month</div>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-500/30">
+                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-4">
+                    <Users className="w-8 h-8 text-purple-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Refer Friends</h3>
+                  <p className="text-gray-300 mb-4">Share the sustainability movement</p>
+                  <div className="text-purple-400 font-bold">+1,000 PTS each</div>
+                </div>
+
+                <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl p-6 border border-amber-500/30">
+                  <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
+                    <Star className="w-8 h-8 text-amber-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">Daily Check-in</h3>
+                  <p className="text-gray-300 mb-4">Stay engaged with the platform</p>
+                  <div className="text-amber-400 font-bold">+100 PTS daily</div>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* AquaCafe Tab */}
+            <TabsContent value="aquacafe">
+              <AquaCafeTab />
+            </TabsContent>
+
+            {/* Planet Heroes Tab */}
+            <TabsContent value="heroes" className="space-y-8">
+              <div className="text-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                    Planet Heroes Community
+                  </span>
+                </h2>
+                <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+                  Join Dubai's sustainability leaders and unlock exclusive rewards
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl p-8 border border-amber-500/30">
+                  <h3 className="text-2xl font-bold text-white mb-4">Hero Benefits</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
+                      <span className="text-gray-300">Exclusive discounts on eco-products</span>
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
+                      <span className="text-gray-300">Priority access to new programs</span>
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
+                      <span className="text-gray-300">Special Hero multipliers</span>
+                    </div>
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
+                      <span className="text-gray-300">Community events & workshops</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 rounded-2xl p-8 border border-hero-green-500/30">
+                  <h3 className="text-2xl font-bold text-white mb-4">How to Join</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start">
+                      <div className="w-8 h-8 bg-hero-green-500 rounded-full flex items-center justify-center mr-3 mt-1">
+                        <span className="text-white font-bold text-sm">1</span>
+                      </div>
+                      <div>
+                        <div className="text-white font-medium">Start with AquaCafe</div>
+                        <div className="text-gray-400 text-sm">Get your Hero Starter Kit for AED 99</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3 mt-1">
+                        <span className="text-white font-bold text-sm">2</span>
+                      </div>
+                      <div>
+                        <div className="text-white font-medium">Complete Missions</div>
+                        <div className="text-gray-400 text-sm">Earn points through eco-actions</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start">
+                      <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-3 mt-1">
+                        <span className="text-black font-bold text-sm">3</span>
+                      </div>
+                      <div>
+                        <div className="text-white font-medium">Unlock Rewards</div>
+                        <div className="text-gray-400 text-sm">Redeem points for premium products</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
 
         {/* Trust Indicators */}
