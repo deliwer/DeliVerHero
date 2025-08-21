@@ -134,29 +134,7 @@ export function MeetDeliInteractive() {
   return (
     <section className="relative py-12 sm:py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Calculator className="w-8 h-8 text-hero-green-400" />
-            <div className="inline-flex items-center bg-gradient-to-r from-hero-green-500/30 to-blue-500/30 border border-hero-green-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm">
-              <Zap className="w-4 h-4 text-hero-green-300 mr-2" />
-              <span className="text-hero-green-200 font-bold text-sm tracking-wide">INSTANT TRADE VALUATION</span>
-              <Zap className="w-4 h-4 text-hero-green-300 ml-2" />
-            </div>
-            <Smartphone className="w-8 h-8 text-blue-400" />
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-black mb-4 leading-tight">
-            <span className="bg-gradient-to-r from-white via-hero-green-200 to-blue-200 bg-clip-text text-transparent">GET TRADE-IN OFFER</span>
-            <br />
-            <span className="text-2xl md:text-3xl text-hero-green-400 font-bold">Trade iPhone • Win iPhone 17 • Collect Points</span>
-          </h2>
-          
-          <p className="text-lg text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-            Get instant iPhone trade value and start collecting Planet Points through eco-missions. 
-            <strong className="text-hero-green-400"> Maximize store credit to minimize cash</strong> for iPhone 17 upgrade at GITEX 2025.
-          </p>
-        </div>
+        
 
         {/* Three-Step Process Overview */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
