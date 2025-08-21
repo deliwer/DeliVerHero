@@ -399,10 +399,6 @@ export function HeroChallengeLanding() {
                 
 
                 {/* Action Buttons - Bottom Overlay */}
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 mb-6">
-                  <HeroSpotCounter />
-                  <CountdownTimer />
-                </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-md sm:max-w-none">
                   <Button 
