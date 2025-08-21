@@ -404,8 +404,7 @@ export function MeetDeliInteractive() {
         {/* Neon "Enter the Game" CTA */}
         <div className="text-center mt-12">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 p-8 border-2 border-cyan-400/50 shadow-2xl">
-            {/* Neon glow effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 via-purple-400/10 to-pink-400/10 animate-pulse"></div>
+            
             
             
             <div className="relative z-10">
