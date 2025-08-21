@@ -233,10 +233,23 @@ function StepTwoCollectPoints() {
               <div className="text-center">
                 <div className="text-6xl font-black text-green-400 mb-2">7,500+</div>
                 <div className="text-gray-300">Average Monthly Points</div>
-                <div className="mt-4 text-sm text-green-400">
+                <div className="mt-4 text-sm text-green-400 mb-6">
                   <TrendingUp className="w-4 h-4 inline mr-1" />
                   Keep Growing Your Impact
                 </div>
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-black font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full w-full"
+                  onClick={() => {
+                    const step3Section = document.querySelector('[data-section="step-3"]');
+                    if (step3Section) {
+                      step3Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                >
+                  <Target className="mr-3 w-6 h-6" />
+                  Join Challenge
+                </Button>
               </div>
             </div>
           </div>
