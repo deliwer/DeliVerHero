@@ -391,9 +391,7 @@ export function HeroChallengeLanding() {
                     <span className="text-dubai-blue-400 drop-shadow-lg">Reuse ↔ Reflow</span> • 
                     <span className="text-amber-400 drop-shadow-lg">Unlock Clean Water for Your Home</span>
                   </h2>
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg backdrop-blur-sm bg-black/30 rounded-xl p-3 sm:p-4 border border-white/20">
-                    Dubai's electronics trade hub meets water scarcity innovation. Transform your iPhone into premium water systems while reducing e-waste and supporting circular economy.
-                  </p>
+                  
                 </div>
 
                 
