@@ -389,7 +389,7 @@ export function HeroChallengeLanding() {
                   <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-4 sm:mb-6 font-bold neon-text-green">
                     <span className="text-hero-green-400 drop-shadow-lg">Dubai's First Trade-in Platform</span> • 
                     <span className="text-dubai-blue-400 drop-shadow-lg">Reuse ↔ Reflow</span> • 
-                    <span className="text-amber-400 drop-shadow-lg">Save Money & Planet</span>
+                    <span className="text-amber-400 drop-shadow-lg">Unlock Clean Water for Your Home</span>
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg backdrop-blur-sm bg-black/30 rounded-xl p-3 sm:p-4 border border-white/20">
                     Dubai's electronics trade hub meets water scarcity innovation. Transform your iPhone into premium water systems while reducing e-waste and supporting circular economy.
