@@ -254,44 +254,7 @@ function ComprehensiveCampaignSection() {
           </div>
         </div>
 
-        {/* Strategic Timing - Apple Event & GITEX 2025 */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          
-
-          {/* GITEX 2025 Opportunity */}
-          <div className="glass rounded-2xl p-6 border border-hero-green-500/50 bg-gradient-to-br from-hero-green-500/10 to-teal-500/10">
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-hero-green-400 mr-3" />
-              GITEX 2025 Launch Benefits
-            </h3>
-            
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 bg-hero-green-500/20 rounded-lg">
-                <div className="flex items-center">
-                  <Star className="w-5 h-5 text-amber-400 mr-2" />
-                  <span className="text-white">iPhone 17 Priority</span>
-                </div>
-                <span className="text-hero-green-400 font-bold">Guaranteed</span>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 bg-hero-green-500/20 rounded-lg">
-                <div className="flex items-center">
-                  <Gift className="w-5 h-5 text-purple-400 mr-2" />
-                  <span className="text-white">Bonus Points</span>
-                </div>
-                <span className="text-purple-400 font-bold">+2,500 PTS</span>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 bg-gradient-to-r from-hero-green-500/30 to-amber-500/30 rounded-lg border border-amber-400/50">
-                <div className="flex items-center">
-                  <Crown className="w-5 h-5 text-amber-400 mr-2" />
-                  <span className="text-white">Media Coverage</span>
-                </div>
-                <span className="text-amber-400 font-bold">Viral Story</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Main CTA - Fulfill Your Dreams */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-hero-green-600/20 p-8 border-2 border-hero-green-400/50 shadow-2xl mb-8">
