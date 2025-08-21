@@ -378,39 +378,7 @@ export function HeroChallengeLanding() {
               
               <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-slate-900/50 to-slate-900/80"></div>
               
-              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-8">
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 mb-4 sm:mb-6">
-                  <HeroSpotCounter />
-                  <CountdownTimer />
-                </div>
-                
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                  <Button 
-                    size="lg" 
-                    className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 sm:px-10 py-3 sm:py-4 text-lg sm:text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                    onClick={() => {
-                      const step1Section = document.querySelector('[data-section="step-1"]');
-                      if (step1Section) {
-                        step1Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }}
-                    data-testid="button-get-trade-value"
-                  >
-                    <Smartphone className="mr-2 sm:mr-3 w-5 sm:w-6 h-5 sm:h-6" />
-                    Get My Trade Value
-                  </Button>
-                  <Link href="/leaderboard">
-                    <Button 
-                      size="lg"
-                      variant="outline" 
-                      className="border-2 border-white text-white hover:bg-white hover:text-black px-8 sm:px-10 py-3 sm:py-4 text-lg sm:text-xl font-bold transition-all rounded-full backdrop-blur-sm bg-slate-900/20"
-                    >
-                      <Trophy className="mr-2 sm:mr-3 w-5 sm:w-6 h-5 sm:h-6" />
-                      Join Heroes
-                    </Button>
-                  </Link>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
