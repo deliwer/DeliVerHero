@@ -311,46 +311,7 @@ function StepThreeRedeem() {
           </div>
         </div>
 
-        {/* Final CTA Section */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 p-6 border-2 border-cyan-400/50 shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 via-blue-400/10 to-purple-400/10 animate-pulse"></div>
-          <div className="relative z-10 text-center">
-            <div className="inline-flex items-center bg-cyan-500/30 border border-cyan-400/50 rounded-full px-4 py-2 mb-4 backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 text-cyan-300 mr-2 animate-pulse" />
-              <span className="text-cyan-200 font-bold text-sm">AED 1,000+ VALUE</span>
-              <Sparkles className="w-4 h-4 text-cyan-300 ml-2 animate-pulse" />
-            </div>
-            <h3 className="text-2xl md:text-3xl font-black mb-4 text-white">
-              Planet Hero Starter Kit
-            </h3>
-            <p className="text-gray-200 mb-6 max-w-xl mx-auto">
-              FREE AquaCafe Shower Filter + Premium Demo + Partner Vouchers
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => window.open('/aquacafe?starter=true&ref=FINAL', '_blank')}
-                className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-black font-black px-8 py-3 text-lg rounded-full shadow-xl transform hover:scale-105 transition-all"
-              >
-                <ShoppingCart className="w-5 h-5 mr-2 inline" />
-                ORDER NOW
-              </button>
-              <button
-                onClick={() => {
-                  const shareText = 'Join Dubai\'s Planet Heroes! Get AED 1000+ Starter Kit: https://deliwer.com/aquacafe?starter=true';
-                  if (navigator.share) {
-                    navigator.share({ title: 'Planet Hero Starter Kit', text: shareText });
-                  } else {
-                    navigator.clipboard.writeText(shareText);
-                  }
-                }}
-                className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 font-bold px-6 py-3 text-lg rounded-full transition-all"
-              >
-                <Users className="w-5 h-5 mr-2 inline" />
-                Share
-              </button>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );
@@ -399,15 +360,14 @@ export function HeroChallengeLanding() {
           <p className="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto mb-8 leading-relaxed">Join Dubai's first sustainable trade-in → Unlock Clean Water for Your Home</p>
         </div>
 
-        {/* Hero Image with Overlaid Benefits */}
+        {/* Hero Image with Overlaid Benefits - Mobile Responsive */}
         <div className="text-center mb-12">
           <div className="relative max-w-6xl mx-auto">
             <div className="relative rounded-3xl overflow-hidden border-2 border-hero-green-500/50 shadow-2xl">
               <img
                 src="/iPhone_water_circular_exchange_e4541c3c.png"
                 alt="iPhone Water Circular Exchange - Transform your iPhone into premium water systems"
-                className="w-full h-auto"
-                style={{ minHeight: '500px', maxHeight: '700px', objectFit: 'cover' }}
+                className="w-full h-auto object-cover object-center min-h-[300px] max-h-[500px] sm:min-h-[400px] sm:max-h-[600px] md:min-h-[500px] md:max-h-[700px]"
                 loading="eager"
                 data-testid="hero-main-image"
                 onError={(e) => {
@@ -418,16 +378,16 @@ export function HeroChallengeLanding() {
               
               <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-slate-900/50 to-slate-900/80"></div>
               
-              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 mb-6">
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-8">
+                <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-6 mb-4 sm:mb-6">
                   <HeroSpotCounter />
                   <CountdownTimer />
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Button 
                     size="lg" 
-                    className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                    className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 sm:px-10 py-3 sm:py-4 text-lg sm:text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
                     onClick={() => {
                       const step1Section = document.querySelector('[data-section="step-1"]');
                       if (step1Section) {
@@ -436,16 +396,16 @@ export function HeroChallengeLanding() {
                     }}
                     data-testid="button-get-trade-value"
                   >
-                    <Smartphone className="mr-3 w-6 h-6" />
+                    <Smartphone className="mr-2 sm:mr-3 w-5 sm:w-6 h-5 sm:h-6" />
                     Get My Trade Value
                   </Button>
                   <Link href="/leaderboard">
                     <Button 
                       size="lg"
                       variant="outline" 
-                      className="border-2 border-white text-white hover:bg-white hover:text-black px-10 py-4 text-xl font-bold transition-all rounded-full backdrop-blur-sm bg-slate-900/20"
+                      className="border-2 border-white text-white hover:bg-white hover:text-black px-8 sm:px-10 py-3 sm:py-4 text-lg sm:text-xl font-bold transition-all rounded-full backdrop-blur-sm bg-slate-900/20"
                     >
-                      <Trophy className="mr-3 w-6 h-6" />
+                      <Trophy className="mr-2 sm:mr-3 w-5 sm:w-6 h-5 sm:h-6" />
                       Join Heroes
                     </Button>
                   </Link>
@@ -458,11 +418,11 @@ export function HeroChallengeLanding() {
         {/* 3-Step Progressive Flow */}
         <div data-section="step-1">
           <StepOneTradeIn />
-        </div>
-        
-        {/* Meet Deli - Interactive Trade Assistant */}
-        <div className="mb-8" data-section="meet-deli">
-          <MeetDeliInteractive />
+          
+          {/* Meet Deli - Interactive Trade Assistant positioned below Step 1 */}
+          <div className="mb-8" data-section="meet-deli">
+            <MeetDeliInteractive />
+          </div>
         </div>
 
         <div data-section="step-2">
