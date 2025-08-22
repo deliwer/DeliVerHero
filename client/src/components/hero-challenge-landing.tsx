@@ -184,8 +184,8 @@ function StepOneTradeIn() {
   );
 }
 
-// Step 2: Collect Planet Points Section  
-function StepTwoCollectPoints() {
+// Step 2: Earn Planet Points Section  
+function StepTwoEarnPoints() {
   return (
     <section className="py-8 px-4 mb-8">
       <div className="max-w-4xl mx-auto">
@@ -193,7 +193,7 @@ function StepTwoCollectPoints() {
         
         <div className="text-center mb-8">
           <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50">
-            <span className="text-green-300 font-bold text-lg">STEP 2 - COLLECT</span>
+            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
             Earn Planet Points
@@ -385,7 +385,7 @@ export function HeroChallengeLanding() {
         </div>
 
         <div data-section="step-2">
-          <StepTwoCollectPoints />
+          <StepTwoEarnPoints />
         </div>
 
         <div data-section="step-3">

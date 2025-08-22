@@ -119,7 +119,7 @@ const participationSteps: Step[] = [
   },
   {
     number: 2,
-    title: "Collect Planet Points",
+    title: "Earn Planet Points",
     description: "Continue earning through missions, challenges, and eco-friendly actions",
     icon: Target,
     color: "from-green-500 to-emerald-500"

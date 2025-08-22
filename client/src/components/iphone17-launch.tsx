@@ -62,7 +62,7 @@ export function IPhone17Launch() {
               iPhone 17 Launch
             </span>
             <br />
-            <span className="text-2xl md:text-3xl text-gray-200 font-bold">Start Collecting Points Now</span>
+            <span className="text-2xl md:text-3xl text-gray-200 font-bold">Start Earning Points Now</span>
           </h2>
           
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
@@ -75,7 +75,7 @@ export function IPhone17Launch() {
             <Link href="/?utm_source=hero_launch&utm_medium=cta&utm_campaign=goaffpro" className="inline-block">
               <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 text-lg shadow-xl transform hover:scale-105 transition-all">
                 <Zap className="w-5 h-5 mr-2" />
-                Start Collecting Points FREE
+                Start Earning Points FREE
               </Button>
             </Link>
             

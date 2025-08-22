@@ -9,7 +9,7 @@ export function Navigation() {
   const navItems = [
     { path: "/aquacafe", label: "Shop", id: "shop" },
     { path: "/exchange", label: "Exchange", id: "exchange" },
-    { path: "/collect", label: "Collect", id: "collect" },
+    { path: "/collect", label: "Earn", id: "collect" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },

@@ -10,14 +10,14 @@ export default function Collect() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-4 py-2 rounded-full mb-6">
             <Coins className="w-5 h-5" />
-            <span className="font-medium">Planet Points Collection</span>
+            <span className="font-medium">Planet Points Earning</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Collect Planet Points
+            Earn Planet Points
             <span className="block text-hero-green-400">Build Your Impact</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Every sustainable action earns you Planet Points. Collect points through iPhone trades, water system purchases, and environmental missions to unlock exclusive rewards and advance your hero status.
+            Every sustainable action earns you Planet Points. Earn points through iPhone trades, water system purchases, and environmental missions to unlock exclusive rewards and advance your hero status.
           </p>
         </div>
 
@@ -67,7 +67,7 @@ export default function Collect() {
         <div className="mb-12">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-white mb-4">Hero Levels</h2>
-            <p className="text-gray-300">Advance through hero levels as you collect Planet Points</p>
+            <p className="text-gray-300">Advance through hero levels as you earn Planet Points</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-6">
@@ -166,7 +166,7 @@ export default function Collect() {
         <div className="mb-12">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-white mb-4">Ways to Earn Points</h2>
-            <p className="text-gray-300">Multiple opportunities to collect Planet Points daily</p>
+            <p className="text-gray-300">Multiple opportunities to earn Planet Points daily</p>
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -209,7 +209,7 @@ export default function Collect() {
           <div className="bg-hero-green-500/10 border border-hero-green-500/30 rounded-2xl p-8">
             <Coins className="w-16 h-16 text-hero-green-500 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-4">
-              Start Collecting Planet Points Today
+              Start Earning Planet Points Today
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               Begin your sustainability journey and start earning Planet Points with your first iPhone trade-in or AquaCafe purchase.
