@@ -15,6 +15,9 @@ import Home from "@/pages/home";
 import Leaderboard from "@/pages/leaderboard";
 import ImpactDashboard from "@/pages/impact-dashboard";
 import AquaCafe from "@/pages/aquacafe";
+import Exchange from "@/pages/exchange";
+import Collect from "@/pages/collect";
+import Redeem from "@/pages/redeem";
 import Partners from "@/pages/partners";
 import Community from "@/pages/community";
 
@@ -39,6 +42,9 @@ function Router() {
       <Route path="/leaderboard" component={Leaderboard} />
       <Route path="/impact-dashboard" component={ImpactDashboard} />
       <Route path="/aquacafe" component={AquaCafe} />
+      <Route path="/exchange" component={Exchange} />
+      <Route path="/collect" component={Collect} />
+      <Route path="/redeem" component={Redeem} />
       <Route path="/partners" component={Partners} />
       <Route path="/community" component={Community} />
       <Route path="/privacy" component={Privacy} />
