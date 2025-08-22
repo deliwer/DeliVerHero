@@ -373,13 +373,6 @@ export function HeroChallengeLanding() {
       <div className="max-w-7xl mx-auto relative z-10">
 
 
-        {/* Merged Hero Section with Image Background and Overlaid Content */}
-        <div className="text-center mb-12">
-          <div className="relative max-w-6xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden border-2 border-hero-green-500/50 shadow-2xl min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px]">
-            </div>
-          </div>
-        </div>
 
         {/* 3-Step Progressive Flow */}
         <div data-section="step-1">
