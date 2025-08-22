@@ -7,8 +7,10 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { path: "/aquacafe", label: "Shop", id: "aquacafe" },
-    { path: "/impact-dashboard", label: "Rewards", id: "impact" },
+    { path: "/aquacafe", label: "Shop", id: "shop" },
+    { path: "/exchange", label: "Exchange", id: "exchange" },
+    { path: "/collect", label: "Collect", id: "collect" },
+    { path: "/redeem", label: "Redeem", id: "redeem" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];
