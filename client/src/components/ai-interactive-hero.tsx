@@ -79,7 +79,7 @@ export function AIInteractiveHero() {
             </span>
           </h1>
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
-            Trade iPhones for premium water delivery, earn Planet Points, and redeem in the AquaCafe.
+            Trade iPhones for premium water purifiers, earn Planet Points, and redeem in the AquaCafe.
           </p>
         </div>
 
