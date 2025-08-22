@@ -113,12 +113,11 @@ export function HeroSection() {
           {/* Merged CTA Section */}
           <div className="text-center mb-12">
             <div className="max-w-2xl mx-auto mb-8">
-              <Button 
-                onClick={startOnboarding}
-                className="w-full h-24 bg-gradient-to-r from-amber-500 via-orange-500 to-hero-green-500 hover:from-amber-400 hover:via-orange-400 hover:to-hero-green-400 text-white px-8 py-6 rounded-3xl font-bold text-xl lg:text-2xl shadow-2xl border-2 border-amber-400/50 backdrop-blur-md transform hover:scale-105 transition-all duration-300 neon-button"
-                disabled={createHeroMutation.isPending}
-                data-testid="button-start-trade-onboarding"
-              >
+              <Link href="/exchange" className="block">
+                <Button 
+                  className="w-full h-24 bg-gradient-to-r from-amber-500 via-orange-500 to-hero-green-500 hover:from-amber-400 hover:via-orange-400 hover:to-hero-green-400 text-white px-8 py-6 rounded-3xl font-bold text-xl lg:text-2xl shadow-2xl border-2 border-amber-400/50 backdrop-blur-md transform hover:scale-105 transition-all duration-300 neon-button"
+                  data-testid="button-start-trade-onboarding"
+                >
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
                   <div className="flex items-center">
                     <Recycle className="w-6 h-6 mr-2" />
@@ -130,7 +129,8 @@ export function HeroSection() {
                     <span>Get Water + Cash</span>
                   </div>
                 </div>
-              </Button>
+                </Button>
+              </Link>
             </div>
             
             <div className="text-center">
@@ -205,20 +205,20 @@ export function HeroSection() {
           <div className="mt-8">
             {selectedPath === 'trade' && (
               <div className="space-y-4">
-                <Button 
-                  onClick={startOnboarding}
-                  className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-xl"
-                  disabled={createHeroMutation.isPending}
-                  data-testid="button-start-trade-onboarding-secondary"
-                >
-                  <UserPlus className="w-5 h-5 mr-2" />
-                  📱 Trade iPhone for Water + Cash
-                </Button>
+                <Link href="/exchange">
+                  <Button 
+                    className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-xl"
+                    data-testid="button-start-trade-onboarding-secondary"
+                  >
+                    <UserPlus className="w-5 h-5 mr-2" />
+                    📱 Trade iPhone for Water + Cash
+                  </Button>
+                </Link>
                 <div className="text-center text-gray-300">
                   <span className="text-amber-400 font-bold">Circular Innovation:</span> Electronics expertise → Water sustainability solutions
                 </div>
                 {hasCompletedOnboarding && (
-                  <Link href="/">
+                  <Link href="/exchange">
                     <Button variant="outline" className="w-full">
                       Skip to iPhone Calculator
                     </Button>
@@ -254,14 +254,15 @@ export function HeroSection() {
                 <div className="text-gray-300 mb-4 font-medium">
                   Choose your iPhone trade option above to continue →
                 </div>
-                <Button
-                  onClick={startOnboarding}
-                  className="bg-gradient-to-r from-amber-500 to-hero-green-500 hover:from-amber-600 hover:to-hero-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg"
-                  data-testid="button-start-general-onboarding"
-                >
-                  <UserPlus className="w-4 h-4 mr-2" />
-                  Start iPhone for Water Trade
-                </Button>
+                <Link href="/exchange">
+                  <Button
+                    className="bg-gradient-to-r from-amber-500 to-hero-green-500 hover:from-amber-600 hover:to-hero-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg"
+                    data-testid="button-start-general-onboarding"
+                  >
+                    <UserPlus className="w-4 h-4 mr-2" />
+                    Start iPhone for Water Trade
+                  </Button>
+                </Link>
               </div>
             )}
           </div>

@@ -183,7 +183,7 @@ export default function Leaderboard() {
                   {/* Badges */}
                   {hero.badges && Array.isArray(hero.badges) && hero.badges.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-2">
-                      {hero.badges.map((badge: string, badgeIndex: number) => (
+                      {hero.badges.map((badge: any, badgeIndex: number) => (
                         <span 
                           key={badgeIndex}
                           className="bg-dubai-blue-600 text-white px-2 py-1 rounded text-xs font-medium"
@@ -217,7 +217,7 @@ export default function Leaderboard() {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
-          <Link href="/">
+          <Link href="/exchange">
             <Button className="btn-hero px-8 py-4 text-lg" data-testid="button-start-trading">
               Trade Your iPhone & Join the Heroes
             </Button>

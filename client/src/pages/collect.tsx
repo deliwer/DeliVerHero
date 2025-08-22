@@ -215,9 +215,9 @@ export default function Collect() {
               Begin your sustainability journey and start earning Planet Points with your first iPhone trade-in or AquaCafe purchase.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              <a href="/exchange" className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors inline-block text-center">
                 Trade iPhone Now
-              </button>
+              </a>
               <button className="border border-slate-600 text-white hover:bg-slate-800 px-8 py-3 rounded-lg font-semibold transition-colors">
                 Explore AquaCafe
               </button>

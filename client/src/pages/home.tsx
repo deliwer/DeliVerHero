@@ -52,7 +52,7 @@ function OpportunitiesSection() {
                 </div>
               </div>
               <Link
-                href="/"
+                href="/exchange"
                 className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
                 data-testid="button-trade-iphone"
               >

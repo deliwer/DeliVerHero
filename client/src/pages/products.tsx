@@ -368,7 +368,7 @@ export default function Products() {
                 Trade your old iPhone for instant credit towards any AquaCafe system
               </p>
               <a
-                href="/"
+                href="/exchange"
                 className="inline-flex items-center bg-amber-500 hover:bg-amber-600 text-black px-6 py-3 rounded-lg font-bold transition-colors"
               >
                 <Phone className="mr-2 w-5 h-5" />
