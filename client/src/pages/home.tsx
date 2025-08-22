@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { AIInteractiveHero } from "@/components/ai-interactive-hero";
 import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
 import { IPhone17Launch } from "@/components/iphone17-launch";
 import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
@@ -273,7 +274,10 @@ export default function Home() {
         </div>
       )}
 
-      {/* Enhanced Hero Challenge Landing with Planet Points Challenge */}
+      {/* AI Interactive Hero Section - New modular hero at the top */}
+      <AIInteractiveHero />
+
+      {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Existing hero section kept intact */}
       <HeroChallengeLanding />
 
       {/* Get Trade-in Offer Section - Now positioned after hero and above Planet Points Challenge */}
