@@ -26,7 +26,7 @@ const ctaOptions: CTAOption[] = [
     id: "trade",
     text: "I want to trade in my iPhone",
     icon: "📱",
-    href: "/exchange", 
+    href: "/#meet-deli", 
     gradient: "from-amber-500 to-orange-500",
     hoverGradient: "from-amber-400 to-orange-400"
   },
@@ -34,7 +34,7 @@ const ctaOptions: CTAOption[] = [
     id: "leaderboard",
     text: "I want to join the eco leaderboard",
     icon: "🌍",
-    href: "/collect",
+    href: "/#meet-deli",
     gradient: "from-emerald-500 to-green-500", 
     hoverGradient: "from-emerald-400 to-green-400"
   }

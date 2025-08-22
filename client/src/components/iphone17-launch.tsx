@@ -72,10 +72,10 @@ export function IPhone17Launch() {
 
           {/* Immediate Action Buttons with GOAFFPRO Integration */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link href="/?utm_source=hero_launch&utm_medium=cta&utm_campaign=goaffpro" className="inline-block">
+            <Link href="/#meet-deli" className="inline-block">
               <Button size="lg" className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 text-lg shadow-xl transform hover:scale-105 transition-all">
                 <Zap className="w-5 h-5 mr-2" />
-                Start Earning Points FREE
+                Start Trade-In Journey
               </Button>
             </Link>
             
@@ -212,9 +212,9 @@ export function IPhone17Launch() {
             <h3 className="text-xl font-bold text-white mb-2">Ready to Join Heroes?</h3>
             <p className="text-sm text-gray-300 mb-4">Free registration • Instant rewards • Community of champions</p>
             
-            <Link href="/" className="block">
+            <Link href="/#meet-deli" className="block">
               <Button className="w-full bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold py-3 shadow-lg transform hover:scale-105 transition-all">
-                Start Your Hero Journey FREE
+                Start Your Trade-In Journey
                 <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

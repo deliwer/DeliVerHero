@@ -21,10 +21,11 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center" data-testid="link-home">
-              <span className="text-2xl font-bold text-white">DeliWer</span>
-              <span className="ml-2 bg-hero-green-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                HEROES
-              </span>
+              <img 
+                src="/attached_assets/deliwer logo_1755631850889.png" 
+                alt="DeliWer Logo" 
+                className="h-8 w-auto"
+              />
             </Link>
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
@@ -64,15 +65,7 @@ export function Navigation() {
             {/* Mobile Action Buttons - Compact */}
             <div className="flex md:hidden items-center space-x-2">
               <Link
-                href="/leaderboard"
-                className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
-                data-testid="button-join-heroes-mobile"
-              >
-                <Users className="inline w-3 h-3 mr-1" />
-                Join
-              </Link>
-              <Link
-                href="/aquacafe"
+                href="/#meet-deli"
                 className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
                 data-testid="button-start-mission-mobile"
               >
@@ -84,7 +77,7 @@ export function Navigation() {
             {/* Desktop Action Buttons with GOAFFPRO */}
             <div className="hidden md:flex items-center space-x-4">
               <Link
-                href="/aquacafe?utm_source=nav&utm_medium=cta&utm_campaign=goaffpro"
+                href="/#meet-deli"
                 className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 data-testid="button-start-mission"
               >

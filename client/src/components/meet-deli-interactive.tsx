@@ -132,7 +132,7 @@ export function MeetDeliInteractive() {
   };
 
   return (
-    <section className="relative py-12 sm:py-20 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+    <section id="meet-deli" className="relative py-12 sm:py-20 px-4 bg-gradient-to-br from-hero-green-900/20 via-slate-800 to-dubai-blue-900/20 overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         
 
@@ -150,12 +150,12 @@ export function MeetDeliInteractive() {
 
         {/* Meet Deli Header */}
         <div className="text-center mb-8" data-testid="meet-deli-interactive" data-section="meet-deli">
-          <div className="inline-flex items-center bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm mb-6">
-            <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
-            <span className="text-blue-200 font-bold text-sm tracking-wide">INTERACTIVE TRADE ASSISTANT</span>
+          <div className="inline-flex items-center bg-gradient-to-r from-hero-green-500/30 to-dubai-blue-500/30 border border-hero-green-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm mb-6">
+            <div className="w-2 h-2 bg-hero-green-400 rounded-full mr-2 animate-pulse"></div>
+            <span className="text-hero-green-200 font-bold text-sm tracking-wide">START YOUR TRADE-IN JOURNEY</span>
           </div>
           <div className="flex items-center justify-center mb-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
+            <div className="w-16 h-16 bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 rounded-full flex items-center justify-center mr-4">
               <Bot className="w-8 h-8 text-white" />
             </div>
             <div>
@@ -173,10 +173,10 @@ export function MeetDeliInteractive() {
 
         {/* Interactive Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8 bg-slate-700">
+          <TabsList className="grid w-full grid-cols-2 mb-8 bg-slate-700/80">
             <TabsTrigger 
               value="calculator" 
-              className="flex items-center gap-2 data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+              className="flex items-center gap-2 data-[state=active]:bg-hero-green-500 data-[state=active]:text-white"
               data-testid="tab-calculator"
             >
               <Calculator className="w-4 h-4" />
@@ -184,7 +184,7 @@ export function MeetDeliInteractive() {
             </TabsTrigger>
             <TabsTrigger 
               value="chat" 
-              className="flex items-center gap-2 data-[state=active]:bg-emerald-500 data-[state=active]:text-white"
+              className="flex items-center gap-2 data-[state=active]:bg-dubai-blue-500 data-[state=active]:text-white"
               data-testid="tab-chat"
             >
               <MessageCircle className="w-4 h-4" />
