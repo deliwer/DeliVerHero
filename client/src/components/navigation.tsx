@@ -22,7 +22,7 @@ export function Navigation() {
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center" data-testid="link-home">
               <img 
-                src="/attached_assets/deliwer logo_1755631850889.png" 
+                src="/deliwer-logo.png" 
                 alt="DeliWer Logo" 
                 className="h-8 w-auto"
               />
