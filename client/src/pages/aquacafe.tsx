@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target } from "lucide-react";
+import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ARPreview } from "@/components/ar-preview";
 
 export default function AquaCafe() {
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
+  const [arPreview, setArPreview] = useState<{ isOpen: boolean; product: any }>({ isOpen: false, product: null });
   const { toast } = useToast();
 
   const plans = [
@@ -94,6 +96,21 @@ export default function AquaCafe() {
     } finally {
       setIsOrderLoading(null);
     }
+  };
+
+  const handleARPreview = (plan: typeof plans[0]) => {
+    const product = {
+      id: plan.id,
+      name: plan.name,
+      category: 'water-solutions',
+      image: '🚰',
+      price: plan.price
+    };
+    setArPreview({ isOpen: true, product });
+    toast({
+      title: "AR Preview Loading",
+      description: "Initializing AR preview for " + plan.name,
+    });
   };
 
   return (
@@ -372,30 +389,41 @@ export default function AquaCafe() {
                       ))}
                     </div>
                     
-                    <Button
-                      onClick={() => handleOrderNow(plan.id)}
-                      disabled={isOrderLoading === plan.id}
-                      className={`w-full py-4 font-bold text-lg rounded-xl transition-all transform hover:scale-105 ${
-                        plan.isHeroEntry
-                          ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70 shadow-2xl animate-pulse'
-                          : plan.popular
-                          ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70'
-                          : 'bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-70'
-                      }`}
-                      data-testid={`button-order-${plan.id}`}
-                    >
-                      {isOrderLoading === plan.id ? (
-                        <>
-                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-current mr-2"></div>
-                          PROCESSING...
-                        </>
-                      ) : (
-                        <>
-                          <ShoppingCart className="mr-2 w-5 h-5" />
-                          {plan.isHeroEntry ? 'JOIN PLANET HEROES NOW' : plan.popular ? 'UPGRADE NOW' : 'ORDER NOW'}
-                        </>
-                      )}
-                    </Button>
+                    <div className="space-y-3">
+                      <Button
+                        onClick={() => handleARPreview(plan)}
+                        className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl transition-all transform hover:scale-105"
+                        data-testid={`button-ar-preview-${plan.id}`}
+                      >
+                        <Eye className="mr-2 w-5 h-5" />
+                        AR Preview
+                      </Button>
+                      
+                      <Button
+                        onClick={() => handleOrderNow(plan.id)}
+                        disabled={isOrderLoading === plan.id}
+                        className={`w-full py-4 font-bold text-lg rounded-xl transition-all transform hover:scale-105 ${
+                          plan.isHeroEntry
+                            ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70 shadow-2xl animate-pulse'
+                            : plan.popular
+                            ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70'
+                            : 'bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-70'
+                        }`}
+                        data-testid={`button-order-${plan.id}`}
+                      >
+                        {isOrderLoading === plan.id ? (
+                          <>
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-current mr-2"></div>
+                            PROCESSING...
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingCart className="mr-2 w-5 h-5" />
+                            {plan.isHeroEntry ? 'JOIN PLANET HEROES NOW' : plan.popular ? 'UPGRADE NOW' : 'ORDER NOW'}
+                          </>
+                        )}
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               );
@@ -425,6 +453,13 @@ export default function AquaCafe() {
           </div>
         </div>
       </footer>
+
+      {/* AR Preview Modal */}
+      <ARPreview
+        isOpen={arPreview.isOpen}
+        onClose={() => setArPreview({ isOpen: false, product: null })}
+        product={arPreview.product}
+      />
     </div>
   );
 }

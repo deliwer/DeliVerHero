@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Smartphone, Droplets, Sparkles } from "lucide-react";
+import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Smartphone, Droplets, Sparkles, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ARPreview } from "@/components/ar-preview";
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
+  const [arPreview, setArPreview] = useState<{ isOpen: boolean; product: any }>({ isOpen: false, product: null });
   const { toast } = useToast();
 
   const categories = [
@@ -186,6 +188,14 @@ export default function Products() {
     }
   };
 
+  const handleARPreview = (product: typeof products[0]) => {
+    setArPreview({ isOpen: true, product });
+    toast({
+      title: "AR Preview Loading",
+      description: "Initializing AR preview for " + product.name,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800">
       {/* Navigation Bar */}
@@ -283,28 +293,39 @@ export default function Products() {
                   ))}
                 </ul>
                 
-                <Button 
-                  onClick={() => handleOrderNow(product.id, product.name)}
-                  disabled={isOrderLoading === product.id}
-                  className={`w-full py-3 rounded-xl font-semibold transition-all transform hover:scale-105 ${
-                    product.popular 
-                      ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black'
-                      : 'bg-slate-700 hover:bg-slate-600 text-white'
-                  }`}
-                  data-testid={`button-order-${product.id}`}
-                >
-                  {isOrderLoading === product.id ? (
-                    <div className="flex items-center justify-center gap-2">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
-                      Processing...
-                    </div>
-                  ) : (
-                    <>
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Order Now
-                    </>
-                  )}
-                </Button>
+                <div className="space-y-3">
+                  <Button 
+                    onClick={() => handleARPreview(product)}
+                    className="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold transition-all transform hover:scale-105"
+                    data-testid={`button-ar-preview-${product.id}`}
+                  >
+                    <Eye className="w-4 h-4 mr-2" />
+                    AR Preview
+                  </Button>
+                  
+                  <Button 
+                    onClick={() => handleOrderNow(product.id, product.name)}
+                    disabled={isOrderLoading === product.id}
+                    className={`w-full py-3 rounded-xl font-semibold transition-all transform hover:scale-105 ${
+                      product.popular 
+                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black'
+                        : 'bg-slate-700 hover:bg-slate-600 text-white'
+                    }`}
+                    data-testid={`button-order-${product.id}`}
+                  >
+                    {isOrderLoading === product.id ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+                        Processing...
+                      </div>
+                    ) : (
+                      <>
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        Order Now
+                      </>
+                    )}
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -354,6 +375,13 @@ export default function Products() {
           </div>
         </div>
       </footer>
+
+      {/* AR Preview Modal */}
+      <ARPreview
+        isOpen={arPreview.isOpen}
+        onClose={() => setArPreview({ isOpen: false, product: null })}
+        product={arPreview.product}
+      />
     </div>
   );
 }
