@@ -8,7 +8,6 @@ export function Navigation() {
 
   const navItems = [
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
-    { path: "/products", label: "Shop", id: "shop" },
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Earn", id: "collect" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
@@ -140,6 +139,16 @@ export function Navigation() {
                   </Link>
                 );
               })}
+              
+              {/* Add Shop link to mobile menu only */}
+              <Link
+                href="/products"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                data-testid="link-mobile-shop"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Shop
+              </Link>
 
             </div>
           </div>

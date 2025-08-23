@@ -1,26 +1,78 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Filter, Droplets } from "lucide-react";
+import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Smartphone, Droplets, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Products() {
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
   const { toast } = useToast();
 
+  const categories = [
+    { id: "all", label: "All Products", icon: ShoppingCart },
+    { id: "refurbished-phones", label: "Refurbished Phones", icon: Smartphone },
+    { id: "water-solutions", label: "Water Solutions", icon: Droplets },
+    { id: "premium-water", label: "Premium Water", icon: Sparkles }
+  ];
+
   const products = [
+    // Refurbished Phones
     {
-      id: "pitcher-basic",
+      id: "iphone-15-pro",
+      name: "iPhone 15 Pro (Excellent)",
+      category: "refurbished-phones",
+      price: 3799,
+      originalPrice: 4499,
+      image: "📱",
+      features: ["256GB Storage", "Battery 95%+", "Like New Condition", "1-Year Warranty"],
+      badge: "Latest Model"
+    },
+    {
+      id: "iphone-14-pro",
+      name: "iPhone 14 Pro (Very Good)",
+      category: "refurbished-phones",
+      price: 2999,
+      originalPrice: 3699,
+      image: "📱",
+      features: ["128GB Storage", "Battery 90%+", "Minor Cosmetic Wear", "6-Month Warranty"],
+      popular: true
+    },
+    {
+      id: "iphone-13",
+      name: "iPhone 13 (Good)",
+      category: "refurbished-phones",
+      price: 2199,
+      originalPrice: 2799,
+      image: "📱",
+      features: ["128GB Storage", "Battery 85%+", "Functional Perfect", "3-Month Warranty"]
+    },
+    {
+      id: "iphone-12",
+      name: "iPhone 12 (Excellent)",
+      category: "refurbished-phones",
+      price: 1799,
+      originalPrice: 2299,
+      image: "📱",
+      features: ["64GB Storage", "Battery 88%+", "Light Usage Signs", "6-Month Warranty"],
+      badge: "Best Value"
+    },
+
+    // Water Solutions
+    {
+      id: "aquacafe-basic",
       name: "AquaCafe Pitcher Basic",
+      category: "water-solutions",
       price: 199,
       originalPrice: 299,
       image: "🚰",
       features: ["2-stage filtration", "1.5L capacity", "BPA-free design", "6-month filter life"]
     },
     {
-      id: "pitcher-premium", 
+      id: "aquacafe-premium", 
       name: "AquaCafe Pitcher Premium",
+      category: "water-solutions",
       price: 399,
       originalPrice: 599,
       image: "🏆",
@@ -30,6 +82,7 @@ export default function Products() {
     {
       id: "under-sink-compact",
       name: "Under-Sink Compact System",
+      category: "water-solutions",
       price: 899,
       originalPrice: 1299,
       image: "🔧",
@@ -38,6 +91,7 @@ export default function Products() {
     {
       id: "under-sink-premium",
       name: "Under-Sink Premium System",
+      category: "water-solutions",
       price: 1499,
       originalPrice: 1999,
       image: "💎",
@@ -46,20 +100,68 @@ export default function Products() {
     {
       id: "whole-home-basic",
       name: "Whole Home Basic System",
+      category: "water-solutions",
       price: 2499,
       originalPrice: 3499,
       image: "🏠",
       features: ["Whole house coverage", "Sediment + carbon filters", "Professional installation", "3-year warranty"]
     },
     {
-      id: "whole-home-premium",
-      name: "Whole Home Premium System", 
-      price: 3999,
-      originalPrice: 5999,
-      image: "🏆",
-      features: ["Complete home solution", "Multi-stage filtration", "Smart home integration", "10-year warranty"]
+      id: "kangen-k8",
+      name: "Kangen K8 Machine",
+      category: "water-solutions",
+      price: 4999,
+      originalPrice: 6499,
+      image: "⚡",
+      features: ["8 Platinum plates", "Professional installation", "5-year warranty", "Training included"],
+      badge: "Professional Grade"
+    },
+
+    // Premium Water
+    {
+      id: "icelandic-premium",
+      name: "Icelandic Glacial Water",
+      category: "premium-water",
+      price: 12,
+      originalPrice: 18,
+      image: "🧊",
+      features: ["500ml Glass Bottle", "pH 8.4 Alkaline", "Zero Sodium", "Sustainable Packaging"],
+      badge: "Premium"
+    },
+    {
+      id: "himalayan-spring",
+      name: "Himalayan Spring Water",
+      category: "premium-water",
+      price: 15,
+      originalPrice: 22,
+      image: "🏔️",
+      features: ["750ml Glass Bottle", "Natural Minerals", "High Altitude Source", "Carbon Neutral"]
+    },
+    {
+      id: "volcanic-mineral",
+      name: "Volcanic Mineral Water",
+      category: "premium-water",
+      price: 18,
+      originalPrice: 25,
+      image: "🌋",
+      features: ["1L Glass Bottle", "Rich in Silica", "Volcanic Origin", "Limited Edition"],
+      badge: "Limited Edition"
+    },
+    {
+      id: "kangen-delivery",
+      name: "Kangen Water Delivery",
+      category: "premium-water",
+      price: 45,
+      originalPrice: 65,
+      image: "🚚",
+      features: ["20L Container", "Weekly Delivery", "pH 9.5 Alkaline", "Free Container Rental"],
+      badge: "Delivery Service"
     }
   ];
+
+  const filteredProducts = selectedCategory === "all" 
+    ? products 
+    : products.filter(product => product.category === selectedCategory);
 
   const handleOrderNow = async (productId: string, productName: string) => {
     setIsOrderLoading(productId);
@@ -106,33 +208,39 @@ export default function Products() {
       <section className="max-w-6xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Shop – All Water Solutions
+            Shop – All Products
           </h1>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Browse our complete range of premium water filtration systems for every home and budget.
+            Browse refurbished phones, water solutions, and premium water products.
           </p>
         </div>
 
-        {/* Filter Categories */}
+        {/* Category Filter Buttons */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
-          <button className="px-4 py-2 rounded-full bg-white/10 text-white border border-white/20 text-sm">
-            All Products
-          </button>
-          <button className="px-4 py-2 rounded-full bg-white/5 text-gray-300 border border-white/10 text-sm hover:bg-white/10 hover:text-white">
-            Pitchers
-          </button>
-          <button className="px-4 py-2 rounded-full bg-white/5 text-gray-300 border border-white/10 text-sm hover:bg-white/10 hover:text-white">
-            Under-Sink
-          </button>
-          <button className="px-4 py-2 rounded-full bg-white/5 text-gray-300 border border-white/10 text-sm hover:bg-white/10 hover:text-white">
-            Whole Home
-          </button>
+          {categories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  selectedCategory === category.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white border border-white/20'
+                }`}
+                data-testid={`filter-${category.id}`}
+              >
+                <Icon className="w-4 h-4" />
+                {category.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Special Offer Banner */}
+        {/* Special AquaCafe Offer Banner */}
         <div className="mb-8 bg-gradient-to-r from-amber-600/20 to-orange-600/20 border border-amber-500/30 rounded-2xl p-6 text-center">
           <h3 className="text-xl font-bold text-white mb-2">🎁 Special AquaCafe Starter Offer</h3>
-          <p className="text-gray-300 mb-4">Get started with our exclusive starter kit featuring free gifts and Bakers Kitchen partnership</p>
+          <p className="text-gray-300 mb-4">Get started with our exclusive AED 99 starter kit featuring free gifts and Bakers Kitchen partnership</p>
           <Link href="/aquacafe" className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors" data-testid="button-view-aquacafe-offer">
             <Gift className="w-4 h-4" />
             View AquaCafe Offer - AED 99
@@ -141,12 +249,14 @@ export default function Products() {
 
         {/* Products Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <Card key={product.id} className={`bg-white/5 backdrop-blur border-slate-600 relative ${product.popular ? 'ring-2 ring-amber-500/50' : ''}`}>
-              {product.popular && (
+              {product.badge && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-amber-500 text-black px-3 py-1 rounded-full text-xs font-bold">
-                    MOST POPULAR
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                    product.popular ? 'bg-amber-500 text-black' : 'bg-slate-600 text-white'
+                  }`}>
+                    {product.badge}
                   </span>
                 </div>
               )}
@@ -200,31 +310,31 @@ export default function Products() {
           ))}
         </div>
 
-        {/* Why Choose AquaCafe */}
-        <div className="mt-16 bg-white/5 backdrop-blur border border-slate-600 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-white text-center mb-8">Why 12,000+ Dubai Families Choose AquaCafe</h3>
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <Shield className="w-12 h-12 text-blue-400 mx-auto mb-3" />
-              <h4 className="font-semibold text-white mb-2">99.9% Filtration</h4>
-              <p className="text-sm text-gray-400">Removes chlorine, heavy metals, bacteria, and microplastics</p>
-            </div>
-            <div className="text-center">
-              <Heart className="w-12 h-12 text-red-400 mx-auto mb-3" />
-              <h4 className="font-semibold text-white mb-2">Family Safe</h4>
-              <p className="text-sm text-gray-400">NSF certified, BPA-free materials, child-safe design</p>
-            </div>
-            <div className="text-center">
-              <Zap className="w-12 h-12 text-amber-400 mx-auto mb-3" />
-              <h4 className="font-semibold text-white mb-2">Smart Monitoring</h4>
-              <p className="text-sm text-gray-400">Real-time water quality tracking with mobile alerts</p>
-            </div>
-            <div className="text-center">
-              <Award className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
-              <h4 className="font-semibold text-white mb-2">Dubai Approved</h4>
-              <p className="text-sm text-gray-400">DEWA certified, meets UAE water safety standards</p>
-            </div>
-          </div>
+        {/* Cross-sell Section */}
+        <div className="mt-16 grid md:grid-cols-2 gap-6">
+          <Card className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-500/30">
+            <CardContent className="p-6 text-center">
+              <Smartphone className="w-12 h-12 text-blue-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-white mb-2">Have an Old iPhone?</h3>
+              <p className="text-gray-300 mb-4">Trade it in for instant credit towards water solutions</p>
+              <Link href="/exchange" className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors" data-testid="button-start-exchange-crosssell">
+                <Gift className="w-4 h-4" />
+                Start Exchange
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-amber-600/20 to-orange-600/20 border border-amber-500/30">
+            <CardContent className="p-6 text-center">
+              <Droplets className="w-12 h-12 text-amber-400 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-white mb-2">Need a Starter System?</h3>
+              <p className="text-gray-300 mb-4">Get AED 1000+ value for only AED 99 with our Planet Hero starter kit</p>
+              <Link href="/aquacafe" className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors" data-testid="button-aquacafe-crosssell">
+                <Star className="w-4 h-4" />
+                View Starter Kit
+              </Link>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -232,7 +342,7 @@ export default function Products() {
       <footer className="border-t border-slate-700 mt-12">
         <div className="max-w-6xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm text-gray-400">
-            © 2024 DeliWer • Premium Water Solutions
+            © 2024 DeliWer • Premium Products & Solutions
           </div>
           <div className="flex gap-3">
             <Link href="/exchange" className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors" data-testid="footer-start-exchange">
