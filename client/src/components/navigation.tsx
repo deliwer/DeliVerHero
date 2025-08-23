@@ -140,14 +140,14 @@ export function Navigation() {
                 );
               })}
               
-              {/* Add Shop link to mobile menu only */}
+              {/* Add Shop all link to mobile menu only */}
               <Link
                 href="/products"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
-                data-testid="link-mobile-shop"
+                data-testid="link-mobile-shop-all"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Shop
+                Shop all
               </Link>
 
             </div>
