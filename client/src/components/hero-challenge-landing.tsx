@@ -394,11 +394,11 @@ export function HeroChallengeLanding() {
 
         {/* Main Tabs Section */}
         <div data-section="main-tabs" className="mt-16 mb-12">
-          <Tabs defaultValue="explore" className="w-full">
+          <Tabs defaultValue="aquacafe" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-2 border border-slate-600/50">
               <TabsTrigger 
                 value="explore" 
-                className="flex items-center gap-2 data-[state=active]:bg-hero-green-500 data-[state=active]:text-black text-white font-bold py-3 px-6 rounded-xl transition-all"
+                className="flex items-center gap-2 data-[state=active]:bg-gray-600 data-[state=active]:text-white text-gray-300 font-bold py-3 px-6 rounded-xl transition-all"
                 data-testid="tab-explore"
               >
                 <Target className="w-5 h-5" />

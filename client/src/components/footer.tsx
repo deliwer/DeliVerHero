@@ -71,9 +71,6 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
               <span className="text-2xl font-bold text-white">DeliWer</span>
-              <span className="ml-2 bg-hero-green-500 text-black px-2 py-1 rounded-full text-xs font-bold">
-                HEROES
-              </span>
             </div>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
