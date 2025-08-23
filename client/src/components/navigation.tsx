@@ -65,24 +65,24 @@ export function Navigation() {
             {/* Mobile Action Buttons - Compact */}
             <div className="flex md:hidden items-center space-x-2">
               <Link
-                href="/#meet-deli"
+                href="/aquacafe"
                 className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
                 data-testid="button-start-mission-mobile"
               >
                 <Rocket className="inline w-3 h-3 mr-1" />
-                Start
+                Shop
               </Link>
             </div>
 
             {/* Desktop Action Buttons with GOAFFPRO */}
             <div className="hidden md:flex items-center space-x-4">
               <Link
-                href="/#meet-deli"
+                href="/aquacafe"
                 className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 data-testid="button-start-mission"
               >
                 <Rocket className="inline w-4 h-4 mr-2" />
-                Start
+                Shop
               </Link>
             </div>
 

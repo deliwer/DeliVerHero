@@ -1,0 +1,270 @@
+import { useState } from 'react';
+
+// Simple SPA-style router (no external deps) for a clickable prototype
+const ROUTES = {
+  HOME: 'home',
+  SHOP: 'shop',
+  EXCHANGE: 'exchange',
+  COLLECT: 'collect',
+  REDEEM: 'redeem',
+  COMMUNITY: 'community',
+  CHECKOUT: 'checkout'
+};
+
+function Nav({ route, go }) {
+  return (
+    <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
+      <div className="max-w-6xl mx-auto flex items-center gap-3 p-3">
+        <button onClick={() => go(ROUTES.HOME)} className="font-extrabold text-xl">DeliWer</button>
+        <div className="ml-auto flex gap-2 text-sm font-medium">
+          <button onClick={() => go(ROUTES.SHOP)} className={navBtn(route === ROUTES.SHOP)}>Shop</button>
+          <button onClick={() => go(ROUTES.EXCHANGE)} className={navBtn(route === ROUTES.EXCHANGE)}>Exchange</button>
+          <button onClick={() => go(ROUTES.COLLECT)} className={navBtn(route === ROUTES.COLLECT)}>Collect</button>
+          <button onClick={() => go(ROUTES.REDEEM)} className={navBtn(route === ROUTES.REDEEM)}>Redeem</button>
+          <button onClick={() => go(ROUTES.COMMUNITY)} className={navBtn(route === ROUTES.COMMUNITY)}>Community</button>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function navBtn(active) {
+  return `rounded-full px-4 py-2 hover:bg-gray-100 ${active ? 'bg-gray-900 text-white hover:bg-gray-900' : ''}`;
+}
+
+function Hero({ go }) {
+  return (
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-100 via-white to-gray-50" />
+      <div className="relative max-w-5xl mx-auto px-6 py-16 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold">Circular Exchange. Clean Water. Smarter Choices.</h1>
+        <p className="mt-4 text-lg text-gray-700">
+          Trade your pre‑owned iPhone for premium water benefits, earn Planet Points, and redeem in the AquaCafe.
+        </p>
+
+        {/* AI-style wizard */}
+        <div className="mt-10 mx-auto max-w-2xl rounded-3xl border shadow-lg bg-white p-6 text-left">
+          <div className="flex items-start gap-3">
+            <div className="text-2xl">🤖</div>
+            <div>
+              <p className="font-semibold">What brings you to DeliWer today?</p>
+              <div className="mt-4 grid sm:grid-cols-3 gap-3">
+                <button onClick={() => go(ROUTES.SHOP)} className="rounded-2xl border p-4 hover:shadow-md text-left">
+                  <div className="text-2xl">💧</div>
+                  <div className="font-semibold">I want clean water at home</div>
+                  <div className="text-xs text-gray-600">Go to Shop</div>
+                </button>
+                <button onClick={() => go(ROUTES.EXCHANGE)} className="rounded-2xl border p-4 hover:shadow-md text-left">
+                  <div className="text-2xl">📱</div>
+                  <div className="font-semibold">I want to trade in my iPhone</div>
+                  <div className="text-xs text-gray-600">Start Exchange</div>
+                </button>
+                <button onClick={() => go(ROUTES.COLLECT)} className="rounded-2xl border p-4 hover:shadow-md text-left">
+                  <div className="text-2xl">🌍</div>
+                  <div className="font-semibold">I want to join the eco leaderboard</div>
+                  <div className="text-xs text-gray-600">Collect Points</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Campaign ribbon */}
+        <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-emerald-900 text-sm">
+          🔥 Double Rewards during iPhone 17 + GITEX launch
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Shop({ go }) {
+  return (
+    <Page title="Shop – AquaCafe">
+      <p className="text-gray-700">Order your Starter Kit to unlock free membership and begin earning Planet Points.</p>
+      <div className="mt-6 grid md:grid-cols-2 gap-4">
+        <Card title="AquaCafe Starter Kit" note="Best for new members" actionLabel="Order Starter Kit" onAction={() => go(ROUTES.CHECKOUT)}>
+          <ul className="text-sm list-disc ml-5 space-y-1">
+            <li>Premium filtration + shower filter</li>
+            <li>Free membership included</li>
+            <li>Earn Planet Points on every refill</li>
+          </ul>
+        </Card>
+        <Card title="Browse Premium Water Solutions" actionLabel="View Products" onAction={() => alert('Prototype: product list')}>
+          <p className="text-sm text-gray-600">Pitcher systems, under-sink units, and more.</p>
+        </Card>
+      </div>
+      <div className="mt-8">
+        <button onClick={() => go(ROUTES.EXCHANGE)} className="px-5 py-3 rounded-2xl bg-blue-600 text-white">Have an iPhone? Start Exchange</button>
+      </div>
+    </Page>
+  );
+}
+
+function Exchange({ go }) {
+  return (
+    <Page title="Exchange – iPhone Trade‑In">
+      <p className="text-gray-700">Check your iPhone valuation and convert it into water benefits.</p>
+      <div className="mt-6 grid md:grid-cols-2 gap-4">
+        <Card title="AI Concierge" note="Guided valuation" actionLabel="Try AI Valuation" onAction={() => alert('Prototype: AI flow')}>
+          <p className="text-sm text-gray-600">Tell us your model & condition, get an instant estimate.</p>
+        </Card>
+        <Card title="Manual Valuation" actionLabel="Get Estimate" onAction={() => alert('Prototype: Manual form')}>
+          <p className="text-sm text-gray-600">iPhone model, storage, condition → estimated AED value.</p>
+        </Card>
+      </div>
+      <div className="mt-8 flex gap-3">
+        <button onClick={() => go(ROUTES.COLLECT)} className="px-5 py-3 rounded-2xl bg-emerald-600 text-white">Join Leaderboard</button>
+        <button onClick={() => go(ROUTES.SHOP)} className="px-5 py-3 rounded-2xl bg-gray-900 text-white">Redeem in AquaCafe</button>
+      </div>
+    </Page>
+  );
+}
+
+function Collect({ go }) {
+  return (
+    <Page title="Collect – Planet Hero Leaderboard">
+      <p className="text-gray-700">Compete with Dubai families. Complete missions. Earn Planet Points.</p>
+      <div className="mt-6 grid md:grid-cols-3 gap-4">
+        <Card title="Leaderboard" note="#1 Ali – 3,500L saved">
+          <ul className="text-sm space-y-1">
+            <li>🥇 Ali – 3,500L</li>
+            <li>🥈 Sara – 2,800L</li>
+            <li>🥉 Omar – 2,500L</li>
+          </ul>
+        </Card>
+        <Card title="Missions" note="Weekly challenges" actionLabel="Start a Mission" onAction={() => alert('Prototype: Missions flow')}>
+          <ul className="text-sm list-disc ml-5 space-y-1">
+            <li>Reduce plastic use for 7 days</li>
+            <li>Refer a neighbour</li>
+            <li>Trade‑in your old iPhone</li>
+          </ul>
+        </Card>
+        <Card title="Your Wallet" note="Balance preview">
+          <p className="text-sm">Planet Points: <b>1,200</b></p>
+          <p className="text-sm text-gray-600">Litres delivered: <b>12,500</b></p>
+          <div className="mt-3">
+            <button onClick={() => go(ROUTES.REDEEM)} className="px-4 py-2 rounded-xl bg-indigo-600 text-white">Redeem Now</button>
+          </div>
+        </Card>
+      </div>
+    </Page>
+  );
+}
+
+function Redeem({ go }) {
+  return (
+    <Page title="Redeem – Use Your Points">
+      <p className="text-gray-700">Turn your Planet Points into real benefits at the AquaCafe and with partners.</p>
+      <div className="mt-6 grid md:grid-cols-3 gap-4">
+        <Card title="AquaCafe Credits" actionLabel="Apply at Checkout" onAction={() => go(ROUTES.CHECKOUT)}>
+          <p className="text-sm text-gray-600">Use points to discount your Starter Kit & refills.</p>
+        </Card>
+        <Card title="Partner Offers" actionLabel="View Offers" onAction={() => alert('Prototype: Partner offers')}>
+          <p className="text-sm text-gray-600">Eco‑friendly brands and local rewards.</p>
+        </Card>
+        <Card title="Badges & Perks">
+          <p className="text-sm text-gray-600">Unlock Silver, Gold, and Platinum Planet Hero perks.</p>
+        </Card>
+      </div>
+    </Page>
+  );
+}
+
+function Community() {
+  return (
+    <Page title="Community – Stories & Partners">
+      <p className="text-gray-700">Read impact stories, see CSR partners, and join the conversation.</p>
+      <div className="mt-6 grid md:grid-cols-2 gap-4">
+        <Card title="Impact Stories">
+          <p className="text-sm text-gray-600">Families trading iPhones for water—small swaps, big change.</p>
+        </Card>
+        <Card title="CSR & SDGs">
+          <p className="text-sm text-gray-600">Aligned with UN SDG 6 (Clean Water) & SDG 12 (Responsible Consumption).</p>
+        </Card>
+      </div>
+    </Page>
+  );
+}
+
+function Checkout({ go }) {
+  return (
+    <Page title="Checkout – AquaCafe Starter Kit">
+      <p className="text-gray-700">Prototype checkout screen. In production, connect to Shopify/Shop Pay.</p>
+      <div className="mt-6 max-w-md p-4 rounded-2xl border">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="font-semibold">AquaCafe Starter Kit</div>
+            <div className="text-sm text-gray-600">Free membership included</div>
+          </div>
+          <div className="text-xl font-bold">AED 399</div>
+        </div>
+        <div className="mt-4 text-sm text-gray-600">Planet Points available: 1,200 → apply 120 AED</div>
+        <div className="mt-6 flex gap-3">
+          <button onClick={() => alert('Prototype: Apply points')} className="px-4 py-2 rounded-xl border">Apply Points</button>
+          <button onClick={() => alert('Prototype: Proceed to Shop Pay')} className="px-4 py-2 rounded-xl bg-purple-600 text-white">Proceed to Payment</button>
+        </div>
+      </div>
+      <div className="mt-6">
+        <button onClick={() => go(ROUTES.HOME)} className="underline">Back to home</button>
+      </div>
+    </Page>
+  );
+}
+
+function Page({ title, children }) {
+  return (
+    <section className="max-w-6xl mx-auto px-6 py-10">
+      <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
+      <div className="mt-4">{children}</div>
+    </section>
+  );
+}
+
+function Card({ title, note, actionLabel, onAction, children }) {
+  return (
+    <div className="rounded-2xl border p-5 bg-white">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="font-semibold">{title}</div>
+          {note && <div className="text-xs text-gray-500 mt-1">{note}</div>}
+        </div>
+        {actionLabel && (
+          <button onClick={onAction} className="text-sm px-3 py-1.5 rounded-xl bg-gray-900 text-white">
+            {actionLabel}
+          </button>
+        )}
+      </div>
+      <div className="mt-3">{children}</div>
+    </div>
+  );
+}
+
+export default function App() {
+  const [route, setRoute] = useState(ROUTES.HOME);
+  const go = (r) => setRoute(r);
+
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <Nav route={route} go={go} />
+      {route === ROUTES.HOME && <Hero go={go} />}
+      {route === ROUTES.SHOP && <Shop go={go} />}
+      {route === ROUTES.EXCHANGE && <Exchange go={go} />}
+      {route === ROUTES.COLLECT && <Collect go={go} />}
+      {route === ROUTES.REDEEM && <Redeem go={go} />}
+      {route === ROUTES.COMMUNITY && <Community go={go} />}
+      {route === ROUTES.CHECKOUT && <Checkout go={go} />}
+
+      {/* Footer CTA anchor */}
+      <footer className="border-t mt-10">
+        <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center gap-4">
+          <div className="text-sm text-gray-600">© {new Date().getFullYear()} DeliWer • AI‑First Circular Exchange</div>
+          <div className="md:ml-auto flex gap-2">
+            <button onClick={() => go(ROUTES.EXCHANGE)} className="px-4 py-2 rounded-xl bg-blue-600 text-white">Start Exchange</button>
+            <button onClick={() => go(ROUTES.SHOP)} className="px-4 py-2 rounded-xl bg-emerald-600 text-white">Order Starter Kit</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
