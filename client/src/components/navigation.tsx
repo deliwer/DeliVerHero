@@ -7,7 +7,8 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { path: "/aquacafe", label: "Shop", id: "shop" },
+    { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
+    { path: "/products", label: "Shop", id: "shop" },
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Earn", id: "collect" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
@@ -70,7 +71,7 @@ export function Navigation() {
                 data-testid="button-start-mission-mobile"
               >
                 <Rocket className="inline w-3 h-3 mr-1" />
-                Shop
+                AquaCafe
               </Link>
             </div>
 
@@ -82,7 +83,7 @@ export function Navigation() {
                 data-testid="button-start-mission"
               >
                 <Rocket className="inline w-4 h-4 mr-2" />
-                Shop
+                AquaCafe
               </Link>
             </div>
 
