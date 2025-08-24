@@ -75,11 +75,11 @@ export function AIInteractiveHero() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="text-white drop-shadow-2xl">From iPhones to Water,</span><br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 drop-shadow-lg">
-              a Circular Exchange
+              a Circular Game
             </span>
           </h1>
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
-            Trade iPhones for premium water purifiers, earn Planet Points, and redeem in the AquaCafe.
+            Trade iPhones for premium water benefits, earn Planet Points, and redeem in the AquaCafe.
           </p>
         </div>
 

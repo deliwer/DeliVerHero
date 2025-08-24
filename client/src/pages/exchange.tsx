@@ -55,7 +55,7 @@ export default function Exchange() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-400 text-center">
-                Earn Planet Points with every trade that unlock exclusive rewards and advance your sustainability journey.
+                Play for Planet Points with every trade that unlock exclusive rewards and advance your sustainability journey.
               </p>
             </CardContent>
           </Card>

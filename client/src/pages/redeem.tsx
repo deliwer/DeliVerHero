@@ -238,7 +238,7 @@ export default function Redeem() {
           <div className="bg-hero-green-500/10 border border-hero-green-500/30 rounded-2xl p-8">
             <Gift className="w-16 h-16 text-hero-green-500 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-4">
-              Start Earning Points to Unlock Rewards
+              Start Playing for Points to Unlock Rewards
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               Begin collecting Planet Points today through iPhone trades and sustainable purchases to unlock these amazing rewards.
