@@ -1,0 +1,52 @@
+You are a skilled web designer. Redesign the page [https://www.deliwer.com/aquacafe](https://www.deliwer.com/aquacafe) into a **partnership-focused landing page**.  
+
+**Objective:** Highlight the **collaboration between AquaCafe by DeliWer and Baker’s Kitchen UAE**. The design should look modern, clean, and conversion-focused with **health + sustainability** as the main narrative.  
+
+### ✅ Requirements:
+1. **Hero Section**
+   - Split-screen layout:
+     - Left: AquaCafe + Baker’s Kitchen logos side by side with tagline  
+       “Healthy Water Meets Healthy Food”  
+     - Right: Lifestyle image (use uploaded assets like `Nicole_Oliver.jpeg` or food/restaurant imagery).  
+   - Headline: *“AquaCafe by DeliWer + Baker’s Kitchen UAE”*  
+   - Subtext: *“Serving Kangen Water with Wholesome Meals – A Partnership for Your Health & Our Planet”*  
+   - CTA button: **“Experience the Alliance”** → link to booking/demo page.  
+
+2. **Partnership Highlight Section**
+   - Add section: *“Why AquaCafe + Baker’s Kitchen?”*  
+   - Show two cards:  
+     - **AquaCafe:** Eco-friendly water filtration, plastic-free, hydration for families.  
+     - **Baker’s Kitchen UAE:** Healthy restaurant, fresh meals, serving Kangen Water with AquaCafe.  
+
+3. **Testimonial/Story Section**
+   - Insert photo (`Nicole_Oliver.jpeg`) with caption:  
+     “Real people enjoying healthier living with AquaCafe & Baker’s Kitchen.”  
+
+4. **Offer Section**
+   - Highlight AED 99 AquaCafe Starter Kit (from `deliwer-sosafe-card-front.png`).  
+   - Add note: *“Now also available at Baker’s Kitchen with your meal experience.”*  
+
+5. **Sustainability Section**
+   - Headline: *“#SayNoToPlastic, SayYesToHealth”*  
+   - Icons for: Plastic-free | Healthy Lifestyle | Local Community Impact  
+
+6. **Footer**
+   - Add both logos: AquaCafe by DeliWer + Baker’s Kitchen.  
+   - Add hashtag: **#SvenTheBaker x #DeliWer**  
+   - Contact info and social links.  
+
+### 🎨 Design Guidelines:
+- Modern, minimal, eco-health theme.  
+- Color palette: Aqua blue + Natural greens + Baker’s Kitchen warm tones.  
+- Fonts: Bold headings, clean readable body text.  
+- Rounded CTA buttons with gradient (blue → green).  
+
+### 📌 Assets to Use:
+- `Membership_Clean.png` → Can be reused for membership/offer block.  
+- `Nicole_Oliver.jpeg` → Testimonial/lifestyle.  
+- `deliwer-sosafe-card-front.png` → AquaCafe AED 99 starter kit promo.  
+- Add **Baker’s Kitchen UAE logo** (from bakerskitchenuae.com).  
+
+### 🔗 Final Note:
+Ensure **logos, photos, and offer cards are displayed prominently** so visitors immediately see the **synergy between AquaCafe & Baker’s Kitchen**.  
+
