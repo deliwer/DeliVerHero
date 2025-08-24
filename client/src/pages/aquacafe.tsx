@@ -322,12 +322,12 @@ export default function AquaCafe() {
                   <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">AquaCafe Starter Kit</span>
                 </h1>
                 
-                <div className="relative mb-6 group">
-                  <div className="bg-gradient-to-r from-emerald-100 to-cyan-100 rounded-2xl p-6 border-2 border-emerald-300">
-                    <div className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">
+                <div className="relative mb-4 group">
+                  <div className="bg-gradient-to-r from-emerald-100 to-cyan-100 rounded-xl p-3 sm:p-4 border border-emerald-300">
+                    <div className="text-sm sm:text-base md:text-lg font-bold text-gray-800 text-center mb-1">
                       💎 Now Available at Baker's Kitchen! 💎
                     </div>
-                    <div className="text-lg text-emerald-600 text-center font-semibold">
+                    <div className="text-xs sm:text-sm text-emerald-600 text-center font-semibold">
                       Experience with your meal at Mazaya Center
                     </div>
                   </div>
@@ -335,61 +335,61 @@ export default function AquaCafe() {
               </div>
 
               {/* Key Benefits */}
-              <div className="space-y-3 mb-8">
-                <div className="flex items-center justify-center lg:justify-start text-base">
-                  <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
-                    <Gift className="w-5 h-5 text-white" />
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
+                  <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <Gift className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-bold">FREE Beauty Ionic Shower Filter (AED 399 value)</span>
+                  <span className="text-gray-800 font-semibold">FREE Beauty Ionic Shower Filter (AED 399 value)</span>
                 </div>
-                <div className="flex items-center justify-center lg:justify-start text-base">
-                  <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
-                    <CheckCircle className="w-5 h-5 text-white" />
+                <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
+                  <div className="w-6 h-6 bg-cyan-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <CheckCircle className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-bold">FREE Professional Installation (AED 299 value)</span>
+                  <span className="text-gray-800 font-semibold">FREE Professional Installation (AED 299 value)</span>
                 </div>
-                <div className="flex items-center justify-center lg:justify-start text-base">
-                  <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
-                    <Heart className="w-5 h-5 text-white" />
+                <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
+                  <div className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <Heart className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-bold">AED 100 Baker's Kitchen Dining Voucher</span>
+                  <span className="text-gray-800 font-semibold">AED 100 Baker's Kitchen Dining Voucher</span>
                 </div>
-                <div className="flex items-center justify-center lg:justify-start text-base">
-                  <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-4">
-                    <Star className="w-5 h-5 text-white" />
+                <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <Star className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-bold">Instant Planet Hero Level 2 Status</span>
+                  <span className="text-gray-800 font-semibold">Instant Planet Hero Level 2 Status</span>
                 </div>
-                <div className="flex items-center justify-center lg:justify-start text-base">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                    <MapPin className="w-5 h-5 text-white" />
+                <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
+                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                    <MapPin className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-bold">Experience Kangen Water at Baker's Kitchen</span>
+                  <span className="text-gray-800 font-semibold">Experience Kangen Water at Baker's Kitchen</span>
                 </div>
               </div>
 
               {/* Partnership CTA */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <Button
                   onClick={() => handleOrderNow('hero-starter')}
                   disabled={isOrderLoading === 'hero-starter'}
-                  className="w-full lg:w-auto bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-8 py-4 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all disabled:opacity-70"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-xl shadow-lg transition-all disabled:opacity-70"
                   data-testid="button-partnership-offer"
                 >
                   {isOrderLoading === 'hero-starter' ? (
                     <>
-                      <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-current mr-3"></div>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
                       PROCESSING...
                     </>
                   ) : (
                     <>
-                      <Heart className="mr-3 w-6 h-6" />
+                      <Heart className="mr-2 w-4 h-4" />
                       GET PARTNERSHIP STARTER KIT - AED 99
                     </>
                   )}
                 </Button>
                 
-                <p className="text-emerald-600 font-bold text-lg">
+                <p className="text-emerald-600 font-bold text-xs sm:text-sm text-center">
                   🍰 Includes Baker's Kitchen dining experience! 🍰
                 </p>
               </div>
@@ -406,11 +406,11 @@ export default function AquaCafe() {
                   />
                 </div>
                 
-                <div className="bg-emerald-50 rounded-2xl p-6 border border-emerald-200 mb-6">
+                <div className="bg-emerald-50 rounded-xl p-3 sm:p-4 border border-emerald-200 mb-4">
                   <div className="text-center">
-                    <div className="text-xl font-bold text-gray-800 mb-3">AquaCafe Beauty Hair & Skincare</div>
-                    <div className="text-lg text-emerald-600 mb-4">Ionic Shower Filter</div>
-                    <div className="grid grid-cols-2 gap-4 text-sm text-gray-700">
+                    <div className="text-sm sm:text-base font-bold text-gray-800 mb-2">AquaCafe Beauty Hair & Skincare</div>
+                    <div className="text-xs sm:text-sm text-emerald-600 mb-3">Ionic Shower Filter</div>
+                    <div className="grid grid-cols-2 gap-2 text-xs text-gray-700">
                       <div>✨ 4-Level Filtration</div>
                       <div>💧 Removes Chlorine</div>
                       <div>🌟 Softer Hair</div>
@@ -420,9 +420,9 @@ export default function AquaCafe() {
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-gray-500 line-through text-lg mb-1">Regular Price: AED 399</div>
-                  <div className="text-2xl font-bold text-emerald-600 mb-2">FREE with Partnership Kit!</div>
-                  <div className="text-amber-600 font-bold">+ Baker's Kitchen AED 100 Voucher</div>
+                  <div className="text-gray-500 line-through text-sm mb-1">Regular Price: AED 399</div>
+                  <div className="text-lg sm:text-xl font-bold text-emerald-600 mb-2">FREE with Partnership Kit!</div>
+                  <div className="text-amber-600 font-bold text-xs sm:text-sm">+ Baker's Kitchen AED 100 Voucher</div>
                 </div>
               </div>
             </div>
@@ -443,28 +443,28 @@ export default function AquaCafe() {
           </div>
           
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 w-full max-w-full">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Leaf className="w-8 h-8 text-white" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Leaf className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Plastic-Free</h3>
-              <p className="text-emerald-100">Eliminate single-use plastic bottles with our advanced filtration systems</p>
+              <h3 className="text-lg font-bold mb-2">Plastic-Free</h3>
+              <p className="text-emerald-100 text-sm">Eliminate single-use plastic bottles with our advanced filtration systems</p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Heart className="w-8 h-8 text-white" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Heart className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Healthy Lifestyle</h3>
-              <p className="text-emerald-100">Pure water and nutritious meals for optimal health and wellness</p>
+              <h3 className="text-lg font-bold mb-2">Healthy Lifestyle</h3>
+              <p className="text-emerald-100 text-sm">Pure water and nutritious meals for optimal health and wellness</p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-white" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Users className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Local Community Impact</h3>
-              <p className="text-emerald-100">Supporting Dubai's sustainable development goals through partnership</p>
+              <h3 className="text-lg font-bold mb-2">Local Community Impact</h3>
+              <p className="text-emerald-100 text-sm">Supporting Dubai's sustainable development goals through partnership</p>
             </div>
           </div>
         </div>
@@ -473,9 +473,9 @@ export default function AquaCafe() {
       {/* Referral Program & Bakers Kitchen Partnership */}
       <section className="w-full py-6 sm:py-10 px-2 sm:px-4 bg-gradient-to-br from-amber-50 to-orange-50" data-testid="referral-program" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
-          <div className="inline-flex items-center bg-amber-500/20 border border-amber-500/50 rounded-full px-6 py-3 mb-6">
-            <Users className="w-5 h-5 text-amber-600 mr-2" />
-            <span className="text-amber-600 font-bold">PARTNERSHIP REFERRAL REWARDS</span>
+          <div className="inline-flex items-center bg-amber-500/20 border border-amber-500/50 rounded-full px-3 sm:px-4 py-2 mb-4">
+            <Users className="w-4 h-4 text-amber-600 mr-2" />
+            <span className="text-amber-600 font-bold text-xs sm:text-sm">PARTNERSHIP REFERRAL REWARDS</span>
           </div>
           
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
@@ -483,41 +483,41 @@ export default function AquaCafe() {
           </h2>
           
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6 w-full max-w-full">
-            <div className="bg-white backdrop-blur-sm rounded-xl p-6 border border-emerald-200 shadow-lg">
-              <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">1</span>
+            <div className="bg-white backdrop-blur-sm rounded-xl p-4 border border-emerald-200 shadow-lg">
+              <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-white font-bold text-lg">1</span>
               </div>
-              <h3 className="text-lg font-bold text-gray-800 mb-2">Share Your Code</h3>
-              <p className="text-gray-600 text-sm">Every Planet Hero gets a unique referral code to share with friends</p>
+              <h3 className="text-base font-bold text-gray-800 mb-2">Share Your Code</h3>
+              <p className="text-gray-600 text-xs">Every Planet Hero gets a unique referral code to share with friends</p>
             </div>
             
-            <div className="bg-white backdrop-blur-sm rounded-xl p-6 border border-cyan-200 shadow-lg">
-              <div className="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">2</span>
+            <div className="bg-white backdrop-blur-sm rounded-xl p-4 border border-cyan-200 shadow-lg">
+              <div className="w-10 h-10 bg-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-white font-bold text-lg">2</span>
               </div>
-              <h3 className="text-lg font-bold text-gray-800 mb-2">Friend Joins</h3>
-              <p className="text-gray-600 text-sm">When they purchase any AquaCafe plan using your code</p>
+              <h3 className="text-base font-bold text-gray-800 mb-2">Friend Joins</h3>
+              <p className="text-gray-600 text-xs">When they purchase any AquaCafe plan using your code</p>
             </div>
             
-            <div className="bg-white backdrop-blur-sm rounded-xl p-6 border border-amber-200 shadow-lg">
-              <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-xl">3</span>
+            <div className="bg-white backdrop-blur-sm rounded-xl p-4 border border-amber-200 shadow-lg">
+              <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <span className="text-white font-bold text-lg">3</span>
               </div>
-              <h3 className="text-lg font-bold text-gray-800 mb-2">You Both Win!</h3>
-              <p className="text-gray-600 text-sm">AED 100 Baker's Kitchen voucher + 500 bonus Planet Points each</p>
+              <h3 className="text-base font-bold text-gray-800 mb-2">You Both Win!</h3>
+              <p className="text-gray-600 text-xs">AED 100 Baker's Kitchen voucher + 500 bonus Planet Points each</p>
             </div>
           </div>
           
-          <div className="bg-gradient-to-r from-emerald-100 to-amber-100 border border-emerald-300 rounded-xl p-6">
-            <div className="text-amber-600 font-bold text-lg mb-2">🍰 Exclusive Partnership with Baker's Kitchen Dubai 🍰</div>
-            <p className="text-gray-700">Use your AED 100 dining voucher at Baker's Kitchen Mazaya Center for premium cakes, pastries, gourmet meals, and Kangen Water experience!</p>
-            <div className="mt-4 flex items-center justify-center gap-4 text-sm text-gray-600">
+          <div className="bg-gradient-to-r from-emerald-100 to-amber-100 border border-emerald-300 rounded-xl p-4">
+            <div className="text-amber-600 font-bold text-sm sm:text-base mb-2 text-center">🍰 Exclusive Partnership with Baker's Kitchen Dubai 🍰</div>
+            <p className="text-gray-700 text-xs sm:text-sm text-center mb-3">Use your AED 100 dining voucher at Baker's Kitchen Mazaya Center for premium cakes, pastries, gourmet meals, and Kangen Water experience!</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-gray-600">
               <div className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
+                <MapPin className="w-3 h-3" />
                 <span>Mazaya Center, Business Bay</span>
               </div>
               <div className="flex items-center gap-1">
-                <Phone className="w-4 h-4" />
+                <Phone className="w-3 h-3" />
                 <span>Visit bakerskitchenuae.com</span>
               </div>
             </div>
@@ -558,7 +558,7 @@ export default function AquaCafe() {
                     </div>
                   )}
                   
-                  <CardContent className="p-6 pt-12">
+                  <CardContent className="p-4 pt-8">
                     {!plan.popular && (
                       <div className="text-center mb-4">
                         <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-bold">
@@ -567,8 +567,8 @@ export default function AquaCafe() {
                       </div>
                     )}
                     
-                    <div className="text-center mb-6">
-                      <h3 className="text-xl font-bold text-gray-800 mb-2">{plan.name}</h3>
+                    <div className="text-center mb-4">
+                      <h3 className="text-lg font-bold text-gray-800 mb-2">{plan.name}</h3>
                       
                       <div className="mb-4">
                         <div className="text-gray-500 line-through text-lg mb-1">
@@ -576,22 +576,22 @@ export default function AquaCafe() {
                         </div>
                         {plan.isHeroEntry ? (
                           <>
-                            <div className="text-4xl font-bold text-emerald-600 mb-2">
+                            <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-2">
                               AED {plan.price}
                             </div>
-                            <div className="text-cyan-600 font-bold text-lg mb-1">
+                            <div className="text-cyan-600 font-bold text-sm sm:text-base mb-1">
                               Partnership Price: AED {Math.max(0, finalPrice).toLocaleString()}
                             </div>
-                            <div className="text-sm text-amber-600 font-bold">
+                            <div className="text-xs sm:text-sm text-amber-600 font-bold">
                               TOTAL VALUE: AED {totalSavings.toLocaleString()}+ BAKER'S PERKS!
                             </div>
                           </>
                         ) : (
                           <>
-                            <div className="text-3xl font-bold text-gray-800 mb-2">
+                            <div className="text-2xl font-bold text-gray-800 mb-2">
                               AED {plan.price.toLocaleString()}
                             </div>
-                            <div className="text-sm text-emerald-600 font-bold">
+                            <div className="text-xs sm:text-sm text-emerald-600 font-bold">
                               Save AED {totalSavings.toLocaleString()}
                             </div>
                           </>
@@ -599,31 +599,31 @@ export default function AquaCafe() {
                       </div>
                     </div>
                     
-                    <div className="space-y-2 mb-8">
+                    <div className="space-y-1 mb-6">
                       {plan.features.map((feature, index) => (
-                        <div key={index} className="flex items-center text-sm text-gray-700">
-                          <CheckCircle className="w-4 h-4 text-emerald-500 mr-3 flex-shrink-0" />
+                        <div key={index} className="flex items-center text-xs sm:text-sm text-gray-700">
+                          <CheckCircle className="w-3 h-3 text-emerald-500 mr-2 flex-shrink-0" />
                           {feature}
                         </div>
                       ))}
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       <Button
                         onClick={() => handleARPreview(plan)}
-                        className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl transition-all transform hover:scale-105"
+                        className="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all text-xs sm:text-sm"
                         data-testid={`button-ar-preview-${plan.id}`}
                       >
-                        <Eye className="mr-2 w-5 h-5" />
+                        <Eye className="mr-1 w-3 h-3" />
                         AR Preview
                       </Button>
                       
                       <Button
                         onClick={() => handleOrderNow(plan.id)}
                         disabled={isOrderLoading === plan.id}
-                        className={`w-full py-4 font-bold text-lg rounded-xl transition-all transform hover:scale-105 ${
+                        className={`w-full py-3 font-bold text-sm sm:text-base rounded-lg transition-all ${
                           plan.isHeroEntry
-                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white disabled:opacity-70 shadow-2xl'
+                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white disabled:opacity-70 shadow-lg'
                             : plan.popular
                             ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white disabled:opacity-70'
                             : 'bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-70'
@@ -632,13 +632,13 @@ export default function AquaCafe() {
                       >
                         {isOrderLoading === plan.id ? (
                           <>
-                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-current mr-2"></div>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
                             PROCESSING...
                           </>
                         ) : (
                           <>
-                            <ShoppingCart className="mr-2 w-5 h-5" />
-                            {plan.isHeroEntry ? 'START PARTNERSHIP JOURNEY' : plan.popular ? 'UPGRADE NOW' : 'ORDER NOW'}
+                            <ShoppingCart className="mr-2 w-4 h-4" />
+                            {plan.isHeroEntry ? 'START JOURNEY' : plan.popular ? 'UPGRADE NOW' : 'ORDER NOW'}
                           </>
                         )}
                       </Button>
