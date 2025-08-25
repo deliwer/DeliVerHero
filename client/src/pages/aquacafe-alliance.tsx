@@ -170,7 +170,7 @@ export default function AquaCafeAlliance() {
                     <Droplets className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">Pure Hydration</h3>
-                  <p className="text-cyan-600 font-semibold">Plastic-Free | AED 1299 Starter Kit</p>
+                  <p className="text-cyan-600 font-semibold">Plastic-Free | AED 1299 Hero Gateway</p>
                 </div>
                 
                 <div className="space-y-4 text-gray-700">
@@ -265,7 +265,7 @@ export default function AquaCafeAlliance() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl">
               <Gift className="w-6 h-6 mr-3" />
-              AED 1299 Starter Kit + Referral Rewards at Baker's Kitchen
+              AED 1299 Hero Gateway + Referral Rewards at Baker's Kitchen
               <Gift className="w-6 h-6 ml-3" />
             </div>
           </div>
@@ -291,7 +291,7 @@ export default function AquaCafeAlliance() {
                   <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
                     <Gift className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">Get the AquaCafe Starter Kit (AED 1299)</span>
+                  <span className="text-gray-800 font-semibold">Get the AquaCafe Hero Gateway (AED 1299)</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-lg">
                   <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
@@ -341,7 +341,7 @@ export default function AquaCafeAlliance() {
                     <div className="grid grid-cols-2 gap-3 text-sm text-gray-700">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-emerald-500" />
-                        <span>AED 1299 Starter Kit</span>
+                        <span>AED 1299 Hero Gateway</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-amber-500" />

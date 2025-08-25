@@ -301,7 +301,7 @@ export default function AquaCafe() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-lg shadow-2xl">
               <Gift className="w-6 h-6 mr-3" />
-              <span>🎉 PARTNERSHIP SPECIAL: AED 1299 STARTER KIT + BAKER'S KITCHEN PERKS 🎉</span>
+              <span>🎉 PARTNERSHIP SPECIAL: AED 1299 HERO GATEWAY + BAKER'S KITCHEN PERKS 🎉</span>
               <Gift className="w-6 h-6 ml-3" />
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function AquaCafe() {
                     AED 1299
                   </span>
                   <br />
-                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">AquaCafe Starter Kit</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Hero Gateway Package</span>
                 </h1>
                 
                 <div className="relative mb-4 group">
@@ -347,7 +347,7 @@ export default function AquaCafe() {
                   <div className="w-6 h-6 bg-cyan-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <CheckCircle className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">FREE Professional Installation (AED 200 value)</span>
+                  <span className="text-gray-800 font-semibold">Premium Support & Setup Guidance</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
                   <div className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
@@ -385,7 +385,7 @@ export default function AquaCafe() {
                   ) : (
                     <>
                       <Heart className="mr-2 w-4 h-4" />
-                      GET PARTNERSHIP STARTER KIT - AED 1299
+                      GET HERO GATEWAY - AED 1299
                     </>
                   )}
                 </Button>
@@ -687,7 +687,7 @@ export default function AquaCafe() {
                 className="px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-600 hover:to-cyan-600 transition-colors text-xs w-full max-w-xs"
                 data-testid="footer-order-partnership-kit"
               >
-                Get Partnership Kit - AED 1299
+                Get Hero Gateway - AED 1299
               </Button>
             </div>
             <div className="text-xs text-gray-600 text-center">

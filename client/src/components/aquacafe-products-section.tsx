@@ -5,17 +5,17 @@ import { Badge } from "@/components/ui/badge";
 
 const products = [
   {
-    id: "aquacafe-basic",
-    name: "AquaCafe Basic",
+    id: "aquacafe-starter",
+    name: "AquaCafe Starter Kit",
     price: "AED 99",
-    originalPrice: "AED 199",
+    originalPrice: "AED 399",
     rating: 4.8,
     reviews: 247,
-    description: "Essential water filtration for your home",
-    features: ["5-Stage Filtration", "2L/min Flow Rate", "6-Month Filter Life", "Free Installation"],
-    badge: "Best Seller",
+    description: "Loyalty member exclusive - Essential water filtration starter kit",
+    features: ["5-Stage Filtration", "2L/min Flow Rate", "6-Month Filter Life", "FREE Installation (Loyalty Perk)"],
+    badge: "Loyalty Exclusive",
     badgeColor: "bg-amber-500",
-    shopifyUrl: "https://www.deliwer.com/products/aquacafe-basic"
+    shopifyUrl: "https://www.deliwer.com/products/aquacafe-starter"
   },
   {
     id: "aquacafe-pro", 

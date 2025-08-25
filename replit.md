@@ -147,3 +147,29 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - ✅ Added smooth scrolling navigation to tabs from Step 3 CTA button
 - ✅ Optimized spacing and typography for mobile devices
 - ✅ Full-bleed background images maintain visibility across all screen sizes
+
+### Pricing Structure and Loyalty Program Rules (August 25, 2025)
+**IMPORTANT PRICING RULES - SAVE FOR FUTURE REFERENCE:**
+
+- ✅ **Starter Kit: AED 99** (Loyalty Member Exclusive)
+  - FREE Installation (AED 299 value) included as flagship welcome bonus
+  - Only available to new loyalty members
+  - Main conversion tool for new member signups
+
+- ✅ **Hero Gateway Package: AED 1299** (Premium Entry)
+  - NO free installation (premium support & setup guidance only)
+  - Hero packages are premium offerings without installation perks
+  - Separate from Starter Kit - do not mix these two product lines
+
+- ✅ **Loyalty Membership Program** established as preferred path:
+  - Primary conversion funnel for all Exchange activities
+  - Required for Game Play and Planet Points redemptions
+  - Free installation perk exclusive to loyalty members only
+  - Convergence strategy: All user journeys lead to loyalty signup
+
+- ✅ **Conversion Strategy Recommendations:**
+  - Exchange flow: Direct users to Starter Kit (AED 99) as trade credit usage
+  - Game Play: Require loyalty membership for point earning and redemptions
+  - Planet Points: Tie all redemptions to loyalty member status
+  - Cross-selling: Promote Starter Kit in all Hero package contexts
+  - Referral rewards: Bonus incentives for loyalty member referrals

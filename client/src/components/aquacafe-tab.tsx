@@ -37,8 +37,8 @@ export function AquaCafeTab() {
     },
     {
       icon: <Home className="w-8 h-8 sm:w-12 sm:h-12 text-amber-500 mx-auto" />,
-      title: "Free Installation",
-      description: "Professional home installation and maintenance included"
+      title: "Loyalty Program",
+      description: "Exclusive member benefits including installation perks"
     },
     {
       icon: <Package className="w-8 h-8 sm:w-12 sm:h-12 text-purple-500 mx-auto" />,
@@ -56,7 +56,6 @@ export function AquaCafeTab() {
       originalPrice: 1599,
       features: [
         "🎁 FREE Beauty Ionic Shower Filter (AED 399)",
-        "🔧 FREE Installation (AED 299)",
         "💧 3-stage filtration system",
         "⭐ Planet Hero Level 2 status",
         "🎯 1000 points + 2X multiplier",
@@ -173,7 +172,7 @@ export function AquaCafeTab() {
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-hero-green-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                     <CheckCircle className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
                   </div>
-                  <span className="text-white font-medium">FREE Installation (AED 299)</span>
+                  <span className="text-white font-medium">Loyalty Member Perk</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-sm sm:text-base">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-dubai-blue-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
@@ -237,7 +236,7 @@ export function AquaCafeTab() {
               <div className="text-center">
                 <div className="text-gray-400 line-through text-sm sm:text-base md:text-lg mb-1">AED 399</div>
                 <div className="text-xl sm:text-2xl md:text-3xl font-bold text-hero-green-500 mb-2">FREE!</div>
-                <div className="text-amber-400 font-bold text-sm sm:text-base">+ FREE Install (AED 299)</div>
+                <div className="text-amber-400 font-bold text-sm sm:text-base">AED 99</div>
               </div>
             </div>
           </div>

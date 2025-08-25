@@ -28,7 +28,7 @@ export function Footer() {
 
   const quickLinks = [
     { label: "Trade-in iPhone Calculator", url: "/" },
-    { label: "AquaCafe Planet Hero Program", url: "/aquacafe" },
+    { label: "AquaCafe Loyalty Program", url: "/aquacafe" },
     { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
     { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
     { label: "Community Hub", url: "/community" },
@@ -74,7 +74,7 @@ export function Footer() {
             </div>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              World's First Sustainability Game. Trade your iPhone for premium water systems while earning Planet Hero status and contributing to Dubai's environmental missions.
+              World's First Sustainability Game. Trade your iPhone for premium water systems while earning Loyalty Member status and contributing to Dubai's environmental missions.
             </p>
             
             <div className="space-y-3 mb-6">
@@ -88,7 +88,7 @@ export function Footer() {
               </div>
               <div className="flex items-center text-sm text-gray-400">
                 <Users className="w-4 h-4 mr-2 text-dubai-blue-500" />
-                12,847 Planet Heroes
+                12,847 Loyalty Members
               </div>
             </div>
 
@@ -139,7 +139,7 @@ export function Footer() {
               </div>
               <div className="flex items-center text-sm text-amber-400">
                 <Award className="w-4 h-4 mr-2" />
-                AED 1299 Planet Hero Starter Kit
+                AED 1299 Hero Gateway | AED 99 Loyalty Starter
               </div>
               <div className="flex items-center text-sm text-blue-400">
                 <Users className="w-4 h-4 mr-2" />
