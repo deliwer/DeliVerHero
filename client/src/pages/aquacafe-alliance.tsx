@@ -11,7 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 // Import assets
 import aquacafeDesign from "@assets/Final_Design_DeliWer_AquaCafe_1755000844134.png";
-import aquacafeTradeIn from "@assets/AquaCafe_Tradein_1756065010821.png";
+import aquacafeTradeIn from "@assets/without_text_1756065010951.jpg";
 import deliwerLogo from "@assets/deliwer logo_1755631850889.png";
 import aquacafeCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755485915603.png";
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
@@ -291,7 +291,7 @@ export default function AquaCafeAlliance() {
                   <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
                     <Gift className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">Get the AquaCafe Starter Kit (AED 1299 net, AED 99 partnership price)</span>
+                  <span className="text-gray-800 font-semibold">Get the AquaCafe Starter Kit (AED 99 partnership price)</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-lg">
                   <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
