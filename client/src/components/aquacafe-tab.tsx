@@ -52,14 +52,14 @@ export function AquaCafeTab() {
       id: "hero-starter",
       name: "Hero Starter",
       subtitle: "PLANET HERO ENTRY",
-      price: 1299,
-      originalPrice: 1599,
+      price: 99,
+      originalPrice: 399,
       features: [
-        "🎁 FREE Beauty Ionic Shower Filter (AED 399)",
-        "💧 3-stage filtration system",
-        "⭐ Planet Hero Level 2 status",
-        "🎯 1000 points + 2X multiplier",
-        "💰 20% discount on future plans"
+        "🎁 FREE Beauty Ionic Shower Filter (AED 399) - Loyalty Welcome Gift",
+        "💧 3-stage filtration system + Lifetime Member Discounts",
+        "⭐ Loyalty Member Level 2 status - Unlock Future Savings",
+        "🎯 1000 Loyalty Points + 2X multiplier for Life",
+        "💰 20% discount on ALL future purchases - Lifetime Membership Perk"
       ],
       badge: "🚀 HERO GATEWAY",
       isHeroEntry: true
@@ -145,18 +145,18 @@ export function AquaCafeTab() {
             <div className="text-center lg:text-left space-y-4 sm:space-y-6">
               <div className="inline-flex items-center bg-hero-green-500/20 border border-hero-green-500/50 rounded-full px-3 sm:px-6 py-2 sm:py-3 mb-3 sm:mb-4">
                 <Award className="w-4 h-4 sm:w-5 sm:h-5 text-hero-green-500 mr-2" />
-                <span className="text-hero-green-500 font-bold text-xs sm:text-sm md:text-base">PLANET HERO PROGRAM</span>
+                <span className="text-hero-green-500 font-bold text-xs sm:text-sm md:text-base">LOYALTY MEMBERSHIP - LIFETIME BENEFITS</span>
               </div>
               
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 1299</span>
+                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 99</span>
                 <br />
-                <span className="text-lg sm:text-xl md:text-2xl text-gray-200">Starter Kit</span>
+                <span className="text-lg sm:text-xl md:text-2xl text-gray-200">Loyalty Starter Kit</span>
               </h1>
               
               <div className="relative mb-4 sm:mb-6 group">
                 <div className="bg-gradient-to-r from-cyan-400 via-yellow-400 to-pink-400 bg-clip-text text-transparent text-xl sm:text-2xl md:text-3xl font-black text-center py-3 sm:py-4 px-4 sm:px-6 bg-black/80 rounded-xl border border-cyan-400 shadow-xl animate-pulse">
-                  💎 GET AED 1000+ VALUE! 💎
+                  💎 LIFETIME SAVINGS PROGRAM! 💎
                 </div>
               </div>
 
@@ -178,13 +178,13 @@ export function AquaCafeTab() {
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-dubai-blue-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                     <Star className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
                   </div>
-                  <span className="text-white font-medium">Planet Hero Level 2 Status</span>
+                  <span className="text-white font-medium">Loyalty Member Level 2 Status</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-sm sm:text-base">
                   <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3 sm:mr-4">
                     <Target className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
                   </div>
-                  <span className="text-white font-medium">1000 Planet Points</span>
+                  <span className="text-white font-medium">1000 Loyalty Points + Lifetime Benefits</span>
                 </div>
               </div>
 
@@ -203,13 +203,13 @@ export function AquaCafeTab() {
                 ) : (
                   <>
                     <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                    JOIN HEROES - AED 1299
+                    JOIN HEROES - AED 99
                   </>
                 )}
               </Button>
               
               <p className="text-amber-300 font-bold text-sm sm:text-base">
-                🔥 Only 47 starter kits left! 🔥
+                🔥 Join 12,847+ Loyalty Members - Limited Welcome Offer! 🔥
               </p>
             </div>
 
@@ -379,7 +379,7 @@ export function AquaCafeTab() {
               <Shield className="w-8 h-8 sm:w-12 sm:h-12 text-hero-green-500 mx-auto mb-3 sm:mb-4" />
               <h3 className="text-lg sm:text-xl font-bold text-white mb-2">30-Day Guarantee</h3>
               <p className="text-gray-300 text-sm sm:text-base">
-                Full refund + keep your Planet Hero points
+                Full refund + keep your Loyalty Member benefits
               </p>
             </div>
           </div>
@@ -390,7 +390,7 @@ export function AquaCafeTab() {
       <section className="py-8 sm:py-12 px-3 sm:px-4 bg-gradient-to-br from-orange-950/30 to-slate-900/90 backdrop-blur-sm border-t border-slate-700/50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
-            🚀 JOIN 12,000+ HEROES TODAY
+            🚀 JOIN 12,847+ LOYALTY MEMBERS TODAY
           </h2>
           
           <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
@@ -417,7 +417,7 @@ export function AquaCafeTab() {
               data-testid="button-order-hero"
             >
               <Target className="mr-2 w-5 h-5 sm:w-6 sm:h-6" />
-              ORDER - AED 1299
+              ORDER - AED 99
             </a>
             <a 
               href="https://wa.me/971523946311"
