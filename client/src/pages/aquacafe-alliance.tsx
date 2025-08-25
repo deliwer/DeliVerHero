@@ -135,8 +135,8 @@ export default function AquaCafeAlliance() {
             <div className="relative">
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-2xl">
                 <img 
-                  src={aquacafeDesign} 
-                  alt="AquaCafe & Baker's Kitchen Alliance" 
+                  src="https://static.wixstatic.com/media/74367b_9f4b70ed3be04cd89f9fd7dab4f3fec5~mv2.jpeg/v1/fill/w_1500,h_749,al_t,q_85,enc_avif,quality_auto/74367b_9f4b70ed3be04cd89f9fd7dab4f3fec5~mv2.jpeg" 
+                  alt="Baker's Kitchen UAE - Healthy Food & Wellness by Sven The Baker" 
                   className="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-lg"
                 />
                 <div className="text-center mt-4">
