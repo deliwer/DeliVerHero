@@ -149,17 +149,21 @@ Key features include an interactive onboarding walkthrough with real-time impact
 - ✅ Full-bleed background images maintain visibility across all screen sizes
 
 ### Pricing Structure and Loyalty Program Rules (August 25, 2025)
-**IMPORTANT PRICING RULES - SAVE FOR FUTURE REFERENCE:**
+**CRITICAL: TWO SEPARATE PRODUCT LINES - NEVER CONFUSE AGAIN:**
 
+**PRODUCT LINE 1: LOYALTY PROGRAM ENTRY**
 - ✅ **Starter Kit: AED 99** (Loyalty Member Exclusive)
   - FREE Installation (AED 299 value) included as flagship welcome bonus
-  - Only available to new loyalty members
+  - Only available to new loyalty members  
   - Main conversion tool for new member signups
+  - SEPARATE from Hero products
 
-- ✅ **Hero Gateway Package: AED 1299** (Premium Entry)
+**PRODUCT LINE 2: HERO UNDERSINK PURIFIERS**
+- ✅ **Hero Gateway: AED 1299** (was AED 1599 - save AED 300)
+  - Undersink water purifier system
   - NO free installation (premium support & setup guidance only)
-  - Hero packages are premium offerings without installation perks
-  - Separate from Starter Kit - do not mix these two product lines
+  - Part of Hero product line with Premium (AED 1499) and Elite (AED 2299)
+  - NEVER confuse with AED 99 Starter Kit
 
 - ✅ **Loyalty Membership Program** established as preferred path:
   - Primary conversion funnel for all Exchange activities
