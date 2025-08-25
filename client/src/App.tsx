@@ -44,6 +44,7 @@ function Router() {
       <Route path="/leaderboard" component={Leaderboard} />
       <Route path="/impact-dashboard" component={ImpactDashboard} />
       <Route path="/aquacafe" component={AquaCafe} />
+      <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
       <Route path="/products/aquacafe" component={AquaCafeAlliance} />
       <Route path="/products" component={Products} />
       <Route path="/exchange" component={Exchange} />
