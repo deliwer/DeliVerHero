@@ -84,7 +84,7 @@ const defaultHints: TooltipHint[] = [
   {
     id: "aquacafe-packages",
     title: "Hero Water Systems",
-    content: "Use your iPhone trade credit towards premium AquaCafe water filtration. Hero packages start at AED 999 with your device trade-in.",
+    content: "Use your iPhone trade credit towards premium AquaCafe water filtration. Hero packages start at AED 1299 with your device trade-in.",
     type: "tip",
     target: "aquacafe-packages",
     delay: 3000,

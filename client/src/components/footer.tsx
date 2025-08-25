@@ -139,7 +139,7 @@ export function Footer() {
               </div>
               <div className="flex items-center text-sm text-amber-400">
                 <Award className="w-4 h-4 mr-2" />
-                AED 99 Planet Hero Starter Kit
+                AED 1299 Planet Hero Starter Kit
               </div>
               <div className="flex items-center text-sm text-blue-400">
                 <Users className="w-4 h-4 mr-2" />

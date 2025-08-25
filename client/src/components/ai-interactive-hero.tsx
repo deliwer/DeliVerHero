@@ -18,7 +18,7 @@ const ctaOptions: CTAOption[] = [
     id: "water",
     text: "I want clean water at home",
     icon: "💧",
-    href: "/shop",
+    href: "/products",
     gradient: "from-blue-500 to-cyan-500",
     hoverGradient: "from-blue-400 to-cyan-400"
   },

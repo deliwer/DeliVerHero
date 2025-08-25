@@ -32,8 +32,8 @@ export function AquaCafeTab() {
     },
     {
       icon: <Shield className="w-8 h-8 sm:w-12 sm:h-12 text-hero-green-500 mx-auto" />,
-      title: "DEWA Certified",
-      description: "Officially certified by Dubai Electricity & Water Authority for safety"
+      title: "NSF Certified",
+      description: "Certified by NSF International for water safety and quality standards"
     },
     {
       icon: <Home className="w-8 h-8 sm:w-12 sm:h-12 text-amber-500 mx-auto" />,
@@ -52,8 +52,8 @@ export function AquaCafeTab() {
       id: "hero-starter",
       name: "Hero Starter",
       subtitle: "PLANET HERO ENTRY",
-      price: 99,
-      originalPrice: 1398,
+      price: 1299,
+      originalPrice: 1599,
       features: [
         "🎁 FREE Beauty Ionic Shower Filter (AED 399)",
         "🔧 FREE Installation (AED 299)",
@@ -150,7 +150,7 @@ export function AquaCafeTab() {
               </div>
               
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 99</span>
+                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 1299</span>
                 <br />
                 <span className="text-lg sm:text-xl md:text-2xl text-gray-200">Starter Kit</span>
               </h1>
@@ -204,7 +204,7 @@ export function AquaCafeTab() {
                 ) : (
                   <>
                     <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                    JOIN HEROES - AED 99
+                    JOIN HEROES - AED 1299
                   </>
                 )}
               </Button>
@@ -418,7 +418,7 @@ export function AquaCafeTab() {
               data-testid="button-order-hero"
             >
               <Target className="mr-2 w-5 h-5 sm:w-6 sm:h-6" />
-              ORDER - AED 99
+              ORDER - AED 1299
             </a>
             <a 
               href="https://wa.me/971523946311"

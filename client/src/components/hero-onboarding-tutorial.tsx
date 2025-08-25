@@ -64,12 +64,12 @@ const onboardingSteps: OnboardingStep[] = [
   {
     id: "aquacafe",
     title: "Choose Your AquaCafe Package",
-    description: "Use your trade credit towards premium water filtration systems. Hero packages start at AED 999 after discount.",
+    description: "Use your trade credit towards premium water filtration systems. Hero packages start at AED 1299 after discount.",
     icon: <Target className="w-8 h-8 text-dubai-blue-500" />,
     action: "Explore AquaCafe packages",
     highlight: "aquacafe-packages",
     tips: [
-      "Hero Starter: AED 999",
+      "Hero Starter: AED 1299",
       "Hero Premium: AED 1,499", 
       "Hero Elite: AED 2,299"
     ]
