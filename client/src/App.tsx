@@ -15,6 +15,7 @@ import Home from "@/pages/home";
 import Leaderboard from "@/pages/leaderboard";
 import ImpactDashboard from "@/pages/impact-dashboard";
 import AquaCafe from "@/pages/aquacafe";
+import AquaCafeAlliance from "@/pages/aquacafe-alliance";
 import Products from "@/pages/products";
 import Exchange from "@/pages/exchange";
 import Collect from "@/pages/collect";
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/leaderboard" component={Leaderboard} />
       <Route path="/impact-dashboard" component={ImpactDashboard} />
       <Route path="/aquacafe" component={AquaCafe} />
+      <Route path="/products/aquacafe" component={AquaCafeAlliance} />
       <Route path="/products" component={Products} />
       <Route path="/exchange" component={Exchange} />
       <Route path="/collect" component={Collect} />
