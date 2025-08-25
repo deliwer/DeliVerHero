@@ -30,13 +30,13 @@ export default function AquaCafeAlliance() {
     setIsOrderLoading(true);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      const shopifyUrl = `https://www.deliwer.com/products/aquacafe?variant=${variant}`;
-      window.open(shopifyUrl, '_blank');
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Navigate to Shopify checkout directly
+      window.location.href = `https://www.deliwer.com/products/aquacafe?variant=${variant}`;
       
       toast({
-        title: "Redirecting to Checkout",
-        description: "Opening Shopify checkout for AquaCafe Alliance Kit",
+        title: "Proceeding to Checkout",
+        description: "Loading secure checkout for AquaCafe Alliance Kit",
       });
     } catch (error) {
       toast({
@@ -265,7 +265,7 @@ export default function AquaCafeAlliance() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl">
               <Gift className="w-6 h-6 mr-3" />
-              AED 99 Starter Kit + Free Meal Voucher at Baker's Kitchen
+              AED 99 Starter Kit + Referral Rewards at Baker's Kitchen
               <Gift className="w-6 h-6 ml-3" />
             </div>
           </div>
@@ -278,11 +278,11 @@ export default function AquaCafeAlliance() {
                   AED 99
                 </span>
                 <br />
-                <span className="text-2xl text-gray-600">Starter Kit + Meal Voucher</span>
+                <span className="text-2xl text-gray-600">Starter Kit + Referral Rewards</span>
               </h3>
               
               <p className="text-lg text-gray-700 mb-8">
-                Enjoy Dubai's healthiest dining & hydration experience with exclusive partnership benefits.
+                Get the AquaCafe system at partnership price, plus earn Baker's Kitchen rewards through referrals.
               </p>
 
               {/* Benefits List */}
@@ -291,13 +291,13 @@ export default function AquaCafeAlliance() {
                   <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
                     <Gift className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">Get the AquaCafe Starter Kit (AED 99)</span>
+                  <span className="text-gray-800 font-semibold">Get the AquaCafe Starter Kit (AED 1299 net, AED 99 partnership price)</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-lg">
                   <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
                     <Utensils className="w-4 h-4 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">Receive a free meal voucher to Baker's Kitchen</span>
+                  <span className="text-gray-800 font-semibold">AED 100 Baker's Kitchen voucher when your friend signs up via referral</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-lg">
                   <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
@@ -320,7 +320,7 @@ export default function AquaCafeAlliance() {
                 ) : (
                   <>
                     <Heart className="mr-3 w-6 h-6" />
-                    Get My Kit + Meal
+                    Get My Kit + Referral Program
                   </>
                 )}
               </Button>
@@ -345,7 +345,7 @@ export default function AquaCafeAlliance() {
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-amber-500" />
-                        <span>Free Baker's Meal</span>
+                        <span>Baker's Referral Reward</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-cyan-500" />

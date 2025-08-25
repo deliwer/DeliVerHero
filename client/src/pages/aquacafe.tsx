@@ -23,9 +23,10 @@ export default function AquaCafe() {
     {
       id: "hero-starter",
       name: "AquaCafe Hero Starter - PLANET HERO ENTRY",
-      price: 99,
-      originalPrice: 1398,
-      heroDiscount: 20,
+      price: 1299,
+      originalPrice: 1599,
+      promotionalPrice: 99,
+      heroDiscount: 300,
       features: [
         "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 399 value)",
         "🔧 FREE Professional Installation (AED 299 value)",
@@ -37,7 +38,7 @@ export default function AquaCafe() {
         "📱 Smart monitoring app with Hero dashboard",
         "🏆 Exclusive Hero member badge",
         "💰 20% discount on ALL future plans",
-        "🍰 Referral rewards: AED 100 Bakers Kitchen voucher"
+        "🍰 AED 100 Baker's Kitchen voucher when friend signs up via referral"
       ],
       badge: "🚀 PLANET HERO GATEWAY",
       isHeroEntry: true
@@ -87,13 +88,13 @@ export default function AquaCafe() {
     setIsOrderLoading(planId);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      const shopifyUrl = `https://www.deliwer.com/products/aquacafe?variant=${planId}`;
-      window.open(shopifyUrl, '_blank');
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Navigate to alliance page for detailed checkout
+      window.location.href = `/products/aquacafe?variant=${planId}`;
       
       toast({
-        title: "Redirecting to Checkout",
-        description: `Opening Shopify checkout for ${plan.name}`,
+        title: "Redirecting to Alliance Page",
+        description: `Loading checkout for ${plan.name}`,
       });
     } catch (error) {
       toast({
@@ -540,9 +541,9 @@ export default function AquaCafe() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 w-full max-w-full" data-testid="aquacafe-packages">
             {plans.map((plan) => {
               const basePrice = plan.price;
-              const heroDiscountAmount = plan.heroDiscount ? (plan.price * plan.heroDiscount / 100) : 0;
-              const finalPrice = basePrice - heroDiscountAmount;
-              const totalSavings = plan.originalPrice - plan.price + heroDiscountAmount;
+              const heroDiscountAmount = plan.heroDiscount || 0;
+              const finalPrice = plan.promotionalPrice || basePrice;
+              const totalSavings = plan.originalPrice - finalPrice;
               
               return (
                 <Card 
@@ -577,13 +578,13 @@ export default function AquaCafe() {
                         {plan.isHeroEntry ? (
                           <>
                             <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-2">
-                              AED {plan.price}
+                              AED {plan.price.toLocaleString()}
                             </div>
                             <div className="text-cyan-600 font-bold text-sm sm:text-base mb-1">
-                              Partnership Price: AED {Math.max(0, finalPrice).toLocaleString()}
+                              Partnership Price: AED {plan.promotionalPrice || plan.price}
                             </div>
                             <div className="text-xs sm:text-sm text-amber-600 font-bold">
-                              TOTAL VALUE: AED {totalSavings.toLocaleString()}+ BAKER'S PERKS!
+                              SAVE AED {plan.heroDiscount} + BAKER'S REFERRAL PERKS!
                             </div>
                           </>
                         ) : (
