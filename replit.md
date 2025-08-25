@@ -159,11 +159,11 @@ Key features include an interactive onboarding walkthrough with real-time impact
   - SEPARATE from Hero products
 
 **PRODUCT LINE 2: HERO UNDERSINK PURIFIERS**
-- ✅ **Hero Gateway: AED 1299** (was AED 1599 - save AED 300)
+- ✅ **Hero Minimal: AED 1299** (was AED 1599 - save AED 300) [RENAMED FROM "HERO GATEWAY" TO AVOID CONFUSION]
   - Undersink water purifier system
   - NO free installation (premium support & setup guidance only)
   - Part of Hero product line with Premium (AED 1499) and Elite (AED 2299)
-  - NEVER confuse with AED 99 Starter Kit
+  - NEVER confuse with AED 99 Starter Kit - COMPLETELY DIFFERENT PRODUCTS
 
 - ✅ **Loyalty Membership Program** established as preferred path:
   - Primary conversion funnel for all Exchange activities

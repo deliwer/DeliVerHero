@@ -21,7 +21,7 @@ export default function AquaCafe() {
 
   const plans = [
     {
-      id: "hero-starter",
+      id: "hero-minimal",
       name: "AquaCafe Hero Starter - PLANET HERO ENTRY",
       price: 1299,
       originalPrice: 1599,
@@ -175,7 +175,7 @@ export default function AquaCafe() {
 
               <div className="space-y-4 mb-8">
                 <Button
-                  onClick={() => handleOrderNow('hero-starter')}
+                  onClick={() => handleOrderNow('hero-minimal')}
                   className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-4 sm:px-6 py-3 text-sm sm:text-base font-bold rounded-xl shadow-lg transition-all"
                   data-testid="button-experience-alliance"
                 >
@@ -301,7 +301,7 @@ export default function AquaCafe() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-lg shadow-2xl">
               <Gift className="w-6 h-6 mr-3" />
-              <span>🎉 PARTNERSHIP SPECIAL: AED 1299 HERO GATEWAY + BAKER'S KITCHEN PERKS 🎉</span>
+              <span>🎉 PARTNERSHIP SPECIAL: AED 1299 HERO MINIMAL + BAKER'S KITCHEN PERKS 🎉</span>
               <Gift className="w-6 h-6 ml-3" />
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function AquaCafe() {
                     AED 1299
                   </span>
                   <br />
-                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Hero Gateway Package</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Hero Minimal Package</span>
                 </h1>
                 
                 <div className="relative mb-4 group">
@@ -372,12 +372,12 @@ export default function AquaCafe() {
               {/* Partnership CTA */}
               <div className="space-y-3">
                 <Button
-                  onClick={() => handleOrderNow('hero-starter')}
-                  disabled={isOrderLoading === 'hero-starter'}
+                  onClick={() => handleOrderNow('hero-minimal')}
+                  disabled={isOrderLoading === 'hero-minimal'}
                   className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-xl shadow-lg transition-all disabled:opacity-70"
                   data-testid="button-partnership-offer"
                 >
-                  {isOrderLoading === 'hero-starter' ? (
+                  {isOrderLoading === 'hero-minimal' ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
                       PROCESSING...
@@ -682,12 +682,12 @@ export default function AquaCafe() {
                 Start iPhone Exchange
               </Link>
               <Button 
-                onClick={() => handleOrderNow('hero-starter')}
-                disabled={isOrderLoading === 'hero-starter'}
+                onClick={() => handleOrderNow('hero-minimal')}
+                disabled={isOrderLoading === 'hero-minimal'}
                 className="px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-600 hover:to-cyan-600 transition-colors text-xs w-full max-w-xs"
                 data-testid="footer-order-partnership-kit"
               >
-                Get Hero Gateway - AED 1299
+                Get Hero Minimal - AED 1299
               </Button>
             </div>
             <div className="text-xs text-gray-600 text-center">

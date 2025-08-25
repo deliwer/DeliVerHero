@@ -49,8 +49,8 @@ export function AquaCafeTab() {
 
   const plans = [
     {
-      id: "hero-starter",
-      name: "Hero Gateway",
+      id: "hero-minimal",
+      name: "Hero Minimal",
       subtitle: "UNDERSINK PURIFIER",
       price: 1299,
       originalPrice: 1599,
@@ -61,7 +61,7 @@ export function AquaCafeTab() {
         "🎯 1000 points + 2X multiplier",
         "💰 20% discount on future plans"
       ],
-      badge: "🚀 HERO GATEWAY",
+      badge: "🚀 HERO MINIMAL",
       isHeroEntry: true
     },
     {
@@ -110,7 +110,7 @@ export function AquaCafeTab() {
         description: "Redirecting to secure checkout...",
       });
       
-      if (planId === 'hero-starter') {
+      if (planId === 'hero-minimal') {
         window.open('https://www.deliwer.com/products/aquacafe?starter=true&ref=PLANETHEROES', '_blank');
       } else {
         window.open(`https://www.deliwer.com/products/aquacafe?plan=${planId}&ref=HEROPROGRAM`, '_blank');
@@ -151,7 +151,7 @@ export function AquaCafeTab() {
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
                 <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 1299</span>
                 <br />
-                <span className="text-lg sm:text-xl md:text-2xl text-gray-200">Hero Gateway</span>
+                <span className="text-lg sm:text-xl md:text-2xl text-gray-200">Hero Minimal</span>
               </h1>
               
               <div className="relative mb-4 sm:mb-6 group">
@@ -190,12 +190,12 @@ export function AquaCafeTab() {
 
               {/* CTA Button */}
               <Button
-                onClick={() => handleOrderNow('hero-starter')}
-                disabled={isOrderLoading === 'hero-starter'}
+                onClick={() => handleOrderNow('hero-minimal')}
+                disabled={isOrderLoading === 'hero-minimal'}
                 className="w-full lg:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-6 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-2xl transform hover:scale-105 transition-all disabled:opacity-70"
                 data-testid="button-join-planet-heroes"
               >
-                {isOrderLoading === 'hero-starter' ? (
+                {isOrderLoading === 'hero-minimal' ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-b-2 border-current mr-2 sm:mr-3"></div>
                     PROCESSING...
@@ -209,7 +209,7 @@ export function AquaCafeTab() {
               </Button>
               
               <p className="text-amber-300 font-bold text-sm sm:text-base">
-                🔥 Only 47 Hero Gateway packages left! 🔥
+                🔥 Only 47 Hero Minimal packages left! 🔥
               </p>
             </div>
 

@@ -139,7 +139,7 @@ export function Footer() {
               </div>
               <div className="flex items-center text-sm text-amber-400">
                 <Award className="w-4 h-4 mr-2" />
-                AED 1299 Hero Gateway | AED 99 Loyalty Starter
+                AED 1299 Hero Minimal | AED 99 Loyalty Starter
               </div>
               <div className="flex items-center text-sm text-blue-400">
                 <Users className="w-4 h-4 mr-2" />

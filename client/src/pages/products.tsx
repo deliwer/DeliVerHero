@@ -250,10 +250,10 @@ export default function Products() {
         {/* Special AquaCafe Offer Banner */}
         <div className="mb-8 bg-gradient-to-r from-amber-600/20 to-orange-600/20 border border-amber-500/30 rounded-2xl p-6 text-center">
           <h3 className="text-xl font-bold text-white mb-2">🎁 Special AquaCafe Starter Offer</h3>
-          <p className="text-gray-300 mb-4">Get started with our exclusive AED 1299 Hero Gateway package featuring premium gifts and Bakers Kitchen partnership</p>
+          <p className="text-gray-300 mb-4">Get started with our exclusive AED 1299 Hero Minimal package featuring premium gifts and Bakers Kitchen partnership</p>
           <Link href="/aquacafe" className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors" data-testid="button-view-aquacafe-offer">
             <Gift className="w-4 h-4" />
-            View Hero Gateway - AED 1299
+            View Hero Minimal - AED 1299
           </Link>
         </div>
 
