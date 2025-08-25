@@ -110,7 +110,7 @@ export function AquaCafeTab() {
         description: "Redirecting to secure checkout...",
       });
       
-      if (planId === 'hero-minimal') {
+      if (planId === 'starter-kit') {
         window.open('https://www.deliwer.com/products/aquacafe?starter=true&ref=PLANETHEROES', '_blank');
       } else {
         window.open(`https://www.deliwer.com/products/aquacafe?plan=${planId}&ref=HEROPROGRAM`, '_blank');
@@ -145,18 +145,18 @@ export function AquaCafeTab() {
             <div className="text-center lg:text-left space-y-4 sm:space-y-6">
               <div className="inline-flex items-center bg-hero-green-500/20 border border-hero-green-500/50 rounded-full px-3 sm:px-6 py-2 sm:py-3 mb-3 sm:mb-4">
                 <Award className="w-4 h-4 sm:w-5 sm:h-5 text-hero-green-500 mr-2" />
-                <span className="text-hero-green-500 font-bold text-xs sm:text-sm md:text-base">PLANET HERO PROGRAM</span>
+                <span className="text-hero-green-500 font-bold text-xs sm:text-sm md:text-base">LOYALTY MEMBERSHIP PROGRAM</span>
               </div>
               
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 1299</span>
+                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 99</span>
                 <br />
-                <span className="text-lg sm:text-xl md:text-2xl text-gray-200">Hero Minimal</span>
+                <span className="text-lg sm:text-xl md:text-2xl text-gray-200">Starter Kit</span>
               </h1>
               
               <div className="relative mb-4 sm:mb-6 group">
                 <div className="bg-gradient-to-r from-cyan-400 via-yellow-400 to-pink-400 bg-clip-text text-transparent text-xl sm:text-2xl md:text-3xl font-black text-center py-3 sm:py-4 px-4 sm:px-6 bg-black/80 rounded-xl border border-cyan-400 shadow-xl animate-pulse">
-                  💎 GET AED 300+ SAVINGS! 💎
+                  💎 LIFETIME MEMBER BENEFITS! 💎
                 </div>
               </div>
 
@@ -190,12 +190,12 @@ export function AquaCafeTab() {
 
               {/* CTA Button */}
               <Button
-                onClick={() => handleOrderNow('hero-minimal')}
-                disabled={isOrderLoading === 'hero-minimal'}
+                onClick={() => handleOrderNow('starter-kit')}
+                disabled={isOrderLoading === 'starter-kit'}
                 className="w-full lg:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-6 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-2xl transform hover:scale-105 transition-all disabled:opacity-70"
                 data-testid="button-join-planet-heroes"
               >
-                {isOrderLoading === 'hero-minimal' ? (
+                {isOrderLoading === 'starter-kit' ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-b-2 border-current mr-2 sm:mr-3"></div>
                     PROCESSING...
@@ -203,13 +203,13 @@ export function AquaCafeTab() {
                 ) : (
                   <>
                     <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                    JOIN HEROES - AED 1299
+                    JOIN LOYALTY - AED 99
                   </>
                 )}
               </Button>
               
               <p className="text-amber-300 font-bold text-sm sm:text-base">
-                🔥 Only 47 Hero Minimal packages left! 🔥
+                🔥 Limited Time: FREE Installation Worth AED 299! 🔥
               </p>
             </div>
 
@@ -417,7 +417,7 @@ export function AquaCafeTab() {
               data-testid="button-order-hero"
             >
               <Target className="mr-2 w-5 h-5 sm:w-6 sm:h-6" />
-              ORDER - AED 1299
+              ORDER - AED 99
             </a>
             <a 
               href="https://wa.me/971523946311"
