@@ -580,9 +580,6 @@ export default function AquaCafe() {
                             <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-2">
                               AED {plan.price.toLocaleString()}
                             </div>
-                            <div className="text-cyan-600 font-bold text-sm sm:text-base mb-1">
-                              Partnership Price: AED {plan.promotionalPrice || plan.price}
-                            </div>
                             <div className="text-xs sm:text-sm text-amber-600 font-bold">
                               SAVE AED {plan.heroDiscount} + BAKER'S REFERRAL PERKS!
                             </div>
