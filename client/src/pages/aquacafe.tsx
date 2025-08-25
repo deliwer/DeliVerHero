@@ -5,7 +5,7 @@ import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home,
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
-import aquacafeTradeIn from "@assets/AquaCafe_Tradein_1756065010821.png";
+import aquacafeTradeIn from "@assets/Banner_AquaCafe_1755270492134.jpg";
 import membershipClean from "@assets/Membership_Clean_1756065010923.png";
 import beautyWater1 from "@assets/Beauty_Water_1_1756065010937.jpg";
 import beautyWater2 from "@assets/Beauty_Water_2_1756065010940.jpg";
@@ -28,8 +28,8 @@ export default function AquaCafe() {
       promotionalPrice: 99,
       heroDiscount: 300,
       features: [
-        "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 399 value)",
-        "🔧 FREE Professional Installation (AED 299 value)",
+        "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 200 value)",
+        "🔧 FREE Professional Installation (AED 200 value)",
         "💧 Premium 3-stage filtration system",
         "📦 12-month filter supply included",
         "⭐ Instant Planet Hero Level 2 status",
@@ -341,19 +341,19 @@ export default function AquaCafe() {
                   <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <Gift className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">FREE Beauty Ionic Shower Filter (AED 399 value)</span>
+                  <span className="text-gray-800 font-semibold">FREE Beauty Ionic Shower Filter (AED 200 value)</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
                   <div className="w-6 h-6 bg-cyan-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <CheckCircle className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">FREE Professional Installation (AED 299 value)</span>
+                  <span className="text-gray-800 font-semibold">FREE Professional Installation (AED 200 value)</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
                   <div className="w-6 h-6 bg-amber-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <Heart className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">AED 100 Baker's Kitchen Dining Voucher</span>
+                  <span className="text-gray-800 font-semibold">AED 100 Baker's Kitchen Voucher when your friend signs up</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
                   <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
@@ -421,7 +421,7 @@ export default function AquaCafe() {
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-gray-500 line-through text-sm mb-1">Regular Price: AED 399</div>
+                  <div className="text-gray-500 line-through text-sm mb-1">Regular Price: AED 200</div>
                   <div className="text-lg sm:text-xl font-bold text-emerald-600 mb-2">FREE with Partnership Kit!</div>
                   <div className="text-amber-600 font-bold text-xs sm:text-sm">+ Baker's Kitchen AED 100 Voucher</div>
                 </div>
@@ -480,7 +480,7 @@ export default function AquaCafe() {
           </div>
           
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
-            Refer Friends & Get <span className="text-emerald-600">AED 100 FREE DINING</span> at Baker's Kitchen!
+            Refer Friends & Get <span className="text-emerald-600">AED 100 FREE VOUCHER</span> at Baker's Kitchen!
           </h2>
           
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6 w-full max-w-full">
@@ -511,7 +511,7 @@ export default function AquaCafe() {
           
           <div className="bg-gradient-to-r from-emerald-100 to-amber-100 border border-emerald-300 rounded-xl p-4">
             <div className="text-amber-600 font-bold text-sm sm:text-base mb-2 text-center">🍰 Exclusive Partnership with Baker's Kitchen Dubai 🍰</div>
-            <p className="text-gray-700 text-xs sm:text-sm text-center mb-3">Use your AED 100 dining voucher at Baker's Kitchen Mazaya Center for premium cakes, pastries, gourmet meals, and Kangen Water experience!</p>
+            <p className="text-gray-700 text-xs sm:text-sm text-center mb-3">Use your AED 100 voucher at Baker's Kitchen Mazaya Center for Kangen Water experience!</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-gray-600">
               <div className="flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
