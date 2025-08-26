@@ -429,6 +429,93 @@ export default function AquaCafe() {
         </div>
       </section>
 
+      {/* AI-Guided Journey CTAs - Following the prototype flow */}
+      <section className="w-full py-8 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-slate-50 to-blue-50" data-testid="journey-ctas" style={{ maxWidth: '100vw' }}>
+        <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+              🚀 Your DeliWer Journey Starts Here
+            </h2>
+            <p className="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto px-2">
+              Now that you've discovered AquaCafe, explore more ways to earn Planet Points and join Dubai's circular economy
+            </p>
+          </div>
+
+          {/* AI-style wizard inspired by prototype */}
+          <div className="max-w-4xl mx-auto rounded-3xl border shadow-xl bg-white p-4 sm:p-6 text-left mb-8">
+            <div className="flex items-start gap-3">
+              <div className="text-3xl">🤖</div>
+              <div className="flex-1">
+                <p className="font-semibold text-gray-800 mb-4">What would you like to do next on your Planet Hero journey?</p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                  <Link 
+                    href="/exchange"
+                    className="rounded-2xl border-2 border-blue-200 p-4 hover:shadow-lg hover:border-blue-400 text-left transition-all group"
+                    data-testid="cta-exchange"
+                  >
+                    <div className="text-2xl mb-2">📱</div>
+                    <div className="font-semibold text-gray-800 group-hover:text-blue-600">Trade your iPhone</div>
+                    <div className="text-xs text-gray-600">Convert to AquaCafe credits</div>
+                  </Link>
+                  
+                  <Link 
+                    href="/collect"
+                    className="rounded-2xl border-2 border-emerald-200 p-4 hover:shadow-lg hover:border-emerald-400 text-left transition-all group"
+                    data-testid="cta-collect"
+                  >
+                    <div className="text-2xl mb-2">🌍</div>
+                    <div className="font-semibold text-gray-800 group-hover:text-emerald-600">Join the leaderboard</div>
+                    <div className="text-xs text-gray-600">Compete & earn points</div>
+                  </Link>
+                  
+                  <Link 
+                    href="/redeem"
+                    className="rounded-2xl border-2 border-purple-200 p-4 hover:shadow-lg hover:border-purple-400 text-left transition-all group"
+                    data-testid="cta-redeem"
+                  >
+                    <div className="text-2xl mb-2">🎁</div>
+                    <div className="font-semibold text-gray-800 group-hover:text-purple-600">Redeem rewards</div>
+                    <div className="text-xs text-gray-600">Use Planet Points</div>
+                  </Link>
+                  
+                  <Link 
+                    href="/community"
+                    className="rounded-2xl border-2 border-amber-200 p-4 hover:shadow-lg hover:border-amber-400 text-left transition-all group"
+                    data-testid="cta-community"
+                  >
+                    <div className="text-2xl mb-2">👥</div>
+                    <div className="font-semibold text-gray-800 group-hover:text-amber-600">Join community</div>
+                    <div className="text-xs text-gray-600">Share impact stories</div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Stats & Campaign Banner */}
+          <div className="grid sm:grid-cols-3 gap-4 mb-6">
+            <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl p-4 text-center border border-blue-200">
+              <div className="text-2xl font-bold text-blue-600">12,000+</div>
+              <div className="text-sm text-gray-600">Planet Heroes in Dubai</div>
+            </div>
+            <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-xl p-4 text-center border border-emerald-200">
+              <div className="text-2xl font-bold text-emerald-600">2.5M</div>
+              <div className="text-sm text-gray-600">Plastic bottles avoided</div>
+            </div>
+            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-4 text-center border border-purple-200">
+              <div className="text-2xl font-bold text-purple-600">AED 50K+</div>
+              <div className="text-sm text-gray-600">Total rewards redeemed</div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-6 py-3 text-sm font-bold shadow-lg">
+              🔥 Double rewards during iPhone 17 + GITEX launch
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Sustainability Section */}
       <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-emerald-600 to-cyan-600 text-white" data-testid="sustainability-section" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
@@ -650,6 +737,37 @@ export default function AquaCafe() {
       {/* Partnership Footer */}
       <footer className="w-full border-t border-emerald-200 mt-6 sm:mt-8 bg-gradient-to-r from-emerald-50 to-cyan-50" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto px-2 sm:px-4 py-4 sm:py-6" style={{ maxWidth: '100vw' }}>
+          {/* Continue Journey CTAs */}
+          <div className="mb-6 sm:mb-8">
+            <div className="text-center mb-4">
+              <h3 className="text-lg font-bold text-gray-800 mb-2">Continue Your Planet Hero Journey</h3>
+              <p className="text-sm text-gray-600">Ready to take the next step? Choose your path below</p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                href="/exchange"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
+                data-testid="footer-cta-exchange"
+              >
+                📱 Start iPhone Exchange
+              </Link>
+              <Link
+                href="/collect"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
+                data-testid="footer-cta-collect"
+              >
+                🌍 Join Leaderboard
+              </Link>
+              <Link
+                href="/redeem"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
+                data-testid="footer-cta-redeem"
+              >
+                🎁 Redeem Rewards
+              </Link>
+            </div>
+          </div>
+
           <div className="text-center mb-3 sm:mb-4">
             <div className="flex flex-col items-center justify-center gap-2 mb-3">
               <div className="flex items-center gap-1">
@@ -670,7 +788,7 @@ export default function AquaCafe() {
               #SvenTheBaker × #DeliWer
             </div>
             <div className="text-xs text-gray-600">
-              © 2024 Partnership • Mazaya Center, Business Bay
+              © 2024 Partnership • Mazaya Center, Business Bay • AI‑First Circular Exchange
             </div>
           </div>
           
