@@ -1,12 +1,13 @@
 import { Link, useLocation } from "wouter";
-import { Users, Rocket, Menu, X, Building, Sparkles } from "lucide-react";
+import { Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, Briefcase } from "lucide-react";
 import { useState } from "react";
 
 export function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isB2BMode, setIsB2BMode] = useState(false);
 
-  const navItems = [
+  const consumerNavItems = [
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Play", id: "play" },
@@ -15,17 +16,34 @@ export function Navigation() {
     { path: "/partners", label: "Partners", id: "partners" },
   ];
 
+  const b2bNavItems = [
+    { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
+    { path: "/bulk-tradein", label: "Bulk Trade-in", id: "bulk-tradein" },
+    { path: "/corporate-quotes", label: "Get Quotes", id: "corporate-quotes" },
+    { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
+    { path: "/account-management", label: "Account", id: "account-management" },
+  ];
+
+  const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
+
   return (
     <nav className="bg-slate-900/90 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center" data-testid="link-home">
-              <img 
-                src="/deliwer-logo.png" 
-                alt="DeliWer Logo" 
-                className="h-8 w-auto"
-              />
+              {isB2BMode ? (
+                <div className="flex items-center space-x-2">
+                  <div className="text-xl font-bold text-blue-400">ChainTrack</div>
+                  <div className="text-xs text-gray-400">ReCommerce</div>
+                </div>
+              ) : (
+                <img 
+                  src="/deliwer-logo.png" 
+                  alt="DeliWer Logo" 
+                  className="h-8 w-auto"
+                />
+              )}
             </Link>
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
@@ -62,27 +80,80 @@ export function Navigation() {
           </div>
           
           <div className="flex items-center space-x-2">
+            {/* B2B/Consumer Toggle */}
+            <div className="flex items-center space-x-3 mr-4">
+              <button
+                onClick={() => setIsB2BMode(!isB2BMode)}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg border transition-all duration-300 ${
+                  isB2BMode 
+                    ? 'bg-blue-600/20 border-blue-500/50 text-blue-300' 
+                    : 'bg-gray-700/50 border-gray-600/50 text-gray-300 hover:text-white hover:border-gray-500'
+                }`}
+                data-testid="toggle-b2b-mode"
+              >
+                {isB2BMode ? (
+                  <>
+                    <Briefcase className="w-4 h-4" />
+                    <span className="text-sm font-medium">B2B</span>
+                    <ToggleRight className="w-5 h-5" />
+                  </>
+                ) : (
+                  <>
+                    <Users className="w-4 h-4" />
+                    <span className="text-sm font-medium">Consumer</span>
+                    <ToggleLeft className="w-5 h-5" />
+                  </>
+                )}
+              </button>
+            </div>
+
             {/* Mobile Action Buttons - Compact */}
             <div className="flex md:hidden items-center space-x-2">
               <Link
-                href="/products"
-                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors"
+                href={isB2BMode ? "/bulk-tradein" : "/products"}
+                className={`${
+                  isB2BMode 
+                    ? 'bg-blue-600 hover:bg-blue-700' 
+                    : 'bg-dubai-blue-600 hover:bg-dubai-blue-700'
+                } text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors`}
                 data-testid="button-shop-all-mobile"
               >
-                <Rocket className="inline w-3 h-3 mr-1" />
-                Shop All
+                {isB2BMode ? (
+                  <>
+                    <Briefcase className="inline w-3 h-3 mr-1" />
+                    Get Quote
+                  </>
+                ) : (
+                  <>
+                    <Rocket className="inline w-3 h-3 mr-1" />
+                    Shop All
+                  </>
+                )}
               </Link>
             </div>
 
-            {/* Desktop Action Buttons with GOAFFPRO */}
+            {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <Link
-                href="/products"
-                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                href={isB2BMode ? "/bulk-tradein" : "/products"}
+                className={`${
+                  isB2BMode 
+                    ? 'bg-blue-600 hover:bg-blue-700' 
+                    : 'bg-dubai-blue-600 hover:bg-dubai-blue-700'
+                } text-white px-4 py-2 rounded-lg font-medium transition-colors`}
                 data-testid="button-shop-all"
               >
-                <Rocket className="inline w-4 h-4 mr-2" />
-                Shop All
+                {isB2BMode ? (
+                  <>
+                    <Briefcase className="inline w-4 h-4 mr-2" />
+                    Get Bulk Quote
+                  </>
+                ) : (
+                  <>
+                    <Rocket className="inline w-4 h-4 mr-2" />
+                    Shop All
+                  </>
+                )}
               </Link>
             </div>
 

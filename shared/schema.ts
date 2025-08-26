@@ -153,6 +153,81 @@ export const sponsors = pgTable("sponsors", {
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
 
+// B2B Corporate Schema
+export const corporateAccounts = pgTable("corporate_accounts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  companyName: text("company_name").notNull(),
+  email: text("email").notNull().unique(),
+  phone: text("phone").notNull(),
+  industry: text("industry").notNull(), // financial, technology, healthcare, etc.
+  website: text("website"),
+  address: text("address").notNull(),
+  vatNumber: text("vat_number"),
+  tradeNumber: text("trade_number"),
+  contactPerson: text("contact_person").notNull(),
+  department: text("department").notNull(),
+  employeeCount: text("employee_count").notNull(), // 1-50, 51-200, etc.
+  isVerified: boolean("is_verified").notNull().default(false),
+  tier: text("tier").notNull().default("basic"), // basic, plus, enterprise
+  apiKey: text("api_key"),
+  webhookUrl: text("webhook_url"),
+  totalTradeValue: integer("total_trade_value").notNull().default(0), // in AED fils
+  devicesTraded: integer("devices_traded").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const corporateUsers = pgTable("corporate_users", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  corporateAccountId: varchar("corporate_account_id").notNull().references(() => corporateAccounts.id),
+  name: text("name").notNull(),
+  email: text("email").notNull().unique(),
+  role: text("role").notNull(), // admin, manager, user
+  department: text("department").notNull(),
+  isActive: boolean("is_active").notNull().default(true),
+  lastLogin: timestamp("last_login"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const bulkQuotes = pgTable("bulk_quotes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  quoteNumber: text("quote_number").notNull().unique(),
+  corporateAccountId: varchar("corporate_account_id").notNull().references(() => corporateAccounts.id),
+  requestedById: varchar("requested_by_id").notNull().references(() => corporateUsers.id),
+  deviceInventory: jsonb("device_inventory").notNull(), // Array of {type, condition, quantity, estimatedValue}
+  totalDevices: integer("total_devices").notNull(),
+  estimatedValue: integer("estimated_value").notNull(), // in AED fils
+  finalValue: integer("final_value"), // in AED fils (after evaluation)
+  status: text("status").notNull().default("pending"), // pending, under_review, approved, declined, expired
+  urgency: text("urgency").notNull().default("standard"), // asap, 24h, week, month
+  preferredPickup: text("preferred_pickup"),
+  additionalNotes: text("additional_notes"),
+  validUntil: timestamp("valid_until"),
+  approvedAt: timestamp("approved_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const purchaseOrders = pgTable("purchase_orders", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  poNumber: text("po_number").notNull().unique(),
+  quoteId: varchar("quote_id").notNull().references(() => bulkQuotes.id),
+  corporateAccountId: varchar("corporate_account_id").notNull().references(() => corporateAccounts.id),
+  totalAmount: integer("total_amount").notNull(), // in AED fils
+  status: text("status").notNull().default("pending_approval"), // pending_approval, processing, completed, cancelled
+  paymentTerms: text("payment_terms").notNull().default("NET 30"), // NET 7, NET 15, NET 30
+  paymentStatus: text("payment_status").notNull().default("pending"), // pending, paid, overdue
+  pickupDate: timestamp("pickup_date"),
+  pickupAddress: text("pickup_address").notNull(),
+  pickupContact: text("pickup_contact").notNull(),
+  specialInstructions: text("special_instructions"),
+  estimatedDuration: text("estimated_duration"),
+  completedAt: timestamp("completed_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
 export const sponsorshipTiers = pgTable("sponsorship_tiers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(), // Bronze Sponsor, Silver Sponsor, Gold Sponsor, Platinum Sponsor

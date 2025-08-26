@@ -23,6 +23,13 @@ import Redeem from "@/pages/redeem";
 import Partners from "@/pages/partners";
 import Community from "@/pages/community";
 
+// B2B Corporate Pages
+import { BulkTradeInPage } from "@/pages/bulk-tradein";
+import { CorporateDashboardPage } from "@/pages/corporate-dashboard";
+import { CorporateQuotesPage } from "@/pages/corporate-quotes";
+import { PurchaseOrdersPage } from "@/pages/purchase-orders";
+import { AccountManagementPage } from "@/pages/account-management";
+
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Environmental from "@/pages/environmental";
@@ -52,6 +59,14 @@ function Router() {
       <Route path="/redeem" component={Redeem} />
       <Route path="/partners" component={Partners} />
       <Route path="/community" component={Community} />
+      
+      {/* B2B Corporate Routes */}
+      <Route path="/bulk-tradein" component={BulkTradeInPage} />
+      <Route path="/corporate-dashboard" component={CorporateDashboardPage} />
+      <Route path="/corporate-quotes" component={CorporateQuotesPage} />
+      <Route path="/purchase-orders" component={PurchaseOrdersPage} />
+      <Route path="/account-management" component={AccountManagementPage} />
+      
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/environmental" component={Environmental} />
