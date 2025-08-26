@@ -28,7 +28,7 @@ export default function AquaCafe() {
       promotionalPrice: 1299,
       heroDiscount: 300,
       features: [
-        "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 200 value)",
+        "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 399 value)",
         "🔧 FREE Professional Installation (AED 200 value)",
         "💧 Premium 3-stage filtration system",
         "📦 12-month filter supply included",
@@ -341,7 +341,7 @@ export default function AquaCafe() {
                   <div className="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
                     <Gift className="w-3 h-3 text-white" />
                   </div>
-                  <span className="text-gray-800 font-semibold">FREE Beauty Ionic Shower Filter (AED 200 value)</span>
+                  <span className="text-gray-800 font-semibold">FREE Beauty Ionic Shower Filter (AED 399 value)</span>
                 </div>
                 <div className="flex items-center justify-center lg:justify-start text-xs sm:text-sm">
                   <div className="w-6 h-6 bg-cyan-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
@@ -421,7 +421,7 @@ export default function AquaCafe() {
                 </div>
                 
                 <div className="text-center">
-                  <div className="text-gray-500 line-through text-sm mb-1">Regular Price: AED 200</div>
+                  <div className="text-gray-500 line-through text-sm mb-1">Regular Price: AED 399</div>
                   <div className="text-lg sm:text-xl font-bold text-emerald-600 mb-2">FREE with Partnership Kit!</div>
                   <div className="text-amber-600 font-bold text-xs sm:text-sm">+ Baker's Kitchen AED 100 Voucher</div>
                 </div>
