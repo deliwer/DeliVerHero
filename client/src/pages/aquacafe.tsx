@@ -139,6 +139,26 @@ export default function AquaCafe() {
         </div>
       </div>
 
+      {/* Top CTA Flow Section - Following Prototype */}
+      <section className="w-full py-4 px-2 sm:px-4 bg-gradient-to-r from-blue-500 to-emerald-500" data-testid="top-cta-flow" style={{ maxWidth: '100vw' }}>
+        <div className="w-full max-w-full mx-auto flex flex-col sm:flex-row items-center justify-center gap-3" style={{ maxWidth: '100vw' }}>
+          <Link
+            href="/exchange"
+            className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full text-center transition-all shadow-lg text-lg"
+            data-testid="top-cta-exchange"
+          >
+            Start iPhone Exchange
+          </Link>
+          <Link
+            href="/collect"
+            className="w-full sm:w-auto px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full text-center transition-all shadow-lg text-lg"
+            data-testid="top-cta-minimal"
+          >
+            Get Hero Minimal - AED 1299
+          </Link>
+        </div>
+      </section>
+
       {/* Partnership Hero Section */}
       <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -739,34 +759,48 @@ export default function AquaCafe() {
       {/* Partnership Footer */}
       <footer className="w-full border-t border-emerald-200 mt-6 sm:mt-8 bg-gradient-to-r from-emerald-50 to-cyan-50" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto px-2 sm:px-4 py-4 sm:py-6" style={{ maxWidth: '100vw' }}>
-          {/* Continue Journey CTAs */}
+          {/* Bottom CTA Flow - Complete Journey */}
           <div className="mb-6 sm:mb-8">
-            <div className="text-center mb-4">
-              <h3 className="text-lg font-bold text-gray-800 mb-2">Continue Your Planet Hero Journey</h3>
-              <p className="text-sm text-gray-600">Ready to take the next step? Choose your path below</p>
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">Continue Your DeliWer Journey</h3>
+              <p className="text-sm text-gray-600">Follow the complete flow: Exchange → Play → Redeem → Community → Checkout</p>
             </div>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-3 max-w-6xl mx-auto">
               <Link
                 href="/exchange"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
+                className="w-full lg:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center transition-all shadow-lg"
                 data-testid="footer-cta-exchange"
               >
-                📱 Start iPhone Exchange
+                Start Exchange
               </Link>
               <Link
                 href="/collect"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
+                className="w-full lg:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-center transition-all shadow-lg"
                 data-testid="footer-cta-play"
               >
-                🎮 Start Playing
+                Join Leaderboard
               </Link>
               <Link
                 href="/redeem"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
+                className="w-full lg:w-auto px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl text-center transition-all shadow-lg"
                 data-testid="footer-cta-redeem"
               >
-                🎁 Redeem Rewards
+                Redeem Now
               </Link>
+              <Link
+                href="/community"
+                className="w-full lg:w-auto px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-center transition-all shadow-lg"
+                data-testid="footer-cta-community"
+              >
+                Community
+              </Link>
+              <Button
+                onClick={() => handleOrderNow('hero-minimal')}
+                className="w-full lg:w-auto px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl transition-all shadow-lg"
+                data-testid="footer-cta-checkout"
+              >
+                Order Starter Kit
+              </Button>
             </div>
           </div>
 
