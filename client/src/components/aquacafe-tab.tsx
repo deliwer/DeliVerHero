@@ -49,19 +49,19 @@ export function AquaCafeTab() {
 
   const plans = [
     {
-      id: "starter-kit",
-      name: "Starter Kit",
-      subtitle: "LOYALTY MEMBER EXCLUSIVE",
-      price: 99,
-      originalPrice: 399,
+      id: "hero-minimal",
+      name: "Hero Minimal",
+      subtitle: "UNDERSINK PURIFIER",
+      price: 1299,
+      originalPrice: 1599,
       features: [
-        "🎁 FREE Installation (AED 299 value)",
-        "💧 Premium 3-stage filtration system",
+        "🎁 FREE Beauty Ionic Shower Filter (AED 399)",
+        "💧 Advanced undersink filtration system",
         "⭐ Planet Hero Level 2 status",
         "🎯 1000 points + 2X multiplier",
         "💰 20% discount on future plans"
       ],
-      badge: "🚀 STARTER KIT",
+      badge: "🚀 HERO MINIMAL",
       isHeroEntry: true
     },
     {
