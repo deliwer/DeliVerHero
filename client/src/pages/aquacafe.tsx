@@ -442,50 +442,52 @@ export default function AquaCafe() {
           </div>
 
           {/* AI-style wizard inspired by prototype */}
-          <div className="max-w-4xl mx-auto rounded-3xl border shadow-xl bg-white p-4 sm:p-6 text-left mb-8">
-            <div className="flex items-start gap-3">
-              <div className="text-3xl">🤖</div>
+          <div className="max-w-4xl mx-auto rounded-3xl border-2 border-gray-200 shadow-2xl bg-white p-6 sm:p-8 text-left mb-8">
+            <div className="flex items-start gap-4">
+              <div className="text-4xl">🤖</div>
               <div className="flex-1">
-                <p className="font-semibold text-gray-800 mb-4">What would you like to do next on your Planet Hero journey?</p>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                <p className="font-bold text-lg text-gray-800 mb-6">What brings you to DeliWer today?</p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   <Link 
                     href="/exchange"
-                    className="rounded-2xl border-2 border-blue-200 p-4 hover:shadow-lg hover:border-blue-400 text-left transition-all group"
+                    className="rounded-2xl border-2 border-blue-300 p-6 hover:shadow-xl hover:border-blue-500 text-left transition-all group bg-blue-50 hover:bg-blue-100"
                     data-testid="cta-exchange"
                   >
-                    <div className="text-2xl mb-2">📱</div>
-                    <div className="font-semibold text-gray-800 group-hover:text-blue-600">Trade your iPhone</div>
-                    <div className="text-xs text-gray-600">Convert to AquaCafe credits</div>
+                    <div className="text-3xl mb-3">📱</div>
+                    <div className="font-bold text-gray-800 group-hover:text-blue-600 mb-2">I want to trade in my iPhone</div>
+                    <div className="text-sm text-gray-600">Start Exchange</div>
                   </Link>
                   
                   <Link 
                     href="/collect"
-                    className="rounded-2xl border-2 border-emerald-200 p-4 hover:shadow-lg hover:border-emerald-400 text-left transition-all group"
-                    data-testid="cta-collect"
+                    className="rounded-2xl border-2 border-emerald-300 p-6 hover:shadow-xl hover:border-emerald-500 text-left transition-all group bg-emerald-50 hover:bg-emerald-100"
+                    data-testid="cta-play"
                   >
-                    <div className="text-2xl mb-2">🌍</div>
-                    <div className="font-semibold text-gray-800 group-hover:text-emerald-600">Join the leaderboard</div>
-                    <div className="text-xs text-gray-600">Compete & earn points</div>
+                    <div className="text-3xl mb-3">🌍</div>
+                    <div className="font-bold text-gray-800 group-hover:text-emerald-600 mb-2">I want to join the eco leaderboard</div>
+                    <div className="text-sm text-gray-600">Collect Points</div>
                   </Link>
                   
                   <Link 
                     href="/redeem"
-                    className="rounded-2xl border-2 border-purple-200 p-4 hover:shadow-lg hover:border-purple-400 text-left transition-all group"
+                    className="rounded-2xl border-2 border-purple-300 p-6 hover:shadow-xl hover:border-purple-500 text-left transition-all group bg-purple-50 hover:bg-purple-100"
                     data-testid="cta-redeem"
                   >
-                    <div className="text-2xl mb-2">🎁</div>
-                    <div className="font-semibold text-gray-800 group-hover:text-purple-600">Redeem rewards</div>
-                    <div className="text-xs text-gray-600">Use Planet Points</div>
+                    <div className="text-3xl mb-3">🎁</div>
+                    <div className="font-bold text-gray-800 group-hover:text-purple-600 mb-2">I want to redeem rewards</div>
+                    <div className="text-sm text-gray-600">Use Planet Points</div>
                   </Link>
-                  
+                </div>
+                
+                {/* Additional CTA for community */}
+                <div className="mt-6 pt-6 border-t border-gray-200">
                   <Link 
                     href="/community"
-                    className="rounded-2xl border-2 border-amber-200 p-4 hover:shadow-lg hover:border-amber-400 text-left transition-all group"
+                    className="inline-flex items-center gap-3 text-amber-600 hover:text-amber-700 font-semibold transition-colors"
                     data-testid="cta-community"
                   >
-                    <div className="text-2xl mb-2">👥</div>
-                    <div className="font-semibold text-gray-800 group-hover:text-amber-600">Join community</div>
-                    <div className="text-xs text-gray-600">Share impact stories</div>
+                    <span className="text-2xl">👥</span>
+                    <span>Join the community & share impact stories</span>
                   </Link>
                 </div>
               </div>
@@ -754,9 +756,9 @@ export default function AquaCafe() {
               <Link
                 href="/collect"
                 className="inline-flex items-center justify-center bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white px-6 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
-                data-testid="footer-cta-collect"
+                data-testid="footer-cta-play"
               >
-                🌍 Join Leaderboard
+                🎮 Start Playing
               </Link>
               <Link
                 href="/redeem"
