@@ -317,10 +317,10 @@ export default function AquaCafe() {
                 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-3 sm:mb-4 leading-tight">
                   <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">
-                    AED 1299
+                    AED 99
                   </span>
                   <br />
-                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Hero Minimal Package</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Starter Kit</span>
                 </h1>
                 
                 <div className="relative mb-4 group">
@@ -385,7 +385,7 @@ export default function AquaCafe() {
                   ) : (
                     <>
                       <Heart className="mr-2 w-4 h-4" />
-                      GET HERO GATEWAY - AED 1299
+                      GET HERO GATEWAY - AED 99
                     </>
                   )}
                 </Button>
