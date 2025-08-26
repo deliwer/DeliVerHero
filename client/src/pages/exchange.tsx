@@ -61,6 +61,27 @@ export default function Exchange() {
           </Card>
         </div>
 
+        {/* Next Steps CTA - Following prototype */}
+        <div className="mb-12">
+          <div className="text-center mb-8">
+            <h3 className="text-xl font-bold text-white mb-4">What's Next?</h3>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="/collect"
+                className="px-6 py-3 rounded-2xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors"
+              >
+                Join Leaderboard
+              </a>
+              <a
+                href="/aquacafe"
+                className="px-6 py-3 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black transition-colors"
+              >
+                Redeem in AquaCafe
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Trade Value Calculator */}
         <div className="mb-12">
           <div className="text-center mb-8">

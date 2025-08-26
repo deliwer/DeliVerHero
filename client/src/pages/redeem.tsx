@@ -36,6 +36,35 @@ export default function Redeem() {
           </div>
         </div>
 
+        {/* Next Steps CTA - Following prototype */}
+        <div className="mb-8">
+          <div className="text-center">
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-white mb-2">AquaCafe Credits</h3>
+                <p className="text-sm text-gray-400 mb-4">Use points to discount your Starter Kit & refills.</p>
+                <a
+                  href="/aquacafe"
+                  className="inline-block px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors text-sm"
+                >
+                  Apply at Checkout
+                </a>
+              </div>
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-white mb-2">Partner Offers</h3>
+                <p className="text-sm text-gray-400 mb-4">Eco‑friendly brands and local rewards.</p>
+                <button className="px-4 py-2 rounded-xl bg-purple-600 text-white font-bold hover:bg-purple-700 transition-colors text-sm">
+                  View Offers
+                </button>
+              </div>
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-white mb-2">Badges & Perks</h3>
+                <p className="text-sm text-gray-400 mb-4">Unlock Silver, Gold, and Platinum Planet Hero perks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Featured Rewards */}
         <div className="mb-12">
           <div className="text-center mb-8">

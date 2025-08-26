@@ -63,6 +63,23 @@ export default function Collect() {
           </Card>
         </div>
 
+        {/* Next Steps CTA - Following prototype */}
+        <div className="mb-8">
+          <div className="text-center">
+            <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+              <h3 className="text-lg font-bold text-white mb-4">Your Wallet - Balance Preview</h3>
+              <p className="text-sm text-gray-400 mb-2">Planet Points: <span className="font-bold text-hero-green-400">1,200</span></p>
+              <p className="text-sm text-gray-400 mb-4">Litres delivered: <span className="font-bold">12,500</span></p>
+              <a
+                href="/redeem"
+                className="inline-block px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-colors"
+              >
+                Redeem Now
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Hero Levels */}
         <div className="mb-12">
           <div className="text-center mb-8">

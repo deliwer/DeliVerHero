@@ -394,6 +394,24 @@ export default function Community() {
             </div>
           </div>
 
+          {/* Next Steps CTA - Following prototype */}
+          <div className="mb-12">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-bold text-white mb-4">Ready to Make Impact?</h3>
+              <p className="text-gray-300">Read impact stories, see CSR partners, and join the conversation.</p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-white mb-2">Impact Stories</h3>
+                <p className="text-sm text-gray-400 mb-4">Families trading iPhones for water—small swaps, big change.</p>
+              </div>
+              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
+                <h3 className="text-lg font-bold text-white mb-2">CSR & SDGs</h3>
+                <p className="text-sm text-gray-400 mb-4">Aligned with UN SDG 6 (Clean Water) & SDG 12 (Responsible Consumption).</p>
+              </div>
+            </div>
+          </div>
+
           {/* Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-2 mb-12">
             {[
