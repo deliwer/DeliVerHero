@@ -516,7 +516,7 @@ export function HeroChallengeLanding() {
                       </div>
                       <div>
                         <div className="text-white font-medium">Start with AquaCafe</div>
-                        <div className="text-gray-400 text-sm">Get your Hero Minimal for AED 1299</div>
+                        <div className="text-gray-400 text-sm">Get your Starter Kit for AED 99</div>
                       </div>
                     </div>
                     <div className="flex items-start">

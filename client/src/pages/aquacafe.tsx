@@ -21,11 +21,11 @@ export default function AquaCafe() {
 
   const plans = [
     {
-      id: "hero-minimal",
-      name: "AquaCafe Hero Starter - PLANET HERO ENTRY",
-      price: 1299,
-      originalPrice: 1599,
-      promotionalPrice: 1299,
+      id: "starter-kit",
+      name: "AquaCafe Starter Kit - PLANET HERO ENTRY",
+      price: 99,
+      originalPrice: 399,
+      promotionalPrice: 99,
       heroDiscount: 300,
       features: [
         "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 200 value)",
@@ -320,7 +320,7 @@ export default function AquaCafe() {
                     AED 1299
                   </span>
                   <br />
-                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Hero Minimal Package</span>
+                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Starter Kit Package</span>
                 </h1>
                 
                 <div className="relative mb-4 group">
@@ -687,7 +687,7 @@ export default function AquaCafe() {
                 className="px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-600 hover:to-cyan-600 transition-colors text-xs w-full max-w-xs"
                 data-testid="footer-order-partnership-kit"
               >
-                Get Hero Minimal - AED 1299
+                Get Starter Kit - AED 99
               </Button>
             </div>
             <div className="text-xs text-gray-600 text-center">
