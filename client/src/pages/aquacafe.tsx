@@ -22,14 +22,12 @@ export default function AquaCafe() {
   const plans = [
     {
       id: "hero-minimal",
-      name: "AquaCafe Hero Starter - PLANET HERO ENTRY",
+      name: "AquaCafe Hero Minimal - PLANET HERO ENTRY",
       price: 1299,
       originalPrice: 1599,
       promotionalPrice: 1299,
       heroDiscount: 300,
       features: [
-        "🎁 FREE AquaCafe Beauty Ionic Shower Filter (AED 399 value)",
-        "🔧 FREE Professional Installation (AED 200 value)",
         "💧 Premium 3-stage filtration system",
         "📦 12-month filter supply included",
         "⭐ Instant Planet Hero Level 2 status",
