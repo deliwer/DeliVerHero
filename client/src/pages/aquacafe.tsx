@@ -154,13 +154,13 @@ export default function AquaCafe() {
           
           {/* Hero CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
-            <Button
-              onClick={() => handleOrderNow('hero-minimal')}
-              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold rounded-xl text-lg shadow-lg transition-all"
+            <Link
+              href="/products/aquacafe"
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold rounded-xl text-lg shadow-lg transition-all text-center inline-block"
               data-testid="button-hero-starter-kit"
             >
               Get My Starter Kit (AED 99)
-            </Button>
+            </Link>
             <Button
               onClick={() => {
                 // Scroll to Planet Points section
@@ -178,6 +178,80 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
+
+      {/* Partnership Hero Section */}
+      <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
+        <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
+          <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center w-full max-w-full">
+            {/* Left: Partnership Branding */}
+            <div className="text-center lg:text-left w-full">
+              <div className="mb-4 lg:mb-6 w-full">
+                <div className="flex flex-col items-center justify-center lg:justify-start gap-2 mb-4 w-full">
+                  <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-2 sm:px-3 py-1 rounded-full font-bold text-xs sm:text-sm">
+                    AquaCafe
+                  </div>
+                  <span className="text-lg sm:text-2xl font-bold text-gray-600">+</span>
+                  <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-2 sm:px-3 py-1 rounded-full font-bold text-xs sm:text-sm">
+                    Baker's Kitchen UAE
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent text-lg sm:text-xl md:text-2xl font-bold mb-4 text-center lg:text-left">
+                  Healthy Water Meets Healthy Food
+                </div>
+              </div>
+
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 leading-tight">
+                AquaCafe by DeliWer
+                <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl text-amber-600">
+                  + Baker's Kitchen UAE
+                </span>
+              </h2>
+              
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-6 leading-relaxed">
+                Serving Kangen Water with Wholesome Meals – A Partnership for Your Health & Our Planet
+              </p>
+
+              <div className="space-y-4 mb-8">
+                <Button
+                  onClick={() => handleOrderNow('hero-minimal')}
+                  className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-4 sm:px-6 py-3 text-sm sm:text-base font-bold rounded-xl shadow-lg transition-all"
+                  data-testid="button-experience-alliance"
+                >
+                  <Heart className="mr-3 w-6 h-6" />
+                  Experience the Alliance
+                </Button>
+                
+                <div className="flex flex-col items-center justify-center lg:justify-start gap-2 text-xs text-gray-600">
+                  <div className="flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-amber-500" />
+                    <span>Mazaya Center</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-emerald-500" />
+                    <span>Open Daily 9AM-11PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Lifestyle Image */}
+            <div className="relative mt-6 lg:mt-0 w-full">
+              <div className="bg-gradient-to-br from-white/80 to-emerald-50/80 backdrop-blur-sm rounded-2xl p-3 sm:p-4 shadow-xl w-full">
+                <img 
+                  src={withoutText} 
+                  alt="Healthy Lifestyle with AquaCafe and Baker's Kitchen" 
+                  className="w-full h-40 sm:h-48 object-cover rounded-xl shadow-md"
+                />
+                <div className="text-center mt-3">
+                  <div className="text-sm sm:text-base font-bold text-gray-800 mb-1">Real People, Real Results</div>
+                  <div className="text-xs sm:text-sm text-gray-600">Healthier living with AquaCafe & Baker's Kitchen</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Partnership Highlight Section */}
       <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-white" data-testid="partnership-highlights" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -334,24 +408,14 @@ export default function AquaCafe() {
 
               {/* Partnership CTA */}
               <div className="space-y-3">
-                <Button
-                  onClick={() => handleOrderNow('hero-minimal')}
-                  disabled={isOrderLoading === 'hero-minimal'}
-                  className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-xl shadow-lg transition-all disabled:opacity-70"
+                <Link
+                  href="/products/aquacafe"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-xl shadow-lg transition-all text-center inline-block"
                   data-testid="button-partnership-offer"
                 >
-                  {isOrderLoading === 'hero-minimal' ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
-                      PROCESSING...
-                    </>
-                  ) : (
-                    <>
-                      <Heart className="mr-2 w-4 h-4" />
-                      GET HERO GATEWAY - AED 99
-                    </>
-                  )}
-                </Button>
+                  <Heart className="mr-2 w-4 h-4 inline" />
+                  GET HERO GATEWAY - AED 99
+                </Link>
                 
                 <p className="text-emerald-600 font-bold text-xs sm:text-sm text-center">
                   🍰 Includes Baker's Kitchen dining experience! 🍰
