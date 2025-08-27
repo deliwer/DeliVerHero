@@ -271,60 +271,7 @@ export default function AquaCafeAlliance() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Left: Offer Details */}
-            <div className="text-center lg:text-left">
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">
-                  AED 1299
-                </span>
-                <br />
-                <span className="text-2xl text-gray-600">Starter Kit + Referral Rewards</span>
-              </h3>
-              
-              <p className="text-lg text-gray-700 mb-8">
-                Get the AquaCafe system at partnership price, plus earn Baker's Kitchen rewards through referrals.
-              </p>
-
-              {/* Benefits List */}
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center justify-center lg:justify-start text-lg">
-                  <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center mr-4">
-                    <Gift className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-gray-800 font-semibold">Get the AquaCafe Hero Minimal (AED 1299)</span>
-                </div>
-                <div className="flex items-center justify-center lg:justify-start text-lg">
-                  <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
-                    <Utensils className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-gray-800 font-semibold">AED 100 Baker's Kitchen voucher when your friend signs up via referral</span>
-                </div>
-                <div className="flex items-center justify-center lg:justify-start text-lg">
-                  <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center mr-4">
-                    <Star className="w-4 h-4 text-white" />
-                  </div>
-                  <span className="text-gray-800 font-semibold">Experience Kangen Water with your meal</span>
-                </div>
-              </div>
-
-              <Button
-                onClick={handleOrderNow}
-                disabled={isOrderLoading}
-                className="w-full lg:w-auto bg-gradient-to-r from-emerald-500 to-amber-500 hover:from-emerald-600 hover:to-amber-600 text-white px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all"
-              >
-                {isOrderLoading ? (
-                  <>
-                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-current mr-3"></div>
-                    PROCESSING...
-                  </>
-                ) : (
-                  <>
-                    <Heart className="mr-3 w-6 h-6" />
-                    Get My Kit + Referral Program
-                  </>
-                )}
-              </Button>
-            </div>
+            
 
             {/* Right: Product Showcase */}
             <div className="relative">
