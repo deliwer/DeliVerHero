@@ -35,7 +35,6 @@ export function Navigation() {
               {isB2BMode ? (
                 <div className="flex items-center space-x-2">
                   <div className="text-xl font-bold text-blue-400">ChainTrack</div>
-                  <div className="text-xs text-gray-400">ReCommerce</div>
                 </div>
               ) : (
                 <img 
