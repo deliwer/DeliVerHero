@@ -157,9 +157,7 @@ export default function AquaCafe() {
           {/* Hero CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
             <a
-              href="https://deliwer.myshopify.com/products/aquacafe-starter-kit"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="http://deliwer.com/products/aquacafe"
               className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-bold rounded-xl text-lg shadow-lg transition-all text-center inline-block"
               data-testid="button-hero-starter-kit"
             >
@@ -330,143 +328,197 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-      {/* Offer Section - Balanced Content */}
-      <section className="w-full py-6 sm:py-10 px-2 sm:px-4 bg-gradient-to-br from-emerald-50 to-cyan-50" data-testid="offer-section" style={{ maxWidth: '100vw' }}>
-        <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
-          {/* Partnership Offer Banner - Compact */}
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-amber-500 text-white rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-4 font-bold text-sm sm:text-base shadow-lg">
-              <Gift className="w-4 h-4 mr-2" />
-              <span>PARTNERSHIP SPECIAL: AED 99 STARTER KIT + BAKER'S PERKS</span>
-              <Gift className="w-4 h-4 ml-2" />
+      {/* AquaCafe Starter Kit - Flagship Gateway Section */}
+      <section className="w-full py-8 sm:py-12 px-0 bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50" data-testid="starter-kit-gateway" style={{ maxWidth: '100vw' }}>
+        {/* Full Width Banner */}
+        <div className="w-full mb-8">
+          <img 
+            src={washingFace} 
+            alt="Love is in the Hair - AquaCafe Beauty Water" 
+            className="w-full h-48 sm:h-64 md:h-80 object-cover"
+          />
+        </div>
+
+        <div className="w-full max-w-7xl mx-auto px-4">
+          {/* Gateway Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full px-6 py-3 mb-6 font-bold text-lg shadow-2xl">
+              <Rocket className="w-6 h-6 mr-3" />
+              <span>🚀 AQUACAFE LOYALTY GATEWAY - YOUR CIRCULAR EXCHANGE HUB 🚀</span>
+              <Rocket className="w-6 h-6 ml-3" />
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-4">
+              <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">
+                AED 99
+              </span>
+              <br />
+              <span className="text-2xl sm:text-3xl md:text-4xl text-gray-600">Starter Kit</span>
+            </h1>
+            
+            <p className="text-lg sm:text-xl text-gray-700 mb-6 max-w-4xl mx-auto">
+              Your gateway to AquaCafe's comprehensive loyalty ecosystem - where sustainability meets rewards, 
+              trade-ins become Planet Points, and every action contributes to Dubai's circular economy.
+            </p>
+          </div>
+
+          {/* Central Pivot Concept */}
+          <div className="bg-gradient-to-r from-white/90 to-emerald-50/90 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 shadow-2xl mb-8">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+                🔄 THE CIRCULAR EXCHANGE CONCEPT 🔄
+              </h2>
+              <p className="text-gray-700 text-base sm:text-lg mb-6">
+                This starter kit isn't just a product - it's your lifetime membership to Dubai's most innovative sustainability platform.
+                Every feature works together to create continuous value and environmental impact.
+              </p>
+            </div>
+
+            {/* Ecosystem Flow */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 border border-blue-200">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-gray-800 mb-3">Trade-In Hub</h3>
+                  <p className="text-sm text-gray-600">iPhone valuations, tech exchanges, and instant Planet Points earning through your membership portal.</p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-6 border border-emerald-200">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Zap className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-gray-800 mb-3">Rewards Engine</h3>
+                  <p className="text-sm text-gray-600">Planet Points redemption, Baker's Kitchen vouchers, and exclusive member discounts on all AquaCafe products.</p>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 border border-amber-200">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-bold text-gray-800 mb-3">Community Impact</h3>
+                  <p className="text-sm text-gray-600">Awareness campaigns, environmental initiatives, and social engagement activities exclusive to members.</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center w-full max-w-full">
-            {/* Left: Value Proposition */}
-            <div className="text-center lg:text-left">
-              <div className="mb-4 lg:mb-6">
-                <div className="inline-flex items-center bg-emerald-500/20 border border-emerald-500/50 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-3 sm:mb-4">
-                  <Award className="w-4 sm:w-5 h-4 sm:h-5 text-emerald-500 mr-2" />
-                  <span className="text-emerald-600 font-bold text-sm sm:text-base">PARTNERSHIP EXCLUSIVE OFFER</span>
-                </div>
-                
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 mb-3 sm:mb-4 leading-tight">
-                  <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">
-                    AED 99
-                  </span>
-                  <br />
-                  <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-600">Starter Kit</span>
-                </h1>
-                
-                <div className="relative mb-4 group">
-                  <div className="bg-gradient-to-r from-emerald-100 to-cyan-100 rounded-xl p-3 sm:p-4 border border-emerald-300">
-                    <div className="text-sm sm:text-base md:text-lg font-bold text-gray-800 text-center mb-1">
-                      💎 Now Available at Baker's Kitchen! 💎
+          {/* Comprehensive Benefits Package */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-8">
+            {/* Left: Lifetime Value */}
+            <div>
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-200 mb-6">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">💎 LIFETIME MEMBERSHIP BENEFITS (AED 1000+ VALUE)</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <Gift className="w-5 h-5 text-emerald-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <span className="font-bold text-gray-800">FREE Ionic Shower Filter</span>
+                      <span className="text-emerald-600 ml-2">(AED 399 value)</span>
+                      <p className="text-sm text-gray-600">Premium beauty & skincare filtration system</p>
                     </div>
-                    <div className="text-xs sm:text-sm text-emerald-600 text-center font-semibold">
-                      Experience with your meal at Mazaya Center
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <Shield className="w-5 h-5 text-cyan-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <span className="font-bold text-gray-800">FREE Membership Card & Setup</span>
+                      <span className="text-cyan-600 ml-2">(AED 299 value)</span>
+                      <p className="text-sm text-gray-600">Professional installation & lifetime support</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Heart className="w-5 h-5 text-pink-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <span className="font-bold text-gray-800">Baker's Kitchen Partnership</span>
+                      <span className="text-pink-600 ml-2">(AED 100+ per referral)</span>
+                      <p className="text-sm text-gray-600">Free vouchers + Kangen Water demos</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Star className="w-5 h-5 text-purple-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <span className="font-bold text-gray-800">Planet Hero Level 2 Status</span>
+                      <span className="text-purple-600 ml-2">(Exclusive Access)</span>
+                      <p className="text-sm text-gray-600">Priority support, special events, premium features</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Key Benefits - Compact Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6">
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Gift className="w-2 h-2 text-white" />
+              {/* Continuing Benefits */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200">
+                <h3 className="text-lg font-bold text-gray-800 mb-4">🔄 CONTINUING MEMBER BENEFITS</h3>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-emerald-500" />
+                    <span>Lifetime discounts on all products</span>
                   </div>
-                  <span className="text-gray-800 font-semibold">FREE Shower Filter (AED 399)</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 bg-cyan-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-2 h-2 text-white" />
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-emerald-500" />
+                    <span>Priority trade-in valuations</span>
                   </div>
-                  <span className="text-gray-800 font-semibold">Premium Setup Support</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Heart className="w-2 h-2 text-white" />
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-emerald-500" />
+                    <span>Exclusive Planet Points bonuses</span>
                   </div>
-                  <span className="text-gray-800 font-semibold">AED 100 Baker's Voucher</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Star className="w-2 h-2 text-white" />
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-emerald-500" />
+                    <span>Community event invitations</span>
                   </div>
-                  <span className="text-gray-800 font-semibold">Planet Hero Level 2</span>
                 </div>
-              </div>
-
-              {/* Partnership CTA */}
-              <div className="space-y-3">
-                <a
-                  href="https://deliwer.myshopify.com/products/aquacafe-starter-kit"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-xl shadow-lg transition-all text-center inline-block"
-                  data-testid="button-partnership-offer"
-                >
-                  <Heart className="mr-2 w-4 h-4 inline" />
-                  GET HERO GATEWAY - AED 99
-                </a>
-                
-                <p className="text-emerald-600 font-bold text-xs sm:text-sm text-center">
-                  🍰 Includes Baker's Kitchen dining experience! 🍰
-                </p>
               </div>
             </div>
 
-            {/* Right: Product & Partnership Showcase */}
-            <div className="relative mt-6 lg:mt-0 w-full">
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 sm:p-4 border border-emerald-200 shadow-lg w-full">
-                <div className="text-center mb-3 sm:mb-4">
-                  <div className="grid grid-cols-2 gap-2 mb-3">
-                    <img 
-                      src={aquacafeTradeIn} 
-                      alt="AquaCafe Product" 
-                      className="w-full h-20 sm:h-24 object-cover rounded-lg shadow-md"
-                    />
-                    <img 
-                      src={beautyWater1} 
-                      alt="AquaCafe Beauty Water" 
-                      className="w-full h-20 sm:h-24 object-cover rounded-lg shadow-md"
-                    />
-                  </div>
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <img 
-                      src={aquacafeLogo} 
-                      alt="AquaCafe Logo" 
-                      className="h-8 w-auto object-contain"
-                    />
-                    <span className="text-emerald-500 font-bold">+</span>
-                    <img 
-                      src={bakersKitchenLogo} 
-                      alt="Baker's Kitchen Logo" 
-                      className="h-8 w-auto object-contain"
-                    />
+            {/* Right: Call to Action */}
+            <div className="text-center">
+              <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 border-2 border-emerald-300 shadow-xl">
+                <div className="mb-6">
+                  <div className="text-6xl font-bold text-emerald-500 mb-2">AED 99</div>
+                  <div className="text-xl text-gray-600 mb-4">One-time investment</div>
+                  <div className="text-sm text-purple-600 font-bold bg-purple-100 rounded-full px-4 py-2 mb-4">
+                    Lifetime Value: AED 1000+ in benefits
                   </div>
                 </div>
-                
-                <div className="bg-emerald-50 rounded-xl p-3 sm:p-4 border border-emerald-200 mb-4">
-                  <div className="text-center">
-                    <div className="text-sm sm:text-base font-bold text-gray-800 mb-2">AquaCafe Beauty Hair & Skincare</div>
-                    <div className="text-xs sm:text-sm text-emerald-600 mb-3">Ionic Shower Filter</div>
-                    <div className="grid grid-cols-2 gap-2 text-xs text-gray-700">
-                      <div>✨ 4-Level Filtration</div>
-                      <div>💧 Removes Chlorine</div>
-                      <div>🌟 Softer Hair</div>
-                      <div>💎 Healthier Skin</div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="text-center">
-                  <div className="text-gray-500 line-through text-sm mb-1">Regular Price: AED 399</div>
-                  <div className="text-lg sm:text-xl font-bold text-emerald-600 mb-2">FREE with Partnership Kit!</div>
-                  <div className="text-amber-600 font-bold text-xs sm:text-sm">+ Baker's Kitchen AED 100 Voucher</div>
-                </div>
+
+                <a
+                  href="http://deliwer.com/products/aquacafe"
+                  className="w-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500 hover:from-emerald-600 hover:via-cyan-600 hover:to-blue-600 text-white px-8 py-4 text-lg font-bold rounded-2xl shadow-2xl transition-all transform hover:scale-105 inline-block mb-4"
+                  data-testid="button-starter-kit-gateway"
+                >
+                  <Rocket className="mr-3 w-6 h-6 inline" />
+                  START YOUR CIRCULAR JOURNEY
+                </a>
+
+                <p className="text-sm text-gray-600">
+                  Join thousands of Dubai residents building a sustainable future through the circular economy.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Partnership Integration */}
+          <div className="text-center bg-gradient-to-r from-amber-100 to-orange-100 rounded-2xl p-6 border border-amber-300">
+            <h3 className="text-xl font-bold text-gray-800 mb-3">🤝 BAKER'S KITCHEN PARTNERSHIP EXPERIENCE</h3>
+            <p className="text-gray-700 mb-4">
+              Your membership includes exclusive access to Kangen Water demonstrations and healthy dining experiences at Baker's Kitchen Mazaya Center.
+              Every friend you refer earns you both AED 100 vouchers - it's sustainability that pays forward.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-amber-500" />
+                <span>Mazaya Center, Business Bay</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-emerald-500" />
+                <span>Open Daily 9AM-11PM</span>
               </div>
             </div>
           </div>
@@ -688,13 +740,13 @@ export default function AquaCafe() {
               >
                 Community
               </Link>
-              <Button
-                onClick={() => handleOrderNow('hero-minimal')}
-                className="w-full lg:w-auto px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl transition-all shadow-lg"
+              <a
+                href="http://deliwer.com/products/aquacafe"
+                className="w-full lg:w-auto px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl transition-all shadow-lg text-center inline-block"
                 data-testid="footer-cta-checkout"
               >
                 Order Starter Kit
-              </Button>
+              </a>
             </div>
           </div>
 
@@ -731,14 +783,13 @@ export default function AquaCafe() {
               <Link href="/exchange" className="px-3 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors text-xs w-full max-w-xs text-center" data-testid="footer-start-exchange">
                 Start iPhone Exchange
               </Link>
-              <Button 
-                onClick={() => handleOrderNow('hero-minimal')}
-                disabled={isOrderLoading === 'hero-minimal'}
-                className="px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-600 hover:to-cyan-600 transition-colors text-xs w-full max-w-xs"
+              <a
+                href="http://deliwer.com/products/aquacafe"
+                className="px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-600 hover:to-cyan-600 transition-colors text-xs w-full max-w-xs text-center inline-block"
                 data-testid="footer-order-partnership-kit"
               >
-                Get Hero Minimal - AED 1299
-              </Button>
+                Get Starter Kit - AED 99
+              </a>
             </div>
             <div className="text-xs text-gray-600 text-center">
               📍 Visit us at Baker's Kitchen, Mazaya Center
