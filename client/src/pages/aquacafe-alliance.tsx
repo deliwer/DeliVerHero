@@ -74,7 +74,6 @@ export default function AquaCafeAlliance() {
           </Link>
         </div>
       </div>
-
       {/* Hero Section */}
       <section className="w-full py-12 sm:py-20 px-4 bg-gradient-to-br from-emerald-500/10 via-white to-amber-500/10 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -148,7 +147,6 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
-
       {/* Our Shared Mission Section */}
       <section className="w-full py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -228,7 +226,6 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
-
       {/* Message from #SvenTheBaker */}
       <section className="w-full py-16 px-4 bg-gradient-to-br from-amber-50 to-orange-50">
         <div className="max-w-4xl mx-auto">
@@ -258,7 +255,6 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
-
       {/* Exclusive Offer Section */}
       <section className="w-full py-16 px-4 bg-gradient-to-br from-emerald-50 to-cyan-50">
         <div className="max-w-7xl mx-auto">
@@ -288,7 +284,7 @@ export default function AquaCafeAlliance() {
                     <div className="grid grid-cols-2 gap-3 text-sm text-gray-700">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-emerald-500" />
-                        <span>AED 1299 Hero Minimal</span>
+                        <span>Join Kangen Network</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-amber-500" />
@@ -310,7 +306,6 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
-
       {/* Sustainability Commitment */}
       <section className="w-full py-16 px-4 bg-gradient-to-br from-emerald-600 to-cyan-600 text-white">
         <div className="max-w-7xl mx-auto text-center">
@@ -359,7 +354,6 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="w-full py-12 px-4 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto">
