@@ -200,7 +200,7 @@ export default function AquaCafeAlliance() {
                     <ChefHat className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800 mb-2">Wholesome Meals</h3>
-                  <p className="text-amber-600 font-semibold">Fresh Bread Daily | Serving AquaCafe Water</p>
+                  <p className="text-amber-600 font-semibold">Fresh Bread Daily | Serving Kangen Water</p>
                 </div>
                 
                 <div className="space-y-4 text-gray-700">
