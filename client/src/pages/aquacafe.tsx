@@ -138,7 +138,6 @@ export default function AquaCafe() {
           </Link>
         </div>
       </div>
-
       {/* Top CTA Flow Section - Following Prototype */}
       <section className="w-full py-4 px-2 sm:px-4 bg-gradient-to-r from-blue-500 to-emerald-500" data-testid="top-cta-flow" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto flex flex-col sm:flex-row items-center justify-center gap-3" style={{ maxWidth: '100vw' }}>
@@ -158,7 +157,6 @@ export default function AquaCafe() {
           </Link>
         </div>
       </section>
-
       {/* Partnership Hero Section */}
       <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -231,7 +229,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Partnership Highlight Section */}
       <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-white" data-testid="partnership-highlights" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -311,7 +308,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Offer Section */}
       <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-emerald-50 to-cyan-50" data-testid="offer-section" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -319,7 +315,7 @@ export default function AquaCafe() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-lg shadow-2xl">
               <Gift className="w-6 h-6 mr-3" />
-              <span>🎉 PARTNERSHIP SPECIAL: AED 1299 HERO MINIMAL + BAKER'S KITCHEN PERKS 🎉</span>
+              <span>🎉 PARTNERSHIP SPECIAL: AED 99 STARTER KIT + BAKER'S KITCHEN PERKS 🎉</span>
               <Gift className="w-6 h-6 ml-3" />
             </div>
           </div>
@@ -448,7 +444,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* AI-Guided Journey CTAs - Following the prototype flow */}
       <section className="w-full py-8 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-slate-50 to-blue-50" data-testid="journey-ctas" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -537,7 +532,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Sustainability Section */}
       <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-emerald-600 to-cyan-600 text-white" data-testid="sustainability-section" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
@@ -577,7 +571,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Referral Program & Bakers Kitchen Partnership */}
       <section className="w-full py-6 sm:py-10 px-2 sm:px-4 bg-gradient-to-br from-amber-50 to-orange-50" data-testid="referral-program" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
@@ -632,7 +625,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Pricing Plans */}
       <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-gray-50 to-emerald-50" data-testid="pricing-plans" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -755,7 +747,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
-
       {/* Partnership Footer */}
       <footer className="w-full border-t border-emerald-200 mt-6 sm:mt-8 bg-gradient-to-r from-emerald-50 to-cyan-50" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto px-2 sm:px-4 py-4 sm:py-6" style={{ maxWidth: '100vw' }}>
@@ -848,7 +839,6 @@ export default function AquaCafe() {
           </div>
         </div>
       </footer>
-
       {/* AR Preview Modal */}
       <ARPreview
         isOpen={arPreview.isOpen}
