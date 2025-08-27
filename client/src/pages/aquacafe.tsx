@@ -445,45 +445,7 @@ export default function AquaCafe() {
         </div>
       </section>
       
-      {/* Sustainability Section */}
-      <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-emerald-600 to-cyan-600 text-white" data-testid="sustainability-section" style={{ maxWidth: '100vw' }}>
-        <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
-          <div className="mb-4 sm:mb-6">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3">
-              #SayNoToPlastic, SayYesToHealth
-            </h2>
-            <p className="text-sm sm:text-base text-emerald-100 max-w-full mx-auto px-2">
-              Join AquaCafe and Baker's Kitchen in creating a sustainable future for Dubai
-            </p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 w-full max-w-full">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Leaf className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Plastic-Free</h3>
-              <p className="text-emerald-100 text-sm">Eliminate single-use plastic bottles with our advanced filtration systems</p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Heart className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Healthy Lifestyle</h3>
-              <p className="text-emerald-100 text-sm">Pure water and nutritious meals for optimal health and wellness</p>
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                <Users className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-bold mb-2">Local Community Impact</h3>
-              <p className="text-emerald-100 text-sm">Supporting Dubai's sustainable development goals through partnership</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
       {/* Referral Program & Bakers Kitchen Partnership */}
       <section className="w-full py-6 sm:py-10 px-2 sm:px-4 bg-gradient-to-br from-amber-50 to-orange-50" data-testid="referral-program" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
