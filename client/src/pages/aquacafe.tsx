@@ -138,25 +138,7 @@ export default function AquaCafe() {
           </Link>
         </div>
       </div>
-      {/* Top CTA Flow Section - Following Prototype */}
-      <section className="w-full py-4 px-2 sm:px-4 bg-gradient-to-r from-blue-500 to-emerald-500" data-testid="top-cta-flow" style={{ maxWidth: '100vw' }}>
-        <div className="w-full max-w-full mx-auto flex flex-col sm:flex-row items-center justify-center gap-3" style={{ maxWidth: '100vw' }}>
-          <Link
-            href="/exchange"
-            className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full text-center transition-all shadow-lg text-lg"
-            data-testid="top-cta-exchange"
-          >
-            Start iPhone Exchange
-          </Link>
-          <Link
-            href="/collect"
-            className="w-full sm:w-auto px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full text-center transition-all shadow-lg text-lg"
-            data-testid="top-cta-minimal"
-          >
-            Get Hero Minimal - AED 1299
-          </Link>
-        </div>
-      </section>
+      
       {/* Partnership Hero Section */}
       <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
