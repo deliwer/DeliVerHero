@@ -5,7 +5,10 @@ import { useState } from "react";
 export function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isB2BMode, setIsB2BMode] = useState(false);
+  
+  // Automatically detect B2B mode based on subdomain
+  const isChainTrackDomain = window.location.hostname.includes('chaintrack');
+  const [isB2BMode, setIsB2BMode] = useState(isChainTrackDomain);
 
   const consumerNavItems = [
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
