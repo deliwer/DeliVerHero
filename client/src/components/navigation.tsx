@@ -16,7 +16,7 @@ export function Navigation() {
     { path: "/collect", label: "Play", id: "play" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
     { path: "/community", label: "Community", id: "community" },
-    { path: "/partners", label: "Partners", id: "partners" },
+    { path: "/partners", label: "CSR/Partners", id: "partners" },
   ];
 
   const b2bNavItems = [
