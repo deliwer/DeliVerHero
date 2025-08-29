@@ -33,6 +33,8 @@ import { CorporateQuotesPage } from "@/pages/corporate-quotes";
 import { PurchaseOrdersPage } from "@/pages/purchase-orders";
 import { AccountManagementPage } from "@/pages/account-management";
 import CoboneCorporate from "@/pages/cobone-corporate";
+import CorporateCombined from "@/pages/corporate-combined";
+import AccountConsolidated from "@/pages/account-consolidated";
 
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -70,7 +72,8 @@ function Router() {
       <Route path="/corporate-quotes" component={CorporateQuotesPage} />
       <Route path="/purchase-orders" component={PurchaseOrdersPage} />
       <Route path="/account-management" component={AccountManagementPage} />
-      <Route path="/cobone-corporate" component={CoboneCorporate} />
+      <Route path="/cobone-corporate" component={CorporateCombined} />
+      <Route path="/corporate" component={CorporateCombined} />
 
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
@@ -79,8 +82,9 @@ function Router() {
       <Route path="/cart" component={CartPage} />
       <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
       <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
-      <Route path="/profile" component={lazy(() => import("./pages/profile"))} />
-      <Route path="/contact" component={lazy(() => import("./pages/contact"))} />
+      <Route path="/profile" component={AccountConsolidated} />
+      <Route path="/account" component={AccountConsolidated} />
+      <Route path="/contact" component={AccountConsolidated} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/login" component={LoginPage} />
 

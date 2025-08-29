@@ -861,6 +861,106 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // User Profile Management with Shopify Integration
+  app.get("/api/user/profile", async (req, res) => {
+    try {
+      // In production, this would fetch from Shopify Customer API
+      // For now, return mock user data that matches our schema
+      const mockUser = {
+        id: "user_123",
+        username: "demo_user", 
+        email: "demo@deliwer.com",
+        firstName: "Demo",
+        lastName: "User",
+        phone: "+971 50 123 4567",
+        address: "Business Bay",
+        city: "Dubai",
+        shopifyCustomerId: "gid://shopify/Customer/123456789",
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      
+      res.json(mockUser);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch user profile" });
+    }
+  });
+
+  app.put("/api/user/profile", async (req, res) => {
+    try {
+      const { username, email, firstName, lastName, phone, address, city } = req.body;
+      
+      // In production, this would update the Shopify customer profile
+      // For now, return the updated mock data
+      const updatedUser = {
+        id: "user_123",
+        username,
+        email,
+        firstName,
+        lastName,
+        phone,
+        address,
+        city,
+        shopifyCustomerId: "gid://shopify/Customer/123456789",
+        updatedAt: new Date()
+      };
+      
+      res.json(updatedUser);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update user profile" });
+    }
+  });
+
+  // Test Email Campaign Endpoint
+  app.post("/api/email/test-campaign", async (req, res) => {
+    try {
+      const { testEmail } = req.body;
+      
+      if (!testEmail) {
+        return res.status(400).json({ error: "Test email address is required" });
+      }
+
+      // Send test email using the sendgrid service
+      const testCampaign = {
+        to: testEmail,
+        from: 'corporate@deliwer.com',
+        subject: 'DeliWer Corporate Trade-in Test Campaign',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h1 style="color: #2563eb;">Welcome to DeliWer Corporate Trade-in</h1>
+            <p>This is a test email from your DeliWer corporate trade-in campaign system.</p>
+            <p>Our corporate trade-in program offers:</p>
+            <ul>
+              <li>Competitive rates for bulk device exchanges</li>
+              <li>Environmental impact tracking</li>
+              <li>Seamless integration with your procurement process</li>
+              <li>Dedicated account management</li>
+            </ul>
+            <p>Contact us at corporate@deliwer.com to learn more.</p>
+            <p style="color: #666; font-size: 12px;">This is a test email sent from the DeliWer platform.</p>
+          </div>
+        `
+      };
+
+      // Import and use the sendEmail function
+      const { sendEmail } = await import('./sendgrid-service.js');
+      const result = await sendEmail(process.env.SENDGRID_API_KEY, testCampaign);
+      
+      if (result) {
+        res.json({ 
+          success: true, 
+          message: "Test campaign email sent successfully",
+          sentTo: testEmail
+        });
+      } else {
+        res.status(500).json({ error: "Failed to send test campaign email" });
+      }
+    } catch (error) {
+      console.error('Test campaign error:', error);
+      res.status(500).json({ error: "Failed to send test campaign email" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
