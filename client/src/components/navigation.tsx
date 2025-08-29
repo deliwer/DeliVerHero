@@ -1,5 +1,9 @@
 import { Link, useLocation } from "wouter";
-import { Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, Briefcase, ShoppingCart } from "lucide-react";
+import { 
+  Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, 
+  Briefcase, ShoppingCart, UserCircle, ChevronDown, LogIn, UserPlus, 
+  Settings, HelpCircle 
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
 
@@ -7,6 +11,7 @@ export function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   // Automatically detect B2B mode based on subdomain
   const isChainTrackDomain = window.location.hostname.includes('chaintrack');
@@ -32,18 +37,16 @@ export function Navigation() {
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Play", id: "play" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
-    { path: "/profile", label: "Profile", id: "profile" },
-    { path: "/contact", label: "Contact", id: "contact" },
+    { path: "/contact", label: "Contact & About", id: "contact" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "CSR/Partners", id: "partners" },
   ];
 
   const b2bNavItems = [
     { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
-    { path: "/bulk-tradein", label: "Bulk Trade-in", id: "bulk-tradein" },
-    { path: "/corporate-quotes", label: "Get Quotes", id: "corporate-quotes" },
+    { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
-    { path: "/account-management", label: "Account", id: "account-management" },
+    { path: "/contact", label: "Contact & About", id: "contact" },
   ];
 
   const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
@@ -131,7 +134,7 @@ export function Navigation() {
             {/* Mobile Action Buttons - Compact */}
             <div className="flex md:hidden items-center space-x-2">
               <Link
-                href={isB2BMode ? "/bulk-tradein" : "/products"}
+                href={isB2BMode ? "/corporate" : "/products"}
                 className={`${
                   isB2BMode 
                     ? 'bg-blue-600 hover:bg-blue-700' 
@@ -142,7 +145,7 @@ export function Navigation() {
                 {isB2BMode ? (
                   <>
                     <Briefcase className="inline w-3 h-3 mr-1" />
-                    Get Quote
+                    Get Trade Quote
                   </>
                 ) : (
                   <>
@@ -168,24 +171,63 @@ export function Navigation() {
                 )}
               </Link>
 
-              <Link
-                href="/login"
-                className="text-gray-300 hover:text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                data-testid="button-login"
-              >
-                Login
-              </Link>
+              {/* User Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  className="flex items-center space-x-2 text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors"
+                  data-testid="button-user-menu"
+                >
+                  <UserCircle className="w-5 h-5" />
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                
+                {userDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50">
+                    <div className="py-1">
+                      <Link
+                        href="/login"
+                        className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        data-testid="dropdown-login"
+                        onClick={() => setUserDropdownOpen(false)}
+                      >
+                        <LogIn className="w-4 h-4 mr-3" />
+                        Login
+                      </Link>
+                      <Link
+                        href="/signup"
+                        className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        data-testid="dropdown-signup"
+                        onClick={() => setUserDropdownOpen(false)}
+                      >
+                        <UserPlus className="w-4 h-4 mr-3" />
+                        Sign Up
+                      </Link>
+                      <Link
+                        href="/account"
+                        className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        data-testid="dropdown-account"
+                        onClick={() => setUserDropdownOpen(false)}
+                      >
+                        <Settings className="w-4 h-4 mr-3" />
+                        My Account
+                      </Link>
+                      <Link
+                        href="/contact"
+                        className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        data-testid="dropdown-help"
+                        onClick={() => setUserDropdownOpen(false)}
+                      >
+                        <HelpCircle className="w-4 h-4 mr-3" />
+                        Help & Support
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               <Link
-                href="/signup"
-                className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors hover:from-emerald-700 hover:to-blue-700"
-                data-testid="button-signup"
-              >
-                Sign Up
-              </Link>
-
-              <Link
-                href={isB2BMode ? "/bulk-tradein" : "/products"}
+                href={isB2BMode ? "/corporate" : "/products"}
                 className={`${
                   isB2BMode 
                     ? 'bg-blue-600 hover:bg-blue-700' 
@@ -196,7 +238,7 @@ export function Navigation() {
                 {isB2BMode ? (
                   <>
                     <Briefcase className="inline w-4 h-4 mr-2" />
-                    Get Bulk Quote
+                    Get Trade Quote
                   </>
                 ) : (
                   <>

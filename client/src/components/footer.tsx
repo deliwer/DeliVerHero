@@ -32,6 +32,8 @@ export function Footer() {
     { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
     { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
     { label: "Community Hub", url: "/community" },
+    { label: "Corporate Trade-in Solutions", url: "/corporate" },
+    { label: "Contact & About Us", url: "/contact" },
     { label: "Ambassador & Champion Programs", url: "/partners" }
   ];
 
@@ -43,6 +45,7 @@ export function Footer() {
   ];
 
   const partnershipPrograms = [
+    { label: "Corporate Trade-in Partner", earnings: "Volume discounts" },
     { label: "Delivery Agent Program", earnings: "AED 150-300/day" },
     { label: "Eco-Recycling Partner", earnings: "AED 50-150/device" },
     { label: "Restaurant Collection", earnings: "10% commission" },

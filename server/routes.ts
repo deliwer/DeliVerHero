@@ -944,7 +944,7 @@ Context: ${JSON.stringify(context || {})}`
 
       // Import and use the sendEmail function
       const { sendEmail } = await import('./sendgrid-service.js');
-      const result = await sendEmail(process.env.SENDGRID_API_KEY, testCampaign);
+      const result = await sendEmail(testCampaign);
       
       if (result) {
         res.json({ 
