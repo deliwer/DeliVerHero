@@ -418,6 +418,162 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // Authentication routes
+  app.post("/api/auth/signup", async (req, res) => {
+    try {
+      const userData = req.body;
+      
+      // Create customer in Shopify
+      const shopifyResponse = await fetch("/shopify/customers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customer: {
+            first_name: userData.firstName,
+            last_name: userData.lastName,
+            email: userData.email,
+            phone: userData.phone,
+            accepts_marketing: userData.acceptMarketing || false,
+            tags: userData.accountType === "company" ? "company,b2b" : "consumer",
+            metafields: [
+              {
+                namespace: "deliwer",
+                key: "account_type",
+                value: userData.accountType || "personal"
+              },
+              ...(userData.companyName ? [{
+                namespace: "deliwer",
+                key: "company_name",
+                value: userData.companyName
+              }] : []),
+              ...(userData.industry ? [{
+                namespace: "deliwer",
+                key: "industry",
+                value: userData.industry
+              }] : [])
+            ]
+          }
+        }),
+      });
+
+      let shopifyCustomer = null;
+      if (shopifyResponse.ok) {
+        const shopifyData = await shopifyResponse.json();
+        shopifyCustomer = shopifyData.customer;
+      }
+
+      // Create local user record
+      const user = {
+        id: Date.now().toString(),
+        email: userData.email,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        phone: userData.phone,
+        accountType: userData.accountType || "personal",
+        companyName: userData.companyName,
+        isVerified: userData.accountType === "personal", // Company accounts need verification
+        shopifyCustomerId: shopifyCustomer?.id,
+        createdAt: new Date(),
+      };
+
+      // Generate simple token (in production, use JWT)
+      const token = Buffer.from(`${user.id}:${user.email}:${Date.now()}`).toString('base64');
+
+      res.json({
+        ...user,
+        token
+      });
+    } catch (error: any) {
+      console.error("Signup error:", error);
+      res.status(400).json({ 
+        error: error.message || "Failed to create account" 
+      });
+    }
+  });
+
+  app.post("/api/auth/login", async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      
+      // In production, verify password against database
+      // For now, mock authentication
+      const user = {
+        id: Date.now().toString(),
+        email,
+        firstName: "Ahmed",
+        lastName: "Al-Maktoum",
+        phone: "+971501234567",
+        accountType: "personal",
+        isVerified: true,
+        shopifyCustomerId: "customer_123",
+      };
+
+      const token = Buffer.from(`${user.id}:${user.email}:${Date.now()}`).toString('base64');
+
+      res.json({
+        ...user,
+        token
+      });
+    } catch (error: any) {
+      res.status(401).json({ 
+        error: error.message || "Authentication failed" 
+      });
+    }
+  });
+
+  app.post("/api/auth/logout", async (req, res) => {
+    // In production, invalidate token
+    res.json({ success: true });
+  });
+
+  app.get("/api/auth/me", async (req, res) => {
+    try {
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ error: "No valid token provided" });
+      }
+
+      // In production, verify and decode JWT token
+      const user = {
+        id: "user_123",
+        email: "ahmed@deliwer.com",
+        firstName: "Ahmed",
+        lastName: "Al-Maktoum",
+        phone: "+971501234567",
+        accountType: "personal",
+        isVerified: true,
+        shopifyCustomerId: "customer_123",
+      };
+
+      res.json(user);
+    } catch (error) {
+      res.status(401).json({ error: "Invalid token" });
+    }
+  });
+
+  // Contact form endpoint
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const contactData = req.body;
+      
+      // In production, save to database and send notification
+      console.log("Contact form submission:", contactData);
+      
+      // Mock successful submission
+      res.json({
+        success: true,
+        message: "Contact form submitted successfully",
+        id: Date.now().toString()
+      });
+    } catch (error: any) {
+      res.status(400).json({ 
+        error: error.message || "Failed to submit contact form" 
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

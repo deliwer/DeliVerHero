@@ -168,6 +168,71 @@ export default async function handler(req, res) {
       });
     }
 
+    // Create Shopify customer
+    if (method === 'POST' && path === '/shopify/customers') {
+      const customerData = req.body.customer;
+      
+      // Mock customer creation - in production, use Shopify Admin API
+      const customer = {
+        id: Date.now(),
+        email: customerData.email,
+        first_name: customerData.first_name,
+        last_name: customerData.last_name,
+        phone: customerData.phone,
+        accepts_marketing: customerData.accepts_marketing,
+        tags: customerData.tags,
+        created_at: new Date().toISOString(),
+        metafields: customerData.metafields || []
+      };
+      
+      return res.status(201).json({ customer });
+    }
+
+    // Create checkout session
+    if (method === 'POST' && path === '/shopify/checkout') {
+      const { lineItems, customAttributes } = req.body;
+      
+      // Mock checkout creation - in production, use Shopify Storefront API
+      const checkoutId = `checkout_${Date.now()}`;
+      const checkoutUrl = `https://deliwer.myshopify.com/cart/${checkoutId}`;
+      
+      return res.status(200).json({
+        checkoutId,
+        checkoutUrl,
+        lineItems
+      });
+    }
+
+    // Cart synchronization
+    if (method === 'POST' && path === '/shopify/cart/sync') {
+      const { cartId, items } = req.body;
+      
+      // Mock cart sync - in production, sync with Shopify cart
+      const newCartId = cartId || `cart_${Date.now()}`;
+      
+      return res.status(200).json({
+        cartId: newCartId,
+        itemCount: items.length,
+        synced: true
+      });
+    }
+
+    // Check variant availability
+    if (method === 'POST' && path === '/shopify/variants/availability') {
+      const { variantIds } = req.body;
+      
+      // Mock availability check - in production, query Shopify inventory
+      const availability = {};
+      variantIds.forEach(variantId => {
+        availability[variantId] = {
+          available: Math.random() > 0.1, // 90% available
+          quantity: Math.floor(Math.random() * 100) + 1
+        };
+      });
+      
+      return res.status(200).json(availability);
+    }
+
     // Default response
     return res.status(404).json({ 
       error: 'Shopify endpoint not found', 
@@ -177,6 +242,10 @@ export default async function handler(req, res) {
         '/shopify/webhooks/orders/paid',
         '/shopify/products/sync', 
         '/shopify/customers/:id',
+        '/shopify/customers (POST)',
+        '/shopify/checkout (POST)',
+        '/shopify/cart/sync (POST)',
+        '/shopify/variants/availability (POST)',
         '/shopify/auth/verify'
       ]
     });
