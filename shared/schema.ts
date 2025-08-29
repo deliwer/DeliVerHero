@@ -306,6 +306,63 @@ export const missionSponsorships = pgTable("mission_sponsorships", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+// Email Campaign System
+export const emailCampaigns = pgTable("email_campaigns", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  subject: text("subject").notNull(),
+  content: text("content").notNull(),
+  targetAudience: text("target_audience").notNull(), // corporate, consumer, all
+  industry: text("industry"), // specific industry targeting
+  status: text("status").notNull().default("draft"), // draft, scheduled, sent, cancelled
+  scheduledAt: timestamp("scheduled_at"),
+  sentAt: timestamp("sent_at"),
+  totalRecipients: integer("total_recipients").notNull().default(0),
+  emailsSent: integer("emails_sent").notNull().default(0),
+  opensCount: integer("opens_count").notNull().default(0),
+  clicksCount: integer("clicks_count").notNull().default(0),
+  unsubscribes: integer("unsubscribes").notNull().default(0),
+  bounces: integer("bounces").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const corporateLeads = pgTable("corporate_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  companyName: text("company_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  email: text("email").notNull().unique(),
+  phone: text("phone"),
+  industry: text("industry").notNull(),
+  deviceCount: text("device_count"),
+  message: text("message"),
+  source: text("source").notNull().default("cobone_landing"), // cobone_landing, direct, referral
+  status: text("status").notNull().default("new"), // new, contacted, qualified, proposal_sent, closed
+  priority: text("priority").notNull().default("medium"), // low, medium, high, urgent
+  estimatedValue: integer("estimated_value"), // potential deal value in AED fils
+  assignedTo: text("assigned_to"), // sales rep assigned
+  lastContactAt: timestamp("last_contact_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const emailSubscribers = pgTable("email_subscribers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  companyName: text("company_name"),
+  industry: text("industry"),
+  subscriberType: text("subscriber_type").notNull().default("corporate"), // corporate, consumer
+  isActive: boolean("is_active").notNull().default(true),
+  source: text("source").notNull().default("website"), // website, manual, import
+  tags: jsonb("tags").default([]),
+  preferences: jsonb("preferences").default({}), // email preferences
+  lastEmailAt: timestamp("last_email_at"),
+  subscribedAt: timestamp("subscribed_at").notNull().default(sql`now()`),
+  unsubscribedAt: timestamp("unsubscribed_at"),
+});
+
 // Zod schemas
 export const insertHeroSchema = createInsertSchema(heroes).pick({
   name: true,
@@ -401,6 +458,37 @@ export const insertQuoteSchema = createInsertSchema(quotes).pick({
   expiresAt: true,
 });
 
+export const insertCorporateLeadSchema = createInsertSchema(corporateLeads).pick({
+  companyName: true,
+  contactName: true,
+  email: true,
+  phone: true,
+  industry: true,
+  deviceCount: true,
+  message: true,
+  source: true,
+});
+
+export const insertEmailCampaignSchema = createInsertSchema(emailCampaigns).pick({
+  name: true,
+  subject: true,
+  content: true,
+  targetAudience: true,
+  industry: true,
+  scheduledAt: true,
+});
+
+export const insertEmailSubscriberSchema = createInsertSchema(emailSubscribers).pick({
+  email: true,
+  firstName: true,
+  lastName: true,
+  companyName: true,
+  industry: true,
+  subscriberType: true,
+  source: true,
+  tags: true,
+});
+
 export const updateHeroSchema = createInsertSchema(heroes).pick({
   points: true,
   level: true,
@@ -442,3 +530,10 @@ export type Quote = typeof quotes.$inferSelect;
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
+
+export type CorporateLead = typeof corporateLeads.$inferSelect;
+export type InsertCorporateLead = z.infer<typeof insertCorporateLeadSchema>;
+export type EmailCampaign = typeof emailCampaigns.$inferSelect;
+export type InsertEmailCampaign = z.infer<typeof insertEmailCampaignSchema>;
+export type EmailSubscriber = typeof emailSubscribers.$inferSelect;
+export type InsertEmailSubscriber = z.infer<typeof insertEmailSubscriberSchema>;

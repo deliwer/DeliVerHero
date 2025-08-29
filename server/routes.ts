@@ -1,8 +1,9 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema } from "@shared/schema";
 import OpenAI from "openai";
+import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY || "",
@@ -658,6 +659,205 @@ Context: ${JSON.stringify(context || {})}`
       res.status(400).json({ 
         error: error.message || "Failed to submit contact form" 
       });
+    }
+  });
+
+  // Corporate Lead Management
+  app.post("/api/corporate/inquiry", async (req, res) => {
+    try {
+      const validatedData = insertCorporateLeadSchema.parse(req.body);
+      const lead = await storage.createCorporateLead(validatedData);
+      
+      // Send welcome email
+      try {
+        await sendCorporateWelcomeEmail(lead.email, lead.companyName);
+        console.log('Welcome email sent to:', lead.email);
+      } catch (emailError) {
+        console.error('Failed to send welcome email:', emailError);
+        // Don't fail the request if email fails
+      }
+      
+      res.json(lead);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create corporate inquiry" });
+    }
+  });
+
+  app.get("/api/corporate/leads", async (req, res) => {
+    try {
+      const { status, industry, priority } = req.query;
+      const leads = await storage.getCorporateLeads({
+        status: status as string,
+        industry: industry as string,
+        priority: priority as string
+      });
+      res.json(leads);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch corporate leads" });
+    }
+  });
+
+  app.patch("/api/corporate/leads/:id", async (req, res) => {
+    try {
+      const { status, priority, assignedTo, estimatedValue } = req.body;
+      const lead = await storage.updateCorporateLead(req.params.id, {
+        status,
+        priority,
+        assignedTo,
+        estimatedValue,
+        lastContactAt: new Date()
+      });
+      
+      if (!lead) {
+        return res.status(404).json({ error: "Corporate lead not found" });
+      }
+      
+      res.json(lead);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to update corporate lead" });
+    }
+  });
+
+  // Email Campaign Management
+  app.post("/api/email/campaigns", async (req, res) => {
+    try {
+      const validatedData = insertEmailCampaignSchema.parse(req.body);
+      const campaign = await storage.createEmailCampaign(validatedData);
+      res.json(campaign);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create email campaign" });
+    }
+  });
+
+  app.get("/api/email/campaigns", async (req, res) => {
+    try {
+      const campaigns = await storage.getEmailCampaigns();
+      res.json(campaigns);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch email campaigns" });
+    }
+  });
+
+  app.post("/api/email/campaigns/:id/send", async (req, res) => {
+    try {
+      const campaign = await storage.getEmailCampaign(req.params.id);
+      if (!campaign) {
+        return res.status(404).json({ error: "Campaign not found" });
+      }
+
+      // Get target recipients based on campaign criteria
+      const recipients = await storage.getEmailSubscribers({
+        subscriberType: campaign.targetAudience,
+        industry: campaign.industry || undefined
+      });
+
+      if (recipients.length === 0) {
+        return res.status(400).json({ error: "No recipients found for this campaign" });
+      }
+
+      const emailAddresses = recipients.map(r => r.email);
+      
+      // Send campaign emails
+      const results = await sendBulkEmail(emailAddresses, {
+        from: 'corporate@deliwer.com',
+        subject: campaign.subject,
+        html: campaign.content
+      });
+
+      // Update campaign stats
+      await storage.updateEmailCampaign(req.params.id, {
+        status: 'sent',
+        sentAt: new Date(),
+        totalRecipients: recipients.length,
+        emailsSent: results.sent
+      });
+
+      res.json({
+        success: true,
+        campaignId: req.params.id,
+        totalRecipients: recipients.length,
+        emailsSent: results.sent,
+        emailsFailed: results.failed
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to send campaign" });
+    }
+  });
+
+  // Email Subscriber Management
+  app.post("/api/email/subscribers", async (req, res) => {
+    try {
+      const subscriber = await storage.createEmailSubscriber(req.body);
+      res.json(subscriber);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create subscriber" });
+    }
+  });
+
+  app.get("/api/email/subscribers", async (req, res) => {
+    try {
+      const { subscriberType, industry } = req.query;
+      const subscribers = await storage.getEmailSubscribers({
+        subscriberType: subscriberType as string,
+        industry: industry as string
+      });
+      res.json(subscribers);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch email subscribers" });
+    }
+  });
+
+  // Send targeted corporate outreach
+  app.post("/api/email/corporate-outreach", async (req, res) => {
+    try {
+      const { targetIndustry, customMessage } = req.body;
+      
+      // Get corporate leads for targeted outreach
+      const leads = await storage.getCorporateLeads({
+        industry: targetIndustry,
+        status: 'new'
+      });
+
+      if (leads.length === 0) {
+        return res.status(400).json({ error: "No corporate leads found for target industry" });
+      }
+
+      let emailsSent = 0;
+      let emailsFailed = 0;
+
+      for (const lead of leads) {
+        try {
+          const success = await sendCorporateCampaignEmail(
+            lead.email,
+            lead.companyName,
+            { customMessage, industry: targetIndustry }
+          );
+          
+          if (success) {
+            emailsSent++;
+            // Update lead status to contacted
+            await storage.updateCorporateLead(lead.id, {
+              status: 'contacted',
+              lastContactAt: new Date()
+            });
+          } else {
+            emailsFailed++;
+          }
+        } catch (error) {
+          console.error(`Failed to send email to ${lead.email}:`, error);
+          emailsFailed++;
+        }
+      }
+
+      res.json({
+        success: true,
+        targetIndustry,
+        totalLeads: leads.length,
+        emailsSent,
+        emailsFailed
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to send corporate outreach" });
     }
   });
 

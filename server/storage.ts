@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -72,6 +72,23 @@ export interface IStorage {
   getMissionSponsorships(missionId: string): Promise<MissionSponsorship[]>;
   confirmMissionSponsorship(id: string): Promise<MissionSponsorship | undefined>;
 
+  // Corporate Lead Management
+  createCorporateLead(lead: InsertCorporateLead): Promise<CorporateLead>;
+  getCorporateLeads(filters?: { status?: string; industry?: string; priority?: string }): Promise<CorporateLead[]>;
+  getCorporateLead(id: string): Promise<CorporateLead | undefined>;
+  updateCorporateLead(id: string, updates: Partial<CorporateLead>): Promise<CorporateLead | undefined>;
+
+  // Email Campaign Management
+  createEmailCampaign(campaign: InsertEmailCampaign): Promise<EmailCampaign>;
+  getEmailCampaigns(): Promise<EmailCampaign[]>;
+  getEmailCampaign(id: string): Promise<EmailCampaign | undefined>;
+  updateEmailCampaign(id: string, updates: Partial<EmailCampaign>): Promise<EmailCampaign | undefined>;
+
+  // Email Subscriber Management
+  createEmailSubscriber(subscriber: InsertEmailSubscriber): Promise<EmailSubscriber>;
+  getEmailSubscribers(filters?: { subscriberType?: string; industry?: string }): Promise<EmailSubscriber[]>;
+  getEmailSubscriber(id: string): Promise<EmailSubscriber | undefined>;
+
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
 }
@@ -90,6 +107,9 @@ export class MemStorage implements IStorage {
   private sponsorshipTiers: Map<string, SponsorshipTier>;
   private sponsoredMissions: Map<string, SponsoredMission>;
   private missionSponsorships: Map<string, MissionSponsorship>;
+  private corporateLeads: Map<string, CorporateLead>;
+  private emailCampaigns: Map<string, EmailCampaign>;
+  private emailSubscribers: Map<string, EmailSubscriber>;
 
   constructor() {
     this.users = new Map();
@@ -104,6 +124,9 @@ export class MemStorage implements IStorage {
     this.sponsorshipTiers = new Map();
     this.sponsoredMissions = new Map();
     this.missionSponsorships = new Map();
+    this.corporateLeads = new Map();
+    this.emailCampaigns = new Map();
+    this.emailSubscribers = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -1300,6 +1323,152 @@ export class MemStorage implements IStorage {
     }
 
     return updatedSponsorship;
+  }
+
+  // Corporate Lead Management
+  async createCorporateLead(insertLead: InsertCorporateLead): Promise<CorporateLead> {
+    const id = randomUUID();
+    const lead: CorporateLead = {
+      id,
+      ...insertLead,
+      phone: insertLead.phone || null,
+      deviceCount: insertLead.deviceCount || null,
+      message: insertLead.message || null,
+      source: insertLead.source || "cobone_landing",
+      status: "new",
+      priority: "medium",
+      estimatedValue: null,
+      assignedTo: null,
+      lastContactAt: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.corporateLeads.set(id, lead);
+    return lead;
+  }
+
+  async getCorporateLeads(filters?: { status?: string; industry?: string; priority?: string }): Promise<CorporateLead[]> {
+    let leads = Array.from(this.corporateLeads.values());
+    
+    if (filters?.status) {
+      leads = leads.filter(lead => lead.status === filters.status);
+    }
+    if (filters?.industry) {
+      leads = leads.filter(lead => lead.industry === filters.industry);
+    }
+    if (filters?.priority) {
+      leads = leads.filter(lead => lead.priority === filters.priority);
+    }
+    
+    return leads.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getCorporateLead(id: string): Promise<CorporateLead | undefined> {
+    return this.corporateLeads.get(id);
+  }
+
+  async updateCorporateLead(id: string, updates: Partial<CorporateLead>): Promise<CorporateLead | undefined> {
+    const lead = this.corporateLeads.get(id);
+    if (!lead) return undefined;
+
+    const updatedLead: CorporateLead = {
+      ...lead,
+      ...updates,
+      updatedAt: new Date(),
+    };
+
+    this.corporateLeads.set(id, updatedLead);
+    return updatedLead;
+  }
+
+  // Email Campaign Management
+  async createEmailCampaign(insertCampaign: InsertEmailCampaign): Promise<EmailCampaign> {
+    const id = randomUUID();
+    const campaign: EmailCampaign = {
+      id,
+      ...insertCampaign,
+      industry: insertCampaign.industry || null,
+      status: "draft",
+      scheduledAt: insertCampaign.scheduledAt || null,
+      sentAt: null,
+      totalRecipients: 0,
+      emailsSent: 0,
+      opensCount: 0,
+      clicksCount: 0,
+      unsubscribes: 0,
+      bounces: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.emailCampaigns.set(id, campaign);
+    return campaign;
+  }
+
+  async getEmailCampaigns(): Promise<EmailCampaign[]> {
+    return Array.from(this.emailCampaigns.values())
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getEmailCampaign(id: string): Promise<EmailCampaign | undefined> {
+    return this.emailCampaigns.get(id);
+  }
+
+  async updateEmailCampaign(id: string, updates: Partial<EmailCampaign>): Promise<EmailCampaign | undefined> {
+    const campaign = this.emailCampaigns.get(id);
+    if (!campaign) return undefined;
+
+    const updatedCampaign: EmailCampaign = {
+      ...campaign,
+      ...updates,
+      updatedAt: new Date(),
+    };
+
+    this.emailCampaigns.set(id, updatedCampaign);
+    return updatedCampaign;
+  }
+
+  // Email Subscriber Management
+  async createEmailSubscriber(insertSubscriber: InsertEmailSubscriber): Promise<EmailSubscriber> {
+    const id = randomUUID();
+    const subscriber: EmailSubscriber = {
+      id,
+      ...insertSubscriber,
+      firstName: insertSubscriber.firstName || null,
+      lastName: insertSubscriber.lastName || null,
+      companyName: insertSubscriber.companyName || null,
+      industry: insertSubscriber.industry || null,
+      subscriberType: insertSubscriber.subscriberType || "corporate",
+      isActive: true,
+      source: insertSubscriber.source || "website",
+      tags: insertSubscriber.tags || [],
+      preferences: {},
+      lastEmailAt: null,
+      subscribedAt: new Date(),
+      unsubscribedAt: null,
+    };
+    
+    this.emailSubscribers.set(id, subscriber);
+    return subscriber;
+  }
+
+  async getEmailSubscribers(filters?: { subscriberType?: string; industry?: string }): Promise<EmailSubscriber[]> {
+    let subscribers = Array.from(this.emailSubscribers.values())
+      .filter(sub => sub.isActive);
+    
+    if (filters?.subscriberType) {
+      subscribers = subscribers.filter(sub => sub.subscriberType === filters.subscriberType);
+    }
+    if (filters?.industry) {
+      subscribers = subscribers.filter(sub => sub.industry === filters.industry);
+    }
+    
+    return subscribers;
+  }
+
+  async getEmailSubscriber(id: string): Promise<EmailSubscriber | undefined> {
+    return this.emailSubscribers.get(id);
   }
 
   async calculateTradeValue(phoneModel: string, condition: string): Promise<number> {

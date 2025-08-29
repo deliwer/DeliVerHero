@@ -32,6 +32,7 @@ import { CorporateDashboardPage } from "@/pages/corporate-dashboard";
 import { CorporateQuotesPage } from "@/pages/corporate-quotes";
 import { PurchaseOrdersPage } from "@/pages/purchase-orders";
 import { AccountManagementPage } from "@/pages/account-management";
+import CoboneCorporate from "@/pages/cobone-corporate";
 
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -69,6 +70,7 @@ function Router() {
       <Route path="/corporate-quotes" component={CorporateQuotesPage} />
       <Route path="/purchase-orders" component={PurchaseOrdersPage} />
       <Route path="/account-management" component={AccountManagementPage} />
+      <Route path="/cobone-corporate" component={CoboneCorporate} />
 
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
