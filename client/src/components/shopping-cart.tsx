@@ -1,23 +1,13 @@
 
 import { useState, useEffect } from "react";
-import { ShoppingCart, Plus, Minus, Trash2, Star, Package } from "lucide-react";
+import { ShoppingCart as ShoppingCartIcon, Plus, Minus, Trash2, Star, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { shopifyCartService } from "@/lib/shopify-cart";
 
-interface CartItem {
-  id: string;
-  variantId: string;
-  productId: string;
-  title: string;
-  variant: string;
-  price: number;
-  quantity: number;
-  image: string;
-  available: boolean;
-}
+import { CartItem } from "@/types/cart";
 
 interface ShoppingCartProps {
   isOpen: boolean;
@@ -121,7 +111,7 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
           <CardHeader className="border-b border-slate-700">
             <div className="flex items-center justify-between">
               <CardTitle className="text-white flex items-center gap-2">
-                <ShoppingCart className="w-5 h-5" />
+                <ShoppingCartIcon className="w-5 h-5" />
                 Shopping Cart ({cartItems.length})
               </CardTitle>
               <Button
@@ -146,7 +136,7 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
             ) : cartItems.length === 0 ? (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center">
-                  <ShoppingCart className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <ShoppingCartIcon className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-400 mb-2">Your cart is empty</p>
                   <Button
                     onClick={onClose}

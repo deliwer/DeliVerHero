@@ -2,10 +2,13 @@
 export interface CartItem {
   id: string;
   variantId: string;
+  productId: string;
   title: string;
+  variant: string;
   price: number;
   quantity: number;
-  image?: string;
+  image: string;
+  available: boolean;
   handle?: string;
 }
 
