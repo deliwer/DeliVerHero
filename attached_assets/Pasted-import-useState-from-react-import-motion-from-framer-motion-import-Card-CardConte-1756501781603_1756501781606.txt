@@ -1,0 +1,93 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export default function CoboneDeliwerCSR() {
+  const [impact, setImpact] = useState({
+    devices: 1000,
+    water: 50000,
+    co2: 3,
+    corporates: 15,
+  });
+
+  return (
+    <div className="bg-white text-gray-800 min-h-screen">
+      {/* Hero Section */}
+      <section className="text-center py-16 bg-gradient-to-r from-blue-600 to-green-500 text-white">
+        <motion.h1 initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl font-bold mb-4">
+          Deliwer x Cobone Corporate CSR Trade-In
+        </motion.h1>
+        <p className="text-lg max-w-2xl mx-auto">
+          Turn Old iPhones into Clean Water & CSR Impact — a co-branded initiative aligning business with sustainability.
+        </p>
+        <div className="mt-6 flex justify-center gap-4">
+          <Button className="bg-white text-blue-600 font-semibold rounded-2xl shadow-md">Book Corporate Deal</Button>
+          <Button variant="outline" className="bg-transparent border-white text-white rounded-2xl">Download CSR Kit</Button>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-12 px-6 grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {[
+          { step: "1", title: "Trade-in iPhones", desc: "Corporate bulk or employee devices collected with instant valuation." },
+          { step: "2", title: "Convert to AquaCafe Kits", desc: "Each phone funds a purification system delivered to employees or offices." },
+          { step: "3", title: "CSR Recognition", desc: "Cobone & Deliwer co-branding, certificates, and leaderboard impact." },
+        ].map((item, idx) => (
+          <Card key={idx} className="rounded-2xl shadow-lg">
+            <CardContent className="p-6 text-center">
+              <h2 className="text-2xl font-bold text-blue-600 mb-2">Step {item.step}</h2>
+              <p className="font-semibold mb-1">{item.title}</p>
+              <p className="text-gray-600">{item.desc}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+
+      {/* Impact Counter */}
+      <section className="bg-gray-100 py-12">
+        <h2 className="text-3xl font-bold text-center mb-8">Live CSR Impact</h2>
+        <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto px-6">
+          {[
+            { label: "Devices traded-in", value: impact.devices },
+            { label: "Liters purified", value: impact.water },
+            { label: "CO₂ saved (tons)", value: impact.co2 },
+            { label: "Corporate partners", value: impact.corporates },
+          ].map((stat, idx) => (
+            <Card key={idx} className="rounded-2xl shadow-md text-center">
+              <CardContent className="p-6">
+                <p className="text-3xl font-bold text-blue-600">{stat.value.toLocaleString()}</p>
+                <p className="text-gray-700 mt-2">{stat.label}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Corporate Benefits */}
+      <section className="py-12 px-6 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-8">Corporate Benefits</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {["Immediate CSR impact aligned with UN SDGs", "Employee perk – wellness benefit with water kits", "Featured on Cobone CSR channel", "Positive media & PR exposure"]
+            .map((benefit, idx) => (
+              <Card key={idx} className="rounded-2xl shadow-md">
+                <CardContent className="p-6 flex items-center">
+                  <span className="text-blue-600 text-xl font-bold mr-4">✓</span>
+                  <p className="text-gray-700">{benefit}</p>
+                </CardContent>
+              </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="text-center py-16 bg-blue-600 text-white">
+        <h2 className="text-3xl font-bold mb-4">Join the Movement</h2>
+        <p className="max-w-xl mx-auto mb-6">
+          Be among the first corporates in the UAE to lead a co-branded sustainability campaign with Cobone & Deliwer.
+        </p>
+        <Button className="bg-white text-blue-600 font-semibold rounded-2xl shadow-md">Book Corporate Deal</Button>
+      </section>
+    </div>
+  );
+}
