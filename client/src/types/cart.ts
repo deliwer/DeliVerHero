@@ -12,6 +12,24 @@ export interface CartItem {
   handle?: string;
 }
 
+export interface Product {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  image: string;
+  features: string[];
+  badge?: string;
+  popular?: boolean;
+  rating?: number;
+  reviews?: number;
+  description?: string;
+  shopifyUrl?: string;
+  variantId?: string;
+  available?: boolean;
+}
+
 export interface CheckoutData {
   email: string;
   firstName: string;

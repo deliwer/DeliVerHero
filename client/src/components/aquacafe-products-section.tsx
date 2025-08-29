@@ -2,63 +2,111 @@ import { ShoppingCart, Star, CheckCircle, Droplets, Zap, Shield, Award } from "l
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { shopifyCartService } from "@/lib/shopify-cart";
+import { useToast } from "@/hooks/use-toast";
+import { Product } from "@/types/cart";
+import { useState } from "react";
 
-const products = [
+const products: Product[] = [
   {
     id: "aquacafe-starter",
     name: "AquaCafe Starter Kit",
-    price: "AED 99",
-    originalPrice: "AED 399",
+    category: "aquacafe",
+    price: 99,
+    originalPrice: 399,
+    image: "🚰",
     rating: 4.8,
     reviews: 247,
     description: "Loyalty member exclusive - Essential water filtration starter kit",
     features: ["5-Stage Filtration", "2L/min Flow Rate", "6-Month Filter Life", "FREE Installation (Loyalty Perk)"],
     badge: "Loyalty Exclusive",
-    badgeColor: "bg-amber-500",
+    variantId: "aquacafe-starter-kit",
+    available: true,
     shopifyUrl: "https://www.deliwer.com/products/aquacafe-starter"
   },
   {
     id: "aquacafe-pro", 
     name: "AquaCafe Pro",
-    price: "AED 299",
-    originalPrice: "AED 499",
+    category: "aquacafe",
+    price: 299,
+    originalPrice: 499,
+    image: "💎",
     rating: 4.9,
     reviews: 156,
     description: "Advanced filtration with smart monitoring",
     features: ["7-Stage Filtration", "Smart IoT Monitoring", "UV Sterilization", "1-Year Warranty"],
     badge: "Premium",
-    badgeColor: "bg-blue-500",
+    variantId: "aquacafe-pro-system",
+    available: true,
     shopifyUrl: "https://www.deliwer.com/products/aquacafe-pro"
   },
   {
     id: "aquacafe-hero",
     name: "AquaCafe Hero Edition",
-    price: "AED 599", 
-    originalPrice: "AED 899",
+    category: "aquacafe",
+    price: 599, 
+    originalPrice: 899,
+    image: "🏆",
     rating: 5.0,
     reviews: 89,
     description: "Ultimate eco-warrior water system",
     features: ["9-Stage Filtration", "Alkaline Enhancement", "Mineral Restoration", "5-Year Warranty"],
-    badge: "Hero Edition", 
-    badgeColor: "bg-hero-green-500",
+    badge: "Hero Edition",
+    variantId: "aquacafe-hero-edition",
+    available: true,
     shopifyUrl: "https://www.deliwer.com/products/aquacafe-hero"
   },
   {
     id: "aquacafe-commercial",
     name: "AquaCafe Commercial",
-    price: "AED 1,299",
-    originalPrice: "AED 1,899", 
+    category: "aquacafe",
+    price: 1299,
+    originalPrice: 1899, 
+    image: "🏢",
     rating: 4.9,
     reviews: 45,
     description: "High-capacity system for businesses",
     features: ["Industrial Grade", "500L/day Capacity", "Real-time Monitoring", "24/7 Support"],
     badge: "Commercial",
-    badgeColor: "bg-purple-500",
+    variantId: "aquacafe-commercial-system",
+    available: true,
     shopifyUrl: "https://www.deliwer.com/products/aquacafe-commercial"
   }
 ];
 
 export function AquaCafeProductsSection() {
+  const [isLoading, setIsLoading] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const addToCart = async (product: Product) => {
+    setIsLoading(product.id);
+    
+    try {
+      await shopifyCartService.addToCart({
+        id: product.id,
+        variantId: product.variantId || `${product.id}-default`,
+        title: product.name,
+        variant: "Default",
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      });
+      
+      toast({
+        title: "Added to Cart",
+        description: `${product.name} has been added to your cart`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(null);
+    }
+  };
+
   return (
     <section className="py-16 px-4 bg-gradient-to-br from-slate-800/80 to-slate-900/90 backdrop-blur-sm" data-testid="aquacafe-products">
       <div className="max-w-7xl mx-auto">
@@ -93,7 +141,7 @@ export function AquaCafeProductsSection() {
                   </div>
                   
                   {product.badge && (
-                    <Badge className={`absolute top-3 left-3 ${product.badgeColor} text-white border-0 font-bold`}>
+                    <Badge className="absolute top-3 left-3 bg-hero-green-500 text-white border-0 font-bold">
                       {product.badge}
                     </Badge>
                   )}
@@ -127,9 +175,9 @@ export function AquaCafeProductsSection() {
                   {/* Price */}
                   <div className="flex items-center justify-between mb-4">
                     <div>
-                      <span className="text-2xl font-bold text-white">{product.price}</span>
+                      <span className="text-2xl font-bold text-white">AED {product.price}</span>
                       {product.originalPrice && (
-                        <span className="text-sm text-gray-500 line-through ml-2">{product.originalPrice}</span>
+                        <span className="text-sm text-gray-500 line-through ml-2">AED {product.originalPrice}</span>
                       )}
                     </div>
                     <div className="text-xs text-gray-400">
@@ -137,22 +185,24 @@ export function AquaCafeProductsSection() {
                     </div>
                   </div>
 
-                  {/* CTA Button with GOAFFPRO Tracking */}
+                  {/* Add to Cart Button */}
                   <button
-                    onClick={() => {
-                      const affiliateLink = `${product.shopifyUrl}?ref=AQUA${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
-                      const shareText = `💧 Check out this amazing ${product.name} - ${product.description}! Get yours with FREE Bakers Kitchen AED100 Kangen Water voucher when you refer friends! ${affiliateLink}`;
-                      
-                      if (navigator.share) {
-                        navigator.share({ title: `${product.name} - DeliWer AquaCafe`, text: shareText, url: affiliateLink });
-                      } else {
-                        window.open(affiliateLink, '_blank');
-                      }
-                    }}
-                    className="w-full bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white py-3 rounded-lg font-medium transition-all inline-flex items-center justify-center group"
+                    onClick={() => addToCart(product)}
+                    disabled={isLoading === product.id}
+                    className="w-full bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white py-3 rounded-lg font-medium transition-all inline-flex items-center justify-center group disabled:opacity-50"
+                    data-testid={`button-add-to-cart-aquacafe-${product.id}`}
                   >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Order & Share
+                    {isLoading === product.id ? (
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+                        Adding...
+                      </div>
+                    ) : (
+                      <>
+                        <ShoppingCart className="w-4 h-4 mr-2" />
+                        Add to Cart
+                      </>
+                    )}
                   </button>
                 </div>
               </CardContent>

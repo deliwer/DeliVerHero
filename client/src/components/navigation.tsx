@@ -1,14 +1,31 @@
 import { Link, useLocation } from "wouter";
 import { Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, Briefcase, ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { shopifyCartService } from "@/lib/shopify-cart";
 
 export function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   // Automatically detect B2B mode based on subdomain
   const isChainTrackDomain = window.location.hostname.includes('chaintrack');
   const [isB2BMode, setIsB2BMode] = useState(isChainTrackDomain);
+
+  // Update cart count whenever navigation component mounts or updates
+  useEffect(() => {
+    const updateCartCount = () => {
+      const count = shopifyCartService.getCartCount();
+      setCartCount(count);
+    };
+
+    updateCartCount();
+    
+    // Poll for cart updates every 2 seconds when component is mounted
+    const interval = setInterval(updateCartCount, 2000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const consumerNavItems = [
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
@@ -142,9 +159,11 @@ export function Navigation() {
                 data-testid="button-cart"
               >
                 <ShoppingCart className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  3
-                </span>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
 
               <Link

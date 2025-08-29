@@ -5,6 +5,8 @@ import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home,
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
+import { shopifyCartService } from "@/lib/shopify-cart";
+import { Product } from "@/types/cart";
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -19,7 +21,7 @@ export default function Products() {
     { id: "premium-water", label: "Premium Water", icon: Sparkles }
   ];
 
-  const products = [
+  const products: Product[] = [
     // Refurbished Phones
     {
       id: "iphone-15-pro",
@@ -29,7 +31,9 @@ export default function Products() {
       originalPrice: 4499,
       image: "📱",
       features: ["256GB Storage", "Battery 95%+", "Like New Condition", "1-Year Warranty"],
-      badge: "Latest Model"
+      badge: "Latest Model",
+      variantId: "iphone-15-pro-256gb",
+      available: true
     },
     {
       id: "iphone-14-pro",
@@ -39,7 +43,9 @@ export default function Products() {
       originalPrice: 3699,
       image: "📱",
       features: ["128GB Storage", "Battery 90%+", "Minor Cosmetic Wear", "6-Month Warranty"],
-      popular: true
+      popular: true,
+      variantId: "iphone-14-pro-128gb",
+      available: true
     },
     {
       id: "iphone-13",
@@ -48,7 +54,9 @@ export default function Products() {
       price: 2199,
       originalPrice: 2799,
       image: "📱",
-      features: ["128GB Storage", "Battery 85%+", "Functional Perfect", "3-Month Warranty"]
+      features: ["128GB Storage", "Battery 85%+", "Functional Perfect", "3-Month Warranty"],
+      variantId: "iphone-13-128gb",
+      available: true
     },
     {
       id: "iphone-12",
@@ -58,7 +66,9 @@ export default function Products() {
       originalPrice: 2299,
       image: "📱",
       features: ["64GB Storage", "Battery 88%+", "Light Usage Signs", "6-Month Warranty"],
-      badge: "Best Value"
+      badge: "Best Value",
+      variantId: "iphone-12-64gb",
+      available: true
     },
 
     // Water Solutions
@@ -69,7 +79,9 @@ export default function Products() {
       price: 199,
       originalPrice: 299,
       image: "🚰",
-      features: ["2-stage filtration", "1.5L capacity", "BPA-free design", "6-month filter life"]
+      features: ["2-stage filtration", "1.5L capacity", "BPA-free design", "6-month filter life"],
+      variantId: "aquacafe-basic-pitcher",
+      available: true
     },
     {
       id: "aquacafe-premium", 
@@ -79,7 +91,9 @@ export default function Products() {
       originalPrice: 599,
       image: "🏆",
       features: ["4-stage filtration", "2.5L capacity", "Smart LED indicators", "1-year filter life"],
-      popular: true
+      popular: true,
+      variantId: "aquacafe-premium-pitcher",
+      available: true
     },
     {
       id: "under-sink-compact",
@@ -165,22 +179,28 @@ export default function Products() {
     ? products 
     : products.filter(product => product.category === selectedCategory);
 
-  const handleOrderNow = async (productId: string, productName: string) => {
-    setIsOrderLoading(productId);
+  const addToCart = async (product: Product) => {
+    setIsOrderLoading(product.id);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      const shopifyUrl = `https://www.deliwer.com/products/${productId}`;
-      window.open(shopifyUrl, '_blank');
+      await shopifyCartService.addToCart({
+        id: product.id,
+        variantId: product.variantId || `${product.id}-default`,
+        title: product.name,
+        variant: "Default",
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      });
       
       toast({
-        title: "Redirecting to Checkout",
-        description: `Opening checkout for ${productName}`,
+        title: "Added to Cart",
+        description: `${product.name} has been added to your cart`,
       });
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to process order. Please try again.",
+        description: "Failed to add item to cart. Please try again.",
         variant: "destructive"
       });
     } finally {
@@ -277,11 +297,15 @@ export default function Products() {
                   <h3 className="text-lg font-semibold text-white mb-1">{product.name}</h3>
                   <div className="flex items-center justify-center gap-2 mb-3">
                     <span className="text-2xl font-bold text-white">AED {product.price.toLocaleString()}</span>
-                    <span className="text-sm text-gray-400 line-through">AED {product.originalPrice.toLocaleString()}</span>
+                    {product.originalPrice && (
+                      <span className="text-sm text-gray-400 line-through">AED {product.originalPrice.toLocaleString()}</span>
+                    )}
                   </div>
-                  <div className="text-sm text-emerald-400 font-semibold">
-                    Save AED {(product.originalPrice - product.price).toLocaleString()}
-                  </div>
+                  {product.originalPrice && (
+                    <div className="text-sm text-emerald-400 font-semibold">
+                      Save AED {(product.originalPrice - product.price).toLocaleString()}
+                    </div>
+                  )}
                 </div>
                 
                 <ul className="text-sm text-gray-300 space-y-2 mb-6">
@@ -304,24 +328,24 @@ export default function Products() {
                   </Button>
                   
                   <Button 
-                    onClick={() => handleOrderNow(product.id, product.name)}
+                    onClick={() => addToCart(product)}
                     disabled={isOrderLoading === product.id}
                     className={`w-full py-3 rounded-xl font-semibold transition-all transform hover:scale-105 ${
                       product.popular 
                         ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black'
                         : 'bg-slate-700 hover:bg-slate-600 text-white'
                     }`}
-                    data-testid={`button-order-${product.id}`}
+                    data-testid={`button-add-to-cart-${product.id}`}
                   >
                     {isOrderLoading === product.id ? (
                       <div className="flex items-center justify-center gap-2">
                         <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
-                        Processing...
+                        Adding...
                       </div>
                     ) : (
                       <>
                         <ShoppingCart className="w-4 h-4 mr-2" />
-                        Order Now
+                        Add to Cart
                       </>
                     )}
                   </Button>
