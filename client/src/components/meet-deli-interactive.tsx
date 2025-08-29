@@ -6,7 +6,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { openAIService } from "@/lib/openai-service";
 import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import { shopifyCartService } from "@/lib/shopify-cart";
 
 const DEVICE_OPTIONS = [
   { model: "iPhone 16 Pro Max", baseValue: 4200, points: 4000 },
@@ -35,6 +37,8 @@ interface TradeCalculationResult {
 }
 
 export function MeetDeliInteractive() {
+  const { toast } = useToast();
+  
   // AI Chat State
   const [inputMessage, setInputMessage] = useState("");
   const [isAILoading, setIsAILoading] = useState(false);
@@ -47,6 +51,7 @@ export function MeetDeliInteractive() {
   const [calculatedValue, setCalculatedValue] = useState<number | null>(null);
   const [calculatedPoints, setCalculatedPoints] = useState<number | null>(null);
   const [activeStep, setActiveStep] = useState(1);
+  const [savedQuoteId, setSavedQuoteId] = useState<string | null>(null);
 
   // Active interaction mode
   const [activeTab, setActiveTab] = useState("calculator");
@@ -101,6 +106,30 @@ export function MeetDeliInteractive() {
     },
   });
 
+  const saveQuoteMutation = useMutation({
+    mutationFn: async (data: { phoneModel: string; phoneCondition: string; estimatedValue: number }) => {
+      return await apiRequest('/api/quotes', 'POST', {
+        ...data,
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+      });
+    },
+    onSuccess: (quote: any) => {
+      setSavedQuoteId(quote.id);
+      toast({
+        title: "Quote saved successfully!",
+        description: "Your trade-in quote is valid for 7 days.",
+      });
+      queryClient.invalidateQueries({ queryKey: ['/api/quotes'] });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Failed to save quote",
+        description: error.message || "Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleCalculate = () => {
     if (selectedDevice && selectedCondition) {
       const device = DEVICE_OPTIONS.find(d => d.model === selectedDevice);
@@ -119,6 +148,39 @@ export function MeetDeliInteractive() {
       device: selectedDevice,
       condition: selectedCondition,
     });
+  };
+
+  const handleSaveQuote = () => {
+    if (calculatedValue && selectedDevice && selectedCondition) {
+      saveQuoteMutation.mutate({
+        phoneModel: selectedDevice,
+        phoneCondition: selectedCondition,
+        estimatedValue: calculatedValue,
+      });
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (calculatedValue && selectedDevice && selectedCondition) {
+      const conditionLabel = CONDITION_OPTIONS.find(c => c.condition === selectedCondition)?.label || "Good";
+      const cartItem = {
+        id: `quote-${selectedDevice.replace(/\s+/g, '-')}-${selectedCondition}`,
+        variantId: `variant-${selectedDevice.replace(/\s+/g, '-')}-${selectedCondition}`,
+        productId: `product-${selectedDevice.replace(/\s+/g, '-')}`,
+        title: `${selectedDevice} Trade-In Quote`,
+        variant: `${conditionLabel} Condition`,
+        price: calculatedValue * 100, // Convert AED to fils (cents)
+        image: "/iphone-trade-placeholder.png",
+        quantity: 1,
+        available: true,
+      };
+
+      shopifyCartService.addToCart(cartItem);
+      toast({
+        title: "Added to Cart!",
+        description: `${selectedDevice} trade-in quote (AED ${calculatedValue}) added to cart`,
+      });
+    }
   };
 
   const handleStepClick = (step: number) => {
@@ -311,6 +373,53 @@ export function MeetDeliInteractive() {
                         Equal to removing {calculationResult?.bottlesPrevented || 520} plastic bottles from waste
                       </div>
                     </div>
+
+                    {/* Action Buttons */}
+                    {calculatedValue && (
+                      <div className="flex gap-3 pt-4">
+                        {!savedQuoteId && (
+                          <Button
+                            onClick={handleSaveQuote}
+                            disabled={saveQuoteMutation.isPending}
+                            className="flex-1 bg-gradient-to-r from-dubai-blue-500 to-dubai-blue-600 hover:from-dubai-blue-600 hover:to-dubai-blue-700 text-white"
+                            data-testid="button-save-quote"
+                          >
+                            {saveQuoteMutation.isPending ? (
+                              <>
+                                <Rocket className="mr-2 w-4 h-4 animate-spin" />
+                                Saving Quote...
+                              </>
+                            ) : (
+                              <>
+                                <Star className="mr-2 w-4 h-4" />
+                                Save Quote
+                              </>
+                            )}
+                          </Button>
+                        )}
+                        <Button
+                          onClick={handleAddToCart}
+                          className="flex-1 bg-gradient-to-r from-hero-green-500 to-hero-green-600 hover:from-hero-green-600 hover:to-hero-green-700 text-white"
+                          data-testid="button-add-to-cart"
+                        >
+                          <Trophy className="mr-2 w-4 h-4" />
+                          Add to Cart
+                        </Button>
+                      </div>
+                    )}
+
+                    {/* Quote Saved Confirmation */}
+                    {savedQuoteId && (
+                      <div className="p-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-xl border border-green-500/30">
+                        <div className="flex items-center justify-center">
+                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                          <span className="text-green-400 font-medium">Quote saved! Valid for 7 days</span>
+                        </div>
+                        <p className="text-gray-300 text-sm text-center mt-2">
+                          Quote ID: {savedQuoteId.slice(0, 8)}...
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

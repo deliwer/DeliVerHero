@@ -7,6 +7,14 @@ export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  email: text("email"),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  phone: text("phone"),
+  address: text("address"),
+  city: text("city").default("Dubai"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
 
 export const heroes = pgTable("heroes", {
@@ -59,6 +67,32 @@ export const referrals = pgTable("referrals", {
   refereeId: varchar("referee_id").notNull().references(() => heroes.id),
   pointsEarned: integer("points_earned").notNull().default(50),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const contacts = pgTable("contacts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  company: text("company"),
+  subject: text("subject").notNull(),
+  message: text("message").notNull(),
+  status: text("status").notNull().default("new"), // new, reviewed, responded, closed
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const quotes = pgTable("quotes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id),
+  phoneModel: text("phone_model").notNull(),
+  phoneCondition: text("phone_condition").notNull(),
+  estimatedValue: integer("estimated_value").notNull(),
+  actualValue: integer("actual_value"),
+  status: text("status").notNull().default("pending"), // pending, approved, expired, completed
+  notes: text("notes"),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
 
 export const socialChallenges = pgTable("social_challenges", {
@@ -349,6 +383,24 @@ export const insertSocialShareSchema = createInsertSchema(socialShares).pick({
   shareText: true,
 });
 
+export const insertContactSchema = createInsertSchema(contacts).pick({
+  name: true,
+  email: true,
+  phone: true,
+  company: true,
+  subject: true,
+  message: true,
+});
+
+export const insertQuoteSchema = createInsertSchema(quotes).pick({
+  userId: true,
+  phoneModel: true,
+  phoneCondition: true,
+  estimatedValue: true,
+  notes: true,
+  expiresAt: true,
+});
+
 export const updateHeroSchema = createInsertSchema(heroes).pick({
   points: true,
   level: true,
@@ -381,3 +433,12 @@ export type InsertChallengeParticipant = z.infer<typeof insertChallengeParticipa
 export type ChallengeParticipant = typeof challengeParticipants.$inferSelect;
 export type InsertSocialShare = z.infer<typeof insertSocialShareSchema>;
 export type SocialShare = typeof socialShares.$inferSelect;
+
+export type InsertContact = z.infer<typeof insertContactSchema>;
+export type Contact = typeof contacts.$inferSelect;
+
+export type InsertQuote = z.infer<typeof insertQuoteSchema>;
+export type Quote = typeof quotes.$inferSelect;
+
+export type User = typeof users.$inferSelect;
+export type InsertUser = typeof users.$inferInsert;

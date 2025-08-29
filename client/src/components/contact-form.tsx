@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 interface ContactFormProps {
   type?: "general" | "support" | "sales" | "partnership";
@@ -32,21 +33,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          source: "deliwer_metaverse",
-          timestamp: new Date().toISOString(),
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to send message");
-      }
+      await apiRequest("/api/contact", "POST", formData);
 
       toast({
         title: "Message sent successfully!",

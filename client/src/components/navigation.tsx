@@ -32,6 +32,8 @@ export function Navigation() {
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Play", id: "play" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
+    { path: "/profile", label: "Profile", id: "profile" },
+    { path: "/contact", label: "Contact", id: "contact" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "CSR/Partners", id: "partners" },
   ];

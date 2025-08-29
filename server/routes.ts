@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema } from "@shared/schema";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -9,6 +9,93 @@ const openai = new OpenAI({
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // User profile routes
+  app.get("/api/user/profile", async (req, res) => {
+    try {
+      // For demo purposes, return a sample user. In production, this would get user from authentication session
+      const sampleUser = await storage.createUser({
+        username: "demo_user",
+        password: "temp_password",
+        email: "user@example.com",
+        firstName: "John", 
+        lastName: "Doe",
+        phone: "+971 50 123 4567",
+        address: "123 Main St",
+        city: "Dubai"
+      });
+      res.json(sampleUser);
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch user profile" });
+    }
+  });
+
+  app.put("/api/user/profile", async (req, res) => {
+    try {
+      // For demo purposes, use a fixed user ID. In production, get from auth session
+      const userId = "demo-user-id";
+      const updatedUser = await storage.updateUser(userId, req.body);
+      if (!updatedUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json(updatedUser);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to update profile" });
+    }
+  });
+
+  // Contact routes
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const validatedData = insertContactSchema.parse(req.body);
+      const contact = await storage.createContact(validatedData);
+      res.json(contact);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Invalid contact data" });
+    }
+  });
+
+  app.get("/api/contacts", async (req, res) => {
+    try {
+      const contacts = await storage.getAllContacts();
+      res.json(contacts);
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch contacts" });
+    }
+  });
+
+  // Quote routes
+  app.post("/api/quotes", async (req, res) => {
+    try {
+      const validatedData = insertQuoteSchema.parse(req.body);
+      const quote = await storage.createQuote(validatedData);
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Invalid quote data" });
+    }
+  });
+
+  app.get("/api/quotes/:userId", async (req, res) => {
+    try {
+      const quotes = await storage.getQuotesByUser(req.params.userId);
+      res.json(quotes);
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch quotes" });
+    }
+  });
+
+  app.patch("/api/quotes/:id/status", async (req, res) => {
+    try {
+      const { status } = req.body;
+      const quote = await storage.updateQuoteStatus(req.params.id, status);
+      if (!quote) {
+        return res.status(404).json({ error: "Quote not found" });
+      }
+      res.json(quote);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to update quote status" });
+    }
+  });
   
   // Hero routes
   app.get("/api/heroes", async (req, res) => {

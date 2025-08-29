@@ -1,7 +1,23 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
+  // User management
+  getUser(id: string): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+  updateUser(id: string, updates: Partial<User>): Promise<User | undefined>;
+
+  // Contact management
+  createContact(contact: InsertContact): Promise<Contact>;
+  getAllContacts(): Promise<Contact[]>;
+
+  // Quote management
+  createQuote(quote: InsertQuote): Promise<Quote>;
+  getQuote(id: string): Promise<Quote | undefined>;
+  getQuotesByUser(userId: string): Promise<Quote[]>;
+  updateQuoteStatus(id: string, status: string): Promise<Quote | undefined>;
+
   // Hero management
   getHero(id: string): Promise<Hero | undefined>;
   getHeroByEmail(email: string): Promise<Hero | undefined>;
@@ -61,6 +77,9 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
+  private users: Map<string, User>;
+  private contacts: Map<string, Contact>;
+  private quotes: Map<string, Quote>;
   private heroes: Map<string, Hero>;
   private tradeIns: Map<string, TradeIn>;
   private impactStats: ImpactStats;
@@ -73,6 +92,9 @@ export class MemStorage implements IStorage {
   private missionSponsorships: Map<string, MissionSponsorship>;
 
   constructor() {
+    this.users = new Map();
+    this.contacts = new Map();
+    this.quotes = new Map();
     this.heroes = new Map();
     this.tradeIns = new Map();
     this.referrals = new Map();
@@ -779,6 +801,99 @@ export class MemStorage implements IStorage {
     tiers.forEach(tier => this.sponsorshipTiers.set(tier.id, tier));
     sponsors.forEach(sponsor => this.sponsors.set(sponsor.id, sponsor));
     missions.forEach(mission => this.sponsoredMissions.set(mission.id, mission));
+  }
+
+  // User operations
+  async getUser(id: string): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(user => user.username === username);
+  }
+
+  async createUser(userData: InsertUser): Promise<User> {
+    const user: User = {
+      id: randomUUID(),
+      username: userData.username,
+      password: userData.password,
+      email: userData.email || null,
+      firstName: userData.firstName || null,
+      lastName: userData.lastName || null,
+      phone: userData.phone || null,
+      address: userData.address || null,
+      city: userData.city || "Dubai",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.users.set(user.id, user);
+    return user;
+  }
+
+  async updateUser(id: string, updates: Partial<User>): Promise<User | undefined> {
+    const user = this.users.get(id);
+    if (!user) return undefined;
+    
+    const updatedUser = { ...user, ...updates, updatedAt: new Date() };
+    this.users.set(id, updatedUser);
+    return updatedUser;
+  }
+
+  // Contact operations
+  async createContact(contactData: InsertContact): Promise<Contact> {
+    const contact: Contact = {
+      id: randomUUID(),
+      name: contactData.name,
+      email: contactData.email,
+      phone: contactData.phone || null,
+      company: contactData.company || null,
+      subject: contactData.subject,
+      message: contactData.message,
+      status: "new",
+      createdAt: new Date(),
+    };
+    this.contacts.set(contact.id, contact);
+    return contact;
+  }
+
+  async getAllContacts(): Promise<Contact[]> {
+    return Array.from(this.contacts.values());
+  }
+
+  // Quote operations  
+  async createQuote(quoteData: InsertQuote): Promise<Quote> {
+    const quote: Quote = {
+      id: randomUUID(),
+      userId: quoteData.userId || null,
+      phoneModel: quoteData.phoneModel,
+      phoneCondition: quoteData.phoneCondition,
+      estimatedValue: quoteData.estimatedValue,
+      actualValue: null,
+      status: "pending",
+      notes: quoteData.notes || null,
+      expiresAt: quoteData.expiresAt,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.quotes.set(quote.id, quote);
+    return quote;
+  }
+
+  async getQuote(id: string): Promise<Quote | undefined> {
+    return this.quotes.get(id);
+  }
+
+  async getQuotesByUser(userId: string): Promise<Quote[]> {
+    return Array.from(this.quotes.values()).filter(quote => quote.userId === userId);
+  }
+
+  async updateQuoteStatus(id: string, status: string): Promise<Quote | undefined> {
+    const quote = this.quotes.get(id);
+    if (!quote) return undefined;
+    
+    const updatedQuote = { ...quote, status, updatedAt: new Date() };
+    this.quotes.set(id, updatedQuote);
+    return updatedQuote;
   }
 
   async getHero(id: string): Promise<Hero | undefined> {
