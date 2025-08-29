@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer";
 import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
 import { TooltipManager } from "@/components/tooltip-manager";
 import { ImagePerformanceMonitor } from "@/components/image-performance-monitor";
-import { useEffect } from "react";
+import { useEffect, lazy } from "react";
 import { useLocation } from "wouter";
 import Home from "@/pages/home";
 import Leaderboard from "@/pages/leaderboard";
@@ -22,6 +22,9 @@ import Collect from "@/pages/collect";
 import Redeem from "@/pages/redeem";
 import Partners from "@/pages/partners";
 import Community from "@/pages/community";
+import CartPage from "@/pages/cart";
+import SignupPage from "@/pages/signup";
+import LoginPage from "@/pages/login";
 
 // B2B Corporate Pages
 import { BulkTradeInPage } from "@/pages/bulk-tradein";
@@ -59,19 +62,24 @@ function Router() {
       <Route path="/redeem" component={Redeem} />
       <Route path="/partners" component={Partners} />
       <Route path="/community" component={Community} />
-      
+
       {/* B2B Corporate Routes */}
       <Route path="/bulk-tradein" component={BulkTradeInPage} />
       <Route path="/corporate-dashboard" component={CorporateDashboardPage} />
       <Route path="/corporate-quotes" component={CorporateQuotesPage} />
       <Route path="/purchase-orders" component={PurchaseOrdersPage} />
       <Route path="/account-management" component={AccountManagementPage} />
-      
+
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/environmental" component={Environmental} />
       <Route path="/dubai-rewards" component={DubaiRewards} />
-      
+      <Route path="/cart" component={CartPage} />
+      <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
+      <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
+      <Route path="/signup" component={SignupPage} />
+      <Route path="/login" component={LoginPage} />
+
       <Route component={NotFound} />
     </Switch>
   );

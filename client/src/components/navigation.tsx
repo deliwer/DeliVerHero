@@ -5,7 +5,7 @@ import { useState } from "react";
 export function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+
   // Automatically detect B2B mode based on subdomain
   const isChainTrackDomain = window.location.hostname.includes('chaintrack');
   const [isB2BMode, setIsB2BMode] = useState(isChainTrackDomain);
@@ -66,7 +66,7 @@ export function Navigation() {
                     </Link>
                   );
                 }
-                
+
                 return (
                   <Link
                     key={item.path}
@@ -80,7 +80,7 @@ export function Navigation() {
               })}
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             {/* B2B/Consumer Toggle */}
             <div className="flex items-center space-x-3 mr-4">
@@ -146,7 +146,7 @@ export function Navigation() {
                   3
                 </span>
               </Link>
-              
+
               <Link
                 href="/login"
                 className="text-gray-300 hover:text-white px-4 py-2 rounded-lg font-medium transition-colors"
@@ -154,7 +154,7 @@ export function Navigation() {
               >
                 Login
               </Link>
-              
+
               <Link
                 href="/signup"
                 className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors hover:from-emerald-700 hover:to-blue-700"
@@ -162,7 +162,7 @@ export function Navigation() {
               >
                 Sign Up
               </Link>
-              
+
               <Link
                 href={isB2BMode ? "/bulk-tradein" : "/products"}
                 className={`${
@@ -226,7 +226,7 @@ export function Navigation() {
                     </Link>
                   );
                 }
-                
+
                 return (
                   <Link
                     key={item.path}
@@ -239,7 +239,7 @@ export function Navigation() {
                   </Link>
                 );
               })}
-              
+
               {/* Add Shop all link to mobile menu only */}
               <Link
                 href="/products"

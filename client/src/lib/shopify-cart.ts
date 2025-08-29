@@ -11,6 +11,8 @@ interface CartItem {
   available: boolean;
 }
 
+import { CartItem } from "@/types/cart";
+
 class ShopifyCartService {
   private cartItems: CartItem[] = [];
   private cartId: string | null = null;
@@ -114,6 +116,29 @@ class ShopifyCartService {
     this.saveCartToStorage();
   }
 
+  async updateCartItem(itemId: string, quantity: number): Promise<void> {
+    try {
+      const itemIndex = this.cartItems.findIndex(item => item.id === itemId);
+      if (itemIndex !== -1) {
+        this.cartItems[itemIndex].quantity = quantity;
+        this.saveCartToStorage();
+      }
+    } catch (error) {
+      console.error("Failed to update cart item:", error);
+      throw error;
+    }
+  }
+
+  async removeCartItem(itemId: string): Promise<void> {
+    try {
+      this.cartItems = this.cartItems.filter(item => item.id !== itemId);
+      this.saveCartToStorage();
+    } catch (error) {
+      console.error("Failed to remove cart item:", error);
+      throw error;
+    }
+  }
+
   async createCheckout(items: CartItem[]): Promise<string> {
     try {
       const lineItems = items.map(item => ({
@@ -121,7 +146,7 @@ class ShopifyCartService {
         quantity: item.quantity
       }));
 
-      const response = await fetch("/shopify/checkout", {
+      const response = await fetch("/api/shopify/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
