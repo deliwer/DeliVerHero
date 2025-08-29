@@ -67,7 +67,6 @@ export function AIInteractiveHero() {
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-emerald-900/60"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/20 via-transparent to-transparent"></div>
       </div>
-
       {/* Main Content */}
       <div className="max-w-4xl mx-auto relative z-10 text-center">
         {/* Main Headlines */}
@@ -78,9 +77,7 @@ export function AIInteractiveHero() {
               a Circular Game
             </span>
           </h1>
-          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
-            Trade iPhones for premium water benefits, earn Planet Points, and redeem in the AquaCafe.
-          </p>
+          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">Trade iPhones for premium water benefits responsibly, earn Planet Points, and redeem in the AquaCafe.</p>
         </div>
 
         {/* AI-Style Interactive CTA Box */}
@@ -156,7 +153,6 @@ export function AIInteractiveHero() {
           </div>
         </div>
       </div>
-
       {/* Floating Elements for Visual Interest */}
       <div className="absolute top-20 left-10 w-16 h-16 bg-emerald-500/10 rounded-full blur-xl animate-float"></div>
       <div className="absolute top-32 right-20 w-20 h-20 bg-blue-500/10 rounded-full blur-lg animate-float-delayed"></div>
