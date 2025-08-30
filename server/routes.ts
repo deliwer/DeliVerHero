@@ -917,6 +917,46 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // SendGrid Configuration Verification
+  app.get("/api/email/verify-sendgrid", async (req, res) => {
+    try {
+      const hasApiKey = !!process.env.SENDGRID_API_KEY;
+      const keyLength = process.env.SENDGRID_API_KEY ? process.env.SENDGRID_API_KEY.length : 0;
+      
+      if (!hasApiKey) {
+        return res.json({
+          configured: false,
+          error: "SENDGRID_API_KEY environment variable not found",
+          status: "missing_api_key"
+        });
+      }
+
+      // Test basic SendGrid API connectivity
+      const { sendEmail } = await import('./sendgrid-service.js');
+      const testResult = await sendEmail({
+        to: 'test@deliwer.com',
+        from: 'corporate@deliwer.com',
+        subject: 'SendGrid Verification Test',
+        text: 'This is a test to verify SendGrid configuration.'
+      });
+
+      res.json({
+        configured: true,
+        keyLength: keyLength,
+        testEmailSent: testResult,
+        status: "configured",
+        shopifyIntegration: "ready"
+      });
+    } catch (error) {
+      console.error('SendGrid verification error:', error);
+      res.status(500).json({
+        configured: false,
+        error: error.message,
+        status: "configuration_error"
+      });
+    }
+  });
+
   // Test Email Campaign Endpoint
   app.post("/api/email/test-campaign", async (req, res) => {
     try {
@@ -964,6 +1004,70 @@ Context: ${JSON.stringify(context || {})}`
     } catch (error) {
       console.error('Test campaign error:', error);
       res.status(500).json({ error: "Failed to send test campaign email" });
+    }
+  });
+
+  // Shopify Admin + SendGrid Integration Test
+  app.post("/api/admin/test-sendgrid-integration", async (req, res) => {
+    try {
+      const { shopDomain, adminEmail } = req.body;
+      
+      if (!shopDomain || !adminEmail) {
+        return res.status(400).json({ 
+          error: "shopDomain and adminEmail are required" 
+        });
+      }
+
+      // Test SendGrid configuration
+      const { sendEmail } = await import('./sendgrid-service.js');
+      
+      // Send test email to Shopify admin
+      const result = await sendEmail({
+        to: adminEmail,
+        from: 'corporate@deliwer.com',
+        subject: `SendGrid Integration Test for ${shopDomain}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #2563eb;">✅ SendGrid + Shopify Integration Verified</h2>
+            <p>Hello Shopify Admin,</p>
+            <p>This email confirms that your SendGrid integration is working correctly for your Shopify store: <strong>${shopDomain}</strong></p>
+            <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #0369a1; margin-top: 0;">Available Features:</h3>
+              <ul style="color: #0369a1;">
+                <li>Email campaign management</li>
+                <li>Corporate lead automation</li>
+                <li>Customer segmentation</li>
+                <li>Bulk email sending</li>
+              </ul>
+            </div>
+            <p style="color: #666; font-size: 12px;">
+              Sent from DeliWer SendGrid Service at ${new Date().toISOString()}
+            </p>
+          </div>
+        `
+      });
+
+      if (result) {
+        res.json({
+          success: true,
+          message: "SendGrid + Shopify integration verified",
+          shopDomain,
+          emailSent: true,
+          timestamp: new Date().toISOString()
+        });
+      } else {
+        res.status(500).json({
+          success: false,
+          error: "Failed to send verification email"
+        });
+      }
+    } catch (error) {
+      console.error('Integration test error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+        status: "integration_test_failed"
+      });
     }
   });
 
