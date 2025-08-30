@@ -25,10 +25,10 @@ export function Navigation() {
     };
 
     updateCartCount();
-    
+
     // Poll for cart updates every 2 seconds when component is mounted
     const interval = setInterval(updateCartCount, 2000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
@@ -181,7 +181,7 @@ export function Navigation() {
                   <UserCircle className="w-5 h-5" />
                   <ChevronDown className="w-4 h-4" />
                 </button>
-                
+
                 {userDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50">
                     <div className="py-1">
@@ -311,6 +311,15 @@ export function Navigation() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Shop all
+              </Link>
+              
+              <Link 
+                href="/email-campaigns" 
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                data-testid="link-mobile-email-campaigns"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Email Campaigns
               </Link>
 
             </div>

@@ -87,6 +87,7 @@ function Router() {
       <Route path="/contact" component={AccountConsolidated} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/login" component={LoginPage} />
+      <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />
 
       <Route component={NotFound} />
     </Switch>
