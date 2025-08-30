@@ -4,12 +4,18 @@ import { storage } from "./storage";
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema } from "@shared/schema";
 import OpenAI from "openai";
 import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
+import adminCampaignRoutes from "./routes/admin-campaigns";
+import adminRoleRoutes from "./routes/admin-roles";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY || "",
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // Register admin-only routes (Shopify admin authentication required)
+  app.use("/api/admin/campaigns", adminCampaignRoutes);
+  app.use("/api/admin/roles", adminRoleRoutes);
   
   // User profile routes
   app.get("/api/user/profile", async (req, res) => {
