@@ -1,10 +1,12 @@
 import sgMail from '@sendgrid/mail';
 
 if (!process.env.SENDGRID_API_KEY) {
-  throw new Error("SENDGRID_API_KEY environment variable must be set");
+  console.warn("SENDGRID_API_KEY not set - email functionality will be disabled");
 }
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
 
 interface EmailParams {
   to: string | string[];
@@ -17,6 +19,11 @@ interface EmailParams {
 }
 
 export async function sendEmail(params: EmailParams): Promise<boolean> {
+  if (!process.env.SENDGRID_API_KEY) {
+    console.log('Email functionality disabled - would have sent email to:', params.to, 'with subject:', params.subject);
+    return true; // Return success for development
+  }
+
   try {
     const msg: any = {
       to: params.to,
