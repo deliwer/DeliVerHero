@@ -30,7 +30,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const checkoutId = `checkout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       
       // Build cart URL for Shopify - starter kit specific
-      let checkoutUrl = 'https://deliwer.myshopify.com/products/aquacafe-planet-hero-starter-kit';
+      let checkoutUrl = 'https://1529ec-71.myshopify.com/products/aquacafe-planet-hero-starter-kit';
       
       // For starter kit specifically, add query params
       const starterKitItem = lineItems.find(item => 
