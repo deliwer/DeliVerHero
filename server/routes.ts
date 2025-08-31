@@ -8,13 +8,25 @@ import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } 
 import adminCampaignRoutes from "./routes/admin-campaigns";
 import adminRoleRoutes from "./routes/admin-roles";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2025-08-27.basil",
-});
+// Initialize Stripe only if API key is available
+let stripe: Stripe | null = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: "2025-08-27.basil",
+  });
+} else {
+  console.log("STRIPE_SECRET_KEY not set - payment functionality will be disabled");
+}
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY || "",
-});
+// Initialize OpenAI only if API key is available
+let openai: OpenAI | null = null;
+if (process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY) {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY || "",
+  });
+} else {
+  console.log("OPENAI_API_KEY not set - AI chat functionality will be disabled");
+}
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -24,6 +36,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Stripe payment endpoints
   app.post("/api/create-payment-intent", async (req, res) => {
+    if (!stripe) {
+      return res.status(503).json({ error: "Payment service not configured. Please contact support." });
+    }
+    
     try {
       const { amount, currency = "aed", customerId, billingDetails, shippingDetails, cartItems } = req.body;
       
@@ -96,6 +112,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/confirm-payment", async (req, res) => {
+    if (!stripe) {
+      return res.status(503).json({ error: "Payment service not configured. Please contact support." });
+    }
+    
     try {
       const { paymentIntentId, orderData } = req.body;
       
@@ -536,6 +556,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // AI Concierge Chat
   app.post("/api/ai-chat", async (req, res) => {
+    if (!openai) {
+      return res.status(503).json({ 
+        error: "AI service not configured",
+        fallback: "Hi! I'm the DeliWer AI Concierge 🤖 I can help you calculate your iPhone trade-in value and start your hero journey. What iPhone model would you like to trade?"
+      });
+    }
+    
     try {
       const { message, context } = req.body;
       

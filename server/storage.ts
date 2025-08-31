@@ -1524,6 +1524,9 @@ export class MemStorage implements IStorage {
     const order: Order = {
       ...orderData,
       id: orderData.id || randomUUID(),
+      status: orderData.status || "pending",
+      currency: orderData.currency || "aed",
+      customerId: orderData.customerId || null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -1554,6 +1557,11 @@ export class MemStorage implements IStorage {
     const customer: Customer = {
       ...customerData,
       id: randomUUID(),
+      phone: customerData.phone || null,
+      firstName: customerData.firstName || null,
+      lastName: customerData.lastName || null,
+      shopifyCustomerId: customerData.shopifyCustomerId || null,
+      stripeCustomerId: customerData.stripeCustomerId || null,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
