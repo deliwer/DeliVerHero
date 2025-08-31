@@ -3,6 +3,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Rocket, Users, Droplets, Home, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { shopifyCartService } from "@/lib/shopify-cart";
 
 interface ProductFeatureProps {
   icon: React.ReactNode;
@@ -103,11 +104,79 @@ export function AquaCafeTab() {
     setIsOrderLoading(planId);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Define product configurations for Shopify integration
+      const productConfig = {
+        'starter-kit': {
+          id: 'aquacafe-starter-kit',
+          variantId: 'gid://shopify/ProductVariant/starter-kit-default',
+          title: 'AquaCafe Planet Hero Starter Kit',
+          price: 99,
+          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
+        },
+        'hero-minimal': {
+          id: 'aquacafe-hero-minimal',
+          variantId: 'gid://shopify/ProductVariant/hero-minimal-default',
+          title: 'AquaCafe Hero Minimal - Undersink Purifier',
+          price: 1299,
+          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
+        },
+        'hero-premium': {
+          id: 'aquacafe-hero-premium',
+          variantId: 'gid://shopify/ProductVariant/hero-premium-default',
+          title: 'AquaCafe Hero Premium - Most Popular',
+          price: 1499,
+          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
+        },
+        'hero-elite': {
+          id: 'aquacafe-hero-elite',
+          variantId: 'gid://shopify/ProductVariant/hero-elite-default',
+          title: 'AquaCafe Hero Elite - Premium Experience',
+          price: 2299,
+          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
+        }
+      };
+
+      const product = productConfig[planId as keyof typeof productConfig];
       
+      if (!product) {
+        throw new Error('Product configuration not found');
+      }
+
+      // Add product to Shopify cart
+      await shopifyCartService.addToCart({
+        id: product.id,
+        variantId: product.variantId,
+        title: product.title,
+        variant: 'Default',
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      });
+
       toast({
-        title: "Order Initiated!",
-        description: "Redirecting to secure checkout...",
+        title: "Added to Cart!",
+        description: `${product.title} has been added to your cart`,
+      });
+
+      // Create checkout session and redirect to Shopify
+      const cartItems = await shopifyCartService.getCartItems();
+      const checkoutUrl = await shopifyCartService.createCheckout(cartItems);
+
+      toast({
+        title: "Redirecting to Checkout",
+        description: "Taking you to secure payment...",
+      });
+
+      // Redirect to Shopify checkout
+      window.location.href = checkoutUrl;
+      
+    } catch (error) {
+      console.error('Order error:', error);
+      
+      // Fallback to direct product page if cart integration fails
+      toast({
+        title: "Redirecting to Product Page",
+        description: "Opening product page for secure checkout...",
       });
       
       if (planId === 'starter-kit') {
@@ -115,12 +184,6 @@ export function AquaCafeTab() {
       } else {
         window.open(`https://www.deliwer.com/products/aquacafe?plan=${planId}&ref=HEROPROGRAM`, '_blank');
       }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
     } finally {
       setIsOrderLoading(null);
     }

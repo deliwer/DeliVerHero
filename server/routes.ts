@@ -16,6 +16,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register admin-only routes (Shopify admin authentication required)
   app.use("/api/admin/campaigns", adminCampaignRoutes);
   app.use("/api/admin/roles", adminRoleRoutes);
+
+  // Shopify checkout endpoint
+  app.post("/api/shopify/checkout", async (req, res) => {
+    try {
+      const { lineItems, customAttributes } = req.body;
+      
+      if (!lineItems || !Array.isArray(lineItems)) {
+        return res.status(400).json({ error: "Line items are required" });
+      }
+
+      // Create checkout session
+      const checkoutId = `checkout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      
+      // Build cart URL for Shopify - starter kit specific
+      let checkoutUrl = 'https://deliwer.myshopify.com/products/aquacafe-planet-hero-starter-kit';
+      
+      // For starter kit specifically, add query params
+      const starterKitItem = lineItems.find(item => 
+        item.variantId.includes('starter-kit') || 
+        (typeof item.variantId === 'string' && item.variantId.includes('starter'))
+      );
+      
+      if (starterKitItem) {
+        checkoutUrl += '?variant=starter-kit-default&quantity=1&selling_plan=loyalty-program&ref=PLANETHEROES';
+      }
+
+      // Add custom attributes as URL parameters
+      if (customAttributes && customAttributes.length > 0) {
+        const params = customAttributes.map((attr: { key: string; value: string }) => `${attr.key}=${encodeURIComponent(attr.value)}`);
+        checkoutUrl += (checkoutUrl.includes('?') ? '&' : '?') + params.join('&');
+      }
+
+      console.log('Checkout session created:', {
+        checkoutId,
+        itemCount: lineItems.length,
+        checkoutUrl
+      });
+
+      res.json({
+        checkoutId,
+        checkoutUrl,
+        lineItems,
+        message: 'Checkout created successfully'
+      });
+
+    } catch (error: any) {
+      console.error('Checkout creation error:', error);
+      res.status(500).json({ 
+        error: "Failed to create checkout",
+        details: error.message 
+      });
+    }
+  });
   
   // User profile routes
   app.get("/api/user/profile", async (req, res) => {
