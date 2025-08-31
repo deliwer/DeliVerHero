@@ -1,0 +1,36 @@
+You are a full-stack developer building a React + Tailwind project deployed on Vercel.  
+Create a responsive landing page called `PartnershipPage.jsx` that merges two offers into one:  
+
+1. **Corporate Bulk Trade-in Offer** (for companies upgrading devices, bulk iPhone trade-in for AquaCafe water filtration credits).  
+2. **Community CSR Offer** (for residential communities, DAMAC-style, offering residents a sustainable trade-in → water credits program).  
+
+### Requirements:
+
+- **Framework:** React with Tailwind CSS (no external UI libraries).
+- **Sections:**
+  1. **Hero Banner**: Dual CTA → "Corporate Pilot" and "Community CSR Pilot".  
+  2. **Impact Counters**: Show stats like devices recycled, liters of water saved, CO₂ reduced.  
+  3. **How It Works (Corporate & Community Tabs)**: Use a simple toggle to switch between "Corporate Flow" and "Community Flow".  
+  4. **Benefits Grid**: For Corporates → CSR reporting, bulk credits, employee engagement.  
+     For Communities → free starter kit, leaderboard, shared rewards.  
+  5. **Case Study Carousel (placeholder)**: Example use cases for corporates (bulk upgrade) and communities (shared water savings).  
+  6. **Leaderboard Preview**: CSR Gamification with “Top 5 Companies” and “Top 5 Communities”.  
+  7. **Call-to-Action Section**:  
+     - Corporate CTA → "Request Corporate Pilot" (form with name, email, company, number of devices).  
+     - Community CTA → "Book Community Starter Kit" (form with name, email, community, residents count).  
+  8. **Footer**: Clean with social, contact, CSR statement.  
+
+- **Conversion Hooks:**  
+  - All CTA forms should POST to `/api/contact` (Vercel serverless function).  
+  - Add a “Shop Now” button linking to `/shop` (Hydrogen shop).  
+  - Add "Redeem Points" CTA linking to `/redeem`.  
+
+- **Design:**  
+  - Modern, airy layout, soft shadows, rounded corners, grid system.  
+  - Impactful but simple icons (use emojis for now).  
+  - Responsive mobile-first design.  
+
+### Output:
+- Full JSX file with Tailwind styling.
+- Dummy API form handlers (`/api/contact`) as placeholders.
+- Ensure it works as a standalone page in Replit (React + Vite) and deployable on Vercel.
