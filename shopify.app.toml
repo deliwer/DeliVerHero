@@ -2,7 +2,7 @@
 
 name = "deliwer-ecosystem"
 client_id = "YOUR_CLIENT_ID"
-application_url = "https://deliwer-ecosystem.vercel.app"
+application_url = "https://your-actual-vercel-app.vercel.app"
 embedded = true
 
 [access_scopes]
