@@ -29,8 +29,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create checkout session
       const checkoutId = `checkout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       
-      // Build cart URL for Shopify - starter kit specific
-      let checkoutUrl = 'https://1529ec-71.myshopify.com/products/aquacafe-planet-hero-starter-kit';
+      // Build cart URL for Shopify - starter kit specific  
+      let checkoutUrl = 'https://deliwer.com/products/aquacafe';
       
       // For starter kit specifically, add query params
       const starterKitItem = lineItems.find(item => 
@@ -39,7 +39,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
       
       if (starterKitItem) {
-        checkoutUrl += '?variant=starter-kit-default&quantity=1&selling_plan=loyalty-program&ref=PLANETHEROES';
+        checkoutUrl += '?starter=true&quantity=1&ref=PLANETHEROES';
       }
 
       // Add custom attributes as URL parameters

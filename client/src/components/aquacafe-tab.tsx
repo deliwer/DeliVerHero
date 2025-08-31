@@ -180,9 +180,9 @@ export function AquaCafeTab() {
       });
       
       if (planId === 'starter-kit') {
-        window.open('https://1529ec-71.myshopify.com/products/aquacafe-planet-hero-starter-kit?ref=PLANETHEROES', '_blank');
+        window.open('https://deliwer.com/products/aquacafe?starter=true&ref=PLANETHEROES', '_blank');
       } else {
-        window.open(`https://1529ec-71.myshopify.com/products/aquacafe-hero-${planId.split('-')[1]}?ref=HEROPROGRAM`, '_blank');
+        window.open(`https://deliwer.com/products/aquacafe?plan=${planId}&ref=HEROPROGRAM`, '_blank');
       }
     } finally {
       setIsOrderLoading(null);

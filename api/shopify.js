@@ -207,10 +207,10 @@ export default async function handler(req, res) {
         }).join(',');
         
         // Direct add to cart URL for Shopify
-        const checkoutUrl = `https://1529ec-71.myshopify.com/cart/add?id=${cartParams}&return_to=/cart`;
+        const checkoutUrl = `https://deliwer.com/products/aquacafe?starter=true&ref=PLANETHEROES`;
         
         // Alternative: Direct product page with quantity
-        const fallbackUrl = 'https://1529ec-71.myshopify.com/products/aquacafe-planet-hero-starter-kit';
+        const fallbackUrl = 'https://deliwer.com/products/aquacafe';
         
         console.log('Checkout created:', {
           checkoutId,
@@ -233,8 +233,8 @@ export default async function handler(req, res) {
         // Fallback to product page
         return res.status(200).json({
           checkoutId: `fallback_${Date.now()}`,
-          checkoutUrl: 'https://1529ec-71.myshopify.com/products/aquacafe-planet-hero-starter-kit',
-          fallbackUrl: 'https://1529ec-71.myshopify.com/products/aquacafe-planet-hero-starter-kit',
+          checkoutUrl: 'https://deliwer.com/products/aquacafe',
+          fallbackUrl: 'https://deliwer.com/products/aquacafe',
           lineItems,
           message: 'Redirecting to product page'
         });
