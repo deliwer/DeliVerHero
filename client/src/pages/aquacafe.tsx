@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+import { shopifyCartService } from "@/lib/shopify-cart";
 import { Link } from "wouter";
 import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,6 +22,7 @@ export default function AquaCafe() {
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
   const [arPreview, setArPreview] = useState<{ isOpen: boolean; product: any }>({ isOpen: false, product: null });
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
 
   const plans = [
     {
@@ -88,18 +91,33 @@ export default function AquaCafe() {
     setIsOrderLoading(planId);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Navigate to alliance page for detailed checkout
-      window.location.href = `/aquacafe-alliance?variant=${planId}`;
+      // Add AquaCafe product to cart
+      const aquacafeProduct = {
+        id: `aquacafe-${planId}`,
+        variantId: `gid://shopify/ProductVariant/aquacafe-${planId}`,
+        title: plan.name,
+        variant: planId,
+        price: plan.price,
+        image: "🌊", // Using emoji as placeholder - will be replaced with actual image
+        quantity: 1,
+      };
+
+      // Add to cart using our cart service
+      await shopifyCartService.addToCart(aquacafeProduct);
       
       toast({
-        title: "Redirecting to Alliance Page",
-        description: `Loading checkout for ${plan.name}`,
+        title: "Added to Cart!",
+        description: `${plan.name} has been added to your cart`,
       });
+
+      // Navigate to checkout page
+      setLocation('/checkout');
+      
     } catch (error) {
+      console.error('Error adding to cart:', error);
       toast({
         title: "Error",
-        description: "Failed to process order. Please try again.",
+        description: "Failed to add to cart. Please try again.",
         variant: "destructive"
       });
     } finally {

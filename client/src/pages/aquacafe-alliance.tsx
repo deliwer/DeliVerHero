@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useLocation } from "wouter";
+import { shopifyCartService } from "@/lib/shopify-cart";
 import { 
   Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, 
   Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, 
@@ -20,6 +21,7 @@ import bannerAquaCafe from "@assets/Banner_AquaCafe_1755270492134.jpg";
 export default function AquaCafeAlliance() {
   const [isOrderLoading, setIsOrderLoading] = useState(false);
   const [location] = useLocation();
+  const [, setLocation2] = useLocation();
   const { toast } = useToast();
 
   // Extract variant from URL params
@@ -30,18 +32,50 @@ export default function AquaCafeAlliance() {
     setIsOrderLoading(true);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Navigate to Shopify checkout directly
-      window.location.href = `https://www.deliwer.com/products/aquacafe?variant=${variant}`;
+      // Define plan details based on variant
+      const planDetails = {
+        'hero-minimal': {
+          name: 'AquaCafe Hero Minimal - PLANET HERO ENTRY',
+          price: 1299
+        },
+        'hero-premium': {
+          name: 'AquaCafe Hero Premium',
+          price: 1499
+        },
+        'hero-elite': {
+          name: 'AquaCafe Hero Elite',
+          price: 2299
+        }
+      };
+
+      const plan = planDetails[variant as keyof typeof planDetails] || planDetails['hero-minimal'];
+
+      // Add to cart using our cart service
+      const aquacafeProduct = {
+        id: `aquacafe-${variant}`,
+        variantId: `gid://shopify/ProductVariant/aquacafe-${variant}`,
+        title: plan.name,
+        variant: variant,
+        price: plan.price,
+        image: "🌊",
+        quantity: 1,
+      };
+
+      await shopifyCartService.addToCart(aquacafeProduct);
       
       toast({
-        title: "Proceeding to Checkout",
-        description: "Loading secure checkout for AquaCafe Alliance Kit",
+        title: "Added to Cart!",
+        description: `${plan.name} added to your cart`,
       });
+
+      // Navigate to our Stripe checkout
+      setLocation2('/checkout');
+      
     } catch (error) {
+      console.error('Error adding to cart:', error);
       toast({
         title: "Error",
-        description: "Failed to process order. Please try again.",
+        description: "Failed to add to cart. Please try again.",
         variant: "destructive"
       });
     } finally {

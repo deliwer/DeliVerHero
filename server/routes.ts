@@ -1372,6 +1372,85 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // Products API endpoint with AquaCafe products
+  app.get("/api/products", async (req, res) => {
+    try {
+      const products = [
+        {
+          id: "aquacafe-hero-minimal",
+          title: "AquaCafe Hero Minimal - PLANET HERO ENTRY",
+          handle: "aquacafe-hero-minimal",
+          price: 1299,
+          originalPrice: 1599,
+          category: "aquacafe",
+          image: "🌊",
+          features: [
+            "💧 Premium 3-stage filtration system",
+            "📦 12-month filter supply included",
+            "⭐ Instant Planet Hero Level 2 status",
+            "🎯 1000 starter points + 2X Hero multiplier",
+            "📞 24/7 Planet Hero priority support",
+            "📱 Smart monitoring app with Hero dashboard",
+            "🏆 Exclusive Hero member badge",
+            "💰 20% discount on ALL future plans",
+            "🍰 AED 100 Baker's Kitchen voucher when friend signs up via referral"
+          ],
+          badge: "🚀 PLANET HERO GATEWAY",
+          isHeroEntry: true,
+          available: true
+        },
+        {
+          id: "aquacafe-hero-premium",
+          title: "AquaCafe Hero Premium",
+          handle: "aquacafe-hero-premium",
+          price: 1499,
+          originalPrice: 1999,
+          category: "aquacafe",
+          image: "🌊",
+          features: [
+            "Advanced 5-stage filtration",
+            "18-month filter supply",
+            "Planet Hero Level 3 status",
+            "2500 starter points + 2X multiplier",
+            "24/7 priority phone support",
+            "Smart water quality monitoring",
+            "Exclusive Hero premium badge",
+            "Free home installation"
+          ],
+          badge: "⚡ MOST POPULAR",
+          popular: true,
+          available: true
+        },
+        {
+          id: "aquacafe-hero-elite",
+          title: "AquaCafe Hero Elite",
+          handle: "aquacafe-hero-elite",
+          price: 2299,
+          originalPrice: 2999,
+          category: "aquacafe",
+          image: "🌊",
+          features: [
+            "Ultimate 7-stage whole-home system",
+            "36-month filter supply",
+            "Planet Hero Level 4 Elite status",
+            "5000 starter points + 3X multiplier",
+            "24/7 VIP concierge support",
+            "AI-powered smart home integration",
+            "Premium Hero Elite badge",
+            "White-glove installation + training"
+          ],
+          badge: "🏆 ULTIMATE HERO",
+          available: true
+        }
+      ];
+      
+      res.json(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      res.status(500).json({ error: "Failed to fetch products" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
