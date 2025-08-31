@@ -35,52 +35,7 @@ export function StickyNeonHeadline() {
               rgba(0, 0, 0, 0.95) 100%)`
           }}
         >
-          <div className="max-w-6xl mx-auto px-4 py-3">
-            <div className="flex items-center justify-center text-center">
-              <motion.div
-                animate={{
-                  textShadow: [
-                    "0 0 5px #10b981, 0 0 10px #10b981, 0 0 15px #10b981",
-                    "0 0 10px #10b981, 0 0 20px #10b981, 0 0 30px #10b981",
-                    "0 0 5px #10b981, 0 0 10px #10b981, 0 0 15px #10b981"
-                  ]
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="text-lg md:text-xl font-bold text-white tracking-wide"
-                style={{
-                  color: "#10b981",
-                  textShadow: "0 0 10px #10b981, 0 0 20px #10b981, 0 0 30px #10b981"
-                }}
-              >
-                <div className="flex items-center justify-center gap-3">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Zap className="w-5 h-5 md:w-6 md:h-6" />
-                  </motion.div>
-                  
-                  <span className="hidden md:inline">
-                    The Sustainability Game of Dubai — Complete Missions • Save Money • Save the Planet
-                  </span>
-                  
-                  <span className="md:hidden">
-                    Dubai's Sustainability Game — Complete Missions & Save the Planet
-                  </span>
-                  
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 180, 360]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Star className="w-5 h-5 md:w-6 md:h-6" />
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+          
           
           {/* Neon border effect */}
           <motion.div
