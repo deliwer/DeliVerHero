@@ -9,14 +9,19 @@ import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
 import { shopifyAuthService } from "@/lib/shopify-auth";
 import { shopifyCartService } from "@/lib/shopify-cart";
-import { Loader2, CreditCard, User, MapPin } from "lucide-react";
+import { StripeCheckout } from "@/components/stripe-checkout";
+import { Loader2, CreditCard, User, MapPin, ArrowLeft } from "lucide-react";
 
 interface CheckoutItem {
   id: string;
+  variantId: string;
+  productId: string;
   title: string;
+  variant: string;
   price: number;
   quantity: number;
-  image?: string;
+  image: string;
+  available: boolean;
 }
 
 export default function CheckoutPage() {
@@ -24,6 +29,7 @@ export default function CheckoutPage() {
   const [cartItems, setCartItems] = useState<CheckoutItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showStripeCheckout, setShowStripeCheckout] = useState(false);
   const [checkoutData, setCheckoutData] = useState({
     email: "",
     firstName: "",
@@ -89,59 +95,30 @@ export default function CheckoutPage() {
       return;
     }
 
-    setIsProcessing(true);
-    try {
-      // Create checkout session
-      const checkoutUrl = await shopifyCartService.createCheckout(cartItems);
-      
-      // Create customer if not logged in
-      if (!shopifyAuthService.isAuthenticated()) {
-        await shopifyAuthService.createShopifyCustomer({
-          customer: {
-            email: checkoutData.email,
-            first_name: checkoutData.firstName,
-            last_name: checkoutData.lastName,
-            phone: checkoutData.phone,
-            addresses: [{
-              address1: checkoutData.address1,
-              city: checkoutData.city,
-              country: checkoutData.country,
-              zip: checkoutData.zip,
-            }],
-            metafields: [
-              {
-                namespace: "deliwer",
-                key: "checkout_source",
-                value: "deliwer_app"
-              }
-            ]
-          }
-        });
-      }
+    // Proceed to Stripe checkout
+    setShowStripeCheckout(true);
+  };
 
-      // Redirect to Shopify checkout
-      if (checkoutUrl.startsWith('http')) {
-        window.location.href = checkoutUrl;
-      } else {
-        // Internal checkout completion
-        toast({
-          title: "Order placed!",
-          description: "Your order has been successfully placed.",
-        });
-        
-        await shopifyCartService.clearCart();
-        setLocation("/");
-      }
-    } catch (error: any) {
-      console.error("Checkout error:", error);
+  const handlePaymentSuccess = async (orderId: string) => {
+    try {
+      // Clear cart after successful payment
+      await shopifyCartService.clearCart();
+      
+      // Redirect to order success page
+      setLocation(`/order-success?order_id=${orderId}&total=${calculateTotal().toFixed(2)}&email=${checkoutData.email}`);
+    } catch (error) {
+      console.error("Error handling payment success:", error);
       toast({
-        title: "Checkout failed",
-        description: error.message || "Please try again",
+        title: "Warning",
+        description: "Order placed successfully, but there was an issue clearing the cart.",
         variant: "destructive",
       });
-    } finally {
-      setIsProcessing(false);
+      setLocation(`/order-success?order_id=${orderId}`);
     }
+  };
+
+  const handleBackToCheckout = () => {
+    setShowStripeCheckout(false);
   };
 
   if (isLoading) {
@@ -167,10 +144,32 @@ export default function CheckoutPage() {
     );
   }
 
+  // Show Stripe checkout if payment step
+  if (showStripeCheckout) {
+    return (
+      <StripeCheckout 
+        cartItems={cartItems} 
+        onPaymentSuccess={handlePaymentSuccess}
+        onBack={handleBackToCheckout}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8">
       <div className="container mx-auto px-4 max-w-6xl">
-        <h1 className="text-3xl font-bold text-white mb-8">Checkout</h1>
+        <div className="flex items-center gap-4 mb-8">
+          <Button 
+            onClick={() => setLocation("/products")} 
+            variant="ghost" 
+            size="sm" 
+            className="text-gray-400 hover:text-white"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Continue Shopping
+          </Button>
+          <h1 className="text-3xl font-bold text-white">Checkout</h1>
+        </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Checkout Form */}
@@ -335,7 +334,7 @@ export default function CheckoutPage() {
                     ) : (
                       <>
                         <CreditCard className="mr-2 h-4 w-4" />
-                        Complete Order
+                        Proceed to Payment
                       </>
                     )}
                   </Button>

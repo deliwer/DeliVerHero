@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -89,6 +89,18 @@ export interface IStorage {
   getEmailSubscribers(filters?: { subscriberType?: string; industry?: string }): Promise<EmailSubscriber[]>;
   getEmailSubscriber(id: string): Promise<EmailSubscriber | undefined>;
 
+  // Order Management
+  createOrder(order: InsertOrder): Promise<Order>;
+  getOrder(id: string): Promise<Order | undefined>;
+  getOrdersByCustomer(customerId: string): Promise<Order[]>;
+  updateOrderStatus(id: string, status: string): Promise<Order | undefined>;
+
+  // Customer Management
+  createCustomer(customer: InsertCustomer): Promise<Customer>;
+  getCustomer(id: string): Promise<Customer | undefined>;
+  getCustomerByEmail(email: string): Promise<Customer | undefined>;
+  updateCustomer(id: string, updates: Partial<Customer>): Promise<Customer | undefined>;
+
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
 }
@@ -110,6 +122,8 @@ export class MemStorage implements IStorage {
   private corporateLeads: Map<string, CorporateLead>;
   private emailCampaigns: Map<string, EmailCampaign>;
   private emailSubscribers: Map<string, EmailSubscriber>;
+  private orders: Map<string, Order>;
+  private customers: Map<string, Customer>;
 
   constructor() {
     this.users = new Map();
@@ -127,6 +141,8 @@ export class MemStorage implements IStorage {
     this.corporateLeads = new Map();
     this.emailCampaigns = new Map();
     this.emailSubscribers = new Map();
+    this.orders = new Map();
+    this.customers = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -1501,6 +1517,66 @@ export class MemStorage implements IStorage {
     const multiplier = conditionMultipliers[condition] || 0.4;
     
     return Math.floor(baseValue * multiplier);
+  }
+
+  // Order Management Methods
+  async createOrder(orderData: InsertOrder): Promise<Order> {
+    const order: Order = {
+      ...orderData,
+      id: orderData.id || randomUUID(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.orders.set(order.id, order);
+    return order;
+  }
+
+  async getOrder(id: string): Promise<Order | undefined> {
+    return this.orders.get(id);
+  }
+
+  async getOrdersByCustomer(customerId: string): Promise<Order[]> {
+    return Array.from(this.orders.values()).filter(order => order.customerId === customerId);
+  }
+
+  async updateOrderStatus(id: string, status: string): Promise<Order | undefined> {
+    const order = this.orders.get(id);
+    if (!order) return undefined;
+    
+    const updatedOrder = { ...order, status, updatedAt: new Date() };
+    this.orders.set(id, updatedOrder);
+    return updatedOrder;
+  }
+
+  // Customer Management Methods
+  async createCustomer(customerData: InsertCustomer): Promise<Customer> {
+    const customer: Customer = {
+      ...customerData,
+      id: randomUUID(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.customers.set(customer.id, customer);
+    return customer;
+  }
+
+  async getCustomer(id: string): Promise<Customer | undefined> {
+    return this.customers.get(id);
+  }
+
+  async getCustomerByEmail(email: string): Promise<Customer | undefined> {
+    return Array.from(this.customers.values()).find(customer => customer.email === email);
+  }
+
+  async updateCustomer(id: string, updates: Partial<Customer>): Promise<Customer | undefined> {
+    const customer = this.customers.get(id);
+    if (!customer) return undefined;
+    
+    const updatedCustomer = { ...customer, ...updates, updatedAt: new Date() };
+    this.customers.set(id, updatedCustomer);
+    return updatedCustomer;
   }
 }
 

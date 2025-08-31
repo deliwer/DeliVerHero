@@ -526,6 +526,66 @@ export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contacts.$inferSelect;
 
 export type InsertQuote = z.infer<typeof insertQuoteSchema>;
+
+// E-commerce Order Management
+export const orders = pgTable("orders", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  paymentIntentId: text("payment_intent_id").notNull(),
+  customerId: varchar("customer_id"),
+  customerEmail: text("customer_email").notNull(),
+  amount: integer("amount").notNull(), // in fils (AED cents)
+  currency: text("currency").notNull().default("aed"),
+  status: text("status").notNull().default("pending"),
+  items: jsonb("items").notNull(),
+  billingDetails: jsonb("billing_details").notNull(),
+  shippingDetails: jsonb("shipping_details").notNull(),
+  metadata: jsonb("metadata").default({}),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const customers = pgTable("customers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  phone: text("phone"),
+  shopifyCustomerId: text("shopify_customer_id"),
+  stripeCustomerId: text("stripe_customer_id"),
+  defaultAddress: jsonb("default_address"),
+  metadata: jsonb("metadata").default({}),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const insertOrderSchema = createInsertSchema(orders).pick({
+  paymentIntentId: true,
+  customerId: true,
+  customerEmail: true,
+  amount: true,
+  currency: true,
+  status: true,
+  items: true,
+  billingDetails: true,
+  shippingDetails: true,
+  metadata: true,
+});
+
+export const insertCustomerSchema = createInsertSchema(customers).pick({
+  email: true,
+  firstName: true,
+  lastName: true,
+  phone: true,
+  shopifyCustomerId: true,
+  stripeCustomerId: true,
+  defaultAddress: true,
+  metadata: true,
+});
+
+export type InsertOrder = z.infer<typeof insertOrderSchema>;
+export type Order = typeof orders.$inferSelect;
+export type InsertCustomer = z.infer<typeof insertCustomerSchema>;
+export type Customer = typeof customers.$inferSelect;
 export type Quote = typeof quotes.$inferSelect;
 
 export type User = typeof users.$inferSelect;

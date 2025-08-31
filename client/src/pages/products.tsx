@@ -12,6 +12,8 @@ export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
   const [arPreview, setArPreview] = useState<{ isOpen: boolean; product: any }>({ isOpen: false, product: null });
+  const [apiProducts, setApiProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
   const categories = [
@@ -172,7 +174,9 @@ export default function Products() {
       image: "🚚",
       features: ["20L Container", "Weekly Delivery", "pH 9.5 Alkaline", "Free Container Rental"],
       badge: "Delivery Service"
-    }
+    },
+    // AquaCafe products from API
+    ...apiProducts,
   ];
 
   const filteredProducts = selectedCategory === "all" 

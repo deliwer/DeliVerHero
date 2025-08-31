@@ -1,11 +1,16 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema } from "@shared/schema";
 import OpenAI from "openai";
+import Stripe from "stripe";
 import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
 import adminCampaignRoutes from "./routes/admin-campaigns";
 import adminRoleRoutes from "./routes/admin-roles";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+  apiVersion: "2025-08-27.basil",
+});
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY || "",
@@ -16,6 +21,249 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register admin-only routes (Shopify admin authentication required)
   app.use("/api/admin/campaigns", adminCampaignRoutes);
   app.use("/api/admin/roles", adminRoleRoutes);
+
+  // Stripe payment endpoints
+  app.post("/api/create-payment-intent", async (req, res) => {
+    try {
+      const { amount, currency = "aed", customerId, billingDetails, shippingDetails, cartItems } = req.body;
+      
+      if (!amount || amount < 50) { // Minimum 0.50 AED
+        return res.status(400).json({ error: "Invalid amount" });
+      }
+
+      let customer;
+      if (customerId) {
+        customer = await stripe.customers.retrieve(customerId);
+      } else if (billingDetails?.email) {
+        // Create or retrieve customer by email
+        const customers = await stripe.customers.list({ email: billingDetails.email, limit: 1 });
+        if (customers.data.length > 0) {
+          customer = customers.data[0];
+        } else {
+          customer = await stripe.customers.create({
+            email: billingDetails.email,
+            name: `${billingDetails.firstName || ''} ${billingDetails.lastName || ''}`.trim(),
+            phone: billingDetails.phone,
+            address: billingDetails.address1 ? {
+              line1: billingDetails.address1,
+              city: billingDetails.city,
+              country: billingDetails.country || "AE",
+              postal_code: billingDetails.zip,
+            } : undefined,
+          });
+        }
+      }
+
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(amount * 100), // Convert to fils (AED cents)
+        currency,
+        customer: customer?.id,
+        metadata: {
+          source: "deliwer_aquacafe",
+          items: JSON.stringify(cartItems?.map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            quantity: item.quantity,
+            price: item.price
+          })) || []),
+          shipping_name: shippingDetails?.firstName ? `${shippingDetails.firstName} ${shippingDetails.lastName}`.trim() : '',
+          shipping_address: shippingDetails?.address1 || '',
+          shipping_city: shippingDetails?.city || '',
+        },
+        shipping: shippingDetails ? {
+          name: `${shippingDetails.firstName || ''} ${shippingDetails.lastName || ''}`.trim(),
+          address: {
+            line1: shippingDetails.address1 || '',
+            city: shippingDetails.city || '',
+            country: shippingDetails.country || "AE",
+            postal_code: shippingDetails.zip || '',
+          },
+        } : undefined,
+        automatic_payment_methods: {
+          enabled: true,
+        },
+      });
+
+      res.json({
+        clientSecret: paymentIntent.client_secret,
+        paymentIntentId: paymentIntent.id,
+        customerId: customer?.id,
+      });
+    } catch (error: any) {
+      console.error("Error creating payment intent:", error);
+      res.status(500).json({ error: error.message || "Failed to create payment intent" });
+    }
+  });
+
+  app.post("/api/confirm-payment", async (req, res) => {
+    try {
+      const { paymentIntentId, orderData } = req.body;
+      
+      if (!paymentIntentId) {
+        return res.status(400).json({ error: "Payment Intent ID is required" });
+      }
+
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      
+      if (paymentIntent.status === "succeeded") {
+        // Create order record in database
+        const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        
+        // Store order in database
+        const orderRecord = {
+          id: orderId,
+          paymentIntentId,
+          customerId: paymentIntent.customer as string,
+          customerEmail: paymentIntent.receipt_email || '',
+          amount: paymentIntent.amount, // Keep in fils (AED cents)
+          currency: paymentIntent.currency,
+          status: "paid",
+          items: JSON.parse(paymentIntent.metadata.items || '[]'),
+          billingDetails: JSON.parse(paymentIntent.metadata.billingDetails || '{}'),
+          shippingDetails: JSON.parse(paymentIntent.metadata.shippingDetails || '{}'),
+          metadata: {
+            source: paymentIntent.metadata.source || 'deliwer_checkout',
+            processed_at: new Date().toISOString(),
+          },
+        };
+
+        try {
+          const order = await storage.createOrder(orderRecord);
+          console.log("Order created in database:", orderId, "Amount:", paymentIntent.amount / 100, "AED");
+        } catch (dbError) {
+          console.error("Failed to save order to database:", dbError);
+          // Continue with success response even if database save fails
+        }
+        
+        res.json({
+          success: true,
+          orderId,
+          paymentIntent: {
+            id: paymentIntent.id,
+            status: paymentIntent.status,
+            amount: paymentIntent.amount / 100,
+            currency: paymentIntent.currency,
+          },
+        });
+      } else {
+        res.status(400).json({ error: "Payment not completed", status: paymentIntent.status });
+      }
+    } catch (error: any) {
+      console.error("Error confirming payment:", error);
+      res.status(500).json({ error: error.message || "Failed to confirm payment" });
+    }
+  });
+
+  app.get("/api/stripe-config", async (req, res) => {
+    res.json({
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    });
+  });
+
+  // AquaCafe product endpoint
+  app.get("/api/products/aquacafe", async (req, res) => {
+    try {
+      const aquacafeProduct = {
+        id: "aquacafe-starter-kit",
+        variantId: "gid://shopify/ProductVariant/aquacafe-starter-2024",
+        productId: "gid://shopify/Product/aquacafe-2024",
+        title: "AquaCafe Starter Kit by DeliWer",
+        variant: "Starter Kit",
+        description: "Transform your water consumption with our premium AquaCafe starter kit. Complete water purification system with trade-in rewards.",
+        price: 299.99,
+        originalPrice: 399.99,
+        image: "/attached_assets/Aquacafe_byDeliWer_Card_Corners.png",
+        available: true,
+        category: "Water Purification",
+        features: [
+          "Advanced filtration technology",
+          "Eco-friendly water solution",
+          "Trade-in rewards program",
+          "Professional installation",
+          "1-year warranty included",
+          "Smart water monitoring"
+        ],
+        badge: "Best Seller",
+        popular: true,
+        rating: 4.9,
+        reviews: 127,
+        shopifyUrl: "https://deliwer.com/products/aquacafe",
+        inStock: 50,
+        shipping: {
+          free: true,
+          estimatedDays: "2-3",
+          regions: ["Dubai", "Abu Dhabi", "Sharjah"]
+        },
+        environmental: {
+          bottlesPrevented: 2400,
+          co2Saved: "12.5kg",
+          waterSaved: "1,200L"
+        }
+      };
+      
+      res.json(aquacafeProduct);
+    } catch (error: any) {
+      console.error("Error fetching AquaCafe product:", error);
+      res.status(500).json({ error: "Failed to fetch product" });
+    }
+  });
+
+  // Products listing endpoint
+  app.get("/api/products", async (req, res) => {
+    try {
+      const products = [
+        {
+          id: "aquacafe-starter-kit",
+          variantId: "gid://shopify/ProductVariant/aquacafe-starter-2024",
+          productId: "gid://shopify/Product/aquacafe-2024",
+          title: "AquaCafe Starter Kit",
+          variant: "Starter Kit",
+          price: 299.99,
+          originalPrice: 399.99,
+          image: "/attached_assets/Aquacafe_byDeliWer_Card_Corners.png",
+          available: true,
+          category: "Water Purification",
+          features: [
+            "Advanced filtration",
+            "Eco-friendly solution",
+            "Trade-in rewards",
+            "Professional installation"
+          ],
+          badge: "Best Seller",
+          popular: true,
+          rating: 4.9,
+          reviews: 127
+        },
+        {
+          id: "aquacafe-pro-kit",
+          variantId: "gid://shopify/ProductVariant/aquacafe-pro-2024",
+          productId: "gid://shopify/Product/aquacafe-pro-2024",
+          title: "AquaCafe Pro Kit",
+          variant: "Pro Kit",
+          price: 499.99,
+          originalPrice: 599.99,
+          image: "/attached_assets/Aquacafe_shower_front_1755270492133.jpg",
+          available: true,
+          category: "Water Purification",
+          features: [
+            "Premium filtration system",
+            "Smart monitoring",
+            "Extended warranty",
+            "Priority support"
+          ],
+          badge: "Professional",
+          popular: false,
+          rating: 4.8,
+          reviews: 89
+        }
+      ];
+      
+      res.json(products);
+    } catch (error: any) {
+      console.error("Error fetching products:", error);
+      res.status(500).json({ error: "Failed to fetch products" });
+    }
+  });
 
   // Shopify checkout endpoint
   app.post("/api/shopify/checkout", async (req, res) => {
@@ -1000,7 +1248,7 @@ Context: ${JSON.stringify(context || {})}`
         status: "configured",
         shopifyIntegration: "ready"
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('SendGrid verification error:', error);
       res.status(500).json({
         configured: false,
@@ -1114,7 +1362,7 @@ Context: ${JSON.stringify(context || {})}`
           error: "Failed to send verification email"
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Integration test error:', error);
       res.status(500).json({
         success: false,
