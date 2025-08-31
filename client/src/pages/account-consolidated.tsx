@@ -70,9 +70,7 @@ export default function AccountConsolidated() {
                     <Phone className="w-5 h-5 text-emerald-400 mt-0.5" />
                     <div>
                       <p className="text-white font-medium">Phone & WhatsApp</p>
-                      <a href="tel:+971545454595" className="text-gray-400 hover:text-emerald-400 transition-colors">
-                        +971 54 545 4595
-                      </a>
+                      <a href="tel:+971545454595" className="text-gray-400 hover:text-emerald-400 transition-colors">+971 52 394 6311</a>
                     </div>
                   </div>
                   
