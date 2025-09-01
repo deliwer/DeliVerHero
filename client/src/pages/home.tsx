@@ -10,7 +10,7 @@ import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
-import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart } from "lucide-react";
+import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -419,6 +419,88 @@ export default function Home() {
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
+
+      {/* Alliance Partner CTA - Dr Sven The Baker */}
+      <section className="py-16 px-4 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Partnership Info */}
+            <div className="text-white">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                  <ChefHat className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold">Meet Dr Sven The Baker</h2>
+                  <p className="text-xl text-white/90">Our Alliance Partner at Baker's Kitchen UAE</p>
+                </div>
+              </div>
+              
+              <blockquote className="text-lg italic mb-6 text-white/95">
+                "Healthy food deserves healthy water. That's why at Baker's Kitchen, we proudly serve AquaCafe Kangen Water — 
+                for our guests, for our community, for a healthier Dubai."
+              </blockquote>
+              
+              <div className="space-y-3 mb-8">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>Fresh, wholesome meals with Kangen Water</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>Located in Mazaya Center, Business Bay</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>AED 100 vouchers through referral program</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right: Referral CTA */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                🎁 Refer Friends & Earn Baker's Kitchen Vouchers
+              </h3>
+              
+              <div className="space-y-4 mb-8">
+                <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
+                  <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">1</span>
+                  </div>
+                  <span className="text-white">Join with AED 99 starter kit</span>
+                </div>
+                <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
+                  <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">2</span>
+                  </div>
+                  <span className="text-white">Refer friends to AquaCafe</span>
+                </div>
+                <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
+                  <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">3</span>
+                  </div>
+                  <span className="text-white">Earn AED 100 Baker's Kitchen vouchers</span>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <Link href="/aquacafe-alliance">
+                  <Button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-800 hover:from-yellow-500 hover:to-orange-600 text-lg px-8 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105 w-full mb-4">
+                    <Gift className="w-6 h-6 mr-3" />
+                    Explore Alliance & Start Referring
+                  </Button>
+                </Link>
+                
+                <div className="text-sm text-white/80">
+                  ✨ Join the wellness revolution today! ✨
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Founders Section */}
       <FoundersSection />

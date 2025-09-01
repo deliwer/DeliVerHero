@@ -3,7 +3,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { shopifyCartService } from "@/lib/shopify-cart";
 import { Link } from "wouter";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, Phone } from "lucide-react";
+import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, Phone, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
@@ -328,9 +328,9 @@ export default function AquaCafe() {
             </Card>
           </div>
 
-          {/* Partnership Location Info */}
+          {/* Partnership Location Info with Alliance CTA */}
           <div className="text-center">
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-emerald-200 shadow-lg inline-block">
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-emerald-200 shadow-lg inline-block mb-6">
               <div className="text-amber-600 font-bold text-base sm:text-lg mb-2">Visit Baker's Kitchen Mazaya Center</div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
@@ -343,9 +343,75 @@ export default function AquaCafe() {
                 </div>
               </div>
             </div>
+            
+            {/* Alliance Partner CTA */}
+            <div className="max-w-2xl mx-auto">
+              <Link href="/aquacafe-alliance" className="block">
+                <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center gap-3 mb-3">
+                    <ChefHat className="w-8 h-8" />
+                    <span className="text-2xl font-bold">Experience Our Alliance</span>
+                    <Gift className="w-8 h-8" />
+                  </div>
+                  <p className="text-lg mb-4">Discover how AquaCafe + Dr Sven The Baker are revolutionizing wellness in Dubai</p>
+                  <div className="bg-white/20 rounded-lg p-3 text-sm">
+                    <strong>🎁 Referral Rewards:</strong> Get AED 100 Baker's Kitchen vouchers when your friends join our community!
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
+      
+      {/* Referral Rewards System CTA */}
+      <section className="w-full py-16 px-4 bg-gradient-to-r from-purple-600 via-pink-600 to-red-500 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto text-center">
+          <div className="mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              🎁 Refer Friends, Earn Rewards! 🎁
+            </h2>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto mb-8">
+              Share the wellness journey with your friends and family. Every successful referral earns you exclusive vouchers at Baker's Kitchen and extra Planet Points!
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-5xl mb-4">🤝</div>
+              <h3 className="text-xl font-bold text-white mb-2">Invite Friends</h3>
+              <p className="text-white/80">Share your unique referral code with friends and family</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-5xl mb-4">🛒</div>
+              <h3 className="text-xl font-bold text-white mb-2">They Join & Order</h3>
+              <p className="text-white/80">Friends sign up and purchase any AquaCafe starter kit</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="text-5xl mb-4">🎁</div>
+              <h3 className="text-xl font-bold text-white mb-2">You Get Rewards</h3>
+              <p className="text-white/80">Receive AED 100 Baker's Kitchen vouchers + bonus Planet Points</p>
+            </div>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/aquacafe-alliance">
+              <Button className="bg-white text-purple-600 hover:bg-gray-100 text-lg px-8 py-4 rounded-full font-bold shadow-2xl">
+                <Users className="w-6 h-6 mr-3" />
+                Start Referring Friends
+              </Button>
+            </Link>
+            <Link href="/community">
+              <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-4 rounded-full font-bold">
+                <Heart className="w-6 h-6 mr-3" />
+                Join Community
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+      
       {/* AquaCafe Starter Kit - Flagship Gateway Section */}
       <section className="w-full py-8 sm:py-12 px-0 bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50" data-testid="starter-kit-gateway" style={{ maxWidth: '100vw' }}>
         {/* Full Width Banner */}

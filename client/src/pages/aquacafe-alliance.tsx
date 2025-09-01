@@ -301,7 +301,43 @@ export default function AquaCafeAlliance() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            
+            {/* Left: Referral System Benefits */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-8 border-2 border-purple-200">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-3">
+                  <Users className="w-8 h-8 text-purple-600" />
+                  Refer Friends & Earn Together
+                </h3>
+                <p className="text-gray-700 mb-6">
+                  Join our exclusive referral program and earn Baker's Kitchen vouchers when your friends become AquaCafe members!
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 bg-white/60 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">1</span>
+                    </div>
+                    <span className="text-gray-700">Order your AED 99 starter kit and become a member</span>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white/60 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">2</span>
+                    </div>
+                    <span className="text-gray-700">Share your referral code with friends & family</span>
+                  </div>
+                  <div className="flex items-center gap-3 bg-white/60 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">3</span>
+                    </div>
+                    <span className="text-gray-700">Earn AED 100 Baker's Kitchen vouchers per successful referral</span>
+                  </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-gradient-to-r from-emerald-500 to-amber-500 rounded-xl text-white text-center">
+                  <strong>🎁 Double Rewards:</strong> You get vouchers + your friends get 20% off their first order!
+                </div>
+              </div>
+            </div>
 
             {/* Right: Product Showcase */}
             <div className="relative">
@@ -315,6 +351,20 @@ export default function AquaCafeAlliance() {
                 <div className="bg-gradient-to-r from-emerald-50 to-amber-50 rounded-xl p-6 border border-emerald-200">
                   <div className="text-center">
                     <div className="text-xl font-bold text-gray-800 mb-3">Partnership Exclusive Benefits</div>
+                    
+                    {/* Membership Starter Kit CTA */}
+                    <div className="mb-6 p-4 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl text-white">
+                      <div className="text-lg font-bold mb-2">🚀 Start Your Membership Journey</div>
+                      <div className="text-2xl font-bold mb-2">AED 99 Starter Kit</div>
+                      <div className="text-sm mb-3">Your gateway to exclusive rewards, referral bonuses & Dr Sven's network</div>
+                      <Button 
+                        onClick={handleOrderNow}
+                        disabled={isOrderLoading}
+                        className="bg-white text-emerald-600 hover:bg-gray-100 font-bold px-6 py-2 rounded-full text-sm"
+                      >
+                        {isOrderLoading ? 'Processing...' : '🛒 Join Now & Start Referring'}
+                      </Button>
+                    </div>
                     <div className="grid grid-cols-2 gap-3 text-sm text-gray-700">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-emerald-500" />
@@ -388,6 +438,116 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
+      
+      {/* Final CTA: Membership + Referral Program */}
+      <section className="w-full py-16 px-4 bg-gradient-to-br from-emerald-600 via-cyan-600 to-blue-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              🎆 Join the Alliance & Start Earning 🎆
+            </h2>
+            <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+              Become an AquaCafe member today and unlock exclusive access to Dr Sven The Baker's referral network. 
+              Every friend you refer earns you rewards at Baker's Kitchen!
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Membership Benefits */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <Award className="w-8 h-8 text-yellow-300" />
+                Membership Benefits
+              </h3>
+              <div className="space-y-3 text-white/90">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>Instant access to referral program</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>AED 100 Baker's Kitchen vouchers per referral</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>20% discount on all future AquaCafe products</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>Priority access to Dr Sven's special events</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-300" />
+                  <span>Exclusive wellness tips from Baker's Kitchen</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Referral Rewards */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <Gift className="w-8 h-8 text-pink-300" />
+                Referral Rewards
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-4 text-center">
+                  <div className="text-lg font-bold text-gray-800">AED 100 Voucher</div>
+                  <div className="text-sm text-gray-700">Per successful referral at Baker's Kitchen</div>
+                </div>
+                <div className="bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl p-4 text-center">
+                  <div className="text-lg font-bold text-white">500 Planet Points</div>
+                  <div className="text-sm text-white/90">Bonus points for each friend who joins</div>
+                </div>
+                <div className="bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-xl p-4 text-center">
+                  <div className="text-lg font-bold text-white">20% Friend Discount</div>
+                  <div className="text-sm text-white/90">Your friends save on their first order</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center">
+            <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/30">
+              <h3 className="text-3xl font-bold text-white mb-4">🚀 Start Your Membership Journey</h3>
+              <div className="text-6xl font-bold text-yellow-300 mb-2">AED 99</div>
+              <div className="text-xl text-white/90 mb-6">One-time starter kit + lifetime membership benefits</div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                <Button 
+                  onClick={handleOrderNow}
+                  disabled={isOrderLoading}
+                  className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-800 hover:from-yellow-500 hover:to-orange-600 text-xl px-10 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                >
+                  {isOrderLoading ? (
+                    <>
+                      <div className="animate-spin w-6 h-6 border-2 border-gray-600 border-t-transparent rounded-full mr-3"></div>
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-6 h-6 mr-3" />
+                      Join Alliance & Start Referring
+                    </>
+                  )}
+                </Button>
+                
+                <Link href="/contact">
+                  <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-emerald-600 text-xl px-10 py-4 rounded-full font-bold">
+                    <Phone className="w-6 h-6 mr-3" />
+                    Questions? Contact Us
+                  </Button>
+                </Link>
+              </div>
+              
+              <div className="text-sm text-white/80">
+                ✨ Join today and start earning rewards tomorrow! ✨
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Footer */}
       <footer className="w-full py-12 px-4 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto">
