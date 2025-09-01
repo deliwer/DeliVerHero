@@ -34,7 +34,6 @@ import { PurchaseOrdersPage } from "@/pages/purchase-orders";
 import { AccountManagementPage } from "@/pages/account-management";
 import CoboneCorporate from "@/pages/cobone-corporate";
 import CorporateCombined from "@/pages/corporate-combined";
-import PartnershipPage from "@/pages/partnership";
 import AccountConsolidated from "@/pages/account-consolidated";
 
 import Privacy from "@/pages/privacy";
@@ -75,7 +74,7 @@ function Router() {
       <Route path="/account-management" component={AccountManagementPage} />
       <Route path="/cobone-corporate" component={CorporateCombined} />
       <Route path="/corporate" component={CorporateCombined} />
-      <Route path="/partnership" component={PartnershipPage} />
+      <Route path="/partnership" component={Partners} />
 
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />

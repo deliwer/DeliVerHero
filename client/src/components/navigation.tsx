@@ -36,17 +36,16 @@ export function Navigation() {
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Play", id: "play" },
-    { path: "/partnership", label: "Trade-in Partners", id: "partnership" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
     { path: "/contact", label: "Contact & About", id: "contact" },
     { path: "/community", label: "Community", id: "community" },
-    { path: "/partners", label: "CSR/Partners", id: "partners" },
+    { path: "/partners", label: "Partners", id: "partners" },
   ];
 
   const b2bNavItems = [
     { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
-    { path: "/partnership", label: "Partnership Program", id: "partnership" },
+    { path: "/partners", label: "Partner Program", id: "partners" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
     { path: "/contact", label: "Contact & About", id: "contact" },
   ];
@@ -91,23 +90,6 @@ export function Navigation() {
                   );
                 }
                 
-                // Special styling for partnership link
-                if (item.id === "partnership") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/30 hover:to-purple-600/30 hover:border-blue-400/50 transition-all">
-                        <Rocket className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                        <Sparkles className="w-3 h-3 text-cyan-400" />
-                      </div>
-                    </Link>
-                  );
-                }
 
                 return (
                   <Link

@@ -106,7 +106,7 @@ export default function Exchange() {
                   Get Starter Kit - AED 99
                 </a>
                 <a
-                  href="/partnership"
+                  href="/partners"
                   className="inline-flex items-center px-8 py-4 rounded-xl border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white font-bold transition-all transform hover:scale-105"
                 >
                   <Recycle className="w-5 h-5 mr-2" />
@@ -230,7 +230,7 @@ export default function Exchange() {
                 Get Starter Kit - AED 99
               </a>
               <a 
-                href="/partnership"
+                href="/partners"
                 className="border border-slate-600 text-white hover:bg-slate-800 px-8 py-3 rounded-lg font-semibold transition-colors"
               >
                 Explore Trade Partnerships

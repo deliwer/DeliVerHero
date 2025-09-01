@@ -53,7 +53,7 @@ function OpportunitiesSection() {
                 </div>
               </div>
               <Link
-                href="/partnership"
+                href="/partners"
                 className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
                 data-testid="button-trade-iphone"
               >
@@ -311,7 +311,7 @@ export default function Home() {
                 <div>✓ Loyalty member benefits</div>
               </div>
               <Link 
-                href="/partnership"
+                href="/partners"
                 className="inline-flex items-center justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
                 Start Individual Trade
@@ -333,7 +333,7 @@ export default function Home() {
                 <div>✓ Enterprise discounts</div>
               </div>
               <Link 
-                href="/partnership"
+                href="/partners"
                 className="inline-flex items-center justify-center w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
                 Join Corporate Program
@@ -355,7 +355,7 @@ export default function Home() {
                 <div>✓ Group rewards & benefits</div>
               </div>
               <Link 
-                href="/partnership"
+                href="/partners"
                 className="inline-flex items-center justify-center w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
                 Start Community Program
@@ -405,7 +405,7 @@ export default function Home() {
                   Get Starter Kit - AED 99
                 </Link>
                 <Link
-                  href="/partnership"
+                  href="/partners"
                   className="inline-flex items-center justify-center border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-8 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105"
                 >
                   <Handshake className="w-6 h-6 mr-3" />
