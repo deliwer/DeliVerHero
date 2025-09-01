@@ -61,23 +61,58 @@ export default function Exchange() {
           </Card>
         </div>
 
-        {/* Next Steps CTA - Following prototype */}
+        {/* Starter Kit Membership CTA */}
         <div className="mb-12">
-          <div className="text-center mb-8">
-            <h3 className="text-xl font-bold text-white mb-4">What's Next?</h3>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="/collect"
-                className="px-6 py-3 rounded-2xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors"
-              >
-                Join Leaderboard
-              </a>
-              <a
-                href="/aquacafe"
-                className="px-6 py-3 rounded-2xl bg-gray-900 text-white font-bold hover:bg-black transition-colors"
-              >
-                Redeem in AquaCafe
-              </a>
+          <div className="bg-gradient-to-r from-blue-900/50 to-green-900/50 rounded-3xl p-8 border border-cyan-500/30">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-white mb-4">
+                🎯 Smart Move: Start with Membership
+              </h3>
+              <p className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
+                Before trading in your iPhone, join our loyalty program with the AED 99 Starter Kit. 
+                Get immediate value while preparing for your future trade-ins with exclusive member benefits.
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Star className="w-6 h-6 text-green-400" />
+                  </div>
+                  <h4 className="font-semibold text-white mb-2">Higher Trade Values</h4>
+                  <p className="text-gray-300 text-sm">Members get priority pricing and bonus credits on all trades</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Gift className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h4 className="font-semibold text-white mb-2">FREE Installation</h4>
+                  <p className="text-gray-300 text-sm">AED 299 value included with every starter kit membership</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <TrendingUp className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <h4 className="font-semibold text-white mb-2">Planet Points</h4>
+                  <p className="text-gray-300 text-sm">Earn rewards with every trade and environmental action</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="/aquacafe"
+                  className="inline-flex items-center px-8 py-4 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold transition-all transform hover:scale-105"
+                >
+                  <Star className="w-5 h-5 mr-2" />
+                  Get Starter Kit - AED 99
+                </a>
+                <a
+                  href="/partnership"
+                  className="inline-flex items-center px-8 py-4 rounded-xl border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white font-bold transition-all transform hover:scale-105"
+                >
+                  <Recycle className="w-5 h-5 mr-2" />
+                  Explore Trade Partnerships
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -182,18 +217,24 @@ export default function Exchange() {
           <div className="bg-hero-green-500/10 border border-hero-green-500/30 rounded-2xl p-8">
             <Smartphone className="w-16 h-16 text-hero-green-500 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-white mb-4">
-              Ready to Exchange Your iPhone?
+              Ready to Join the Sustainability Revolution?
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Join thousands of sustainability heroes who have already exchanged their devices for store credit and eco-friendly products.
+              Start with our AED 99 Starter Kit to unlock the complete ecosystem. Then explore partnerships for individual, corporate, or community trade-in programs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                Start Trade-In Process
-              </button>
-              <button className="border border-slate-600 text-white hover:bg-slate-800 px-8 py-3 rounded-lg font-semibold transition-colors">
-                Learn More
-              </button>
+              <a 
+                href="/aquacafe"
+                className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Get Starter Kit - AED 99
+              </a>
+              <a 
+                href="/partnership"
+                className="border border-slate-600 text-white hover:bg-slate-800 px-8 py-3 rounded-lg font-semibold transition-colors"
+              >
+                Explore Trade Partnerships
+              </a>
             </div>
           </div>
         </div>

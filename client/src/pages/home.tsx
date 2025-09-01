@@ -10,7 +10,7 @@ import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
-import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake } from "lucide-react";
+import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -53,11 +53,11 @@ function OpportunitiesSection() {
                 </div>
               </div>
               <Link
-                href="/#meet-deli"
+                href="/partnership"
                 className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
                 data-testid="button-trade-iphone"
               >
-                Trade iPhone Now
+                Start Trade-in Partnership
               </Link>
             </div>
 
@@ -83,11 +83,11 @@ function OpportunitiesSection() {
                 </div>
               </div>
               <Link
-                href="/"
+                href="/aquacafe"
                 className="w-full bg-hero-green-600 hover:bg-hero-green-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
                 data-testid="button-gitex-launch"
               >
-                Join Launch Campaign
+                Get Starter Kit - AED 99
               </Link>
             </div>
 
@@ -282,6 +282,140 @@ export default function Home() {
 
       {/* Get Trade-in Offer Section - Now positioned after hero and above Planet Points Challenge */}
       <MeetDeliInteractive />
+
+      {/* Partnership & Starter Kit Convergence Section */}
+      <section className="py-20 px-4 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              All Roads Lead to <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">Membership</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+              Whether you're an individual trader, corporate partner, or community leader - your journey starts with our AED 99 Starter Kit. 
+              Unlock the complete DeliWer ecosystem and earn while saving the planet.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Individual Trade-in */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-cyan-500/30">
+              <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="w-8 h-8 text-cyan-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Individual Trader</h3>
+              <p className="text-gray-300 mb-6">Trade your devices and get instant access to water filtration systems, loyalty rewards, and Planet Points.</p>
+              <div className="space-y-2 text-sm text-gray-400 mb-8">
+                <div>✓ Device valuation & trade</div>
+                <div>✓ Water filtration credits</div>
+                <div>✓ Planet Points earning</div>
+                <div>✓ Loyalty member benefits</div>
+              </div>
+              <Link 
+                href="/partnership"
+                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+              >
+                Start Individual Trade
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Link>
+            </div>
+
+            {/* Corporate Partnership */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-emerald-500/30 transform scale-105">
+              <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Building className="w-8 h-8 text-emerald-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Corporate Partner</h3>
+              <p className="text-gray-300 mb-6">Bulk device trade-in programs with ESG reporting, employee engagement, and enterprise benefits.</p>
+              <div className="space-y-2 text-sm text-gray-400 mb-8">
+                <div>✓ Bulk device processing</div>
+                <div>✓ ESG impact reporting</div>
+                <div>✓ Employee engagement</div>
+                <div>✓ Enterprise discounts</div>
+              </div>
+              <Link 
+                href="/partnership"
+                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+              >
+                Join Corporate Program
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Link>
+            </div>
+
+            {/* Community CSR */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-purple-500/30">
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Heart className="w-8 h-8 text-purple-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Community CSR</h3>
+              <p className="text-gray-300 mb-6">Residential communities unite for shared sustainability goals with collective rewards and impact tracking.</p>
+              <div className="space-y-2 text-sm text-gray-400 mb-8">
+                <div>✓ Community leaderboards</div>
+                <div>✓ Shared starter kits</div>
+                <div>✓ Collective impact tracking</div>
+                <div>✓ Group rewards & benefits</div>
+              </div>
+              <Link 
+                href="/partnership"
+                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+              >
+                Start Community Program
+                <ChevronRight className="w-5 h-5 ml-2" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Unified Starter Kit CTA */}
+          <div className="bg-gradient-to-r from-blue-900/50 to-green-900/50 rounded-3xl p-12 border border-cyan-500/30">
+            <div className="max-w-4xl mx-auto">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                🚀 Your Journey Starts Here: AED 99 Starter Kit
+              </h3>
+              <p className="text-xl text-gray-300 mb-8">
+                Get instant access to the complete DeliWer ecosystem. FREE installation included (AED 299 value). 
+                Start earning Planet Points, trading devices, and saving the environment today.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div className="text-left">
+                  <h4 className="text-lg font-semibold text-white mb-4">Included in Starter Kit:</h4>
+                  <div className="space-y-2 text-gray-300">
+                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />5-Stage Water Filtration System</div>
+                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />FREE Professional Installation (AED 299 value)</div>
+                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Loyalty Membership Access</div>
+                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Planet Points Earning System</div>
+                  </div>
+                </div>
+                <div className="text-left">
+                  <h4 className="text-lg font-semibold text-white mb-4">Membership Benefits:</h4>
+                  <div className="space-y-2 text-gray-300">
+                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Device Trade-in Priority</div>
+                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Partnership Program Access</div>
+                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Community Challenges</div>
+                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Exclusive Discounts & Rewards</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/aquacafe"
+                  className="inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105"
+                >
+                  <ShoppingCart className="w-6 h-6 mr-3" />
+                  Get Starter Kit - AED 99
+                </Link>
+                <Link
+                  href="/partnership"
+                  className="inline-flex items-center justify-center border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-8 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105"
+                >
+                  <Handshake className="w-6 h-6 mr-3" />
+                  Explore Partnerships
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
