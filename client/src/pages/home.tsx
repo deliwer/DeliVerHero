@@ -286,11 +286,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-12">
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              All Roads Lead to <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">Membership</span>
+              Discover Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">Sustainability Journey</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-              Whether you're an individual trader, corporate partner, or community leader - your journey starts with our AED 99 Starter Kit. 
-              Unlock the complete DeliWer ecosystem and earn while saving the planet.
+              Every path to environmental impact is unique. Whether you're exploring individual solutions, considering corporate sustainability, or building community initiatives - we're here to help you find what works best for your goals.
             </p>
           </div>
 
@@ -300,8 +299,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Users className="w-8 h-8 text-cyan-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Individual Trader</h3>
-              <p className="text-gray-300 mb-6">Trade your devices and get instant access to water filtration systems, loyalty rewards, and Planet Points.</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Individual Explorer</h3>
+              <p className="text-gray-300 mb-6">Perfect for those curious about device recycling and water conservation. Discover how small actions create meaningful environmental impact.</p>
               <div className="space-y-2 text-sm text-gray-400 mb-8">
                 <div>✓ Device valuation & trade</div>
                 <div>✓ Water filtration credits</div>
@@ -312,7 +311,7 @@ export default function Home() {
                 href="/partners"
                 className="inline-flex items-center justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
-                Start Individual Trade
+                Learn More
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Link>
             </div>
@@ -322,8 +321,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Building className="w-8 h-8 text-emerald-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Corporate Partner</h3>
-              <p className="text-gray-300 mb-6">Bulk device trade-in programs with ESG reporting, employee engagement, and enterprise benefits.</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Corporate Solutions</h3>
+              <p className="text-gray-300 mb-6">Designed for organizations interested in comprehensive sustainability programs with measurable impact and employee engagement opportunities.</p>
               <div className="space-y-2 text-sm text-gray-400 mb-8">
                 <div>✓ Bulk device processing</div>
                 <div>✓ ESG impact reporting</div>
@@ -334,7 +333,7 @@ export default function Home() {
                 href="/partners"
                 className="inline-flex items-center justify-center w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
-                Join Corporate Program
+                Explore Options
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Link>
             </div>
@@ -344,8 +343,8 @@ export default function Home() {
               <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Heart className="w-8 h-8 text-purple-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Community CSR</h3>
-              <p className="text-gray-300 mb-6">Residential communities unite for shared sustainability goals with collective rewards and impact tracking.</p>
+              <h3 className="text-2xl font-bold text-white mb-4">Community Initiatives</h3>
+              <p className="text-gray-300 mb-6">Ideal for neighborhoods and communities who want to collaborate on sustainability goals while sharing rewards and celebrating collective impact.</p>
               <div className="space-y-2 text-sm text-gray-400 mb-8">
                 <div>✓ Community leaderboards</div>
                 <div>✓ Shared starter kits</div>
@@ -356,7 +355,7 @@ export default function Home() {
                 href="/partners"
                 className="inline-flex items-center justify-center w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
-                Start Community Program
+                Discover Benefits
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Link>
             </div>
@@ -366,11 +365,10 @@ export default function Home() {
           <div className="bg-gradient-to-r from-blue-900/50 to-green-900/50 rounded-3xl p-12 border border-cyan-500/30">
             <div className="max-w-4xl mx-auto">
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                🚀 Your Journey Starts Here: AED 99 Starter Kit
+                🌱 Consider Our Starter Kit: AED 99
               </h3>
               <p className="text-xl text-gray-300 mb-8">
-                Get instant access to the complete DeliWer ecosystem. FREE installation included (AED 299 value). 
-                Start earning Planet Points, trading devices, and saving the environment today.
+                For those ready to take the next step, our starter kit provides everything you need to begin your sustainability journey. Includes complimentary installation (AED 299 value) and access to our complete ecosystem.
               </p>
               
               <div className="grid md:grid-cols-2 gap-8 mb-8">
@@ -400,14 +398,14 @@ export default function Home() {
                   className="inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105"
                 >
                   <ShoppingCart className="w-6 h-6 mr-3" />
-                  Get Starter Kit - AED 99
+                  View Starter Kit Details
                 </Link>
                 <Link
                   href="/partners"
                   className="inline-flex items-center justify-center border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-8 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105"
                 >
                   <Handshake className="w-6 h-6 mr-3" />
-                  Explore Partnerships
+                  Learn About Partnerships
                 </Link>
               </div>
             </div>
@@ -459,7 +457,7 @@ export default function Home() {
             {/* Right: Referral CTA */}
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
               <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                🎁 Refer Friends & Earn Baker's Kitchen Vouchers
+                🎁 Share the Experience & Get Rewarded
               </h3>
               
               <div className="space-y-4 mb-8">
@@ -467,13 +465,13 @@ export default function Home() {
                   <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-sm">1</span>
                   </div>
-                  <span className="text-white">Join with AED 99 starter kit</span>
+                  <span className="text-white">Consider our starter kit (AED 99)</span>
                 </div>
                 <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
                   <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-sm">2</span>
                   </div>
-                  <span className="text-white">Refer friends to AquaCafe</span>
+                  <span className="text-white">Share AquaCafe with friends</span>
                 </div>
                 <div className="bg-white/10 rounded-xl p-4 flex items-center gap-3">
                   <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -487,12 +485,12 @@ export default function Home() {
                 <Link href="/aquacafe-alliance">
                   <Button className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-800 hover:from-yellow-500 hover:to-orange-600 text-lg px-8 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105 w-full mb-4">
                     <Gift className="w-6 h-6 mr-3" />
-                    Explore Alliance & Start Referring
+                    Learn About Our Alliance
                   </Button>
                 </Link>
                 
                 <div className="text-sm text-white/80">
-                  ✨ Join the wellness revolution today! ✨
+                  ✨ Discover wellness through community ✨
                 </div>
               </div>
             </div>
