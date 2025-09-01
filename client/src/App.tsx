@@ -42,6 +42,8 @@ import Environmental from "@/pages/environmental";
 import DubaiRewards from "@/pages/dubai-rewards";
 
 import NotFound from "@/pages/not-found";
+import ContactPage from "@/pages/contact";
+import ProfilePage from "@/pages/profile";
 
 function Router() {
   const [location] = useLocation();
@@ -83,9 +85,9 @@ function Router() {
       <Route path="/cart" component={CartPage} />
       <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
       <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
-      <Route path="/profile" component={lazy(() => import("./pages/profile"))} />
+      <Route path="/profile" component={ProfilePage} />
       <Route path="/account" component={AccountConsolidated} />
-      <Route path="/contact" component={lazy(() => import("./pages/contact"))} />
+      <Route path="/contact" component={ContactPage} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />
