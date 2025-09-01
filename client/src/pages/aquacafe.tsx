@@ -244,12 +244,12 @@ export default function AquaCafe() {
             </p>
             
             <Button
-              onClick={() => handleOrderNow('hero-minimal')}
+              onClick={() => window.location.href = '/checkout'}
               className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-6 py-3 text-base font-bold rounded-xl shadow-lg transition-all"
               data-testid="button-experience-alliance"
             >
-              <Heart className="mr-3 w-5 h-5" />
-              Experience the Alliance
+              <ShoppingCart className="mr-3 w-5 h-5" />
+              Go to Checkout
             </Button>
           </div>
 

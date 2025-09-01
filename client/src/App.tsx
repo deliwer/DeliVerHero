@@ -85,7 +85,7 @@ function Router() {
       <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
       <Route path="/profile" component={AccountConsolidated} />
       <Route path="/account" component={AccountConsolidated} />
-      <Route path="/contact" component={AccountConsolidated} />
+      <Route path="/contact" component={lazy(() => import("./pages/contact"))} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />

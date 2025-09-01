@@ -206,9 +206,9 @@ export function Navigation() {
                         Sign Up
                       </Link>
                       <Link
-                        href="/account"
+                        href="/profile"
                         className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
-                        data-testid="dropdown-account"
+                        data-testid="dropdown-profile"
                         onClick={() => setUserDropdownOpen(false)}
                       >
                         <Settings className="w-4 h-4 mr-3" />
