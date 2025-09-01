@@ -37,7 +37,7 @@ export function Navigation() {
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Play", id: "play" },
     { path: "/redeem", label: "Redeem", id: "redeem" },
-    { path: "/contact", label: "Contact & About", id: "contact" },
+    { path: "/contact", label: "Contact Us", id: "contact" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];
@@ -47,7 +47,7 @@ export function Navigation() {
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/partners", label: "Partner Program", id: "partners" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
-    { path: "/contact", label: "Contact & About", id: "contact" },
+    { path: "/contact", label: "Contact Us", id: "contact" },
   ];
 
   const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
@@ -206,7 +206,7 @@ export function Navigation() {
                         Sign Up
                       </Link>
                       <Link
-                        href="/profile"
+                        href="/account"
                         className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
                         data-testid="dropdown-profile"
                         onClick={() => setUserDropdownOpen(false)}

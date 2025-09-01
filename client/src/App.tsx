@@ -83,7 +83,7 @@ function Router() {
       <Route path="/cart" component={CartPage} />
       <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
       <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
-      <Route path="/profile" component={AccountConsolidated} />
+      <Route path="/profile" component={lazy(() => import("./pages/profile"))} />
       <Route path="/account" component={AccountConsolidated} />
       <Route path="/contact" component={lazy(() => import("./pages/contact"))} />
       <Route path="/signup" component={SignupPage} />
