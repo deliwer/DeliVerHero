@@ -280,8 +280,6 @@ export default function Home() {
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Existing hero section kept intact */}
       <HeroChallengeLanding />
 
-      {/* Get Trade-in Offer Section - Now positioned after hero and above Planet Points Challenge */}
-      <MeetDeliInteractive />
 
       {/* Partnership & Starter Kit Convergence Section */}
       <section className="py-20 px-4 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900">
@@ -501,6 +499,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Redundant Meet Deli Section - Available at bottom for users who want to trade */}
+      <MeetDeliInteractive />
 
       {/* Founders Section */}
       <FoundersSection />
