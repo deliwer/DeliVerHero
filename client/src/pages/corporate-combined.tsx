@@ -225,11 +225,12 @@ export default function CorporateCombined() {
                   <div className="text-3xl font-bold text-white">DeliWer</div>
                 </div>
                 <h2 className="text-2xl font-bold text-center mb-4">
-                  Exclusive Corporate Partnership Program
+                  Enterprise Trade-In Management Program
                 </h2>
                 <p className="text-center text-white/90 max-w-3xl mx-auto">
-                  Join Cobone and DeliWer's exclusive corporate partnership program for enhanced 
-                  device trade-in benefits and cobranded marketing opportunities in the UAE and Saudi markets.
+                  Let DeliWer handle your entire corporate device trade-in program. We take full responsibility 
+                  from IT asset management to employee benefit distribution, freeing up your IT and HR departments 
+                  while providing employees with independent access to their trade-in benefits.
                 </p>
               </CardContent>
             </Card>
@@ -240,12 +241,13 @@ export default function CorporateCombined() {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
                     <Smartphone className="w-6 h-6 text-blue-400" />
-                    Premium Rates
+                    Zero IT Burden
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-400">
-                    Access exclusive trade-in rates up to 20% higher than standard market rates through our partnership.
+                    Complete device lifecycle management handled by DeliWer. Your IT team provides device list, 
+                    we handle collection, valuation, data wiping, and benefit distribution to employees.
                   </p>
                 </CardContent>
               </Card>
@@ -254,12 +256,13 @@ export default function CorporateCombined() {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
                     <Building2 className="w-6 h-6 text-green-400" />
-                    Cobranded Marketing
+                    Employee Self-Service
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-400">
-                    Joint marketing campaigns and promotional materials featuring both Cobone and DeliWer branding.
+                    Employees receive personalized redemption codes to access their trade-in benefits independently 
+                    through our partner portal - no HR department involvement required.
                   </p>
                 </CardContent>
               </Card>
@@ -268,12 +271,13 @@ export default function CorporateCombined() {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
                     <Recycle className="w-6 h-6 text-purple-400" />
-                    ESG Impact
+                    Automated Compliance
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-400">
-                    Comprehensive ESG reporting and sustainability metrics for your corporate responsibility goals.
+                    Secure data destruction certificates, ESG impact reporting, and audit trails 
+                    delivered automatically - meeting corporate compliance without departmental overhead.
                   </p>
                 </CardContent>
               </Card>
@@ -386,37 +390,99 @@ export default function CorporateCombined() {
 
           {/* Bulk Trade-in Tab */}
           <TabsContent value="bulk" className="space-y-8">
-            {/* Process Steps */}
+            {/* Corporate Process - IT/HR Focused */}
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-white text-center mb-6">Simplified Corporate Trade-In Process</h3>
+              <p className="text-gray-300 text-center mb-8 max-w-4xl mx-auto">
+                IT Managers: Submit device list once. HR Managers: Zero ongoing administration. 
+                Employees: Access benefits independently through secure redemption portal.
+              </p>
+            </div>
+            
             <div className="grid md:grid-cols-4 gap-4 mb-8">
               <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="pt-6 text-center">
                   <FileText className="w-12 h-12 text-blue-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">1. Submit Details</h3>
-                  <p className="text-gray-400 text-sm">Provide device inventory and company information</p>
+                  <h3 className="text-white font-semibold mb-2">1. IT Submits List</h3>
+                  <p className="text-gray-400 text-sm">IT provides device inventory with employee assignments - one-time submission</p>
                 </CardContent>
               </Card>
               
               <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="pt-6 text-center">
                   <Calculator className="w-12 h-12 text-green-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">2. Get Quote</h3>
-                  <p className="text-gray-400 text-sm">Receive detailed valuation within 24 hours</p>
+                  <h3 className="text-white font-semibold mb-2">2. DeliWer Handles All</h3>
+                  <p className="text-gray-400 text-sm">Secure pickup, data wiping, valuation, and compliance documentation - zero IT involvement</p>
                 </CardContent>
               </Card>
               
               <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="pt-6 text-center">
                   <Upload className="w-12 h-12 text-purple-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">3. Schedule Pickup</h3>
-                  <p className="text-gray-400 text-sm">Arrange secure device collection</p>
+                  <h3 className="text-white font-semibold mb-2">3. Employees Get Codes</h3>
+                  <p className="text-gray-400 text-sm">Personal redemption codes sent directly to employees via email - no HR distribution needed</p>
                 </CardContent>
               </Card>
               
               <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="pt-6 text-center">
                   <CheckCircle className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">4. Get Paid</h3>
-                  <p className="text-gray-400 text-sm">Receive payment upon verification</p>
+                  <h3 className="text-white font-semibold mb-2">4. Independent Redemption</h3>
+                  <p className="text-gray-400 text-sm">Employees redeem benefits through partner portal (like Cobone) - completely self-service</p>
+                </CardContent>
+              </Card>
+            </div>
+            
+            {/* Benefits for Different Departments */}
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <Card className="bg-blue-900/30 border-blue-500/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Building2 className="w-6 h-6 text-blue-400" />
+                    For IT Managers
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-gray-300 space-y-2 text-sm">
+                    <li>• One-time device list submission</li>
+                    <li>• Secure on-site data destruction</li>
+                    <li>• Compliance certificates delivered</li>
+                    <li>• No ongoing management required</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-green-900/30 border-green-500/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Users className="w-6 h-6 text-green-400" />
+                    For HR Managers
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-gray-300 space-y-2 text-sm">
+                    <li>• Zero benefit administration</li>
+                    <li>• No voucher distribution</li>
+                    <li>• Automated employee communication</li>
+                    <li>• ESG reporting for leadership</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-purple-900/30 border-purple-500/30">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <Users className="w-6 h-6 text-purple-400" />
+                    For Employees
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="text-gray-300 space-y-2 text-sm">
+                    <li>• Personal redemption codes via email</li>
+                    <li>• Access partner benefits portal</li>
+                    <li>• Choose from multiple redemption options</li>
+                    <li>• No dependency on HR department</li>
+                  </ul>
                 </CardContent>
               </Card>
             </div>
@@ -424,7 +490,8 @@ export default function CorporateCombined() {
             {/* Company Information Form */}
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
-                <CardTitle className="text-white">Company Information</CardTitle>
+                <CardTitle className="text-white">IT Manager Contact Information</CardTitle>
+                <p className="text-gray-400 text-sm">Primary contact for device inventory and logistics coordination</p>
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -439,10 +506,11 @@ export default function CorporateCombined() {
                     />
                   </div>
                   <div>
-                    <label className="text-white text-sm font-medium">Department</label>
+                    <label className="text-white text-sm font-medium">IT Contact Role</label>
                     <Input
                       value={companyInfo.department}
                       onChange={(e) => setCompanyInfo(prev => ({...prev, department: e.target.value}))}
+                      placeholder="IT Manager, System Administrator, etc."
                       className="bg-slate-700 border-slate-600 text-white"
                       data-testid="input-bulk-department"
                     />
@@ -474,7 +542,8 @@ export default function CorporateCombined() {
             {/* Device Inventory */}
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
-                <CardTitle className="text-white">Device Inventory</CardTitle>
+                <CardTitle className="text-white">Corporate Device Inventory</CardTitle>
+                <p className="text-gray-400 text-sm">List devices to be included in the trade-in program. DeliWer will handle all logistics and employee benefit distribution.</p>
               </CardHeader>
               <CardContent>
                 {devices.map((device, index) => (
