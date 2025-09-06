@@ -141,7 +141,7 @@ function StepOneTradeIn() {
 
         {/* Split-Screen iPhone Transformation Infographic */}
         <div className="glass rounded-2xl p-8 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
-          <div className="grid lg:grid-cols-3 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
             
             {/* Left: iPhone Visual */}
             <div className="text-center">
@@ -161,29 +161,32 @@ function StepOneTradeIn() {
               <p className="text-gray-400 text-sm">Any iPhone, any condition</p>
             </div>
 
-            {/* Center: Transformation Arrow & Process */}
+            {/* Center: Dubai Transformation Process */}
             <div className="text-center lg:order-2">
               <div className="relative">
-                {/* Circular transformation flow */}
-                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 animate-pulse">
+                {/* Circular transformation flow with Dubai context */}
+                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 animate-pulse shadow-2xl">
                   <ArrowRight className="w-8 h-8 text-white" />
                 </div>
                 
-                {/* Process steps mini infographic */}
+                {/* Process steps with Dubai eco-mission context */}
                 <div className="space-y-2 text-xs text-gray-300">
                   <div className="flex items-center justify-center gap-2">
                     <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Evaluate</span>
+                    <span>Dubai Valuation</span>
                   </div>
                   <div className="flex items-center justify-center gap-2">
                     <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-                    <span>Transform</span>
+                    <span>Eco Transform</span>
                   </div>
                   <div className="flex items-center justify-center gap-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span>Reward</span>
+                    <span>Sustainability Reward</span>
                   </div>
                 </div>
+                
+                {/* Dubai location indicator */}
+                <div className="mt-4 text-xs text-blue-300 font-bold">📍 Dubai, UAE</div>
               </div>
             </div>
 
@@ -293,7 +296,7 @@ function StepTwoEarnPoints() {
 
         {/* Animated Point Collection System Infographic */}
         <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             
             {/* Left: Daily Activities Infographic */}
             <div>
@@ -504,7 +507,7 @@ function StepThreeRedeem() {
 
         {/* Product Showcase & Benefits Flowchart Infographic */}
         <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 mb-8">
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             
             {/* Left: Premium Product Showcase */}
             <div>
