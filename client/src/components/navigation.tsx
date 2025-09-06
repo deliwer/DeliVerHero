@@ -33,6 +33,8 @@ export function Navigation() {
   }, []);
 
   const consumerNavItems = [
+    { path: "/mission-control-pakistan", label: "🚨 Pakistan Relief", id: "pakistan-mission", urgent: true },
+    { path: "/restaurant-rewards", label: "🍽️ Restaurant Rewards", id: "restaurant-rewards" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/exchange", label: "Exchange", id: "exchange" },
     { path: "/collect", label: "Play", id: "play" },
@@ -72,6 +74,22 @@ export function Navigation() {
             </Link>
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
+                // Special styling for urgent Pakistan mission
+                if (item.urgent) {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-red-600/20 to-cyan-600/20 border border-red-500/30 rounded-lg text-red-300 hover:text-white hover:from-red-600/30 hover:to-cyan-600/30 hover:border-red-400/50 transition-all animate-pulse">
+                        <span className="font-bold text-sm">{item.label}</span>
+                      </div>
+                    </Link>
+                  );
+                }
+                
                 // Special styling for partners link
                 if (item.id === "partners") {
                   return (

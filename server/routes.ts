@@ -1479,6 +1479,103 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // Pakistan Flood Relief Mission API Routes
+  app.get("/api/missions/pakistan-flood/stats", async (req, res) => {
+    try {
+      const missionStats = {
+        filtersDeployed: 47,
+        targetFilters: 500,
+        peopleServed: 1175,
+        fundingRaised: 235000,
+        targetFunding: 2500000,
+        devicesContributed: Math.floor(Math.random() * 10) + 150, // Simulate real-time updates
+        daysRemaining: Math.ceil((new Date('2025-04-15').getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
+        topContributors: [
+          { name: "Dubai Tech Hub", devices: 23, points: 5750 },
+          { name: "Emirates Financial", devices: 18, points: 4500 },
+          { name: "Sarah Ahmed", devices: 12, points: 3000 }
+        ]
+      };
+      res.json(missionStats);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch mission stats" });
+    }
+  });
+
+  app.post("/api/missions/pakistan-flood/contribute", async (req, res) => {
+    try {
+      const { type, amount, missionId } = req.body;
+      
+      let contribution = {
+        type,
+        amount: type === 'device' ? 1 : amount,
+        pointsEarned: type === 'device' ? 250 : Math.floor(amount),
+        peopleHelped: type === 'device' ? 25 : Math.floor(amount / 200),
+        contributionId: `contrib_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('Pakistan flood relief contribution:', contribution);
+      
+      res.json({
+        success: true,
+        ...contribution,
+        message: `Thank you! Your ${type === 'device' ? 'device' : `AED ${amount} donation`} will help provide clean water to ${contribution.peopleHelped} people in Pakistan.`
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to process contribution" });
+    }
+  });
+
+  // Restaurant Rewards API Routes
+  app.get("/api/users/points", async (req, res) => {
+    try {
+      // In production, get from authenticated user session
+      const userPoints = {
+        total: 1250,
+        available: 850,
+        donated: 400,
+        earned: Math.floor(Math.random() * 100) + 150, // Simulate daily earnings
+        missionContributions: 3,
+        restaurantRedemptions: 2
+      };
+      res.json(userPoints);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch user points" });
+    }
+  });
+
+  app.post("/api/restaurants/redeem", async (req, res) => {
+    try {
+      const { restaurantId, rewardIndex, pointsUsed } = req.body;
+      
+      // Generate voucher code
+      const voucherCode = `${restaurantId.toUpperCase().substr(0,3)}${Date.now().toString().substr(-6)}`;
+      
+      const redemption = {
+        voucherCode,
+        restaurantId,
+        rewardIndex,
+        pointsUsed,
+        redemptionId: `redeem_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        status: 'active',
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('Restaurant reward redeemed:', redemption);
+      
+      // In production: Send email with voucher code via SendGrid
+      res.json({
+        success: true,
+        ...redemption,
+        message: `Reward redeemed successfully! Present code ${voucherCode} at the restaurant.`
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to redeem reward" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

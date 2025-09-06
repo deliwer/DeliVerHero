@@ -22,6 +22,8 @@ import Collect from "@/pages/collect";
 import Redeem from "@/pages/redeem";
 import Partners from "@/pages/partners";
 import Community from "@/pages/community";
+import MissionControlPakistan from "@/pages/mission-control-pakistan";
+import RestaurantRewards from "@/pages/restaurant-rewards";
 import CartPage from "@/pages/cart";
 import SignupPage from "@/pages/signup";
 import LoginPage from "@/pages/login";
@@ -67,6 +69,10 @@ function Router() {
       <Route path="/redeem" component={Redeem} />
       <Route path="/partners" component={Partners} />
       <Route path="/community" component={Community} />
+      
+      {/* Pakistan Flood Relief Mission */}
+      <Route path="/mission-control-pakistan" component={MissionControlPakistan} />
+      <Route path="/restaurant-rewards" component={RestaurantRewards} />
 
       {/* B2B Corporate Routes */}
       <Route path="/bulk-tradein" component={BulkTradeInPage} />
