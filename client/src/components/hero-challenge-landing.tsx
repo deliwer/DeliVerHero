@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -727,7 +727,7 @@ export function HeroChallengeLanding() {
 
 
 
-        {/* 3-Step Progressive Flow */}
+        {/* 3-Step Progressive Flow with Visual Connectors */}
         <div data-section="step-1">
           <StepOneTradeIn />
           
@@ -737,8 +737,32 @@ export function HeroChallengeLanding() {
           </div>
         </div>
 
+        {/* Flow Connector 1→2 */}
+        <div className="flex justify-center mb-8">
+          <div className="flex flex-col items-center">
+            <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-green-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+              <ArrowDown className="w-6 h-6 text-white" />
+            </div>
+            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-green-400 mt-2"></div>
+            <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
+          </div>
+        </div>
+
         <div data-section="step-2">
           <StepTwoEarnPoints />
+        </div>
+
+        {/* Flow Connector 2→3 */}
+        <div className="flex justify-center mb-8">
+          <div className="flex flex-col items-center">
+            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-amber-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+              <ArrowDown className="w-6 h-6 text-white" />
+            </div>
+            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-orange-500 mt-2"></div>
+            <div className="text-xs text-gray-400 mt-2 font-bold">FINAL STEP</div>
+          </div>
         </div>
 
         <div data-section="step-3">
