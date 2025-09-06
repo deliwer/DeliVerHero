@@ -463,7 +463,7 @@ const sampleProducts: Product[] = [
   }
 ];
 
-export default function ProductsPage() {
+function ProductsPage() {
   const [products] = useState<Product[]>(sampleProducts);
   const [addingToCart, setAddingToCart] = useState<string | null>(null);
   const { toast } = useToast();
