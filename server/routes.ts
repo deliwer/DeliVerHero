@@ -197,6 +197,90 @@ export async function registerRoutes(app: Express): Promise<Server> {
         category: "Water Purification",
         features: [
           "Advanced filtration technology",
+
+
+  // Stripe configuration endpoint
+  app.get("/api/stripe-config", (req, res) => {
+    res.json({
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || "pk_test_your_stripe_publishable_key_here"
+    });
+  });
+
+  // Create payment intent endpoint
+  app.post("/api/create-payment-intent", async (req, res) => {
+    try {
+      const { amount, currency = "aed", cartItems, billingDetails, shippingDetails } = req.body;
+
+      if (!process.env.STRIPE_SECRET_KEY) {
+        return res.status(500).json({ 
+          error: "Stripe not configured. Please set STRIPE_SECRET_KEY environment variable." 
+        });
+      }
+
+      // For demo purposes, create a mock payment intent
+      const paymentIntentId = `pi_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      const clientSecret = `${paymentIntentId}_secret_${Math.random().toString(36).substr(2, 16)}`;
+
+      console.log('Payment intent created:', {
+        paymentIntentId,
+        amount,
+        currency,
+        itemCount: cartItems?.length || 0
+      });
+
+      res.json({
+        clientSecret,
+        paymentIntentId,
+        amount,
+        currency
+      });
+
+    } catch (error: any) {
+      console.error('Payment intent creation error:', error);
+      res.status(500).json({ 
+        error: "Failed to create payment intent",
+        details: error.message 
+      });
+    }
+  });
+
+  // Confirm payment endpoint
+  app.post("/api/confirm-payment", async (req, res) => {
+    try {
+      const { paymentIntentId, orderData } = req.body;
+
+      // In production, you would verify the payment with Stripe
+      // For demo purposes, generate an order ID
+      const orderId = `ORDER_${Date.now()}_${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+
+      console.log('Payment confirmed:', {
+        paymentIntentId,
+        orderId,
+        customerEmail: orderData.billingDetails?.email
+      });
+
+      // Here you would typically:
+      // 1. Verify payment status with Stripe
+      // 2. Save order to database
+      // 3. Send confirmation email
+      // 4. Update inventory
+
+      res.json({
+        success: true,
+        orderId,
+        paymentIntentId,
+        message: 'Payment confirmed successfully'
+      });
+
+    } catch (error: any) {
+      console.error('Payment confirmation error:', error);
+      res.status(500).json({ 
+        error: "Failed to confirm payment",
+        details: error.message 
+      });
+    }
+  });
+
           "Eco-friendly water solution",
           "Trade-in rewards program",
           "Professional installation",

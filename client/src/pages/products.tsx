@@ -413,3 +413,195 @@ export default function Products() {
     </div>
   );
 }
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ShoppingCart, Star } from "lucide-react";
+import { shopifyCartService } from "@/lib/shopify-cart";
+import { useToast } from "@/hooks/use-toast";
+import type { Product } from "@/types/cart";
+
+const sampleProducts: Product[] = [
+  {
+    id: "aquacafe-starter-kit",
+    name: "AquaCafe Planet Hero Starter Kit",
+    category: "Water Purification",
+    price: 99.00,
+    originalPrice: 1698.00,
+    image: "/aquacafe_shower_main_1755270492134.jpg",
+    features: [
+      "Premium Ionic Shower Filter",
+      "Professional Installation",
+      "Level 2 Planet Hero Status",
+      "1000 Planet Points with 2X Multiplier"
+    ],
+    badge: "Best Value",
+    popular: true,
+    rating: 4.9,
+    reviews: 127,
+    description: "Transform your shower experience and become a Planet Hero! This exclusive starter kit includes our premium AquaCafe Beauty Hair & Skincare Ionic Shower Filter with professional installation.",
+    variantId: "gid://shopify/ProductVariant/123456789",
+    available: true
+  },
+  {
+    id: "aquacafe-refill-pack",
+    name: "AquaCafe Filter Refill Pack",
+    category: "Maintenance",
+    price: 49.00,
+    image: "/aquacafe_shower_back_1755270492095.jpg",
+    features: [
+      "3-Month Supply",
+      "Easy Installation",
+      "Maintains Water Quality"
+    ],
+    rating: 4.7,
+    reviews: 89,
+    description: "Keep your AquaCafe system running at peak performance with our premium refill pack.",
+    variantId: "gid://shopify/ProductVariant/123456790",
+    available: true
+  }
+];
+
+export default function ProductsPage() {
+  const [products] = useState<Product[]>(sampleProducts);
+  const [addingToCart, setAddingToCart] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const handleAddToCart = async (product: Product) => {
+    if (!product.variantId) return;
+    
+    setAddingToCart(product.id);
+    
+    try {
+      await shopifyCartService.addToCart({
+        id: product.id,
+        variantId: product.variantId,
+        title: product.name,
+        variant: "Default",
+        price: product.price,
+        image: product.image,
+        quantity: 1
+      });
+
+      toast({
+        title: "Added to Cart",
+        description: `${product.name} has been added to your cart.`
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setAddingToCart(null);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-white mb-4">AquaCafe Products</h1>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Transform your water experience with our premium filtration products
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product) => (
+            <Card key={product.id} className="bg-slate-800 border-slate-700 hover:border-emerald-500 transition-colors">
+              <CardHeader className="p-0">
+                <div className="relative">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-64 object-cover rounded-t-lg"
+                  />
+                  {product.badge && (
+                    <Badge className="absolute top-4 left-4 bg-emerald-600">
+                      {product.badge}
+                    </Badge>
+                  )}
+                  {product.popular && (
+                    <Badge className="absolute top-4 right-4 bg-blue-600">
+                      Popular
+                    </Badge>
+                  )}
+                </div>
+              </CardHeader>
+              
+              <CardContent className="p-6">
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold text-white mb-2">{product.name}</h3>
+                  <p className="text-gray-400 text-sm mb-3">{product.description}</p>
+                  
+                  {product.rating && (
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-4 h-4 ${
+                              i < Math.floor(product.rating!)
+                                ? "text-yellow-400 fill-current"
+                                : "text-gray-500"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-400">
+                        {product.rating} ({product.reviews} reviews)
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="mb-4">
+                  <h4 className="text-white font-medium mb-2">Features:</h4>
+                  <ul className="text-gray-400 text-sm space-y-1">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-center">
+                        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-2"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-emerald-400">
+                      AED {product.price.toFixed(2)}
+                    </span>
+                    {product.originalPrice && (
+                      <span className="text-gray-500 line-through text-sm">
+                        AED {product.originalPrice.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <Button
+                  onClick={() => handleAddToCart(product)}
+                  disabled={!product.available || addingToCart === product.id}
+                  className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700"
+                >
+                  {addingToCart === product.id ? (
+                    "Adding..."
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      Add to Cart
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

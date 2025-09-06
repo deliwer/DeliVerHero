@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ShoppingCart as ShoppingCartIcon, Plus, Minus, Trash2, Star, Package, ArrowLeft, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -96,7 +95,7 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
     // Clear cart after successful payment
     setCartItems([]);
     shopifyCartService.clearCart();
-    
+
     toast({
       title: "Payment Successful! 🎉",
       description: "Your order has been confirmed. Welcome to Planet Heroes!",
@@ -226,7 +225,7 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                             alt={item.title}
                             className="w-16 h-16 object-cover rounded-md"
                           />
-                          
+
                           <div className="flex-1">
                             <h4 className="text-white font-medium text-sm line-clamp-2">
                               {item.title}
@@ -234,12 +233,12 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                             {item.variant && (
                               <p className="text-gray-400 text-xs">{item.variant}</p>
                             )}
-                            
+
                             <div className="flex items-center justify-between mt-2">
                               <span className="text-emerald-400 font-bold">
                                 AED {item.price.toFixed(2)}
                               </span>
-                              
+
                               <div className="flex items-center gap-2">
                                 <Button
                                   size="sm"
@@ -249,11 +248,11 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                                 >
                                   <Minus className="w-3 h-3" />
                                 </Button>
-                                
+
                                 <span className="text-white text-sm w-8 text-center">
                                   {item.quantity}
                                 </span>
-                                
+
                                 <Button
                                   size="sm"
                                   variant="outline"
@@ -263,7 +262,7 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                                 >
                                   <Plus className="w-3 h-3" />
                                 </Button>
-                                
+
                                 <Button
                                   size="sm"
                                   variant="ghost"
@@ -274,7 +273,7 @@ export function ShoppingCart({ isOpen, onClose }: ShoppingCartProps) {
                                 </Button>
                               </div>
                             </div>
-                            
+
                             {!item.available && (
                               <Badge variant="destructive" className="mt-1 text-xs">
                                 Out of Stock
