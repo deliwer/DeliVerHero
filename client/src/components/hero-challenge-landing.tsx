@@ -139,44 +139,132 @@ function StepOneTradeIn() {
           </p>
         </div>
 
-        <div className="glass rounded-2xl p-6 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
-          <div className="grid md:grid-cols-2 gap-6 items-center">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">Your iPhone = Planet Points</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 bg-blue-500/20 rounded-lg">
-                  <span className="text-gray-300">iPhone 12 Pro</span>
-                  <span className="text-blue-400 font-bold">2,500 PTS</span>
+        {/* Split-Screen iPhone Transformation Infographic */}
+        <div className="glass rounded-2xl p-8 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
+          <div className="grid lg:grid-cols-3 gap-8 items-center">
+            
+            {/* Left: iPhone Visual */}
+            <div className="text-center">
+              <div className="relative mb-6">
+                <div className="w-32 h-48 mx-auto bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl border-4 border-gray-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                  <div className="w-full h-6 bg-black rounded-t-2xl"></div>
+                  <div className="p-4 text-xs text-blue-400 font-mono">
+                    <div className="text-center">📱</div>
+                    <div className="mt-2">iPhone 14 Pro</div>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-blue-500/20 rounded-lg">
-                  <span className="text-gray-300">iPhone 13 Pro</span>
-                  <span className="text-blue-400 font-bold">3,200 PTS</span>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
+                  NEW
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 rounded-lg border border-cyan-400/50">
-                  <span className="text-gray-200 font-medium">iPhone 14 Pro+</span>
-                  <span className="text-cyan-400 font-black">4,000+ PTS</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">Your Device</h3>
+              <p className="text-gray-400 text-sm">Any iPhone, any condition</p>
+            </div>
+
+            {/* Center: Transformation Arrow & Process */}
+            <div className="text-center lg:order-2">
+              <div className="relative">
+                {/* Circular transformation flow */}
+                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 animate-pulse">
+                  <ArrowRight className="w-8 h-8 text-white" />
+                </div>
+                
+                {/* Process steps mini infographic */}
+                <div className="space-y-2 text-xs text-gray-300">
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <span>Evaluate</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                    <span>Transform</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span>Reward</span>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="text-center">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full w-full"
-                onClick={() => {
-                  const meetDeliSection = document.querySelector('[data-section="meet-deli"]');
-                  if (meetDeliSection) {
-                    meetDeliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    setTimeout(() => {
-                      const input = meetDeliSection.querySelector('input, textarea, select');
-                      if (input) (input as HTMLElement).focus();
-                    }, 500);
-                  }
-                }}
-              >
-                <Calculator className="mr-3 w-6 h-6" />
-                Start Trade-in
-              </Button>
+
+            {/* Right: Value Calculator Infographic */}
+            <div className="lg:order-3">
+              <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl p-4 border border-cyan-400/30">
+                <h3 className="text-lg font-bold text-white mb-4 text-center">💰 Instant Value</h3>
+                
+                {/* Value progression infographic */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-2 bg-blue-500/20 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center text-xs">📱</div>
+                      <span className="text-gray-300 text-sm">iPhone 12</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-blue-400 font-bold">2,500 PTS</div>
+                      <div className="text-xs text-gray-400">≈ AED 250</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-2 bg-cyan-500/20 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center text-xs">📱</div>
+                      <span className="text-gray-300 text-sm">iPhone 13</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-cyan-400 font-bold">3,200 PTS</div>
+                      <div className="text-xs text-gray-400">≈ AED 320</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between p-2 bg-gradient-to-r from-cyan-500/30 to-green-500/30 rounded-lg border border-green-400/50">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-xs">📱</div>
+                      <span className="text-gray-200 font-medium text-sm">iPhone 14+</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-green-400 font-black">4,000+ PTS</div>
+                      <div className="text-xs text-green-300">≈ AED 400+</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Impact preview mini chart */}
+                <div className="mt-4 p-3 bg-green-500/10 rounded-lg border border-green-500/30">
+                  <div className="text-center text-xs text-green-400 mb-2">🌍 Your Impact Preview</div>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="text-center">
+                      <div className="text-blue-300 font-bold">12,500L</div>
+                      <div className="text-gray-400">Water Saved</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-green-300 font-bold">5.2kg</div>
+                      <div className="text-gray-400">CO₂ Reduced</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Action Button */}
+          <div className="mt-8 text-center">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-white font-bold px-12 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+              onClick={() => {
+                const meetDeliSection = document.querySelector('[data-section="meet-deli"]');
+                if (meetDeliSection) {
+                  meetDeliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  setTimeout(() => {
+                    const input = meetDeliSection.querySelector('input, textarea, select');
+                    if (input) (input as HTMLElement).focus();
+                  }, 500);
+                }
+              }}
+            >
+              <Calculator className="mr-3 w-6 h-6" />
+              Calculate My iPhone Value
+            </Button>
           </div>
         </div>
       </div>
@@ -203,55 +291,187 @@ function StepTwoEarnPoints() {
           </p>
         </div>
 
-        <div className="glass rounded-2xl p-6 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10">
-          <div className="grid md:grid-cols-2 gap-6">
+        {/* Animated Point Collection System Infographic */}
+        <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10">
+          <div className="grid lg:grid-cols-3 gap-8">
+            
+            {/* Left: Daily Activities Infographic */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Earn More Points</h3>
-              <div className="space-y-3">
-                <div className="flex items-center p-3 bg-green-500/20 rounded-lg">
-                  <Droplets className="w-5 h-5 text-blue-400 mr-3" />
-                  <div className="flex-1">
-                    <span className="text-gray-300">Water Conservation</span>
-                    <div className="text-green-400 text-sm font-bold">+500 PTS/month</div>
+              <h3 className="text-xl font-bold text-white mb-6 text-center">🌱 Daily Eco-Actions</h3>
+              <div className="space-y-4">
+                
+                {/* Water Conservation */}
+                <div className="relative p-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl border border-blue-400/30">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-blue-500/30 rounded-full flex items-center justify-center">
+                        <Droplets className="w-5 h-5 text-blue-400" />
+                      </div>
+                      <span className="text-gray-200 font-medium">Water Conservation</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-green-400 font-bold text-lg">+500 PTS</div>
+                      <div className="text-xs text-gray-400">monthly</div>
+                    </div>
                   </div>
+                  {/* Progress bar */}
+                  <div className="w-full bg-blue-900/50 rounded-full h-2 mb-2">
+                    <div className="bg-gradient-to-r from-blue-400 to-cyan-400 h-2 rounded-full w-3/4 animate-pulse"></div>
+                  </div>
+                  <div className="text-xs text-blue-300">12,500L saved this month</div>
                 </div>
-                <div className="flex items-center p-3 bg-green-500/20 rounded-lg">
-                  <Users className="w-5 h-5 text-purple-400 mr-3" />
-                  <div className="flex-1">
-                    <span className="text-gray-300">Refer Friends</span>
-                    <div className="text-green-400 text-sm font-bold">+1,000 PTS each</div>
+
+                {/* Referrals */}
+                <div className="relative p-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-400/30">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-purple-500/30 rounded-full flex items-center justify-center">
+                        <Users className="w-5 h-5 text-purple-400" />
+                      </div>
+                      <span className="text-gray-200 font-medium">Refer Friends</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-green-400 font-bold text-lg">+1,000 PTS</div>
+                      <div className="text-xs text-gray-400">per friend</div>
+                    </div>
                   </div>
+                  {/* Friend icons */}
+                  <div className="flex gap-1 mb-2">
+                    <div className="w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center text-xs">👤</div>
+                    <div className="w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center text-xs">👤</div>
+                    <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center text-xs opacity-50">+</div>
+                  </div>
+                  <div className="text-xs text-purple-300">2 friends joined</div>
                 </div>
-                <div className="flex items-center p-3 bg-gradient-to-r from-green-500/30 to-emerald-500/30 rounded-lg border border-emerald-400/50">
-                  <Star className="w-5 h-5 text-amber-400 mr-3" />
-                  <div className="flex-1">
-                    <span className="text-gray-200 font-medium">Daily Check-in</span>
-                    <div className="text-emerald-400 text-sm font-black">+100 PTS daily</div>
+
+                {/* Daily Check-in */}
+                <div className="relative p-4 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-xl border border-amber-400/30">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-amber-500/30 rounded-full flex items-center justify-center">
+                        <Star className="w-5 h-5 text-amber-400 animate-pulse" />
+                      </div>
+                      <span className="text-gray-200 font-medium">Daily Check-in</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-green-400 font-bold text-lg">+100 PTS</div>
+                      <div className="text-xs text-gray-400">daily</div>
+                    </div>
                   </div>
+                  {/* Week calendar */}
+                  <div className="grid grid-cols-7 gap-1 mb-2">
+                    {[1,2,3,4,5,6,7].map(day => (
+                      <div key={day} className={`w-4 h-4 rounded ${day <= 4 ? 'bg-amber-400' : 'bg-gray-600'}`}></div>
+                    ))}
+                  </div>
+                  <div className="text-xs text-amber-300">4 day streak!</div>
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl font-black text-green-400 mb-2">7,500+</div>
-                <div className="text-gray-300">Average Monthly Points</div>
-                <div className="mt-4 text-sm text-green-400 mb-6">
-                  <TrendingUp className="w-4 h-4 inline mr-1" />
-                  Keep Growing Your Impact
+
+            {/* Center: Animated Points Collector */}
+            <div className="flex flex-col items-center justify-center">
+              {/* Animated Point Counter */}
+              <div className="relative mb-6">
+                <div className="w-32 h-32 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl animate-bounce">
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-white mb-1">7,500+</div>
+                    <div className="text-xs text-green-100 font-bold">POINTS</div>
+                  </div>
                 </div>
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-black font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full w-full"
-                  onClick={() => {
-                    const step3Section = document.querySelector('[data-section="step-3"]');
-                    if (step3Section) {
-                      step3Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
-                >
-                  <Target className="mr-3 w-6 h-6" />
-                  Join Challenge
-                </Button>
+                
+                {/* Floating point indicators */}
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center text-white text-xs font-bold animate-ping">
+                  +500
+                </div>
+                <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center text-white text-xs font-bold animate-pulse">
+                  +1K
+                </div>
+                <div className="absolute top-4 -left-4 w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
+                  +100
+                </div>
+              </div>
+
+              {/* Point flow animation */}
+              <div className="text-center mb-6">
+                <div className="text-lg text-gray-300 mb-2">Average Monthly Points</div>
+                <div className="flex items-center justify-center gap-2 text-green-400">
+                  <TrendingUp className="w-5 h-5 animate-pulse" />
+                  <span className="font-bold">Growing Your Impact</span>
+                </div>
+              </div>
+
+              {/* Action button */}
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                onClick={() => {
+                  const step3Section = document.querySelector('[data-section="step-3"]');
+                  if (step3Section) {
+                    step3Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                <Target className="mr-3 w-6 h-6" />
+                Start Earning
+              </Button>
+            </div>
+
+            {/* Right: Hero Level Progress Infographic */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-6 text-center">🏆 Hero Levels</h3>
+              <div className="space-y-4">
+                
+                {/* Bronze Level - Completed */}
+                <div className="p-4 bg-gradient-to-r from-orange-600/20 to-amber-600/20 rounded-xl border border-amber-500/50">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-amber-400 font-bold">Bronze Hero</div>
+                      <div className="text-xs text-gray-400">0 - 2,500 PTS</div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-amber-900/50 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-amber-600 to-orange-500 h-2 rounded-full w-full"></div>
+                  </div>
+                  <div className="text-xs text-amber-300 mt-1">✅ Completed</div>
+                </div>
+
+                {/* Silver Level - In Progress */}
+                <div className="p-4 bg-gradient-to-r from-gray-500/20 to-slate-500/20 rounded-xl border border-gray-400/50 ring-2 ring-green-500/50">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center animate-pulse">
+                      <Star className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-gray-300 font-bold">Silver Hero</div>
+                      <div className="text-xs text-gray-400">2,500 - 10,000 PTS</div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-gray-900/50 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-gray-500 to-slate-400 h-2 rounded-full w-3/4 animate-pulse"></div>
+                  </div>
+                  <div className="text-xs text-green-400 mt-1">🔥 Current: 7,500/10,000</div>
+                </div>
+
+                {/* Gold Level - Locked */}
+                <div className="p-4 bg-gradient-to-r from-yellow-600/20 to-amber-500/20 rounded-xl border border-yellow-500/30 opacity-60">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-yellow-600/50 rounded-full flex items-center justify-center">
+                      <Crown className="w-5 h-5 text-yellow-400" />
+                    </div>
+                    <div>
+                      <div className="text-yellow-400 font-bold">Gold Hero</div>
+                      <div className="text-xs text-gray-400">10,000+ PTS</div>
+                    </div>
+                  </div>
+                  <div className="w-full bg-yellow-900/50 rounded-full h-2">
+                    <div className="bg-gray-600 h-2 rounded-full w-1/4"></div>
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">🔒 Unlocks at 10K PTS</div>
+                </div>
               </div>
             </div>
           </div>
