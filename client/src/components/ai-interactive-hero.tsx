@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Droplets, Smartphone, Globe, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import heroImage from "@assets/mobile-water-purification-hero_1755786909344.jpg";
 
 interface CTAOption {
@@ -34,7 +33,7 @@ const ctaOptions: CTAOption[] = [
     id: "leaderboard",
     text: "I want to join the eco leaderboard",
     icon: "🌍",
-    href: "/#meet-deli",
+    href: "/#step-2-earn-points",
     gradient: "from-emerald-500 to-green-500", 
     hoverGradient: "from-emerald-400 to-green-400"
   }
@@ -114,11 +113,30 @@ export function AIInteractiveHero() {
               ) : (
                 <div className="space-y-3 animate-in slide-in-from-top duration-500">
                   {ctaOptions.map((option) => (
-                    <Link key={option.id} href={option.href}>
                       <Button
+                        key={option.id}
                         className={`w-full bg-gradient-to-r ${option.gradient} hover:${option.hoverGradient} text-white px-6 py-5 text-base sm:text-lg font-bold rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-white/20 group`}
                         onMouseEnter={() => setSelectedOption(option.id)}
                         onMouseLeave={() => setSelectedOption(null)}
+                        onClick={() => {
+                          if (option.id === 'water') {
+                            window.location.href = '/aquacafe';
+                          } else if (option.id === 'trade') {
+                            const meetDeliSection = document.querySelector('[data-section="meet-deli"]');
+                            if (meetDeliSection) {
+                              meetDeliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                              setTimeout(() => {
+                                const input = meetDeliSection.querySelector('input, textarea, select');
+                                if (input) (input as HTMLElement).focus();
+                              }, 500);
+                            }
+                          } else if (option.id === 'leaderboard') {
+                            const step2Section = document.querySelector('[data-section="step-2-earn-points"]');
+                            if (step2Section) {
+                              step2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                          }
+                        }}
                         data-testid={`ai-cta-${option.id}`}
                       >
                         <div className="flex items-center justify-center space-x-3">
@@ -135,7 +153,6 @@ export function AIInteractiveHero() {
                           </div>
                         </div>
                       </Button>
-                    </Link>
                   ))}
                   
                   {/* Reset Button */}

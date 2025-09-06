@@ -187,7 +187,7 @@ function StepOneTradeIn() {
 // Step 2: Earn Planet Points Section  
 function StepTwoEarnPoints() {
   return (
-    <section className="py-8 px-4 mb-8">
+    <section className="py-8 px-4 mb-8" data-section="step-2-earn-points">
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={2} />
         
