@@ -543,19 +543,19 @@ export default function AquaCafe() {
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-500" />
-                    <span>Lifetime discounts on all products</span>
+                    <span className="text-gray-800 font-medium">Lifetime discounts on all products</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-500" />
-                    <span>Priority trade-in valuations</span>
+                    <span className="text-gray-800 font-medium">Priority trade-in valuations</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-500" />
-                    <span>Exclusive Planet Points bonuses</span>
+                    <span className="text-gray-800 font-medium">Exclusive Planet Points bonuses</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-500" />
-                    <span>Community event invitations</span>
+                    <span className="text-gray-800 font-medium">Community event invitations</span>
                   </div>
                 </div>
               </div>
