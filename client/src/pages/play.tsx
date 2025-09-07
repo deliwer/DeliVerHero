@@ -254,53 +254,75 @@ export default function Play() {
           </div>
         </div>
 
-        {/* How to Play Guide */}
+        {/* Strategic Implementation Framework */}
         <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 mb-8">
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">How to Play</h3>
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">Strategic Implementation Framework</h3>
           <div className="grid md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="bg-hero-green-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-hero-green-400">1</span>
+              <div className="bg-hero-green-500/20 rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 border border-hero-green-500/30">
+                <span className="text-xl font-bold text-hero-green-400">01</span>
               </div>
-              <h4 className="font-bold text-white mb-2">Take Action</h4>
-              <p className="text-gray-400 text-sm">Trade devices, buy water systems, or join missions</p>
+              <h4 className="font-bold text-white mb-2">Execute Actions</h4>
+              <p className="text-gray-400 text-sm">Implement strategic device exchanges, water system investments, and mission participation</p>
             </div>
             <div className="text-center">
-              <div className="bg-dubai-blue-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-dubai-blue-400">2</span>
+              <div className="bg-dubai-blue-500/20 rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 border border-dubai-blue-500/30">
+                <span className="text-xl font-bold text-dubai-blue-400">02</span>
               </div>
-              <h4 className="font-bold text-white mb-2">Earn Points</h4>
-              <p className="text-gray-400 text-sm">Get Planet Points for every sustainable action</p>
+              <h4 className="font-bold text-white mb-2">Accumulate Capital</h4>
+              <p className="text-gray-400 text-sm">Build Planet Points portfolio through verified sustainable activities</p>
             </div>
             <div className="text-center">
-              <div className="bg-purple-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-purple-400">3</span>
+              <div className="bg-purple-500/20 rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
+                <span className="text-xl font-bold text-purple-400">03</span>
               </div>
-              <h4 className="font-bold text-white mb-2">Level Up</h4>
-              <p className="text-gray-400 text-sm">Advance from Bronze to Platinum Hero status</p>
+              <h4 className="font-bold text-white mb-2">Advance Tier Status</h4>
+              <p className="text-gray-400 text-sm">Progress through Bronze, Silver, Gold, and Platinum professional tiers</p>
             </div>
             <div className="text-center">
-              <div className="bg-yellow-500/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-yellow-400">4</span>
+              <div className="bg-yellow-500/20 rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 border border-yellow-500/30">
+                <span className="text-xl font-bold text-yellow-400">04</span>
               </div>
-              <h4 className="font-bold text-white mb-2">Get Rewards</h4>
-              <p className="text-gray-400 text-sm">Redeem points for products and experiences</p>
+              <h4 className="font-bold text-white mb-2">Access Benefits</h4>
+              <p className="text-gray-400 text-sm">Unlock exclusive products, services, and partnership opportunities</p>
             </div>
           </div>
         </div>
 
-        {/* CTA to Check Balance and Redeem */}
+        {/* Portfolio Summary & Actions */}
         <div className="text-center">
-          <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 max-w-md mx-auto">
-            <h3 className="text-lg font-bold text-white mb-4">Your Planet Points Balance</h3>
-            <div className="text-4xl font-bold text-hero-green-400 mb-4">1,247</div>
-            <p className="text-sm text-gray-400 mb-4">Ready to redeem for rewards</p>
-            <Link href="/rewards">
-              <Button className="bg-hero-green-600 hover:bg-hero-green-700 text-white w-full">
-                <Gift className="w-4 h-4 mr-2" />
-                View Rewards
-              </Button>
-            </Link>
+          <div className="bg-gradient-to-r from-slate-800/80 to-slate-700/80 border border-slate-600 rounded-2xl p-8 max-w-2xl mx-auto backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-white mb-6">Current Portfolio Status</h3>
+            
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-hero-green-400 mb-1">1,247</div>
+                <div className="text-sm text-gray-400">Planet Points</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl font-bold text-amber-400 mb-1">Bronze</div>
+                <div className="text-sm text-gray-400">Current Tier</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl font-bold text-blue-400 mb-1">753</div>
+                <div className="text-sm text-gray-400">To Silver</div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/rewards">
+                <Button className="bg-hero-green-600 hover:bg-hero-green-700 text-white px-6 py-3">
+                  <Award className="w-4 h-4 mr-2" />
+                  Access Rewards Marketplace
+                </Button>
+              </Link>
+              <Link href="/leaderboard">
+                <Button variant="outline" className="border-amber-500 text-amber-300 hover:bg-amber-500/10 px-6 py-3">
+                  <TrendingUp className="w-4 h-4 mr-2" />
+                  View Community Rankings
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
