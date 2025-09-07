@@ -154,7 +154,7 @@ export default function AquaCafe() {
             Shop All
           </Link>
           <Link href="/exchange" className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors" data-testid="link-start-exchange">
-            Start Exchange
+            Start Earning
           </Link>
         </div>
       </div>
@@ -793,7 +793,7 @@ export default function AquaCafe() {
           <div className="mb-6 sm:mb-8">
             <div className="text-center mb-6">
               <h3 className="text-xl font-bold text-gray-800 mb-2">Continue Your DeliWer Journey</h3>
-              <p className="text-sm text-gray-600">Follow the complete flow: Exchange → Play → Redeem → Community → Checkout</p>
+              <p className="text-sm text-gray-600">Follow the complete flow: Earn → Play → Redeem → Community → Checkout</p>
             </div>
             <div className="flex flex-col lg:flex-row items-center justify-center gap-3 max-w-6xl mx-auto">
               <Link
@@ -801,7 +801,7 @@ export default function AquaCafe() {
                 className="w-full lg:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center transition-all shadow-lg"
                 data-testid="footer-cta-exchange"
               >
-                Start Exchange
+                Start Earning
               </Link>
               <Link
                 href="/collect"
@@ -858,14 +858,14 @@ export default function AquaCafe() {
               #SvenTheBaker × #DeliWer
             </div>
             <div className="text-xs text-gray-600">
-              © 2024 Partnership • Mazaya Center, Business Bay • AI‑First Circular Exchange
+              © 2024 Partnership • Mazaya Center, Business Bay • AI‑First Circular Earning Platform
             </div>
           </div>
           
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex flex-col items-center gap-2 w-full">
               <Link href="/exchange" className="px-3 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors text-xs w-full max-w-xs text-center" data-testid="footer-start-exchange">
-                Start iPhone Exchange
+                Start iPhone Earning
               </Link>
               <a
                 href="http://deliwer.com/products/aquacafe"

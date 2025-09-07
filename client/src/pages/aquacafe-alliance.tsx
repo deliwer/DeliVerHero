@@ -104,7 +104,7 @@ export default function AquaCafeAlliance() {
             Shop All
           </Link>
           <Link href="/exchange" className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors">
-            Start Exchange
+            Start Earning
           </Link>
         </div>
       </div>

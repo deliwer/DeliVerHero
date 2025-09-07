@@ -229,7 +229,7 @@ export default function Products() {
             </div>
             <div className="flex gap-3">
               <Link href="/exchange" className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors" data-testid="footer-start-exchange">
-                Start Exchange
+                Start Earning
               </Link>
               <Link href="/aquacafe" className="px-4 py-2 rounded-xl bg-amber-600 text-white text-sm hover:bg-amber-700 transition-colors" data-testid="footer-aquacafe-offer">
                 AquaCafe Offer

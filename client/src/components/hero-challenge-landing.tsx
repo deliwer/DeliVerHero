@@ -284,13 +284,13 @@ function StepTwoExchange() {
         
         <div className="text-center mb-8">
           <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50">
-            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN</span>
+            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM YOUR iPHONE</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Earn Planet Points
+            Earn from Your Old iPhone
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Complete eco-missions and sustainability actions to multiply your points.
+            Trade in your old iPhone to earn instant value plus Planet Points for sustainable living.
           </p>
         </div>
 

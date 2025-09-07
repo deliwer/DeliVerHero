@@ -14,11 +14,11 @@ export default function Exchange() {
             <span className="font-medium">iPhone Trade-In Program</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Exchange Your iPhone
-            <span className="block text-hero-green-400">Get Instant Value</span>
+            Earn from Your iPhone
+            <span className="block text-hero-green-400">Turn Tech into Cash & Rewards</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Turn your old iPhone into store credit or sustainable products. Get competitive valuations and contribute to environmental sustainability through our innovative trade-in program.
+            Unlock hidden value in your old iPhone by earning real money, store credits, and Planet Points. Transform your unused technology into environmental action and sustainable rewards.
           </p>
         </div>
 
@@ -27,11 +27,11 @@ export default function Exchange() {
           <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
             <CardHeader className="text-center">
               <CreditCard className="w-12 h-12 text-hero-green-500 mx-auto mb-4" />
-              <CardTitle className="text-white">Store Credit</CardTitle>
+              <CardTitle className="text-white">Instant Earnings</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-400 text-center">
-                Receive instant store credit that can be used across our entire product ecosystem including AquaCafe water systems.
+                Earn immediate value as store credit or cash equivalent that unlocks our entire ecosystem including AquaCafe water systems.
               </p>
             </CardContent>
           </Card>
@@ -39,11 +39,11 @@ export default function Exchange() {
           <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
             <CardHeader className="text-center">
               <Gift className="w-12 h-12 text-dubai-blue-500 mx-auto mb-4" />
-              <CardTitle className="text-white">Product Exchange</CardTitle>
+              <CardTitle className="text-white">Smart Rewards</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-400 text-center">
-                Exchange directly for sustainable products, tech upgrades, or water purification systems at discounted rates.
+                Earn bonus value by choosing sustainable products, tech upgrades, or water purification systems at member-exclusive rates.
               </p>
             </CardContent>
           </Card>
@@ -55,7 +55,7 @@ export default function Exchange() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-400 text-center">
-                Play for Planet Points with every trade that unlock exclusive rewards and advance your sustainability journey.
+                Earn Planet Points with every device trade-in that multiply your rewards and unlock exclusive sustainability perks.
               </p>
             </CardContent>
           </Card>
@@ -121,10 +121,10 @@ export default function Exchange() {
         <div className="mb-12">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Get Your Trade Value
+              Calculate Your Earnings
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              Use our advanced evaluation system to get an instant quote for your iPhone. Our AI-powered assessment considers model, condition, and current market value.
+              Discover how much you can earn from your iPhone with our instant evaluation. Our AI-powered system maximizes your earning potential based on model, condition, and real-time market demand.
             </p>
           </div>
           

@@ -100,7 +100,7 @@ export function HeroSection() {
             </div>
             <div className="glass-light rounded-2xl p-6 border border-hero-green-500/50 backdrop-blur-md">
               <div className="text-hero-green-400 font-bold text-3xl mb-2">↔</div>
-              <div className="text-white text-lg font-semibold mb-2">Circular Exchange</div>
+              <div className="text-white text-lg font-semibold mb-2">Circular Earning</div>
               <div className="text-gray-300 text-sm">Sustainable value transformation</div>
             </div>
             <div className="glass-light rounded-2xl p-6 border border-dubai-blue-500/50 backdrop-blur-md">
@@ -151,7 +151,7 @@ export function HeroSection() {
               Dubai's Circular Economy Innovation
             </h3>
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Leverage Dubai Airport Freezone electronics hub + address water scarcity through sustainable tech-to-water exchange
+              Leverage Dubai Airport Freezone electronics hub + address water scarcity through sustainable tech-to-water earning opportunities
             </p>
           </div>
 
@@ -175,7 +175,7 @@ export function HeroSection() {
                 <div className="text-amber-400 font-bold">iPhone 14 Pro: Up to AED 1,200</div>
                 <div className="text-amber-400 font-bold">iPhone 13: Up to AED 900</div>
               </div>
-              <div className="text-amber-500 font-semibold">⚡ Dubai's first tech-to-water circular exchange</div>
+              <div className="text-amber-500 font-semibold">⚡ Dubai's first tech-to-water circular earning platform</div>
             </div>
 
             {/* Water System Value */}
