@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Coins, Trophy, Target, TrendingUp, Gift, Star, Crown, AlertTriangle, Users, Droplets, Zap } from "lucide-react";
+import { Coins, Trophy, Target, TrendingUp, Gift, Star, Crown, AlertTriangle, Users, Droplets, Zap, Award } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Play() {
