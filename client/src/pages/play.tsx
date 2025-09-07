@@ -10,17 +10,33 @@ export default function Play() {
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-4 py-2 rounded-full mb-6">
-            <Trophy className="w-5 h-5" />
-            <span className="font-medium">Planet Heroes Game</span>
+          <div className="inline-flex items-center gap-2 bg-slate-800/50 text-gray-300 px-4 py-2 rounded-full mb-6 border border-slate-600">
+            <Target className="w-5 h-5" />
+            <span className="font-medium">Professional Sustainability Platform</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Play for the Planet
-            <span className="block text-hero-green-400">Earn Points, Create Impact</span>
+            Sustainability Missions
+            <span className="block text-hero-green-400">Measurable Impact, Tangible Rewards</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Every sustainable action earns you Planet Points. Complete missions, trade devices, and help communities while building your hero status and unlocking exclusive rewards.
+            Strategic sustainability platform for professionals and organizations. Execute high-impact missions, optimize resource trading, and access exclusive sustainability benefits through our proven point-based system.
           </p>
+          
+          {/* Key Metrics */}
+          <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-8">
+            <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-600">
+              <div className="text-2xl font-bold text-hero-green-400">12,847</div>
+              <div className="text-sm text-gray-400">Active Professionals</div>
+            </div>
+            <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-600">
+              <div className="text-2xl font-bold text-blue-400">2.4M</div>
+              <div className="text-sm text-gray-400">Bottles Prevented</div>
+            </div>
+            <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-600">
+              <div className="text-2xl font-bold text-amber-400">180 tons</div>
+              <div className="text-sm text-gray-400">CO₂ Reduced</div>
+            </div>
+          </div>
         </div>
 
         {/* 🚨 Pakistan Relief Mega Mission - Featured */}
@@ -72,38 +88,99 @@ export default function Play() {
           </div>
         </div>
 
-        {/* Point Earning Activities */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
-            <CardHeader className="text-center">
-              <Trophy className="w-12 h-12 text-hero-green-500 mx-auto mb-4" />
-              <CardTitle className="text-white">iPhone Trade-Ins</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-hero-green-400 mb-2">100-600</div>
-                <p className="text-gray-400 mb-4">Planet Points per trade based on device value and condition</p>
-                <Link href="/exchange">
-                  <Button className="bg-hero-green-600 hover:bg-hero-green-700 text-white">
-                    Start Trade
-                  </Button>
-                </Link>
+        {/* Strategic iPhone Exchange - Primary CTA */}
+        <div className="mb-12">
+          <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 rounded-2xl p-8 border border-hero-green-500/30 backdrop-blur-sm">
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Trophy className="w-8 h-8 text-hero-green-400" />
+                <h2 className="text-3xl font-bold text-white">Strategic Device Exchange Program</h2>
               </div>
-            </CardContent>
-          </Card>
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+                Transform your unused iPhones into measurable sustainability impact. Professional-grade valuation with immediate Planet Points allocation.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div className="bg-black/30 rounded-xl p-6 border border-hero-green-500/20">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                  <Target className="w-5 h-5 text-hero-green-400" />
+                  Immediate Value Recognition
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">iPhone 13/14/15 Series</span>
+                    <span className="font-bold text-hero-green-400">300-600 points</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">iPhone 11/12 Series</span>
+                    <span className="font-bold text-hero-green-400">150-300 points</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">iPhone X and older</span>
+                    <span className="font-bold text-hero-green-400">50-150 points</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-black/30 rounded-xl p-6 border border-blue-500/20">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-blue-400" />
+                  Cross-Category Advantage
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <span className="text-gray-300">Water system purchases</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <span className="text-gray-300">Restaurant rewards access</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <span className="text-gray-300">Premium membership benefits</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <span className="text-gray-300">Exclusive partner offers</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/exchange">
+                <Button className="bg-hero-green-600 hover:bg-hero-green-700 text-white px-8 py-3 text-lg">
+                  <Trophy className="w-5 h-5 mr-2" />
+                  Execute Device Exchange
+                </Button>
+              </Link>
+              <Link href="/aquacafe">
+                <Button variant="outline" className="border-blue-500 text-blue-300 hover:bg-blue-500/10 px-8 py-3 text-lg">
+                  <Target className="w-5 h-5 mr-2" />
+                  Join Loyalty Program First
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Earning Opportunities */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
 
           <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
             <CardHeader className="text-center">
               <Target className="w-12 h-12 text-dubai-blue-500 mx-auto mb-4" />
-              <CardTitle className="text-white">Water Missions</CardTitle>
+              <CardTitle className="text-white">Water System Investments</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center">
                 <div className="text-3xl font-bold text-dubai-blue-400 mb-2">50-200</div>
-                <p className="text-gray-400 mb-4">Points for AquaCafe purchases and water system installations</p>
+                <p className="text-gray-400 mb-4">Points earned through AquaCafe system purchases and installations</p>
                 <Link href="/aquacafe">
                   <Button className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white">
-                    Shop AquaCafe
+                    View Systems
                   </Button>
                 </Link>
               </div>
@@ -112,16 +189,16 @@ export default function Play() {
 
           <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
             <CardHeader className="text-center">
-              <Gift className="w-12 h-12 text-purple-500 mx-auto mb-4" />
-              <CardTitle className="text-white">Referral Rewards</CardTitle>
+              <Users className="w-12 h-12 text-purple-500 mx-auto mb-4" />
+              <CardTitle className="text-white">Network Expansion</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-400 mb-2">25-100</div>
-                <p className="text-gray-400 mb-4">Bonus points for bringing friends to the sustainability mission</p>
-                <Link href="/community">
+                <p className="text-gray-400 mb-4">Strategic referral bonuses for expanding the professional network</p>
+                <Link href="/leaderboard">
                   <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-                    Invite Friends
+                    Join Community
                   </Button>
                 </Link>
               </div>
