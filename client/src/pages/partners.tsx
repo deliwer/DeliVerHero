@@ -110,6 +110,22 @@ export default function Partners() {
             All partners start with our AED 99 Starter Kit to unlock the complete DeliWer ecosystem.
           </p>
           
+          {/* Key Partners */}
+          <div className="flex items-center justify-center gap-6 mb-8 flex-wrap">
+            <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-lg border border-amber-500/30">
+              <Building2 className="w-5 h-5 text-amber-400" />
+              <span className="text-amber-400 font-medium">Alif Investments</span>
+            </div>
+            <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-lg border border-red-500/30">
+              <Heart className="w-5 h-5 text-red-400" />
+              <span className="text-red-400 font-medium">Pakistan Association Dubai</span>
+            </div>
+            <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-lg border border-emerald-500/30">
+              <ShoppingCart className="w-5 h-5 text-emerald-400" />
+              <span className="text-emerald-400 font-medium">Bakers Kitchen</span>
+            </div>
+          </div>
+          
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
             <div className="bg-slate-800/50 rounded-xl p-4 border border-emerald-500/30">
