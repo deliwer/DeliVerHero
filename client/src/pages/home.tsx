@@ -498,8 +498,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Redundant Meet Deli Section - Available at bottom for users who want to trade */}
-      <MeetDeliInteractive />
 
       {/* Founders Section */}
       <FoundersSection />
