@@ -77,7 +77,7 @@ export default function Play() {
                     Join Mission Control
                   </Button>
                 </Link>
-                <Link href="/exchange">
+                <Link href="/earn">
                   <Button variant="outline" className="border-cyan-500 text-cyan-300 hover:bg-cyan-500/10">
                     <Droplets className="w-4 h-4 mr-2" />
                     Trade for Water Credits
