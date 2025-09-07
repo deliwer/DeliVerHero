@@ -551,11 +551,18 @@ export default function Leaderboard() {
                 </div>
               </div>
 
-              <Link href="/aquacafe">
-                <Button className="bg-gradient-to-r from-hero-green-600 to-emerald-600 hover:from-hero-green-700 hover:to-emerald-700 text-white px-12 py-4 rounded-xl font-bold text-xl transform hover:scale-105 transition-all">
-                  🚀 START AQUACAFE JOURNEY - AED 99
-                </Button>
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/aquacafe">
+                  <Button className="bg-gradient-to-r from-hero-green-600 to-emerald-600 hover:from-hero-green-700 hover:to-emerald-700 text-white px-12 py-4 rounded-xl font-bold text-xl transform hover:scale-105 transition-all">
+                    🚀 START AQUACAFE JOURNEY - AED 99
+                  </Button>
+                </Link>
+                <Link href="/community">
+                  <Button variant="outline" className="border-blue-500 text-blue-300 hover:bg-blue-500/10 px-8 py-4 rounded-xl font-bold text-lg transform hover:scale-105 transition-all">
+                    🌍 Visit Full Community Hub
+                  </Button>
+                </Link>
+              </div>
               <p className="text-sm text-gray-400 mt-3">
                 Includes FREE installation (AED 299 value) • Instant leaderboard boost • Member benefits
               </p>
