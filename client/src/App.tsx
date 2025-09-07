@@ -20,6 +20,8 @@ import Products from "@/pages/products";
 import Exchange from "@/pages/exchange";
 import Collect from "@/pages/collect";
 import Redeem from "@/pages/redeem";
+import Play from "@/pages/play";
+import Rewards from "@/pages/rewards";
 import Partners from "@/pages/partners";
 import Community from "@/pages/community";
 import MissionControlPakistan from "@/pages/mission-control-pakistan";
@@ -67,6 +69,8 @@ function Router() {
       <Route path="/exchange" component={Exchange} />
       <Route path="/collect" component={Collect} />
       <Route path="/redeem" component={Redeem} />
+      <Route path="/play" component={Play} />
+      <Route path="/rewards" component={Rewards} />
       <Route path="/partners" component={Partners} />
       <Route path="/community" component={Community} />
       
