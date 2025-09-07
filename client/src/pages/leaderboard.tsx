@@ -209,6 +209,168 @@ export default function Leaderboard() {
           </div>
         </div>
 
+        {/* Community Communication Hub */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <MessageCircle className="w-6 h-6 text-blue-500" />
+            Community Communication Hub
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <MessageCircle className="w-5 h-5 text-blue-400" />
+                  Heroes Forum
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-4">Connect with fellow Planet Heroes, share experiences, and collaborate on sustainability projects</p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">💧 Water Solutions</span>
+                    <span className="text-blue-400">847 posts</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">📱 E-Waste Trading</span>
+                    <span className="text-blue-400">523 posts</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-400">🌍 Global Missions</span>
+                    <span className="text-blue-400">345 posts</span>
+                  </div>
+                </div>
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full">
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Join Discussion
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Share2 className="w-5 h-5 text-green-400" />
+                  Social Channels
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-4">Connect across multiple platforms and stay updated with the latest sustainability initiatives</p>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+                      <MessageCircle className="w-4 h-4 text-green-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">WhatsApp Group</div>
+                      <div className="text-gray-400 text-sm">2,847 members</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
+                      <Users className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-medium">LinkedIn Community</div>
+                      <div className="text-gray-400 text-sm">1,234 professionals</div>
+                    </div>
+                  </div>
+                </div>
+                <Button variant="outline" className="border-green-500 text-green-300 w-full">
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Connect Social
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Community Events & Engagement */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <Globe className="w-6 h-6 text-purple-500" />
+            Active Community Events
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="bg-gradient-to-r from-red-900/50 to-pink-900/50 border-red-500/30">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2 text-lg">
+                  <Heart className="w-5 h-5 text-red-400" />
+                  Pakistan Relief
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 text-sm mb-3">Emergency water purification for flood-affected regions</p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between">
+                    <span className="text-gray-400 text-sm">Progress:</span>
+                    <span className="text-red-400 font-bold">67%</span>
+                  </div>
+                  <div className="w-full bg-slate-700 rounded-full h-2">
+                    <div className="bg-red-500 h-2 rounded-full" style={{width: '67%'}}></div>
+                  </div>
+                </div>
+                <Link href="/play">
+                  <Button className="bg-red-600 hover:bg-red-700 text-white w-full text-sm">
+                    Join Mission
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-r from-blue-900/50 to-cyan-900/50 border-blue-500/30">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2 text-lg">
+                  <Users className="w-5 h-5 text-blue-400" />
+                  Weekly Meetup
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 text-sm mb-3">Dubai Marina heroes networking session</p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between">
+                    <span className="text-gray-400 text-sm">This Saturday:</span>
+                    <span className="text-blue-400 font-bold">7 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400 text-sm">Participants:</span>
+                    <span className="text-blue-400 font-bold">24/30</span>
+                  </div>
+                </div>
+                <Button variant="outline" className="border-blue-500 text-blue-300 w-full text-sm">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  RSVP Event
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-r from-green-900/50 to-emerald-900/50 border-green-500/30">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2 text-lg">
+                  <Award className="w-5 h-5 text-green-400" />
+                  Monthly Challenge
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 text-sm mb-3">Zero plastic bottle month challenge</p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between">
+                    <span className="text-gray-400 text-sm">Participants:</span>
+                    <span className="text-green-400 font-bold">3,247</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400 text-sm">Reward Pool:</span>
+                    <span className="text-green-400 font-bold">50K pts</span>
+                  </div>
+                </div>
+                <Button className="bg-green-600 hover:bg-green-700 text-white w-full text-sm">
+                  <Target className="w-4 h-4 mr-1" />
+                  Join Challenge
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
         {/* Enhanced Join Banner with Free Actions */}
         <div className="glass rounded-2xl p-8 mb-8 border border-amber-500/30 bg-gradient-to-r from-amber-500/10 to-orange-500/10">
           <div className="text-center mb-6">
