@@ -613,6 +613,3 @@ export default function Leaderboard() {
     </div>
   );
 }
-          {/* Free Actions Grid */}
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <div className="bg-slate-800/50 rounded-lg p-4 border border-hero-green-500/30">
