@@ -120,22 +120,22 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   );
 }
 
-// Step 1: Get Trade-in Offer Section
-function StepOneTradeIn() {
+// Step 1: Play Missions Section
+function StepOnePlay() {
   return (
     <section className="py-8 px-4 mb-8">
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={1} />
         
         <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-blue-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-blue-500/50">
-            <span className="text-blue-300 font-bold text-lg">STEP 1 - EXCHANGE</span>
+          <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50">
+            <span className="text-green-300 font-bold text-lg">STEP 1 - PLAY</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Get Your Trade-in Offer
+            Start Your Mission
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Start your sustainability journey. Get instant valuation for your iPhone and unlock Planet Points.
+            Join sustainability missions and earn Planet Points through environmental actions.
           </p>
         </div>
 
@@ -275,8 +275,8 @@ function StepOneTradeIn() {
   );
 }
 
-// Step 2: Earn Planet Points Section  
-function StepTwoEarnPoints() {
+// Step 2: Exchange Section  
+function StepTwoExchange() {
   return (
     <section className="py-8 px-4 mb-8" data-section="step-2-earn-points">
       <div className="max-w-4xl mx-auto">
@@ -484,8 +484,8 @@ function StepTwoEarnPoints() {
   );
 }
 
-// Step 3: Redeem Rewards Section
-function StepThreeRedeem() {
+// Step 3: Rewards Section
+function StepThreeRewards() {
   return (
     <section className="py-8 px-4 mb-8" data-section="step-3">
       <div className="max-w-4xl mx-auto">
@@ -493,7 +493,7 @@ function StepThreeRedeem() {
         
         <div className="text-center mb-8">
           <div className="inline-flex items-center bg-amber-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-amber-500/50">
-            <span className="text-amber-300 font-bold text-lg">STEP 3 - REDEEM</span>
+            <span className="text-amber-300 font-bold text-lg">STEP 3 - REWARDS</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
@@ -732,7 +732,7 @@ export function HeroChallengeLanding() {
 
         {/* 3-Step Progressive Flow with Visual Connectors */}
         <div data-section="step-1">
-          <StepOneTradeIn />
+          <StepOnePlay />
           
           {/* Meet Deli - Interactive Trade Assistant positioned below Step 1 */}
           <div className="mb-8" data-section="meet-deli">
@@ -753,7 +753,7 @@ export function HeroChallengeLanding() {
         </div>
 
         <div data-section="step-2">
-          <StepTwoEarnPoints />
+          <StepTwoExchange />
         </div>
 
         {/* Flow Connector 2→3 */}
@@ -769,7 +769,7 @@ export function HeroChallengeLanding() {
         </div>
 
         <div data-section="step-3">
-          <StepThreeRedeem />
+          <StepThreeRewards />
         </div>
 
         {/* Main Tabs Section */}
