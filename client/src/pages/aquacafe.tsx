@@ -153,7 +153,7 @@ export default function AquaCafe() {
           <Link href="/products" className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-sm hover:bg-emerald-700 transition-colors" data-testid="link-shop-all">
             Shop All
           </Link>
-          <Link href="/exchange" className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors" data-testid="link-start-exchange">
+          <Link href="/earn" className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors" data-testid="link-start-earning">
             Start Earning
           </Link>
         </div>
@@ -797,7 +797,7 @@ export default function AquaCafe() {
             </div>
             <div className="flex flex-col lg:flex-row items-center justify-center gap-3 max-w-6xl mx-auto">
               <Link
-                href="/exchange"
+                href="/earn"
                 className="w-full lg:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center transition-all shadow-lg"
                 data-testid="footer-cta-exchange"
               >

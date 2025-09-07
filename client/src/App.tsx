@@ -67,6 +67,7 @@ function Router() {
       <Route path="/products/aquacafe" component={AquaCafeAlliance} />
       <Route path="/products" component={Products} />
       <Route path="/exchange" component={Exchange} />
+      <Route path="/earn" component={Exchange} />
       <Route path="/collect" component={Collect} />
       <Route path="/redeem" component={Redeem} />
       <Route path="/play" component={Play} />

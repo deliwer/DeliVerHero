@@ -113,7 +113,7 @@ export function HeroSection() {
           {/* Merged CTA Section */}
           <div className="text-center mb-12">
             <div className="max-w-2xl mx-auto mb-8">
-              <Link href="/exchange" className="block">
+              <Link href="/earn" className="block">
                 <Button 
                   className="w-full h-24 bg-gradient-to-r from-amber-500 via-orange-500 to-hero-green-500 hover:from-amber-400 hover:via-orange-400 hover:to-hero-green-400 text-white px-8 py-6 rounded-3xl font-bold text-xl lg:text-2xl shadow-2xl border-2 border-amber-400/50 backdrop-blur-md transform hover:scale-105 transition-all duration-300 neon-button"
                   data-testid="button-start-trade-onboarding"
@@ -205,7 +205,7 @@ export function HeroSection() {
           <div className="mt-8">
             {selectedPath === 'trade' && (
               <div className="space-y-4">
-                <Link href="/exchange">
+                <Link href="/earn">
                   <Button 
                     className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-xl"
                     data-testid="button-start-trade-onboarding-secondary"
@@ -218,7 +218,7 @@ export function HeroSection() {
                   <span className="text-amber-400 font-bold">Circular Innovation:</span> Electronics expertise → Water sustainability solutions
                 </div>
                 {hasCompletedOnboarding && (
-                  <Link href="/exchange">
+                  <Link href="/earn">
                     <Button variant="outline" className="w-full">
                       Skip to iPhone Calculator
                     </Button>
@@ -254,7 +254,7 @@ export function HeroSection() {
                 <div className="text-gray-300 mb-4 font-medium">
                   Choose your iPhone trade option above to continue →
                 </div>
-                <Link href="/exchange">
+                <Link href="/earn">
                   <Button
                     className="bg-gradient-to-r from-amber-500 to-hero-green-500 hover:from-amber-600 hover:to-hero-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg"
                     data-testid="button-start-general-onboarding"
