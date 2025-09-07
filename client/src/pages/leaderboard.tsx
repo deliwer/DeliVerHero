@@ -371,6 +371,81 @@ export default function Leaderboard() {
           </div>
         </div>
 
+        {/* Social Activity Feed */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+            <Share2 className="w-6 h-6 text-green-500" />
+            Community Social Feed
+          </h2>
+          <div className="grid gap-6">
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-hero-green-500 rounded-full flex items-center justify-center font-bold text-white">SM</div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="font-medium text-white">Sarah M.</span>
+                      <Badge className="bg-hero-green-500/20 text-hero-green-400">Level 3 Hero</Badge>
+                      <Badge className="bg-blue-500/20 text-blue-400">Water Warrior</Badge>
+                      <span className="text-gray-400 text-sm">2 hours ago</span>
+                    </div>
+                    <p className="text-gray-300 mb-3">
+                      Just hit Level 3 Planet Hero! 🌍✨ My AquaCafe system has prevented 1,200 bottles this month. Every sip feels like saving the planet! #PlanetHero #DubaiGreen
+                    </p>
+                    <div className="flex items-center gap-4 text-gray-400">
+                      <button className="flex items-center gap-1 hover:text-white">
+                        <Heart className="w-4 h-4" />
+                        <span>47</span>
+                      </button>
+                      <button className="flex items-center gap-1 hover:text-white">
+                        <MessageCircle className="w-4 h-4" />
+                        <span>12</span>
+                      </button>
+                      <button className="flex items-center gap-1 hover:text-white">
+                        <Share2 className="w-4 h-4" />
+                        <span>8</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center font-bold text-white">FA</div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="font-medium text-white">Fatima A.</span>
+                      <Badge className="bg-amber-500/20 text-amber-400">Founding Hero</Badge>
+                      <Badge className="bg-purple-500/20 text-purple-400">Impact Leader</Badge>
+                      <span className="text-gray-400 text-sm">6 hours ago</span>
+                    </div>
+                    <p className="text-gray-300 mb-3">
+                      Monthly impact: 500 bottles prevented, 37.5kg CO₂ saved! 🌱 My old iPhone 12 trade turned into the best environmental decision ever. Thank you @DeliWer team!
+                    </p>
+                    <div className="flex items-center gap-4 text-gray-400">
+                      <button className="flex items-center gap-1 hover:text-white">
+                        <Heart className="w-4 h-4" />
+                        <span>91</span>
+                      </button>
+                      <button className="flex items-center gap-1 hover:text-white">
+                        <MessageCircle className="w-4 h-4" />
+                        <span>24</span>
+                      </button>
+                      <button className="flex items-center gap-1 hover:text-white">
+                        <Share2 className="w-4 h-4" />
+                        <span>18</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
         {/* Enhanced Join Banner with Free Actions */}
         <div className="glass rounded-2xl p-8 mb-8 border border-amber-500/30 bg-gradient-to-r from-amber-500/10 to-orange-500/10">
           <div className="text-center mb-6">
@@ -419,14 +494,72 @@ export default function Leaderboard() {
             <p className="text-sm text-gray-300 mb-4">
               Earn <strong className="text-hero-green-400">150+ FREE points</strong> in under 5 minutes • No credit card required
             </p>
-            <Link href="/">
-              <Button className="bg-amber-500 hover:bg-amber-600 text-black px-8 py-3 rounded-xl font-bold text-lg transform hover:scale-105 transition-all" data-testid="button-join-leaderboard">
-                JOIN FREE & START EARNING
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/aquacafe">
+                <Button className="bg-amber-500 hover:bg-amber-600 text-black px-8 py-3 rounded-xl font-bold text-lg transform hover:scale-105 transition-all" data-testid="button-join-leaderboard">
+                  JOIN FREE & START EARNING
+                </Button>
+              </Link>
+              <Link href="/exchange">
+                <Button variant="outline" className="border-hero-green-500 text-hero-green-300 hover:bg-hero-green-500/10 px-8 py-3 rounded-xl font-bold text-lg transform hover:scale-105 transition-all">
+                  TRADE iPhone NOW
+                </Button>
+              </Link>
+            </div>
             <p className="text-xs text-gray-500 mt-2">
-              Join now • Climb leaderboard • Win iPhone 17 priority access
+              Join AquaCafe membership • Trade device for points • Climb leaderboard • Win rewards
             </p>
+          </div>
+        </div>
+
+        {/* Strategic Path to AquaCafe CTA */}
+        <div className="mb-12">
+          <div className="bg-gradient-to-r from-hero-green-900/60 to-blue-900/60 rounded-3xl p-8 border-2 border-hero-green-500/40 backdrop-blur-sm">
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-4 py-2 rounded-full mb-6">
+                <Target className="w-5 h-5" />
+                <span className="font-medium">Strategic Next Step</span>
+              </div>
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Ready to Level Up Your Impact?
+              </h2>
+              <p className="text-xl text-gray-300 mb-6 max-w-2xl mx-auto">
+                Join the heroes above you on the leaderboard. Start with AquaCafe membership (AED 99) and unlock the complete Planet Heroes ecosystem.
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-hero-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-8 h-8 text-hero-green-400" />
+                  </div>
+                  <h3 className="font-bold text-white mb-2">Immediate Points</h3>
+                  <p className="text-gray-300 text-sm">Get 100 Planet Points instantly with membership signup</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-blue-400" />
+                  </div>
+                  <h3 className="font-bold text-white mb-2">Community Access</h3>
+                  <p className="text-gray-300 text-sm">Join exclusive member forums and local meetups</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-8 h-8 text-purple-400" />
+                  </div>
+                  <h3 className="font-bold text-white mb-2">Multiplier Benefits</h3>
+                  <p className="text-gray-300 text-sm">2x points on all future iPhone trades and referrals</p>
+                </div>
+              </div>
+
+              <Link href="/aquacafe">
+                <Button className="bg-gradient-to-r from-hero-green-600 to-emerald-600 hover:from-hero-green-700 hover:to-emerald-700 text-white px-12 py-4 rounded-xl font-bold text-xl transform hover:scale-105 transition-all">
+                  🚀 START AQUACAFE JOURNEY - AED 99
+                </Button>
+              </Link>
+              <p className="text-sm text-gray-400 mt-3">
+                Includes FREE installation (AED 299 value) • Instant leaderboard boost • Member benefits
+              </p>
+            </div>
           </div>
         </div>
 
