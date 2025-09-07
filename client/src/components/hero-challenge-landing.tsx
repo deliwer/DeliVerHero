@@ -139,161 +139,6 @@ function StepOnePlay() {
           </p>
         </div>
 
-        {/* Split-Screen iPhone Transformation Infographic */}
-        <div className="glass rounded-2xl p-8 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
-            
-            {/* Left: iPhone Visual */}
-            <div className="text-center">
-              <div className="relative mb-6">
-                <div className="w-32 h-48 mx-auto bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl border-4 border-gray-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                  <div className="w-full h-6 bg-black rounded-t-2xl"></div>
-                  <div className="p-4 text-xs text-blue-400 font-mono">
-                    <div className="text-center">📱</div>
-                    <div className="mt-2">iPhone 14 Pro</div>
-                  </div>
-                </div>
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
-                  NEW
-                </div>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-2">Your Device</h3>
-              <p className="text-gray-400 text-sm">Any iPhone, any condition</p>
-            </div>
-
-            {/* Center: Dubai Transformation Process */}
-            <div className="text-center lg:order-2">
-              <div className="relative">
-                {/* Circular transformation flow with Dubai context */}
-                <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mb-4 animate-pulse shadow-2xl">
-                  <ArrowRight className="w-8 h-8 text-white" />
-                </div>
-                
-                {/* Process steps with Dubai eco-mission context */}
-                <div className="space-y-2 text-xs text-gray-300">
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Dubai Valuation</span>
-                  </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
-                    <span>Eco Transform</span>
-                  </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span>Sustainability Reward</span>
-                  </div>
-                </div>
-                
-                {/* Dubai location indicator */}
-                <div className="mt-4 text-xs text-blue-300 font-bold">📍 Dubai, UAE</div>
-              </div>
-            </div>
-
-            {/* Right: Value Calculator Infographic */}
-            <div className="lg:order-3">
-              <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl p-4 border border-cyan-400/30">
-                <h3 className="text-lg font-bold text-white mb-4 text-center">💰 Instant Value</h3>
-                
-                {/* Value progression infographic */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-2 bg-blue-500/20 rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center text-xs">📱</div>
-                      <span className="text-gray-300 text-sm">iPhone 12</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-blue-400 font-bold">2,500 PTS</div>
-                      <div className="text-xs text-gray-400">≈ AED 250</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between p-2 bg-cyan-500/20 rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center text-xs">📱</div>
-                      <span className="text-gray-300 text-sm">iPhone 13</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-cyan-400 font-bold">3,200 PTS</div>
-                      <div className="text-xs text-gray-400">≈ AED 320</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between p-2 bg-gradient-to-r from-cyan-500/30 to-green-500/30 rounded-lg border border-green-400/50">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-xs">📱</div>
-                      <span className="text-gray-200 font-medium text-sm">iPhone 14+</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-green-400 font-black">4,000+ PTS</div>
-                      <div className="text-xs text-green-300">≈ AED 400+</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Impact preview mini chart */}
-                <div className="mt-4 p-3 bg-green-500/10 rounded-lg border border-green-500/30">
-                  <div className="text-center text-xs text-green-400 mb-2">🌍 Your Impact Preview</div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="text-center">
-                      <div className="text-blue-300 font-bold">12,500L</div>
-                      <div className="text-gray-400">Water Saved</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-green-300 font-bold">5.2kg</div>
-                      <div className="text-gray-400">CO₂ Reduced</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Button */}
-          <div className="mt-8 text-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-white font-bold px-12 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-              onClick={() => {
-                const meetDeliSection = document.querySelector('[data-section="meet-deli"]');
-                if (meetDeliSection) {
-                  meetDeliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  setTimeout(() => {
-                    const input = meetDeliSection.querySelector('input, textarea, select');
-                    if (input) (input as HTMLElement).focus();
-                  }, 500);
-                }
-              }}
-            >
-              <Calculator className="mr-3 w-6 h-6" />
-              Calculate My iPhone Value
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Step 2: Exchange Section  
-function StepTwoExchange() {
-  return (
-    <section className="py-8 px-4 mb-8" data-section="step-2-earn-points">
-      <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={2} />
-        
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50">
-            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM YOUR iPHONE</span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Earn from Your Old iPhone
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Trade in your old iPhone to earn instant value plus Planet Points for sustainable living.
-          </p>
-        </div>
-
         {/* Animated Point Collection System Infographic */}
         <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -478,6 +323,34 @@ function StepTwoExchange() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Step 2: Exchange Section  
+function StepTwoExchange() {
+  return (
+    <section className="py-8 px-4 mb-8" data-section="step-2-earn-points">
+      <div className="max-w-4xl mx-auto">
+        <ProgressIndicator currentStep={2} />
+        
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50">
+            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM YOUR iPHONE</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
+            Earn from Your Old iPhone
+          </h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Trade in your old iPhone to earn instant value plus Planet Points for sustainable living.
+          </p>
+        </div>
+
+        {/* Meet Deli Interactive Component */}
+        <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10">
+          <MeetDeliInteractive />
         </div>
       </div>
     </section>
@@ -734,10 +607,6 @@ export function HeroChallengeLanding() {
         <div data-section="step-1">
           <StepOnePlay />
           
-          {/* Meet Deli - Interactive Trade Assistant positioned below Step 1 */}
-          <div className="mb-8" data-section="meet-deli">
-            <MeetDeliInteractive />
-          </div>
         </div>
 
         {/* Flow Connector 1→2 */}
