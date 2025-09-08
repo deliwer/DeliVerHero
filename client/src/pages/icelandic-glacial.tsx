@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { OptimizedImage } from '@/components/OptimizedImage';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
@@ -153,10 +154,13 @@ export default function IcelandicGlacialLandingPage() {
             {/* Hero Product Showcase */}
             <div className="relative">
               <div className="relative z-10">
-                <img 
+                <OptimizedImage
                   src="/icelandic_glacial_750ml_1757348358065.png"
                   alt="Icelandic Glacial Premium Water"
                   className="w-full max-w-md mx-auto drop-shadow-2xl"
+                  width={400}
+                  height={500}
+                  priority={true}
                 />
               </div>
               
@@ -602,14 +606,12 @@ function ProductCard({ product }: { product: IcelandicGlacialProduct }) {
     <Card className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-gray-200 hover:border-blue-300">
       <CardContent className="p-6">
         <div className="relative mb-4">
-          <img 
-            src={product.image} 
+          <OptimizedImage
+            src={product.image}
             alt={product.name}
             className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-300 bg-gradient-to-br from-blue-50/10 to-cyan-50/10 rounded-lg"
-            loading="lazy"
-            onError={(e) => {
-              e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xMDAgNzBDMTA1LjUyMyA3MCAxMTAgNzQuNDc3IDExMCA4MFYxMjBDMTEwIDEyNS41MjMgMTA1LjUyMyAxMzAgMTAwIDEzMEM5NC40NzcgMTMwIDkwIDEyNS41MjMgOTAgMTIwVjgwQzkwIDc0LjQ3NyA5NC40NzcgNzAgMTAwIDcwWiIgZmlsbD0iIzlDQTNBRiIvPgo8L3N2Zz4K';
-            }}
+            width={400}
+            height={300}
           />
           
           {/* Product Badges */}

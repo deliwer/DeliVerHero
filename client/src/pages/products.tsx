@@ -5,6 +5,7 @@ import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home,
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
+import { OptimizedImage } from "@/components/OptimizedImage";
 import { shopifyCartService } from "@/lib/shopify-cart";
 import { Product } from "@/types/cart";
 
@@ -206,21 +207,18 @@ export default function Products() {
               <CardContent className="p-6">
                 <div className="aspect-video bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
                   {typeof product.image === 'string' && product.image.startsWith('/') ? (
-                    <img
+                    <OptimizedImage
                       src={product.image}
                       alt={product.name}
                       className="w-full h-full object-contain rounded-lg"
-                      loading="lazy"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        const nextEl = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (nextEl) nextEl.style.display = 'flex';
-                      }}
+                      width={300}
+                      height={200}
                     />
-                  ) : null}
-                  <div className="w-full h-full flex items-center justify-center" style={{display: typeof product.image === 'string' && product.image.startsWith('/') ? 'none' : 'flex'}}>
-                    <span className="text-6xl">{typeof product.image === 'string' && !product.image.startsWith('/') ? product.image : '🏞️'}</span>
-                  </div>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span className="text-6xl">{typeof product.image === 'string' && !product.image.startsWith('/') ? product.image : '🏞️'}</span>
+                    </div>
+                  )}
                 </div>
                 
                 <div className="flex items-start justify-between mb-2">
