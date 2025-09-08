@@ -33,7 +33,7 @@ const ctaOptions: CTAOption[] = [
     id: "leaderboard",
     text: "I want to join the eco leaderboard",
     icon: "🌍",
-    href: "/#step-2-earn-points",
+    href: "/community",
     gradient: "from-emerald-500 to-green-500", 
     hoverGradient: "from-emerald-400 to-green-400"
   }
@@ -131,10 +131,7 @@ export function AIInteractiveHero() {
                               }, 500);
                             }
                           } else if (option.id === 'leaderboard') {
-                            const step2Section = document.querySelector('[data-section="step-2-earn-points"]');
-                            if (step2Section) {
-                              step2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
+                            window.location.href = '/community';
                           }
                         }}
                         data-testid={`ai-cta-${option.id}`}
