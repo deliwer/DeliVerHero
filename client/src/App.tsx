@@ -49,6 +49,7 @@ import NotFound from "@/pages/not-found";
 import ContactPage from "@/pages/contact";
 import ProfilePage from "@/pages/profile";
 import HeroDashboard from "@/pages/hero-dashboard";
+import IcelandicGlacialLandingPage from "@/pages/icelandic-glacial";
 
 function Router() {
   const [location] = useLocation();
@@ -67,6 +68,8 @@ function Router() {
       <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
       <Route path="/products/aquacafe" component={AquaCafeAlliance} />
       <Route path="/products" component={Products} />
+      <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />
+      <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
       <Route path="/exchange" component={Exchange} />
       <Route path="/earn" component={Exchange} />
       <Route path="/collect" component={Collect} />
