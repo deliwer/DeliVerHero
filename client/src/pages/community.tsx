@@ -394,20 +394,36 @@ export default function Community() {
             </div>
           </div>
 
-          {/* Next Steps CTA - Following prototype */}
+          {/* Enhanced Action Hub */}
           <div className="mb-12">
             <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-4">Ready to Make Impact?</h3>
-              <p className="text-gray-300">Read impact stories, see CSR partners, and join the conversation.</p>
+              <h3 className="text-xl font-bold text-white mb-4">Take Action Now</h3>
+              <p className="text-gray-300">Join active missions, connect with the community, and create measurable impact.</p>
             </div>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
-                <h3 className="text-lg font-bold text-white mb-2">Impact Stories</h3>
-                <p className="text-sm text-gray-400 mb-4">Families trading iPhones for water—small swaps, big change.</p>
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              <div className="bg-gradient-to-br from-red-900/50 to-cyan-900/50 border border-red-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => window.location.href = '/mission-control-pakistan'}>
+                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-red-400" />
+                  🚨 Pakistan Relief Mission
+                </h3>
+                <p className="text-sm text-gray-300 mb-4">Urgent flood relief - Help provide clean water to 2.3M people</p>
+                <div className="text-cyan-400 font-semibold text-sm">Active Mission →</div>
               </div>
-              <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-6">
-                <h3 className="text-lg font-bold text-white mb-2">CSR & SDGs</h3>
-                <p className="text-sm text-gray-400 mb-4">Aligned with UN SDG 6 (Clean Water) & SDG 12 (Responsible Consumption).</p>
+              <div className="bg-slate-800/50 border border-hero-green-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => window.location.href = '/play'}>
+                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                  <Play className="w-5 h-5 text-hero-green-400" />
+                  Sustainability Missions
+                </h3>
+                <p className="text-sm text-gray-300 mb-4">Trade devices, earn points, and unlock exclusive rewards</p>
+                <div className="text-hero-green-400 font-semibold text-sm">View All Missions →</div>
+              </div>
+              <div className="bg-slate-800/50 border border-blue-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => setActiveTab('challenges')}>
+                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-blue-400" />
+                  Challenge Friends
+                </h3>
+                <p className="text-sm text-gray-300 mb-4">Create social challenges and multiply your environmental impact</p>
+                <div className="text-blue-400 font-semibold text-sm">Start Challenge →</div>
               </div>
             </div>
           </div>

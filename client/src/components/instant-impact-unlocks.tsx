@@ -49,13 +49,22 @@ export function InstantImpactUnlocks({ calculation, onOrderNow }: InstantImpactU
           
           <SlotMachine />
           
-          <Button 
-            onClick={onOrderNow}
-            className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
-          >
-            <Zap className="mr-2 w-5 h-5" />
-            Start Rescue Mission
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={onOrderNow}
+              className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
+            >
+              <Zap className="mr-2 w-5 h-5" />
+              Start Rescue Mission
+            </Button>
+            <Button 
+              onClick={() => window.location.href = '/mission-control-pakistan'}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
+            >
+              <Target className="mr-2 w-5 h-5" />
+              Pakistan Mission Control
+            </Button>
+          </div>
         </div>
       </section>
     );
@@ -140,15 +149,32 @@ export function InstantImpactUnlocks({ calculation, onOrderNow }: InstantImpactU
           </Card>
         </div>
 
-        {/* Simple CTA */}
-        <div className="text-center">
+        {/* Enhanced CTAs */}
+        <div className="text-center space-y-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={onOrderNow}
+              className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
+              data-testid="button-continue-mission"
+            >
+              <Zap className="mr-2 w-5 h-5" />
+              Continue Mission
+            </Button>
+            <Button 
+              onClick={() => window.location.href = '/mission-control-pakistan'}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
+            >
+              <Target className="mr-2 w-5 h-5" />
+              Pakistan Mission Control
+            </Button>
+          </div>
           <Button 
-            onClick={onOrderNow}
-            className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
-            data-testid="button-continue-mission"
+            onClick={() => window.location.href = '/community'}
+            variant="outline"
+            className="border-cyan-500 text-cyan-300 hover:bg-cyan-500/10 px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
           >
-            <Zap className="mr-2 w-5 h-5" />
-            Continue Mission
+            <Trophy className="mr-2 w-5 h-5" />
+            Join Community Hub
           </Button>
         </div>
       </div>

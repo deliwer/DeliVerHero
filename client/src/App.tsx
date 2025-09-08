@@ -60,7 +60,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/leaderboard" component={Leaderboard} />
+      <Route path="/leaderboard" component={Community} />
       <Route path="/impact-dashboard" component={ImpactDashboard} />
       <Route path="/aquacafe" component={AquaCafe} />
       <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />

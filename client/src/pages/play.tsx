@@ -196,7 +196,7 @@ export default function Play() {
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-400 mb-2">25-100</div>
                 <p className="text-gray-400 mb-4">Strategic referral bonuses for expanding the professional network</p>
-                <Link href="/leaderboard">
+                <Link href="/community">
                   <Button className="bg-purple-600 hover:bg-purple-700 text-white">
                     Join Community
                   </Button>
@@ -316,10 +316,10 @@ export default function Play() {
                   Access Rewards Marketplace
                 </Button>
               </Link>
-              <Link href="/leaderboard">
+              <Link href="/community">
                 <Button variant="outline" className="border-amber-500 text-amber-300 hover:bg-amber-500/10 px-6 py-3">
                   <TrendingUp className="w-4 h-4 mr-2" />
-                  View Community Rankings
+                  View Community Hub
                 </Button>
               </Link>
             </div>
