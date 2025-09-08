@@ -20,7 +20,8 @@ export default function Products() {
     { id: "all", label: "All Products", icon: ShoppingCart },
     { id: "refurbished-phones", label: "Refurbished Phones", icon: Smartphone },
     { id: "water-solutions", label: "Water Solutions", icon: Droplets },
-    { id: "premium-water", label: "Premium Water", icon: Sparkles }
+    { id: "premium-water", label: "Premium Water", icon: Sparkles },
+    { id: "icelandic-glacial", label: "Icelandic Glacial", icon: Sparkles }
   ];
 
   const products: Product[] = [
@@ -56,6 +57,80 @@ export default function Products() {
       reviews: 127,
       description: "Transform your shower experience and become a Planet Hero! This exclusive starter kit includes our premium AquaCafe Beauty Hair & Skincare Ionic Shower Filter with professional installation.",
       variantId: "gid://shopify/ProductVariant/123456789",
+      available: true
+    },
+    // Icelandic Glacial Water Products
+    {
+      id: "icelandic-glacial-330ml",
+      name: "Icelandic Glacial 330ml",
+      category: "icelandic-glacial",
+      price: 8.50,
+      originalPrice: 10.00,
+      image: "/icelandic_glacial_330ml_1757348358063.png",
+      features: ["11.1 fl oz", "CarbonNeutral™ Certified", "pH 8.4 Naturally Alkaline", "Perfect for travel"],
+      badge: "Premium",
+      variantId: "icelandic-glacial-330ml",
+      available: true
+    },
+    {
+      id: "icelandic-glacial-500ml",
+      name: "Icelandic Glacial 500ml",
+      category: "icelandic-glacial",
+      price: 12.00,
+      originalPrice: 14.00,
+      image: "/icelandic_glacial_500ml_1757348358064.png",
+      features: ["16.9 fl oz", "CarbonNeutral™ Certified", "pH 8.4 Naturally Alkaline", "Ideal for active lifestyles"],
+      badge: "Popular",
+      popular: true,
+      variantId: "icelandic-glacial-500ml",
+      available: true
+    },
+    {
+      id: "icelandic-glacial-750ml",
+      name: "Icelandic Glacial 750ml",
+      category: "icelandic-glacial",
+      price: 16.50,
+      originalPrice: 19.00,
+      image: "/icelandic_glacial_750ml_1757348358065.png",
+      features: ["25.3 fl oz", "CarbonNeutral™ Certified", "Premium sharing size", "Family meals"],
+      badge: "Premium",
+      variantId: "icelandic-glacial-750ml",
+      available: true
+    },
+    {
+      id: "icelandic-glacial-1L",
+      name: "Icelandic Glacial 1L",
+      category: "icelandic-glacial",
+      price: 22.00,
+      originalPrice: 25.00,
+      image: "/icelandic_glacial_1L_1757348358062.png",
+      features: ["33.8 fl oz", "CarbonNeutral™ Certified", "Large capacity", "Family consumption"],
+      badge: "Value",
+      variantId: "icelandic-glacial-1L",
+      available: true
+    },
+    {
+      id: "icelandic-glacial-glass-330ml",
+      name: "Icelandic Glacial Glass 330ml",
+      category: "icelandic-glacial",
+      price: 35.00,
+      originalPrice: 40.00,
+      image: "/icelandic_glacial_glass_still_330ml_1757348358070.png",
+      features: ["11.1 fl oz", "Premium Glass Bottle", "Iconic Design", "Preferred by Chefs"],
+      badge: "Luxury",
+      variantId: "icelandic-glacial-glass-330ml",
+      available: true
+    },
+    {
+      id: "icelandic-glacial-sparkling-lemon",
+      name: "Icelandic Glacial Sparkling Lemon",
+      category: "icelandic-glacial",
+      price: 16.50,
+      originalPrice: 19.00,
+      image: "/icelandic_glacial_sparkling_sicilian_lemon_1757348358074.png",
+      features: ["16.9 fl oz", "Zero Calories", "Sicilian Lemon Flavor", "Natural Alkalinity"],
+      badge: "Flavored",
+      variantId: "icelandic-glacial-sparkling-lemon",
       available: true
     }
   ];
@@ -134,11 +209,18 @@ export default function Products() {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover rounded-lg"
+                      className="w-full h-full object-contain rounded-lg"
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        const nextEl = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (nextEl) nextEl.style.display = 'flex';
+                      }}
                     />
-                  ) : (
-                    <span className="text-6xl">{product.image}</span>
-                  )}
+                  ) : null}
+                  <div className="w-full h-full flex items-center justify-center" style={{display: typeof product.image === 'string' && product.image.startsWith('/') ? 'none' : 'flex'}}>
+                    <span className="text-6xl">{typeof product.image === 'string' && !product.image.startsWith('/') ? product.image : '🏞️'}</span>
+                  </div>
                 </div>
                 
                 <div className="flex items-start justify-between mb-2">
