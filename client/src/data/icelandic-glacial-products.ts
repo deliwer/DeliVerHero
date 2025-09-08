@@ -44,7 +44,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 7.20,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_330ml_1757348358063.png',
+    image: '/icelandic_glacial_330ml_1757348358063.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -66,7 +66,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 10.20,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_500ml_1757348358064.png',
+    image: '/icelandic_glacial_500ml_1757348358064.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -88,7 +88,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 14.00,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_750ml_1757348358065.png',
+    image: '/icelandic_glacial_750ml_1757348358065.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -110,7 +110,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 18.70,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_1L_1757348358062.png',
+    image: '/icelandic_glacial_1L_1757348358062.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -132,7 +132,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 23.80,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_1_5L_1757348358045.png',
+    image: '/icelandic_glacial_1_5L_1757348358045.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -156,7 +156,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 55.25,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_6x500ml_multipack_1757348358062.png',
+    image: '/icelandic_glacial_6x500ml_multipack_1757348358062.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -178,7 +178,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 102.00,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_6x1000ml_multipack_1757348358062.png',
+    image: '/icelandic_glacial_6x1000ml_multipack_1757348358062.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -202,7 +202,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 29.75,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_glass_still_330ml_1757348358070.png',
+    image: '/icelandic_glacial_glass_still_330ml_1757348358070.png',
     isPremium: true,
     sustainability: {
       recyclable: true,
@@ -225,7 +225,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 55.25,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_glass_still_750ml_1757348358071.png',
+    image: '/icelandic_glacial_glass_still_750ml_1757348358071.png',
     isPremium: true,
     sustainability: {
       recyclable: true,
@@ -251,7 +251,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 32.30,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_glass_sparkling_330ml_1757348358066.png',
+    image: '/icelandic_glacial_glass_sparkling_330ml_1757348358066.png',
     isPremium: true,
     sustainability: {
       recyclable: true,
@@ -275,7 +275,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 59.50,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_glass_sparkling_750ml_1757348358067.png',
+    image: '/icelandic_glacial_glass_sparkling_750ml_1757348358067.png',
     isPremium: true,
     sustainability: {
       recyclable: true,
@@ -300,7 +300,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 12.75,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_sparkling_classic_1757348358072.png',
+    image: '/icelandic_glacial_sparkling_classic_1757348358072.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -323,7 +323,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 14.00,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_sparkling_sicilian_lemon_1757348358074.png',
+    image: '/icelandic_glacial_sparkling_sicilian_lemon_1757348358074.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -346,7 +346,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 14.00,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_sparkling_tahitian_lime_1757348358074.png',
+    image: '/icelandic_glacial_sparkling_tahitian_lime_1757348358074.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -369,7 +369,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 14.45,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_sparkling_elderflower_1757348358072.png',
+    image: '/icelandic_glacial_sparkling_elderflower_1757348358072.png',
     sustainability: {
       recyclable: true,
       carbonNeutral: true,
@@ -392,7 +392,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 14.90,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_sparkling_tarocco_blood_orange_1757348358075.png',
+    image: '/icelandic_glacial_sparkling_tarocco_blood_orange_1757348358075.png',
     isNew: true,
     sustainability: {
       recyclable: true,
@@ -416,7 +416,7 @@ export const icelandicGlacialProducts: IcelandicGlacialProduct[] = [
       member: 14.90,
       currency: 'AED'
     },
-    image: '/src/assets/products/icelandic-glacial/icelandic_glacial_sparkling_indonesian_lemongrass_1757348358073.png',
+    image: '/icelandic_glacial_sparkling_indonesian_lemongrass_1757348358073.png',
     isNew: true,
     sustainability: {
       recyclable: true,

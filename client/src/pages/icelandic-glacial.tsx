@@ -154,7 +154,7 @@ export default function IcelandicGlacialLandingPage() {
             <div className="relative">
               <div className="relative z-10">
                 <img 
-                  src="/src/assets/products/icelandic-glacial/icelandic_glacial_750ml_1757348358065.png"
+                  src="/icelandic_glacial_750ml_1757348358065.png"
                   alt="Icelandic Glacial Premium Water"
                   className="w-full max-w-md mx-auto drop-shadow-2xl"
                 />

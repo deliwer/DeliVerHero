@@ -1,0 +1,471 @@
+# Replit Prompt: Icelandic Glacial Water Landing Page for DeliWer.com
+
+## Project Overview
+Create a premium landing page for Icelandic Glacial Water product line for DeliWer.com, a premium water sustainability company. The page should showcase the complete product catalog with individual product listings for each capacity, emphasizing sustainability, purity, and premium quality.
+
+## Brand Identity & Core Values
+- **Source**: Legendary Ölfus Spring, Iceland - one of the world's most pristine ecosystems
+- **Purity**: Exceptionally pure and naturally alkaline water with pH of 8.4
+- **Sustainability**: World's first bottled water certified CarbonNeutral™ for both product and operation
+- **Quality**: Multi-award winning, recognized by leading chefs and sommeliers
+- **Heritage**: Filtered slowly for 5,000 years through layers of lava rock
+- **Mineral Content**: Naturally low mineral content (TDS of 62ppm)
+
+## Product Catalog - Individual Listings Required
+
+### Still Water Collection (rPET Bottles)
+
+#### 1. Icelandic Glacial 330ml (11.1 fl oz)
+- **Target Audience**: On-the-go hydration, personal consumption
+- **Key Features**: Compact size, perfect for travel and daily hydration
+- **Packaging**: BPA-free rPET bottle with signature glacier-inspired neck design
+- **Sustainability**: 100% recyclable packaging
+- **Image**: Use extracted product image: icelandic_glacial_330ml.png
+
+#### 2. Icelandic Glacial 500ml (16.9 fl oz)
+- **Target Audience**: Active lifestyle, gym, office
+- **Key Features**: Ideal portion size for moderate hydration needs
+- **Packaging**: BPA-free rPET bottle with signature glacier-inspired neck design
+- **Sustainability**: 100% recyclable packaging
+- **Image**: Use extracted product image: icelandic_glacial_500ml.png
+
+#### 3. Icelandic Glacial 750ml (25.3 fl oz)
+- **Target Audience**: Sharing, family meals, extended activities
+- **Key Features**: Premium size for longer hydration periods
+- **Packaging**: BPA-free rPET bottle with signature glacier-inspired neck design
+- **Sustainability**: 100% recyclable packaging
+- **Image**: Use extracted product image: icelandic_glacial_750ml.png
+
+#### 4. Icelandic Glacial 1L (33.8 fl oz)
+- **Target Audience**: Family consumption, office sharing
+- **Key Features**: Large capacity for extended use
+- **Packaging**: BPA-free rPET bottle with signature glacier-inspired neck design
+- **Sustainability**: 100% recyclable packaging
+- **Image**: Use extracted product image: icelandic_glacial_1L.png
+
+#### 5. Icelandic Glacial 1.5L (50.7 fl oz)
+- **Target Audience**: Family size, bulk consumption
+- **Key Features**: Maximum capacity for family or group consumption
+- **Packaging**: BPA-free rPET bottle with signature glacier-inspired neck design
+- **Sustainability**: 100% recyclable packaging
+- **Image**: Use extracted product image: icelandic_glacial_1_5L.png
+
+### Multipack Options
+
+#### 6. Icelandic Glacial 6 x 500ml Multipack
+- **Target Audience**: Bulk buyers, families, offices
+- **Key Features**: Convenient packaging, cost-effective
+- **Packaging**: Shrink-wrapped with stunning graphics
+- **Sustainability**: Reduced packaging waste per unit
+- **Image**: Use extracted product image: icelandic_glacial_6x500ml_multipack.png
+
+#### 7. Icelandic Glacial 6 x 1000ml Multipack
+- **Target Audience**: Heavy consumers, commercial use
+- **Key Features**: Maximum value pack
+- **Packaging**: Shrink-wrapped with stunning graphics
+- **Sustainability**: Reduced packaging waste per unit
+- **Image**: Use extracted product image: icelandic_glacial_6x1000ml_multipack.png
+
+### Premium Glass Collection
+
+#### 8. Icelandic Glacial Glass Still 330ml (11.1 fl oz)
+- **Target Audience**: Fine dining, premium hospitality
+- **Key Features**: Iconic glass bottle, premium presentation
+- **Packaging**: Signature glass bottle design
+- **Use Case**: High-end restaurants, hotels, resorts
+- **Image**: Use extracted product image: icelandic_glacial_glass_still_330ml.png
+
+#### 9. Icelandic Glacial Glass Still 750ml (25.3 fl oz)
+- **Target Audience**: Fine dining, premium hospitality
+- **Key Features**: Large glass format for sharing
+- **Packaging**: Signature glass bottle design
+- **Use Case**: High-end restaurants, hotels, resorts
+- **Image**: Use extracted product image: icelandic_glacial_glass_still_750ml.png
+
+#### 10. Icelandic Glacial Glass Sparkling 330ml (11.1 fl oz)
+- **Target Audience**: Fine dining, premium hospitality
+- **Key Features**: Lightly carbonated, naturally low mineral content
+- **Awards**: Top honor at 2016 Superior Taste Awards
+- **Packaging**: Signature glass bottle design
+- **Image**: Use extracted product image: icelandic_glacial_glass_sparkling_330ml.png
+
+#### 11. Icelandic Glacial Glass Sparkling 750ml (25.3 fl oz)
+- **Target Audience**: Fine dining, premium hospitality
+- **Key Features**: Large sparkling format for sharing
+- **Awards**: Top honor at 2016 Superior Taste Awards
+- **Packaging**: Signature glass bottle design
+- **Image**: Use extracted product image: icelandic_glacial_glass_sparkling_750ml.png
+
+### Sparkling Flavored Collection (500ml PET)
+
+#### 12. Icelandic Glacial Sparkling Classic 500ml
+- **Target Audience**: Health-conscious consumers seeking alternatives to soda
+- **Key Features**: Zero calories, zero sugar, award-winning sparkling water
+- **Packaging**: 500ml PET bottle, perfect for on-the-go
+- **Image**: Use extracted product image: icelandic_glacial_sparkling_classic.png
+
+#### 13. Icelandic Glacial Sparkling Sicilian Lemon 500ml
+- **Target Audience**: Flavor enthusiasts, health-conscious consumers
+- **Key Features**: Zero calories, zero sugar, exotic citrus tang with hint of sweet
+- **Flavor Profile**: Crisp, refreshing taste of summer year-round
+- **Packaging**: 500ml PET bottle with flavor-specific branding
+- **Image**: Use extracted product image: icelandic_glacial_sparkling_sicilian_lemon.png
+
+#### 14. Icelandic Glacial Sparkling Tahitian Lime 500ml
+- **Target Audience**: Soda alternative seekers
+- **Key Features**: Zero calories, zero sugar, perfect balance between zesty and sweet
+- **Flavor Profile**: Great alternative to soda
+- **Packaging**: 500ml PET bottle with flavor-specific branding
+- **Image**: Use extracted product image: icelandic_glacial_sparkling_tahitian_lime.png
+
+#### 15. Icelandic Glacial Sparkling Elderflower 500ml
+- **Target Audience**: Premium cocktail enthusiasts, sophisticated palates
+- **Key Features**: Zero calories, zero sugar, delicate floral taste
+- **Flavor Profile**: Pure refreshment, excellent as mixer for cocktails
+- **Packaging**: 500ml PET bottle with flavor-specific branding
+- **Image**: Use extracted product image: icelandic_glacial_sparkling_elderflower.png
+
+#### 16. Icelandic Glacial Sparkling Tarocco Blood Orange 500ml (NEW)
+- **Target Audience**: Adventurous flavor seekers
+- **Key Features**: Zero calories, zero sugar, unique citrus experience
+- **Flavor Profile**: Rich, complex orange flavor
+- **Packaging**: 500ml PET bottle with new flavor branding
+- **Image**: Use extracted product image: icelandic_glacial_sparkling_tarocco_blood_orange.png
+
+#### 17. Icelandic Glacial Sparkling Indonesian Lemongrass 500ml (NEW)
+- **Target Audience**: Exotic flavor enthusiasts
+- **Key Features**: Zero calories, zero sugar, unique herbal refreshment
+- **Flavor Profile**: Refreshing herbal notes
+- **Packaging**: 500ml PET bottle with new flavor branding
+- **Image**: Use extracted product image: icelandic_glacial_sparkling_indonesian_lemongrass.png
+
+## Design Requirements
+
+### Visual Design System
+- **Color Palette**: 
+  - WHITE (clean, snow) - Primary background and text
+  - BLUE (ice, fresh unique color of Iceland's water) - Primary brand color
+  - BLACK (depth, lava rock) - Accent and text
+- **Typography**: Modern, clean sans-serif fonts that convey premium quality
+- **Layout**: Responsive grid system, mobile-first approach
+- **Imagery**: High-quality product photography, Icelandic landscape backgrounds
+
+### User Experience Features
+- **Product Catalog**: Individual product cards for each capacity with detailed specifications
+- **Interactive Elements**: Hover effects, smooth transitions, micro-interactions
+- **Filtering**: Allow users to filter by capacity, type (still/sparkling), packaging (plastic/glass)
+- **Comparison Tool**: Side-by-side product comparison functionality
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+
+### Technical Requirements
+- **Framework**: React.js with modern hooks and components
+- **Styling**: CSS-in-JS or Styled Components for component-based styling
+- **Performance**: Optimized images, lazy loading, fast loading times
+- **Accessibility**: WCAG 2.1 AA compliance
+- **SEO**: Proper meta tags, structured data, semantic HTML
+
+
+## DeliWer.com Integration & Branding
+
+### Company Profile
+- **Company**: DeliWer - Premium Water Sustainability Company
+- **Website**: www.deliwer.com
+- **Mission**: Delivering premium sustainable water solutions with environmental responsibility
+- **Target Market**: Environmentally conscious consumers seeking premium hydration solutions
+
+### Delivery Service - Dubai UAE Focus
+- **Service Area**: Dubai, United Arab Emirates
+- **Delivery Promise**: "Directly delivered to your home in Dubai UAE"
+- **Service Benefits**:
+  - Same-day delivery available
+  - Subscription services for regular delivery
+  - Bulk order discounts
+  - Premium packaging and handling
+  - Temperature-controlled delivery for optimal freshness
+
+### AquaCafe Loyalty Program by DeliWer
+
+#### Program Overview
+- **Program Name**: AquaCafe by DeliWer Loyalty Program
+- **Website Reference**: deliwer.com/aquacafe
+- **Program Type**: Premium loyalty rewards system
+
+#### Key Benefits to Highlight
+- **Exclusive Member Pricing**: Special discounts on all Icelandic Glacial products
+- **Priority Delivery**: Faster delivery slots for loyalty members
+- **Sustainability Rewards**: Points for choosing eco-friendly packaging options
+- **Premium Access**: Early access to new flavors and limited editions
+- **Bulk Benefits**: Enhanced discounts for larger orders
+- **Referral Rewards**: Benefits for referring new customers
+- **Birthday Specials**: Special offers during member birthday months
+
+#### Planet Heroes Special Incentives
+- **Program**: Special incentives for Planet Heroes (environmentally conscious customers)
+- **Carbon Offset Rewards**: Additional points for choosing carbon-neutral delivery options
+- **Sustainability Challenges**: Monthly eco-challenges with rewards
+- **Green Packaging Bonus**: Extra loyalty points for choosing minimal packaging
+- **Environmental Impact Tracking**: Personal dashboard showing environmental impact reduction
+- **Community Impact**: Participation in local environmental initiatives
+- **Exclusive Planet Heroes Products**: Access to special eco-edition packaging
+
+### Call-to-Action Integration
+- **Primary CTA**: "Join AquaCafe Loyalty Program"
+- **Secondary CTA**: "Become a Planet Hero"
+- **Tertiary CTA**: "Schedule Dubai Delivery"
+
+### Loyalty Program Features to Implement
+- **Sign-up Form**: Integrated loyalty program registration
+- **Member Dashboard Preview**: Show potential benefits and savings
+- **Sustainability Calculator**: Show environmental impact of choices
+- **Delivery Scheduler**: Allow users to set up recurring deliveries
+- **Planet Heroes Badge System**: Visual representation of environmental achievements
+
+## Content Sections Required
+
+### Hero Section
+- **Headline**: "Pure Icelandic Water, Delivered to Your Dubai Home"
+- **Subheadline**: "Join AquaCafe Loyalty Program and Become a Planet Hero"
+- **Background**: Stunning Icelandic landscape with product showcase
+- **CTA Buttons**: "Shop Now", "Join AquaCafe", "Become Planet Hero"
+
+### Product Showcase
+- **Individual Product Cards**: Each capacity gets its own detailed card
+- **Interactive Filtering**: By size, type, packaging material
+- **Sustainability Badges**: Carbon neutral, recyclable, eco-friendly indicators
+- **Loyalty Pricing**: Show member vs. non-member pricing
+
+### Sustainability Story
+- **Carbon Neutral Certification**: Highlight world's first certification
+- **Ölfus Spring Protection**: 128,000 acre exclusion zone
+- **Renewable Energy**: 100% geothermal and hydroelectric powered facility
+- **Packaging Innovation**: 100% recyclable materials
+
+### Dubai Delivery Service
+- **Service Map**: Coverage areas in Dubai
+- **Delivery Options**: Same-day, scheduled, subscription
+- **Temperature Control**: Maintaining optimal freshness
+- **Packaging**: Premium, sustainable delivery packaging
+
+### AquaCafe Loyalty Program
+- **Benefits Overview**: Visual representation of all benefits
+- **Planet Heroes Section**: Special environmental incentives
+- **Membership Tiers**: Different levels of benefits
+- **Environmental Impact**: Personal sustainability dashboard preview
+
+
+## Asset Utilization Instructions
+
+### Product Images from Brand Information PDF
+- **Extract and Use**: All product images from the provided ICELANDICGlacialWater-BrandInformation.pdf
+- **Image Processing**: Optimize all images for web use (WebP format preferred, with PNG/JPG fallbacks)
+- **Image Sizes**: Create multiple sizes for responsive design (thumbnail, medium, large, hero)
+- **Alt Text**: Implement descriptive alt text for accessibility
+
+### Brand Assets to Extract and Implement
+1. **Logo Variations**: Extract Icelandic Glacial logo in different formats
+2. **Product Photography**: High-resolution bottle images for each capacity
+3. **Packaging Designs**: Multipack and individual bottle designs
+4. **Brand Colors**: Implement the exact color palette (white, blue, black)
+5. **Typography Guidelines**: Match the brand's font choices and hierarchy
+6. **Sustainability Badges**: Carbon neutral certification, awards, quality seals
+7. **Landscape Photography**: Icelandic scenery for backgrounds and hero sections
+
+### Image Optimization Requirements
+- **Format**: WebP with PNG/JPG fallbacks for browser compatibility
+- **Compression**: Optimize for fast loading while maintaining quality
+- **Responsive Images**: Use srcset for different screen sizes
+- **Lazy Loading**: Implement lazy loading for performance
+- **CDN Ready**: Structure for easy CDN integration
+
+## Vercel Deployment Instructions
+
+### Project Structure for Vercel
+```
+icelandic-glacial-landing/
+├── public/
+│   ├── images/
+│   │   ├── products/
+│   │   │   ├── 330ml/
+│   │   │   ├── 500ml/
+│   │   │   ├── 750ml/
+│   │   │   ├── 1l/
+│   │   │   ├── 1-5l/
+│   │   │   ├── multipacks/
+│   │   │   ├── glass/
+│   │   │   └── sparkling/
+│   │   ├── brand/
+│   │   ├── backgrounds/
+│   │   └── icons/
+│   ├── favicon.ico
+│   └── manifest.json
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── styles/
+│   └── utils/
+├── package.json
+├── vercel.json
+└── README.md
+```
+
+### Vercel Configuration (vercel.json)
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Performance Optimization for Vercel
+1. **Image Optimization**: Use Vercel's built-in image optimization
+2. **Code Splitting**: Implement React lazy loading for components
+3. **Bundle Analysis**: Use webpack-bundle-analyzer to optimize bundle size
+4. **Caching Strategy**: Implement proper caching headers
+5. **Compression**: Enable gzip/brotli compression
+
+### Environment Variables for Vercel
+```
+NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
+NEXT_PUBLIC_DELIWER_API_URL=https://api.deliwer.com
+NEXT_PUBLIC_AQUACAFE_URL=https://deliwer.com/aquacafe
+NEXT_PUBLIC_ANALYTICS_ID=your-analytics-id
+```
+
+### SEO Configuration for Vercel
+- **Meta Tags**: Implement dynamic meta tags for each product
+- **Structured Data**: Add JSON-LD for product information
+- **Sitemap**: Generate dynamic sitemap for all products
+- **Robots.txt**: Configure for optimal search engine crawling
+
+### Deployment Steps
+1. **Repository Setup**: Create GitHub repository with the project
+2. **Vercel Connection**: Connect Vercel to the GitHub repository
+3. **Environment Variables**: Set up all required environment variables
+4. **Domain Configuration**: Configure custom domain if needed
+5. **SSL Certificate**: Ensure HTTPS is enabled
+6. **Performance Testing**: Run Lighthouse audits post-deployment
+
+## Development Guidelines
+
+### React Component Structure
+```
+src/
+├── components/
+│   ├── common/
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   └── Layout.jsx
+│   ├── product/
+│   │   ├── ProductCard.jsx
+│   │   ├── ProductGrid.jsx
+│   │   ├── ProductFilter.jsx
+│   │   └── ProductComparison.jsx
+│   ├── loyalty/
+│   │   ├── AquaCafeSignup.jsx
+│   │   ├── PlanetHeroes.jsx
+│   │   └── BenefitsOverview.jsx
+│   └── delivery/
+│       ├── DeliveryScheduler.jsx
+│       ├── ServiceAreas.jsx
+│       └── DeliveryOptions.jsx
+```
+
+### State Management
+- **Context API**: For global state (cart, user preferences)
+- **Local State**: For component-specific state
+- **Custom Hooks**: For reusable logic (useCart, useDelivery, useLoyalty)
+
+### Styling Approach
+- **CSS Modules** or **Styled Components** for component styling
+- **Responsive Design**: Mobile-first approach
+- **Design System**: Consistent spacing, colors, and typography
+- **Animations**: Smooth transitions and micro-interactions
+
+### Accessibility Requirements
+- **WCAG 2.1 AA Compliance**: Ensure all interactive elements are accessible
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Screen Reader Support**: Proper ARIA labels and descriptions
+- **Color Contrast**: Ensure sufficient contrast ratios
+- **Focus Management**: Clear focus indicators
+
+### Testing Strategy
+- **Unit Tests**: Jest and React Testing Library
+- **Integration Tests**: Test component interactions
+- **E2E Tests**: Cypress for critical user journeys
+- **Performance Tests**: Lighthouse CI integration
+- **Accessibility Tests**: axe-core integration
+
+## Final Implementation Checklist
+
+### Pre-Deployment
+- [ ] All product images extracted and optimized
+- [ ] Brand assets properly implemented
+- [ ] Responsive design tested on all devices
+- [ ] Performance optimization completed
+- [ ] Accessibility audit passed
+- [ ] SEO implementation verified
+
+### Post-Deployment
+- [ ] Vercel deployment successful
+- [ ] Custom domain configured (if applicable)
+- [ ] SSL certificate active
+- [ ] Performance metrics acceptable (Lighthouse score >90)
+- [ ] All links and forms functional
+- [ ] Analytics tracking implemented
+
+### Ongoing Maintenance
+- [ ] Regular performance monitoring
+- [ ] Content updates for new products
+- [ ] Security updates and patches
+- [ ] User feedback integration
+- [ ] A/B testing for conversion optimization
+
+## Extracted Product Images Available
+
+The following high-quality product images have been extracted from the brand information PDF and are ready for use:
+
+1. **icelandic_glacial_330ml.png** - 330ml still water bottle
+2. **icelandic_glacial_500ml.png** - 500ml still water bottle
+3. **icelandic_glacial_750ml.png** - 750ml still water bottle
+4. **icelandic_glacial_1L.png** - 1L still water bottle
+5. **icelandic_glacial_1_5L.png** - 1.5L still water bottle
+6. **icelandic_glacial_6x500ml_multipack.png** - 6x500ml multipack
+7. **icelandic_glacial_6x1000ml_multipack.png** - 6x1000ml multipack
+8. **icelandic_glacial_glass_still_330ml.png** - Glass still 330ml bottle
+9. **icelandic_glacial_glass_still_750ml.png** - Glass still 750ml bottle
+10. **icelandic_glacial_glass_sparkling_330ml.png** - Glass sparkling 330ml bottle
+11. **icelandic_glacial_glass_sparkling_750ml.png** - Glass sparkling 750ml bottle
+12. **icelandic_glacial_sparkling_classic.png** - Sparkling classic 500ml bottle
+13. **icelandic_glacial_sparkling_sicilian_lemon.png** - Sparkling Sicilian Lemon 500ml bottle
+14. **icelandic_glacial_sparkling_tahitian_lime.png** - Sparkling Tahitian Lime 500ml bottle
+15. **icelandic_glacial_sparkling_elderflower.png** - Sparkling Elderflower 500ml bottle
+16. **icelandic_glacial_sparkling_tarocco_blood_orange.png** - Sparkling Tarocco Blood Orange 500ml bottle (NEW)
+17. **icelandic_glacial_sparkling_indonesian_lemongrass.png** - Sparkling Indonesian Lemongrass 500ml bottle (NEW)
+
+All images are optimized for web use and ready for implementation in the landing page design.
+
