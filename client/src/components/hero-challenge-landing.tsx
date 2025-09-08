@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MeetDeliInteractive } from "./meet-deli-interactive";
 import { AquaCafeTab } from "./aquacafe-tab";
+import { HeroRegistrationModal, MissionSelectionModal } from "./hero-onboarding-modals";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
@@ -253,15 +254,10 @@ function StepOnePlay() {
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                onClick={() => {
-                  const step3Section = document.querySelector('[data-section="step-3"]');
-                  if (step3Section) {
-                    step3Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }}
+                onClick={() => setShowHeroRegistration(true)}
               >
                 <Target className="mr-3 w-6 h-6" />
-                Start Earning
+                Join Mission Now
               </Button>
             </div>
 
@@ -575,6 +571,9 @@ function StepThreeRewards() {
 export function HeroChallengeLanding() {
   const { data: stats } = useImpactStats();
   const { isRegistered } = useImageServiceWorker();
+  const [showHeroRegistration, setShowHeroRegistration] = useState(false);
+  const [showMissionSelection, setShowMissionSelection] = useState(false);
+  const [registeredHero, setRegisteredHero] = useState<any>(null);
   
   return (
     <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
@@ -800,6 +799,29 @@ export function HeroChallengeLanding() {
           </p>
         </div>
       </div>
+
+      {/* Hero Registration Modal */}
+      <HeroRegistrationModal 
+        open={showHeroRegistration}
+        onClose={() => setShowHeroRegistration(false)}
+        onSuccess={(hero) => {
+          setRegisteredHero(hero);
+          setShowHeroRegistration(false);
+          setShowMissionSelection(true);
+        }}
+      />
+
+      {/* Mission Selection Modal */}
+      <MissionSelectionModal 
+        open={showMissionSelection}
+        onClose={() => setShowMissionSelection(false)}
+        hero={registeredHero}
+        onMissionSelect={(mission) => {
+          setShowMissionSelection(false);
+          // Navigate to dashboard with mission
+          window.location.href = `/dashboard?mission=${mission.id}`;
+        }}
+      />
     </section>
   );
 }
