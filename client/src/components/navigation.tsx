@@ -37,6 +37,7 @@ export function Navigation() {
     { path: "/earn", label: "Earn", id: "earn" },
     { path: "/rewards", label: "Rewards", id: "rewards" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
+    { path: "/icelandic-glacial", label: "Icelandic Water", id: "icelandic-glacial" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },
     { path: "/contact", label: "Contact", id: "contact" },
