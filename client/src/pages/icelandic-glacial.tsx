@@ -605,7 +605,11 @@ function ProductCard({ product }: { product: IcelandicGlacialProduct }) {
           <img 
             src={product.image} 
             alt={product.name}
-            className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-300"
+            className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-300 bg-gradient-to-br from-blue-50/10 to-cyan-50/10 rounded-lg"
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xMDAgNzBDMTA1LjUyMyA3MCAxMTAgNzQuNDc3IDExMCA4MFYxMjBDMTEwIDEyNS41MjMgMTA1LjUyMyAxMzAgMTAwIDEzMEM5NC40NzcgMTMwIDkwIDEyNS41MjMgOTAgMTIwVjgwQzkwIDc0LjQ3NyA5NC40NzcgNzAgMTAwIDcwWiIgZmlsbD0iIzlDQTNBRiIvPgo8L3N2Zz4K';
+            }}
           />
           
           {/* Product Badges */}
