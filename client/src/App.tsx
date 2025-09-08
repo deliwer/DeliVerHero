@@ -48,6 +48,7 @@ import DubaiRewards from "@/pages/dubai-rewards";
 import NotFound from "@/pages/not-found";
 import ContactPage from "@/pages/contact";
 import ProfilePage from "@/pages/profile";
+import HeroDashboard from "@/pages/hero-dashboard";
 
 function Router() {
   const [location] = useLocation();
@@ -74,6 +75,7 @@ function Router() {
       <Route path="/rewards" component={Rewards} />
       <Route path="/partners" component={Partners} />
       <Route path="/community" component={Community} />
+      <Route path="/dashboard" component={HeroDashboard} />
       
       {/* Pakistan Flood Relief Mission */}
       <Route path="/mission-control-pakistan" component={MissionControlPakistan} />

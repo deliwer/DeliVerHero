@@ -122,7 +122,7 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
 }
 
 // Step 1: Play Missions Section
-function StepOnePlay() {
+function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   return (
     <section className="py-8 px-4 mb-8">
       <div className="max-w-4xl mx-auto">
@@ -254,7 +254,7 @@ function StepOnePlay() {
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                onClick={() => setShowHeroRegistration(true)}
+                onClick={onJoinMission}
               >
                 <Target className="mr-3 w-6 h-6" />
                 Join Mission Now
@@ -604,7 +604,7 @@ export function HeroChallengeLanding() {
 
         {/* 3-Step Progressive Flow with Visual Connectors */}
         <div data-section="step-1">
-          <StepOnePlay />
+          <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
           
         </div>
 
