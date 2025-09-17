@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
@@ -686,6 +686,176 @@ Context: ${JSON.stringify(context || {})}`
     } catch (error) {
       console.error("Error claiming Dubai reward:", error);
       res.status(500).json({ error: "Failed to claim reward" });
+    }
+  });
+
+  // AquaCafe Heroes Tombola Gamification Routes
+  app.get("/api/tombola/config", async (req, res) => {
+    try {
+      const config = await storage.getTombolaConfig();
+      res.json(config);
+    } catch (error) {
+      console.error("Error fetching tombola config:", error);
+      res.status(500).json({ error: "Failed to fetch tombola configuration" });
+    }
+  });
+
+  app.get("/api/tombola/prizes", async (req, res) => {
+    try {
+      const prizes = await storage.getTombolaPrizes();
+      res.json(prizes);
+    } catch (error) {
+      console.error("Error fetching tombola prizes:", error);
+      res.status(500).json({ error: "Failed to fetch tombola prizes" });
+    }
+  });
+
+  app.get("/api/tombola/can-spin/:heroId", async (req, res) => {
+    try {
+      const heroId = req.params.heroId;
+      if (!heroId) {
+        return res.status(400).json({ error: "Hero ID is required" });
+      }
+
+      const canSpinResult = await storage.canSpin(heroId);
+      res.json(canSpinResult);
+    } catch (error) {
+      console.error("Error checking spin eligibility:", error);
+      res.status(500).json({ error: "Failed to check spin eligibility" });
+    }
+  });
+
+  app.post("/api/tombola/spin", async (req, res) => {
+    try {
+      const validatedData = insertTombolaSpinSchema.parse(req.body);
+      
+      // Verify hero exists
+      const hero = await storage.getHero(validatedData.heroId);
+      if (!hero) {
+        return res.status(404).json({ error: "Hero not found" });
+      }
+
+      // Pre-check eligibility to provide clear error messages
+      const canSpinResult = await storage.canSpin(validatedData.heroId);
+      if (!canSpinResult.canSpin) {
+        return res.status(409).json({ 
+          error: canSpinResult.reason || "Cannot spin at this time",
+          canSpin: false,
+          spinsLeft: canSpinResult.spinsLeft || 0
+        });
+      }
+
+      const spinResult = await storage.spinTombola(validatedData.heroId, validatedData.spinType);
+      res.json({
+        success: true,
+        spin: spinResult.spin,
+        prize: spinResult.prize,
+        coupon: spinResult.coupon,
+      });
+    } catch (error: any) {
+      console.error("Error spinning tombola:", error);
+      if (error.message.includes("Cannot spin")) {
+        return res.status(409).json({ error: error.message });
+      }
+      res.status(400).json({ error: error.message || "Failed to spin tombola" });
+    }
+  });
+
+  app.get("/api/tombola/history/:heroId", async (req, res) => {
+    try {
+      const heroId = req.params.heroId;
+      if (!heroId) {
+        return res.status(400).json({ error: "Hero ID is required" });
+      }
+
+      const history = await storage.getTombolaHistory(heroId);
+      res.json(history);
+    } catch (error) {
+      console.error("Error fetching tombola history:", error);
+      res.status(500).json({ error: "Failed to fetch tombola history" });
+    }
+  });
+
+  app.get("/api/tombola/spin-count/:heroId", async (req, res) => {
+    try {
+      const heroId = req.params.heroId;
+      if (!heroId) {
+        return res.status(400).json({ error: "Hero ID is required" });
+      }
+
+      const spinCount = await storage.getHeroSpinCount(heroId);
+      res.json(spinCount);
+    } catch (error) {
+      console.error("Error fetching hero spin count:", error);
+      res.status(500).json({ error: "Failed to fetch hero spin count" });
+    }
+  });
+
+  // Digital Coupons Routes
+  app.get("/api/coupons/templates", async (req, res) => {
+    try {
+      const templates = await storage.getCouponTemplates();
+      res.json(templates);
+    } catch (error) {
+      console.error("Error fetching coupon templates:", error);
+      res.status(500).json({ error: "Failed to fetch coupon templates" });
+    }
+  });
+
+  app.get("/api/coupons/issued/:heroId", async (req, res) => {
+    try {
+      const heroId = req.params.heroId;
+      if (!heroId) {
+        return res.status(400).json({ error: "Hero ID is required" });
+      }
+
+      const coupons = await storage.getIssuedCoupons(heroId);
+      res.json(coupons);
+    } catch (error) {
+      console.error("Error fetching issued coupons:", error);
+      res.status(500).json({ error: "Failed to fetch issued coupons" });
+    }
+  });
+
+  app.post("/api/coupons/redeem", async (req, res) => {
+    try {
+      const validatedData = redeemCouponSchema.parse(req.body);
+      
+      // Verify hero exists and owns the coupon
+      const hero = await storage.getHero(validatedData.heroId);
+      if (!hero) {
+        return res.status(404).json({ error: "Hero not found" });
+      }
+
+      const redeemedCoupon = await storage.redeemCoupon(validatedData);
+      res.json({
+        success: true,
+        coupon: redeemedCoupon,
+        message: "Coupon redeemed successfully"
+      });
+    } catch (error: any) {
+      console.error("Error redeeming coupon:", error);
+      if (error.message.includes("not found") || error.message.includes("not active") || 
+          error.message.includes("expired") || error.message.includes("usage limit")) {
+        return res.status(400).json({ error: error.message });
+      }
+      res.status(400).json({ error: error.message || "Failed to redeem coupon" });
+    }
+  });
+
+  app.get("/api/coupons/:couponId", async (req, res) => {
+    try {
+      const couponId = req.params.couponId;
+      const coupon = await storage.getIssuedCoupon(couponId);
+      
+      if (!coupon) {
+        return res.status(404).json({ error: "Coupon not found" });
+      }
+      
+      res.json(coupon);
+    } catch (error) {
+      console.error("Error fetching coupon:", error);
+      res.status(500).json({ error: "Failed to fetch coupon" });
     }
   });
 
