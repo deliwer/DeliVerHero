@@ -363,6 +363,88 @@ export const emailSubscribers = pgTable("email_subscribers", {
   unsubscribedAt: timestamp("unsubscribed_at"),
 });
 
+// AquaCafe Heroes Tombola Gamification System
+export const tombolaPrizes = pgTable("tombola_prizes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  type: text("type").notNull(), // coupon, product, xp, points
+  rarity: text("rarity").notNull().default("common"), // common, rare, epic, legendary
+  quantity: integer("quantity"), // null for unlimited
+  remainingQuantity: integer("remaining_quantity"),
+  probability: integer("probability").notNull(), // out of 10000 (0.01% precision)
+  xpReward: integer("xp_reward").default(0),
+  pointsReward: integer("points_reward").default(0),
+  couponTemplateId: varchar("coupon_template_id").references(() => couponTemplates.id),
+  isActive: boolean("is_active").notNull().default(true),
+  validFrom: timestamp("valid_from").notNull().default(sql`now()`),
+  validUntil: timestamp("valid_until"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const tombolaSpins = pgTable("tombola_spins", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  resultPrizeId: varchar("result_prize_id").references(() => tombolaPrizes.id),
+  issuedCouponId: varchar("issued_coupon_id").references(() => issuedCoupons.id),
+  spinType: text("spin_type").notNull().default("free"), // free, premium, bonus
+  xpEarned: integer("xp_earned").default(0),
+  pointsEarned: integer("points_earned").default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const tombolaConfig = pgTable("tombola_config", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  dailyFreeSpins: integer("daily_free_spins").notNull().default(3),
+  pityThreshold: integer("pity_threshold").notNull().default(20), // guaranteed prize after N empty spins
+  spinCooldown: integer("spin_cooldown").notNull().default(300), // seconds between spins
+  isActive: boolean("is_active").notNull().default(true),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const couponTemplates = pgTable("coupon_templates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  brand: text("brand").notNull(), // AquaCafe, Partner brands
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  faceValue: integer("face_value").notNull(), // in AED fils
+  discountPercent: integer("discount_percent"), // percentage discount
+  minPurchase: integer("min_purchase"), // minimum purchase required in AED fils
+  terms: text("terms").notNull(),
+  category: text("category").notNull(), // water_systems, maintenance, upgrades
+  partnerLogo: text("partner_logo"),
+  backgroundColor: text("background_color").default("#0066CC"),
+  textColor: text("text_color").default("#FFFFFF"),
+  validityDays: integer("validity_days").notNull().default(30),
+  usageLimit: integer("usage_limit").default(1), // how many times can be used
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const issuedCoupons = pgTable("issued_coupons", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  templateId: varchar("template_id").notNull().references(() => couponTemplates.id),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  couponCode: text("coupon_code").notNull().unique(),
+  status: text("status").notNull().default("active"), // active, redeemed, expired, cancelled
+  usedCount: integer("used_count").notNull().default(0),
+  issuedAt: timestamp("issued_at").notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at").notNull(),
+  redeemedAt: timestamp("redeemed_at"),
+  redemptionLocation: text("redemption_location"),
+});
+
+export const heroSpinCounts = pgTable("hero_spin_counts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  dailySpinsUsed: integer("daily_spins_used").notNull().default(0),
+  totalSpins: integer("total_spins").notNull().default(0),
+  lastSpinDate: timestamp("last_spin_date"),
+  pityCounter: integer("pity_counter").notNull().default(0), // spins since last guaranteed prize
+  lastResetDate: timestamp("last_reset_date").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
 // Zod schemas
 export const insertHeroSchema = createInsertSchema(heroes).pick({
   name: true,
@@ -489,6 +571,55 @@ export const insertEmailSubscriberSchema = createInsertSchema(emailSubscribers).
   tags: true,
 });
 
+// Tombola schemas
+export const insertTombolaPrizeSchema = createInsertSchema(tombolaPrizes).pick({
+  name: true,
+  description: true,
+  type: true,
+  rarity: true,
+  quantity: true,
+  probability: true,
+  xpReward: true,
+  pointsReward: true,
+  couponTemplateId: true,
+  validFrom: true,
+  validUntil: true,
+});
+
+export const insertTombolaSpinSchema = createInsertSchema(tombolaSpins).pick({
+  heroId: true,
+  spinType: true,
+});
+
+export const insertCouponTemplateSchema = createInsertSchema(couponTemplates).pick({
+  brand: true,
+  title: true,
+  description: true,
+  faceValue: true,
+  discountPercent: true,
+  minPurchase: true,
+  terms: true,
+  category: true,
+  partnerLogo: true,
+  backgroundColor: true,
+  textColor: true,
+  validityDays: true,
+  usageLimit: true,
+});
+
+export const insertIssuedCouponSchema = createInsertSchema(issuedCoupons).pick({
+  templateId: true,
+  heroId: true,
+  couponCode: true,
+  expiresAt: true,
+});
+
+export const redeemCouponSchema = z.object({
+  couponCode: z.string().min(1),
+  heroId: z.string().min(1),
+  redemptionLocation: z.string().optional(),
+});
+
 export const updateHeroSchema = createInsertSchema(heroes).pick({
   points: true,
   level: true,
@@ -526,6 +657,19 @@ export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contacts.$inferSelect;
 
 export type InsertQuote = z.infer<typeof insertQuoteSchema>;
+
+// Tombola types
+export type TombolaPrize = typeof tombolaPrizes.$inferSelect;
+export type InsertTombolaPrize = z.infer<typeof insertTombolaPrizeSchema>;
+export type TombolaSpin = typeof tombolaSpins.$inferSelect;
+export type InsertTombolaSpin = z.infer<typeof insertTombolaSpinSchema>;
+export type TombolaConfig = typeof tombolaConfig.$inferSelect;
+export type CouponTemplate = typeof couponTemplates.$inferSelect;
+export type InsertCouponTemplate = z.infer<typeof insertCouponTemplateSchema>;
+export type IssuedCoupon = typeof issuedCoupons.$inferSelect;
+export type InsertIssuedCoupon = z.infer<typeof insertIssuedCouponSchema>;
+export type HeroSpinCount = typeof heroSpinCounts.$inferSelect;
+export type RedeemCoupon = z.infer<typeof redeemCouponSchema>;
 
 // E-commerce Order Management
 export const orders = pgTable("orders", {
