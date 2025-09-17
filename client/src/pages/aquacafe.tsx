@@ -202,15 +202,41 @@ export default function AquaCafe() {
       </section>
 
       {/* AquaCafe Heroes Tombola Gamification */}
-      <section className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5" data-testid="tombola-section">
-        <div className="max-w-4xl mx-auto">
+      <section className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5 relative overflow-hidden" data-testid="tombola-section">
+        {/* Sustainability Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full animate-pulse"></div>
+          <div className="absolute top-32 right-20 w-12 h-12 bg-cyan-400 rounded-full animate-bounce"></div>
+          <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-emerald-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-32 right-1/3 w-8 h-8 bg-blue-300 rounded-full animate-bounce" style={{animationDelay: '2s'}}></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto relative z-10">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              🎰 AquaCafe Heroes Sustainability Rewards
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Spin for exclusive AquaCafe prizes, digital coupons, and bonus Planet Points! Every spin supports our sustainability mission.
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Droplets className="w-8 h-8 text-cyan-600" />
+              <h2 className="text-3xl font-bold text-gray-800">
+                AquaCafe Heroes Sustainability Rewards
+              </h2>
+              <Leaf className="w-8 h-8 text-emerald-600" />
+            </div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-4">
+              🌊 <strong>Every spin saves our planet!</strong> Win exclusive AquaCafe prizes, digital coupons, and bonus Planet Points while supporting clean water initiatives and plastic reduction worldwide.
             </p>
+            <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <Target className="w-4 h-4" />
+                <span>Zero Plastic Waste</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4" />
+                <span>Clean Energy Powered</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Award className="w-4 h-4" />
+                <span>Hero Impact Certified</span>
+              </div>
+            </div>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-8">
