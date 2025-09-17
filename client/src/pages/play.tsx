@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Coins, Trophy, Target, TrendingUp, Gift, Star, Crown, AlertTriangle, Users, Droplets, Zap, Award } from "lucide-react";
 import { Link } from "wouter";
+import { TombolaWidget } from "@/components/tombola-widget";
 
 export default function Play() {
   return (
@@ -37,6 +38,19 @@ export default function Play() {
               <div className="text-sm text-gray-400">CO₂ Reduced</div>
             </div>
           </div>
+        </div>
+
+        {/* Sustainability Tombola Gamification */}
+        <div className="max-w-md mx-auto mb-12">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-white mb-2">
+              🎯 Sustainability Rewards Challenge
+            </h3>
+            <p className="text-gray-300">
+              Spin for mission rewards and boost your impact points
+            </p>
+          </div>
+          <TombolaWidget heroId="founder-1" theme="default" size="compact" />
         </div>
 
         {/* 🚨 Pakistan Relief Mega Mission - Featured */}

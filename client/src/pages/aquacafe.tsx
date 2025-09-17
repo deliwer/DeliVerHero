@@ -7,6 +7,8 @@ import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home,
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
+import { TombolaWidget } from "@/components/tombola-widget";
+import { CouponsPanel } from "@/components/coupons-panel";
 import aquacafeTradeIn from "@assets/Banner_AquaCafe_1755270492134.jpg";
 import membershipClean from "@assets/Membership_Clean_1756065010923.png";
 import beautyWater1 from "@assets/Beauty_Water_1_1756065010937.jpg";
@@ -195,6 +197,32 @@ export default function AquaCafe() {
             >
               See How Planet Points Work
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* AquaCafe Heroes Tombola Gamification */}
+      <section className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5" data-testid="tombola-section">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+              🎰 AquaCafe Heroes Sustainability Rewards
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Spin for exclusive AquaCafe prizes, digital coupons, and bonus Planet Points! Every spin supports our sustainability mission.
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Tombola Widget */}
+            <div className="flex justify-center">
+              <TombolaWidget heroId="founder-1" theme="aquacafe" size="full" />
+            </div>
+            
+            {/* Digital Coupons Wallet */}
+            <div className="flex justify-center">
+              <CouponsPanel heroId="founder-1" theme="aquacafe" showTitle={true} />
+            </div>
           </div>
         </div>
       </section>

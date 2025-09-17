@@ -30,6 +30,8 @@ import {
   Truck
 } from "lucide-react";
 import deliwerLogoPath from "@assets/deliwer logo_1755631863675.png";
+import { TombolaWidget } from "@/components/tombola-widget";
+import { CouponsPanel } from "@/components/coupons-panel";
 
 interface Product {
   id: string;
@@ -230,6 +232,8 @@ function ParticipationStep({ step, index }: { step: Step; index: number }) {
 export function PlanetHeroesRewards() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [userPoints] = useState(12450);
+  // Sample heroId - in real app this would come from auth context
+  const heroId = "founder-1";
   
   const filteredProducts = selectedCategory === 'all' 
     ? ecoProducts 
@@ -270,6 +274,11 @@ export function PlanetHeroesRewards() {
               PLANET REWARDS
             </span>
           </h2>
+          
+          {/* Tombola Gamification Widget */}
+          <div className="max-w-md mx-auto mb-8">
+            <TombolaWidget heroId={heroId} size="compact" theme="default" />
+          </div>
           
           {/* USP Highlight */}
           <div className="glass rounded-3xl p-8 border border-hero-green-500/50 bg-gradient-to-r from-hero-green-500/10 to-blue-500/10 backdrop-blur-sm max-w-4xl mx-auto mb-8">
