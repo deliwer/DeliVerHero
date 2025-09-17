@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -101,6 +101,29 @@ export interface IStorage {
   getCustomerByEmail(email: string): Promise<Customer | undefined>;
   updateCustomer(id: string, updates: Partial<Customer>): Promise<Customer | undefined>;
 
+  // Tombola Gamification System
+  getTombolaConfig(): Promise<TombolaConfig>;
+  updateTombolaConfig(config: Partial<TombolaConfig>): Promise<TombolaConfig>;
+  getTombolaPrizes(): Promise<TombolaPrize[]>;
+  getTombolaPrize(id: string): Promise<TombolaPrize | undefined>;
+  createTombolaPrize(prize: InsertTombolaPrize): Promise<TombolaPrize>;
+  updateTombolaPrize(id: string, updates: Partial<TombolaPrize>): Promise<TombolaPrize | undefined>;
+  
+  // Tombola Spins
+  spinTombola(heroId: string, spinType?: string): Promise<{ spin: TombolaSpin; prize?: TombolaPrize; coupon?: IssuedCoupon }>;
+  getTombolaHistory(heroId: string): Promise<TombolaSpin[]>;
+  getHeroSpinCount(heroId: string): Promise<HeroSpinCount>;
+  updateHeroSpinCount(heroId: string, updates: Partial<HeroSpinCount>): Promise<HeroSpinCount>;
+  canSpin(heroId: string): Promise<{ canSpin: boolean; reason?: string; spinsLeft?: number }>;
+
+  // Digital Coupons
+  getCouponTemplates(): Promise<CouponTemplate[]>;
+  getCouponTemplate(id: string): Promise<CouponTemplate | undefined>;
+  createCouponTemplate(template: InsertCouponTemplate): Promise<CouponTemplate>;
+  getIssuedCoupons(heroId: string): Promise<IssuedCoupon[]>;
+  getIssuedCoupon(id: string): Promise<IssuedCoupon | undefined>;
+  redeemCoupon(redemption: RedeemCoupon): Promise<IssuedCoupon | undefined>;
+
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
 }
@@ -124,6 +147,14 @@ export class MemStorage implements IStorage {
   private emailSubscribers: Map<string, EmailSubscriber>;
   private orders: Map<string, Order>;
   private customers: Map<string, Customer>;
+  
+  // Tombola Gamification System
+  private tombolaPrizes: Map<string, TombolaPrize>;
+  private tombolaSpins: Map<string, TombolaSpin>;
+  private tombolaConfig: TombolaConfig;
+  private couponTemplates: Map<string, CouponTemplate>;
+  private issuedCoupons: Map<string, IssuedCoupon>;
+  private heroSpinCounts: Map<string, HeroSpinCount>;
 
   constructor() {
     this.users = new Map();
@@ -144,6 +175,13 @@ export class MemStorage implements IStorage {
     this.orders = new Map();
     this.customers = new Map();
     
+    // Initialize tombola system
+    this.tombolaPrizes = new Map();
+    this.tombolaSpins = new Map();
+    this.couponTemplates = new Map();
+    this.issuedCoupons = new Map();
+    this.heroSpinCounts = new Map();
+    
     // Initialize impact stats
     this.impactStats = {
       id: randomUUID(),
@@ -154,10 +192,21 @@ export class MemStorage implements IStorage {
       updatedAt: new Date(),
     };
 
+    // Initialize tombola config
+    this.tombolaConfig = {
+      id: randomUUID(),
+      dailyFreeSpins: 3,
+      pityThreshold: 20,
+      spinCooldown: 300,
+      isActive: true,
+      updatedAt: new Date(),
+    };
+
     // Seed some initial heroes for the leaderboard
     this.seedInitialData();
     this.seedDubaiRewardsData();
     this.seedSponsorshipData();
+    this.seedTombolaData();
   }
 
   private seedInitialData() {
@@ -1585,6 +1634,436 @@ export class MemStorage implements IStorage {
     const updatedCustomer = { ...customer, ...updates, updatedAt: new Date() };
     this.customers.set(id, updatedCustomer);
     return updatedCustomer;
+  }
+
+  // Tombola Gamification System Methods
+  private seedTombolaData() {
+    // Seed coupon templates
+    const aquaCafeCoupons: CouponTemplate[] = [
+      {
+        id: "aquacafe-maintenance-50",
+        brand: "AquaCafe",
+        title: "AED 50 Maintenance Credit",
+        description: "Professional maintenance service for your AquaCafe system",
+        faceValue: 5000, // in fils
+        discountPercent: null,
+        minPurchase: null,
+        terms: "Valid for AquaCafe maintenance services only. Cannot be combined with other offers.",
+        category: "maintenance",
+        partnerLogo: null,
+        backgroundColor: "#0066CC",
+        textColor: "#FFFFFF",
+        validityDays: 30,
+        usageLimit: 1,
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: "aquacafe-upgrade-100",
+        brand: "AquaCafe",
+        title: "AED 100 System Upgrade",
+        description: "Upgrade credit for advanced AquaCafe features",
+        faceValue: 10000, // in fils
+        discountPercent: null,
+        minPurchase: 20000, // minimum AED 200 purchase
+        terms: "Valid for system upgrades and accessories. Minimum purchase AED 200 required.",
+        category: "upgrades",
+        partnerLogo: null,
+        backgroundColor: "#00AA44",
+        textColor: "#FFFFFF",
+        validityDays: 60,
+        usageLimit: 1,
+        isActive: true,
+        createdAt: new Date(),
+      }
+    ];
+
+    // Seed tombola prizes
+    const prizes: TombolaPrize[] = [
+      {
+        id: "prize-xp-small",
+        name: "Small XP Boost",
+        description: "Gain 50 experience points",
+        type: "xp",
+        rarity: "common",
+        quantity: null,
+        remainingQuantity: null,
+        probability: 3000, // 30%
+        xpReward: 50,
+        pointsReward: 0,
+        couponTemplateId: null,
+        isActive: true,
+        validFrom: new Date(),
+        validUntil: null,
+        createdAt: new Date(),
+      },
+      {
+        id: "prize-points-medium",
+        name: "Points Reward",
+        description: "Earn 100 sustainability points",
+        type: "points",
+        rarity: "common",
+        quantity: null,
+        remainingQuantity: null,
+        probability: 2500, // 25%
+        xpReward: 0,
+        pointsReward: 100,
+        couponTemplateId: null,
+        isActive: true,
+        validFrom: new Date(),
+        validUntil: null,
+        createdAt: new Date(),
+      },
+      {
+        id: "prize-coupon-maintenance",
+        name: "Maintenance Coupon",
+        description: "AED 50 maintenance service credit",
+        type: "coupon",
+        rarity: "rare",
+        quantity: 100,
+        remainingQuantity: 100,
+        probability: 800, // 8%
+        xpReward: 25,
+        pointsReward: 50,
+        couponTemplateId: "aquacafe-maintenance-50",
+        isActive: true,
+        validFrom: new Date(),
+        validUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        createdAt: new Date(),
+      },
+      {
+        id: "prize-coupon-upgrade",
+        name: "System Upgrade Coupon",
+        description: "AED 100 credit for AquaCafe upgrades",
+        type: "coupon",
+        rarity: "epic",
+        quantity: 50,
+        remainingQuantity: 50,
+        probability: 200, // 2%
+        xpReward: 100,
+        pointsReward: 200,
+        couponTemplateId: "aquacafe-upgrade-100",
+        isActive: true,
+        validFrom: new Date(),
+        validUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        createdAt: new Date(),
+      }
+    ];
+
+    aquaCafeCoupons.forEach(coupon => this.couponTemplates.set(coupon.id, coupon));
+    prizes.forEach(prize => this.tombolaPrizes.set(prize.id, prize));
+  }
+
+  async getTombolaConfig(): Promise<TombolaConfig> {
+    return this.tombolaConfig;
+  }
+
+  async updateTombolaConfig(config: Partial<TombolaConfig>): Promise<TombolaConfig> {
+    this.tombolaConfig = {
+      ...this.tombolaConfig,
+      ...config,
+      updatedAt: new Date(),
+    };
+    return this.tombolaConfig;
+  }
+
+  async getTombolaPrizes(): Promise<TombolaPrize[]> {
+    return Array.from(this.tombolaPrizes.values()).filter(prize => prize.isActive);
+  }
+
+  async getTombolaPrize(id: string): Promise<TombolaPrize | undefined> {
+    return this.tombolaPrizes.get(id);
+  }
+
+  async createTombolaPrize(insertPrize: InsertTombolaPrize): Promise<TombolaPrize> {
+    const id = randomUUID();
+    const prize: TombolaPrize = {
+      id,
+      ...insertPrize,
+      remainingQuantity: insertPrize.quantity,
+      isActive: true,
+      createdAt: new Date(),
+    };
+    
+    this.tombolaPrizes.set(id, prize);
+    return prize;
+  }
+
+  async updateTombolaPrize(id: string, updates: Partial<TombolaPrize>): Promise<TombolaPrize | undefined> {
+    const prize = this.tombolaPrizes.get(id);
+    if (!prize) return undefined;
+
+    const updatedPrize: TombolaPrize = {
+      ...prize,
+      ...updates,
+    };
+
+    this.tombolaPrizes.set(id, updatedPrize);
+    return updatedPrize;
+  }
+
+  async getHeroSpinCount(heroId: string): Promise<HeroSpinCount> {
+    let spinCount = this.heroSpinCounts.get(heroId);
+    
+    if (!spinCount) {
+      spinCount = {
+        id: randomUUID(),
+        heroId,
+        dailySpinsUsed: 0,
+        totalSpins: 0,
+        lastSpinDate: null,
+        pityCounter: 0,
+        lastResetDate: new Date(),
+        updatedAt: new Date(),
+      };
+      this.heroSpinCounts.set(heroId, spinCount);
+    }
+
+    // Check if we need to reset daily spins
+    const now = new Date();
+    const lastReset = new Date(spinCount.lastResetDate);
+    
+    if (now.getDate() !== lastReset.getDate() || 
+        now.getMonth() !== lastReset.getMonth() || 
+        now.getFullYear() !== lastReset.getFullYear()) {
+      spinCount = {
+        ...spinCount,
+        dailySpinsUsed: 0,
+        lastResetDate: now,
+        updatedAt: now,
+      };
+      this.heroSpinCounts.set(heroId, spinCount);
+    }
+
+    return spinCount;
+  }
+
+  async updateHeroSpinCount(heroId: string, updates: Partial<HeroSpinCount>): Promise<HeroSpinCount> {
+    const spinCount = await this.getHeroSpinCount(heroId);
+    const updatedSpinCount: HeroSpinCount = {
+      ...spinCount,
+      ...updates,
+      updatedAt: new Date(),
+    };
+
+    this.heroSpinCounts.set(heroId, updatedSpinCount);
+    return updatedSpinCount;
+  }
+
+  async canSpin(heroId: string): Promise<{ canSpin: boolean; reason?: string; spinsLeft?: number }> {
+    const config = await this.getTombolaConfig();
+    const spinCount = await this.getHeroSpinCount(heroId);
+    
+    if (!config.isActive) {
+      return { canSpin: false, reason: "Tombola is currently disabled" };
+    }
+
+    const spinsLeft = config.dailyFreeSpins - spinCount.dailySpinsUsed;
+    
+    if (spinsLeft <= 0) {
+      return { canSpin: false, reason: "Daily spin limit reached", spinsLeft: 0 };
+    }
+
+    // Check cooldown
+    if (spinCount.lastSpinDate) {
+      const timeSinceLastSpin = Date.now() - spinCount.lastSpinDate.getTime();
+      const cooldownRemaining = config.spinCooldown * 1000 - timeSinceLastSpin;
+      
+      if (cooldownRemaining > 0) {
+        return { 
+          canSpin: false, 
+          reason: `Cooldown active (${Math.ceil(cooldownRemaining / 1000)}s remaining)`,
+          spinsLeft 
+        };
+      }
+    }
+
+    return { canSpin: true, spinsLeft };
+  }
+
+  async spinTombola(heroId: string, spinType: string = "free"): Promise<{ spin: TombolaSpin; prize?: TombolaPrize; coupon?: IssuedCoupon }> {
+    const canSpinResult = await this.canSpin(heroId);
+    
+    if (!canSpinResult.canSpin) {
+      throw new Error(canSpinResult.reason || "Cannot spin");
+    }
+
+    const config = await this.getTombolaConfig();
+    const spinCount = await this.getHeroSpinCount(heroId);
+    const prizes = await this.getTombolaPrizes();
+
+    // Determine winning prize using weighted random selection
+    let wonPrize: TombolaPrize | undefined;
+    let issuedCoupon: IssuedCoupon | undefined;
+    
+    // Pity system - guarantee a prize after threshold
+    const shouldGuaranteePrize = spinCount.pityCounter >= config.pityThreshold;
+    
+    if (shouldGuaranteePrize || Math.random() < 0.8) { // 80% chance to win something
+      const totalWeight = prizes.reduce((sum, prize) => {
+        if (prize.quantity && prize.remainingQuantity !== null && prize.remainingQuantity <= 0) {
+          return sum; // Skip out of stock prizes
+        }
+        return sum + prize.probability;
+      }, 0);
+
+      if (totalWeight > 0) {
+        let random = Math.floor(Math.random() * totalWeight);
+        
+        for (const prize of prizes) {
+          if (prize.quantity && prize.remainingQuantity !== null && prize.remainingQuantity <= 0) {
+            continue;
+          }
+          
+          random -= prize.probability;
+          if (random <= 0) {
+            wonPrize = prize;
+            break;
+          }
+        }
+      }
+    }
+
+    // Create the spin record
+    const spinId = randomUUID();
+    const spin: TombolaSpin = {
+      id: spinId,
+      heroId,
+      resultPrizeId: wonPrize?.id || null,
+      issuedCouponId: null,
+      spinType,
+      xpEarned: wonPrize?.xpReward || 0,
+      pointsEarned: wonPrize?.pointsReward || 0,
+      createdAt: new Date(),
+    };
+
+    // Issue coupon if prize is a coupon
+    if (wonPrize?.type === "coupon" && wonPrize.couponTemplateId) {
+      const template = this.couponTemplates.get(wonPrize.couponTemplateId);
+      if (template) {
+        const couponCode = `AC${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+        const expiresAt = new Date(Date.now() + template.validityDays * 24 * 60 * 60 * 1000);
+        
+        issuedCoupon = {
+          id: randomUUID(),
+          templateId: template.id,
+          heroId,
+          couponCode,
+          status: "active",
+          usedCount: 0,
+          issuedAt: new Date(),
+          expiresAt,
+          redeemedAt: null,
+          redemptionLocation: null,
+        };
+        
+        this.issuedCoupons.set(issuedCoupon.id, issuedCoupon);
+        spin.issuedCouponId = issuedCoupon.id;
+      }
+    }
+
+    // Update spin counts and hero stats
+    await this.updateHeroSpinCount(heroId, {
+      dailySpinsUsed: spinCount.dailySpinsUsed + 1,
+      totalSpins: spinCount.totalSpins + 1,
+      lastSpinDate: new Date(),
+      pityCounter: wonPrize ? 0 : spinCount.pityCounter + 1,
+    });
+
+    // Update hero points and XP
+    if (wonPrize) {
+      const hero = this.heroes.get(heroId);
+      if (hero) {
+        await this.updateHero(heroId, {
+          points: hero.points + (wonPrize.pointsReward || 0),
+        });
+      }
+
+      // Update prize quantity
+      if (wonPrize.quantity && wonPrize.remainingQuantity !== null) {
+        await this.updateTombolaPrize(wonPrize.id, {
+          remainingQuantity: wonPrize.remainingQuantity - 1,
+        });
+      }
+    }
+
+    this.tombolaSpins.set(spinId, spin);
+    
+    return { spin, prize: wonPrize, coupon: issuedCoupon };
+  }
+
+  async getTombolaHistory(heroId: string): Promise<TombolaSpin[]> {
+    return Array.from(this.tombolaSpins.values())
+      .filter(spin => spin.heroId === heroId)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getCouponTemplates(): Promise<CouponTemplate[]> {
+    return Array.from(this.couponTemplates.values()).filter(template => template.isActive);
+  }
+
+  async getCouponTemplate(id: string): Promise<CouponTemplate | undefined> {
+    return this.couponTemplates.get(id);
+  }
+
+  async createCouponTemplate(insertTemplate: InsertCouponTemplate): Promise<CouponTemplate> {
+    const id = randomUUID();
+    const template: CouponTemplate = {
+      id,
+      ...insertTemplate,
+      isActive: true,
+      createdAt: new Date(),
+    };
+    
+    this.couponTemplates.set(id, template);
+    return template;
+  }
+
+  async getIssuedCoupons(heroId: string): Promise<IssuedCoupon[]> {
+    return Array.from(this.issuedCoupons.values())
+      .filter(coupon => coupon.heroId === heroId && coupon.status !== "expired")
+      .sort((a, b) => b.issuedAt.getTime() - a.issuedAt.getTime());
+  }
+
+  async getIssuedCoupon(id: string): Promise<IssuedCoupon | undefined> {
+    return this.issuedCoupons.get(id);
+  }
+
+  async redeemCoupon(redemption: RedeemCoupon): Promise<IssuedCoupon | undefined> {
+    const coupon = Array.from(this.issuedCoupons.values())
+      .find(c => c.couponCode === redemption.couponCode && c.heroId === redemption.heroId);
+    
+    if (!coupon) {
+      throw new Error("Coupon not found");
+    }
+
+    if (coupon.status !== "active") {
+      throw new Error("Coupon is not active");
+    }
+
+    if (coupon.expiresAt && coupon.expiresAt < new Date()) {
+      throw new Error("Coupon has expired");
+    }
+
+    const template = this.couponTemplates.get(coupon.templateId);
+    if (!template) {
+      throw new Error("Coupon template not found");
+    }
+
+    if (coupon.usedCount >= template.usageLimit) {
+      throw new Error("Coupon usage limit exceeded");
+    }
+
+    const updatedCoupon: IssuedCoupon = {
+      ...coupon,
+      status: coupon.usedCount + 1 >= template.usageLimit ? "redeemed" : "active",
+      usedCount: coupon.usedCount + 1,
+      redeemedAt: new Date(),
+      redemptionLocation: redemption.redemptionLocation || null,
+    };
+
+    this.issuedCoupons.set(coupon.id, updatedCoupon);
+    return updatedCoupon;
   }
 }
 
