@@ -58,6 +58,21 @@ router.post("/rewards/:rewardId/claim", async (req, res) => {
       return res.status(400).json({ error: "Hero ID is required" });
     }
 
+    // Verify hero exists and check loyalty membership
+    const hero = await storage.getHero(heroId);
+    if (!hero) {
+      return res.status(404).json({ error: "Hero not found" });
+    }
+
+    // Enforce AquaCafe Loyalty membership requirement for reward redemption
+    if (!hero.isAquaCafeLoyaltyMember) {
+      return res.status(403).json({ 
+        error: "AquaCafe Loyalty membership required",
+        message: "You must be an AquaCafe Loyalty member to claim rewards. Join our loyalty program to start redeeming your Planet Points!",
+        loyaltyRequired: true
+      });
+    }
+
     const success = await storage.claimDubaiReward(rewardId, heroId);
     
     if (success) {

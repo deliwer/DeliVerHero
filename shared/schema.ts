@@ -34,6 +34,8 @@ export const heroes = pgTable("heroes", {
   rewardsEarned: jsonb("rewards_earned").default([]),
   challengesCompleted: jsonb("challenges_completed").default([]),
   sustainabilityStreak: integer("sustainability_streak").notNull().default(0),
+  isAquaCafeLoyaltyMember: boolean("is_aquacafe_loyalty_member").notNull().default(false),
+  aquaCafeMembershipDate: timestamp("aquacafe_membership_date"),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
@@ -627,6 +629,8 @@ export const updateHeroSchema = createInsertSchema(heroes).pick({
   bottlesPrevented: true,
   co2Saved: true,
   referralCount: true,
+  isAquaCafeLoyaltyMember: true,
+  aquaCafeMembershipDate: true,
 }).partial();
 
 // Types

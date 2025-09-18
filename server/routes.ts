@@ -827,6 +827,15 @@ Context: ${JSON.stringify(context || {})}`
         return res.status(404).json({ error: "Hero not found" });
       }
 
+      // Enforce AquaCafe Loyalty membership requirement for coupon redemption
+      if (!hero.isAquaCafeLoyaltyMember) {
+        return res.status(403).json({ 
+          error: "AquaCafe Loyalty membership required",
+          message: "You must be an AquaCafe Loyalty member to redeem coupons. Join our loyalty program to start redeeming your Planet Points!",
+          loyaltyRequired: true
+        });
+      }
+
       const redeemedCoupon = await storage.redeemCoupon(validatedData);
       res.json({
         success: true,
@@ -856,6 +865,65 @@ Context: ${JSON.stringify(context || {})}`
     } catch (error) {
       console.error("Error fetching coupon:", error);
       res.status(500).json({ error: "Failed to fetch coupon" });
+    }
+  });
+
+  // Loyalty Membership Routes
+  app.get("/api/loyalty/status/:heroId", async (req, res) => {
+    try {
+      const heroId = req.params.heroId;
+      if (!heroId) {
+        return res.status(400).json({ error: "Hero ID is required" });
+      }
+
+      const hero = await storage.getHero(heroId);
+      if (!hero) {
+        return res.status(404).json({ error: "Hero not found" });
+      }
+
+      res.json({
+        heroId: heroId,
+        isLoyaltyMember: hero.isAquaCafeLoyaltyMember || false,
+        membershipDate: hero.aquaCafeMembershipDate,
+        level: hero.level,
+        points: hero.points
+      });
+    } catch (error) {
+      console.error("Error checking loyalty status:", error);
+      res.status(500).json({ error: "Failed to check loyalty status" });
+    }
+  });
+
+  app.post("/api/loyalty/join", async (req, res) => {
+    try {
+      const { heroId } = req.body;
+      if (!heroId) {
+        return res.status(400).json({ error: "Hero ID is required" });
+      }
+
+      const hero = await storage.getHero(heroId);
+      if (!hero) {
+        return res.status(404).json({ error: "Hero not found" });
+      }
+
+      if (hero.isAquaCafeLoyaltyMember) {
+        return res.status(400).json({ error: "Hero is already an AquaCafe Loyalty member" });
+      }
+
+      // Update only the loyalty fields
+      await storage.updateHero(heroId, {
+        isAquaCafeLoyaltyMember: true,
+        aquaCafeMembershipDate: new Date()
+      });
+
+      res.json({
+        success: true,
+        message: "Successfully joined AquaCafe Loyalty program",
+        membershipDate: new Date()
+      });
+    } catch (error) {
+      console.error("Error joining loyalty program:", error);
+      res.status(500).json({ error: "Failed to join loyalty program" });
     }
   });
 
