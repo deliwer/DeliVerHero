@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
@@ -1811,6 +1811,244 @@ Context: ${JSON.stringify(context || {})}`
       });
     } catch (error: any) {
       res.status(500).json({ error: error.message || "Failed to redeem reward" });
+    }
+  });
+
+  // ============================================================================
+  // METAVERSE GAMING SYSTEM - ULTIMATE PLANET MISSIONS API
+  // ============================================================================
+
+  // Planet Mission Routes
+  app.get("/api/metaverse/missions", async (req, res) => {
+    try {
+      const missions = await storage.getPlanetMissions();
+      res.json(missions);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch missions" });
+    }
+  });
+
+  app.get("/api/metaverse/missions/:code", async (req, res) => {
+    try {
+      const mission = await storage.getPlanetMission(req.params.code);
+      if (!mission) {
+        return res.status(404).json({ error: "Mission not found" });
+      }
+      res.json(mission);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch mission" });
+    }
+  });
+
+  app.post("/api/metaverse/missions", async (req, res) => {
+    try {
+      const validatedData = insertPlanetMissionSchema.parse(req.body);
+      const mission = await storage.createPlanetMission(validatedData);
+      res.json(mission);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create mission" });
+    }
+  });
+
+  // Hero Mission Progress Routes
+  app.get("/api/metaverse/heroes/:heroId/missions", async (req, res) => {
+    try {
+      const progress = await storage.getHeroMissionProgress(req.params.heroId);
+      res.json(progress);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch mission progress" });
+    }
+  });
+
+  app.post("/api/metaverse/heroes/:heroId/missions/accept", async (req, res) => {
+    try {
+      const validatedData = acceptMissionSchema.parse(req.body);
+      const progress = await storage.acceptMission(req.params.heroId, validatedData);
+      res.json(progress);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to accept mission" });
+    }
+  });
+
+  app.patch("/api/metaverse/heroes/:heroId/missions/:missionInstanceId", async (req, res) => {
+    try {
+      const validatedData = updateMissionProgressSchema.parse(req.body);
+      const progress = await storage.updateMissionProgress(req.params.heroId, req.params.missionInstanceId, validatedData);
+      if (!progress) {
+        return res.status(404).json({ error: "Mission progress not found" });
+      }
+      res.json(progress);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to update mission progress" });
+    }
+  });
+
+  app.post("/api/metaverse/heroes/:heroId/missions/:missionInstanceId/complete", async (req, res) => {
+    try {
+      const validatedData = completeMissionSchema.parse(req.body);
+      const result = await storage.completeMission(req.params.heroId, req.params.missionInstanceId, validatedData);
+      res.json(result);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to complete mission" });
+    }
+  });
+
+  // Planet Points Routes
+  app.get("/api/metaverse/heroes/:heroId/planet-points", async (req, res) => {
+    try {
+      const balance = await storage.getPlanetPointsBalance(req.params.heroId);
+      res.json({ balance });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch planet points balance" });
+    }
+  });
+
+  app.get("/api/metaverse/heroes/:heroId/planet-points/ledger", async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+      const transactions = await storage.getPlanetPointsLedger(req.params.heroId, limit);
+      res.json(transactions);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch planet points ledger" });
+    }
+  });
+
+  // Metaverse Avatar Routes
+  app.get("/api/metaverse/heroes/:heroId/avatar", async (req, res) => {
+    try {
+      const avatar = await storage.getMetaverseAvatar(req.params.heroId);
+      if (!avatar) {
+        return res.status(404).json({ error: "Avatar not found" });
+      }
+      res.json(avatar);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch avatar" });
+    }
+  });
+
+  app.patch("/api/metaverse/heroes/:heroId/avatar", async (req, res) => {
+    try {
+      const validatedData = updateAvatarSchema.parse(req.body);
+      const avatar = await storage.updateMetaverseAvatar(req.params.heroId, validatedData);
+      if (!avatar) {
+        return res.status(404).json({ error: "Avatar not found" });
+      }
+      res.json(avatar);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to update avatar" });
+    }
+  });
+
+  // Achievement Badge Routes
+  app.get("/api/metaverse/badges", async (req, res) => {
+    try {
+      const badges = await storage.getAchievementBadges();
+      res.json(badges);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch achievement badges" });
+    }
+  });
+
+  app.post("/api/metaverse/badges", async (req, res) => {
+    try {
+      const validatedData = insertAchievementBadgeSchema.parse(req.body);
+      const badge = await storage.createAchievementBadge(validatedData);
+      res.json(badge);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create achievement badge" });
+    }
+  });
+
+  // Hero Badge Routes
+  app.get("/api/metaverse/heroes/:heroId/badges", async (req, res) => {
+    try {
+      const badges = await storage.getHeroBadges(req.params.heroId);
+      res.json(badges);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch hero badges" });
+    }
+  });
+
+  app.post("/api/metaverse/heroes/:heroId/badges/:badgeCode/equip", async (req, res) => {
+    try {
+      const success = await storage.equipBadge(req.params.heroId, req.params.badgeCode);
+      if (!success) {
+        return res.status(404).json({ error: "Badge not found or not unlocked" });
+      }
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to equip badge" });
+    }
+  });
+
+  // Metaverse Rewards Routes
+  app.get("/api/metaverse/rewards", async (req, res) => {
+    try {
+      const category = req.query.category as string;
+      const rewards = await storage.getMetaverseRewards(category);
+      res.json(rewards);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch metaverse rewards" });
+    }
+  });
+
+  app.post("/api/metaverse/rewards", async (req, res) => {
+    try {
+      const validatedData = insertMetaverseRewardSchema.parse(req.body);
+      const reward = await storage.createMetaverseReward(validatedData);
+      res.json(reward);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create metaverse reward" });
+    }
+  });
+
+  app.post("/api/metaverse/heroes/:heroId/rewards/redeem", async (req, res) => {
+    try {
+      const validatedData = redeemRewardSchema.parse(req.body);
+      const redemption = await storage.redeemMetaverseReward(req.params.heroId, validatedData);
+      res.json(redemption);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to redeem reward" });
+    }
+  });
+
+  app.get("/api/metaverse/heroes/:heroId/redemptions", async (req, res) => {
+    try {
+      const redemptions = await storage.getRewardRedemptions(req.params.heroId);
+      res.json(redemptions);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch reward redemptions" });
+    }
+  });
+
+  // Daily Quest Routes
+  app.get("/api/metaverse/heroes/:heroId/daily-quests", async (req, res) => {
+    try {
+      const quests = await storage.getDailyQuests(req.params.heroId);
+      res.json(quests);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch daily quests" });
+    }
+  });
+
+  app.post("/api/metaverse/heroes/:heroId/daily-quests/generate", async (req, res) => {
+    try {
+      const quests = await storage.generateDailyQuests(req.params.heroId);
+      res.json(quests);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to generate daily quests" });
+    }
+  });
+
+  app.post("/api/metaverse/daily-quests/:questId/complete", async (req, res) => {
+    try {
+      const quest = await storage.completeDailyQuest(req.params.questId);
+      if (!quest) {
+        return res.status(404).json({ error: "Daily quest not found" });
+      }
+      res.json(quest);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to complete daily quest" });
     }
   });
 

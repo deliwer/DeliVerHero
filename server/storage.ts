@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -124,6 +124,57 @@ export interface IStorage {
   getIssuedCoupon(id: string): Promise<IssuedCoupon | undefined>;
   redeemCoupon(redemption: RedeemCoupon): Promise<IssuedCoupon | undefined>;
 
+  // METAVERSE GAMING SYSTEM - Ultimate Planet Missions
+  // Planet Mission operations
+  getPlanetMissions(): Promise<PlanetMission[]>;
+  getPlanetMission(code: string): Promise<PlanetMission | undefined>;
+  createPlanetMission(mission: InsertPlanetMission): Promise<PlanetMission>;
+  
+  // Hero Mission Progress operations
+  getHeroMissionProgress(heroId: string): Promise<HeroMissionProgress[]>;
+  getMissionProgress(heroId: string, missionCode: string): Promise<HeroMissionProgress | undefined>;
+  acceptMission(heroId: string, data: AcceptMission): Promise<HeroMissionProgress>;
+  updateMissionProgress(heroId: string, missionInstanceId: string, data: UpdateMissionProgress): Promise<HeroMissionProgress | undefined>;
+  completeMission(heroId: string, missionInstanceId: string, data: CompleteMission): Promise<{ progress: HeroMissionProgress; pointsAwarded: number; xpAwarded: number; badgesUnlocked: string[] }>;
+  
+  // Planet Points operations
+  getPlanetPointsBalance(heroId: string): Promise<number>;
+  getPlanetPointsLedger(heroId: string, limit?: number): Promise<PlanetPointsTransaction[]>;
+  awardPlanetPoints(heroId: string, points: number, source: string, refType: string, refId: string, description: string): Promise<PlanetPointsTransaction>;
+  spendPlanetPoints(heroId: string, points: number, source: string, refType: string, refId: string, description: string): Promise<PlanetPointsTransaction>;
+  
+  // Metaverse Avatar operations
+  getMetaverseAvatar(heroId: string): Promise<MetaverseAvatar | undefined>;
+  createMetaverseAvatar(data: InsertMetaverseAvatar): Promise<MetaverseAvatar>;
+  updateMetaverseAvatar(heroId: string, data: UpdateAvatar): Promise<MetaverseAvatar | undefined>;
+  awardXP(heroId: string, xp: number): Promise<{ avatar: MetaverseAvatar; leveledUp: boolean; newRank?: string }>;
+  
+  // Achievement Badge operations
+  getAchievementBadges(): Promise<AchievementBadge[]>;
+  getAchievementBadge(code: string): Promise<AchievementBadge | undefined>;
+  createAchievementBadge(badge: InsertAchievementBadge): Promise<AchievementBadge>;
+  
+  // Hero Badge operations
+  getHeroBadges(heroId: string): Promise<HeroBadge[]>;
+  unlockBadge(heroId: string, badgeCode: string): Promise<{ badge: HeroBadge; isNew: boolean }>;
+  equipBadge(heroId: string, badgeCode: string): Promise<boolean>;
+  
+  // Metaverse Rewards operations
+  getMetaverseRewards(category?: string): Promise<MetaverseReward[]>;
+  getMetaverseReward(id: string): Promise<MetaverseReward | undefined>;
+  createMetaverseReward(reward: InsertMetaverseReward): Promise<MetaverseReward>;
+  
+  // Reward Redemption operations
+  redeemMetaverseReward(heroId: string, data: RedeemReward): Promise<RewardRedemption>;
+  getRewardRedemptions(heroId: string): Promise<RewardRedemption[]>;
+  updateRedemptionStatus(id: string, status: string): Promise<RewardRedemption | undefined>;
+  
+  // Daily Quest operations
+  getDailyQuests(heroId: string): Promise<DailyQuest[]>;
+  createDailyQuest(quest: InsertDailyQuest): Promise<DailyQuest>;
+  completeDailyQuest(questId: string): Promise<DailyQuest | undefined>;
+  generateDailyQuests(heroId: string): Promise<DailyQuest[]>;
+  
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
 }
@@ -156,6 +207,17 @@ export class MemStorage implements IStorage {
   private issuedCoupons: Map<string, IssuedCoupon>;
   private heroSpinCounts: Map<string, HeroSpinCount>;
 
+  // METAVERSE GAMING SYSTEM - Ultimate Planet Missions
+  private planetMissions: Map<string, PlanetMission>;
+  private heroMissionProgress: Map<string, HeroMissionProgress>;
+  private planetPointsLedger: Map<string, PlanetPointsTransaction>;
+  private metaverseAvatars: Map<string, MetaverseAvatar>;
+  private achievementBadges: Map<string, AchievementBadge>;
+  private heroBadges: Map<string, HeroBadge>;
+  private metaverseRewards: Map<string, MetaverseReward>;
+  private rewardRedemptions: Map<string, RewardRedemption>;
+  private dailyQuests: Map<string, DailyQuest>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -182,6 +244,17 @@ export class MemStorage implements IStorage {
     this.issuedCoupons = new Map();
     this.heroSpinCounts = new Map();
     
+    // Initialize metaverse gaming system
+    this.planetMissions = new Map();
+    this.heroMissionProgress = new Map();
+    this.planetPointsLedger = new Map();
+    this.metaverseAvatars = new Map();
+    this.achievementBadges = new Map();
+    this.heroBadges = new Map();
+    this.metaverseRewards = new Map();
+    this.rewardRedemptions = new Map();
+    this.dailyQuests = new Map();
+    
     // Initialize impact stats
     this.impactStats = {
       id: randomUUID(),
@@ -207,6 +280,7 @@ export class MemStorage implements IStorage {
     this.seedDubaiRewardsData();
     this.seedSponsorshipData();
     this.seedTombolaData();
+    this.seedMetaverseGamingData();
   }
 
   private seedInitialData() {
@@ -2072,6 +2146,715 @@ export class MemStorage implements IStorage {
 
     this.issuedCoupons.set(coupon.id, updatedCoupon);
     return updatedCoupon;
+  }
+
+  // ============================================================================
+  // METAVERSE GAMING SYSTEM - ULTIMATE PLANET MISSIONS
+  // ============================================================================
+
+  // PLANET MISSION OPERATIONS
+  async getPlanetMissions(): Promise<PlanetMission[]> {
+    return Array.from(this.planetMissions.values());
+  }
+
+  async getPlanetMission(code: string): Promise<PlanetMission | undefined> {
+    return Array.from(this.planetMissions.values()).find(m => m.code === code);
+  }
+
+  async createPlanetMission(mission: InsertPlanetMission): Promise<PlanetMission> {
+    const newMission: PlanetMission = {
+      id: randomUUID(),
+      ...mission,
+      isActive: true,
+      createdAt: new Date(),
+    };
+    this.planetMissions.set(newMission.id, newMission);
+    return newMission;
+  }
+
+  // HERO MISSION PROGRESS OPERATIONS  
+  async getHeroMissionProgress(heroId: string): Promise<HeroMissionProgress[]> {
+    return Array.from(this.heroMissionProgress.values()).filter(p => p.heroId === heroId);
+  }
+
+  async getMissionProgress(heroId: string, missionCode: string): Promise<HeroMissionProgress | undefined> {
+    return Array.from(this.heroMissionProgress.values())
+      .find(p => p.heroId === heroId && p.missionCode === missionCode);
+  }
+
+  async acceptMission(heroId: string, data: AcceptMission): Promise<HeroMissionProgress> {
+    const mission = await this.getPlanetMission(data.missionCode);
+    if (!mission) {
+      throw new Error(`Mission ${data.missionCode} not found`);
+    }
+
+    const existing = await this.getMissionProgress(heroId, data.missionCode);
+    if (existing && existing.status !== 'completed') {
+      throw new Error('Mission already in progress');
+    }
+
+    const progress: HeroMissionProgress = {
+      id: randomUUID(),
+      heroId,
+      missionCode: data.missionCode,
+      tradeInId: null,
+      missionInstanceId: randomUUID(),
+      status: 'accepted',
+      currentStep: 0,
+      payload: data.payload || {},
+      pointsAwarded: 0,
+      xpAwarded: 0,
+      completionRate: 0,
+      isRewarded: false,
+      startedAt: new Date(),
+      completedAt: null,
+      rewardedAt: null,
+      createdAt: new Date(),
+    };
+
+    this.heroMissionProgress.set(progress.id, progress);
+    return progress;
+  }
+
+  async updateMissionProgress(heroId: string, missionInstanceId: string, data: UpdateMissionProgress): Promise<HeroMissionProgress | undefined> {
+    const progress = Array.from(this.heroMissionProgress.values())
+      .find(p => p.heroId === heroId && p.missionInstanceId === missionInstanceId);
+    
+    if (!progress) return undefined;
+
+    const updated = {
+      ...progress,
+      currentStep: data.currentStep,
+      payload: { ...progress.payload, ...data.payload },
+      completionRate: data.completionRate || progress.completionRate,
+      status: data.completionRate === 100 ? 'completed' : 'in_progress' as any,
+    };
+
+    this.heroMissionProgress.set(progress.id, updated);
+    return updated;
+  }
+
+  async completeMission(heroId: string, missionInstanceId: string, data: CompleteMission): Promise<{ progress: HeroMissionProgress; pointsAwarded: number; xpAwarded: number; badgesUnlocked: string[] }> {
+    const progress = Array.from(this.heroMissionProgress.values())
+      .find(p => p.heroId === heroId && p.missionInstanceId === missionInstanceId);
+    
+    if (!progress) {
+      throw new Error('Mission progress not found');
+    }
+
+    if (progress.isRewarded) {
+      throw new Error('Mission already rewarded');
+    }
+
+    const mission = await this.getPlanetMission(progress.missionCode);
+    if (!mission) {
+      throw new Error('Mission not found');
+    }
+
+    // Calculate rewards
+    const pointsAwarded = mission.basePoints * (mission.bonusMultiplier / 100);
+    const xpAwarded = mission.xpReward;
+    const badgesUnlocked: string[] = [];
+
+    // Award points
+    await this.awardPlanetPoints(
+      heroId, 
+      pointsAwarded, 
+      'mission', 
+      'mission', 
+      progress.id, 
+      `Completed mission: ${mission.title}`
+    );
+
+    // Award XP  
+    const avatarResult = await this.awardXP(heroId, xpAwarded);
+
+    // Check for achievement badges
+    if (progress.missionCode === 'iphone_tradein_mission') {
+      const unlockResult = await this.unlockBadge(heroId, 'first_mission');
+      if (unlockResult.isNew) {
+        badgesUnlocked.push('first_mission');
+      }
+    }
+
+    // Update progress
+    const completed = {
+      ...progress,
+      status: 'completed' as any,
+      completionRate: 100,
+      pointsAwarded,
+      xpAwarded,
+      isRewarded: true,
+      payload: { ...progress.payload, ...data.finalPayload },
+      completedAt: new Date(),
+      rewardedAt: new Date(),
+    };
+
+    this.heroMissionProgress.set(progress.id, completed);
+
+    return {
+      progress: completed,
+      pointsAwarded,
+      xpAwarded,
+      badgesUnlocked,
+    };
+  }
+
+  // PLANET POINTS OPERATIONS
+  async getPlanetPointsBalance(heroId: string): Promise<number> {
+    const hero = await this.getHero(heroId);
+    return hero?.points || 0;
+  }
+
+  async getPlanetPointsLedger(heroId: string, limit?: number): Promise<PlanetPointsTransaction[]> {
+    const transactions = Array.from(this.planetPointsLedger.values())
+      .filter(t => t.heroId === heroId)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    
+    return limit ? transactions.slice(0, limit) : transactions;
+  }
+
+  async awardPlanetPoints(heroId: string, points: number, source: string, refType: string, refId: string, description: string): Promise<PlanetPointsTransaction> {
+    const currentBalance = await this.getPlanetPointsBalance(heroId);
+    const newBalance = currentBalance + points;
+
+    // Update hero points (canonical source of truth)
+    const hero = await this.getHero(heroId);
+    if (hero) {
+      await this.updateHero(heroId, { points: newBalance });
+    }
+
+    // Create ledger entry for audit trail
+    const transaction: PlanetPointsTransaction = {
+      id: randomUUID(),
+      heroId,
+      transactionType: 'earned',
+      source,
+      refType,
+      refId,
+      pointsDelta: points,
+      balanceBefore: currentBalance,
+      balanceAfter: newBalance,
+      description,
+      createdAt: new Date(),
+    };
+
+    this.planetPointsLedger.set(transaction.id, transaction);
+    return transaction;
+  }
+
+  async spendPlanetPoints(heroId: string, points: number, source: string, refType: string, refId: string, description: string): Promise<PlanetPointsTransaction> {
+    const currentBalance = await this.getPlanetPointsBalance(heroId);
+    
+    if (currentBalance < points) {
+      throw new Error('Insufficient planet points');
+    }
+
+    const newBalance = currentBalance - points;
+
+    // Update hero points
+    const hero = await this.getHero(heroId);
+    if (hero) {
+      await this.updateHero(heroId, { points: newBalance });
+    }
+
+    // Create ledger entry
+    const transaction: PlanetPointsTransaction = {
+      id: randomUUID(),
+      heroId,
+      transactionType: 'spent',
+      source,
+      refType,
+      refId,
+      pointsDelta: -points,
+      balanceBefore: currentBalance,
+      balanceAfter: newBalance,
+      description,
+      createdAt: new Date(),
+    };
+
+    this.planetPointsLedger.set(transaction.id, transaction);
+    return transaction;
+  }
+
+  // METAVERSE AVATAR OPERATIONS
+  async getMetaverseAvatar(heroId: string): Promise<MetaverseAvatar | undefined> {
+    return Array.from(this.metaverseAvatars.values()).find(a => a.heroId === heroId);
+  }
+
+  async createMetaverseAvatar(data: InsertMetaverseAvatar): Promise<MetaverseAvatar> {
+    const avatar: MetaverseAvatar = {
+      id: randomUUID(),
+      level: 1,
+      xp: 0,
+      xpToNextLevel: 100,
+      planetRank: 'Eco Rookie',
+      specialAbilities: [],
+      equippedBadges: [],
+      avatarStyle: {},
+      totalMissionsCompleted: 0,
+      epicMissionsCompleted: 0,
+      planetImpactScore: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      ...data,
+    };
+    this.metaverseAvatars.set(avatar.id, avatar);
+    return avatar;
+  }
+
+  async updateMetaverseAvatar(heroId: string, data: UpdateAvatar): Promise<MetaverseAvatar | undefined> {
+    const avatar = await this.getMetaverseAvatar(heroId);
+    if (!avatar) return undefined;
+
+    const updated = {
+      ...avatar,
+      ...data,
+      updatedAt: new Date(),
+    };
+
+    this.metaverseAvatars.set(avatar.id, updated);
+    return updated;
+  }
+
+  async awardXP(heroId: string, xp: number): Promise<{ avatar: MetaverseAvatar; leveledUp: boolean; newRank?: string }> {
+    let avatar = await this.getMetaverseAvatar(heroId);
+    
+    if (!avatar) {
+      avatar = await this.createMetaverseAvatar({ 
+        heroId, 
+        avatarName: 'Planet Guardian',
+        avatarStyle: {} 
+      });
+    }
+
+    const newXP = avatar.xp + xp;
+    let newLevel = avatar.level;
+    let leveledUp = false;
+    let newRank = avatar.planetRank;
+
+    // Level up logic
+    while (newXP >= avatar.xpToNextLevel) {
+      newLevel++;
+      leveledUp = true;
+    }
+
+    // Calculate XP to next level
+    const xpToNextLevel = newLevel * 100; // Simple progression
+
+    // Update rank based on level
+    if (newLevel >= 10 && avatar.planetRank === 'Eco Rookie') {
+      newRank = 'Planet Defender';
+    } else if (newLevel >= 25 && avatar.planetRank === 'Planet Defender') {
+      newRank = 'Earth Champion';
+    } else if (newLevel >= 50 && avatar.planetRank === 'Earth Champion') {
+      newRank = 'Galaxy Guardian';
+    }
+
+    const updatedAvatar = {
+      ...avatar,
+      xp: newXP,
+      level: newLevel,
+      xpToNextLevel,
+      planetRank: newRank,
+      updatedAt: new Date(),
+    };
+
+    this.metaverseAvatars.set(avatar.id, updatedAvatar);
+
+    return {
+      avatar: updatedAvatar,
+      leveledUp,
+      newRank: newRank !== avatar.planetRank ? newRank : undefined,
+    };
+  }
+
+  // ACHIEVEMENT BADGE OPERATIONS
+  async getAchievementBadges(): Promise<AchievementBadge[]> {
+    return Array.from(this.achievementBadges.values());
+  }
+
+  async getAchievementBadge(code: string): Promise<AchievementBadge | undefined> {
+    return Array.from(this.achievementBadges.values()).find(b => b.code === code);
+  }
+
+  async createAchievementBadge(badge: InsertAchievementBadge): Promise<AchievementBadge> {
+    const newBadge: AchievementBadge = {
+      id: randomUUID(),
+      ...badge,
+      isActive: true,
+      createdAt: new Date(),
+    };
+    this.achievementBadges.set(newBadge.id, newBadge);
+    return newBadge;
+  }
+
+  // HERO BADGE OPERATIONS
+  async getHeroBadges(heroId: string): Promise<HeroBadge[]> {
+    return Array.from(this.heroBadges.values()).filter(b => b.heroId === heroId);
+  }
+
+  async unlockBadge(heroId: string, badgeCode: string): Promise<{ badge: HeroBadge; isNew: boolean }> {
+    // Check if already unlocked
+    const existing = Array.from(this.heroBadges.values())
+      .find(b => b.heroId === heroId && b.badgeCode === badgeCode);
+    
+    if (existing) {
+      return { badge: existing, isNew: false };
+    }
+
+    const heroBadge: HeroBadge = {
+      id: randomUUID(),
+      heroId,
+      badgeCode,
+      unlockedAt: new Date(),
+      isEquipped: false,
+      celebrationShown: false,
+    };
+
+    this.heroBadges.set(heroBadge.id, heroBadge);
+    return { badge: heroBadge, isNew: true };
+  }
+
+  async equipBadge(heroId: string, badgeCode: string): Promise<boolean> {
+    const heroBadge = Array.from(this.heroBadges.values())
+      .find(b => b.heroId === heroId && b.badgeCode === badgeCode);
+    
+    if (!heroBadge) return false;
+
+    // Unequip all other badges first
+    const heroBadges = await this.getHeroBadges(heroId);
+    for (const badge of heroBadges) {
+      if (badge.isEquipped) {
+        this.heroBadges.set(badge.id, { ...badge, isEquipped: false });
+      }
+    }
+
+    // Equip the selected badge
+    this.heroBadges.set(heroBadge.id, { ...heroBadge, isEquipped: true });
+    return true;
+  }
+
+  // METAVERSE REWARDS OPERATIONS
+  async getMetaverseRewards(category?: string): Promise<MetaverseReward[]> {
+    const rewards = Array.from(this.metaverseRewards.values())
+      .filter(r => r.isActive);
+    
+    return category ? rewards.filter(r => r.category === category) : rewards;
+  }
+
+  async getMetaverseReward(id: string): Promise<MetaverseReward | undefined> {
+    return this.metaverseRewards.get(id);
+  }
+
+  async createMetaverseReward(reward: InsertMetaverseReward): Promise<MetaverseReward> {
+    const newReward: MetaverseReward = {
+      id: randomUUID(),
+      ...reward,
+      claimedCount: 0,
+      isActive: true,
+      createdAt: new Date(),
+    };
+    this.metaverseRewards.set(newReward.id, newReward);
+    return newReward;
+  }
+
+  // REWARD REDEMPTION OPERATIONS
+  async redeemMetaverseReward(heroId: string, data: RedeemReward): Promise<RewardRedemption> {
+    const reward = await this.getMetaverseReward(data.rewardId);
+    if (!reward) {
+      throw new Error('Reward not found');
+    }
+
+    if (!reward.isActive) {
+      throw new Error('Reward is not available');
+    }
+
+    if (reward.stockQuantity !== null && reward.claimedCount >= reward.stockQuantity) {
+      throw new Error('Reward is out of stock');
+    }
+
+    // Spend points
+    await this.spendPlanetPoints(
+      heroId,
+      reward.pointsCost,
+      'redeem',
+      'reward',
+      reward.id,
+      `Redeemed ${reward.name}`
+    );
+
+    // Create redemption
+    const redemption: RewardRedemption = {
+      id: randomUUID(),
+      heroId,
+      rewardId: data.rewardId,
+      pointsSpent: reward.pointsCost,
+      status: 'pending',
+      deliveryAddress: data.deliveryAddress || null,
+      trackingInfo: null,
+      redemptionCode: `R-${randomUUID().substring(0, 8).toUpperCase()}`,
+      redeemedAt: new Date(),
+      deliveredAt: null,
+    };
+
+    this.rewardRedemptions.set(redemption.id, redemption);
+
+    // Update reward claimed count
+    const updatedReward = { ...reward, claimedCount: reward.claimedCount + 1 };
+    this.metaverseRewards.set(reward.id, updatedReward);
+
+    return redemption;
+  }
+
+  async getRewardRedemptions(heroId: string): Promise<RewardRedemption[]> {
+    return Array.from(this.rewardRedemptions.values())
+      .filter(r => r.heroId === heroId)
+      .sort((a, b) => b.redeemedAt.getTime() - a.redeemedAt.getTime());
+  }
+
+  async updateRedemptionStatus(id: string, status: string): Promise<RewardRedemption | undefined> {
+    const redemption = this.rewardRedemptions.get(id);
+    if (!redemption) return undefined;
+
+    const updated = {
+      ...redemption,
+      status,
+      deliveredAt: status === 'delivered' ? new Date() : redemption.deliveredAt,
+    };
+
+    this.rewardRedemptions.set(id, updated);
+    return updated;
+  }
+
+  // DAILY QUEST OPERATIONS
+  async getDailyQuests(heroId: string): Promise<DailyQuest[]> {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    return Array.from(this.dailyQuests.values())
+      .filter(q => q.heroId === heroId && q.questDate >= today);
+  }
+
+  async createDailyQuest(quest: InsertDailyQuest): Promise<DailyQuest> {
+    const newQuest: DailyQuest = {
+      id: randomUUID(),
+      ...quest,
+      status: 'active',
+      questDate: quest.questDate || new Date(),
+      completedAt: null,
+    };
+    this.dailyQuests.set(newQuest.id, newQuest);
+    return newQuest;
+  }
+
+  async completeDailyQuest(questId: string): Promise<DailyQuest | undefined> {
+    const quest = this.dailyQuests.get(questId);
+    if (!quest || quest.status === 'completed') return quest;
+
+    // Award points
+    await this.awardPlanetPoints(
+      quest.heroId,
+      quest.pointsReward,
+      'daily_quest',
+      'quest',
+      questId,
+      `Completed daily quest: ${quest.description}`
+    );
+
+    // Award XP
+    await this.awardXP(quest.heroId, quest.xpReward);
+
+    const updated = {
+      ...quest,
+      status: 'completed' as any,
+      completedAt: new Date(),
+    };
+
+    this.dailyQuests.set(questId, updated);
+    return updated;
+  }
+
+  async generateDailyQuests(heroId: string): Promise<DailyQuest[]> {
+    const questTypes = [
+      { type: 'login', description: 'Log in to continue your planet-saving journey', points: 10, xp: 5 },
+      { type: 'share', description: 'Share your impact on social media', points: 25, xp: 10 },
+      { type: 'trade', description: 'Complete an iPhone trade-in mission', points: 100, xp: 50 },
+    ];
+
+    const quests: DailyQuest[] = [];
+    
+    for (const questType of questTypes.slice(0, 2)) { // Generate 2 daily quests
+      const quest = await this.createDailyQuest({
+        heroId,
+        questType: questType.type,
+        description: questType.description,
+        pointsReward: questType.points,
+        xpReward: questType.xp,
+        questDate: new Date(),
+      });
+      quests.push(quest);
+    }
+
+    return quests;
+  }
+
+  // ============================================================================
+  // METAVERSE GAMING SEED DATA
+  // ============================================================================
+  
+  private seedMetaverseGamingData() {
+    // Seed planet missions
+    const iphoneMission: PlanetMission = {
+      id: randomUUID(),
+      code: 'iphone_tradein_mission',
+      title: 'iPhone Planet Rescue Mission',
+      description: 'Transform your old iPhone into planet-saving power! Complete the trade-in process to earn massive planet points and unlock exclusive badges.',
+      storyline: 'Every iPhone trade-in prevents 247 plastic bottles from polluting our planet and saves 2.3kg of CO2 emissions. Your old iPhone becomes a powerful weapon in the fight for Earth!',
+      category: 'trade',
+      difficulty: 'beginner',
+      basePoints: 500,
+      bonusMultiplier: 120, // 20% bonus for Dubai heroes
+      xpReward: 100,
+      requiredLevel: 'Bronze Hero',
+      estimatedDuration: '10 minutes',
+      steps: [
+        { step: 1, title: 'Choose Your Device', description: 'Select your iPhone model and condition' },
+        { step: 2, title: 'Get Instant Quote', description: 'Receive your trade-in value' },
+        { step: 3, title: 'Complete Mission', description: 'Finalize your planet-saving trade' }
+      ],
+      achievements: ['first_mission', 'iphone_saver'],
+      environmentalImpact: {
+        bottlesPrevented: 247,
+        co2SavedGrams: 2300,
+        treesEquivalent: 1.2
+      },
+      isActive: true,
+      isEpic: false,
+      createdAt: new Date(),
+    };
+    this.planetMissions.set(iphoneMission.id, iphoneMission);
+
+    // Seed achievement badges
+    const badges: AchievementBadge[] = [
+      {
+        id: randomUUID(),
+        code: 'first_mission',
+        name: 'Mission Pioneer',
+        description: 'Completed your first planet-saving mission!',
+        category: 'mission',
+        rarity: 'common',
+        iconUrl: '/badges/first-mission.svg',
+        glowEffect: 'blue',
+        unlockedBy: 'iphone_tradein_mission',
+        xpBonus: 25,
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: randomUUID(),
+        code: 'iphone_saver',
+        name: 'iPhone Planet Saver',
+        description: 'Rescued the planet by trading in an iPhone!',
+        category: 'environmental',
+        rarity: 'rare',
+        iconUrl: '/badges/iphone-saver.svg',
+        glowEffect: 'green',
+        unlockedBy: 'iphone_tradein_mission',
+        xpBonus: 50,
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: randomUUID(),
+        code: 'water_hero',
+        name: 'Water Hero',
+        description: 'Prevented 1000+ plastic bottles from polluting our oceans!',
+        category: 'environmental',
+        rarity: 'epic',
+        iconUrl: '/badges/water-hero.svg',
+        glowEffect: 'gold',
+        unlockedBy: 'bottles_milestone',
+        xpBonus: 100,
+        isActive: true,
+        createdAt: new Date(),
+      },
+    ];
+
+    badges.forEach(badge => {
+      this.achievementBadges.set(badge.id, badge);
+    });
+
+    // Seed metaverse rewards
+    const rewards: MetaverseReward[] = [
+      {
+        id: randomUUID(),
+        name: 'AquaCafe Premium Water System',
+        description: 'Complete home water purification system with Dubai delivery',
+        category: 'tech',
+        subcategory: 'water_tech',
+        pointsCost: 2500,
+        originalValue: 599900, // AED 5,999 in fils
+        discountPercent: 25,
+        stockQuantity: 10,
+        claimedCount: 0,
+        isVirtual: false,
+        isFeatured: true,
+        isDubaiExclusive: true,
+        imageUrl: '/rewards/aquacafe-system.jpg',
+        partnerBrand: 'AquaCafe',
+        deliveryInfo: 'Free delivery within Dubai, installation included',
+        termsConditions: 'Valid for Dubai residents only. Installation within 3 business days.',
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: randomUUID(),
+        name: 'Dubai Mall VIP Shopping Experience',
+        description: 'Personal shopping assistant + AED 500 gift card',
+        category: 'experience',
+        subcategory: 'lifestyle',
+        pointsCost: 1500,
+        originalValue: 100000, // AED 1,000 in fils
+        discountPercent: 50,
+        stockQuantity: 5,
+        claimedCount: 0,
+        isVirtual: false,
+        isFeatured: true,
+        isDubaiExclusive: true,
+        imageUrl: '/rewards/dubai-mall-vip.jpg',
+        partnerBrand: 'Dubai Mall',
+        deliveryInfo: 'Experience voucher delivered via email',
+        termsConditions: 'Valid for 6 months. Advance booking required.',
+        isActive: true,
+        createdAt: new Date(),
+      },
+      {
+        id: randomUUID(),
+        name: 'Limited Edition Planet Hero NFT',
+        description: 'Exclusive digital collectible commemorating your impact',
+        category: 'digital',
+        subcategory: 'gaming',
+        pointsCost: 750,
+        originalValue: null,
+        discountPercent: 0,
+        stockQuantity: 100,
+        claimedCount: 0,
+        isVirtual: true,
+        isFeatured: false,
+        isDubaiExclusive: false,
+        imageUrl: '/rewards/planet-hero-nft.jpg',
+        partnerBrand: 'DeliWer Metaverse',
+        deliveryInfo: 'NFT delivered to your connected wallet',
+        termsConditions: 'Requires connected Web3 wallet. Non-transferable for first 30 days.',
+        isActive: true,
+        createdAt: new Date(),
+      },
+    ];
+
+    rewards.forEach(reward => {
+      this.metaverseRewards.set(reward.id, reward);
+    });
   }
 }
 

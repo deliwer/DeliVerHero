@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, timestamp, boolean, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, timestamp, boolean, jsonb, index, unique } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -407,7 +407,10 @@ export const heroMissionProgress = pgTable("hero_mission_progress", {
 }, (table) => {
   return {
     heroMissionIdx: index("hero_mission_progress_hero_mission_idx").on(table.heroId, table.missionCode, table.status),
+    tradeInIdx: index("hero_mission_progress_trade_in_idx").on(table.tradeInId),
     uniqueInstance: unique("hero_mission_progress_unique_instance").on(table.heroId, table.missionInstanceId),
+    uniqueTradeIn: unique("hero_mission_progress_unique_trade_in").on(table.tradeInId),
+    uniqueNonRepeatable: unique("hero_mission_progress_unique_non_repeatable").on(table.heroId, table.missionCode),
   };
 });
 
@@ -427,6 +430,7 @@ export const planetPointsLedger = pgTable("planet_points_ledger", {
   return {
     heroTimeIdx: index("planet_points_ledger_hero_time_idx").on(table.heroId, table.createdAt),
     sourceRefIdx: index("planet_points_ledger_source_ref_idx").on(table.source, table.refType, table.refId),
+    uniqueTransaction: unique("planet_points_ledger_unique_transaction").on(table.heroId, table.refType, table.refId, table.transactionType),
   };
 });
 
@@ -750,6 +754,14 @@ export type InsertMetaverseReward = z.infer<typeof insertMetaverseRewardSchema>;
 export type RedeemReward = z.infer<typeof redeemRewardSchema>;
 export type InsertAchievementBadge = z.infer<typeof insertAchievementBadgeSchema>;
 export type UpdateAvatar = z.infer<typeof updateAvatarSchema>;
+
+// Additional insert types for complete API validation
+export type InsertHeroMissionProgress = z.infer<typeof insertHeroMissionProgressSchema>;
+export type InsertMetaverseAvatar = z.infer<typeof insertMetaverseAvatarSchema>;
+export type InsertHeroBadge = z.infer<typeof insertHeroBadgeSchema>;
+export type InsertPlanetPointsLedger = z.infer<typeof insertPlanetPointsLedgerSchema>;
+export type InsertRewardRedemption = z.infer<typeof insertRewardRedemptionSchema>;
+export type InsertDailyQuest = z.infer<typeof insertDailyQuestSchema>;
 
 // Zod schemas
 export const insertHeroSchema = createInsertSchema(heroes).pick({
