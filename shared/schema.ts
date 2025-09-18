@@ -365,6 +365,169 @@ export const emailSubscribers = pgTable("email_subscribers", {
   unsubscribedAt: timestamp("unsubscribed_at"),
 });
 
+// METAVERSE GAMING SYSTEM - Ultimate Planet Missions
+export const planetMissions = pgTable("planet_missions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  code: text("code").notNull().unique(), // iphone_tradein_mission, water_hero_quest
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  storyline: text("storyline").notNull(), // epic narrative for gen z
+  category: text("category").notNull(), // trade, water, energy, planet_saving
+  difficulty: text("difficulty").notNull().default("beginner"), // beginner, intermediate, expert, legendary
+  basePoints: integer("base_points").notNull().default(100),
+  bonusMultiplier: integer("bonus_multiplier").notNull().default(100), // percentage bonus
+  xpReward: integer("xp_reward").notNull().default(50),
+  requiredLevel: text("required_level").default("Bronze Hero"),
+  estimatedDuration: text("estimated_duration").default("5 minutes"), // "5 minutes", "1 hour", "1 day"
+  steps: jsonb("steps").default([]), // mission steps with descriptions
+  achievements: jsonb("achievements").default([]), // badges unlocked
+  environmentalImpact: jsonb("environmental_impact").default({}), // bottles saved, co2 reduced
+  isActive: boolean("is_active").notNull().default(true),
+  isEpic: boolean("is_epic").notNull().default(false), // epic missions have special effects
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const heroMissionProgress = pgTable("hero_mission_progress", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  missionCode: text("mission_code").notNull().references(() => planetMissions.code),
+  tradeInId: varchar("trade_in_id").references(() => tradeIns.id), // links mission to actual trade-in
+  missionInstanceId: varchar("mission_instance_id").notNull().default(sql`gen_random_uuid()`), // for repeatable missions
+  status: text("status").notNull().default("available"), // available, accepted, in_progress, completed, rewarded
+  currentStep: integer("current_step").notNull().default(0),
+  payload: jsonb("payload").default({}), // mission-specific data like phone model, condition
+  pointsAwarded: integer("points_awarded").default(0),
+  xpAwarded: integer("xp_awarded").default(0),
+  completionRate: integer("completion_rate").default(0), // 0-100%
+  isRewarded: boolean("is_rewarded").notNull().default(false), // prevents double rewards
+  startedAt: timestamp("started_at"),
+  completedAt: timestamp("completed_at"),
+  rewardedAt: timestamp("rewarded_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    heroMissionIdx: index("hero_mission_progress_hero_mission_idx").on(table.heroId, table.missionCode, table.status),
+    uniqueInstance: unique("hero_mission_progress_unique_instance").on(table.heroId, table.missionInstanceId),
+  };
+});
+
+export const planetPointsLedger = pgTable("planet_points_ledger", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  transactionType: text("transaction_type").notNull(), // earned, spent, bonus, penalty
+  source: text("source").notNull(), // mission, tombola, referral, redeem, daily_bonus
+  refType: text("ref_type").notNull(), // mission, prize, reward, challenge
+  refId: varchar("ref_id").notNull(),
+  pointsDelta: integer("points_delta").notNull(), // can be negative for spending
+  balanceBefore: integer("balance_before").notNull(),
+  balanceAfter: integer("balance_after").notNull(),
+  description: text("description").notNull(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    heroTimeIdx: index("planet_points_ledger_hero_time_idx").on(table.heroId, table.createdAt),
+    sourceRefIdx: index("planet_points_ledger_source_ref_idx").on(table.source, table.refType, table.refId),
+  };
+});
+
+export const metaverseAvatars = pgTable("metaverse_avatars", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  avatarName: text("avatar_name").notNull().default("Planet Guardian"),
+  level: integer("level").notNull().default(1),
+  xp: integer("xp").notNull().default(0),
+  xpToNextLevel: integer("xp_to_next_level").notNull().default(100),
+  planetRank: text("planet_rank").notNull().default("Eco Rookie"), // Eco Rookie, Planet Defender, Earth Champion, Galaxy Guardian
+  specialAbilities: jsonb("special_abilities").default([]), // unlocked abilities
+  equippedBadges: jsonb("equipped_badges").default([]), // currently displayed badges
+  avatarStyle: jsonb("avatar_style").default({}), // customization data
+  totalMissionsCompleted: integer("total_missions_completed").notNull().default(0),
+  epicMissionsCompleted: integer("epic_missions_completed").notNull().default(0),
+  planetImpactScore: integer("planet_impact_score").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    uniqueHero: unique("metaverse_avatars_unique_hero").on(table.heroId), // one avatar per hero
+  };
+});
+
+export const achievementBadges = pgTable("achievement_badges", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  code: text("code").notNull().unique(), // first_mission, iphone_saver, water_hero
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(), // mission, environmental, social, special
+  rarity: text("rarity").notNull().default("common"), // common, rare, epic, legendary, mythic
+  iconUrl: text("icon_url"),
+  glowEffect: text("glow_effect").default("none"), // none, blue, green, gold, rainbow
+  unlockedBy: text("unlocked_by").notNull(), // mission_code or special trigger
+  xpBonus: integer("xp_bonus").default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const heroBadges = pgTable("hero_badges", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  badgeCode: text("badge_code").notNull().references(() => achievementBadges.code),
+  unlockedAt: timestamp("unlocked_at").notNull().default(sql`now()`),
+  isEquipped: boolean("is_equipped").notNull().default(false),
+  celebrationShown: boolean("celebration_shown").notNull().default(false),
+}, (table) => {
+  return {
+    uniqueHeroBadge: unique("hero_badges_unique_hero_badge").on(table.heroId, table.badgeCode), // prevents duplicate badges
+  };
+});
+
+export const metaverseRewards = pgTable("metaverse_rewards", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  category: text("category").notNull(), // digital, physical, experience, tech
+  subcategory: text("subcategory"), // water_tech, gaming, lifestyle, eco_friendly
+  pointsCost: integer("points_cost").notNull(),
+  originalValue: integer("original_value"), // in AED fils
+  discountPercent: integer("discount_percent").default(0),
+  stockQuantity: integer("stock_quantity").default(0),
+  claimedCount: integer("claimed_count").notNull().default(0),
+  isVirtual: boolean("is_virtual").notNull().default(false),
+  isFeatured: boolean("is_featured").notNull().default(false),
+  isDubaiExclusive: boolean("is_dubai_exclusive").notNull().default(true),
+  imageUrl: text("image_url"),
+  partnerBrand: text("partner_brand"),
+  deliveryInfo: text("delivery_info"),
+  termsConditions: text("terms_conditions"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const rewardRedemptions = pgTable("reward_redemptions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  rewardId: varchar("reward_id").notNull().references(() => metaverseRewards.id),
+  pointsSpent: integer("points_spent").notNull(),
+  status: text("status").notNull().default("pending"), // pending, processing, delivered, completed
+  deliveryAddress: text("delivery_address"),
+  trackingInfo: text("tracking_info"),
+  redemptionCode: text("redemption_code"),
+  redeemedAt: timestamp("redeemed_at").notNull().default(sql`now()`),
+  deliveredAt: timestamp("delivered_at"),
+});
+
+// Enhanced existing tables for metaverse gaming
+export const dailyQuests = pgTable("daily_quests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  questType: text("quest_type").notNull(), // login, share, trade, challenge
+  description: text("description").notNull(),
+  pointsReward: integer("points_reward").notNull().default(10),
+  xpReward: integer("xp_reward").notNull().default(5),
+  status: text("status").notNull().default("active"), // active, completed
+  questDate: timestamp("quest_date").notNull().default(sql`now()`),
+  completedAt: timestamp("completed_at"),
+});
+
 // AquaCafe Heroes Tombola Gamification System
 export const tombolaPrizes = pgTable("tombola_prizes", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -446,6 +609,147 @@ export const heroSpinCounts = pgTable("hero_spin_counts", {
   lastResetDate: timestamp("last_reset_date").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
+
+// METAVERSE GAMING ZOD SCHEMAS
+export const insertPlanetMissionSchema = createInsertSchema(planetMissions).pick({
+  code: true,
+  title: true,
+  description: true,
+  storyline: true,
+  category: true,
+  difficulty: true,
+  basePoints: true,
+  xpReward: true,
+  requiredLevel: true,
+  estimatedDuration: true,
+  steps: true,
+  achievements: true,
+  environmentalImpact: true,
+  isEpic: true,
+});
+
+export const acceptMissionSchema = z.object({
+  missionCode: z.string(),
+  payload: z.record(z.any()).optional(),
+});
+
+export const updateMissionProgressSchema = z.object({
+  currentStep: z.number().min(0),
+  payload: z.record(z.any()).optional(),
+  completionRate: z.number().min(0).max(100).optional(),
+});
+
+export const completeMissionSchema = z.object({
+  finalPayload: z.record(z.any()).optional(),
+});
+
+export const insertMetaverseRewardSchema = createInsertSchema(metaverseRewards).pick({
+  name: true,
+  description: true,
+  category: true,
+  subcategory: true,
+  pointsCost: true,
+  originalValue: true,
+  discountPercent: true,
+  stockQuantity: true,
+  isVirtual: true,
+  isFeatured: true,
+  isDubaiExclusive: true,
+  imageUrl: true,
+  partnerBrand: true,
+  deliveryInfo: true,
+  termsConditions: true,
+});
+
+// Missing insert schemas for new tables
+export const insertHeroMissionProgressSchema = createInsertSchema(heroMissionProgress).pick({
+  heroId: true,
+  missionCode: true,
+  tradeInId: true,
+  payload: true,
+});
+
+export const insertMetaverseAvatarSchema = createInsertSchema(metaverseAvatars).pick({
+  heroId: true,
+  avatarName: true,
+  avatarStyle: true,
+});
+
+export const insertHeroBadgeSchema = createInsertSchema(heroBadges).pick({
+  heroId: true,
+  badgeCode: true,
+});
+
+export const insertPlanetPointsLedgerSchema = createInsertSchema(planetPointsLedger).pick({
+  heroId: true,
+  transactionType: true,
+  source: true,
+  refType: true,
+  refId: true,
+  pointsDelta: true,
+  balanceBefore: true,
+  balanceAfter: true,
+  description: true,
+});
+
+export const insertRewardRedemptionSchema = createInsertSchema(rewardRedemptions).pick({
+  heroId: true,
+  rewardId: true,
+  pointsSpent: true,
+  deliveryAddress: true,
+});
+
+export const insertDailyQuestSchema = createInsertSchema(dailyQuests).pick({
+  heroId: true,
+  questType: true,
+  description: true,
+  pointsReward: true,
+  xpReward: true,
+  questDate: true,
+});
+
+export const redeemRewardSchema = z.object({
+  rewardId: z.string(),
+  deliveryAddress: z.string().optional(),
+});
+
+export const insertAchievementBadgeSchema = createInsertSchema(achievementBadges).pick({
+  code: true,
+  name: true,
+  description: true,
+  category: true,
+  rarity: true,
+  iconUrl: true,
+  glowEffect: true,
+  unlockedBy: true,
+  xpBonus: true,
+});
+
+export const updateAvatarSchema = z.object({
+  avatarName: z.string().optional(),
+  avatarStyle: z.record(z.any()).optional(),
+  equippedBadges: z.array(z.string()).optional(),
+});
+
+// Enhanced existing schemas for mission gaming
+export type PlanetMission = typeof planetMissions.$inferSelect;
+export type HeroMissionProgress = typeof heroMissionProgress.$inferSelect;
+export type PlanetPointsTransaction = typeof planetPointsLedger.$inferSelect;
+export type MetaverseAvatar = typeof metaverseAvatars.$inferSelect;
+export type AchievementBadge = typeof achievementBadges.$inferSelect;
+export type HeroBadge = typeof heroBadges.$inferSelect;
+export type MetaverseReward = typeof metaverseRewards.$inferSelect;
+export type RewardRedemption = typeof rewardRedemptions.$inferSelect;
+export type DailyQuest = typeof dailyQuests.$inferSelect;
+
+export type InsertPlanetMission = z.infer<typeof insertPlanetMissionSchema>;
+export type AcceptMission = z.infer<typeof acceptMissionSchema>;
+export type UpdateMissionProgress = z.infer<typeof updateMissionProgressSchema>;
+export type CompleteMission = z.infer<typeof completeMissionSchema>;
+export type InsertMetaverseReward = z.infer<typeof insertMetaverseRewardSchema>;
+export type RedeemReward = z.infer<typeof redeemRewardSchema>;
+export type InsertAchievementBadge = z.infer<typeof insertAchievementBadgeSchema>;
+export type UpdateAvatar = z.infer<typeof updateAvatarSchema>;
 
 // Zod schemas
 export const insertHeroSchema = createInsertSchema(heroes).pick({
