@@ -2,10 +2,33 @@ import { Link, useLocation } from "wouter";
 import { 
   Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, 
   Briefcase, ShoppingCart, UserCircle, ChevronDown, LogIn, UserPlus, 
-  Settings, HelpCircle 
+  Settings, HelpCircle, Star, Trophy 
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
+import { useQuery } from "@tanstack/react-query";
+
+// Planet Points Widget Component
+function PlanetPointsWidget() {
+  // Use static demo data for now - in production this would connect to real user data
+  const currentPoints = 1247; // Demo points
+  const heroLevel = "Bronze"; // Demo level
+
+  return (
+    <Link
+      href="/play"
+      className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600/20 to-hero-green-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-hero-green-600/30 hover:border-purple-400/60 transition-all shadow-sm hover:shadow-purple-500/20"
+      data-testid="planet-points-widget"
+    >
+      <Star className="w-4 h-4 text-yellow-400" />
+      <div className="flex flex-col items-start">
+        <span className="text-xs font-bold text-purple-200">{currentPoints.toLocaleString()}</span>
+        <span className="text-xs text-purple-400">Planet Points</span>
+      </div>
+      <Trophy className="w-4 h-4 text-amber-400" />
+    </Link>
+  );
+}
 
 export function Navigation() {
   const [location] = useLocation();
@@ -34,7 +57,6 @@ export function Navigation() {
 
   const consumerNavItems = [
     { path: "/play", label: "🎮 Play", id: "play", featured: true },
-    { path: "/earn", label: "Earn", id: "earn" },
     { path: "/rewards", label: "Rewards", id: "rewards" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/icelandic-glacial", label: "Icelandic Water", id: "icelandic-glacial" },
@@ -179,6 +201,9 @@ export function Navigation() {
 
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center space-x-4">
+              {/* Planet Points Widget */}
+              {!isB2BMode && <PlanetPointsWidget />}
+              
               <Link
                 href="/cart"
                 className="relative p-2 text-gray-300 hover:text-white transition-colors"

@@ -21,6 +21,26 @@ export default function Rewards() {
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Transform your Planet Points into amazing rewards. From the latest tech and premium water systems to restaurant vouchers and exclusive experiences - your environmental impact has real value.
           </p>
+          
+          {/* Planet Points Gaming CTA */}
+          <div className="bg-gradient-to-r from-purple-600/20 to-hero-green-600/20 border border-purple-500/40 rounded-2xl p-6 mb-8 max-w-4xl mx-auto">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-purple-500/20 rounded-full">
+                  <Star className="w-8 h-8 text-yellow-400" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">🎮 Earn More Planet Points</h3>
+                  <p className="text-gray-300">Play games, spin the Tombola wheel, and unlock achievements to boost your points balance</p>
+                </div>
+              </div>
+              <Link href="/play">
+                <Button className="bg-gradient-to-r from-purple-600 to-hero-green-600 hover:from-purple-700 hover:to-hero-green-700 text-white px-6 py-3 font-bold">
+                  🎰 Play Now
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Point Balance */}
