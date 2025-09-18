@@ -26,6 +26,7 @@ import Partners from "@/pages/partners";
 import Community from "@/pages/community";
 import MissionControlPakistan from "@/pages/mission-control-pakistan";
 import RestaurantRewards from "@/pages/restaurant-rewards";
+import MetaverseGamingHub from "@/pages/metaverse-gaming-hub";
 import CartPage from "@/pages/cart";
 import SignupPage from "@/pages/signup";
 import LoginPage from "@/pages/login";
@@ -83,6 +84,10 @@ function Router() {
       {/* Pakistan Flood Relief Mission */}
       <Route path="/mission-control-pakistan" component={MissionControlPakistan} />
       <Route path="/restaurant-rewards" component={RestaurantRewards} />
+      
+      {/* Metaverse Gaming Hub */}
+      <Route path="/metaverse-gaming" component={MetaverseGamingHub} />
+      <Route path="/gaming-hub" component={MetaverseGamingHub} />
 
       {/* B2B Corporate Routes */}
       <Route path="/bulk-tradein" component={BulkTradeInPage} />

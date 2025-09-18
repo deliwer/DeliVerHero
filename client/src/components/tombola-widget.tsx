@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { Dices, Sparkles, Gift, Star, Clock, Ticket, Award } from "lucide-react";
+import { Dices, Sparkles, Gift, Star, Clock, Ticket, Award, Zap, Target, Gamepad2, Trophy, Rocket, Atom } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -12,7 +12,7 @@ import type { TombolaPrize, HeroSpinCount } from "@shared/schema";
 
 interface TombolaWidgetProps {
   heroId: string;
-  theme?: "aquacafe" | "default";
+  theme?: "aquacafe" | "metaverse" | "default";
   size?: "compact" | "full";
 }
 
@@ -146,19 +146,20 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
 
   const isCompact = size === "compact";
   const isAquaCafe = theme === "aquacafe";
+  const isMetaverse = theme === "metaverse";
 
   if (prizesLoading || eligibilityLoading) {
     return (
-      <Card className={`${isAquaCafe ? 'glass border-cyan-500/30' : 'glass border-slate-600'}`}>
+      <Card className={`${isMetaverse ? 'glass border-purple-500/50 bg-gradient-to-br from-purple-950/70 to-blue-950/70' : isAquaCafe ? 'glass border-cyan-500/30' : 'glass border-slate-600'}`}>
         <CardContent className="p-6">
           <div className="animate-pulse space-y-4">
-            <div className="h-6 bg-slate-700 rounded"></div>
+            <div className={`h-6 ${isMetaverse ? 'bg-purple-700' : 'bg-slate-700'} rounded`}></div>
             <div className="grid grid-cols-3 gap-4">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="h-20 bg-slate-700 rounded"></div>
+                <div key={i} className={`h-20 ${isMetaverse ? 'bg-purple-700' : 'bg-slate-700'} rounded`}></div>
               ))}
             </div>
-            <div className="h-10 bg-slate-700 rounded"></div>
+            <div className={`h-10 ${isMetaverse ? 'bg-purple-700' : 'bg-slate-700'} rounded`}></div>
           </div>
         </CardContent>
       </Card>
@@ -167,41 +168,93 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
 
   return (
     <>
-      <Card className={`${isAquaCafe ? 'glass border-cyan-500/30 bg-gradient-to-br from-cyan-950/50 to-blue-950/50' : 'glass border-slate-600'}`} data-testid="tombola-widget">
+      <Card className={`${
+        isMetaverse ? 'glass border-purple-500/50 bg-gradient-to-br from-purple-950/70 to-indigo-950/70 relative overflow-hidden' :
+        isAquaCafe ? 'glass border-cyan-500/30 bg-gradient-to-br from-cyan-950/50 to-blue-950/50' : 
+        'glass border-slate-600'
+      }`} data-testid="tombola-widget">
+        {/* Metaverse Background Effects */}
+        {isMetaverse && (
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-2 left-4 w-1 h-1 bg-purple-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-6 right-8 w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+            <div className="absolute bottom-8 left-6 w-1 h-1 bg-pink-400 rounded-full animate-pulse delay-700"></div>
+            <div className="absolute bottom-4 right-4 w-2 h-2 bg-cyan-400 rounded-full animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-2 w-1 h-1 bg-yellow-400 rounded-full animate-pulse delay-500"></div>
+          </div>
+        )}
+        
         <CardHeader className={isCompact ? "pb-4" : "pb-6"}>
-          <CardTitle className={`text-center ${isAquaCafe ? 'text-cyan-100' : 'text-white'} ${isCompact ? 'text-lg' : 'text-2xl'}`}>
+          <CardTitle className={`text-center relative z-10 ${
+            isMetaverse ? 'text-purple-100' : 
+            isAquaCafe ? 'text-cyan-100' : 
+            'text-white'
+          } ${isCompact ? 'text-lg' : 'text-2xl'}`}>
             <div className="flex items-center justify-center gap-2">
-              <Ticket className={`${isCompact ? 'w-5 h-5' : 'w-6 h-6'} ${isAquaCafe ? 'text-cyan-400' : 'text-emerald-400'}`} />
-              AquaCafe Heroes Tombola
-              <Star className={`${isCompact ? 'w-5 h-5' : 'w-6 h-6'} ${isAquaCafe ? 'text-cyan-400' : 'text-emerald-400'}`} />
+              {isMetaverse ? (
+                <>
+                  <Atom className={`${isCompact ? 'w-5 h-5' : 'w-6 h-6'} text-purple-400 animate-spin`} />
+                  🌌 Metaverse F&B Tombola 🚀
+                  <Rocket className={`${isCompact ? 'w-5 h-5' : 'w-6 h-6'} text-purple-400`} />
+                </>
+              ) : (
+                <>
+                  <Ticket className={`${isCompact ? 'w-5 h-5' : 'w-6 h-6'} ${isAquaCafe ? 'text-cyan-400' : 'text-emerald-400'}`} />
+                  AquaCafe Heroes Tombola
+                  <Star className={`${isCompact ? 'w-5 h-5' : 'w-6 h-6'} ${isAquaCafe ? 'text-cyan-400' : 'text-emerald-400'}`} />
+                </>
+              )}
             </div>
           </CardTitle>
           {!isCompact && (
-            <p className={`text-center ${isAquaCafe ? 'text-cyan-200' : 'text-gray-300'} text-sm`}>
-              Spin for sustainability prizes and digital rewards!
+            <p className={`text-center ${
+              isMetaverse ? 'text-purple-200' : 
+              isAquaCafe ? 'text-cyan-200' : 
+              'text-gray-300'
+            } text-sm`}>
+              {isMetaverse ? 
+                "🎮 Spin the cosmic wheel for premium restaurant rewards!" : 
+                "Spin for sustainability prizes and digital rewards!"
+              }
             </p>
           )}
         </CardHeader>
 
-        <CardContent className={isCompact ? "p-4" : "p-6"}>
+        <CardContent className={`${isCompact ? "p-4" : "p-6"} relative z-10`}>
           {/* Prize Display */}
-          <div className={`${isAquaCafe ? 'bg-cyan-900/30 border-cyan-500/30' : 'bg-slate-800 border-slate-600'} rounded-xl p-4 mb-6 border`} data-testid="prize-display">
+          <div className={`${
+            isMetaverse ? 'bg-gradient-to-br from-purple-900/40 to-indigo-900/40 border-purple-500/40' :
+            isAquaCafe ? 'bg-cyan-900/30 border-cyan-500/30' : 
+            'bg-slate-800 border-slate-600'
+          } rounded-xl p-4 mb-6 border ${isMetaverse ? 'shadow-lg shadow-purple-500/20' : ''}`} data-testid="prize-display">
             <div className="grid grid-cols-3 gap-3">
               {currentPrizeIndices.map((prizeIndex, slotIndex) => {
                 const slotValue = slotValues[prizeIndex] || slotValues[0];
                 return (
                   <div 
                     key={slotIndex} 
-                    className={`${isAquaCafe ? 'bg-cyan-950/50 border-cyan-500/30' : 'bg-slate-900 border-slate-600'} rounded-lg ${isCompact ? 'p-3' : 'p-4'} text-center border ${
-                      spinning ? `${isAquaCafe ? 'border-cyan-400' : 'border-emerald-500'} animate-pulse` : ''
-                    }`}
+                    className={`${
+                      isMetaverse ? 'bg-gradient-to-br from-purple-950/60 to-indigo-950/60 border-purple-500/40' :
+                      isAquaCafe ? 'bg-cyan-950/50 border-cyan-500/30' : 
+                      'bg-slate-900 border-slate-600'
+                    } rounded-lg ${isCompact ? 'p-3' : 'p-4'} text-center border ${
+                      spinning ? `${
+                        isMetaverse ? 'border-purple-400 shadow-lg shadow-purple-500/30' :
+                        isAquaCafe ? 'border-cyan-400' : 
+                        'border-emerald-500'
+                      } animate-pulse` : ''
+                    } ${isMetaverse ? 'transform transition-all hover:scale-105' : ''}`}
                     data-testid={`prize-slot-${slotIndex}`}
                   >
-                    <div className={`${isCompact ? 'text-xl' : 'text-3xl'} mb-2`}>{slotValue.icon}</div>
+                    <div className={`${isCompact ? 'text-xl' : 'text-3xl'} mb-2 ${spinning && isMetaverse ? 'animate-bounce' : ''}`}>{slotValue.icon}</div>
                     <div className={`${isCompact ? 'text-sm' : 'text-base'} font-bold ${slotValue.color} mb-1`}>
                       {slotValue.name}
                     </div>
-                    <div className={`text-xs ${isAquaCafe ? 'text-cyan-300' : 'text-gray-400'}`}>{slotValue.subtitle}</div>
+                    <div className={`text-xs ${
+                      isMetaverse ? 'text-purple-300' :
+                      isAquaCafe ? 'text-cyan-300' : 
+                      'text-gray-400'
+                    }`}>{slotValue.subtitle}</div>
                   </div>
                 );
               })}
@@ -210,24 +263,48 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
 
           {/* Spin Results */}
           {showResults && spinResult && (
-            <div className={`${spinResult.prize ? (isAquaCafe ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400' : 'bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border-emerald-400') : (isAquaCafe ? 'bg-cyan-800/30 border-cyan-600/50' : 'bg-slate-700/50 border-slate-500')} border rounded-lg p-4 mb-4 text-center`} data-testid="spin-results">
+            <div className={`${spinResult.prize ? (
+              isMetaverse ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-purple-400 shadow-lg shadow-purple-500/30' :
+              isAquaCafe ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400' : 
+              'bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border-emerald-400'
+            ) : (
+              isMetaverse ? 'bg-purple-800/30 border-purple-600/50' :
+              isAquaCafe ? 'bg-cyan-800/30 border-cyan-600/50' : 
+              'bg-slate-700/50 border-slate-500'
+            )} border rounded-lg p-4 mb-4 text-center`} data-testid="spin-results">
               {spinResult.prize ? (
                 <div>
-                  <div className={`${isAquaCafe ? 'text-cyan-400' : 'text-emerald-400'} font-bold text-lg mb-2`}>
-                    🎉 Congratulations! 🎉
+                  <div className={`${
+                    isMetaverse ? 'text-purple-400' :
+                    isAquaCafe ? 'text-cyan-400' : 
+                    'text-emerald-400'
+                  } font-bold text-lg mb-2`}>
+                    {isMetaverse ? '🚀 Cosmic Win! 🌟' : '🎉 Congratulations! 🎉'}
                   </div>
-                  <div className={`${isAquaCafe ? 'text-cyan-100' : 'text-white'} font-semibold`}>
+                  <div className={`${
+                    isMetaverse ? 'text-purple-100' :
+                    isAquaCafe ? 'text-cyan-100' : 
+                    'text-white'
+                  } font-semibold`}>
                     You won: {spinResult.prize.name}
                   </div>
                   {spinResult.coupon && (
-                    <div className={`${isAquaCafe ? 'text-cyan-200' : 'text-gray-300'} text-sm mt-1`}>
-                      Digital coupon added to your wallet!
+                    <div className={`${
+                      isMetaverse ? 'text-purple-200' :
+                      isAquaCafe ? 'text-cyan-200' : 
+                      'text-gray-300'
+                    } text-sm mt-1`}>
+                      {isMetaverse ? '🎫 Digital voucher beamed to your wallet!' : 'Digital coupon added to your wallet!'}
                     </div>
                   )}
                 </div>
               ) : (
-                <div className={`${isAquaCafe ? 'text-cyan-200' : 'text-gray-300'}`}>
-                  Try again! Every spin helps the environment 🌱
+                <div className={`${
+                  isMetaverse ? 'text-purple-200' :
+                  isAquaCafe ? 'text-cyan-200' : 
+                  'text-gray-300'
+                }`}>
+                  {isMetaverse ? 'Orbit complete! Try another spin! 🛸' : 'Try again! Every spin helps the environment 🌱'}
                 </div>
               )}
             </div>
@@ -238,11 +315,19 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
             {/* Spin Counter and Progress */}
             {spinCount && (
               <div className="flex justify-between items-center text-sm">
-                <span className={`${isAquaCafe ? 'text-cyan-300' : 'text-gray-300'}`}>
-                  Daily Spins: {spinCount.dailySpinsUsed}/5
+                <span className={`${
+                  isMetaverse ? 'text-purple-300' :
+                  isAquaCafe ? 'text-cyan-300' : 
+                  'text-gray-300'
+                }`}>
+                  {isMetaverse ? '🎮 Daily Spins: ' : 'Daily Spins: '}{spinCount.dailySpinsUsed}/5
                 </span>
-                <span className={`${isAquaCafe ? 'text-cyan-300' : 'text-gray-300'}`}>
-                  Total: {spinCount.totalSpins}
+                <span className={`${
+                  isMetaverse ? 'text-purple-300' :
+                  isAquaCafe ? 'text-cyan-300' : 
+                  'text-gray-300'
+                }`}>
+                  {isMetaverse ? '🏆 Total: ' : 'Total: '}{spinCount.totalSpins}
                 </span>
               </div>
             )}
@@ -250,7 +335,11 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
             {spinCount && (
               <Progress 
                 value={(spinCount.dailySpinsUsed / 5) * 100} 
-                className={`h-2 ${isAquaCafe ? 'bg-cyan-900/50' : 'bg-slate-700'}`}
+                className={`h-2 ${
+                  isMetaverse ? 'bg-purple-900/50' :
+                  isAquaCafe ? 'bg-cyan-900/50' : 
+                  'bg-slate-700'
+                }`}
               />
             )}
 
@@ -258,16 +347,25 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
             <Button 
               onClick={handleSpin}
               disabled={spinning || spinMutation.isPending || !(canSpinData as any)?.canSpin}
-              className={`w-full ${isAquaCafe 
-                ? 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500' 
-                : 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500'
-              } text-white font-bold ${isCompact ? 'py-2' : 'py-3'} rounded-lg transition-all transform hover:scale-105`}
+              className={`w-full ${
+                isMetaverse 
+                  ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 hover:from-purple-500 hover:via-pink-500 hover:to-indigo-500 shadow-lg shadow-purple-500/30' 
+                  : isAquaCafe 
+                  ? 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500' 
+                  : 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500'
+              } text-white font-bold ${isCompact ? 'py-2' : 'py-3'} rounded-lg transition-all transform hover:scale-105 ${
+                isMetaverse ? 'hover:shadow-xl hover:shadow-purple-500/40' : ''
+              }`}
               data-testid="button-spin"
             >
               {spinning || spinMutation.isPending ? (
                 <>
-                  <Sparkles className={`mr-2 ${isCompact ? 'w-4 h-4' : 'w-5 h-5'} animate-spin`} />
-                  Spinning...
+                  {isMetaverse ? (
+                    <Atom className={`mr-2 ${isCompact ? 'w-4 h-4' : 'w-5 h-5'} animate-spin`} />
+                  ) : (
+                    <Sparkles className={`mr-2 ${isCompact ? 'w-4 h-4' : 'w-5 h-5'} animate-spin`} />
+                  )}
+                  {isMetaverse ? 'Launching...' : 'Spinning...'}
                 </>
               ) : !(canSpinData as any)?.canSpin ? (
                 <>
@@ -276,16 +374,24 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
                 </>
               ) : (
                 <>
-                  <Dices className={`mr-2 ${isCompact ? 'w-4 h-4' : 'w-5 h-5'}`} />
-                  Spin for Prizes!
+                  {isMetaverse ? (
+                    <Target className={`mr-2 ${isCompact ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                  ) : (
+                    <Dices className={`mr-2 ${isCompact ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                  )}
+                  {isMetaverse ? '🚀 Launch for F&B Rewards!' : 'Spin for Prizes!'}
                 </>
               )}
             </Button>
 
             {/* Next spin countdown */}
             {!(canSpinData as any)?.canSpin && (canSpinData as any)?.timeUntilNextSpin && (
-              <div className={`text-center text-xs ${isAquaCafe ? 'text-cyan-400' : 'text-gray-400'}`}>
-                Next spin in: {formatTimeUntilNext((canSpinData as any).timeUntilNextSpin)}
+              <div className={`text-center text-xs ${
+                isMetaverse ? 'text-purple-400' :
+                isAquaCafe ? 'text-cyan-400' : 
+                'text-gray-400'
+              }`}>
+                {isMetaverse ? '⏰ Next launch in: ' : 'Next spin in: '}{formatTimeUntilNext((canSpinData as any).timeUntilNextSpin)}
               </div>
             )}
           </div>
@@ -326,8 +432,13 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
 // Helper functions
 function getPrizeIcon(type: string): string {
   switch (type.toLowerCase()) {
+    case 'restaurant_voucher': return '🍽️';
+    case 'premium_dining': return '👨‍🍳';
+    case 'cocktail_special': return '🍸';
+    case 'dessert_deluxe': return '🍰';
+    case 'chef_experience': return '⭐';
     case 'digital_coupon': return '🎫';
-    case 'points': return '⭐';
+    case 'points': return '⚡';
     case 'physical_item': return '🎁';
     case 'experience': return '🌟';
     case 'discount': return '💰';

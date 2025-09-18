@@ -60,6 +60,7 @@ export default function RestaurantRewards() {
   const { toast } = useToast();
 
   const restaurants: Restaurant[] = [
+    // Middle Eastern Cuisine
     {
       id: "emily-chilly",
       name: "Emily Chilly",
@@ -69,35 +70,230 @@ export default function RestaurantRewards() {
       website: "https://emilychilly.com",
       rating: 4.8,
       image: "/restaurants/emily-chilly-interior.jpg",
-      specialOffer: "Double points for Pakistan flood relief contributors",
-      missionBonus: "Extra 100 points for every device donated to mission",
+      specialOffer: "🌌 Metaverse Explorer Bonus: Double points for sustainability mission contributors",
+      missionBonus: "🚀 Cosmic Rewards: Extra 150 points for every device traded in our planet protection program",
       rewards: [
         {
-          points: 500,
-          reward: "AED 25 Meal Voucher",
+          points: 400,
+          reward: "🍽️ Mezze Platter Voucher",
           value: "AED 25",
           available: true
         },
         {
-          points: 1000,
-          reward: "Free Appetizer + Main Course",
+          points: 800,
+          reward: "🥙 Lebanese Feast for One",
           value: "AED 65",
           available: true
         },
         {
-          points: 2500,
-          reward: "Dinner for Two with Dessert",
+          points: 1800,
+          reward: "🍷 Dinner Date Experience",
           value: "AED 150",
-          available: false
+          available: true
         },
         {
-          points: 5000,
-          reward: "Private Lebanese Cooking Class",
+          points: 4500,
+          reward: "👨‍🍳 Private Lebanese Cooking Class",
           value: "AED 300",
           available: true
         }
       ]
     },
+    {
+      id: "al-hadheerah",
+      name: "Al Hadheerah Desert Restaurant",
+      cuisine: "Traditional Emirati",
+      location: "Al Sahra Desert Resort",
+      phone: "+971 4 832 9999",
+      website: "https://alhadheerah.com",
+      rating: 4.9,
+      image: "/restaurants/al-hadheerah.jpg",
+      specialOffer: "🏜️ Desert Gaming Vault: Traditional desert dining with modern sustainability rewards",
+      missionBonus: "🐪 Nomad Points: Cultural immersion bonus for eco-warriors",
+      rewards: [
+        {
+          points: 600,
+          reward: "🍖 Emirati BBQ Platter",
+          value: "AED 35",
+          available: true
+        },
+        {
+          points: 1200,
+          reward: "🎭 Traditional Dinner & Show",
+          value: "AED 85",
+          available: true
+        },
+        {
+          points: 2800,
+          reward: "🌟 VIP Desert Experience",
+          value: "AED 200",
+          available: true
+        }
+      ]
+    },
+
+    // Asian Cuisine Hub
+    {
+      id: "nobu-dubai",
+      name: "Nobu Dubai",
+      cuisine: "Japanese Fine Dining",
+      location: "Atlantis The Palm",
+      phone: "+971 4 426 2626",
+      website: "https://nobudubai.com",
+      rating: 4.7,
+      image: "/restaurants/nobu-dubai.jpg",
+      specialOffer: "🍣 Samurai Rewards: Premium sushi experiences for metaverse champions",
+      missionBonus: "⛩️ Zen Master Bonus: Meditation dining for planet protectors",
+      rewards: [
+        {
+          points: 1500,
+          reward: "🍱 Omakase Lunch Set",
+          value: "AED 120",
+          available: true
+        },
+        {
+          points: 3500,
+          reward: "🍣 Premium Sushi Experience",
+          value: "AED 280",
+          available: true
+        },
+        {
+          points: 6000,
+          reward: "👨‍🍳 Chef's Signature Tasting",
+          value: "AED 450",
+          available: false
+        }
+      ]
+    },
+    {
+      id: "pai-thai",
+      name: "Pai Thai Restaurant",
+      cuisine: "Royal Thai",
+      location: "Jumeirah Al Qasr",
+      phone: "+971 4 366 8888",
+      rating: 4.6,
+      image: "/restaurants/pai-thai.jpg",
+      specialOffer: "🌶️ Spice Galaxy: Authentic Thai flavors with cosmic point multipliers",
+      missionBonus: "🐘 Thai Temple Blessing: Cultural bonus for sustainability heroes",
+      rewards: [
+        {
+          points: 700,
+          reward: "🍜 Royal Thai Curry Set",
+          value: "AED 45",
+          available: true
+        },
+        {
+          points: 1400,
+          reward: "🦐 Seafood Tom Yum Feast",
+          value: "AED 95",
+          available: true
+        },
+        {
+          points: 3200,
+          reward: "🍛 Royal Banquet for Two",
+          value: "AED 220",
+          available: true
+        }
+      ]
+    },
+    {
+      id: "tresind-studio",
+      name: "Tresind Studio",
+      cuisine: "Modern Indian",
+      location: "DIFC",
+      phone: "+971 4 572 4545",
+      rating: 4.8,
+      image: "/restaurants/tresind-studio.jpg",
+      specialOffer: "🌟 Bollywood Metaverse: Contemporary Indian with futuristic presentation",
+      missionBonus: "🕉️ Karma Points: Spiritual dining rewards for environmental warriors",
+      rewards: [
+        {
+          points: 900,
+          reward: "🍛 Modern Indian Tasting",
+          value: "AED 65",
+          available: true
+        },
+        {
+          points: 2100,
+          reward: "🔥 Molecular Gastronomy Experience",
+          value: "AED 150",
+          available: true
+        },
+        {
+          points: 4800,
+          reward: "👑 Chef's Laboratory Journey",
+          value: "AED 350",
+          available: true
+        }
+      ]
+    },
+
+    // European Fine Dining
+    {
+      id: "la-petite-maison",
+      name: "La Petite Maison",
+      cuisine: "French Mediterranean",
+      location: "DIFC",
+      phone: "+971 4 439 0505",
+      website: "https://lapetitemaison-dubai.com",
+      rating: 4.7,
+      image: "/restaurants/la-petite-maison.jpg",
+      specialOffer: "🇫🇷 Parisian Portal: French elegance meets sustainability gaming",
+      missionBonus: "🍷 Wine Cosmos: Premium vintages for eco-conscious diners",
+      rewards: [
+        {
+          points: 1200,
+          reward: "🥖 French Riviera Lunch",
+          value: "AED 85",
+          available: true
+        },
+        {
+          points: 2800,
+          reward: "🍾 Wine Pairing Dinner",
+          value: "AED 200",
+          available: true
+        },
+        {
+          points: 5500,
+          reward: "✨ Chef's Private Table",
+          value: "AED 400",
+          available: true
+        }
+      ]
+    },
+    {
+      id: "osteria-mozza",
+      name: "Osteria Mozza",
+      cuisine: "Authentic Italian",
+      location: "Hilton Dubai The Walk",
+      phone: "+971 4 399 1111",
+      rating: 4.5,
+      image: "/restaurants/osteria-mozza.jpg",
+      specialOffer: "🍕 Italian Space Station: Wood-fired pizzas with galactic gaming rewards",
+      missionBonus: "🇮🇹 Nonna's Blessing: Family recipes for planet protectors",
+      rewards: [
+        {
+          points: 600,
+          reward: "🍕 Artisan Pizza & Salad",
+          value: "AED 40",
+          available: true
+        },
+        {
+          points: 1300,
+          reward: "🍝 Pasta & Wine Evening",
+          value: "AED 90",
+          available: true
+        },
+        {
+          points: 2900,
+          reward: "🧀 Truffle Tasting Experience",
+          value: "AED 210",
+          available: true
+        }
+      ]
+    },
+
+    // International Fusion & Cafes
     {
       id: "bb-restaurant",
       name: "B&B Restaurant",
@@ -106,32 +302,130 @@ export default function RestaurantRewards() {
       phone: "+971 4 987 6543",
       rating: 4.6,
       image: "/restaurants/bb-restaurant-dining.jpg",
-      specialOffer: "Free beverage for every 100 points donated to Pakistan mission",
-      missionBonus: "Weekend brunch upgrade for mission contributors",
+      specialOffer: "🌍 Global Gaming Hub: International flavors with metaverse point boosters",
+      missionBonus: "🍹 Fusion Reactor: Weekend brunch upgrades for mission contributors",
       rewards: [
         {
-          points: 400,
-          reward: "AED 20 Dining Credit",
-          value: "AED 20",
+          points: 350,
+          reward: "☕ Fusion Breakfast Bowl",
+          value: "AED 25",
           available: true
         },
         {
-          points: 800,
-          reward: "Complimentary Lunch",
-          value: "AED 45",
+          points: 750,
+          reward: "🥂 Weekend Brunch Special",
+          value: "AED 55",
           available: true
         },
         {
-          points: 2000,
-          reward: "Weekend Brunch for Two",
+          points: 1700,
+          reward: "🍾 Champagne Brunch for Two",
           value: "AED 120",
           available: true
         },
         {
-          points: 4000,
-          reward: "Chef's Table Experience",
+          points: 3800,
+          reward: "👨‍🍳 Chef's Fusion Laboratory",
           value: "AED 250",
           available: false
+        }
+      ]
+    },
+    {
+      id: "suma-coffee",
+      name: "Suma Coffee & Kitchen",
+      cuisine: "Specialty Coffee & Brunch",
+      location: "Al Serkal Avenue",
+      phone: "+971 4 347 7749",
+      rating: 4.4,
+      image: "/restaurants/suma-coffee.jpg",
+      specialOffer: "☕ Caffeine Cosmos: Artisan coffee with productivity point multipliers",
+      missionBonus: "🌱 Bean to Cup Karma: Sustainable coffee rewards for eco-heroes",
+      rewards: [
+        {
+          points: 200,
+          reward: "☕ Premium Coffee & Pastry",
+          value: "AED 15",
+          available: true
+        },
+        {
+          points: 450,
+          reward: "🥐 Artisan Brunch Set",
+          value: "AED 35",
+          available: true
+        },
+        {
+          points: 900,
+          reward: "🧑‍🍳 Coffee Cupping Session",
+          value: "AED 65",
+          available: true
+        }
+      ]
+    },
+
+    // Dessert & Sweet Experiences
+    {
+      id: "sticky-pudding-co",
+      name: "Sticky Pudding Co.",
+      cuisine: "Gourmet Desserts",
+      location: "City Walk",
+      phone: "+971 4 232 4545",
+      rating: 4.3,
+      image: "/restaurants/sticky-pudding.jpg",
+      specialOffer: "🍰 Sugar Rush Galaxy: Sweet rewards for metaverse achievements",
+      missionBonus: "🍭 Candy Land Bonus: Extra dessert credits for planet savers",
+      rewards: [
+        {
+          points: 300,
+          reward: "🍮 Signature Sticky Pudding",
+          value: "AED 20",
+          available: true
+        },
+        {
+          points: 650,
+          reward: "🎂 Custom Cake Creation",
+          value: "AED 45",
+          available: true
+        },
+        {
+          points: 1200,
+          reward: "🍫 Chocolate Workshop Experience",
+          value: "AED 85",
+          available: true
+        }
+      ]
+    },
+
+    // Premium Steakhouse
+    {
+      id: "prime68",
+      name: "Prime68 Steakhouse",
+      cuisine: "Premium Steaks & Grills",
+      location: "JW Marriott Marquis",
+      phone: "+971 4 414 3000",
+      website: "https://prime68dubai.com",
+      rating: 4.6,
+      image: "/restaurants/prime68.jpg",
+      specialOffer: "🥩 Carnivore Cosmos: Premium steaks with galactic point rewards",
+      missionBonus: "🔥 Grill Master Quest: BBQ experiences for environmental champions",
+      rewards: [
+        {
+          points: 1800,
+          reward: "🥩 Wagyu Steak Dinner",
+          value: "AED 135",
+          available: true
+        },
+        {
+          points: 3200,
+          reward: "🍖 Tomahawk Experience for Two",
+          value: "AED 240",
+          available: true
+        },
+        {
+          points: 6500,
+          reward: "👑 Ultimate Meat Lover's Journey",
+          value: "AED 480",
+          available: true
         }
       ]
     }
@@ -218,85 +512,123 @@ export default function RestaurantRewards() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex justify-center items-center gap-4 mb-6">
-            <Utensils className="w-12 h-12 text-emerald-400" />
-            <span className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-              Restaurant Rewards
+            <div className="relative">
+              <Utensils className="w-12 h-12 text-emerald-400" />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-purple-500 rounded-full animate-pulse"></div>
+            </div>
+            <span className="text-4xl font-bold bg-gradient-to-r from-emerald-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+              🌌 Metaverse F&B Rewards 🚀
             </span>
           </div>
           <h1 className="text-4xl font-bold text-white mb-4">
-            Dine for Pakistan Relief
+            🍽️ Cosmic Dining Adventures Await
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Redeem your Planet Points for amazing meals while supporting Pakistan flood relief. Every bite helps families in need!
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+            Experience Dubai's finest restaurants through our metaverse tombola system! Earn Planet Points through sustainability missions, spin the cosmic wheel, and unlock premium dining vouchers across 10+ international cuisine partners.
           </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <div className="bg-purple-900/30 border border-purple-500/30 rounded-full px-4 py-2 text-purple-300 text-sm">
+              🎮 10+ Restaurant Partners
+            </div>
+            <div className="bg-blue-900/30 border border-blue-500/30 rounded-full px-4 py-2 text-blue-300 text-sm">
+              🌍 8 International Cuisines
+            </div>
+            <div className="bg-emerald-900/30 border border-emerald-500/30 rounded-full px-4 py-2 text-emerald-300 text-sm">
+              🏆 Premium Dining Experiences
+            </div>
+          </div>
         </div>
 
-        {/* Mission Impact Banner */}
-        <Card className="bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border-cyan-500/50 mb-8">
-          <CardContent className="p-6">
+        {/* Metaverse Gaming Hub Banner */}
+        <Card className="bg-gradient-to-r from-purple-900/40 via-indigo-900/40 to-pink-900/40 border-purple-500/50 mb-8 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-4 left-8 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-8 right-12 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+            <div className="absolute bottom-6 left-16 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-700"></div>
+            <div className="absolute bottom-8 right-8 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-1000"></div>
+          </div>
+          <CardContent className="p-6 relative z-10">
             <div className="text-center">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <Heart className="w-8 h-8 text-cyan-400" />
-                <span className="text-2xl font-bold text-white">Pakistan Flood Relief Mission Active</span>
+                <div className="relative">
+                  <Heart className="w-8 h-8 text-purple-400" />
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-pink-500 rounded-full animate-ping"></div>
+                </div>
+                <span className="text-2xl font-bold text-white">🎮 Metaverse F&B Gaming Hub Active 🌌</span>
               </div>
-              <p className="text-cyan-200 mb-4">
-                Every meal you enjoy with Planet Points contributes to clean water for flood victims. 
-                <br />Verified by Pakistan Association Dubai.
+              <p className="text-purple-200 mb-4">
+                Every cosmic spin and dining experience powers global sustainability missions! 
+                <br />🚀 Join 2,847+ heroes earning rewards while saving the planet through gaming.
               </p>
-              <div className="grid grid-cols-3 gap-4 text-center max-w-md mx-auto">
+              <div className="grid grid-cols-4 gap-4 text-center max-w-2xl mx-auto">
                 <div>
-                  <div className="text-2xl font-bold text-cyan-400">47/500</div>
-                  <div className="text-cyan-200 text-sm">Water Filters Deployed</div>
+                  <div className="text-2xl font-bold text-purple-400">2,847</div>
+                  <div className="text-purple-200 text-sm">🎮 Active Gamers</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-emerald-400">1,175</div>
-                  <div className="text-emerald-200 text-sm">People Served</div>
+                  <div className="text-2xl font-bold text-pink-400">47,392</div>
+                  <div className="text-pink-200 text-sm">🎫 Vouchers Earned</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-400">78</div>
-                  <div className="text-blue-200 text-sm">Days to GitEx 2025</div>
+                  <div className="text-2xl font-bold text-cyan-400">156</div>
+                  <div className="text-cyan-200 text-sm">🏆 Achievements</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-emerald-400">78</div>
+                  <div className="text-emerald-200 text-sm">⏰ Days to GitEx</div>
                 </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* User Points Dashboard */}
-        <Card className="bg-gradient-to-r from-emerald-900/30 to-green-900/30 border-emerald-500/50 mb-12">
+        {/* Metaverse Points Dashboard */}
+        <Card className="bg-gradient-to-r from-purple-900/40 via-emerald-900/30 to-blue-900/40 border-purple-500/50 mb-12 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-2 left-4 w-1 h-1 bg-emerald-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-6 right-8 w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-300"></div>
+            <div className="absolute bottom-4 left-6 w-1 h-1 bg-blue-400 rounded-full animate-pulse delay-700"></div>
+          </div>
           <CardHeader>
-            <CardTitle className="text-white text-center flex items-center justify-center gap-2">
-              <Coins className="w-6 h-6 text-emerald-400" />
-              Your Planet Points Balance
+            <CardTitle className="text-white text-center flex items-center justify-center gap-2 relative z-10">
+              <div className="relative">
+                <Coins className="w-6 h-6 text-purple-400" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+              </div>
+              🌌 Your Metaverse F&B Wallet
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-emerald-400">{userPoints.total}</div>
-                <div className="text-emerald-200 text-sm">Total Earned</div>
+                <div className="text-3xl font-bold text-purple-400">{userPoints.total}</div>
+                <div className="text-purple-200 text-sm">⚡ Total Power</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-400">{userPoints.available}</div>
-                <div className="text-green-200 text-sm">Available to Spend</div>
+                <div className="text-3xl font-bold text-emerald-400">{userPoints.available}</div>
+                <div className="text-emerald-200 text-sm">🎫 Spendable Credits</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400">{userPoints.donated}</div>
-                <div className="text-blue-200 text-sm">Donated to Mission</div>
+                <div className="text-3xl font-bold text-cyan-400">{userPoints.donated}</div>
+                <div className="text-cyan-200 text-sm">💫 Mission Invested</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">{userPoints.earned}</div>
-                <div className="text-purple-200 text-sm">Earned Today</div>
+                <div className="text-3xl font-bold text-pink-400">{userPoints.earned}</div>
+                <div className="text-pink-200 text-sm">🎮 Today's Gains</div>
               </div>
             </div>
             
             <div className="text-center mt-6">
-              <div className="bg-yellow-900/30 border border-yellow-500/50 rounded-lg p-4 inline-block">
-                <div className="flex items-center gap-2 text-yellow-400">
-                  <Heart className="w-5 h-5" />
-                  <span className="font-semibold">Pakistan Relief Bonus Active!</span>
+              <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-500/50 rounded-lg p-4 inline-block">
+                <div className="flex items-center gap-2 text-purple-300">
+                  <div className="relative">
+                    <Heart className="w-5 h-5" />
+                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-pink-500 rounded-full animate-ping"></div>
+                  </div>
+                  <span className="font-semibold">🚀 Metaverse Gaming Boost Active!</span>
                 </div>
-                <div className="text-yellow-200 text-sm mt-1">
-                  Contributing to flood relief earns 2x points at all partner restaurants
+                <div className="text-purple-200 text-sm mt-1">
+                  Playing the cosmic tombola earns 3x points at all F&B partners + sustainability impact
                 </div>
               </div>
             </div>
