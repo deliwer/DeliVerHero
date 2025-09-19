@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MeetDeliInteractive } from "./meet-deli-interactive";
 import { AquaCafeTab } from "./aquacafe-tab";
 import { HeroRegistrationModal, MissionSelectionModal } from "./hero-onboarding-modals";
+import { TombolaWidget } from "./tombola-widget";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
@@ -121,200 +122,155 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   );
 }
 
-// Step 1: Play Missions Section
+// Step 1: Play Missions Section with Tombola Game
 function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
+  const [heroId] = useState("demo-hero-id"); // Demo hero ID for tombola
+  
   return (
-    <section className="py-8 px-4 mb-8">
-      <div className="max-w-4xl mx-auto">
+    <section className="py-8 px-4 mb-8 relative overflow-hidden">
+      {/* Metaverse background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-indigo-900/20 to-blue-900/20"></div>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-20 right-16 w-3 h-3 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+        <div className="absolute bottom-20 left-16 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-700"></div>
+        <div className="absolute bottom-10 right-10 w-4 h-4 bg-cyan-400 rounded-full animate-pulse delay-1000"></div>
+      </div>
+      
+      <div className="max-w-4xl mx-auto relative z-10">
         <ProgressIndicator currentStep={1} />
         
         <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50">
-            <span className="text-green-300 font-bold text-lg">STEP 1 - PLAY</span>
+          <div className="inline-flex items-center bg-purple-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-purple-500/50">
+            <Gamepad2 className="w-5 h-5 text-purple-300 mr-2" />
+            <span className="text-purple-300 font-bold text-lg">STEP 1 - PLAY & WIN PRIZES</span>
+            <Sparkles className="w-5 h-5 text-purple-300 ml-2 animate-pulse" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Start Your Mission
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <span className="text-white">Start Playing in the </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+              Metaverse
+            </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Join sustainability missions and earn Planet Points through environmental actions.
+            🎮 Win prizes through our Tombola game, earn Planet Points, and unlock amazing rewards. 
+            <span className="text-purple-400 font-bold">Trade-in your iPhone as your primary mission to start earning!</span>
           </p>
         </div>
 
-        {/* Animated Point Collection System Infographic */}
-        <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* Metaverse Tombola Game Section */}
+        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden">
+          {/* Floating particles */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-4 left-8 w-1 h-1 bg-purple-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-12 right-12 w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-300"></div>
+            <div className="absolute bottom-12 left-12 w-1 h-1 bg-pink-400 rounded-full animate-pulse delay-700"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
             
-            {/* Left: Daily Activities Infographic */}
+            {/* Left: Tombola Game Widget */}
             <div>
-              <h3 className="text-xl font-bold text-white mb-6 text-center">🌱 Daily Eco-Actions</h3>
-              <div className="space-y-4">
-                
-                {/* Water Conservation */}
-                <div className="relative p-4 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl border border-blue-400/30">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-blue-500/30 rounded-full flex items-center justify-center">
-                        <Droplets className="w-5 h-5 text-blue-400" />
-                      </div>
-                      <span className="text-gray-200 font-medium">Water Conservation</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-green-400 font-bold text-lg">+500 PTS</div>
-                      <div className="text-xs text-gray-400">monthly</div>
-                    </div>
-                  </div>
-                  {/* Progress bar */}
-                  <div className="w-full bg-blue-900/50 rounded-full h-2 mb-2">
-                    <div className="bg-gradient-to-r from-blue-400 to-cyan-400 h-2 rounded-full w-3/4 animate-pulse"></div>
-                  </div>
-                  <div className="text-xs text-blue-300">12,500L saved this month</div>
-                </div>
-
-                {/* Referrals */}
-                <div className="relative p-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-400/30">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-purple-500/30 rounded-full flex items-center justify-center">
-                        <Users className="w-5 h-5 text-purple-400" />
-                      </div>
-                      <span className="text-gray-200 font-medium">Refer Friends</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-green-400 font-bold text-lg">+1,000 PTS</div>
-                      <div className="text-xs text-gray-400">per friend</div>
-                    </div>
-                  </div>
-                  {/* Friend icons */}
-                  <div className="flex gap-1 mb-2">
-                    <div className="w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center text-xs">👤</div>
-                    <div className="w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center text-xs">👤</div>
-                    <div className="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center text-xs opacity-50">+</div>
-                  </div>
-                  <div className="text-xs text-purple-300">2 friends joined</div>
-                </div>
-
-                {/* Daily Check-in */}
-                <div className="relative p-4 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 rounded-xl border border-amber-400/30">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-amber-500/30 rounded-full flex items-center justify-center">
-                        <Star className="w-5 h-5 text-amber-400 animate-pulse" />
-                      </div>
-                      <span className="text-gray-200 font-medium">Daily Check-in</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-green-400 font-bold text-lg">+100 PTS</div>
-                      <div className="text-xs text-gray-400">daily</div>
-                    </div>
-                  </div>
-                  {/* Week calendar */}
-                  <div className="grid grid-cols-7 gap-1 mb-2">
-                    {[1,2,3,4,5,6,7].map(day => (
-                      <div key={day} className={`w-4 h-4 rounded ${day <= 4 ? 'bg-amber-400' : 'bg-gray-600'}`}></div>
-                    ))}
-                  </div>
-                  <div className="text-xs text-amber-300">4 day streak!</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Center: Animated Points Collector */}
-            <div className="flex flex-col items-center justify-center">
-              {/* Animated Point Counter */}
-              <div className="relative mb-6">
-                <div className="w-32 h-32 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl animate-bounce">
-                  <div className="text-center">
-                    <div className="text-3xl font-black text-white mb-1">7,500+</div>
-                    <div className="text-xs text-green-100 font-bold">POINTS</div>
-                  </div>
-                </div>
-                
-                {/* Floating point indicators */}
-                <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center text-white text-xs font-bold animate-ping">
-                  +500
-                </div>
-                <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center text-white text-xs font-bold animate-pulse">
-                  +1K
-                </div>
-                <div className="absolute top-4 -left-4 w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
-                  +100
-                </div>
-              </div>
-
-              {/* Point flow animation */}
               <div className="text-center mb-6">
-                <div className="text-lg text-gray-300 mb-2">Average Monthly Points</div>
-                <div className="flex items-center justify-center gap-2 text-green-400">
-                  <TrendingUp className="w-5 h-5 animate-pulse" />
-                  <span className="font-bold">Growing Your Impact</span>
+                <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
+                  <Gamepad2 className="w-5 h-5 animate-pulse" />
+                  <span className="font-bold">🎮 METAVERSE TOMBOLA</span>
+                  <Sparkles className="w-5 h-5 animate-pulse" />
                 </div>
+                <h3 className="text-2xl font-bold text-white mb-2">🚀 Win Prizes Now!</h3>
+                <p className="text-purple-200 text-sm mb-4">
+                  Spin the cosmic wheel for instant rewards and Planet Points!
+                </p>
               </div>
-
-              {/* Action button */}
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-black font-bold px-10 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                onClick={onJoinMission}
-              >
-                <Target className="mr-3 w-6 h-6" />
-                Join Mission Now
-              </Button>
+              
+              {/* Tombola Widget with Metaverse Theme */}
+              <div className="max-w-md mx-auto">
+                <TombolaWidget heroId={heroId} theme="metaverse" size="full" />
+              </div>
             </div>
-
-            {/* Right: Hero Level Progress Infographic */}
-            <div>
-              <h3 className="text-xl font-bold text-white mb-6 text-center">🏆 Hero Levels</h3>
-              <div className="space-y-4">
+            
+            {/* Right: Primary Mission - Trade-in iPhone */}
+            <div className="space-y-6">
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-4">
+                  <Target className="w-5 h-5" />
+                  <span className="font-bold">🎯 PRIMARY MISSION</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Trade-in iPhone = Max Points</h3>
+                <p className="text-gray-200 text-sm">
+                  Your old iPhone is your ticket to earning the most Planet Points and unlocking premium rewards!
+                </p>
+              </div>
+              
+              {/* iPhone Trade Mission Card */}
+              <div className="bg-gradient-to-r from-amber-600/20 to-orange-600/20 rounded-xl p-6 border border-amber-500/50">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border-2 border-gray-600 flex items-center justify-center">
+                    <Smartphone className="w-8 h-8 text-amber-400" />
+                  </div>
+                  <div>
+                    <div className="text-white font-bold text-lg">iPhone Trade Mission</div>
+                    <div className="text-amber-400 text-sm font-semibold">🏆 Highest Point Reward</div>
+                  </div>
+                </div>
                 
-                {/* Bronze Level - Completed */}
-                <div className="p-4 bg-gradient-to-r from-orange-600/20 to-amber-600/20 rounded-xl border border-amber-500/50">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
-                      <CheckCircle className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-amber-400 font-bold">Bronze Hero</div>
-                      <div className="text-xs text-gray-400">0 - 2,500 PTS</div>
-                    </div>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-3 bg-black/20 rounded-lg">
+                    <div className="text-2xl font-bold text-amber-400">300-600</div>
+                    <div className="text-xs text-gray-400">Planet Points</div>
                   </div>
-                  <div className="w-full bg-amber-900/50 rounded-full h-2">
-                    <div className="bg-gradient-to-r from-amber-600 to-orange-500 h-2 rounded-full w-full"></div>
+                  <div className="text-center p-3 bg-black/20 rounded-lg">
+                    <div className="text-2xl font-bold text-green-400">AED 300+</div>
+                    <div className="text-xs text-gray-400">Trade Value</div>
                   </div>
-                  <div className="text-xs text-amber-300 mt-1">✅ Completed</div>
                 </div>
-
-                {/* Silver Level - In Progress */}
-                <div className="p-4 bg-gradient-to-r from-gray-500/20 to-slate-500/20 rounded-xl border border-gray-400/50 ring-2 ring-green-500/50">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-gray-500 rounded-full flex items-center justify-center animate-pulse">
-                      <Star className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-gray-300 font-bold">Silver Hero</div>
-                      <div className="text-xs text-gray-400">2,500 - 10,000 PTS</div>
-                    </div>
+                
+                <div className="space-y-3 mb-6 text-sm text-gray-300">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Instant cash + Planet Points</span>
                   </div>
-                  <div className="w-full bg-gray-900/50 rounded-full h-2">
-                    <div className="bg-gradient-to-r from-gray-500 to-slate-400 h-2 rounded-full w-3/4 animate-pulse"></div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Unlocks premium Tombola spins</span>
                   </div>
-                  <div className="text-xs text-green-400 mt-1">🔥 Current: 7,500/10,000</div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400" />
+                    <span>Qualifies for iPhone 17 rewards</span>
+                  </div>
                 </div>
-
-                {/* Gold Level - Locked */}
-                <div className="p-4 bg-gradient-to-r from-yellow-600/20 to-amber-500/20 rounded-xl border border-yellow-500/30 opacity-60">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 bg-yellow-600/50 rounded-full flex items-center justify-center">
-                      <Crown className="w-5 h-5 text-yellow-400" />
-                    </div>
-                    <div>
-                      <div className="text-yellow-400 font-bold">Gold Hero</div>
-                      <div className="text-xs text-gray-400">10,000+ PTS</div>
-                    </div>
+                
+                <Button 
+                  className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 rounded-lg transition-all transform hover:scale-105"
+                  onClick={() => {
+                    // Scroll to Step 2 - Exchange section
+                    const step2Section = document.querySelector('[data-section="step-2-earn-points"]');
+                    if (step2Section) {
+                      step2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                >
+                  <Smartphone className="w-5 h-5 mr-2" />
+                  🚀 Start iPhone Trade Mission
+                </Button>
+              </div>
+              
+              {/* Other Missions */}
+              <div className="text-center">
+                <div className="text-gray-400 text-sm mb-3">Other ways to earn points:</div>
+                <div className="flex justify-center gap-4 text-xs">
+                  <div className="text-center">
+                    <div className="text-blue-400 font-bold">+50-200</div>
+                    <div className="text-gray-500">Water Systems</div>
                   </div>
-                  <div className="w-full bg-yellow-900/50 rounded-full h-2">
-                    <div className="bg-gray-600 h-2 rounded-full w-1/4"></div>
+                  <div className="text-center">
+                    <div className="text-purple-400 font-bold">+25-100</div>
+                    <div className="text-gray-500">Referrals</div>
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">🔒 Unlocks at 10K PTS</div>
+                  <div className="text-center">
+                    <div className="text-amber-400 font-bold">+100</div>
+                    <div className="text-gray-500">Daily Spin</div>
+                  </div>
                 </div>
               </div>
             </div>
