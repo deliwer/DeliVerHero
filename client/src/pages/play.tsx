@@ -88,23 +88,36 @@ export default function Play() {
   return (
     <div className="min-h-screen bg-dubai-gradient">
       <div className="container mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-6 py-3 rounded-full mb-6 animate-pulse">
-            <Gamepad2 className="w-6 h-6" />
-            <span className="font-bold text-lg">PLAY FOR PLANET POINTS</span>
-            <Sparkles className="w-6 h-6" />
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            🎮 Planet Points Gaming Hub
-            <span className="block text-hero-green-400">Play • Earn • Redeem</span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Join Dubai's gamified sustainability platform! Spin for Planet Points, unlock achievements, and redeem amazing rewards. <span className="text-hero-green-400 font-bold">AquaCafe Loyalty membership required for redemption.</span>
-          </p>
+        {/* Hero Section - Dubai's Gamified Sustainability Hub */}
+        <div className="text-center mb-12 relative overflow-hidden">
+          {/* Background effects */}
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-hero-green-600/10 animate-pulse"></div>
           
-          {/* Gaming Stats */}
-          <div className="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500/20 to-hero-green-500/20 px-8 py-4 rounded-full mb-8 border border-purple-500/50 shadow-lg shadow-purple-500/20">
+              <Gift className="w-8 h-8 text-purple-400 animate-bounce" />
+              <span className="text-2xl font-bold text-white">🎮 PLAY FOR PLANET POINTS</span>
+              <Award className="w-8 h-8 text-hero-green-400 animate-bounce" />
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+              Dubai's Gamified 
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-hero-green-400">
+                Sustainability Hub
+              </span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+              Join thousands of Dubai residents earning Planet Points through sustainable actions. 
+              Spin our Tombola wheel, unlock achievements, climb leaderboards, and redeem amazing rewards!
+            </p>
+            <div className="inline-flex items-center gap-2 text-amber-300 text-lg font-semibold bg-amber-500/20 px-6 py-3 rounded-full border border-amber-500/50">
+              <Crown className="w-6 h-6" />
+              AquaCafe Loyalty Required for Point Redemption
+            </div>
+          </div>
+        </div>
+          
+        {/* Gaming Stats */}
+        <div className="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
             <div className="bg-gradient-to-br from-hero-green-500/20 to-hero-green-600/20 rounded-xl p-4 border border-hero-green-500/30">
               <div className="text-3xl font-bold text-hero-green-400">1,247</div>
               <div className="text-sm text-gray-300 font-medium">Your Points</div>
@@ -121,11 +134,11 @@ export default function Play() {
               <div className="text-3xl font-bold text-blue-400">12</div>
               <div className="text-sm text-gray-300 font-medium">Achievements</div>
             </div>
-          </div>
+        </div>
           
-          {/* Loyalty Membership Status */}
-          {!isLoyaltyMember && (
-            <div className="max-w-2xl mx-auto mb-8 p-4 bg-amber-500/20 border border-amber-500/50 rounded-xl">
+        {/* Loyalty Membership Status */}
+        {!isLoyaltyMember && (
+          <div className="max-w-2xl mx-auto mb-8 p-4 bg-amber-500/20 border border-amber-500/50 rounded-xl">
               <div className="flex items-center justify-center gap-3 mb-3">
                 <Heart className="w-6 h-6 text-amber-400" />
                 <span className="text-amber-300 font-bold text-lg">Join AquaCafe Loyalty to Redeem Points!</span>
@@ -141,7 +154,6 @@ export default function Play() {
               </Link>
             </div>
           )}
-        </div>
 
         {/* Gaming Tabs */}
         <div className="max-w-6xl mx-auto mb-12">
