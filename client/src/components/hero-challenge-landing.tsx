@@ -189,75 +189,22 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               </div>
             </div>
             
-            {/* Right: Primary Mission - Trade-in iPhone */}
+            {/* Right: Play Mission Info */}
             <div className="space-y-6">
               <div className="text-center mb-6">
-                <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-4">
-                  <Target className="w-5 h-5" />
-                  <span className="font-bold">🎯 PRIMARY MISSION</span>
+                <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
+                  <Gamepad2 className="w-5 h-5" />
+                  <span className="font-bold">🎮 PLAY MISSIONS</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Trade-in iPhone = Max Points</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">Win Prizes & Earn Points</h3>
                 <p className="text-gray-200 text-sm">
-                  Your old iPhone is your ticket to earning the most Planet Points and unlocking premium rewards!
+                  Complete missions in the metaverse to unlock rewards and build your Planet Points!
                 </p>
-              </div>
-              
-              {/* iPhone Trade Mission Card */}
-              <div className="bg-gradient-to-r from-amber-600/20 to-orange-600/20 rounded-xl p-6 border border-amber-500/50">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border-2 border-gray-600 flex items-center justify-center">
-                    <Smartphone className="w-8 h-8 text-amber-400" />
-                  </div>
-                  <div>
-                    <div className="text-white font-bold text-lg">iPhone Trade Mission</div>
-                    <div className="text-amber-400 text-sm font-semibold">🏆 Highest Point Reward</div>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="text-center p-3 bg-black/20 rounded-lg">
-                    <div className="text-2xl font-bold text-amber-400">300-600</div>
-                    <div className="text-xs text-gray-400">Planet Points</div>
-                  </div>
-                  <div className="text-center p-3 bg-black/20 rounded-lg">
-                    <div className="text-2xl font-bold text-green-400">AED 300+</div>
-                    <div className="text-xs text-gray-400">Trade Value</div>
-                  </div>
-                </div>
-                
-                <div className="space-y-3 mb-6 text-sm text-gray-300">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Instant cash + Planet Points</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Unlocks premium Tombola spins</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Qualifies for iPhone 17 rewards</span>
-                  </div>
-                </div>
-                
-                <Button 
-                  className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 rounded-lg transition-all transform hover:scale-105"
-                  onClick={() => {
-                    // Scroll to Step 2 - Exchange section
-                    const step2Section = document.querySelector('[data-section="step-2-earn-points"]');
-                    if (step2Section) {
-                      step2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
-                >
-                  <Smartphone className="w-5 h-5 mr-2" />
-                  🚀 Start iPhone Trade Mission
-                </Button>
               </div>
               
               {/* Other Missions */}
               <div className="text-center">
-                <div className="text-gray-400 text-sm mb-3">Other ways to earn points:</div>
+                <div className="text-gray-400 text-sm mb-3">Ways to earn points:</div>
                 <div className="flex justify-center gap-4 text-xs">
                   <div className="text-center">
                     <div className="text-blue-400 font-bold">+50-200</div>
@@ -293,11 +240,107 @@ function StepTwoExchange() {
             <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM YOUR iPHONE</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Earn from Your Old iPhone
+            Earn from Your iPhone a Mission for the Planet
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Trade in your old iPhone to earn instant value plus Planet Points for sustainable living.
+            Transform your old iPhone into instant value plus Planet Points - making sustainability profitable and rewarding.
           </p>
+        </div>
+
+        {/* Primary Mission - Trade-in iPhone (moved from Step 1) */}
+        <div className="mb-8">
+          <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              
+              {/* Left: Primary Mission Header */}
+              <div className="space-y-6">
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-4">
+                    <Target className="w-5 h-5" />
+                    <span className="font-bold">🎯 PRIMARY MISSION</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Trade-in iPhone = Max Points</h3>
+                  <p className="text-gray-200 text-sm">
+                    Your old iPhone is your ticket to earning the most Planet Points and unlocking premium rewards!
+                  </p>
+                </div>
+                
+                {/* Other Missions */}
+                <div className="text-center">
+                  <div className="text-gray-400 text-sm mb-3">Other ways to earn points:</div>
+                  <div className="flex justify-center gap-4 text-xs">
+                    <div className="text-center">
+                      <div className="text-blue-400 font-bold">+50-200</div>
+                      <div className="text-gray-500">Water Systems</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-purple-400 font-bold">+25-100</div>
+                      <div className="text-gray-500">Referrals</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-amber-400 font-bold">+100</div>
+                      <div className="text-gray-500">Daily Spin</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right: iPhone Trade Mission Card */}
+              <div className="space-y-6">
+                <div className="bg-gradient-to-r from-amber-600/20 to-orange-600/20 rounded-xl p-6 border border-amber-500/50">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border-2 border-gray-600 flex items-center justify-center">
+                      <Smartphone className="w-8 h-8 text-amber-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold text-lg">iPhone Trade Mission</div>
+                      <div className="text-amber-400 text-sm font-semibold">🏆 Highest Point Reward</div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="text-center p-3 bg-black/20 rounded-lg">
+                      <div className="text-2xl font-bold text-amber-400">300-600</div>
+                      <div className="text-xs text-gray-400">Planet Points</div>
+                    </div>
+                    <div className="text-center p-3 bg-black/20 rounded-lg">
+                      <div className="text-2xl font-bold text-green-400">AED 300+</div>
+                      <div className="text-xs text-gray-400">Trade Value</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3 mb-6 text-sm text-gray-300">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span>Instant cash + Planet Points</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span>Unlocks premium Tombola spins</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-400" />
+                      <span>Qualifies for iPhone 17 rewards</span>
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 rounded-lg transition-all transform hover:scale-105"
+                    onClick={() => {
+                      // Scroll to MeetDeli calculator below
+                      const calculator = document.querySelector('[data-testid="device-simulator"]');
+                      if (calculator) {
+                        calculator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                  >
+                    <Smartphone className="w-5 h-5 mr-2" />
+                    🚀 Start iPhone Trade Mission
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Meet Deli Interactive Component */}
