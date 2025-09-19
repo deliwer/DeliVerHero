@@ -96,27 +96,40 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
+  const stepIcons = {
+    1: Gamepad2,    // Play step
+    2: Smartphone,  // Earn from iPhone step  
+    3: Trophy       // Rewards step
+  };
+
   return (
     <div className="flex items-center justify-center mb-8">
-      <div className="flex items-center space-x-4">
-        {[1, 2, 3].map((step) => (
-          <div key={step} className="flex items-center">
-            <div 
-              className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
-                currentStep >= step 
-                  ? 'bg-hero-green-500 text-black animate-pulse' 
-                  : 'bg-gray-600 text-gray-400'
-              }`}
-            >
-              {currentStep > step ? <CheckCircle className="w-5 h-5" /> : step}
+      <div className="flex items-center space-x-6">
+        {[1, 2, 3].map((step) => {
+          const StepIcon = stepIcons[step as keyof typeof stepIcons];
+          return (
+            <div key={step} className="flex items-center">
+              <div 
+                className={`w-16 h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
+                  currentStep >= step 
+                    ? 'bg-hero-green-500 text-black animate-pulse border-hero-green-400 shadow-lg shadow-hero-green-500/30' 
+                    : 'bg-gray-600 text-gray-400 border-gray-500'
+                }`}
+              >
+                {currentStep > step ? (
+                  <CheckCircle className="w-8 h-8" />
+                ) : (
+                  <StepIcon className="w-8 h-8" />
+                )}
+              </div>
+              {step < 3 && (
+                <div className={`w-20 h-1 transition-all duration-300 rounded-full ${
+                  currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
+                }`} />
+              )}
             </div>
-            {step < 3 && (
-              <div className={`w-16 h-0.5 transition-all duration-300 ${
-                currentStep > step ? 'bg-hero-green-500' : 'bg-gray-600'
-              }`} />
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
