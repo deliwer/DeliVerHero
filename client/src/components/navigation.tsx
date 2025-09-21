@@ -56,10 +56,9 @@ export function Navigation() {
   }, []);
 
   const consumerNavItems = [
-    { path: "/play", label: "🎮 Play", id: "play", featured: true },
+    { path: "/play", label: "Play", id: "play", featured: true },
     { path: "/rewards", label: "Rewards", id: "rewards" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
-    { path: "/icelandic-glacial", label: "Icelandic Water", id: "icelandic-glacial" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },
     { path: "/contact", label: "Contact", id: "contact" },
@@ -105,9 +104,9 @@ export function Navigation() {
                       className="relative group transition-all duration-300"
                       data-testid={`link-${item.id}`}
                     >
-                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600/20 to-hero-green-600/20 border border-purple-500/40 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-hero-green-600/30 hover:border-purple-400/60 transition-all shadow-lg hover:shadow-purple-500/20">
-                        <span className="font-bold text-lg">{item.label}</span>
-                        <Sparkles className="w-4 h-4 text-yellow-400 animate-pulse" />
+                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600/30 to-hero-green-600/30 border-2 border-purple-500/60 rounded-lg text-white hover:from-purple-600/40 hover:to-hero-green-600/40 hover:border-purple-400/80 transition-all duration-300 shadow-xl hover:shadow-purple-500/30 animate-pulse hover:animate-none">
+                        <span className="font-bold text-lg animate-pulse">{item.label}</span>
+                        <Sparkles className="w-4 h-4 text-yellow-400 animate-spin" />
                       </div>
                     </Link>
                   );
