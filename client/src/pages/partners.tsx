@@ -30,7 +30,8 @@ import {
   Globe,
   Crown,
   Sparkles,
-  Rocket
+  Rocket,
+  ChefHat
 } from 'lucide-react';
 
 interface PartnerInquiry {
@@ -59,7 +60,13 @@ export default function Partners() {
   };
 
   const partnershipMutation = useMutation({
-    mutationFn: (data: PartnerInquiry) => apiRequest('/api/partnerships', 'POST', data),
+    mutationFn: (data: PartnerInquiry) => apiRequest('/api/sponsors', 'POST', {
+      name: `${data.partnerType} Partner Inquiry`,
+      email: data.email,
+      organizationType: data.partnerType,
+      description: data.message || `Partnership inquiry for ${data.partnerType} program`,
+      contactPerson: data.email.split('@')[0] || 'Partner Contact'
+    }),
     onSuccess: () => {
       toast({
         title: 'Partnership Inquiry Submitted',
@@ -106,9 +113,62 @@ export default function Partners() {
             Join Dubai's <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-blue-400">Sustainability Revolution</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-            Whether you're a corporation, community, or social organization - our AI-powered platform makes partnership onboarding seamless. 
-            All partners start with our AED 99 Starter Kit to unlock the complete DeliWer ecosystem.
+            Whether you're a corporation, community, or F&B brand - our AI-powered platform makes partnership onboarding seamless. 
+            <strong className="text-emerald-400">F&B brands can now join our risk-free AquaCafe Loyalty Program</strong> with no upfront cash required.
           </p>
+          
+          {/* Featured YouTube Channel Content */}
+          <div className="bg-slate-800/50 rounded-xl p-6 mb-8 max-w-4xl mx-auto border border-red-500/30">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </div>
+              <div className="text-left">
+                <h3 className="text-white font-bold text-lg">Watch Our Channel</h3>
+                <p className="text-gray-300 text-sm">@vdeliwer - Latest AquaCafe Loyalty insights</p>
+              </div>
+              <Button className="bg-red-600 hover:bg-red-700 text-white" onClick={() => window.open('https://www.youtube.com/@vdeliwer', '_blank', 'noopener,noreferrer')} data-testid="button-subscribe-youtube">
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+                Subscribe
+              </Button>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-slate-900/50 rounded-lg p-4 border border-emerald-500/20">
+                <h4 className="text-emerald-400 font-semibold mb-3">AquaCafe Loyalty Program - Complete Overview</h4>
+                <div className="aspect-video mb-3">
+                  <iframe 
+                    className="w-full h-full rounded-lg" 
+                    src="https://www.youtube-nocookie.com/embed/NeVhACQEXG4" 
+                    title="AquaCafe Loyalty Program - Complete Overview" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    data-testid="embed-video-1"
+                  ></iframe>
+                </div>
+                <p className="text-gray-300 text-sm">Complete overview of the loyalty program mechanics</p>
+              </div>
+              <div className="bg-slate-900/50 rounded-lg p-4 border border-blue-500/20">
+                <h4 className="text-blue-400 font-semibold mb-3">Loyalty Mechanics & ROI Deep Dive</h4>
+                <div className="aspect-video mb-3">
+                  <iframe 
+                    className="w-full h-full rounded-lg" 
+                    src="https://www.youtube-nocookie.com/embed/f_-CblN9xEo" 
+                    title="Loyalty Mechanics & ROI Deep Dive" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    data-testid="embed-video-2"
+                  ></iframe>
+                </div>
+                <p className="text-gray-300 text-sm">Detailed ROI projections and financial mechanics</p>
+              </div>
+            </div>
+          </div>
           
           {/* Key Partners */}
           <div className="flex items-center justify-center gap-6 mb-8 flex-wrap">
@@ -224,12 +284,88 @@ export default function Partners() {
           </Card>
         </div>
 
+        {/* AquaCafe Loyalty for F&B - Main Highlight */}
+        <div className="mb-16">
+          <Card className="bg-gradient-to-br from-orange-900/30 via-red-900/30 to-pink-900/30 border-orange-500/50 p-8">
+            <div className="text-center mb-8">
+              <div className="w-20 h-20 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <ChefHat className="w-10 h-10 text-orange-400" />
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-4">
+                🍽️ AquaCafe Loyalty - <span className="text-orange-400">Main F&B Offer</span>
+              </h2>
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-6">
+                Risk-free customer acquisition for Food & Beverage brands. No upfront cash required - contribute vouchers and watch your customer base grow with 10x-20x ROI potential.
+              </p>
+              <div className="bg-slate-800/60 rounded-lg p-6 mb-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="text-left">
+                    <h3 className="text-lg font-semibold text-orange-400 mb-3">✅ Proven Success Model</h3>
+                    <div className="space-y-2 text-sm text-gray-300">
+                      <div className="flex items-center"><CheckCircle className="w-4 h-4 text-green-400 mr-2" />Built on Baker's Kitchen flagship collaboration</div>
+                      <div className="flex items-center"><CheckCircle className="w-4 h-4 text-green-400 mr-2" />Founded by Hassan Jawad & Rubab Hassan</div>
+                      <div className="flex items-center"><CheckCircle className="w-4 h-4 text-green-400 mr-2" />Community-driven loyalty ecosystem</div>
+                    </div>
+                  </div>
+                  <div className="text-left">
+                    <h3 className="text-lg font-semibold text-orange-400 mb-3">💰 Financial Benefits</h3>
+                    <div className="space-y-2 text-sm text-gray-300">
+                      <div className="flex items-center"><Star className="w-4 h-4 text-yellow-400 mr-2" />AED 450,000+ revenue potential per 1,000 vouchers</div>
+                      <div className="flex items-center"><Star className="w-4 h-4 text-yellow-400 mr-2" />Only 5% commission fees</div>
+                      <div className="flex items-center"><Star className="w-4 h-4 text-yellow-400 mr-2" />15% customer retention rate</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Four Sponsorship Tiers */}
+              <div className="grid md:grid-cols-4 gap-4 mb-6">
+                <div className="bg-amber-900/20 border border-amber-500/30 rounded-lg p-4">
+                  <div className="text-amber-400 font-bold text-lg mb-2">🥉 Bronze</div>
+                  <div className="text-2xl font-bold text-white mb-1">1,000</div>
+                  <div className="text-xs text-gray-300 mb-2">vouchers</div>
+                  <div className="text-sm text-amber-300">~2,000 customers</div>
+                </div>
+                <div className="bg-gray-700/20 border border-gray-500/30 rounded-lg p-4">
+                  <div className="text-gray-300 font-bold text-lg mb-2">🥈 Silver</div>
+                  <div className="text-2xl font-bold text-white mb-1">2,500</div>
+                  <div className="text-xs text-gray-300 mb-2">vouchers</div>
+                  <div className="text-sm text-gray-300">~5,000 customers</div>
+                </div>
+                <div className="bg-yellow-600/20 border border-yellow-500/30 rounded-lg p-4">
+                  <div className="text-yellow-400 font-bold text-lg mb-2">🥇 Gold</div>
+                  <div className="text-2xl font-bold text-white mb-1">5,000</div>
+                  <div className="text-xs text-gray-300 mb-2">vouchers</div>
+                  <div className="text-sm text-yellow-300">~10,000 customers</div>
+                </div>
+                <div className="bg-purple-800/20 border border-purple-500/30 rounded-lg p-4 ring-2 ring-purple-400/50">
+                  <div className="text-purple-400 font-bold text-lg mb-2">💎 Platinum</div>
+                  <div className="text-2xl font-bold text-white mb-1">10,000</div>
+                  <div className="text-xs text-gray-300 mb-2">vouchers</div>
+                  <div className="text-sm text-purple-300">~20,000 customers</div>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 text-lg font-semibold" onClick={() => handleQuickSubmit('aquacafe-loyalty')}>
+                  <ChefHat className="w-5 h-5 mr-2" />
+                  Join AquaCafe Loyalty Program
+                </Button>
+                <Button variant="outline" className="border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white px-8 py-4 text-lg font-semibold" onClick={() => setShowAIChat(true)}>
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Chat with Deli About F&B Partnership
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+
         {/* Partnership Types */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Choose Your Partnership Type</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Other Partnership Types</h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              All partnership types lead to the same unified onboarding: Start with the AED 99 Starter Kit, then unlock advanced features.
+              Beyond F&B loyalty, we offer partnerships for corporations, communities, and CSR programs.
             </p>
           </div>
 
