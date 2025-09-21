@@ -10,7 +10,6 @@ import { ARPreview } from "@/components/ar-preview";
 import { TombolaWidget } from "@/components/tombola-widget";
 import { CouponsPanel } from "@/components/coupons-panel";
 import aquacafeTradeIn from "@assets/Banner_AquaCafe_1755270492134.jpg";
-import membershipClean from "@assets/Membership_Clean_1756065010923.png";
 import beautyWater1 from "@assets/Beauty_Water_1_1756065010937.jpg";
 import beautyWater2 from "@assets/Beauty_Water_2_1756065010940.jpg";
 import plumberBanner from "@assets/To_Do_Banner_Plumber_Sm_1756065010946.jpg";
