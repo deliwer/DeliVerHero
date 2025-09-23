@@ -8,27 +8,6 @@ import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
 import { useQuery } from "@tanstack/react-query";
 
-// Planet Points Widget Component
-function PlanetPointsWidget() {
-  // Use static demo data for now - in production this would connect to real user data
-  const currentPoints = 1247; // Demo points
-  const heroLevel = "Bronze"; // Demo level
-
-  return (
-    <Link
-      href="/play"
-      className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600/20 to-hero-green-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-hero-green-600/30 hover:border-purple-400/60 transition-all shadow-sm hover:shadow-purple-500/20"
-      data-testid="planet-points-widget"
-    >
-      <Star className="w-4 h-4 text-yellow-400" />
-      <div className="flex flex-col items-start">
-        <span className="text-xs font-bold text-purple-200">{currentPoints.toLocaleString()}</span>
-        <span className="text-xs text-purple-400">Planet Points</span>
-      </div>
-      <Trophy className="w-4 h-4 text-amber-400" />
-    </Link>
-  );
-}
 
 export function Navigation() {
   const [location] = useLocation();
@@ -61,7 +40,6 @@ export function Navigation() {
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/community", label: "Community", id: "community" },
     { path: "/partners", label: "Partners", id: "partners" },
-    { path: "/contact", label: "Contact", id: "contact" },
   ];
 
   const b2bNavItems = [
@@ -69,7 +47,6 @@ export function Navigation() {
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/partners", label: "Partner Program", id: "partners" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
-    { path: "/contact", label: "Contact Us", id: "contact" },
   ];
 
   const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
@@ -79,17 +56,19 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <Link href="/" className="flex items-center" data-testid="link-home">
+            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity" data-testid="link-home">
               {isB2BMode ? (
                 <div className="flex items-center space-x-2">
                   <div className="text-xl font-bold text-blue-400">ChainTrack</div>
                 </div>
               ) : (
-                <img 
-                  src="/deliwer-logo.png" 
-                  alt="DeliWer Logo" 
-                  className="h-8 w-auto"
-                />
+                <div className="flex items-center">
+                  <img 
+                    src="/deliwer-logo.png" 
+                    alt="DeliWer Logo" 
+                    className="h-10 w-auto brightness-110 hover:brightness-125 transition-all"
+                  />
+                </div>
               )}
             </Link>
             <div className="hidden md:flex space-x-6">
@@ -200,8 +179,7 @@ export function Navigation() {
 
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              {/* Planet Points Widget */}
-              {!isB2BMode && <PlanetPointsWidget />}
+              {/* Planet Points Widget removed from main navigation */}
               
               <Link
                 href="/cart"

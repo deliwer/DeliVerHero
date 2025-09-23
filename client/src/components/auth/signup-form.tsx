@@ -122,6 +122,26 @@ export function SignupForm({ accountType = "personal", onSuccess, redirectTo = "
             : "Start your sustainability journey today"
           }
         </p>
+        <div className="bg-slate-700/50 rounded-lg p-3 mt-4" data-testid="signup-benefits">
+          <div className="text-center">
+            <div className="text-sm font-medium text-emerald-400 mb-1">
+              {accountType === "company" ? "Corporate Benefits" : "Starter Benefits"}
+            </div>
+            {accountType === "company" ? (
+              <>
+                <div className="text-xs text-gray-300">• Bulk Trade Discounts</div>
+                <div className="text-xs text-gray-300">• Corporate Dashboard</div>
+                <div className="text-xs text-gray-300">• Priority Support</div>
+              </>
+            ) : (
+              <>
+                <div className="text-xs text-gray-300">• Earn Planet Points</div>
+                <div className="text-xs text-gray-300">• Access Trade Calculator</div>
+                <div className="text-xs text-gray-300">• Unlock Rewards & Badges</div>
+              </>
+            )}
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">

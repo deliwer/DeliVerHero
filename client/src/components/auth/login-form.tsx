@@ -65,6 +65,14 @@ export function LoginForm({ onSuccess, redirectTo = "/" }: LoginFormProps) {
         <p className="text-center text-gray-400">
           Sign in to your DeliWer account
         </p>
+        <div className="bg-slate-700/50 rounded-lg p-3 mt-4" data-testid="login-benefits">
+          <div className="text-center">
+            <div className="text-sm font-medium text-emerald-400 mb-1">Account Benefits</div>
+            <div className="text-xs text-gray-300">• Track Planet Points Balance</div>
+            <div className="text-xs text-gray-300">• Access Exclusive Rewards</div>
+            <div className="text-xs text-gray-300">• Monitor Environmental Impact</div>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">

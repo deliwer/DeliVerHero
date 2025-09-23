@@ -33,7 +33,6 @@ export function Footer() {
     { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
     { label: "Community Hub", url: "/community" },
     { label: "Corporate Trade-in Solutions", url: "/corporate" },
-    { label: "Contact & About Us", url: "/contact" },
     { label: "Ambassador & Champion Programs", url: "/partners" }
   ];
 
@@ -93,6 +92,18 @@ export function Footer() {
                 <Users className="w-4 h-4 mr-2 text-dubai-blue-500" />
                 12,847 Loyalty Members
               </div>
+            </div>
+
+            {/* Contact & About Us */}
+            <div className="mb-6">
+              <Link
+                href="/contact"
+                className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                data-testid="link-footer-contact"
+              >
+                <ChevronRight className="w-4 h-4 mr-2 text-gray-600 group-hover:text-hero-green-500 transition-colors" />
+                Contact & About Us
+              </Link>
             </div>
 
             {/* Social Links */}
