@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -182,6 +182,45 @@ export interface IStorage {
   recordShare(passportId: string): Promise<WellnessPassport | undefined>;
   progressStep(passportId: string, step: number): Promise<WellnessPassport | undefined>;
   redeemPassport(passportId: string): Promise<WellnessPassport | undefined>;
+
+  // Comprehensive Dubai Wellness Journey operations
+  createWellnessJourney(journey: InsertWellnessJourney): Promise<WellnessJourney>;
+  getWellnessJourney(id: string): Promise<WellnessJourney | undefined>;
+  getWellnessJourneysByHero(heroId: string): Promise<WellnessJourney[]>;
+  updateWellnessJourneyProgress(id: string, progress: number): Promise<WellnessJourney | undefined>;
+  completeWellnessJourneyStep(journeyId: string, stepNumber: number): Promise<WellnessJourney | undefined>;
+  
+  // Wellness Journey Steps operations
+  createWellnessJourneyStep(step: InsertWellnessJourneyStep): Promise<WellnessJourneyStep>;
+  getWellnessJourneySteps(journeyId: string): Promise<WellnessJourneyStep[]>;
+  getWellnessJourneyStep(id: string): Promise<WellnessJourneyStep | undefined>;
+  completeJourneyStep(stepId: string): Promise<WellnessJourneyStep | undefined>;
+  
+  // Aqua Show Perks operations
+  getAquaShowPerks(): Promise<AquaShowPerk[]>;
+  getAquaShowPerk(id: string): Promise<AquaShowPerk | undefined>;
+  createAquaShowPerk(perk: InsertAquaShowPerk): Promise<AquaShowPerk>;
+  claimAquaShowPerk(perkId: string, heroId: string): Promise<boolean>;
+  
+  // Luxury Hotel Partners operations
+  getLuxuryHotelPartners(): Promise<LuxuryHotelPartner[]>;
+  getLuxuryHotelPartner(id: string): Promise<LuxuryHotelPartner | undefined>;
+  createLuxuryHotelPartner(partner: InsertLuxuryHotelPartner): Promise<LuxuryHotelPartner>;
+  updateHotelPartner(id: string, updates: Partial<LuxuryHotelPartner>): Promise<LuxuryHotelPartner | undefined>;
+  
+  // Restaurant Partners operations
+  getRestaurantPartners(): Promise<RestaurantPartner[]>;
+  getRestaurantPartner(id: string): Promise<RestaurantPartner | undefined>;
+  getRestaurantPartnerByRestaurantId(restaurantId: string): Promise<RestaurantPartner | undefined>;
+  createRestaurantPartner(partner: InsertRestaurantPartner): Promise<RestaurantPartner>;
+  updateRestaurantPartner(id: string, updates: Partial<RestaurantPartner>): Promise<RestaurantPartner | undefined>;
+  
+  // Wellness Journey Participants operations
+  createWellnessJourneyParticipant(participant: InsertWellnessJourneyParticipant): Promise<WellnessJourneyParticipant>;
+  getWellnessJourneyParticipant(id: string): Promise<WellnessJourneyParticipant | undefined>;
+  getParticipantsByJourney(journeyId: string): Promise<WellnessJourneyParticipant[]>;
+  getParticipantsByHero(heroId: string): Promise<WellnessJourneyParticipant[]>;
+  updateParticipantProgress(id: string, updates: Partial<WellnessJourneyParticipant>): Promise<WellnessJourneyParticipant | undefined>;
   
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
@@ -227,6 +266,14 @@ export class MemStorage implements IStorage {
   private dailyQuests: Map<string, DailyQuest>;
   private wellnessPassports: Map<string, WellnessPassport>;
 
+  // Comprehensive Dubai Wellness Journey System
+  private wellnessJourneys: Map<string, WellnessJourney>;
+  private wellnessJourneySteps: Map<string, WellnessJourneyStep>;
+  private aquaShowPerks: Map<string, AquaShowPerk>;
+  private luxuryHotelPartners: Map<string, LuxuryHotelPartner>;
+  private restaurantPartners: Map<string, RestaurantPartner>;
+  private wellnessJourneyParticipants: Map<string, WellnessJourneyParticipant>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -264,6 +311,14 @@ export class MemStorage implements IStorage {
     this.rewardRedemptions = new Map();
     this.dailyQuests = new Map();
     this.wellnessPassports = new Map();
+
+    // Initialize wellness journey system
+    this.wellnessJourneys = new Map();
+    this.wellnessJourneySteps = new Map();
+    this.aquaShowPerks = new Map();
+    this.luxuryHotelPartners = new Map();
+    this.restaurantPartners = new Map();
+    this.wellnessJourneyParticipants = new Map();
     
     // Initialize impact stats
     this.impactStats = {

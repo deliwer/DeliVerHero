@@ -157,6 +157,128 @@ export const wellnessPassports = pgTable("wellness_passports", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+// Comprehensive Dubai Wellness Journey Schema
+export const wellnessJourneys = pgTable("wellness_journeys", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").references(() => heroes.id),
+  wellnessPassportId: varchar("wellness_passport_id").references(() => wellnessPassports.id),
+  title: text("title").notNull().default("Dubai Wellness Journey"),
+  description: text("description").notNull(),
+  journeyType: text("journey_type").notNull().default("premium"), // basic, premium, vip
+  totalSteps: integer("total_steps").notNull().default(5),
+  completedSteps: integer("completed_steps").notNull().default(0),
+  currentStepId: varchar("current_step_id"),
+  progress: integer("progress").notNull().default(0), // percentage 0-100
+  totalValueAED: integer("total_value_aed").notNull().default(110000), // AED 1100 in fils
+  pointsEarned: integer("points_earned").notNull().default(0),
+  status: text("status").notNull().default("active"), // active, completed, expired, cancelled
+  startedAt: timestamp("started_at").default(sql`now()`),
+  completedAt: timestamp("completed_at"),
+  expiresAt: timestamp("expires_at").default(sql`now() + interval '30 days'`),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const wellnessJourneySteps = pgTable("wellness_journey_steps", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  journeyId: varchar("journey_id").notNull().references(() => wellnessJourneys.id),
+  stepNumber: integer("step_number").notNull(),
+  stepId: text("step_id").notNull(), // hotel-start, cycling-track, walking-track, laperle-experience, mazaya-shopping
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  location: text("location").notNull(),
+  duration: text("duration").notNull(),
+  category: text("category").notNull(), // hotel, fitness, entertainment, shopping
+  perks: jsonb("perks").notNull().default([]), // array of perk descriptions
+  pointsReward: integer("points_reward").notNull().default(0),
+  isCompleted: boolean("is_completed").notNull().default(false),
+  completedAt: timestamp("completed_at"),
+  partnerInfo: jsonb("partner_info").default({}), // partner details like hotel info, restaurant info
+  bookingUrl: text("booking_url"),
+  qrCodeToken: text("qr_code_token"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const aquaShowPerks = pgTable("aqua_show_perks", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  perkId: text("perk_id").notNull().unique(), // vip-tickets, backstage-tour, dining-package, photo-session
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  valueAED: integer("value_aed").notNull(), // value in fils
+  category: text("category").notNull(), // tickets, experience, dining, photography
+  availableQuantity: integer("available_quantity"),
+  claimedQuantity: integer("claimed_quantity").notNull().default(0),
+  pointsCost: integer("points_cost").notNull().default(0),
+  isWellnessJourneyPerk: boolean("is_wellness_journey_perk").notNull().default(true),
+  partner: text("partner").default("La Perle by Dragone"),
+  location: text("location").default("Al Habtoor City"),
+  bookingInstructions: text("booking_instructions"),
+  termsConditions: text("terms_conditions"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const luxuryHotelPartners = pgTable("luxury_hotel_partners", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  hotelId: text("hotel_id").notNull().unique(), // hilton-habtoor, jw-marriott-marquis, oberoi-dubai, address-hotels
+  name: text("name").notNull(),
+  brand: text("brand").notNull(), // Hilton, Marriott, Oberoi, Address
+  location: text("location").notNull(),
+  address: text("address").notNull(),
+  distanceToTrack: text("distance_to_track").notNull(),
+  amenities: jsonb("amenities").notNull().default([]),
+  specialOffer: text("special_offer").notNull(),
+  wellnessPackages: jsonb("wellness_packages").default([]),
+  phone: text("phone"),
+  website: text("website"),
+  rating: integer("rating").default(5), // 1-5 scale
+  priceRange: text("price_range"), // luxury, ultra-luxury
+  isWellnessPartner: boolean("is_wellness_partner").notNull().default(true),
+  journeyDiscountPercent: integer("journey_discount_percent").default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const restaurantPartners = pgTable("restaurant_partners", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  restaurantId: text("restaurant_id").notNull().unique(),
+  name: text("name").notNull(),
+  cuisine: text("cuisine").notNull(),
+  location: text("location").notNull(),
+  address: text("address"),
+  phone: text("phone"),
+  website: text("website"),
+  rating: integer("rating").default(45), // rating * 10 for decimal precision (4.5 = 45)
+  priceRange: text("price_range"), // budget, mid-range, fine-dining, luxury
+  specialOffer: text("special_offer"),
+  wellnessMenuItems: jsonb("wellness_menu_items").default([]),
+  loyaltyDiscountPercent: integer("loyalty_discount_percent").default(0),
+  partnerCategory: text("partner_category").notNull().default("dining"), // dining, wellness-dining, aqua-show-dining
+  pointsMultiplier: integer("points_multiplier").default(1), // points multiplier for spending
+  isWellnessPartner: boolean("is_wellness_partner").notNull().default(false),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const wellnessJourneyParticipants = pgTable("wellness_journey_participants", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  journeyId: varchar("journey_id").notNull().references(() => wellnessJourneys.id),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  currentStep: integer("current_step").notNull().default(1),
+  stepsCompleted: jsonb("steps_completed").notNull().default([]),
+  perksRedeemed: jsonb("perks_redeemed").notNull().default([]),
+  totalPointsEarned: integer("total_points_earned").notNull().default(0),
+  hotelPartnerId: varchar("hotel_partner_id").references(() => luxuryHotelPartners.id),
+  preferredRestaurants: jsonb("preferred_restaurants").default([]),
+  specialRequests: text("special_requests"),
+  status: text("status").notNull().default("active"), // active, completed, paused, cancelled
+  joinedAt: timestamp("joined_at").notNull().default(sql`now()`),
+  completedAt: timestamp("completed_at"),
+  lastActivityAt: timestamp("last_activity_at").default(sql`now()`),
+});
+
 export const dubaiChallenges = pgTable("dubai_challenges", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
@@ -1007,6 +1129,52 @@ export type IssuedCoupon = typeof issuedCoupons.$inferSelect;
 export type InsertIssuedCoupon = z.infer<typeof insertIssuedCouponSchema>;
 export type HeroSpinCount = typeof heroSpinCounts.$inferSelect;
 export type RedeemCoupon = z.infer<typeof redeemCouponSchema>;
+
+// Wellness Journey Insert Schemas
+export const insertWellnessJourneySchema = createInsertSchema(wellnessJourneys).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertWellnessJourneyStepSchema = createInsertSchema(wellnessJourneySteps).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertAquaShowPerkSchema = createInsertSchema(aquaShowPerks).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertLuxuryHotelPartnerSchema = createInsertSchema(luxuryHotelPartners).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertRestaurantPartnerSchema = createInsertSchema(restaurantPartners).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertWellnessJourneyParticipantSchema = createInsertSchema(wellnessJourneyParticipants).omit({
+  id: true,
+});
+
+// Wellness Journey Types
+export type InsertWellnessJourney = z.infer<typeof insertWellnessJourneySchema>;
+export type WellnessJourney = typeof wellnessJourneys.$inferSelect;
+export type InsertWellnessJourneyStep = z.infer<typeof insertWellnessJourneyStepSchema>;
+export type WellnessJourneyStep = typeof wellnessJourneySteps.$inferSelect;
+export type InsertAquaShowPerk = z.infer<typeof insertAquaShowPerkSchema>;
+export type AquaShowPerk = typeof aquaShowPerks.$inferSelect;
+export type InsertLuxuryHotelPartner = z.infer<typeof insertLuxuryHotelPartnerSchema>;
+export type LuxuryHotelPartner = typeof luxuryHotelPartners.$inferSelect;
+export type InsertRestaurantPartner = z.infer<typeof insertRestaurantPartnerSchema>;
+export type RestaurantPartner = typeof restaurantPartners.$inferSelect;
+export type InsertWellnessJourneyParticipant = z.infer<typeof insertWellnessJourneyParticipantSchema>;
+export type WellnessJourneyParticipant = typeof wellnessJourneyParticipants.$inferSelect;
+export type WellnessPassport = typeof wellnessPassports.$inferSelect;
 
 // E-commerce Order Management
 export const orders = pgTable("orders", {

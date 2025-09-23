@@ -131,6 +131,44 @@ export default function RestaurantRewards() {
         }
       ]
     },
+    {
+      id: "karachi-grill",
+      name: "Karachi Grill Jumeirah Road",
+      cuisine: "Pakistani & Indian",
+      location: "Jumeirah Road, Dubai",
+      phone: "+971 4 344 7272",
+      website: "https://karachigrill.ae",
+      rating: 4.6,
+      image: "/restaurants/karachi-grill.jpg",
+      specialOffer: "🌶️ Spice Master Rewards: Authentic Pakistani flavors with eco-friendly dining perks",
+      missionBonus: "🥘 Heritage Bonus: Traditional spice routes meet modern sustainability missions",
+      rewards: [
+        {
+          points: 350,
+          reward: "🍛 Biryani Special for One",
+          value: "AED 28",
+          available: true
+        },
+        {
+          points: 700,
+          reward: "🥘 Traditional Karahi Feast",
+          value: "AED 55",
+          available: true
+        },
+        {
+          points: 1500,
+          reward: "👥 Family Dining Experience",
+          value: "AED 120",
+          available: true
+        },
+        {
+          points: 3200,
+          reward: "🎉 Private Heritage Dining",
+          value: "AED 250",
+          available: true
+        }
+      ]
+    },
 
     // Asian Cuisine Hub
     {
