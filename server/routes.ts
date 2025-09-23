@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
@@ -2049,6 +2049,91 @@ Context: ${JSON.stringify(context || {})}`
       res.json(quest);
     } catch (error: any) {
       res.status(400).json({ error: error.message || "Failed to complete daily quest" });
+    }
+  });
+
+  // Wellness Passport Routes
+  app.post("/api/wellness-passports", async (req, res) => {
+    try {
+      const validatedData = insertWellnessPassportSchema.parse(req.body);
+      const passport = await storage.createWellnessPassport(validatedData);
+      res.json(passport);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to create wellness passport" });
+    }
+  });
+
+  app.get("/api/wellness-passports/:id", async (req, res) => {
+    try {
+      const passport = await storage.getWellnessPassport(req.params.id);
+      if (!passport) {
+        return res.status(404).json({ error: "Wellness passport not found" });
+      }
+      res.json(passport);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch wellness passport" });
+    }
+  });
+
+  app.post("/api/wellness-passports/by-phone", async (req, res) => {
+    try {
+      const validatedData = phoneRequestSchema.parse(req.body);
+      const passport = await storage.getWellnessPassportByPhone(validatedData.phone);
+      if (!passport) {
+        return res.status(404).json({ error: "No active wellness passport found for this phone number" });
+      }
+      res.json(passport);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to fetch wellness passport" });
+    }
+  });
+
+  app.post("/api/wellness-passports/:id/share", async (req, res) => {
+    try {
+      const passport = await storage.recordShare(req.params.id);
+      if (!passport) {
+        return res.status(404).json({ error: "Wellness passport not found" });
+      }
+      res.json(passport);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to record social share" });
+    }
+  });
+
+  app.post("/api/wellness-passports/:id/progress", async (req, res) => {
+    try {
+      const validatedData = progressStepSchema.parse(req.body);
+      const passport = await storage.progressStep(req.params.id, validatedData.step);
+      if (!passport) {
+        return res.status(404).json({ error: "Wellness passport not found" });
+      }
+      res.json(passport);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to progress wellness journey step" });
+    }
+  });
+
+  app.post("/api/wellness-passports/:id/redeem", async (req, res) => {
+    try {
+      const validatedData = redeemPassportSchema.parse(req.body);
+      
+      // Simple partner PIN verification (in production, use hashed PINs)
+      const validPartnerPins = ['BK2024', 'BAKERS', 'MAZAYA'];
+      if (!validPartnerPins.includes(validatedData.partnerPin)) {
+        return res.status(403).json({ error: "Invalid partner PIN" });
+      }
+      
+      const passport = await storage.redeemPassport(req.params.id);
+      if (!passport) {
+        return res.status(404).json({ error: "Wellness passport not found" });
+      }
+      
+      // Log redemption for audit trail
+      console.log(`Wellness passport redeemed: ${req.params.id} by staff: ${validatedData.staffId || 'unknown'} at: ${validatedData.location || 'Baker\'s Kitchen'}`);
+      
+      res.json(passport);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to redeem wellness passport" });
     }
   });
 

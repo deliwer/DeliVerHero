@@ -1087,5 +1087,23 @@ export const insertWellnessPassportSchema = createInsertSchema(wellnessPassports
   expiresAt: true,
   referralCode: true
 });
+
+export const progressStepSchema = z.object({
+  step: z.number().int().min(1).max(4)
+});
+
+export const phoneRequestSchema = z.object({
+  phone: z.string().min(10).max(15)
+});
+
+export const redeemPassportSchema = z.object({
+  partnerPin: z.string().min(4).max(8),
+  staffId: z.string().optional(),
+  location: z.string().optional()
+});
+
 export type InsertWellnessPassport = z.infer<typeof insertWellnessPassportSchema>;
 export type WellnessPassport = typeof wellnessPassports.$inferSelect;
+export type ProgressStep = z.infer<typeof progressStepSchema>;
+export type PhoneRequest = z.infer<typeof phoneRequestSchema>;
+export type RedeemPassport = z.infer<typeof redeemPassportSchema>;
