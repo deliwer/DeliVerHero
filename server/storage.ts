@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -224,6 +224,67 @@ export interface IStorage {
   
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
+
+  // ============================================================================
+  // GLOBAL SUSTAINABILITY FRAMEWORK METHODS  
+  // ============================================================================
+  
+  // Cities management
+  getCities(): Promise<City[]>;
+  getCity(id: string): Promise<City | undefined>;
+  createCity(city: InsertCity): Promise<City>;
+  updateCity(id: string, updates: Partial<City>): Promise<City | undefined>;
+  
+  // Seasons management
+  getSeasons(): Promise<Season[]>;
+  getSeason(id: string): Promise<Season | undefined>;
+  getSeasonsByCity(cityId: string): Promise<Season[]>;
+  getActiveSeasons(): Promise<Season[]>;
+  createSeason(season: InsertSeason): Promise<Season>;
+  updateSeason(id: string, updates: Partial<Season>): Promise<Season | undefined>;
+  
+  // Activity submissions (real-world verification)
+  getActivitySubmissions(heroId?: string): Promise<ActivitySubmission[]>;
+  getActivitySubmission(id: string): Promise<ActivitySubmission | undefined>;
+  getSubmissionsByMission(missionCode: string): Promise<ActivitySubmission[]>;
+  getSubmissionsByCity(cityId: string): Promise<ActivitySubmission[]>;
+  createActivitySubmission(submission: InsertActivitySubmission): Promise<ActivitySubmission>;
+  updateActivitySubmission(id: string, updates: Partial<ActivitySubmission>): Promise<ActivitySubmission | undefined>;
+  
+  // Verification events  
+  getVerificationEvents(submissionId?: string): Promise<VerificationEvent[]>;
+  createVerificationEvent(event: InsertVerificationEvent): Promise<VerificationEvent>;
+  
+  // Global partners
+  getGlobalPartners(cityId?: string): Promise<GlobalPartner[]>;
+  getGlobalPartner(id: string): Promise<GlobalPartner | undefined>;
+  getPartnersByType(partnerType: string, cityId?: string): Promise<GlobalPartner[]>;
+  createGlobalPartner(partner: InsertGlobalPartner): Promise<GlobalPartner>;
+  updateGlobalPartner(id: string, updates: Partial<GlobalPartner>): Promise<GlobalPartner | undefined>;
+  
+  // AI mission templates
+  getAiMissionTemplates(cityId?: string): Promise<AiMissionTemplate[]>;
+  getAiMissionTemplate(id: string): Promise<AiMissionTemplate | undefined>;
+  getTemplatesByCategory(category: string): Promise<AiMissionTemplate[]>;
+  createAiMissionTemplate(template: InsertAiMissionTemplate): Promise<AiMissionTemplate>;
+  updateAiMissionTemplate(id: string, updates: Partial<AiMissionTemplate>): Promise<AiMissionTemplate | undefined>;
+  
+  // Environment states (dynamic metaverse scenes)
+  getEnvironmentStates(cityId?: string, seasonId?: string): Promise<EnvironmentState[]>;
+  getEnvironmentState(id: string): Promise<EnvironmentState | undefined>;
+  getEnvironmentStateByName(environmentName: string, cityId: string): Promise<EnvironmentState | undefined>;
+  createEnvironmentState(state: InsertEnvironmentState): Promise<EnvironmentState>;
+  updateEnvironmentState(id: string, updates: Partial<EnvironmentState>): Promise<EnvironmentState | undefined>;
+  
+  // Leaderboard snapshots
+  getLeaderboardSnapshots(scope?: string, cityId?: string): Promise<LeaderboardSnapshot[]>;
+  getLatestSnapshot(snapshotType: string, scope: string, cityId?: string): Promise<LeaderboardSnapshot | undefined>;
+  createLeaderboardSnapshot(snapshot: InsertLeaderboardSnapshot): Promise<LeaderboardSnapshot>;
+  
+  // Enhanced mission operations with verification
+  submitMissionActivity(heroId: string, missionCode: string, submission: InsertActivitySubmission): Promise<{ submission: ActivitySubmission; verified: boolean; pointsAwarded: number; }>;
+  verifyActivitySubmission(submissionId: string, verifiedBy: string, result: string, confidence?: number): Promise<ActivitySubmission>;
+  generateMissionFromTemplate(templateId: string, variables?: Record<string, any>): Promise<PlanetMission>;
 }
 
 export class MemStorage implements IStorage {
@@ -274,6 +335,16 @@ export class MemStorage implements IStorage {
   private restaurantPartners: Map<string, RestaurantPartner>;
   private wellnessJourneyParticipants: Map<string, WellnessJourneyParticipant>;
 
+  // Global Sustainability Framework
+  private cities: Map<string, City>;
+  private seasons: Map<string, Season>;
+  private activitySubmissions: Map<string, ActivitySubmission>;
+  private verificationEvents: Map<string, VerificationEvent>;
+  private globalPartners: Map<string, GlobalPartner>;
+  private aiMissionTemplates: Map<string, AiMissionTemplate>;
+  private environmentStates: Map<string, EnvironmentState>;
+  private leaderboardSnapshots: Map<string, LeaderboardSnapshot>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -320,6 +391,16 @@ export class MemStorage implements IStorage {
     this.restaurantPartners = new Map();
     this.wellnessJourneyParticipants = new Map();
     
+    // Initialize global sustainability framework
+    this.cities = new Map();
+    this.seasons = new Map();
+    this.activitySubmissions = new Map();
+    this.verificationEvents = new Map();
+    this.globalPartners = new Map();
+    this.aiMissionTemplates = new Map();
+    this.environmentStates = new Map();
+    this.leaderboardSnapshots = new Map();
+    
     // Initialize impact stats
     this.impactStats = {
       id: randomUUID(),
@@ -346,6 +427,7 @@ export class MemStorage implements IStorage {
     this.seedSponsorshipData();
     this.seedTombolaData();
     this.seedMetaverseGamingData();
+    this.seedGlobalSustainabilityData();
   }
 
   private seedInitialData() {
@@ -369,6 +451,16 @@ export class MemStorage implements IStorage {
         sustainabilityStreak: 15,
         isAquaCafeLoyaltyMember: false,
         aquaCafeMembershipDate: null,
+        cityHome: "dubai",
+        citiesParticipating: ["dubai"],
+        waterStreak: 15,
+        energyStreak: 12,
+        wasteStreak: 8,
+        mobilityStreak: 10,
+        loyaltyTier: "ambassador",
+        dataSharingConsent: true,
+        globalReferralCode: "KHALID-ECO23",
+        totalGlobalImpact: 7870,
         isActive: true,
         createdAt: new Date("2024-01-15"),
         updatedAt: new Date(),
@@ -392,6 +484,16 @@ export class MemStorage implements IStorage {
         sustainabilityStreak: 8,
         isAquaCafeLoyaltyMember: false,
         aquaCafeMembershipDate: null,
+        cityHome: "dubai",
+        citiesParticipating: ["dubai"],
+        waterStreak: 8,
+        energyStreak: 10,
+        wasteStreak: 6,
+        mobilityStreak: 7,
+        loyaltyTier: "platinum",
+        dataSharingConsent: true,
+        globalReferralCode: "AMIRA-TECH20",
+        totalGlobalImpact: 7336,
         isActive: true,
         createdAt: new Date("2024-01-20"),
         updatedAt: new Date(),
@@ -415,6 +517,16 @@ export class MemStorage implements IStorage {
         sustainabilityStreak: 8,
         isAquaCafeLoyaltyMember: false,
         aquaCafeMembershipDate: null,
+        cityHome: "dubai",
+        citiesParticipating: ["dubai"],
+        waterStreak: 6,
+        energyStreak: 9,
+        wasteStreak: 5,
+        mobilityStreak: 8,
+        loyaltyTier: "gold",
+        dataSharingConsent: true,
+        globalReferralCode: "OMAR-GREEN15",
+        totalGlobalImpact: 6234,
         isActive: true,
         createdAt: new Date("2024-02-01"),
         updatedAt: new Date(),
@@ -438,6 +550,16 @@ export class MemStorage implements IStorage {
         sustainabilityStreak: 8,
         isAquaCafeLoyaltyMember: false,
         aquaCafeMembershipDate: null,
+        cityHome: "dubai",
+        citiesParticipating: ["dubai"],
+        waterStreak: 7,
+        energyStreak: 8,
+        wasteStreak: 6,
+        mobilityStreak: 9,
+        loyaltyTier: "gold",
+        dataSharingConsent: true,
+        globalReferralCode: "FATIMA-IMPACT14",
+        totalGlobalImpact: 5683,
         isActive: true,
         createdAt: new Date("2024-02-15"),
         updatedAt: new Date(),
@@ -461,6 +583,16 @@ export class MemStorage implements IStorage {
         sustainabilityStreak: 8,
         isAquaCafeLoyaltyMember: false,
         aquaCafeMembershipDate: null,
+        cityHome: "dubai",
+        citiesParticipating: ["dubai"],
+        waterStreak: 5,
+        energyStreak: 7,
+        wasteStreak: 4,
+        mobilityStreak: 6,
+        loyaltyTier: "gold",
+        dataSharingConsent: true,
+        globalReferralCode: "MOHAMMED-BUILD12",
+        totalGlobalImpact: 4962,
         isActive: true,
         createdAt: new Date("2024-03-01"),
         updatedAt: new Date(),
@@ -3442,6 +3574,325 @@ export class MemStorage implements IStorage {
     this.wellnessJourneyParticipants.set(id, updatedParticipant);
     return updatedParticipant;
   }
+
+  // ============================================================================
+  // GLOBAL SUSTAINABILITY FRAMEWORK IMPLEMENTATIONS
+  // ============================================================================
+
+  private seedGlobalSustainabilityData() {
+    // Seed Dubai as the pilot city
+    const dubaiCity: City = {
+      id: "dubai",
+      name: "Dubai",
+      country: "UAE",
+      timezone: "Asia/Dubai",
+      currency: "AED",
+      language: "en",
+      brandTheme: { primary: "#1e40af", secondary: "#06b6d4" },
+      localPartners: [],
+      governmentContact: "sustainability@dubai.gov.ae",
+      populationSize: 3600000,
+      sustainabilityGoals: {
+        waterReduction: 30,
+        energyEfficiency: 25,
+        wasteReduction: 40,
+        mobilityImprovement: 35
+      },
+      baselineMetrics: {
+        bottlesPrevented: 847392,
+        co2Saved: 423700,
+        activeParticipants: 12847
+      },
+      isActive: true,
+      launchDate: new Date("2024-01-01"),
+      nextCityToInspire: "singapore",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.cities.set(dubaiCity.id, dubaiCity);
+
+    // Seed current water season
+    const waterSeason: Season = {
+      id: "dubai-2025-water",
+      name: "Dubai 2025 Water Conservation Season", 
+      cityId: "dubai",
+      theme: "water",
+      startDate: new Date("2025-01-01"),
+      endDate: new Date("2025-12-31"),
+      registrationDeadline: new Date("2025-11-30"),
+      participationGoal: 50000,
+      environmentalGoals: {
+        bottlesPrevented: 2000000,
+        waterSaved: 500000000,
+        participantsTarget: 50000
+      },
+      rewards: [
+        { tier: "bronze", requirement: 10, reward: "Water Hero Badge" },
+        { tier: "gold", requirement: 100, reward: "Canal Journey Access" }
+      ],
+      heroImageUrl: "/assets/dubai-water-season.jpg",
+      campaignDescription: "Join Dubai's water conservation mission to protect our precious resources",
+      socialHashtags: ["#DubaiWater2025", "#AquaCafe", "#SustainableDubai"],
+      isActive: true,
+      createdAt: new Date(),
+    };
+    this.seasons.set(waterSeason.id, waterSeason);
+  }
+
+  // Cities management
+  async getCities(): Promise<City[]> {
+    return Array.from(this.cities.values());
+  }
+
+  async getCity(id: string): Promise<City | undefined> {
+    return this.cities.get(id);
+  }
+
+  async createCity(city: InsertCity): Promise<City> {
+    const newCity: City = {
+      ...city,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.cities.set(newCity.id, newCity);
+    return newCity;
+  }
+
+  async updateCity(id: string, updates: Partial<City>): Promise<City | undefined> {
+    const city = this.cities.get(id);
+    if (!city) return undefined;
+    
+    const updatedCity: City = {
+      ...city,
+      ...updates,
+      updatedAt: new Date(),
+    };
+    this.cities.set(id, updatedCity);
+    return updatedCity;
+  }
+
+  // Seasons management
+  async getSeasons(): Promise<Season[]> {
+    return Array.from(this.seasons.values());
+  }
+
+  async getSeason(id: string): Promise<Season | undefined> {
+    return this.seasons.get(id);
+  }
+
+  async getSeasonsByCity(cityId: string): Promise<Season[]> {
+    return Array.from(this.seasons.values()).filter(s => s.cityId === cityId);
+  }
+
+  async getActiveSeasons(): Promise<Season[]> {
+    const now = new Date();
+    return Array.from(this.seasons.values()).filter(s => 
+      s.isActive && s.startDate <= now && s.endDate >= now
+    );
+  }
+
+  async createSeason(season: InsertSeason): Promise<Season> {
+    const newSeason: Season = {
+      ...season,
+      createdAt: new Date(),
+    };
+    this.seasons.set(newSeason.id, newSeason);
+    return newSeason;
+  }
+
+  async updateSeason(id: string, updates: Partial<Season>): Promise<Season | undefined> {
+    const season = this.seasons.get(id);
+    if (!season) return undefined;
+    
+    const updatedSeason: Season = { ...season, ...updates };
+    this.seasons.set(id, updatedSeason);
+    return updatedSeason;
+  }
+
+  // Activity submissions (core real-world verification)
+  async getActivitySubmissions(heroId?: string): Promise<ActivitySubmission[]> {
+    let submissions = Array.from(this.activitySubmissions.values());
+    if (heroId) {
+      submissions = submissions.filter(s => s.heroId === heroId);
+    }
+    return submissions.sort((a, b) => b.submittedAt.getTime() - a.submittedAt.getTime());
+  }
+
+  async getActivitySubmission(id: string): Promise<ActivitySubmission | undefined> {
+    return this.activitySubmissions.get(id);
+  }
+
+  async getSubmissionsByMission(missionCode: string): Promise<ActivitySubmission[]> {
+    return Array.from(this.activitySubmissions.values())
+      .filter(s => s.missionCode === missionCode)
+      .sort((a, b) => b.submittedAt.getTime() - a.submittedAt.getTime());
+  }
+
+  async getSubmissionsByCity(cityId: string): Promise<ActivitySubmission[]> {
+    return Array.from(this.activitySubmissions.values())
+      .filter(s => s.cityId === cityId)
+      .sort((a, b) => b.submittedAt.getTime() - a.submittedAt.getTime());
+  }
+
+  async createActivitySubmission(submission: InsertActivitySubmission): Promise<ActivitySubmission> {
+    const newSubmission: ActivitySubmission = {
+      id: randomUUID(),
+      ...submission,
+      submittedAt: new Date(),
+      verifiedAt: null,
+    };
+    this.activitySubmissions.set(newSubmission.id, newSubmission);
+    return newSubmission;
+  }
+
+  async updateActivitySubmission(id: string, updates: Partial<ActivitySubmission>): Promise<ActivitySubmission | undefined> {
+    const submission = this.activitySubmissions.get(id);
+    if (!submission) return undefined;
+    
+    const updatedSubmission: ActivitySubmission = { ...submission, ...updates };
+    this.activitySubmissions.set(id, updatedSubmission);
+    return updatedSubmission;
+  }
+
+  // Enhanced mission operations with verification
+  async submitMissionActivity(heroId: string, missionCode: string, submissionData: InsertActivitySubmission): Promise<{ submission: ActivitySubmission; verified: boolean; pointsAwarded: number; }> {
+    const mission = await this.getPlanetMission(missionCode);
+    if (!mission) {
+      throw new Error(`Mission ${missionCode} not found`);
+    }
+
+    // Create activity submission
+    const submission = await this.createActivitySubmission({
+      ...submissionData,
+      heroId,
+      missionCode,
+      status: "pending",
+    });
+
+    // Simple auto-verification for certain types
+    let verified = false;
+    let pointsAwarded = 0;
+
+    if (submissionData.submissionType === "qr_scan" || submissionData.submissionType === "partner_api") {
+      // Auto-verify QR codes and partner API submissions
+      verified = true;
+      pointsAwarded = mission.basePoints || 200;
+      
+      await this.updateActivitySubmission(submission.id, {
+        status: "verified",
+        verifiedBy: "auto",
+        verificationScore: 100,
+        pointsAwarded,
+        verifiedAt: new Date(),
+      });
+
+      // Award points to hero
+      await this.awardPlanetPoints(
+        heroId, 
+        pointsAwarded, 
+        "mission_completion", 
+        "activity_submission", 
+        submission.id, 
+        `Completed mission: ${mission.title}`
+      );
+    }
+
+    return { 
+      submission: await this.getActivitySubmission(submission.id) as ActivitySubmission, 
+      verified, 
+      pointsAwarded 
+    };
+  }
+
+  async verifyActivitySubmission(submissionId: string, verifiedBy: string, result: string, confidence?: number): Promise<ActivitySubmission> {
+    const submission = this.activitySubmissions.get(submissionId);
+    if (!submission) {
+      throw new Error("Submission not found");
+    }
+
+    const isApproved = result === "approved";
+    const pointsToAward = isApproved ? (submission.pointsAwarded || 200) : 0;
+
+    const updatedSubmission: ActivitySubmission = {
+      ...submission,
+      status: isApproved ? "verified" : "rejected",
+      verifiedBy,
+      verificationScore: confidence || 85,
+      verifiedAt: new Date(),
+      pointsAwarded: pointsToAward,
+    };
+
+    this.activitySubmissions.set(submissionId, updatedSubmission);
+
+    // Award points if approved
+    if (isApproved && pointsToAward > 0) {
+      const mission = await this.getPlanetMission(submission.missionCode);
+      await this.awardPlanetPoints(
+        submission.heroId,
+        pointsToAward,
+        "mission_verification",
+        "activity_submission", 
+        submissionId,
+        `Verified mission: ${mission?.title}`
+      );
+    }
+
+    // Create verification event
+    await this.createVerificationEvent({
+      submissionId,
+      eventType: "manual_review",
+      result,
+      confidence: confidence || 85,
+      details: { verifiedBy, timestamp: new Date() },
+      verifierInfo: { type: "manual", id: verifiedBy },
+    });
+
+    return updatedSubmission;
+  }
+
+  // Verification events
+  async getVerificationEvents(submissionId?: string): Promise<VerificationEvent[]> {
+    let events = Array.from(this.verificationEvents.values());
+    if (submissionId) {
+      events = events.filter(e => e.submissionId === submissionId);
+    }
+    return events.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async createVerificationEvent(event: InsertVerificationEvent): Promise<VerificationEvent> {
+    const newEvent: VerificationEvent = {
+      id: randomUUID(),
+      ...event,
+      createdAt: new Date(),
+    };
+    this.verificationEvents.set(newEvent.id, newEvent);
+    return newEvent;
+  }
+
+  // Placeholder implementations for remaining interface methods
+  async getGlobalPartners(cityId?: string): Promise<GlobalPartner[]> { return []; }
+  async getGlobalPartner(id: string): Promise<GlobalPartner | undefined> { return undefined; }
+  async getPartnersByType(partnerType: string, cityId?: string): Promise<GlobalPartner[]> { return []; }
+  async createGlobalPartner(partner: InsertGlobalPartner): Promise<GlobalPartner> { throw new Error("Not implemented"); }
+  async updateGlobalPartner(id: string, updates: Partial<GlobalPartner>): Promise<GlobalPartner | undefined> { return undefined; }
+  
+  async getAiMissionTemplates(cityId?: string): Promise<AiMissionTemplate[]> { return []; }
+  async getAiMissionTemplate(id: string): Promise<AiMissionTemplate | undefined> { return undefined; }
+  async getTemplatesByCategory(category: string): Promise<AiMissionTemplate[]> { return []; }
+  async createAiMissionTemplate(template: InsertAiMissionTemplate): Promise<AiMissionTemplate> { throw new Error("Not implemented"); }
+  async updateAiMissionTemplate(id: string, updates: Partial<AiMissionTemplate>): Promise<AiMissionTemplate | undefined> { return undefined; }
+  
+  async getEnvironmentStates(cityId?: string, seasonId?: string): Promise<EnvironmentState[]> { return []; }
+  async getEnvironmentState(id: string): Promise<EnvironmentState | undefined> { return undefined; }
+  async getEnvironmentStateByName(environmentName: string, cityId: string): Promise<EnvironmentState | undefined> { return undefined; }
+  async createEnvironmentState(state: InsertEnvironmentState): Promise<EnvironmentState> { throw new Error("Not implemented"); }
+  async updateEnvironmentState(id: string, updates: Partial<EnvironmentState>): Promise<EnvironmentState | undefined> { return undefined; }
+  
+  async getLeaderboardSnapshots(scope?: string, cityId?: string): Promise<LeaderboardSnapshot[]> { return []; }
+  async getLatestSnapshot(snapshotType: string, scope: string, cityId?: string): Promise<LeaderboardSnapshot | undefined> { return undefined; }
+  async createLeaderboardSnapshot(snapshot: InsertLeaderboardSnapshot): Promise<LeaderboardSnapshot> { throw new Error("Not implemented"); }
+  
+  async generateMissionFromTemplate(templateId: string, variables?: Record<string, any>): Promise<PlanetMission> { throw new Error("Not implemented"); }
 }
 
 export const storage = new MemStorage();

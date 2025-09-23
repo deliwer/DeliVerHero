@@ -1958,6 +1958,164 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // ============================================================================
+  // GLOBAL SUSTAINABILITY FRAMEWORK API ROUTES
+  // ============================================================================
+  
+  // Cities API
+  app.get("/api/sustainability/cities", async (req, res) => {
+    try {
+      const cities = await storage.getCities();
+      res.json(cities);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch cities" });
+    }
+  });
+
+  app.get("/api/sustainability/cities/:id", async (req, res) => {
+    try {
+      const city = await storage.getCity(req.params.id);
+      if (!city) {
+        return res.status(404).json({ error: "City not found" });
+      }
+      res.json(city);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch city" });
+    }
+  });
+
+  // Seasons API
+  app.get("/api/sustainability/seasons", async (req, res) => {
+    try {
+      const cityId = req.query.cityId as string;
+      const seasons = cityId 
+        ? await storage.getSeasonsByCity(cityId)
+        : await storage.getSeasons();
+      res.json(seasons);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch seasons" });
+    }
+  });
+
+  app.get("/api/sustainability/seasons/active", async (req, res) => {
+    try {
+      const activeSeasons = await storage.getActiveSeasons();
+      res.json(activeSeasons);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch active seasons" });
+    }
+  });
+
+  // Enhanced Mission Submission API (Real-world verification)
+  app.post("/api/metaverse/missions/:missionCode/submit-activity", async (req, res) => {
+    try {
+      const { heroId, submissionType, proofData, locationData, metadata } = req.body;
+      
+      if (!heroId || !submissionType || !proofData) {
+        return res.status(400).json({ 
+          error: "Missing required fields: heroId, submissionType, proofData" 
+        });
+      }
+
+      const result = await storage.submitMissionActivity(heroId, req.params.missionCode, {
+        submissionType,
+        proofData,
+        locationData: locationData || {},
+        metadata: metadata || {},
+        status: "pending",
+        verifiedBy: null,
+        verificationScore: 0,
+        impactCalculated: {},
+        pointsAwarded: 0,
+        bonusMultipliers: {},
+        cityId: req.body.cityId || "dubai",
+        seasonId: req.body.seasonId || null,
+      });
+
+      res.json({
+        success: true,
+        submission: result.submission,
+        verified: result.verified,
+        pointsAwarded: result.pointsAwarded,
+        message: result.verified 
+          ? `Activity verified! You earned ${result.pointsAwarded} planet points!`
+          : "Activity submitted for verification. You'll be notified once reviewed."
+      });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to submit activity" });
+    }
+  });
+
+  // Activity Submissions API
+  app.get("/api/sustainability/submissions", async (req, res) => {
+    try {
+      const heroId = req.query.heroId as string;
+      const submissions = await storage.getActivitySubmissions(heroId);
+      res.json(submissions);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch submissions" });
+    }
+  });
+
+  app.get("/api/sustainability/submissions/:id", async (req, res) => {
+    try {
+      const submission = await storage.getActivitySubmission(req.params.id);
+      if (!submission) {
+        return res.status(404).json({ error: "Submission not found" });
+      }
+      res.json(submission);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch submission" });
+    }
+  });
+
+  // Verification API (Admin/Partner use)
+  app.post("/api/sustainability/submissions/:id/verify", async (req, res) => {
+    try {
+      const { result, verifiedBy, confidence } = req.body;
+      
+      if (!result || !verifiedBy) {
+        return res.status(400).json({ 
+          error: "Missing required fields: result, verifiedBy" 
+        });
+      }
+
+      if (!["approved", "rejected"].includes(result)) {
+        return res.status(400).json({ 
+          error: "Invalid result. Must be 'approved' or 'rejected'" 
+        });
+      }
+
+      const submission = await storage.verifyActivitySubmission(
+        req.params.id, 
+        verifiedBy, 
+        result, 
+        confidence
+      );
+
+      res.json({
+        success: true,
+        submission,
+        message: result === "approved" 
+          ? `Submission approved! ${submission.pointsAwarded} points awarded.`
+          : "Submission rejected."
+      });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to verify submission" });
+    }
+  });
+
+  // Verification Events API
+  app.get("/api/sustainability/verification-events", async (req, res) => {
+    try {
+      const submissionId = req.query.submissionId as string;
+      const events = await storage.getVerificationEvents(submissionId);
+      res.json(events);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch verification events" });
+    }
+  });
+
   app.post("/api/metaverse/badges", async (req, res) => {
     try {
       const validatedData = insertAchievementBadgeSchema.parse(req.body);
