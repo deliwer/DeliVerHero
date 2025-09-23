@@ -132,7 +132,7 @@ export default function AquaCafeAlliance() {
   // Handle existing passport data from API
   useEffect(() => {
     if (existingPassportQuery.data) {
-      const passport = existingPassportQuery.data;
+      const passport = existingPassportQuery.data as any;
       setCurrentPassport(passport);
       setWellnessPassportActive(true);
       setJourneyStep(passport.currentStep || 1);
@@ -158,7 +158,7 @@ export default function AquaCafeAlliance() {
     mutationFn: async (phone: string) => {
       return apiRequest('/api/wellness-passports', 'POST', { phone });
     },
-    onSuccess: (passport) => {
+    onSuccess: (passport: any) => {
       setCurrentPassport(passport);
       setWellnessPassportActive(true);
       setJourneyStep(passport.currentStep || 1);
@@ -186,7 +186,7 @@ export default function AquaCafeAlliance() {
     mutationFn: async ({ passportId, phone }: { passportId: string, phone: string }) => {
       return apiRequest(`/api/wellness-passports/${passportId}/qr`, 'POST', { phone });
     },
-    onSuccess: (qrData) => {
+    onSuccess: (qrData: any) => {
       setQrCodeUrl(qrData.qrCode);
     },
     onError: (error: any) => {
@@ -199,7 +199,7 @@ export default function AquaCafeAlliance() {
     mutationFn: async (passportId: string) => {
       return apiRequest(`/api/wellness-passports/${passportId}/share`, 'POST', {});
     },
-    onSuccess: (updatedPassport) => {
+    onSuccess: (updatedPassport: any) => {
       setCurrentPassport(updatedPassport);
       setJourneyStep(updatedPassport.currentStep || 2);
       // Update localStorage with latest passport data
@@ -883,6 +883,13 @@ export default function AquaCafeAlliance() {
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-emerald-300" />
                   <span>Exclusive wellness tips from Baker's Kitchen</span>
+                </div>
+                <div className="flex items-center gap-3 mt-4 p-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-lg border border-cyan-400/30">
+                  <Sparkles className="w-5 h-5 text-cyan-300 animate-pulse" />
+                  <span className="text-cyan-100 font-semibold">🌊 COMING SOON: Exclusive Aqua Show Experience</span>
+                </div>
+                <div className="text-xs text-cyan-200 mt-2 ml-8">
+                  💎 Platinum partners get priority access to Dubai's most extraordinary aquatic entertainment venue featuring breathtaking performances and immersive experiences
                 </div>
               </div>
             </div>
