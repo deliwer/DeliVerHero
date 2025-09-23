@@ -197,6 +197,25 @@ const journeySteps: WellnessJourneyStep[] = [
     bgColor: "bg-amber-100",
     completed: false,
     perks: ["20% wellness discounts", "Personal wellness consultant", "AquaCafe loyalty benefits"]
+  },
+  {
+    id: "dubai-marathon",
+    title: "Dubai Marathon Planet Heroes Challenge",
+    description: "Join the annual Dubai Marathon as a Planet Hero ambassador representing wellness and sustainability",
+    location: "Sheikh Zayed Road - Full Marathon Route",
+    duration: "4-6 hours event + training period",
+    icon: <Trophy className="w-6 h-6" />,
+    color: "text-orange-600",
+    bgColor: "bg-orange-100",
+    completed: false,
+    perks: [
+      "Exclusive Planet Hero T-shirt", 
+      "Partner water stations support", 
+      "2500 Planet Points reward",
+      "Marathon finisher badge",
+      "AED 200 wellness voucher",
+      "Community ambassador status"
+    ]
   }
 ];
 

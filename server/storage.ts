@@ -994,6 +994,21 @@ export class MemStorage implements IStorage {
         isActive: true,
         createdAt: new Date(),
         expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "challenge-dubai-marathon",
+        title: "Dubai Marathon Planet Heroes Challenge",
+        description: "Join the Dubai Marathon as a Planet Hero ambassador - Register, train sustainably, and represent AquaCafe wellness on Sheikh Zayed Road. Earn extra points for sustainable training practices and community engagement.",
+        category: "wellness",
+        targetZone: "Sheikh Zayed Road",
+        pointsReward: 2500,
+        rewardItem: "Dubai Marathon Hero T-shirt + AED 200 voucher + Marathon Finisher Badge + Wellness Journey completion",
+        timeLimit: 120, // 4 months preparation time
+        participantLimit: 100,
+        currentParticipants: 18,
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 120 * 24 * 60 * 60 * 1000), // Marathon season
       }
     ];
 
@@ -1028,6 +1043,51 @@ export class MemStorage implements IStorage {
         isActive: true,
         createdAt: new Date(),
         expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "reward-marathon-tshirt",
+        title: "Dubai Marathon Planet Hero T-Shirt",
+        description: "Exclusive branded AquaCafe Planet Hero T-shirt for Dubai Marathon participants - High-performance moisture-wicking fabric with sustainability messaging",
+        category: "merchandise",
+        partner: "Dubai Sports Council x AquaCafe",
+        value: 15000, // AED 150 value
+        pointsCost: 800,
+        availableQuantity: 200,
+        claimedQuantity: 12,
+        zoneRestriction: "Sheikh Zayed Road",
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 120 * 24 * 60 * 60 * 1000), // 4 months validity
+      },
+      {
+        id: "reward-marathon-registration",
+        title: "Dubai Marathon Registration Voucher",
+        description: "Full registration fee covered for Dubai Marathon participation as a Planet Hero ambassador",
+        category: "experience",
+        partner: "Dubai Sports Council",
+        value: 50000, // AED 500 registration fee
+        pointsCost: 3500,
+        availableQuantity: 50,
+        claimedQuantity: 3,
+        zoneRestriction: "Sheikh Zayed Road",
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: "reward-partner-water-kit",
+        title: "Marathon Partner Water Support Kit",
+        description: "Partner support package including branded water bottles and hydration stations for marathon athletes",
+        category: "service",
+        partner: "AquaCafe Community Partners",
+        value: 25000, // AED 250 value
+        pointsCost: 1800,
+        availableQuantity: 20,
+        claimedQuantity: 2,
+        zoneRestriction: "Sheikh Zayed Road",
+        isActive: true,
+        createdAt: new Date(),
+        expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       }
     ];
 
