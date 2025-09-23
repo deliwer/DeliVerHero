@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -175,6 +175,14 @@ export interface IStorage {
   completeDailyQuest(questId: string): Promise<DailyQuest | undefined>;
   generateDailyQuests(heroId: string): Promise<DailyQuest[]>;
   
+  // Wellness Passport operations
+  createWellnessPassport(passport: InsertWellnessPassport): Promise<WellnessPassport>;
+  getWellnessPassport(id: string): Promise<WellnessPassport | undefined>;
+  getWellnessPassportByPhone(phone: string): Promise<WellnessPassport | undefined>;
+  recordShare(passportId: string): Promise<WellnessPassport | undefined>;
+  progressStep(passportId: string, step: number): Promise<WellnessPassport | undefined>;
+  redeemPassport(passportId: string): Promise<WellnessPassport | undefined>;
+  
   // Utility
   calculateTradeValue(phoneModel: string, condition: string): Promise<number>;
 }
@@ -217,6 +225,7 @@ export class MemStorage implements IStorage {
   private metaverseRewards: Map<string, MetaverseReward>;
   private rewardRedemptions: Map<string, RewardRedemption>;
   private dailyQuests: Map<string, DailyQuest>;
+  private wellnessPassports: Map<string, WellnessPassport>;
 
   constructor() {
     this.users = new Map();
@@ -254,6 +263,7 @@ export class MemStorage implements IStorage {
     this.metaverseRewards = new Map();
     this.rewardRedemptions = new Map();
     this.dailyQuests = new Map();
+    this.wellnessPassports = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -2855,6 +2865,96 @@ export class MemStorage implements IStorage {
     rewards.forEach(reward => {
       this.metaverseRewards.set(reward.id, reward);
     });
+  }
+
+  // Wellness Passport operations
+  async createWellnessPassport(passportData: InsertWellnessPassport): Promise<WellnessPassport> {
+    const id = randomUUID();
+    const referralCode = `WELLNESS${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+    const now = new Date();
+    const expiresAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 days from now
+    
+    const passport: WellnessPassport = {
+      id,
+      phone: passportData.phone,
+      referralCode,
+      status: passportData.status || "active",
+      stepsCompleted: passportData.stepsCompleted || [],
+      currentStep: passportData.currentStep || 1,
+      totalValue: passportData.totalValue || 14900,
+      pointsEarned: passportData.pointsEarned || 0,
+      partnerLocation: passportData.partnerLocation || "Baker's Kitchen, Mazaya Center",
+      issuedAt: now,
+      expiresAt,
+      redeemedAt: null,
+      sharedAt: null,
+      createdAt: now,
+    };
+
+    this.wellnessPassports.set(id, passport);
+    return passport;
+  }
+
+  async getWellnessPassport(id: string): Promise<WellnessPassport | undefined> {
+    return this.wellnessPassports.get(id);
+  }
+
+  async getWellnessPassportByPhone(phone: string): Promise<WellnessPassport | undefined> {
+    for (const passport of this.wellnessPassports.values()) {
+      if (passport.phone === phone && passport.status === "active") {
+        return passport;
+      }
+    }
+    return undefined;
+  }
+
+  async recordShare(passportId: string): Promise<WellnessPassport | undefined> {
+    const passport = this.wellnessPassports.get(passportId);
+    if (!passport) return undefined;
+
+    const updatedPassport: WellnessPassport = {
+      ...passport,
+      sharedAt: new Date(),
+      currentStep: Math.max(passport.currentStep, 2),
+      stepsCompleted: Array.from(new Set([...passport.stepsCompleted, 1])),
+      pointsEarned: passport.pointsEarned + 50,
+    };
+
+    this.wellnessPassports.set(passportId, updatedPassport);
+    return updatedPassport;
+  }
+
+  async progressStep(passportId: string, step: number): Promise<WellnessPassport | undefined> {
+    const passport = this.wellnessPassports.get(passportId);
+    if (!passport) return undefined;
+
+    const stepPoints = { 1: 50, 2: 100, 3: 75, 4: 200 };
+    const updatedPassport: WellnessPassport = {
+      ...passport,
+      currentStep: Math.max(passport.currentStep, step + 1),
+      stepsCompleted: Array.from(new Set([...passport.stepsCompleted, step])),
+      pointsEarned: passport.pointsEarned + (stepPoints[step as keyof typeof stepPoints] || 0),
+    };
+
+    this.wellnessPassports.set(passportId, updatedPassport);
+    return updatedPassport;
+  }
+
+  async redeemPassport(passportId: string): Promise<WellnessPassport | undefined> {
+    const passport = this.wellnessPassports.get(passportId);
+    if (!passport) return undefined;
+
+    const updatedPassport: WellnessPassport = {
+      ...passport,
+      status: "redeemed",
+      redeemedAt: new Date(),
+      currentStep: 4,
+      stepsCompleted: [1, 2, 3, 4],
+      pointsEarned: 425, // Total journey points
+    };
+
+    this.wellnessPassports.set(passportId, updatedPassport);
+    return updatedPassport;
   }
 }
 

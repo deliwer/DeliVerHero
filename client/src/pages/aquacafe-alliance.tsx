@@ -5,10 +5,14 @@ import { shopifyCartService } from "@/lib/shopify-cart";
 import { 
   Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, 
   Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, 
-  Phone, ChefHat, Utensils, Coffee, Quote
+  Phone, ChefHat, Utensils, Coffee, Quote, QrCode, Share2, Camera,
+  Smartphone, Navigation, TrendingUp, Sparkles, Trophy, Timer
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { SocialSharingWidget } from "@/components/social-sharing-widget";
 
 // Import assets
 import aquacafeDesign from "@assets/Final_Design_DeliWer_AquaCafe_1755000844134.png";
@@ -83,6 +87,10 @@ export default function AquaCafeAlliance() {
     }
   };
 
+  const [wellnessPassportActive, setWellnessPassportActive] = useState(false);
+  const [journeyStep, setJourneyStep] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   const handleExperienceAlliance = () => {
     window.open('https://maps.google.com/maps?q=Baker\'s+Kitchen+Mazaya+Center+Dubai', '_blank');
     toast({
@@ -90,6 +98,73 @@ export default function AquaCafeAlliance() {
       description: "Directing you to Baker's Kitchen location",
     });
   };
+
+  const handleActivateWellnessPassport = () => {
+    if (!phoneNumber) {
+      toast({
+        title: "Phone Number Required",
+        description: "Please enter your phone number to receive your Wellness Passport QR code",
+        variant: "destructive"
+      });
+      return;
+    }
+    setWellnessPassportActive(true);
+    setJourneyStep(1);
+    toast({
+      title: "🎉 Wellness Passport Activated!",
+      description: "Check your phone for QR code. Share on social media to unlock your free experience!",
+    });
+  };
+
+  const generateShareableContent = () => {
+    const referralCode = `WELLNESS${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+    return {
+      type: 'achievement' as const,
+      title: 'AquaCafe Wellness Passport Activated',
+      description: `Just activated my Wellness Passport for free Kangen Water + healthy meal at Baker's Kitchen!`,
+      value: 150,
+      url: `https://deliwer.com/aquacafe-alliance?ref=${referralCode}&passport=active`
+    };
+  };
+
+  const wellnessJourneySteps = [
+    {
+      id: 1,
+      title: "Activate Wellness Passport",
+      description: "Enter phone number and share on social media",
+      icon: Smartphone,
+      location: "Online",
+      points: 50,
+      completed: journeyStep >= 1
+    },
+    {
+      id: 2,
+      title: "Visit Baker's Kitchen",
+      description: "Show QR code for free Kangen Water tasting + set menu",
+      icon: ChefHat,
+      location: "Mazaya Center",
+      points: 100,
+      completed: journeyStep >= 2
+    },
+    {
+      id: 3,
+      title: "Wellness Walk & Shop",
+      description: "Healthy stroll through Mazaya Center with exclusive discounts",
+      icon: Navigation,
+      location: "Mazaya Center",
+      points: 75,
+      completed: journeyStep >= 3
+    },
+    {
+      id: 4,
+      title: "Join AquaCafe Loyalty",
+      description: "Complete journey by becoming AquaCafe member",
+      icon: Trophy,
+      location: "Online",
+      points: 200,
+      completed: journeyStep >= 4
+    }
+  ];
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 via-white to-amber-50">
@@ -181,6 +256,189 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
+
+      {/* Wellness Passport Section - The Irresistible Hook */}
+      <section className="w-full py-16 px-4 bg-gradient-to-br from-purple-50 via-pink-50 to-amber-50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-amber-500/5"></div>
+        <div className="relative max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center bg-gradient-to-r from-purple-600 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl animate-pulse">
+              <QrCode className="w-6 h-6 mr-3" />
+              🎁 FREE Wellness Passport Experience 🎁
+              <QrCode className="w-6 h-6 ml-3" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-amber-600 bg-clip-text text-transparent mb-6">
+              Your Gateway to Dubai's First Wellness Journey
+            </h2>
+            <p className="text-lg text-gray-700 max-w-4xl mx-auto">
+              Experience the perfect blend of healthy dining and sustainable living. Share your wellness moment and unlock exclusive benefits!
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left: Wellness Passport Activation */}
+            <div className="space-y-6">
+              <Card className="bg-white/90 backdrop-blur-sm border-2 border-purple-200 shadow-2xl">
+                <CardHeader className="bg-gradient-to-r from-purple-500 to-amber-500 text-white rounded-t-lg">
+                  <CardTitle className="flex items-center gap-3 text-2xl">
+                    <Sparkles className="w-8 h-8" />
+                    Activate Your FREE Experience
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-8">
+                  <div className="space-y-6">
+                    <div className="bg-gradient-to-r from-purple-100 to-amber-100 rounded-xl p-6 border-2 border-purple-200">
+                      <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <Gift className="w-6 h-6 text-purple-600" />
+                        What You Get FREE:
+                      </h3>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span className="font-semibold">Kangen Water Tasting (worth AED 25)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span className="font-semibold">Healthy Set Menu (worth AED 89)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span className="font-semibold">Wellness Walk Guide (worth AED 35)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span className="font-semibold">Mazaya Center Discounts (up to 20% off)</span>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-3 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white text-center font-bold">
+                        Total Value: AED 149+ • Your Cost: FREE!
+                      </div>
+                    </div>
+
+                    {!wellnessPassportActive ? (
+                      <div className="space-y-4">
+                        <div className="bg-amber-100 border border-amber-300 rounded-lg p-4">
+                          <h4 className="font-bold text-amber-800 mb-2 flex items-center gap-2">
+                            <Share2 className="w-5 h-5" />
+                            Simple Activation:
+                          </h4>
+                          <ol className="text-sm text-amber-700 space-y-2">
+                            <li>1. Enter your phone number below</li>
+                            <li>2. Share your wellness moment on social media</li>
+                            <li>3. Use hashtags: #WellnessWalkDubai #AquaCafeJourney</li>
+                            <li>4. Show QR code at Baker's Kitchen for FREE experience!</li>
+                          </ol>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <Input
+                            type="tel"
+                            placeholder="Enter your phone number"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            className="text-lg p-4 border-2 border-purple-300 focus:border-purple-500"
+                            data-testid="input-phone-wellness-passport"
+                          />
+                          <Button
+                            onClick={handleActivateWellnessPassport}
+                            className="w-full bg-gradient-to-r from-purple-600 to-amber-500 hover:from-purple-700 hover:to-amber-600 text-white font-bold py-4 text-lg shadow-lg transform hover:scale-105 transition-all"
+                            data-testid="button-activate-wellness-passport"
+                          >
+                            <QrCode className="w-6 h-6 mr-3" />
+                            Activate FREE Wellness Passport
+                            <Sparkles className="w-6 h-6 ml-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        <div className="bg-gradient-to-r from-emerald-100 to-cyan-100 border-2 border-emerald-300 rounded-xl p-6 text-center">
+                          <QrCode className="w-20 h-20 mx-auto mb-4 text-emerald-600" />
+                          <h3 className="text-xl font-bold text-emerald-800 mb-2">Wellness Passport Activated!</h3>
+                          <p className="text-emerald-700 mb-4">QR code sent to {phoneNumber}</p>
+                          <Badge className="bg-emerald-500 text-white px-4 py-2 text-sm">
+                            Valid for 7 days
+                          </Badge>
+                        </div>
+                        
+                        <div className="bg-purple-100 rounded-lg p-4">
+                          <h4 className="font-bold text-purple-800 mb-3 flex items-center gap-2">
+                            <Share2 className="w-5 h-5" />
+                            Share to Complete Activation:
+                          </h4>
+                          <SocialSharingWidget content={generateShareableContent()} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Right: Wellness Journey Steps */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-gray-800 text-center mb-6">Your Wellness Journey Map</h3>
+              
+              <div className="space-y-4">
+                {wellnessJourneySteps.map((step, index) => {
+                  const Icon = step.icon;
+                  return (
+                    <Card key={step.id} className={`border-2 transition-all duration-300 ${
+                      step.completed 
+                        ? 'border-emerald-300 bg-emerald-50 shadow-lg'
+                        : journeyStep === step.id - 1
+                        ? 'border-purple-300 bg-purple-50 shadow-lg animate-pulse'
+                        : 'border-gray-200 bg-gray-50'
+                    }`}>
+                      <CardContent className="p-6">
+                        <div className="flex items-center gap-4">
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                            step.completed
+                              ? 'bg-emerald-500 text-white'
+                              : journeyStep === step.id - 1
+                              ? 'bg-purple-500 text-white'
+                              : 'bg-gray-300 text-gray-600'
+                          }`}>
+                            {step.completed ? (
+                              <CheckCircle className="w-6 h-6" />
+                            ) : (
+                              <Icon className="w-6 h-6" />
+                            )}
+                          </div>
+                          
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="font-bold text-gray-800">{step.title}</h4>
+                              <Badge variant={step.completed ? 'default' : 'secondary'} className="bg-amber-500 text-white">
+                                +{step.points} pts
+                              </Badge>
+                            </div>
+                            <p className="text-gray-600 text-sm mb-2">{step.description}</p>
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                              <MapPin className="w-3 h-3" />
+                              <span>{step.location}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+              
+              <div className="bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl p-6 border-2 border-amber-300 text-center">
+                <Trophy className="w-12 h-12 text-amber-600 mx-auto mb-3" />
+                <h4 className="text-lg font-bold text-amber-800 mb-2">Complete Journey Bonus</h4>
+                <p className="text-amber-700 text-sm mb-3">Finish all 4 steps and unlock AquaCafe Loyalty membership with exclusive partner benefits!</p>
+                <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2">
+                  Total: 425 Wellness Points + Lifetime Benefits
+                </Badge>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Our Shared Mission Section */}
       <section className="w-full py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">

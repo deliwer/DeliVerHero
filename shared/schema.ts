@@ -140,6 +140,23 @@ export const socialShares = pgTable("social_shares", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+export const wellnessPassports = pgTable("wellness_passports", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  phone: text("phone").notNull(),
+  referralCode: text("referral_code").notNull().unique(),
+  status: text("status").notNull().default("active"), // active, redeemed, expired
+  stepsCompleted: jsonb("steps_completed").notNull().default([]), // array of step numbers [1, 2, 3, 4]
+  currentStep: integer("current_step").notNull().default(1),
+  totalValue: integer("total_value").notNull().default(14900), // AED 149 in fils
+  pointsEarned: integer("points_earned").notNull().default(0),
+  partnerLocation: text("partner_location").default("Baker's Kitchen, Mazaya Center"),
+  issuedAt: timestamp("issued_at").notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at").notNull().default(sql`now() + interval '7 days'`),
+  redeemedAt: timestamp("redeemed_at"),
+  sharedAt: timestamp("shared_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
 export const dubaiChallenges = pgTable("dubai_challenges", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
@@ -1061,3 +1078,14 @@ export type EmailCampaign = typeof emailCampaigns.$inferSelect;
 export type InsertEmailCampaign = z.infer<typeof insertEmailCampaignSchema>;
 export type EmailSubscriber = typeof emailSubscribers.$inferSelect;
 export type InsertEmailSubscriber = z.infer<typeof insertEmailSubscriberSchema>;
+
+// Wellness Passport types
+export const insertWellnessPassportSchema = createInsertSchema(wellnessPassports).omit({ 
+  id: true, 
+  createdAt: true,
+  issuedAt: true,
+  expiresAt: true,
+  referralCode: true
+});
+export type InsertWellnessPassport = z.infer<typeof insertWellnessPassportSchema>;
+export type WellnessPassport = typeof wellnessPassports.$inferSelect;
