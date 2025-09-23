@@ -37,6 +37,19 @@ export const heroes = pgTable("heroes", {
   isAquaCafeLoyaltyMember: boolean("is_aquacafe_loyalty_member").notNull().default(false),
   aquaCafeMembershipDate: timestamp("aquacafe_membership_date"),
   isActive: boolean("is_active").notNull().default(true),
+  
+  // Global Sustainability Framework Enhancements
+  cityHome: text("city_home").default("Dubai"), // User's primary city
+  citiesParticipating: jsonb("cities_participating").default(["Dubai"]), // Array of cities they're active in
+  waterStreak: integer("water_streak").notNull().default(0), // Consecutive days of water conservation
+  energyStreak: integer("energy_streak").notNull().default(0), // Energy conservation streak
+  wasteStreak: integer("waste_streak").notNull().default(0), // Waste reduction streak  
+  mobilityStreak: integer("mobility_streak").notNull().default(0), // Sustainable transport streak
+  loyaltyTier: text("loyalty_tier").notNull().default("bronze"), // bronze, silver, gold, platinum, diamond
+  dataSharingConsent: boolean("data_sharing_consent").notNull().default(false), // For global impact tracking
+  globalReferralCode: text("global_referral_code").unique(), // Unique code for cross-city referrals
+  totalGlobalImpact: integer("total_global_impact").notNull().default(0), // Combined impact score across cities
+  
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
@@ -504,7 +517,7 @@ export const emailSubscribers = pgTable("email_subscribers", {
   unsubscribedAt: timestamp("unsubscribed_at"),
 });
 
-// METAVERSE GAMING SYSTEM - Ultimate Planet Missions
+// METAVERSE GAMING SYSTEM - Ultimate Planet Missions (Enhanced for Global Sustainability)
 export const planetMissions = pgTable("planet_missions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   code: text("code").notNull().unique(), // iphone_tradein_mission, water_hero_quest
@@ -523,6 +536,20 @@ export const planetMissions = pgTable("planet_missions", {
   environmentalImpact: jsonb("environmental_impact").default({}), // bottles saved, co2 reduced
   isActive: boolean("is_active").notNull().default(true),
   isEpic: boolean("is_epic").notNull().default(false), // epic missions have special effects
+  
+  // Global Sustainability Framework Enhancements
+  cityId: text("city_id"), // City where mission is available (null = global)
+  seasonId: text("season_id"), // Links to specific seasons like "dubai-2025-water"
+  missionType: text("mission_type").notNull().default("trade"), // water, energy, waste, mobility, community, trade
+  verificationMethods: jsonb("verification_methods").default(["qr"]), // ["qr", "photo", "api", "iot", "partner"]
+  impactSchema: jsonb("impact_schema").default({}), // {unit: "liters", factors: {per_action: 2.5}}
+  sdgTags: jsonb("sdg_tags").default([]), // UN Sustainable Development Goals alignment
+  sponsorId: text("sponsor_id"), // Partner/sponsor funding this mission
+  loyaltyMultiplier: integer("loyalty_multiplier").default(100), // Bonus for AquaCafe loyalty members (100 = no bonus, 150 = 50% bonus)
+  isRecurring: boolean("is_recurring").notNull().default(false), // Can be completed multiple times
+  cadence: text("cadence").default("once"), // "once", "daily", "weekly", "monthly"
+  realWorldPartners: jsonb("real_world_partners").default([]), // Partner locations for verification
+  
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
@@ -587,6 +614,15 @@ export const metaverseAvatars = pgTable("metaverse_avatars", {
   totalMissionsCompleted: integer("total_missions_completed").notNull().default(0),
   epicMissionsCompleted: integer("epic_missions_completed").notNull().default(0),
   planetImpactScore: integer("planet_impact_score").notNull().default(0),
+  
+  // Global Sustainability Framework Enhancements
+  ecoGear: jsonb("eco_gear").default({}), // Sustainability-themed avatar equipment and rewards
+  scenesUnlocked: jsonb("scenes_unlocked").default(["dubai-marina"]), // Metaverse environments unlocked through impact
+  globalRanking: integer("global_ranking"), // Position in global sustainability leaderboard
+  citiesActive: jsonb("cities_active").default(["Dubai"]), // Cities where avatar is active
+  sustainabilityScore: integer("sustainability_score").notNull().default(0), // Verified real-world impact score
+  carbonCreditsEarned: integer("carbon_credits_earned").notNull().default(0), // Blockchain-verified carbon offsets
+  
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 }, (table) => {
@@ -1174,6 +1210,228 @@ export type InsertRestaurantPartner = z.infer<typeof insertRestaurantPartnerSche
 export type RestaurantPartner = typeof restaurantPartners.$inferSelect;
 export type InsertWellnessJourneyParticipant = z.infer<typeof insertWellnessJourneyParticipantSchema>;
 export type WellnessJourneyParticipant = typeof wellnessJourneyParticipants.$inferSelect;
+// ========================================
+// GLOBAL SUSTAINABILITY FRAMEWORK TABLES
+// ========================================
+
+// Cities participating in the global sustainability network
+export const cities = pgTable("cities", {
+  id: text("id").primaryKey(), // "dubai", "singapore", "london"
+  name: text("name").notNull(),
+  country: text("country").notNull(),
+  timezone: text("timezone").notNull(),
+  currency: text("currency").notNull().default("AED"),
+  language: text("language").notNull().default("en"),
+  
+  // Branding and localization
+  brandTheme: jsonb("brand_theme").default({}), // Color schemes, logos, local imagery
+  localPartners: jsonb("local_partners").default([]), // AquaCafe equivalent partners in each city
+  governmentContact: text("government_contact"), // Official government liaison
+  
+  // Sustainability metrics and goals
+  populationSize: integer("population_size"),
+  sustainabilityGoals: jsonb("sustainability_goals").default({}), // City-specific environmental targets
+  baselineMetrics: jsonb("baseline_metrics").default({}), // Starting environmental measurements
+  
+  // Status and participation
+  isActive: boolean("is_active").notNull().default(true),
+  launchDate: timestamp("launch_date"),
+  nextCityToInspire: text("next_city_to_inspire"), // Cities watching this city's success
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Seasonal campaigns and challenges (like "Dubai 2025 Water Season")  
+export const seasons = pgTable("seasons", {
+  id: text("id").primaryKey(), // "dubai-2025-water", "singapore-2026-energy"
+  name: text("name").notNull(),
+  cityId: text("city_id").notNull().references(() => cities.id),
+  theme: text("theme").notNull(), // "water", "energy", "waste", "mobility", "biodiversity"
+  
+  // Timing and phases
+  startDate: timestamp("start_date").notNull(),
+  endDate: timestamp("end_date").notNull(),
+  registrationDeadline: timestamp("registration_deadline"),
+  
+  // Goals and targets
+  participationGoal: integer("participation_goal"), // Target number of active heroes
+  environmentalGoals: jsonb("environmental_goals").default({}), // Specific measurable targets
+  rewards: jsonb("rewards").default([]), // Season-specific rewards and prizes
+  
+  // Promotional and marketing
+  heroImageUrl: text("hero_image_url"),
+  campaignDescription: text("campaign_description"),
+  socialHashtags: jsonb("social_hashtags").default([]),
+  
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// Real-world mission submissions and verification
+export const activitySubmissions = pgTable("activity_submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  missionCode: text("mission_code").notNull().references(() => planetMissions.code),
+  cityId: text("city_id").references(() => cities.id),
+  seasonId: text("season_id").references(() => seasons.id),
+  
+  // Submission data and proofs
+  submissionType: text("submission_type").notNull(), // "qr_scan", "photo_upload", "partner_api", "iot_data"
+  proofData: jsonb("proof_data").notNull(), // QR codes, photo URLs, API responses, sensor data
+  locationData: jsonb("location_data").default({}), // GPS coordinates, partner location IDs
+  metadata: jsonb("metadata").default({}), // Additional context like timestamps, device info
+  
+  // Verification and processing
+  status: text("status").notNull().default("pending"), // pending, verified, rejected, processing
+  verifiedBy: text("verified_by"), // "ai", "partner", "manual", "iot"
+  verificationScore: integer("verification_score").default(0), // Confidence score 0-100
+  impactCalculated: jsonb("impact_calculated").default({}), // Verified environmental impact metrics
+  
+  // Points and rewards
+  pointsAwarded: integer("points_awarded").default(0),
+  bonusMultipliers: jsonb("bonus_multipliers").default({}), // Applied multipliers (loyalty, streak, etc)
+  
+  submittedAt: timestamp("submitted_at").notNull().default(sql`now()`),
+  verifiedAt: timestamp("verified_at"),
+}, (table) => {
+  return {
+    heroMissionIdx: index("activity_submissions_hero_mission_idx").on(table.heroId, table.missionCode),
+    statusTimeIdx: index("activity_submissions_status_time_idx").on(table.status, table.submittedAt),
+    citySeasonIdx: index("activity_submissions_city_season_idx").on(table.cityId, table.seasonId),
+  };
+});
+
+// Verification events and audit trail
+export const verificationEvents = pgTable("verification_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  submissionId: varchar("submission_id").notNull().references(() => activitySubmissions.id),
+  eventType: text("event_type").notNull(), // "ai_analysis", "partner_confirm", "manual_review", "fraud_check"
+  result: text("result").notNull(), // "approved", "rejected", "needs_review", "flagged"
+  confidence: integer("confidence"), // 0-100 confidence score
+  details: jsonb("details").default({}), // Event-specific details and evidence
+  verifierInfo: jsonb("verifier_info").default({}), // Who or what performed verification
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    submissionIdx: index("verification_events_submission_idx").on(table.submissionId),
+    typeTimeIdx: index("verification_events_type_time_idx").on(table.eventType, table.createdAt),
+  };
+});
+
+// Global partner network for real-world verification
+export const globalPartners = pgTable("global_partners", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  partnerType: text("partner_type").notNull(), // "water_station", "restaurant", "hotel", "transport", "retail"
+  name: text("name").notNull(),
+  cityId: text("city_id").notNull().references(() => cities.id),
+  
+  // Location and contact
+  address: text("address"),
+  coordinates: jsonb("coordinates").default({}), // {lat, lng}
+  contactInfo: jsonb("contact_info").default({}),
+  operatingHours: jsonb("operating_hours").default({}),
+  
+  // Integration and verification capabilities
+  apiEndpoint: text("api_endpoint"), // For automated verification
+  qrCodePrefix: text("qr_code_prefix"), // For QR-based verification  
+  verificationMethods: jsonb("verification_methods").default([]), // Supported verification methods
+  
+  // Partnership terms
+  loyaltyDiscountPercent: integer("loyalty_discount_percent").default(0),
+  pointsMultiplier: integer("points_multiplier").default(100),
+  specialOffers: jsonb("special_offers").default([]),
+  
+  isActive: boolean("is_active").notNull().default(true),
+  verifiedPartner: boolean("verified_partner").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    cityTypeIdx: index("global_partners_city_type_idx").on(table.cityId, table.partnerType),
+    locationIdx: index("global_partners_location_idx").on(table.coordinates),
+  };
+});
+
+// AI-powered mission templates for global replication
+export const aiMissionTemplates = pgTable("ai_mission_templates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  templateName: text("template_name").notNull(),
+  cityId: text("city_id").references(() => cities.id), // null = global template
+  missionCategory: text("mission_category").notNull(), // water, energy, waste, mobility, community
+  
+  // AI prompt engineering
+  promptTemplate: text("prompt_template").notNull(), // Template for AI mission generation
+  variableSchema: jsonb("variable_schema").default({}), // Schema for template variables
+  exampleOutputs: jsonb("example_outputs").default([]), // Sample generated missions
+  
+  // Mission parameters
+  baseDifficulty: text("base_difficulty").default("beginner"),
+  typicalDuration: text("typical_duration").default("15 minutes"),
+  averagePoints: integer("average_points").default(200),
+  
+  // Usage and performance
+  timesUsed: integer("times_used").notNull().default(0),
+  successRate: integer("success_rate").default(0), // Percentage of successful mission completions
+  averageRating: integer("average_rating").default(0), // User feedback on generated missions
+  
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Dynamic metaverse environment states based on real-world impact
+export const environmentStates = pgTable("environment_states", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  cityId: text("city_id").notNull().references(() => cities.id),
+  seasonId: text("season_id").references(() => seasons.id),
+  environmentName: text("environment_name").notNull(), // "canal_journey", "desert_oasis", "marina_future"
+  
+  // Dynamic state based on collective impact
+  currentState: text("current_state").notNull().default("initial"), // "initial", "improving", "thriving", "exemplary"
+  progressPercentage: integer("progress_percentage").notNull().default(0), // 0-100
+  triggerMetrics: jsonb("trigger_metrics").default({}), // Metrics needed for state changes
+  currentMetrics: jsonb("current_metrics").default({}), // Current real-world impact measurements
+  
+  // Visual and narrative elements
+  sceneAssets: jsonb("scene_assets").default({}), // 3D models, textures, animations
+  narrativeText: text("narrative_text"), // Story describing current environmental state
+  unlockRequirements: jsonb("unlock_requirements").default({}), // Requirements for heroes to access
+  
+  lastUpdated: timestamp("last_updated").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    citySeasonIdx: index("environment_states_city_season_idx").on(table.cityId, table.seasonId),
+    progressIdx: index("environment_states_progress_idx").on(table.progressPercentage),
+  };
+});
+
+// Global leaderboard snapshots for city comparison and inspiration
+export const leaderboardSnapshots = pgTable("leaderboard_snapshots", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  snapshotType: text("snapshot_type").notNull(), // "daily", "weekly", "monthly", "seasonal", "annual"
+  scope: text("scope").notNull(), // "city", "global", "season"
+  cityId: text("city_id").references(() => cities.id),
+  seasonId: text("season_id").references(() => seasons.id),
+  
+  // Leaderboard data
+  rankings: jsonb("rankings").notNull().default([]), // Top heroes, cities, or achievements
+  metrics: jsonb("metrics").notNull().default({}), // Performance metrics and comparisons
+  achievements: jsonb("achievements").default([]), // Special achievements during this period
+  
+  // Metadata
+  totalParticipants: integer("total_participants"),
+  dataCompleteness: integer("data_completeness").default(100), // Percentage of data available
+  
+  snapshotDate: timestamp("snapshot_date").notNull().default(sql`now()`),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    typeTimeIdx: index("leaderboard_snapshots_type_time_idx").on(table.snapshotType, table.snapshotDate),
+    scopeCityIdx: index("leaderboard_snapshots_scope_city_idx").on(table.scope, table.cityId),
+  };
+});
+
 // E-commerce Order Management
 export const orders = pgTable("orders", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -1273,3 +1531,76 @@ export type WellnessPassport = typeof wellnessPassports.$inferSelect;
 export type ProgressStep = z.infer<typeof progressStepSchema>;
 export type PhoneRequest = z.infer<typeof phoneRequestSchema>;
 export type RedeemPassport = z.infer<typeof redeemPassportSchema>;
+
+// ========================================
+// GLOBAL SUSTAINABILITY FRAMEWORK SCHEMAS
+// ========================================
+
+// City insert schema
+export const insertCitySchema = createInsertSchema(cities).omit({
+  createdAt: true,
+  updatedAt: true,
+});
+
+// Season insert schema  
+export const insertSeasonSchema = createInsertSchema(seasons).omit({
+  createdAt: true,
+});
+
+// Activity submission insert schema
+export const insertActivitySubmissionSchema = createInsertSchema(activitySubmissions).omit({
+  id: true,
+  submittedAt: true,
+  verifiedAt: true,
+});
+
+// Verification event insert schema
+export const insertVerificationEventSchema = createInsertSchema(verificationEvents).omit({
+  id: true,
+  createdAt: true,
+});
+
+// Global partner insert schema
+export const insertGlobalPartnerSchema = createInsertSchema(globalPartners).omit({
+  id: true,
+  createdAt: true,
+});
+
+// AI mission template insert schema
+export const insertAiMissionTemplateSchema = createInsertSchema(aiMissionTemplates).omit({
+  id: true,
+  timesUsed: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+// Environment state insert schema
+export const insertEnvironmentStateSchema = createInsertSchema(environmentStates).omit({
+  id: true,
+  lastUpdated: true,
+});
+
+// Leaderboard snapshot insert schema
+export const insertLeaderboardSnapshotSchema = createInsertSchema(leaderboardSnapshots).omit({
+  id: true,
+  snapshotDate: true,
+  createdAt: true,
+});
+
+// Global Sustainability Framework Types
+export type City = typeof cities.$inferSelect;
+export type InsertCity = z.infer<typeof insertCitySchema>;
+export type Season = typeof seasons.$inferSelect;
+export type InsertSeason = z.infer<typeof insertSeasonSchema>;
+export type ActivitySubmission = typeof activitySubmissions.$inferSelect;
+export type InsertActivitySubmission = z.infer<typeof insertActivitySubmissionSchema>;
+export type VerificationEvent = typeof verificationEvents.$inferSelect;
+export type InsertVerificationEvent = z.infer<typeof insertVerificationEventSchema>;
+export type GlobalPartner = typeof globalPartners.$inferSelect;
+export type InsertGlobalPartner = z.infer<typeof insertGlobalPartnerSchema>;
+export type AiMissionTemplate = typeof aiMissionTemplates.$inferSelect;
+export type InsertAiMissionTemplate = z.infer<typeof insertAiMissionTemplateSchema>;
+export type EnvironmentState = typeof environmentStates.$inferSelect;
+export type InsertEnvironmentState = z.infer<typeof insertEnvironmentStateSchema>;
+export type LeaderboardSnapshot = typeof leaderboardSnapshots.$inferSelect;
+export type InsertLeaderboardSnapshot = z.infer<typeof insertLeaderboardSnapshotSchema>;
