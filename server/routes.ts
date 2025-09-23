@@ -4,6 +4,8 @@ import { storage } from "./storage";
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
+import QRCode from "qrcode";
+import { randomUUID } from "crypto";
 import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
 import adminCampaignRoutes from "./routes/admin-campaigns";
 import adminRoleRoutes from "./routes/admin-roles";
@@ -27,6 +29,9 @@ if (process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY) {
 } else {
   console.log("OPENAI_API_KEY not set - AI chat functionality will be disabled");
 }
+
+// Temporary token storage for QR codes (use Redis in production)
+const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: boolean }>();
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -2134,6 +2139,167 @@ Context: ${JSON.stringify(context || {})}`
       res.json(passport);
     } catch (error: any) {
       res.status(400).json({ error: error.message || "Failed to redeem wellness passport" });
+    }
+  });
+
+  app.post("/api/wellness-passports/:id/qr", async (req, res) => {
+    try {
+      // Add basic authorization - require phone number ownership verification
+      const { phone } = req.body;
+      if (!phone || typeof phone !== 'string') {
+        return res.status(401).json({ error: "Phone number required for authorization" });
+      }
+
+      const passport = await storage.getWellnessPassport(req.params.id);
+      if (!passport) {
+        return res.status(404).json({ error: "Wellness passport not found" });
+      }
+      
+      // Verify ownership by phone number
+      if (passport.phone !== phone) {
+        return res.status(403).json({ error: "Unauthorized: Phone number does not match passport" });
+      }
+      
+      if (passport.status !== "active") {
+        return res.status(400).json({ error: "Passport is not active" });
+      }
+      
+      // Generate secure token with 10-minute expiry
+      const token = randomUUID();
+      const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+      
+      // Store token securely (no PII in storage)
+      qrTokens.set(token, {
+        passportId: passport.id,
+        expiresAt,
+        used: false
+      });
+      
+      // Create secure redemption URL (only contains token)
+      const baseUrl = process.env.REPLIT_DEV_DOMAIN 
+        ? `https://${process.env.REPLIT_DEV_DOMAIN}`
+        : `${req.protocol}://${req.get('host')}`;
+      const redemptionUrl = `${baseUrl}/redeem?token=${token}`;
+      
+      // Generate QR code with ONLY the redemption URL (no PII)
+      const qrCodeDataURL = await QRCode.toDataURL(redemptionUrl, {
+        width: 300,
+        margin: 2,
+        color: {
+          dark: "#000000",
+          light: "#FFFFFF"
+        }
+      });
+      
+      // Clean up expired tokens
+      const now = new Date();
+      qrTokens.forEach((tokenData, tokenKey) => {
+        if (tokenData.expiresAt < now) {
+          qrTokens.delete(tokenKey);
+        }
+      });
+      
+      // Return minimal data (no PII, no full passport)
+      res.json({
+        qrCode: qrCodeDataURL,
+        redemptionUrl,
+        expiresAt,
+        status: "active"
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to generate QR code" });
+    }
+  });
+
+  // Secure token verification endpoint (read-only)
+  app.get("/api/wellness-passports/verify-token/:token", async (req, res) => {
+    try {
+      const tokenData = qrTokens.get(req.params.token);
+      if (!tokenData) {
+        return res.status(404).json({ error: "Invalid or expired redemption token" });
+      }
+      
+      if (tokenData.expiresAt < new Date()) {
+        qrTokens.delete(req.params.token);
+        return res.status(404).json({ error: "Redemption token has expired" });
+      }
+      
+      if (tokenData.used) {
+        return res.status(409).json({ error: "Redemption token has already been used" });
+      }
+      
+      const passport = await storage.getWellnessPassport(tokenData.passportId);
+      if (!passport) {
+        qrTokens.delete(req.params.token);
+        return res.status(404).json({ error: "Wellness passport not found" });
+      }
+      
+      // Return minimal passport info for redemption validation (no PII, read-only)
+      res.json({
+        id: passport.id,
+        referralCode: passport.referralCode,
+        status: passport.status,
+        currentStep: passport.currentStep,
+        stepsCompleted: passport.stepsCompleted,
+        totalValue: passport.totalValue,
+        partnerLocation: passport.partnerLocation,
+        expiresAt: passport.expiresAt,
+        tokenValid: true
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to verify redemption token" });
+    }
+  });
+
+  // Secure token redemption endpoint (state-changing)
+  app.post("/api/wellness-passports/redeem-token/:token", async (req, res) => {
+    try {
+      const validatedData = redeemPassportSchema.parse(req.body);
+      
+      // Verify partner PIN
+      const validPartnerPins = ['BK2024', 'BAKERS', 'MAZAYA'];
+      if (!validPartnerPins.includes(validatedData.partnerPin)) {
+        return res.status(403).json({ error: "Invalid partner PIN" });
+      }
+
+      const tokenData = qrTokens.get(req.params.token);
+      if (!tokenData) {
+        return res.status(404).json({ error: "Invalid or expired redemption token" });
+      }
+      
+      if (tokenData.expiresAt < new Date()) {
+        qrTokens.delete(req.params.token);
+        return res.status(404).json({ error: "Redemption token has expired" });
+      }
+      
+      if (tokenData.used) {
+        return res.status(409).json({ error: "Redemption token has already been used" });
+      }
+      
+      // Mark token as used to prevent replay
+      tokenData.used = true;
+      
+      const passport = await storage.redeemPassport(tokenData.passportId);
+      if (!passport) {
+        qrTokens.delete(req.params.token);
+        return res.status(404).json({ error: "Wellness passport not found" });
+      }
+      
+      // Clean up used token
+      qrTokens.delete(req.params.token);
+      
+      // Log redemption for audit trail
+      console.log(`Wellness passport redeemed via QR: ${passport.id} by staff: ${validatedData.staffId || 'unknown'} at: ${validatedData.location || 'Baker\'s Kitchen'}`);
+      
+      res.json({
+        id: passport.id,
+        status: passport.status,
+        redeemedAt: passport.redeemedAt,
+        totalValue: passport.totalValue,
+        success: true
+      });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to redeem via token" });
     }
   });
 
