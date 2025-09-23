@@ -1174,8 +1174,6 @@ export type InsertRestaurantPartner = z.infer<typeof insertRestaurantPartnerSche
 export type RestaurantPartner = typeof restaurantPartners.$inferSelect;
 export type InsertWellnessJourneyParticipant = z.infer<typeof insertWellnessJourneyParticipantSchema>;
 export type WellnessJourneyParticipant = typeof wellnessJourneyParticipants.$inferSelect;
-export type WellnessPassport = typeof wellnessPassports.$inferSelect;
-
 // E-commerce Order Management
 export const orders = pgTable("orders", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
