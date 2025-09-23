@@ -459,6 +459,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-03-01"),
         updatedAt: new Date(),
@@ -480,6 +482,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-03-15"),
         updatedAt: new Date(),
@@ -501,6 +505,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-04-01"),
         updatedAt: new Date(),
@@ -522,6 +528,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-04-15"),
         updatedAt: new Date(),
@@ -543,6 +551,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-05-01"),
         updatedAt: new Date(),
@@ -564,6 +574,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-05-15"),
         updatedAt: new Date(),
@@ -585,6 +597,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-06-01"),
         updatedAt: new Date(),
@@ -606,6 +620,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-06-15"),
         updatedAt: new Date(),
@@ -627,6 +643,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-07-01"),
         updatedAt: new Date(),
@@ -648,6 +666,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-07-15"),
         updatedAt: new Date(),
@@ -669,6 +689,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-08-01"),
         updatedAt: new Date(),
@@ -690,6 +712,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-08-05"),
         updatedAt: new Date(),
@@ -711,6 +735,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-08-08"),
         updatedAt: new Date(),
@@ -732,6 +758,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-08-10"),
         updatedAt: new Date(),
@@ -753,6 +781,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-08-12"),
         updatedAt: new Date(),
@@ -774,6 +804,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
         createdAt: new Date("2024-08-13"),
         updatedAt: new Date(),
@@ -1162,6 +1194,8 @@ export class MemStorage implements IStorage {
         rewardsEarned: [],
         challengesCompleted: [],
         sustainabilityStreak: 8,
+        isAquaCafeLoyaltyMember: false,
+        aquaCafeMembershipDate: null,
         isActive: true,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -3061,6 +3095,352 @@ export class MemStorage implements IStorage {
 
     this.wellnessPassports.set(passportId, updatedPassport);
     return updatedPassport;
+  }
+
+  // Comprehensive Dubai Wellness Journey operations
+  async createWellnessJourney(journey: InsertWellnessJourney): Promise<WellnessJourney> {
+    const id = randomUUID();
+    const now = new Date();
+    
+    const newJourney: WellnessJourney = {
+      id,
+      heroId: journey.heroId,
+      wellnessPassportId: journey.wellnessPassportId,
+      title: journey.title || "Dubai Wellness Journey",
+      description: journey.description,
+      journeyType: journey.journeyType || "premium",
+      totalSteps: journey.totalSteps || 5,
+      completedSteps: 0,
+      currentStepId: journey.currentStepId,
+      progress: 0,
+      totalValueAED: journey.totalValueAED || 110000, // AED 1100 in fils
+      pointsEarned: 0,
+      status: "active",
+      startedAt: now,
+      completedAt: null,
+      expiresAt: journey.expiresAt || new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000),
+      isActive: true,
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    this.wellnessJourneys.set(id, newJourney);
+    return newJourney;
+  }
+
+  async getWellnessJourney(id: string): Promise<WellnessJourney | undefined> {
+    return this.wellnessJourneys.get(id);
+  }
+
+  async getWellnessJourneysByHero(heroId: string): Promise<WellnessJourney[]> {
+    return Array.from(this.wellnessJourneys.values()).filter(
+      journey => journey.heroId === heroId
+    );
+  }
+
+  async updateWellnessJourneyProgress(id: string, progress: number): Promise<WellnessJourney | undefined> {
+    const journey = this.wellnessJourneys.get(id);
+    if (!journey) return undefined;
+
+    const updatedJourney: WellnessJourney = {
+      ...journey,
+      progress: Math.min(100, Math.max(0, progress)),
+      updatedAt: new Date(),
+    };
+
+    this.wellnessJourneys.set(id, updatedJourney);
+    return updatedJourney;
+  }
+
+  async completeWellnessJourneyStep(journeyId: string, stepNumber: number): Promise<WellnessJourney | undefined> {
+    const journey = this.wellnessJourneys.get(journeyId);
+    if (!journey) return undefined;
+
+    const updatedJourney: WellnessJourney = {
+      ...journey,
+      completedSteps: Math.max(journey.completedSteps, stepNumber),
+      progress: Math.min(100, (stepNumber / journey.totalSteps) * 100),
+      pointsEarned: journey.pointsEarned + 200, // Award points per step
+      updatedAt: new Date(),
+    };
+
+    // Mark as completed if all steps are done
+    if (updatedJourney.completedSteps >= journey.totalSteps) {
+      updatedJourney.status = "completed";
+      updatedJourney.completedAt = new Date();
+    }
+
+    this.wellnessJourneys.set(journeyId, updatedJourney);
+    return updatedJourney;
+  }
+
+  // Wellness Journey Steps operations
+  async createWellnessJourneyStep(step: InsertWellnessJourneyStep): Promise<WellnessJourneyStep> {
+    const id = randomUUID();
+    const now = new Date();
+
+    const newStep: WellnessJourneyStep = {
+      id,
+      journeyId: step.journeyId,
+      stepNumber: step.stepNumber,
+      stepId: step.stepId,
+      title: step.title,
+      description: step.description,
+      location: step.location,
+      duration: step.duration,
+      category: step.category,
+      perks: step.perks || [],
+      pointsReward: step.pointsReward || 0,
+      isCompleted: false,
+      completedAt: null,
+      partnerInfo: step.partnerInfo || {},
+      bookingUrl: step.bookingUrl,
+      qrCodeToken: step.qrCodeToken,
+      isActive: true,
+      createdAt: now,
+    };
+
+    this.wellnessJourneySteps.set(id, newStep);
+    return newStep;
+  }
+
+  async getWellnessJourneySteps(journeyId: string): Promise<WellnessJourneyStep[]> {
+    return Array.from(this.wellnessJourneySteps.values())
+      .filter(step => step.journeyId === journeyId)
+      .sort((a, b) => a.stepNumber - b.stepNumber);
+  }
+
+  async getWellnessJourneyStep(id: string): Promise<WellnessJourneyStep | undefined> {
+    return this.wellnessJourneySteps.get(id);
+  }
+
+  async completeJourneyStep(stepId: string): Promise<WellnessJourneyStep | undefined> {
+    const step = this.wellnessJourneySteps.get(stepId);
+    if (!step) return undefined;
+
+    const updatedStep: WellnessJourneyStep = {
+      ...step,
+      isCompleted: true,
+      completedAt: new Date(),
+    };
+
+    this.wellnessJourneySteps.set(stepId, updatedStep);
+    return updatedStep;
+  }
+
+  // Aqua Show Perks operations
+  async getAquaShowPerks(): Promise<AquaShowPerk[]> {
+    return Array.from(this.aquaShowPerks.values()).filter(perk => perk.isActive);
+  }
+
+  async getAquaShowPerk(id: string): Promise<AquaShowPerk | undefined> {
+    return this.aquaShowPerks.get(id);
+  }
+
+  async createAquaShowPerk(perk: InsertAquaShowPerk): Promise<AquaShowPerk> {
+    const id = randomUUID();
+    const now = new Date();
+
+    const newPerk: AquaShowPerk = {
+      id,
+      perkId: perk.perkId,
+      title: perk.title,
+      description: perk.description,
+      valueAED: perk.valueAED,
+      category: perk.category,
+      availableQuantity: perk.availableQuantity,
+      claimedQuantity: 0,
+      pointsCost: perk.pointsCost || 0,
+      isWellnessJourneyPerk: perk.isWellnessJourneyPerk ?? true,
+      partner: perk.partner || "La Perle by Dragone",
+      location: perk.location || "Al Habtoor City",
+      bookingInstructions: perk.bookingInstructions,
+      termsConditions: perk.termsConditions,
+      isActive: true,
+      createdAt: now,
+    };
+
+    this.aquaShowPerks.set(id, newPerk);
+    return newPerk;
+  }
+
+  async claimAquaShowPerk(perkId: string, heroId: string): Promise<boolean> {
+    const perk = this.aquaShowPerks.get(perkId);
+    if (!perk) return false;
+    if (perk.availableQuantity && perk.claimedQuantity >= perk.availableQuantity) return false;
+
+    const updatedPerk: AquaShowPerk = {
+      ...perk,
+      claimedQuantity: perk.claimedQuantity + 1,
+    };
+
+    this.aquaShowPerks.set(perkId, updatedPerk);
+    return true;
+  }
+
+  // Luxury Hotel Partners operations
+  async getLuxuryHotelPartners(): Promise<LuxuryHotelPartner[]> {
+    return Array.from(this.luxuryHotelPartners.values()).filter(hotel => hotel.isActive);
+  }
+
+  async getLuxuryHotelPartner(id: string): Promise<LuxuryHotelPartner | undefined> {
+    return this.luxuryHotelPartners.get(id);
+  }
+
+  async createLuxuryHotelPartner(partner: InsertLuxuryHotelPartner): Promise<LuxuryHotelPartner> {
+    const id = randomUUID();
+    const now = new Date();
+
+    const newPartner: LuxuryHotelPartner = {
+      id,
+      hotelId: partner.hotelId,
+      name: partner.name,
+      brand: partner.brand,
+      location: partner.location,
+      address: partner.address,
+      distanceToTrack: partner.distanceToTrack,
+      amenities: partner.amenities || [],
+      specialOffer: partner.specialOffer,
+      wellnessPackages: partner.wellnessPackages || [],
+      phone: partner.phone,
+      website: partner.website,
+      rating: partner.rating || 5,
+      priceRange: partner.priceRange,
+      isWellnessPartner: partner.isWellnessPartner ?? true,
+      journeyDiscountPercent: partner.journeyDiscountPercent || 0,
+      isActive: true,
+      createdAt: now,
+    };
+
+    this.luxuryHotelPartners.set(id, newPartner);
+    return newPartner;
+  }
+
+  async updateHotelPartner(id: string, updates: Partial<LuxuryHotelPartner>): Promise<LuxuryHotelPartner | undefined> {
+    const partner = this.luxuryHotelPartners.get(id);
+    if (!partner) return undefined;
+
+    const updatedPartner: LuxuryHotelPartner = {
+      ...partner,
+      ...updates,
+    };
+
+    this.luxuryHotelPartners.set(id, updatedPartner);
+    return updatedPartner;
+  }
+
+  // Restaurant Partners operations
+  async getRestaurantPartners(): Promise<RestaurantPartner[]> {
+    return Array.from(this.restaurantPartners.values()).filter(restaurant => restaurant.isActive);
+  }
+
+  async getRestaurantPartner(id: string): Promise<RestaurantPartner | undefined> {
+    return this.restaurantPartners.get(id);
+  }
+
+  async getRestaurantPartnerByRestaurantId(restaurantId: string): Promise<RestaurantPartner | undefined> {
+    for (const partner of this.restaurantPartners.values()) {
+      if (partner.restaurantId === restaurantId && partner.isActive) {
+        return partner;
+      }
+    }
+    return undefined;
+  }
+
+  async createRestaurantPartner(partner: InsertRestaurantPartner): Promise<RestaurantPartner> {
+    const id = randomUUID();
+    const now = new Date();
+
+    const newPartner: RestaurantPartner = {
+      id,
+      restaurantId: partner.restaurantId,
+      name: partner.name,
+      cuisine: partner.cuisine,
+      location: partner.location,
+      address: partner.address,
+      phone: partner.phone,
+      website: partner.website,
+      rating: partner.rating || 45,
+      priceRange: partner.priceRange,
+      specialOffer: partner.specialOffer,
+      wellnessMenuItems: partner.wellnessMenuItems || [],
+      loyaltyDiscountPercent: partner.loyaltyDiscountPercent || 0,
+      partnerCategory: partner.partnerCategory || "dining",
+      pointsMultiplier: partner.pointsMultiplier || 1,
+      isWellnessPartner: partner.isWellnessPartner || false,
+      isActive: true,
+      createdAt: now,
+    };
+
+    this.restaurantPartners.set(id, newPartner);
+    return newPartner;
+  }
+
+  async updateRestaurantPartner(id: string, updates: Partial<RestaurantPartner>): Promise<RestaurantPartner | undefined> {
+    const partner = this.restaurantPartners.get(id);
+    if (!partner) return undefined;
+
+    const updatedPartner: RestaurantPartner = {
+      ...partner,
+      ...updates,
+    };
+
+    this.restaurantPartners.set(id, updatedPartner);
+    return updatedPartner;
+  }
+
+  // Wellness Journey Participants operations
+  async createWellnessJourneyParticipant(participant: InsertWellnessJourneyParticipant): Promise<WellnessJourneyParticipant> {
+    const id = randomUUID();
+    const now = new Date();
+
+    const newParticipant: WellnessJourneyParticipant = {
+      id,
+      journeyId: participant.journeyId,
+      heroId: participant.heroId,
+      currentStep: participant.currentStep || 1,
+      stepsCompleted: participant.stepsCompleted || [],
+      perksRedeemed: participant.perksRedeemed || [],
+      totalPointsEarned: 0,
+      hotelPartnerId: participant.hotelPartnerId,
+      preferredRestaurants: participant.preferredRestaurants || [],
+      specialRequests: participant.specialRequests,
+      status: "active",
+      joinedAt: now,
+      completedAt: null,
+      lastActivityAt: now,
+    };
+
+    this.wellnessJourneyParticipants.set(id, newParticipant);
+    return newParticipant;
+  }
+
+  async getWellnessJourneyParticipant(id: string): Promise<WellnessJourneyParticipant | undefined> {
+    return this.wellnessJourneyParticipants.get(id);
+  }
+
+  async getParticipantsByJourney(journeyId: string): Promise<WellnessJourneyParticipant[]> {
+    return Array.from(this.wellnessJourneyParticipants.values())
+      .filter(participant => participant.journeyId === journeyId);
+  }
+
+  async getParticipantsByHero(heroId: string): Promise<WellnessJourneyParticipant[]> {
+    return Array.from(this.wellnessJourneyParticipants.values())
+      .filter(participant => participant.heroId === heroId);
+  }
+
+  async updateParticipantProgress(id: string, updates: Partial<WellnessJourneyParticipant>): Promise<WellnessJourneyParticipant | undefined> {
+    const participant = this.wellnessJourneyParticipants.get(id);
+    if (!participant) return undefined;
+
+    const updatedParticipant: WellnessJourneyParticipant = {
+      ...participant,
+      ...updates,
+      lastActivityAt: new Date(),
+    };
+
+    this.wellnessJourneyParticipants.set(id, updatedParticipant);
+    return updatedParticipant;
   }
 }
 

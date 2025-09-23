@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import QRCode from "qrcode";
@@ -9,6 +9,7 @@ import { randomUUID } from "crypto";
 import { sendCorporateWelcomeEmail, sendCorporateCampaignEmail, sendBulkEmail } from "./sendgrid-service";
 import adminCampaignRoutes from "./routes/admin-campaigns";
 import adminRoleRoutes from "./routes/admin-roles";
+import wellnessJourneyRoutes from "./routes/wellness-journey";
 
 // Initialize Stripe only if API key is available
 let stripe: Stripe | null = null;
@@ -38,6 +39,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Register admin-only routes (Shopify admin authentication required)
   app.use("/api/admin/campaigns", adminCampaignRoutes);
   app.use("/api/admin/roles", adminRoleRoutes);
+
+  // Register wellness journey routes
+  app.use("/api/wellness-journey", wellnessJourneyRoutes);
 
   // Stripe payment endpoints
   app.post("/api/create-payment-intent", async (req, res) => {
