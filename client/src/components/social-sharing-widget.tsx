@@ -39,7 +39,7 @@ interface SocialChallenge {
   expiresAt: string;
 }
 
-export function SocialSharingWidget({ content }: { content?: ShareContent }) {
+export function SocialSharingWidget({ content, onShare }: { content?: ShareContent; onShare?: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState<string>('');
   const { toast } = useToast();
@@ -67,6 +67,7 @@ export function SocialSharingWidget({ content }: { content?: ShareContent }) {
         description: "Your eco-action has been shared. Earn points when friends join!",
       });
       queryClient.invalidateQueries({ queryKey: ['/api/social-shares'] });
+      onShare?.(); // Call the wellness passport share callback
     },
   });
 

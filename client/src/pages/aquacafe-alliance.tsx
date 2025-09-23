@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useLocation } from "wouter";
 import { shopifyCartService } from "@/lib/shopify-cart";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { apiRequest } from '@/lib/queryClient';
 import { 
   Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, 
   Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, 
@@ -89,7 +91,59 @@ export default function AquaCafeAlliance() {
 
   const [wellnessPassportActive, setWellnessPassportActive] = useState(false);
   const [journeyStep, setJourneyStep] = useState(0);
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('wellness-phone') || '';
+    }
+    return '';
+  });
+  const [currentPassport, setCurrentPassport] = useState<any>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('wellness-passport');
+      return stored ? JSON.parse(stored) : null;
+    }
+    return null;
+  });
+  const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
+  const queryClient = useQueryClient();
+
+  // Auto-hydrate on mount if we have stored data
+  useEffect(() => {
+    if (currentPassport) {
+      setWellnessPassportActive(true);
+      setJourneyStep(currentPassport.currentStep || 0);
+      if (currentPassport.id && phoneNumber) {
+        generateQRCode(currentPassport.id, phoneNumber);
+      }
+    }
+  }, []);
+
+  // Query existing passport by phone on mount
+  const existingPassportQuery = useQuery({
+    queryKey: ['/api/wellness-passports/by-phone', phoneNumber],
+    queryFn: async () => {
+      if (!phoneNumber) return null;
+      return apiRequest('/api/wellness-passports/by-phone', 'POST', { phone: phoneNumber });
+    },
+    enabled: !!phoneNumber,
+    retry: false,
+  });
+
+  // Handle existing passport data from API
+  useEffect(() => {
+    if (existingPassportQuery.data) {
+      const passport = existingPassportQuery.data;
+      setCurrentPassport(passport);
+      setWellnessPassportActive(true);
+      setJourneyStep(passport.currentStep || 1);
+      // Update localStorage with fresh data
+      localStorage.setItem('wellness-passport', JSON.stringify(passport));
+      // Generate QR if passport exists
+      if (passport.id) {
+        generateQRCode(passport.id, phoneNumber);
+      }
+    }
+  }, [existingPassportQuery.data, phoneNumber]);
 
   const handleExperienceAlliance = () => {
     window.open('https://maps.google.com/maps?q=Baker\'s+Kitchen+Mazaya+Center+Dubai', '_blank');
@@ -97,6 +151,75 @@ export default function AquaCafeAlliance() {
       title: "Opening Maps",
       description: "Directing you to Baker's Kitchen location",
     });
+  };
+
+  // Create wellness passport mutation
+  const createPassportMutation = useMutation({
+    mutationFn: async (phone: string) => {
+      return apiRequest('/api/wellness-passports', 'POST', { phone });
+    },
+    onSuccess: (passport) => {
+      setCurrentPassport(passport);
+      setWellnessPassportActive(true);
+      setJourneyStep(passport.currentStep || 1);
+      // Store in localStorage for persistence
+      localStorage.setItem('wellness-phone', phoneNumber);
+      localStorage.setItem('wellness-passport', JSON.stringify(passport));
+      // Generate QR code for the passport
+      generateQRCode(passport.id, phoneNumber);
+      toast({
+        title: "🎉 Wellness Passport Activated!",
+        description: "Your passport is ready! Share on social media to complete activation.",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Activation Failed",
+        description: error.message || "Please try again",
+        variant: "destructive"
+      });
+    }
+  });
+
+  // Generate QR code mutation  
+  const generateQRMutation = useMutation({
+    mutationFn: async ({ passportId, phone }: { passportId: string, phone: string }) => {
+      return apiRequest(`/api/wellness-passports/${passportId}/qr`, 'POST', { phone });
+    },
+    onSuccess: (qrData) => {
+      setQrCodeUrl(qrData.qrCode);
+    },
+    onError: (error: any) => {
+      console.error('QR generation failed:', error);
+    }
+  });
+
+  // Record social share mutation
+  const recordShareMutation = useMutation({
+    mutationFn: async (passportId: string) => {
+      return apiRequest(`/api/wellness-passports/${passportId}/share`, 'POST', {});
+    },
+    onSuccess: (updatedPassport) => {
+      setCurrentPassport(updatedPassport);
+      setJourneyStep(updatedPassport.currentStep || 2);
+      // Update localStorage with latest passport data
+      localStorage.setItem('wellness-passport', JSON.stringify(updatedPassport));
+      toast({
+        title: "Social Share Recorded!",
+        description: `You've earned ${updatedPassport.pointsEarned || 50} points! Next: visit Baker's Kitchen.`,
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Share Recording Failed",
+        description: error.message || "Please try again",
+        variant: "destructive"
+      });
+    }
+  });
+
+  const generateQRCode = (passportId: string, phone: string) => {
+    generateQRMutation.mutate({ passportId, phone });
   };
 
   const handleActivateWellnessPassport = () => {
@@ -108,12 +231,7 @@ export default function AquaCafeAlliance() {
       });
       return;
     }
-    setWellnessPassportActive(true);
-    setJourneyStep(1);
-    toast({
-      title: "🎉 Wellness Passport Activated!",
-      description: "Check your phone for QR code. Share on social media to unlock your free experience!",
-    });
+    createPassportMutation.mutate(phoneNumber);
   };
 
   const generateShareableContent = () => {
@@ -353,9 +471,23 @@ export default function AquaCafeAlliance() {
                     ) : (
                       <div className="space-y-4">
                         <div className="bg-gradient-to-r from-emerald-100 to-cyan-100 border-2 border-emerald-300 rounded-xl p-6 text-center">
-                          <QrCode className="w-20 h-20 mx-auto mb-4 text-emerald-600" />
+                          {qrCodeUrl ? (
+                            <div className="mb-4">
+                              <img 
+                                src={qrCodeUrl} 
+                                alt="Wellness Passport QR Code" 
+                                className="w-32 h-32 mx-auto mb-2 border-2 border-emerald-300 rounded-lg"
+                                data-testid="img-wellness-passport-qr"
+                              />
+                              <p className="text-sm text-emerald-600">Scan at Baker's Kitchen</p>
+                            </div>
+                          ) : (
+                            <QrCode className="w-20 h-20 mx-auto mb-4 text-emerald-600" />
+                          )}
                           <h3 className="text-xl font-bold text-emerald-800 mb-2">Wellness Passport Activated!</h3>
-                          <p className="text-emerald-700 mb-4">QR code sent to {phoneNumber}</p>
+                          <p className="text-emerald-700 mb-4">
+                            {currentPassport ? `ID: ${currentPassport.referralCode}` : `QR code sent to ${phoneNumber}`}
+                          </p>
                           <Badge className="bg-emerald-500 text-white px-4 py-2 text-sm">
                             Valid for 7 days
                           </Badge>
@@ -366,7 +498,20 @@ export default function AquaCafeAlliance() {
                             <Share2 className="w-5 h-5" />
                             Share to Complete Activation:
                           </h4>
-                          <SocialSharingWidget content={generateShareableContent()} />
+                          <SocialSharingWidget 
+                            content={generateShareableContent()} 
+                            onShare={() => {
+                              if (currentPassport?.id) {
+                                recordShareMutation.mutate(currentPassport.id);
+                              } else {
+                                toast({
+                                  title: "Passport Required",
+                                  description: "Please activate your wellness passport first",
+                                  variant: "destructive"
+                                });
+                              }
+                            }}
+                          />
                         </div>
                       </div>
                     )}
