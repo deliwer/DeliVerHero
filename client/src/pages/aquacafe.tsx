@@ -144,8 +144,7 @@ export default function AquaCafe() {
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 to-cyan-50">
       {/* Navigation Bar */}
-      <div className="w-full max-w-none mx-0 px-4 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm"
-           style={{ maxWidth: '100vw' }}>
+      <div className="w-full max-w-7xl mx-auto px-4 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm">
         <Link href="/" className="flex items-center gap-2 text-emerald-800 hover:text-emerald-600 transition-colors" data-testid="link-back-home">
           <Home className="w-5 h-5" />
           <span className="font-semibold">DeliWer</span>
@@ -161,8 +160,8 @@ export default function AquaCafe() {
       </div>
       
       {/* New Hero Section */}
-      <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-blue-500/10" data-testid="hero-section" style={{ maxWidth: '100vw' }}>
-        <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
+      <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-blue-500/10" data-testid="hero-section">
+        <div className="w-full max-w-7xl mx-auto text-center">
           {/* Hero Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-4 leading-tight">
             💧 "Pure Water. Real Rewards."
@@ -664,8 +663,8 @@ export default function AquaCafe() {
       
       
       {/* Referral Program - Streamlined */}
-      <section className="w-full py-4 sm:py-8 px-2 sm:px-4 bg-gradient-to-br from-amber-50 to-orange-50" data-testid="referral-program" style={{ maxWidth: '100vw' }}>
-        <div className="w-full max-w-full mx-auto text-center" style={{ maxWidth: '100vw' }}>
+      <section className="w-full py-4 sm:py-8 px-2 sm:px-4 bg-gradient-to-br from-amber-50 to-orange-50" data-testid="referral-program">
+        <div className="w-full max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center bg-amber-500/20 border border-amber-500/50 rounded-full px-3 py-1 mb-3">
             <Users className="w-3 h-3 text-amber-600 mr-1" />
             <span className="text-amber-600 font-bold text-xs">PARTNERSHIP REFERRAL REWARDS</span>
@@ -675,7 +674,7 @@ export default function AquaCafe() {
             Refer Friends & Get <span className="text-emerald-600">AED 100 FREE VOUCHER</span> at Baker's Kitchen!
           </h2>
           
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4 w-full max-w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mb-4 max-w-4xl mx-auto">
             <div className="bg-white backdrop-blur-sm rounded-lg p-2 sm:p-3 border border-emerald-200 shadow-md">
               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-2">
                 <span className="text-white font-bold text-xs sm:text-sm">1</span>
@@ -718,8 +717,8 @@ export default function AquaCafe() {
         </div>
       </section>
       {/* Pricing Plans */}
-      <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-gray-50 to-emerald-50" data-testid="pricing-plans" style={{ maxWidth: '100vw' }}>
-        <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
+      <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-gray-50 to-emerald-50" data-testid="pricing-plans">
+        <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-6 sm:mb-8 bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-emerald-200 shadow-lg">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3">
               🏆 PARTNERSHIP PACKAGES
@@ -840,8 +839,8 @@ export default function AquaCafe() {
         </div>
       </section>
       {/* Partnership Footer */}
-      <footer className="w-full border-t border-emerald-200 mt-6 sm:mt-8 bg-gradient-to-r from-emerald-50 to-cyan-50" style={{ maxWidth: '100vw' }}>
-        <div className="w-full max-w-full mx-auto px-2 sm:px-4 py-4 sm:py-6" style={{ maxWidth: '100vw' }}>
+      <footer className="w-full border-t border-emerald-200 mt-6 sm:mt-8 bg-gradient-to-r from-emerald-50 to-cyan-50">
+        <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
           {/* Bottom CTA Flow - Complete Journey */}
           <div className="mb-6 sm:mb-8">
             <div className="text-center mb-6">

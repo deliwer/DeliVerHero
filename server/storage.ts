@@ -1839,6 +1839,57 @@ export class MemStorage implements IStorage {
         validFrom: new Date(),
         validUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         createdAt: new Date(),
+      },
+      {
+        id: "prize-laperle-silver",
+        name: "La Perle Silver Ticket",
+        description: "Experience Dubai's #1 Aqua Show - Silver seating ticket",
+        type: "experience",
+        rarity: "rare",
+        quantity: 20,
+        remainingQuantity: 20,
+        probability: 500, // 5%
+        xpReward: 200,
+        pointsReward: 300,
+        couponTemplateId: null,
+        isActive: true,
+        validFrom: new Date(),
+        validUntil: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000), // 6 months validity
+        createdAt: new Date(),
+      },
+      {
+        id: "prize-laperle-gold",
+        name: "La Perle Gold Ticket",
+        description: "Premium Aqua Show experience - Gold seating with refreshments",
+        type: "experience",
+        rarity: "epic",
+        quantity: 10,
+        remainingQuantity: 10,
+        probability: 100, // 1%
+        xpReward: 500,
+        pointsReward: 750,
+        couponTemplateId: null,
+        isActive: true,
+        validFrom: new Date(),
+        validUntil: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000), // 6 months validity
+        createdAt: new Date(),
+      },
+      {
+        id: "prize-laperle-vip",
+        name: "La Perle VIP Experience",
+        description: "Ultimate Aqua Show experience - VIP seating, backstage tour & dinner",
+        type: "experience",
+        rarity: "legendary",
+        quantity: 2,
+        remainingQuantity: 2,
+        probability: 50, // 0.5%
+        xpReward: 1000,
+        pointsReward: 1500,
+        couponTemplateId: null,
+        isActive: true,
+        validFrom: new Date(),
+        validUntil: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year validity
+        createdAt: new Date(),
       }
     ];
 
