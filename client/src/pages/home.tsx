@@ -33,13 +33,13 @@ function OpportunitiesSection() {
           
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
             {/* iPhone Trade Advantage */}
-            <div className="glass rounded-2xl p-6 border border-amber-500/30 bg-amber-600/5">
+            <div className="glass rounded-2xl p-6 border border-amber-500/30 bg-amber-600/5 hover:bg-amber-600/10 transition-all duration-300 group cursor-pointer">
               <div className="text-center mb-4">
                 <Building className="w-10 h-10 text-amber-400 mx-auto mb-3" />
                 <h3 className="text-xl font-bold text-white mb-2">iPHONE TRADE LEADERS</h3>
                 <p className="text-gray-300 text-sm">Cross-category advantage</p>
               </div>
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-400">vs Etisalat/Du</span>
                   <span className="text-amber-400 font-bold">+Water Systems</span>
@@ -63,13 +63,13 @@ function OpportunitiesSection() {
             </div>
 
             {/* Gitex Launch Special */}
-            <div className="glass rounded-2xl p-6 border border-hero-green-500/30 bg-hero-green-600/5">
+            <div className="glass rounded-2xl p-6 border border-hero-green-500/30 bg-hero-green-600/5 hover:bg-hero-green-600/10 transition-all duration-300 group cursor-pointer">
               <div className="text-center mb-4">
                 <Heart className="w-10 h-10 text-hero-green-400 mx-auto mb-3" />
                 <h3 className="text-xl font-bold text-white mb-2">GITEX 2025 LAUNCH</h3>
                 <p className="text-gray-300 text-sm">iPhone 17 cash preparation</p>
               </div>
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-400">Trade Now</span>
                   <span className="text-hero-green-400 font-bold">Get Cash</span>
@@ -93,13 +93,13 @@ function OpportunitiesSection() {
             </div>
 
             {/* Media Story */}
-            <div className="glass rounded-2xl p-6 border border-purple-500/30 bg-purple-600/5">
+            <div className="glass rounded-2xl p-6 border border-purple-500/30 bg-purple-600/5 hover:bg-purple-600/10 transition-all duration-300 group cursor-pointer">
               <div className="text-center mb-4">
                 <Users className="w-10 h-10 text-purple-400 mx-auto mb-3" />
                 <h3 className="text-xl font-bold text-white mb-2">MEDIA SPOTLIGHT</h3>
                 <p className="text-gray-300 text-sm">Revolutionary trade story</p>
               </div>
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-400">Global First</span>
                   <span className="text-purple-400 font-bold">Cross-Category</span>
@@ -298,13 +298,13 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Individual Trade-in */}
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-cyan-500/30">
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-cyan-500/30 hover:bg-slate-800/70 transition-all duration-300 group cursor-pointer">
               <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Users className="w-8 h-8 text-cyan-400" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Individual Explorer</h3>
-              <p className="text-gray-300 mb-6">Perfect for those curious about device recycling and water conservation. Discover how small actions create meaningful environmental impact.</p>
-              <div className="space-y-2 text-sm text-gray-400 mb-8">
+              <p className="text-gray-300 mb-6 opacity-100 group-hover:opacity-80">Perfect for those curious about device recycling and water conservation.</p>
+              <div className="space-y-2 text-sm text-gray-400 mb-8 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-32 overflow-hidden transition-all duration-500">
                 <div>✓ Device valuation & trade</div>
                 <div>✓ Water filtration credits</div>
                 <div>✓ Planet Points earning</div>
@@ -320,13 +320,13 @@ export default function Home() {
             </div>
 
             {/* Corporate Partnership */}
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-emerald-500/30 transform scale-105">
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-emerald-500/30 transform scale-105 hover:bg-slate-800/70 transition-all duration-300 group cursor-pointer">
               <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Building className="w-8 h-8 text-emerald-400" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Corporate Solutions</h3>
-              <p className="text-gray-300 mb-6">Designed for organizations interested in comprehensive sustainability programs with measurable impact and employee engagement opportunities.</p>
-              <div className="space-y-2 text-sm text-gray-400 mb-8">
+              <p className="text-gray-300 mb-6 opacity-100 group-hover:opacity-80">Designed for organizations interested in comprehensive sustainability programs.</p>
+              <div className="space-y-2 text-sm text-gray-400 mb-8 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-32 overflow-hidden transition-all duration-500">
                 <div>✓ Bulk device processing</div>
                 <div>✓ ESG impact reporting</div>
                 <div>✓ Employee engagement</div>
@@ -342,13 +342,13 @@ export default function Home() {
             </div>
 
             {/* Community CSR */}
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-purple-500/30">
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-purple-500/30 hover:bg-slate-800/70 transition-all duration-300 group cursor-pointer">
               <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Heart className="w-8 h-8 text-purple-400" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Community Initiatives</h3>
-              <p className="text-gray-300 mb-6">Ideal for neighborhoods and communities who want to collaborate on sustainability goals while sharing rewards and celebrating collective impact.</p>
-              <div className="space-y-2 text-sm text-gray-400 mb-8">
+              <p className="text-gray-300 mb-6 opacity-100 group-hover:opacity-80">Ideal for neighborhoods and communities who want to collaborate on sustainability goals.</p>
+              <div className="space-y-2 text-sm text-gray-400 mb-8 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-32 overflow-hidden transition-all duration-500">
                 <div>✓ Community leaderboards</div>
                 <div>✓ Shared starter kits</div>
                 <div>✓ Collective impact tracking</div>

@@ -62,18 +62,20 @@ export function AIInteractiveHero() {
           backgroundAttachment: 'fixed',
         }}
       >
-        {/* Eco-inspired gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-emerald-900/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/20 via-transparent to-transparent"></div>
+        {/* Metaverse-inspired gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-blue-900/40 to-cyan-900/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/30 via-transparent to-blue-900/20"></div>
+        {/* Holographic effect overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent animate-pulse-slow"></div>
       </div>
       {/* Main Content */}
       <div className="max-w-4xl mx-auto relative z-10 text-center">
         {/* Main Headlines */}
         <div className="mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white drop-shadow-2xl">From iPhones to Water,</span><br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400 drop-shadow-lg">
-              a Circular Game
+            <span className="text-white drop-shadow-2xl">Refresh, Renew, Shop</span><br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 drop-shadow-lg animate-pulse-slow">
+              From iPhones to Water
             </span>
           </h1>
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">Trade iPhones for premium water benefits responsibly, earn Planet Points, and redeem in the AquaCafe.</p>
@@ -167,11 +169,14 @@ export function AIInteractiveHero() {
           </div>
         </div>
       </div>
-      {/* Floating Elements for Visual Interest */}
-      <div className="absolute top-20 left-10 w-16 h-16 bg-emerald-500/10 rounded-full blur-xl animate-float"></div>
-      <div className="absolute top-32 right-20 w-20 h-20 bg-blue-500/10 rounded-full blur-lg animate-float-delayed"></div>
-      <div className="absolute bottom-40 left-20 w-12 h-12 bg-amber-500/10 rounded-full blur-lg animate-pulse-slow"></div>
-      <div className="absolute bottom-60 right-10 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl animate-bounce-slow"></div>
+      {/* Metaverse Floating Elements for Visual Interest */}
+      <div className="absolute top-20 left-10 w-16 h-16 bg-cyan-500/20 rounded-full blur-xl animate-float border border-cyan-400/20"></div>
+      <div className="absolute top-32 right-20 w-20 h-20 bg-purple-500/20 rounded-full blur-lg animate-float-delayed border border-purple-400/20"></div>
+      <div className="absolute bottom-40 left-20 w-12 h-12 bg-blue-500/20 rounded-full blur-lg animate-pulse-slow border border-blue-400/20"></div>
+      <div className="absolute bottom-60 right-10 w-24 h-24 bg-emerald-500/20 rounded-full blur-xl animate-bounce-slow border border-emerald-400/20"></div>
+      {/* Additional holographic elements */}
+      <div className="absolute top-1/3 left-1/4 w-8 h-8 bg-gradient-to-r from-cyan-400/30 to-blue-400/30 rounded-full animate-pulse"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-6 h-6 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-full animate-bounce"></div>
     </section>
   );
 }
