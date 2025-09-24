@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
 import { TombolaWidget } from "@/components/tombola-widget";
 import { CouponsPanel } from "@/components/coupons-panel";
-import { DubaiWellnessJourneyPassport } from "@/components/dubai-wellness-journey-passport";
+import { DubaiWellnessJourney } from "@/components/dubai-wellness-journey";
 import aquacafeTradeIn from "@assets/Banner_AquaCafe_1755270492134.jpg";
 import beautyWater1 from "@assets/Beauty_Water_1_1756065010937.jpg";
 import beautyWater2 from "@assets/Beauty_Water_2_1756065010940.jpg";
@@ -466,7 +466,7 @@ export default function AquaCafe() {
       </section>
 
       {/* Dubai Wellness Journey Passport Section */}
-      <DubaiWellnessJourneyPassport 
+      <DubaiWellnessJourney 
         variant="aquacafe"
         showMembershipCTA={true}
         onMembershipSignup={() => {

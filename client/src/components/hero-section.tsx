@@ -76,7 +76,7 @@ export function HeroSection() {
           
           <div className="mb-12">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white drop-shadow-2xl neon-text-white">Refresh, Renew, Shop</span><br />
+              <span className="text-white drop-shadow-2xl neon-text-white">Refresh, Renew, Play</span><br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 neon-glow animate-pulse">
                 From iPhones to Water
               </span>

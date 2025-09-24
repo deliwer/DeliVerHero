@@ -11,7 +11,6 @@ import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
 import { DubaiWellnessJourney } from "@/components/dubai-wellness-journey";
-import { DubaiWellnessJourneyPassport } from "@/components/dubai-wellness-journey-passport";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -421,8 +420,8 @@ export default function Home() {
       <InstantImpactUnlocks />
 
       {/* Dubai Wellness Journey Passport Section */}
-      <DubaiWellnessJourneyPassport 
-        variant="home"
+      <DubaiWellnessJourney 
+        variant="aquacafe"
         showMembershipCTA={true}
         onMembershipSignup={() => {
           // Navigate to aquacafe page for membership signup

@@ -73,7 +73,7 @@ export function AIInteractiveHero() {
         {/* Main Headlines */}
         <div className="mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white drop-shadow-2xl">Refresh, Renew, Shop</span><br />
+            <span className="text-white drop-shadow-2xl">Refresh, Renew, Play</span><br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 drop-shadow-lg animate-pulse-slow">
               From iPhones to Water
             </span>
