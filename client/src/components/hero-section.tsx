@@ -1,5 +1,5 @@
 import { Star, Bot, MapPin, Timer, UserPlus, Recycle, Droplets } from "lucide-react";
-import heroImage from "@assets/mobile-water-purification-hero_1755786909344.jpg";
+import heroImage from "@assets/stock_images/sustainable_technolo_73d11afe.jpg";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
@@ -76,9 +76,9 @@ export function HeroSection() {
           
           <div className="mb-12">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white drop-shadow-2xl neon-text-white">From iPhones to Water,</span><br />
+              <span className="text-white drop-shadow-2xl neon-text-white">Refresh, Renew, Shop</span><br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 neon-glow animate-pulse">
-                a Circular Exchange
+                From iPhones to Water
               </span>
             </h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl mb-6 font-bold neon-text-green">
@@ -86,9 +86,14 @@ export function HeroSection() {
               <span className="text-dubai-blue-400 drop-shadow-lg">Reuse ↔ Reflow</span> • 
               <span className="text-amber-400 drop-shadow-lg">Save Money & Planet</span>
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg backdrop-blur-sm bg-black/20 rounded-xl p-4 border border-white/10">
-              Dubai's electronics trade hub meets water scarcity innovation. Transform your iPhone into premium water systems while reducing e-waste and supporting circular economy.
-            </p>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-100 leading-relaxed drop-shadow-lg backdrop-blur-sm bg-black/20 rounded-xl p-4 border border-white/10 transition-all duration-300 hover:bg-black/30 cursor-pointer group">
+                <span className="block">Transform your iPhone into premium water systems</span>
+                <span className="text-gray-300 text-base mt-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0 group-hover:max-h-20 overflow-hidden">
+                  Dubai's electronics trade hub meets water scarcity innovation through sustainable circular economy solutions.
+                </span>
+              </p>
+            </div>
           </div>
 
           {/* Value Proposition Cards */}
@@ -150,9 +155,12 @@ export function HeroSection() {
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Dubai's Circular Economy Innovation
             </h3>
-            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              Leverage Dubai Airport Freezone electronics hub + address water scarcity through sustainable tech-to-water earning opportunities
-            </p>
+            <div className="max-w-3xl mx-auto group cursor-pointer">
+              <p className="text-xl text-gray-200">Sustainable tech-to-water earning opportunities</p>
+              <p className="text-gray-300 text-base mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 max-h-0 group-hover:max-h-16 overflow-hidden">
+                Leverage Dubai Airport Freezone electronics hub + address water scarcity through sustainable innovation.
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -169,7 +177,12 @@ export function HeroSection() {
                 <Recycle className="w-5 h-5 text-amber-500 mr-2" />
                 📱 iPhone → 💰 Cash + 💧 Water
               </h3>
-              <p className="text-gray-300 mb-4">Dubai Airport Freezone electronics expertise meets water innovation. Sustainable refurbishment creates value for life essentials.</p>
+              <div className="mb-4 group cursor-pointer">
+                <p className="text-gray-300">Sustainable iPhone trade for life essentials</p>
+                <p className="text-gray-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 max-h-0 group-hover:max-h-16 overflow-hidden">
+                  Dubai Airport Freezone electronics expertise meets water innovation. Sustainable refurbishment creates value for life essentials.
+                </p>
+              </div>
               <div className="bg-amber-500/20 border border-amber-500/30 rounded-lg p-3 mb-4">
                 <div className="text-amber-400 font-bold">iPhone 15 Pro Max: Up to AED 1,500</div>
                 <div className="text-amber-400 font-bold">iPhone 14 Pro: Up to AED 1,200</div>
@@ -191,7 +204,12 @@ export function HeroSection() {
                 <Droplets className="w-5 h-5 text-hero-green-500 mr-2" />
                 💧 AquaCafe Water Systems
               </h3>
-              <p className="text-gray-300 mb-4">Address Dubai's water scarcity with advanced filtration. Transform tech trade into home health solutions.</p>
+              <div className="mb-4 group cursor-pointer">
+                <p className="text-gray-300">Advanced filtration for home health solutions</p>
+                <p className="text-gray-400 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 max-h-0 group-hover:max-h-16 overflow-hidden">
+                  Address Dubai's water scarcity with advanced filtration. Transform tech trade into home health solutions.
+                </p>
+              </div>
               <div className="bg-hero-green-500/20 border border-hero-green-500/30 rounded-lg p-3 mb-4">
                 <div className="text-hero-green-400 font-bold">🚿 Shower Filter: AED 299 value</div>
                 <div className="text-hero-green-400 font-bold">🥤 Drinking System: AED 799 value</div>

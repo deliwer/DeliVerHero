@@ -174,14 +174,18 @@ export default function Environmental() {
           {/* Detailed Impact Metrics */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {impactMetrics.map((metric, index) => (
-              <Card key={index} className="glass border-slate-600">
+              <Card key={index} className="glass border-slate-600 group cursor-pointer hover:border-slate-500 transition-all duration-300" data-testid={`impact-metric-${index}`}>
                 <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm text-center">
                   <div className="w-16 h-16 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-4">
                     {metric.icon}
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">{metric.value}</h3>
                   <h4 className="text-sm font-semibold text-gray-300 mb-2">{metric.title}</h4>
-                  <p className="text-xs text-gray-400 mb-3">{metric.description}</p>
+                  <div className="mb-3">
+                    <p className="text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-all duration-300 max-h-0 group-hover:max-h-12 overflow-hidden">
+                      {metric.description}
+                    </p>
+                  </div>
                   <div className="text-xs text-hero-green-500 font-medium">{metric.trend}</div>
                 </CardContent>
               </Card>
@@ -198,11 +202,15 @@ export default function Environmental() {
               
               <div className="grid md:grid-cols-2 gap-8">
                 {sustainabilityGoals.map((goal, index) => (
-                  <div key={index} className="space-y-4">
+                  <div key={index} className="space-y-4 group cursor-pointer" data-testid={`sustainability-goal-${index}`}>
                     <div className="flex justify-between items-start">
                       <div>
                         <h3 className="text-lg font-bold text-white">{goal.title}</h3>
-                        <p className="text-sm text-gray-300">{goal.description}</p>
+                        <div>
+                          <p className="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-all duration-300 max-h-0 group-hover:max-h-12 overflow-hidden">
+                            {goal.description}
+                          </p>
+                        </div>
                       </div>
                       <Badge className="bg-dubai-blue-500/20 text-dubai-blue-500 border-dubai-blue-500/30 ml-4">
                         {goal.progress}%
