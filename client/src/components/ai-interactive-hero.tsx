@@ -74,7 +74,8 @@ export function AIInteractiveHero() {
         <div className="mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="text-white drop-shadow-2xl">Refresh, Renew, Play</span><br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 drop-shadow-lg animate-pulse-slow">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 drop-shadow-2xl animate-pulse-slow" 
+                  style={{ textShadow: '0 0 25px rgba(6, 182, 212, 0.8), 0 0 45px rgba(59, 130, 246, 0.6), 0 0 65px rgba(16, 185, 129, 0.4)' }}>
               From iPhones to Water
             </span>
           </h1>

@@ -28,7 +28,7 @@ const defaultHints: TooltipHint[] = [
     content: "Select your iPhone model and condition to see how much it's worth. Our AI calculator gives you instant, accurate valuations.",
     type: "tip",
     target: "device-simulator",
-    delay: 10000,
+    delay: 20000,
     position: "right",
     priority: "high",
     conditions: {
@@ -74,7 +74,7 @@ const defaultHints: TooltipHint[] = [
     content: "These numbers show the actual environmental impact of our Dubai Heroes community. Your actions contribute to these growing totals!",
     type: "info",
     target: "stat-bottles",
-    delay: 10000,
+    delay: 20000,
     position: "top",
     priority: "medium",
     conditions: {

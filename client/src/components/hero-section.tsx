@@ -77,7 +77,8 @@ export function HeroSection() {
           <div className="mb-12">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="text-white drop-shadow-2xl neon-text-white">Refresh, Renew, Play</span><br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-400 via-dubai-blue-400 to-hero-green-400 neon-glow animate-pulse">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-hero-green-300 via-cyan-200 to-hero-green-300 neon-glow animate-pulse drop-shadow-2xl" 
+                    style={{ textShadow: '0 0 20px rgba(34, 197, 94, 0.7), 0 0 40px rgba(6, 182, 212, 0.5), 0 0 60px rgba(34, 197, 94, 0.3)' }}>
                 From iPhones to Water
               </span>
             </h1>
