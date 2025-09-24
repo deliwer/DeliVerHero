@@ -74,9 +74,15 @@ export function AIInteractiveHero() {
         <div className="mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
             <span className="text-white drop-shadow-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>fresh, <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>new, <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>play</span><br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-emerald-300 drop-shadow-2xl animate-pulse-slow" 
-                  style={{ textShadow: '0 0 25px rgba(6, 182, 212, 0.8), 0 0 45px rgba(59, 130, 246, 0.6), 0 0 65px rgba(16, 185, 129, 0.4)' }}>
-              From iPhones to Water
+            <span className="relative inline-block">
+              <span className="absolute inset-0 bg-black/60 blur-sm rounded-lg px-4 py-2"></span>
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-emerald-200 drop-shadow-2xl animate-pulse-slow font-black px-4 py-2" 
+                    style={{ 
+                      textShadow: '0 0 30px rgba(6, 182, 212, 1), 0 0 50px rgba(59, 130, 246, 0.8), 0 0 70px rgba(16, 185, 129, 0.6)',
+                      filter: 'contrast(1.2) brightness(1.3)'
+                    }}>
+                From iPhones to Water
+              </span>
             </span>
           </h1>
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">Trade iPhones for premium water benefits responsibly, earn Planet Points, and redeem in the AquaCafe.</p>

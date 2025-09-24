@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -138,6 +138,7 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
 // Step 1: Play Missions Section with Tombola Game
 function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   const [heroId] = useState("demo-hero-id"); // Demo hero ID for tombola
+  const [isExpanded, setIsExpanded] = useState(false);
   
   return (
     <section className="py-8 px-4 mb-8 relative overflow-hidden">
@@ -154,10 +155,18 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
         <ProgressIndicator currentStep={1} />
         
         <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-purple-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-purple-500/50">
+          <div 
+            className="inline-flex items-center bg-purple-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-purple-500/50 cursor-pointer hover:bg-purple-500/30 transition-all"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
             <Gamepad2 className="w-5 h-5 text-purple-300 mr-2" />
             <span className="text-purple-300 font-bold text-lg">STEP 1 - PLAY & WIN PRIZES</span>
             <Sparkles className="w-5 h-5 text-purple-300 ml-2 animate-pulse" />
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 text-purple-300 ml-2" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-purple-300 ml-2" />
+            )}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
             <span className="text-white">Start Playing in the </span>
@@ -172,7 +181,8 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
         </div>
 
         {/* Metaverse Tombola Game Section */}
-        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden">
+        {isExpanded && (
+        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500">
           {/* Floating particles */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-4 left-8 w-1 h-1 bg-purple-400 rounded-full animate-pulse"></div>
@@ -236,6 +246,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             </div>
           </div>
         </div>
+        )}
       </div>
     </section>
   );
@@ -243,14 +254,24 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
 
 // Step 2: Exchange Section  
 function StepTwoExchange() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
   return (
     <section className="py-8 px-4 mb-8" data-section="step-2-earn-points">
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={2} />
         
         <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50">
+          <div 
+            className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50 cursor-pointer hover:bg-green-500/30 transition-all"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
             <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM YOUR iPHONE</span>
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 text-green-300 ml-2" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-green-300 ml-2" />
+            )}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
             Earn from Your iPhone a Mission for the Planet
@@ -261,7 +282,9 @@ function StepTwoExchange() {
         </div>
 
         {/* Primary Mission - Trade-in iPhone (moved from Step 1) */}
-        <div className="mb-8">
+        {isExpanded && (
+        <>
+        <div className="mb-8 animate-in slide-in-from-top duration-500">
           <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
@@ -360,6 +383,8 @@ function StepTwoExchange() {
         <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10">
           <MeetDeliInteractive />
         </div>
+        </>
+        )}
       </div>
     </section>
   );
@@ -367,14 +392,24 @@ function StepTwoExchange() {
 
 // Step 3: Rewards Section
 function StepThreeRewards() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
   return (
     <section className="py-8 px-4 mb-8" data-section="step-3">
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={3} />
         
         <div className="text-center mb-8">
-          <div className="inline-flex items-center bg-amber-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-amber-500/50">
+          <div 
+            className="inline-flex items-center bg-amber-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-amber-500/50 cursor-pointer hover:bg-amber-500/30 transition-all"
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
             <span className="text-amber-300 font-bold text-lg">STEP 3 - REWARDS</span>
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 text-amber-300 ml-2" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-amber-300 ml-2" />
+            )}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
@@ -387,7 +422,9 @@ function StepThreeRewards() {
         </div>
 
         {/* Product Showcase & Benefits Flowchart Infographic */}
-        <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 mb-8">
+        {isExpanded && (
+        <>
+        <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 mb-8 animate-in slide-in-from-top duration-500">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             
             {/* Left: Premium Product Showcase */}
@@ -573,7 +610,8 @@ function StepThreeRewards() {
             </div>
           </div>
         </div>
-
+        </>
+        )}
 
       </div>
     </section>
