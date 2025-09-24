@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
 import { TombolaWidget } from "@/components/tombola-widget";
 import { CouponsPanel } from "@/components/coupons-panel";
+import { DubaiWellnessJourneyPassport } from "@/components/dubai-wellness-journey-passport";
 import aquacafeTradeIn from "@assets/Banner_AquaCafe_1755270492134.jpg";
 import beautyWater1 from "@assets/Beauty_Water_1_1756065010937.jpg";
 import beautyWater2 from "@assets/Beauty_Water_2_1756065010940.jpg";
@@ -463,6 +464,23 @@ export default function AquaCafe() {
           </div>
         </div>
       </section>
+
+      {/* Dubai Wellness Journey Passport Section */}
+      <DubaiWellnessJourneyPassport 
+        variant="aquacafe"
+        showMembershipCTA={true}
+        onMembershipSignup={() => {
+          // Scroll to starter kit section
+          const element = document.querySelector('[data-testid="starter-kit-gateway"]');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+          toast({
+            title: "Complete Your Journey",
+            description: "Choose your AquaCafe starter kit to complete the wellness journey and unlock all benefits!",
+          });
+        }}
+      />
       
       {/* AquaCafe Starter Kit - Flagship Gateway Section */}
       <section className="w-full py-8 sm:py-12 px-0 bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50" data-testid="starter-kit-gateway" style={{ maxWidth: '100vw' }}>
