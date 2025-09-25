@@ -30,7 +30,9 @@ import {
   Share2,
   Smartphone,
   ChefHat,
-  Navigation
+  Navigation,
+  Target,
+  Rocket
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -741,6 +743,193 @@ export function DubaiWellnessJourney({
             </Button>
           </div>
         </div>
+
+        {/* Metaverse Missions Section */}
+        <section className="mb-16" data-section="metaverse-missions">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Target className="w-10 h-10 text-purple-600" />
+              <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Metaverse Wellness Missions
+              </h3>
+              <Rocket className="w-10 h-10 text-blue-600" />
+            </div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+              Complete real-world wellness activities to earn Planet Points, unlock exclusive rewards, and contribute to Dubai's sustainability goals.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {/* Water Conservation Mission */}
+            <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 hover:shadow-xl transition-all">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-lg bg-blue-500">
+                    <Droplets className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Hydration Hero Mission</CardTitle>
+                    <Badge className="bg-blue-100 text-blue-800">Water Conservation</Badge>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Track your daily water intake and visit AquaCafe stations throughout your wellness journey.
+                </p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Visit 3 AquaCafe stations</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4 text-gray-400" />
+                    <span>Log 8 glasses of water daily</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4 text-gray-400" />
+                    <span>Share sustainability tip</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-sm text-gray-600">Progress</span>
+                  <span className="text-sm font-semibold">33%</span>
+                </div>
+                <Progress value={33} className="mb-4" />
+                <Button size="sm" className="w-full bg-blue-500 hover:bg-blue-600">
+                  <Camera className="w-4 h-4 mr-2" />
+                  Submit Progress
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Mobility Mission */}
+            <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 hover:shadow-xl transition-all">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-lg bg-green-500">
+                    <Bike className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Eco Mobility Challenge</CardTitle>
+                    <Badge className="bg-green-100 text-green-800">Sustainable Transport</Badge>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Complete the wellness track using sustainable transportation methods.
+                </p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Cycle for 30 minutes</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <span>Walk 10,000 steps</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4 text-gray-400" />
+                    <span>Visit wellness checkpoint</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-sm text-gray-600">Progress</span>
+                  <span className="text-sm font-semibold">67%</span>
+                </div>
+                <Progress value={67} className="mb-4" />
+                <Button size="sm" className="w-full bg-green-500 hover:bg-green-600">
+                  <QrCode className="w-4 h-4 mr-2" />
+                  Scan Checkpoint
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Community Mission */}
+            <Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-xl transition-all">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-lg bg-purple-500">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Community Builder</CardTitle>
+                    <Badge className="bg-purple-100 text-purple-800">Social Impact</Badge>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 mb-4">
+                  Connect with other Planet Heroes and share your wellness journey impact.
+                </p>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4 text-gray-400" />
+                    <span>Invite 2 friends to join</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4 text-gray-400" />
+                    <span>Share journey photo</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="w-4 h-4 text-gray-400" />
+                    <span>Leave review at hotel partner</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-sm text-gray-600">Progress</span>
+                  <span className="text-sm font-semibold">0%</span>
+                </div>
+                <Progress value={0} className="mb-4" />
+                <Button size="sm" className="w-full bg-purple-500 hover:bg-purple-600">
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Start Mission
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Mission Leaderboard */}
+          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200">
+            <CardHeader>
+              <div className="flex items-center justify-center gap-3">
+                <Trophy className="w-8 h-8 text-indigo-600" />
+                <CardTitle className="text-2xl text-center">Weekly Mission Leaders</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center p-4 bg-yellow-50 rounded-lg border-2 border-yellow-300">
+                  <Crown className="w-12 h-12 text-yellow-500 mx-auto mb-2" />
+                  <div className="text-lg font-bold text-gray-800">Khalid Al-Mansoori</div>
+                  <div className="text-sm text-gray-600">Gold Hero</div>
+                  <div className="text-2xl font-bold text-yellow-600 mt-2">2,847 PP</div>
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg border-2 border-gray-300">
+                  <Award className="w-12 h-12 text-gray-500 mx-auto mb-2" />
+                  <div className="text-lg font-bold text-gray-800">Amira Bin Rashid</div>
+                  <div className="text-sm text-gray-600">Gold Hero</div>
+                  <div className="text-2xl font-bold text-gray-600 mt-2">2,234 PP</div>
+                </div>
+                <div className="text-center p-4 bg-orange-50 rounded-lg border-2 border-orange-300">
+                  <Star className="w-12 h-12 text-orange-500 mx-auto mb-2" />
+                  <div className="text-lg font-bold text-gray-800">Omar Al-Zaabi</div>
+                  <div className="text-sm text-gray-600">Gold Hero</div>
+                  <div className="text-2xl font-bold text-orange-600 mt-2">1,987 PP</div>
+                </div>
+              </div>
+              <div className="text-center mt-6">
+                <Link href="/missions">
+                  <Button className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600">
+                    <Target className="w-4 h-4 mr-2" />
+                    View All Missions
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
         {/* Aqua Show Perks Section */}
         {showPerks && (

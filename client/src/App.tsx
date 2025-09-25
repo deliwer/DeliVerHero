@@ -45,6 +45,7 @@ import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Environmental from "@/pages/environmental";
 import DubaiRewards from "@/pages/dubai-rewards";
+import Missions from "@/pages/missions";
 
 import NotFound from "@/pages/not-found";
 import ContactPage from "@/pages/contact";
@@ -103,6 +104,7 @@ function Router() {
       <Route path="/terms" component={Terms} />
       <Route path="/environmental" component={Environmental} />
       <Route path="/dubai-rewards" component={DubaiRewards} />
+      <Route path="/missions" component={Missions} />
       <Route path="/cart" component={CartPage} />
       <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
       <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />

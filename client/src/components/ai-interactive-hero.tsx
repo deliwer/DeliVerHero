@@ -81,7 +81,7 @@ export function AIInteractiveHero() {
                       textShadow: '0 0 30px rgba(6, 182, 212, 1), 0 0 50px rgba(59, 130, 246, 0.8), 0 0 70px rgba(16, 185, 129, 0.6)',
                       filter: 'contrast(1.2) brightness(1.3)'
                     }}>
-                From iPhones to Water
+                From iPhone to Water Game
               </span>
             </span>
           </h1>
