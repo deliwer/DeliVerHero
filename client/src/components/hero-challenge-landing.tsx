@@ -98,8 +98,8 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepIcons = {
     1: Gamepad2,    // Play step
-    2: Smartphone,  // Earn from iPhone step  
-    3: Trophy       // Rewards step
+    2: Target,      // Planetary Missions step  
+    3: Gift         // Redeem Rewards step
   };
 
   return (
@@ -160,7 +160,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             onClick={() => setIsExpanded(!isExpanded)}
           >
             <Gamepad2 className="w-5 h-5 text-purple-300 mr-2" />
-            <span className="text-purple-300 font-bold text-lg">STEP 1 - PLAY & WIN PRIZES</span>
+            <span className="text-purple-300 font-bold text-lg">STEP 1 - PLAY FOR PLANET POINTS</span>
             <Sparkles className="w-5 h-5 text-purple-300 ml-2 animate-pulse" />
             {isExpanded ? (
               <ChevronUp className="w-5 h-5 text-purple-300 ml-2" />
@@ -169,14 +169,14 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             )}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
-            <span className="text-white">Start Playing in the </span>
+            <span className="text-white">Play Games &amp; </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-              Metaverse
+              Earn Points
             </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            🎮 Win prizes through our Tombola game, earn Planet Points, and unlock amazing rewards. 
-            <span className="text-purple-400 font-bold">Trade-in your iPhone as your primary mission to start earning!</span>
+            🎮 Experience our gaming platform with Tombola, achievements, and leaderboards. 
+            <span className="text-purple-400 font-bold">Visit the Play page to start your Planet Points journey!</span>
           </p>
         </div>
 
@@ -225,21 +225,39 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
                 </p>
               </div>
               
-              {/* Other Missions */}
+              {/* Visit Play Page CTA */}
               <div className="text-center">
-                <div className="text-gray-400 text-sm mb-3">Ways to earn points:</div>
+                <div className="text-gray-400 text-sm mb-6">Ready to start playing?</div>
+                <Link href="/play">
+                  <Button 
+                    size="lg" 
+                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                    data-testid="button-visit-play-page"
+                  >
+                    <Gamepad2 className="mr-3 w-6 h-6" />
+                    Visit Play Page
+                  </Button>
+                </Link>
+                <div className="text-xs text-gray-400 mt-4">
+                  Access Tombola, Achievements, Leaderboards & More!
+                </div>
+              </div>
+              
+              {/* Ways to earn preview */}
+              <div className="text-center">
+                <div className="text-gray-400 text-sm mb-3">Available on Play page:</div>
                 <div className="flex justify-center gap-4 text-xs">
                   <div className="text-center">
-                    <div className="text-blue-400 font-bold">+50-200</div>
-                    <div className="text-gray-500">Water Systems</div>
+                    <div className="text-purple-400 font-bold">Tombola</div>
+                    <div className="text-gray-500">Daily Spins</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-purple-400 font-bold">+25-100</div>
-                    <div className="text-gray-500">Referrals</div>
+                    <div className="text-blue-400 font-bold">Achievements</div>
+                    <div className="text-gray-500">Unlock Badges</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-amber-400 font-bold">+100</div>
-                    <div className="text-gray-500">Daily Spin</div>
+                    <div className="text-amber-400 font-bold">Leaderboard</div>
+                    <div className="text-gray-500">Compete</div>
                   </div>
                 </div>
               </div>
@@ -266,7 +284,7 @@ function StepTwoExchange() {
             className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50 cursor-pointer hover:bg-green-500/30 transition-all"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM YOUR iPHONE</span>
+            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM PLANETARY MISSIONS</span>
             {isExpanded ? (
               <ChevronUp className="w-5 h-5 text-green-300 ml-2" />
             ) : (
@@ -274,31 +292,48 @@ function StepTwoExchange() {
             )}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Earn from Your iPhone a Mission for the Planet
+            Complete Planetary Missions &amp; Trade-In Your iPhone
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Transform your old iPhone into instant value plus Planet Points - making sustainability profitable and rewarding.
+            Join AquaCafe loyalty program and complete missions including iPhone trade-ins to earn maximum Planet Points for the planet.
           </p>
         </div>
 
-        {/* Primary Mission - Trade-in iPhone (moved from Step 1) */}
+        {/* AquaCafe Planetary Missions */}
         {isExpanded && (
         <>
         <div className="mb-8 animate-in slide-in-from-top duration-500">
-          <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10">
+          <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-blue-500/10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
-              {/* Left: Primary Mission Header */}
+              {/* Left: AquaCafe Missions Header */}
               <div className="space-y-6">
                 <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-4">
-                    <Target className="w-5 h-5" />
-                    <span className="font-bold">🎯 PRIMARY MISSION</span>
+                  <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-4">
+                    <Droplets className="w-5 h-5" />
+                    <span className="font-bold">💧 AQUACAFE MISSIONS</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Trade-in iPhone = Max Points</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Join AquaCafe & Complete Missions</h3>
                   <p className="text-gray-200 text-sm">
-                    Your old iPhone is your ticket to earning the most Planet Points and unlocking premium rewards!
+                    Join AquaCafe loyalty program and complete planetary missions including iPhone trade-ins for maximum impact.
                   </p>
+                </div>
+                
+                {/* AquaCafe CTA */}
+                <div className="text-center">
+                  <Link href="/aquacafe">
+                    <Button 
+                      size="lg" 
+                      className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full mb-4"
+                      data-testid="button-join-aquacafe-missions"
+                    >
+                      <Droplets className="mr-3 w-6 h-6" />
+                      Join AquaCafe Loyalty
+                    </Button>
+                  </Link>
+                  <div className="text-xs text-gray-400">
+                    Unlock iPhone trade-in missions & premium water systems
+                  </div>
                 </div>
                 
                 {/* Other Missions */}
@@ -321,58 +356,55 @@ function StepTwoExchange() {
                 </div>
               </div>
               
-              {/* Right: iPhone Trade Mission Card */}
-              <div className="space-y-6">
-                <div className="bg-gradient-to-r from-amber-600/20 to-orange-600/20 rounded-xl p-6 border border-amber-500/50">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-16 h-16 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border-2 border-gray-600 flex items-center justify-center">
-                      <Smartphone className="w-8 h-8 text-amber-400" />
+              {/* Right: Planetary Missions Overview */}
+              <div className="text-center">
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full mb-4">
+                    <Target className="w-5 h-5" />
+                    <span className="font-bold">🌍 MISSIONS AVAILABLE</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4">Complete & Earn Points</h3>
+                </div>
+                
+                {/* Mission Types Preview */}
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
+                    <div className="flex items-center">
+                      <Smartphone className="w-5 h-5 text-amber-400 mr-2" />
+                      <span className="text-white font-medium">iPhone Trade-In</span>
                     </div>
-                    <div>
-                      <div className="text-white font-bold text-lg">iPhone Trade Mission</div>
-                      <div className="text-amber-400 text-sm font-semibold">🏆 Highest Point Reward</div>
+                    <div className="text-right">
+                      <div className="text-green-400 font-bold">+2,000-4,000 PTS</div>
+                      <div className="text-amber-400 text-sm">Max rewards</div>
                     </div>
                   </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="text-center p-3 bg-black/20 rounded-lg">
-                      <div className="text-2xl font-bold text-amber-400">300-600</div>
-                      <div className="text-xs text-gray-400">Planet Points</div>
+                  <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
+                    <div className="flex items-center">
+                      <Droplets className="w-5 h-5 text-cyan-400 mr-2" />
+                      <span className="text-white font-medium">Water System Setup</span>
                     </div>
-                    <div className="text-center p-3 bg-black/20 rounded-lg">
-                      <div className="text-2xl font-bold text-green-400">AED 300+</div>
-                      <div className="text-xs text-gray-400">Trade Value</div>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3 mb-6 text-sm text-gray-300">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span>Instant cash + Planet Points</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span>Unlocks premium Tombola spins</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span>Qualifies for iPhone 17 rewards</span>
+                    <div className="text-right">
+                      <div className="text-green-400 font-bold">+500 PTS</div>
+                      <div className="text-cyan-400 text-sm">Monthly</div>
                     </div>
                   </div>
-                  
-                  <Button 
-                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-3 rounded-lg transition-all transform hover:scale-105"
-                    onClick={() => {
-                      // Scroll to MeetDeli calculator below
-                      const calculator = document.querySelector('[data-testid="device-simulator"]');
-                      if (calculator) {
-                        calculator.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }}
-                  >
-                    <Smartphone className="w-5 h-5 mr-2" />
-                    🚀 Start iPhone Trade Mission
-                  </Button>
+                  <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
+                    <div className="flex items-center">
+                      <Users className="w-5 h-5 text-purple-400 mr-2" />
+                      <span className="text-white font-medium">Referral Mission</span>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-green-400 font-bold">+1,000 PTS</div>
+                      <div className="text-purple-400 text-sm">Per friend</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Mission Calculator CTA */}
+                <div className="mt-6">
+                  <div className="text-xs text-gray-400 mb-4">
+                    🎯 Complete missions to unlock higher Planet Points multipliers
+                  </div>
                 </div>
               </div>
             </div>
@@ -404,7 +436,7 @@ function StepThreeRewards() {
             className="inline-flex items-center bg-amber-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-amber-500/50 cursor-pointer hover:bg-amber-500/30 transition-all"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <span className="text-amber-300 font-bold text-lg">STEP 3 - REWARDS</span>
+            <span className="text-amber-300 font-bold text-lg">STEP 3 - REDEEM YOUR REWARDS</span>
             {isExpanded ? (
               <ChevronUp className="w-5 h-5 text-amber-300 ml-2" />
             ) : (
@@ -413,12 +445,29 @@ function StepThreeRewards() {
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-              Get Your Rewards
+              Redeem Your Rewards
             </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Transform your Planet Points into premium eco-products delivered to your home.
+            Transform your Planet Points into premium eco-products delivered to your home through our unified rewards platform.
           </p>
+          
+          {/* Unified Rewards Page CTA */}
+          <div className="mt-8">
+            <Link href="/rewards">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-visit-rewards-page"
+              >
+                <Gift className="mr-3 w-6 h-6" />
+                Visit Unified Rewards Page
+              </Button>
+            </Link>
+            <div className="text-xs text-gray-400 mt-4">
+              Browse products, track points, and redeem rewards all in one place
+            </div>
+          </div>
         </div>
 
         {/* Product Showcase & Benefits Flowchart Infographic */}
