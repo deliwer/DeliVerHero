@@ -535,7 +535,7 @@ export default function AquaCafe() {
                 Start Referring Friends
               </Button>
             </Link>
-            <Link href="/community">
+            <Link href="/leaderboard">
               <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-600 text-lg px-8 py-4 rounded-full font-bold">
                 <Heart className="w-6 h-6 mr-3" />
                 Join Community
@@ -1481,7 +1481,7 @@ export default function AquaCafe() {
                 Redeem Now
               </Link>
               <Link
-                href="/community"
+                href="/leaderboard"
                 className="w-full lg:w-auto px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-center transition-all shadow-lg"
                 data-testid="footer-cta-community"
               >

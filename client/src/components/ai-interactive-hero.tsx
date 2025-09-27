@@ -33,7 +33,7 @@ const ctaOptions: CTAOption[] = [
     id: "leaderboard",
     text: "I want to join the eco leaderboard",
     icon: "🌍",
-    href: "/community",
+    href: "/leaderboard",
     gradient: "from-emerald-500 to-green-500", 
     hoverGradient: "from-emerald-400 to-green-400"
   }
@@ -140,7 +140,7 @@ export function AIInteractiveHero() {
                               }, 500);
                             }
                           } else if (option.id === 'leaderboard') {
-                            window.location.href = '/community';
+                            window.location.href = '/leaderboard';
                           }
                         }}
                         data-testid={`ai-cta-${option.id}`}

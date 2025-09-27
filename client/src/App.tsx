@@ -64,7 +64,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/leaderboard" component={Community} />
+      <Route path="/leaderboard" component={Leaderboard} />
+      <Route path="/community" component={Leaderboard} />
       <Route path="/impact-dashboard" component={ImpactDashboard} />
       <Route path="/aquacafe" component={AquaCafe} />
       <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
@@ -79,7 +80,6 @@ function Router() {
       <Route path="/play" component={Play} />
       <Route path="/rewards" component={Rewards} />
       <Route path="/partners" component={Partners} />
-      <Route path="/community" component={Community} />
       <Route path="/dashboard" component={HeroDashboard} />
       
       {/* Pakistan Flood Relief Mission */}

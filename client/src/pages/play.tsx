@@ -488,7 +488,7 @@ export default function Play() {
                 <h3 className="text-xl font-bold text-white mb-3">Referrals</h3>
                 <div className="text-3xl font-bold text-purple-400 mb-2">25-100</div>
                 <p className="text-gray-400 text-sm mb-4">Bonus points for each friend who joins the sustainability mission</p>
-                <Link href="/community">
+                <Link href="/leaderboard">
                   <Button variant="outline" className="border-purple-500 text-purple-300 hover:bg-purple-500/10">
                     Invite Friends
                   </Button>
@@ -551,7 +551,7 @@ export default function Play() {
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-400 mb-2">25-100</div>
                 <p className="text-gray-400 mb-4">Strategic referral bonuses for expanding the professional network</p>
-                <Link href="/community">
+                <Link href="/leaderboard">
                   <Button className="bg-purple-600 hover:bg-purple-700 text-white">
                     Join Community
                   </Button>

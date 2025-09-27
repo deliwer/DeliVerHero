@@ -38,7 +38,7 @@ export function Navigation() {
     { path: "/play", label: "Play", id: "play", featured: true },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/rewards", label: "Rewards", id: "rewards" },
-    { path: "/community", label: "Community", id: "community" },
+    { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];
 

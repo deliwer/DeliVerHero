@@ -141,7 +141,7 @@ export default function HeroDashboard() {
               </div>
             </div>
             
-            <Link href="/community">
+            <Link href="/leaderboard">
               <Button className="bg-blue-500 hover:bg-blue-600" data-testid="button-view-community">
                 <Users className="w-4 h-4 mr-2" />
                 View Community
@@ -311,7 +311,7 @@ export default function HeroDashboard() {
           <TabsContent value="missions" className="space-y-6">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold">Active Missions</h2>
-              <Link href="/community">
+              <Link href="/leaderboard">
                 <Button variant="outline" data-testid="button-browse-missions">
                   Browse More Missions
                 </Button>
@@ -324,7 +324,7 @@ export default function HeroDashboard() {
                   <Target className="w-16 h-16 text-gray-600 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">No Active Missions</h3>
                   <p className="text-gray-400 mb-4">Start your first mission to begin earning Planet Points!</p>
-                  <Link href="/community">
+                  <Link href="/leaderboard">
                     <Button className="bg-green-500 hover:bg-green-600" data-testid="button-start-first-mission">
                       Browse Available Missions
                     </Button>

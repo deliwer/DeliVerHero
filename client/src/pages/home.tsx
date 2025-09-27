@@ -352,7 +352,7 @@ export default function Home() {
                 <div>✓ Group rewards & benefits</div>
               </div>
               <Link 
-                href="/community"
+                href="/leaderboard"
                 className="inline-flex items-center justify-center w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
               >
                 Discover Benefits

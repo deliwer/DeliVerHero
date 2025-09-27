@@ -387,7 +387,7 @@ export default function Environmental() {
                   Start Your Environmental Impact
                 </a>
                 <a 
-                  href="/community"
+                  href="/leaderboard"
                   className="border-2 border-hero-green-500 text-hero-green-500 hover:bg-hero-green-500 hover:text-white px-8 py-4 rounded-xl font-bold text-lg transition-all inline-flex items-center justify-center"
                 >
                   <Users className="mr-2 w-6 h-6" />

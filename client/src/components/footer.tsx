@@ -31,7 +31,7 @@ export function Footer() {
     { label: "AquaCafe Loyalty Program", url: "/aquacafe" },
     { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
     { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
-    { label: "Community Hub", url: "/community" },
+    { label: "Leaderboard", url: "/leaderboard" },
     { label: "Corporate Trade-in Solutions", url: "/corporate" },
     { label: "Ambassador & Champion Programs", url: "/partners" }
   ];
