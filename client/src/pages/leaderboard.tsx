@@ -369,26 +369,8 @@ export default function Leaderboard() {
     );
   }
 
-  if (error || !heroes) {
-    return (
-      <div className="py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl font-bold text-white mb-8">
-            <Trophy className="inline w-8 h-8 text-amber-500 mr-3" />
-            LEADERBOARD UNAVAILABLE
-          </h1>
-          <p className="text-gray-300 text-lg mb-8">
-            Our heroes are working hard to save the planet! Check back soon for updated rankings.
-          </p>
-          <Link href="/">
-            <Button className="btn-hero px-8 py-4 text-lg" data-testid="button-back-home">
-              Start Your Hero Journey
-            </Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  // Handle leaderboard API error - but still show community features
+  const hasLeaderboardError = error || !heroes;
 
   return (
     <div className="min-h-screen bg-dubai-gradient">
@@ -1118,30 +1100,50 @@ export default function Leaderboard() {
                 <CardTitle className="text-white text-xl">🏆 Top Planet Heroes</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {heroes?.map((hero, index) => (
-                    <div key={hero.id} className="flex items-center gap-4 p-4 bg-slate-700/30 rounded-lg">
-                      <div className="flex items-center">
-                        {getRankIcon(index)}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3">
-                          <h3 className="font-bold text-white text-lg">{hero.name}</h3>
-                          <Badge className={getLevelBadgeColor(hero.level)}>
-                            {hero.level}
-                          </Badge>
-                        </div>
-                        <p className="text-gray-400 text-sm">{hero.location}</p>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-amber-400">
-                          {hero.total_points?.toLocaleString() || "0"}
-                        </div>
-                        <div className="text-sm text-gray-400">points</div>
-                      </div>
+                {hasLeaderboardError ? (
+                  <div className="text-center py-8">
+                    <Trophy className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold text-white mb-2">Leaderboard Temporarily Unavailable</h3>
+                    <p className="text-gray-400 mb-6">
+                      Our heroes are working hard to save the planet! The leaderboard will be back soon.
+                    </p>
+                    <div className="flex gap-4 justify-center">
+                      <Button onClick={() => setActiveTab("challenges")} className="bg-blue-600 hover:bg-blue-700 text-white">
+                        <Target className="w-4 h-4 mr-2" />
+                        Join Challenges
+                      </Button>
+                      <Button onClick={() => setActiveTab("social")} className="bg-hero-green-600 hover:bg-hero-green-700 text-white">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Community Social
+                      </Button>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {heroes?.map((hero, index) => (
+                      <div key={hero.id} className="flex items-center gap-4 p-4 bg-slate-700/30 rounded-lg">
+                        <div className="flex items-center">
+                          {getRankIcon(index)}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3">
+                            <h3 className="font-bold text-white text-lg">{hero.name}</h3>
+                            <Badge className={getLevelBadgeColor(hero.level)}>
+                              {hero.level}
+                            </Badge>
+                          </div>
+                          <p className="text-gray-400 text-sm">{hero.email || 'Dubai Hero'}</p>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-2xl font-bold text-amber-400">
+                            {hero.points?.toLocaleString() || "0"}
+                          </div>
+                          <div className="text-sm text-gray-400">points</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
