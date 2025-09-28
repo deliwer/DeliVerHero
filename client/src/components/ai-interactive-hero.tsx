@@ -25,7 +25,7 @@ const ctaOptions: CTAOption[] = [
     id: "trade",
     text: "I want to trade in my iPhone",
     icon: "📱",
-    href: "/#meet-deli", 
+    href: "/earn", 
     gradient: "from-amber-500 to-orange-500",
     hoverGradient: "from-amber-400 to-orange-400"
   },
@@ -131,14 +131,7 @@ export function AIInteractiveHero() {
                           if (option.id === 'water') {
                             window.location.href = '/aquacafe';
                           } else if (option.id === 'trade') {
-                            const meetDeliSection = document.querySelector('[data-section="meet-deli"]');
-                            if (meetDeliSection) {
-                              meetDeliSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                              setTimeout(() => {
-                                const input = meetDeliSection.querySelector('input, textarea, select');
-                                if (input) (input as HTMLElement).focus();
-                              }, 500);
-                            }
+                            window.location.href = '/earn';
                           } else if (option.id === 'leaderboard') {
                             window.location.href = '/leaderboard';
                           }

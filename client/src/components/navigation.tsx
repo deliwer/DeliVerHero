@@ -36,6 +36,7 @@ export function Navigation() {
 
   const consumerNavItems = [
     { path: "/play", label: "Play", id: "play", featured: true },
+    { path: "/earn", label: "Earn", id: "earn" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/rewards", label: "Rewards", id: "rewards" },
     { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },

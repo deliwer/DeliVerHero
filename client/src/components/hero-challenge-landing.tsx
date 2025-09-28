@@ -368,16 +368,18 @@ function StepTwoExchange() {
                 
                 {/* Mission Types Preview */}
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
-                    <div className="flex items-center">
-                      <Smartphone className="w-5 h-5 text-amber-400 mr-2" />
-                      <span className="text-white font-medium">iPhone Trade-In</span>
+                  <Link href="/earn">
+                    <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg hover:bg-slate-600/50 transition-all duration-300 cursor-pointer group" data-testid="button-step2-trade-in">
+                      <div className="flex items-center">
+                        <Smartphone className="w-5 h-5 text-amber-400 mr-2 group-hover:scale-110 transition-transform" />
+                        <span className="text-white font-medium group-hover:text-amber-300 transition-colors">iPhone Trade-In</span>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-green-400 font-bold">+2,000-4,000 PTS</div>
+                        <div className="text-amber-400 text-sm group-hover:text-amber-300 transition-colors">Max rewards</div>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-green-400 font-bold">+2,000-4,000 PTS</div>
-                      <div className="text-amber-400 text-sm">Max rewards</div>
-                    </div>
-                  </div>
+                  </Link>
                   <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
                     <div className="flex items-center">
                       <Droplets className="w-5 h-5 text-cyan-400 mr-2" />
