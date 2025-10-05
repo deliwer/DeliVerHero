@@ -96,7 +96,7 @@ router.get("/my-vouchers", async (req, res) => {
 });
 
 // Track referral and issue reward
-router.post("/track-referral", async (req, res) => {
+router.post("/referral-conversion", async (req, res) => {
   try {
     const { referrerId, newUserId, referralCode } = req.body;
 
