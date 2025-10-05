@@ -10,11 +10,11 @@ export function TopBanner() {
 
   const handleShareOffer = () => {
     const affiliateLink = generateAffiliateLink();
-    const shareText = `🎁 Welcome Bonus: Get Bakers Kitchen AED100 Kangen Water voucher when you join DeliWer! 💧 World's First Sustainability Game - Trade iPhones for premium water systems while earning Planet Hero status! Join me: ${affiliateLink}`;
+    const shareText = `🍕 Chill & Grill: Get D100 voucher when you join DeliWer! Pizza for Two + Kulfi just D99. Refer friends, earn rewards! Join me: ${affiliateLink}`;
     
     if (navigator.share) {
       navigator.share({
-        title: 'DeliWer Bakers Kitchen Bonus',
+        title: 'Chill & Grill D100 Voucher',
         text: shareText,
         url: affiliateLink
       });
@@ -25,10 +25,10 @@ export function TopBanner() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-black py-2 px-4 text-center text-sm font-medium relative group">
+    <div className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 text-white py-2 px-4 text-center text-sm font-medium relative group">
       <div className="flex items-center justify-center gap-2">
         <Gift className="inline w-4 h-4" />
-        <span>Welcome Bonus: Get Bakers Kitchen AED100 Kangen Water voucher when a friend signs up!</span>
+        <span>🍕 Chill & Grill: Get D100 voucher for each friend signup! Pizza for Two + Kulfi just D99</span>
         <button 
           onClick={handleShareOffer}
           className="ml-2 bg-black/20 hover:bg-black/30 px-2 py-1 rounded-full transition-colors flex items-center gap-1"
