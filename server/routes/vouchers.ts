@@ -31,19 +31,13 @@ router.post("/claim-deal", async (req, res) => {
       });
     }
 
-    // Create issued coupon
-    const issuedCoupon = {
-      id: randomUUID(),
-      heroId: heroId || null, // Allow anonymous claiming initially
+    // Create and persist issued coupon
+    const issuedCoupon = await storage.createIssuedCoupon({
+      heroId: heroId || "anonymous", // Default to anonymous if no heroId provided
       templateId: template.id,
       couponCode: voucherCode,
-      status: "active" as const,
-      usedCount: 0,
-      issuedAt: new Date(),
       expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
-      redeemedAt: null,
-      redemptionLocation: null,
-    };
+    });
 
     // Generate QR code
     const qrCodeData = JSON.stringify({
@@ -145,19 +139,13 @@ router.post("/track-referral", async (req, res) => {
       });
     }
 
-    // Issue the reward coupon
-    const issuedCoupon = {
-      id: randomUUID(),
+    // Create and persist the reward coupon
+    const issuedCoupon = await storage.createIssuedCoupon({
       heroId: referrerId,
       templateId: template.id,
       couponCode: voucherCode,
-      status: "active" as const,
-      usedCount: 0,
-      issuedAt: new Date(),
       expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
-      redeemedAt: null,
-      redemptionLocation: null,
-    };
+    });
 
     // Generate QR code
     const qrCodeData = JSON.stringify({

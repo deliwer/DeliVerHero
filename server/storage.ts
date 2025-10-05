@@ -122,6 +122,7 @@ export interface IStorage {
   createCouponTemplate(template: InsertCouponTemplate): Promise<CouponTemplate>;
   getIssuedCoupons(heroId: string): Promise<IssuedCoupon[]>;
   getIssuedCoupon(id: string): Promise<IssuedCoupon | undefined>;
+  createIssuedCoupon(issuedCoupon: InsertIssuedCoupon): Promise<IssuedCoupon>;
   redeemCoupon(redemption: RedeemCoupon): Promise<IssuedCoupon | undefined>;
 
   // METAVERSE GAMING SYSTEM - Ultimate Planet Missions
@@ -2451,6 +2452,25 @@ export class MemStorage implements IStorage {
 
   async getIssuedCoupon(id: string): Promise<IssuedCoupon | undefined> {
     return this.issuedCoupons.get(id);
+  }
+
+  async createIssuedCoupon(insertCoupon: InsertIssuedCoupon): Promise<IssuedCoupon> {
+    const id = randomUUID();
+    const issuedCoupon: IssuedCoupon = {
+      id,
+      templateId: insertCoupon.templateId,
+      heroId: insertCoupon.heroId,
+      couponCode: insertCoupon.couponCode,
+      status: "active",
+      usedCount: 0,
+      issuedAt: new Date(),
+      expiresAt: insertCoupon.expiresAt,
+      redeemedAt: null,
+      redemptionLocation: null,
+    };
+
+    this.issuedCoupons.set(id, issuedCoupon);
+    return issuedCoupon;
   }
 
   async redeemCoupon(redemption: RedeemCoupon): Promise<IssuedCoupon | undefined> {
