@@ -10,6 +10,7 @@ import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
+import { AquaCafeDealBanner } from "@/components/aquacafe-deal-banner";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -280,6 +281,8 @@ export default function Home() {
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Existing hero section kept intact */}
       <HeroChallengeLanding />
 
+      {/* AquaCafe Deal Banner - Chill & Grill Pizza + Kulfi Deal */}
+      <AquaCafeDealBanner />
 
       {/* Partnership & Starter Kit Convergence Section */}
       <section className="py-20 px-4 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900">
