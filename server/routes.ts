@@ -11,6 +11,7 @@ import adminCampaignRoutes from "./routes/admin-campaigns";
 import adminRoleRoutes from "./routes/admin-roles";
 import wellnessJourneyRoutes from "./routes/wellness-journey";
 import dubaiMarathonRoutes from "./routes/dubai-marathon";
+import voucherRoutes from "./routes/vouchers";
 
 // Initialize Stripe only if API key is available
 let stripe: Stripe | null = null;
@@ -46,6 +47,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Register Dubai Marathon partner support routes
   app.use("/api/dubai-marathon", dubaiMarathonRoutes);
+
+  // Register voucher routes
+  app.use("/api/vouchers", voucherRoutes);
 
   // Stripe payment endpoints
   app.post("/api/create-payment-intent", async (req, res) => {
