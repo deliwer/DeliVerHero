@@ -42,10 +42,15 @@ const ctaOptions: CTAOption[] = [
 export function AIInteractiveHero() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showButtons, setShowButtons] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   const handleCTAClick = () => {
     if (!showButtons) {
-      setShowButtons(true);
+      setIsTyping(true);
+      setTimeout(() => {
+        setIsTyping(false);
+        setShowButtons(true);
+      }, 800);
     }
   };
 
@@ -73,7 +78,7 @@ export function AIInteractiveHero() {
         {/* Main Headlines */}
         <div className="mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white drop-shadow-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>fresh, <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>new, <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>play</span><br />
+            <span className="text-white drop-shadow-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>new, <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>juvenate</span><br />
             <span className="relative inline-block">
               <span className="absolute inset-0 bg-black/60 blur-sm rounded-lg px-4 py-2"></span>
               <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-emerald-200 drop-shadow-2xl animate-pulse-slow font-black px-4 py-2" 
@@ -93,24 +98,31 @@ export function AIInteractiveHero() {
           <div className="glass rounded-3xl p-6 sm:p-8 border border-white/20 backdrop-blur-md shadow-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/10">
             {/* AI Chat Bubble Header */}
             <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center space-x-3 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full px-4 py-2 border border-emerald-400/30">
-                <MessageCircle className="w-5 h-5 text-emerald-400" />
-                <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" />
+              <div className="flex items-center space-x-3 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full px-6 py-3 border border-emerald-400/30 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105">
+                <MessageCircle className="w-5 h-5 text-emerald-400 animate-pulse" />
+                <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" style={{ animationDelay: '500ms' }} />
                 <span className="text-white font-medium">AI Assistant</span>
+                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
               </div>
             </div>
 
             {/* Question */}
             <div className="mb-6 sm:mb-8">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                What brings you to DeliWer today?
+                What brings you to adopt a Responsible Lifestyle today?
               </h3>
               <div className="w-16 h-1 bg-gradient-to-r from-emerald-400 to-blue-400 mx-auto rounded-full"></div>
             </div>
 
             {/* CTA Buttons */}
             <div className="space-y-4">
-              {!showButtons ? (
+              {isTyping ? (
+                <div className="flex items-center justify-center space-x-2 py-6">
+                  <div className="w-3 h-3 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                  <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                </div>
+              ) : !showButtons ? (
                 <Button
                   onClick={handleCTAClick}
                   className="w-full bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 text-white px-8 py-6 text-lg font-bold rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20"
