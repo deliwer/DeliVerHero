@@ -109,7 +109,7 @@ export function AIInteractiveHero() {
             {/* Question */}
             <div className="mb-6 sm:mb-8">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                What brings you to adopt a Responsible Lifestyle today?
+                Ready for a Responsible Lifestyle?
               </h3>
               <div className="w-16 h-1 bg-gradient-to-r from-emerald-400 to-blue-400 mx-auto rounded-full"></div>
             </div>
