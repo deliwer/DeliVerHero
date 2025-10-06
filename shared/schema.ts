@@ -36,6 +36,8 @@ export const heroes = pgTable("heroes", {
   sustainabilityStreak: integer("sustainability_streak").notNull().default(0),
   isAquaCafeLoyaltyMember: boolean("is_aquacafe_loyalty_member").notNull().default(false),
   aquaCafeMembershipDate: timestamp("aquacafe_membership_date"),
+  aquaCafeMembershipGiftChoice: text("aquacafe_membership_gift_choice"), // 'pizza-voucher' or 'shower-filter-referral'
+  aquaCafeMembershipReferralCode: text("aquacafe_membership_referral_code"),
   isActive: boolean("is_active").notNull().default(true),
   
   // Global Sustainability Framework Enhancements
