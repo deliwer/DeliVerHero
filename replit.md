@@ -17,6 +17,7 @@ DeliWer is a full-stack JavaScript application successfully imported and configu
 ✅ **Host Configuration**: Properly configured with `allowedHosts: true` for Replit proxy
 ✅ **Deployment**: Configured with autoscale deployment target
 ✅ **Workflow**: Development workflow set up and running
+✅ **Pakistan Mission**: Climate activism landing page live at /mission-control-pakistan
 
 ## Key Features
 - AI Concierge integration (requires OPENAI_API_KEY)
@@ -26,10 +27,12 @@ DeliWer is a full-stack JavaScript application successfully imported and configu
 - Rewards and gamification systems
 - Image optimization service worker
 - Responsive design with dark mode support
+- **Pakistan Planet Hero Mission** - Climate activism platform for overseas Pakistanis
 
 ## Development Commands
 - `npm run dev` - Start development server (already configured in workflow)
 - `npm run build` - Build for production
+- `npm run build:subpath` - Build for subpath deployment (/pakistan-mission)
 - `npm start` - Start production server
 - `npm run check` - TypeScript type checking
 - `npm run db:push` - Push database schema changes
@@ -40,8 +43,26 @@ The application is designed to work with optional environment variables:
 - `STRIPE_SECRET_KEY` - For payment processing
 - `SENDGRID_API_KEY` - For email functionality
 - `DATABASE_URL` - For PostgreSQL connection
+- `VITE_BASE_PATH` - For subpath deployment (set to `/pakistan-mission` for subpath builds)
 
 Without these variables, the application runs in demo mode with mock data.
+
+## Pakistan Mission Page (October 7, 2025)
+✅ **Climate Activism Landing Page**: Created comprehensive mission page at /mission-control-pakistan
+✅ **PAD Partnership**: Pakistan Association Dubai collaboration prominently featured
+✅ **Action CTAs**: Direct links to AquaCafe (onboarding), Leaderboard (tracking), Partners (sponsorship), Contact
+✅ **Sponsorship Tiers**: Platinum (AED 10k+), Gold (AED 5k), Silver (AED 2.5k), Bronze (AED 1k)
+✅ **YouTube Integration**: Video upload instructions for @vdeliwer channel with hashtags
+✅ **Mission Framework**: Three pillars - Water Conservation, Tree Plantation, Flood Relief Support
+✅ **Timeline**: Launch → Activation → Recognition phases
+✅ **Contact Details**: PAD (community@pad.ae, www.pad.ae) and DeliWer (hello@deliwer.com)
+
+**Founders**: Rubab Hassan and Hassan Jawad
+
+### Future Enhancements (Pakistan Mission)
+- Replace YouTube placeholder with real embed/curated playlist
+- Wire Share button to social sharing functionality
+- Responsive QA testing on mobile breakpoints
 
 ## Recent Changes (Import Setup - September 24, 2025)
 - ✅ Successfully imported GitHub repository
@@ -53,7 +74,16 @@ Without these variables, the application runs in demo mode with mock data.
 - ✅ Tested frontend/backend integration - API endpoints working correctly
 - ✅ Verified application runs in demo mode with expected API key warnings
 
+## Deployment Configuration
+- **Subpath Support**: Application can be deployed at root (www.deliwer.com) or subpath (www.deliwer.com/pakistan-mission)
+- **Nginx Config**: Template configuration files available in /deploy directory
+- **Build Scripts**: 
+  - `npm run build` for root deployment
+  - `npm run build:subpath` for /pakistan-mission deployment
+- **Documentation**: Full deployment guide in /deploy/README.md
+
 ## Notes
 - Service worker for image optimization may show registration warnings in development - this is normal
 - Application includes extensive UI components and gamification features
 - Ready for production deployment on Replit with autoscale configuration
+- Pakistan Mission page accessible at www.deliwer.com/pakistan-mission when deployed with subpath build
