@@ -1,0 +1,41 @@
+Thanks! I checked with an automated browser: the app renders correctly at /pakistan-mission locally. If your preview on www.deliwer.com/pakistan-mission is blank or 404, it’s almost always a “SPA subpath” routing issue. Here’s exactly how to make it show up.
+
+What’s already done in code
+- BrowserRouter uses basename="/pakistan-mission" so all links/assets resolve under the subpath.
+- Deploy helpers added:
+  - /app/deploy/README.md
+  - /app/deploy/nginx.subpath.conf
+
+Build it for a subpath
+- Recommended: PUBLIC_URL=https://www.deliwer.com/pakistan-mission yarn build
+- Alternative: yarn build (then ensure server rewrites all /pakistan-mission/* to /pakistan-mission/index.html)
+
+Server configuration (pick your stack)
+- Nginx (paste into your deliwer.com server block)
+  location /pakistan-mission/ { try_files $uri $uri/ /pakistan-mission/index.html; }
+  location ~* \.(?:js|css|svg|gif|png|jpg|jpeg|webp)$ { add_header Cache-Control "public, max-age=31536000, immutable"; }
+  location = /pakistan-mission/index.html { add_header Cache-Control "no-store"; }
+- Netlify
+  Add a file public/_redirects in the repo (or on the CDN) with:
+  /pakistan-mission/*  /pakistan-mission/index.html  200
+- Vercel (vercel.json)
+  { "rewrites": [{ "source": "/pakistan-mission/(.*)", "destination": "/pakistan-mission/index.html" }] }
+- S3 + CloudFront
+  - Upload build/ into the pakistan-mission/ prefix.
+  - Set Custom Error Responses: 404 -> /pakistan-mission/index.html (HTTP 200).
+- Cloudflare Pages/Workers
+  - Add a worker that serves /pakistan-mission/index.html when a path under /pakistan-mission doesn’t map to a static file.
+
+Common preview blockers and fixes
+- Blank page or missing CSS/JS: Rebuild with PUBLIC_URL set as above so asset paths are absolute.
+- 404 on refresh or deep links: Ensure the SPA rewrite to /pakistan-mission/index.html is applied.
+- Console warnings about ws://localhost:443: Harmless; not from our app.
+
+Quick local preview of the production build
+- From the frontend folder: yarn build
+- npx serve -s build -l 5000
+- Open http://localhost:5000/pakistan-mission
+
+Please tell me which hosting you use (Nginx, Netlify, Vercel, S3/CloudFront, Cloudflare, or Kubernetes ingress), and I’ll tailor the exact config or commit the required file (like _redirects or vercel.json) for you. Also, share the final video URL when ready.
+
+Note: The current site uses mocked localStorage data; once this is live, I can add contracts.md and wire the backend so pledges/sponsors/leaderboard persist.

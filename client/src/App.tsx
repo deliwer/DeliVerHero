@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -55,6 +55,7 @@ import IcelandicGlacialLandingPage from "@/pages/icelandic-glacial";
 
 function Router() {
   const [location] = useLocation();
+  const basePath = import.meta.env.VITE_BASE_PATH || "";
 
   useEffect(() => {
     // Immediately scroll to top when route changes
@@ -62,61 +63,63 @@ function Router() {
   }, [location]);
 
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/leaderboard" component={Leaderboard} />
-      <Route path="/community" component={Leaderboard} />
-      <Route path="/impact-dashboard" component={ImpactDashboard} />
-      <Route path="/aquacafe" component={AquaCafe} />
-      <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
-      <Route path="/products/aquacafe" component={AquaCafeAlliance} />
-      <Route path="/products" component={Products} />
-      <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />
-      <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
-      <Route path="/exchange" component={Exchange} />
-      <Route path="/earn" component={Exchange} />
-      <Route path="/collect" component={Collect} />
-      <Route path="/redeem" component={Redeem} />
-      <Route path="/play" component={Play} />
-      <Route path="/rewards" component={Rewards} />
-      <Route path="/partners" component={Partners} />
-      <Route path="/dashboard" component={HeroDashboard} />
-      
-      {/* Pakistan Flood Relief Mission */}
-      <Route path="/mission-control-pakistan" component={MissionControlPakistan} />
-      <Route path="/restaurant-rewards" component={RestaurantRewards} />
-      
-      {/* Metaverse Gaming Hub */}
-      <Route path="/metaverse-gaming" component={MetaverseGamingHub} />
-      <Route path="/gaming-hub" component={MetaverseGamingHub} />
+    <WouterRouter base={basePath}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/leaderboard" component={Leaderboard} />
+        <Route path="/community" component={Leaderboard} />
+        <Route path="/impact-dashboard" component={ImpactDashboard} />
+        <Route path="/aquacafe" component={AquaCafe} />
+        <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
+        <Route path="/products/aquacafe" component={AquaCafeAlliance} />
+        <Route path="/products" component={Products} />
+        <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />
+        <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
+        <Route path="/exchange" component={Exchange} />
+        <Route path="/earn" component={Exchange} />
+        <Route path="/collect" component={Collect} />
+        <Route path="/redeem" component={Redeem} />
+        <Route path="/play" component={Play} />
+        <Route path="/rewards" component={Rewards} />
+        <Route path="/partners" component={Partners} />
+        <Route path="/dashboard" component={HeroDashboard} />
+        
+        {/* Pakistan Flood Relief Mission */}
+        <Route path="/mission-control-pakistan" component={MissionControlPakistan} />
+        <Route path="/restaurant-rewards" component={RestaurantRewards} />
+        
+        {/* Metaverse Gaming Hub */}
+        <Route path="/metaverse-gaming" component={MetaverseGamingHub} />
+        <Route path="/gaming-hub" component={MetaverseGamingHub} />
 
-      {/* B2B Corporate Routes */}
-      <Route path="/bulk-tradein" component={BulkTradeInPage} />
-      <Route path="/corporate-dashboard" component={CorporateDashboardPage} />
-      <Route path="/corporate-quotes" component={CorporateQuotesPage} />
-      <Route path="/purchase-orders" component={PurchaseOrdersPage} />
-      <Route path="/account-management" component={AccountManagementPage} />
-      <Route path="/cobone-corporate" component={CorporateCombined} />
-      <Route path="/corporate" component={CorporateCombined} />
-      <Route path="/partnership" component={Partners} />
+        {/* B2B Corporate Routes */}
+        <Route path="/bulk-tradein" component={BulkTradeInPage} />
+        <Route path="/corporate-dashboard" component={CorporateDashboardPage} />
+        <Route path="/corporate-quotes" component={CorporateQuotesPage} />
+        <Route path="/purchase-orders" component={PurchaseOrdersPage} />
+        <Route path="/account-management" component={AccountManagementPage} />
+        <Route path="/cobone-corporate" component={CorporateCombined} />
+        <Route path="/corporate" component={CorporateCombined} />
+        <Route path="/partnership" component={Partners} />
 
-      <Route path="/privacy" component={Privacy} />
-      <Route path="/terms" component={Terms} />
-      <Route path="/environmental" component={Environmental} />
-      <Route path="/dubai-rewards" component={DubaiRewards} />
-      <Route path="/missions" component={Missions} />
-      <Route path="/cart" component={CartPage} />
-      <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
-      <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route path="/account" component={AccountConsolidated} />
-      <Route path="/contact" component={ContactPage} />
-      <Route path="/signup" component={SignupPage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/environmental" component={Environmental} />
+        <Route path="/dubai-rewards" component={DubaiRewards} />
+        <Route path="/missions" component={Missions} />
+        <Route path="/cart" component={CartPage} />
+        <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
+        <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
+        <Route path="/profile" component={ProfilePage} />
+        <Route path="/account" component={AccountConsolidated} />
+        <Route path="/contact" component={ContactPage} />
+        <Route path="/signup" component={SignupPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />
 
-      <Route component={NotFound} />
+        <Route component={NotFound} />
     </Switch>
+    </WouterRouter>
   );
 }
 
