@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 
-export default function MissionControlPakistan() {
+export default function MissionControlSaqiKawthar() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-950 via-slate-900 to-green-950">
       {/* Hero Section - Climate Activist Message */}
@@ -27,34 +27,34 @@ export default function MissionControlPakistan() {
         
         <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            {/* Pakistan Flag Icon */}
+            {/* Clean Water Icon */}
             <div className="mb-6 flex justify-center">
               <div className="w-20 h-20 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center">
-                <Globe className="w-10 h-10 text-white" />
+                <Droplets className="w-10 h-10 text-white" />
               </div>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              A Message to Pakistan - Before It's Too Late
+              A Message for Clean Water - Before It's Too Late
             </h1>
             
             <div className="bg-black/30 backdrop-blur-sm p-8 rounded-2xl mb-8">
               <p className="text-xl md:text-2xl text-green-100 mb-4 italic">
-                "My name doesn't matter. What matters is that I am one of you—a daughter of Pakistan who has watched our homeland drown, our cities flood, our children lose their futures to climate disasters we did not cause."
+                "My name doesn't matter. What matters is that I am one of you—a member of the community who has witnessed the urgent need for clean water access and the devastating impact of water scarcity on our future."
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 my-8">
                 <div className="bg-red-900/40 p-4 rounded-lg">
-                  <div className="text-4xl font-bold text-red-300 mb-2">33M</div>
-                  <div className="text-red-200">People displaced by floods (2022)</div>
+                  <div className="text-4xl font-bold text-red-300 mb-2">2.2B</div>
+                  <div className="text-red-200">People lack access to safe water</div>
                 </div>
                 <div className="bg-orange-900/40 p-4 rounded-lg">
-                  <div className="text-4xl font-bold text-orange-300 mb-2">Top 10</div>
-                  <div className="text-orange-200">Most climate-vulnerable nation</div>
+                  <div className="text-4xl font-bold text-orange-300 mb-2">785M</div>
+                  <div className="text-orange-200">Without basic drinking water services</div>
                 </div>
                 <div className="bg-blue-900/40 p-4 rounded-lg">
                   <div className="text-4xl font-bold text-blue-300 mb-2">80%</div>
-                  <div className="text-blue-200">Forest cover lost in a century</div>
+                  <div className="text-blue-200">Of wastewater flows back untreated</div>
                 </div>
               </div>
 
@@ -66,15 +66,15 @@ export default function MissionControlPakistan() {
         </div>
       </div>
 
-      {/* PAD Partnership Banner */}
+      {/* Saqi Kawthar Partnership Banner */}
       <div className="bg-white/10 backdrop-blur-sm border-y border-white/20 py-6">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
             <div className="flex items-center gap-3">
-              <Building className="w-8 h-8 text-green-400" />
+              <Droplets className="w-8 h-8 text-green-400" />
               <div>
-                <div className="text-sm text-green-200">In Partnership With</div>
-                <div className="text-xl font-bold text-white">Pakistan Association Dubai (PAD)</div>
+                <div className="text-sm text-green-200">Presented By</div>
+                <div className="text-xl font-bold text-white">Saqi Kawthar Project</div>
               </div>
             </div>
             <div className="hidden md:block text-green-400 text-2xl">×</div>
@@ -129,7 +129,7 @@ export default function MissionControlPakistan() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-3">Track Your Impact</h3>
                 <p className="text-blue-200 text-sm mb-4">
-                  See how you rank among Pakistan's climate champions
+                  See how you rank among our community's water champions
                 </p>
                 <Link href="/leaderboard">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700" data-testid="button-view-leaderboard">
@@ -188,7 +188,7 @@ export default function MissionControlPakistan() {
         <Card className="bg-slate-800/50 border-emerald-500/30 mb-16" data-testid="card-mission-framework">
           <CardHeader>
             <CardTitle className="text-2xl text-white text-center">
-              PAD Planet Hero Mission Framework
+              Saqi Kawthar Project Mission Framework
             </CardTitle>
             <p className="text-center text-green-200">Water for Life, Trees for Tomorrow</p>
           </CardHeader>
@@ -205,14 +205,14 @@ export default function MissionControlPakistan() {
                 <TreeDeciduous className="w-12 h-12 text-green-400 mx-auto mb-4" />
                 <h3 className="text-lg font-bold text-white mb-2">Tree Plantation</h3>
                 <p className="text-green-200 text-sm">
-                  PAD Green Weekends across UAE parks, schools, and community centers
+                  Saqi Kawthar Green Weekends across local parks, schools, and community centers
                 </p>
               </div>
               <div className="text-center p-6 bg-red-900/30 rounded-lg">
                 <Heart className="w-12 h-12 text-red-400 mx-auto mb-4" />
-                <h3 className="text-lg font-bold text-white mb-2">Flood Relief Support</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Community Water Support</h3>
                 <p className="text-red-200 text-sm">
-                  Mobilizing CSR partners and volunteers to raise funds and awareness for Pakistan's climate-affected regions
+                  Mobilizing CSR partners and volunteers to raise funds and awareness for clean water access in affected communities
                 </p>
               </div>
             </div>
@@ -339,7 +339,7 @@ export default function MissionControlPakistan() {
           <CardContent>
             <div className="text-center space-y-6">
               <p className="text-lg text-red-100">
-                Follow Greta's footsteps. Show the world what Pakistani youth can do when we organize, when we act, when we refuse to let our country disappear.
+                Follow in the footsteps of global activists. Show the world what our community can do when we organize, when we act, when we refuse to let water scarcity define our future.
               </p>
               
               <div className="bg-black/30 p-6 rounded-lg">
@@ -348,8 +348,8 @@ export default function MissionControlPakistan() {
                   Share your climate action story, tree planting initiative, or water conservation efforts
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center mb-4">
-                  <span className="bg-red-900/50 px-3 py-1 rounded-full text-red-200 text-sm">#PADPlanetHero</span>
-                  <span className="bg-red-900/50 px-3 py-1 rounded-full text-red-200 text-sm">#GreenPakistan</span>
+                  <span className="bg-red-900/50 px-3 py-1 rounded-full text-red-200 text-sm">#SaqiKawtharHero</span>
+                  <span className="bg-red-900/50 px-3 py-1 rounded-full text-red-200 text-sm">#GreenFuture</span>
                   <span className="bg-red-900/50 px-3 py-1 rounded-full text-red-200 text-sm">#PlanetHeroMission</span>
                 </div>
               </div>
@@ -387,7 +387,7 @@ export default function MissionControlPakistan() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Phase 1: Launch</h3>
                 <p className="text-green-200 text-sm">
-                  Campaign kickoff at PAD HQ with community sign-ups and online registration on DeliWer's platform
+                  Campaign kickoff with community sign-ups and online registration on DeliWer's platform
                 </p>
               </div>
               <div className="text-center">
@@ -396,7 +396,7 @@ export default function MissionControlPakistan() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Phase 2: Activation</h3>
                 <p className="text-blue-200 text-sm">
-                  Implementation of tree plantation drives, water awareness events, and CSR activations across UAE
+                  Implementation of tree plantation drives, water awareness events, and CSR activations in local communities
                 </p>
               </div>
               <div className="text-center">
@@ -416,23 +416,23 @@ export default function MissionControlPakistan() {
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           <Card className="bg-gradient-to-br from-green-900/40 to-emerald-900/40 border-green-500/50" data-testid="card-pad-contact">
             <CardHeader>
-              <CardTitle className="text-white">Pakistan Association Dubai (PAD)</CardTitle>
+              <CardTitle className="text-white">Saqi Kawthar Project</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
-                <Globe className="w-6 h-6 text-green-400" />
-                <a href="https://www.pad.ae" target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-200">
-                  www.pad.ae
+                <Droplets className="w-6 h-6 text-green-400" />
+                <a href="https://www.deliwer.com/saqi-kawthar" target="_blank" rel="noopener noreferrer" className="text-green-300 hover:text-green-200">
+                  www.deliwer.com/saqi-kawthar
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Heart className="w-6 h-6 text-green-400" />
-                <a href="mailto:community@pad.ae" className="text-green-300 hover:text-green-200">
-                  community@pad.ae
+                <a href="mailto:community@deliwer.com" className="text-green-300 hover:text-green-200">
+                  community@deliwer.com
                 </a>
               </div>
               <p className="text-green-100 text-sm">
-                Pakistan Association Dubai has been serving the Pakistani community in UAE since 1963, providing social welfare, cultural programs, and community support.
+                Saqi Kawthar Project is dedicated to providing clean water access and promoting environmental sustainability through community engagement and awareness.
               </p>
             </CardContent>
           </Card>
@@ -474,10 +474,10 @@ export default function MissionControlPakistan() {
                 Before the next flood. Before the next drought. Before it's too late.
               </p>
               <p className="text-2xl font-bold text-green-300">
-                Together, we lead the nation. For water. For trees. For our planet. For Pakistan.
+                Together, we lead the change. For water. For trees. For our planet. For our future.
               </p>
               <div className="text-4xl font-bold text-white my-6">
-                Pakistan Zindabad 🇵🇰
+                Clean Water for All 💧
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">

@@ -208,9 +208,9 @@ interface MissionSelectionModalProps {
 export function MissionSelectionModal({ open, onClose, hero, onMissionSelect }: MissionSelectionModalProps) {
   const missions = [
     {
-      id: 'pakistan-flood-relief',
-      title: 'Pakistan Flood Relief Mission',
-      description: 'Urgent mission to provide clean water access to flood victims in Pakistan',
+      id: 'saqi-kawthar-project',
+      title: 'Saqi Kawthar Project Mission',
+      description: 'Urgent mission to provide clean water access to communities in need',
       category: 'Crisis Response',
       pointsReward: 2500,
       urgency: 'URGENT',

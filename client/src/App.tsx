@@ -24,7 +24,7 @@ import Play from "@/pages/play";
 import Rewards from "@/pages/rewards";
 import Partners from "@/pages/partners";
 import Community from "@/pages/community";
-import MissionControlPakistan from "@/pages/mission-control-pakistan";
+import MissionControlSaqiKawthar from "@/pages/mission-control-saqi-kawthar";
 import RestaurantRewards from "@/pages/restaurant-rewards";
 import MetaverseGamingHub from "@/pages/metaverse-gaming-hub";
 import CartPage from "@/pages/cart";
@@ -84,8 +84,8 @@ function Router() {
         <Route path="/partners" component={Partners} />
         <Route path="/dashboard" component={HeroDashboard} />
         
-        {/* Pakistan Flood Relief Mission */}
-        <Route path="/mission-control-pakistan" component={MissionControlPakistan} />
+        {/* Saqi Kawthar Project Mission */}
+        <Route path="/mission-control-saqi-kawthar" component={MissionControlSaqiKawthar} />
         <Route path="/restaurant-rewards" component={RestaurantRewards} />
         
         {/* Metaverse Gaming Hub */}

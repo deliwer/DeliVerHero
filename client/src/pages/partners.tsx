@@ -178,7 +178,7 @@ export default function Partners() {
             </div>
             <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-lg border border-red-500/30">
               <Heart className="w-5 h-5 text-red-400" />
-              <span className="text-red-400 font-medium">Pakistan Association Dubai</span>
+              <span className="text-red-400 font-medium">Saqi Kawthar Project</span>
             </div>
             <div className="flex items-center gap-2 bg-slate-800/50 px-4 py-2 rounded-lg border border-emerald-500/30">
               <ShoppingCart className="w-5 h-5 text-emerald-400" />

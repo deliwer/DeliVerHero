@@ -401,9 +401,9 @@ export default function Play() {
                   🚨 MEGA MISSION - URGENT
                 </Badge>
               </div>
-              <h2 className="text-3xl font-bold text-white mb-4">Pakistan Flood Relief Mission</h2>
+              <h2 className="text-3xl font-bold text-white mb-4">Saqi Kawthar Project Mission</h2>
               <p className="text-gray-300 mb-6 text-lg">
-                Help provide clean water to flood-affected communities in Pakistan. Your trades and donations directly fund solar-powered water purification stations.
+                Help provide clean water to communities in need. Your trades and donations directly fund solar-powered water purification stations.
               </p>
               
               <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -422,7 +422,7 @@ export default function Play() {
               </div>
 
               <div className="flex gap-4">
-                <Link href="/mission-control-pakistan">
+                <Link href="/mission-control-saqi-kawthar">
                   <Button className="bg-red-600 hover:bg-red-700 text-white">
                     <Zap className="w-4 h-4 mr-2" />
                     Join Mission Control

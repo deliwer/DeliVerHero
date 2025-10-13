@@ -134,13 +134,13 @@ export default function RestaurantRewards() {
     {
       id: "karachi-grill",
       name: "Karachi Grill Jumeirah Road",
-      cuisine: "Pakistani & Indian",
+      cuisine: "South Asian & Indian",
       location: "Jumeirah Road, Dubai",
       phone: "+971 4 344 7272",
       website: "https://karachigrill.ae",
       rating: 4.6,
       image: "/restaurants/karachi-grill.jpg",
-      specialOffer: "🌶️ Spice Master Rewards: Authentic Pakistani flavors with eco-friendly dining perks",
+      specialOffer: "🌶️ Spice Master Rewards: Authentic South Asian flavors with eco-friendly dining perks",
       missionBonus: "🥘 Heritage Bonus: Traditional spice routes meet modern sustainability missions",
       rewards: [
         {
@@ -736,7 +736,7 @@ export default function RestaurantRewards() {
                   <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-lg p-4 mb-6">
                     <div className="flex items-center gap-2 mb-2">
                       <Gift className="w-5 h-5 text-emerald-400" />
-                      <span className="text-emerald-400 font-semibold">Pakistan Relief Special</span>
+                      <span className="text-emerald-400 font-semibold">Saqi Kawthar Project Special</span>
                     </div>
                     <p className="text-emerald-200 text-sm mb-2">{restaurant.specialOffer}</p>
                     {restaurant.missionBonus && (
@@ -811,7 +811,7 @@ export default function RestaurantRewards() {
           <CardHeader>
             <CardTitle className="text-white text-center flex items-center justify-center gap-2">
               <Coins className="w-6 h-6 text-blue-400" />
-              Earn More Planet Points for Pakistan Relief
+              Earn More Planet Points for Saqi Kawthar Project
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -821,7 +821,7 @@ export default function RestaurantRewards() {
                   <Utensils className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-white font-semibold">Trade Devices</h3>
-                <p className="text-gray-300 text-sm">Get 250 points per device traded for Pakistan flood relief</p>
+                <p className="text-gray-300 text-sm">Get 250 points per device traded for Saqi Kawthar Project relief</p>
                 <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700">
                   Trade Now
                 </Button>
@@ -864,7 +864,7 @@ export default function RestaurantRewards() {
                   1
                 </div>
                 <h3 className="text-white font-semibold">Earn Points</h3>
-                <p className="text-gray-300 text-sm">Trade devices or donate to Pakistan flood relief mission</p>
+                <p className="text-gray-300 text-sm">Trade devices or donate to Saqi Kawthar Project mission</p>
               </div>
               
               <div className="space-y-3">
@@ -888,14 +888,14 @@ export default function RestaurantRewards() {
                   4
                 </div>
                 <h3 className="text-white font-semibold">Enjoy & Help</h3>
-                <p className="text-gray-300 text-sm">Visit restaurant and present code - your meal helps Pakistan flood victims</p>
+                <p className="text-gray-300 text-sm">Visit restaurant and present code - your meal helps Saqi Kawthar Project beneficiaries</p>
               </div>
             </div>
             
             <div className="text-center mt-8 p-4 bg-blue-900/20 rounded-lg">
               <p className="text-blue-200 text-sm">
                 <CheckCircle className="w-4 h-4 inline mr-2" />
-                All rewards verified by restaurant partners • Impact verified by Pakistan Association Dubai
+                All rewards verified by restaurant partners • Impact verified by Saqi Kawthar Project
               </p>
             </div>
           </CardContent>

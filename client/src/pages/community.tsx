@@ -401,12 +401,12 @@ export default function Community() {
               <p className="text-gray-300">Join active missions, connect with the community, and create measurable impact.</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <div className="bg-gradient-to-br from-red-900/50 to-cyan-900/50 border border-red-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => window.location.href = '/mission-control-pakistan'}>
+              <div className="bg-gradient-to-br from-red-900/50 to-cyan-900/50 border border-red-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => window.location.href = '/mission-control-saqi-kawthar'}>
                 <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-red-400" />
-                  🚨 Pakistan Relief Mission
+                  🚨 Saqi Kawthar Project Mission
                 </h3>
-                <p className="text-sm text-gray-300 mb-4">Urgent flood relief - Help provide clean water to 2.3M people</p>
+                <p className="text-sm text-gray-300 mb-4">Urgent relief - Help provide clean water to communities in need</p>
                 <div className="text-cyan-400 font-semibold text-sm">Active Mission →</div>
               </div>
               <div className="bg-slate-800/50 border border-hero-green-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => window.location.href = '/play'}>

@@ -66,10 +66,10 @@ export default function HeroDashboard() {
 
   const getMissionById = (id: string): Mission => {
     const missions: { [key: string]: Mission } = {
-      'pakistan-flood-relief': {
-        id: 'pakistan-flood-relief',
-        title: 'Pakistan Flood Relief Mission',
-        description: 'Urgent mission to provide clean water access to flood victims',
+      'saqi-kawthar-project': {
+        id: 'saqi-kawthar-project',
+        title: 'Saqi Kawthar Project Mission',
+        description: 'Urgent mission to provide clean water access to communities in need',
         category: 'Crisis Response',
         pointsReward: 2500,
         timeLimit: '7 days',
@@ -92,7 +92,7 @@ export default function HeroDashboard() {
       }
     };
     
-    return missions[id] || missions['pakistan-flood-relief'];
+    return missions[id] || missions['saqi-kawthar-project'];
   };
 
   const getLevelProgress = (points: number) => {

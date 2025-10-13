@@ -58,11 +58,11 @@ export function InstantImpactUnlocks({ calculation, onOrderNow }: InstantImpactU
               Start Rescue Mission
             </Button>
             <Button 
-              onClick={() => window.location.href = '/mission-control-pakistan'}
+              onClick={() => window.location.href = '/mission-control-saqi-kawthar'}
               className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
             >
               <Target className="mr-2 w-5 h-5" />
-              Pakistan Mission Control
+              Saqi Kawthar Mission Control
             </Button>
           </div>
         </div>
@@ -161,11 +161,11 @@ export function InstantImpactUnlocks({ calculation, onOrderNow }: InstantImpactU
               Continue Mission
             </Button>
             <Button 
-              onClick={() => window.location.href = '/mission-control-pakistan'}
+              onClick={() => window.location.href = '/mission-control-saqi-kawthar'}
               className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-xl transform hover:scale-105 transition-all"
             >
               <Target className="mr-2 w-5 h-5" />
-              Pakistan Mission Control
+              Saqi Kawthar Mission Control
             </Button>
           </div>
           <Button 
