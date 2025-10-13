@@ -78,7 +78,7 @@ export function AIInteractiveHero() {
         {/* Main Headlines */}
         <div className="mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white drop-shadow-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>new, <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>juvenate</span><br />
+            <span className="text-white drop-shadow-2xl"><span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">RE</span>sponsible Lifestyle</span><br />
             <span className="relative inline-block">
               <span className="absolute inset-0 bg-black/60 blur-sm rounded-lg px-4 py-2"></span>
               <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-emerald-200 drop-shadow-2xl animate-pulse-slow font-black px-4 py-2" 
@@ -101,7 +101,7 @@ export function AIInteractiveHero() {
               <div className="flex items-center space-x-3 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full px-6 py-3 border border-emerald-400/30 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105">
                 <MessageCircle className="w-5 h-5 text-emerald-400 animate-pulse" />
                 <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" style={{ animationDelay: '500ms' }} />
-                <span className="text-white font-medium">AI Assistant</span>
+                <span className="text-white font-medium">Guilt Free Living</span>
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
               </div>
             </div>
