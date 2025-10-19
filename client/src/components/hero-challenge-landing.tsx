@@ -169,13 +169,12 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             )}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
-            <span className="text-white">Play Games &amp; </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-              Earn Points
+              Create Impact
             </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            🎮 Experience our gaming platform with Tombola, achievements, and leaderboards. 
+            Your actions fund recycling drives, water renewal, and food security programs across Dubai & Pakistan. 
             <span className="text-purple-400 font-bold">Visit the Play page to start your Planet Points journey!</span>
           </p>
         </div>
@@ -292,10 +291,10 @@ function StepTwoExchange() {
             )}
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Complete Planetary Missions &amp; Trade-In Your iPhone
+            Shop Smart
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Join AquaCafe loyalty program and complete missions including iPhone trade-ins to earn maximum Planet Points for the planet.
+            Earn Planet Points every time you order from F&B and eco-friendly partners via AquaCafe Loyalty.
           </p>
         </div>
 
@@ -447,11 +446,11 @@ function StepThreeRewards() {
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-              Redeem Your Rewards
+              Get Rewarded
             </span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Transform your Planet Points into premium eco-products delivered to your home through our unified rewards platform.
+            Redeem for free meals, eco gifts, or wellness products.
           </p>
           
           {/* Unified Rewards Page CTA */}
