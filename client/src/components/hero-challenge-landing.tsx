@@ -141,7 +141,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <section className="py-8 px-4 mb-8 relative overflow-hidden">
+    <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-3">
       {/* Metaverse background effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-indigo-900/20 to-blue-900/20"></div>
       <div className="absolute inset-0 opacity-10">
@@ -155,23 +155,23 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
         <ProgressIndicator currentStep={1} />
         
         <div className="text-center mb-8">
-          <div 
-            className="inline-flex items-center bg-purple-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-purple-500/50 cursor-pointer hover:bg-purple-500/30 transition-all"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            <Gamepad2 className="w-5 h-5 text-purple-300 mr-2" />
-            <span className="text-purple-300 font-bold text-lg">STEP 1 - PLAY FOR PLANET POINTS</span>
-            <Sparkles className="w-5 h-5 text-purple-300 ml-2 animate-pulse" />
-            {isExpanded ? (
-              <ChevronUp className="w-5 h-5 text-purple-300 ml-2" />
-            ) : (
-              <ChevronDown className="w-5 h-5 text-purple-300 ml-2" />
-            )}
-          </div>
           <h2 className="text-3xl md:text-5xl font-black mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-              Create Impact
-            </span>
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-label="Toggle Create Impact section"
+              data-testid="toggle-create-impact"
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+                Create Impact
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-8 h-8 text-purple-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-purple-400" />
+              )}
+            </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Your actions fund recycling drives, water renewal, and food security programs across Dubai & Pakistan. 
@@ -274,23 +274,28 @@ function StepTwoExchange() {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <section className="py-8 px-4 mb-8" data-section="step-2-earn-points">
+    <section className="py-8 px-4 mb-8" data-section="step-1">
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={2} />
         
         <div className="text-center mb-8">
-          <h2 
-            className="text-3xl md:text-5xl font-black mb-4 text-white cursor-pointer hover:scale-105 transition-all duration-300 inline-flex items-center gap-3"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-              Shop Smart
-            </span>
-            {isExpanded ? (
-              <ChevronUp className="w-8 h-8 text-green-400" />
-            ) : (
-              <ChevronDown className="w-8 h-8 text-green-400" />
-            )}
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-label="Toggle Shop Smart section"
+              data-testid="toggle-shop-smart"
+            >
+              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                Shop Smart
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-8 h-8 text-green-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-green-400" />
+              )}
+            </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Earn Planet Points every time you order from F&B and eco-friendly partners via AquaCafe Loyalty.
@@ -427,23 +432,28 @@ function StepThreeRewards() {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <section className="py-8 px-4 mb-8" data-section="step-3">
+    <section className="py-8 px-4 mb-8" data-section="step-2">
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={3} />
         
         <div className="text-center mb-8">
-          <h2 
-            className="text-3xl md:text-5xl font-black mb-4 cursor-pointer hover:scale-105 transition-all duration-300 inline-flex items-center gap-3"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-              Get Rewarded
-            </span>
-            {isExpanded ? (
-              <ChevronUp className="w-8 h-8 text-amber-400" />
-            ) : (
-              <ChevronDown className="w-8 h-8 text-amber-400" />
-            )}
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-label="Toggle Get Rewarded section"
+              data-testid="toggle-get-rewarded"
+            >
+              <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                Get Rewarded
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-8 h-8 text-amber-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-amber-400" />
+              )}
+            </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Redeem for free meals, eco gifts, or wellness products.
