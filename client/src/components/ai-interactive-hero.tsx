@@ -141,11 +141,14 @@ export function AIInteractiveHero() {
                         onMouseLeave={() => setSelectedOption(null)}
                         onClick={() => {
                           if (option.id === 'water') {
-                            window.location.href = '/aquacafe';
+                            const shopSmartSection = document.querySelector('[data-section="step-1"]');
+                            shopSmartSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                           } else if (option.id === 'trade') {
-                            window.location.href = '/earn';
+                            const getRewardedSection = document.querySelector('[data-section="step-2"]');
+                            getRewardedSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                           } else if (option.id === 'leaderboard') {
-                            window.location.href = '/leaderboard';
+                            const createImpactSection = document.querySelector('[data-section="step-3"]');
+                            createImpactSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
                           }
                         }}
                         data-testid={`ai-cta-${option.id}`}
