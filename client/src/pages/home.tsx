@@ -278,20 +278,20 @@ export default function Home() {
       {/* AI Interactive Hero Section - New modular hero at the top */}
       <AIInteractiveHero />
 
-      {/* How it Works? - Unified AquaCafe Loyalty Onboarding (2 Steps) */}
+      {/* How it Works - Unified 3-Step Process */}
       <section className="py-12 sm:py-16 px-3 sm:px-4 bg-gradient-to-br from-purple-950/30 via-slate-900/50 to-blue-950/30 backdrop-blur-sm border-y border-purple-500/20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg">
-              ✨ How it Works?
+              💧 How It Works
             </h2>
             <p className="text-gray-200 text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
-              Join AquaCafe Loyalty and start earning rewards in 2 simple steps
+              Join the Planet Heroes Movement in 3 simple steps
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-8">
-            {/* Step 1: Join Loyalty & Claim Your Deal */}
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-8">
+            {/* Step 1: Shop Smart (Join Loyalty) */}
             <div className="relative bg-gradient-to-br from-amber-900/40 to-slate-800/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-amber-500/30 shadow-xl">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-black text-lg sm:text-xl px-6 py-2 rounded-full shadow-lg">
                 STEP 1
@@ -299,49 +299,20 @@ export default function Home() {
               
               <div className="mt-6 text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-amber-500 rounded-full mb-4 sm:mb-6">
-                  <Rocket className="w-8 h-8 sm:w-10 sm:h-10 text-black" />
+                  <ShoppingCart className="w-8 h-8 sm:w-10 sm:h-10 text-black" />
                 </div>
                 
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-                  Join Loyalty & Claim Your Deal
+                  Shop Smart
                 </h3>
                 
-                <div className="space-y-2 sm:space-y-3 text-left mb-4 sm:mb-6">
-                  <div className="flex items-start text-sm sm:text-base">
-                    <CheckCircle className="w-5 h-5 text-hero-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200">Pay only <strong className="text-amber-400">AED 99</strong></span>
-                  </div>
-                  <div className="flex items-start text-sm sm:text-base">
-                    <CheckCircle className="w-5 h-5 text-hero-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200">Get <strong className="text-white">Level 2 Status</strong></span>
-                  </div>
-                  <div className="flex items-start text-sm sm:text-base">
-                    <CheckCircle className="w-5 h-5 text-hero-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200">Earn <strong className="text-white">1000 Points</strong></span>
-                  </div>
-                  <div className="flex items-start text-sm sm:text-base">
-                    <CheckCircle className="w-5 h-5 text-hero-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200"><strong className="text-white">Lifetime Benefits</strong></span>
-                  </div>
-                  
-                  {/* Instant Welcome Bonus */}
-                  <div className="mt-4 pt-4 border-t border-amber-500/30">
-                    <div className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 border border-orange-400/50 rounded-xl p-3 sm:p-4">
-                      <div className="flex items-center mb-2">
-                        <span className="text-2xl mr-2">🍕</span>
-                        <strong className="text-white text-sm sm:text-base">INSTANT Welcome Bonus</strong>
-                      </div>
-                      <p className="text-xs sm:text-sm text-gray-300 text-left">
-                        Pizza for Two + 2x Kulfi<br/>
-                        <span className="text-amber-400 font-bold">Delivered Instantly!</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-sm sm:text-base text-gray-200 mb-4">
+                  Earn Planet Points every time you order from F&B and eco-friendly partners via AquaCafe Loyalty.
+                </p>
               </div>
             </div>
 
-            {/* Step 2: Earn & Redeem */}
+            {/* Step 2: Get Rewarded */}
             <div className="relative bg-gradient-to-br from-hero-green-900/40 to-slate-800/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-hero-green-500/30 shadow-xl">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-hero-green-500 to-emerald-500 text-white font-black text-lg sm:text-xl px-6 py-2 rounded-full shadow-lg">
                 STEP 2
@@ -349,42 +320,37 @@ export default function Home() {
               
               <div className="mt-6 text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-hero-green-500 rounded-full mb-4 sm:mb-6">
-                  <Star className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  <Gift className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                 </div>
                 
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-                  Earn & Redeem
+                  Get Rewarded
                 </h3>
                 
-                <div className="space-y-2 sm:space-y-3 text-left mb-4 sm:mb-6">
-                  <div className="flex items-start text-sm sm:text-base">
-                    <Zap className="w-5 h-5 text-amber-400 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200">Use points for <strong className="text-white">rewards</strong></span>
-                  </div>
-                  <div className="flex items-start text-sm sm:text-base">
-                    <Heart className="w-5 h-5 text-pink-400 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200">Enjoy <strong className="text-white">lifetime perks</strong></span>
-                  </div>
-                  <div className="flex items-start text-sm sm:text-base">
-                    <Award className="w-5 h-5 text-purple-400 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200">Level up for <strong className="text-white">VIP access</strong></span>
-                  </div>
-                  
-                  {/* Referral Bonus */}
-                  <div className="mt-4 pt-4 border-t border-hero-green-500/30">
-                    <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/50 rounded-xl p-3 sm:p-4">
-                      <div className="flex items-center mb-2">
-                        <Users className="w-5 h-5 text-blue-400 mr-2" />
-                        <strong className="text-white text-sm sm:text-base">Referral Bonus</strong>
-                      </div>
-                      <p className="text-xs sm:text-sm text-gray-300 text-left">
-                        🚿 Get <strong className="text-blue-400">FREE Shower Filter</strong><br/>
-                        <span className="text-blue-400 font-bold">When friend joins!</span><br/>
-                        <span className="text-xs text-gray-400">(Pay only installation AED 99)</span>
-                      </p>
-                    </div>
-                  </div>
+                <p className="text-sm sm:text-base text-gray-200 mb-4">
+                  Redeem for free meals, eco gifts, or wellness products.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3: Create Impact */}
+            <div className="relative bg-gradient-to-br from-blue-900/40 to-slate-800/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-blue-500/30 shadow-xl">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-black text-lg sm:text-xl px-6 py-2 rounded-full shadow-lg">
+                STEP 3
+              </div>
+              
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-blue-500 rounded-full mb-4 sm:mb-6">
+                  <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                 </div>
+                
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+                  Create Impact
+                </h3>
+                
+                <p className="text-sm sm:text-base text-gray-200 mb-4">
+                  Your actions fund recycling drives, water renewal, and food security programs across Dubai & Pakistan.
+                </p>
               </div>
             </div>
           </div>
@@ -393,15 +359,15 @@ export default function Home() {
           <div className="text-center">
             <Link href="/aquacafe">
               <Button
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-8 sm:px-16 py-4 sm:py-6 text-xl sm:text-2xl font-bold rounded-xl shadow-2xl transform hover:scale-105 transition-all"
-                data-testid="button-join-loyalty-claim-deal"
+                className="bg-gradient-to-r from-hero-green-500 to-emerald-500 hover:from-hero-green-600 hover:to-emerald-600 text-white px-8 sm:px-16 py-4 sm:py-6 text-xl sm:text-2xl font-bold rounded-xl shadow-2xl transform hover:scale-105 transition-all"
+                data-testid="button-start-earning-rewards"
               >
                 <Rocket className="mr-3 w-6 h-6" />
-                JOIN LOYALTY & CLAIM DEAL - AED 99
+                Start Earning Rewards →
               </Button>
             </Link>
             <p className="text-gray-400 text-sm mt-4">
-              🎁 Instant pizza voucher • 🚿 Referral shower filter • 💳 Secure payment • 🚚 Free delivery
+              🌍 Real impact • 🎁 Instant rewards • 💚 Sustainable living
             </p>
           </div>
         </div>
