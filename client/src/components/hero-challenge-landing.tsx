@@ -432,21 +432,18 @@ function StepThreeRewards() {
         <ProgressIndicator currentStep={3} />
         
         <div className="text-center mb-8">
-          <div 
-            className="inline-flex items-center bg-amber-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-amber-500/50 cursor-pointer hover:bg-amber-500/30 transition-all"
+          <h2 
+            className="text-3xl md:text-5xl font-black mb-4 cursor-pointer hover:scale-105 transition-all duration-300 inline-flex items-center gap-3"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <span className="text-amber-300 font-bold text-lg">STEP 3 - REDEEM YOUR REWARDS</span>
-            {isExpanded ? (
-              <ChevronUp className="w-5 h-5 text-amber-300 ml-2" />
-            ) : (
-              <ChevronDown className="w-5 h-5 text-amber-300 ml-2" />
-            )}
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black mb-4">
             <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
               Get Rewarded
             </span>
+            {isExpanded ? (
+              <ChevronUp className="w-8 h-8 text-amber-400" />
+            ) : (
+              <ChevronDown className="w-8 h-8 text-amber-400" />
+            )}
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Redeem for free meals, eco gifts, or wellness products.
