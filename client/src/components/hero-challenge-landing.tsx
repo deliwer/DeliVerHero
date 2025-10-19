@@ -279,19 +279,18 @@ function StepTwoExchange() {
         <ProgressIndicator currentStep={2} />
         
         <div className="text-center mb-8">
-          <div 
-            className="inline-flex items-center bg-green-500/20 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-green-500/50 cursor-pointer hover:bg-green-500/30 transition-all"
+          <h2 
+            className="text-3xl md:text-5xl font-black mb-4 text-white cursor-pointer hover:scale-105 transition-all duration-300 inline-flex items-center gap-3"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <span className="text-green-300 font-bold text-lg">STEP 2 - EARN FROM PLANETARY MISSIONS</span>
+            <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+              Shop Smart
+            </span>
             {isExpanded ? (
-              <ChevronUp className="w-5 h-5 text-green-300 ml-2" />
+              <ChevronUp className="w-8 h-8 text-green-400" />
             ) : (
-              <ChevronDown className="w-5 h-5 text-green-300 ml-2" />
+              <ChevronDown className="w-8 h-8 text-green-400" />
             )}
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            Shop Smart
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Earn Planet Points every time you order from F&B and eco-friendly partners via AquaCafe Loyalty.
