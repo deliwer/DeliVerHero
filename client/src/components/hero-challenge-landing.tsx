@@ -705,7 +705,7 @@ export function HeroChallengeLanding() {
 
         {/* 3-Step Progressive Flow with Visual Connectors */}
         <div data-section="step-1">
-          <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
+          <StepTwoExchange />
           
         </div>
 
@@ -722,7 +722,7 @@ export function HeroChallengeLanding() {
         </div>
 
         <div data-section="step-2">
-          <StepTwoExchange />
+          <StepThreeRewards />
         </div>
 
         {/* Flow Connector 2→3 */}
@@ -738,7 +738,7 @@ export function HeroChallengeLanding() {
         </div>
 
         <div data-section="step-3">
-          <StepThreeRewards />
+          <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
         </div>
 
         {/* Main Tabs Section */}
