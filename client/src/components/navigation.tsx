@@ -46,7 +46,6 @@ export function Navigation() {
   const b2bNavItems = [
     { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
-    { path: "/chaintrack", label: "ChainTrack", id: "chaintrack", featured: true },
     { path: "/partners", label: "Partner Program", id: "partners" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
   ];
@@ -58,7 +57,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity" data-testid="link-home">
+            <Link href={isB2BMode ? "/chaintrack" : "/"} className="flex items-center hover:opacity-80 transition-opacity" data-testid="link-home">
               {isB2BMode ? (
                 <div className="flex items-center space-x-2">
                   <div className="text-xl font-bold text-blue-400">ChainTrack</div>
@@ -88,23 +87,6 @@ export function Navigation() {
                       <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600/30 to-hero-green-600/30 border-2 border-purple-500/60 rounded-lg text-white hover:from-purple-600/40 hover:to-hero-green-600/40 hover:border-purple-400/80 transition-all duration-300 shadow-xl hover:shadow-purple-500/30 animate-pulse hover:animate-none">
                         <span className="font-bold text-lg animate-pulse">{item.label}</span>
                         <Sparkles className="w-4 h-4 text-yellow-400 animate-spin" />
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for ChainTrack link
-                if (item.id === "chaintrack") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border-2 border-blue-500/60 rounded-lg text-white hover:from-blue-600/40 hover:to-cyan-600/40 hover:border-blue-400/80 transition-all duration-300 shadow-lg hover:shadow-blue-500/30">
-                        <span className="font-bold">{item.label}</span>
-                        <Sparkles className="w-4 h-4 text-cyan-400" />
                       </div>
                     </Link>
                   );

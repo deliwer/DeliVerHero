@@ -59,9 +59,9 @@ function Router() {
   const basePath = import.meta.env.VITE_BASE_PATH || "";
 
   useEffect(() => {
-    // Domain-based routing for ChainTrack
+    // Domain-based routing for ChainTrack - only www.chaintrack.com
     const hostname = window.location.hostname;
-    if ((hostname === 'chaintrack.deliwer.com' || hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
+    if (hostname === 'www.chaintrack.com' && location === '/') {
       setLocation('/chaintrack');
       return;
     }
