@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { User, Building } from "lucide-react";
 
 export default function SignupPage() {
-  const [accountType, setAccountType] = useState<"personal" | "company">("personal");
+  const [accountType, setAccountType] = useState<"personal" | "b2b_buyer">("personal");
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
@@ -40,16 +40,16 @@ export default function SignupPage() {
             Personal
           </Button>
           <Button
-            variant={accountType === "company" ? "default" : "ghost"}
-            onClick={() => setAccountType("company")}
+            variant={accountType === "b2b_buyer" ? "default" : "ghost"}
+            onClick={() => setAccountType("b2b_buyer")}
             className={`flex-1 ${
-              accountType === "company" 
+              accountType === "b2b_buyer" 
                 ? "bg-blue-600 hover:bg-blue-700" 
                 : "text-gray-400 hover:text-white"
             }`}
           >
             <Building className="w-4 h-4 mr-2" />
-            Company
+            B2B Wholesale
           </Button>
         </div>
 

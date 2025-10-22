@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { shopifyAuthService } from "@/lib/shopify-auth";
 
 interface SignupFormProps {
-  accountType?: "personal" | "company";
+  accountType?: "personal" | "b2b_buyer";
   onSuccess?: (user: any) => void;
   redirectTo?: string;
 }
@@ -25,11 +25,10 @@ export function SignupForm({ accountType = "personal", onSuccess, redirectTo = "
     password: "",
     confirmPassword: "",
     
-    // Company fields (if accountType === "company")
+    // B2B Wholesale Buyer fields (if accountType === "b2b_buyer")
     companyName: "",
-    industry: "",
-    employeeCount: "",
-    vatNumber: "",
+    businessLicense: "",
+    tradeLicense: "",
     
     // Agreements
     acceptTerms: false,
@@ -65,9 +64,9 @@ export function SignupForm({ accountType = "personal", onSuccess, redirectTo = "
     setIsLoading(true);
 
     try {
-      const userData = accountType === "company" ? {
+      const userData = accountType === "b2b_buyer" ? {
         ...formData,
-        accountType: "company"
+        userType: "b2b_buyer"
       } : {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -75,15 +74,15 @@ export function SignupForm({ accountType = "personal", onSuccess, redirectTo = "
         phone: formData.phone,
         password: formData.password,
         acceptMarketing: formData.acceptMarketing,
-        accountType: "personal"
+        userType: "consumer"
       };
 
       const user = await shopifyAuthService.signup(userData);
       
       toast({
         title: "Account created successfully!",
-        description: accountType === "company" 
-          ? "Your company account is being reviewed. You'll receive confirmation within 24 hours."
+        description: accountType === "b2b_buyer" 
+          ? "Your B2B wholesale buyer account is under review. You'll receive confirmation within 1-2 business days once your business credentials are verified."
           : "Welcome to DeliWer! You can now start trading your devices.",
       });
 
@@ -114,24 +113,24 @@ export function SignupForm({ accountType = "personal", onSuccess, redirectTo = "
     <Card className="w-full max-w-lg bg-slate-800 border-slate-700">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center text-white">
-          {accountType === "company" ? "Create Company Account" : "Join DeliWer"}
+          {accountType === "b2b_buyer" ? "Create B2B Wholesale Buyer Account" : "Join DeliWer"}
         </CardTitle>
         <p className="text-center text-gray-400">
-          {accountType === "company" 
-            ? "Get access to bulk trading and corporate features"
+          {accountType === "b2b_buyer" 
+            ? "Get access to aggregated wholesale phone inventory via ChainTrack"
             : "Start your sustainability journey today"
           }
         </p>
         <div className="bg-slate-700/50 rounded-lg p-3 mt-4" data-testid="signup-benefits">
           <div className="text-center">
             <div className="text-sm font-medium text-emerald-400 mb-1">
-              {accountType === "company" ? "Corporate Benefits" : "Starter Benefits"}
+              {accountType === "b2b_buyer" ? "B2B Wholesale Benefits" : "Starter Benefits"}
             </div>
-            {accountType === "company" ? (
+            {accountType === "b2b_buyer" ? (
               <>
-                <div className="text-xs text-gray-300">• Bulk Trade Discounts</div>
-                <div className="text-xs text-gray-300">• Corporate Dashboard</div>
-                <div className="text-xs text-gray-300">• Priority Support</div>
+                <div className="text-xs text-gray-300">• Unified Inventory Access</div>
+                <div className="text-xs text-gray-300">• Multi-Source Price Comparison</div>
+                <div className="text-xs text-gray-300">• Regional Market Insights</div>
               </>
             ) : (
               <>
@@ -202,62 +201,33 @@ export function SignupForm({ accountType = "personal", onSuccess, redirectTo = "
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="industry" className="text-sm font-medium text-gray-300">
-                    Industry
-                  </label>
-                  <Select
-                    value={formData.industry}
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, industry: value }))}
-                  >
-                    <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
-                      <SelectValue placeholder="Select industry" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="technology">Technology</SelectItem>
-                      <SelectItem value="financial">Financial Services</SelectItem>
-                      <SelectItem value="healthcare">Healthcare</SelectItem>
-                      <SelectItem value="manufacturing">Manufacturing</SelectItem>
-                      <SelectItem value="retail">Retail</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="employeeCount" className="text-sm font-medium text-gray-300">
-                    Company Size
-                  </label>
-                  <Select
-                    value={formData.employeeCount}
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, employeeCount: value }))}
-                  >
-                    <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
-                      <SelectValue placeholder="Employees" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1-10">1-10</SelectItem>
-                      <SelectItem value="11-50">11-50</SelectItem>
-                      <SelectItem value="51-200">51-200</SelectItem>
-                      <SelectItem value="201-1000">201-1000</SelectItem>
-                      <SelectItem value="1000+">1000+</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              <div className="space-y-2">
+                <label htmlFor="businessLicense" className="text-sm font-medium text-gray-300">
+                  Business License Number
+                </label>
+                <Input
+                  id="businessLicense"
+                  name="businessLicense"
+                  placeholder="Enter business license number"
+                  value={formData.businessLicense}
+                  onChange={handleInputChange}
+                  className="bg-slate-700 border-slate-600 text-white"
+                  required
+                />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="vatNumber" className="text-sm font-medium text-gray-300">
-                  VAT Number (Optional)
+                <label htmlFor="tradeLicense" className="text-sm font-medium text-gray-300">
+                  Trade License Number
                 </label>
                 <Input
-                  id="vatNumber"
-                  name="vatNumber"
-                  placeholder="Enter VAT number"
-                  value={formData.vatNumber}
+                  id="tradeLicense"
+                  name="tradeLicense"
+                  placeholder="Enter trade license number"
+                  value={formData.tradeLicense}
                   onChange={handleInputChange}
                   className="bg-slate-700 border-slate-600 text-white"
+                  required
                 />
               </div>
             </>
@@ -409,7 +379,7 @@ export function SignupForm({ accountType = "personal", onSuccess, redirectTo = "
                 Creating account...
               </>
             ) : (
-              `Create ${accountType === "company" ? "Company" : ""} Account`
+              `Create ${accountType === "b2b_buyer" ? "B2B Wholesale " : ""}Account`
             )}
           </Button>
         </form>
