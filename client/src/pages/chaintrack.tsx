@@ -306,9 +306,9 @@ function ChainTrackDashboard() {
     queryFn: async () => {
       const params = new URLSearchParams();
       if (searchQuery) params.append('search', searchQuery);
-      if (brandFilter) params.append('brand', brandFilter);
-      if (gradeFilter) params.append('grade', gradeFilter);
-      if (sourceFilter) params.append('sourceId', sourceFilter);
+      if (brandFilter && brandFilter !== 'all') params.append('brand', brandFilter);
+      if (gradeFilter && gradeFilter !== 'all') params.append('grade', gradeFilter);
+      if (sourceFilter && sourceFilter !== 'all') params.append('sourceId', sourceFilter);
       
       const url = `/api/chaintrack/inventory${params.toString() ? `?${params.toString()}` : ''}`;
       const res = await fetch(url);
@@ -361,7 +361,7 @@ function ChainTrackDashboard() {
                 <SelectValue placeholder="All Brands" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Brands</SelectItem>
+                <SelectItem value="all">All Brands</SelectItem>
                 {uniqueBrands.map((brand) => (
                   <SelectItem key={brand} value={brand}>{brand}</SelectItem>
                 ))}
@@ -375,7 +375,7 @@ function ChainTrackDashboard() {
                 <SelectValue placeholder="All Grades" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Grades</SelectItem>
+                <SelectItem value="all">All Grades</SelectItem>
                 {uniqueGrades.map((grade) => (
                   <SelectItem key={grade} value={grade}>{grade}</SelectItem>
                 ))}
@@ -389,7 +389,7 @@ function ChainTrackDashboard() {
                 <SelectValue placeholder="All Sources" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Sources</SelectItem>
+                <SelectItem value="all">All Sources</SelectItem>
                 {sources?.map((source) => (
                   <SelectItem key={source.id} value={source.id}>{source.sourceName}</SelectItem>
                 ))}
