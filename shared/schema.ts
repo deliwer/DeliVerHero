@@ -1606,3 +1606,166 @@ export type EnvironmentState = typeof environmentStates.$inferSelect;
 export type InsertEnvironmentState = z.infer<typeof insertEnvironmentStateSchema>;
 export type LeaderboardSnapshot = typeof leaderboardSnapshots.$inferSelect;
 export type InsertLeaderboardSnapshot = z.infer<typeof insertLeaderboardSnapshotSchema>;
+
+// ========================================
+// B2B WHOLESALE INVENTORY SYSTEM
+// ========================================
+
+// B2B Buyers - Verified wholesale buyers
+export const b2bBuyers = pgTable("b2b_buyers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id),
+  companyName: text("company_name").notNull(),
+  businessLicense: text("business_license"),
+  contactName: text("contact_name").notNull(),
+  contactEmail: text("contact_email").notNull().unique(),
+  contactPhone: text("contact_phone"),
+  companyAddress: text("company_address"),
+  city: text("city").default("Dubai"),
+  country: text("country").default("UAE"),
+  buyerTier: text("buyer_tier").notNull().default("retail"), // retail, distributor, enterprise
+  verificationStatus: text("verification_status").notNull().default("pending"), // pending, verified, rejected
+  creditLimit: integer("credit_limit").default(0),
+  paymentTerms: text("payment_terms").default("prepaid"), // prepaid, net30, net60
+  isActive: boolean("is_active").notNull().default(true),
+  notes: text("notes"),
+  verifiedAt: timestamp("verified_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Inventory Sources - Track different suppliers
+export const inventorySources = pgTable("inventory_sources", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sourceName: text("source_name").notNull().unique(), // WeSellCellular, GSMBid, B2BMobileAuction
+  sourceCode: text("source_code").notNull().unique(), // WSC, GSMBID, B2BMA
+  sourceType: text("source_type").notNull(), // distributor, auction, marketplace
+  contactEmail: text("contact_email"),
+  contactPhone: text("contact_phone"),
+  website: text("website"),
+  country: text("country"),
+  currency: text("currency").default("USD"),
+  isActive: boolean("is_active").notNull().default(true),
+  lastSyncAt: timestamp("last_sync_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// Inventory Upload Batches - Track each upload session
+export const inventoryUploads = pgTable("inventory_uploads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sourceId: varchar("source_id").notNull().references(() => inventorySources.id),
+  fileName: text("file_name").notNull(),
+  fileType: text("file_type").notNull(), // csv, xlsx
+  uploadedBy: varchar("uploaded_by").references(() => users.id),
+  totalItems: integer("total_items").notNull().default(0),
+  successfulItems: integer("successful_items").notNull().default(0),
+  failedItems: integer("failed_items").notNull().default(0),
+  uploadStatus: text("upload_status").notNull().default("processing"), // processing, completed, failed
+  errorLog: jsonb("error_log"),
+  metadata: jsonb("metadata"),
+  uploadedAt: timestamp("uploaded_at").notNull().default(sql`now()`),
+});
+
+// Wholesale Inventory - Main inventory table
+export const wholesaleInventory = pgTable("wholesale_inventory", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  uploadId: varchar("upload_id").notNull().references(() => inventoryUploads.id),
+  sourceId: varchar("source_id").notNull().references(() => inventorySources.id),
+  
+  // Device Information
+  brand: text("brand").notNull(), // Apple, Samsung, etc.
+  model: text("model").notNull(), // iPhone 15 Pro, Galaxy S24, etc.
+  storage: text("storage"), // 128GB, 256GB, etc.
+  color: text("color"),
+  carrier: text("carrier"), // Unlocked, Verizon, AT&T, etc.
+  
+  // Condition & Grading
+  grade: text("grade").notNull(), // A+, A, A-, B, C (normalized)
+  originalGrade: text("original_grade"), // Original grade from source
+  functionalCondition: text("functional_condition"), // Fully functional, minor issues, etc.
+  cosmeticCondition: text("cosmetic_condition"), // Excellent, Good, Fair, Poor
+  
+  // Pricing
+  price: integer("price").notNull(), // Price in cents/fils
+  currency: text("currency").notNull().default("USD"),
+  pricePerUnit: integer("price_per_unit"), // For lots
+  
+  // Quantity
+  quantity: integer("quantity").notNull().default(1),
+  availableQuantity: integer("available_quantity").notNull().default(1),
+  
+  // Lot Information (for bulk auctions)
+  isLot: boolean("is_lot").notNull().default(false),
+  lotSize: integer("lot_size"),
+  lotComposition: jsonb("lot_composition"), // Array of models in mixed lots
+  
+  // Availability
+  isAvailable: boolean("is_available").notNull().default(true),
+  reservedQuantity: integer("reserved_quantity").notNull().default(0),
+  
+  // Additional Info
+  imei: text("imei"),
+  sku: text("sku"),
+  sourceListingId: text("source_listing_id"), // Original listing ID from source
+  warranty: text("warranty"),
+  accessories: jsonb("accessories"),
+  notes: text("notes"),
+  images: jsonb("images"),
+  
+  // Metadata
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => ({
+  brandIdx: index("wholesale_inventory_brand_idx").on(table.brand),
+  modelIdx: index("wholesale_inventory_model_idx").on(table.model),
+  gradeIdx: index("wholesale_inventory_grade_idx").on(table.grade),
+  sourceIdx: index("wholesale_inventory_source_idx").on(table.sourceId),
+  availabilityIdx: index("wholesale_inventory_availability_idx").on(table.isAvailable),
+}));
+
+// Inventory Price History - Track price changes over time
+export const inventoryPriceHistory = pgTable("inventory_price_history", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  inventoryId: varchar("inventory_id").notNull().references(() => wholesaleInventory.id),
+  sourceId: varchar("source_id").notNull().references(() => inventorySources.id),
+  price: integer("price").notNull(),
+  currency: text("currency").notNull().default("USD"),
+  recordedAt: timestamp("recorded_at").notNull().default(sql`now()`),
+});
+
+// Insert Schemas
+export const insertB2bBuyerSchema = createInsertSchema(b2bBuyers).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  verifiedAt: true,
+});
+
+export const insertInventorySourceSchema = createInsertSchema(inventorySources).omit({
+  id: true,
+  createdAt: true,
+  lastSyncAt: true,
+});
+
+export const insertInventoryUploadSchema = createInsertSchema(inventoryUploads).omit({
+  id: true,
+  uploadedAt: true,
+});
+
+export const insertWholesaleInventorySchema = createInsertSchema(wholesaleInventory).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+// Types
+export type B2bBuyer = typeof b2bBuyers.$inferSelect;
+export type InsertB2bBuyer = z.infer<typeof insertB2bBuyerSchema>;
+export type InventorySource = typeof inventorySources.$inferSelect;
+export type InsertInventorySource = z.infer<typeof insertInventorySourceSchema>;
+export type InventoryUpload = typeof inventoryUploads.$inferSelect;
+export type InsertInventoryUpload = z.infer<typeof insertInventoryUploadSchema>;
+export type WholesaleInventory = typeof wholesaleInventory.$inferSelect;
+export type InsertWholesaleInventory = z.infer<typeof insertWholesaleInventorySchema>;
+export type InventoryPriceHistory = typeof inventoryPriceHistory.$inferSelect;
