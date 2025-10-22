@@ -2473,6 +2473,159 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // ===============================================
+  // CHAINTRACK B2B WHOLESALE INVENTORY ROUTES
+  // ===============================================
+
+  // Get all inventory sources
+  app.get("/api/chaintrack/sources", async (req, res) => {
+    try {
+      const sources = await storage.getInventorySources();
+      res.json(sources);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Create inventory source
+  app.post("/api/chaintrack/sources", async (req, res) => {
+    try {
+      const source = await storage.createInventorySource(req.body);
+      res.json(source);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Get inventory uploads
+  app.get("/api/chaintrack/uploads", async (req, res) => {
+    try {
+      const { sourceId } = req.query;
+      const uploads = await storage.getInventoryUploads(sourceId as string | undefined);
+      res.json(uploads);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get wholesale inventory with filters
+  app.get("/api/chaintrack/inventory", async (req, res) => {
+    try {
+      const { sourceId, brand, model, grade, isAvailable, search } = req.query;
+      
+      // Start with search or all inventory
+      let inventory;
+      if (search) {
+        inventory = await storage.searchWholesaleInventory(search as string);
+      } else {
+        inventory = await storage.getWholesaleInventory({
+          sourceId: sourceId as string | undefined,
+          brand: brand as string | undefined,
+          model: model as string | undefined,
+          grade: grade as string | undefined,
+          isAvailable: isAvailable ? isAvailable === 'true' : undefined,
+        });
+      }
+      
+      // Apply additional filters on top of search results if they exist
+      if (search && (sourceId || brand || model || grade || isAvailable)) {
+        if (sourceId) inventory = inventory.filter(item => item.sourceId === sourceId);
+        if (brand) inventory = inventory.filter(item => item.brand.toLowerCase().includes((brand as string).toLowerCase()));
+        if (model) inventory = inventory.filter(item => item.model.toLowerCase().includes((model as string).toLowerCase()));
+        if (grade) inventory = inventory.filter(item => item.grade === grade);
+        if (isAvailable !== undefined) inventory = inventory.filter(item => item.isAvailable === (isAvailable === 'true'));
+      }
+      
+      // Include source info for each item
+      const sources = await storage.getInventorySources();
+      const sourceMap = new Map(sources.map(s => [s.id, s]));
+      
+      const inventoryWithSource = inventory.map(item => ({
+        ...item,
+        source: sourceMap.get(item.sourceId),
+      }));
+      
+      res.json(inventoryWithSource);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get single inventory item
+  app.get("/api/chaintrack/inventory/:id", async (req, res) => {
+    try {
+      const item = await storage.getWholesaleInventoryItem(req.params.id);
+      if (!item) {
+        return res.status(404).json({ error: "Inventory item not found" });
+      }
+      
+      const source = await storage.getInventorySource(item.sourceId);
+      res.json({ ...item, source });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Create inventory item (for manual entry or testing)
+  app.post("/api/chaintrack/inventory", async (req, res) => {
+    try {
+      const item = await storage.createWholesaleInventoryItem(req.body);
+      res.json(item);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Update inventory item
+  app.put("/api/chaintrack/inventory/:id", async (req, res) => {
+    try {
+      const updated = await storage.updateWholesaleInventoryItem(req.params.id, req.body);
+      if (!updated) {
+        return res.status(404).json({ error: "Inventory item not found" });
+      }
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Delete inventory item
+  app.delete("/api/chaintrack/inventory/:id", async (req, res) => {
+    try {
+      const deleted = await storage.deleteWholesaleInventoryItem(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Inventory item not found" });
+      }
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get B2B buyers
+  app.get("/api/chaintrack/buyers", async (req, res) => {
+    try {
+      const { verificationStatus, buyerTier } = req.query;
+      const buyers = await storage.getB2bBuyers({
+        verificationStatus: verificationStatus as string | undefined,
+        buyerTier: buyerTier as string | undefined,
+      });
+      res.json(buyers);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Create B2B buyer
+  app.post("/api/chaintrack/buyers", async (req, res) => {
+    try {
+      const buyer = await storage.createB2bBuyer(req.body);
+      res.json(buyer);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

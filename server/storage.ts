@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -286,6 +286,35 @@ export interface IStorage {
   submitMissionActivity(heroId: string, missionCode: string, submission: InsertActivitySubmission): Promise<{ submission: ActivitySubmission; verified: boolean; pointsAwarded: number; }>;
   verifyActivitySubmission(submissionId: string, verifiedBy: string, result: string, confidence?: number): Promise<ActivitySubmission>;
   generateMissionFromTemplate(templateId: string, variables?: Record<string, any>): Promise<PlanetMission>;
+  
+  // B2B Wholesale Inventory System
+  // Inventory sources
+  getInventorySources(): Promise<InventorySource[]>;
+  getInventorySource(id: string): Promise<InventorySource | undefined>;
+  getInventorySourceByCode(code: string): Promise<InventorySource | undefined>;
+  createInventorySource(source: InsertInventorySource): Promise<InventorySource>;
+  updateInventorySource(id: string, updates: Partial<InventorySource>): Promise<InventorySource | undefined>;
+  
+  // Inventory uploads
+  getInventoryUploads(sourceId?: string): Promise<InventoryUpload[]>;
+  getInventoryUpload(id: string): Promise<InventoryUpload | undefined>;
+  createInventoryUpload(upload: InsertInventoryUpload): Promise<InventoryUpload>;
+  updateInventoryUpload(id: string, updates: Partial<InventoryUpload>): Promise<InventoryUpload | undefined>;
+  
+  // Wholesale inventory
+  getWholesaleInventory(filters?: { sourceId?: string; brand?: string; model?: string; grade?: string; isAvailable?: boolean }): Promise<WholesaleInventory[]>;
+  getWholesaleInventoryItem(id: string): Promise<WholesaleInventory | undefined>;
+  createWholesaleInventoryItem(item: InsertWholesaleInventory): Promise<WholesaleInventory>;
+  updateWholesaleInventoryItem(id: string, updates: Partial<WholesaleInventory>): Promise<WholesaleInventory | undefined>;
+  deleteWholesaleInventoryItem(id: string): Promise<boolean>;
+  searchWholesaleInventory(query: string): Promise<WholesaleInventory[]>;
+  
+  // B2B buyers
+  getB2bBuyers(filters?: { verificationStatus?: string; buyerTier?: string }): Promise<B2bBuyer[]>;
+  getB2bBuyer(id: string): Promise<B2bBuyer | undefined>;
+  getB2bBuyerByEmail(email: string): Promise<B2bBuyer | undefined>;
+  createB2bBuyer(buyer: InsertB2bBuyer): Promise<B2bBuyer>;
+  updateB2bBuyer(id: string, updates: Partial<B2bBuyer>): Promise<B2bBuyer | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -346,6 +375,12 @@ export class MemStorage implements IStorage {
   private environmentStates: Map<string, EnvironmentState>;
   private leaderboardSnapshots: Map<string, LeaderboardSnapshot>;
 
+  // B2B Wholesale Inventory System
+  private inventorySources: Map<string, InventorySource>;
+  private inventoryUploads: Map<string, InventoryUpload>;
+  private wholesaleInventory: Map<string, WholesaleInventory>;
+  private b2bBuyers: Map<string, B2bBuyer>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -401,6 +436,12 @@ export class MemStorage implements IStorage {
     this.aiMissionTemplates = new Map();
     this.environmentStates = new Map();
     this.leaderboardSnapshots = new Map();
+    
+    // Initialize B2B wholesale inventory system
+    this.inventorySources = new Map();
+    this.inventoryUploads = new Map();
+    this.wholesaleInventory = new Map();
+    this.b2bBuyers = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -3973,6 +4014,181 @@ export class MemStorage implements IStorage {
   async createLeaderboardSnapshot(snapshot: InsertLeaderboardSnapshot): Promise<LeaderboardSnapshot> { throw new Error("Not implemented"); }
   
   async generateMissionFromTemplate(templateId: string, variables?: Record<string, any>): Promise<PlanetMission> { throw new Error("Not implemented"); }
+
+  // B2B Wholesale Inventory System Implementations
+  
+  // Inventory sources
+  async getInventorySources(): Promise<InventorySource[]> {
+    return Array.from(this.inventorySources.values());
+  }
+
+  async getInventorySource(id: string): Promise<InventorySource | undefined> {
+    return this.inventorySources.get(id);
+  }
+
+  async getInventorySourceByCode(code: string): Promise<InventorySource | undefined> {
+    return Array.from(this.inventorySources.values()).find(s => s.sourceCode === code);
+  }
+
+  async createInventorySource(source: InsertInventorySource): Promise<InventorySource> {
+    const newSource: InventorySource = {
+      id: randomUUID(),
+      ...source,
+      createdAt: new Date(),
+      lastSyncAt: null,
+    };
+    this.inventorySources.set(newSource.id, newSource);
+    return newSource;
+  }
+
+  async updateInventorySource(id: string, updates: Partial<InventorySource>): Promise<InventorySource | undefined> {
+    const source = this.inventorySources.get(id);
+    if (!source) return undefined;
+    
+    const updated = { ...source, ...updates };
+    this.inventorySources.set(id, updated);
+    return updated;
+  }
+
+  // Inventory uploads
+  async getInventoryUploads(sourceId?: string): Promise<InventoryUpload[]> {
+    let uploads = Array.from(this.inventoryUploads.values());
+    if (sourceId) {
+      uploads = uploads.filter(u => u.sourceId === sourceId);
+    }
+    return uploads.sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
+  }
+
+  async getInventoryUpload(id: string): Promise<InventoryUpload | undefined> {
+    return this.inventoryUploads.get(id);
+  }
+
+  async createInventoryUpload(upload: InsertInventoryUpload): Promise<InventoryUpload> {
+    const newUpload: InventoryUpload = {
+      id: randomUUID(),
+      ...upload,
+      uploadedAt: new Date(),
+    };
+    this.inventoryUploads.set(newUpload.id, newUpload);
+    return newUpload;
+  }
+
+  async updateInventoryUpload(id: string, updates: Partial<InventoryUpload>): Promise<InventoryUpload | undefined> {
+    const upload = this.inventoryUploads.get(id);
+    if (!upload) return undefined;
+    
+    const updated = { ...upload, ...updates };
+    this.inventoryUploads.set(id, updated);
+    return updated;
+  }
+
+  // Wholesale inventory
+  async getWholesaleInventory(filters?: { sourceId?: string; brand?: string; model?: string; grade?: string; isAvailable?: boolean }): Promise<WholesaleInventory[]> {
+    let items = Array.from(this.wholesaleInventory.values());
+    
+    if (filters) {
+      if (filters.sourceId) {
+        items = items.filter(i => i.sourceId === filters.sourceId);
+      }
+      if (filters.brand) {
+        items = items.filter(i => i.brand.toLowerCase().includes(filters.brand!.toLowerCase()));
+      }
+      if (filters.model) {
+        items = items.filter(i => i.model.toLowerCase().includes(filters.model!.toLowerCase()));
+      }
+      if (filters.grade) {
+        items = items.filter(i => i.grade === filters.grade);
+      }
+      if (filters.isAvailable !== undefined) {
+        items = items.filter(i => i.isAvailable === filters.isAvailable);
+      }
+    }
+    
+    return items.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getWholesaleInventoryItem(id: string): Promise<WholesaleInventory | undefined> {
+    return this.wholesaleInventory.get(id);
+  }
+
+  async createWholesaleInventoryItem(item: InsertWholesaleInventory): Promise<WholesaleInventory> {
+    const newItem: WholesaleInventory = {
+      id: randomUUID(),
+      ...item,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.wholesaleInventory.set(newItem.id, newItem);
+    return newItem;
+  }
+
+  async updateWholesaleInventoryItem(id: string, updates: Partial<WholesaleInventory>): Promise<WholesaleInventory | undefined> {
+    const item = this.wholesaleInventory.get(id);
+    if (!item) return undefined;
+    
+    const updated = { ...item, ...updates, updatedAt: new Date() };
+    this.wholesaleInventory.set(id, updated);
+    return updated;
+  }
+
+  async deleteWholesaleInventoryItem(id: string): Promise<boolean> {
+    return this.wholesaleInventory.delete(id);
+  }
+
+  async searchWholesaleInventory(query: string): Promise<WholesaleInventory[]> {
+    const lowerQuery = query.toLowerCase();
+    return Array.from(this.wholesaleInventory.values()).filter(item => 
+      item.brand.toLowerCase().includes(lowerQuery) ||
+      item.model.toLowerCase().includes(lowerQuery) ||
+      (item.storage && item.storage.toLowerCase().includes(lowerQuery)) ||
+      (item.color && item.color.toLowerCase().includes(lowerQuery))
+    );
+  }
+
+  // B2B buyers
+  async getB2bBuyers(filters?: { verificationStatus?: string; buyerTier?: string }): Promise<B2bBuyer[]> {
+    let buyers = Array.from(this.b2bBuyers.values());
+    
+    if (filters) {
+      if (filters.verificationStatus) {
+        buyers = buyers.filter(b => b.verificationStatus === filters.verificationStatus);
+      }
+      if (filters.buyerTier) {
+        buyers = buyers.filter(b => b.buyerTier === filters.buyerTier);
+      }
+    }
+    
+    return buyers.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getB2bBuyer(id: string): Promise<B2bBuyer | undefined> {
+    return this.b2bBuyers.get(id);
+  }
+
+  async getB2bBuyerByEmail(email: string): Promise<B2bBuyer | undefined> {
+    return Array.from(this.b2bBuyers.values()).find(b => b.contactEmail === email);
+  }
+
+  async createB2bBuyer(buyer: InsertB2bBuyer): Promise<B2bBuyer> {
+    const newBuyer: B2bBuyer = {
+      id: randomUUID(),
+      ...buyer,
+      verifiedAt: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.b2bBuyers.set(newBuyer.id, newBuyer);
+    return newBuyer;
+  }
+
+  async updateB2bBuyer(id: string, updates: Partial<B2bBuyer>): Promise<B2bBuyer | undefined> {
+    const buyer = this.b2bBuyers.get(id);
+    if (!buyer) return undefined;
+    
+    const updated = { ...buyer, ...updates, updatedAt: new Date() };
+    this.b2bBuyers.set(id, updated);
+    return updated;
+  }
 }
 
 export const storage = new MemStorage();

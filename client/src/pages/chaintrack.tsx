@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "wouter";
 import { User } from "@shared/schema";
 import {
@@ -292,6 +296,41 @@ function ChainTrackLanding() {
 }
 
 function ChainTrackDashboard() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [brandFilter, setBrandFilter] = useState("");
+  const [gradeFilter, setGradeFilter] = useState("");
+  const [sourceFilter, setSourceFilter] = useState("");
+
+  const { data: inventory, isLoading } = useQuery<any[]>({
+    queryKey: ['/api/chaintrack/inventory', { search: searchQuery, brand: brandFilter, grade: gradeFilter, sourceId: sourceFilter }],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (searchQuery) params.append('search', searchQuery);
+      if (brandFilter) params.append('brand', brandFilter);
+      if (gradeFilter) params.append('grade', gradeFilter);
+      if (sourceFilter) params.append('sourceId', sourceFilter);
+      
+      const url = `/api/chaintrack/inventory${params.toString() ? `?${params.toString()}` : ''}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`${res.status}: ${await res.text()}`);
+      return res.json();
+    },
+  });
+
+  const { data: sources } = useQuery<any[]>({
+    queryKey: ['/api/chaintrack/sources'],
+  });
+
+  const uniqueBrands = inventory ? Array.from(new Set(inventory.map(item => item.brand))).sort() : [];
+  const uniqueGrades = inventory ? Array.from(new Set(inventory.map(item => item.grade))).sort() : [];
+
+  const formatPrice = (price: number, currency: string) => {
+    const amount = price / 100;
+    if (currency === "USD") return `$${amount.toFixed(2)}`;
+    if (currency === "AED") return `AED ${amount.toFixed(2)}`;
+    return `${currency} ${amount.toFixed(2)}`;
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
@@ -301,34 +340,128 @@ function ChainTrackDashboard() {
         </p>
       </div>
 
-      <Card className="p-8 text-center">
-        <Package className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-        <h2 className="text-2xl font-semibold mb-2">Inventory Dashboard Coming Soon</h2>
-        <p className="text-muted-foreground mb-6">
-          We're building the inventory dashboard with price comparison and filtering features.
-        </p>
-        <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
-          <div className="flex items-start gap-3">
-            <Search className="w-5 h-5 text-blue-500 mt-1" />
-            <div>
-              <p className="font-medium">Search & Filter</p>
-              <p className="text-sm text-muted-foreground">Find devices by model, brand, grade</p>
+      {/* Filters */}
+      <Card className="p-6 mb-6">
+        <h2 className="text-lg font-semibold mb-4">Search & Filter</h2>
+        <div className="grid md:grid-cols-4 gap-4">
+          <div>
+            <Label htmlFor="search">Search</Label>
+            <Input
+              id="search"
+              placeholder="Search model, brand..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              data-testid="input-search"
+            />
+          </div>
+          <div>
+            <Label htmlFor="brand">Brand</Label>
+            <Select value={brandFilter} onValueChange={setBrandFilter}>
+              <SelectTrigger id="brand" data-testid="select-brand">
+                <SelectValue placeholder="All Brands" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">All Brands</SelectItem>
+                {uniqueBrands.map((brand) => (
+                  <SelectItem key={brand} value={brand}>{brand}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor="grade">Grade</Label>
+            <Select value={gradeFilter} onValueChange={setGradeFilter}>
+              <SelectTrigger id="grade" data-testid="select-grade">
+                <SelectValue placeholder="All Grades" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">All Grades</SelectItem>
+                {uniqueGrades.map((grade) => (
+                  <SelectItem key={grade} value={grade}>{grade}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor="source">Source</Label>
+            <Select value={sourceFilter} onValueChange={setSourceFilter}>
+              <SelectTrigger id="source" data-testid="select-source">
+                <SelectValue placeholder="All Sources" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">All Sources</SelectItem>
+                {sources?.map((source) => (
+                  <SelectItem key={source.id} value={source.id}>{source.sourceName}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </Card>
+
+      {/* Inventory Table */}
+      <Card>
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold">Available Inventory</h2>
+            <div className="text-sm text-muted-foreground">
+              {inventory?.length || 0} items
             </div>
           </div>
-          <div className="flex items-start gap-3">
-            <TrendingDown className="w-5 h-5 text-green-500 mt-1" />
-            <div>
-              <p className="font-medium">Price Comparison</p>
-              <p className="text-sm text-muted-foreground">Compare across all sources</p>
+
+          {isLoading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-muted-foreground">Loading inventory...</p>
             </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <BarChart3 className="w-5 h-5 text-purple-500 mt-1" />
-            <div>
-              <p className="font-medium">Live Updates</p>
-              <p className="text-sm text-muted-foreground">Real-time inventory sync</p>
+          ) : inventory && inventory.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b">
+                    <th className="text-left py-3 px-4 font-semibold">Brand</th>
+                    <th className="text-left py-3 px-4 font-semibold">Model</th>
+                    <th className="text-left py-3 px-4 font-semibold">Storage</th>
+                    <th className="text-left py-3 px-4 font-semibold">Grade</th>
+                    <th className="text-left py-3 px-4 font-semibold">Qty</th>
+                    <th className="text-left py-3 px-4 font-semibold">Price</th>
+                    <th className="text-left py-3 px-4 font-semibold">Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {inventory.map((item) => (
+                    <tr key={item.id} className="border-b hover:bg-muted/50" data-testid={`row-inventory-${item.id}`}>
+                      <td className="py-3 px-4">{item.brand}</td>
+                      <td className="py-3 px-4 font-medium">{item.model}</td>
+                      <td className="py-3 px-4">{item.storage || '-'}</td>
+                      <td className="py-3 px-4">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300">
+                          {item.grade}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4">{item.availableQuantity}</td>
+                      <td className="py-3 px-4 font-semibold">{formatPrice(item.price, item.currency)}</td>
+                      <td className="py-3 px-4">
+                        <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
+                          {item.source?.sourceCode || 'Unknown'}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </div>
+          ) : (
+            <div className="text-center py-12">
+              <Package className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No Inventory Found</h3>
+              <p className="text-muted-foreground">
+                {searchQuery || brandFilter || gradeFilter || sourceFilter 
+                  ? "Try adjusting your search filters."
+                  : "Inventory data will appear here when uploaded."}
+              </p>
+            </div>
+          )}
         </div>
       </Card>
     </div>
