@@ -40,6 +40,7 @@ import { AccountManagementPage } from "@/pages/account-management";
 import CoboneCorporate from "@/pages/cobone-corporate";
 import CorporateCombined from "@/pages/corporate-combined";
 import AccountConsolidated from "@/pages/account-consolidated";
+import ChainTrackPage from "@/pages/chaintrack";
 
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -101,6 +102,9 @@ function Router() {
         <Route path="/cobone-corporate" component={CorporateCombined} />
         <Route path="/corporate" component={CorporateCombined} />
         <Route path="/partnership" component={Partners} />
+        
+        {/* ChainTrack B2B Wholesale Inventory */}
+        <Route path="/chaintrack" component={ChainTrackPage} />
 
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
