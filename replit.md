@@ -28,6 +28,7 @@ DeliWer is a full-stack JavaScript application successfully imported and configu
 - Image optimization service worker
 - Responsive design with dark mode support
 - **Pakistan Planet Hero Mission** - Climate activism platform for overseas Pakistanis
+- **ChainTrack B2B Platform** - Wholesale phone inventory aggregation (October 22, 2025)
 
 ## Development Commands
 - `npm run dev` - Start development server (already configured in workflow)
@@ -82,8 +83,25 @@ Without these variables, the application runs in demo mode with mock data.
   - `npm run build:subpath` for /pakistan-mission deployment
 - **Documentation**: Full deployment guide in /deploy/README.md
 
+## ChainTrack B2B Platform (October 22, 2025)
+✅ **Security Enhancement**: Protected trade secrets by removing all supplier names from UI
+✅ **Region-Based Classification**: Database schema updated with region field (US, Japan, China, Europe)
+✅ **Landing Page**: Supplier names replaced with regional market coverage (United States, Japan, China)
+✅ **Dashboard Updates**: "Source" filter and column replaced with "Region" throughout
+✅ **B2B Navigation**: ChainTrack added with highlighted featured styling in B2B menu
+✅ **Domain Routing**: chaintrack.deliwer.com and www.chaintrack.com redirect to /chaintrack
+✅ **Trade Secret Protection**: Confidential supplier identities (WeSellCellular, GSMBid, B2BMobileAuction) completely hidden
+✅ **Database Migration**: Successfully pushed schema changes with region field addition
+
+### ChainTrack Security Policy
+- Supplier source names are confidential and stored only in backend database
+- Frontend displays only regional classifications to buyers
+- Trade secrets protected: no supplier names exposed in UI, API responses, or marketing copy
+- Region classifications: US, Japan, China, Europe (extensible for new markets)
+
 ## Notes
 - Service worker for image optimization may show registration warnings in development - this is normal
 - Application includes extensive UI components and gamification features
 - Ready for production deployment on Replit with autoscale configuration
 - Pakistan Mission page accessible at www.deliwer.com/pakistan-mission when deployed with subpath build
+- ChainTrack accessible at www.chaintrack.com or chaintrack.deliwer.com (auto-redirects to /chaintrack)
