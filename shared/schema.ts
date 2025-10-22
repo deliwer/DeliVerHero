@@ -13,6 +13,15 @@ export const users = pgTable("users", {
   phone: text("phone"),
   address: text("address"),
   city: text("city").default("Dubai"),
+  
+  // B2B Wholesale Buyer fields
+  userType: text("user_type").notNull().default("consumer"), // 'consumer' or 'b2b_buyer'
+  companyName: text("company_name"),
+  businessLicense: text("business_license"),
+  tradeLicense: text("trade_license"),
+  isB2BVerified: boolean("is_b2b_verified").notNull().default(false),
+  b2bVerifiedAt: timestamp("b2b_verified_at"),
+  
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });

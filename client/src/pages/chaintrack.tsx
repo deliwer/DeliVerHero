@@ -37,11 +37,77 @@ export default function ChainTrackPage() {
     );
   }
 
+  // Check if user is a verified B2B buyer
   if (user) {
-    return <ChainTrackDashboard />;
+    if (user.userType === 'b2b_buyer' && user.isB2BVerified) {
+      return <ChainTrackDashboard />;
+    } else if (user.userType === 'b2b_buyer' && !user.isB2BVerified) {
+      return <VerificationPending />;
+    } else {
+      // Regular consumer trying to access B2B platform
+      return <AccessDenied />;
+    }
   }
 
   return <ChainTrackLanding />;
+}
+
+function VerificationPending() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 flex items-center justify-center p-4">
+      <Card className="max-w-2xl p-8 text-center">
+        <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Shield className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
+        </div>
+        <h1 className="text-3xl font-bold mb-4">Verification Pending</h1>
+        <p className="text-lg text-slate-600 dark:text-slate-400 mb-6">
+          Thank you for registering as a B2B wholesale buyer. Your account is currently under review.
+        </p>
+        <p className="text-slate-600 dark:text-slate-400 mb-8">
+          Our team is verifying your business credentials and trade license. This process typically takes 1-2 business days.
+          You'll receive an email notification once your account is approved.
+        </p>
+        <div className="space-y-3">
+          <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">Need Help?</p>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            Contact our B2B support team at <a href="mailto:b2b@deliwer.com" className="text-blue-600 dark:text-blue-400 hover:underline">b2b@deliwer.com</a>
+          </p>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+function AccessDenied() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900 flex items-center justify-center p-4">
+      <Card className="max-w-2xl p-8 text-center">
+        <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Shield className="w-8 h-8 text-red-600 dark:text-red-400" />
+        </div>
+        <h1 className="text-3xl font-bold mb-4">B2B Access Required</h1>
+        <p className="text-lg text-slate-600 dark:text-slate-400 mb-6">
+          ChainTrack is exclusively for verified B2B wholesale buyers. Consumer accounts cannot access this platform.
+        </p>
+        <p className="text-slate-600 dark:text-slate-400 mb-8">
+          If you're a wholesale buyer, please create a B2B account to access our inventory aggregation platform.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/">
+            <Button variant="outline" size="lg" data-testid="button-back-home">
+              Back to Homepage
+            </Button>
+          </Link>
+          <Link href="/signup">
+            <Button size="lg" className="gap-2" data-testid="button-request-b2b-access">
+              Request B2B Access
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
+        </div>
+      </Card>
+    </div>
+  );
 }
 
 function ChainTrackLanding() {
