@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -13,7 +12,6 @@ import { Upload, FileText, Calculator, Building2, Users, Clock, CheckCircle, Sma
 
 export default function CorporateCombined() {
   const { toast } = useToast();
-  const [activeTab, setActiveTab] = useState("cobone");
   
   // Cobone form state
   const [coboneFormData, setCoboneFormData] = useState({
@@ -138,11 +136,11 @@ export default function CorporateCombined() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">
-            Corporate Trade-in Solutions
+            Corporate Trade-in
           </h1>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            Choose between our cobranded partnership programs or direct bulk trade-in services. 
-            Both options help your organization upgrade devices while maximizing environmental impact.
+            Enterprise device trade-in management program. We handle your entire corporate device lifecycle 
+            from IT asset management to employee benefit distribution, freeing up your IT and HR departments.
           </p>
         </div>
 
@@ -197,243 +195,67 @@ export default function CorporateCombined() {
           </Card>
         </div>
 
-        {/* Main Content Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="cobone" className="text-lg py-3">
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-5 h-5" />
-                Cobone Partnership
-              </div>
-            </TabsTrigger>
-            <TabsTrigger value="bulk" className="text-lg py-3">
-              <div className="flex items-center gap-2">
-                <Calculator className="w-5 h-5" />
-                Bulk Trade-in
-              </div>
-            </TabsTrigger>
-          </TabsList>
-
-          {/* Cobone Partnership Tab */}
-          <TabsContent value="cobone" className="space-y-8">
-            {/* Cobone Partnership Hero */}
-            <Card className="bg-gradient-to-r from-blue-600 to-green-500 text-white border-0">
-              <CardContent className="pt-8 pb-8">
-                <div className="flex justify-center items-center gap-8 mb-6">
-                  <div className="text-3xl font-bold text-white">Cobone</div>
-                  <div className="text-2xl text-white/80">×</div>
-                  <div className="text-3xl font-bold text-white">DeliWer</div>
-                </div>
-                <h2 className="text-2xl font-bold text-center mb-4">
-                  Enterprise Trade-In Management Program
-                </h2>
-                <p className="text-center text-white/90 max-w-3xl mx-auto">
-                  Let DeliWer handle your entire corporate device trade-in program. We take full responsibility 
-                  from IT asset management to employee benefit distribution, freeing up your IT and HR departments 
-                  while providing employees with independent access to their trade-in benefits.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Partnership Benefits */}
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <Smartphone className="w-6 h-6 text-blue-400" />
-                    Zero IT Burden
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-400">
-                    Complete device lifecycle management handled by DeliWer. Your IT team provides device list, 
-                    we handle collection, valuation, data wiping, and benefit distribution to employees.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <Building2 className="w-6 h-6 text-green-400" />
-                    Employee Self-Service
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-400">
-                    Employees receive personalized redemption codes to access their trade-in benefits independently 
-                    through our partner portal - no HR department involvement required.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <Recycle className="w-6 h-6 text-purple-400" />
-                    Automated Compliance
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-400">
-                    Secure data destruction certificates, ESG impact reporting, and audit trails 
-                    delivered automatically - meeting corporate compliance without departmental overhead.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Cobone Partnership Form */}
-            <Card className="bg-slate-800/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white">Request Partnership Information</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleCoboneSubmit} className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-white text-sm font-medium">Company Name *</label>
-                      <Input
-                        name="companyName"
-                        value={coboneFormData.companyName}
-                        onChange={handleCoboneInputChange}
-                        required
-                        className="bg-slate-700 border-slate-600 text-white"
-                        data-testid="input-cobone-company"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-white text-sm font-medium">Contact Name *</label>
-                      <Input
-                        name="contactName"
-                        value={coboneFormData.contactName}
-                        onChange={handleCoboneInputChange}
-                        required
-                        className="bg-slate-700 border-slate-600 text-white"
-                        data-testid="input-cobone-contact"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-white text-sm font-medium">Email *</label>
-                      <Input
-                        name="email"
-                        type="email"
-                        value={coboneFormData.email}
-                        onChange={handleCoboneInputChange}
-                        required
-                        className="bg-slate-700 border-slate-600 text-white"
-                        data-testid="input-cobone-email"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-white text-sm font-medium">Phone</label>
-                      <Input
-                        name="phone"
-                        value={coboneFormData.phone}
-                        onChange={handleCoboneInputChange}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        data-testid="input-cobone-phone"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-white text-sm font-medium">Industry</label>
-                      <Input
-                        name="industry"
-                        value={coboneFormData.industry}
-                        onChange={handleCoboneInputChange}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        data-testid="input-cobone-industry"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-white text-sm font-medium">Expected Device Count</label>
-                      <Input
-                        name="deviceCount"
-                        value={coboneFormData.deviceCount}
-                        onChange={handleCoboneInputChange}
-                        className="bg-slate-700 border-slate-600 text-white"
-                        data-testid="input-cobone-device-count"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-white text-sm font-medium">Partnership Interests</label>
-                    <Textarea
-                      name="message"
-                      value={coboneFormData.message}
-                      onChange={handleCoboneInputChange}
-                      placeholder="Tell us about your partnership goals and requirements..."
-                      className="bg-slate-700 border-slate-600 text-white"
-                      data-testid="textarea-cobone-message"
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit"
-                    disabled={submitCoboneInquiry.isPending}
-                    className="w-full bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600"
-                    data-testid="button-submit-cobone"
-                  >
-                    {submitCoboneInquiry.isPending ? "Submitting..." : "Request Partnership Information"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Bulk Trade-in Tab */}
-          <TabsContent value="bulk" className="space-y-8">
-            {/* Corporate Process - IT/HR Focused */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-white text-center mb-6">Simplified Corporate Trade-In Process</h3>
-              <p className="text-gray-300 text-center mb-8 max-w-4xl mx-auto">
-                IT Managers: Submit device list once. HR Managers: Zero ongoing administration. 
-                Employees: Access benefits independently through secure redemption portal.
+        {/* Main Content */}
+        <div className="space-y-8">
+          {/* Hero Section */}
+          <Card className="bg-gradient-to-r from-blue-600 to-green-500 text-white border-0">
+            <CardContent className="pt-8 pb-8">
+              <h2 className="text-2xl font-bold text-center mb-4">
+                Enterprise Trade-In Management Program
+              </h2>
+              <p className="text-center text-white/90 max-w-3xl mx-auto">
+                DeliWer handles your entire corporate device trade-in program with full responsibility 
+                from IT asset management to employee benefit distribution, freeing up your IT and HR departments 
+                while providing employees with independent access to their trade-in benefits.
               </p>
-            </div>
+            </CardContent>
+          </Card>
+
+          {/* Corporate Trade-in Process */}
+          <div>
+            <h3 className="text-2xl font-bold text-white text-center mb-6">Simplified Corporate Trade-In Process</h3>
+            <p className="text-gray-300 text-center mb-8 max-w-4xl mx-auto">
+              IT Managers: Submit device list once. HR Managers: Zero ongoing administration. 
+              Employees: Access benefits independently through secure redemption portal.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-4 gap-4 mb-8">
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardContent className="pt-6 text-center">
+                <FileText className="w-12 h-12 text-blue-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">1. IT Submits List</h3>
+                <p className="text-gray-400 text-sm">IT provides device inventory with employee assignments - one-time submission</p>
+              </CardContent>
+            </Card>
             
-            <div className="grid md:grid-cols-4 gap-4 mb-8">
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardContent className="pt-6 text-center">
-                  <FileText className="w-12 h-12 text-blue-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">1. IT Submits List</h3>
-                  <p className="text-gray-400 text-sm">IT provides device inventory with employee assignments - one-time submission</p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardContent className="pt-6 text-center">
-                  <Calculator className="w-12 h-12 text-green-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">2. DeliWer Handles All</h3>
-                  <p className="text-gray-400 text-sm">Secure pickup, data wiping, valuation, and compliance documentation - zero IT involvement</p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardContent className="pt-6 text-center">
-                  <Upload className="w-12 h-12 text-purple-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">3. Employees Get Codes</h3>
-                  <p className="text-gray-400 text-sm">Personal redemption codes sent directly to employees via email - no HR distribution needed</p>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-slate-800/50 border-slate-700">
-                <CardContent className="pt-6 text-center">
-                  <CheckCircle className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
-                  <h3 className="text-white font-semibold mb-2">4. Independent Redemption</h3>
-                  <p className="text-gray-400 text-sm">Employees redeem benefits through partner portal (like Cobone) - completely self-service</p>
-                </CardContent>
-              </Card>
-            </div>
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardContent className="pt-6 text-center">
+                <Calculator className="w-12 h-12 text-green-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">2. DeliWer Handles All</h3>
+                <p className="text-gray-400 text-sm">Secure pickup, data wiping, valuation, and compliance documentation - zero IT involvement</p>
+              </CardContent>
+            </Card>
             
-            {/* Benefits for Different Departments */}
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardContent className="pt-6 text-center">
+                <Upload className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">3. Employees Get Codes</h3>
+                <p className="text-gray-400 text-sm">Personal redemption codes sent directly to employees via email - no HR distribution needed</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardContent className="pt-6 text-center">
+                <CheckCircle className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">4. Independent Redemption</h3>
+                <p className="text-gray-400 text-sm">Employees redeem benefits through partner portal (like Cobone) - completely self-service</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Key Benefits */}
+          {/* Benefits for Different Departments */}
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <Card className="bg-blue-900/30 border-blue-500/30">
                 <CardHeader>
@@ -631,8 +453,7 @@ export default function CorporateCombined() {
                 </Button>
               </CardContent>
             </Card>
-          </TabsContent>
-        </Tabs>
+        </div>
       </div>
     </div>
   );
