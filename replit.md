@@ -84,20 +84,34 @@ Without these variables, the application runs in demo mode with mock data.
 - **Documentation**: Full deployment guide in /deploy/README.md
 
 ## ChainTrack B2B Platform (October 22, 2025)
+
+### Trade Secret Protection & Security
 ✅ **Security Enhancement**: Protected trade secrets by removing all supplier names from UI
 ✅ **Region-Based Classification**: Database schema updated with region field (US, Japan, China, Europe)
 ✅ **Landing Page**: Supplier names replaced with regional market coverage (United States, Japan, China)
 ✅ **Dashboard Updates**: "Source" filter and column replaced with "Region" throughout
-✅ **B2B Navigation**: ChainTrack added with highlighted featured styling in B2B menu
-✅ **Domain Routing**: chaintrack.deliwer.com and www.chaintrack.com redirect to /chaintrack
 ✅ **Trade Secret Protection**: Confidential supplier identities (WeSellCellular, GSMBid, B2BMobileAuction) completely hidden
-✅ **Database Migration**: Successfully pushed schema changes with region field addition
+
+### Navigation & Routing (Latest Update)
+✅ **Context-Aware Home Button**: Home button links to /chaintrack in B2B mode, regular homepage in Consumer mode
+✅ **ChainTrack Integration**: ChainTrack now serves as B2B homepage (not a separate menu item)
+✅ **Domain Routing**: Only www.chaintrack.com routes to /chaintrack (deliwer.com routing untouched)
+✅ **Consumer/B2B Toggle**: Preserved for easy switching between modes
+
+### B2B Buyer Authentication & Verification
+✅ **Login-Gated Access**: Inventory and prices visible only to verified B2B wholesale buyers
+✅ **User Schema Enhancement**: Added userType ('consumer' or 'b2b_buyer'), isB2BVerified, businessLicense, tradeLicense fields
+✅ **Registration Flow**: B2B wholesale buyer signup collects company name, business license, and trade license
+✅ **Manual Verification**: New B2B accounts require admin approval (isB2BVerified defaults to false)
+✅ **Access Control**: Three user states handled - unauthenticated (landing page), authenticated but unverified (pending message), verified B2B buyer (full dashboard access)
+✅ **Security Model**: Matches industry standards (wesellcellular, handelot, gsmb2b)
 
 ### ChainTrack Security Policy
 - Supplier source names are confidential and stored only in backend database
 - Frontend displays only regional classifications to buyers
 - Trade secrets protected: no supplier names exposed in UI, API responses, or marketing copy
 - Region classifications: US, Japan, China, Europe (extensible for new markets)
+- B2B buyers must be manually verified before accessing inventory and pricing
 
 ## Notes
 - Service worker for image optimization may show registration warnings in development - this is normal
