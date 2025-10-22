@@ -55,13 +55,20 @@ import HeroDashboard from "@/pages/hero-dashboard";
 import IcelandicGlacialLandingPage from "@/pages/icelandic-glacial";
 
 function Router() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const basePath = import.meta.env.VITE_BASE_PATH || "";
 
   useEffect(() => {
+    // Domain-based routing for ChainTrack
+    const hostname = window.location.hostname;
+    if ((hostname === 'chaintrack.deliwer.com' || hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
+      setLocation('/chaintrack');
+      return;
+    }
+    
     // Immediately scroll to top when route changes
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [location, setLocation]);
 
   return (
     <WouterRouter base={basePath}>

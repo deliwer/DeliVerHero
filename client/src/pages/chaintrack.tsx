@@ -64,8 +64,8 @@ function ChainTrackLanding() {
           </p>
           
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-            Access consolidated stock from WeSellCellular, GSMBid, and B2B Mobile Auction in one unified platform. 
-            Compare prices, find the best deals, and streamline your wholesale purchasing.
+            Access consolidated wholesale phone inventory from trusted global sources in one unified platform. 
+            Compare prices across US, Japan, and China markets, find the best deals, and streamline your wholesale purchasing.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -154,28 +154,28 @@ function ChainTrackLanding() {
           </div>
         </div>
 
-        {/* Inventory Sources */}
+        {/* Global Market Coverage */}
         <div className="mt-24 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Inventory Sources</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Global Market Coverage</h2>
           
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="p-6 text-center">
               <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Building2 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">WeSellCellular</h3>
+              <h3 className="text-lg font-semibold mb-2">United States</h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                US-based distributor with extensive iPhone and Samsung inventory
+                Access US market inventory with extensive iPhone and Samsung stock availability
               </p>
             </Card>
 
             <Card className="p-6 text-center">
               <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <Globe className="w-6 h-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">GSMBid</h3>
+              <h3 className="text-lg font-semibold mb-2">Japan</h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                UAE auction platform with daily stock reports and competitive pricing
+                Premium Japan-sourced devices with high-quality grading standards
               </p>
             </Card>
 
@@ -183,9 +183,9 @@ function ChainTrackLanding() {
               <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <Package className="w-6 h-6 text-green-600 dark:text-green-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">B2B Mobile Auction</h3>
+              <h3 className="text-lg font-semibold mb-2">China</h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                Bulk lot auctions from US suppliers with volume discounts
+                Competitive pricing on volume orders from China market sources
               </p>
             </Card>
           </div>
@@ -383,15 +383,15 @@ function ChainTrackDashboard() {
             </Select>
           </div>
           <div>
-            <Label htmlFor="source">Source</Label>
+            <Label htmlFor="region">Region</Label>
             <Select value={sourceFilter} onValueChange={setSourceFilter}>
-              <SelectTrigger id="source" data-testid="select-source">
-                <SelectValue placeholder="All Sources" />
+              <SelectTrigger id="region" data-testid="select-region">
+                <SelectValue placeholder="All Regions" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Sources</SelectItem>
+                <SelectItem value="all">All Regions</SelectItem>
                 {sources?.map((source) => (
-                  <SelectItem key={source.id} value={source.id}>{source.sourceName}</SelectItem>
+                  <SelectItem key={source.id} value={source.id}>{source.region || 'Global'}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -425,7 +425,7 @@ function ChainTrackDashboard() {
                     <th className="text-left py-3 px-4 font-semibold">Grade</th>
                     <th className="text-left py-3 px-4 font-semibold">Qty</th>
                     <th className="text-left py-3 px-4 font-semibold">Price</th>
-                    <th className="text-left py-3 px-4 font-semibold">Source</th>
+                    <th className="text-left py-3 px-4 font-semibold">Region</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -442,8 +442,8 @@ function ChainTrackDashboard() {
                       <td className="py-3 px-4">{item.availableQuantity}</td>
                       <td className="py-3 px-4 font-semibold">{formatPrice(item.price, item.currency)}</td>
                       <td className="py-3 px-4">
-                        <span className="inline-flex items-center gap-1 text-sm text-muted-foreground">
-                          {item.source?.sourceCode || 'Unknown'}
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                          {item.source?.region || 'Global'}
                         </span>
                       </td>
                     </tr>

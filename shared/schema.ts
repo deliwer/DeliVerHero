@@ -1637,9 +1637,10 @@ export const b2bBuyers = pgTable("b2b_buyers", {
 // Inventory Sources - Track different suppliers
 export const inventorySources = pgTable("inventory_sources", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  sourceName: text("source_name").notNull().unique(), // WeSellCellular, GSMBid, B2BMobileAuction
-  sourceCode: text("source_code").notNull().unique(), // WSC, GSMBID, B2BMA
+  sourceName: text("source_name").notNull().unique(), // Internal tracking name (confidential)
+  sourceCode: text("source_code").notNull().unique(), // Internal code (confidential)
   sourceType: text("source_type").notNull(), // distributor, auction, marketplace
+  region: text("region").notNull().default("US"), // US, Japan, China, Europe (displayed to users)
   contactEmail: text("contact_email"),
   contactPhone: text("contact_phone"),
   website: text("website"),
