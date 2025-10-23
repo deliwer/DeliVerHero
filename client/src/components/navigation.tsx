@@ -44,9 +44,9 @@ export function Navigation() {
   ];
 
   const b2bNavItems = [
+    { path: "/chaintrack", label: "Wholesale Hub", id: "chaintrack" },
     { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
-    { path: "/partners", label: "Partner Program", id: "partners" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
   ];
 

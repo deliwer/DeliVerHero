@@ -19,6 +19,13 @@ import {
   Phone,
   Search,
   BarChart3,
+  Sparkles,
+  Plane,
+  Clock,
+  DollarSign,
+  Users,
+  Star,
+  Boxes,
 } from "lucide-react";
 
 export default function ChainTrackPage() {
@@ -116,9 +123,9 @@ function ChainTrackLanding() {
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-20">
         <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <Globe className="w-4 h-4" />
-            B2B Wholesale Inventory Platform
+            A DeliWer Shopping Metaverse Subsidiary
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
@@ -126,13 +133,20 @@ function ChainTrackLanding() {
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 mb-4">
-            Aggregated Wholesale Phone Inventory for Dubai Buyers
+            Dubai's Premier Mobile Sourcing Hub for MENA & Europe
           </p>
           
-          <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-            Access consolidated wholesale phone inventory from trusted global sources in one unified platform. 
-            Compare prices across US, Japan, and China markets, find the best deals, and streamline your wholesale purchasing.
+          <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+            Source wholesale phones from US, Japan, and China auctions without traveling. 
+            Access ASIS auction stock and ready-to-ship tested devices through one platform.
           </p>
+          
+          <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-8 max-w-2xl mx-auto">
+            <p className="text-sm text-blue-800 dark:text-blue-300 flex items-center justify-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              Serving buyers from Saudi Arabia, Iraq, Azerbaijan, North Africa & Europe
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/login">
@@ -150,37 +164,231 @@ function ChainTrackLanding() {
           </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mt-20 max-w-5xl mx-auto">
-          <Card className="p-6 border-2 hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
-              <Package className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+        {/* Why Dubai Over Travel */}
+        <div className="mt-20 max-w-5xl mx-auto">
+          <Card className="p-8 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-blue-950/30 border-2 border-purple-200 dark:border-purple-800">
+            <h2 className="text-3xl font-bold text-center mb-8">Why Source Through Dubai Instead of Traveling?</h2>
+            
+            <div className="grid md:grid-cols-3 gap-6 mb-6">
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4">
+                  <Plane className="w-8 h-8 text-red-600 dark:text-red-400" />
+                </div>
+                <h3 className="font-semibold mb-2">No Travel Required</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Save on flights, hotels, and visa costs. Source from your office in Dubai.
+                </p>
+              </div>
+              
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
+                  <Clock className="w-8 h-8 text-green-600 dark:text-green-400" />
+                </div>
+                <h3 className="font-semibold mb-2">Instant Access</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Browse real-time inventory 24/7. No waiting for auction schedules.
+                </p>
+              </div>
+              
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
+                  <DollarSign className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="font-semibold mb-2">Better Margins</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Lower service fees than traditional brokers. Transparent pricing.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Unified Inventory</h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              View stock from multiple suppliers in a single dashboard. No more switching between platforms.
-            </p>
+            
+            <div className="bg-white dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
+              <p className="text-sm text-center text-slate-600 dark:text-slate-400">
+                <strong className="text-slate-900 dark:text-slate-100">Strategic Location:</strong> Dubai serves as the perfect hub for MENA and European buyers, 
+                with direct access to US, Japan, and China auction markets.
+              </p>
+            </div>
           </Card>
+        </div>
 
-          <Card className="p-6 border-2 hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
-              <TrendingDown className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Price Comparison</h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              Instantly compare prices across sources to find the best wholesale deals for your business.
+        {/* Membership Tiers */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Membership Tiers</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              Choose the tier that matches your monthly volume. All tiers cover our $500 minimum monthly cost or 0.5% transaction fee.
             </p>
-          </Card>
+          </div>
 
-          <Card className="p-6 border-2 hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-            <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
-              <BarChart3 className="w-6 h-6 text-green-600 dark:text-green-400" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Real-Time Updates</h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              Get the latest inventory and pricing information from all connected sources.
-            </p>
-          </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* On-Demand Tier */}
+            <Card className="p-6 border-2 hover:border-blue-500 dark:hover:border-blue-400 transition-all">
+              <div className="text-center mb-4">
+                <h3 className="text-2xl font-bold mb-2">On-Demand</h3>
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">FREE</div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">No monthly commitment</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">Ready-to-Ship Stock Only</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">0.5% transaction fee</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">$500 minimum per month</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">Browse & compare prices</span>
+                </div>
+              </div>
+              <Button variant="outline" className="w-full" data-testid="button-tier-ondemand">
+                Start Free
+              </Button>
+            </Card>
+
+            {/* Starter Tier */}
+            <Card className="p-6 border-2 border-purple-500 dark:border-purple-400 relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  MOST POPULAR
+                </span>
+              </div>
+              <div className="text-center mb-4">
+                <h3 className="text-2xl font-bold mb-2">Starter</h3>
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">50+</div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">devices/month</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm font-semibold">ASIS Auction Stock Access</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">Ready-to-Ship Stock</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">0.3% fee on ASIS stock</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">0.5% fee on tested stock</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">Priority support</span>
+                </div>
+              </div>
+              <Button className="w-full bg-purple-600 hover:bg-purple-700" data-testid="button-tier-starter">
+                Get Started
+              </Button>
+            </Card>
+
+            {/* Growth Tier */}
+            <Card className="p-6 border-2 hover:border-blue-500 dark:hover:border-blue-400 transition-all">
+              <div className="text-center mb-4">
+                <h3 className="text-2xl font-bold mb-2">Growth</h3>
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">250+</div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">devices/month</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">All Starter features</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">0.25% fee on ASIS stock</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">0.4% fee on tested stock</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">Dedicated account manager</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">Custom sourcing requests</span>
+                </div>
+              </div>
+              <Button variant="outline" className="w-full" data-testid="button-tier-growth">
+                Contact Sales
+              </Button>
+            </Card>
+
+            {/* Enterprise Tier */}
+            <Card className="p-6 border-2 border-amber-500 dark:border-amber-400 bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-950/20 dark:to-yellow-950/20">
+              <div className="text-center mb-4">
+                <div className="flex items-center justify-center gap-1 mb-2">
+                  <Star className="w-5 h-5 text-amber-500" />
+                  <h3 className="text-2xl font-bold">Enterprise</h3>
+                  <Star className="w-5 h-5 text-amber-500" />
+                </div>
+                <div className="text-3xl font-bold text-amber-600 dark:text-amber-400 mb-1">500+</div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">devices/month</p>
+              </div>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">All Growth features</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm font-semibold">Custom negotiated rates</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">Direct auction participation</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">API integration available</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm">White-glove service</span>
+                </div>
+              </div>
+              <Button className="w-full bg-amber-600 hover:bg-amber-700" data-testid="button-tier-enterprise">
+                Request Quote
+              </Button>
+            </Card>
+          </div>
+
+          <div className="mt-8 text-center">
+            <Card className="p-6 bg-slate-50 dark:bg-slate-900/50 border-2">
+              <h3 className="font-semibold mb-3">Understanding Stock Types</h3>
+              <div className="grid md:grid-cols-2 gap-6 text-left">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Boxes className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    <h4 className="font-semibold text-blue-600 dark:text-blue-400">ASIS Auction Stock</h4>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Untested devices directly from major auctions. Lower prices, higher volume. 
+                    Best for buyers with in-house testing capabilities. Sold as-is without warranty.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
+                    <h4 className="font-semibold text-green-600 dark:text-green-400">Ready-to-Ship Tested</h4>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Pre-tested, graded devices ready for immediate resale. Higher quality assurance. 
+                    Includes warranties and detailed condition reports. Premium pricing.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
 
         {/* How It Works */}

@@ -21,6 +21,7 @@ export const users = pgTable("users", {
   tradeLicense: text("trade_license"),
   isB2BVerified: boolean("is_b2b_verified").notNull().default(false),
   b2bVerifiedAt: timestamp("b2b_verified_at"),
+  membershipTierId: varchar("membership_tier_id").references(() => chaintrackMembershipTiers.id), // ChainTrack membership tier
   
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
@@ -1649,6 +1650,7 @@ export const inventorySources = pgTable("inventory_sources", {
   sourceName: text("source_name").notNull().unique(), // Internal tracking name (confidential)
   sourceCode: text("source_code").notNull().unique(), // Internal code (confidential)
   sourceType: text("source_type").notNull(), // distributor, auction, marketplace
+  stockType: text("stock_type").notNull().default("ready_to_ship"), // asis_auction, ready_to_ship
   region: text("region").notNull().default("US"), // US, Japan, China, Europe (displayed to users)
   contactEmail: text("contact_email"),
   contactPhone: text("contact_phone"),
@@ -1744,6 +1746,45 @@ export const inventoryPriceHistory = pgTable("inventory_price_history", {
   recordedAt: timestamp("recorded_at").notNull().default(sql`now()`),
 });
 
+// ChainTrack Membership Tiers - Volume-based wholesale pricing
+export const chaintrackMembershipTiers = pgTable("chaintrack_membership_tiers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tierName: text("tier_name").notNull().unique(), // On-Demand, Starter, Growth, Pro, Enterprise
+  tierCode: text("tier_code").notNull().unique(), // ondemand, starter, growth, pro, enterprise
+  
+  // Volume Requirements (devices per month)
+  minDevicesPerMonth: integer("min_devices_per_month").notNull().default(0),
+  maxDevicesPerMonth: integer("max_devices_per_month"), // null for unlimited
+  
+  // Pricing Structure (covers $500 base or 0.5% transaction fee)
+  monthlyFeeUSD: integer("monthly_fee_usd").notNull().default(0), // Monthly fee in cents
+  transactionFeePercent: integer("transaction_fee_percent").notNull().default(50), // 0.5% = 50 basis points
+  minimumMonthlyFeeUSD: integer("minimum_monthly_fee_usd").notNull().default(50000), // $500 minimum
+  
+  // Stock Type Access
+  asisAuctionAccess: boolean("asis_auction_access").notNull().default(false), // Untested auction stock
+  readyToShipAccess: boolean("ready_to_ship_access").notNull().default(false), // Tested stock
+  
+  // Fee Rates by Stock Type
+  asisFeePercent: integer("asis_fee_percent").default(30), // 0.3% for ASIS stock (30 basis points)
+  readyToShipFeePercent: integer("ready_to_ship_fee_percent").default(50), // 0.5% for tested stock
+  
+  // Features & Benefits
+  features: jsonb("features").default([]), // Array of feature descriptions
+  priority: integer("priority").notNull().default(1), // Display order
+  
+  // Badge & Display
+  badgeColor: text("badge_color").default("#64748b"),
+  badgeText: text("badge_text"), // "Most Popular", "Best Value", etc.
+  
+  // Status
+  isActive: boolean("is_active").notNull().default(true),
+  isPublic: boolean("is_public").notNull().default(true), // Show on public pricing page
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
 // Insert Schemas
 export const insertB2bBuyerSchema = createInsertSchema(b2bBuyers).omit({
   id: true,
@@ -1769,6 +1810,12 @@ export const insertWholesaleInventorySchema = createInsertSchema(wholesaleInvent
   updatedAt: true,
 });
 
+export const insertChaintrackMembershipTierSchema = createInsertSchema(chaintrackMembershipTiers).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Types
 export type B2bBuyer = typeof b2bBuyers.$inferSelect;
 export type InsertB2bBuyer = z.infer<typeof insertB2bBuyerSchema>;
@@ -1779,3 +1826,5 @@ export type InsertInventoryUpload = z.infer<typeof insertInventoryUploadSchema>;
 export type WholesaleInventory = typeof wholesaleInventory.$inferSelect;
 export type InsertWholesaleInventory = z.infer<typeof insertWholesaleInventorySchema>;
 export type InventoryPriceHistory = typeof inventoryPriceHistory.$inferSelect;
+export type ChaintrackMembershipTier = typeof chaintrackMembershipTiers.$inferSelect;
+export type InsertChaintrackMembershipTier = z.infer<typeof insertChaintrackMembershipTierSchema>;
