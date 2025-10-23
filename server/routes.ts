@@ -1231,6 +1231,16 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // ChainTrack Membership Tiers endpoints
+  app.get("/api/chaintrack/tiers", async (req, res) => {
+    try {
+      const tiers = await storage.getChaintrackMembershipTiers();
+      res.json(tiers);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message || "Failed to fetch membership tiers" });
+    }
+  });
+
   // Contact form endpoint
   app.post("/api/contact", async (req, res) => {
     try {

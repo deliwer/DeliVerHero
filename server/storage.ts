@@ -315,6 +315,9 @@ export interface IStorage {
   getB2bBuyerByEmail(email: string): Promise<B2bBuyer | undefined>;
   createB2bBuyer(buyer: InsertB2bBuyer): Promise<B2bBuyer>;
   updateB2bBuyer(id: string, updates: Partial<B2bBuyer>): Promise<B2bBuyer | undefined>;
+  
+  // ChainTrack membership tiers
+  getChaintrackMembershipTiers(): Promise<ChaintrackMembershipTier[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -4188,6 +4191,102 @@ export class MemStorage implements IStorage {
     const updated = { ...buyer, ...updates, updatedAt: new Date() };
     this.b2bBuyers.set(id, updated);
     return updated;
+  }
+
+  // ChainTrack membership tiers
+  async getChaintrackMembershipTiers(): Promise<ChaintrackMembershipTier[]> {
+    // Return hardcoded tier data with proper pricing structure
+    // Note: All fees stored in basis points (50 = 0.5%), USD amounts in cents
+    return [
+      {
+        id: '1',
+        tierName: 'On-Demand',
+        tierCode: 'ondemand',
+        minDevicesPerMonth: 0,
+        maxDevicesPerMonth: 49, // Cap at 49 to enforce tier progression
+        monthlyFeeUSD: 0, // No monthly fee (in cents)
+        transactionFeePercent: 50, // 0.5% general transaction fee (basis points)
+        minimumMonthlyFeeUSD: 50000, // $500 minimum (in cents)
+        asisAuctionAccess: false, // No ASIS auction access
+        readyToShipAccess: true, // Only ready-to-ship tested stock
+        asisFeePercent: null, // N/A - no ASIS access
+        readyToShipFeePercent: 50, // 0.5% fee on tested stock (basis points)
+        features: ['Ready-to-Ship Stock Only', '0.5% transaction fee', '$500 minimum per month', 'Browse & compare prices'],
+        priority: 1,
+        badgeColor: '#64748b',
+        badgeText: null,
+        isActive: true,
+        isPublic: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: '2',
+        tierName: 'Starter',
+        tierCode: 'starter',
+        minDevicesPerMonth: 50,
+        maxDevicesPerMonth: 249,
+        monthlyFeeUSD: 0,
+        transactionFeePercent: 30, // Average transaction fee (basis points)
+        minimumMonthlyFeeUSD: 50000, // $500 minimum (in cents)
+        asisAuctionAccess: true,
+        readyToShipAccess: true,
+        asisFeePercent: 30, // 0.3% fee on ASIS stock (basis points)
+        readyToShipFeePercent: 50, // 0.5% fee on tested stock (basis points)
+        features: ['ASIS Auction Stock Access', 'Ready-to-Ship Stock', '0.3% fee on ASIS stock', '0.5% fee on tested stock', 'Priority support'],
+        priority: 2,
+        badgeColor: '#a855f7',
+        badgeText: 'MOST POPULAR',
+        isActive: true,
+        isPublic: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: '3',
+        tierName: 'Growth',
+        tierCode: 'growth',
+        minDevicesPerMonth: 250,
+        maxDevicesPerMonth: 499,
+        monthlyFeeUSD: 0,
+        transactionFeePercent: 25, // Average transaction fee (basis points)
+        minimumMonthlyFeeUSD: 50000, // $500 minimum (in cents)
+        asisAuctionAccess: true,
+        readyToShipAccess: true,
+        asisFeePercent: 25, // 0.25% fee on ASIS stock (basis points)
+        readyToShipFeePercent: 40, // 0.4% fee on tested stock (basis points)
+        features: ['All Starter features', '0.25% fee on ASIS stock', '0.4% fee on tested stock', 'Dedicated account manager', 'Custom sourcing requests'],
+        priority: 3,
+        badgeColor: '#3b82f6',
+        badgeText: null,
+        isActive: true,
+        isPublic: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: '4',
+        tierName: 'Enterprise',
+        tierCode: 'enterprise',
+        minDevicesPerMonth: 500,
+        maxDevicesPerMonth: null, // Unlimited for enterprise
+        monthlyFeeUSD: 0,
+        transactionFeePercent: 20, // Average (basis points)
+        minimumMonthlyFeeUSD: 50000, // $500 minimum (in cents)
+        asisAuctionAccess: true,
+        readyToShipAccess: true,
+        asisFeePercent: 20, // Custom negotiated, starting at 0.2% (basis points)
+        readyToShipFeePercent: 35, // Custom negotiated, starting at 0.35% (basis points)
+        features: ['All Growth features', 'Custom negotiated rates', 'Direct auction participation', 'API integration available', 'White-glove service'],
+        priority: 4,
+        badgeColor: '#f59e0b',
+        badgeText: null,
+        isActive: true,
+        isPublic: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ];
   }
 }
 
