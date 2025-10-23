@@ -106,6 +106,20 @@ Without these variables, the application runs in demo mode with mock data.
 ✅ **Access Control**: Three user states handled - unauthenticated (landing page), authenticated but unverified (pending message), verified B2B buyer (full dashboard access)
 ✅ **Security Model**: Matches industry standards (wesellcellular, handelot, gsmb2b)
 
+### ChainTrack Membership Tiers (October 23, 2025)
+✅ **API Endpoint**: GET /api/chaintrack/tiers returns all membership tier data
+✅ **Tier Structure**: 4 tiers with volume-based pricing (On-Demand 0-49, Starter 50-249, Growth 250-499, Enterprise 500+)
+✅ **Dual Fee Model**: Separate pricing for ASIS auction stock (0.2-0.5%) vs ready-to-ship tested stock (0.35-0.5%)
+✅ **Cost Coverage**: All tiers enforce $500 minimum monthly fee (stored as 50000 cents in database)
+✅ **Storage Implementation**: In-memory tier data with production-ready structure including features, badges, and access flags
+✅ **Schema Fields**: Comprehensive chaintrackMembershipTiers table with volume ranges, fee basis points, stock access flags, and display metadata
+
+**Membership Tiers:**
+- **On-Demand** (FREE): 0-49 devices/month, Ready-to-Ship access only, 0.5% transaction fee, $500 minimum
+- **Starter** (MOST POPULAR): 50-249 devices, ASIS + Ready-to-Ship access, 0.3%/0.5% fees, $500 minimum
+- **Growth**: 250-499 devices, lower fees (0.25%/0.4%), dedicated account manager, $500 minimum
+- **Enterprise**: 500+ devices, custom rates (0.2%/0.35%), API integration, white-glove service, $500 minimum
+
 ### ChainTrack Security Policy
 - Supplier source names are confidential and stored only in backend database
 - Frontend displays only regional classifications to buyers
