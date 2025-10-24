@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { 
   Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, 
   Briefcase, ShoppingCart, UserCircle, ChevronDown, LogIn, UserPlus, 
-  Settings, HelpCircle, Star, Trophy 
+  Settings, HelpCircle, Star, Trophy, TrendingDown 
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
@@ -44,7 +44,7 @@ export function Navigation() {
   ];
 
   const b2bNavItems = [
-    { path: "/chaintrack", label: "Wholesale Hub", id: "chaintrack" },
+    { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack", featured: true },
     { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
@@ -75,7 +75,7 @@ export function Navigation() {
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
                 
-                // Special styling for featured Play button
+                // Special styling for featured Play button (Consumer)
                 if (item.id === "play") {
                   return (
                     <Link
@@ -92,7 +92,24 @@ export function Navigation() {
                   );
                 }
                 
-                // Special styling for partners link
+                // Special styling for featured ChainTrack/Reverse Bidding (B2B)
+                if (item.id === "chaintrack" && item.featured) {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border-2 border-blue-500/60 rounded-lg text-white hover:from-blue-600/40 hover:to-cyan-600/40 hover:border-blue-400/80 transition-all duration-300 shadow-xl hover:shadow-blue-500/30">
+                        <span className="font-bold text-lg">{item.label}</span>
+                        <TrendingDown className="w-4 h-4 text-green-400" />
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for partners link (Consumer)
                 if (item.id === "partners") {
                   return (
                     <Link
