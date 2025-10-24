@@ -45,6 +45,32 @@ import {
 } from "lucide-react";
 
 export default function ChainTrackPage() {
+  const { data: user, isLoading: userLoading } = useQuery<User>({
+    queryKey: ['/api/user/profile'],
+  });
+
+  if (userLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-4 text-muted-foreground">Loading ChainTrack...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Verified B2B buyers get the dashboard
+  if (user?.userType === 'b2b_buyer' && user?.isB2BVerified) {
+    return <ChainTrackDashboard user={user} />;
+  }
+  
+  // Unverified B2B buyers see verification pending
+  if (user?.userType === 'b2b_buyer' && !user?.isB2BVerified) {
+    return <VerificationPending />;
+  }
+
+  // Everyone else (unauthenticated users, consumer users) sees the public landing page
   return <ChainTrackLanding />;
 }
 
