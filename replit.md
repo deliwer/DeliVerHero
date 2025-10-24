@@ -120,7 +120,7 @@ Without these variables, the application runs in demo mode with mock data.
 - **Growth**: 250-499 devices, lower fees (0.25%/0.4%), dedicated account manager, $500 minimum
 - **Enterprise**: 500+ devices, custom rates (0.2%/0.35%), API integration, white-glove service, $500 minimum
 
-### Enhanced Landing Page (October 24, 2025)
+### Enhanced Landing Page & User Experience (October 24, 2025)
 ✅ **Dubai Airport Freezone Context**: Hero section emphasizes operating from Dubai Airport Freezone
 ✅ **Global Market Access**: Visual cards for US, Japan, China, Europe with distinct colors and regional descriptions
 ✅ **Inventory Categories**: Prominent ASIS Auction Stock vs Ready-to-Ship Tested cards with feature badges
@@ -128,9 +128,16 @@ Without these variables, the application runs in demo mode with mock data.
 ✅ **Simplified 3-Step Process**: Clear visual breakdown of Post → Compete → Accept flow
 ✅ **Enhanced CTA**: Dubai Airport Freezone emphasis with global market/inventory summary in final call-to-action
 ✅ **Page Flow**: Hero → Regions/Inventory → Traditional vs Reverse Comparison → 3-Step Process → Membership Tiers → Final CTA
-✅ **Public Access**: ChainTrack landing page is now publicly accessible (not login-gated) for wholesale buyer education
+
+**User Access Control (October 24, 2025)**:
+✅ **Public Landing Page**: ChainTrack landing page at /chaintrack is publicly accessible for wholesale buyer education
+✅ **Smart Routing**: Conditional rendering based on user state:
+  - Unauthenticated users → Public landing page (educational marketing)
+  - Consumer users → Public landing page (educational access)
+  - Unverified B2B buyers → Verification pending screen
+  - Verified B2B buyers → Full ChainTrack dashboard and inventory access
 ✅ **B2B Navigation**: Enhanced menu with featured "Reverse Bidding" link styled with gradient blue background and TrendingDown icon
-✅ **Code Quality**: Fixed all 16 LSP errors - corrected field names (title, productType, startingPrice, endDate) and apiRequest calls to match schema
+✅ **Code Quality**: Fixed all 16 LSP errors - corrected auction field names (title, productType, startingPrice, endDate) and apiRequest calls to match schema signature
 
 ### ChainTrack Security Policy
 - Supplier source names are confidential and stored only in backend database
