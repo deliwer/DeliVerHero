@@ -318,6 +318,58 @@ export interface IStorage {
   
   // ChainTrack membership tiers
   getChaintrackMembershipTiers(): Promise<ChaintrackMembershipTier[]>;
+  
+  // ============================================================================
+  // CHAINTRACK REVERSE BIDDING SYSTEM
+  // ============================================================================
+  
+  // Auctions
+  getChaintrackAuctions(filters?: { status?: string; buyerId?: string }): Promise<ChaintrackAuction[]>;
+  getChaintrackAuction(id: string): Promise<ChaintrackAuction | undefined>;
+  createChaintrackAuction(auction: InsertChaintrackAuction): Promise<ChaintrackAuction>;
+  updateChaintrackAuction(id: string, updates: Partial<ChaintrackAuction>): Promise<ChaintrackAuction | undefined>;
+  closeChaintrackAuction(id: string): Promise<ChaintrackAuction | undefined>;
+  deleteChaintrackAuction(id: string): Promise<boolean>;
+  
+  // Bids
+  getChaintrackBids(filters?: { auctionId?: string; supplierId?: string; status?: string }): Promise<ChaintrackBid[]>;
+  getChaintrackBid(id: string): Promise<ChaintrackBid | undefined>;
+  placeChaintrackBid(bid: InsertChaintrackBid): Promise<ChaintrackBid>;
+  withdrawChaintrackBid(id: string): Promise<ChaintrackBid | undefined>;
+  acceptChaintrackBid(bidId: string, buyerId: string): Promise<{ bid: ChaintrackBid; transaction: ChaintrackTransaction }>;
+  rejectChaintrackBid(bidId: string): Promise<ChaintrackBid | undefined>;
+  
+  // Suppliers
+  getChaintrackSuppliers(filters?: { verificationStatus?: string }): Promise<ChaintrackSupplier[]>;
+  getChaintrackSupplier(id: string): Promise<ChaintrackSupplier | undefined>;
+  getChaintrackSupplierByUserId(userId: string): Promise<ChaintrackSupplier | undefined>;
+  createChaintrackSupplier(supplier: InsertChaintrackSupplier): Promise<ChaintrackSupplier>;
+  updateChaintrackSupplier(id: string, updates: Partial<ChaintrackSupplier>): Promise<ChaintrackSupplier | undefined>;
+  verifyChaintrackSupplier(id: string): Promise<ChaintrackSupplier | undefined>;
+  
+  // Inventory
+  getChaintrackInventory(filters?: { supplierId?: string; status?: string }): Promise<ChaintrackInventory[]>;
+  getChaintrackInventoryItem(id: string): Promise<ChaintrackInventory | undefined>;
+  createChaintrackInventoryItem(item: InsertChaintrackInventory): Promise<ChaintrackInventory>;
+  updateChaintrackInventoryItem(id: string, updates: Partial<ChaintrackInventory>): Promise<ChaintrackInventory | undefined>;
+  deleteChaintrackInventoryItem(id: string): Promise<boolean>;
+  
+  // Inspections
+  getChaintrackInspections(filters?: { auctionId?: string }): Promise<ChaintrackInspection[]>;
+  getChaintrackInspection(id: string): Promise<ChaintrackInspection | undefined>;
+  createChaintrackInspection(inspection: InsertChaintrackInspection): Promise<ChaintrackInspection>;
+  updateChaintrackInspection(id: string, updates: Partial<ChaintrackInspection>): Promise<ChaintrackInspection | undefined>;
+  
+  // Transactions
+  getChaintrackTransactions(filters?: { buyerId?: string; supplierId?: string }): Promise<ChaintrackTransaction[]>;
+  getChaintrackTransaction(id: string): Promise<ChaintrackTransaction | undefined>;
+  createChaintrackTransaction(transaction: InsertChaintrackTransaction): Promise<ChaintrackTransaction>;
+  updateChaintrackTransactionStatus(id: string, paymentStatus?: string, shippingStatus?: string): Promise<ChaintrackTransaction | undefined>;
+  
+  // Ratings
+  getChaintrackRatings(filters?: { ratedUserId?: string; transactionId?: string }): Promise<ChaintrackRating[]>;
+  getChaintrackRating(id: string): Promise<ChaintrackRating | undefined>;
+  createChaintrackRating(rating: InsertChaintrackRating): Promise<ChaintrackRating>;
 }
 
 export class MemStorage implements IStorage {
@@ -384,6 +436,15 @@ export class MemStorage implements IStorage {
   private wholesaleInventory: Map<string, WholesaleInventory>;
   private b2bBuyers: Map<string, B2bBuyer>;
 
+  // ChainTrack Reverse Bidding System
+  private chaintrackAuctions: Map<string, ChaintrackAuction>;
+  private chaintrackBids: Map<string, ChaintrackBid>;
+  private chaintrackSuppliers: Map<string, ChaintrackSupplier>;
+  private chaintrackInventory: Map<string, ChaintrackInventory>;
+  private chaintrackInspections: Map<string, ChaintrackInspection>;
+  private chaintrackTransactions: Map<string, ChaintrackTransaction>;
+  private chaintrackRatings: Map<string, ChaintrackRating>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -445,6 +506,15 @@ export class MemStorage implements IStorage {
     this.inventoryUploads = new Map();
     this.wholesaleInventory = new Map();
     this.b2bBuyers = new Map();
+    
+    // Initialize ChainTrack reverse bidding system
+    this.chaintrackAuctions = new Map();
+    this.chaintrackBids = new Map();
+    this.chaintrackSuppliers = new Map();
+    this.chaintrackInventory = new Map();
+    this.chaintrackInspections = new Map();
+    this.chaintrackTransactions = new Map();
+    this.chaintrackRatings = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -4287,6 +4357,410 @@ export class MemStorage implements IStorage {
         updatedAt: new Date(),
       },
     ];
+  }
+
+  // ============================================================================
+  // CHAINTRACK REVERSE BIDDING SYSTEM METHODS
+  // ============================================================================
+
+  // Auctions
+  async getChaintrackAuctions(filters?: { status?: string; buyerId?: string }): Promise<ChaintrackAuction[]> {
+    let auctions = Array.from(this.chaintrackAuctions.values());
+    
+    if (filters?.status) {
+      auctions = auctions.filter(a => a.status === filters.status);
+    }
+    if (filters?.buyerId) {
+      auctions = auctions.filter(a => a.buyerId === filters.buyerId);
+    }
+    
+    return auctions.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getChaintrackAuction(id: string): Promise<ChaintrackAuction | undefined> {
+    return this.chaintrackAuctions.get(id);
+  }
+
+  async createChaintrackAuction(auction: InsertChaintrackAuction): Promise<ChaintrackAuction> {
+    const newAuction: ChaintrackAuction = {
+      id: randomUUID(),
+      ...auction,
+      currentLowestBid: null,
+      winningSupplierId: null,
+      winningBidId: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackAuctions.set(newAuction.id, newAuction);
+    return newAuction;
+  }
+
+  async updateChaintrackAuction(id: string, updates: Partial<ChaintrackAuction>): Promise<ChaintrackAuction | undefined> {
+    const auction = this.chaintrackAuctions.get(id);
+    if (!auction) return undefined;
+    
+    const updated = { ...auction, ...updates, updatedAt: new Date() };
+    this.chaintrackAuctions.set(id, updated);
+    return updated;
+  }
+
+  async closeChaintrackAuction(id: string): Promise<ChaintrackAuction | undefined> {
+    return this.updateChaintrackAuction(id, { status: 'closed' });
+  }
+
+  async deleteChaintrackAuction(id: string): Promise<boolean> {
+    return this.chaintrackAuctions.delete(id);
+  }
+
+  // Bids
+  async getChaintrackBids(filters?: { auctionId?: string; supplierId?: string; status?: string }): Promise<ChaintrackBid[]> {
+    let bids = Array.from(this.chaintrackBids.values());
+    
+    if (filters?.auctionId) {
+      bids = bids.filter(b => b.auctionId === filters.auctionId);
+    }
+    if (filters?.supplierId) {
+      bids = bids.filter(b => b.supplierId === filters.supplierId);
+    }
+    if (filters?.status) {
+      bids = bids.filter(b => b.status === filters.status);
+    }
+    
+    return bids.sort((a, b) => a.bidPrice - b.bidPrice);
+  }
+
+  async getChaintrackBid(id: string): Promise<ChaintrackBid | undefined> {
+    return this.chaintrackBids.get(id);
+  }
+
+  async placeChaintrackBid(bid: InsertChaintrackBid): Promise<ChaintrackBid> {
+    const newBid: ChaintrackBid = {
+      id: randomUUID(),
+      ...bid,
+      isWinning: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackBids.set(newBid.id, newBid);
+
+    // Update auction's current lowest bid
+    const auction = await this.getChaintrackAuction(bid.auctionId);
+    if (auction) {
+      if (!auction.currentLowestBid || bid.bidPrice < auction.currentLowestBid) {
+        // Mark all other bids as not winning
+        const auctionBids = await this.getChaintrackBids({ auctionId: bid.auctionId });
+        for (const b of auctionBids) {
+          if (b.id !== newBid.id && b.isWinning) {
+            const updated = { ...b, isWinning: false, updatedAt: new Date() };
+            this.chaintrackBids.set(b.id, updated);
+          }
+        }
+        
+        // Mark this bid as winning
+        newBid.isWinning = true;
+        this.chaintrackBids.set(newBid.id, newBid);
+        
+        await this.updateChaintrackAuction(bid.auctionId, { currentLowestBid: bid.bidPrice });
+      }
+    }
+    
+    return newBid;
+  }
+
+  async withdrawChaintrackBid(id: string): Promise<ChaintrackBid | undefined> {
+    const bid = this.chaintrackBids.get(id);
+    if (!bid) return undefined;
+    
+    const updated = { ...bid, status: 'withdrawn', updatedAt: new Date() };
+    this.chaintrackBids.set(id, updated);
+    return updated;
+  }
+
+  async acceptChaintrackBid(bidId: string, buyerId: string): Promise<{ bid: ChaintrackBid; transaction: ChaintrackTransaction }> {
+    const bid = this.chaintrackBids.get(bidId);
+    if (!bid) throw new Error('Bid not found');
+    
+    const auction = await this.getChaintrackAuction(bid.auctionId);
+    if (!auction) throw new Error('Auction not found');
+    if (auction.buyerId !== buyerId) throw new Error('Only the buyer can accept bids');
+    
+    // Update bid status
+    const updatedBid = { ...bid, status: 'accepted', updatedAt: new Date() };
+    this.chaintrackBids.set(bidId, updatedBid);
+    
+    // Reject all other bids
+    const auctionBids = await this.getChaintrackBids({ auctionId: bid.auctionId });
+    for (const b of auctionBids) {
+      if (b.id !== bidId && b.status === 'active') {
+        const rejected = { ...b, status: 'rejected', updatedAt: new Date() };
+        this.chaintrackBids.set(b.id, rejected);
+      }
+    }
+    
+    // Update auction
+    await this.updateChaintrackAuction(bid.auctionId, {
+      status: 'completed',
+      winningSupplierId: bid.supplierId,
+      winningBidId: bidId,
+    });
+    
+    // Create transaction
+    const transaction: ChaintrackTransaction = {
+      id: randomUUID(),
+      auctionId: bid.auctionId,
+      buyerId: auction.buyerId,
+      supplierId: bid.supplierId,
+      totalAmount: bid.bidPrice * bid.quantity,
+      currency: 'USD',
+      paymentStatus: 'pending',
+      shippingStatus: 'pending',
+      completedDate: null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackTransactions.set(transaction.id, transaction);
+    
+    // Update supplier stats
+    const supplier = await this.getChaintrackSupplier(bid.supplierId);
+    if (supplier) {
+      await this.updateChaintrackSupplier(bid.supplierId, {
+        totalTransactions: supplier.totalTransactions + 1,
+      });
+    }
+    
+    return { bid: updatedBid, transaction };
+  }
+
+  async rejectChaintrackBid(bidId: string): Promise<ChaintrackBid | undefined> {
+    const bid = this.chaintrackBids.get(bidId);
+    if (!bid) return undefined;
+    
+    const updated = { ...bid, status: 'rejected', updatedAt: new Date() };
+    this.chaintrackBids.set(bidId, updated);
+    return updated;
+  }
+
+  // Suppliers
+  async getChaintrackSuppliers(filters?: { verificationStatus?: string }): Promise<ChaintrackSupplier[]> {
+    let suppliers = Array.from(this.chaintrackSuppliers.values());
+    
+    if (filters?.verificationStatus) {
+      suppliers = suppliers.filter(s => s.verificationStatus === filters.verificationStatus);
+    }
+    
+    return suppliers.sort((a, b) => (b.averageRating || 0) - (a.averageRating || 0));
+  }
+
+  async getChaintrackSupplier(id: string): Promise<ChaintrackSupplier | undefined> {
+    return this.chaintrackSuppliers.get(id);
+  }
+
+  async getChaintrackSupplierByUserId(userId: string): Promise<ChaintrackSupplier | undefined> {
+    return Array.from(this.chaintrackSuppliers.values()).find(s => s.userId === userId);
+  }
+
+  async createChaintrackSupplier(supplier: InsertChaintrackSupplier): Promise<ChaintrackSupplier> {
+    const newSupplier: ChaintrackSupplier = {
+      id: randomUUID(),
+      ...supplier,
+      verifiedAt: null,
+      totalTransactions: 0,
+      successfulTransactions: 0,
+      averageRating: 0,
+      totalRatings: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackSuppliers.set(newSupplier.id, newSupplier);
+    return newSupplier;
+  }
+
+  async updateChaintrackSupplier(id: string, updates: Partial<ChaintrackSupplier>): Promise<ChaintrackSupplier | undefined> {
+    const supplier = this.chaintrackSuppliers.get(id);
+    if (!supplier) return undefined;
+    
+    const updated = { ...supplier, ...updates, updatedAt: new Date() };
+    this.chaintrackSuppliers.set(id, updated);
+    return updated;
+  }
+
+  async verifyChaintrackSupplier(id: string): Promise<ChaintrackSupplier | undefined> {
+    return this.updateChaintrackSupplier(id, {
+      verificationStatus: 'verified',
+      verifiedAt: new Date(),
+    });
+  }
+
+  // Inventory
+  async getChaintrackInventory(filters?: { supplierId?: string; status?: string }): Promise<ChaintrackInventory[]> {
+    let inventory = Array.from(this.chaintrackInventory.values());
+    
+    if (filters?.supplierId) {
+      inventory = inventory.filter(i => i.supplierId === filters.supplierId);
+    }
+    if (filters?.status) {
+      inventory = inventory.filter(i => i.status === filters.status);
+    }
+    
+    return inventory.sort((a, b) => a.price - b.price);
+  }
+
+  async getChaintrackInventoryItem(id: string): Promise<ChaintrackInventory | undefined> {
+    return this.chaintrackInventory.get(id);
+  }
+
+  async createChaintrackInventoryItem(item: InsertChaintrackInventory): Promise<ChaintrackInventory> {
+    const newItem: ChaintrackInventory = {
+      id: randomUUID(),
+      ...item,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackInventory.set(newItem.id, newItem);
+    return newItem;
+  }
+
+  async updateChaintrackInventoryItem(id: string, updates: Partial<ChaintrackInventory>): Promise<ChaintrackInventory | undefined> {
+    const item = this.chaintrackInventory.get(id);
+    if (!item) return undefined;
+    
+    const updated = { ...item, ...updates, updatedAt: new Date() };
+    this.chaintrackInventory.set(id, updated);
+    return updated;
+  }
+
+  async deleteChaintrackInventoryItem(id: string): Promise<boolean> {
+    return this.chaintrackInventory.delete(id);
+  }
+
+  // Inspections
+  async getChaintrackInspections(filters?: { auctionId?: string }): Promise<ChaintrackInspection[]> {
+    let inspections = Array.from(this.chaintrackInspections.values());
+    
+    if (filters?.auctionId) {
+      inspections = inspections.filter(i => i.auctionId === filters.auctionId);
+    }
+    
+    return inspections.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getChaintrackInspection(id: string): Promise<ChaintrackInspection | undefined> {
+    return this.chaintrackInspections.get(id);
+  }
+
+  async createChaintrackInspection(inspection: InsertChaintrackInspection): Promise<ChaintrackInspection> {
+    const newInspection: ChaintrackInspection = {
+      id: randomUUID(),
+      ...inspection,
+      createdAt: new Date(),
+    };
+    this.chaintrackInspections.set(newInspection.id, newInspection);
+    return newInspection;
+  }
+
+  async updateChaintrackInspection(id: string, updates: Partial<ChaintrackInspection>): Promise<ChaintrackInspection | undefined> {
+    const inspection = this.chaintrackInspections.get(id);
+    if (!inspection) return undefined;
+    
+    const updated = { ...inspection, ...updates };
+    this.chaintrackInspections.set(id, updated);
+    return updated;
+  }
+
+  // Transactions
+  async getChaintrackTransactions(filters?: { buyerId?: string; supplierId?: string }): Promise<ChaintrackTransaction[]> {
+    let transactions = Array.from(this.chaintrackTransactions.values());
+    
+    if (filters?.buyerId) {
+      transactions = transactions.filter(t => t.buyerId === filters.buyerId);
+    }
+    if (filters?.supplierId) {
+      transactions = transactions.filter(t => t.supplierId === filters.supplierId);
+    }
+    
+    return transactions.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getChaintrackTransaction(id: string): Promise<ChaintrackTransaction | undefined> {
+    return this.chaintrackTransactions.get(id);
+  }
+
+  async createChaintrackTransaction(transaction: InsertChaintrackTransaction): Promise<ChaintrackTransaction> {
+    const newTransaction: ChaintrackTransaction = {
+      id: randomUUID(),
+      ...transaction,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackTransactions.set(newTransaction.id, newTransaction);
+    return newTransaction;
+  }
+
+  async updateChaintrackTransactionStatus(id: string, paymentStatus?: string, shippingStatus?: string): Promise<ChaintrackTransaction | undefined> {
+    const transaction = this.chaintrackTransactions.get(id);
+    if (!transaction) return undefined;
+    
+    const updates: Partial<ChaintrackTransaction> = { updatedAt: new Date() };
+    if (paymentStatus) updates.paymentStatus = paymentStatus;
+    if (shippingStatus) updates.shippingStatus = shippingStatus;
+    
+    if (paymentStatus === 'paid' && shippingStatus === 'delivered') {
+      updates.completedDate = new Date();
+      
+      // Update supplier successful transactions
+      const supplier = await this.getChaintrackSupplier(transaction.supplierId);
+      if (supplier) {
+        await this.updateChaintrackSupplier(transaction.supplierId, {
+          successfulTransactions: supplier.successfulTransactions + 1,
+        });
+      }
+    }
+    
+    const updated = { ...transaction, ...updates };
+    this.chaintrackTransactions.set(id, updated);
+    return updated;
+  }
+
+  // Ratings
+  async getChaintrackRatings(filters?: { ratedUserId?: string; transactionId?: string }): Promise<ChaintrackRating[]> {
+    let ratings = Array.from(this.chaintrackRatings.values());
+    
+    if (filters?.ratedUserId) {
+      ratings = ratings.filter(r => r.ratedUserId === filters.ratedUserId);
+    }
+    if (filters?.transactionId) {
+      ratings = ratings.filter(r => r.transactionId === filters.transactionId);
+    }
+    
+    return ratings.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getChaintrackRating(id: string): Promise<ChaintrackRating | undefined> {
+    return this.chaintrackRatings.get(id);
+  }
+
+  async createChaintrackRating(rating: InsertChaintrackRating): Promise<ChaintrackRating> {
+    const newRating: ChaintrackRating = {
+      id: randomUUID(),
+      ...rating,
+      createdAt: new Date(),
+    };
+    this.chaintrackRatings.set(newRating.id, newRating);
+    
+    // Update supplier average rating
+    const supplier = await this.getChaintrackSupplierByUserId(rating.ratedUserId);
+    if (supplier) {
+      const allRatings = await this.getChaintrackRatings({ ratedUserId: rating.ratedUserId });
+      const totalRating = allRatings.reduce((sum, r) => sum + r.rating, 0);
+      const averageRating = Math.round((totalRating / allRatings.length) * 10);
+      
+      await this.updateChaintrackSupplier(supplier.id, {
+        averageRating,
+        totalRatings: allRatings.length,
+      });
+    }
+    
+    return newRating;
   }
 }
 

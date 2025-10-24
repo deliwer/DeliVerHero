@@ -1828,3 +1828,183 @@ export type InsertWholesaleInventory = z.infer<typeof insertWholesaleInventorySc
 export type InventoryPriceHistory = typeof inventoryPriceHistory.$inferSelect;
 export type ChaintrackMembershipTier = typeof chaintrackMembershipTiers.$inferSelect;
 export type InsertChaintrackMembershipTier = z.infer<typeof insertChaintrackMembershipTierSchema>;
+
+// ============================================================================
+// CHAINTRACK REVERSE BIDDING SYSTEM
+// ============================================================================
+
+export const chaintrackAuctions = pgTable("chaintrack_auctions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  buyerId: varchar("buyer_id").notNull().references(() => users.id),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  productType: text("product_type").notNull(), // 'iPhone 15 Pro', 'iPhone 14', etc.
+  quantity: integer("quantity").notNull(),
+  condition: text("condition").notNull(), // 'new', 'refurbished', 'as-is', 'like-new', 'good', 'fair'
+  gradeRequired: text("grade_required"), // 'A', 'B', 'C', 'D'
+  startingPrice: integer("starting_price").notNull(), // in USD cents
+  reservePrice: integer("reserve_price"), // in USD cents (minimum acceptable)
+  currentLowestBid: integer("current_lowest_bid"), // in USD cents
+  startDate: timestamp("start_date").notNull().default(sql`now()`),
+  endDate: timestamp("end_date").notNull(),
+  deliveryLocation: text("delivery_location").notNull(),
+  paymentTerms: text("payment_terms"), // 'NET 30', 'NET 15', 'Upfront', etc.
+  status: text("status").notNull().default("draft"), // 'draft', 'active', 'closed', 'completed', 'cancelled'
+  winningSupplierId: varchar("winning_supplier_id").references(() => chaintrackSuppliers.id),
+  winningBidId: varchar("winning_bid_id"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackBids = pgTable("chaintrack_bids", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  auctionId: varchar("auction_id").notNull().references(() => chaintrackAuctions.id),
+  supplierId: varchar("supplier_id").notNull().references(() => chaintrackSuppliers.id),
+  bidPrice: integer("bid_price").notNull(), // in USD cents
+  quantity: integer("quantity").notNull(),
+  paymentTerms: text("payment_terms"),
+  notes: text("notes"),
+  estimatedDelivery: timestamp("estimated_delivery"),
+  status: text("status").notNull().default("active"), // 'active', 'accepted', 'rejected', 'withdrawn'
+  isWinning: boolean("is_winning").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackSuppliers = pgTable("chaintrack_suppliers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id).unique(),
+  companyName: text("company_name").notNull(),
+  contactPerson: text("contact_person").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email").notNull(),
+  specialties: jsonb("specialties").notNull().default([]), // Array of product types
+  sourceCountries: jsonb("source_countries").notNull().default([]), // ['US', 'Japan', 'China']
+  verificationStatus: text("verification_status").notNull().default("pending"), // 'pending', 'verified', 'rejected'
+  verifiedAt: timestamp("verified_at"),
+  totalTransactions: integer("total_transactions").notNull().default(0),
+  successfulTransactions: integer("successful_transactions").notNull().default(0),
+  averageRating: integer("average_rating").default(0), // 0-50 (5.0 * 10 for decimals)
+  totalRatings: integer("total_ratings").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackInventory = pgTable("chaintrack_inventory", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  supplierId: varchar("supplier_id").notNull().references(() => chaintrackSuppliers.id),
+  productType: text("product_type").notNull(),
+  quantity: integer("quantity").notNull(),
+  condition: text("condition").notNull(), // 'new', 'refurbished', 'as-is', 'like-new'
+  grade: text("grade"), // 'A', 'B', 'C', 'D'
+  sourceCountry: text("source_country").notNull(),
+  price: integer("price").notNull(), // in USD cents
+  currency: text("currency").notNull().default("USD"),
+  status: text("status").notNull().default("available"), // 'available', 'reserved', 'sold'
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackInspections = pgTable("chaintrack_inspections", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  auctionId: varchar("auction_id").notNull().references(() => chaintrackAuctions.id),
+  bidId: varchar("bid_id").references(() => chaintrackBids.id),
+  inspectionType: text("inspection_type").notNull(), // 'video', 'physical', 'documents'
+  scheduledDate: timestamp("scheduled_date"),
+  completedDate: timestamp("completed_date"),
+  notes: text("notes"),
+  reportUrl: text("report_url"),
+  status: text("status").notNull().default("pending"), // 'pending', 'scheduled', 'completed', 'cancelled'
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackTransactions = pgTable("chaintrack_transactions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  auctionId: varchar("auction_id").notNull().references(() => chaintrackAuctions.id),
+  buyerId: varchar("buyer_id").notNull().references(() => users.id),
+  supplierId: varchar("supplier_id").notNull().references(() => chaintrackSuppliers.id),
+  totalAmount: integer("total_amount").notNull(), // in USD cents
+  currency: text("currency").notNull().default("USD"),
+  paymentStatus: text("payment_status").notNull().default("pending"), // 'pending', 'paid', 'overdue', 'failed'
+  shippingStatus: text("shipping_status").notNull().default("pending"), // 'pending', 'in_transit', 'delivered', 'failed'
+  completedDate: timestamp("completed_date"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackRatings = pgTable("chaintrack_ratings", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  transactionId: varchar("transaction_id").notNull().references(() => chaintrackTransactions.id),
+  ratedById: varchar("rated_by_id").notNull().references(() => users.id),
+  ratedUserId: varchar("rated_user_id").notNull().references(() => users.id),
+  rating: integer("rating").notNull(), // 1-5
+  review: text("review"),
+  comment: text("comment"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// Insert Schemas
+export const insertChaintrackAuctionSchema = createInsertSchema(chaintrackAuctions).omit({
+  id: true,
+  currentLowestBid: true,
+  winningSupplierId: true,
+  winningBidId: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackBidSchema = createInsertSchema(chaintrackBids).omit({
+  id: true,
+  isWinning: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackSupplierSchema = createInsertSchema(chaintrackSuppliers).omit({
+  id: true,
+  verifiedAt: true,
+  totalTransactions: true,
+  successfulTransactions: true,
+  averageRating: true,
+  totalRatings: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackInventorySchema = createInsertSchema(chaintrackInventory).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackInspectionSchema = createInsertSchema(chaintrackInspections).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertChaintrackTransactionSchema = createInsertSchema(chaintrackTransactions).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackRatingSchema = createInsertSchema(chaintrackRatings).omit({
+  id: true,
+  createdAt: true,
+});
+
+// Types
+export type ChaintrackAuction = typeof chaintrackAuctions.$inferSelect;
+export type InsertChaintrackAuction = z.infer<typeof insertChaintrackAuctionSchema>;
+export type ChaintrackBid = typeof chaintrackBids.$inferSelect;
+export type InsertChaintrackBid = z.infer<typeof insertChaintrackBidSchema>;
+export type ChaintrackSupplier = typeof chaintrackSuppliers.$inferSelect;
+export type InsertChaintrackSupplier = z.infer<typeof insertChaintrackSupplierSchema>;
+export type ChaintrackInventory = typeof chaintrackInventory.$inferSelect;
+export type InsertChaintrackInventory = z.infer<typeof insertChaintrackInventorySchema>;
+export type ChaintrackInspection = typeof chaintrackInspections.$inferSelect;
+export type InsertChaintrackInspection = z.infer<typeof insertChaintrackInspectionSchema>;
+export type ChaintrackTransaction = typeof chaintrackTransactions.$inferSelect;
+export type InsertChaintrackTransaction = z.infer<typeof insertChaintrackTransactionSchema>;
+export type ChaintrackRating = typeof chaintrackRatings.$inferSelect;
+export type InsertChaintrackRating = z.infer<typeof insertChaintrackRatingSchema>;
