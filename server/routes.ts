@@ -2636,6 +2636,426 @@ Context: ${JSON.stringify(context || {})}`
     }
   });
 
+  // ============================================================================
+  // CHAINTRACK REVERSE BIDDING SYSTEM API ROUTES
+  // ============================================================================
+
+  // Auctions
+  app.get("/api/chaintrack/auctions", async (req, res) => {
+    try {
+      const { status, buyerId } = req.query;
+      const auctions = await storage.getChaintrackAuctions({
+        status: status as string | undefined,
+        buyerId: buyerId as string | undefined,
+      });
+      res.json(auctions);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/auctions/:id", async (req, res) => {
+    try {
+      const auction = await storage.getChaintrackAuction(req.params.id);
+      if (!auction) {
+        return res.status(404).json({ error: "Auction not found" });
+      }
+      res.json(auction);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/auctions", async (req, res) => {
+    try {
+      const auction = await storage.createChaintrackAuction(req.body);
+      res.json(auction);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/chaintrack/auctions/:id", async (req, res) => {
+    try {
+      const updated = await storage.updateChaintrackAuction(req.params.id, req.body);
+      if (!updated) {
+        return res.status(404).json({ error: "Auction not found" });
+      }
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/auctions/:id/close", async (req, res) => {
+    try {
+      const closed = await storage.closeChaintrackAuction(req.params.id);
+      if (!closed) {
+        return res.status(404).json({ error: "Auction not found" });
+      }
+      res.json(closed);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.delete("/api/chaintrack/auctions/:id", async (req, res) => {
+    try {
+      const deleted = await storage.deleteChaintrackAuction(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Auction not found" });
+      }
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Bids
+  app.get("/api/chaintrack/bids", async (req, res) => {
+    try {
+      const { auctionId, supplierId, status } = req.query;
+      const bids = await storage.getChaintrackBids({
+        auctionId: auctionId as string | undefined,
+        supplierId: supplierId as string | undefined,
+        status: status as string | undefined,
+      });
+      res.json(bids);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/bids/:id", async (req, res) => {
+    try {
+      const bid = await storage.getChaintrackBid(req.params.id);
+      if (!bid) {
+        return res.status(404).json({ error: "Bid not found" });
+      }
+      res.json(bid);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/bids", async (req, res) => {
+    try {
+      const bid = await storage.placeChaintrackBid(req.body);
+      res.json(bid);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/bids/:id/withdraw", async (req, res) => {
+    try {
+      const withdrawn = await storage.withdrawChaintrackBid(req.params.id);
+      if (!withdrawn) {
+        return res.status(404).json({ error: "Bid not found" });
+      }
+      res.json(withdrawn);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/bids/:id/accept", async (req, res) => {
+    try {
+      const { buyerId } = req.body;
+      if (!buyerId) {
+        return res.status(400).json({ error: "buyerId is required" });
+      }
+      const result = await storage.acceptChaintrackBid(req.params.id, buyerId);
+      res.json(result);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/bids/:id/reject", async (req, res) => {
+    try {
+      const rejected = await storage.rejectChaintrackBid(req.params.id);
+      if (!rejected) {
+        return res.status(404).json({ error: "Bid not found" });
+      }
+      res.json(rejected);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Suppliers
+  app.get("/api/chaintrack/suppliers", async (req, res) => {
+    try {
+      const { verificationStatus } = req.query;
+      const suppliers = await storage.getChaintrackSuppliers({
+        verificationStatus: verificationStatus as string | undefined,
+      });
+      res.json(suppliers);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/suppliers/:id", async (req, res) => {
+    try {
+      const supplier = await storage.getChaintrackSupplier(req.params.id);
+      if (!supplier) {
+        return res.status(404).json({ error: "Supplier not found" });
+      }
+      res.json(supplier);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/suppliers/by-user/:userId", async (req, res) => {
+    try {
+      const supplier = await storage.getChaintrackSupplierByUserId(req.params.userId);
+      if (!supplier) {
+        return res.status(404).json({ error: "Supplier not found" });
+      }
+      res.json(supplier);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/suppliers", async (req, res) => {
+    try {
+      const supplier = await storage.createChaintrackSupplier(req.body);
+      res.json(supplier);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/chaintrack/suppliers/:id", async (req, res) => {
+    try {
+      const updated = await storage.updateChaintrackSupplier(req.params.id, req.body);
+      if (!updated) {
+        return res.status(404).json({ error: "Supplier not found" });
+      }
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/suppliers/:id/verify", async (req, res) => {
+    try {
+      const verified = await storage.verifyChaintrackSupplier(req.params.id);
+      if (!verified) {
+        return res.status(404).json({ error: "Supplier not found" });
+      }
+      res.json(verified);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Inventory
+  app.get("/api/chaintrack/supplier-inventory", async (req, res) => {
+    try {
+      const { supplierId, status } = req.query;
+      const inventory = await storage.getChaintrackInventory({
+        supplierId: supplierId as string | undefined,
+        status: status as string | undefined,
+      });
+      res.json(inventory);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/supplier-inventory/:id", async (req, res) => {
+    try {
+      const item = await storage.getChaintrackInventoryItem(req.params.id);
+      if (!item) {
+        return res.status(404).json({ error: "Inventory item not found" });
+      }
+      res.json(item);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/supplier-inventory", async (req, res) => {
+    try {
+      const item = await storage.createChaintrackInventoryItem(req.body);
+      res.json(item);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/chaintrack/supplier-inventory/:id", async (req, res) => {
+    try {
+      const updated = await storage.updateChaintrackInventoryItem(req.params.id, req.body);
+      if (!updated) {
+        return res.status(404).json({ error: "Inventory item not found" });
+      }
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.delete("/api/chaintrack/supplier-inventory/:id", async (req, res) => {
+    try {
+      const deleted = await storage.deleteChaintrackInventoryItem(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Inventory item not found" });
+      }
+      res.json({ success: true });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Inspections
+  app.get("/api/chaintrack/inspections", async (req, res) => {
+    try {
+      const { auctionId } = req.query;
+      const inspections = await storage.getChaintrackInspections({
+        auctionId: auctionId as string | undefined,
+      });
+      res.json(inspections);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/inspections/:id", async (req, res) => {
+    try {
+      const inspection = await storage.getChaintrackInspection(req.params.id);
+      if (!inspection) {
+        return res.status(404).json({ error: "Inspection not found" });
+      }
+      res.json(inspection);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/inspections", async (req, res) => {
+    try {
+      const inspection = await storage.createChaintrackInspection(req.body);
+      res.json(inspection);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/chaintrack/inspections/:id", async (req, res) => {
+    try {
+      const updated = await storage.updateChaintrackInspection(req.params.id, req.body);
+      if (!updated) {
+        return res.status(404).json({ error: "Inspection not found" });
+      }
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Transactions
+  app.get("/api/chaintrack/transactions", async (req, res) => {
+    try {
+      const { buyerId, supplierId } = req.query;
+      const transactions = await storage.getChaintrackTransactions({
+        buyerId: buyerId as string | undefined,
+        supplierId: supplierId as string | undefined,
+      });
+      res.json(transactions);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/transactions/:id", async (req, res) => {
+    try {
+      const transaction = await storage.getChaintrackTransaction(req.params.id);
+      if (!transaction) {
+        return res.status(404).json({ error: "Transaction not found" });
+      }
+      res.json(transaction);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/transactions", async (req, res) => {
+    try {
+      const transaction = await storage.createChaintrackTransaction(req.body);
+      res.json(transaction);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.patch("/api/chaintrack/transactions/:id/status", async (req, res) => {
+    try {
+      const { paymentStatus, shippingStatus } = req.body;
+      const updated = await storage.updateChaintrackTransactionStatus(
+        req.params.id,
+        paymentStatus,
+        shippingStatus
+      );
+      if (!updated) {
+        return res.status(404).json({ error: "Transaction not found" });
+      }
+      res.json(updated);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Ratings
+  app.get("/api/chaintrack/ratings", async (req, res) => {
+    try {
+      const { ratedUserId, transactionId } = req.query;
+      const ratings = await storage.getChaintrackRatings({
+        ratedUserId: ratedUserId as string | undefined,
+        transactionId: transactionId as string | undefined,
+      });
+      res.json(ratings);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/chaintrack/ratings/:id", async (req, res) => {
+    try {
+      const rating = await storage.getChaintrackRating(req.params.id);
+      if (!rating) {
+        return res.status(404).json({ error: "Rating not found" });
+      }
+      res.json(rating);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/chaintrack/ratings", async (req, res) => {
+    try {
+      const rating = await storage.createChaintrackRating(req.body);
+      res.json(rating);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  // Membership Tiers
+  app.get("/api/chaintrack/membership-tiers", async (req, res) => {
+    try {
+      const tiers = await storage.getChaintrackMembershipTiers();
+      res.json(tiers);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
