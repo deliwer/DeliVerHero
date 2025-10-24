@@ -37,6 +37,11 @@ import {
   TrendingUp,
   AlertCircle,
   X,
+  MapPin,
+  RefreshCw,
+  ShoppingCart,
+  Warehouse,
+  Recycle,
 } from "lucide-react";
 
 export default function ChainTrackPage() {
@@ -130,10 +135,11 @@ function ChainTrackLanding() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900">
       <div className="container mx-auto px-4 py-20">
+        {/* Hero Section */}
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <Globe className="w-4 h-4" />
-            A DeliWer Shopping Metaverse Subsidiary
+            <MapPin className="w-4 h-4" />
+            Operating from Dubai Airport Freezone
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
@@ -141,24 +147,15 @@ function ChainTrackLanding() {
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 mb-4">
-            Dubai's Premier Mobile Sourcing Hub - Reverse Bidding Platform
+            B2B Wholesale Mobile Sourcing Platform
           </p>
           
-          <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
-            Post your wholesale needs, let suppliers compete with reverse bids. Access ASIS auction stock and ready-to-ship tested devices from US, Japan, and China.
+          <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
+            Streamline your wholesale mobile phone procurement through our reverse bidding platform. 
+            Access global inventory from Dubai Airport Freezone with competitive pricing and verified suppliers.
           </p>
-          
-          <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-blue-950/30 border-2 border-purple-200 dark:border-purple-800 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <Gavel className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-              <h3 className="text-lg font-bold text-purple-900 dark:text-purple-100">Reverse Bidding System</h3>
-            </div>
-            <p className="text-sm text-purple-800 dark:text-purple-300">
-              <strong>You post what you need.</strong> Verified suppliers compete by bidding down the price. You choose the best offer.
-            </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link href="/login">
               <Button size="lg" className="gap-2" data-testid="button-login">
                 <Shield className="w-5 h-5" />
@@ -168,44 +165,245 @@ function ChainTrackLanding() {
             </Link>
             <Link href="/signup">
               <Button size="lg" variant="outline" className="gap-2" data-testid="button-signup">
-                Request Access
+                Request B2B Access
               </Button>
             </Link>
           </div>
         </div>
 
-        {/* How Reverse Bidding Works */}
+        {/* Global Regions & Inventory Categories */}
+        <div className="mt-20 max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Global Market Access</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Source from major markets with multiple inventory types
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 mb-12">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-blue-200 dark:border-blue-800">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">United States</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">Premium tested devices & auction lots</p>
+            </Card>
+
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-red-200 dark:border-red-800">
+              <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-red-600 dark:text-red-400" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Japan</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">High-quality refurbished stock</p>
+            </Card>
+
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-yellow-200 dark:border-yellow-800">
+              <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">China</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">Volume inventory & competitive pricing</p>
+            </Card>
+
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-purple-200 dark:border-purple-800">
+              <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Europe</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400">Certified & compliant devices</p>
+            </Card>
+          </div>
+
+          {/* Inventory Types */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="p-8 border-2 border-amber-300 dark:border-amber-700">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Gavel className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">ASIS Auction Stock</h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-3">
+                    As-is devices from liquidation auctions and returns. Lower prices for buyers who can grade and refurbish.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="border-amber-400 text-amber-700 dark:text-amber-300">Lower Cost</Badge>
+                    <Badge variant="outline" className="border-amber-400 text-amber-700 dark:text-amber-300">Bulk Volume</Badge>
+                    <Badge variant="outline" className="border-amber-400 text-amber-700 dark:text-amber-300">Requires Grading</Badge>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-8 border-2 border-green-300 dark:border-green-700">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Ready-to-Ship Tested</h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-3">
+                    Pre-tested, graded, and refurbished devices ready for immediate resale. Quality guaranteed.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="border-green-400 text-green-700 dark:text-green-300">Tested & Graded</Badge>
+                    <Badge variant="outline" className="border-green-400 text-green-700 dark:text-green-300">Ready to Sell</Badge>
+                    <Badge variant="outline" className="border-green-400 text-green-700 dark:text-green-300">Quality Assured</Badge>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* Traditional vs Reverse Bidding Comparison */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Traditional Buying vs Reverse Bidding</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              See how our platform saves you time and money
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Traditional Buying */}
+            <Card className="p-8 bg-slate-100 dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-slate-300 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                  <ShoppingCart className="w-6 h-6 text-slate-600 dark:text-slate-400" />
+                </div>
+                <h3 className="text-2xl font-bold">Traditional Buying</h3>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-slate-400 dark:bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">1</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-700 dark:text-slate-300">Contact Multiple Suppliers</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Spend hours reaching out individually</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-slate-400 dark:bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">2</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-700 dark:text-slate-300">Wait for Quotes</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Days of back-and-forth emails</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-slate-400 dark:bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">3</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-700 dark:text-slate-300">Manual Comparison</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Spreadsheet management and price negotiation</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-slate-400 dark:bg-slate-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">4</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-700 dark:text-slate-300">Place Order</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Hope you got the best deal</p>
+                  </div>
+                </div>
+                <div className="mt-6 pt-6 border-t border-slate-300 dark:border-slate-700">
+                  <p className="text-sm text-slate-600 dark:text-slate-400">⏱️ Timeline: 3-7 days</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">💰 No guarantee of best price</p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Reverse Bidding */}
+            <Card className="p-8 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-blue-950/30 border-2 border-purple-400 dark:border-purple-600 shadow-lg">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                  <Gavel className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-purple-900 dark:text-purple-100">ChainTrack Reverse Bidding</h3>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">1</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-purple-900 dark:text-purple-100">Post Your Requirement</p>
+                    <p className="text-sm text-purple-800 dark:text-purple-200">One form, all suppliers notified instantly</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">2</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-purple-900 dark:text-purple-100">Suppliers Compete</p>
+                    <p className="text-sm text-purple-800 dark:text-purple-200">They bid DOWN to win your business</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">3</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-purple-900 dark:text-purple-100">Live Price Tracking</p>
+                    <p className="text-sm text-purple-800 dark:text-purple-200">See bids in real-time, choose the best offer</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-bold">4</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-purple-900 dark:text-purple-100">Accept Best Bid</p>
+                    <p className="text-sm text-purple-800 dark:text-purple-200">Guaranteed competitive pricing</p>
+                  </div>
+                </div>
+                <div className="mt-6 pt-6 border-t border-purple-300 dark:border-purple-700">
+                  <p className="text-sm font-semibold text-purple-900 dark:text-purple-100">⚡ Timeline: 24-48 hours</p>
+                  <p className="text-sm font-semibold text-purple-900 dark:text-purple-100">✅ Best price guaranteed by competition</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* How Reverse Bidding Works - Simplified */}
         <div className="mt-24 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">How Reverse Bidding Works</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Simple 3-Step Process</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 dark:bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
                 1
               </div>
               <h3 className="text-xl font-semibold mb-2">Post Your Need</h3>
               <p className="text-slate-600 dark:text-slate-400">
-                Create an auction with your device requirements, quantity, and target price.
+                Create an auction with your device requirements, quantity, and target price
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 dark:bg-purple-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
                 2
               </div>
               <h3 className="text-xl font-semibold mb-2">Suppliers Compete</h3>
               <p className="text-slate-600 dark:text-slate-400">
-                Verified suppliers place bids, competing to offer you the best price.
+                Verified suppliers place competitive bids, driving prices down for you
               </p>
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-600 dark:bg-green-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
                 3
               </div>
-              <h3 className="text-xl font-semibold mb-2">Accept & Purchase</h3>
+              <h3 className="text-xl font-semibold mb-2">Accept & Order</h3>
               <p className="text-slate-600 dark:text-slate-400">
-                Review bids, accept the best offer, and complete your purchase.
+                Review bids, accept the best offer, and complete your wholesale order
               </p>
             </div>
           </div>
@@ -329,24 +527,35 @@ function ChainTrackLanding() {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-24 text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
-            Join verified buyers using reverse bidding to source wholesale phones at the best prices.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/signup">
-              <Button size="lg" className="gap-2" data-testid="button-signup-cta">
-                Request Buyer Access
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button size="lg" variant="outline" className="gap-2" data-testid="button-login-cta">
-                Already a Member? Login
-              </Button>
-            </Link>
+        {/* Final CTA */}
+        <div className="mt-24 text-center max-w-3xl mx-auto">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-2xl p-12 text-white shadow-2xl">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Plane className="w-8 h-8" />
+              <h2 className="text-3xl font-bold">Start Sourcing from Dubai Airport Freezone</h2>
+            </div>
+            <p className="text-lg mb-2 text-blue-100">
+              Join wholesale buyers sourcing inventory efficiently through reverse bidding
+            </p>
+            <p className="text-sm mb-8 text-blue-200">
+              🌍 Global Markets: US • Japan • China • Europe<br />
+              📦 Inventory Types: ASIS Auction • Ready-to-Ship Tested<br />
+              ⚡ Fast Turnaround: 24-48 hours to best price
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/signup">
+                <Button size="lg" variant="secondary" className="gap-2 bg-white text-purple-600 hover:bg-blue-50" data-testid="button-signup-cta">
+                  <Shield className="w-5 h-5" />
+                  Request B2B Access
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="/login">
+                <Button size="lg" variant="outline" className="gap-2 border-white text-white hover:bg-white/10" data-testid="button-login-cta">
+                  Buyer Login
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
