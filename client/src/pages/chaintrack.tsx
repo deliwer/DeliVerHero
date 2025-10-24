@@ -45,31 +45,6 @@ import {
 } from "lucide-react";
 
 export default function ChainTrackPage() {
-  const { data: user, isLoading: userLoading } = useQuery<User>({
-    queryKey: ['/api/user/profile'],
-  });
-
-  if (userLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading ChainTrack...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (user) {
-    if (user.userType === 'b2b_buyer' && user.isB2BVerified) {
-      return <ChainTrackDashboard user={user} />;
-    } else if (user.userType === 'b2b_buyer' && !user.isB2BVerified) {
-      return <VerificationPending />;
-    } else {
-      return <AccessDenied />;
-    }
-  }
-
   return <ChainTrackLanding />;
 }
 
@@ -695,21 +670,23 @@ function AuctionCard({ auction }: { auction: ChaintrackAuction }) {
     <Card className="p-6 hover:shadow-lg transition-shadow">
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1">
-          <h3 className="text-xl font-bold mb-2">{auction.deviceModel}</h3>
+          <h3 className="text-xl font-bold mb-2">{auction.title}</h3>
           <div className="flex flex-wrap gap-2 mb-3">
-            <Badge variant="outline">{auction.deviceBrand}</Badge>
-            <Badge variant="outline">{auction.storage || 'Any'}</Badge>
+            <Badge variant="outline">{auction.productType}</Badge>
             <Badge variant="outline">{auction.condition}</Badge>
             <Badge variant="outline">{auction.quantity} units</Badge>
+            {auction.gradeRequired && (
+              <Badge variant="outline">Grade {auction.gradeRequired}</Badge>
+            )}
           </div>
-          {auction.notes && (
-            <p className="text-sm text-muted-foreground">{auction.notes}</p>
+          {auction.description && (
+            <p className="text-sm text-muted-foreground">{auction.description}</p>
           )}
         </div>
         <div className="text-right ml-4">
           <div className="text-sm text-muted-foreground mb-1">Target Price</div>
           <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-            ${(auction.targetPrice / 100).toFixed(2)}
+            ${(auction.startingPrice / 100).toFixed(2)}
           </div>
         </div>
       </div>
@@ -728,7 +705,7 @@ function AuctionCard({ auction }: { auction: ChaintrackAuction }) {
           )}
           <div className="flex items-center gap-1">
             <Clock className="w-4 h-4 text-slate-600" />
-            <span>Ends {new Date(auction.auctionEndDate).toLocaleDateString()}</span>
+            <span>Ends {new Date(auction.endDate).toLocaleDateString()}</span>
           </div>
         </div>
         <Dialog open={showBidDialog} onOpenChange={setShowBidDialog}>
@@ -768,21 +745,23 @@ function MyAuctionCard({ auction }: { auction: ChaintrackAuction }) {
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <h3 className="text-xl font-bold">{auction.deviceModel}</h3>
+            <h3 className="text-xl font-bold">{auction.title}</h3>
             <Badge className={statusColors[auction.status as keyof typeof statusColors]}>
               {auction.status}
             </Badge>
           </div>
           <div className="flex flex-wrap gap-2 mb-3">
-            <Badge variant="outline">{auction.deviceBrand}</Badge>
-            <Badge variant="outline">{auction.storage || 'Any'}</Badge>
+            <Badge variant="outline">{auction.productType}</Badge>
             <Badge variant="outline">{auction.condition}</Badge>
             <Badge variant="outline">{auction.quantity} units</Badge>
+            {auction.gradeRequired && (
+              <Badge variant="outline">Grade {auction.gradeRequired}</Badge>
+            )}
           </div>
         </div>
         <div className="text-right ml-4">
           <div className="text-sm text-muted-foreground mb-1">Target Price</div>
-          <div className="text-2xl font-bold">${(auction.targetPrice / 100).toFixed(2)}</div>
+          <div className="text-2xl font-bold">${(auction.startingPrice / 100).toFixed(2)}</div>
         </div>
       </div>
 
@@ -818,10 +797,7 @@ function BidItem({ bid, auctionId, buyerId }: { bid: ChaintrackBid; auctionId: s
 
   const acceptBidMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest(`/api/chaintrack/bids/${bid.id}/accept`, {
-        method: 'POST',
-        body: JSON.stringify({ buyerId }),
-      });
+      return apiRequest('POST', `/api/chaintrack/bids/${bid.id}/accept`, { buyerId });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/chaintrack/bids'] });
@@ -839,9 +815,7 @@ function BidItem({ bid, auctionId, buyerId }: { bid: ChaintrackBid; auctionId: s
 
   const rejectBidMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest(`/api/chaintrack/bids/${bid.id}/reject`, {
-        method: 'POST',
-      });
+      return apiRequest('POST', `/api/chaintrack/bids/${bid.id}/reject`);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/chaintrack/bids'] });
@@ -902,17 +876,14 @@ function PlaceBidForm({ auction, onSuccess }: { auction: ChaintrackAuction; onSu
 
   const placeBidMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest('/api/chaintrack/bids', {
-        method: 'POST',
-        body: JSON.stringify({
-          auctionId: auction.id,
-          supplierId: 'temp-supplier-id', // This should come from the user's supplier profile
-          bidPrice: Math.round(parseFloat(bidPrice) * 100),
-          quantity: parseInt(quantity),
-          deliveryTimeframe: '7-10 days',
-          notes,
-          status: 'active',
-        }),
+      return apiRequest('POST', '/api/chaintrack/bids', {
+        auctionId: auction.id,
+        supplierId: 'temp-supplier-id', // This should come from the user's supplier profile
+        bidPrice: Math.round(parseFloat(bidPrice) * 100),
+        quantity: parseInt(quantity),
+        deliveryTimeframe: '7-10 days',
+        notes,
+        status: 'active',
       });
     },
     onSuccess: () => {
@@ -961,7 +932,7 @@ function PlaceBidForm({ auction, onSuccess }: { auction: ChaintrackAuction; onSu
             />
           </div>
           <p className="text-xs text-muted-foreground mt-1">
-            Target price: ${(auction.targetPrice / 100).toFixed(2)}
+            Target price: ${(auction.startingPrice / 100).toFixed(2)}
           </p>
         </div>
 
@@ -1024,20 +995,20 @@ function CreateAuctionView({ userId }: { userId: string }) {
 
   const createAuctionMutation = useMutation({
     mutationFn: async () => {
-      return apiRequest('/api/chaintrack/auctions', {
-        method: 'POST',
-        body: JSON.stringify({
-          buyerId: userId,
-          deviceBrand: formData.deviceBrand,
-          deviceModel: formData.deviceModel,
-          storage: formData.storage || null,
-          condition: formData.condition,
-          quantity: parseInt(formData.quantity),
-          targetPrice: Math.round(parseFloat(formData.targetPrice) * 100),
-          auctionEndDate: new Date(formData.auctionEndDate),
-          notes: formData.notes || null,
-          status: 'active',
-        }),
+      return apiRequest('POST', '/api/chaintrack/auctions', {
+        buyerId: userId,
+        title: `${formData.deviceBrand} ${formData.deviceModel}`.trim(),
+        description: formData.notes || `${formData.deviceBrand} ${formData.deviceModel} ${formData.storage || ''}`.trim(),
+        productType: formData.deviceModel,
+        quantity: parseInt(formData.quantity),
+        condition: formData.condition,
+        gradeRequired: null,
+        startingPrice: Math.round(parseFloat(formData.targetPrice) * 100),
+        reservePrice: Math.round(parseFloat(formData.targetPrice) * 100),
+        endDate: new Date(formData.auctionEndDate),
+        deliveryLocation: 'Dubai',
+        paymentTerms: 'NET 30',
+        status: 'active',
       });
     },
     onSuccess: () => {
