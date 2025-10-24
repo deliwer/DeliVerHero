@@ -120,6 +120,15 @@ Without these variables, the application runs in demo mode with mock data.
 - **Growth**: 250-499 devices, lower fees (0.25%/0.4%), dedicated account manager, $500 minimum
 - **Enterprise**: 500+ devices, custom rates (0.2%/0.35%), API integration, white-glove service, $500 minimum
 
+### Enhanced Landing Page (October 24, 2025)
+✅ **Dubai Airport Freezone Context**: Hero section emphasizes operating from Dubai Airport Freezone
+✅ **Global Market Access**: Visual cards for US, Japan, China, Europe with distinct colors and regional descriptions
+✅ **Inventory Categories**: Prominent ASIS Auction Stock vs Ready-to-Ship Tested cards with feature badges
+✅ **Traditional vs Reverse Bidding**: Side-by-side comparison showing 4-step traditional process vs streamlined reverse bidding with timeline and pricing guarantees
+✅ **Simplified 3-Step Process**: Clear visual breakdown of Post → Compete → Accept flow
+✅ **Enhanced CTA**: Dubai Airport Freezone emphasis with global market/inventory summary in final call-to-action
+✅ **Page Flow**: Hero → Regions/Inventory → Traditional vs Reverse Comparison → 3-Step Process → Membership Tiers → Final CTA
+
 ### ChainTrack Security Policy
 - Supplier source names are confidential and stored only in backend database
 - Frontend displays only regional classifications to buyers
