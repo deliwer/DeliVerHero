@@ -169,10 +169,11 @@ Without these variables, the application runs in demo mode with mock data.
 ✅ **Tabs Collapsible Menu**: Main tabs section now expandable/collapsible with AquaCafe membership card as banner
 ✅ **Reduced Complexity**: Streamlined duplicate CTAs and redundant mission tracking for cleaner user flow
 ✅ **AquaCafe Page**: Verified /aquacafe route loading correctly - no blank display issues
-✅ **Uniform Collapsible Pattern**: All three main sections now follow identical design - banner content only shows when expanded
-  - Shop Smart → K8 Machine banner (when expanded)
-  - Claim Rewards → Chill & Grill banner (when expanded)
-  - Create Impact → Planet Heroes Gaming (when expanded)
+✅ **Uniform Collapsible Pattern (FINAL)**: Restructured all three main sections with consistent always-visible banner + collapsible content pattern
+  - Shop Smart → K8 Machine banner always visible, product details collapsible
+  - Claim Rewards → Chill & Grill banner always visible, rewards details + Tombola widget collapsible
+  - Create Impact → Planet Heroes Gaming banner always visible, mission details collapsible
+✅ **Tombola Widget Relocation**: Moved from Create Impact section into Claim Rewards collapsible content for better thematic alignment
 ✅ **Eliminated Duplicates**: Removed all standalone banner sections from home.tsx to prevent duplicate rendering
 
 **Component Updates:**
