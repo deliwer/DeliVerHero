@@ -710,6 +710,8 @@ function StepThreeRewards() {
         </div>
 
         {/* Unified Rewards Page CTA - Inside Collapsible */}
+        {isExpanded && (
+        <>
         <div className="text-center mb-8 animate-in slide-in-from-top duration-300">
           <Link href="/rewards">
             <Button 
@@ -940,7 +942,6 @@ function StepThreeRewards() {
         </div>
         </>
         )}
-
       </div>
     </section>
   );
