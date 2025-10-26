@@ -214,6 +214,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
 
         {/* Play Mission Info Section */}
         {isExpanded && (
+        <>
         <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500">
           {/* Floating particles */}
           <div className="absolute inset-0 opacity-20">
@@ -274,6 +275,116 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             </div>
           </div>
         </div>
+
+        {/* Win Aqua Show - La Perle Tombola Prizes */}
+        <div className="glass rounded-2xl p-8 border border-cyan-500/50 bg-gradient-to-br from-blue-950/30 to-cyan-950/30 relative overflow-hidden animate-in slide-in-from-top duration-700 mt-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-8 py-4 rounded-full mb-6 border border-cyan-400/50">
+              <Gift className="w-8 h-8 text-cyan-300 animate-spin" />
+              <span className="text-2xl font-bold text-white">🌊 WIN AQUA SHOW TICKETS</span>
+              <Trophy className="w-8 h-8 text-blue-300 animate-bounce" />
+            </div>
+            
+            <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              La Perle by Dragone
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300 mt-2">
+                Premium Experience Prizes
+              </span>
+            </h3>
+            
+            <p className="text-lg text-white/90 max-w-3xl mx-auto mb-6">
+              Premium members can now win exclusive <strong>La Perle by Dragone</strong> aqua show experience tickets through our enhanced tombola system!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Silver Experience */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-gray-300/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-14 h-14 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Award className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">🥈 Silver Experience</h4>
+                <div className="text-3xl font-bold text-gray-300 mb-2">5% Chance</div>
+                <div className="text-white/70 text-sm mb-4">Premium seating</div>
+                <div className="space-y-1 text-xs text-white/60">
+                  <div>✨ Silver section seating</div>
+                  <div>🎭 Full show experience</div>
+                  <div>📅 6-month validity</div>
+                  <div>🏆 200 XP + 300 Points</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Gold Experience */}
+            <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-yellow-400/20">
+              <div className="text-center">
+                <div className="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Crown className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">🥇 Gold Experience</h4>
+                <div className="text-3xl font-bold text-yellow-400 mb-2">1% Chance</div>
+                <div className="text-white/70 text-sm mb-4">Premium + refreshments</div>
+                <div className="space-y-1 text-xs text-white/60">
+                  <div>⭐ Gold section seating</div>
+                  <div>🥂 Welcome refreshments</div>
+                  <div>📅 6-month validity</div>
+                  <div>🏆 500 XP + 750 Points</div>
+                </div>
+              </div>
+            </div>
+
+            {/* VIP Experience */}
+            <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-6 border-2 border-purple-400/50 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-400/30">
+              <div className="text-center">
+                <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Sparkles className="w-7 h-7 text-white animate-pulse" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">💎 VIP Experience</h4>
+                <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">0.5% Chance</div>
+                <div className="text-white/70 text-sm mb-4">Ultimate experience</div>
+                <div className="space-y-1 text-xs text-white/60">
+                  <div>👑 VIP section seating</div>
+                  <div>🎭 Backstage tour</div>
+                  <div>🍽️ Premium dinner</div>
+                  <div>🏆 1000 XP + 1500 Points</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <p className="text-white/90 text-base mb-4">
+                Premium members get exclusive access to these extraordinary entertainment experiences!
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link href="/play">
+                  <Button className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 text-lg px-8 py-3 rounded-full font-bold shadow-xl transition-all duration-300 hover:scale-105" data-testid="button-play-tombola">
+                    <Gift className="w-5 h-5 mr-2" />
+                    🎰 Play Tombola Now
+                  </Button>
+                </Link>
+                
+                <a 
+                  href="https://www.laperle.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-full font-bold shadow-lg transition-all duration-300 hover:scale-105"
+                  data-testid="button-laperle-website"
+                >
+                  🎭 Visit laperle.com
+                </a>
+              </div>
+              
+              <div className="text-xs text-white/70 mt-3">
+                ✨ Premium membership required for enhanced tombola prizes ✨
+              </div>
+            </div>
+          </div>
+        </div>
+        </>
         )}
       </div>
     </section>
@@ -936,115 +1047,6 @@ function StepThreeRewards() {
           {/* Tombola Widget */}
           <div className="max-w-md mx-auto">
             <TombolaWidget heroId="demo-hero-id" theme="metaverse" size="full" />
-          </div>
-        </div>
-
-        {/* Win Aqua Show - La Perle Tombola Prizes */}
-        <div className="glass rounded-2xl p-8 border border-cyan-500/50 bg-gradient-to-br from-blue-950/30 to-cyan-950/30 relative overflow-hidden animate-in slide-in-from-top duration-700 mt-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-8 py-4 rounded-full mb-6 border border-cyan-400/50">
-              <Gift className="w-8 h-8 text-cyan-300 animate-spin" />
-              <span className="text-2xl font-bold text-white">🌊 WIN AQUA SHOW TICKETS</span>
-              <Trophy className="w-8 h-8 text-blue-300 animate-bounce" />
-            </div>
-            
-            <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              La Perle by Dragone
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300 mt-2">
-                Premium Experience Prizes
-              </span>
-            </h3>
-            
-            <p className="text-lg text-white/90 max-w-3xl mx-auto mb-6">
-              Premium members can now win exclusive <strong>La Perle by Dragone</strong> aqua show experience tickets through our enhanced tombola system!
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {/* Silver Experience */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-gray-300/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Award className="w-7 h-7 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-white mb-3">🥈 Silver Experience</h4>
-                <div className="text-3xl font-bold text-gray-300 mb-2">5% Chance</div>
-                <div className="text-white/70 text-sm mb-4">Premium seating</div>
-                <div className="space-y-1 text-xs text-white/60">
-                  <div>✨ Silver section seating</div>
-                  <div>🎭 Full show experience</div>
-                  <div>📅 6-month validity</div>
-                  <div>🏆 200 XP + 300 Points</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Gold Experience */}
-            <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-yellow-400/20">
-              <div className="text-center">
-                <div className="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Crown className="w-7 h-7 text-white" />
-                </div>
-                <h4 className="text-xl font-bold text-white mb-3">🥇 Gold Experience</h4>
-                <div className="text-3xl font-bold text-yellow-400 mb-2">1% Chance</div>
-                <div className="text-white/70 text-sm mb-4">Premium + refreshments</div>
-                <div className="space-y-1 text-xs text-white/60">
-                  <div>⭐ Gold section seating</div>
-                  <div>🥂 Welcome refreshments</div>
-                  <div>📅 6-month validity</div>
-                  <div>🏆 500 XP + 750 Points</div>
-                </div>
-              </div>
-            </div>
-
-            {/* VIP Experience */}
-            <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-6 border-2 border-purple-400/50 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-400/30">
-              <div className="text-center">
-                <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Sparkles className="w-7 h-7 text-white animate-pulse" />
-                </div>
-                <h4 className="text-xl font-bold text-white mb-3">💎 VIP Experience</h4>
-                <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">0.5% Chance</div>
-                <div className="text-white/70 text-sm mb-4">Ultimate experience</div>
-                <div className="space-y-1 text-xs text-white/60">
-                  <div>👑 VIP section seating</div>
-                  <div>🎭 Backstage tour</div>
-                  <div>🍽️ Premium dinner</div>
-                  <div>🏆 1000 XP + 1500 Points</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <p className="text-white/90 text-base mb-4">
-                Premium members get exclusive access to these extraordinary entertainment experiences!
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link href="/play">
-                  <Button className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 text-lg px-8 py-3 rounded-full font-bold shadow-xl transition-all duration-300 hover:scale-105" data-testid="button-play-tombola">
-                    <Gift className="w-5 h-5 mr-2" />
-                    🎰 Play Tombola Now
-                  </Button>
-                </Link>
-                
-                <a 
-                  href="https://www.laperle.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-full font-bold shadow-lg transition-all duration-300 hover:scale-105"
-                  data-testid="button-laperle-website"
-                >
-                  🎭 Visit laperle.com
-                </a>
-              </div>
-              
-              <div className="text-xs text-white/70 mt-3">
-                ✨ Premium membership required for enhanced tombola prizes ✨
-              </div>
-            </div>
           </div>
         </div>
 
