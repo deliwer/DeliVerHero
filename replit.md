@@ -159,9 +159,22 @@ Without these variables, the application runs in demo mode with mock data.
 ✅ **AquaCafe Membership Benefits**: Converted to collapsible section with membership card display for Starter Kit (AED 99)
 ✅ **Flow Connectors**: Visual arrow indicators with gradient backgrounds guide users through the three-step journey
 
+### User Experience Improvements (October 26, 2025 - Latest)
+✅ **Delayed Tooltip Hints**: All homepage Context Tips now delayed to 30 seconds (30000ms) to prevent early user interruption
+  - Updated tooltips: iphone-calculator-intro, start-mission-cta, leaderboard-intro, impact-stats-meaning, ai-concierge-help
+✅ **Content Reorganization**: "Guilt Free Living" moved from hero to Create Impact section as contextual subheading
+✅ **Promotional Banners**: "Chill & Grill" D100 voucher offer (Pizza for Two + Kulfi D99) added to Claim Rewards section
+✅ **Planet Heroes Gaming**: Generated environmental gaming image integrated into Create Impact/Play section for visual appeal
+✅ **Simplified Scrolling**: All major homepage sections (Shop Smart, Claim Rewards, Create Impact, Tabs) made collapsible
+✅ **Tabs Collapsible Menu**: Main tabs section now expandable/collapsible with AquaCafe membership card as banner
+✅ **Reduced Complexity**: Streamlined duplicate CTAs and redundant mission tracking for cleaner user flow
+✅ **AquaCafe Page**: Verified /aquacafe route loading correctly - no blank display issues
+
 **Component Updates:**
-- `client/src/components/hero-challenge-landing.tsx` - Main homepage flow with corrected step sequence
+- `client/src/components/hero-challenge-landing.tsx` - Main homepage flow with corrected step sequence, collapsible sections
 - `client/src/components/aquacafe-tab.tsx` - Collapsible membership benefits section
+- `client/src/components/ai-interactive-hero.tsx` - Removed "Guilt Free Living" to reduce redundancy
+- `client/src/hooks/use-tooltip-hints.ts` - All homepage tooltip delays set to 30000ms
 
 ## Notes
 - Service worker for image optimization may show registration warnings in development - this is normal
