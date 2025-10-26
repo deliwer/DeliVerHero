@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { OptimizedImage } from "@/components/ui/optimized-image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,7 +12,9 @@ import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
 import { Link } from "wouter";
 import mobile_water_purification_hero from "@assets/mobile-water-purification-hero.jpg";
-// Old circular image removed - using new mobile water purification image in main hero
+import k8MachineImage from "@assets/without_text_1756065010951.jpg";
+import showerFilterCollage from "@assets/collage_1755270492135.jpg";
+import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -96,37 +98,44 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
-  const stepIcons = {
-    1: Gamepad2,    // Play step
-    2: Target,      // Planetary Missions step  
-    3: Gift         // Redeem Rewards step
+  const stepConfig = {
+    1: { icon: ShoppingCart, label: "Shop Smart" },
+    2: { icon: Gift, label: "Claim Rewards" },  
+    3: { icon: Play, label: "Create Impact" }
   };
 
   return (
     <div className="flex items-center justify-center mb-8">
       <div className="flex items-center space-x-6">
         {[1, 2, 3].map((step) => {
-          const StepIcon = stepIcons[step as keyof typeof stepIcons];
+          const { icon: StepIcon, label } = stepConfig[step as keyof typeof stepConfig];
           return (
-            <div key={step} className="flex items-center">
-              <div 
-                className={`w-16 h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
-                  currentStep >= step 
-                    ? 'bg-hero-green-500 text-black animate-pulse border-hero-green-400 shadow-lg shadow-hero-green-500/30' 
-                    : 'bg-gray-600 text-gray-400 border-gray-500'
-                }`}
-              >
-                {currentStep > step ? (
-                  <CheckCircle className="w-8 h-8" />
-                ) : (
-                  <StepIcon className="w-8 h-8" />
+            <div key={step} className="flex flex-col items-center">
+              <div className="flex items-center">
+                <div 
+                  className={`w-16 h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
+                    currentStep >= step 
+                      ? 'bg-hero-green-500 text-black animate-pulse border-hero-green-400 shadow-lg shadow-hero-green-500/30' 
+                      : 'bg-gray-600 text-gray-400 border-gray-500'
+                  }`}
+                >
+                  {currentStep > step ? (
+                    <CheckCircle className="w-8 h-8" />
+                  ) : (
+                    <StepIcon className="w-8 h-8" />
+                  )}
+                </div>
+                {step < 3 && (
+                  <div className={`w-20 h-1 transition-all duration-300 rounded-full ${
+                    currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
+                  }`} />
                 )}
               </div>
-              {step < 3 && (
-                <div className={`w-20 h-1 transition-all duration-300 rounded-full ${
-                  currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
-                }`} />
-              )}
+              <div className={`mt-2 text-xs font-bold ${
+                currentStep >= step ? 'text-hero-green-400' : 'text-gray-400'
+              }`}>
+                {label}
+              </div>
             </div>
           );
         })}
@@ -135,7 +144,7 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   );
 }
 
-// Step 1: Play Missions Section with Tombola Game
+// Step 3: Create Impact Section (formerly Step 1)
 function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   const [heroId] = useState("demo-hero-id"); // Demo hero ID for tombola
   const [isExpanded, setIsExpanded] = useState(false);
@@ -152,7 +161,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
       </div>
       
       <div className="max-w-4xl mx-auto relative z-10">
-        <ProgressIndicator currentStep={1} />
+        <ProgressIndicator currentStep={3} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">
@@ -195,14 +204,33 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             <div>
               <div className="text-center mb-6">
                 <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
-                  <Gamepad2 className="w-5 h-5 animate-pulse" />
-                  <span className="font-bold">🎮 METAVERSE TOMBOLA</span>
+                  <Play className="w-5 h-5 animate-pulse" />
+                  <span className="font-bold">🎮 IMPACT ACTIVITIES</span>
                   <Sparkles className="w-5 h-5 animate-pulse" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">🚀 Win Prizes Now!</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">🌍 Create Environmental Impact</h3>
                 <p className="text-purple-200 text-sm mb-4">
-                  Spin the cosmic wheel for instant rewards and Planet Points!
+                  Your actions support recycling, water renewal, and sustainability programs across Dubai & Pakistan!
                 </p>
+              </div>
+              
+              {/* Impact Visual Representation */}
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="text-center p-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border border-green-500/30">
+                  <Droplets className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
+                  <div className="text-white font-bold text-sm">Water Renewal</div>
+                  <div className="text-gray-400 text-xs">Clean water access</div>
+                </div>
+                <div className="text-center p-4 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl border border-blue-500/30">
+                  <Repeat className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                  <div className="text-white font-bold text-sm">Recycling</div>
+                  <div className="text-gray-400 text-xs">Device reclamation</div>
+                </div>
+                <div className="text-center p-4 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl border border-amber-500/30">
+                  <Utensils className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+                  <div className="text-white font-bold text-sm">Food Security</div>
+                  <div className="text-gray-400 text-xs">Community support</div>
+                </div>
               </div>
               
               {/* Tombola Widget with Metaverse Theme */}
@@ -269,14 +297,14 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   );
 }
 
-// Step 2: Exchange Section  
+// Step 1: Shop Smart Section (formerly Step 2)
 function StepTwoExchange() {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
     <section className="py-8 px-4 mb-8" data-section="step-1">
       <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={2} />
+        <ProgressIndicator currentStep={1} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
@@ -297,9 +325,37 @@ function StepTwoExchange() {
               )}
             </button>
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Earn Planet Points every time you order from F&B and eco-friendly partners via AquaCafe Loyalty.
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
+            Premium Bundle: Trade your iPhone for Kangen Water K8 Machine with huge discounts and exclusive benefits
           </p>
+          
+          {/* Featured Bundle Banner */}
+          <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600/20 to-green-600/20 rounded-2xl p-6 border border-blue-500/50 backdrop-blur-sm">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="flex-1">
+                <img 
+                  src={k8MachineImage} 
+                  alt="Kangen Water K8 Machine" 
+                  className="w-full h-auto rounded-xl shadow-2xl"
+                />
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-3">
+                  <Star className="w-5 h-5" />
+                  <span className="font-bold">FLAGSHIP OFFER</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Kangen Water + iPhone Bundle</h3>
+                <p className="text-gray-300 mb-4">
+                  Trade your iPhone and get premium K8 Machine with massive savings and lifetime benefits
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                  <span className="bg-hero-green-500/20 text-hero-green-400 px-3 py-1 rounded-full text-sm font-bold">Huge Discounts</span>
+                  <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Exclusive Benefits</span>
+                  <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Premium Quality</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* AquaCafe Planetary Missions */}
@@ -427,14 +483,14 @@ function StepTwoExchange() {
   );
 }
 
-// Step 3: Rewards Section
+// Step 2: Claim Rewards Section (formerly Step 3)
 function StepThreeRewards() {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
     <section className="py-8 px-4 mb-8" data-section="step-2">
       <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={3} />
+        <ProgressIndicator currentStep={2} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">
@@ -442,11 +498,11 @@ function StepThreeRewards() {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Get Rewarded section"
-              data-testid="toggle-get-rewarded"
+              aria-label="Toggle Claim Rewards section"
+              data-testid="toggle-claim-rewards"
             >
               <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-                Get Rewarded
+                Claim Rewards
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-amber-400" />
@@ -456,30 +512,56 @@ function StepThreeRewards() {
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Redeem for free meals, eco gifts, or wellness products.
+            Redeem for free meals, eco gifts, or wellness products including FREE Shower Filter.
           </p>
-          
-          {/* Unified Rewards Page CTA */}
-          <div className="mt-8">
-            <Link href="/rewards">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-visit-rewards-page"
-              >
-                <Gift className="mr-3 w-6 h-6" />
-                Visit Unified Rewards Page
-              </Button>
-            </Link>
-            <div className="text-xs text-gray-400 mt-4">
-              Browse products, track points, and redeem rewards all in one place
-            </div>
-          </div>
         </div>
 
         {/* Product Showcase & Benefits Flowchart Infographic */}
         {isExpanded && (
         <>
+        {/* Unified Rewards Page CTA - Inside Collapsible */}
+        <div className="text-center mb-8 animate-in slide-in-from-top duration-300">
+          <Link href="/rewards">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+              data-testid="button-visit-rewards-page"
+            >
+              <Gift className="mr-3 w-6 h-6" />
+              Visit Rewards Page
+            </Button>
+          </Link>
+          <div className="text-xs text-gray-400 mt-4">
+            Browse products, track points, and redeem rewards all in one place
+          </div>
+        </div>
+
+        {/* FREE Shower Filter Visual */}
+        <div className="mb-8 animate-in slide-in-from-top duration-500">
+          <div className="max-w-3xl mx-auto bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-2xl p-6 border border-cyan-500/50 backdrop-blur-sm">
+            <div className="text-center mb-4">
+              <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full mb-3">
+                <Gift className="w-5 h-5" />
+                <span className="font-bold">FREE GIFT INCLUDED</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Premium Shower Filter</h3>
+              <p className="text-gray-300 mb-4">
+                Get your FREE Beauty Ionic Shower Filter with AquaCafe membership
+              </p>
+            </div>
+            <div className="rounded-xl overflow-hidden shadow-2xl">
+              <img 
+                src={showerFilterCollage} 
+                alt="Free Shower Filter Gift" 
+                className="w-full h-auto"
+              />
+            </div>
+            <div className="mt-4 text-center">
+              <span className="text-amber-400 font-bold text-lg">AED 399 Value - Yours FREE!</span>
+            </div>
+          </div>
+        </div>
+
         <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 mb-8 animate-in slide-in-from-top duration-500">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             
@@ -709,6 +791,7 @@ export function HeroChallengeLanding() {
 
 
         {/* 3-Step Progressive Flow with Visual Connectors */}
+        {/* Step 1: Shop Smart */}
         <div data-section="step-1">
           <StepTwoExchange />
           
@@ -717,15 +800,16 @@ export function HeroChallengeLanding() {
         {/* Flow Connector 1→2 */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-green-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-amber-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-green-400 mt-2"></div>
+            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-orange-500 mt-2"></div>
             <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
           </div>
         </div>
 
+        {/* Step 2: Claim Rewards */}
         <div data-section="step-2">
           <StepThreeRewards />
         </div>
@@ -733,15 +817,16 @@ export function HeroChallengeLanding() {
         {/* Flow Connector 2→3 */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-amber-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-purple-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-orange-500 mt-2"></div>
+            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-indigo-500 mt-2"></div>
             <div className="text-xs text-gray-400 mt-2 font-bold">FINAL STEP</div>
           </div>
         </div>
 
+        {/* Step 3: Create Impact */}
         <div data-section="step-3">
           <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
         </div>

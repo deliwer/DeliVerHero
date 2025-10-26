@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Rocket, Users, Droplets, Home, Package } from "lucide-react";
+import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Rocket, Users, Droplets, Home, Package, ChevronDown, ChevronUp, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { shopifyCartService } from "@/lib/shopify-cart";
+import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
 
 interface ProductFeatureProps {
   icon: React.ReactNode;
@@ -23,6 +24,7 @@ function ProductFeature({ icon, title, description }: ProductFeatureProps) {
 
 export function AquaCafeTab() {
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
+  const [isMembershipExpanded, setIsMembershipExpanded] = useState(false);
   const { toast } = useToast();
 
   const productFeatures = [
@@ -318,6 +320,98 @@ export function AquaCafeTab() {
             {productFeatures.map((feature, index) => (
               <ProductFeature key={index} {...feature} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Membership Benefits (Starter Kit AED 99) - Collapsible */}
+      <section className="py-8 sm:py-12 px-3 sm:px-4 bg-gradient-to-br from-cyan-950/30 to-slate-900/70 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-slate-800/70 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-cyan-500/30">
+            <button
+              onClick={() => setIsMembershipExpanded(!isMembershipExpanded)}
+              className="w-full flex items-center justify-between cursor-pointer hover:opacity-80 transition-opacity"
+              aria-expanded={isMembershipExpanded}
+              data-testid="toggle-membership-benefits"
+            >
+              <div className="flex-1 text-center">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-md">
+                  💎 Membership Benefits (Starter Kit - AED 99)
+                </h2>
+                <p className="text-cyan-300 text-sm sm:text-base md:text-lg">
+                  Click to view your exclusive membership card and benefits
+                </p>
+              </div>
+              {isMembershipExpanded ? (
+                <ChevronUp className="w-8 h-8 text-cyan-400 flex-shrink-0 ml-4" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-cyan-400 flex-shrink-0 ml-4" />
+              )}
+            </button>
+
+            {isMembershipExpanded && (
+              <div className="mt-8 animate-in slide-in-from-top duration-500">
+                <div className="grid lg:grid-cols-2 gap-8 items-center">
+                  {/* Membership Card Display */}
+                  <div className="flex justify-center">
+                    <div className="max-w-md w-full">
+                      <div className="bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl p-6 border border-cyan-500/50 backdrop-blur-sm shadow-2xl">
+                        <div className="text-center mb-4">
+                          <h3 className="text-2xl font-bold text-white mb-2">Your Membership Card</h3>
+                          <p className="text-cyan-300 text-sm">AquaCafe Loyalty Member</p>
+                        </div>
+                        <img 
+                          src={membershipCard} 
+                          alt="AquaCafe Membership Card" 
+                          className="w-full h-auto rounded-xl shadow-xl"
+                        />
+                        <div className="mt-4 text-center">
+                          <span className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full font-bold">
+                            <Award className="w-5 h-5" />
+                            Level 2 Status
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Benefits List */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6">🎁 Your Exclusive Benefits</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl border border-amber-500/30">
+                        <Gift className="w-6 h-6 text-amber-400 flex-shrink-0 mt-1" />
+                        <div>
+                          <div className="text-white font-bold">FREE Shower Filter</div>
+                          <div className="text-gray-300 text-sm">Premium Beauty Ionic Filter (AED 399 value)</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-hero-green-500/10 to-emerald-500/10 rounded-xl border border-hero-green-500/30">
+                        <CheckCircle className="w-6 h-6 text-hero-green-400 flex-shrink-0 mt-1" />
+                        <div>
+                          <div className="text-white font-bold">FREE Installation</div>
+                          <div className="text-gray-300 text-sm">Professional setup worth AED 299</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl border border-blue-500/30">
+                        <Star className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
+                        <div>
+                          <div className="text-white font-bold">1000 Loyalty Points</div>
+                          <div className="text-gray-300 text-sm">Instant points + 2X multiplier on future purchases</div>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl border border-purple-500/30">
+                        <Crown className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
+                        <div>
+                          <div className="text-white font-bold">Lifetime Member Benefits</div>
+                          <div className="text-gray-300 text-sm">Exclusive discounts, priority support & special offers</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
