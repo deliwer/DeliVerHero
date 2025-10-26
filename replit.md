@@ -169,12 +169,18 @@ Without these variables, the application runs in demo mode with mock data.
 ✅ **Tabs Collapsible Menu**: Main tabs section now expandable/collapsible with AquaCafe membership card as banner
 ✅ **Reduced Complexity**: Streamlined duplicate CTAs and redundant mission tracking for cleaner user flow
 ✅ **AquaCafe Page**: Verified /aquacafe route loading correctly - no blank display issues
+✅ **Uniform Collapsible Pattern**: All three main sections now follow identical design - banner content only shows when expanded
+  - Shop Smart → K8 Machine banner (when expanded)
+  - Claim Rewards → Chill & Grill banner (when expanded)
+  - Create Impact → Planet Heroes Gaming (when expanded)
+✅ **Eliminated Duplicates**: Removed all standalone banner sections from home.tsx to prevent duplicate rendering
 
 **Component Updates:**
-- `client/src/components/hero-challenge-landing.tsx` - Main homepage flow with corrected step sequence, collapsible sections
+- `client/src/components/hero-challenge-landing.tsx` - Main homepage flow with corrected step sequence, collapsible sections, full interactive Chill & Grill banner integrated
 - `client/src/components/aquacafe-tab.tsx` - Collapsible membership benefits section
 - `client/src/components/ai-interactive-hero.tsx` - Removed "Guilt Free Living" to reduce redundancy
 - `client/src/hooks/use-tooltip-hints.ts` - All homepage tooltip delays set to 30000ms
+- `client/src/pages/home.tsx` - Removed standalone Planet Heroes Gaming and AquaCafe Deal Banner sections for uniformity
 
 ## Notes
 - Service worker for image optimization may show registration warnings in development - this is normal
