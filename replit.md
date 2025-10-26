@@ -146,6 +146,23 @@ Without these variables, the application runs in demo mode with mock data.
 - Region classifications: US, Japan, China, Europe (extensible for new markets)
 - B2B buyers must be manually verified before accessing inventory and pricing
 
+## Homepage Visual Enhancements (October 26, 2025)
+✅ **Premium Bundle Showcase**: K8 Kangen Water machine + iPhone bundle prominently featured in Shop Smart section with flagship offer banner
+✅ **Reorganized User Flow**: Three-step process now follows intuitive sequence: Shop Smart → Claim Rewards → Create Impact
+✅ **Step Indicators Alignment**: Fixed ProgressIndicator components to correctly display ShoppingCart → Gift → Play icons matching each section
+✅ **Collapsible Rewards Section**: "Get Rewarded" renamed to "Claim Rewards" with expandable/collapsible interface
+✅ **Visual Assets Integration**: 
+  - K8 machine image (without_text_1756065010951.jpg) in Shop Smart section
+  - Shower filter collage (collage_1755270492135.jpg) in Claim Rewards section
+  - Membership card (Aquacafe_byDeliWer_Card_Corners_1755482696304.png) in AquaCafe tab
+✅ **Enhanced Impact Visualization**: Water Renewal, Recycling, and Food Security icons added to Create Impact section
+✅ **AquaCafe Membership Benefits**: Converted to collapsible section with membership card display for Starter Kit (AED 99)
+✅ **Flow Connectors**: Visual arrow indicators with gradient backgrounds guide users through the three-step journey
+
+**Component Updates:**
+- `client/src/components/hero-challenge-landing.tsx` - Main homepage flow with corrected step sequence
+- `client/src/components/aquacafe-tab.tsx` - Collapsible membership benefits section
+
 ## Notes
 - Service worker for image optimization may show registration warnings in development - this is normal
 - Application includes extensive UI components and gamification features
