@@ -133,7 +133,7 @@ export default function AquaCafe() {
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 to-cyan-50">
       {/* Navigation Bar */}
-      <div className="w-full max-w-7xl mx-auto px-4 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm">
+      <div className="w-full max-w-7xl mx-auto px-4 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-md">
         <Link href="/" className="flex items-center gap-2 text-emerald-800 hover:text-emerald-600 transition-colors" data-testid="link-back-home">
           <Home className="w-5 h-5" />
           <span className="font-semibold">DeliWer</span>
@@ -147,6 +147,235 @@ export default function AquaCafe() {
           </Link>
         </div>
       </div>
+
+      {/* HERO SECTION - Conversion Optimized */}
+      <section className="w-full py-12 sm:py-20 px-4 bg-gradient-to-br from-cyan-600 via-blue-600 to-emerald-600 relative overflow-hidden" data-testid="hero-conversion">
+        {/* Animated Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-300 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-8">
+            {/* Trust Badge - Social Proof */}
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 border border-white/30" data-testid="social-proof-badge">
+              <Award className="w-5 h-5" />
+              <span className="font-bold text-sm">🏆 Trusted by 5,000+ Dubai Families</span>
+            </div>
+            
+            {/* Main Headline - Value Proposition */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 leading-tight">
+              Transform Your iPhone Into
+              <span className="block text-yellow-300">Premium Water Systems</span>
+            </h1>
+            
+            {/* Sub-headline - Clear Benefits */}
+            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
+              Join AquaCafe Loyalty Program. Trade devices, earn Planet Points, and enjoy pure water at home.
+            </p>
+            
+            {/* Value Stack */}
+            <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-4xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20" data-testid="value-free-shower-filter">
+                <div className="text-3xl font-bold text-yellow-300 mb-1">FREE</div>
+                <div className="text-white text-sm">Shower Filter (AED 399 value)</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20" data-testid="value-baker-voucher">
+                <div className="text-3xl font-bold text-yellow-300 mb-1">AED 100</div>
+                <div className="text-white text-sm">Baker's Kitchen Voucher</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20" data-testid="value-lifetime-discount">
+                <div className="text-3xl font-bold text-yellow-300 mb-1">20%</div>
+                <div className="text-white text-sm">Lifetime Discount</div>
+              </div>
+            </div>
+            
+            {/* Primary CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+              <a
+                href="http://deliwer.com/products/aquacafe"
+                className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-10 py-5 text-xl font-black rounded-full shadow-2xl transition-all transform hover:scale-105 inline-flex items-center"
+                data-testid="button-hero-join-now"
+              >
+                <Rocket className="mr-3 w-7 h-7" />
+                JOIN NOW - AED 99
+              </a>
+              <a 
+                href="#packages"
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white text-white px-8 py-4 text-lg font-bold rounded-full transition-all"
+                data-testid="button-view-packages"
+              >
+                View All Packages
+              </a>
+            </div>
+            
+            {/* Urgency Indicator */}
+            <div className="inline-flex items-center gap-2 bg-red-500/80 backdrop-blur-sm text-white px-4 py-2 rounded-full animate-pulse" data-testid="urgency-free-installation">
+              <Zap className="w-4 h-4" />
+              <span className="font-bold text-sm">⏰ Limited Time: FREE Installation (AED 299 value)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCT CATEGORIES - Water Treatment Solutions */}
+      <section className="w-full py-12 sm:py-16 px-4 bg-white" data-testid="product-categories">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              🌊 AquaCafe Water Treatment Solutions
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Premium water filtration systems for Dubai homes. Choose your perfect solution.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Category 1: Entry Level - Starter Kit */}
+            <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl p-6 border-2 border-emerald-300 hover:shadow-2xl transition-all transform hover:scale-105" data-testid="category-starter">
+              <div className="text-center mb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <Home className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter Kit</h3>
+                <div className="text-4xl font-black text-emerald-600 mb-2">AED 99</div>
+                <div className="text-sm text-gray-600 mb-4">Loyalty Membership Gateway</div>
+              </div>
+              
+              <ul className="space-y-2 mb-6 text-sm">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                  <span>FREE Shower Filter (AED 399)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                  <span>FREE Installation (AED 299)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                  <span>Lifetime 20% Discount</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                  <span>Planet Hero Level 2 Status</span>
+                </li>
+              </ul>
+              
+              <a
+                href="http://deliwer.com/products/aquacafe"
+                className="w-full bg-gradient-to-r from-emerald-500 to-cyan-600 hover:from-emerald-600 hover:to-cyan-700 text-white px-6 py-3 text-lg font-bold rounded-xl shadow-lg transition-all transform hover:scale-105 inline-block text-center"
+                data-testid="button-starter-cta"
+              >
+                Start Journey
+              </a>
+            </div>
+
+            {/* Category 2: Mid-Level - Hero Minimal */}
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-400 hover:shadow-2xl transition-all transform hover:scale-105 relative" data-testid="category-hero-minimal">
+              <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-center py-2 font-bold text-sm rounded-t-2xl">
+                ⚡ MOST POPULAR
+              </div>
+              <div className="text-center mb-4 mt-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <Shield className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Hero Minimal</h3>
+                <div className="text-4xl font-black text-blue-600 mb-2">AED 1,299</div>
+                <div className="text-sm text-gray-600 line-through mb-1">Was AED 1,599</div>
+                <div className="text-sm text-green-600 font-bold mb-4">Save AED 300</div>
+              </div>
+              
+              <ul className="space-y-2 mb-6 text-sm">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                  <span>3-Stage Premium Filtration</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                  <span>12-Month Filter Supply</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                  <span>1000 Planet Points + 2X Multiplier</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                  <span>24/7 Priority Support</span>
+                </li>
+              </ul>
+              
+              <a
+                href="http://deliwer.com/products/aquacafe"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 text-lg font-bold rounded-xl shadow-lg transition-all transform hover:scale-105 inline-block text-center"
+                data-testid="button-hero-minimal-cta"
+              >
+                Get Hero System
+              </a>
+            </div>
+
+            {/* Category 3: Premium - Hero Elite */}
+            <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border-2 border-amber-400 hover:shadow-2xl transition-all transform hover:scale-105" data-testid="category-hero-elite">
+              <div className="text-center mb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <Award className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Hero Elite</h3>
+                <div className="text-4xl font-black text-amber-600 mb-2">AED 2,299</div>
+                <div className="text-sm text-gray-600 line-through mb-1">Was AED 2,999</div>
+                <div className="text-sm text-green-600 font-bold mb-4">Save AED 700</div>
+              </div>
+              
+              <ul className="space-y-2 mb-6 text-sm">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                  <span>7-Stage Whole-Home System</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                  <span>36-Month Filter Supply</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                  <span>5000 Points + 3X Multiplier</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                  <span>VIP Concierge Support</span>
+                </li>
+              </ul>
+              
+              <a
+                href="http://deliwer.com/products/aquacafe"
+                className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white px-6 py-3 text-lg font-bold rounded-xl shadow-lg transition-all transform hover:scale-105 inline-block text-center"
+                data-testid="button-hero-elite-cta"
+              >
+                Get Elite System
+              </a>
+            </div>
+          </div>
+
+          {/* Trust Elements */}
+          <div className="grid md:grid-cols-4 gap-4 text-center">
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200" data-testid="trust-warranty">
+              <Shield className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
+              <div className="font-bold text-gray-900 text-sm">5-Year Warranty</div>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200" data-testid="trust-installation">
+              <Zap className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+              <div className="font-bold text-gray-900 text-sm">FREE Installation</div>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200" data-testid="trust-satisfaction">
+              <Heart className="w-8 h-8 text-pink-500 mx-auto mb-2" />
+              <div className="font-bold text-gray-900 text-sm">100% Satisfaction</div>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-4 border border-gray-200" data-testid="trust-certification">
+              <Eye className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+              <div className="font-bold text-gray-900 text-sm">Dubai Certified</div>
+            </div>
+          </div>
+        </div>
+      </section>
       
       {/* AquaCafe Starter Kit - Flagship Gateway Section */}
       <section className="w-full py-8 sm:py-12 px-0 bg-gradient-to-br from-emerald-50 via-cyan-50 to-blue-50" data-testid="starter-kit-gateway" style={{ maxWidth: '100vw' }}>
@@ -402,7 +631,7 @@ export default function AquaCafe() {
       </section>
 
       {/* Pricing Plans */}
-      <section className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-gray-50 to-emerald-50" data-testid="pricing-plans">
+      <section id="packages" className="w-full py-6 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-gray-50 to-emerald-50" data-testid="pricing-plans">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-6 sm:mb-8 bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-emerald-200 shadow-lg">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3">
