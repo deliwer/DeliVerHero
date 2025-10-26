@@ -572,14 +572,9 @@ function StepThreeRewards() {
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Redeem for free meals, eco gifts, or wellness products including FREE Shower Filter.
           </p>
-        </div>
 
-        {/* Product Showcase & Benefits Flowchart Infographic */}
-        {isExpanded && (
-        <>
-        {/* Chill & Grill Deal Banner - Full Interactive Component */}
-        <div className="mb-8 animate-in slide-in-from-top duration-300">
-          <div className="max-w-3xl mx-auto bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 rounded-2xl p-2 relative overflow-hidden shadow-2xl">
+          {/* Chill & Grill Deal Banner - Always Visible */}
+          <div className="max-w-3xl mx-auto bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 rounded-2xl p-2 relative overflow-hidden shadow-2xl mt-6">
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
             
