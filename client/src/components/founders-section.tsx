@@ -1,4 +1,6 @@
 import { Linkedin, Phone, ShieldCheck } from "lucide-react";
+import hassanJawadPhoto from "@assets/IMG_6980_1761497124453.jpg";
+import rubabHassanPhoto from "@assets/RH_LI_1761497200169.jpg";
 
 export function FoundersSection() {
   return (
@@ -15,29 +17,48 @@ export function FoundersSection() {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Hassan Jawad */}
           <div className="glass rounded-2xl p-8 border border-slate-600/50 text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-2xl font-bold text-white">HJ</span>
+            <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-500/50 shadow-xl">
+              <img 
+                src={hassanJawadPhoto} 
+                alt="Hassan Jawad - Founder, ReCommerce Pro" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <h3 className="text-xl font-bold text-white mb-2">Hassan Jawad</h3>
             <p className="text-emerald-400 font-medium mb-4">Founder, ReCommerce Pro</p>
             <p className="text-gray-300 text-sm mb-6">
               Leading Dubai's circular economy transformation through innovative technology solutions and sustainable commerce practices.
             </p>
-            <a
-              href="https://linkedin.com/in/formatix"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-            >
-              <Linkedin className="w-4 h-4 mr-2" />
-              Connect on LinkedIn
-            </a>
+            <div className="space-y-3">
+              <a
+                href="https://linkedin.com/in/formatix"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full justify-center"
+                data-testid="link-hassan-linkedin"
+              >
+                <Linkedin className="w-4 h-4 mr-2" />
+                Connect on LinkedIn
+              </a>
+              <a
+                href="tel:+971523946311"
+                className="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full justify-center"
+                data-testid="link-hassan-phone"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                +971 52 394 6311
+              </a>
+            </div>
           </div>
 
           {/* Rubab Hassan */}
           <div className="glass rounded-2xl p-8 border border-slate-600/50 text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-2xl font-bold text-white">RH</span>
+            <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-emerald-500/50 shadow-xl">
+              <img 
+                src={rubabHassanPhoto} 
+                alt="Rubab Hassan - Co-Founder & MD" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <h3 className="text-xl font-bold text-white mb-2">Rubab Hassan</h3>
             <p className="text-emerald-400 font-medium mb-2">Co-Founder & MD</p>
@@ -49,6 +70,7 @@ export function FoundersSection() {
               <a
                 href="tel:+971567148381"
                 className="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full justify-center"
+                data-testid="link-rubab-phone"
               >
                 <Phone className="w-4 h-4 mr-2" />
                 +971 56 714 8381

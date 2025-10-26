@@ -9,6 +9,7 @@ import { MeetDeliInteractive } from "./meet-deli-interactive";
 import { AquaCafeTab } from "./aquacafe-tab";
 import { HeroRegistrationModal, MissionSelectionModal } from "./hero-onboarding-modals";
 import { TombolaWidget } from "./tombola-widget";
+import { ImpactSlotMachine } from "./impact-slot-machine";
 import { DirhamSymbol } from "./dirham-symbol";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
@@ -180,7 +181,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               data-testid="toggle-create-impact"
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-                Create Impact
+                Play to Create Impact
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-purple-400" />
@@ -199,13 +200,15 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             <span className="text-purple-400 font-bold">Visit the Play page to start your Planet Points journey!</span>
           </p>
 
-          {/* Planet Heroes Gaming Visual - Always Visible */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-900/20 to-indigo-900/20 p-2">
-            <img 
-              src={planetHeroesGaming} 
-              alt="Planet Heroes Environmental Gaming - Create Impact Through Play" 
-              className="w-full h-auto rounded-lg"
-            />
+          {/* Planet Heroes Gaming Banner - Always Visible */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-600/20 to-indigo-600/20 p-2 backdrop-blur-sm">
+            <div className="bg-slate-900/50 rounded-xl p-6">
+              <img 
+                src={planetHeroesGaming} 
+                alt="Planet Heroes Environmental Gaming - Create Impact Through Play" 
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
 
@@ -309,29 +312,31 @@ function StepTwoExchange() {
             Premium Bundle: Trade your iPhone for Kangen Water K8 Machine with huge discounts and exclusive benefits
           </p>
           
-          {/* Featured Bundle Banner */}
-          <div className="max-w-3xl mx-auto bg-gradient-to-r from-blue-600/20 to-green-600/20 rounded-2xl p-6 border border-blue-500/50 backdrop-blur-sm">
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              <div className="flex-1">
-                <img 
-                  src={k8MachineImage} 
-                  alt="Kangen Water K8 Machine" 
-                  className="w-full h-auto rounded-xl shadow-2xl"
-                />
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-3">
-                  <Star className="w-5 h-5" />
-                  <span className="font-bold">FLAGSHIP OFFER</span>
+          {/* K8 Machine Banner - Always Visible */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-blue-500/50 shadow-2xl bg-gradient-to-br from-blue-600/20 to-green-600/20 p-2 backdrop-blur-sm">
+            <div className="bg-slate-900/50 rounded-xl p-6">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-1">
+                  <img 
+                    src={k8MachineImage} 
+                    alt="Kangen Water K8 Machine" 
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Kangen Water + iPhone Bundle</h3>
-                <p className="text-gray-300 mb-4">
-                  Trade your iPhone and get premium K8 Machine with massive savings and lifetime benefits
-                </p>
-                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                  <span className="bg-hero-green-500/20 text-hero-green-400 px-3 py-1 rounded-full text-sm font-bold">Huge Discounts</span>
-                  <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Exclusive Benefits</span>
-                  <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Premium Quality</span>
+                <div className="flex-1 text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-3">
+                    <Star className="w-5 h-5" />
+                    <span className="font-bold">FLAGSHIP OFFER</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Kangen Water + iPhone Bundle</h3>
+                  <p className="text-gray-300 mb-4">
+                    Trade your iPhone and get premium K8 Machine with massive savings and lifetime benefits
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span className="bg-hero-green-500/20 text-hero-green-400 px-3 py-1 rounded-full text-sm font-bold">Huge Discounts</span>
+                    <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Exclusive Benefits</span>
+                    <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Premium Quality</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -533,137 +538,41 @@ function StepThreeRewards() {
           </p>
 
           {/* Chill & Grill Deal Banner - Always Visible */}
-          <div className="max-w-3xl mx-auto bg-gradient-to-br from-orange-600 via-red-600 to-pink-600 rounded-2xl p-2 relative overflow-hidden shadow-2xl mt-6">
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
-            
-            <div className="relative">
-              <Card className="bg-white/95 backdrop-blur-sm border-4 border-orange-400 shadow-2xl overflow-hidden">
-                <div className="grid md:grid-cols-2 gap-6 p-6 md:p-8">
-                  {/* Left: Deal Information */}
-                  <div className="space-y-6">
-                    <div>
-                      <Badge className="bg-green-600 text-white mb-3 text-sm px-3 py-1" data-testid="badge-loyalty-deal">
-                        🌊 AquaCafe Loyalty Deal
-                      </Badge>
-                      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3" data-testid="text-deal-title">
-                        Chill & Grill
-                      </h2>
-                      <p className="text-2xl text-gray-700 mb-2">
-                        Pizza for Two + 2x Kulfi
-                      </p>
-                      <div className="flex items-center gap-2 text-gray-600 text-sm mb-4">
-                        <span>Healthy and refreshing meal if you refer one friend</span>
-                      </div>
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-orange-500/50 shadow-2xl bg-gradient-to-br from-orange-600/20 to-red-600/20 p-2 backdrop-blur-sm">
+            <div className="bg-slate-900/50 rounded-xl p-6">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                {/* Left: Food Image Preview */}
+                <div className="flex-1">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="aspect-square rounded-lg overflow-hidden bg-orange-100 flex items-center justify-center text-5xl shadow-lg">
+                      🍕
                     </div>
-
-                    {/* Price Display */}
-                    <div className="flex items-baseline gap-3">
-                      <div className="flex items-center gap-2">
-                        <DirhamSymbol size={32} className="text-orange-600" />
-                        <span className="text-5xl font-bold text-orange-600" data-testid="text-price">99</span>
-                      </div>
-                      <span className="text-gray-500 text-lg">for two persons</span>
+                    <div className="aspect-square rounded-lg overflow-hidden bg-red-100 flex items-center justify-center text-5xl shadow-lg">
+                      🍨
                     </div>
-
-                    {/* Images Preview */}
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center text-4xl">
-                        🍕
-                      </div>
-                      <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center text-4xl">
-                        🍨
-                      </div>
-                      <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center text-4xl">
-                        🥤
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-gray-600">
-                      Show your generated code at Aqua Cafe to redeem. Limited time offer. T&C apply.
-                    </p>
-                  </div>
-
-                  {/* Right: Action Buttons */}
-                  <div className="flex flex-col justify-center space-y-4">
-                    {!claimedVoucher ? (
-                      <>
-                        <Button
-                          size="lg"
-                          onClick={() => claimVoucherMutation.mutate()}
-                          disabled={claimVoucherMutation.isPending}
-                          className="w-full h-16 text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
-                          data-testid="button-claim-deal"
-                        >
-                          <Gift className="w-6 h-6 mr-2" />
-                          {claimVoucherMutation.isPending ? "Claiming..." : "Claim Deal"}
-                        </Button>
-                        
-                        <Button
-                          variant="outline"
-                          size="lg"
-                          onClick={() => window.open('https://www.deliwer.com/aquacafe', '_blank')}
-                          className="w-full h-14 text-lg border-2 border-gray-300"
-                          data-testid="button-visit-aquacafe"
-                        >
-                          Visit deliwer.com/aquacafe
-                        </Button>
-                      </>
-                    ) : (
-                      <div className="bg-green-50 border-2 border-green-500 rounded-xl p-6 space-y-4" data-testid="container-claimed-voucher">
-                        <div className="flex items-center gap-2 text-green-700">
-                          <CheckCircle className="w-6 h-6" />
-                          <span className="font-bold text-lg">Voucher Claimed!</span>
-                        </div>
-                        <div className="bg-white rounded-lg p-4 border border-green-200">
-                          <p className="text-sm text-gray-600 mb-2">Your Code:</p>
-                          <p className="text-3xl font-mono font-bold text-center tracking-wider text-gray-900" data-testid="text-voucher-code">
-                            {claimedVoucher.code}
-                          </p>
-                        </div>
-                        <Button
-                          variant="outline"
-                          className="w-full"
-                          data-testid="button-view-qr"
-                        >
-                          <QrCode className="w-5 h-5 mr-2" />
-                          View QR Code
-                        </Button>
-                      </div>
-                    )}
-
-                    <div className="pt-4 border-t border-gray-200">
-                      <p className="text-sm font-semibold text-gray-700 mb-3">
-                        🎁 Refer friends, earn <DirhamSymbol size={12} className="inline mx-1" />100 per signup!
-                      </p>
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        onClick={handleCopyReferralLink}
-                        className="w-full h-12 border-2 border-blue-300 hover:bg-blue-50"
-                        data-testid="button-copy-referral"
-                      >
-                        {copied ? (
-                          <>
-                            <CheckCircle className="w-5 h-5 mr-2 text-green-600" />
-                            Copied!
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="w-5 h-5 mr-2" />
-                            Copy referral link
-                          </>
-                        )}
-                      </Button>
+                    <div className="aspect-square rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center text-5xl shadow-lg">
+                      🥤
                     </div>
                   </div>
                 </div>
-              </Card>
-
-              {/* Branding Note */}
-              <p className="text-center text-white/90 text-sm mt-4">
-                <span className="font-semibold">AquaCafe</span> by DeliWer • <span className="font-semibold">Chill & Grill</span> Ghost Kitchen by DeliWer
-              </p>
+                
+                {/* Right: Deal Information */}
+                <div className="flex-1 text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full mb-3">
+                    <Gift className="w-5 h-5" />
+                    <span className="font-bold">LOYALTY DEAL</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill Combo</h3>
+                  <p className="text-gray-300 mb-4">
+                    Pizza for Two + 2x Kulfi - Healthy and refreshing meal when you refer a friend
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">AED 99</span>
+                    <span className="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-sm font-bold">For Two</span>
+                    <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">AquaCafe Deal</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -671,6 +580,97 @@ function StepThreeRewards() {
         {/* Unified Rewards Page CTA - Inside Collapsible */}
         {isExpanded && (
         <>
+        {/* Claim Chill & Grill Voucher Section */}
+        <div className="glass rounded-2xl p-8 border border-orange-500/50 bg-gradient-to-br from-orange-500/10 to-red-500/10 mb-8 animate-in slide-in-from-top duration-300">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full mb-4">
+              <Gift className="w-5 h-5" />
+              <span className="font-bold">🍕 CLAIM YOUR DEAL</span>
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-2">Get Your Chill & Grill Voucher</h3>
+            <p className="text-gray-300 text-sm mb-6">
+              Show your generated code at Aqua Cafe to redeem. Limited time offer. T&C apply.
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            {!claimedVoucher ? (
+              <div className="space-y-4">
+                <Button
+                  size="lg"
+                  onClick={() => claimVoucherMutation.mutate()}
+                  disabled={claimVoucherMutation.isPending}
+                  className="w-full h-16 text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
+                  data-testid="button-claim-deal"
+                >
+                  <Gift className="w-6 h-6 mr-2" />
+                  {claimVoucherMutation.isPending ? "Claiming..." : "Claim Deal"}
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() => window.open('https://www.deliwer.com/aquacafe', '_blank')}
+                  className="w-full h-14 text-lg border-2 border-white/20 text-white hover:bg-white/10"
+                  data-testid="button-visit-aquacafe"
+                >
+                  Visit deliwer.com/aquacafe
+                </Button>
+              </div>
+            ) : (
+              <div className="bg-green-500/20 border-2 border-green-400/50 rounded-xl p-6 space-y-4 backdrop-blur-sm" data-testid="container-claimed-voucher">
+                <div className="flex items-center justify-center gap-2 text-green-300">
+                  <CheckCircle className="w-6 h-6" />
+                  <span className="font-bold text-lg">Voucher Claimed!</span>
+                </div>
+                <div className="bg-slate-900/50 rounded-lg p-4 border border-green-400/30">
+                  <p className="text-sm text-gray-400 mb-2 text-center">Your Code:</p>
+                  <p className="text-3xl font-mono font-bold text-center tracking-wider text-white" data-testid="text-voucher-code">
+                    {claimedVoucher.code}
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  className="w-full border-white/20 text-white hover:bg-white/10"
+                  data-testid="button-view-qr"
+                >
+                  <QrCode className="w-5 h-5 mr-2" />
+                  View QR Code
+                </Button>
+              </div>
+            )}
+
+            <div className="mt-6 pt-6 border-t border-white/10">
+              <p className="text-sm font-semibold text-gray-300 mb-3 text-center">
+                🎁 Refer friends, earn <DirhamSymbol size={12} className="inline mx-1" />100 per signup!
+              </p>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={handleCopyReferralLink}
+                className="w-full h-12 border-2 border-blue-400/30 text-white hover:bg-blue-500/20"
+                data-testid="button-copy-referral"
+              >
+                {copied ? (
+                  <>
+                    <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-5 h-5 mr-2" />
+                    Copy referral link
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+
+          <p className="text-center text-gray-400 text-xs mt-6">
+            <span className="font-semibold text-white">AquaCafe</span> by DeliWer • <span className="font-semibold text-white">Chill & Grill</span> Ghost Kitchen by DeliWer
+          </p>
+        </div>
+
         <div className="text-center mb-8 animate-in slide-in-from-top duration-300">
           <Link href="/rewards">
             <Button 
@@ -937,6 +937,120 @@ function StepThreeRewards() {
           <div className="max-w-md mx-auto">
             <TombolaWidget heroId="demo-hero-id" theme="metaverse" size="full" />
           </div>
+        </div>
+
+        {/* Win Aqua Show - La Perle Tombola Prizes */}
+        <div className="glass rounded-2xl p-8 border border-cyan-500/50 bg-gradient-to-br from-blue-950/30 to-cyan-950/30 relative overflow-hidden animate-in slide-in-from-top duration-700 mt-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-8 py-4 rounded-full mb-6 border border-cyan-400/50">
+              <Gift className="w-8 h-8 text-cyan-300 animate-spin" />
+              <span className="text-2xl font-bold text-white">🌊 WIN AQUA SHOW TICKETS</span>
+              <Trophy className="w-8 h-8 text-blue-300 animate-bounce" />
+            </div>
+            
+            <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              La Perle by Dragone
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300 mt-2">
+                Premium Experience Prizes
+              </span>
+            </h3>
+            
+            <p className="text-lg text-white/90 max-w-3xl mx-auto mb-6">
+              Premium members can now win exclusive <strong>La Perle by Dragone</strong> aqua show experience tickets through our enhanced tombola system!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Silver Experience */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-gray-300/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+              <div className="text-center">
+                <div className="w-14 h-14 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Award className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">🥈 Silver Experience</h4>
+                <div className="text-3xl font-bold text-gray-300 mb-2">5% Chance</div>
+                <div className="text-white/70 text-sm mb-4">Premium seating</div>
+                <div className="space-y-1 text-xs text-white/60">
+                  <div>✨ Silver section seating</div>
+                  <div>🎭 Full show experience</div>
+                  <div>📅 6-month validity</div>
+                  <div>🏆 200 XP + 300 Points</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Gold Experience */}
+            <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 border-2 border-yellow-400/40 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-yellow-400/20">
+              <div className="text-center">
+                <div className="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Crown className="w-7 h-7 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">🥇 Gold Experience</h4>
+                <div className="text-3xl font-bold text-yellow-400 mb-2">1% Chance</div>
+                <div className="text-white/70 text-sm mb-4">Premium + refreshments</div>
+                <div className="space-y-1 text-xs text-white/60">
+                  <div>⭐ Gold section seating</div>
+                  <div>🥂 Welcome refreshments</div>
+                  <div>📅 6-month validity</div>
+                  <div>🏆 500 XP + 750 Points</div>
+                </div>
+              </div>
+            </div>
+
+            {/* VIP Experience */}
+            <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-6 border-2 border-purple-400/50 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-400/30">
+              <div className="text-center">
+                <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Sparkles className="w-7 h-7 text-white animate-pulse" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">💎 VIP Experience</h4>
+                <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">0.5% Chance</div>
+                <div className="text-white/70 text-sm mb-4">Ultimate experience</div>
+                <div className="space-y-1 text-xs text-white/60">
+                  <div>👑 VIP section seating</div>
+                  <div>🎭 Backstage tour</div>
+                  <div>🍽️ Premium dinner</div>
+                  <div>🏆 1000 XP + 1500 Points</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <p className="text-white/90 text-base mb-4">
+                Premium members get exclusive access to these extraordinary entertainment experiences!
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link href="/play">
+                  <Button className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 text-lg px-8 py-3 rounded-full font-bold shadow-xl transition-all duration-300 hover:scale-105" data-testid="button-play-tombola">
+                    <Gift className="w-5 h-5 mr-2" />
+                    🎰 Play Tombola Now
+                  </Button>
+                </Link>
+                
+                <a 
+                  href="https://www.laperle.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-full font-bold shadow-lg transition-all duration-300 hover:scale-105"
+                  data-testid="button-laperle-website"
+                >
+                  🎭 Visit laperle.com
+                </a>
+              </div>
+              
+              <div className="text-xs text-white/70 mt-3">
+                ✨ Premium membership required for enhanced tombola prizes ✨
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Impact Slot Machine */}
+        <div className="mt-8 animate-in slide-in-from-top duration-1000">
+          <ImpactSlotMachine />
         </div>
         </>
         )}
