@@ -11,9 +11,10 @@ import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
 import { AquaCafeDealBanner } from "@/components/aquacafe-deal-banner";
-import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap } from "lucide-react";
+import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
 
 function OpportunitiesSection() {
   return (
@@ -223,6 +224,7 @@ function LiveChallengeWidget() {
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
+  const [showPartnershipSection, setShowPartnershipSection] = useState(false);
 
   // Check if user has seen onboarding before
   useEffect(() => {
@@ -278,23 +280,116 @@ export default function Home() {
       {/* AI Interactive Hero Section - New modular hero at the top */}
       <AIInteractiveHero />
 
+      {/* ⭐ FEATURED: AquaCafe Deal Banner - Main Entry Point for Loyalty Membership */}
+      <AquaCafeDealBanner />
+
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Now includes How It Works flow */}
       <HeroChallengeLanding />
 
-      {/* AquaCafe Deal Banner - Chill & Grill Pizza + Kulfi Deal */}
-      <AquaCafeDealBanner />
+      {/* Create Impact - Planet Heroes Gaming Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-slate-900 via-purple-900/20 to-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-40"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left: Image */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-green-500/20 rounded-3xl blur-3xl"></div>
+              <img 
+                src={planetHeroesGaming} 
+                alt="Planet Heroes Environmental Gaming" 
+                className="relative rounded-3xl shadow-2xl border-4 border-purple-500/30"
+              />
+            </div>
 
-      {/* Partnership & Starter Kit Convergence Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="mb-12">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Discover Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">Sustainability Journey</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-              Every path to environmental impact is unique. Whether you're exploring individual solutions, considering corporate sustainability, or building community initiatives - we're here to help you find what works best for your goals.
+            {/* Right: Content */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-green-500/20 px-4 py-2 rounded-full border border-purple-500/30">
+                <Gamepad2 className="w-5 h-5 text-purple-400" />
+                <span className="text-purple-300 font-semibold">Create Impact</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+                Play. Earn. Save the
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-green-400">
+                  Planet Together
+                </span>
+              </h2>
+              
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Transform your environmental actions into an engaging gaming experience. Earn Planet Points, unlock achievements, and compete with friends while making a real difference.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-800/50 rounded-xl p-4 border border-purple-500/30">
+                  <div className="text-3xl font-bold text-purple-400 mb-1">2.4M+</div>
+                  <div className="text-sm text-gray-400">Bottles Prevented</div>
+                </div>
+                <div className="bg-slate-800/50 rounded-xl p-4 border border-green-500/30">
+                  <div className="text-3xl font-bold text-green-400 mb-1">12K+</div>
+                  <div className="text-sm text-gray-400">Active Heroes</div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/play">
+                  <Button 
+                    size="lg"
+                    className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-6 text-lg font-bold shadow-xl"
+                    data-testid="button-start-playing"
+                  >
+                    <Gamepad2 className="w-5 h-5 mr-2" />
+                    Start Playing Now
+                  </Button>
+                </Link>
+                <Link href="/leaderboard">
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto border-2 border-purple-500 text-purple-300 hover:bg-purple-500 hover:text-white px-8 py-6 text-lg font-bold"
+                    data-testid="button-view-leaderboard"
+                  >
+                    <Trophy className="w-5 h-5 mr-2" />
+                    View Leaderboard
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnership & Starter Kit Convergence Section - Now Collapsible for Partners */}
+      <section className="py-12 px-4 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900">
+        <div className="max-w-6xl mx-auto">
+          {/* Collapsible Header */}
+          <div className="text-center mb-8">
+            <Button
+              onClick={() => setShowPartnershipSection(!showPartnershipSection)}
+              size="lg"
+              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white px-8 py-6 text-xl font-bold shadow-xl"
+              data-testid="button-toggle-partnership"
+            >
+              <Handshake className="w-6 h-6 mr-3" />
+              {showPartnershipSection ? 'Hide' : 'Join the'} Sustainability Journey
+              {showPartnershipSection ? <ChevronUp className="w-6 h-6 ml-3" /> : <ChevronDown className="w-6 h-6 ml-3" />}
+            </Button>
+            <p className="text-gray-400 mt-4">
+              {showPartnershipSection ? 'Explore partnership opportunities below' : 'Click to explore partnership opportunities for businesses and organizations'}
             </p>
           </div>
+
+          {/* Collapsible Content */}
+          {showPartnershipSection && (
+            <div className="animate-in slide-in-from-top duration-500">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                  Discover Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">Sustainability Journey</span>
+                </h2>
+                <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+                  Every path to environmental impact is unique. Whether you're exploring individual solutions, considering corporate sustainability, or building community initiatives - we're here to help you find what works best for your goals.
+                </p>
+              </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Individual Trade-in */}
@@ -413,6 +508,8 @@ export default function Home() {
               </div>
             </div>
           </div>
+            </div>
+          )}
         </div>
       </section>
 
