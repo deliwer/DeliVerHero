@@ -92,7 +92,7 @@ export function AIInteractiveHero() {
               </span>
             </span>
           </h2>
-          <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold max-w-4xl mx-auto leading-relaxed drop-shadow-2xl mb-2">Pure Water. Simple Shopping. Planet Impact.</p>
+          <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold max-w-4xl mx-auto leading-relaxed drop-shadow-2xl mb-2">Premium Water. Easy Shopping. Planet Impact.</p>
           <p className="text-lg sm:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">Get clean water at home while earning rewards for sustainable choices</p>
         </div>
 
