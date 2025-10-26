@@ -223,6 +223,7 @@ export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
   const [showPartnershipSection, setShowPartnershipSection] = useState(false);
+  const [isTombolaExpanded, setIsTombolaExpanded] = useState(false);
 
   // Check if user has seen onboarding before
   useEffect(() => {
@@ -438,10 +439,8 @@ export default function Home() {
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
 
-
-
-      {/* La Perle Aqua Show CTA - New Tombola Prizes */}
-      <section className="py-16 px-4 bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden">
+      {/* La Perle Aqua Show CTA - New Tombola Prizes - Collapsible */}
+      <section className="py-4 px-4 bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
@@ -450,27 +449,46 @@ export default function Home() {
         </div>
         
         <div className="relative max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-8 py-4 rounded-full mb-8 border border-cyan-400/50 shadow-lg shadow-cyan-400/20">
-              <Gift className="w-8 h-8 text-cyan-300 animate-spin" />
-              <span className="text-2xl font-bold text-white">🌊 NEW TOMBOLA PRIZES</span>
-              <Trophy className="w-8 h-8 text-blue-300 animate-bounce" />
-            </div>
-            
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Win Aqua Show
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
-                Experience Tickets
-              </span>
-            </h2>
-            
-            <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
-              Premium members can now win exclusive <strong>La Perle by Dragone</strong> aqua show experience tickets through our enhanced tombola system. 
-              From Silver seating to VIP backstage tours - Dubai's most extraordinary entertainment awaits at the world-renowned aquatic theater!
-            </p>
+          {/* Collapsible Header */}
+          <div className="text-center mb-6">
+            <button
+              onClick={() => setIsTombolaExpanded(!isTombolaExpanded)}
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 hover:from-blue-500/40 hover:to-cyan-500/40 px-8 py-4 rounded-full border border-cyan-400/50 shadow-lg shadow-cyan-400/20 transition-all"
+              data-testid="button-toggle-tombola"
+            >
+              <Gift className="w-8 h-8 text-cyan-300" />
+              <span className="text-2xl font-bold text-white">🌊 Win Aqua Show Experience Tickets</span>
+              {isTombolaExpanded ? (
+                <ChevronUp className="w-6 h-6 text-white" />
+              ) : (
+                <ChevronDown className="w-6 h-6 text-white animate-bounce" />
+              )}
+            </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          {isTombolaExpanded && (
+            <>
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-8 py-4 rounded-full mb-8 border border-cyan-400/50 shadow-lg shadow-cyan-400/20">
+                  <Gift className="w-8 h-8 text-cyan-300 animate-spin" />
+                  <span className="text-2xl font-bold text-white">🌊 NEW TOMBOLA PRIZES</span>
+                  <Trophy className="w-8 h-8 text-blue-300 animate-bounce" />
+                </div>
+                
+                <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                  Win Aqua Show
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
+                    Experience Tickets
+                  </span>
+                </h2>
+                
+                <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+                  Premium members can now win exclusive <strong>La Perle by Dragone</strong> aqua show experience tickets through our enhanced tombola system. 
+                  From Silver seating to VIP backstage tours - Dubai's most extraordinary entertainment awaits at the world-renowned aquatic theater!
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Silver Experience */}
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-gray-300/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
               <div className="text-center">
@@ -575,7 +593,9 @@ export default function Home() {
                 ✨ Premium membership required for enhanced tombola prizes ✨
               </div>
             </div>
-          </div>
+              </div>
+            </>
+          )}
         </div>
       </section>
 

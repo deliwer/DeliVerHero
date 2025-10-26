@@ -18,6 +18,7 @@ import AquaCafe from "@/pages/aquacafe";
 import AquaCafeAlliance from "@/pages/aquacafe-alliance";
 import Products from "@/pages/products";
 import Exchange from "@/pages/exchange";
+import Earn from "@/pages/earn";
 import Collect from "@/pages/collect";
 import Redeem from "@/pages/redeem";
 import Play from "@/pages/play";
@@ -84,7 +85,7 @@ function Router() {
         <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />
         <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
         <Route path="/exchange" component={Exchange} />
-        <Route path="/earn" component={Exchange} />
+        <Route path="/earn" component={Earn} />
         <Route path="/collect" component={Collect} />
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
