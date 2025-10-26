@@ -198,9 +198,18 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             Your actions fund recycling drives, water renewal, and food security programs across Dubai & Pakistan. 
             <span className="text-purple-400 font-bold">Visit the Play page to start your Planet Points journey!</span>
           </p>
+
+          {/* Planet Heroes Gaming Visual - Always Visible */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-900/20 to-indigo-900/20 p-2">
+            <img 
+              src={planetHeroesGaming} 
+              alt="Planet Heroes Environmental Gaming - Create Impact Through Play" 
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
         </div>
 
-        {/* Metaverse Tombola Game Section */}
+        {/* Play Mission Info Section */}
         {isExpanded && (
         <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500">
           {/* Floating particles */}
@@ -210,57 +219,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             <div className="absolute bottom-12 left-12 w-1 h-1 bg-pink-400 rounded-full animate-pulse delay-700"></div>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
-            
-            {/* Left: Tombola Game Widget */}
-            <div>
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
-                  <Play className="w-5 h-5 animate-pulse" />
-                  <span className="font-bold">🎮 IMPACT ACTIVITIES</span>
-                  <Sparkles className="w-5 h-5 animate-pulse" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">🌍 Create Environmental Impact</h3>
-                <p className="text-purple-200 text-sm mb-4">
-                  Your actions support recycling, water renewal, and sustainability programs across Dubai & Pakistan!
-                </p>
-              </div>
-              
-              {/* Planet Heroes Gaming Visual */}
-              <div className="mb-6 rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl">
-                <img 
-                  src={planetHeroesGaming} 
-                  alt="Planet Heroes Environmental Gaming - Create Impact Through Play" 
-                  className="w-full h-auto"
-                />
-              </div>
-              
-              {/* Impact Visual Representation */}
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="text-center p-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border border-green-500/30">
-                  <Droplets className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                  <div className="text-white font-bold text-sm">Water Renewal</div>
-                  <div className="text-gray-400 text-xs">Clean water access</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl border border-blue-500/30">
-                  <Repeat className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-                  <div className="text-white font-bold text-sm">Recycling</div>
-                  <div className="text-gray-400 text-xs">Device reclamation</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl border border-amber-500/30">
-                  <Utensils className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                  <div className="text-white font-bold text-sm">Food Security</div>
-                  <div className="text-gray-400 text-xs">Community support</div>
-                </div>
-              </div>
-              
-              {/* Tombola Widget with Metaverse Theme */}
-              <div className="max-w-md mx-auto">
-                <TombolaWidget heroId={heroId} theme="metaverse" size="full" />
-              </div>
-            </div>
-            
-            {/* Right: Play Mission Info */}
+          <div className="max-w-2xl mx-auto relative z-10">
             <div className="space-y-6">
               <div className="text-center mb-6">
                 <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
@@ -938,6 +897,45 @@ function StepThreeRewards() {
                 Shop AquaCafe Now
               </Button>
             </div>
+          </div>
+        </div>
+
+        {/* Tombola Prizes Section */}
+        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500 mt-8">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
+              <Play className="w-5 h-5 animate-pulse" />
+              <span className="font-bold">🎮 TOMBOLA PRIZES</span>
+              <Sparkles className="w-5 h-5 animate-pulse" />
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-2">Win Amazing Prizes!</h3>
+            <p className="text-purple-200 text-sm mb-4">
+              Spin the tombola daily to win exciting rewards and support environmental impact!
+            </p>
+          </div>
+          
+          {/* Impact Visual Representation */}
+          <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="text-center p-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border border-green-500/30">
+              <Droplets className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
+              <div className="text-white font-bold text-sm">Water Renewal</div>
+              <div className="text-gray-400 text-xs">Clean water access</div>
+            </div>
+            <div className="text-center p-4 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl border border-blue-500/30">
+              <Repeat className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+              <div className="text-white font-bold text-sm">Recycling</div>
+              <div className="text-gray-400 text-xs">Device reclamation</div>
+            </div>
+            <div className="text-center p-4 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl border border-amber-500/30">
+              <Utensils className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+              <div className="text-white font-bold text-sm">Food Security</div>
+              <div className="text-gray-400 text-xs">Community support</div>
+            </div>
+          </div>
+          
+          {/* Tombola Widget */}
+          <div className="max-w-md mx-auto">
+            <TombolaWidget heroId="demo-hero-id" theme="metaverse" size="full" />
           </div>
         </div>
         </>
