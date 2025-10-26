@@ -15,6 +15,7 @@ import mobile_water_purification_hero from "@assets/mobile-water-purification-he
 import k8MachineImage from "@assets/without_text_1756065010951.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
+import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -182,6 +183,11 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               )}
             </button>
           </h2>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Sparkles className="w-5 h-5 text-emerald-400 animate-pulse" />
+            <span className="text-emerald-400 font-bold text-lg">Guilt Free Living</span>
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
+          </div>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             Your actions fund recycling drives, water renewal, and food security programs across Dubai & Pakistan. 
             <span className="text-purple-400 font-bold">Visit the Play page to start your Planet Points journey!</span>
@@ -212,6 +218,15 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
                 <p className="text-purple-200 text-sm mb-4">
                   Your actions support recycling, water renewal, and sustainability programs across Dubai & Pakistan!
                 </p>
+              </div>
+              
+              {/* Planet Heroes Gaming Visual */}
+              <div className="mb-6 rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl">
+                <img 
+                  src={planetHeroesGaming} 
+                  alt="Planet Heroes Environmental Gaming - Create Impact Through Play" 
+                  className="w-full h-auto"
+                />
               </div>
               
               {/* Impact Visual Representation */}
@@ -519,6 +534,32 @@ function StepThreeRewards() {
         {/* Product Showcase & Benefits Flowchart Infographic */}
         {isExpanded && (
         <>
+        {/* Chill & Grill Promotional Banner */}
+        <div className="mb-8 animate-in slide-in-from-top duration-300">
+          <div className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 rounded-2xl p-6 border-2 border-orange-400/50 shadow-2xl">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Utensils className="w-6 h-6 text-white" />
+                <h3 className="text-2xl md:text-3xl font-black text-white">🍕 Chill & Grill Rewards</h3>
+                <Gift className="w-6 h-6 text-white animate-bounce" />
+              </div>
+              <p className="text-white text-lg mb-4 font-bold">
+                Get D100 voucher for each friend signup! Pizza for Two + Kulfi just D99
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/30">
+                  <div className="text-yellow-300 text-sm font-bold">D100 VOUCHER</div>
+                  <div className="text-white text-xs">Per Referral</div>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/30">
+                  <div className="text-yellow-300 text-sm font-bold">D99 ONLY</div>
+                  <div className="text-white text-xs">Pizza + Kulfi</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Unified Rewards Page CTA - Inside Collapsible */}
         <div className="text-center mb-8 animate-in slide-in-from-top duration-300">
           <Link href="/rewards">
@@ -831,8 +872,76 @@ export function HeroChallengeLanding() {
           <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
         </div>
 
-        {/* Main Tabs Section */}
+        {/* Main Tabs Section - Collapsible with AquaCafe Membership Card Banner */}
         <div data-section="main-tabs" className="mt-16 mb-12">
+          <CollapsibleTabsSection />
+        </div>
+      </div>
+
+      {/* Hero Registration Modal */}
+      <HeroRegistrationModal 
+        open={showHeroRegistration}
+        onClose={() => setShowHeroRegistration(false)}
+        onSuccess={(hero) => {
+          setRegisteredHero(hero);
+          setShowHeroRegistration(false);
+          setShowMissionSelection(true);
+        }}
+      />
+
+      {/* Mission Selection Modal */}
+      <MissionSelectionModal 
+        open={showMissionSelection}
+        onClose={() => setShowMissionSelection(false)}
+        hero={registeredHero}
+        onMissionSelect={(mission) => {
+          setShowMissionSelection(false);
+          // Navigate to dashboard with mission
+          window.location.href = `/dashboard?mission=${mission.id}`;
+        }}
+      />
+    </section>
+  );
+}
+
+// Collapsible Tabs Section Component
+function CollapsibleTabsSection() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="max-w-7xl mx-auto">
+      {/* Membership Card Banner - Click to Expand */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full cursor-pointer hover:scale-[1.02] transition-all duration-300 mb-8 group"
+        aria-expanded={isExpanded}
+        aria-label="Toggle AquaCafe Membership options"
+        data-testid="toggle-aquacafe-membership"
+      >
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-blue-500/50 group-hover:border-blue-400 transition-colors">
+          <img 
+            src={membershipCard} 
+            alt="AquaCafe Membership Card - Click to explore benefits" 
+            className="w-full h-auto"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center pb-6">
+            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/30">
+              <span className="text-white font-bold text-lg">
+                {isExpanded ? "Hide" : "Explore"} Membership Benefits
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-6 h-6 text-white" />
+              ) : (
+                <ChevronDown className="w-6 h-6 text-white animate-bounce" />
+              )}
+            </div>
+          </div>
+        </div>
+      </button>
+
+      {/* Collapsible Tabs Content */}
+      {isExpanded && (
+        <div className="animate-in slide-in-from-top duration-500">
           <Tabs defaultValue="aquacafe" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-2 border border-slate-600/50">
               <TabsTrigger 
@@ -982,37 +1091,14 @@ export function HeroChallengeLanding() {
             </TabsContent>
           </Tabs>
         </div>
+      )}
 
-        {/* Trust Indicators */}
-        <div className="text-center">
-          <p className="text-gray-400 text-sm">
-            🔒 Secure • ⚡ Instant • 🌍 Environmental Impact Guaranteed
-          </p>
-        </div>
+      {/* Trust Indicators */}
+      <div className="text-center mt-8">
+        <p className="text-gray-400 text-sm">
+          🔒 Secure • ⚡ Instant • 🌍 Environmental Impact Guaranteed
+        </p>
       </div>
-
-      {/* Hero Registration Modal */}
-      <HeroRegistrationModal 
-        open={showHeroRegistration}
-        onClose={() => setShowHeroRegistration(false)}
-        onSuccess={(hero) => {
-          setRegisteredHero(hero);
-          setShowHeroRegistration(false);
-          setShowMissionSelection(true);
-        }}
-      />
-
-      {/* Mission Selection Modal */}
-      <MissionSelectionModal 
-        open={showMissionSelection}
-        onClose={() => setShowMissionSelection(false)}
-        hero={registeredHero}
-        onMissionSelect={(mission) => {
-          setShowMissionSelection(false);
-          // Navigate to dashboard with mission
-          window.location.href = `/dashboard?mission=${mission.id}`;
-        }}
-      />
-    </section>
+    </div>
   );
 }

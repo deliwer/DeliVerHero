@@ -28,7 +28,7 @@ const defaultHints: TooltipHint[] = [
     content: "Select your iPhone model and condition to see how much it's worth. Our AI calculator gives you instant, accurate valuations.",
     type: "tip",
     target: "device-simulator",
-    delay: 20000,
+    delay: 30000,
     position: "right",
     priority: "high",
     conditions: {
@@ -47,7 +47,7 @@ const defaultHints: TooltipHint[] = [
     content: "Click 'Start Mission' to begin your environmental journey. You'll earn points, save the planet, and get premium water systems.",
     type: "action",
     target: "button-start-mission",
-    delay: 5000,
+    delay: 30000,
     position: "bottom",
     priority: "high",
     conditions: {
@@ -61,7 +61,7 @@ const defaultHints: TooltipHint[] = [
     content: "See Dubai's top environmental heroes! Every iPhone trade, referral, and eco-action earns you points and moves you up the rankings.",
     type: "achievement",
     target: "leaderboard",
-    delay: 8000,
+    delay: 30000,
     position: "left",
     priority: "medium",
     conditions: {
@@ -74,7 +74,7 @@ const defaultHints: TooltipHint[] = [
     content: "These numbers show the actual environmental impact of our Dubai Heroes community. Your actions contribute to these growing totals!",
     type: "info",
     target: "stat-bottles",
-    delay: 20000,
+    delay: 30000,
     position: "top",
     priority: "medium",
     conditions: {
@@ -113,7 +113,7 @@ const defaultHints: TooltipHint[] = [
     content: "Our AI Concierge can help you calculate trade values, find the best AquaCafe package, or answer any questions about your hero journey.",
     type: "info",
     target: "ai-concierge",
-    delay: 15000,
+    delay: 30000,
     position: "left",
     priority: "low"
   }

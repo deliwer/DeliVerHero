@@ -96,16 +96,6 @@ export function AIInteractiveHero() {
         {/* AI-Style Interactive CTA Box */}
         <div className="max-w-2xl mx-auto">
           <div className="glass rounded-3xl p-6 sm:p-8 border border-white/20 backdrop-blur-md shadow-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/10">
-            {/* AI Chat Bubble Header */}
-            <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center space-x-3 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full px-6 py-3 border border-emerald-400/30 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105">
-                <MessageCircle className="w-5 h-5 text-emerald-400 animate-pulse" />
-                <Sparkles className="w-4 h-4 text-blue-400 animate-pulse" style={{ animationDelay: '500ms' }} />
-                <span className="text-white font-medium">Guilt Free Living</span>
-                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
-              </div>
-            </div>
-
             {/* Question */}
             <div className="mb-6 sm:mb-8">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
