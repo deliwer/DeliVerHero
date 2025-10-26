@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Droplets, Smartphone, Globe, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@assets/generated_images/iPhone_water_gaming_transformation_7f8e4ab7.png";
+import heroImage from "@assets/generated_images/Rewards_clean_water_shopping_2774e4e7.png";
 
 interface CTAOption {
   id: string;
@@ -77,11 +77,13 @@ export function AIInteractiveHero() {
       <div className="max-w-4xl mx-auto relative z-10 text-center">
         {/* Main Headlines */}
         <div className="mb-8 sm:mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white drop-shadow-2xl">Reap rewards for shopping</span><br />
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+            <span className="text-white drop-shadow-2xl">Rewards for Shopping</span>
+          </h1>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             <span className="relative inline-block">
               <span className="absolute inset-0 bg-black/60 blur-sm rounded-lg px-4 py-2"></span>
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-emerald-200 drop-shadow-2xl animate-pulse-slow font-black px-4 py-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl" 
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-blue-200 to-emerald-200 drop-shadow-2xl animate-pulse-slow font-black px-4 py-2" 
                     style={{ 
                       textShadow: '0 0 30px rgba(6, 182, 212, 1), 0 0 50px rgba(59, 130, 246, 0.8), 0 0 70px rgba(16, 185, 129, 0.6)',
                       filter: 'contrast(1.2) brightness(1.3)'
@@ -89,8 +91,9 @@ export function AIInteractiveHero() {
                 From iPhones to Wellness
               </span>
             </span>
-          </h1>
-          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">Join the Planet Heroes Movement — earn rewards for every sustainable meal, iPhone Trade-in, and renewable water filter.</p>
+          </h2>
+          <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold max-w-4xl mx-auto leading-relaxed drop-shadow-2xl mb-2">Pure Water. Simple Shopping. Planet Impact.</p>
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">Get clean water at home while earning rewards for sustainable choices</p>
         </div>
 
         {/* AI-Style Interactive CTA Box */}
@@ -115,24 +118,23 @@ export function AIInteractiveHero() {
               ) : !showButtons ? (
                 <Button
                   onClick={handleCTAClick}
-                  className="w-full bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 text-white px-8 py-6 text-lg font-bold rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20"
+                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-7 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/30"
                   data-testid="ai-cta-trigger"
                 >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Tell me what you need
+                  <Droplets className="w-6 h-6 mr-3" />
+                  Get Clean Water at Home
                 </Button>
               ) : (
-                <div className="space-y-3 animate-in slide-in-from-top duration-500">
+                <div className="space-y-4 animate-in slide-in-from-top duration-500">
                   {ctaOptions.map((option) => (
                       <Button
                         key={option.id}
-                        className={`w-full bg-gradient-to-r ${option.gradient} hover:${option.hoverGradient} text-white px-6 py-5 text-base sm:text-lg font-bold rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-white/20 group`}
+                        className={`w-full bg-gradient-to-r ${option.gradient} hover:${option.hoverGradient} text-white px-6 ${option.id === 'water' ? 'py-7 text-xl border-2 shadow-2xl' : 'py-5 text-lg border'} font-bold rounded-2xl ${option.id === 'water' ? 'shadow-2xl' : 'shadow-lg'} transform hover:scale-105 transition-all duration-300 border-white/20 group`}
                         onMouseEnter={() => setSelectedOption(option.id)}
                         onMouseLeave={() => setSelectedOption(null)}
                         onClick={() => {
                           if (option.id === 'water') {
-                            const shopSmartSection = document.querySelector('[data-section="step-1"]');
-                            shopSmartSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            window.location.href = '/aquacafe';
                           } else if (option.id === 'trade') {
                             const getRewardedSection = document.querySelector('[data-section="step-2"]');
                             getRewardedSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -144,7 +146,7 @@ export function AIInteractiveHero() {
                         data-testid={`ai-cta-${option.id}`}
                       >
                         <div className="flex items-center justify-center space-x-3">
-                          <span className="text-2xl group-hover:scale-110 transition-transform duration-200">
+                          <span className={`${option.id === 'water' ? 'text-3xl' : 'text-2xl'} group-hover:scale-110 transition-transform duration-200`}>
                             {option.icon}
                           </span>
                           <span className="flex-1 text-left">
@@ -166,7 +168,7 @@ export function AIInteractiveHero() {
                     className="w-full text-white/70 hover:text-white hover:bg-white/10 px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200"
                     data-testid="ai-cta-reset"
                   >
-                    ← Ask me something else
+                    ← Other options
                   </Button>
                 </div>
               )}
