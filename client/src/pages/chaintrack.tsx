@@ -175,43 +175,106 @@ function ChainTrackLanding() {
         {/* Global Regions & Inventory Categories */}
         <div className="mt-20 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Global Market Access</h2>
+            <h2 className="text-3xl font-bold mb-4">Global Wholesale Marketplace</h2>
             <p className="text-lg text-slate-600 dark:text-slate-400">
-              Source from major markets with multiple inventory types
+              Source from major markets with unique regional advantages and device specifications
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-6 mb-12">
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-blue-200 dark:border-blue-800">
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-orange-300 dark:border-orange-700 bg-gradient-to-br from-orange-50 to-white dark:from-orange-950/20 dark:to-slate-900" data-testid="card-region-india">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-white" />
+              </div>
+              <Badge className="mb-3 bg-orange-500 text-white">FEATURED</Badge>
+              <h3 className="text-xl font-bold mb-2">India</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Export incentives & dual-SIM specs</p>
+              <div className="space-y-1 text-xs text-left">
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-green-600" />
+                  <span>RODTEP 2% rebate</span>
+                </p>
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-green-600" />
+                  <span>GST refund eligible</span>
+                </p>
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-green-600" />
+                  <span>India-specific bands</span>
+                </p>
+              </div>
+            </Card>
+
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-blue-200 dark:border-blue-800" data-testid="card-region-us">
               <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2">United States</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Premium tested devices & auction lots</p>
+              <h3 className="text-xl font-bold mb-2 mt-9">United States</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Premium tested devices & auction lots</p>
+              <div className="space-y-1 text-xs text-left">
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-blue-600" />
+                  <span>Factory unlocked</span>
+                </p>
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-blue-600" />
+                  <span>High-grade cosmetics</span>
+                </p>
+              </div>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-red-200 dark:border-red-800">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-red-200 dark:border-red-800" data-testid="card-region-japan">
               <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="w-8 h-8 text-red-600 dark:text-red-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Japan</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">High-quality refurbished stock</p>
+              <h3 className="text-xl font-bold mb-2 mt-9">Japan</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Pristine refurbished stock</p>
+              <div className="space-y-1 text-xs text-left">
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-red-600" />
+                  <span>A+ grade dominant</span>
+                </p>
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-red-600" />
+                  <span>Strict quality control</span>
+                </p>
+              </div>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-yellow-200 dark:border-yellow-800">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-yellow-200 dark:border-yellow-800" data-testid="card-region-china">
               <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="w-8 h-8 text-yellow-600 dark:text-yellow-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2">China</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Volume inventory & competitive pricing</p>
+              <h3 className="text-xl font-bold mb-2 mt-9">China</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Volume inventory & competitive pricing</p>
+              <div className="space-y-1 text-xs text-left">
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-yellow-600" />
+                  <span>Bulk quantities</span>
+                </p>
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-yellow-600" />
+                  <span>Lowest cost basis</span>
+                </p>
+              </div>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-purple-200 dark:border-purple-800">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow border-2 border-purple-200 dark:border-purple-800" data-testid="card-region-europe">
               <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="w-8 h-8 text-purple-600 dark:text-purple-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Europe</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Certified & compliant devices</p>
+              <h3 className="text-xl font-bold mb-2 mt-9">Europe</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Certified & compliant devices</p>
+              <div className="space-y-1 text-xs text-left">
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-purple-600" />
+                  <span>CE certified</span>
+                </p>
+                <p className="flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-purple-600" />
+                  <span>Full compliance</span>
+                </p>
+              </div>
             </Card>
           </div>
 
@@ -373,39 +436,140 @@ function ChainTrackLanding() {
           </div>
         </div>
 
-        {/* How Reverse Bidding Works - Simplified */}
-        <div className="mt-24 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Simple 3-Step Process</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
-                1
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Post Your Need</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Create an auction with your device requirements, quantity, and target price
-              </p>
+        {/* Complete International Buyer Journey */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Complete International Buyer Journey</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              End-to-end process with full compliance and escrow protection
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-7 gap-4">
+            <div className="relative">
+              <Card className="p-6 border-2 border-blue-400 bg-blue-50 dark:bg-blue-950/20" data-testid="card-journey-browse">
+                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  1
+                </div>
+                <h4 className="font-bold text-center mb-2">Browse</h4>
+                <p className="text-xs text-center text-slate-600 dark:text-slate-400">
+                  Search inventory by country, grade, & specs
+                </p>
+                <div className="mt-2 text-center">
+                  <Badge variant="outline" className="text-xs">10 min</Badge>
+                </div>
+              </Card>
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
-                2
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Suppliers Compete</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Verified suppliers place competitive bids, driving prices down for you
-              </p>
+            <div className="relative">
+              <Card className="p-6 border-2 border-purple-400 bg-purple-50 dark:bg-purple-950/20" data-testid="card-journey-compare">
+                <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  2
+                </div>
+                <h4 className="font-bold text-center mb-2">Compare</h4>
+                <p className="text-xs text-center text-slate-600 dark:text-slate-400">
+                  Regional pricing, specs, export benefits
+                </p>
+                <div className="mt-2 text-center">
+                  <Badge variant="outline" className="text-xs">15 min</Badge>
+                </div>
+              </Card>
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
             </div>
 
+            <div className="relative">
+              <Card className="p-6 border-2 border-green-400 bg-green-50 dark:bg-green-950/20" data-testid="card-journey-bid">
+                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  3
+                </div>
+                <h4 className="font-bold text-center mb-2">Bid</h4>
+                <p className="text-xs text-center text-slate-600 dark:text-slate-400">
+                  Post requirement, suppliers compete
+                </p>
+                <div className="mt-2 text-center">
+                  <Badge variant="outline" className="text-xs">24-48 hrs</Badge>
+                </div>
+              </Card>
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+            </div>
+
+            <div className="relative">
+              <Card className="p-6 border-2 border-amber-400 bg-amber-50 dark:bg-amber-950/20" data-testid="card-journey-escrow">
+                <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  4
+                </div>
+                <h4 className="font-bold text-center mb-2">Escrow</h4>
+                <p className="text-xs text-center text-slate-600 dark:text-slate-400">
+                  Secure payment, full buyer protection
+                </p>
+                <div className="mt-2 text-center">
+                  <Badge variant="outline" className="text-xs">1-2 days</Badge>
+                </div>
+              </Card>
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+            </div>
+
+            <div className="relative">
+              <Card className="p-6 border-2 border-red-400 bg-red-50 dark:bg-red-950/20" data-testid="card-journey-compliance">
+                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  5
+                </div>
+                <h4 className="font-bold text-center mb-2">Compliance</h4>
+                <p className="text-xs text-center text-slate-600 dark:text-slate-400">
+                  Export docs, GST, customs clearance
+                </p>
+                <div className="mt-2 text-center">
+                  <Badge variant="outline" className="text-xs">3-5 days</Badge>
+                </div>
+              </Card>
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+            </div>
+
+            <div className="relative">
+              <Card className="p-6 border-2 border-indigo-400 bg-indigo-50 dark:bg-indigo-950/20" data-testid="card-journey-shipping">
+                <div className="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  6
+                </div>
+                <h4 className="font-bold text-center mb-2">Shipping</h4>
+                <p className="text-xs text-center text-slate-600 dark:text-slate-400">
+                  Air freight to Dubai, real-time tracking
+                </p>
+                <div className="mt-2 text-center">
+                  <Badge variant="outline" className="text-xs">5-7 days</Badge>
+                </div>
+              </Card>
+              <ArrowRight className="hidden md:block absolute -right-6 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+            </div>
+
+            <div>
+              <Card className="p-6 border-2 border-green-500 bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20" data-testid="card-journey-delivery">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
+                  ✓
+                </div>
+                <h4 className="font-bold text-center mb-2">Delivery</h4>
+                <p className="text-xs text-center text-slate-600 dark:text-slate-400">
+                  Receive at Dubai Airport Freezone
+                </p>
+                <div className="mt-2 text-center">
+                  <Badge className="text-xs bg-green-500 text-white">Complete</Badge>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-xl border-2 border-blue-200 dark:border-blue-800">
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
-                3
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Accept & Order</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Review bids, accept the best offer, and complete your wholesale order
+              <h3 className="text-2xl font-bold mb-2">Total Timeline: 14-21 Days</h3>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                From posting your requirement to receiving inventory at Dubai Airport Freezone
               </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Badge variant="outline" className="text-sm">Full Escrow Protection</Badge>
+                <Badge variant="outline" className="text-sm">Export Documentation Managed</Badge>
+                <Badge variant="outline" className="text-sm">GST Refund Processing</Badge>
+                <Badge variant="outline" className="text-sm">Air Freight Included</Badge>
+              </div>
             </div>
           </div>
         </div>
@@ -528,6 +692,206 @@ function ChainTrackLanding() {
           </div>
         </div>
 
+        {/* Regional Price & Spec Comparison */}
+        <div className="mt-24 max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Regional Comparison: iPhone 13 Pro 256GB</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Real market advantages across source countries
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="bg-slate-100 dark:bg-slate-800">
+                  <th className="p-4 text-left border-b-2 border-slate-300 dark:border-slate-600">Source Country</th>
+                  <th className="p-4 text-center border-b-2 border-slate-300 dark:border-slate-600">Avg Price (USD)</th>
+                  <th className="p-4 text-center border-b-2 border-slate-300 dark:border-slate-600">Device Specs</th>
+                  <th className="p-4 text-left border-b-2 border-slate-300 dark:border-slate-600">Key Advantages</th>
+                  <th className="p-4 text-left border-b-2 border-slate-300 dark:border-slate-600">Export Benefits</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-200 dark:border-slate-700 bg-orange-50/50 dark:bg-orange-950/10">
+                  <td className="p-4 font-semibold">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-green-600 rounded-full"></div>
+                      <span>India</span>
+                      <Badge className="ml-1 bg-orange-500 text-white text-xs">HOT</Badge>
+                    </div>
+                  </td>
+                  <td className="p-4 text-center font-bold text-green-600 dark:text-green-400">$485</td>
+                  <td className="p-4 text-sm">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-green-600" />
+                        <span>Dual SIM</span>
+                      </div>
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-green-600" />
+                        <span>B3/B5/B40</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="p-4 text-sm">
+                    <div>Competitive base pricing, dual-SIM demand in MENA</div>
+                  </td>
+                  <td className="p-4 text-sm">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1">
+                        <DollarSign className="w-3 h-3 text-green-600" />
+                        <span className="font-semibold">RODTEP: 2% rebate</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <DollarSign className="w-3 h-3 text-green-600" />
+                        <span>GST refund on export</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr className="border-b border-slate-200 dark:border-slate-700">
+                  <td className="p-4 font-semibold">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-blue-500 rounded-full"></div>
+                      <span>United States</span>
+                    </div>
+                  </td>
+                  <td className="p-4 text-center font-bold">$525</td>
+                  <td className="p-4 text-sm">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-blue-600" />
+                        <span>Single SIM (eSIM)</span>
+                      </div>
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-blue-600" />
+                        <span>B2/B4/B5/B12</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="p-4 text-sm">
+                    <div>Unlocked devices, premium condition grades available</div>
+                  </td>
+                  <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
+                    Standard export procedures
+                  </td>
+                </tr>
+
+                <tr className="border-b border-slate-200 dark:border-slate-700">
+                  <td className="p-4 font-semibold">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-red-500 rounded-full"></div>
+                      <span>Japan</span>
+                    </div>
+                  </td>
+                  <td className="p-4 text-center font-bold">$545</td>
+                  <td className="p-4 text-sm">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-red-600" />
+                        <span>Single SIM</span>
+                      </div>
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-red-600" />
+                        <span>JP bands</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="p-4 text-sm">
+                    <div>Highest quality grading (A+ dominant), pristine cosmetics</div>
+                  </td>
+                  <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
+                    Standard export procedures
+                  </td>
+                </tr>
+
+                <tr className="border-b border-slate-200 dark:border-slate-700">
+                  <td className="p-4 font-semibold">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-yellow-500 rounded-full"></div>
+                      <span>China</span>
+                    </div>
+                  </td>
+                  <td className="p-4 text-center font-bold text-green-600 dark:text-green-400">$470</td>
+                  <td className="p-4 text-sm">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-yellow-600" />
+                        <span>Dual SIM</span>
+                      </div>
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-yellow-600" />
+                        <span>CN bands</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="p-4 text-sm">
+                    <div>Lowest cost, high volume availability</div>
+                  </td>
+                  <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
+                    Standard export procedures
+                  </td>
+                </tr>
+
+                <tr className="border-b border-slate-200 dark:border-slate-700">
+                  <td className="p-4 font-semibold">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-purple-500 rounded-full"></div>
+                      <span>Europe</span>
+                    </div>
+                  </td>
+                  <td className="p-4 text-center font-bold">$555</td>
+                  <td className="p-4 text-sm">
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-purple-600" />
+                        <span>Single SIM (eSIM)</span>
+                      </div>
+                      <div className="flex items-center gap-1 justify-center">
+                        <CheckCircle2 className="w-3 h-3 text-purple-600" />
+                        <span>EU bands</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="p-4 text-sm">
+                    <div>CE certified, full regulatory compliance</div>
+                  </td>
+                  <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
+                    Standard EU export procedures
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-6 p-6 bg-gradient-to-r from-orange-50 to-green-50 dark:from-orange-950/20 dark:to-green-950/20 rounded-xl border-2 border-orange-200 dark:border-orange-800">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <TrendingDown className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">India Advantage: Save $50 per device after export rebates</h3>
+                <p className="text-slate-700 dark:text-slate-300 mb-3">
+                  On a 1,000-device order, India sourcing with RODTEP rebates saves you approximately <span className="font-bold text-green-600 dark:text-green-400">$50,000 compared to US sourcing</span>, while still accessing dual-SIM models perfect for MENA markets.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Badge variant="outline" className="border-orange-400 text-orange-700 dark:text-orange-300">
+                    RODTEP 2% Cash Rebate
+                  </Badge>
+                  <Badge variant="outline" className="border-green-400 text-green-700 dark:text-green-300">
+                    GST Refund on Export
+                  </Badge>
+                  <Badge variant="outline" className="border-blue-400 text-blue-700 dark:text-blue-300">
+                    Dual-SIM for MENA Markets
+                  </Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Final CTA */}
         <div className="mt-24 text-center max-w-3xl mx-auto">
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 rounded-2xl p-12 text-white shadow-2xl">
@@ -539,9 +903,10 @@ function ChainTrackLanding() {
               Join wholesale buyers sourcing inventory efficiently through reverse bidding
             </p>
             <p className="text-sm mb-8 text-blue-200">
-              🌍 Global Markets: US • Japan • China • Europe<br />
+              🌍 Global Markets: India • US • Japan • China • Europe<br />
               📦 Inventory Types: ASIS Auction • Ready-to-Ship Tested<br />
-              ⚡ Fast Turnaround: 24-48 hours to best price
+              ⚡ Fast Turnaround: 24-48 hours to best price<br />
+              💰 India Advantage: RODTEP 2% rebate + GST refunds
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/signup">
@@ -570,29 +935,59 @@ function ChainTrackDashboard({ user }: { user: User }) {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2 flex items-center gap-3">
-            <Gavel className="w-10 h-10 text-purple-600" />
-            ChainTrack Reverse Bidding
+            <Globe className="w-10 h-10 text-purple-600" />
+            ChainTrack Global Wholesale
           </h1>
           <p className="text-muted-foreground">
-            Post your wholesale needs and let suppliers compete with the best prices
+            Source phones from India, US, Japan, China & Europe with full compliance
           </p>
         </div>
 
-        <Tabs defaultValue="auctions" className="space-y-6">
-          <TabsList>
+        <Tabs defaultValue="marketplace" className="space-y-6">
+          <TabsList className="grid grid-cols-3 lg:grid-cols-6 w-full">
+            <TabsTrigger value="marketplace" data-testid="tab-marketplace">
+              <ShoppingCart className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">Marketplace</span>
+              <span className="sm:hidden">Market</span>
+            </TabsTrigger>
+            <TabsTrigger value="countries" data-testid="tab-countries">
+              <Globe className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">Countries</span>
+              <span className="sm:hidden">Regions</span>
+            </TabsTrigger>
+            <TabsTrigger value="inventory" data-testid="tab-inventory">
+              <Warehouse className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">Inventory</span>
+              <span className="sm:hidden">Stock</span>
+            </TabsTrigger>
             <TabsTrigger value="auctions" data-testid="tab-auctions">
               <Gavel className="w-4 h-4 mr-2" />
-              All Auctions
+              <span className="hidden sm:inline">Auctions</span>
+              <span className="sm:hidden">Bids</span>
             </TabsTrigger>
             <TabsTrigger value="my-auctions" data-testid="tab-my-auctions">
               <Package className="w-4 h-4 mr-2" />
-              My Auctions
+              <span className="hidden sm:inline">My Orders</span>
+              <span className="sm:hidden">Orders</span>
             </TabsTrigger>
             <TabsTrigger value="create" data-testid="tab-create">
               <Plus className="w-4 h-4 mr-2" />
-              Create Auction
+              <span className="hidden sm:inline">Post Need</span>
+              <span className="sm:hidden">Post</span>
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="marketplace">
+            <WholesaleMarketplaceView />
+          </TabsContent>
+
+          <TabsContent value="countries">
+            <SourceCountriesView />
+          </TabsContent>
+
+          <TabsContent value="inventory">
+            <LiveInventoryView />
+          </TabsContent>
 
           <TabsContent value="auctions">
             <AllAuctionsView />
@@ -608,6 +1003,232 @@ function ChainTrackDashboard({ user }: { user: User }) {
         </Tabs>
       </div>
     </div>
+  );
+}
+
+function WholesaleMarketplaceView() {
+  return (
+    <div className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-6">
+        <Card className="p-8 border-2 border-amber-300 dark:border-amber-700 hover:shadow-xl transition-shadow cursor-pointer" data-testid="card-asis-stock">
+          <div className="flex items-start gap-4">
+            <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Gavel className="w-8 h-8 text-amber-600 dark:text-amber-400" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h3 className="text-2xl font-bold">ASIS Auction Stock</h3>
+                <Badge className="bg-amber-500 text-white">LOWEST PRICES</Badge>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                As-is devices from liquidation auctions. Perfect for buyers who can grade & refurbish. Access requires Starter tier or higher.
+              </p>
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center gap-2">
+                  <TrendingDown className="w-4 h-4 text-green-600" />
+                  <span className="text-sm">30-50% below market price</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Boxes className="w-4 h-4 text-blue-600" />
+                  <span className="text-sm">Bulk lots available (100-1000+ units)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-amber-600" />
+                  <span className="text-sm">Requires grading/testing capability</span>
+                </div>
+              </div>
+              <Button className="w-full" data-testid="button-browse-asis">
+                Browse ASIS Auctions
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-8 border-2 border-green-300 dark:border-green-700 hover:shadow-xl transition-shadow cursor-pointer" data-testid="card-ready-to-ship">
+          <div className="flex items-start gap-4">
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+              <CheckCircle2 className="w-8 h-8 text-green-600 dark:text-green-400" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <h3 className="text-2xl font-bold">Ready-to-Ship</h3>
+                <Badge className="bg-green-500 text-white">QUALITY ASSURED</Badge>
+              </div>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                Pre-tested, graded (A+ to C), and refurbished devices ready for immediate resale. Available to all tiers.
+              </p>
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  <span className="text-sm">Tested & cosmetically graded</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Plane className="w-4 h-4 text-blue-600" />
+                  <span className="text-sm">Ships within 24-48 hours</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-purple-600" />
+                  <span className="text-sm">Quality guarantee included</span>
+                </div>
+              </div>
+              <Button className="w-full bg-green-600 hover:bg-green-700" data-testid="button-browse-ready">
+                Browse Ready Stock
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      <Card className="p-6">
+        <h3 className="text-xl font-bold mb-4">Quick Comparison</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left p-3">Feature</th>
+                <th className="text-center p-3">ASIS Auction</th>
+                <th className="text-center p-3">Ready-to-Ship</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b">
+                <td className="p-3">Price Point</td>
+                <td className="p-3 text-center">30-50% below market</td>
+                <td className="p-3 text-center">Market competitive</td>
+              </tr>
+              <tr className="border-b">
+                <td className="p-3">Tier Access</td>
+                <td className="p-3 text-center">Starter+ (50+ devices/month)</td>
+                <td className="p-3 text-center">All tiers (On-Demand+)</td>
+              </tr>
+              <tr className="border-b">
+                <td className="p-3">Grading</td>
+                <td className="p-3 text-center">You grade & test</td>
+                <td className="p-3 text-center">Pre-graded A+ to C</td>
+              </tr>
+              <tr>
+                <td className="p-3">Transaction Fee</td>
+                <td className="p-3 text-center">0.3% (Starter)</td>
+                <td className="p-3 text-center">0.5%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+function SourceCountriesView() {
+  return (
+    <div className="space-y-6">
+      <Card className="p-6 bg-gradient-to-r from-orange-50 to-green-50 dark:from-orange-950/20 dark:to-green-950/20 border-2 border-orange-200 dark:border-orange-800">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-green-600 rounded-full flex items-center justify-center">
+            <TrendingDown className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold">India - Featured Source Country</h3>
+            <Badge className="bg-orange-500 text-white">Best Value for MENA Markets</Badge>
+          </div>
+        </div>
+        <p className="text-slate-700 dark:text-slate-300 mb-4">
+          Source dual-SIM iPhones from India with 2% RODTEP export rebate + GST refunds. Perfect for UAE & MENA markets where dual-SIM is in high demand.
+        </p>
+        <div className="grid md:grid-cols-3 gap-4">
+          <div className="p-4 bg-white dark:bg-slate-900 rounded-lg">
+            <DollarSign className="w-8 h-8 text-green-600 mb-2" />
+            <p className="font-bold">$485 avg (iPhone 13 Pro)</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">After RODTEP rebate</p>
+          </div>
+          <div className="p-4 bg-white dark:bg-slate-900 rounded-lg">
+            <Phone className="w-8 h-8 text-blue-600 mb-2" />
+            <p className="font-bold">Dual-SIM Models</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">India-specific variants</p>
+          </div>
+          <div className="p-4 bg-white dark:bg-slate-900 rounded-lg">
+            <BarChart3 className="w-8 h-8 text-purple-600 mb-2" />
+            <p className="font-bold">Bands B3/B5/B40</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">MENA-optimized</p>
+          </div>
+        </div>
+      </Card>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card className="p-6 hover:shadow-lg transition-shadow" data-testid="card-country-us">
+          <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-4">
+            <Globe className="w-6 h-6 text-white" />
+          </div>
+          <h4 className="font-bold text-lg mb-2">United States</h4>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Premium unlocked devices, high cosmetic grades</p>
+          <div className="space-y-1 text-xs">
+            <p>• $525 avg (iPhone 13 Pro)</p>
+            <p>• Single SIM (eSIM)</p>
+            <p>• Bands B2/B4/B5/B12</p>
+          </div>
+        </Card>
+
+        <Card className="p-6 hover:shadow-lg transition-shadow" data-testid="card-country-japan">
+          <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mb-4">
+            <Globe className="w-6 h-6 text-white" />
+          </div>
+          <h4 className="font-bold text-lg mb-2">Japan</h4>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Highest quality grading, pristine cosmetics</p>
+          <div className="space-y-1 text-xs">
+            <p>• $545 avg (iPhone 13 Pro)</p>
+            <p>• Single SIM</p>
+            <p>• A+ grade dominant</p>
+          </div>
+        </Card>
+
+        <Card className="p-6 hover:shadow-lg transition-shadow" data-testid="card-country-china">
+          <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mb-4">
+            <Globe className="w-6 h-6 text-white" />
+          </div>
+          <h4 className="font-bold text-lg mb-2">China</h4>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">Volume inventory, lowest cost basis</p>
+          <div className="space-y-1 text-xs">
+            <p>• $470 avg (iPhone 13 Pro)</p>
+            <p>• Dual SIM</p>
+            <p>• High volume availability</p>
+          </div>
+        </Card>
+
+        <Card className="p-6 hover:shadow-lg transition-shadow" data-testid="card-country-europe">
+          <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mb-4">
+            <Globe className="w-6 h-6 text-white" />
+          </div>
+          <h4 className="font-bold text-lg mb-2">Europe</h4>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">CE certified, full regulatory compliance</p>
+          <div className="space-y-1 text-xs">
+            <p>• $555 avg (iPhone 13 Pro)</p>
+            <p>• Single SIM (eSIM)</p>
+            <p>• EU bands</p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+function LiveInventoryView() {
+  return (
+    <Card className="p-8 text-center">
+      <Warehouse className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+      <h3 className="text-2xl font-semibold mb-2">Live Inventory Coming Soon</h3>
+      <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+        Browse real-time inventory from all source countries with advanced filtering by model, grade, specs, and source region.
+        For now, use reverse auctions to post your requirements and get competitive bids.
+      </p>
+      <div className="flex flex-wrap justify-center gap-3">
+        <Badge variant="outline">Filter by Country</Badge>
+        <Badge variant="outline">Grade Selection</Badge>
+        <Badge variant="outline">Spec Comparison</Badge>
+        <Badge variant="outline">Bulk Pricing</Badge>
+      </div>
+    </Card>
   );
 }
 
