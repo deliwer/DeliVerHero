@@ -1,0 +1,192 @@
+Perfect — let’s design a **ChainTrack UX Specification** focused on the *onboarding, export validation, and escrow flow* for Indian sellers exporting iPhones (Indian specs) to **DeliWer Shopping FZCO (Dubai Airport Freezone)**.
+
+Below is a structured **UX spec** with **mock screen flow**, **logic rules**, **buttons**, and **example data** (suitable for Figma, Bubble, or Replit UI prototyping).
+
+---
+
+## 🧭 CHAINTRACK UX SPEC — EXPORT VALIDATION & ESCROW FLOW
+
+### Scope:
+
+Platform: **DeliWer.com/ChainTrack**
+User Role: **Indian Exporter / Supplier**
+Destination: **DeliWer Shopping FZCO (DAFZ)**
+Goal: Enable **tax-compliant exports** (GST refund eligible), **legitimate white money settlements**, and **traceable iPhone shipments**.
+
+---
+
+## 1️⃣ Onboarding Screen — *Seller Registration*
+
+**Title:** “Welcome to ChainTrack Export Gateway”
+**Purpose:** Collect KYC + GST + IEC (Import-Export Code) data.
+
+**Form Fields:**
+
+| Field               | Type        | Example                                                 |
+| ------------------- | ----------- | ------------------------------------------------------- |
+| Business Name       | Text        | “Shree Mobile Exports Pvt Ltd”                          |
+| GSTIN               | Text        | 29ABCDE1234F1Z5                                         |
+| IEC Code            | Text        | 0912345678                                              |
+| Bank Account        | Text        | HDFC Bank – 50100234567                                 |
+| IFSC Code           | Text        | HDFC0000123                                             |
+| Contact Person      | Text        | Rajesh Kumar                                            |
+| Email               | Email       | [rajesh@shreemobiles.in](mailto:rajesh@shreemobiles.in) |
+| Mobile              | Phone       | +91 9812345678                                          |
+| Export Category     | Dropdown    | “Mobile Phones (HS Code 851712)”                        |
+| Verification Upload | File Upload | [Upload GST Certificate] [Upload IEC]                   |
+
+**Buttons:**
+🟩 **Submit & Verify via GST Portal** → API ping to GSTN for validation.
+🟧 **Save Draft**
+🔵 **Need Help? Chat with ChainTrack Support**
+
+**Mock Validation Message:**
+✅ “GSTIN verified successfully (Karnataka jurisdiction). IEC valid under DGFT.”
+
+---
+
+## 2️⃣ Product Upload & Compliance Check
+
+**Title:** “Register Export Product”
+**Purpose:** Ensure only legitimate Indian-spec iPhones are exported.
+
+**Form Fields:**
+
+| Field              | Example Value                                 |
+| ------------------ | --------------------------------------------- |
+| Product Name       | iPhone 13 128GB (Indian Spec)                 |
+| Model Number       | A2631                                         |
+| IMEI Range         | 356789012345678–356789012345700               |
+| HS Code            | 85171200                                      |
+| Origin             | Made in India                                 |
+| Export Value (INR) | ₹55,000/unit                                  |
+| Quantity           | 50 units                                      |
+| Shipping Terms     | FOB Mumbai                                    |
+| Buyer              | DeliWer Shopping FZCO, Dubai Airport Freezone |
+| Payment Terms      | 100% Escrow (Release after GR release)        |
+
+**Validation Rules:**
+
+* 🔍 Check IMEI against **DGFT-approved export list**
+* 🧾 Auto-generate **Export Invoice JSON**
+* 📦 Create **e-Way Bill Reference**
+* ⚙️ “Eligible for GST Refund” flag = TRUE if GSTIN + e-Way Bill verified.
+
+**Buttons:**
+🟩 **Submit for Validation**
+🟦 **Save & Continue Later**
+🔴 **Flag as Non-Compliant**
+
+---
+
+## 3️⃣ Escrow Setup Screen — *ChainTrack Secure Payment*
+
+**Title:** “Escrow Setup for Export Transaction”
+**Purpose:** Hold buyer payment until export completion.
+
+**Fields:**
+
+| Field               | Example                                       |
+| ------------------- | --------------------------------------------- |
+| Escrow Ref          | ESCROW/DEL/2025/00123                         |
+| Buyer               | DeliWer Shopping FZCO                         |
+| Seller              | Shree Mobile Exports Pvt Ltd                  |
+| Bank Partner        | Emirates NBD Escrow                           |
+| Amount              | $33,000 USD                                   |
+| Currency            | USD                                           |
+| Terms               | Release on GR release (Shipping Doc Verified) |
+| Timeline            | Max 21 Days                                   |
+| GST Refund Eligible | ✅ Yes (Post GR Upload)                        |
+
+**Buttons:**
+🟩 **Initiate Escrow via Partner Bank**
+🟦 **Track Payment Status**
+🔵 **View GST Refund Tracker**
+
+**Mock Data:**
+
+```
+Escrow ID: ESCROW/DEL/2025/00123
+Status: Pending Buyer Deposit
+Buyer Deposit Received: ✅
+Shipping Docs: Awaiting Upload
+GST Refund Claim: Scheduled 15 days post-GR
+```
+
+---
+
+## 4️⃣ Export Validation — *Customs & GR Upload*
+
+**Title:** “Customs Validation & GR Release”
+**Purpose:** Upload verified export documents and trigger GST refund.
+
+**Required Documents:**
+
+* Shipping Bill (DGFT)
+* GR Form (Reserve Bank of India)
+* Export Invoice
+* Airway Bill
+* Certificate of Origin
+
+**Logic:**
+
+* If **Shipping Bill + GR Form match**, trigger **auto-notification** to DGFT & GSTN.
+* Escrow smart contract executes payment to Seller.
+* GST refund workflow starts.
+
+**Buttons:**
+🟩 **Upload GR & Release Escrow**
+🟦 **Track GST Refund**
+🔵 **Generate Audit Report (JSON)**
+
+**Mock Data:**
+
+```
+Shipping Bill No: SB/2309/98765
+GR Form ID: RBI/GR/2025/1123
+GST Refund Eligible: ₹450,000
+Refund Status: Pending (ETA 12 days)
+Escrow Release: Completed 2025-11-12
+```
+
+---
+
+## 5️⃣ Dashboard — *Compliance & Settlement Overview*
+
+**Title:** “ChainTrack Export Dashboard”
+**Widgets:**
+
+* ✅ Verified Exports: 5 Shipments
+* 💰 GST Refunds in Process: ₹2.1 Cr
+* 🧾 Escrow Released: $210,000
+* 🕒 Pending GR Uploads: 2
+* 🏦 Bank Transfers Completed: 100% White Money via HDFC ↔ Emirates NBD
+
+**Buttons:**
+🟢 **Start New Export**
+🟣 **View Transaction Ledger**
+🟤 **Download GST Refund Summary**
+
+---
+
+## ⚙️ Technical Mechanism Summary
+
+| Stage               | Action                       | System Linkage         |
+| ------------------- | ---------------------------- | ---------------------- |
+| Seller Verification | GST + IEC Validation         | GSTN + DGFT APIs       |
+| Product Validation  | IMEI Check + e-Way Bill      | DGFT + ICEGATE         |
+| Escrow              | Smart Contract + Bank Escrow | Emirates NBD API       |
+| Export Proof        | GR + SB Upload               | RBI + Customs          |
+| Refund Trigger      | GST Auto Credit              | CBIC GST Refund Portal |
+
+---
+
+## 💡 Value Proposition:
+
+* **For Indian Exporters:** Automated GST refund, escrow-secured payments, legal banking settlements.
+* **For DeliWer Dubai:** Transparent, tax-efficient import sourcing for Indian-spec iPhones.
+* **For Regulators:** Fully auditable digital export trail compliant with FEMA, DGFT, GSTN, RBI norms.
+
+---
+
+Would you like me to generate **interactive Figma-style wireframes** (with buttons and mock data) or a **ready-to-deploy Bubble.io onboarding template JSON** for ChainTrack next?
