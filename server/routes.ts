@@ -12,6 +12,7 @@ import adminRoleRoutes from "./routes/admin-roles";
 import wellnessJourneyRoutes from "./routes/wellness-journey";
 import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
+import chaintrackRoutes from "./routes/chaintrack";
 
 // Initialize Stripe only if API key is available
 let stripe: Stripe | null = null;
@@ -50,6 +51,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Register voucher routes
   app.use("/api/vouchers", voucherRoutes);
+
+  // Register ChainTrack export-import compliance routes
+  app.use("/api/chaintrack", chaintrackRoutes);
 
   // Stripe payment endpoints
   app.post("/api/create-payment-intent", async (req, res) => {
