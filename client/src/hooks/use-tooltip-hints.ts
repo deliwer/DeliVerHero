@@ -115,7 +115,10 @@ const defaultHints: TooltipHint[] = [
     target: "ai-concierge",
     delay: 30000,
     position: "left",
-    priority: "low"
+    priority: "low",
+    conditions: {
+      page: ["/", "/home", "/earn", "/products"]
+    }
   }
 ];
 

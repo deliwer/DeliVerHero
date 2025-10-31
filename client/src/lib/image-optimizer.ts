@@ -182,7 +182,7 @@ export class ImagePerformanceMonitor {
 
 // Image optimization service worker registration
 export function registerImageServiceWorker(): void {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && import.meta.env.PROD) {
     navigator.serviceWorker.register('/sw-image-optimizer.js')
       .then(registration => {
         console.log('Image optimization SW registered:', registration);

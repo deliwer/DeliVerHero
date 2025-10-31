@@ -83,7 +83,6 @@ export function TooltipHint({
                    document.querySelector(target) as HTMLElement;
     
     if (!element) {
-      console.warn(`Tooltip target not found: ${target}`);
       return;
     }
 
