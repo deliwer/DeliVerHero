@@ -1943,6 +1943,278 @@ export const chaintrackRatings = pgTable("chaintrack_ratings", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+// ChainTrack Enhanced: India Export Compliance & Escrow System
+export const chaintrackSellers = pgTable("chaintrack_sellers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id).unique(),
+  companyName: text("company_name").notNull(),
+  contactPerson: text("contact_person").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email").notNull(),
+  
+  // India Export Credentials
+  gstin: text("gstin").notNull().unique(), // GST Identification Number
+  iecCode: text("iec_code").notNull(), // Import Export Code from DGFT
+  lutBondNumber: text("lut_bond_number"), // Letter of Undertaking / Bond number
+  usesLUT: boolean("uses_lut").notNull().default(true), // true = LUT, false = pays IGST
+  panNumber: text("pan_number").notNull(), // Permanent Account Number
+  mcaRegistrationNumber: text("mca_registration_number"), // Ministry of Corporate Affairs
+  exportPort: text("export_port").default("Mumbai"), // Primary export port
+  
+  // Beneficial Owner / UBO
+  beneficialOwnerName: text("beneficial_owner_name").notNull(),
+  beneficialOwnerPan: text("beneficial_owner_pan").notNull(),
+  uboDeclarationUrl: text("ubo_declaration_url"), // Document URL
+  
+  // Bank Details (for FIRC tracking)
+  bankName: text("bank_name").notNull(),
+  bankAccountNumber: text("bank_account_number").notNull(),
+  bankIfscCode: text("bank_ifsc_code").notNull(),
+  bankSwiftCode: text("bank_swift_code"), // For international transfers
+  
+  // Seller Tier (determines commission rate)
+  sellerTier: text("seller_tier").notNull().default("standard"), // 'verified' (1.5%), 'premium' (1.0%), 'standard' (2.5%)
+  hasSubscription: boolean("has_subscription").notNull().default(false), // -0.25% discount
+  subscriptionExpiresAt: timestamp("subscription_expires_at"),
+  
+  // AML & KYC
+  kycStatus: text("kyc_status").notNull().default("pending"), // 'pending', 'verified', 'rejected', 'edd_required'
+  amlRiskScore: integer("aml_risk_score").default(0), // 0-100
+  sanctionsScreeningStatus: text("sanctions_screening_status").default("pending"), // 'pending', 'clear', 'flagged'
+  sanctionsScreeningDate: timestamp("sanctions_screening_date"),
+  sofSwowDocumentUrl: text("sof_swow_document_url"), // Source of Funds / Source of Wealth
+  auditedFinancialsUrl: text("audited_financials_url"),
+  
+  // Verification & Compliance
+  verificationStatus: text("verification_status").notNull().default("pending"), // 'pending', 'verified', 'rejected'
+  verifiedAt: timestamp("verified_at"),
+  verifiedBy: varchar("verified_by").references(() => users.id),
+  
+  // Statistics
+  totalTransactions: integer("total_transactions").notNull().default(0),
+  totalExportValue: integer("total_export_value").notNull().default(0), // in USD cents
+  averageRating: integer("average_rating").default(0), // 0-50 (5.0 * 10)
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackEscrows = pgTable("chaintrack_escrows", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  escrowNumber: text("escrow_number").notNull().unique(), // e.g., "ESCROW/DEL/2025/00123"
+  
+  // Parties
+  buyerId: varchar("buyer_id").notNull().references(() => users.id), // DeliWer Shopping FZCO
+  sellerId: varchar("seller_id").notNull().references(() => chaintrackSellers.id),
+  
+  // Transaction Details
+  totalAmount: integer("total_amount").notNull(), // in USD cents
+  currency: text("currency").notNull().default("USD"),
+  incoterm: text("incoterm").default("FOB"), // FOB, FCA, CIF, etc.
+  
+  // Fee Breakdown (all in cents)
+  commissionRate: integer("commission_rate").notNull(), // e.g., 150 = 1.50%
+  commissionFee: integer("commission_fee").notNull(),
+  escrowFixedFee: integer("escrow_fixed_fee").default(10000), // $100.00
+  escrowPercentFee: integer("escrow_percent_fee").default(0),
+  fxFee: integer("fx_fee").default(0),
+  customsBrokerageFee: integer("customs_brokerage_fee").default(0),
+  fastReleaseFee: integer("fast_release_fee").default(0),
+  rodtepCredit: integer("rodtep_credit").default(0), // RoDTEP tax credit
+  totalFees: integer("total_fees").notNull(),
+  netToSeller: integer("net_to_seller").notNull(),
+  
+  // Escrow Status & Releases
+  status: text("status").notNull().default("pending"), // 'pending', 'buyer_deposited', 'partial_released', 'fully_released', 'disputed', 'cancelled'
+  partialReleasePercent: integer("partial_release_percent").default(70), // 70% on shipping bill verification
+  partialReleasedAmount: integer("partial_released_amount").default(0),
+  partialReleasedAt: timestamp("partial_released_at"),
+  fullReleasedAmount: integer("full_released_amount").default(0),
+  fullReleasedAt: timestamp("full_released_at"),
+  
+  // Bank Transfer Tracking
+  buyerDepositSwiftRef: text("buyer_deposit_swift_ref"), // MT103 reference
+  buyerDepositDate: timestamp("buyer_deposit_date"),
+  buyerRemittanceAdviceUrl: text("buyer_remittance_advice_url"),
+  partialReleaseSwiftRef: text("partial_release_swift_ref"),
+  fullReleaseSwiftRef: text("full_release_swift_ref"),
+  
+  // CA Attestation
+  caAttested: boolean("ca_attested").notNull().default(false),
+  caAttestedAt: timestamp("ca_attested_at"),
+  caAttestationUrl: text("ca_attestation_url"),
+  caName: text("ca_name"),
+  caCertificateNumber: text("ca_certificate_number"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackShipments = pgTable("chaintrack_shipments", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  escrowId: varchar("escrow_id").notNull().references(() => chaintrackEscrows.id),
+  
+  // Export Invoice Details
+  invoiceNumber: text("invoice_number").notNull().unique(),
+  invoiceDate: timestamp("invoice_date").notNull(),
+  invoiceUrl: text("invoice_url"),
+  fobValue: integer("fob_value").notNull(), // in USD cents
+  hsCode: text("hs_code").notNull(), // Harmonized System Code
+  productDescription: text("product_description").notNull(),
+  quantity: integer("quantity").notNull(),
+  unitPrice: integer("unit_price").notNull(), // in cents
+  
+  // India Export Documentation
+  shippingBillNumber: text("shipping_bill_number"), // Filed with Indian customs
+  shippingBillDate: timestamp("shipping_bill_date"),
+  shippingBillUrl: text("shipping_bill_url"),
+  icegateReference: text("icegate_reference"), // ICEGATE system reference
+  exportManifestNumber: text("export_manifest_number"), // EGM
+  
+  // Transport Documents
+  awbBolNumber: text("awb_bol_number"), // Air Waybill or Bill of Lading
+  awbBolDate: timestamp("awb_bol_date"),
+  awbBolUrl: text("awb_bol_url"),
+  carrierName: text("carrier_name"),
+  exportDate: timestamp("export_date"),
+  
+  // GST & Tax Compliance
+  gstr1Table6aIncluded: boolean("gstr1_table6a_included").default(false), // Export in GSTR-1 Table 6A
+  gstr1FilingMonth: text("gstr1_filing_month"), // e.g., "2025-01"
+  gstr1ScreenshotUrl: text("gstr1_screenshot_url"),
+  
+  // FIRC (Foreign Inward Remittance Certificate)
+  fircNumber: text("firc_number"),
+  fircDate: timestamp("firc_date"),
+  fircUrl: text("firc_url"),
+  fircAmount: integer("firc_amount"), // in USD cents
+  
+  // UAE Import & Clearance
+  uaeImportDeclarationNumber: text("uae_import_declaration_number"),
+  uaeImportDeclarationDate: timestamp("uae_import_declaration_date"),
+  dafzaClearanceNumber: text("dafza_clearance_number"),
+  dafzaClearanceDate: timestamp("dafza_clearance_date"),
+  dafzaWarehouseReceiptUrl: text("dafza_warehouse_receipt_url"),
+  
+  // Shipment Status
+  status: text("status").notNull().default("draft"), // 'draft', 'export_pending', 'shipped', 'in_transit', 'arrived_uae', 'cleared', 'completed'
+  
+  // Brand Authorization (for OEM products)
+  brandAuthorizationUrl: text("brand_authorization_url"),
+  oemComplianceVerified: boolean("oem_compliance_verified").default(false),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackDocuments = pgTable("chaintrack_documents", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sellerId: varchar("seller_id").references(() => chaintrackSellers.id),
+  escrowId: varchar("escrow_id").references(() => chaintrackEscrows.id),
+  shipmentId: varchar("shipment_id").references(() => chaintrackShipments.id),
+  
+  // Document Details
+  documentType: text("document_type").notNull(), // 'gst_certificate', 'iec_certificate', 'lut', 'bank_statement', 'shipping_bill', 'firc', 'ca_attestation', etc.
+  documentName: text("document_name").notNull(),
+  documentUrl: text("document_url").notNull(),
+  fileSize: integer("file_size"), // in bytes
+  mimeType: text("mime_type"),
+  
+  // Verification
+  verificationStatus: text("verification_status").default("pending"), // 'pending', 'verified', 'rejected'
+  verifiedAt: timestamp("verified_at"),
+  verifiedBy: varchar("verified_by").references(() => users.id),
+  rejectionReason: text("rejection_reason"),
+  
+  // Encryption & Security
+  encryptedAt: timestamp("encrypted_at"),
+  retentionExpiresAt: timestamp("retention_expires_at"), // 7 years from creation
+  
+  uploadedBy: varchar("uploaded_by").notNull().references(() => users.id),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackAmlLogs = pgTable("chaintrack_aml_logs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sellerId: varchar("seller_id").references(() => chaintrackSellers.id),
+  escrowId: varchar("escrow_id").references(() => chaintrackEscrows.id),
+  userId: varchar("user_id").references(() => users.id),
+  
+  // AML Event Details
+  eventType: text("event_type").notNull(), // 'kyc_check', 'sanctions_screening', 'transaction_monitoring', 'velocity_check', 'edd_trigger', 'suspicious_activity'
+  riskLevel: text("risk_level").default("low"), // 'low', 'medium', 'high', 'critical'
+  flagReason: text("flag_reason"),
+  
+  // Screening Details
+  screeningProvider: text("screening_provider"), // 'OFAC', 'UN', 'EU'
+  screeningResult: text("screening_result"), // 'clear', 'match', 'potential_match'
+  screeningDetails: jsonb("screening_details"),
+  
+  // Transaction Monitoring
+  transactionAmount: integer("transaction_amount"),
+  transactionCount: integer("transaction_count"),
+  velocityThresholdBreached: boolean("velocity_threshold_breached").default(false),
+  
+  // Resolution
+  status: text("status").notNull().default("pending"), // 'pending', 'reviewed', 'cleared', 'escalated', 'reported'
+  reviewedAt: timestamp("reviewed_at"),
+  reviewedBy: varchar("reviewed_by").references(() => users.id),
+  resolutionNotes: text("resolution_notes"),
+  
+  // SAR (Suspicious Activity Report)
+  sarFiled: boolean("sar_filed").default(false),
+  sarFiledAt: timestamp("sar_filed_at"),
+  sarReferenceNumber: text("sar_reference_number"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const chaintrackAuditLogs = pgTable("chaintrack_audit_logs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Action Details
+  userId: varchar("user_id").references(() => users.id),
+  action: text("action").notNull(), // 'document_upload', 'escrow_created', 'release_approved', 'kyc_verified', etc.
+  resourceType: text("resource_type").notNull(), // 'seller', 'escrow', 'shipment', 'document'
+  resourceId: varchar("resource_id"),
+  
+  // Audit Trail
+  changes: jsonb("changes"), // Before/after snapshot
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  
+  // Immutability
+  previousLogHash: text("previous_log_hash"), // Hash chain for tamper-evidence
+  currentLogHash: text("current_log_hash").notNull(),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => [
+  index("audit_logs_user_idx").on(table.userId),
+  index("audit_logs_resource_idx").on(table.resourceType, table.resourceId),
+  index("audit_logs_created_idx").on(table.createdAt),
+]);
+
+export const chaintrackComplianceAlerts = pgTable("chaintrack_compliance_alerts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sellerId: varchar("seller_id").references(() => chaintrackSellers.id),
+  escrowId: varchar("escrow_id").references(() => chaintrackEscrows.id),
+  
+  // Alert Details
+  alertType: text("alert_type").notNull(), // 'missing_document', 'kyc_expiring', 'edd_required', 'sanctions_match', 'invoice_mismatch', 'gstr1_missing'
+  severity: text("severity").notNull().default("medium"), // 'low', 'medium', 'high', 'critical'
+  message: text("message").notNull(),
+  details: jsonb("details"),
+  
+  // Resolution
+  status: text("status").notNull().default("open"), // 'open', 'acknowledged', 'resolved', 'dismissed'
+  acknowledgedAt: timestamp("acknowledged_at"),
+  acknowledgedBy: varchar("acknowledged_by").references(() => users.id),
+  resolvedAt: timestamp("resolved_at"),
+  resolutionNotes: text("resolution_notes"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
 // Insert Schemas
 export const insertChaintrackAuctionSchema = createInsertSchema(chaintrackAuctions).omit({
   id: true,
@@ -1993,6 +2265,57 @@ export const insertChaintrackRatingSchema = createInsertSchema(chaintrackRatings
   createdAt: true,
 });
 
+// Enhanced ChainTrack Compliance Insert Schemas
+export const insertChaintrackSellerSchema = createInsertSchema(chaintrackSellers).omit({
+  id: true,
+  verifiedAt: true,
+  totalTransactions: true,
+  totalExportValue: true,
+  averageRating: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackEscrowSchema = createInsertSchema(chaintrackEscrows).omit({
+  id: true,
+  partialReleasedAmount: true,
+  partialReleasedAt: true,
+  fullReleasedAmount: true,
+  fullReleasedAt: true,
+  caAttestedAt: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackShipmentSchema = createInsertSchema(chaintrackShipments).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertChaintrackDocumentSchema = createInsertSchema(chaintrackDocuments).omit({
+  id: true,
+  verifiedAt: true,
+  createdAt: true,
+});
+
+export const insertChaintrackAmlLogSchema = createInsertSchema(chaintrackAmlLogs).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertChaintrackAuditLogSchema = createInsertSchema(chaintrackAuditLogs).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertChaintrackComplianceAlertSchema = createInsertSchema(chaintrackComplianceAlerts).omit({
+  id: true,
+  acknowledgedAt: true,
+  resolvedAt: true,
+  createdAt: true,
+});
+
 // Types
 export type ChaintrackAuction = typeof chaintrackAuctions.$inferSelect;
 export type InsertChaintrackAuction = z.infer<typeof insertChaintrackAuctionSchema>;
@@ -2008,3 +2331,19 @@ export type ChaintrackTransaction = typeof chaintrackTransactions.$inferSelect;
 export type InsertChaintrackTransaction = z.infer<typeof insertChaintrackTransactionSchema>;
 export type ChaintrackRating = typeof chaintrackRatings.$inferSelect;
 export type InsertChaintrackRating = z.infer<typeof insertChaintrackRatingSchema>;
+
+// Enhanced ChainTrack Compliance Types
+export type ChaintrackSeller = typeof chaintrackSellers.$inferSelect;
+export type InsertChaintrackSeller = z.infer<typeof insertChaintrackSellerSchema>;
+export type ChaintrackEscrow = typeof chaintrackEscrows.$inferSelect;
+export type InsertChaintrackEscrow = z.infer<typeof insertChaintrackEscrowSchema>;
+export type ChaintrackShipment = typeof chaintrackShipments.$inferSelect;
+export type InsertChaintrackShipment = z.infer<typeof insertChaintrackShipmentSchema>;
+export type ChaintrackDocument = typeof chaintrackDocuments.$inferSelect;
+export type InsertChaintrackDocument = z.infer<typeof insertChaintrackDocumentSchema>;
+export type ChaintrackAmlLog = typeof chaintrackAmlLogs.$inferSelect;
+export type InsertChaintrackAmlLog = z.infer<typeof insertChaintrackAmlLogSchema>;
+export type ChaintrackAuditLog = typeof chaintrackAuditLogs.$inferSelect;
+export type InsertChaintrackAuditLog = z.infer<typeof insertChaintrackAuditLogSchema>;
+export type ChaintrackComplianceAlert = typeof chaintrackComplianceAlerts.$inferSelect;
+export type InsertChaintrackComplianceAlert = z.infer<typeof insertChaintrackComplianceAlertSchema>;
