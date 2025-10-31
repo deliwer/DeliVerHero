@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory, type ChaintrackSeller, type InsertChaintrackSeller, type ChaintrackEscrow, type InsertChaintrackEscrow, type ChaintrackShipment, type InsertChaintrackShipment, type ChaintrackDocument, type InsertChaintrackDocument, type ChaintrackAmlLog, type InsertChaintrackAmlLog, type ChaintrackAuditLog, type InsertChaintrackAuditLog, type ChaintrackComplianceAlert, type InsertChaintrackComplianceAlert } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -370,6 +370,34 @@ export interface IStorage {
   getChaintrackRatings(filters?: { ratedUserId?: string; transactionId?: string }): Promise<ChaintrackRating[]>;
   getChaintrackRating(id: string): Promise<ChaintrackRating | undefined>;
   createChaintrackRating(rating: InsertChaintrackRating): Promise<ChaintrackRating>;
+  
+  // ChainTrack Enhanced Compliance
+  getAllChaintrackSellers(): Promise<ChaintrackSeller[]>;
+  getChaintrackSeller(id: string): Promise<ChaintrackSeller | undefined>;
+  getChaintrackSellerByUserId(userId: string): Promise<ChaintrackSeller | undefined>;
+  createChaintrackSeller(seller: InsertChaintrackSeller): Promise<ChaintrackSeller>;
+  updateChaintrackSeller(id: string, updates: Partial<ChaintrackSeller>): Promise<ChaintrackSeller | undefined>;
+  
+  getAllChaintrackEscrows(sellerId?: string, buyerId?: string): Promise<ChaintrackEscrow[]>;
+  getChaintrackEscrow(id: string): Promise<ChaintrackEscrow | undefined>;
+  createChaintrackEscrow(escrow: InsertChaintrackEscrow): Promise<ChaintrackEscrow>;
+  updateChaintrackEscrow(id: string, updates: Partial<ChaintrackEscrow>): Promise<ChaintrackEscrow>;
+  
+  getAllChaintrackShipments(escrowId?: string): Promise<ChaintrackShipment[]>;
+  getChaintrackShipment(id: string): Promise<ChaintrackShipment | undefined>;
+  createChaintrackShipment(shipment: InsertChaintrackShipment): Promise<ChaintrackShipment>;
+  updateChaintrackShipment(id: string, updates: Partial<ChaintrackShipment>): Promise<ChaintrackShipment>;
+  
+  getAllChaintrackDocuments(sellerId?: string, escrowId?: string, shipmentId?: string): Promise<ChaintrackDocument[]>;
+  createChaintrackDocument(document: InsertChaintrackDocument): Promise<ChaintrackDocument>;
+  
+  getAllChaintrackAmlLogs(sellerId?: string, escrowId?: string): Promise<ChaintrackAmlLog[]>;
+  createChaintrackAmlLog(log: InsertChaintrackAmlLog): Promise<ChaintrackAmlLog>;
+  
+  createChaintrackAuditLog(log: InsertChaintrackAuditLog): Promise<ChaintrackAuditLog>;
+  
+  getAllChaintrackComplianceAlerts(sellerId?: string, escrowId?: string, status?: string): Promise<ChaintrackComplianceAlert[]>;
+  createChaintrackComplianceAlert(alert: InsertChaintrackComplianceAlert): Promise<ChaintrackComplianceAlert>;
 }
 
 export class MemStorage implements IStorage {
@@ -445,6 +473,15 @@ export class MemStorage implements IStorage {
   private chaintrackTransactions: Map<string, ChaintrackTransaction>;
   private chaintrackRatings: Map<string, ChaintrackRating>;
 
+  // ChainTrack Enhanced Compliance
+  private chaintrackSellers: Map<string, ChaintrackSeller>;
+  private chaintrackEscrows: Map<string, ChaintrackEscrow>;
+  private chaintrackShipments: Map<string, ChaintrackShipment>;
+  private chaintrackDocuments: Map<string, ChaintrackDocument>;
+  private chaintrackAmlLogs: Map<string, ChaintrackAmlLog>;
+  private chaintrackAuditLogs: Map<string, ChaintrackAuditLog>;
+  private chaintrackComplianceAlerts: Map<string, ChaintrackComplianceAlert>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -515,6 +552,15 @@ export class MemStorage implements IStorage {
     this.chaintrackInspections = new Map();
     this.chaintrackTransactions = new Map();
     this.chaintrackRatings = new Map();
+
+    // Initialize ChainTrack enhanced compliance
+    this.chaintrackSellers = new Map();
+    this.chaintrackEscrows = new Map();
+    this.chaintrackShipments = new Map();
+    this.chaintrackDocuments = new Map();
+    this.chaintrackAmlLogs = new Map();
+    this.chaintrackAuditLogs = new Map();
+    this.chaintrackComplianceAlerts = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -4761,6 +4807,215 @@ export class MemStorage implements IStorage {
     }
     
     return newRating;
+  }
+
+  // ChainTrack Enhanced Compliance - Sellers
+  async getAllChaintrackSellers(): Promise<ChaintrackSeller[]> {
+    return Array.from(this.chaintrackSellers.values()).sort((a, b) => 
+      b.createdAt.getTime() - a.createdAt.getTime()
+    );
+  }
+
+  async getChaintrackSeller(id: string): Promise<ChaintrackSeller | undefined> {
+    return this.chaintrackSellers.get(id);
+  }
+
+  async getChaintrackSellerByUserId(userId: string): Promise<ChaintrackSeller | undefined> {
+    return Array.from(this.chaintrackSellers.values()).find(s => s.userId === userId);
+  }
+
+  async createChaintrackSeller(seller: InsertChaintrackSeller): Promise<ChaintrackSeller> {
+    const newSeller: ChaintrackSeller = {
+      id: randomUUID(),
+      ...seller,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackSellers.set(newSeller.id, newSeller);
+    return newSeller;
+  }
+
+  async updateChaintrackSeller(id: string, updates: Partial<ChaintrackSeller>): Promise<ChaintrackSeller | undefined> {
+    const seller = this.chaintrackSellers.get(id);
+    if (!seller) return undefined;
+    
+    const updated = { 
+      ...seller, 
+      ...updates, 
+      updatedAt: new Date() 
+    };
+    this.chaintrackSellers.set(id, updated);
+    return updated;
+  }
+
+  // ChainTrack Enhanced Compliance - Escrows
+  async getAllChaintrackEscrows(sellerId?: string, buyerId?: string): Promise<ChaintrackEscrow[]> {
+    let escrows = Array.from(this.chaintrackEscrows.values());
+    
+    if (sellerId) {
+      escrows = escrows.filter(e => e.sellerId === sellerId);
+    }
+    if (buyerId) {
+      escrows = escrows.filter(e => e.buyerId === buyerId);
+    }
+    
+    return escrows.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getChaintrackEscrow(id: string): Promise<ChaintrackEscrow | undefined> {
+    return this.chaintrackEscrows.get(id);
+  }
+
+  async createChaintrackEscrow(escrow: InsertChaintrackEscrow): Promise<ChaintrackEscrow> {
+    const newEscrow: ChaintrackEscrow = {
+      id: randomUUID(),
+      ...escrow,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackEscrows.set(newEscrow.id, newEscrow);
+    return newEscrow;
+  }
+
+  async updateChaintrackEscrow(id: string, updates: Partial<ChaintrackEscrow>): Promise<ChaintrackEscrow> {
+    const escrow = this.chaintrackEscrows.get(id);
+    if (!escrow) throw new Error('Escrow not found');
+    
+    const updated = { 
+      ...escrow, 
+      ...updates, 
+      updatedAt: new Date() 
+    };
+    this.chaintrackEscrows.set(id, updated);
+    return updated;
+  }
+
+  // ChainTrack Enhanced Compliance - Shipments
+  async getAllChaintrackShipments(escrowId?: string): Promise<ChaintrackShipment[]> {
+    let shipments = Array.from(this.chaintrackShipments.values());
+    
+    if (escrowId) {
+      shipments = shipments.filter(s => s.escrowId === escrowId);
+    }
+    
+    return shipments.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getChaintrackShipment(id: string): Promise<ChaintrackShipment | undefined> {
+    return this.chaintrackShipments.get(id);
+  }
+
+  async createChaintrackShipment(shipment: InsertChaintrackShipment): Promise<ChaintrackShipment> {
+    const newShipment: ChaintrackShipment = {
+      id: randomUUID(),
+      ...shipment,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.chaintrackShipments.set(newShipment.id, newShipment);
+    return newShipment;
+  }
+
+  async updateChaintrackShipment(id: string, updates: Partial<ChaintrackShipment>): Promise<ChaintrackShipment> {
+    const shipment = this.chaintrackShipments.get(id);
+    if (!shipment) throw new Error('Shipment not found');
+    
+    const updated = { 
+      ...shipment, 
+      ...updates, 
+      updatedAt: new Date() 
+    };
+    this.chaintrackShipments.set(id, updated);
+    return updated;
+  }
+
+  // ChainTrack Enhanced Compliance - Documents
+  async getAllChaintrackDocuments(sellerId?: string, escrowId?: string, shipmentId?: string): Promise<ChaintrackDocument[]> {
+    let documents = Array.from(this.chaintrackDocuments.values());
+    
+    if (sellerId) {
+      documents = documents.filter(d => d.sellerId === sellerId);
+    }
+    if (escrowId) {
+      documents = documents.filter(d => d.escrowId === escrowId);
+    }
+    if (shipmentId) {
+      documents = documents.filter(d => d.shipmentId === shipmentId);
+    }
+    
+    return documents.sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
+  }
+
+  async createChaintrackDocument(document: InsertChaintrackDocument): Promise<ChaintrackDocument> {
+    const newDocument: ChaintrackDocument = {
+      id: randomUUID(),
+      ...document,
+      uploadedAt: new Date(),
+    };
+    this.chaintrackDocuments.set(newDocument.id, newDocument);
+    return newDocument;
+  }
+
+  // ChainTrack Enhanced Compliance - AML Logs
+  async getAllChaintrackAmlLogs(sellerId?: string, escrowId?: string): Promise<ChaintrackAmlLog[]> {
+    let logs = Array.from(this.chaintrackAmlLogs.values());
+    
+    if (sellerId) {
+      logs = logs.filter(l => l.sellerId === sellerId);
+    }
+    if (escrowId) {
+      logs = logs.filter(l => l.escrowId === escrowId);
+    }
+    
+    return logs.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async createChaintrackAmlLog(log: InsertChaintrackAmlLog): Promise<ChaintrackAmlLog> {
+    const newLog: ChaintrackAmlLog = {
+      id: randomUUID(),
+      ...log,
+      createdAt: new Date(),
+    };
+    this.chaintrackAmlLogs.set(newLog.id, newLog);
+    return newLog;
+  }
+
+  // ChainTrack Enhanced Compliance - Audit Logs
+  async createChaintrackAuditLog(log: InsertChaintrackAuditLog): Promise<ChaintrackAuditLog> {
+    const newLog: ChaintrackAuditLog = {
+      id: randomUUID(),
+      ...log,
+      createdAt: new Date(),
+    };
+    this.chaintrackAuditLogs.set(newLog.id, newLog);
+    return newLog;
+  }
+
+  // ChainTrack Enhanced Compliance - Compliance Alerts
+  async getAllChaintrackComplianceAlerts(sellerId?: string, escrowId?: string, status?: string): Promise<ChaintrackComplianceAlert[]> {
+    let alerts = Array.from(this.chaintrackComplianceAlerts.values());
+    
+    if (sellerId) {
+      alerts = alerts.filter(a => a.sellerId === sellerId);
+    }
+    if (escrowId) {
+      alerts = alerts.filter(a => a.escrowId === escrowId);
+    }
+    if (status) {
+      alerts = alerts.filter(a => a.status === status);
+    }
+    
+    return alerts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async createChaintrackComplianceAlert(alert: InsertChaintrackComplianceAlert): Promise<ChaintrackComplianceAlert> {
+    const newAlert: ChaintrackComplianceAlert = {
+      id: randomUUID(),
+      ...alert,
+      createdAt: new Date(),
+    };
+    this.chaintrackComplianceAlerts.set(newAlert.id, newAlert);
+    return newAlert;
   }
 }
 
