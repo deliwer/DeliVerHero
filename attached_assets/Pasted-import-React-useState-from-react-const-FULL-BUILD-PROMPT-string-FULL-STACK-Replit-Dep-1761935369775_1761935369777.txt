@@ -1,0 +1,110 @@
+import React, { useState } from 'react';
+
+const FULL_BUILD_PROMPT: string = `FULL STACK Replit Deployment for DeliWer ChainTrack Live Demo
+
+Objective: Deploy minimal live demo on www.deliwer.com/chaintrack
+- Features: Seller onboarding, masked listings, reverse bidding, escrow, CA attestation.
+- Frontend: React + Tailwind
+- Backend: Node.js + Express
+- Database: PostgreSQL (Supabase or Replit Postgres)
+- Security: TLS, AES-256, RBAC, MFA
+- Compliance: KYC/AML placeholders, CA audit simulation
+Deployment Steps:
+1. Create Replit project with Node.js + React template.
+2. Paste frontend into /web and backend into /api.
+3. Set environment variables: DATABASE_URL, JWT_SECRET, MOCK_BANK_API=true.
+4. Run npm install in /web and /api.
+5. Start dev mode: npm run dev (concurrently start backend and frontend).
+6. Access live demo: Replit webview or configure custom domain www.deliwer.com/chaintrack.
+7. Use provided sample data for sellers, buyers, and escrow mock transactions.
+`;
+
+export default function FeeCalculatorWidget(): JSX.Element {
+  const [qty, setQty] = useState<number>(50);
+  const [unitFOB, setUnitFOB] = useState<number>(55000);
+  const [currency, setCurrency] = useState<string>('USD');
+  const [exchangeRate, setExchangeRate] = useState<number>(0.012);
+  const [sellerTier, setSellerTier] = useState<string>('verified');
+  const [useLUT, setUseLUT] = useState<boolean>(true);
+  const [rodtepEligible, setRodtepEligible] = useState<boolean>(true);
+  const [fastRelease, setFastRelease] = useState<boolean>(false);
+  const [subscription, setSubscription] = useState<boolean>(false);
+  const [customsBrokerFee, setCustomsBrokerFee] = useState<number>(200);
+  const [escrowFixedFee, setEscrowFixedFee] = useState<number>(100);
+  const [fxPercent, setFxPercent] = useState<number>(0.002);
+  const [commissionOverride, setCommissionOverride] = useState<number | null>(null);
+  const [caAttested, setCaAttested] = useState<boolean>(false);
+
+  const tierCommission = (): number => {
+    if (commissionOverride !== null) return commissionOverride;
+    switch (sellerTier) {
+      case 'verified': return 0.015;
+      case 'premium': return 0.01;
+      default: return 0.02;
+    }
+  };
+
+  const subscriptionDiscount = subscription ? 0.0025 : 0;
+  const caAttestationDiscount = caAttested ? 0.002 : 0;
+  const commissionRate = Math.max(0, tierCommission() - subscriptionDiscount - caAttestationDiscount);
+  const fastReleaseFeePercent = fastRelease ? 0.03 : 0;
+  const totalINR = qty * unitFOB;
+  const totalUSD = totalINR * exchangeRate;
+  const commissionFeeUSD = totalUSD * commissionRate;
+  const escrowFeeUSD = escrowFixedFee;
+  const fxFeeUSD = Math.max(1, totalUSD * fxPercent);
+  const customsFeeUSD = customsBrokerFee;
+  const fastReleaseFeeUSD = totalUSD * fastReleaseFeePercent;
+  const rodtepCreditUSD = rodtepEligible ? Math.min(0.02 * totalUSD, 500) : 0;
+  const totalFeesUSD = commissionFeeUSD + escrowFeeUSD + fxFeeUSD + customsFeeUSD + fastReleaseFeeUSD - rodtepCreditUSD;
+  const netToSellerUSD = totalUSD - totalFeesUSD;
+
+  const downloadEvidencePack = (): void => {
+    const payload = {
+      seller: 'Shree Mobile Exports Pvt Ltd', qty, unitFOB, totalINR, totalUSD, commissionRate,
+      fees: { commissionFeeUSD, escrowFeeUSD, fxFeeUSD, customsFeeUSD, fastReleaseFeeUSD, rodtepCreditUSD },
+      netToSellerUSD, timestamp: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `evidence-pack-${Date.now()}.json`;
+    a.click();
+  };
+
+  const copyFullBuildPrompt = (): void => {
+    const textArea = document.createElement('textarea');
+    textArea.value = FULL_BUILD_PROMPT;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      alert('Full build prompt copied to clipboard.');
+    } catch (err) {
+      alert('Copy failed. Please select and copy manually.');
+    }
+    document.body.removeChild(textArea);
+  };
+
+  const exportSampleTransaction = (): void => {
+    const sample = {
+      escrowId: 'ESCROW/DEL/2025/00123', buyer: 'DeliWer Shopping FZCO', seller: 'Shree Mobile Exports Pvt Ltd',
+      totalUSD: totalUSD.toFixed(2), netToSellerUSD: netToSellerUSD.toFixed(2), commissionRate: (commissionRate*100).toFixed(3)+'%'
+    };
+    const blob = new Blob([JSON.stringify(sample, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `sample-transaction-${Date.now()}.json`;
+    a.click();
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg">
+      <h2 className="text-2xl font-bold mb-4">ChainTrack Fee Calculator Demo</h2>
+      <p>Use this minimal demo to simulate seller fees, escrow, and net payout.</p>
+      <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={downloadEvidencePack}>Download Evidence Pack</button>
+      <button className="mt-4 ml-2 px-4 py-2 bg-green-500 text-white rounded" onClick={exportSampleTransaction}>Export Sample Transaction</button>
+      <button className="mt-4 ml-2 px-4 py-2 bg-gray-500 text-white rounded" onClick={copyFullBuildPrompt}>Copy Deployment Prompt</button>
+    </div>
+  );
+}
