@@ -14,7 +14,7 @@ import { useLocation } from "wouter";
 import Home from "@/pages/home";
 import Leaderboard from "@/pages/leaderboard";
 import ImpactDashboard from "@/pages/impact-dashboard";
-import AquaCafe from "@/pages/aquacafe";
+import AquaCafe from "@/pages/aquacafe-enhanced";
 import AquaCafeAlliance from "@/pages/aquacafe-alliance";
 import Products from "@/pages/products";
 import Exchange from "@/pages/exchange";
