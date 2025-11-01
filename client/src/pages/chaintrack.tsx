@@ -132,15 +132,331 @@ function AccessDenied() {
   );
 }
 
+function B2BPricingCalculator() {
+  const [deviceModel, setDeviceModel] = useState("iPhone 13 Pro 256GB");
+  const [condition, setCondition] = useState("Excellent");
+  const [quantity, setQuantity] = useState(50);
+  const [sourceCountry, setSourceCountry] = useState("India");
+  const [memberTier, setMemberTier] = useState("starter");
+
+  const basePrice = 485;
+  const rodtepRebate = sourceCountry === "India" ? basePrice * 0.02 : 0;
+  const commissionRate = memberTier === "ondemand" ? 0.005 : memberTier === "starter" ? 0.003 : memberTier === "growth" ? 0.0025 : 0.002;
+  const commission = basePrice * quantity * commissionRate;
+  const complianceFeePerUnit = 2.00;
+  const complianceFees = complianceFeePerUnit * quantity;
+  const totalCost = (basePrice * quantity) - rodtepRebate + commission + complianceFees;
+  const pricePerUnit = totalCost / quantity;
+
+  return (
+    <Card className="p-8 bg-white dark:bg-slate-900" data-testid="b2b-calculator">
+      <h3 className="text-2xl font-bold mb-6">B2B Wholesale Pricing Calculator</h3>
+      
+      <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <Label>Device Model</Label>
+          <Select value={deviceModel} onValueChange={setDeviceModel}>
+            <SelectTrigger data-testid="select-calc-device">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="iPhone 15 Pro Max 512GB">iPhone 15 Pro Max 512GB</SelectItem>
+              <SelectItem value="iPhone 15 Pro 256GB">iPhone 15 Pro 256GB</SelectItem>
+              <SelectItem value="iPhone 14 Pro Max 256GB">iPhone 14 Pro Max 256GB</SelectItem>
+              <SelectItem value="iPhone 13 Pro 256GB">iPhone 13 Pro 256GB</SelectItem>
+              <SelectItem value="iPhone 13 128GB">iPhone 13 128GB</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <Label>Condition</Label>
+          <Select value={condition} onValueChange={setCondition}>
+            <SelectTrigger data-testid="select-calc-condition">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="New">New</SelectItem>
+              <SelectItem value="Excellent">Excellent (A-Grade)</SelectItem>
+              <SelectItem value="Good">Good (B-Grade)</SelectItem>
+              <SelectItem value="ASIS">ASIS (As-Is)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
+          <Label>Quantity</Label>
+          <Input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(parseInt(e.target.value) || 50)}
+            min="1"
+            data-testid="input-calc-quantity"
+          />
+        </div>
+
+        <div>
+          <Label>Source Country</Label>
+          <Select value={sourceCountry} onValueChange={setSourceCountry}>
+            <SelectTrigger data-testid="select-calc-country">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="India">🇮🇳 India (RODTEP 2%)</SelectItem>
+              <SelectItem value="US">🇺🇸 United States</SelectItem>
+              <SelectItem value="Japan">🇯🇵 Japan</SelectItem>
+              <SelectItem value="China">🇨🇳 China</SelectItem>
+              <SelectItem value="Europe">🇪🇺 Europe</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="md:col-span-2">
+          <Label>Membership Tier</Label>
+          <Select value={memberTier} onValueChange={setMemberTier}>
+            <SelectTrigger data-testid="select-calc-tier">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ondemand">On-Demand (0.5% fee)</SelectItem>
+              <SelectItem value="starter">Starter (0.3% fee)</SelectItem>
+              <SelectItem value="growth">Growth (0.25% fee)</SelectItem>
+              <SelectItem value="enterprise">Enterprise (0.2% fee)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-lg p-6 border-2 border-blue-200 dark:border-blue-800">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          <div>
+            <div className="text-sm text-slate-600 dark:text-slate-400">Base Price/Unit</div>
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">${basePrice}</div>
+          </div>
+          <div>
+            <div className="text-sm text-slate-600 dark:text-slate-400">RODTEP Rebate</div>
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400">-${rodtepRebate.toFixed(2)}</div>
+          </div>
+          <div>
+            <div className="text-sm text-slate-600 dark:text-slate-400">Platform Fee</div>
+            <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">${commission.toFixed(2)}</div>
+          </div>
+          <div>
+            <div className="text-sm text-slate-600 dark:text-slate-400">Compliance Fees</div>
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">${complianceFees.toFixed(2)}</div>
+            <div className="text-xs text-slate-500 dark:text-slate-400">AML/KYC + Regulatory</div>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-300 dark:border-slate-700 pt-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-lg font-semibold">Total Cost ({quantity} units)</span>
+            <span className="text-3xl font-bold text-purple-600 dark:text-purple-400">${totalCost.toFixed(2)}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-slate-600 dark:text-slate-400">Price per Unit</span>
+            <span className="text-xl font-bold text-slate-700 dark:text-slate-300">${pricePerUnit.toFixed(2)}</span>
+          </div>
+        </div>
+
+        <div className="mt-6 flex gap-3">
+          <Link href="/signup" className="flex-1">
+            <Button className="w-full bg-purple-600 hover:bg-purple-700" data-testid="button-calc-signup">
+              Request B2B Access
+            </Button>
+          </Link>
+          <Button variant="outline" className="flex-1" data-testid="button-calc-contact">
+            Contact Sales
+          </Button>
+        </div>
+      </div>
+
+      <div className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p>💡 Prices shown are estimates. Final pricing depends on real-time market conditions and reverse bidding results.</p>
+      </div>
+    </Card>
+  );
+}
+
+function DemoDashboardPreview() {
+  const [activeTab, setActiveTab] = useState("discover");
+
+  const sampleAuctions = [
+    {
+      id: "demo-1",
+      device: "iPhone 15 Pro Max 256GB",
+      quantity: 100,
+      targetPrice: 850,
+      currentBestBid: 825,
+      bidsCount: 7,
+      timeRemaining: "14 hours",
+      sourceCountry: "India"
+    },
+    {
+      id: "demo-2",
+      device: "iPhone 14 Pro 128GB",
+      quantity: 250,
+      targetPrice: 650,
+      currentBestBid: 635,
+      bidsCount: 12,
+      timeRemaining: "8 hours",
+      sourceCountry: "US"
+    },
+    {
+      id: "demo-3",
+      device: "iPhone 13 256GB",
+      quantity: 500,
+      targetPrice: 485,
+      currentBestBid: 475,
+      bidsCount: 15,
+      timeRemaining: "3 days",
+      sourceCountry: "India"
+    }
+  ];
+
+  return (
+    <div className="space-y-6" data-testid="demo-dashboard">
+      <div className="bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg p-6">
+        <h2 className="text-2xl font-bold mb-2">Welcome to ChainTrack Demo</h2>
+        <p className="opacity-90">This is a sample view of our B2B wholesale platform. Real data is available after verification.</p>
+      </div>
+
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="grid w-full grid-cols-3">
+          <TabsTrigger value="discover">Discover</TabsTrigger>
+          <TabsTrigger value="mybids">My Bids</TabsTrigger>
+          <TabsTrigger value="compliance">Compliance</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="discover" className="space-y-4 mt-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold">Active Auctions</h3>
+            <Badge className="bg-green-500">Live</Badge>
+          </div>
+
+          {sampleAuctions.map((auction) => (
+            <Card key={auction.id} className="p-6 hover:shadow-lg transition-shadow border-2">
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Phone className="w-5 h-5 text-blue-600" />
+                    <h4 className="font-bold text-lg">{auction.device}</h4>
+                    <Badge variant="outline">{auction.sourceCountry}</Badge>
+                  </div>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">{auction.quantity} units</p>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm text-slate-600 dark:text-slate-400">Best Bid</div>
+                  <div className="text-2xl font-bold text-green-600 dark:text-green-400">${auction.currentBestBid}</div>
+                  <div className="text-xs text-slate-500">Target: ${auction.targetPrice}</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6 text-sm mb-4">
+                <div className="flex items-center gap-1">
+                  <Users className="w-4 h-4 text-purple-600" />
+                  <span>{auction.bidsCount} bids</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4 text-orange-600" />
+                  <span>{auction.timeRemaining} left</span>
+                </div>
+              </div>
+
+              <Button className="w-full" disabled data-testid={`button-demo-bid-${auction.id}`}>
+                <Shield className="w-4 h-4 mr-2" />
+                Place Bid (Requires Verification)
+              </Button>
+            </Card>
+          ))}
+        </TabsContent>
+
+        <TabsContent value="mybids" className="mt-6">
+          <Card className="p-8 text-center">
+            <Gavel className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold mb-2">No Active Bids</h3>
+            <p className="text-slate-600 dark:text-slate-400 mb-4">
+              Your active bids will appear here after verification
+            </p>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="compliance" className="mt-6">
+          <Card className="p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center">
+                <Shield className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">Compliance Center</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">KYC/AML verification required</p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded">
+                <span>Business License</span>
+                <Badge variant="outline">Pending Upload</Badge>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded">
+                <span>Trade License</span>
+                <Badge variant="outline">Pending Upload</Badge>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800 rounded">
+                <span>Bank Verification</span>
+                <Badge variant="outline">Pending</Badge>
+              </div>
+            </div>
+
+            <Button className="w-full mt-6" data-testid="button-demo-verify">
+              Complete Verification to Unlock
+            </Button>
+          </Card>
+        </TabsContent>
+      </Tabs>
+
+      <Card className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-2 border-blue-300 dark:border-blue-700">
+        <div className="text-center">
+          <h3 className="text-lg font-bold mb-2">Ready to Access Real Platform?</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+            Get verified to place real bids, access full inventory, and benefit from escrow protection
+          </p>
+          <div className="flex gap-3 justify-center">
+            <Link href="/signup">
+              <Button className="bg-blue-600 hover:bg-blue-700" data-testid="button-demo-signup">
+                Request B2B Access
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button variant="outline" data-testid="button-demo-login">
+                Login
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
 function ChainTrackLanding() {
+  const [showDemo, setShowDemo] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900">
       <div className="container mx-auto px-4 py-20">
         {/* Hero Section */}
         <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium mb-4">
-            <MapPin className="w-4 h-4" />
-            Operating from Dubai Airport Freezone
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
+              <MapPin className="w-4 h-4" />
+              Operating from Dubai Airport Freezone
+            </div>
+            <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-4 py-2 rounded-full text-sm font-medium">
+              <Shield className="w-4 h-4" />
+              15,000+ Verified Trades
+            </div>
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
@@ -152,16 +468,25 @@ function ChainTrackLanding() {
           </p>
           
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-            Streamline your wholesale mobile phone procurement through our reverse bidding platform. 
+            AI-powered reverse bidding platform with full compliance support. 
             Access global inventory from Dubai Airport Freezone with competitive pricing and verified suppliers.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <Button 
+              size="lg" 
+              className="gap-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700" 
+              onClick={() => setShowDemo(true)}
+              data-testid="button-try-demo"
+            >
+              <Sparkles className="w-5 h-5" />
+              Try Platform Demo
+              <ArrowRight className="w-4 h-4" />
+            </Button>
             <Link href="/login">
-              <Button size="lg" className="gap-2" data-testid="button-login">
+              <Button size="lg" variant="outline" className="gap-2" data-testid="button-login">
                 <Shield className="w-5 h-5" />
                 Buyer Login
-                <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
             <Link href="/signup">
@@ -170,7 +495,61 @@ function ChainTrackLanding() {
               </Button>
             </Link>
           </div>
+
+          {/* Trust Badges */}
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-600 dark:text-slate-400 mb-8">
+            <div className="flex items-center gap-1">
+              <CheckCircle2 className="w-4 h-4 text-green-600" />
+              <span>Escrow Protection</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <CheckCircle2 className="w-4 h-4 text-green-600" />
+              <span>AML/KYC Verified</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <CheckCircle2 className="w-4 h-4 text-green-600" />
+              <span>24-48hr Processing</span>
+            </div>
+          </div>
+
+          {/* B2B Pricing Calculator CTA */}
+          <Card className="p-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-2 border-amber-300 dark:border-amber-700">
+            <div className="flex items-center justify-between">
+              <div className="text-left">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-1">
+                  📊 Try Our B2B Pricing Calculator
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Get instant wholesale pricing estimates with export benefits & compliance fees
+                </p>
+              </div>
+              <Button 
+                onClick={() => setShowCalculator(!showCalculator)}
+                className="bg-amber-600 hover:bg-amber-700"
+                data-testid="button-toggle-calculator"
+              >
+                {showCalculator ? "Hide" : "Calculate"} Pricing
+              </Button>
+            </div>
+          </Card>
         </div>
+
+        {/* B2B Pricing Calculator Section */}
+        {showCalculator && (
+          <div className="mt-12 max-w-4xl mx-auto">
+            <B2BPricingCalculator />
+          </div>
+        )}
+
+        {/* Demo Mode Modal */}
+        <Dialog open={showDemo} onOpenChange={setShowDemo}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-2xl">ChainTrack Platform Demo</DialogTitle>
+            </DialogHeader>
+            <DemoDashboardPreview />
+          </DialogContent>
+        </Dialog>
 
         {/* Global Regions & Inventory Categories */}
         <div className="mt-20 max-w-6xl mx-auto">
@@ -1824,3 +2203,4 @@ function CreateAuctionView({ userId }: { userId: string }) {
     </Card>
   );
 }
+
