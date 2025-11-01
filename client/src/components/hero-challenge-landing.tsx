@@ -394,6 +394,33 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
 // Step 1: Shop Smart Section (formerly Step 2)
 function StepTwoExchange() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("iPhone 15 Pro");
+  const [selectedCondition, setSelectedCondition] = useState("excellent");
+  
+  const phoneValues: Record<string, number> = {
+    "iPhone 16 Pro Max": 3800,
+    "iPhone 16 Pro": 3400,
+    "iPhone 15 Pro Max": 3200,
+    "iPhone 15 Pro": 2900,
+    "iPhone 14 Pro": 2200,
+    "iPhone 14": 1800,
+    "iPhone 13 Pro": 1500,
+    "iPhone 13": 1200,
+    "iPhone 12 Pro": 1000,
+    "iPhone 12": 800,
+  };
+  
+  const conditionMultipliers: Record<string, number> = {
+    "excellent": 1.0,
+    "good": 0.85,
+    "fair": 0.7,
+  };
+  
+  const calculateTradeInValue = () => {
+    const baseValue = phoneValues[selectedModel] || 0;
+    const multiplier = conditionMultipliers[selectedCondition] || 0;
+    return Math.round(baseValue * multiplier);
+  };
   
   return (
     <section className="py-8 px-4 mb-8" data-section="step-1">
@@ -406,11 +433,11 @@ function StepTwoExchange() {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Shop Smart section"
+              aria-label="Toggle Get Clean Water at Home section"
               data-testid="toggle-shop-smart"
             >
               <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-                Shop Smart
+                Get Clean Water at Home
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-green-400" />
@@ -420,7 +447,7 @@ function StepTwoExchange() {
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-            Premium Bundle: Trade your iPhone for Kangen Water K8 Machine with huge discounts and exclusive benefits
+            Premium Water Systems & iPhone Trade-In Bundle: Get clean alkaline water at home with exclusive trade-in benefits
           </p>
           
           {/* K8 Machine Banner - Always Visible */}
@@ -454,115 +481,297 @@ function StepTwoExchange() {
           </div>
         </div>
 
-        {/* AquaCafe Planetary Missions */}
+        {/* Comprehensive Dual-Product Content */}
         {isExpanded && (
         <>
+        {/* How It Works: Dual Product Flow */}
         <div className="mb-8 animate-in slide-in-from-top duration-500">
-          <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-blue-500/10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              
-              {/* Left: AquaCafe Missions Header */}
-              <div className="space-y-6">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-4">
-                    <Droplets className="w-5 h-5" />
-                    <span className="font-bold">💧 AQUACAFE MISSIONS</span>
+          <div className="glass rounded-2xl p-8 border border-cyan-500/50 bg-gradient-to-br from-cyan-500/10 to-blue-500/10">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-white mb-3">How the Bundle Works</h3>
+              <p className="text-gray-300 max-w-3xl mx-auto">
+                Trade your old iPhone and get premium alkaline water systems with exclusive bundle savings
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {/* Step 1: Trade iPhone */}
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-amber-500/30">
+                <div className="text-center mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-amber-500/20 rounded-full mb-4">
+                    <Smartphone className="w-8 h-8 text-amber-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Join AquaCafe & Complete Missions</h3>
-                  <p className="text-gray-200 text-sm">
-                    Join AquaCafe loyalty program and complete planetary missions including iPhone trade-ins for maximum impact.
+                  <h4 className="text-xl font-bold text-white mb-2">1. Trade Your iPhone</h4>
+                  <p className="text-gray-400 text-sm">
+                    Get instant trade-in value for your old iPhone
                   </p>
                 </div>
-                
-                {/* AquaCafe CTA */}
-                <div className="text-center">
-                  <Link href="/aquacafe">
-                    <Button 
-                      size="lg" 
-                      className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full mb-4"
-                      data-testid="button-join-aquacafe-missions"
-                    >
-                      <Droplets className="mr-3 w-6 h-6" />
-                      Join AquaCafe Loyalty
-                    </Button>
-                  </Link>
-                  <div className="text-xs text-gray-400">
-                    Unlock iPhone trade-in missions & premium water systems
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>iPhone 12-16 accepted</span>
                   </div>
-                </div>
-                
-                {/* Other Missions */}
-                <div className="text-center">
-                  <div className="text-gray-400 text-sm mb-3">Other ways to earn points:</div>
-                  <div className="flex justify-center gap-4 text-xs">
-                    <div className="text-center">
-                      <div className="text-blue-400 font-bold">+50-200</div>
-                      <div className="text-gray-500">Water Systems</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-purple-400 font-bold">+25-100</div>
-                      <div className="text-gray-500">Referrals</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-amber-400 font-bold">+100</div>
-                      <div className="text-gray-500">Daily Spin</div>
-                    </div>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Up to AED 4,000 value</span>
+                  </div>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Instant calculator</span>
                   </div>
                 </div>
               </div>
-              
-              {/* Right: Planetary Missions Overview */}
-              <div className="text-center">
-                <div className="mb-6">
-                  <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full mb-4">
-                    <Target className="w-5 h-5" />
-                    <span className="font-bold">🌍 MISSIONS AVAILABLE</span>
+
+              {/* Step 2: Choose Water System */}
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-500/30">
+                <div className="text-center mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500/20 rounded-full mb-4">
+                    <Droplets className="w-8 h-8 text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4">Complete & Earn Points</h3>
+                  <h4 className="text-xl font-bold text-white mb-2">2. Choose Water System</h4>
+                  <p className="text-gray-400 text-sm">
+                    Select from premium filtration options
+                  </p>
                 </div>
-                
-                {/* Mission Types Preview */}
-                <div className="space-y-3">
-                  <Link href="/earn">
-                    <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg hover:bg-slate-600/50 transition-all duration-300 cursor-pointer group" data-testid="button-step2-trade-in">
-                      <div className="flex items-center">
-                        <Smartphone className="w-5 h-5 text-amber-400 mr-2 group-hover:scale-110 transition-transform" />
-                        <span className="text-white font-medium group-hover:text-amber-300 transition-colors">iPhone Trade-In</span>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-green-400 font-bold">+2,000-4,000 PTS</div>
-                        <div className="text-amber-400 text-sm group-hover:text-amber-300 transition-colors">Max rewards</div>
-                      </div>
-                    </div>
-                  </Link>
-                  <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
-                    <div className="flex items-center">
-                      <Droplets className="w-5 h-5 text-cyan-400 mr-2" />
-                      <span className="text-white font-medium">Water System Setup</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-green-400 font-bold">+500 PTS</div>
-                      <div className="text-cyan-400 text-sm">Monthly</div>
-                    </div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Kangen K8 Machine</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-slate-700/50 rounded-lg">
-                    <div className="flex items-center">
-                      <Users className="w-5 h-5 text-purple-400 mr-2" />
-                      <span className="text-white font-medium">Referral Mission</span>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-green-400 font-bold">+1,000 PTS</div>
-                      <div className="text-purple-400 text-sm">Per friend</div>
-                    </div>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Shower filters</span>
+                  </div>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Portable systems</span>
                   </div>
                 </div>
-                
-                {/* Mission Calculator CTA */}
-                <div className="mt-6">
-                  <div className="text-xs text-gray-400 mb-4">
-                    🎯 Complete missions to unlock higher Planet Points multipliers
+              </div>
+
+              {/* Step 3: Get Bundle Discount */}
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-green-500/30">
+                <div className="text-center mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/20 rounded-full mb-4">
+                    <Gift className="w-8 h-8 text-green-400" />
+                  </div>
+                  <h4 className="text-xl font-bold text-white mb-2">3. Bundle Savings</h4>
+                  <p className="text-gray-400 text-sm">
+                    Trade-in credit applied to water system
+                  </p>
+                </div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Huge discounts</span>
+                  </div>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Free delivery</span>
+                  </div>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                    <span>Lifetime benefits</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Water Filtration Systems Showcase */}
+        <div className="mb-8 animate-in slide-in-from-top duration-500">
+          <div className="glass rounded-2xl p-8 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-4">
+                <Droplets className="w-5 h-5" />
+                <span className="font-bold">💧 PREMIUM WATER SYSTEMS</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Choose Your Water Solution</h3>
+              <p className="text-gray-300 text-sm max-w-2xl mx-auto">
+                Get clean, alkaline water at home with our premium filtration systems
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Kangen K8 */}
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-400/30 hover:border-blue-400/60 transition-all">
+                <div className="flex items-center gap-2 mb-4">
+                  <Badge className="bg-amber-500/20 text-amber-400">FLAGSHIP</Badge>
+                  <Badge className="bg-blue-500/20 text-blue-400">Most Popular</Badge>
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">Kangen K8 Machine</h4>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start">
+                    <Zap className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">8 platinum-coated titanium plates for superior ionization</span>
+                  </div>
+                  <div className="flex items-start">
+                    <Droplets className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Produces 5 types of water (pH 2.5-11.5)</span>
+                  </div>
+                  <div className="flex items-start">
+                    <Shield className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Medical-grade quality, 15-year warranty</span>
+                  </div>
+                  <div className="flex items-start">
+                    <Home className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Saves money vs. bottled water</span>
+                  </div>
+                </div>
+                <div className="text-center text-2xl font-bold text-blue-400 mb-2">Up to 70% OFF</div>
+                <p className="text-gray-400 text-sm text-center mb-4">with iPhone trade-in bundle</p>
+              </div>
+
+              {/* Shower Filters & Portable */}
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-cyan-400/30 hover:border-cyan-400/60 transition-all">
+                <div className="flex items-center gap-2 mb-4">
+                  <Badge className="bg-cyan-500/20 text-cyan-400">Starter Friendly</Badge>
+                </div>
+                <h4 className="text-xl font-bold text-white mb-3">Shower Filters & Portable Systems</h4>
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-start">
+                    <Droplets className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Remove chlorine, heavy metals & impurities</span>
+                  </div>
+                  <div className="flex items-start">
+                    <Heart className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Healthier skin & hair from filtered shower water</span>
+                  </div>
+                  <div className="flex items-start">
+                    <Package className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Portable alkaline water bottles for on-the-go</span>
+                  </div>
+                  <div className="flex items-start">
+                    <Zap className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">Easy installation, immediate results</span>
+                  </div>
+                </div>
+                <div className="text-center text-2xl font-bold text-cyan-400 mb-2">Starting AED 299</div>
+                <p className="text-gray-400 text-sm text-center mb-4">Bundle discount available</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* iPhone Trade-In Calculator Widget */}
+        <div className="mb-8 animate-in slide-in-from-top duration-500">
+          <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-4">
+                <Calculator className="w-5 h-5" />
+                <span className="font-bold">📱 TRADE-IN CALCULATOR</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Check Your iPhone Value</h3>
+              <p className="text-gray-300 text-sm">
+                Instant valuation for iPhone 12 to iPhone 16 series
+              </p>
+            </div>
+
+            {/* Interactive Calculator */}
+            <div className="max-w-2xl mx-auto mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {/* Model Selection */}
+                <div>
+                  <label className="block text-white font-medium mb-3">Select Your iPhone Model</label>
+                  <select
+                    value={selectedModel}
+                    onChange={(e) => setSelectedModel(e.target.value)}
+                    className="w-full bg-slate-800/80 border border-amber-400/30 rounded-lg px-4 py-3 text-white focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20"
+                    data-testid="select-iphone-model"
+                  >
+                    {Object.keys(phoneValues).map((model) => (
+                      <option key={model} value={model}>{model}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Condition Selection */}
+                <div>
+                  <label className="block text-white font-medium mb-3">Device Condition</label>
+                  <select
+                    value={selectedCondition}
+                    onChange={(e) => setSelectedCondition(e.target.value)}
+                    className="w-full bg-slate-800/80 border border-amber-400/30 rounded-lg px-4 py-3 text-white focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/20"
+                    data-testid="select-device-condition"
+                  >
+                    <option value="excellent">Excellent (100%)</option>
+                    <option value="good">Good (85%)</option>
+                    <option value="fair">Fair (70%)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Calculated Value Display */}
+              <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-2xl p-8 border-2 border-amber-400/50 text-center">
+                <div className="text-gray-300 text-sm mb-2">Your Estimated Trade-In Value</div>
+                <div className="text-5xl font-black text-amber-400 mb-2" data-testid="text-calculated-value">
+                  AED {calculateTradeInValue().toLocaleString()}
+                </div>
+                <div className="text-gray-400 text-sm">
+                  💰 Credit applied instantly to water system purchase
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl p-6 border border-amber-400/30 mb-6">
+              <h4 className="text-lg font-bold text-white mb-3 text-center">💡 Condition Guide</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="text-center">
+                  <div className="text-green-400 font-bold text-xl mb-1">Excellent</div>
+                  <div className="text-gray-300">100% Value</div>
+                  <div className="text-gray-500 text-xs mt-1">No scratches, perfect condition</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-blue-400 font-bold text-xl mb-1">Good</div>
+                  <div className="text-gray-300">85% Value</div>
+                  <div className="text-gray-500 text-xs mt-1">Minor wear, fully functional</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-amber-400 font-bold text-xl mb-1">Fair</div>
+                  <div className="text-gray-300">70% Value</div>
+                  <div className="text-gray-500 text-xs mt-1">Visible wear, works well</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <p className="text-gray-400 text-sm mb-4">
+                🎯 Use the calculator above to see exactly how much your iPhone is worth
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Main CTA to AquaCafe */}
+        <div className="mb-8 animate-in slide-in-from-top duration-500">
+          <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10 text-center">
+            <h3 className="text-3xl font-bold text-white mb-4">Ready to Get Started?</h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Join AquaCafe to unlock exclusive bundle deals, trade in your iPhone, and get premium water systems delivered to your home
+            </p>
+            <Link href="/aquacafe">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 text-2xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-main-aquacafe-cta"
+              >
+                <Droplets className="mr-3 w-8 h-8" />
+                Explore AquaCafe Bundle Deals
+              </Button>
+            </Link>
+            <div className="mt-4 flex items-center justify-center gap-6 text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-400" />
+                <span>Free Delivery</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-400" />
+                <span>Instant Trade-In</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-400" />
+                <span>Bundle Savings</span>
               </div>
             </div>
           </div>

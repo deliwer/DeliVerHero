@@ -40,17 +40,10 @@ const ctaOptions: CTAOption[] = [
 ];
 
 export function AIInteractiveHero() {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [showButtons, setShowButtons] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
-
   const handleCTAClick = () => {
-    if (!showButtons) {
-      setIsTyping(true);
-      setTimeout(() => {
-        setIsTyping(false);
-        setShowButtons(true);
-      }, 800);
+    const step1Section = document.querySelector('[data-section="step-1"]');
+    if (step1Section) {
+      step1Section.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -109,69 +102,14 @@ export function AIInteractiveHero() {
 
             {/* CTA Buttons */}
             <div className="space-y-4">
-              {isTyping ? (
-                <div className="flex items-center justify-center space-x-2 py-6">
-                  <div className="w-3 h-3 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                  <div className="w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                  <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-                </div>
-              ) : !showButtons ? (
-                <Button
-                  onClick={handleCTAClick}
-                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-7 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/30"
-                  data-testid="ai-cta-trigger"
-                >
-                  <Droplets className="w-6 h-6 mr-3" />
-                  Get Clean Water at Home
-                </Button>
-              ) : (
-                <div className="space-y-4 animate-in slide-in-from-top duration-500">
-                  {ctaOptions.map((option) => (
-                      <Button
-                        key={option.id}
-                        className={`w-full bg-gradient-to-r ${option.gradient} hover:${option.hoverGradient} text-white px-6 ${option.id === 'water' ? 'py-7 text-xl border-2 shadow-2xl' : 'py-5 text-lg border'} font-bold rounded-2xl ${option.id === 'water' ? 'shadow-2xl' : 'shadow-lg'} transform hover:scale-105 transition-all duration-300 border-white/20 group`}
-                        onMouseEnter={() => setSelectedOption(option.id)}
-                        onMouseLeave={() => setSelectedOption(null)}
-                        onClick={() => {
-                          if (option.id === 'water') {
-                            window.location.href = '/aquacafe';
-                          } else if (option.id === 'trade') {
-                            const getRewardedSection = document.querySelector('[data-section="step-2"]');
-                            getRewardedSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                          } else if (option.id === 'leaderboard') {
-                            const createImpactSection = document.querySelector('[data-section="step-3"]');
-                            createImpactSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                          }
-                        }}
-                        data-testid={`ai-cta-${option.id}`}
-                      >
-                        <div className="flex items-center justify-center space-x-3">
-                          <span className={`${option.id === 'water' ? 'text-3xl' : 'text-2xl'} group-hover:scale-110 transition-transform duration-200`}>
-                            {option.icon}
-                          </span>
-                          <span className="flex-1 text-left">
-                            {option.text}
-                          </span>
-                          <div className={`transition-transform duration-200 ${
-                            selectedOption === option.id ? 'translate-x-1' : ''
-                          }`}>
-                            →
-                          </div>
-                        </div>
-                      </Button>
-                  ))}
-                  
-                  {/* Reset Button */}
-                  <Button
-                    onClick={() => setShowButtons(false)}
-                    variant="ghost"
-                    className="w-full text-white/70 hover:text-white hover:bg-white/10 px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200"
-                    data-testid="ai-cta-reset"
-                  >
-                    ← Other options
-                  </Button>
-                </div>
-              )}
+              <Button
+                onClick={handleCTAClick}
+                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-7 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/30"
+                data-testid="ai-cta-trigger"
+              >
+                <Droplets className="w-6 h-6 mr-3" />
+                Shop Smart
+              </Button>
             </div>
           </div>
         </div>
