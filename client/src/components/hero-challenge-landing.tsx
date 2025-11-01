@@ -23,6 +23,8 @@ import k8MachineImage from "@assets/without_text_1756065010951.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
 import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
+import kangenWaterSystem from "@assets/generated_images/Kangen_K8_water_filtration_system_e7d8eaaa.png";
+import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_collection_cbe8ffe3.png";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -593,6 +595,16 @@ function StepTwoExchange() {
               </p>
             </div>
 
+            {/* Product Image Showcase */}
+            <div className="mb-8 max-w-3xl mx-auto">
+              <img 
+                src={kangenWaterSystem} 
+                alt="Kangen K8 Premium Water Filtration System" 
+                className="w-full h-auto rounded-xl shadow-2xl border border-blue-400/30"
+                data-testid="img-water-filtration-system"
+              />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Kangen K8 */}
               <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-400/30 hover:border-blue-400/60 transition-all">
@@ -666,6 +678,16 @@ function StepTwoExchange() {
               <p className="text-gray-300 text-sm">
                 Instant valuation for iPhone 12 to iPhone 16 series
               </p>
+            </div>
+
+            {/* iPhone Collection Image */}
+            <div className="mb-8 max-w-4xl mx-auto">
+              <img 
+                src={iphoneCollection} 
+                alt="Latest iPhone Models Collection - iPhone 12 to iPhone 16" 
+                className="w-full h-auto rounded-xl shadow-2xl border border-amber-400/30"
+                data-testid="img-iphone-collection"
+              />
             </div>
 
             {/* Interactive Calculator */}
