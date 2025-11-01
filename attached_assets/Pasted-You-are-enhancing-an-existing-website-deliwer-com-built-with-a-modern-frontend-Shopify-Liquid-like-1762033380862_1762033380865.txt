@@ -1,0 +1,163 @@
+You are enhancing an existing website deliwer.com, built with a modern frontend (Shopify Liquid-like layout), but now being reimplemented under Replit Core deployment.
+Your goal is to incrementally improve the /aquacafe section only — not the main homepage or other pages — to make it transactional, mobile-optimized, and SEO-friendly for AquaCafe water filter products.
+
+🎯 Objectives
+
+Do not alter the homepage, navigation, or global structure.
+
+Only enhance /aquacafe for:
+
+Product browsing and checkout.
+
+Mobile UX and conversion.
+
+Local SEO for “water filter Dubai”.
+
+Fast checkout using Stripe or PayPal.
+
+Use Replit Core + simple JS/React components, deployed cost-effectively (static + edge functions for checkout).
+
+Keep DeliWer brand style and AquaCafe identity intact.
+
+🧩 Functional Enhancements
+
+A. Product Section Enhancements
+
+Convert AquaCafe water filter listings into modular, responsive product cards with:
+
+Product image, name, brief specs (stages, TDS reduction, flow rate, warranty).
+
+Visible price + “Add to Cart” button.
+
+CTA: “Buy & Install in Dubai” → opens modal checkout.
+
+Add optional comparison table (purely informational) vs common alternatives (e.g., PureIt, Waterdrop, AquaFilter) showing features, not competitor names.
+
+B. Checkout Flow
+
+Implement lightweight checkout modal integrated via:
+
+Stripe Checkout API (preferred)
+
+or fallback PayPal link/button.
+
+Maintain customer fields: Name, Phone, Email, Address (Dubai/Sharjah/Abu Dhabi dropdown), optional installation notes.
+
+Add WhatsApp CTA: “Message for installation scheduling” (pre-filled link to official AquaCafe number).
+
+C. Local SEO Optimization
+
+Add meta tags and schema:
+
+<title>: “Buy Water Filter in Dubai | AquaCafe by DeliWer”
+
+<meta description>: “Order 5-stage water purifiers with installation in Dubai. AquaCafe by DeliWer offers eco-friendly filtered water systems with fast delivery.”
+
+Add JSON-LD Product schema for each product (price, availability, brand, reviews).
+
+Add alt tags and lazy loading for product images.
+
+D. Trust & Service Section
+
+Below products, add a “Why Choose AquaCafe?” card grid:
+
+Free Dubai Installation
+
+1-Year Warranty
+
+Filter Replacement Subscription
+
+Eco Rewards via DeliWer Points
+
+Add local testimonials carousel (static JSON array for now).
+
+E. Technical/Performance
+
+Lazy-load product images and defer scripts.
+
+Ensure pagespeed < 3s.
+
+Maintain all existing CSS tokens and AquaCafe brand color palette.
+
+Use lightweight React + Tailwind setup via Replit Core.
+
+⚙️ Technical Requirements
+
+Framework: React (Replit Core)
+
+Styling: TailwindCSS (reuse AquaCafe colors & typography)
+
+Payment: Stripe Checkout API (fallback: PayPal smart button)
+
+SEO: Next.js-like metadata or custom head injection
+
+Deployment: Edge-hosted static build
+
+Data: Temporary JSON data for products (3–5 SKUs)
+
+Preserve DeliWer header/footer and brand assets
+
+🧱 Folder / Component Structure
+/aquacafe
+ ├── index.jsx            # AquaCafe main page (enhanced)
+ ├── components/
+ │   ├── ProductCard.jsx
+ │   ├── CheckoutModal.jsx
+ │   ├── CompareTable.jsx
+ │   ├── Testimonials.jsx
+ │   ├── ServiceHighlights.jsx
+ ├── data/
+ │   ├── products.json
+ │   ├── testimonials.json
+ ├── styles/
+ │   ├── aquacafe.css
+ ├── utils/
+ │   ├── stripeCheckout.js
+ │   ├── seoSchema.js
+
+🪙 Checkout Flow
+
+On “Buy Now” → open modal with cart summary.
+
+Call /api/checkout → Stripe session creation → redirect to hosted checkout page.
+
+On return success → /aquacafe/thank-you.
+
+Save minimal order info to JSON (Replit Data API or lightweight SQLite).
+
+🧰 Deployment Instructions
+
+Create Replit Core project.
+
+Import existing deliwer.com/aquacafe HTML/CSS into /aquacafe directory.
+
+Implement React enhancement components incrementally.
+
+Configure Stripe API key via Replit Secrets.
+
+Deploy build to /aquacafe route only.
+
+Verify mobile UX and SEO score.
+
+✅ Deliverables
+
+Enhanced /aquacafe page with:
+
+Responsive product cards
+
+Stripe/PayPal checkout
+
+Localized trust and service info
+
+SEO schema and tags
+
+No structural or design changes to other pages.
+
+📈 Success Metrics
+
+Conversion uplift (CTA clicks → checkout).
+
+Faster load time (<3s mobile).
+
+Improved SEO ranking for:
+“water filter Dubai”, “buy water purifier UAE”, “AquaCafe water filter Dubai”.
