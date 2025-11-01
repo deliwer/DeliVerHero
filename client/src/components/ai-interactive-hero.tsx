@@ -15,35 +15,38 @@ interface CTAOption {
 const ctaOptions: CTAOption[] = [
   {
     id: "water",
-    text: "I want clean water at home",
+    text: "Shop Smart",
     icon: "💧",
-    href: "/aquacafe",
+    href: "#step-1",
     gradient: "from-blue-500 to-cyan-500",
     hoverGradient: "from-blue-400 to-cyan-400"
   },
   {
     id: "trade",
-    text: "I want to trade in my iPhone",
+    text: "Claim Rewards",
     icon: "📱",
-    href: "/earn", 
+    href: "#step-2", 
     gradient: "from-amber-500 to-orange-500",
     hoverGradient: "from-amber-400 to-orange-400"
   },
   {
     id: "leaderboard",
-    text: "I want to join the eco leaderboard",
+    text: "Leaderboard",
     icon: "🌍",
-    href: "/leaderboard",
+    href: "#step-3",
     gradient: "from-emerald-500 to-green-500", 
     hoverGradient: "from-emerald-400 to-green-400"
   }
 ];
 
 export function AIInteractiveHero() {
-  const handleCTAClick = () => {
-    const step1Section = document.querySelector('[data-section="step-1"]');
-    if (step1Section) {
-      step1Section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const [showOptions, setShowOptions] = useState(false);
+
+  const handleOptionClick = (href: string) => {
+    const sectionId = href.replace('#', '');
+    const section = document.querySelector(`[data-section="${sectionId}"]`);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -102,14 +105,30 @@ export function AIInteractiveHero() {
 
             {/* CTA Buttons */}
             <div className="space-y-4">
-              <Button
-                onClick={handleCTAClick}
-                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-7 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/30"
-                data-testid="ai-cta-trigger"
-              >
-                <Droplets className="w-6 h-6 mr-3" />
-                Shop Smart
-              </Button>
+              {!showOptions ? (
+                <Button
+                  onClick={() => setShowOptions(true)}
+                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white px-8 py-7 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/30"
+                  data-testid="ai-cta-trigger"
+                >
+                  <Sparkles className="w-6 h-6 mr-3" />
+                  Start Your Journey
+                </Button>
+              ) : (
+                <div className="space-y-3 animate-in fade-in slide-in-from-top duration-300">
+                  {ctaOptions.map((option) => (
+                    <Button
+                      key={option.id}
+                      onClick={() => handleOptionClick(option.href)}
+                      className={`w-full bg-gradient-to-r ${option.gradient} hover:${option.hoverGradient} text-white px-6 py-6 text-lg font-semibold rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 border border-white/20`}
+                      data-testid={`ai-option-${option.id}`}
+                    >
+                      <span className="text-2xl mr-3">{option.icon}</span>
+                      {option.text}
+                    </Button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
