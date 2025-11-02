@@ -9,7 +9,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
-import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
 
 export default function AquaCafe() {
   const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
@@ -34,7 +33,7 @@ export default function AquaCafe() {
         "📱 Smart monitoring app with Hero dashboard",
         "🏆 Exclusive Hero member badge",
         "💰 20% discount on ALL future plans",
-        "🍰 AED 100 Baker's Kitchen voucher when friend signs up via referral"
+        "🍕 D100 Chill & Grill voucher for Pizza + Kulfi when friend signs up via referral"
       ],
       badge: "🚀 PLANET HERO GATEWAY",
       isHeroEntry: true
@@ -183,7 +182,7 @@ export default function AquaCafe() {
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20" data-testid="value-baker-voucher">
                 <div className="text-3xl font-bold text-yellow-300 mb-1">AED 100</div>
-                <div className="text-white text-sm">Baker's Kitchen Voucher</div>
+                <div className="text-white text-sm">Chill & Grill Voucher</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20" data-testid="value-lifetime-discount">
                 <div className="text-3xl font-bold text-yellow-300 mb-1">20%</div>
@@ -193,14 +192,14 @@ export default function AquaCafe() {
             
             {/* Primary CTA */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-              <a
-                href="http://deliwer.com/products/aquacafe"
+              <Link
+                href="/rewards"
                 className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-10 py-5 text-xl font-black rounded-full shadow-2xl transition-all transform hover:scale-105 inline-flex items-center"
                 data-testid="button-hero-join-now"
               >
                 <Rocket className="mr-3 w-7 h-7" />
                 JOIN NOW - AED 99
-              </a>
+              </Link>
               <a 
                 href="#packages"
                 className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white text-white px-8 py-4 text-lg font-bold rounded-full transition-all"
@@ -262,13 +261,13 @@ export default function AquaCafe() {
                 </li>
               </ul>
               
-              <a
-                href="http://deliwer.com/products/aquacafe"
+              <Link
+                href="/rewards"
                 className="w-full bg-gradient-to-r from-emerald-500 to-cyan-600 hover:from-emerald-600 hover:to-cyan-700 text-white px-6 py-3 text-lg font-bold rounded-xl shadow-lg transition-all transform hover:scale-105 inline-block text-center"
                 data-testid="button-starter-cta"
               >
                 Start Journey
-              </a>
+              </Link>
             </div>
 
             {/* Category 2: Mid-Level - Hero Minimal */}
@@ -305,13 +304,13 @@ export default function AquaCafe() {
                 </li>
               </ul>
               
-              <a
-                href="http://deliwer.com/products/aquacafe"
+              <Link
+                href="/rewards"
                 className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 text-lg font-bold rounded-xl shadow-lg transition-all transform hover:scale-105 inline-block text-center"
                 data-testid="button-hero-minimal-cta"
               >
                 Get Hero System
-              </a>
+              </Link>
             </div>
 
             {/* Category 3: Premium - Hero Elite */}
@@ -345,13 +344,13 @@ export default function AquaCafe() {
                 </li>
               </ul>
               
-              <a
-                href="http://deliwer.com/products/aquacafe"
+              <Link
+                href="/rewards"
                 className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white px-6 py-3 text-lg font-bold rounded-xl shadow-lg transition-all transform hover:scale-105 inline-block text-center"
                 data-testid="button-hero-elite-cta"
               >
                 Get Elite System
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -441,7 +440,7 @@ export default function AquaCafe() {
                     <Zap className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="font-bold text-gray-800 mb-3">Rewards Engine</h3>
-                  <p className="text-sm text-gray-600">Planet Points redemption, Baker's Kitchen vouchers, and exclusive member discounts on all AquaCafe products.</p>
+                  <p className="text-sm text-gray-600">Planet Points redemption, Chill & Grill vouchers, and exclusive member discounts on all AquaCafe products.</p>
                 </div>
               </div>
 
@@ -485,7 +484,7 @@ export default function AquaCafe() {
                   <div className="flex items-start gap-3">
                     <Heart className="w-5 h-5 text-pink-500 mt-1 flex-shrink-0" />
                     <div>
-                      <span className="font-bold text-gray-800">Baker's Kitchen Partnership</span>
+                      <span className="font-bold text-gray-800">Chill & Grill Partnership</span>
                       <span className="text-pink-600 ml-2">(AED 100+ per referral)</span>
                       <p className="text-sm text-gray-600">Free vouchers + Kangen Water demos</p>
                     </div>
@@ -537,14 +536,14 @@ export default function AquaCafe() {
                   </div>
                 </div>
 
-                <a
-                  href="http://deliwer.com/products/aquacafe"
+                <Link
+                  href="/rewards"
                   className="w-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-blue-500 hover:from-emerald-600 hover:via-cyan-600 hover:to-blue-600 text-white px-8 py-4 text-lg font-bold rounded-2xl shadow-2xl transition-all transform hover:scale-105 inline-block mb-4"
                   data-testid="button-starter-kit-gateway"
                 >
                   <Rocket className="mr-3 w-6 h-6 inline" />
                   START YOUR CIRCULAR JOURNEY
-                </a>
+                </Link>
 
                 <p className="text-sm text-gray-600">
                   Join thousands of Dubai residents building a sustainable future through the circular economy.
@@ -555,19 +554,19 @@ export default function AquaCafe() {
 
           {/* Partnership Integration */}
           <div className="text-center bg-gradient-to-r from-amber-100 to-orange-100 rounded-2xl p-6 border border-amber-300">
-            <h3 className="text-xl font-bold text-gray-800 mb-3">🤝 BAKER'S KITCHEN PARTNERSHIP EXPERIENCE</h3>
+            <h3 className="text-xl font-bold text-gray-800 mb-3">🤝 CHILL & GRILL PARTNERSHIP EXPERIENCE</h3>
             <p className="text-gray-700 mb-4">
-              Your membership includes exclusive access to Kangen Water demonstrations and healthy dining experiences at Baker's Kitchen Mazaya Center.
-              Every friend you refer earns you both AED 100 vouchers - it's sustainability that pays forward.
+              Your membership includes exclusive access to delicious Pizza for Two + Kulfi dining experiences.
+              Every friend you refer earns you both D100 vouchers - it's sustainability that pays forward.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-600">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-amber-500" />
-                <span>Mazaya Center, Business Bay</span>
+                <span>Dubai, UAE</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-emerald-500" />
-                <span>Open Daily 9AM-11PM</span>
+                <span>Delivery Available</span>
               </div>
             </div>
           </div>
@@ -584,7 +583,7 @@ export default function AquaCafe() {
           </div>
           
           <h2 className="text-base sm:text-lg font-bold text-gray-800 mb-4">
-            Refer Friends & Get <span className="text-emerald-600">AED 100 FREE VOUCHER</span> at Baker's Kitchen!
+            Refer Friends & Get <span className="text-emerald-600">D100 FREE VOUCHER</span> for Chill & Grill!
           </h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mb-4 max-w-4xl mx-auto">
@@ -614,16 +613,16 @@ export default function AquaCafe() {
           </div>
           
           <div className="bg-gradient-to-r from-emerald-100 to-amber-100 border border-emerald-300 rounded-xl p-4">
-            <div className="text-amber-600 font-bold text-sm sm:text-base mb-2 text-center">🍰 Exclusive Partnership with Baker's Kitchen Dubai 🍰</div>
-            <p className="text-gray-700 text-xs sm:text-sm text-center mb-3">Use your AED 100 voucher at Baker's Kitchen Mazaya Center for Kangen Water experience!</p>
+            <div className="text-amber-600 font-bold text-sm sm:text-base mb-2 text-center">🍕 Exclusive Partnership with Chill & Grill Dubai 🍕</div>
+            <p className="text-gray-700 text-xs sm:text-sm text-center mb-3">Use your D100 voucher for Pizza for Two + 2x Kulfi - delicious and healthy!</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-gray-600">
               <div className="flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
-                <span>Mazaya Center, Business Bay</span>
+                <span>Dubai, UAE</span>
               </div>
               <div className="flex items-center gap-1">
                 <ChefHat className="w-3 h-3" />
-                <span>Visit bakerskitchenuae.com</span>
+                <span>Delivery Available</span>
               </div>
             </div>
           </div>
@@ -638,7 +637,7 @@ export default function AquaCafe() {
               🏆 AQUACAFE MEMBERSHIP PACKAGES
             </h2>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              Choose the perfect AquaCafe package with Baker's Kitchen perks
+              Choose the perfect AquaCafe package with Chill & Grill perks
             </p>
           </div>
           
@@ -791,13 +790,13 @@ export default function AquaCafe() {
               >
                 Community
               </Link>
-              <a
-                href="http://deliwer.com/products/aquacafe"
+              <Link
+                href="/rewards"
                 className="w-full lg:w-auto px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl transition-all shadow-lg text-center inline-block"
                 data-testid="footer-cta-checkout"
               >
                 Order Starter Kit
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -813,19 +812,15 @@ export default function AquaCafe() {
               </div>
               <span className="text-lg text-gray-600">×</span>
               <div className="flex items-center gap-2">
-                <img 
-                  src={bakersKitchenLogo} 
-                  alt="Baker's Kitchen Logo" 
-                  className="h-6 w-auto object-contain"
-                />
-                <span className="font-bold text-gray-800 text-xs sm:text-sm">Baker's Kitchen UAE</span>
+                <span className="text-2xl">🍕</span>
+                <span className="font-bold text-gray-800 text-xs sm:text-sm">Chill & Grill</span>
               </div>
             </div>
             <div className="text-sm font-bold text-emerald-600 mb-1">
-              #SvenTheBaker × #DeliWer
+              #ChillAndGrill × #DeliWer
             </div>
             <div className="text-xs text-gray-600">
-              © 2024 Partnership • Mazaya Center, Business Bay • AI‑First Circular Earning Platform
+              © 2024 Partnership • Dubai, UAE • AI‑First Circular Earning Platform
             </div>
           </div>
           
@@ -834,16 +829,16 @@ export default function AquaCafe() {
               <Link href="/exchange" className="px-3 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors text-xs w-full max-w-xs text-center" data-testid="footer-start-exchange">
                 Start iPhone Earning
               </Link>
-              <a
-                href="http://deliwer.com/products/aquacafe"
+              <Link
+                href="/rewards"
                 className="px-3 py-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-semibold hover:from-emerald-600 hover:to-cyan-600 transition-colors text-xs w-full max-w-xs text-center inline-block"
                 data-testid="footer-order-partnership-kit"
               >
                 Get Starter Kit - AED 99
-              </a>
+              </Link>
             </div>
             <div className="text-xs text-gray-600 text-center">
-              📍 Visit us at Baker's Kitchen, Mazaya Center
+              🍕 Chill & Grill - Pizza for Two + Kulfi Available
             </div>
           </div>
         </div>

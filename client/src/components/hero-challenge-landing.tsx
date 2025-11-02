@@ -25,6 +25,9 @@ import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_175548269630
 import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
 import kangenWaterSystem from "@assets/generated_images/Kangen_K8_water_filtration_system_e7d8eaaa.png";
 import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_collection_cbe8ffe3.png";
+import pizzaImage from "@assets/stock_images/delicious_pizza_clos_ace0f742.jpg";
+import kulfiImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
+import happyDiningImage from "@assets/stock_images/happy_people_eating__21b9cf0b.jpg";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -879,22 +882,28 @@ function StepThreeRewards() {
             Redeem for free meals, eco gifts, or wellness products including FREE Shower Filter.
           </p>
 
-          {/* Chill & Grill Deal Banner - Always Visible */}
+          {/* Chill & Grill Deal Banner - Always Visible with Lifestyle Photos */}
           <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-orange-500/50 shadow-2xl bg-gradient-to-br from-orange-600/20 to-red-600/20 p-2 backdrop-blur-sm">
             <div className="bg-slate-900/50 rounded-xl p-6">
               <div className="flex flex-col md:flex-row items-center gap-6">
-                {/* Left: Food Image Preview */}
+                {/* Left: Food Lifestyle Images */}
                 <div className="flex-1">
                   <div className="grid grid-cols-3 gap-3">
-                    <div className="aspect-square rounded-lg overflow-hidden bg-orange-100 flex items-center justify-center text-5xl shadow-lg">
-                      🍕
-                    </div>
-                    <div className="aspect-square rounded-lg overflow-hidden bg-red-100 flex items-center justify-center text-5xl shadow-lg">
-                      🍨
-                    </div>
-                    <div className="aspect-square rounded-lg overflow-hidden bg-amber-100 flex items-center justify-center text-5xl shadow-lg">
-                      🥤
-                    </div>
+                    <img 
+                      src={pizzaImage} 
+                      alt="Delicious Pizza" 
+                      className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
+                    />
+                    <img 
+                      src={kulfiImage} 
+                      alt="Kulfi Dessert" 
+                      className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
+                    />
+                    <img 
+                      src={happyDiningImage} 
+                      alt="Happy Dining Experience" 
+                      className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
+                    />
                   </div>
                 </div>
                 
@@ -904,14 +913,14 @@ function StepThreeRewards() {
                     <Gift className="w-5 h-5" />
                     <span className="font-bold">LOYALTY DEAL</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill Combo</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill: Pizza for Two + Kulfi</h3>
                   <p className="text-gray-300 mb-4">
-                    Pizza for Two + 2x Kulfi - Healthy and refreshing meal when you refer a friend
+                    Get D100 voucher for Pizza for Two + 2x Kulfi when you signup for each friend!
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">AED 99</span>
+                    <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">D100 Voucher</span>
                     <span className="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-sm font-bold">For Two</span>
-                    <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">AquaCafe Deal</span>
+                    <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">Per Referral</span>
                   </div>
                 </div>
               </div>
@@ -1106,22 +1115,22 @@ function StepThreeRewards() {
                   </div>
                 </div>
 
-                {/* Baker's Kitchen Vouchers */}
+                {/* Chill & Grill Vouchers */}
                 <div className="relative p-4 bg-gradient-to-r from-orange-600/20 to-amber-600/20 rounded-xl border border-orange-400/50 hover:scale-105 transition-transform">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center">
                       <Utensils className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="text-white font-bold">Baker's Kitchen</div>
-                      <div className="text-xs text-gray-400">Dining vouchers</div>
+                      <div className="text-white font-bold">Chill & Grill</div>
+                      <div className="text-xs text-gray-400">Pizza + Kulfi vouchers</div>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <div className="text-2xl font-black text-amber-400">3,500 PTS</div>
+                    <div className="text-2xl font-black text-amber-400">1,000 PTS</div>
                     <div className="text-xs text-gray-400 text-right">
-                      <div>≈ AED 350 value</div>
-                      <div className="text-orange-400">🍽️ Partnership</div>
+                      <div>D100 voucher</div>
+                      <div className="text-orange-400">🍕 Partnership</div>
                     </div>
                   </div>
                 </div>
