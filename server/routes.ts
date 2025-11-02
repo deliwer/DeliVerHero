@@ -13,6 +13,7 @@ import wellnessJourneyRoutes from "./routes/wellness-journey";
 import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
+import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 
 // Initialize Stripe only if API key is available
 let stripe: Stripe | null = null;
@@ -54,6 +55,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Register ChainTrack export-import compliance routes
   app.use("/api/chaintrack", chaintrackRoutes);
+
+  // PayPal payment endpoints - referenced from PayPal integration blueprint
+  app.get("/setup", async (req, res) => {
+    await loadPaypalDefault(req, res);
+  });
+
+  app.post("/order", async (req, res) => {
+    await createPaypalOrder(req, res);
+  });
+
+  app.post("/order/:orderID/capture", async (req, res) => {
+    await capturePaypalOrder(req, res);
+  });
 
   // Stripe payment endpoints
   app.post("/api/create-payment-intent", async (req, res) => {

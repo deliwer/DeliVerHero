@@ -10,6 +10,8 @@ import { useToast } from "@/hooks/use-toast";
 import { shopifyAuthService } from "@/lib/shopify-auth";
 import { shopifyCartService } from "@/lib/shopify-cart";
 import { StripeCheckout } from "@/components/stripe-checkout";
+import { PaymentMethodSelector } from "@/components/payment-method-selector";
+import PayPalButton from "@/components/PayPalButton";
 import { Loader2, CreditCard, User, MapPin, ArrowLeft } from "lucide-react";
 
 interface CheckoutItem {
@@ -29,7 +31,8 @@ export default function CheckoutPage() {
   const [cartItems, setCartItems] = useState<CheckoutItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [showStripeCheckout, setShowStripeCheckout] = useState(false);
+  const [showPaymentStep, setShowPaymentStep] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("stripe");
   const [checkoutData, setCheckoutData] = useState({
     email: "",
     firstName: "",
@@ -95,8 +98,8 @@ export default function CheckoutPage() {
       return;
     }
 
-    // Proceed to Stripe checkout
-    setShowStripeCheckout(true);
+    // Proceed to payment step
+    setShowPaymentStep(true);
   };
 
   const handlePaymentSuccess = async (orderId: string) => {
@@ -118,7 +121,7 @@ export default function CheckoutPage() {
   };
 
   const handleBackToCheckout = () => {
-    setShowStripeCheckout(false);
+    setShowPaymentStep(false);
   };
 
   if (isLoading) {
@@ -144,15 +147,91 @@ export default function CheckoutPage() {
     );
   }
 
-  // Show Stripe checkout if payment step
-  if (showStripeCheckout) {
-    return (
-      <StripeCheckout 
-        cartItems={cartItems} 
-        onPaymentSuccess={handlePaymentSuccess}
-        onBack={handleBackToCheckout}
-      />
-    );
+  // Show payment step with method selection
+  if (showPaymentStep) {
+    if (paymentMethod === "stripe") {
+      return (
+        <StripeCheckout 
+          cartItems={cartItems} 
+          onPaymentSuccess={handlePaymentSuccess}
+          onBack={handleBackToCheckout}
+        />
+      );
+    } else if (paymentMethod === "paypal") {
+      const total = calculateTotal();
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <Button 
+              onClick={handleBackToCheckout}
+              variant="ghost"
+              className="text-gray-400 hover:text-white mb-6"
+              data-testid="button-back-to-checkout"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Checkout
+            </Button>
+            
+            <Card className="bg-slate-800 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-white text-2xl">Complete Payment with PayPal</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="mb-6">
+                  <div className="bg-slate-900/50 rounded-lg p-6 mb-6">
+                    <h3 className="text-white font-bold mb-4">Order Summary</h3>
+                    {cartItems.map(item => (
+                      <div key={item.id} className="flex justify-between text-gray-300 mb-2">
+                        <span>{item.title} x {item.quantity}</span>
+                        <span>AED {(item.price * item.quantity).toFixed(2)}</span>
+                      </div>
+                    ))}
+                    <Separator className="my-4" />
+                    <div className="flex justify-between text-white font-bold text-lg">
+                      <span>Total:</span>
+                      <span>AED {total.toFixed(2)}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center">
+                    <PayPalButton 
+                      amount={total.toFixed(2)}
+                      currency="AED"
+                      intent="CAPTURE"
+                      onSuccess={(orderId) => handlePaymentSuccess(orderId)}
+                      onError={(error) => {
+                        console.error("PayPal payment error:", error);
+                        toast({
+                          title: "Payment Failed",
+                          description: error.message || "There was an error processing your PayPal payment. Please try again or use another payment method.",
+                          variant: "destructive",
+                        });
+                        setShowPaymentStep(false);
+                      }}
+                    />
+                  </div>
+                  
+                  <div className="text-center mt-4">
+                    <p className="text-gray-400 text-sm mb-2">Having trouble with PayPal?</p>
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setPaymentMethod("stripe");
+                        setShowPaymentStep(false);
+                      }}
+                      className="border-slate-600 text-gray-300 hover:text-white"
+                      data-testid="button-try-card-payment"
+                    >
+                      Try Card Payment Instead
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      );
+    }
   }
 
   return (
@@ -292,6 +371,21 @@ export default function CheckoutPage() {
                 </div>
               </CardContent>
             </Card>
+
+            <Card className="bg-slate-800 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <CreditCard className="w-5 h-5" />
+                  Payment Method
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <PaymentMethodSelector 
+                  selectedMethod={paymentMethod}
+                  onSelect={setPaymentMethod}
+                />
+              </CardContent>
+            </Card>
           </div>
 
           {/* Order Summary */}
@@ -325,6 +419,7 @@ export default function CheckoutPage() {
                     onClick={handleCheckout}
                     disabled={isProcessing}
                     className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-medium py-3"
+                    data-testid="button-proceed-payment"
                   >
                     {isProcessing ? (
                       <>
@@ -340,7 +435,7 @@ export default function CheckoutPage() {
                   </Button>
                   
                   <p className="text-gray-400 text-xs text-center">
-                    Secure checkout powered by Shopify
+                    Secure checkout with {paymentMethod === 'stripe' ? 'Stripe' : 'PayPal'}
                   </p>
                 </div>
               </CardContent>

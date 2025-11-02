@@ -10,6 +10,11 @@ import { FoundersSection } from "@/components/founders-section";
 import { LiveActivityFeed } from "@/components/live-activity-feed";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
+import { TradeInBanner } from "@/components/trade-in-banner";
+import { TestimonialsSection } from "@/components/testimonials-section";
+import { TrustElements } from "@/components/trust-elements";
+import { RewardComparison } from "@/components/reward-comparison";
+import { SEOMeta } from "@/components/seo-meta";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -254,6 +259,12 @@ export default function Home() {
 
   return (
     <div>
+      <SEOMeta
+        title="Trade Your iPhone for Water Delivery Rewards"
+        description="Dubai's first iPhone to water trade platform. Get instant cash, Planet Points, or water credits for your old iPhone. Free pickup within 24 hours across Dubai, Sharjah & Abu Dhabi. Certified data wipe guaranteed."
+        keywords="iPhone trade-in Dubai, sell iPhone UAE, Planet Points, water delivery Dubai, sustainability rewards, eco-friendly Dubai, iPhone buyback, DeliWer, trade iPhone for water, circular economy UAE"
+      />
+
       {/* Onboarding Tutorial */}
       {showOnboarding && (
         <HeroOnboardingTutorial 
@@ -598,6 +609,20 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* Trade-In Banner - Prominent CTA for trade-ins */}
+      <div className="py-8 px-4">
+        <TradeInBanner />
+      </div>
+
+      {/* Reward Comparison Section */}
+      <RewardComparison />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
+      {/* Trust Elements Section */}
+      <TrustElements />
 
       {/* Founders Section */}
       <FoundersSection />
