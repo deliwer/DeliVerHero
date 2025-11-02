@@ -1,0 +1,221 @@
+Perfect ✅ — here’s your **ready-to-use Replit Core prompt and scaffold spec** for implementing the `/trade-in` micro-app inside **DeliWer.com**, keeping the existing structure fully intact.
+
+The goal is **incremental enhancement** — adding trade-in functionality and loyalty conversion without redesigning the homepage or breaking the current AquaCafe/DeliWer ecosystem.
+
+---
+
+## 🧠 Replit Core Prompt — DeliWer Trade-In Micro-App
+
+> **Prompt Title:**
+> Add `/trade-in` micro-app to DeliWer.com for iPhone trade-in, payout, and loyalty conversion (Replit Core deployment)
+
+---
+
+### 🎯 Objectives
+
+* Keep the main homepage, header, and footer **unchanged**.
+* Add a **“Trade-in & Earn” entry point** to the homepage hero or top menu.
+* Deploy a **React-based micro-app** at `/trade-in` under Replit Core.
+* Enable:
+
+  * Instant quote for iPhones
+  * Payout or loyalty redemption
+  * Optional connection to Stripe or PayPal
+* Keep all costs minimal (Replit DB + APIs, no heavy backend).
+* Follow DeliWer brand colors, typography, and sustainability tone.
+
+---
+
+### 🧩 Functional Features
+
+#### 1. Trade-In Flow (3 steps)
+
+1. **Choose Device**
+
+   * Dropdown: iPhone models (iPhone X → iPhone 15 Pro Max).
+   * Select storage (64 GB / 128 GB / 256 GB / 512 GB).
+   * Choose condition (Excellent / Good / Fair / Broken).
+
+2. **Get Instant Quote**
+
+   * Uses local JSON price matrix (device × condition × storage).
+   * Displays trade-in value in AED instantly.
+   * CTA buttons:
+
+     * “💧 Redeem for AquaCafe Water”
+     * “🪙 Convert to DeliPoints”
+     * “💵 Cash via Stripe/PayPal”
+
+3. **Confirm & Checkout**
+
+   * User fills name, phone, pickup area (Dubai / Abu Dhabi / Sharjah).
+   * Submit → record in Replit DB (`/api/tradein`).
+   * If Stripe selected → redirect to hosted Checkout.
+   * Show confirmation screen with loyalty badge + thank-you message.
+
+---
+
+### 🪄 Suggested Folder / Component Structure
+
+```
+/trade-in
+ ├── index.jsx                  # main page entry
+ ├── components/
+ │   ├── ModelSelector.jsx
+ │   ├── QuoteCalculator.jsx
+ │   ├── RedemptionOptions.jsx
+ │   ├── CheckoutModal.jsx
+ │   ├── SuccessScreen.jsx
+ ├── data/
+ │   └── iphoneQuotes.json      # simple JSON valuation matrix
+ ├── utils/
+ │   ├── stripeCheckout.js
+ │   ├── loyaltyAPI.js
+ ├── styles/
+ │   └── tradein.css
+```
+
+---
+
+### 🧱 Example `iphoneQuotes.json`
+
+```json
+{
+  "iPhone 13": {
+    "Excellent": { "64": 1600, "128": 1750, "256": 1900 },
+    "Good": { "64": 1300, "128": 1450, "256": 1600 },
+    "Fair": { "64": 1000, "128": 1150, "256": 1300 }
+  },
+  "iPhone 14 Pro": {
+    "Excellent": { "128": 2700, "256": 2900, "512": 3200 },
+    "Good": { "128": 2400, "256": 2600, "512": 2800 }
+  }
+}
+```
+
+---
+
+### ⚙️ Technical Implementation (Replit Core)
+
+* **Framework:** React + Vite
+* **Styling:** TailwindCSS (reuse AquaCafe variables)
+* **Data storage:** Replit DB for trade-in records
+* **Payments:** Stripe Checkout (fallback PayPal Smart Buttons)
+* **API routes:**
+
+  * `/api/quote` → reads `iphoneQuotes.json`
+  * `/api/tradein` → saves submission
+  * `/api/checkout` → creates Stripe session
+
+---
+
+### 💳 Stripe Integration (example util)
+
+```js
+// utils/stripeCheckout.js
+import Stripe from 'stripe';
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export async function createCheckoutSession(amount, email) {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      { price_data: { currency: 'aed', product_data: { name: 'iPhone Trade-in' }, unit_amount: amount * 100 }, quantity: 1 }
+    ],
+    mode: 'payment',
+    success_url: 'https://deliwer.com/trade-in/success',
+    cancel_url: 'https://deliwer.com/trade-in'
+  });
+  return session.url;
+}
+```
+
+---
+
+### 🧠 UI Wireflow (within existing design)
+
+1. **Homepage Add-on**
+
+   * Add small CTA banner or card below hero:
+
+     > “♻️ Got an old iPhone? Trade it in for AquaCafe credit or DeliPoints.”
+     > [Get Instant Quote]
+
+2. **/trade-in Page**
+
+   * Stepper UI (Select → Quote → Redeem → Success)
+   * Consistent color palette (teal #008080 / white / gold #FFD700)
+   * Mobile-first layout
+
+3. **Success Screen**
+
+   * Confetti animation + text:
+
+     > “You just made your phone part of Dubai’s Circular Economy 🌍”
+     > Buttons: “Redeem Loyalty Points” | “Shop AquaCafe Products”
+
+---
+
+### 🔒 Replit Secrets to Configure
+
+| Key                 | Description           |
+| ------------------- | --------------------- |
+| `STRIPE_SECRET_KEY` | Stripe secret         |
+| `STRIPE_PUBLIC_KEY` | Stripe public key     |
+| `REPLIT_DB_URL`     | auto-generated DB URL |
+| `PAYPAL_CLIENT_ID`  | optional fallback     |
+
+---
+
+### 🔍 SEO & Metadata
+
+Add in `<head>` of `/trade-in`:
+
+```html
+<title>Trade-in iPhone Dubai | Earn AquaCafe Water & DeliPoints | DeliWer</title>
+<meta name="description" content="Exchange your old iPhone for cash, AquaCafe water, or DeliPoints. Fast pickup in Dubai, powered by DeliWer Circular Rewards."/>
+<script type="application/ld+json">{ ...Product + Offer schema... }</script>
+```
+
+---
+
+### 📈 KPIs to Track
+
+* Click-throughs from home CTA → `/trade-in`
+* Completed quotes
+* Stripe checkouts completed
+* Loyalty redemptions initiated
+
+---
+
+### 🧩 Integration into Shopping Metaverse
+
+Each successful trade-in posts an event:
+
+```js
+POST /api/loyalty/reward
+{
+  userId: "xxxx",
+  event: "tradein_completed",
+  points: 500,
+  badge: "Circular Hero"
+}
+```
+
+→ recorded in DeliWer’s sustainability dashboard / Metaverse wallet.
+
+---
+
+### ✅ Deliverables Summary
+
+* `/trade-in` React micro-app (deployed on Replit Core)
+* Homepage CTA link and menu item
+* Instant quote JSON engine
+* Stripe / PayPal checkout integration
+* Loyalty reward API hook
+* SEO and analytics setup
+
+---
+
+Would you like me to now **generate the actual React + Tailwind Replit code base** for this `/trade-in` page (including sample JSON, components, and Stripe integration stub)?
+It will be fully functional as a drop-in enhancement, ready to deploy at low cost.
