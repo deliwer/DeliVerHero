@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory, type ChaintrackMembershipTier, type ChaintrackAuction, type InsertChaintrackAuction, type ChaintrackBid, type InsertChaintrackBid, type ChaintrackSupplier, type InsertChaintrackSupplier, type ChaintrackInventory, type InsertChaintrackInventory, type ChaintrackInspection, type InsertChaintrackInspection, type ChaintrackTransaction, type InsertChaintrackTransaction, type ChaintrackRating, type InsertChaintrackRating, type ChaintrackSeller, type InsertChaintrackSeller, type ChaintrackEscrow, type InsertChaintrackEscrow, type ChaintrackShipment, type InsertChaintrackShipment, type ChaintrackDocument, type InsertChaintrackDocument, type ChaintrackAmlLog, type InsertChaintrackAmlLog, type ChaintrackAuditLog, type InsertChaintrackAuditLog, type ChaintrackComplianceAlert, type InsertChaintrackComplianceAlert } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type TradeInSellRequest, type InsertTradeInSellRequest, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory, type ChaintrackMembershipTier, type ChaintrackAuction, type InsertChaintrackAuction, type ChaintrackBid, type InsertChaintrackBid, type ChaintrackSupplier, type InsertChaintrackSupplier, type ChaintrackInventory, type InsertChaintrackInventory, type ChaintrackInspection, type InsertChaintrackInspection, type ChaintrackTransaction, type InsertChaintrackTransaction, type ChaintrackRating, type InsertChaintrackRating, type ChaintrackSeller, type InsertChaintrackSeller, type ChaintrackEscrow, type InsertChaintrackEscrow, type ChaintrackShipment, type InsertChaintrackShipment, type ChaintrackDocument, type InsertChaintrackDocument, type ChaintrackAmlLog, type InsertChaintrackAmlLog, type ChaintrackAuditLog, type InsertChaintrackAuditLog, type ChaintrackComplianceAlert, type InsertChaintrackComplianceAlert } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -30,6 +30,10 @@ export interface IStorage {
   createTradeIn(tradeIn: InsertTradeIn): Promise<TradeIn>;
   getTradeInsByHero(heroId: string): Promise<TradeIn[]>;
   updateTradeInStatus(id: string, status: string): Promise<TradeIn | undefined>;
+  
+  // Trade-in sell requests
+  createTradeInSellRequest(request: InsertTradeInSellRequest): Promise<TradeInSellRequest>;
+  getAllTradeInSellRequests(): Promise<TradeInSellRequest[]>;
 
   // Impact stats
   getImpactStats(): Promise<ImpactStats | undefined>;
@@ -406,6 +410,7 @@ export class MemStorage implements IStorage {
   private quotes: Map<string, Quote>;
   private heroes: Map<string, Hero>;
   private tradeIns: Map<string, TradeIn>;
+  private tradeInSellRequests: Map<string, TradeInSellRequest>;
   private impactStats: ImpactStats;
   private referrals: Map<string, Referral>;
   private dubaiChallenges: Map<string, DubaiChallenge>;
@@ -488,6 +493,7 @@ export class MemStorage implements IStorage {
     this.quotes = new Map();
     this.heroes = new Map();
     this.tradeIns = new Map();
+    this.tradeInSellRequests = new Map();
     this.referrals = new Map();
     this.dubaiChallenges = new Map();
     this.dubaiRewards = new Map();
@@ -1825,6 +1831,27 @@ export class MemStorage implements IStorage {
 
     this.tradeIns.set(id, updatedTradeIn);
     return updatedTradeIn;
+  }
+
+  async createTradeInSellRequest(request: InsertTradeInSellRequest): Promise<TradeInSellRequest> {
+    const id = randomUUID();
+    const sellRequest: TradeInSellRequest = {
+      id,
+      ...request,
+      storage: request.storage || null,
+      expectedPrice: request.expectedPrice || null,
+      description: request.description || null,
+      contactPhone: request.contactPhone || null,
+      status: "pending",
+      createdAt: new Date(),
+    };
+    
+    this.tradeInSellRequests.set(id, sellRequest);
+    return sellRequest;
+  }
+
+  async getAllTradeInSellRequests(): Promise<TradeInSellRequest[]> {
+    return Array.from(this.tradeInSellRequests.values());
   }
 
   async getImpactStats(): Promise<ImpactStats> {

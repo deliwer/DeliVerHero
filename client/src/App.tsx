@@ -55,6 +55,12 @@ import ProfilePage from "@/pages/profile";
 import HeroDashboard from "@/pages/hero-dashboard";
 import IcelandicGlacialLandingPage from "@/pages/icelandic-glacial";
 
+// Planet Hero Gateway Pages
+import PlanetHero from "@/pages/planet-hero";
+import PlanetHeroMissions from "@/pages/planet-hero-missions";
+import PlanetHeroAffiliates from "@/pages/planet-hero-affiliates";
+import PlanetHeroManual from "@/pages/planet-hero-manual";
+
 function Router() {
   const [location, setLocation] = useLocation();
   const basePath = import.meta.env.VITE_BASE_PATH || "";
@@ -92,6 +98,12 @@ function Router() {
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners" component={Partners} />
         <Route path="/dashboard" component={HeroDashboard} />
+        
+        {/* Planet Hero Gateway */}
+        <Route path="/planet-hero" component={PlanetHero} />
+        <Route path="/planet-hero-missions" component={PlanetHeroMissions} />
+        <Route path="/planet-hero-affiliates" component={PlanetHeroAffiliates} />
+        <Route path="/planet-hero-manual" component={PlanetHeroManual} />
         
         {/* Saqi Kawthar Project Mission */}
         <Route path="/mission-control-saqi-kawthar" component={MissionControlSaqiKawthar} />

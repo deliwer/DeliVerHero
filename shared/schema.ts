@@ -2347,3 +2347,130 @@ export type ChaintrackAuditLog = typeof chaintrackAuditLogs.$inferSelect;
 export type InsertChaintrackAuditLog = z.infer<typeof insertChaintrackAuditLogSchema>;
 export type ChaintrackComplianceAlert = typeof chaintrackComplianceAlerts.$inferSelect;
 export type InsertChaintrackComplianceAlert = z.infer<typeof insertChaintrackComplianceAlertSchema>;
+
+// AI Deli Pricing Engine Schema
+export const marketPrices = pgTable("market_prices", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  deviceModel: text("device_model").notNull(), // e.g., "iPhone 15 Pro Max"
+  condition: text("condition").notNull(), // excellent, good, fair, poor
+  source: text("source").notNull(), // ebay, amazon, swappa, backmarket
+  priceAED: integer("price_aed").notNull(), // Market price in fils
+  url: text("url"), // Link to listing
+  scrapedAt: timestamp("scraped_at").notNull().default(sql`now()`),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const pricingRules = pgTable("pricing_rules", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  deviceCategory: text("device_category").notNull(), // iphone, ipad, macbook, watch
+  minMarginPercent: integer("min_margin_percent").notNull().default(15), // Minimum profit margin %
+  targetMarginPercent: integer("target_margin_percent").notNull().default(25), // Target profit margin %
+  acquisitionCostAED: integer("acquisition_cost_aed").notNull().default(5000), // Fixed costs in fils (shipping, inspection, etc.)
+  logisticsCostPercent: integer("logistics_cost_percent").notNull().default(5), // Logistics as % of device value
+  overheadPercent: integer("overhead_percent").notNull().default(10), // Overhead costs %
+  conditionMultipliers: jsonb("condition_multipliers").notNull().default({
+    excellent: 1.0,
+    good: 0.85,
+    fair: 0.65,
+    poor: 0.40
+  }),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const priceHistory = pgTable("price_history", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  deviceModel: text("device_model").notNull(),
+  condition: text("condition").notNull(),
+  offerPriceAED: integer("offer_price_aed").notNull(), // Our offer to user in fils
+  marketPriceAED: integer("market_price_aed").notNull(), // Average market price in fils
+  calculatedMargin: integer("calculated_margin").notNull(), // Actual margin %
+  accepted: boolean("accepted").notNull().default(false), // Did user accept the offer
+  heroId: varchar("hero_id").references(() => heroes.id),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const aiConversations = pgTable("ai_conversations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").references(() => heroes.id),
+  sessionId: varchar("session_id").notNull(), // Group messages by session
+  role: text("role").notNull(), // user, assistant, system
+  message: text("message").notNull(),
+  context: jsonb("context").default({}), // Additional context (device model, prices, etc.)
+  intent: text("intent"), // pricing_inquiry, trade_in_help, general_question
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const tradeInSellRequests = pgTable("trade_in_sell_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  deviceType: text("device_type").notNull(),
+  model: text("model").notNull(),
+  condition: text("condition").notNull(),
+  storage: text("storage"),
+  expectedPrice: integer("expected_price"),
+  aiOfferPrice: integer("ai_offer_price").notNull(),
+  description: text("description"),
+  contactEmail: text("contact_email").notNull(),
+  contactPhone: text("contact_phone"),
+  status: text("status").notNull().default("pending"), // pending, contacted, completed, cancelled
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// AI Deli Schemas
+export const insertMarketPriceSchema = createInsertSchema(marketPrices).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertPricingRuleSchema = createInsertSchema(pricingRules).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPriceHistorySchema = createInsertSchema(priceHistory).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertAiConversationSchema = createInsertSchema(aiConversations).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertTradeInSellRequestSchema = createInsertSchema(tradeInSellRequests).omit({
+  id: true,
+  createdAt: true,
+});
+
+// AI Deli Types
+export type MarketPrice = typeof marketPrices.$inferSelect;
+export type InsertMarketPrice = z.infer<typeof insertMarketPriceSchema>;
+export type PricingRule = typeof pricingRules.$inferSelect;
+export type InsertPricingRule = z.infer<typeof insertPricingRuleSchema>;
+export type PriceHistory = typeof priceHistory.$inferSelect;
+export type InsertPriceHistory = z.infer<typeof insertPriceHistorySchema>;
+export type AiConversation = typeof aiConversations.$inferSelect;
+export type InsertAiConversation = z.infer<typeof insertAiConversationSchema>;
+export type TradeInSellRequest = typeof tradeInSellRequests.$inferSelect;
+export type InsertTradeInSellRequest = z.infer<typeof insertTradeInSellRequestSchema>;
+
+// AI Deli Request Validation Schemas
+export const aiDeliPriceRequestSchema = z.object({
+  deviceModel: z.string().min(1, "Device model is required"),
+  condition: z.enum(["excellent", "good", "fair", "poor"]),
+  storage: z.string().optional(),
+});
+
+export const sellRequestSchema = z.object({
+  deviceType: z.string().min(1, "Device type is required"),
+  model: z.string().min(1, "Model is required"),
+  condition: z.enum(["excellent", "good", "fair", "poor"]),
+  storage: z.string().optional(),
+  expectedPrice: z.string().optional(),
+  description: z.string().optional(),
+  contactEmail: z.string().email("Valid email is required"),
+  contactPhone: z.string().optional(),
+});

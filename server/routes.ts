@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import QRCode from "qrcode";
@@ -640,6 +640,173 @@ Context: ${JSON.stringify(context || {})}`
       res.status(500).json({ 
         error: "AI service temporarily unavailable",
         fallback: "Hi! I'm the DeliWer AI Concierge 🤖 I can help you calculate your iPhone trade-in value and start your hero journey. What iPhone model would you like to trade?"
+      });
+    }
+  });
+
+  // AI Deli - Intelligent Pricing Engine  
+  app.post("/api/ai-deli/calculate-price", async (req, res) => {
+    try {
+      const validatedData = aiDeliPriceRequestSchema.parse(req.body);
+      const { deviceModel, condition, storage } = validatedData;
+
+      const basePrices: { [key: string]: number } = {
+        'iphone 15 pro max': 3600,
+        'iphone 15 pro': 3200,
+        'iphone 15': 2800,
+        'iphone 14 pro max': 3000,
+        'iphone 14 pro': 2600,
+        'iphone 14': 2200,
+        'iphone 13 pro max': 2500,
+        'iphone 13 pro': 2100,
+        'iphone 13': 1800,
+      };
+
+      const storageMultipliers: { [key: string]: number } = {
+        '64gb': 0.9,
+        '128gb': 1.0,
+        '256gb': 1.15,
+        '512gb': 1.3,
+        '1tb': 1.5
+      };
+
+      const conditionMultipliers: { [key: string]: number } = {
+        excellent: 1.0,
+        good: 0.85,
+        fair: 0.65,
+        poor: 0.40
+      };
+
+      const modelKey = deviceModel.toLowerCase();
+      const basePrice = basePrices[modelKey] || 1500;
+      const storageMultiplier = storageMultipliers[storage?.toLowerCase() || '128gb'] || 1.0;
+      const conditionMultiplier = conditionMultipliers[condition.toLowerCase()] || 0.85;
+
+      const acquisitionCost = 50;
+      const logisticsCostPercent = 5;
+      const overheadPercent = 10;
+      const targetMarginPercent = 25;
+
+      const marketPrice = Math.round(basePrice * storageMultiplier * conditionMultiplier);
+
+      const totalCostPercent = logisticsCostPercent + overheadPercent + targetMarginPercent;
+      const offerPrice = Math.round((marketPrice * (100 - totalCostPercent) / 100) - acquisitionCost);
+
+      const margin = Math.round(((marketPrice - offerPrice) / marketPrice) * 100);
+
+      res.json({
+        deviceModel,
+        condition,
+        storage: storage || '128GB',
+        marketPriceAED: marketPrice,
+        offerPriceAED: offerPrice,
+        marginPercent: margin,
+        breakdown: {
+          basePrice: basePrice,
+          storageAdjustment: storageMultiplier,
+          conditionAdjustment: conditionMultiplier,
+          acquisitionCost: acquisitionCost,
+          logisticsCost: logisticsCostPercent,
+          overhead: overheadPercent,
+          targetMargin: targetMarginPercent
+        },
+        timestamp: new Date().toISOString()
+      });
+    } catch (error: any) {
+      console.error("AI Deli pricing error:", error);
+      res.status(500).json({ error: "Failed to calculate price" });
+    }
+  });
+
+  // Save trade-in sell request
+  app.post("/api/trade-in/sell-request", async (req, res) => {
+    try {
+      const validatedData = sellRequestSchema.parse(req.body);
+      const { deviceType, model, condition, storage, expectedPrice, description, contactEmail, contactPhone } = validatedData;
+
+      const priceResponse = await fetch('http://localhost:5000/api/ai-deli/calculate-price', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ deviceModel: model, condition, storage })
+      });
+      
+      const pricing = await priceResponse.json();
+
+      // Persist to storage using the storage layer
+      const sellRequest = await storage.createTradeInSellRequest({
+        deviceType,
+        model,
+        condition,
+        storage: storage || '128GB',
+        expectedPrice: expectedPrice ? parseInt(expectedPrice) : undefined,
+        aiOfferPrice: pricing.offerPriceAED,
+        description,
+        contactEmail,
+        contactPhone,
+      });
+
+      console.log('Trade-in sell request persisted:', sellRequest.id);
+
+      res.json({
+        success: true,
+        sellRequest,
+        aiPricing: pricing
+      });
+    } catch (error: any) {
+      console.error("Error creating sell request:", error);
+      res.status(500).json({ error: "Failed to create sell request" });
+    }
+  });
+
+  app.post("/api/ai-deli/chat", async (req, res) => {
+    if (!openai) {
+      return res.status(503).json({ 
+        error: "AI service not configured",
+        fallback: "Hi! I'm Deli, your AI pricing assistant 🤖 I help ensure you get the best value for your devices. What would you like to know?"
+      });
+    }
+    
+    try {
+      const { message, deviceContext } = req.body;
+      
+      if (!message) {
+        return res.status(400).json({ error: "Message is required" });
+      }
+
+      const systemPrompt = `You are Deli, DeliWer's AI pricing assistant. Your role:
+1. Help users understand device trade-in pricing
+2. Explain market factors affecting device values
+3. Provide competitive pricing insights
+4. Answer questions about the trade-in process
+5. Maintain transparency about our pricing methodology
+
+Current context: ${JSON.stringify(deviceContext || {})}
+
+Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses under 150 words.`;
+
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          {
+            role: "system",
+            content: systemPrompt
+          },
+          {
+            role: "user",
+            content: message
+          }
+        ],
+        max_tokens: 250,
+        temperature: 0.7,
+      });
+
+      const aiResponse = response.choices[0].message.content;
+      res.json({ response: aiResponse });
+    } catch (error: any) {
+      console.error("AI Deli chat error:", error);
+      res.status(500).json({ 
+        error: "AI service temporarily unavailable",
+        fallback: "Hi! I'm Deli, your AI pricing assistant. I can help answer questions about trade-in pricing, market trends, and the evaluation process. How can I assist you today?"
       });
     }
   });
