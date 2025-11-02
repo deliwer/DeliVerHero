@@ -110,41 +110,42 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 }
 
 // Progress flow step indicator component
-function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
+function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
   const stepConfig = {
     1: { icon: ShoppingCart, label: "Shop Smart" },
-    2: { icon: Gift, label: "Claim Rewards" },  
-    3: { icon: Play, label: "Create Impact" }
+    2: { icon: Smartphone, label: "Sell iPhone" },
+    3: { icon: Gift, label: "Claim Rewards" },  
+    4: { icon: Play, label: "Create Impact" }
   };
 
   return (
-    <div className="flex items-center justify-center mb-8">
-      <div className="flex items-center space-x-6">
-        {[1, 2, 3].map((step) => {
+    <div className="flex items-center justify-center mb-8 overflow-x-auto">
+      <div className="flex items-center space-x-4 sm:space-x-6 px-4">
+        {[1, 2, 3, 4].map((step) => {
           const { icon: StepIcon, label } = stepConfig[step as keyof typeof stepConfig];
           return (
             <div key={step} className="flex flex-col items-center">
               <div className="flex items-center">
                 <div 
-                  className={`w-16 h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
+                  className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
                     currentStep >= step 
                       ? 'bg-hero-green-500 text-black animate-pulse border-hero-green-400 shadow-lg shadow-hero-green-500/30' 
                       : 'bg-gray-600 text-gray-400 border-gray-500'
                   }`}
                 >
                   {currentStep > step ? (
-                    <CheckCircle className="w-8 h-8" />
+                    <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8" />
                   ) : (
-                    <StepIcon className="w-8 h-8" />
+                    <StepIcon className="w-6 h-6 sm:w-8 sm:h-8" />
                   )}
                 </div>
-                {step < 3 && (
-                  <div className={`w-20 h-1 transition-all duration-300 rounded-full ${
+                {step < 4 && (
+                  <div className={`w-16 sm:w-20 h-1 transition-all duration-300 rounded-full ${
                     currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
                   }`} />
                 )}
               </div>
-              <div className={`mt-2 text-xs font-bold ${
+              <div className={`mt-2 text-xs font-bold whitespace-nowrap ${
                 currentStep >= step ? 'text-hero-green-400' : 'text-gray-400'
               }`}>
                 {label}
@@ -157,13 +158,13 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   );
 }
 
-// Step 3: Create Impact Section (formerly Step 1)
+// Step 4: Create Impact Section (Play - Standalone)
 function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   const [heroId] = useState("demo-hero-id"); // Demo hero ID for tombola
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-3">
+    <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-4">
       {/* Metaverse background effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-indigo-900/20 to-blue-900/20"></div>
       <div className="absolute inset-0 opacity-10">
@@ -174,7 +175,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
       </div>
       
       <div className="max-w-4xl mx-auto relative z-10">
-        <ProgressIndicator currentStep={3} />
+        <ProgressIndicator currentStep={4} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">
@@ -808,12 +809,232 @@ function StepTwoExchange() {
         </div>
         </>
         )}
+        
+        {/* CTA to Sell iPhone Section */}
+        <div className="mt-8">
+          <Button
+            onClick={() => {
+              const section = document.querySelector('[data-section="step-2"]');
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }}
+            size="lg"
+            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-12 py-6 text-2xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+            data-testid="button-sell-iphone-cta"
+          >
+            <Smartphone className="mr-3 w-8 h-8" />
+            Sell Your iPhone
+          </Button>
+          <p className="text-center text-gray-400 text-sm mt-3">
+            Get instant cash or trade-in value for your old iPhone
+          </p>
+        </div>
       </div>
     </section>
   );
 }
 
-// Step 2: Claim Rewards Section (formerly Step 3)
+// Step 2: Sell iPhone Section
+function StepSellIPhone() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [selectedModel, setSelectedModel] = useState("iPhone 15 Pro");
+  const [selectedCondition, setSelectedCondition] = useState("excellent");
+  const [selectedStorage, setSelectedStorage] = useState("256");
+  
+  const phoneValues: Record<string, Record<string, number>> = {
+    "iPhone 16 Pro Max": { "128": 3600, "256": 3800, "512": 4000, "1024": 4200 },
+    "iPhone 16 Pro": { "128": 3200, "256": 3400, "512": 3600 },
+    "iPhone 15 Pro Max": { "128": 3000, "256": 3200, "512": 3400 },
+    "iPhone 15 Pro": { "128": 2700, "256": 2900, "512": 3100 },
+    "iPhone 14 Pro": { "128": 2000, "256": 2200, "512": 2400 },
+    "iPhone 14": { "128": 1600, "256": 1800, "512": 2000 },
+    "iPhone 13 Pro": { "128": 1300, "256": 1500, "512": 1700 },
+    "iPhone 13": { "128": 1000, "256": 1200, "512": 1400 },
+  };
+  
+  const conditionMultipliers: Record<string, number> = {
+    "excellent": 1.0,
+    "good": 0.85,
+    "fair": 0.7,
+  };
+  
+  const calculateTradeInValue = () => {
+    const modelValues = phoneValues[selectedModel];
+    if (!modelValues) return 0;
+    const baseValue = modelValues[selectedStorage] || 0;
+    const multiplier = conditionMultipliers[selectedCondition] || 0;
+    return Math.round(baseValue * multiplier);
+  };
+  
+  return (
+    <section className="py-8 px-4 mb-8" data-section="step-2">
+      <div className="max-w-4xl mx-auto">
+        <ProgressIndicator currentStep={2} />
+        
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-label="Toggle Sell iPhone section"
+              data-testid="toggle-sell-iphone"
+            >
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Sell Your iPhone
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-8 h-8 text-purple-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-purple-400" />
+              )}
+            </button>
+          </h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Get instant cash or trade-in credit for your old iPhone. Fast, secure, and hassle-free!
+          </p>
+
+          {/* iPhone Collection Banner - Always Visible */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 p-2 backdrop-blur-sm">
+            <div className="bg-slate-900/50 rounded-xl p-6">
+              <img 
+                src={iphoneCollection} 
+                alt="Sell Your iPhone - Latest Models Accepted" 
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+
+        {isExpanded && (
+        <>
+        {/* iPhone Trade-In Calculator */}
+        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-pink-500/10 mb-8 animate-in slide-in-from-top duration-500">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
+              <Calculator className="w-5 h-5" />
+              <span className="font-bold">📱 INSTANT VALUATION</span>
+            </div>
+            <h3 className="text-2xl font-bold text-white mb-2">Check Your iPhone Value</h3>
+            <p className="text-gray-300 text-sm">
+              Get an instant quote for your iPhone in seconds
+            </p>
+          </div>
+
+          {/* Interactive Calculator */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              {/* Model Selection */}
+              <div>
+                <label className="block text-white font-medium mb-3">Select Model</label>
+                <select
+                  value={selectedModel}
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                  className="w-full bg-slate-800/80 border border-purple-400/30 rounded-lg px-4 py-3 text-white focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+                  data-testid="select-iphone-model-sell"
+                >
+                  {Object.keys(phoneValues).map((model) => (
+                    <option key={model} value={model}>{model}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Storage Selection */}
+              <div>
+                <label className="block text-white font-medium mb-3">Storage</label>
+                <select
+                  value={selectedStorage}
+                  onChange={(e) => setSelectedStorage(e.target.value)}
+                  className="w-full bg-slate-800/80 border border-purple-400/30 rounded-lg px-4 py-3 text-white focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+                  data-testid="select-storage"
+                >
+                  {Object.keys(phoneValues[selectedModel] || {}).map((storage) => (
+                    <option key={storage} value={storage}>{storage}GB</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Condition Selection */}
+              <div>
+                <label className="block text-white font-medium mb-3">Condition</label>
+                <select
+                  value={selectedCondition}
+                  onChange={(e) => setSelectedCondition(e.target.value)}
+                  className="w-full bg-slate-800/80 border border-purple-400/30 rounded-lg px-4 py-3 text-white focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
+                  data-testid="select-condition-sell"
+                >
+                  <option value="excellent">Excellent (100%)</option>
+                  <option value="good">Good (85%)</option>
+                  <option value="fair">Fair (70%)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Calculated Value Display */}
+            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-8 border-2 border-purple-400/50 text-center">
+              <div className="text-gray-300 text-sm mb-2">Your Instant Quote</div>
+              <div className="text-5xl font-black text-purple-400 mb-2" data-testid="text-sell-value">
+                AED {calculateTradeInValue().toLocaleString()}
+              </div>
+              <div className="text-gray-400 text-sm mb-4">
+                💰 Choose cash payout or redeem for AquaCafe loyalty points
+              </div>
+              <div className="flex flex-wrap gap-3 justify-center">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
+                  data-testid="button-cash-payout"
+                >
+                  💵 Get Cash via Stripe
+                </Button>
+                <Button 
+                  size="lg"
+                  variant="outline"
+                  className="border-blue-400/50 text-blue-400 hover:bg-blue-500/20"
+                  data-testid="button-loyalty-points"
+                >
+                  💧 Redeem for AquaCafe Points
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-400/30">
+            <h4 className="text-lg font-bold text-white mb-3 text-center">How It Works</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-2xl">1️⃣</span>
+                </div>
+                <div className="text-white font-bold mb-1">Get Quote</div>
+                <div className="text-gray-400">Select your model & condition</div>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-2xl">2️⃣</span>
+                </div>
+                <div className="text-white font-bold mb-1">Ship or Drop-off</div>
+                <div className="text-gray-400">Free pickup in Dubai</div>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-2xl">3️⃣</span>
+                </div>
+                <div className="text-white font-bold mb-1">Get Paid</div>
+                <div className="text-gray-400">Cash or loyalty points</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// Step 3: Claim Rewards Section (with Membership Benefits merged)
 function StepThreeRewards() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [claimedVoucher, setClaimedVoucher] = useState<any>(null);
@@ -855,9 +1076,9 @@ function StepThreeRewards() {
   };
   
   return (
-    <section className="py-8 px-4 mb-8" data-section="step-2">
+    <section className="py-8 px-4 mb-8" data-section="step-3">
       <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={2} />
+        <ProgressIndicator currentStep={3} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">
@@ -1335,18 +1556,34 @@ export function HeroChallengeLanding() {
 
 
 
-        {/* 3-Step Progressive Flow with Visual Connectors */}
+        {/* 4-Step Progressive Flow with Visual Connectors */}
         {/* Step 1: Shop Smart */}
         <div data-section="step-1">
           <StepTwoExchange />
-          
         </div>
 
         {/* Flow Connector 1→2 */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-amber-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-purple-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+              <ArrowDown className="w-6 h-6 text-white" />
+            </div>
+            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-pink-500 mt-2"></div>
+            <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
+          </div>
+        </div>
+
+        {/* Step 2: Sell iPhone */}
+        <div data-section="step-2">
+          <StepSellIPhone />
+        </div>
+
+        {/* Flow Connector 2→3 */}
+        <div className="flex justify-center mb-8">
+          <div className="flex flex-col items-center">
+            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-amber-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
             <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-orange-500 mt-2"></div>
@@ -1354,25 +1591,25 @@ export function HeroChallengeLanding() {
           </div>
         </div>
 
-        {/* Step 2: Claim Rewards */}
-        <div data-section="step-2">
+        {/* Step 3: Claim Rewards */}
+        <div data-section="step-3">
           <StepThreeRewards />
         </div>
 
-        {/* Flow Connector 2→3 */}
-        <div className="flex justify-center mb-8">
+        {/* Flow Connector 3→4 - Standalone Section Separator */}
+        <div className="flex justify-center my-16">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-purple-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
-              <ArrowDown className="w-6 h-6 text-white" />
+            <div className="w-1 h-16 bg-gradient-to-b from-orange-500 to-purple-500 mb-2"></div>
+            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+              <Play className="w-8 h-8 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-indigo-500 mt-2"></div>
-            <div className="text-xs text-gray-400 mt-2 font-bold">FINAL STEP</div>
+            <div className="w-1 h-16 bg-gradient-to-b from-purple-500 to-indigo-500 mt-2"></div>
+            <div className="text-sm text-purple-400 mt-3 font-bold">UNIQUE ATTRACTION</div>
           </div>
         </div>
 
-        {/* Step 3: Create Impact */}
-        <div data-section="step-3">
+        {/* Step 4: Create Impact (Standalone Play Section) */}
+        <div data-section="step-4">
           <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
         </div>
 

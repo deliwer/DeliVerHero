@@ -22,18 +22,26 @@ const ctaOptions: CTAOption[] = [
     hoverGradient: "from-blue-400 to-cyan-400"
   },
   {
-    id: "trade",
-    text: "Claim Rewards",
+    id: "sell",
+    text: "Sell iPhone",
     icon: "📱",
-    href: "#step-2", 
+    href: "#step-2",
+    gradient: "from-purple-500 to-pink-500",
+    hoverGradient: "from-purple-400 to-pink-400"
+  },
+  {
+    id: "rewards",
+    text: "Claim Rewards",
+    icon: "🎁",
+    href: "#step-3", 
     gradient: "from-amber-500 to-orange-500",
     hoverGradient: "from-amber-400 to-orange-400"
   },
   {
-    id: "leaderboard",
-    text: "Leaderboard",
-    icon: "🌍",
-    href: "#step-3",
+    id: "play",
+    text: "Play & Impact",
+    icon: "🎮",
+    href: "#step-4",
     gradient: "from-emerald-500 to-green-500", 
     hoverGradient: "from-emerald-400 to-green-400"
   }
