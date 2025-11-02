@@ -1,0 +1,151 @@
+Excellent direction — you’re introducing a **“Planet Hero: Play & Earn Gateway”** as a *gamified social and affiliate entry point* to DeliWer.
+Below is a full breakdown of **concept + placement + system structure + Replit implementation prompt** so you can deploy it without altering the main DeliWer home structure.
+
+---
+
+## 🌍 Concept Summary: “Planet Hero – Play & Earn Gateway”
+
+This is a **parallel entry system** for users who want to *earn*, *participate*, or *promote eco-initiatives* via DeliWer.
+It combines:
+
+* **Gamification (Play & Earn):** complete eco-missions, social tasks, challenges.
+* **Affiliate & Referral:** bring new users or trade-in customers to DeliWer.
+* **Rewards & Loyalty:** points → redeemable for water, devices, or merchandise.
+* **Community Recognition:** leaderboard, badges, contribution impact dashboard.
+
+---
+
+## 🧭 Positioning on Website
+
+Keep the **main homepage (hero section + first fold)** unchanged.
+Introduce a **separate entry group/gateway** accessible through:
+
+* A new top-bar button: “🌱 Planet Hero – Play & Earn”
+* OR a banner card below the “Trade-in / AquaCafe” sections reading:
+
+  > **Join the Planet Hero Mission → Play, Earn & Grow Impact**
+
+This takes users to `/planet-hero` – a dedicated experience hub.
+
+---
+
+## 🔗 Gateway Structure (Page Hierarchy)
+
+```
+/planet-hero
+│
+├── /missions           → list of active eco-activities (e.g. “Share post”, “Refer friend”)
+├── /affiliates         → affiliate registration, referral tracking, payout info
+├── /leaderboard        → top eco-heroes, weekly points
+├── /manual             → unified guide / “How Planet Hero Works”
+└── /rewards            → redeem points for products / delivery credits / water
+```
+
+---
+
+## 🧩 Core UX Features
+
+| Element                  | Description                                                                                        |
+| ------------------------ | -------------------------------------------------------------------------------------------------- |
+| **Hero Banner**          | “Join the Planet Hero Movement — Play, Earn, Make Dubai Greener.” CTA: “Start Earning”             |
+| **Onboarding Modal**     | Short form (name, email, choose type: ‘Affiliate’ or ‘Eco Player’) → directs to user dashboard     |
+| **Dashboard View**       | Shows: total points, active missions, referral link, reward redemption                             |
+| **Gamification**         | Missions (Share on X/IG, create TikTok, refer friend, donate bottle credits) each with point value |
+| **Affiliate System**     | Referral link + unique ID → track conversions (via cookie or code)                                 |
+| **Rewards Conversion**   | Points redeemable in DeliWer checkout (Stripe/PayPal integration retained)                         |
+| **Manual/Unified Guide** | `/planet-hero/manual` explaining steps, point system, ethics, payout & sustainability mission.     |
+
+---
+
+## 🪙 Example Missions (for Engagement)
+
+| Mission                                   | Points | Proof Type    |
+| ----------------------------------------- | ------ | ------------- |
+| Share DeliWer trade-in post on Instagram  | +100   | Social URL    |
+| Bring a new customer (verified trade-in)  | +1000  | Referral code |
+| Post a “Planet Hero Water Challenge” reel | +250   | Link upload   |
+| Complete 3 eco-tasks in a week            | +200   | Auto-bonus    |
+| Attend an AquaCafe eco-event              | +500   | QR scan       |
+
+---
+
+## ⚙️ Technical Setup (Replit Core Deployment)
+
+Below is a ready **prompt for Replit** to implement and deploy this gateway (without changing the core homepage).
+
+---
+
+### 🧠 Replit Prompt
+
+```yaml
+# Replit Prompt: Create Planet Hero - Play & Earn Gateway (DeliWer.com)
+# Goal: Add a separate gamified entry system for affiliates & eco missions
+# without altering the main homepage structure.
+
+project:
+  name: deliwer-planet-hero-gateway
+  stack: node-react-express
+  integrations:
+    - stripe
+    - supabase (for user auth, points ledger, missions tracking)
+    - emailjs (for notifications)
+  deployment: replit-core
+
+tasks:
+  - Create a new route group `/planet-hero` in the frontend with pages:
+      • index.tsx – Overview page (Play & Earn entry)
+      • missions.tsx – List of eco-missions
+      • affiliates.tsx – Affiliate signup + referral link dashboard
+      • leaderboard.tsx – Weekly top users
+      • rewards.tsx – Redeem points
+      • manual.tsx – Unified guide (markdown friendly)
+
+  - Add navigation link or banner entry on DeliWer.com home:
+      text: "🌱 Planet Hero – Play & Earn"
+      link: "/planet-hero"
+      position: below AquaCafe section or top navbar (non-intrusive)
+
+  - Implement Supabase tables:
+      users: id, name, email, type (‘affiliate’|‘player’)
+      missions: id, title, points, proof_type, status
+      submissions: user_id, mission_id, proof_link, verified(bool)
+      referrals: user_id, referral_code, referred_user_id, reward_points
+      rewards: id, title, cost_points, reward_type
+
+  - Integrate Stripe/PayPal reward redemption via DeliWer checkout API.
+
+  - Add point logic middleware:
+      onMissionComplete() -> add points to user wallet
+      onReferralVerified() -> add bonus points
+
+  - Create `PlanetHeroManual.md` explaining the system:
+      sections:
+        1. Introduction to Planet Hero
+        2. How to Join
+        3. Earning Methods
+        4. Redeeming Points
+        5. Code of Conduct & Eco Ethics
+
+  - Style to match DeliWer’s brand:
+      primary_color: #00A4A6
+      accent_color: #FFD700
+      font: 'Lato'
+      theme: light / minimal, with eco-icons (leaf, drop, heart)
+
+  - Ensure responsive design (mobile-first).
+
+  - Deploy gateway under `/planet-hero` subdirectory with SSL enabled.
+```
+
+---
+
+## 🎯 Expected Outcome
+
+* A **dedicated entry experience** for affiliates and eco-players.
+* Keeps **main homepage untouched**, but adds a **high-engagement gamified system** driving awareness & word-of-mouth marketing.
+* Users can *earn*, *refer*, *redeem* — forming a complete “eco-commerce” loop.
+* Provides long-term loyalty and virality for DeliWer’s **Sustainability Metaverse**.
+
+---
+
+Would you like me to create the **wireframe + copy layout** for the `/planet-hero` main page and its manual (so developers know exactly what to build next)?
