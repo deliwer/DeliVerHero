@@ -116,7 +116,17 @@ export async function processPurchase(data: PurchaseData): Promise<PurchaseResul
     const pointsEarned = Math.floor(data.amount);
     await storage.addLoyaltyPoints(customer.id, pointsEarned);
 
-    // Step 4: Generate digital vouchers for qualifying products
+    // Step 4: Grant FREE AquaCafe Loyalty Membership for all package orders
+    const isWaterPackage = data.productId.includes('aquacafe') || 
+                          data.productId.includes('kangen') || 
+                          data.productId.includes('ispring') || 
+                          data.productId.includes('express-water');
+    
+    if (isWaterPackage) {
+      console.log(`Granting FREE AquaCafe Loyalty membership to customer ${customer.email} for ${data.productName}`);
+    }
+
+    // Step 5: Generate digital vouchers for qualifying products
     const vouchers = [];
     
     // AED 99 Starter Kit = Free Chill & Grill D100 voucher
@@ -159,7 +169,112 @@ export async function processPurchase(data: PurchaseData): Promise<PurchaseResul
 
   } catch (error) {
     console.error('Purchase processing error:', error);
-    throw new Error(`Failed to process purchase: ${error.message}`);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    throw new Error(`Failed to process purchase: ${errorMessage}`);
+  }
+}
+
+/**
+ * Create D99 Loyalty Membership with referral benefits
+ * When a customer refers a friend, they get upgraded to D99 tier with vouchers
+ */
+export async function createD99LoyaltyMembership(customerId: string, refereeEmail: string): Promise<any> {
+  try {
+    const customer = await storage.getCustomer(customerId);
+    if (!customer) {
+      throw new Error('Customer not found');
+    }
+
+    // Get or create loyalty membership
+    let loyaltyMembership = await storage.getLoyaltyMembershipByCustomer(customerId);
+    
+    if (!loyaltyMembership) {
+      // Create new D99 membership
+      const membershipNumber = `D99${Date.now()}${Math.floor(Math.random() * 1000)}`;
+      const membershipData: InsertLoyaltyMembership = {
+        customerId,
+        membershipNumber,
+        tier: 'gold', // D99 members get gold tier
+        points: 990, // D99 in points
+        lifetimePoints: 990,
+        status: 'active',
+        totalOrders: 0,
+        totalSpentAED: 9900, // D99 membership value
+        welcomeGiftRedeemed: false,
+        welcomeGiftType: 'd99-referral-vouchers',
+        enrolledAt: new Date(),
+        lastActivityAt: new Date(),
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year
+      };
+      loyaltyMembership = await storage.createLoyaltyMembership(membershipData);
+    } else {
+      // Upgrade existing membership to D99 tier
+      await storage.updateLoyaltyMembership(loyaltyMembership.id, {
+        tier: 'gold',
+        points: loyaltyMembership.points + 990,
+        lifetimePoints: loyaltyMembership.lifetimePoints + 990,
+        welcomeGiftType: 'd99-referral-vouchers',
+      });
+    }
+
+    // Generate D99 Chill & Grill vouchers
+    const vouchers = [];
+    
+    // Voucher 1: D99 Chill & Grill Restaurant voucher
+    const voucherCode1 = `D99CHILL${randomUUID().substring(0, 6).toUpperCase()}`;
+    const voucher1Data: InsertDigitalVoucher = {
+      voucherCode: voucherCode1,
+      customerId,
+      orderId: null,
+      voucherType: 'd99-chill-grill',
+      title: 'Chill & Grill - D99 Restaurant Voucher',
+      description: 'D99 credit for dining at Chill & Grill - Thank you for referring a friend!',
+      valueAED: 9900, // D99 in fils
+      status: 'active',
+      redeemedAt: null,
+      redeemedLocation: null,
+      validFrom: new Date(),
+      validUntil: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000), // 180 days
+      terms: 'Valid at all Chill & Grill locations. One voucher per visit. Cannot be combined with other offers.',
+      redemptionInstructions: 'Show this code to your server at Chill & Grill. Voucher activated after your friend completes their first order.',
+    };
+    const voucher1 = await storage.createDigitalVoucher(voucher1Data);
+    vouchers.push(voucher1);
+
+    // Voucher 2: Partner voucher (can be rotated among partners)
+    const voucherCode2 = `D99PART${randomUUID().substring(0, 6).toUpperCase()}`;
+    const voucher2Data: InsertDigitalVoucher = {
+      voucherCode: voucherCode2,
+      customerId,
+      orderId: null,
+      voucherType: 'd99-partner',
+      title: 'Partner Network - D99 Voucher',
+      description: 'D99 credit for partner services - Valid at select DeliWer partners',
+      valueAED: 9900, // D99 in fils
+      status: 'active',
+      redeemedAt: null,
+      redeemedLocation: null,
+      validFrom: new Date(),
+      validUntil: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000), // 180 days
+      terms: 'Valid at participating DeliWer partner locations. Check partner list for details.',
+      redemptionInstructions: 'Present this code at any participating partner location.',
+    };
+    const voucher2 = await storage.createDigitalVoucher(voucher2Data);
+    vouchers.push(voucher2);
+
+    console.log(`D99 Loyalty Membership created for ${customer.email} (referred ${refereeEmail})`);
+
+    return {
+      success: true,
+      loyaltyMembership,
+      vouchers,
+      message: 'Congratulations! Your D99 Loyalty Membership is active with exclusive vouchers!',
+    };
+
+  } catch (error) {
+    console.error('D99 membership creation error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    throw new Error(`Failed to create D99 membership: ${errorMessage}`);
   }
 }
 

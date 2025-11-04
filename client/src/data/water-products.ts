@@ -254,6 +254,141 @@ export const waterProducts: WaterProduct[] = [
     }
   },
   {
+    id: 'express-water-ro10m',
+    name: 'Express Water RO10M 10-Stage RO System',
+    category: 'ro-system',
+    brand: 'Express Water',
+    price: 1840,
+    currency: 'AED',
+    description: 'Advanced 10-stage reverse osmosis with UV & alkaline for Dubai homes',
+    features: [
+      '10 filtration stages including UV',
+      'Removes 99.99% contaminants',
+      'Alkaline & mineral enhancement',
+      'LED display with filter status',
+      'TDS meter included',
+      '100 GPD capacity'
+    ],
+    inStock: true,
+    freeDelivery: true,
+    warranty: '1 year',
+    specifications: {
+      'Filtration Stages': '10 (RO + UV + Alkaline)',
+      'Daily Capacity': '100 GPD',
+      'Technology': 'UV sterilization + remineralization',
+      'Features': 'LED display, TDS meter',
+      'Installation': 'Under sink'
+    }
+  },
+  {
+    id: 'express-water-dealk',
+    name: 'Express Water DEALK Alkaline RO System',
+    category: 'ro-system',
+    brand: 'Express Water',
+    price: 1475,
+    currency: 'AED',
+    description: '6-stage RO with alkaline remineralization for healthy pH balance',
+    features: [
+      '6-stage alkaline filtration',
+      'Balanced pH 7-9.5',
+      'Restores healthy minerals',
+      'Clear housing for monitoring',
+      'Quick-connect fittings',
+      'WQA Gold Seal certified'
+    ],
+    inStock: true,
+    freeDelivery: true,
+    warranty: '1 year',
+    specifications: {
+      'Filtration Stages': '6 with alkaline',
+      'pH Range': '7.0 - 9.5',
+      'Certification': 'WQA Gold Seal',
+      'Features': 'Clear housing, quick-connect',
+      'Installation': 'Under sink'
+    }
+  },
+  {
+    id: 'express-water-uv11',
+    name: 'Express Water UV11 Under Sink System',
+    category: 'ro-system',
+    brand: 'Express Water',
+    price: 2240,
+    currency: 'AED',
+    description: '11-stage premium system with UV sterilization and alkaline',
+    features: [
+      '11 advanced filtration stages',
+      'UV light sterilization',
+      'Alkaline remineralization',
+      'Removes bacteria & viruses',
+      'Smart LED indicators',
+      'Premium quality components'
+    ],
+    inStock: true,
+    freeDelivery: true,
+    warranty: '1 year',
+    specifications: {
+      'Filtration Stages': '11 (RO + UV + Alkaline)',
+      'UV Sterilization': 'Yes - kills 99.99% bacteria',
+      'pH Enhancement': 'Alkaline filter included',
+      'Features': 'LED indicators, premium faucet',
+      'Ideal For': 'Large families'
+    }
+  },
+  {
+    id: 'ispring-rcc7p',
+    name: 'iSpring RCC7P Boosted Performance RO',
+    category: 'ro-system',
+    brand: 'iSpring',
+    price: 1658,
+    currency: 'AED',
+    description: 'High-performance RO with built-in booster pump for low pressure',
+    features: [
+      'Built-in booster pump',
+      'Works with low water pressure',
+      '75 GPD capacity',
+      '5-stage filtration',
+      'NSF certified components',
+      'Efficient production rate'
+    ],
+    inStock: true,
+    freeDelivery: true,
+    warranty: '1 year + lifetime support',
+    specifications: {
+      'Filtration Stages': '5',
+      'Daily Capacity': '75 GPD',
+      'Pump': 'Built-in booster (50 PSI)',
+      'Certification': 'NSF components',
+      'Best For': 'Low pressure areas'
+    }
+  },
+  {
+    id: 'ispring-rcc1up',
+    name: 'iSpring RCC1UP 7-Stage UV RO System',
+    category: 'ro-system',
+    brand: 'iSpring',
+    price: 2192,
+    currency: 'AED',
+    description: 'Premium 7-stage system with UV and alkaline for maximum protection',
+    features: [
+      'UV sterilization (11-watt)',
+      'Alkaline remineralization',
+      '100 GPD capacity',
+      'Kills 99.99% bacteria & viruses',
+      'Designer faucet included',
+      'Perfect for Dubai water'
+    ],
+    inStock: true,
+    freeDelivery: true,
+    warranty: '1 year + lifetime support',
+    specifications: {
+      'Filtration Stages': '7 (RO + UV + Alkaline)',
+      'Daily Capacity': '100 GPD',
+      'UV Power': '11-watt sterilization',
+      'pH Enhancement': 'Alkaline filter',
+      'Certification': 'NSF/ANSI certified'
+    }
+  },
+  {
     id: 'aquacafe-starter-kit',
     name: 'AquaCafe Starter Kit - Special Offer',
     category: 'starter-kit',

@@ -487,6 +487,23 @@ function StepTwoExchange() {
               </div>
             </div>
           </div>
+
+          {/* CTA to View All AquaCafe Products - Always Visible */}
+          <div className="mt-6">
+            <Link href="/aquacafe">
+              <Button
+                size="lg"
+                className="w-full max-w-md mx-auto block bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-view-aquacafe-products"
+              >
+                <Droplets className="mr-3 w-6 h-6" />
+                View All Filtration Products
+              </Button>
+            </Link>
+            <p className="text-center text-gray-400 text-sm mt-3">
+              Explore shower filters, RO systems, and more water treatment solutions
+            </p>
+          </div>
         </div>
 
         {/* Product Showcase */}
@@ -501,7 +518,24 @@ function StepTwoExchange() {
                 <Droplets className="w-5 h-5" />
                 <span className="font-bold">💧 PREMIUM WATER SYSTEMS</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Choose Your Water Solution</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Choose Your Water Solution</h3>
+              
+              {/* Free iPhone Upgrade Banner - Always Visible */}
+              <div className="max-w-3xl mx-auto mb-4 rounded-xl overflow-hidden border-2 border-amber-500 shadow-2xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 p-4 backdrop-blur-sm animate-pulse">
+                <div className="flex items-center justify-center gap-3">
+                  <Smartphone className="w-6 h-6 text-amber-400" />
+                  <div className="text-center">
+                    <p className="text-lg font-black text-amber-300 mb-1">
+                      🎁 FREE iPhone Upgrade to Next Model
+                    </p>
+                    <p className="text-sm text-amber-100">
+                      When you order any water filtration package - Limited time offer!
+                    </p>
+                  </div>
+                  <Gift className="w-6 h-6 text-amber-400" />
+                </div>
+              </div>
+
               <p className="text-gray-300 text-sm max-w-2xl mx-auto">
                 Get clean, alkaline water at home with our premium filtration systems
               </p>
@@ -649,27 +683,6 @@ function StepTwoExchange() {
         </div>
         </>
         )}
-        
-        {/* CTA to Sell iPhone Section */}
-        <div className="mt-8">
-          <Button
-            onClick={() => {
-              const section = document.querySelector('[data-section="step-2"]');
-              if (section) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              }
-            }}
-            size="lg"
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-12 py-6 text-2xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-            data-testid="button-sell-iphone-cta"
-          >
-            <Smartphone className="mr-3 w-8 h-8" />
-            Sell Your iPhone
-          </Button>
-          <p className="text-center text-gray-400 text-sm mt-3">
-            Get instant cash or trade-in value for your old iPhone
-          </p>
-        </div>
       </div>
     </section>
   );
@@ -744,6 +757,23 @@ function StepSellIPhone() {
                 className="w-full h-auto rounded-lg shadow-lg"
               />
             </div>
+          </div>
+
+          {/* CTA to Sell iPhone - Always Visible Below Banner */}
+          <div className="mt-6">
+            <Link href="/exchange">
+              <Button
+                size="lg"
+                className="w-full max-w-md mx-auto block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-sell-iphone-cta"
+              >
+                <Smartphone className="mr-3 w-6 h-6" />
+                Sell Your iPhone
+              </Button>
+            </Link>
+            <p className="text-center text-gray-400 text-sm mt-3">
+              Get instant cash or trade-in value for your old iPhone
+            </p>
           </div>
         </div>
 
