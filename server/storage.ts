@@ -438,6 +438,8 @@ export class MemStorage implements IStorage {
   private emailSubscribers: Map<string, EmailSubscriber>;
   private orders: Map<string, Order>;
   private customers: Map<string, Customer>;
+  private loyaltyMemberships: Map<string, LoyaltyMembership>;
+  private digitalVouchers: Map<string, DigitalVoucher>;
   
   // Tombola Gamification System
   private tombolaPrizes: Map<string, TombolaPrize>;
@@ -520,6 +522,8 @@ export class MemStorage implements IStorage {
     this.emailSubscribers = new Map();
     this.orders = new Map();
     this.customers = new Map();
+    this.loyaltyMemberships = new Map();
+    this.digitalVouchers = new Map();
     
     // Initialize tombola system
     this.tombolaPrizes = new Map();
@@ -2411,6 +2415,113 @@ export class MemStorage implements IStorage {
     const updatedCustomer = { ...customer, ...updates, updatedAt: new Date() };
     this.customers.set(id, updatedCustomer);
     return updatedCustomer;
+  }
+
+  // Loyalty Membership Methods
+  async createLoyaltyMembership(membershipData: InsertLoyaltyMembership): Promise<LoyaltyMembership> {
+    const membership: LoyaltyMembership = {
+      id: randomUUID(),
+      ...membershipData,
+      enrolledAt: new Date(),
+      lastActivityAt: new Date(),
+      expiresAt: membershipData.expiresAt || null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.loyaltyMemberships.set(membership.id, membership);
+    return membership;
+  }
+
+  async getLoyaltyMembership(id: string): Promise<LoyaltyMembership | undefined> {
+    return this.loyaltyMemberships.get(id);
+  }
+
+  async getLoyaltyMembershipByCustomer(customerId: string): Promise<LoyaltyMembership | undefined> {
+    return Array.from(this.loyaltyMemberships.values()).find(m => m.customerId === customerId);
+  }
+
+  async updateLoyaltyMembership(id: string, updates: Partial<LoyaltyMembership>): Promise<LoyaltyMembership | undefined> {
+    const membership = this.loyaltyMemberships.get(id);
+    if (!membership) return undefined;
+    
+    const updatedMembership = { 
+      ...membership, 
+      ...updates, 
+      updatedAt: new Date(),
+      lastActivityAt: new Date() 
+    };
+    this.loyaltyMemberships.set(id, updatedMembership);
+    return updatedMembership;
+  }
+
+  async addLoyaltyPoints(customerId: string, points: number): Promise<LoyaltyMembership | undefined> {
+    const membership = await this.getLoyaltyMembershipByCustomer(customerId);
+    if (!membership) return undefined;
+    
+    const newPoints = membership.points + points;
+    const newLifetimePoints = membership.lifetimePoints + points;
+    
+    // Calculate tier based on lifetime points
+    let tier = 'bronze';
+    if (newLifetimePoints >= 10000) tier = 'platinum';
+    else if (newLifetimePoints >= 5000) tier = 'gold';
+    else if (newLifetimePoints >= 2000) tier = 'silver';
+    
+    return this.updateLoyaltyMembership(membership.id, {
+      points: newPoints,
+      lifetimePoints: newLifetimePoints,
+      tier,
+    });
+  }
+
+  // Digital Voucher Methods
+  async createDigitalVoucher(voucherData: InsertDigitalVoucher): Promise<DigitalVoucher> {
+    const voucher: DigitalVoucher = {
+      id: randomUUID(),
+      ...voucherData,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    this.digitalVouchers.set(voucher.id, voucher);
+    return voucher;
+  }
+
+  async getDigitalVoucher(id: string): Promise<DigitalVoucher | undefined> {
+    return this.digitalVouchers.get(id);
+  }
+
+  async getDigitalVoucherByCode(code: string): Promise<DigitalVoucher | undefined> {
+    return Array.from(this.digitalVouchers.values()).find(v => v.voucherCode === code);
+  }
+
+  async getVouchersByCustomer(customerId: string): Promise<DigitalVoucher[]> {
+    return Array.from(this.digitalVouchers.values()).filter(v => v.customerId === customerId);
+  }
+
+  async redeemVoucher(code: string, location?: string): Promise<DigitalVoucher | undefined> {
+    const voucher = await this.getDigitalVoucherByCode(code);
+    if (!voucher) return undefined;
+    
+    if (voucher.status !== 'active') {
+      throw new Error('Voucher is not active');
+    }
+    
+    if (new Date() > voucher.validUntil) {
+      throw new Error('Voucher has expired');
+    }
+    
+    const redeemedVoucher: DigitalVoucher = {
+      ...voucher,
+      status: 'redeemed',
+      redeemedAt: new Date(),
+      redeemedLocation: location || null,
+      updatedAt: new Date(),
+    };
+    
+    this.digitalVouchers.set(voucher.id, redeemedVoucher);
+    return redeemedVoucher;
   }
 
   // Tombola Gamification System Methods

@@ -14,6 +14,7 @@ import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
+import { processPurchase, aedToFils } from "./payment-processing";
 
 // Initialize Stripe only if API key is available
 let stripe: Stripe | null = null;
@@ -3238,6 +3239,165 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       res.json(tiers);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // ==================================================
+  // PAYMENT PROCESSING - PayPal & Stripe with Complete Purchase Flow
+  // ==================================================
+
+  // Complete PayPal purchase flow
+  app.post("/api/payments/paypal/complete", async (req, res) => {
+    try {
+      const { orderID, customerEmail, customerName, customerPhone, productId, productName, amount } = req.body;
+
+      if (!orderID || !customerEmail || !productId || !productName || !amount) {
+        return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      // Process complete purchase (customer + order + loyalty + vouchers)
+      const result = await processPurchase({
+        customerEmail,
+        customerName,
+        customerPhone,
+        productId,
+        productName,
+        amount: parseFloat(amount),
+        currency: 'AED',
+        paymentMethod: 'paypal',
+        paymentIntentId: orderID,
+      });
+
+      res.json(result);
+    } catch (error: any) {
+      console.error("PayPal purchase processing error:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Complete Stripe purchase flow
+  app.post("/api/payments/stripe/complete", async (req, res) => {
+    try {
+      const { paymentIntentId, customerEmail, customerName, customerPhone, productId, productName, amount } = req.body;
+
+      if (!paymentIntentId || !customerEmail || !productId || !productName || !amount) {
+        return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      if (!stripe) {
+        return res.status(503).json({ error: "Stripe not configured" });
+      }
+
+      // Verify payment intent
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+      if (paymentIntent.status !== 'succeeded') {
+        return res.status(400).json({ error: "Payment not completed" });
+      }
+
+      // Process complete purchase
+      const result = await processPurchase({
+        customerEmail,
+        customerName,
+        customerPhone,
+        productId,
+        productName,
+        amount: parseFloat(amount),
+        currency: 'AED',
+        paymentMethod: 'stripe',
+        paymentIntentId,
+      });
+
+      res.json(result);
+    } catch (error: any) {
+      console.error("Stripe purchase processing error:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get customer details including loyalty membership and vouchers
+  app.get("/api/customers/me", async (req, res) => {
+    try {
+      const { email } = req.query;
+      if (!email || typeof email !== 'string') {
+        return res.status(400).json({ error: "Email required" });
+      }
+
+      const customer = await storage.getCustomerByEmail(email);
+      if (!customer) {
+        return res.status(404).json({ error: "Customer not found" });
+      }
+
+      const loyaltyMembership = await storage.getLoyaltyMembershipByCustomer(customer.id);
+      const orders = await storage.getOrdersByCustomer(customer.id);
+      const vouchers = await storage.getVouchersByCustomer(customer.id);
+
+      res.json({
+        customer,
+        loyaltyMembership,
+        orders,
+        vouchers,
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get loyalty membership by customer email
+  app.get("/api/loyalty/membership", async (req, res) => {
+    try {
+      const { email } = req.query;
+      if (!email || typeof email !== 'string') {
+        return res.status(400).json({ error: "Email required" });
+      }
+
+      const customer = await storage.getCustomerByEmail(email);
+      if (!customer) {
+        return res.status(404).json({ error: "Customer not found" });
+      }
+
+      const membership = await storage.getLoyaltyMembershipByCustomer(customer.id);
+      res.json(membership || null);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Get digital vouchers for customer
+  app.get("/api/vouchers/my-vouchers", async (req, res) => {
+    try {
+      const { email } = req.query;
+      if (!email || typeof email !== 'string') {
+        return res.status(400).json({ error: "Email required" });
+      }
+
+      const customer = await storage.getCustomerByEmail(email);
+      if (!customer) {
+        return res.status(404).json({ error: "Customer not found" });
+      }
+
+      const vouchers = await storage.getVouchersByCustomer(customer.id);
+      res.json(vouchers);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Redeem a digital voucher
+  app.post("/api/vouchers/redeem", async (req, res) => {
+    try {
+      const { voucherCode, location } = req.body;
+      if (!voucherCode) {
+        return res.status(400).json({ error: "Voucher code required" });
+      }
+
+      const voucher = await storage.redeemVoucher(voucherCode, location);
+      res.json({
+        success: true,
+        voucher,
+        message: "Voucher redeemed successfully!",
+      });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
     }
   });
 
