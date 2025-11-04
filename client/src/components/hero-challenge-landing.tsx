@@ -474,9 +474,9 @@ function StepTwoExchange() {
                     <Star className="w-5 h-5" />
                     <span className="font-bold">FLAGSHIP OFFER</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Kangen Water + iPhone Bundle</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Planet Hero Package: Filter Service + FREE iPhone Upgrade</h3>
                   <p className="text-gray-300 mb-4">
-                    Trade your iPhone and get premium K8 Machine with massive savings and lifetime benefits
+                    Get premium K8 water filtration with professional installation service + upgrade your old iPhone to the next model FREE
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-hero-green-500/20 text-hero-green-400 px-3 py-1 rounded-full text-sm font-bold">Huge Discounts</span>
@@ -543,15 +543,15 @@ function StepTwoExchange() {
                     <span className="text-gray-300 text-sm">Saves money vs. bottled water</span>
                   </div>
                 </div>
-                <div className="text-center text-2xl font-bold text-blue-400 mb-2">AED 5,999</div>
-                <p className="text-gray-400 text-sm text-center mb-4">Premium alkaline water system</p>
+                <div className="text-center text-2xl font-bold text-blue-400 mb-2">AED 19,250</div>
+                <p className="text-gray-400 text-sm text-center mb-4">Premium alkaline water system - Direct from Kangen Dubai</p>
                 <Button
-                  onClick={() => handleBuyNow("kangen-k8-machine", "Kangen K8 Machine", 5999)}
+                  onClick={() => handleBuyNow("kangen-k8-machine", "Kangen K8 Machine", 19250)}
                   className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-6 text-lg shadow-xl"
                   data-testid="button-buy-k8"
                 >
                   <ShoppingCart className="mr-2 w-5 h-5" />
-                  Order Now with Stripe/PayPal
+                  Order Now with PayPal/Stripe
                 </Button>
               </div>
 
@@ -590,9 +590,26 @@ function StepTwoExchange() {
                   data-testid="button-buy-aquacafe"
                 >
                   <ShoppingCart className="mr-2 w-5 h-5" />
-                  Order Now with Stripe/PayPal
+                  Order Now with PayPal/Stripe
                 </Button>
               </div>
+            </div>
+            
+            {/* Always-visible button to explore more products */}
+            <div className="mt-6 text-center">
+              <Link href="/aquacafe">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-4 text-lg shadow-xl transform hover:scale-105 transition-all"
+                  data-testid="button-explore-water-products"
+                >
+                  <Droplets className="mr-2 w-6 h-6" />
+                  Explore All Water Filtration Products
+                </Button>
+              </Link>
+              <p className="text-gray-400 text-sm mt-2">
+                See shower filters, RO systems, and more
+              </p>
             </div>
           </div>
         </div>

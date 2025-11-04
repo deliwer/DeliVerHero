@@ -1444,6 +1444,18 @@ export const leaderboardSnapshots = pgTable("leaderboard_snapshots", {
   };
 });
 
+// Shopping Cart Management
+export const carts = pgTable("carts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sessionId: text("session_id").notNull().unique(), // For guest carts
+  customerId: varchar("customer_id"), // null for guest carts
+  items: jsonb("items").notNull().default('[]'), // Array of cart items
+  metadata: jsonb("metadata").default('{}'),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at"), // Auto-expire old carts
+});
+
 // E-commerce Order Management
 export const orders = pgTable("orders", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -1475,6 +1487,14 @@ export const customers = pgTable("customers", {
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
 
+export const insertCartSchema = createInsertSchema(carts).pick({
+  sessionId: true,
+  customerId: true,
+  items: true,
+  metadata: true,
+  expiresAt: true,
+});
+
 export const insertOrderSchema = createInsertSchema(orders).pick({
   paymentIntentId: true,
   customerId: true,
@@ -1499,6 +1519,8 @@ export const insertCustomerSchema = createInsertSchema(customers).pick({
   metadata: true,
 });
 
+export type InsertCart = z.infer<typeof insertCartSchema>;
+export type Cart = typeof carts.$inferSelect;
 export type InsertOrder = z.infer<typeof insertOrderSchema>;
 export type Order = typeof orders.$inferSelect;
 export type InsertCustomer = z.infer<typeof insertCustomerSchema>;
