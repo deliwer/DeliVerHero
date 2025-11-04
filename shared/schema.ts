@@ -2474,3 +2474,92 @@ export const sellRequestSchema = z.object({
   contactEmail: z.string().email("Valid email is required"),
   contactPhone: z.string().optional(),
 });
+
+// ========================================
+// E-COMMERCE: LOYALTY & VOUCHERS
+// ========================================
+
+// AquaCafe Loyalty Memberships - Auto-enrolled on first purchase
+export const loyaltyMemberships = pgTable("loyalty_memberships", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  customerId: varchar("customer_id").notNull().references(() => customers.id),
+  membershipNumber: text("membership_number").notNull().unique(),
+  tier: text("tier").notNull().default("bronze"), // bronze, silver, gold, platinum
+  points: integer("points").notNull().default(0),
+  lifetimePoints: integer("lifetime_points").notNull().default(0),
+  status: text("status").notNull().default("active"), // active, inactive, suspended
+  
+  // Benefits tracking
+  totalOrders: integer("total_orders").notNull().default(0),
+  totalSpentAED: integer("total_spent_aed").notNull().default(0), // in fils
+  
+  // Membership gifts
+  welcomeGiftRedeemed: boolean("welcome_gift_redeemed").notNull().default(false),
+  welcomeGiftType: text("welcome_gift_type"), // 'shower-filter' or 'pizza-voucher'
+  
+  enrolledAt: timestamp("enrolled_at").notNull().default(sql`now()`),
+  lastActivityAt: timestamp("last_activity_at").default(sql`now()`),
+  expiresAt: timestamp("expires_at"), // null = never expires
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Digital Vouchers - Generated automatically for qualifying purchases
+export const digitalVouchers = pgTable("digital_vouchers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  voucherCode: text("voucher_code").notNull().unique(),
+  customerId: varchar("customer_id").notNull().references(() => customers.id),
+  orderId: varchar("order_id").references(() => orders.id),
+  
+  // Voucher details
+  voucherType: text("voucher_type").notNull(), // 'starter-kit-discount', 'chill-grill-d100', 'shower-filter-free'
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  valueAED: integer("value_aed").notNull(), // in fils
+  
+  // Usage tracking
+  status: text("status").notNull().default("active"), // active, redeemed, expired, cancelled
+  redeemedAt: timestamp("redeemed_at"),
+  redeemedLocation: text("redeemed_location"),
+  
+  // Validity
+  validFrom: timestamp("valid_from").notNull().default(sql`now()`),
+  validUntil: timestamp("valid_until").notNull(),
+  
+  // Terms and conditions
+  terms: text("terms"),
+  redemptionInstructions: text("redemption_instructions"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Sessions table for authentication (required by Replit Auth blueprint)
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)],
+);
+
+// Insert schemas for loyalty and vouchers
+export const insertLoyaltyMembershipSchema = createInsertSchema(loyaltyMemberships).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertDigitalVoucherSchema = createInsertSchema(digitalVouchers).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+// Types for loyalty and vouchers
+export type LoyaltyMembership = typeof loyaltyMemberships.$inferSelect;
+export type InsertLoyaltyMembership = z.infer<typeof insertLoyaltyMembershipSchema>;
+export type DigitalVoucher = typeof digitalVouchers.$inferSelect;
+export type InsertDigitalVoucher = z.infer<typeof insertDigitalVoucherSchema>;
