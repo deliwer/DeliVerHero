@@ -1,0 +1,72 @@
+Correct this bundle as "Kangen Water + iPhone Bundle" as "Planet Hero Package: Filter Service + FREE iPhone Upgrade"
+Get a free Upgrade of your old iPhone to the next model when you order any package in the always visible section
+Add always visible Button under the selected Div "Choose Your Water Solution"
+Add original K8 Lifestyle image for Planet Hero Package when expanded showing K8 Ionise and Water Filter installed in the kitchen with an iPhone with a happy home owner
+Show the Prices from www.kangenwaterdubai.com for Kangen (Enagic) and The AquaCafe Water Filters with PayPal checkout
+
+Move the "Sell Your iPhone" scroll button below the step 2 always on banner
+Enhance the Step 1 content to open the /aquacafe page for details about filtration products
+Add Shower Filter and other models of water treatment related home products available in Dubai like ispring or express water etc
+
+div
+2 hours ago
+
+1 message & 1 action
+I'll help you enhance the water filtration products section with real pricing from the Kangen Water Dubai website and integrate PayPal checkout. Let me create a plan to address all your requirements. Here's my approach: **What I'll do:** 1. **Search for real pricing** from www.kangenwaterdubai.com to replace placeholder prices 2. **Update bundle branding** to "Planet Hero Package: Filter Service + FREE iPhone Upgrade" 3. **Add product variety** including shower filters, ispring, and express water models 4. **Integrate PayPal** using Replit's secure PayPal integration for checkout 5. **Reorganize layout** to improve flow and add always-visible CTAs 6. **Add lifestyle imagery** showing the K8 system installed in homes This will transform the section into a complete e-commerce experience with real products, real prices, and secure payment processing.
+Do not change the website structure and current flow and keep it untouched
+Test deployment for error free checkout via Paypal or Stripe interchangeably
+Make a failsafe customer account and Loyalty membership integration for Starter Kit offers with digital vouchers for Dirhams 99
+Add free AquaCafe Loyalty membership for customers who place orders for any pactages
+Migrate the backend to Replit core and Frontend Vercel for the whole processes
+Discard Shopify Backend with Hydrogen or Oxygen Headless if the migration to Replit Core runs error free and safely assure the seamless wotking without Shopify backend
+PayPal integration is preferable with a fall back to stripe
+The go to market is the /aquacafe for transactional revenue from water products
+This update is critical to production and launch
+Test all aspects for usability as a software tester
+
+1 hour ago
+
+1 message & 1 action
+I understand - this is a critical production migration! You want to move away from Shopify to a fully Replit-powered backend with secure payment processing, customer accounts, and loyalty rewards. Let me outline the approach: **My Strategy:** 1. **Payment Integration** - Set up PayPal as primary payment processor with Stripe fallback using Replit's secure integrations 2. **Customer Accounts** - Implement authentication system for customer registration and login 3. **Loyalty Membership** - Create automatic loyalty membership for all customers placing orders 4. **Digital Vouchers** - Build voucher system for AED 99 Starter Kit offers 5. **Backend Migration** - Move all logic to Replit Core (already mostly done based on current structure) 6. **Testing** - Comprehensive checkout and user flow testing before launch 7. **Deployment** - Configure for Replit backend + Vercel frontend deployment I'll keep the current website structure completely intact and only add the necessary backend infrastructure for payments, accounts, and loyalty features. The /aquacafe page will remain the main transactional hub.
+Start building
+1 hour ago
+Checkpoint made
+1 hour ago
+•
+Free
+Transitioned from Plan to Build mode
+
+Rollback here
+
+Changes
+
+Preview
+
+26 messages & 25 actions
+I can see you're ready to launch this product with a complete backend migration to Replit and proper payment integration. Let me analyze what needs to be done and get started building the critical features for production. Looking at your requirements, the core system needs: 1. **Customer accounts & loyalty membership** - Auto-enrollment on purchase 2. **PayPal (primary) + Stripe (fallback)** payment processing 3. **Digital voucher system** for AED 99 Starter Kit 4. **Order management** tied to /aquacafe products 5. **Database persistence** for customers, orders, memberships, vouchers This is a production-critical implementation, so I'll build it methodically to ensure error-free operation. Let me start by setting up the integrations and database foundation.
+Checkpoint made
+52 minutes ago
+Add loyalty and voucher management to the storage system
+
+Rollback here
+
+Changes
+
+Preview
+4 minutes of work
+Checkpoint made
+49 minutes ago
+Add new payment processing secrets for PayPal and Stripe
+
+Rollback here
+
+Changes
+
+Preview
+Keep the existing product cards and starter kit offer
+Remove Shopify after verifying replit system works
+
+48 minutes ago
+
+Decided on payment integration strategy (6 seconds)
+Perfect! I'll keep everything as is and integrate paymen
