@@ -1,4 +1,4 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type TradeInSellRequest, type InsertTradeInSellRequest, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type LoyaltyMembership, type InsertLoyaltyMembership, type DigitalVoucher, type InsertDigitalVoucher, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory, type ChaintrackMembershipTier, type ChaintrackAuction, type InsertChaintrackAuction, type ChaintrackBid, type InsertChaintrackBid, type ChaintrackSupplier, type InsertChaintrackSupplier, type ChaintrackInventory, type InsertChaintrackInventory, type ChaintrackInspection, type InsertChaintrackInspection, type ChaintrackTransaction, type InsertChaintrackTransaction, type ChaintrackRating, type InsertChaintrackRating, type ChaintrackSeller, type InsertChaintrackSeller, type ChaintrackEscrow, type InsertChaintrackEscrow, type ChaintrackShipment, type InsertChaintrackShipment, type ChaintrackDocument, type InsertChaintrackDocument, type ChaintrackAmlLog, type InsertChaintrackAmlLog, type ChaintrackAuditLog, type InsertChaintrackAuditLog, type ChaintrackComplianceAlert, type InsertChaintrackComplianceAlert } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type TradeInSellRequest, type InsertTradeInSellRequest, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type LoyaltyMembership, type InsertLoyaltyMembership, type DigitalVoucher, type InsertDigitalVoucher, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory, type ChaintrackMembershipTier, type ChaintrackAuction, type InsertChaintrackAuction, type ChaintrackBid, type InsertChaintrackBid, type ChaintrackSupplier, type InsertChaintrackSupplier, type ChaintrackInventory, type InsertChaintrackInventory, type ChaintrackInspection, type InsertChaintrackInspection, type ChaintrackTransaction, type InsertChaintrackTransaction, type ChaintrackRating, type InsertChaintrackRating, type ChaintrackSeller, type InsertChaintrackSeller, type ChaintrackEscrow, type InsertChaintrackEscrow, type ChaintrackShipment, type InsertChaintrackShipment, type ChaintrackDocument, type InsertChaintrackDocument, type ChaintrackAmlLog, type InsertChaintrackAmlLog, type ChaintrackAuditLog, type InsertChaintrackAuditLog, type ChaintrackComplianceAlert, type InsertChaintrackComplianceAlert, type FulfillmentReseller, type InsertFulfillmentReseller, type FulfillmentOrder, type InsertFulfillmentOrder, type ResellerInventorySubscription, type InsertResellerInventorySubscription, type FulfillmentPricing, type InsertFulfillmentPricing } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -416,6 +416,25 @@ export interface IStorage {
   
   getAllChaintrackComplianceAlerts(sellerId?: string, escrowId?: string, status?: string): Promise<ChaintrackComplianceAlert[]>;
   createChaintrackComplianceAlert(alert: InsertChaintrackComplianceAlert): Promise<ChaintrackComplianceAlert>;
+  
+  // Fulfillment by DeliWer
+  getAllFulfillmentResellers(status?: string, kycStatus?: string): Promise<FulfillmentReseller[]>;
+  getFulfillmentReseller(id: string): Promise<FulfillmentReseller | undefined>;
+  getFulfillmentResellerByUserId(userId: string): Promise<FulfillmentReseller | undefined>;
+  createFulfillmentReseller(reseller: InsertFulfillmentReseller): Promise<FulfillmentReseller>;
+  updateFulfillmentReseller(id: string, updates: Partial<FulfillmentReseller>): Promise<FulfillmentReseller | undefined>;
+  
+  getAllFulfillmentOrders(resellerId?: string, paymentStatus?: string, fulfillmentStatus?: string): Promise<FulfillmentOrder[]>;
+  getFulfillmentOrder(id: string): Promise<FulfillmentOrder | undefined>;
+  createFulfillmentOrder(order: InsertFulfillmentOrder): Promise<FulfillmentOrder>;
+  updateFulfillmentOrder(id: string, updates: Partial<FulfillmentOrder>): Promise<FulfillmentOrder | undefined>;
+  
+  getResellerInventorySubscriptions(resellerId?: string): Promise<ResellerInventorySubscription[]>;
+  createResellerInventorySubscription(subscription: InsertResellerInventorySubscription): Promise<ResellerInventorySubscription>;
+  updateResellerInventorySubscription(id: string, updates: Partial<ResellerInventorySubscription>): Promise<ResellerInventorySubscription | undefined>;
+  
+  getAvailableFulfillmentPricing(filters?: { productType?: string; condition?: string; sourceCountry?: string; storage?: string; color?: string; grade?: string }): Promise<FulfillmentPricing[]>;
+  createFulfillmentPricing(pricing: InsertFulfillmentPricing): Promise<FulfillmentPricing>;
 }
 
 export class MemStorage implements IStorage {
@@ -503,6 +522,12 @@ export class MemStorage implements IStorage {
   private chaintrackAuditLogs: Map<string, ChaintrackAuditLog>;
   private chaintrackComplianceAlerts: Map<string, ChaintrackComplianceAlert>;
 
+  // Fulfillment by DeliWer
+  private fulfillmentResellers: Map<string, FulfillmentReseller>;
+  private fulfillmentOrders: Map<string, FulfillmentOrder>;
+  private resellerInventorySubscriptions: Map<string, ResellerInventorySubscription>;
+  private fulfillmentPricing: Map<string, FulfillmentPricing>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -585,6 +610,12 @@ export class MemStorage implements IStorage {
     this.chaintrackAmlLogs = new Map();
     this.chaintrackAuditLogs = new Map();
     this.chaintrackComplianceAlerts = new Map();
+
+    // Initialize Fulfillment by DeliWer
+    this.fulfillmentResellers = new Map();
+    this.fulfillmentOrders = new Map();
+    this.resellerInventorySubscriptions = new Map();
+    this.fulfillmentPricing = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -5370,6 +5401,171 @@ export class MemStorage implements IStorage {
     };
     this.chaintrackComplianceAlerts.set(newAlert.id, newAlert);
     return newAlert;
+  }
+
+  // ============================================================================
+  // FULFILLMENT BY DELIVVER METHODS
+  // ============================================================================
+
+  async getAllFulfillmentResellers(status?: string, kycStatus?: string): Promise<FulfillmentReseller[]> {
+    let resellers = Array.from(this.fulfillmentResellers.values());
+    
+    if (status) {
+      resellers = resellers.filter(r => r.status === status);
+    }
+    if (kycStatus) {
+      resellers = resellers.filter(r => r.kycStatus === kycStatus);
+    }
+    
+    return resellers.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getFulfillmentReseller(id: string): Promise<FulfillmentReseller | undefined> {
+    return this.fulfillmentResellers.get(id);
+  }
+
+  async getFulfillmentResellerByUserId(userId: string): Promise<FulfillmentReseller | undefined> {
+    return Array.from(this.fulfillmentResellers.values()).find(r => r.userId === userId);
+  }
+
+  async createFulfillmentReseller(reseller: InsertFulfillmentReseller): Promise<FulfillmentReseller> {
+    const newReseller: FulfillmentReseller = {
+      id: randomUUID(),
+      ...reseller,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.fulfillmentResellers.set(newReseller.id, newReseller);
+    return newReseller;
+  }
+
+  async updateFulfillmentReseller(id: string, updates: Partial<FulfillmentReseller>): Promise<FulfillmentReseller | undefined> {
+    const reseller = this.fulfillmentResellers.get(id);
+    if (!reseller) return undefined;
+    
+    const updated = { 
+      ...reseller, 
+      ...updates, 
+      updatedAt: new Date() 
+    };
+    this.fulfillmentResellers.set(id, updated);
+    return updated;
+  }
+
+  async getAllFulfillmentOrders(resellerId?: string, paymentStatus?: string, fulfillmentStatus?: string): Promise<FulfillmentOrder[]> {
+    let orders = Array.from(this.fulfillmentOrders.values());
+    
+    if (resellerId) {
+      orders = orders.filter(o => o.resellerId === resellerId);
+    }
+    if (paymentStatus) {
+      orders = orders.filter(o => o.paymentStatus === paymentStatus);
+    }
+    if (fulfillmentStatus) {
+      orders = orders.filter(o => o.fulfillmentStatus === fulfillmentStatus);
+    }
+    
+    return orders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getFulfillmentOrder(id: string): Promise<FulfillmentOrder | undefined> {
+    return this.fulfillmentOrders.get(id);
+  }
+
+  async createFulfillmentOrder(order: InsertFulfillmentOrder): Promise<FulfillmentOrder> {
+    const newOrder: FulfillmentOrder = {
+      id: randomUUID(),
+      ...order,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.fulfillmentOrders.set(newOrder.id, newOrder);
+    return newOrder;
+  }
+
+  async updateFulfillmentOrder(id: string, updates: Partial<FulfillmentOrder>): Promise<FulfillmentOrder | undefined> {
+    const order = this.fulfillmentOrders.get(id);
+    if (!order) return undefined;
+    
+    const updated = { 
+      ...order, 
+      ...updates, 
+      updatedAt: new Date() 
+    };
+    this.fulfillmentOrders.set(id, updated);
+    return updated;
+  }
+
+  async getResellerInventorySubscriptions(resellerId?: string): Promise<ResellerInventorySubscription[]> {
+    let subscriptions = Array.from(this.resellerInventorySubscriptions.values());
+    
+    if (resellerId) {
+      subscriptions = subscriptions.filter(s => s.resellerId === resellerId);
+    }
+    
+    return subscriptions.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async createResellerInventorySubscription(subscription: InsertResellerInventorySubscription): Promise<ResellerInventorySubscription> {
+    const newSubscription: ResellerInventorySubscription = {
+      id: randomUUID(),
+      ...subscription,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.resellerInventorySubscriptions.set(newSubscription.id, newSubscription);
+    return newSubscription;
+  }
+
+  async updateResellerInventorySubscription(id: string, updates: Partial<ResellerInventorySubscription>): Promise<ResellerInventorySubscription | undefined> {
+    const subscription = this.resellerInventorySubscriptions.get(id);
+    if (!subscription) return undefined;
+    
+    const updated = { 
+      ...subscription, 
+      ...updates, 
+      updatedAt: new Date() 
+    };
+    this.resellerInventorySubscriptions.set(id, updated);
+    return updated;
+  }
+
+  async getAvailableFulfillmentPricing(filters?: { productType?: string; condition?: string; sourceCountry?: string; storage?: string; color?: string; grade?: string }): Promise<FulfillmentPricing[]> {
+    let pricing = Array.from(this.fulfillmentPricing.values()).filter(p => p.isActive);
+    
+    if (filters) {
+      if (filters.productType) {
+        pricing = pricing.filter(p => p.productType === filters.productType);
+      }
+      if (filters.condition) {
+        pricing = pricing.filter(p => p.condition === filters.condition);
+      }
+      if (filters.sourceCountry) {
+        pricing = pricing.filter(p => p.sourceCountry === filters.sourceCountry);
+      }
+      if (filters.storage) {
+        pricing = pricing.filter(p => p.storage === filters.storage);
+      }
+      if (filters.color) {
+        pricing = pricing.filter(p => p.color === filters.color);
+      }
+      if (filters.grade) {
+        pricing = pricing.filter(p => p.grade === filters.grade);
+      }
+    }
+    
+    return pricing.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+  }
+
+  async createFulfillmentPricing(pricing: InsertFulfillmentPricing): Promise<FulfillmentPricing> {
+    const newPricing: FulfillmentPricing = {
+      id: randomUUID(),
+      ...pricing,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.fulfillmentPricing.set(newPricing.id, newPricing);
+    return newPricing;
   }
 }
 

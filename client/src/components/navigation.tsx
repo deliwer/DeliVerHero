@@ -47,6 +47,7 @@ export function Navigation() {
 
   const b2bNavItems = [
     { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack", featured: true },
+    { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment" },
     { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },

@@ -2237,6 +2237,211 @@ export const chaintrackComplianceAlerts = pgTable("chaintrack_compliance_alerts"
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+// ============================================================================
+// FULFILLMENT BY DELIWER - Reseller Dropship Program
+// ============================================================================
+
+// Reseller Accounts - Online store owners who use DeliWer for fulfillment
+export const fulfillmentResellers = pgTable("fulfillment_resellers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id).unique(),
+  
+  // Business Information
+  businessName: text("business_name").notNull(),
+  websiteUrl: text("website_url").notNull(),
+  businessType: text("business_type").notNull(), // 'online_store', 'marketplace_seller', 'affiliate', 'retail'
+  contactPerson: text("contact_person").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email").notNull(),
+  
+  // KYC & Verification
+  businessLicense: text("business_license"),
+  tradeLicense: text("trade_license"),
+  taxId: text("tax_id"),
+  kycStatus: text("kyc_status").notNull().default("pending"), // 'pending', 'verified', 'rejected'
+  verifiedAt: timestamp("verified_at"),
+  verifiedBy: varchar("verified_by").references(() => users.id),
+  
+  // Financial Details
+  bankName: text("bank_name"),
+  bankAccountNumber: text("bank_account_number"),
+  bankIban: text("bank_iban"),
+  paymentTerms: text("payment_terms").default("advance_payment"), // 'advance_payment', 'net_7', 'net_15'
+  creditLimit: integer("credit_limit").default(0), // in USD cents
+  
+  // Reseller Tier (determines pricing and commission)
+  resellerTier: text("reseller_tier").notNull().default("starter"), // 'starter' (1% markup), 'growth' (0.5% markup), 'enterprise' (negotiable)
+  monthlyOrderVolume: integer("monthly_order_volume").default(0),
+  totalOrderValue: integer("total_order_value").default(0), // in USD cents
+  
+  // API Access (for automated order placement)
+  apiKeyEnabled: boolean("api_key_enabled").default(false),
+  apiKey: text("api_key").unique(),
+  webhookUrl: text("webhook_url"),
+  
+  // Statistics
+  totalOrders: integer("total_orders").notNull().default(0),
+  totalRevenue: integer("total_revenue").notNull().default(0), // in USD cents
+  averageOrderValue: integer("average_order_value").default(0),
+  reputationScore: integer("reputation_score").default(100), // 0-100
+  
+  // Status
+  status: text("status").notNull().default("active"), // 'active', 'suspended', 'inactive'
+  suspendedAt: timestamp("suspended_at"),
+  suspensionReason: text("suspension_reason"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Fulfillment Orders - Orders placed by resellers for their end customers
+export const fulfillmentOrders = pgTable("fulfillment_orders", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  orderNumber: text("order_number").notNull().unique(), // e.g., "FBD-2025-00123"
+  
+  // Reseller & Customer
+  resellerId: varchar("reseller_id").notNull().references(() => fulfillmentResellers.id),
+  resellerOrderId: text("reseller_order_id"), // Reseller's own order reference
+  
+  // End Customer Details (shipping destination)
+  customerName: text("customer_name").notNull(),
+  customerEmail: text("customer_email").notNull(),
+  customerPhone: text("customer_phone").notNull(),
+  shippingAddress: text("shipping_address").notNull(),
+  shippingCity: text("shipping_city").notNull(),
+  shippingState: text("shipping_state"),
+  shippingCountry: text("shipping_country").notNull(),
+  shippingPostalCode: text("shipping_postal_code"),
+  
+  // Product Details (from ChainTrack Inventory)
+  productType: text("product_type").notNull(), // 'iPhone 15 Pro Max', etc.
+  storage: text("storage"), // '256GB', '512GB', '1TB'
+  color: text("color"),
+  condition: text("condition").notNull(), // 'new', 'refurbished', 'like-new'
+  grade: text("grade"), // 'A', 'B', 'C'
+  quantity: integer("quantity").notNull().default(1),
+  unitCost: integer("unit_cost").notNull(), // Cost from supplier in USD cents
+  markupPercent: integer("markup_percent").notNull(), // Reseller markup %
+  totalAmount: integer("total_amount").notNull(), // Total charged to reseller in USD cents
+  currency: text("currency").notNull().default("USD"),
+  
+  // Source Supplier (ChainTrack)
+  supplierId: varchar("supplier_id").references(() => chaintrackSuppliers.id),
+  inventoryItemId: varchar("inventory_item_id").references(() => chaintrackInventory.id),
+  
+  // Payment Status
+  paymentStatus: text("payment_status").notNull().default("pending"), // 'pending', 'paid', 'failed', 'refunded'
+  paymentMethod: text("payment_method"), // 'bank_transfer', 'stripe', 'paypal'
+  paymentReference: text("payment_reference"),
+  paidAt: timestamp("paid_at"),
+  paymentDueDate: timestamp("payment_due_date"),
+  
+  // Fulfillment Status
+  fulfillmentStatus: text("fulfillment_status").notNull().default("pending"), // 'pending', 'processing', 'sourced', 'shipped', 'delivered', 'cancelled', 'failed'
+  sourcedAt: timestamp("sourced_at"), // When inventory was secured from supplier
+  shippedAt: timestamp("shipped_at"),
+  deliveredAt: timestamp("delivered_at"),
+  estimatedDeliveryDate: timestamp("estimated_delivery_date"),
+  
+  // Shipping Details
+  shippingCarrier: text("shipping_carrier"), // 'DHL', 'FedEx', 'Aramex', 'UPS'
+  trackingNumber: text("tracking_number"),
+  trackingUrl: text("tracking_url"),
+  shippingCost: integer("shipping_cost").default(0), // in USD cents
+  
+  // Quality Assurance
+  inspectionRequired: boolean("inspection_required").default(true),
+  inspectionStatus: text("inspection_status").default("pending"), // 'pending', 'passed', 'failed'
+  inspectionNotes: text("inspection_notes"),
+  inspectedAt: timestamp("inspected_at"),
+  
+  // Special Instructions
+  resellerNotes: text("reseller_notes"),
+  packingInstructions: text("packing_instructions"),
+  customBranding: boolean("custom_branding").default(false), // Use reseller's branding
+  
+  // Returns & Issues
+  returnRequested: boolean("return_requested").default(false),
+  returnReason: text("return_reason"),
+  returnStatus: text("return_status"), // 'pending', 'approved', 'rejected', 'completed'
+  
+  cancelledAt: timestamp("cancelled_at"),
+  cancellationReason: text("cancellation_reason"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => [
+  index("fulfillment_orders_reseller_idx").on(table.resellerId),
+  index("fulfillment_orders_status_idx").on(table.fulfillmentStatus),
+  index("fulfillment_orders_payment_idx").on(table.paymentStatus),
+]);
+
+// Reseller Inventory Subscriptions - Which products reseller wants access to
+export const resellerInventorySubscriptions = pgTable("reseller_inventory_subscriptions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  resellerId: varchar("reseller_id").notNull().references(() => fulfillmentResellers.id),
+  
+  // Product Preferences
+  productTypes: jsonb("product_types").notNull().default([]), // ['iPhone 15 Pro', 'iPhone 14', etc.]
+  conditions: jsonb("conditions").notNull().default(['new', 'refurbished']), // Preferred conditions
+  minGrade: text("min_grade").default("B"), // Minimum acceptable grade
+  sourceCountries: jsonb("source_countries").default(['US', 'UAE', 'Japan']), // Preferred sources
+  
+  // Pricing Preferences
+  maxUnitPrice: integer("max_unit_price"), // Maximum price willing to pay in USD cents
+  preferredMarkup: integer("preferred_markup").default(100), // Default markup %
+  
+  // Notifications
+  notifyOnNewInventory: boolean("notify_on_new_inventory").default(true),
+  notifyOnPriceDrops: boolean("notify_on_price_drops").default(true),
+  emailNotifications: boolean("email_notifications").default(true),
+  
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Fulfillment Pricing - Real-time pricing for resellers
+export const fulfillmentPricing = pgTable("fulfillment_pricing", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Product Details
+  productType: text("product_type").notNull(),
+  storage: text("storage"),
+  color: text("color"),
+  condition: text("condition").notNull(),
+  grade: text("grade"),
+  
+  // Source & Availability
+  supplierId: varchar("supplier_id").references(() => chaintrackSuppliers.id),
+  sourceCountry: text("source_country").notNull(),
+  availableQuantity: integer("available_quantity").notNull(),
+  
+  // Cost Structure
+  baseCost: integer("base_cost").notNull(), // Supplier cost in USD cents
+  fulfillmentFee: integer("fulfillment_fee").notNull(), // DeliWer service fee
+  inspectionFee: integer("inspection_fee").default(0),
+  shippingFee: integer("shipping_fee").default(0),
+  totalCost: integer("total_cost").notNull(), // Total cost to reseller
+  
+  // Tier-based Pricing
+  starterPrice: integer("starter_price").notNull(), // Price for starter tier
+  growthPrice: integer("growth_price").notNull(), // Price for growth tier
+  enterprisePrice: integer("enterprise_price").notNull(), // Price for enterprise tier
+  
+  // Validity
+  validFrom: timestamp("valid_from").notNull().default(sql`now()`),
+  validUntil: timestamp("valid_until").notNull(),
+  isActive: boolean("is_active").default(true),
+  
+  lastUpdatedBy: varchar("last_updated_by").references(() => users.id),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => [
+  index("fulfillment_pricing_product_idx").on(table.productType, table.condition),
+  index("fulfillment_pricing_validity_idx").on(table.validUntil),
+]);
+
 // Insert Schemas
 export const insertChaintrackAuctionSchema = createInsertSchema(chaintrackAuctions).omit({
   id: true,
@@ -2369,6 +2574,54 @@ export type ChaintrackAuditLog = typeof chaintrackAuditLogs.$inferSelect;
 export type InsertChaintrackAuditLog = z.infer<typeof insertChaintrackAuditLogSchema>;
 export type ChaintrackComplianceAlert = typeof chaintrackComplianceAlerts.$inferSelect;
 export type InsertChaintrackComplianceAlert = z.infer<typeof insertChaintrackComplianceAlertSchema>;
+
+// Fulfillment by DeliWer Insert Schemas
+export const insertFulfillmentResellerSchema = createInsertSchema(fulfillmentResellers).omit({
+  id: true,
+  verifiedAt: true,
+  totalOrders: true,
+  totalRevenue: true,
+  averageOrderValue: true,
+  reputationScore: true,
+  suspendedAt: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertFulfillmentOrderSchema = createInsertSchema(fulfillmentOrders).omit({
+  id: true,
+  orderNumber: true,
+  paidAt: true,
+  sourcedAt: true,
+  shippedAt: true,
+  deliveredAt: true,
+  inspectedAt: true,
+  cancelledAt: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertResellerInventorySubscriptionSchema = createInsertSchema(resellerInventorySubscriptions).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertFulfillmentPricingSchema = createInsertSchema(fulfillmentPricing).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+// Fulfillment by DeliWer Types
+export type FulfillmentReseller = typeof fulfillmentResellers.$inferSelect;
+export type InsertFulfillmentReseller = z.infer<typeof insertFulfillmentResellerSchema>;
+export type FulfillmentOrder = typeof fulfillmentOrders.$inferSelect;
+export type InsertFulfillmentOrder = z.infer<typeof insertFulfillmentOrderSchema>;
+export type ResellerInventorySubscription = typeof resellerInventorySubscriptions.$inferSelect;
+export type InsertResellerInventorySubscription = z.infer<typeof insertResellerInventorySubscriptionSchema>;
+export type FulfillmentPricing = typeof fulfillmentPricing.$inferSelect;
+export type InsertFulfillmentPricing = z.infer<typeof insertFulfillmentPricingSchema>;
 
 // AI Deli Pricing Engine Schema
 export const marketPrices = pgTable("market_prices", {
