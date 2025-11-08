@@ -15,7 +15,7 @@ import { TestimonialsSection } from "@/components/testimonials-section";
 import { TrustElements } from "@/components/trust-elements";
 import { RewardComparison } from "@/components/reward-comparison";
 import { SEOMeta } from "@/components/seo-meta";
-import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp } from "lucide-react";
+import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gavel, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -292,6 +292,109 @@ export default function Home() {
 
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Now includes How It Works flow */}
       <HeroChallengeLanding />
+
+      {/* B2B Wholesale Platform Promotion */}
+      <section className="py-16 px-4 bg-gradient-to-b from-slate-800 to-slate-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Are You a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Wholesale Buyer?</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Access our B2B platform for bulk iPhone procurement, reverse auctions, and fulfillment services
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* ChainTrack - Reverse Auctions */}
+            <div className="bg-gradient-to-br from-blue-900/50 to-slate-900/50 rounded-2xl p-8 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                  <Gavel className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">ChainTrack</h3>
+              </div>
+              <p className="text-gray-300 mb-6">
+                B2B wholesale platform with reverse auctions. Let suppliers compete for your business with the best pricing.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-blue-400" />
+                  <span>iPhone 17 inventory available now</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-blue-400" />
+                  <span>Anonymous supplier bidding</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-blue-400" />
+                  <span>Volume discounts & tiered pricing</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-blue-400" />
+                  <span>Secure escrow transactions</span>
+                </div>
+              </div>
+              <Link href="/chaintrack">
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" size="lg" data-testid="button-chaintrack-cta">
+                  <Gavel className="w-5 h-5 mr-2" />
+                  Explore ChainTrack
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Fulfillment by DeliWer */}
+            <div className="bg-gradient-to-br from-purple-900/50 to-slate-900/50 rounded-2xl p-8 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
+                  <ShoppingCart className="w-6 h-6 text-purple-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">Fulfillment by DeliWer</h3>
+              </div>
+              <p className="text-gray-300 mb-6">
+                Complete dropship program for resellers. We handle sourcing, quality control, and direct shipping to your customers.
+              </p>
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-purple-400" />
+                  <span>Access to iPhone 17 pre-orders</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-purple-400" />
+                  <span>White-label dropshipping</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-purple-400" />
+                  <span>Real-time inventory & tracking</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-purple-400" />
+                  <span>Quality inspection guarantee</span>
+                </div>
+              </div>
+              <Link href="/fulfillment">
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800" size="lg" data-testid="button-fulfillment-cta">
+                  <ShoppingCart className="w-5 h-5 mr-2" />
+                  Learn About FBD
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-gray-400 text-sm mb-4">
+              New to B2B wholesale? Start with a free consultation
+            </p>
+            <Link href="/signup">
+              <Button variant="outline" size="lg" className="border-2 border-blue-500/50" data-testid="button-b2b-signup">
+                Request B2B Access
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Partnership & Starter Kit Convergence Section - Now Collapsible for Partners */}
       <section className="py-12 px-4 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900">

@@ -79,9 +79,9 @@ export function TradeInBanner() {
                 <h3 className="text-lg font-bold text-white mb-4">Example Trade-In Values</h3>
                 <div className="space-y-3">
                   {[
-                    { model: "iPhone 15 Pro Max 256GB", condition: "Excellent", value: "AED 3,200", points: "32,000 Points" },
-                    { model: "iPhone 14 Pro 128GB", condition: "Good", value: "AED 1,870", points: "18,700 Points" },
-                    { model: "iPhone 13 128GB", condition: "Fair", value: "AED 840", points: "8,400 Points" },
+                    { model: "iPhone 17 Pro Max 256GB", condition: "Excellent", value: "AED 3,850", points: "38,500 Points", highlight: true },
+                    { model: "iPhone 16 Pro 256GB", condition: "Excellent", value: "AED 3,200", points: "32,000 Points" },
+                    { model: "iPhone 15 Pro Max 256GB", condition: "Good", value: "AED 2,400", points: "24,000 Points" },
                   ].map((item, idx) => (
                     <div key={idx} className="flex justify-between items-center bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
                       <div>

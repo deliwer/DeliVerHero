@@ -13,6 +13,11 @@ import {
   Award
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import iPhone17ProMaxBlue from "@assets/generated_images/iPhone_17_Pro_Max_Blue_5527e769.png";
+import iPhone17Pro from "@assets/generated_images/iPhone_17_Pro_Natural_102f756e.png";
+import iPhone17Plus from "@assets/generated_images/iPhone_17_Plus_Black_07e48dac.png";
+import iPhone17 from "@assets/generated_images/iPhone_17_White_c97e6eb6.png";
 
 export function IPhone17Launch() {
   const [timeLeft, setTimeLeft] = useState({
@@ -98,6 +103,44 @@ export function IPhone17Launch() {
               <Users className="w-5 h-5 mr-2" />
               Share & Join Heroes
             </Button>
+          </div>
+        </div>
+
+        {/* iPhone 17 Models Showcase */}
+        <div className="mb-12">
+          <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
+            Meet the iPhone 17 Lineup
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: "iPhone 17 Pro Max", image: iPhone17ProMaxBlue, price: "From AED 4,399", features: "6.9\" display, A19 Pro chip" },
+              { name: "iPhone 17 Pro", image: iPhone17Pro, price: "From AED 3,699", features: "6.3\" display, A19 Pro chip" },
+              { name: "iPhone 17 Plus", image: iPhone17Plus, price: "From AED 3,299", features: "6.7\" display, A19 chip" },
+              { name: "iPhone 17", image: iPhone17, price: "From AED 2,999", features: "6.1\" display, A19 chip" }
+            ].map((model, index) => (
+              <Card key={index} className="glass overflow-hidden border border-white/20 bg-gradient-to-b from-white/10 to-white/5 hover:scale-105 transition-transform duration-300" data-testid={`card-iphone17-${model.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                <div className="p-6 text-center">
+                  <div className="mb-4 flex items-center justify-center">
+                    <img 
+                      src={model.image} 
+                      alt={model.name}
+                      className="w-32 h-32 object-contain"
+                      data-testid={`img-${model.name.toLowerCase().replace(/\s+/g, '-')}`}
+                    />
+                  </div>
+                  <h4 className="text-lg font-bold text-white mb-2">{model.name}</h4>
+                  <p className="text-hero-green-400 font-bold text-sm mb-1">{model.price}</p>
+                  <p className="text-gray-400 text-xs mb-4">{model.features}</p>
+                  <div className="flex items-center justify-center gap-1 text-amber-500">
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                  </div>
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
 

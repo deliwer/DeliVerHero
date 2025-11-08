@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Package,
   TruckIcon,
@@ -16,7 +17,14 @@ import {
   Clock,
   BarChart3,
   Users,
+  Sparkles,
+  Smartphone,
 } from "lucide-react";
+import { getLatestModels, getModelsBySeries, type iPhoneModel } from "@shared/iphone-catalog";
+import iPhone17ProMaxBlue from "@assets/generated_images/iPhone_17_Pro_Max_Blue_5527e769.png";
+import iPhone17Pro from "@assets/generated_images/iPhone_17_Pro_Natural_102f756e.png";
+import iPhone17Plus from "@assets/generated_images/iPhone_17_Plus_Black_07e48dac.png";
+import iPhone17 from "@assets/generated_images/iPhone_17_White_c97e6eb6.png";
 
 export default function FulfillmentByDeliWer() {
   const [activeTab, setActiveTab] = useState<"buyer" | "seller">("seller");
@@ -184,6 +192,119 @@ export default function FulfillmentByDeliWer() {
                 </ul>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive iPhone Catalog */}
+      <section className="py-20 px-4 bg-gradient-to-b from-muted to-background">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="mb-4" variant="outline" data-testid="badge-new-lineup">
+              <Sparkles className="w-3 h-3 mr-1" />
+              New: iPhone 17 Lineup Available
+            </Badge>
+            <h2 className="text-4xl font-bold mb-4" data-testid="text-catalog-title">Browse Available Inventory</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto" data-testid="text-catalog-subtitle">
+              Access verified iPhone inventory from global suppliers. Real-time pricing and availability.
+            </p>
+          </div>
+
+          {/* iPhone 17 Featured Section */}
+          <div className="mb-12 bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 rounded-2xl p-8 border border-primary/20">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold mb-2">iPhone 17 Series - Now Available</h3>
+              <p className="text-muted-foreground">Pre-order for GITEX 2025 launch. Priority access for verified resellers.</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { name: "iPhone 17 Pro Max", image: iPhone17ProMaxBlue, storage: "Up to 2TB", price: "From $485/unit (bulk 50+)" },
+                { name: "iPhone 17 Pro", image: iPhone17Pro, storage: "Up to 1TB", price: "From $425/unit (bulk 50+)" },
+                { name: "iPhone 17 Plus", image: iPhone17Plus, storage: "Up to 512GB", price: "From $385/unit (bulk 50+)" },
+                { name: "iPhone 17", image: iPhone17, storage: "Up to 512GB", price: "From $345/unit (bulk 50+)" }
+              ].map((model, idx) => (
+                <Card key={idx} className="overflow-hidden hover:shadow-lg transition-shadow" data-testid={`card-catalog-${model.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <div className="p-4">
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src={model.image} 
+                        alt={model.name}
+                        className="w-32 h-32 object-contain"
+                        data-testid={`img-catalog-${model.name.toLowerCase().replace(/\s+/g, '-')}`}
+                      />
+                    </div>
+                    <div className="text-center">
+                      <h4 className="font-bold text-lg mb-1">{model.name}</h4>
+                      <p className="text-sm text-muted-foreground mb-2">{model.storage}</p>
+                      <p className="text-primary font-bold text-sm mb-3">{model.price}</p>
+                      <div className="flex gap-2">
+                        <Link href="/chaintrack" className="flex-1">
+                          <Button variant="outline" size="sm" className="w-full" data-testid={`button-browse-${model.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                            Browse Stock
+                          </Button>
+                        </Link>
+                        <Link href="/bulk-purchasing" className="flex-1">
+                          <Button size="sm" className="w-full" data-testid={`button-quote-${model.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                            Get Quote
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link href="/bulk-purchasing">
+                  <Button size="lg" data-testid="button-request-bulk-quote">
+                    <Package className="w-5 h-5 mr-2" />
+                    Request Bulk Quote
+                  </Button>
+                </Link>
+                <Link href="/chaintrack">
+                  <Button size="lg" variant="outline" data-testid="button-browse-all-inventory">
+                    <Smartphone className="w-5 h-5 mr-2" />
+                    Browse All Inventory
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Procurement Process */}
+          <div className="bg-card rounded-xl p-8 border">
+            <h3 className="text-2xl font-bold mb-6 text-center">Procurement Process</h3>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-primary">1</span>
+                </div>
+                <h4 className="font-bold mb-2">Browse & Select</h4>
+                <p className="text-sm text-muted-foreground">Choose models, storage, condition from our live inventory</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-primary">2</span>
+                </div>
+                <h4 className="font-bold mb-2">Get Quote</h4>
+                <p className="text-sm text-muted-foreground">Instant pricing based on quantity and your tier level</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-primary">3</span>
+                </div>
+                <h4 className="font-bold mb-2">Approve & Pay</h4>
+                <p className="text-sm text-muted-foreground">Review terms, approve order, payment via bank transfer or Stripe</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-primary">4</span>
+                </div>
+                <h4 className="font-bold mb-2">Track & Receive</h4>
+                <p className="text-sm text-muted-foreground">Real-time tracking from source to your customer's door</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

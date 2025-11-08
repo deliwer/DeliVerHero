@@ -136,7 +136,7 @@ function AccessDenied() {
 }
 
 function B2BPricingCalculator() {
-  const [deviceModel, setDeviceModel] = useState("iPhone 13 Pro 256GB");
+  const [deviceModel, setDeviceModel] = useState("iPhone 17 Pro Max 256GB");
   const [condition, setCondition] = useState("Excellent");
   const [quantity, setQuantity] = useState(50);
   const [sourceCountry, setSourceCountry] = useState("India");
@@ -163,11 +163,15 @@ function B2BPricingCalculator() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="iPhone 17 Pro Max 512GB">iPhone 17 Pro Max 512GB</SelectItem>
+              <SelectItem value="iPhone 17 Pro 256GB">iPhone 17 Pro 256GB</SelectItem>
+              <SelectItem value="iPhone 17 Plus 256GB">iPhone 17 Plus 256GB</SelectItem>
+              <SelectItem value="iPhone 17 128GB">iPhone 17 128GB</SelectItem>
+              <SelectItem value="iPhone 16 Pro Max 512GB">iPhone 16 Pro Max 512GB</SelectItem>
               <SelectItem value="iPhone 15 Pro Max 512GB">iPhone 15 Pro Max 512GB</SelectItem>
               <SelectItem value="iPhone 15 Pro 256GB">iPhone 15 Pro 256GB</SelectItem>
               <SelectItem value="iPhone 14 Pro Max 256GB">iPhone 14 Pro Max 256GB</SelectItem>
               <SelectItem value="iPhone 13 Pro 256GB">iPhone 13 Pro 256GB</SelectItem>
-              <SelectItem value="iPhone 13 128GB">iPhone 13 128GB</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -287,31 +291,41 @@ function DemoDashboardPreview() {
   const sampleAuctions = [
     {
       id: "demo-1",
-      device: "iPhone 15 Pro Max 256GB",
+      device: "iPhone 17 Pro Max 256GB",
       quantity: 100,
-      targetPrice: 850,
-      currentBestBid: 825,
-      bidsCount: 7,
-      timeRemaining: "14 hours",
-      sourceCountry: "India"
+      targetPrice: 485,
+      currentBestBid: 475,
+      bidsCount: 12,
+      timeRemaining: "2 days",
+      sourceCountry: "UAE"
     },
     {
       id: "demo-2",
-      device: "iPhone 14 Pro 128GB",
-      quantity: 250,
-      targetPrice: 650,
-      currentBestBid: 635,
-      bidsCount: 12,
-      timeRemaining: "8 hours",
-      sourceCountry: "US"
+      device: "iPhone 17 Pro 256GB",
+      quantity: 150,
+      targetPrice: 425,
+      currentBestBid: 415,
+      bidsCount: 9,
+      timeRemaining: "18 hours",
+      sourceCountry: "Japan"
     },
     {
       id: "demo-3",
-      device: "iPhone 13 256GB",
-      quantity: 500,
-      targetPrice: 485,
-      currentBestBid: 475,
+      device: "iPhone 16 Pro Max 512GB",
+      quantity: 200,
+      targetPrice: 450,
+      currentBestBid: 438,
       bidsCount: 15,
+      timeRemaining: "5 hours",
+      sourceCountry: "USA"
+    },
+    {
+      id: "demo-4",
+      device: "iPhone 15 Pro Max 256GB",
+      quantity: 250,
+      targetPrice: 380,
+      currentBestBid: 372,
+      bidsCount: 18,
       timeRemaining: "3 days",
       sourceCountry: "India"
     }
@@ -2142,7 +2156,7 @@ function CreateAuctionView({ userId }: { userId: string }) {
               id="model"
               value={formData.deviceModel}
               onChange={(e) => setFormData({...formData, deviceModel: e.target.value})}
-              placeholder="e.g., iPhone 15 Pro Max"
+              placeholder="e.g., iPhone 17 Pro Max"
               data-testid="input-model"
             />
           </div>

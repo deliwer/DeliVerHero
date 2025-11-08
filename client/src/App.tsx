@@ -44,6 +44,7 @@ import AccountConsolidated from "@/pages/account-consolidated";
 import ChainTrackPage from "@/pages/chaintrack";
 import FulfillmentByDeliWer from "@/pages/fulfillment-by-deliwer";
 import MembershipPlansPage from "@/pages/membership-plans";
+import BulkPurchasingPage from "@/pages/bulk-purchasing";
 
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -130,6 +131,9 @@ function Router() {
 
         {/* Fulfillment by DeliWer */}
         <Route path="/fulfillment" component={FulfillmentByDeliWer} />
+
+        {/* Bulk Purchasing */}
+        <Route path="/bulk-purchasing" component={BulkPurchasingPage} />
 
         {/* Membership Plans */}
         <Route path="/membership-plans" component={MembershipPlansPage} />
