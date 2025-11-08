@@ -40,14 +40,18 @@ export default function FulfillmentByDeliWer() {
               so you can focus on growing your business.
             </p>
             <div className="flex flex-wrap gap-4 justify-center mt-8">
-              <Button size="lg" className="min-h-12" data-testid="button-join-reseller">
-                <Users className="w-5 h-5 mr-2" />
-                Join as Reseller
-              </Button>
-              <Button size="lg" variant="outline" className="min-h-12" data-testid="button-browse-inventory">
-                <Package className="w-5 h-5 mr-2" />
-                Browse Inventory
-              </Button>
+              <Link href="/signup">
+                <Button size="lg" className="min-h-12" data-testid="button-join-reseller">
+                  <Users className="w-5 h-5 mr-2" />
+                  Join as Reseller
+                </Button>
+              </Link>
+              <Link href="/chaintrack">
+                <Button size="lg" variant="outline" className="min-h-12" data-testid="button-browse-inventory">
+                  <Package className="w-5 h-5 mr-2" />
+                  Browse Inventory
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

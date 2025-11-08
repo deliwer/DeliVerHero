@@ -22,6 +22,7 @@ export const users = pgTable("users", {
   isB2BVerified: boolean("is_b2b_verified").notNull().default(false),
   b2bVerifiedAt: timestamp("b2b_verified_at"),
   membershipTierId: varchar("membership_tier_id").references(() => chaintrackMembershipTiers.id), // ChainTrack membership tier
+  stripeCustomerId: text("stripe_customer_id"), // Stripe customer ID for subscription management
   
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
@@ -1807,6 +1808,39 @@ export const chaintrackMembershipTiers = pgTable("chaintrack_membership_tiers", 
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
 
+// User Subscriptions - Track B2B buyer memberships
+export const userSubscriptions = pgTable("user_subscriptions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id),
+  tierId: varchar("tier_id").notNull().references(() => chaintrackMembershipTiers.id),
+  
+  // Subscription Status
+  status: text("status").notNull().default("active"), // active, cancelled, suspended, expired
+  
+  // Billing
+  stripeSubscriptionId: text("stripe_subscription_id").unique(),
+  stripeCustomerId: text("stripe_customer_id"),
+  currentPeriodStart: timestamp("current_period_start").notNull().default(sql`now()`),
+  currentPeriodEnd: timestamp("current_period_end").notNull(),
+  cancelAt: timestamp("cancel_at"),
+  canceledAt: timestamp("canceled_at"),
+  
+  // Usage Tracking for Minimum Commitment Enforcement
+  monthlyOrderVolume: integer("monthly_order_volume").notNull().default(0), // Total order value in cents
+  monthlyDeviceCount: integer("monthly_device_count").notNull().default(0), // Number of devices ordered
+  lastResetAt: timestamp("last_reset_at").notNull().default(sql`now()`), // When usage was last reset (monthly)
+  
+  // Metadata
+  metadata: jsonb("metadata").default({}),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => ({
+  userIdx: index("user_subscriptions_user_idx").on(table.userId),
+  tierIdx: index("user_subscriptions_tier_idx").on(table.tierId),
+  statusIdx: index("user_subscriptions_status_idx").on(table.status),
+}));
+
 // Insert Schemas
 export const insertB2bBuyerSchema = createInsertSchema(b2bBuyers).omit({
   id: true,
@@ -1838,6 +1872,12 @@ export const insertChaintrackMembershipTierSchema = createInsertSchema(chaintrac
   updatedAt: true,
 });
 
+export const insertUserSubscriptionSchema = createInsertSchema(userSubscriptions).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 // Types
 export type B2bBuyer = typeof b2bBuyers.$inferSelect;
 export type InsertB2bBuyer = z.infer<typeof insertB2bBuyerSchema>;
@@ -1850,6 +1890,8 @@ export type InsertWholesaleInventory = z.infer<typeof insertWholesaleInventorySc
 export type InventoryPriceHistory = typeof inventoryPriceHistory.$inferSelect;
 export type ChaintrackMembershipTier = typeof chaintrackMembershipTiers.$inferSelect;
 export type InsertChaintrackMembershipTier = z.infer<typeof insertChaintrackMembershipTierSchema>;
+export type UserSubscription = typeof userSubscriptions.$inferSelect;
+export type InsertUserSubscription = z.infer<typeof insertUserSubscriptionSchema>;
 
 // ============================================================================
 // CHAINTRACK REVERSE BIDDING SYSTEM

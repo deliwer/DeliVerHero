@@ -43,6 +43,7 @@ import CorporateCombined from "@/pages/corporate-combined";
 import AccountConsolidated from "@/pages/account-consolidated";
 import ChainTrackPage from "@/pages/chaintrack";
 import FulfillmentByDeliWer from "@/pages/fulfillment-by-deliwer";
+import MembershipPlansPage from "@/pages/membership-plans";
 
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -67,9 +68,9 @@ function Router() {
   const basePath = import.meta.env.VITE_BASE_PATH || "";
 
   useEffect(() => {
-    // Domain-based routing for ChainTrack - only www.chaintrack.com
+    // Domain-based routing for ChainTrack - handles both www.chaintrack.com and chaintrack.com
     const hostname = window.location.hostname;
-    if (hostname === 'www.chaintrack.com' && location === '/') {
+    if ((hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
       setLocation('/chaintrack');
       return;
     }
@@ -129,6 +130,9 @@ function Router() {
 
         {/* Fulfillment by DeliWer */}
         <Route path="/fulfillment" component={FulfillmentByDeliWer} />
+
+        {/* Membership Plans */}
+        <Route path="/membership-plans" component={MembershipPlansPage} />
 
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />

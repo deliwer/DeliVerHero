@@ -14,6 +14,7 @@ import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
 import fulfillmentRoutes from "./routes/fulfillment";
+import membershipRoutes from "./routes/memberships";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 import { processPurchase, aedToFils } from "./payment-processing";
 
@@ -60,6 +61,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Register Fulfillment by DeliWer routes
   app.use("/api/fulfillment", fulfillmentRoutes);
+
+  // Register membership tier routes
+  app.use("/api/memberships", membershipRoutes);
 
   // PayPal payment endpoints - referenced from PayPal integration blueprint
   app.get("/setup", async (req, res) => {

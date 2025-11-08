@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { 
   Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, 
   Briefcase, ShoppingCart, UserCircle, ChevronDown, LogIn, UserPlus, 
-  Settings, HelpCircle, Star, Trophy, TrendingDown 
+  Settings, HelpCircle, Star, Trophy, TrendingDown, LayoutDashboard, FileText, Package 
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
@@ -46,11 +46,9 @@ export function Navigation() {
   ];
 
   const b2bNavItems = [
-    { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack", featured: true },
-    { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment" },
-    { path: "/corporate-dashboard", label: "Dashboard", id: "corporate-dashboard" },
+    { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment", featured: true },
+    { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
-    { path: "/purchase-orders", label: "Purchase Orders", id: "purchase-orders" },
   ];
 
   const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
@@ -95,8 +93,8 @@ export function Navigation() {
                   );
                 }
                 
-                // Special styling for featured ChainTrack/Reverse Bidding (B2B)
-                if (item.id === "chaintrack" && item.featured) {
+                // Special styling for featured Fulfillment by DeliWer (B2B)
+                if (item.id === "fulfillment" && item.featured) {
                   return (
                     <Link
                       key={item.path}
@@ -106,7 +104,24 @@ export function Navigation() {
                     >
                       <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border-2 border-blue-500/60 rounded-lg text-white hover:from-blue-600/40 hover:to-cyan-600/40 hover:border-blue-400/80 transition-all duration-300 shadow-xl hover:shadow-blue-500/30">
                         <span className="font-bold text-lg">{item.label}</span>
-                        <TrendingDown className="w-4 h-4 text-green-400" />
+                        <Package className="w-4 h-4 text-green-400" />
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for Reverse Bidding (B2B)
+                if (item.id === "chaintrack") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-blue-600/30 hover:border-purple-400/50 transition-all">
+                        <TrendingDown className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
                       </div>
                     </Link>
                   );
@@ -227,7 +242,7 @@ export function Navigation() {
                 </button>
 
                 {userDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50">
+                  <div className="absolute right-0 mt-2 w-56 bg-slate-800 border border-slate-700 rounded-lg shadow-lg z-50">
                     <div className="py-1">
                       <Link
                         href="/login"
@@ -247,6 +262,33 @@ export function Navigation() {
                         <UserPlus className="w-4 h-4 mr-3" />
                         Sign Up
                       </Link>
+                      
+                      {/* B2B specific dropdown items */}
+                      {isB2BMode && (
+                        <>
+                          <div className="border-t border-slate-700 my-1"></div>
+                          <Link
+                            href="/corporate-dashboard"
+                            className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
+                            data-testid="dropdown-dashboard"
+                            onClick={() => setUserDropdownOpen(false)}
+                          >
+                            <LayoutDashboard className="w-4 h-4 mr-3" />
+                            Dashboard
+                          </Link>
+                          <Link
+                            href="/purchase-orders"
+                            className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
+                            data-testid="dropdown-purchase-orders"
+                            onClick={() => setUserDropdownOpen(false)}
+                          >
+                            <FileText className="w-4 h-4 mr-3" />
+                            Purchase Orders
+                          </Link>
+                        </>
+                      )}
+                      
+                      <div className="border-t border-slate-700 my-1"></div>
                       <Link
                         href="/profile"
                         className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
@@ -315,8 +357,8 @@ export function Navigation() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-700">
               {navItems.map((item) => {
-                // Special styling for ChainTrack link in mobile
-                if (item.id === "chaintrack") {
+                // Special styling for featured Fulfillment by DeliWer in mobile
+                if (item.id === "fulfillment" && item.featured) {
                   return (
                     <Link
                       key={item.path}
@@ -327,7 +369,25 @@ export function Navigation() {
                     >
                       <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border-2 border-blue-500/60 rounded-lg text-white shadow-lg">
                         <span className="font-bold">{item.label}</span>
-                        <Sparkles className="w-4 h-4 text-cyan-400 ml-auto" />
+                        <Package className="w-4 h-4 text-green-400 ml-auto" />
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for ChainTrack/Reverse Bidding in mobile
+                if (item.id === "chaintrack") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                      data-testid={`link-mobile-${item.id}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg text-purple-300">
+                        <TrendingDown className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
                       </div>
                     </Link>
                   );

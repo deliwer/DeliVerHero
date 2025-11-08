@@ -43,6 +43,9 @@ import {
   Warehouse,
   Recycle,
 } from "lucide-react";
+import { SiLinkedin, SiFacebook, SiInstagram } from "react-icons/si";
+import heroImage from '@assets/stock_images/business_professiona_0d25c8b9.jpg';
+import warehouseImage from '@assets/stock_images/modern_warehouse_ful_49a92694.jpg';
 
 export default function ChainTrackPage() {
   const { data: user, isLoading: userLoading } = useQuery<User>({
@@ -445,32 +448,46 @@ function ChainTrackLanding() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900">
-      <div className="container mx-auto px-4 py-20">
-        {/* Hero Section */}
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
-              <MapPin className="w-4 h-4" />
-              Operating from Dubai Airport Freezone
+      {/* Hero Image Section */}
+      <div className="relative h-96 overflow-hidden">
+        <img 
+          src={heroImage} 
+          alt="B2B wholesale professionals discussing iPhone inventory" 
+          className="w-full h-full object-cover brightness-75"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/60 to-slate-900/80"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center max-w-4xl px-4">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                <MapPin className="w-4 h-4" />
+                Operating from Dubai Airport Freezone
+              </div>
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                <Shield className="w-4 h-4" />
+                15,000+ Verified Trades
+              </div>
             </div>
-            <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-4 py-2 rounded-full text-sm font-medium">
-              <Shield className="w-4 h-4" />
-              15,000+ Verified Trades
-            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+              ChainTrack
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-white mb-4">
+              B2B Wholesale Mobile Sourcing Platform
+            </p>
+            
+            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+              AI-powered reverse bidding platform with full compliance support. 
+              Access global inventory from Dubai Airport Freezone with competitive pricing and verified suppliers.
+            </p>
           </div>
-          
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-            ChainTrack
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 mb-4">
-            B2B Wholesale Mobile Sourcing Platform
-          </p>
-          
-          <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto">
-            AI-powered reverse bidding platform with full compliance support. 
-            Access global inventory from Dubai Airport Freezone with competitive pricing and verified suppliers.
-          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-20">
+        {/* Hero Section Content */}
+        <div className="text-center max-w-4xl mx-auto -mt-12">
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Button 
@@ -497,7 +514,7 @@ function ChainTrackLanding() {
           </div>
 
           {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-600 dark:text-slate-400 mb-8">
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-600 dark:text-slate-400 mb-6">
             <div className="flex items-center gap-1">
               <CheckCircle2 className="w-4 h-4 text-green-600" />
               <span>Escrow Protection</span>
@@ -510,6 +527,40 @@ function ChainTrackLanding() {
               <CheckCircle2 className="w-4 h-4 text-green-600" />
               <span>24-48hr Processing</span>
             </div>
+          </div>
+
+          {/* Social Media Links */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <a 
+              href="https://linkedin.com/company/chaintrack" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all hover:scale-105"
+              data-testid="link-linkedin"
+            >
+              <SiLinkedin className="w-5 h-5" />
+              <span className="font-medium">LinkedIn</span>
+            </a>
+            <a 
+              href="https://facebook.com/chaintrack" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all hover:scale-105"
+              data-testid="link-facebook"
+            >
+              <SiFacebook className="w-5 h-5" />
+              <span className="font-medium">Facebook</span>
+            </a>
+            <a 
+              href="https://instagram.com/chaintrack" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg transition-all hover:scale-105"
+              data-testid="link-instagram"
+            >
+              <SiInstagram className="w-5 h-5" />
+              <span className="font-medium">Instagram</span>
+            </a>
           </div>
 
           {/* B2B Pricing Calculator CTA */}
