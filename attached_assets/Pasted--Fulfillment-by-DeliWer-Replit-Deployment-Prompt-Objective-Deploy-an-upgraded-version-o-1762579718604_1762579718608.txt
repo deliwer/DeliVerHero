@@ -1,0 +1,120 @@
+# 🚀 Fulfillment by DeliWer — Replit Deployment Prompt
+# Objective:
+# Deploy an upgraded version of the ChainTrack platform focused on
+# “Fulfillment by DeliWer” — a trusted sourcing, logistics, and reseller enablement hub
+# for global iPhone wholesalers and verified resellers.
+
+# 🧱 Core Architecture:
+# - Frontend: React + TailwindCSS
+# - Backend: Node.js + Express
+# - Database: PostgreSQL (Replit Postgres or Supabase)
+# - Auth: JWT + OAuth (Google/LinkedIn optional)
+# - Storage: Cloudinary or Supabase Storage for product images
+# - Hosting: Replit WebView or www.deliwer.com/chaintrack
+
+# 🔍 Main Focus:
+# "Fulfillment by DeliWer" becomes the hero section and core value proposition.
+# It encourages resellers and website owners to onboard as verified partners
+# and have DeliWer handle their logistics, storage, inspection, and fulfillment.
+
+# 🧭 Key Functional Modules to Build
+1. **Landing Page Redesign**
+   - Hero Section: “Fulfillment by DeliWer – Powering Global Reseller Success”
+   - Subheading: “Join ChainTrack and let DeliWer handle your sourcing, storage, and shipping.”
+   - CTA Buttons:
+     [Join as Verified Reseller]  [Access Sourcing Hub]
+   - Background: minimal animation, clean gradient (blue → white), global map or logistics theme.
+
+2. **B2B Toggle & UX Reorganization**
+   - Replace “Retail / Wholesale” toggle with:
+     🔘 Buyer View (Sourcing Hub)
+     🔘 Seller View (Fulfillment Partner)
+   - On toggle, update navigation:
+     - Buyer Menu: “Find Stock”, “Verified Suppliers”, “Escrow Orders”, “My RFQs”
+     - Seller Menu: “List Inventory”, “Ship to DeliWer Warehouse”, “Manage Fulfillment”, “Earnings Dashboard”
+   - Sticky header bar with CTA → “Fulfillment by DeliWer”
+
+3. **Reseller Onboarding Flow**
+   - Multi-step onboarding wizard:
+     Step 1: Company details + KYC Upload
+     Step 2: Verification by CA or local auditor (upload cert)
+     Step 3: Bank & Payment preferences
+     Step 4: Approval → Access sourcing hub
+   - Auto-email confirmation with “Verified Reseller” badge.
+
+4. **Sourcing Hub Dashboard**
+   - Curated catalog of verified stock from global suppliers (mock data: iPhone 13–15 series).
+   - Search / filter by:
+     Model | Region | Grade | MOQ | Location (India, UAE, China)
+   - Reverse bidding enabled for bulk buyers.
+
+5. **Fulfillment Dashboard (for Sellers)**
+   - List inventory and ship to DeliWer warehouse (mock integration with DHL/Aramex).
+   - Track inspection status, warehouse receipt, and live stock levels.
+   - Order fulfillment tab: “Shipped”, “Awaiting Dispatch”, “Returned”.
+
+6. **Fee Calculator & Escrow**
+   - Integrated from earlier module (commission, FX, escrow, CA audit).
+   - New “Fulfillment by DeliWer” tier: lower commission (1%) and faster escrow release.
+   - Transparency on “Your Net Payout”.
+
+7. **Trust & Compliance Features**
+   - Verified badges for all sellers.
+   - Escrow verification and CA audit trail (timestamped JSON log).
+   - Optional “Export Compliance View” for India → UAE shipments.
+
+8. **Lead Capture & Community**
+   - “Join as Partner” popup form:
+     - Fields: Name, Company, Email, WhatsApp, Product Interest
+     - Stores to database or sends to API endpoint /api/partners
+   - Social proof section: “Trusted by 200+ verified resellers across 5 countries.”
+
+# 📱 Mobile UX Priority
+- Simplify upload and verification with camera-based document capture.
+- Push notification placeholders for RFQ offers and warehouse updates.
+- Single-tap access to “My Stock”, “My Orders”, and “My Earnings.”
+
+# 🧩 Example File Structure:
+frontend/
+  ├── components/
+  │     ├── HeroFulfillment.tsx
+  │     ├── ToggleMenu.tsx
+  │     ├── SourcingHub.tsx
+  │     ├── ResellerOnboardForm.tsx
+  │     └── FeeCalculatorWidget.tsx
+  ├── pages/
+  │     ├── index.tsx
+  │     ├── dashboard.tsx
+  │     └── fulfillment.tsx
+backend/
+  ├── routes/
+  │     ├── auth.js
+  │     ├── partners.js
+  │     ├── inventory.js
+  │     └── escrow.js
+  ├── db.js
+  └── server.js
+
+# 🌐 Environment Variables:
+DATABASE_URL="your_postgres_url"
+JWT_SECRET="secure_random_key"
+ESCROW_MOCK=true
+EMAIL_SENDER="no-reply@deliwer.com"
+
+# ▶️ Deployment Steps:
+1. Create Replit project → Node.js + React template
+2. Add `/frontend` and `/backend` folders
+3. Paste frontend + backend structure above
+4. Run `npm install` in both folders
+5. Add Tailwind setup:
+   npx tailwindcss init -p
+6. Configure domain → www.deliwer.com/chaintrack
+7. Launch: `npm run dev`
+8. Test onboarding flow and sourcing dashboard
+
+# ✅ Success Criteria:
+- “Fulfillment by DeliWer” visible as homepage hero + main CTA.
+- Clean B2B toggle UX for Buyer/Seller modes.
+- Verified resellers can onboard and upload stock.
+- Buyers can source, bid, and purchase via escrow.
+- All flows mobile-responsive and compliance-ready.
