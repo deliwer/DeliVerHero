@@ -7,11 +7,12 @@ import { Progress } from "@/components/ui/progress";
 import { 
   Coins, Trophy, Target, TrendingUp, Gift, Star, Crown, AlertTriangle, Users, 
   Droplets, Zap, Award, Gamepad2, Medal, Sparkles, Clock, Atom, Rocket,
-  CheckCircle, Heart, ShoppingCart, ChevronRight
+  CheckCircle, Heart, ShoppingCart, ChevronRight, ArrowRight, Leaf
 } from "lucide-react";
 import { Link } from "wouter";
 import { TombolaWidget } from "@/components/tombola-widget";
 import { useToast } from "@/hooks/use-toast";
+import type { PlanetMission } from "@shared/schema";
 
 interface Achievement {
   id: string;
@@ -36,10 +37,17 @@ interface LeaderboardEntry {
 }
 
 export default function Play() {
-  const [activeTab, setActiveTab] = useState<"tombola" | "achievements" | "leaderboard">("tombola");
+  const [activeTab, setActiveTab] = useState<"tombola" | "achievements" | "leaderboard" | "missions">("tombola");
   const [heroId] = useState("current-hero-id"); // This would come from auth context
   const [isLoyaltyMember, setIsLoyaltyMember] = useState(false); // Check loyalty status
   const { toast } = useToast();
+
+  // Fetch missions for the missions tab
+  const { data: missions, isLoading: missionsLoading } = useQuery<PlanetMission[]>({
+    queryKey: ['/api/metaverse/missions'],
+  });
+
+  const featuredMissions = missions?.filter(m => m.isEpic && m.isActive).slice(0, 6) || [];
 
   // Mock achievements data
   const achievements: Achievement[] = [
@@ -159,7 +167,7 @@ export default function Play() {
         <div className="max-w-6xl mx-auto mb-12">
           <div className="flex justify-center mb-8">
             <div className="bg-slate-800/50 p-1 rounded-xl border border-slate-600">
-              <div className="flex gap-1">
+              <div className="flex gap-1 flex-wrap justify-center">
                 <button
                   onClick={() => setActiveTab("tombola")}
                   className={`px-6 py-3 rounded-lg font-medium transition-all ${
@@ -170,6 +178,17 @@ export default function Play() {
                   data-testid="tab-tombola"
                 >
                   🎰 Planet Points Spin
+                </button>
+                <button
+                  onClick={() => setActiveTab("missions")}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                    activeTab === "missions"
+                      ? "bg-hero-green-600 text-white shadow-lg"
+                      : "text-gray-400 hover:text-white hover:bg-slate-700"
+                  }`}
+                  data-testid="tab-missions"
+                >
+                  🎯 Missions
                 </button>
                 <button
                   onClick={() => setActiveTab("achievements")}
@@ -329,6 +348,117 @@ export default function Play() {
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Missions Tab */}
+          {activeTab === "missions" && (
+            <div>
+              <div className="text-center mb-8">
+                <h3 className="text-3xl font-bold text-white mb-4">
+                  🎯 Planet Hero Missions
+                </h3>
+                <p className="text-gray-300 text-lg">
+                  Complete epic missions to earn massive Planet Points and make real environmental impact
+                </p>
+              </div>
+
+              {missionsLoading ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[1, 2, 3].map(i => (
+                    <Card key={i} className="glass border-slate-600 animate-pulse">
+                      <CardHeader className="h-48 bg-slate-700/50"></CardHeader>
+                      <CardContent className="space-y-3">
+                        <div className="h-4 bg-slate-700/50 rounded"></div>
+                        <div className="h-4 bg-slate-700/50 rounded w-2/3"></div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : featuredMissions.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {featuredMissions.map((mission) => (
+                    <Card 
+                      key={mission.id} 
+                      className="glass border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/30 transition-all group"
+                      data-testid={`card-mission-${mission.code}`}
+                    >
+                      <CardHeader>
+                        <Badge className="mb-3 bg-amber-500/20 text-amber-400 border-amber-500/50 w-fit">
+                          {mission.difficulty.toUpperCase()}
+                        </Badge>
+                        <CardTitle className="text-white text-xl group-hover:text-hero-green-400 transition-colors">
+                          {mission.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <p className="text-gray-300 text-sm line-clamp-3">
+                          {mission.description}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="text-hero-green-400 font-bold">
+                            +{mission.basePoints} Points
+                          </div>
+                          <Badge variant="outline" className="border-slate-600 text-gray-400">
+                            {mission.category}
+                          </Badge>
+                        </div>
+                        <Link href="/play?tab=missions">
+                          <Button 
+                            className="w-full bg-gradient-to-r from-hero-green-500 to-emerald-600 hover:from-hero-green-600 hover:to-emerald-700"
+                            data-testid={`button-view-mission-${mission.code}`}
+                          >
+                            View Mission
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <Card className="glass border-slate-600">
+                  <CardContent className="text-center py-12">
+                    <Trophy className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                    <p className="text-gray-400 text-lg">No featured missions available yet. Check back soon!</p>
+                    <Link href="/play?tab=missions">
+                      <Button 
+                        variant="outline" 
+                        className="mt-4 border-hero-green-500 text-hero-green-400 hover:bg-hero-green-500/20"
+                      >
+                        <Target className="w-4 h-4 mr-2" />
+                        Browse All Missions
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Mission Stats */}
+              <div className="mt-8 grid md:grid-cols-4 gap-4">
+                <div className="text-center p-4 rounded-lg bg-hero-green-500/10 border border-hero-green-500/30">
+                  <Trophy className="w-8 h-8 text-hero-green-500 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-hero-green-400 mb-1">
+                    {missions?.filter(m => m.isActive).length || 0}
+                  </div>
+                  <p className="text-gray-300 text-sm">Active Missions</p>
+                </div>
+                <div className="text-center p-4 rounded-lg bg-amber-500/10 border border-amber-500/30">
+                  <Coins className="w-8 h-8 text-amber-500 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-amber-400 mb-1">0</div>
+                  <p className="text-gray-300 text-sm">Completed</p>
+                </div>
+                <div className="text-center p-4 rounded-lg bg-purple-500/10 border border-purple-500/30">
+                  <Award className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-purple-400 mb-1">0</div>
+                  <p className="text-gray-300 text-sm">Total Points Earned</p>
+                </div>
+                <div className="text-center p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30">
+                  <Leaf className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-emerald-400 mb-1">0</div>
+                  <p className="text-gray-300 text-sm">Impact Score</p>
                 </div>
               </div>
             </div>

@@ -428,7 +428,7 @@ export default function PlanetHeroManual() {
                     </div>
                   </div>
 
-                  <Link href="/planet-hero-affiliates">
+                  <Link href="/play">
                     <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 font-bold text-lg py-6" data-testid="button-affiliate-program">
                       <Share2 className="w-5 h-5 mr-2" />
                       Join Affiliate Program
@@ -554,7 +554,7 @@ export default function PlanetHeroManual() {
                         Contact Support
                       </Button>
                     </Link>
-                    <Link href="/planet-hero">
+                    <Link href="/play">
                       <Button 
                         size="lg" 
                         variant="outline"
@@ -562,7 +562,7 @@ export default function PlanetHeroManual() {
                         data-testid="button-back-home"
                       >
                         <ChevronRight className="w-6 h-6 mr-2" />
-                        Back to Planet Hero Home
+                        Back to Play Home
                       </Button>
                     </Link>
                   </div>
