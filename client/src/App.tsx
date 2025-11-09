@@ -57,6 +57,9 @@ import ContactPage from "@/pages/contact";
 import ProfilePage from "@/pages/profile";
 import HeroDashboard from "@/pages/hero-dashboard";
 import IcelandicGlacialLandingPage from "@/pages/icelandic-glacial";
+import InvestorDashboard from "@/pages/investor-dashboard";
+import CorporatePartnerPortal from "@/pages/corporate-partner-portal";
+import ImpactMethodology from "@/pages/impact-methodology";
 
 // Planet Hero Gateway Pages
 import PlanetHero from "@/pages/planet-hero";
@@ -101,6 +104,9 @@ function Router() {
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners" component={Partners} />
         <Route path="/dashboard" component={HeroDashboard} />
+        <Route path="/investor-dashboard" component={InvestorDashboard} />
+        <Route path="/corporate-partner-portal" component={CorporatePartnerPortal} />
+        <Route path="/impact-methodology" component={ImpactMethodology} />
         
         {/* Planet Hero Gateway */}
         <Route path="/planet-hero" component={PlanetHero} />

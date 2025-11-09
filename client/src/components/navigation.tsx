@@ -48,6 +48,9 @@ export function Navigation() {
     { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment", featured: true },
     { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
+    { path: "/corporate-partner-portal", label: "Partner Portal", id: "partner-portal" },
+    { path: "/investor-dashboard", label: "Investors", id: "investors" },
+    { path: "/impact-methodology", label: "Impact", id: "impact" },
   ];
 
   const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
