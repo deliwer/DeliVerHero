@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { shopifyCartService } from "@/lib/shopify-cart";
 import pizzaImage from "@assets/stock_images/delicious_pizza_clos_ace0f742.jpg";
-import kulfiImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
+import bobaTeaImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
 import happyDiningImage from "@assets/stock_images/happy_people_eating__21b9cf0b.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
@@ -191,12 +191,12 @@ export default function Rewards() {
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill Partnership</h3>
                   <Badge className="bg-amber-500/30 text-amber-300 mb-3">D100+ per referral</Badge>
-                  <p className="text-gray-300">Free vouchers for Pizza & Kulfi for Two + referral rewards</p>
+                  <p className="text-gray-300">Free vouchers for Pizza + Boba Tea for Two + referral rewards</p>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 <img src={pizzaImage} alt="Delicious Pizza" className="rounded-lg shadow-lg object-cover aspect-square" />
-                <img src={kulfiImage} alt="Kulfi Dessert" className="rounded-lg shadow-lg object-cover aspect-square" />
+                <img src={bobaTeaImage} alt="Boba Tea" className="rounded-lg shadow-lg object-cover aspect-square" />
                 <img src={happyDiningImage} alt="Happy Dining" className="rounded-lg shadow-lg object-cover aspect-square" />
               </div>
             </div>
@@ -361,7 +361,7 @@ export default function Rewards() {
               <span className="font-bold text-lg">🤝 PARTNERSHIP EXPERIENCE</span>
             </div>
             <h2 className="text-4xl font-black text-white mb-4">
-              Chill & Grill: Pizza for Two + Kulfi
+              Chill & Grill: Pizza + Boba Tea for Two
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Your membership includes exclusive access to healthy dining experiences. Every friend you refer earns you both D100 vouchers - it's sustainability that pays forward.
@@ -377,9 +377,9 @@ export default function Rewards() {
               </div>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img src={kulfiImage} alt="Kulfi Dessert" className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+              <img src={bobaTeaImage} alt="Boba Tea" className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <p className="text-white font-bold text-xl">Premium Kulfi</p>
+                <p className="text-white font-bold text-xl">Premium Boba Tea</p>
               </div>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">

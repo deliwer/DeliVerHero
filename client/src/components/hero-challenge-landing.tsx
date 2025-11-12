@@ -27,7 +27,7 @@ import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environme
 import kangenWaterSystem from "@assets/generated_images/Kangen_K8_water_filtration_system_e7d8eaaa.png";
 import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_collection_cbe8ffe3.png";
 import pizzaImage from "@assets/stock_images/delicious_pizza_clos_ace0f742.jpg";
-import kulfiImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
+import bobaTeaImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
 import happyDiningImage from "@assets/stock_images/happy_people_eating__21b9cf0b.jpg";
 
 interface HeroSpotCounterProps {
@@ -916,7 +916,7 @@ function StepThreeRewards() {
 
   const claimVoucherMutation = useMutation({
     mutationFn: () => apiRequest('/api/vouchers/claim-deal', 'POST', {
-      dealType: 'chill-grill-pizza-kulfi',
+      dealType: 'chill-grill-pizza-boba-tea',
     }),
     onSuccess: (data) => {
       setClaimedVoucher(data);
@@ -986,8 +986,8 @@ function StepThreeRewards() {
                       className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
                     />
                     <img 
-                      src={kulfiImage} 
-                      alt="Kulfi Dessert" 
+                      src={bobaTeaImage} 
+                      alt="Boba Tea" 
                       className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
                     />
                     <img 
@@ -1004,9 +1004,9 @@ function StepThreeRewards() {
                     <Gift className="w-5 h-5" />
                     <span className="font-bold">LOYALTY DEAL</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill: Pizza for Two + Kulfi</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill: Pizza + Boba Tea for Two</h3>
                   <p className="text-gray-300 mb-4">
-                    Get D100 voucher for Pizza for Two + 2x Kulfi when you signup for each friend!
+                    Get D100 voucher for Pizza + Boba Tea for Two when you signup for each friend!
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">D100 Voucher</span>
@@ -1214,7 +1214,7 @@ function StepThreeRewards() {
                     </div>
                     <div>
                       <div className="text-white font-bold">Chill & Grill</div>
-                      <div className="text-xs text-gray-400">Pizza + Kulfi vouchers</div>
+                      <div className="text-xs text-gray-400">Pizza + Boba Tea vouchers</div>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">

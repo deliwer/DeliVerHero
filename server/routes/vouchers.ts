@@ -5,10 +5,10 @@ import QRCode from "qrcode";
 
 const router = Router();
 
-// Claim the Chill & Grill Pizza + Kulfi deal
+// Claim the Chill & Grill Pizza + Boba Tea deal
 router.post("/claim-deal", async (req, res) => {
   try {
-    const { dealType = 'chill-grill-pizza-kulfi', heroId } = req.body;
+    const { dealType = 'chill-grill-pizza-boba-tea', heroId } = req.body;
 
     // Generate unique voucher code
     const voucherCode = `CG-${Date.now().toString(36).toUpperCase()}-${randomUUID().slice(0, 6).toUpperCase()}`;
@@ -20,7 +20,7 @@ router.post("/claim-deal", async (req, res) => {
       // Create template if it doesn't exist
       template = await storage.createCouponTemplate({
         brand: "Chill & Grill",
-        title: "Pizza for Two + 2x Kulfi",
+        title: "Pizza + Boba Tea for Two",
         description: "Healthy and refreshing meal when you refer one friend - AED 99 value. Delivered via AquaCafe platform.",
         faceValue: 9900, // in fils
         discountPercent: 0,

@@ -10,7 +10,7 @@ export function TopBanner() {
 
   const handleShareOffer = () => {
     const affiliateLink = generateAffiliateLink();
-    const shareText = `🍕 Chill & Grill: Get D100 voucher when you join DeliWer! Pizza for Two + Kulfi just D99. Refer friends, earn rewards! Join me: ${affiliateLink}`;
+    const shareText = `🍕 Chill & Grill: Get D100 voucher when you join DeliWer! Pizza + Boba Tea for Two just D99. Refer friends, earn rewards! Join me: ${affiliateLink}`;
     
     if (navigator.share) {
       navigator.share({
@@ -28,7 +28,7 @@ export function TopBanner() {
     <div className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 text-white py-2 px-4 text-center text-sm font-medium relative group">
       <div className="flex items-center justify-center gap-2">
         <Gift className="inline w-4 h-4" />
-        <span>🍕 Chill & Grill: Get D100 voucher for each friend signup! Pizza for Two + Kulfi just D99</span>
+        <span>🍕 Chill & Grill: Get D100 voucher for each friend signup! Pizza + Boba Tea for Two</span>
         <button 
           onClick={handleShareOffer}
           className="ml-2 bg-black/20 hover:bg-black/30 px-2 py-1 rounded-full transition-colors flex items-center gap-1"

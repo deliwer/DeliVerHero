@@ -19,7 +19,7 @@ export function AquaCafeDealBanner() {
 
   const claimVoucherMutation = useMutation({
     mutationFn: () => apiRequest('/api/vouchers/claim-deal', 'POST', {
-      dealType: 'chill-grill-pizza-kulfi',
+      dealType: 'chill-grill-pizza-boba-tea',
     }),
     onSuccess: (data) => {
       setClaimedVoucher(data);
@@ -67,7 +67,7 @@ export function AquaCafeDealBanner() {
                   Chill & Grill
                 </h2>
                 <p className="text-2xl text-gray-700 mb-2">
-                  Pizza for Two + 2x Kulfi
+                  Pizza + Boba Tea for Two
                 </p>
                 <div className="flex items-center gap-2 text-gray-600 text-sm mb-4">
                   <span>Healthy and refreshing meal if you refer one friend</span>

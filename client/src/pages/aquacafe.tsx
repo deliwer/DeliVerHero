@@ -33,7 +33,7 @@ export default function AquaCafe() {
         "📱 Smart monitoring app with Hero dashboard",
         "🏆 Exclusive Hero member badge",
         "💰 20% discount on ALL future plans",
-        "🍕 D100 Chill & Grill voucher for Pizza + Kulfi when friend signs up via referral"
+        "🍕 D100 Chill & Grill voucher for Pizza + Boba Tea when friend signs up via referral"
       ],
       badge: "🚀 PLANET HERO GATEWAY",
       isHeroEntry: true
@@ -556,7 +556,7 @@ export default function AquaCafe() {
           <div className="text-center bg-gradient-to-r from-amber-100 to-orange-100 rounded-2xl p-6 border border-amber-300">
             <h3 className="text-xl font-bold text-gray-800 mb-3">🤝 CHILL & GRILL PARTNERSHIP EXPERIENCE</h3>
             <p className="text-gray-700 mb-4">
-              Your membership includes exclusive access to delicious Pizza for Two + Kulfi dining experiences.
+              Your membership includes exclusive access to delicious Pizza + Boba Tea for Two dining experiences.
               Every friend you refer earns you both D100 vouchers - it's sustainability that pays forward.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-600">
@@ -614,7 +614,7 @@ export default function AquaCafe() {
           
           <div className="bg-gradient-to-r from-emerald-100 to-amber-100 border border-emerald-300 rounded-xl p-4">
             <div className="text-amber-600 font-bold text-sm sm:text-base mb-2 text-center">🍕 Exclusive Partnership with Chill & Grill Dubai 🍕</div>
-            <p className="text-gray-700 text-xs sm:text-sm text-center mb-3">Use your D100 voucher for Pizza for Two + 2x Kulfi - delicious and healthy!</p>
+            <p className="text-gray-700 text-xs sm:text-sm text-center mb-3">Use your D100 voucher for Pizza + Boba Tea for Two - delicious and healthy!</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs text-gray-600">
               <div className="flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
@@ -838,7 +838,7 @@ export default function AquaCafe() {
               </Link>
             </div>
             <div className="text-xs text-gray-600 text-center">
-              🍕 Chill & Grill - Pizza for Two + Kulfi Available
+              🍕 Chill & Grill - Pizza + Boba Tea for Two Available
             </div>
           </div>
         </div>

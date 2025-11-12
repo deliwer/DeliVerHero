@@ -138,7 +138,7 @@ export async function processPurchase(data: PurchaseData): Promise<PurchaseResul
         orderId: order.id,
         voucherType: 'chill-grill-d100',
         title: 'Chill & Grill - D100 Voucher',
-        description: 'Complimentary D100 voucher for Pizza for Two + Kulfi at Chill & Grill',
+        description: 'Complimentary D100 voucher for Pizza + Boba Tea for Two at Chill & Grill',
         valueAED: 10000, // D100 in fils
         status: 'active',
         redeemedAt: null,
@@ -146,7 +146,7 @@ export async function processPurchase(data: PurchaseData): Promise<PurchaseResul
         validFrom: new Date(),
         validUntil: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
         terms: 'Valid at Chill & Grill locations. Cannot be combined with other offers.',
-        redemptionInstructions: 'Show this code to the server at Chill & Grill to redeem your Pizza for Two + Kulfi.',
+        redemptionInstructions: 'Show this code to the server at Chill & Grill to redeem your Pizza + Boba Tea for Two.',
       };
       const voucher = await storage.createDigitalVoucher(voucherData);
       vouchers.push(voucher);
