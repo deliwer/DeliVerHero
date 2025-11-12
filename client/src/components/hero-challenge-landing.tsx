@@ -26,9 +26,7 @@ import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_175548269630
 import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
 import kangenWaterSystem from "@assets/generated_images/Kangen_K8_water_filtration_system_e7d8eaaa.png";
 import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_collection_cbe8ffe3.png";
-import pizzaImage from "@assets/stock_images/delicious_pizza_clos_ace0f742.jpg";
-import bobaTeaImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
-import happyDiningImage from "@assets/stock_images/happy_people_eating__21b9cf0b.jpg";
+import pizzaBobaComboImage from "@assets/stock_images/pizza_and_boba_tea_d_a375dab3.jpg";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -115,7 +113,7 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
   const stepConfig = {
     1: { icon: ShoppingCart, label: "Shop Smart" },
     2: { icon: Smartphone, label: "Sell iPhone" },
-    3: { icon: Gift, label: "Claim Loyalty Rewards" },  
+    3: { icon: Gift, label: "Claim FREE BONUS" },  
     4: { icon: Play, label: "Create Impact" }
   };
 
@@ -904,7 +902,7 @@ function StepSellIPhone() {
   );
 }
 
-// Step 3: Claim Loyalty Rewards Section (with Membership Benefits merged)
+// Step 3: Claim FREE BONUS Section (with Membership Benefits merged)
 function StepThreeRewards() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [claimedVoucher, setClaimedVoucher] = useState<any>(null);
@@ -956,11 +954,11 @@ function StepThreeRewards() {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Claim Loyalty Rewards section"
-              data-testid="toggle-claim-rewards"
+              aria-label="Toggle Claim FREE BONUS section"
+              data-testid="toggle-claim-bonus"
             >
               <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-                Claim Loyalty Rewards
+                Claim FREE BONUS
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-amber-400" />
@@ -977,25 +975,14 @@ function StepThreeRewards() {
           <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-orange-500/50 shadow-2xl bg-gradient-to-br from-orange-600/20 to-red-600/20 p-2 backdrop-blur-sm">
             <div className="bg-slate-900/50 rounded-xl p-6">
               <div className="flex flex-col md:flex-row items-center gap-6">
-                {/* Left: Food Lifestyle Images */}
+                {/* Left: Combined Pizza + Boba Tea Image */}
                 <div className="flex-1">
-                  <div className="grid grid-cols-3 gap-3">
-                    <img 
-                      src={pizzaImage} 
-                      alt="Delicious Pizza" 
-                      className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
-                    />
-                    <img 
-                      src={bobaTeaImage} 
-                      alt="Boba Tea" 
-                      className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
-                    />
-                    <img 
-                      src={happyDiningImage} 
-                      alt="Happy Dining Experience" 
-                      className="aspect-square rounded-lg overflow-hidden shadow-lg object-cover"
-                    />
-                  </div>
+                  <img 
+                    src={pizzaBobaComboImage} 
+                    alt="Pizza and Boba Tea for Two" 
+                    className="w-full rounded-lg shadow-lg object-cover"
+                    style={{ minHeight: '280px', maxHeight: '360px' }}
+                  />
                 </div>
                 
                 {/* Right: Deal Information */}
@@ -1461,7 +1448,7 @@ export function HeroChallengeLanding() {
           </div>
         </div>
 
-        {/* Step 3: Claim Loyalty Rewards */}
+        {/* Step 3: Claim FREE BONUS */}
         <div data-section="step-3">
           <StepThreeRewards />
         </div>
