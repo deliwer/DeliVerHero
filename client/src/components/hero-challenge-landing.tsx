@@ -109,12 +109,11 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 }
 
 // Progress flow step indicator component
-function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
+function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
     1: { icon: ShoppingCart, label: "Shop Smart", section: "How it Works" },
     2: { icon: Smartphone, label: "Sell iPhone", section: "How it Works" },
-    3: { icon: Gift, label: "Claim FREE BONUS", section: "How it Works" },  
-    4: { icon: Play, label: "Create Impact", section: "Play" }
+    3: { icon: Play, label: "Create Impact", section: "How it Works" }
   };
 
   return (
@@ -123,16 +122,14 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
       <div className="mb-4">
         <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-4 py-2 rounded-full border border-hero-green-500/50">
           <Target className="w-4 h-4" />
-          <span className="font-bold text-sm">
-            {currentStep <= 3 ? "HOW IT WORKS" : "PLAY & CREATE IMPACT"}
-          </span>
+          <span className="font-bold text-sm">HOW IT WORKS</span>
         </div>
       </div>
       
       {/* Steps */}
       <div className="flex items-center justify-center overflow-x-auto">
         <div className="flex items-center space-x-4 sm:space-x-6 px-4">
-          {[1, 2, 3, 4].map((step) => {
+          {[1, 2, 3].map((step) => {
             const { icon: StepIcon, label } = stepConfig[step as keyof typeof stepConfig];
             return (
               <div key={step} className="flex flex-col items-center">
@@ -150,7 +147,7 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
                       <StepIcon className="w-6 h-6 sm:w-8 sm:h-8" />
                     )}
                   </div>
-                  {step < 4 && (
+                  {step < 3 && (
                     <div className={`w-16 sm:w-20 h-1 transition-all duration-300 rounded-full ${
                       currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
                     }`} />
@@ -170,13 +167,12 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
   );
 }
 
-// Step 4: Create Impact Section (Play - Standalone)
+// Step 3: Create Impact Section (Play)
 function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   const [heroId] = useState("demo-hero-id"); // Demo hero ID for tombola
-  const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-4">
+    <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-3">
       {/* Metaverse background effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-indigo-900/20 to-blue-900/20"></div>
       <div className="absolute inset-0 opacity-10">
@@ -187,26 +183,11 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
       </div>
       
       <div className="max-w-4xl mx-auto relative z-10">
-        <ProgressIndicator currentStep={4} />
+        <ProgressIndicator currentStep={3} />
         
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4">
-            <button
-              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
-              onClick={() => setIsExpanded(!isExpanded)}
-              aria-expanded={isExpanded}
-              aria-label="Toggle Create Impact section"
-              data-testid="toggle-create-impact"
-            >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-                Play to Create Impact
-              </span>
-              {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-purple-400" />
-              ) : (
-                <ChevronDown className="w-8 h-8 text-purple-400" />
-              )}
-            </button>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+            Play to Create Impact
           </h2>
           <div className="flex items-center justify-center gap-2 mb-3">
             <Sparkles className="w-5 h-5 text-emerald-400 animate-pulse" />
@@ -231,8 +212,6 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
         </div>
 
         {/* Play Mission Info Section */}
-        {isExpanded && (
-        <>
         <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500">
           {/* Floating particles */}
           <div className="absolute inset-0 opacity-20">
@@ -402,8 +381,6 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             </div>
           </div>
         </div>
-        </>
-        )}
       </div>
     </section>
   );
@@ -1140,271 +1117,6 @@ function MembershipBenefitsSection() {
   );
 }
 
-// Step 3: Claim FREE BONUS Section (Chill & Grill voucher only)
-function StepThreeRewards() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [claimedVoucher, setClaimedVoucher] = useState<any>(null);
-  const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
-
-  const referralCode = "HERO123";
-  const referralLink = `${window.location.origin}/aquacafe-deal?ref=${referralCode}`;
-
-  const claimVoucherMutation = useMutation({
-    mutationFn: () => apiRequest('/api/vouchers/claim-deal', 'POST', {
-      dealType: 'chill-grill-pizza-boba-tea',
-    }),
-    onSuccess: (data) => {
-      setClaimedVoucher(data);
-      toast({
-        title: "Voucher Claimed! 🎉",
-        description: "Your Chill & Grill voucher code is ready to use!",
-      });
-      queryClient.invalidateQueries({ queryKey: ['/api/vouchers/my-vouchers'] });
-    },
-    onError: () => {
-      toast({
-        title: "Claim Failed",
-        description: "Please try again or contact support.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleCopyReferralLink = () => {
-    navigator.clipboard.writeText(referralLink);
-    setCopied(true);
-    toast({
-      title: "Link Copied!",
-      description: "Share with friends to earn rewards",
-    });
-    setTimeout(() => setCopied(false), 2000);
-  };
-  
-  return (
-    <section className="py-8 px-4 mb-8" data-section="step-3">
-      <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={3} />
-        
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4">
-            <button
-              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
-              onClick={() => setIsExpanded(!isExpanded)}
-              aria-expanded={isExpanded}
-              aria-label="Toggle Claim FREE BONUS section"
-              data-testid="toggle-claim-bonus"
-            >
-              <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-                Claim FREE BONUS
-              </span>
-              {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-amber-400" />
-              ) : (
-                <ChevronDown className="w-8 h-8 text-amber-400" />
-              )}
-            </button>
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Redeem for free meals, eco gifts, or wellness products including FREE Shower Filter.
-          </p>
-
-          {/* Chill & Grill Deal Banner - Always Visible with Lifestyle Photos */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-orange-500/50 shadow-2xl bg-gradient-to-br from-orange-600/20 to-red-600/20 p-2 backdrop-blur-sm">
-            <div className="bg-slate-900/50 rounded-xl p-6">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                {/* Left: Combined Pizza + Boba Tea Image */}
-                <div className="flex-1">
-                  <img 
-                    src={pizzaBobaComboImage} 
-                    alt="Pizza and Boba Tea for Two" 
-                    className="w-full rounded-lg shadow-lg object-cover"
-                    style={{ minHeight: '280px', maxHeight: '360px' }}
-                  />
-                </div>
-                
-                {/* Right: Deal Information */}
-                <div className="flex-1 text-center md:text-left">
-                  <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full mb-3">
-                    <Gift className="w-5 h-5" />
-                    <span className="font-bold">LOYALTY DEAL</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill: Pizza + Boba Tea for Two</h3>
-                  <p className="text-gray-300 mb-4">
-                    Get D100 voucher for Pizza + Boba Tea for Two when you signup for each friend!
-                  </p>
-                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">D100 Voucher</span>
-                    <span className="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-sm font-bold">For Two</span>
-                    <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">Per Referral</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Unified Rewards Page CTA - Inside Collapsible */}
-        {isExpanded && (
-        <>
-        {/* Claim Chill & Grill Voucher Section */}
-        <div className="glass rounded-2xl p-8 border border-orange-500/50 bg-gradient-to-br from-orange-500/10 to-red-500/10 mb-8 animate-in slide-in-from-top duration-300">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full mb-4">
-              <Gift className="w-5 h-5" />
-              <span className="font-bold">🍕 CLAIM YOUR DEAL</span>
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Get Your Chill & Grill Voucher</h3>
-            <p className="text-gray-300 text-sm mb-6">
-              Show your generated code at Aqua Cafe to redeem. Limited time offer. T&C apply.
-            </p>
-          </div>
-
-          <div className="max-w-2xl mx-auto">
-            {!claimedVoucher ? (
-              <div className="space-y-4">
-                <Button
-                  size="lg"
-                  onClick={() => claimVoucherMutation.mutate()}
-                  disabled={claimVoucherMutation.isPending}
-                  className="w-full h-16 text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
-                  data-testid="button-claim-deal"
-                >
-                  <Gift className="w-6 h-6 mr-2" />
-                  {claimVoucherMutation.isPending ? "Claiming..." : "Claim Deal"}
-                </Button>
-                
-                <Button
-                  variant="outline"
-                  size="lg"
-                  onClick={() => window.open('https://www.deliwer.com/aquacafe', '_blank')}
-                  className="w-full h-14 text-lg border-2 border-white/20 text-white hover:bg-white/10"
-                  data-testid="button-visit-aquacafe"
-                >
-                  Visit deliwer.com/aquacafe
-                </Button>
-              </div>
-            ) : (
-              <div className="bg-green-500/20 border-2 border-green-400/50 rounded-xl p-6 space-y-4 backdrop-blur-sm" data-testid="container-claimed-voucher">
-                <div className="flex items-center justify-center gap-2 text-green-300">
-                  <CheckCircle className="w-6 h-6" />
-                  <span className="font-bold text-lg">Voucher Claimed!</span>
-                </div>
-                <div className="bg-slate-900/50 rounded-lg p-4 border border-green-400/30">
-                  <p className="text-sm text-gray-400 mb-2 text-center">Your Code:</p>
-                  <p className="text-3xl font-mono font-bold text-center tracking-wider text-white" data-testid="text-voucher-code">
-                    {claimedVoucher.code}
-                  </p>
-                </div>
-                <Button
-                  variant="outline"
-                  className="w-full border-white/20 text-white hover:bg-white/10"
-                  data-testid="button-view-qr"
-                >
-                  <QrCode className="w-5 h-5 mr-2" />
-                  View QR Code
-                </Button>
-              </div>
-            )}
-
-            <div className="mt-6 pt-6 border-t border-white/10">
-              <p className="text-sm font-semibold text-gray-300 mb-3 text-center">
-                🎁 Refer friends, earn <DirhamSymbol size={12} className="inline mx-1" />100 per signup!
-              </p>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={handleCopyReferralLink}
-                className="w-full h-12 border-2 border-blue-400/30 text-white hover:bg-blue-500/20"
-                data-testid="button-copy-referral"
-              >
-                {copied ? (
-                  <>
-                    <CheckCircle className="w-5 h-5 mr-2 text-green-400" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-5 h-5 mr-2" />
-                    Copy referral link
-                  </>
-                )}
-              </Button>
-            </div>
-          </div>
-
-          <p className="text-center text-gray-400 text-xs mt-6">
-            <span className="font-semibold text-white">AquaCafe</span> by DeliWer • <span className="font-semibold text-white">Chill & Grill</span> Ghost Kitchen by DeliWer
-          </p>
-        </div>
-
-        <div className="text-center mb-8 animate-in slide-in-from-top duration-300">
-          <Link href="/rewards">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-              data-testid="button-visit-rewards-page"
-            >
-              <Gift className="mr-3 w-6 h-6" />
-              Visit Rewards Page
-            </Button>
-          </Link>
-          <div className="text-xs text-gray-400 mt-4">
-            Browse products, track points, and redeem rewards all in one place
-          </div>
-        </div>
-
-
-        {/* Tombola Prizes Section */}
-        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500 mt-8">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
-              <Play className="w-5 h-5 animate-pulse" />
-              <span className="font-bold">🎮 TOMBOLA PRIZES</span>
-              <Sparkles className="w-5 h-5 animate-pulse" />
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Win Amazing Prizes!</h3>
-            <p className="text-purple-200 text-sm mb-4">
-              Spin the tombola daily to win exciting rewards and support environmental impact!
-            </p>
-          </div>
-          
-          {/* Impact Visual Representation */}
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="text-center p-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border border-green-500/30">
-              <Droplets className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-              <div className="text-white font-bold text-sm">Water Renewal</div>
-              <div className="text-gray-400 text-xs">Clean water access</div>
-            </div>
-            <div className="text-center p-4 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl border border-blue-500/30">
-              <Repeat className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-              <div className="text-white font-bold text-sm">Recycling</div>
-              <div className="text-gray-400 text-xs">Device reclamation</div>
-            </div>
-            <div className="text-center p-4 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl border border-amber-500/30">
-              <Utensils className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-              <div className="text-white font-bold text-sm">Food Security</div>
-              <div className="text-gray-400 text-xs">Community support</div>
-            </div>
-          </div>
-          
-          {/* Tombola Widget */}
-          <div className="max-w-md mx-auto">
-            <TombolaWidget heroId="demo-hero-id" theme="metaverse" size="full" />
-          </div>
-        </div>
-
-        {/* Impact Slot Machine */}
-        <div className="mt-8 animate-in slide-in-from-top duration-1000">
-          <ImpactSlotMachine />
-        </div>
-        </>
-        )}
-      </div>
-    </section>
-  );
-}
-
 export function HeroChallengeLanding() {
   const { data: stats } = useImpactStats();
   const { isRegistered } = useImageServiceWorker();
@@ -1488,40 +1200,23 @@ export function HeroChallengeLanding() {
         {/* Flow Connector 2→3 */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-amber-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-indigo-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-orange-500 mt-2"></div>
-            <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
+            <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-purple-500 mt-2"></div>
+            <div className="text-xs text-gray-400 mt-2 font-bold">FINAL STEP</div>
           </div>
         </div>
 
-        {/* Step 3: Claim FREE BONUS */}
+        {/* Step 3: Create Impact (Play & Gamification) */}
         <div data-section="step-3">
-          <StepThreeRewards />
+          <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
         </div>
 
         {/* Main Tabs Section - Collapsible with AquaCafe Membership Card Banner */}
         <div data-section="main-tabs" className="mt-16 mb-12">
           <CollapsibleTabsSection />
-        </div>
-
-        {/* Flow Connector - Standalone Section Separator */}
-        <div className="flex justify-center my-16">
-          <div className="flex flex-col items-center">
-            <div className="w-1 h-16 bg-gradient-to-b from-orange-500 to-purple-500 mb-2"></div>
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-              <Play className="w-8 h-8 text-white" />
-            </div>
-            <div className="w-1 h-16 bg-gradient-to-b from-purple-500 to-indigo-500 mt-2"></div>
-            <div className="text-sm text-purple-400 mt-3 font-bold">UNIQUE ATTRACTION</div>
-          </div>
-        </div>
-
-        {/* Step 4: Create Impact (Standalone Gamification Section) */}
-        <div data-section="step-4">
-          <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
         </div>
       </div>
 

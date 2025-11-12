@@ -1,13 +1,76 @@
 # DeliWer Full-Stack Application - Replit Setup
 
 ## Overview
-DeliWer is a full-stack JavaScript application leveraging React, Express.js, and various integrations for e-commerce, AI, and rewards. It aims to provide a comprehensive platform for sustainable living, including a climate activism initiative ("Pakistan Planet Hero Mission") and a B2B platform for wholesale phone inventory ("ChainTrack"). The project emphasizes responsive design, gamification, and a user-friendly experience, with a focus on specific regional markets like Dubai and Pakistan.
+DeliWer is a full-stack JavaScript application leveraging React, Express.js, and various integrations for e-commerce, AI, and rewards. It provides a comprehensive platform for sustainable living, including a climate activism initiative ("Pakistan Planet Hero Mission") and a B2B platform for wholesale phone inventory ("ChainTrack"). The project emphasizes responsive design, gamification, and a user-friendly experience, with a focus on specific regional markets like Dubai and Pakistan.
+
+**AquaCafe Loyalty Journey**: The application features a streamlined 3-step "How it Works" onboarding funnel that emphasizes membership benefits early in the user journey. The Hero section immediately leads into membership perks, followed by a simplified Shop → Sell → Play flow designed to maximize conversion and user engagement.
+
+## Recent Changes (November 2025)
+
+### UI Restructuring: 4-Step → 3-Step Flow
+- **Migration completed**: Successfully migrated from Replit Agent environment to standard Replit
+- **Flow simplification**: Reduced "How it Works" from 4 steps to 3 steps for clearer user journey
+- **Component removal**: Eliminated `StepThreeRewards` component (263 lines) - "Claim FREE BONUS" step no longer part of sequential flow
+- **Early membership focus**: Repositioned `MembershipBenefitsSection` directly under Hero section to highlight value proposition upfront
+- **Visibility fix**: Removed broken `isExpanded` gating logic in Step 3 - content now always visible like other steps
+
+### Technical Implementation
+- Updated `ProgressIndicator` component to support 3 steps (1|2|3)
+- Renumbered all step anchors: `data-section="step-1"`, `step-2`, `step-3`
+- Updated scroll behavior and CTA button targets to new anchor system
+- All components tested and verified working on port 5000
 
 ## User Preferences
 Not specified.
 
 ## System Architecture
 The application features a React + TypeScript frontend with Vite, an Express.js backend with TypeScript, and uses Tailwind CSS + Radix UI for the UI. Data fetching is managed with React Query, and Wouter handles frontend routing. The database is configured for PostgreSQL with Drizzle ORM. The system supports subpath deployments and includes a comprehensive security model for the ChainTrack B2B platform, protecting trade secrets and implementing role-based access control with manual verification for B2B buyers. The UI/UX prioritizes conversion optimization, visual engagement through collapsible sections, consistent iconography, and strategic placement of CTAs and social proof elements. Key design decisions include context-aware routing, a dual fee model for B2B transactions, and a multi-tiered membership structure.
+
+## UI/UX Flow (AquaCafe Loyalty Journey)
+
+### Landing Page Structure
+```
+Hero Section
+    ↓
+Membership Benefits Section (NEW: Early placement for conversion)
+    ↓
+Flow Connector (animated scroll-to CTA)
+    ↓
+Step 1: Shop Smart [data-section="step-1"]
+    - Component: StepTwoExchange
+    - Focus: Premium water products with sustainability benefits
+    - ProgressIndicator: currentStep={1}
+    ↓
+Step 2: Sell iPhone [data-section="step-2"]
+    - Component: StepTwoSellIphone
+    - Focus: Device trade-in for circular economy
+    - ProgressIndicator: currentStep={2}
+    ↓
+Step 3: Play to Create Impact [data-section="step-3"]
+    - Component: StepOnePlay
+    - Focus: Gamification, tombola, environmental missions
+    - ProgressIndicator: currentStep={3}
+    - Content: Always visible (no isExpanded gating)
+```
+
+### Component Architecture
+
+#### ProgressIndicator
+- **Location**: `hero-challenge-landing.tsx`
+- **Responsibility**: Centralized step visualization (1|2|3)
+- **Usage**: Imported and rendered at top of each step component
+- **Configuration**: `maxSteps={3}`, `currentStep={1|2|3}`
+
+#### Scroll Behavior
+- **Anchor IDs**: `data-section="step-1"`, `step-2`, `step-3`
+- **CTA Targets**: "Start Your Journey" and flow connector buttons use `querySelector('[data-section="step-X"]')` with `scrollIntoView({ behavior: 'smooth' })`
+- **Navigation**: Sequential progression 1→2→3 via connectors between steps
+
+#### Design Decisions
+- **Step 3 always-on**: Removed isExpanded toggle to ensure Play/Tombola content is immediately accessible
+- **MembershipBenefitsSection placement**: Positioned after Hero (before steps) to establish value proposition early
+- **StepThreeRewards removal**: "Claim FREE BONUS" functionality moved to separate rewards page; not part of linear onboarding flow
+- **Maintainability**: Three-step limit keeps ProgressIndicator simple and user journey focused
 
 ## External Dependencies
 - **AI Concierge**: OpenAI API
