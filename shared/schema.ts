@@ -2880,3 +2880,253 @@ export type LoyaltyMembership = typeof loyaltyMemberships.$inferSelect;
 export type InsertLoyaltyMembership = z.infer<typeof insertLoyaltyMembershipSchema>;
 export type DigitalVoucher = typeof digitalVouchers.$inferSelect;
 export type InsertDigitalVoucher = z.infer<typeof insertDigitalVoucherSchema>;
+
+// ========================================
+// MARKETING AGENT SYSTEM
+// ========================================
+
+// Marketing Campaigns
+export const marketingCampaigns = pgTable("marketing_campaigns", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description"),
+  campaignType: text("campaign_type").notNull(), // 'email', 'sms', 'social', 'multi-channel'
+  status: text("status").notNull().default("draft"), // draft, active, paused, completed, archived
+  
+  // Targeting
+  targetAudience: jsonb("target_audience").default({}), // Segmentation criteria
+  targetChannels: jsonb("target_channels").default([]), // Array of channels: ['facebook', 'instagram', 'email']
+  
+  // Content
+  subject: text("subject"),
+  message: text("message").notNull(),
+  callToAction: text("call_to_action"),
+  landingPageUrl: text("landing_page_url"),
+  
+  // Scheduling
+  scheduledStartAt: timestamp("scheduled_start_at"),
+  scheduledEndAt: timestamp("scheduled_end_at"),
+  
+  // Performance Metrics
+  totalSent: integer("total_sent").notNull().default(0),
+  totalOpened: integer("total_opened").notNull().default(0),
+  totalClicked: integer("total_clicked").notNull().default(0),
+  totalConverted: integer("total_converted").notNull().default(0),
+  budget: integer("budget"), // in fils
+  spentAmount: integer("spent_amount").notNull().default(0),
+  
+  createdBy: varchar("created_by").references(() => users.id),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Marketing Leads
+export const marketingLeads = pgTable("marketing_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Lead Information
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  
+  // Lead Source
+  source: text("source").notNull(), // 'social', 'referral', 'organic', 'paid'
+  sourceChannel: text("source_channel"), // 'facebook', 'instagram', 'google', etc.
+  campaignId: varchar("campaign_id").references(() => marketingCampaigns.id),
+  referralCode: text("referral_code"),
+  
+  // Lead Qualification
+  status: text("status").notNull().default("new"), // new, contacted, qualified, converted, lost
+  score: integer("score").notNull().default(0), // Lead scoring: 0-100
+  interests: jsonb("interests").default([]), // Array of interests
+  
+  // Engagement History
+  lastContactedAt: timestamp("last_contacted_at"),
+  totalEmailsSent: integer("total_emails_sent").notNull().default(0),
+  totalEmailsOpened: integer("total_emails_opened").notNull().default(0),
+  totalSmsSent: integer("total_sms_sent").notNull().default(0),
+  
+  // Conversion Tracking
+  convertedToCustomer: boolean("converted_to_customer").notNull().default(false),
+  convertedAt: timestamp("converted_at"),
+  customerId: varchar("customer_id").references(() => customers.id),
+  
+  // Notes
+  notes: text("notes"),
+  tags: jsonb("tags").default([]),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Outreach Tracking
+export const outreachActivities = pgTable("outreach_activities", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  leadId: varchar("lead_id").notNull().references(() => marketingLeads.id),
+  campaignId: varchar("campaign_id").references(() => marketingCampaigns.id),
+  
+  // Activity Details
+  activityType: text("activity_type").notNull(), // 'email', 'sms', 'call', 'social_message'
+  channel: text("channel"), // 'email', 'whatsapp', 'facebook_messenger', etc.
+  subject: text("subject"),
+  message: text("message").notNull(),
+  
+  // Engagement Tracking
+  status: text("status").notNull().default("sent"), // sent, delivered, opened, clicked, replied, bounced, failed
+  sentAt: timestamp("sent_at").notNull().default(sql`now()`),
+  deliveredAt: timestamp("delivered_at"),
+  openedAt: timestamp("opened_at"),
+  clickedAt: timestamp("clicked_at"),
+  repliedAt: timestamp("replied_at"),
+  
+  // Response Tracking
+  replyMessage: text("reply_message"),
+  sentiment: text("sentiment"), // 'positive', 'neutral', 'negative'
+  
+  // Cost tracking
+  cost: integer("cost").notNull().default(0), // in fils
+  
+  createdBy: varchar("created_by").references(() => users.id),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// Social Media Channels Configuration
+export const socialMediaChannels = pgTable("social_media_channels", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  channelType: text("channel_type").notNull(), // 'facebook', 'instagram', 'twitter', 'linkedin', 'tiktok'
+  channelName: text("channel_name").notNull(),
+  accountHandle: text("account_handle"),
+  
+  // Connection Status
+  isConnected: boolean("is_connected").notNull().default(false),
+  accessToken: text("access_token"), // Encrypted
+  refreshToken: text("refresh_token"), // Encrypted
+  tokenExpiresAt: timestamp("token_expires_at"),
+  
+  // Channel Stats
+  followers: integer("followers").notNull().default(0),
+  totalPosts: integer("total_posts").notNull().default(0),
+  totalEngagement: integer("total_engagement").notNull().default(0),
+  
+  // Configuration
+  autoPostEnabled: boolean("auto_post_enabled").notNull().default(false),
+  autoReplyEnabled: boolean("auto_reply_enabled").notNull().default(false),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Campaign Performance Analytics
+export const campaignAnalytics = pgTable("campaign_analytics", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  campaignId: varchar("campaign_id").notNull().references(() => marketingCampaigns.id),
+  date: timestamp("date").notNull(),
+  
+  // Daily Metrics
+  impressions: integer("impressions").notNull().default(0),
+  clicks: integer("clicks").notNull().default(0),
+  conversions: integer("conversions").notNull().default(0),
+  spend: integer("spend").notNull().default(0), // in fils
+  revenue: integer("revenue").notNull().default(0), // in fils
+  
+  // Engagement Metrics
+  likes: integer("likes").notNull().default(0),
+  shares: integer("shares").notNull().default(0),
+  comments: integer("comments").notNull().default(0),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+// Insert schemas for marketing agent
+export const insertMarketingCampaignSchema = createInsertSchema(marketingCampaigns).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertMarketingLeadSchema = createInsertSchema(marketingLeads).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertOutreachActivitySchema = createInsertSchema(outreachActivities).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertSocialMediaChannelSchema = createInsertSchema(socialMediaChannels).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertCampaignAnalyticsSchema = createInsertSchema(campaignAnalytics).omit({
+  id: true,
+  createdAt: true,
+});
+
+// Types for marketing agent
+export type MarketingCampaign = typeof marketingCampaigns.$inferSelect;
+export type InsertMarketingCampaign = z.infer<typeof insertMarketingCampaignSchema>;
+export type MarketingLead = typeof marketingLeads.$inferSelect;
+export type InsertMarketingLead = z.infer<typeof insertMarketingLeadSchema>;
+export type OutreachActivity = typeof outreachActivities.$inferSelect;
+export type InsertOutreachActivity = z.infer<typeof insertOutreachActivitySchema>;
+export type SocialMediaChannel = typeof socialMediaChannels.$inferSelect;
+export type InsertSocialMediaChannel = z.infer<typeof insertSocialMediaChannelSchema>;
+export type CampaignAnalytics = typeof campaignAnalytics.$inferSelect;
+export type InsertCampaignAnalytics = z.infer<typeof insertCampaignAnalyticsSchema>;
+
+// Note: Planet Points system already exists with planetPointsLedger and metaverseRewards tables
+// Payment integration for points redemptions with Stripe/PayPal
+export const paymentIntegrations = pgTable("payment_integrations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Link to existing redemption and points systems
+  redemptionId: varchar("redemption_id").notNull().references(() => rewardRedemptions.id),
+  pointsLedgerEntryId: varchar("points_ledger_entry_id").references(() => planetPointsLedger.id),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  customerId: varchar("customer_id").references(() => customers.id),
+  
+  // Payment Gateway
+  paymentGateway: text("payment_gateway").notNull(), // 'stripe', 'paypal'
+  paymentIntentId: text("payment_intent_id").unique(),
+  transactionId: text("transaction_id"),
+  
+  // Payment Details
+  totalAmountAED: integer("total_amount_aed").notNull(), // in fils (total order value)
+  pointsUsed: integer("points_used").notNull().default(0),
+  pointsValue: integer("points_value").notNull().default(0), // in fils (AED value of points used)
+  cashAmount: integer("cash_amount").notNull().default(0), // in fils (remaining to be paid via gateway)
+  conversionRate: integer("conversion_rate"), // points per AED fil
+  
+  // Status
+  paymentStatus: text("payment_status").notNull().default("pending"), // pending, succeeded, failed, refunded
+  failureReason: text("failure_reason"),
+  refundedAt: timestamp("refunded_at"),
+  refundAmount: integer("refund_amount"), // in fils
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    redemptionIdx: index("payment_integrations_redemption_idx").on(table.redemptionId),
+    heroIdx: index("payment_integrations_hero_idx").on(table.heroId),
+    paymentIntentIdx: unique("payment_integrations_payment_intent_unique").on(table.paymentIntentId),
+  };
+});
+
+// Insert schema and types for payment integrations
+export const insertPaymentIntegrationSchema = createInsertSchema(paymentIntegrations).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type PaymentIntegration = typeof paymentIntegrations.$inferSelect;
+export type InsertPaymentIntegration = z.infer<typeof insertPaymentIntegrationSchema>;
