@@ -1216,7 +1216,7 @@ export function HeroChallengeLanding() {
 
         {/* Main Tabs Section - Collapsible with AquaCafe Membership Card Banner */}
         <div data-section="main-tabs" className="mt-16 mb-12">
-          <CollapsibleTabsSection />
+          <CollapsibleTabsSection onJoinMembership={() => setShowHeroRegistration(true)} />
         </div>
       </div>
 
@@ -1246,192 +1246,165 @@ export function HeroChallengeLanding() {
   );
 }
 
-// Collapsible Tabs Section Component
-function CollapsibleTabsSection() {
+// Collapsible Tabs Section Component - Membership Lead Magnet
+function CollapsibleTabsSection({ onJoinMembership }: { onJoinMembership: () => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleJoinClick = () => {
+    onJoinMembership();
+    // After modal interaction, scroll to Shop Smart section
+    setTimeout(() => {
+      const shopSmartSection = document.querySelector('[data-section="step-1"]');
+      if (shopSmartSection) {
+        shopSmartSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 500);
+  };
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Membership Card Banner - Click to Expand */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full cursor-pointer hover:scale-[1.02] transition-all duration-300 mb-8 group"
-        aria-expanded={isExpanded}
-        aria-label="Toggle AquaCafe Membership options"
-        data-testid="toggle-aquacafe-membership"
-      >
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-blue-500/50 group-hover:border-blue-400 transition-colors">
-          <img 
-            src={membershipCard} 
-            alt="AquaCafe Membership Card - Click to explore benefits" 
-            className="w-full h-auto"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center pb-6">
-            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 border border-white/30">
-              <span className="text-white font-bold text-lg">
-                {isExpanded ? "Hide" : "Explore"} Membership Benefits
+      {/* Always Visible CTA - "Become a Member + Get FREE BONUS" */}
+      <div className="text-center mb-8">
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full cursor-pointer hover:scale-[1.02] transition-all duration-300 group"
+          aria-expanded={isExpanded}
+          aria-label="Become a Member and Get FREE BONUS"
+          data-testid="toggle-membership-offer"
+        >
+          <div className="bg-gradient-to-br from-amber-900/60 via-hero-green-900/50 to-dubai-blue-900/60 backdrop-blur-sm rounded-2xl p-8 border-2 border-amber-500/50 group-hover:border-amber-400 transition-colors shadow-2xl">
+            <div className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full px-8 py-3 mb-6 font-bold text-lg shadow-xl animate-pulse">
+              <Gift className="w-6 h-6 mr-3" />
+              <span>🚨 FREE SHOWER FILTER + INSTALLATION 🚨</span>
+              <Gift className="w-6 h-6 ml-3" />
+            </div>
+            
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Become a Member + Get <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">FREE BONUS</span>
+            </h2>
+            
+            <p className="text-xl md:text-2xl text-gray-200 mb-6">
+              <span className="text-amber-400 font-bold">AED 99</span> Loyalty Starter Kit
+            </p>
+            
+            <div className="flex items-center justify-center gap-3 text-cyan-300">
+              <span className="font-bold text-lg">
+                {isExpanded ? "Hide Details" : "Click to See Exclusive Offer"}
               </span>
               {isExpanded ? (
-                <ChevronUp className="w-6 h-6 text-white" />
+                <ChevronUp className="w-6 h-6 animate-bounce" />
               ) : (
-                <ChevronDown className="w-6 h-6 text-white animate-bounce" />
+                <ChevronDown className="w-6 h-6 animate-bounce" />
               )}
             </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </div>
 
-      {/* Collapsible Tabs Content */}
+      {/* Collapsible AED 99 Starter Kit Offer */}
       {isExpanded && (
         <div className="animate-in slide-in-from-top duration-500">
-          <Tabs defaultValue="aquacafe" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8 bg-slate-800/50 backdrop-blur-sm rounded-2xl p-2 border border-slate-600/50">
-              <TabsTrigger 
-                value="explore" 
-                className="flex items-center gap-2 data-[state=active]:bg-gray-600 data-[state=active]:text-white text-gray-300 font-bold py-3 px-6 rounded-xl transition-all"
-                data-testid="tab-explore"
-              >
-                <Target className="w-5 h-5" />
-                <span className="hidden sm:inline">Explore</span> Missions
-              </TabsTrigger>
-              <TabsTrigger 
-                value="aquacafe"
-                data-value="aquacafe"
-                className="flex items-center gap-2 data-[state=active]:bg-blue-500 data-[state=active]:text-white text-white font-bold py-3 px-6 rounded-xl transition-all"
-                data-testid="tab-aquacafe"
-              >
-                <Droplets className="w-5 h-5" />
-                <span className="hidden sm:inline">Shop</span> AquaCafe
-              </TabsTrigger>
-              <TabsTrigger 
-                value="heroes" 
-                className="flex items-center gap-2 data-[state=active]:bg-amber-500 data-[state=active]:text-black text-white font-bold py-3 px-6 rounded-xl transition-all"
-                data-testid="tab-heroes"
-              >
-                <Trophy className="w-5 h-5" />
-                <span className="hidden sm:inline">Planet</span> Heroes
-              </TabsTrigger>
-            </TabsList>
-
-            {/* Explore Missions Tab */}
-            <TabsContent value="explore" className="space-y-8">
-              <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  <span className="bg-gradient-to-r from-hero-green-400 to-blue-400 bg-clip-text text-transparent">
-                    Explore Eco Missions
-                  </span>
-                </h2>
-                <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-                  Discover ways to earn Planet Points and contribute to Dubai's sustainability goals
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-2xl p-6 border border-emerald-500/30">
-                  <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
-                    <Droplets className="w-8 h-8 text-emerald-400" />
+          <section className="py-12 px-4 bg-gradient-to-br from-amber-900/40 via-hero-green-900/30 to-dubai-blue-900/40 backdrop-blur-sm rounded-2xl border border-amber-500/30 mb-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                {/* Left: Value Proposition */}
+                <div className="text-center lg:text-left space-y-6">
+                  <div className="inline-flex items-center bg-hero-green-500/20 border border-hero-green-500/50 rounded-full px-6 py-3 mb-4">
+                    <Award className="w-5 h-5 text-hero-green-500 mr-2" />
+                    <span className="text-hero-green-500 font-bold text-base">LOYALTY MEMBERSHIP PROGRAM</span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Water Conservation</h3>
-                  <p className="text-gray-300 mb-4">Install smart water systems and track usage</p>
-                  <div className="text-emerald-400 font-bold">+500 PTS/month</div>
-                </div>
-
-                <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl p-6 border border-purple-500/30">
-                  <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mb-4">
-                    <Users className="w-8 h-8 text-purple-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Refer Friends</h3>
-                  <p className="text-gray-300 mb-4">Share the sustainability movement</p>
-                  <div className="text-purple-400 font-bold">+1,000 PTS each</div>
-                </div>
-
-                <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl p-6 border border-amber-500/30">
-                  <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mb-4">
-                    <Star className="w-8 h-8 text-amber-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Daily Check-in</h3>
-                  <p className="text-gray-300 mb-4">Stay engaged with the platform</p>
-                  <div className="text-amber-400 font-bold">+100 PTS daily</div>
-                </div>
-              </div>
-            </TabsContent>
-
-            {/* AquaCafe Tab */}
-            <TabsContent value="aquacafe">
-              <AquaCafeTab />
-            </TabsContent>
-
-            {/* Planet Heroes Tab */}
-            <TabsContent value="heroes" className="space-y-8">
-              <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-                    Planet Heroes Community
-                  </span>
-                </h2>
-                <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
-                  Join Dubai's sustainability leaders and unlock exclusive rewards
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl p-8 border border-amber-500/30">
-                  <h3 className="text-2xl font-bold text-white mb-4">Hero Benefits</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center">
-                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
-                      <span className="text-gray-300">Exclusive discounts on eco-products</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
-                      <span className="text-gray-300">Priority access to new programs</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
-                      <span className="text-gray-300">Special Hero multipliers</span>
-                    </div>
-                    <div className="flex items-center">
-                      <CheckCircle className="w-5 h-5 text-amber-500 mr-3" />
-                      <span className="text-gray-300">Community events & workshops</span>
+                  
+                  <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
+                    <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AED 99</span>
+                    <br />
+                    <span className="text-2xl text-gray-200">Starter Kit</span>
+                  </h1>
+                  
+                  <div className="relative mb-6 group">
+                    <div className="bg-gradient-to-r from-cyan-400 via-yellow-400 to-pink-400 bg-clip-text text-transparent text-3xl font-black text-center py-4 px-6 bg-black/80 rounded-xl border border-cyan-400 shadow-xl animate-pulse">
+                      💎 LIFETIME MEMBER BENEFITS! 💎
                     </div>
                   </div>
+
+                  {/* Key Benefits */}
+                  <div className="space-y-3 mb-8">
+                    <div className="flex items-center justify-center lg:justify-start">
+                      <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-4">
+                        <Gift className="w-5 h-5 text-black" />
+                      </div>
+                      <span className="text-white font-medium">FREE Ionic Shower Filter</span>
+                    </div>
+                    <div className="flex items-center justify-center lg:justify-start">
+                      <div className="w-8 h-8 bg-hero-green-500 rounded-full flex items-center justify-center mr-4">
+                        <CheckCircle className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-white font-medium">Loyalty Member Perk</span>
+                    </div>
+                    <div className="flex items-center justify-center lg:justify-start">
+                      <div className="w-8 h-8 bg-dubai-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <Star className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-white font-medium">Loyalty Member Level 2 Status</span>
+                    </div>
+                    <div className="flex items-center justify-center lg:justify-start">
+                      <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                        <Target className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-white font-medium">1000 Loyalty Points + Lifetime Benefits</span>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <Button
+                    onClick={handleJoinClick}
+                    className="w-full lg:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-12 py-4 text-2xl font-bold rounded-xl shadow-2xl transform hover:scale-105 transition-all"
+                    data-testid="button-join-loyalty-membership"
+                  >
+                    <Rocket className="mr-3 w-6 h-6" />
+                    JOIN LOYALTY - AED 99
+                  </Button>
+                  
+                  <p className="text-amber-300 font-bold text-base">
+                    🔥 Limited Time: FREE Installation Worth AED 299! 🔥
+                  </p>
                 </div>
 
-                <div className="bg-gradient-to-br from-hero-green-500/10 to-emerald-500/10 rounded-2xl p-8 border border-hero-green-500/30">
-                  <h3 className="text-2xl font-bold text-white mb-4">How to Join</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-start">
-                      <div className="w-8 h-8 bg-hero-green-500 rounded-full flex items-center justify-center mr-3 mt-1">
-                        <span className="text-white font-bold text-sm">1</span>
-                      </div>
-                      <div>
-                        <div className="text-white font-medium">Start with AquaCafe</div>
-                        <div className="text-gray-400 text-sm">Get your Hero Minimal for AED 1299</div>
-                      </div>
-                    </div>
-                    <div className="flex items-start">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3 mt-1">
-                        <span className="text-white font-bold text-sm">2</span>
-                      </div>
-                      <div>
-                        <div className="text-white font-medium">Complete Missions</div>
-                        <div className="text-gray-400 text-sm">Earn points through eco-actions</div>
+                {/* Right: Shower Filter Showcase */}
+                <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-3xl p-8 border border-blue-500/30">
+                  <div className="text-center mb-6">
+                    <div className="text-3xl font-bold text-white mb-2">💝 FREE GIFT</div>
+                    <div className="text-amber-400 text-xl font-bold">"LOVE IS IN THE HAIR"</div>
+                  </div>
+                  
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 mb-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white mb-3">Beauty Ionic Filter</div>
+                      <div className="text-lg text-blue-300 mb-4">For Hair & Skincare</div>
+                      <div className="grid grid-cols-2 gap-4 text-sm text-gray-300">
+                        <div>✨ 4-Level Filter</div>
+                        <div>💧 Removes Chlorine</div>
+                        <div>🌟 Softer Hair</div>
+                        <div>💎 Healthier Skin</div>
                       </div>
                     </div>
-                    <div className="flex items-start">
-                      <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center mr-3 mt-1">
-                        <span className="text-black font-bold text-sm">3</span>
-                      </div>
-                      <div>
-                        <div className="text-white font-medium">Unlock Rewards</div>
-                        <div className="text-gray-400 text-sm">Redeem points for premium products</div>
-                      </div>
-                    </div>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="text-gray-400 line-through text-lg mb-1">AED 399</div>
+                    <div className="text-3xl font-bold text-hero-green-500 mb-2">FREE!</div>
+                    <div className="text-amber-400 font-bold">With AED 99 Membership</div>
                   </div>
                 </div>
               </div>
-            </TabsContent>
-          </Tabs>
+            </div>
+          </section>
+
+          {/* After signup message */}
+          <div className="text-center py-6 bg-slate-800/50 rounded-xl border border-slate-600 mb-8">
+            <p className="text-gray-300 text-lg mb-2">
+              <span className="text-hero-green-400 font-bold">Next Step:</span> After joining, explore our premium water filtration packages below ⬇️
+            </p>
+          </div>
         </div>
       )}
 
