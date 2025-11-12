@@ -111,47 +111,60 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 | 4 }) {
   const stepConfig = {
-    1: { icon: ShoppingCart, label: "Shop Smart" },
-    2: { icon: Smartphone, label: "Sell iPhone" },
-    3: { icon: Gift, label: "Claim FREE BONUS" },  
-    4: { icon: Play, label: "Create Impact" }
+    1: { icon: ShoppingCart, label: "Shop Smart", section: "How it Works" },
+    2: { icon: Smartphone, label: "Sell iPhone", section: "How it Works" },
+    3: { icon: Gift, label: "Claim FREE BONUS", section: "How it Works" },  
+    4: { icon: Play, label: "Create Impact", section: "Play" }
   };
 
   return (
-    <div className="flex items-center justify-center mb-8 overflow-x-auto">
-      <div className="flex items-center space-x-4 sm:space-x-6 px-4">
-        {[1, 2, 3, 4].map((step) => {
-          const { icon: StepIcon, label } = stepConfig[step as keyof typeof stepConfig];
-          return (
-            <div key={step} className="flex flex-col items-center">
-              <div className="flex items-center">
-                <div 
-                  className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
-                    currentStep >= step 
-                      ? 'bg-hero-green-500 text-black animate-pulse border-hero-green-400 shadow-lg shadow-hero-green-500/30' 
-                      : 'bg-gray-600 text-gray-400 border-gray-500'
-                  }`}
-                >
-                  {currentStep > step ? (
-                    <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8" />
-                  ) : (
-                    <StepIcon className="w-6 h-6 sm:w-8 sm:h-8" />
+    <div className="flex flex-col items-center mb-8">
+      {/* Section indicator */}
+      <div className="mb-4">
+        <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-4 py-2 rounded-full border border-hero-green-500/50">
+          <Target className="w-4 h-4" />
+          <span className="font-bold text-sm">
+            {currentStep <= 3 ? "HOW IT WORKS" : "PLAY & CREATE IMPACT"}
+          </span>
+        </div>
+      </div>
+      
+      {/* Steps */}
+      <div className="flex items-center justify-center overflow-x-auto">
+        <div className="flex items-center space-x-4 sm:space-x-6 px-4">
+          {[1, 2, 3, 4].map((step) => {
+            const { icon: StepIcon, label } = stepConfig[step as keyof typeof stepConfig];
+            return (
+              <div key={step} className="flex flex-col items-center">
+                <div className="flex items-center">
+                  <div 
+                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
+                      currentStep >= step 
+                        ? 'bg-hero-green-500 text-black animate-pulse border-hero-green-400 shadow-lg shadow-hero-green-500/30' 
+                        : 'bg-gray-600 text-gray-400 border-gray-500'
+                    }`}
+                  >
+                    {currentStep > step ? (
+                      <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8" />
+                    ) : (
+                      <StepIcon className="w-6 h-6 sm:w-8 sm:h-8" />
+                    )}
+                  </div>
+                  {step < 4 && (
+                    <div className={`w-16 sm:w-20 h-1 transition-all duration-300 rounded-full ${
+                      currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
+                    }`} />
                   )}
                 </div>
-                {step < 4 && (
-                  <div className={`w-16 sm:w-20 h-1 transition-all duration-300 rounded-full ${
-                    currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
-                  }`} />
-                )}
+                <div className={`mt-2 text-xs font-bold whitespace-nowrap ${
+                  currentStep >= step ? 'text-hero-green-400' : 'text-gray-400'
+                }`}>
+                  {label}
+                </div>
               </div>
-              <div className={`mt-2 text-xs font-bold whitespace-nowrap ${
-                currentStep >= step ? 'text-hero-green-400' : 'text-gray-400'
-              }`}>
-                {label}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -902,7 +915,232 @@ function StepSellIPhone() {
   );
 }
 
-// Step 3: Claim FREE BONUS Section (with Membership Benefits merged)
+// Membership Benefits Section (NEW - Standalone)
+function MembershipBenefitsSection() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <section className="py-8 px-4 mb-8" data-section="membership-benefits">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-label="Toggle Explore Membership Benefits section"
+              data-testid="toggle-membership-benefits"
+            >
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Explore Membership Benefits
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-8 h-8 text-purple-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-purple-400" />
+              )}
+            </button>
+          </h2>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Transform your points into premium products, services, and exclusive rewards
+          </p>
+        </div>
+
+        {isExpanded && (
+        <>
+        <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 mb-8 animate-in slide-in-from-top duration-500">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            
+            {/* Left: Premium Product Showcase */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-6 text-center">🎁 Premium Products</h3>
+              <div className="space-y-4">
+                
+                {/* iPhone 17 Pro Max */}
+                <div className="relative p-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl border border-blue-400/50 hover:scale-105 transition-transform">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border-2 border-gray-600 flex items-center justify-center">
+                      <Smartphone className="w-6 h-6 text-blue-400" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold">iPhone 17 Pro Max</div>
+                      <div className="text-xs text-gray-400">Latest flagship</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-2xl font-black text-amber-400">45,000 PTS</div>
+                    <div className="text-xs text-gray-400 text-right">
+                      <div>≈ AED 4,500 value</div>
+                      <div className="text-green-400">🔥 Most Popular</div>
+                    </div>
+                  </div>
+                  <div className="absolute top-2 right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
+                    NEW
+                  </div>
+                </div>
+
+                {/* AquaCafe Water System */}
+                <div className="relative p-4 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-xl border border-cyan-400/50 hover:scale-105 transition-transform">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center">
+                      <Droplets className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold">AquaCafe Pro System</div>
+                      <div className="text-xs text-gray-400">5-stage purification</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-2xl font-black text-amber-400">15,000 PTS</div>
+                    <div className="text-xs text-gray-400 text-right">
+                      <div>≈ AED 1,500 value</div>
+                      <div className="text-cyan-400">💧 Essential</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Chill & Grill Vouchers */}
+                <div className="relative p-4 bg-gradient-to-r from-orange-600/20 to-amber-600/20 rounded-xl border border-orange-400/50 hover:scale-105 transition-transform">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center">
+                      <Utensils className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-white font-bold">Chill & Grill</div>
+                      <div className="text-xs text-gray-400">Pizza + Boba Tea vouchers</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-2xl font-black text-amber-400">1,000 PTS</div>
+                    <div className="text-xs text-gray-400 text-right">
+                      <div>D100 voucher</div>
+                      <div className="text-orange-400">🍕 Partnership</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Center: Benefits Flow Process */}
+            <div className="flex flex-col justify-center">
+              <h3 className="text-xl font-bold text-white mb-6 text-center">⚡ Instant Benefits</h3>
+              
+              {/* Flow Process */}
+              <div className="space-y-6">
+                {/* Points to Products */}
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3 animate-pulse">
+                    <ArrowDown className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="text-sm text-gray-300">
+                    <div className="font-bold text-amber-400">Points → Products</div>
+                    <div>Transform earned points</div>
+                  </div>
+                </div>
+
+                {/* Delivery Process */}
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Package className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="text-sm text-gray-300">
+                    <div className="font-bold text-green-400">Free Delivery</div>
+                    <div>Direct to your home</div>
+                  </div>
+                </div>
+
+                {/* Impact Tracking */}
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <BarChart className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="text-sm text-gray-300">
+                    <div className="font-bold text-blue-400">Track Impact</div>
+                    <div>Measure your contribution</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Quick Start Benefits */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-6 text-center">🚀 Start Today</h3>
+              
+              {/* Starter Kit Highlight */}
+              <div className="p-6 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border-2 border-green-400/50 mb-6">
+                <div className="text-center mb-4">
+                  <div className="text-3xl font-black text-green-400">AED 99</div>
+                  <div className="text-sm text-gray-300">Starter Kit Gateway</div>
+                  <div className="text-xs text-green-300 font-bold">FREE Installation (AED 299 value)</div>
+                </div>
+                
+                {/* Quick benefits list */}
+                <div className="space-y-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span className="text-gray-300">Immediate point earning</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                    <span className="text-gray-300">Premium water access</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                    <span className="text-gray-300">Partnership benefits</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                    <span className="text-gray-300">Hero status unlocked</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Monthly Rewards Preview */}
+              <div className="p-4 bg-amber-500/10 rounded-xl border border-amber-400/30 mb-6">
+                <div className="text-center text-sm">
+                  <div className="text-amber-400 font-bold mb-2">Monthly Rewards Preview</div>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div className="text-center">
+                      <div className="text-white font-bold">7,500 PTS</div>
+                      <div className="text-gray-400">Avg Monthly</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-green-400 font-bold">AED 750</div>
+                      <div className="text-gray-400">Reward Value</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <Button 
+                size="lg" 
+                className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                onClick={() => {
+                  const tabsSection = document.querySelector('[data-section="main-tabs"]');
+                  if (tabsSection) {
+                    tabsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const aquacafeTab = document.querySelector('[data-value="aquacafe"]') as HTMLElement;
+                    if (aquacafeTab) {
+                      aquacafeTab.click();
+                    }
+                  }
+                }}
+              >
+                <Gift className="mr-3 w-6 h-6" />
+                Shop AquaCafe Now
+              </Button>
+            </div>
+          </div>
+        </div>
+        </>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// Step 3: Claim FREE BONUS Section (Chill & Grill voucher only)
 function StepThreeRewards() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [claimedVoucher, setClaimedVoucher] = useState<any>(null);
@@ -1116,218 +1354,6 @@ function StepThreeRewards() {
           </div>
         </div>
 
-        {/* FREE Shower Filter Visual */}
-        <div className="mb-8 animate-in slide-in-from-top duration-500">
-          <div className="max-w-3xl mx-auto bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-2xl p-6 border border-cyan-500/50 backdrop-blur-sm">
-            <div className="text-center mb-4">
-              <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full mb-3">
-                <Gift className="w-5 h-5" />
-                <span className="font-bold">FREE GIFT INCLUDED</span>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Premium Shower Filter</h3>
-              <p className="text-gray-300 mb-4">
-                Get your FREE Beauty Ionic Shower Filter with AquaCafe membership
-              </p>
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-2xl">
-              <img 
-                src={showerFilterCollage} 
-                alt="Free Shower Filter Gift" 
-                className="w-full h-auto"
-              />
-            </div>
-            <div className="mt-4 text-center">
-              <span className="text-amber-400 font-bold text-lg">AED 399 Value - Yours FREE!</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="glass rounded-2xl p-8 border border-amber-500/50 bg-gradient-to-br from-amber-500/10 to-orange-500/10 mb-8 animate-in slide-in-from-top duration-500">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            
-            {/* Left: Premium Product Showcase */}
-            <div>
-              <h3 className="text-xl font-bold text-white mb-6 text-center">🎁 Premium Products</h3>
-              <div className="space-y-4">
-                
-                {/* iPhone 17 Pro Max */}
-                <div className="relative p-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl border border-blue-400/50 hover:scale-105 transition-transform">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border-2 border-gray-600 flex items-center justify-center">
-                      <Smartphone className="w-6 h-6 text-blue-400" />
-                    </div>
-                    <div>
-                      <div className="text-white font-bold">iPhone 17 Pro Max</div>
-                      <div className="text-xs text-gray-400">Latest flagship</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-2xl font-black text-amber-400">45,000 PTS</div>
-                    <div className="text-xs text-gray-400 text-right">
-                      <div>≈ AED 4,500 value</div>
-                      <div className="text-green-400">🔥 Most Popular</div>
-                    </div>
-                  </div>
-                  <div className="absolute top-2 right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
-                    NEW
-                  </div>
-                </div>
-
-                {/* AquaCafe Water System */}
-                <div className="relative p-4 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 rounded-xl border border-cyan-400/50 hover:scale-105 transition-transform">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center">
-                      <Droplets className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-white font-bold">AquaCafe Pro System</div>
-                      <div className="text-xs text-gray-400">5-stage purification</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-2xl font-black text-amber-400">15,000 PTS</div>
-                    <div className="text-xs text-gray-400 text-right">
-                      <div>≈ AED 1,500 value</div>
-                      <div className="text-cyan-400">💧 Essential</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Chill & Grill Vouchers */}
-                <div className="relative p-4 bg-gradient-to-r from-orange-600/20 to-amber-600/20 rounded-xl border border-orange-400/50 hover:scale-105 transition-transform">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center">
-                      <Utensils className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-white font-bold">Chill & Grill</div>
-                      <div className="text-xs text-gray-400">Pizza + Boba Tea vouchers</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-2xl font-black text-amber-400">1,000 PTS</div>
-                    <div className="text-xs text-gray-400 text-right">
-                      <div>D100 voucher</div>
-                      <div className="text-orange-400">🍕 Partnership</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Center: Benefits Flow Process */}
-            <div className="flex flex-col justify-center">
-              <h3 className="text-xl font-bold text-white mb-6 text-center">⚡ Instant Benefits</h3>
-              
-              {/* Flow Process */}
-              <div className="space-y-6">
-                {/* Points to Products */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-3 animate-pulse">
-                    <ArrowDown className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-sm text-gray-300">
-                    <div className="font-bold text-amber-400">Points → Products</div>
-                    <div>Transform earned points</div>
-                  </div>
-                </div>
-
-                {/* Delivery Process */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <Package className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-sm text-gray-300">
-                    <div className="font-bold text-green-400">Free Delivery</div>
-                    <div>Direct to your home</div>
-                  </div>
-                </div>
-
-                {/* Impact Tracking */}
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <BarChart className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="text-sm text-gray-300">
-                    <div className="font-bold text-blue-400">Track Impact</div>
-                    <div>Measure your contribution</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Quick Start Benefits */}
-            <div>
-              <h3 className="text-xl font-bold text-white mb-6 text-center">🚀 Start Today</h3>
-              
-              {/* Starter Kit Highlight */}
-              <div className="p-6 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border-2 border-green-400/50 mb-6">
-                <div className="text-center mb-4">
-                  <div className="text-3xl font-black text-green-400">AED 99</div>
-                  <div className="text-sm text-gray-300">Starter Kit Gateway</div>
-                  <div className="text-xs text-green-300 font-bold">FREE Installation (AED 299 value)</div>
-                </div>
-                
-                {/* Quick benefits list */}
-                <div className="space-y-2 text-xs">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span className="text-gray-300">Immediate point earning</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span className="text-gray-300">Premium water access</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                    <span className="text-gray-300">Partnership benefits</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
-                    <span className="text-gray-300">Hero status unlocked</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Monthly Rewards Preview */}
-              <div className="p-4 bg-amber-500/10 rounded-xl border border-amber-400/30 mb-6">
-                <div className="text-center text-sm">
-                  <div className="text-amber-400 font-bold mb-2">Monthly Rewards Preview</div>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="text-center">
-                      <div className="text-white font-bold">7,500 PTS</div>
-                      <div className="text-gray-400">Avg Monthly</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-green-400 font-bold">AED 750</div>
-                      <div className="text-gray-400">Reward Value</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <Button 
-                size="lg" 
-                className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-black font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                onClick={() => {
-                  const tabsSection = document.querySelector('[data-section="main-tabs"]');
-                  if (tabsSection) {
-                    tabsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // Programmatically switch to AquaCafe tab
-                    const aquacafeTab = document.querySelector('[data-value="aquacafe"]') as HTMLElement;
-                    if (aquacafeTab) {
-                      aquacafeTab.click();
-                    }
-                  }
-                }}
-              >
-                <Gift className="mr-3 w-6 h-6" />
-                Shop AquaCafe Now
-              </Button>
-            </div>
-          </div>
-        </div>
 
         {/* Tombola Prizes Section */}
         <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500 mt-8">
@@ -1411,7 +1437,30 @@ export function HeroChallengeLanding() {
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
 
+        {/* Membership Benefits Section - NEW: Moved from StepThreeRewards */}
+        <MembershipBenefitsSection />
 
+        {/* Flow Connector - Before Steps */}
+        <div className="flex justify-center my-16">
+          <button
+            onClick={() => {
+              const step1Section = document.querySelector('[data-section="step-1"]');
+              if (step1Section) {
+                step1Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+            className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
+            aria-label="Start Your Journey - Scroll to How it Works"
+            data-testid="button-start-journey"
+          >
+            <div className="w-1 h-16 bg-gradient-to-b from-purple-500 to-green-500 mb-2"></div>
+            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+              <ShoppingCart className="w-8 h-8 text-white" />
+            </div>
+            <div className="w-1 h-16 bg-gradient-to-b from-green-500 to-blue-500 mt-2"></div>
+            <div className="text-sm text-green-400 mt-3 font-bold">START YOUR JOURNEY</div>
+          </button>
+        </div>
 
         {/* 4-Step Progressive Flow with Visual Connectors */}
         {/* Step 1: Shop Smart */}
