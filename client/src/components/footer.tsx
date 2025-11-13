@@ -20,6 +20,7 @@ import {
   Globe
 } from "lucide-react";
 import { SiFacebook, SiTiktok } from "react-icons/si";
+import { EmailSubscriptionForm } from "./email-subscription-form";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -234,6 +235,12 @@ export function Footer() {
                   <Heart className="w-4 h-4 mr-2" />
                   WhatsApp Support
                 </a>
+              </div>
+
+              {/* Email Newsletter Subscription */}
+              <div className="mt-6 pt-4 border-t border-slate-700">
+                <h4 className="text-sm font-bold text-white mb-3">Stay Connected</h4>
+                <EmailSubscriptionForm variant="footer" />
               </div>
             </div>
           </div>
