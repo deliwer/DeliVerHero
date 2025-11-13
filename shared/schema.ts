@@ -3188,3 +3188,434 @@ export const insertStarsPurchaseSchema = createInsertSchema(starsPurchases).omit
 
 export type StarsPurchase = typeof starsPurchases.$inferSelect;
 export type InsertStarsPurchase = z.infer<typeof insertStarsPurchaseSchema>;
+
+// =============================================================================
+// PLANET IMPACT CREDITS (PIC) - UNIFIED CURRENCY SYSTEM
+// =============================================================================
+// Replaces and unifies Planet Points and Stars into a single currency
+// Conversion: 1 Planet Point = 1 PIC, $1 USD in Stars = 100 PICs
+
+// PIC Accounts - Generalized account entity for all PICs (heroes, initiatives, platform, validators)
+export const picAccounts = pgTable("pic_accounts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Account Type & Identity
+  accountType: text("account_type").notNull(), // hero, initiative, platform, validator
+  
+  // Reference to specific entity (one will be populated based on type)
+  heroId: varchar("hero_id").references(() => heroes.id),
+  initiativeId: varchar("initiative_id").references(() => globalInitiatives.id),
+  
+  // Account Details
+  accountName: text("account_name").notNull(),
+  description: text("description"),
+  
+  // Balance
+  currentBalance: integer("current_balance").notNull().default(0),
+  
+  // Status
+  isActive: boolean("is_active").notNull().default(true),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    typeIdx: index("pic_accounts_type_idx").on(table.accountType),
+    heroIdx: index("pic_accounts_hero_idx").on(table.heroId),
+    initiativeIdx: index("pic_accounts_initiative_idx").on(table.initiativeId),
+    activeIdx: index("pic_accounts_active_idx").on(table.isActive),
+  };
+});
+
+// PIC Ledger - All transactions for all account types
+export const picLedger = pgTable("pic_ledger", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  accountId: varchar("account_id").notNull().references(() => picAccounts.id),
+  
+  // Transaction Details
+  transactionType: text("transaction_type").notNull(), // earned, spent, contributed, distributed, bonus, penalty
+  source: text("source").notNull(), // mission, tombola, referral, purchase, ugc, youtube, sponsorship, redemption
+  category: text("category").notNull(), // action, monetary, reward, distribution
+  
+  // Reference to source transaction
+  refType: text("ref_type").notNull(), // mission, prize, stars_purchase, ugc_submission, distribution
+  refId: varchar("ref_id").notNull(),
+  
+  // Amount & Balance
+  picsDelta: integer("pics_delta").notNull(), // can be negative for spending
+  balanceBefore: integer("balance_before").notNull(),
+  balanceAfter: integer("balance_after").notNull(),
+  
+  // Metadata
+  description: text("description").notNull(),
+  metadata: jsonb("metadata").default({}), // flexible data storage
+  
+  // Legacy tracking (for migration)
+  legacySource: text("legacy_source"), // 'planet_points' or 'stars'
+  legacyRefId: varchar("legacy_ref_id"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    accountTimeIdx: index("pic_ledger_account_time_idx").on(table.accountId, table.createdAt),
+    sourceRefIdx: index("pic_ledger_source_ref_idx").on(table.source, table.refType, table.refId),
+    categoryIdx: index("pic_ledger_category_idx").on(table.category),
+    uniqueTransaction: unique("pic_ledger_unique_transaction").on(table.accountId, table.refType, table.refId, table.transactionType),
+  };
+});
+
+// PIC Distribution Rules - Configurable splits for different revenue streams
+export const picDistributionRules = pgTable("pic_distribution_rules", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description"),
+  
+  // Revenue Source
+  revenueSource: text("revenue_source").notNull(), // stars, sponsorship, partnerships, ugc
+  
+  // Status
+  isActive: boolean("is_active").notNull().default(true),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// Normalized distribution recipients - flexible for any split model
+export const picDistributionRecipients = pgTable("pic_distribution_recipients", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  ruleId: varchar("rule_id").notNull().references(() => picDistributionRules.id, { onDelete: 'cascade' }),
+  
+  // Recipient type and allocation
+  recipientType: text("recipient_type").notNull(), // 'initiatives', 'platform', 'creators', 'validators'
+  basisPoints: integer("basis_points").notNull(), // 6000 for 60%, etc.
+  
+  // Optional targeting
+  targetInitiativeId: varchar("target_initiative_id").references(() => globalInitiatives.id),
+  
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    ruleIdx: index("pic_distribution_recipients_rule_idx").on(table.ruleId),
+    initiativeIdx: index("pic_distribution_recipients_initiative_idx").on(table.targetInitiativeId),
+    // CHECK constraint: basis points must be between 0 and 10000
+    basisPointsCheck: sql`CHECK (basis_points >= 0 AND basis_points <= 10000)`,
+  };
+});
+
+// Actual distributions made based on rules
+export const picDistributions = pgTable("pic_distributions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  ruleId: varchar("rule_id").notNull().references(() => picDistributionRules.id),
+  
+  // Source transaction
+  sourceType: text("source_type").notNull(), // stars_purchase, sponsorship_payment
+  sourceId: varchar("source_id").notNull(),
+  totalAmount: integer("total_amount").notNull(), // in PICs
+  
+  // Distribution breakdown
+  initiativesAmount: integer("initiatives_amount").notNull(),
+  platformAmount: integer("platform_amount").notNull(),
+  creatorsAmount: integer("creators_amount").notNull(),
+  
+  // Recipients
+  initiativeRecipients: jsonb("initiative_recipients").default([]), // [{id, amount}]
+  creatorRecipients: jsonb("creator_recipients").default([]), // [{heroId, amount}]
+  
+  // Blockchain/TAO reference (for decentralization)
+  taoTransactionHash: text("tao_transaction_hash"),
+  distributionProof: jsonb("distribution_proof").default({}),
+  
+  status: text("status").notNull().default("pending"), // pending, processing, completed, failed
+  processedAt: timestamp("processed_at"),
+  failureReason: text("failure_reason"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    ruleIdx: index("pic_distributions_rule_idx").on(table.ruleId),
+    sourceIdx: index("pic_distributions_source_idx").on(table.sourceType, table.sourceId),
+    statusIdx: index("pic_distributions_status_idx").on(table.status),
+  };
+});
+
+// User Generated Content Submissions
+export const ugcSubmissions = pgTable("ugc_submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  
+  // Content Details
+  contentType: text("content_type").notNull(), // video, image, story, challenge
+  title: text("title").notNull(),
+  description: text("description"),
+  contentUrl: text("content_url"), // URL to uploaded content
+  thumbnailUrl: text("thumbnail_url"),
+  
+  // YouTube Integration
+  youtubeVideoId: text("youtube_video_id"),
+  youtubeChannelId: text("youtube_channel_id"),
+  youtubeViews: integer("youtube_views").default(0),
+  youtubeLikes: integer("youtube_likes").default(0),
+  videoDurationSeconds: integer("video_duration_seconds"),
+  
+  // Impact & Category
+  impactCategory: text("impact_category").notNull(), // water, energy, waste, mobility
+  bottlesPrevented: integer("bottles_prevented").default(0),
+  co2Saved: integer("co2_saved").default(0),
+  
+  // Rewards
+  picsAwarded: integer("pics_awarded").default(0),
+  bonusMultiplier: integer("bonus_multiplier").default(100), // 100 = 1x, 200 = 2x
+  picLedgerEntryId: varchar("pic_ledger_entry_id").references(() => picLedger.id),
+  
+  // Moderation & Status Workflow
+  status: text("status").notNull().default("pending"), // pending, under_review, approved, featured, rejected
+  previousStatus: text("previous_status"),
+  moderatedBy: varchar("moderated_by"),
+  moderationNotes: text("moderation_notes"),
+  moderatedAt: timestamp("moderated_at"),
+  rejectionReason: text("rejection_reason"),
+  
+  // Visibility & Featured
+  isFeatured: boolean("is_featured").notNull().default(false),
+  featuredAt: timestamp("featured_at"),
+  visibilityLevel: text("visibility_level").notNull().default("public"), // public, unlisted, private
+  
+  // Content Safety
+  contentSafetyScore: integer("content_safety_score"), // 0-100
+  hasWarnings: boolean("has_warnings").notNull().default(false),
+  warningFlags: jsonb("warning_flags").default([]), // ['violence', 'explicit', etc]
+  
+  // Engagement
+  views: integer("views").notNull().default(0),
+  likes: integer("likes").notNull().default(0),
+  shares: integer("shares").notNull().default(0),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    heroIdx: index("ugc_submissions_hero_idx").on(table.heroId),
+    statusIdx: index("ugc_submissions_status_idx").on(table.status),
+    featuredIdx: index("ugc_submissions_featured_idx").on(table.isFeatured, table.featuredAt),
+    youtubeIdx: index("ugc_submissions_youtube_idx").on(table.youtubeVideoId),
+    moderationIdx: index("ugc_submissions_moderation_idx").on(table.status, table.moderatedAt),
+  };
+});
+
+// Global Initiatives - UN SDGs, WWF, Ocean Cleanup, etc.
+export const globalInitiatives = pgTable("global_initiatives", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Initiative Info
+  name: text("name").notNull(),
+  shortName: text("short_name").notNull(),
+  description: text("description").notNull(),
+  logoUrl: text("logo_url"),
+  websiteUrl: text("website_url"),
+  
+  // Organization
+  organizationName: text("organization_name").notNull(), // UN, WWF, Ocean Cleanup
+  organizationType: text("organization_type").notNull(), // global, regional, local
+  
+  // UN SDG Alignment (explicit goal numbers)
+  sdgGoalNumbers: jsonb("sdg_goal_numbers").default([]), // [6, 12, 13, 14, 15] explicit numbers
+  sdgTargets: jsonb("sdg_targets").default([]),
+  
+  // Scope
+  geographicScope: text("geographic_scope").notNull(), // global, regional, local
+  cities: jsonb("cities").default([]), // Cities where this initiative is active
+  countries: jsonb("countries").default([]),
+  
+  // Impact Categories
+  primaryCategory: text("primary_category").notNull(), // water, energy, waste, mobility, biodiversity
+  secondaryCategories: jsonb("secondary_categories").default([]),
+  
+  // Funding & Participation
+  totalPicsReceived: integer("total_pics_received").notNull().default(0),
+  totalParticipants: integer("total_participants").notNull().default(0),
+  monthlyPicsGoal: integer("monthly_pics_goal"),
+  
+  // Integration
+  apiEndpoint: text("api_endpoint"), // For real-time data sync
+  apiKey: text("api_key"), // Encrypted
+  lastSyncedAt: timestamp("last_synced_at"),
+  
+  // Partner Verification
+  verificationStatus: text("verification_status").notNull().default("pending"), // pending, under_review, verified, rejected
+  isVerified: boolean("is_verified").notNull().default(false),
+  verifiedAt: timestamp("verified_at"),
+  verifiedBy: varchar("verified_by"),
+  verificationNotes: text("verification_notes"),
+  
+  // Payout Information
+  payoutWalletAddress: text("payout_wallet_address"), // Blockchain wallet for distributions
+  payoutMethod: text("payout_method"), // paypal, stripe, crypto, wire
+  payoutEmail: text("payout_email"),
+  bankAccountDetails: jsonb("bank_account_details").default({}), // Encrypted
+  
+  // Status
+  isActive: boolean("is_active").notNull().default(true),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    orgIdx: index("global_initiatives_org_idx").on(table.organizationName),
+    categoryIdx: index("global_initiatives_category_idx").on(table.primaryCategory),
+    activeIdx: index("global_initiatives_active_idx").on(table.isActive),
+    verificationIdx: index("global_initiatives_verification_idx").on(table.verificationStatus),
+  };
+});
+
+// Hero participation in global initiatives
+export const heroInitiativeParticipation = pgTable("hero_initiative_participation", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  initiativeId: varchar("initiative_id").notNull().references(() => globalInitiatives.id),
+  
+  // Contribution
+  totalPicsContributed: integer("total_pics_contributed").notNull().default(0),
+  totalActionsCompleted: integer("total_actions_completed").notNull().default(0),
+  
+  // Recognition
+  badgeEarned: text("badge_earned"),
+  level: text("level").notNull().default("supporter"), // supporter, advocate, champion, ambassador
+  
+  joinedAt: timestamp("joined_at").notNull().default(sql`now()`),
+  lastActivityAt: timestamp("last_activity_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    heroIdx: index("hero_initiative_participation_hero_idx").on(table.heroId),
+    initiativeIdx: index("hero_initiative_participation_initiative_idx").on(table.initiativeId),
+    uniqueParticipation: unique("hero_initiative_participation_unique").on(table.heroId, table.initiativeId),
+  };
+});
+
+// Conversion tracking for migration from old systems
+export const picConversionTracking = pgTable("pic_conversion_tracking", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").notNull().references(() => heroes.id),
+  picAccountId: varchar("pic_account_id").references(() => picAccounts.id), // Created PIC account
+  
+  // Legacy system tracking with explicit source references
+  legacyPlanetPoints: integer("legacy_planet_points").notNull().default(0),
+  legacyStarsValue: integer("legacy_stars_value").notNull().default(0), // in USD cents
+  legacySource: text("legacy_source"), // 'planet_points', 'stars', 'both'
+  legacySourceIds: jsonb("legacy_source_ids").default([]), // Array of source transaction IDs
+  
+  // Conversion
+  convertedPlanetPoints: integer("converted_planet_points").notNull().default(0),
+  convertedStarsValue: integer("converted_stars_value").notNull().default(0),
+  totalPicsGranted: integer("total_pics_granted").notNull().default(0),
+  
+  // Resulting PIC ledger entries
+  picLedgerEntryIds: jsonb("pic_ledger_entry_ids").default([]), // Array of created ledger entry IDs
+  finalPicBalance: integer("final_pic_balance"), // Snapshot of balance after conversion
+  
+  // Status & Processing
+  conversionStatus: text("conversion_status").notNull().default("pending"), // pending, processing, completed, failed
+  processedAt: timestamp("processed_at"),
+  convertedAt: timestamp("converted_at"),
+  failureReason: text("failure_reason"),
+  
+  // Idempotency - prevent duplicate conversions
+  idempotencyKey: varchar("idempotency_key").notNull(),
+  retryCount: integer("retry_count").notNull().default(0),
+  
+  // Audit
+  conversionRate: integer("conversion_rate").notNull().default(100), // basis points, 100 = 1:1
+  conversionNotes: text("conversion_notes"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    heroIdx: index("pic_conversion_tracking_hero_idx").on(table.heroId),
+    picAccountIdx: index("pic_conversion_tracking_pic_account_idx").on(table.picAccountId),
+    statusIdx: index("pic_conversion_tracking_status_idx").on(table.conversionStatus),
+    processedIdx: index("pic_conversion_tracking_processed_idx").on(table.processedAt),
+    legacySourceIdx: index("pic_conversion_tracking_legacy_source_idx").on(table.legacySource),
+    uniqueHero: unique("pic_conversion_tracking_unique_hero").on(table.heroId),
+    uniqueIdempotency: unique("pic_conversion_tracking_unique_idempotency").on(table.idempotencyKey),
+  };
+});
+
+// Insert schemas and types for PIC system
+export const insertPicAccountSchema = createInsertSchema(picAccounts).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPicLedgerSchema = createInsertSchema(picLedger).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertPicDistributionRuleSchema = createInsertSchema(picDistributionRules).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPicDistributionRecipientSchema = createInsertSchema(picDistributionRecipients).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertPicDistributionSchema = createInsertSchema(picDistributions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertUgcSubmissionSchema = createInsertSchema(ugcSubmissions).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertGlobalInitiativeSchema = createInsertSchema(globalInitiatives).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertHeroInitiativeParticipationSchema = createInsertSchema(heroInitiativeParticipation).omit({
+  id: true,
+  joinedAt: true,
+  lastActivityAt: true,
+});
+
+export const insertPicConversionTrackingSchema = createInsertSchema(picConversionTracking).omit({
+  id: true,
+  createdAt: true,
+});
+
+// Types
+export type PicAccount = typeof picAccounts.$inferSelect;
+export type InsertPicAccount = z.infer<typeof insertPicAccountSchema>;
+
+export type PicLedgerEntry = typeof picLedger.$inferSelect;
+export type InsertPicLedgerEntry = z.infer<typeof insertPicLedgerSchema>;
+
+export type PicDistributionRule = typeof picDistributionRules.$inferSelect;
+export type InsertPicDistributionRule = z.infer<typeof insertPicDistributionRuleSchema>;
+
+export type PicDistributionRecipient = typeof picDistributionRecipients.$inferSelect;
+export type InsertPicDistributionRecipient = z.infer<typeof insertPicDistributionRecipientSchema>;
+
+export type PicDistribution = typeof picDistributions.$inferSelect;
+export type InsertPicDistribution = z.infer<typeof insertPicDistributionSchema>;
+
+export type UgcSubmission = typeof ugcSubmissions.$inferSelect;
+export type InsertUgcSubmission = z.infer<typeof insertUgcSubmissionSchema>;
+
+export type GlobalInitiative = typeof globalInitiatives.$inferSelect;
+export type InsertGlobalInitiative = z.infer<typeof insertGlobalInitiativeSchema>;
+
+export type HeroInitiativeParticipation = typeof heroInitiativeParticipation.$inferSelect;
+export type InsertHeroInitiativeParticipation = z.infer<typeof insertHeroInitiativeParticipationSchema>;
+
+export type PicConversionTracking = typeof picConversionTracking.$inferSelect;
+export type InsertPicConversionTracking = z.infer<typeof insertPicConversionTrackingSchema>;

@@ -12,6 +12,7 @@ import { TombolaWidget } from "./tombola-widget";
 import { ImpactSlotMachine } from "./impact-slot-machine";
 import { DirhamSymbol } from "./dirham-symbol";
 import { StarsSponsorshipSection } from "./stars-sponsorship-section";
+import { PlayTV } from "./play-tv";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
@@ -211,20 +212,14 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             <span className="text-emerald-400 font-bold text-lg">Guilt Free Living</span>
             <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
           </div>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
             Your actions fund recycling drives, water renewal, and food security programs across Dubai & Pakistan. 
-            <span className="text-purple-400 font-bold">Visit the Play page to start your Planet Points journey!</span>
+            <span className="text-purple-400 font-bold">Watch live, play missions, and see real impact!</span>
           </p>
 
-          {/* Planet Heroes Gaming Banner - Always Visible */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-600/20 to-indigo-600/20 p-2 backdrop-blur-sm">
-            <div className="bg-slate-900/50 rounded-xl p-6">
-              <img 
-                src={planetHeroesGaming} 
-                alt="Planet Heroes Environmental Gaming - Create Impact Through Play" 
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
+          {/* Play TV Interactive Component - Always Visible */}
+          <div className="max-w-7xl mx-auto">
+            <PlayTV />
           </div>
         </div>
 
