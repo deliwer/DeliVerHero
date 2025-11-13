@@ -6133,6 +6133,14 @@ export class MemStorage implements IStorage {
     });
     
     return conversion;
+    } catch (error) {
+      // Update conversion status to failed
+      await this.updateRecord(this.picConversionTracking, processingConversion.id, {
+        conversionStatus: 'failed',
+        processedAt: new Date()
+      });
+      throw error;
+    }
   }
 
   async getPicConversionStatus(heroId: string): Promise<PicConversionTracking | undefined> {
