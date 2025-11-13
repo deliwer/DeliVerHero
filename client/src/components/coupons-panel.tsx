@@ -38,16 +38,20 @@ export function CouponsPanel({ heroId, theme = "default", showTitle = true }: Co
   const isAquaCafe = theme === "aquacafe";
 
   // Fetch issued coupons for hero
-  const { data: coupons = [], isLoading, refetch } = useQuery<IssuedCoupon[]>({
+  const { data: couponsData, isLoading, refetch } = useQuery<IssuedCoupon[]>({
     queryKey: ['/api/coupons/issued', heroId],
     queryFn: () => fetch(`/api/coupons/issued/${heroId}`).then(res => res.json()),
     enabled: !!heroId,
   });
+  
+  const coupons = Array.isArray(couponsData) ? couponsData : [];
 
   // Fetch coupon templates for reference
-  const { data: templates = [] } = useQuery<CouponTemplate[]>({
+  const { data: templatesData } = useQuery<CouponTemplate[]>({
     queryKey: ['/api/coupons/templates'],
   });
+  
+  const templates = Array.isArray(templatesData) ? templatesData : [];
 
   // Redeem coupon mutation
   const redeemMutation = useMutation<IssuedCoupon, Error, { couponId: string; heroId: string; location: string }>({

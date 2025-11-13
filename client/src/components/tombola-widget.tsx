@@ -33,10 +33,12 @@ export function TombolaWidget({ heroId, theme = "default", size = "full" }: Tomb
   const { toast } = useToast();
 
   // Fetch tombola prizes
-  const { data: prizes = [], isLoading: prizesLoading } = useQuery({
+  const { data: prizesData, isLoading: prizesLoading } = useQuery({
     queryKey: ['/api/tombola/prizes'],
     enabled: !!heroId,
   });
+  
+  const prizes = Array.isArray(prizesData) ? prizesData : [];
 
   // Fetch spin eligibility
   const { data: canSpinData, isLoading: eligibilityLoading } = useQuery({
