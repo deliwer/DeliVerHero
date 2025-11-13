@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import QRCode from "qrcode";
@@ -76,6 +76,136 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/order/:orderID/capture", async (req, res) => {
     await capturePaypalOrder(req, res);
+  });
+
+  // Stars Purchase System - Revenue generation through impact support
+  app.post("/api/stars/create-order", async (req, res) => {
+    try {
+      const { starsTier, contributorEmail, contributorName, impactCategory, dedicatedTo, isAnonymous } = req.body;
+      
+      // Validate tier
+      const validTiers = ['5', '10', '20', '50', '100'];
+      if (!validTiers.includes(starsTier)) {
+        return res.status(400).json({ error: "Invalid Stars tier. Must be 5, 10, 20, 50, or 100" });
+      }
+      
+      if (!contributorEmail) {
+        return res.status(400).json({ error: "Contributor email is required" });
+      }
+      
+      // Create PayPal order for Stars purchase
+      const amountUSD = parseFloat(starsTier);
+      
+      const orderRequest = {
+        amount: amountUSD.toString(),
+        currency: "USD",
+        intent: "CAPTURE"
+      };
+      
+      // Create the PayPal order
+      const mockReq = { body: orderRequest } as any;
+      const mockRes = {
+        json: (data: any) => {
+          // Store the Stars purchase record as pending
+          const purchaseData = {
+            starsTier,
+            amountUSD: amountUSD * 100, // Store in cents
+            currency: "USD",
+            paymentGateway: "paypal",
+            contributorEmail,
+            contributorName: contributorName || null,
+            impactCategory: impactCategory || "general_sustainability",
+            dedicatedTo: dedicatedTo || null,
+            isAnonymous: isAnonymous || false,
+            status: "pending",
+            starsAwarded: amountUSD * 10, // Award 10 stars per dollar
+            paypalOrderId: data.id
+          };
+          
+          // Return the order ID and purchase details
+          res.json({
+            orderId: data.id,
+            purchaseData,
+            message: "Stars order created successfully"
+          });
+        },
+        status: (code: number) => ({
+          json: (data: any) => res.status(code).json(data)
+        })
+      } as any;
+      
+      await createPaypalOrder(mockReq, mockRes);
+      
+    } catch (error: any) {
+      console.error("Error creating Stars order:", error);
+      res.status(500).json({ error: error.message || "Failed to create Stars order" });
+    }
+  });
+
+  app.post("/api/stars/capture-order/:orderID", async (req, res) => {
+    try {
+      const { orderID } = req.params;
+      const { purchaseData } = req.body;
+      
+      // Capture the PayPal order
+      const mockReq = { params: { orderID } } as any;
+      const mockRes = {
+        json: async (data: any) => {
+          try {
+            // Save the Stars purchase to database
+            const savedPurchase = await storage.createStarsPurchase({
+              ...purchaseData,
+              paypalOrderId: orderID,
+              transactionId: data.id,
+              status: "completed",
+              completedAt: new Date()
+            });
+            
+            console.log("Stars purchase completed:", savedPurchase.id, "Amount: $" + (savedPurchase.amountUSD / 100), "Stars awarded:", savedPurchase.starsAwarded);
+            
+            res.json({
+              success: true,
+              purchase: savedPurchase,
+              message: "Thank you for supporting sustainability! Your Stars have been awarded."
+            });
+          } catch (dbError: any) {
+            console.error("Failed to save Stars purchase:", dbError);
+            res.status(500).json({ error: "Payment captured but failed to record purchase" });
+          }
+        },
+        status: (code: number) => ({
+          json: (data: any) => res.status(code).json(data)
+        })
+      } as any;
+      
+      await capturePaypalOrder(mockReq, mockRes);
+      
+    } catch (error: any) {
+      console.error("Error capturing Stars order:", error);
+      res.status(500).json({ error: error.message || "Failed to capture Stars order" });
+    }
+  });
+
+  // Get Stars leaderboard
+  app.get("/api/stars/leaderboard", async (req, res) => {
+    try {
+      const topContributors = await storage.getStarsLeaderboard(10);
+      res.json(topContributors);
+    } catch (error: any) {
+      console.error("Error fetching Stars leaderboard:", error);
+      res.status(500).json({ error: "Failed to fetch leaderboard" });
+    }
+  });
+
+  // Get total Stars impact
+  app.get("/api/stars/stats", async (req, res) => {
+    try {
+      const stats = await storage.getStarsStats();
+      res.json(stats);
+    } catch (error: any) {
+      console.error("Error fetching Stars stats:", error);
+      res.status(500).json({ error: "Failed to fetch stats" });
+    }
   });
 
   // Stripe payment endpoints

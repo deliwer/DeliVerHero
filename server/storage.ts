@@ -435,6 +435,13 @@ export interface IStorage {
   
   getAvailableFulfillmentPricing(filters?: { productType?: string; condition?: string; sourceCountry?: string; storage?: string; color?: string; grade?: string }): Promise<FulfillmentPricing[]>;
   createFulfillmentPricing(pricing: InsertFulfillmentPricing): Promise<FulfillmentPricing>;
+  
+  // Stars Purchase System - Revenue generation
+  createStarsPurchase(purchase: InsertStarsPurchase): Promise<StarsPurchase>;
+  getStarsPurchase(id: string): Promise<StarsPurchase | undefined>;
+  getStarsPurchasesByEmail(email: string): Promise<StarsPurchase[]>;
+  getStarsLeaderboard(limit: number): Promise<Array<{ contributorName: string; contributorEmail: string; totalStars: number; totalAmountUSD: number; isAnonymous: boolean }>>;
+  getStarsStats(): Promise<{ totalContributions: number; totalAmountUSD: number; totalStarsAwarded: number; totalContributors: number }>;
 }
 
 export class MemStorage implements IStorage {
@@ -528,6 +535,9 @@ export class MemStorage implements IStorage {
   private resellerInventorySubscriptions: Map<string, ResellerInventorySubscription>;
   private fulfillmentPricing: Map<string, FulfillmentPricing>;
 
+  // Stars Purchase System
+  private starsPurchases: Map<string, any>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -616,6 +626,9 @@ export class MemStorage implements IStorage {
     this.fulfillmentOrders = new Map();
     this.resellerInventorySubscriptions = new Map();
     this.fulfillmentPricing = new Map();
+    
+    // Initialize Stars Purchase System
+    this.starsPurchases = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -5566,6 +5579,76 @@ export class MemStorage implements IStorage {
     };
     this.fulfillmentPricing.set(newPricing.id, newPricing);
     return newPricing;
+  }
+
+  // Stars Purchase System Implementation
+  async createStarsPurchase(purchase: any): Promise<any> {
+    const newPurchase = {
+      id: randomUUID(),
+      ...purchase,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.starsPurchases.set(newPurchase.id, newPurchase);
+    return newPurchase;
+  }
+
+  async getStarsPurchase(id: string): Promise<any | undefined> {
+    return this.starsPurchases.get(id);
+  }
+
+  async getStarsPurchasesByEmail(email: string): Promise<any[]> {
+    return Array.from(this.starsPurchases.values())
+      .filter(purchase => purchase.contributorEmail === email)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getStarsLeaderboard(limit: number): Promise<Array<{ contributorName: string; contributorEmail: string; totalStars: number; totalAmountUSD: number; isAnonymous: boolean }>> {
+    const completedPurchases = Array.from(this.starsPurchases.values())
+      .filter(p => p.status === 'completed' && p.displayOnLeaderboard);
+    
+    const contributorMap = new Map<string, { name: string; email: string; totalStars: number; totalAmountUSD: number; isAnonymous: boolean }>();
+    
+    for (const purchase of completedPurchases) {
+      const email = purchase.contributorEmail;
+      if (!contributorMap.has(email)) {
+        contributorMap.set(email, {
+          name: purchase.isAnonymous ? 'Anonymous' : (purchase.contributorName || 'Anonymous'),
+          email: purchase.isAnonymous ? '' : email,
+          totalStars: 0,
+          totalAmountUSD: 0,
+          isAnonymous: purchase.isAnonymous
+        });
+      }
+      const contributor = contributorMap.get(email)!;
+      contributor.totalStars += purchase.starsAwarded || 0;
+      contributor.totalAmountUSD += purchase.amountUSD || 0;
+    }
+    
+    return Array.from(contributorMap.values())
+      .sort((a, b) => b.totalStars - a.totalStars)
+      .slice(0, limit)
+      .map(c => ({
+        contributorName: c.name,
+        contributorEmail: c.email,
+        totalStars: c.totalStars,
+        totalAmountUSD: c.totalAmountUSD,
+        isAnonymous: c.isAnonymous
+      }));
+  }
+
+  async getStarsStats(): Promise<{ totalContributions: number; totalAmountUSD: number; totalStarsAwarded: number; totalContributors: number }> {
+    const completedPurchases = Array.from(this.starsPurchases.values())
+      .filter(p => p.status === 'completed');
+    
+    const uniqueEmails = new Set(completedPurchases.map(p => p.contributorEmail));
+    
+    return {
+      totalContributions: completedPurchases.length,
+      totalAmountUSD: completedPurchases.reduce((sum, p) => sum + (p.amountUSD || 0), 0),
+      totalStarsAwarded: completedPurchases.reduce((sum, p) => sum + (p.starsAwarded || 0), 0),
+      totalContributors: uniqueEmails.size
+    };
   }
 }
 

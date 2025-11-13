@@ -3130,3 +3130,61 @@ export const insertPaymentIntegrationSchema = createInsertSchema(paymentIntegrat
 
 export type PaymentIntegration = typeof paymentIntegrations.$inferSelect;
 export type InsertPaymentIntegration = z.infer<typeof insertPaymentIntegrationSchema>;
+
+// Stars Contribution System - Revenue generation through impact support
+export const starsPurchases = pgTable("stars_purchases", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Contributor Information
+  heroId: varchar("hero_id").references(() => heroes.id),
+  customerId: varchar("customer_id").references(() => customers.id),
+  contributorName: text("contributor_name"),
+  contributorEmail: text("contributor_email").notNull(),
+  
+  // Purchase Details
+  starsTier: text("stars_tier").notNull(), // '5', '10', '20', '50', '100' (USD amounts)
+  amountUSD: integer("amount_usd").notNull(), // Amount in USD cents
+  amountAED: integer("amount_aed"), // Converted amount in AED fils
+  currency: text("currency").notNull().default("USD"),
+  
+  // Payment Gateway
+  paymentGateway: text("payment_gateway").notNull(), // 'paypal', 'stripe'
+  paymentIntentId: text("payment_intent_id"),
+  transactionId: text("transaction_id"),
+  paypalOrderId: text("paypal_order_id"),
+  
+  // Impact Allocation (what the contribution supports)
+  impactCategory: text("impact_category").default("general_sustainability"), // water, energy, waste, mobility, general_sustainability
+  dedicatedTo: text("dedicated_to"), // Optional dedication message
+  isAnonymous: boolean("is_anonymous").notNull().default(false),
+  
+  // Status & Tracking
+  status: text("status").notNull().default("pending"), // pending, completed, failed, refunded
+  completedAt: timestamp("completed_at"),
+  failureReason: text("failure_reason"),
+  refundedAt: timestamp("refunded_at"),
+  
+  // Recognition & Rewards
+  starsAwarded: integer("stars_awarded").notNull().default(0), // Virtual stars for leaderboard
+  badgeEarned: text("badge_earned"), // Special badge for top contributors
+  displayOnLeaderboard: boolean("display_on_leaderboard").notNull().default(true),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    heroIdx: index("stars_purchases_hero_idx").on(table.heroId),
+    emailIdx: index("stars_purchases_email_idx").on(table.contributorEmail),
+    statusIdx: index("stars_purchases_status_idx").on(table.status),
+  };
+});
+
+// Insert schema and types for Stars purchases
+export const insertStarsPurchaseSchema = createInsertSchema(starsPurchases).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type StarsPurchase = typeof starsPurchases.$inferSelect;
+export type InsertStarsPurchase = z.infer<typeof insertStarsPurchaseSchema>;
