@@ -592,6 +592,7 @@ export class MemStorage implements IStorage {
   private ugcSubmissions: Map<string, UgcSubmission>;
   private globalInitiatives: Map<string, GlobalInitiative>;
   private picConversionTracking: Map<string, PicConversionTracking>;
+  private picConversionLocks: Map<string, Promise<PicConversionTracking>>;
 
   constructor() {
     this.users = new Map();
@@ -694,6 +695,7 @@ export class MemStorage implements IStorage {
     this.ugcSubmissions = new Map();
     this.globalInitiatives = new Map();
     this.picConversionTracking = new Map();
+    this.picConversionLocks = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -6023,18 +6025,32 @@ export class MemStorage implements IStorage {
 
   // Conversion - Migrate Legacy to PICs
   async convertLegacyToPics(heroId: string): Promise<PicConversionTracking> {
-    // Guard against duplicate conversions
-    const existing = await this.getPicConversionStatus(heroId);
-    if (existing) {
-      if (existing.conversionStatus === 'completed') {
-        // Already converted, return existing record
-        return existing;
-      } else if (existing.conversionStatus === 'processing') {
-        throw new Error('Conversion already in progress');
-      }
-      // If failed, allow retry by continuing
+    // Check if there's already a conversion in progress - if so, wait for it
+    const existingLock = this.picConversionLocks.get(heroId);
+    if (existingLock) {
+      return await existingLock;
     }
     
+    // Guard against already completed conversions
+    const existing = await this.getPicConversionStatus(heroId);
+    if (existing && existing.conversionStatus === 'completed') {
+      return existing;
+    }
+    
+    // Create a promise for the conversion and store it as a lock
+    const conversionPromise = this.executeConversion(heroId);
+    this.picConversionLocks.set(heroId, conversionPromise);
+    
+    try {
+      const result = await conversionPromise;
+      return result;
+    } finally {
+      // Always remove the lock when done (success or failure)
+      this.picConversionLocks.delete(heroId);
+    }
+  }
+
+  private async executeConversion(heroId: string): Promise<PicConversionTracking> {
     // Get hero data
     const hero = await this.getHero(heroId);
     if (!hero) {
@@ -6058,81 +6074,81 @@ export class MemStorage implements IStorage {
     });
     
     try {
-    
-    // Calculate legacy balances
-    const legacyPlanetPoints = hero.planetPoints || 0;
-    const starsContributions = await this.getStarsPurchasesByEmail(hero.email);
-    const legacyStarsValue = starsContributions
-      .filter(p => p.status === 'completed')
-      .reduce((sum, p) => sum + (p.amountUSD || 0), 0);
-    
-    // Create or get PIC account for hero
-    let picAccount = await this.getPicAccountByHeroId(heroId);
-    if (!picAccount) {
-      picAccount = await this.createPicAccount({
-        accountType: 'hero',
-        heroId,
-        accountName: hero.name,
-        description: `PIC account for ${hero.name}`,
-        currentBalance: 0,
-        lifetimeEarned: 0,
-        lifetimeSpent: 0,
-        status: 'active'
+      // Calculate legacy balances
+      const legacyPlanetPoints = hero.planetPoints || 0;
+      const starsContributions = await this.getStarsPurchasesByEmail(hero.email);
+      const legacyStarsValue = starsContributions
+        .filter(p => p.status === 'completed')
+        .reduce((sum, p) => sum + (p.amountUSD || 0), 0);
+      
+      // Create or get PIC account for hero
+      let picAccount = await this.getPicAccountByHeroId(heroId);
+      if (!picAccount) {
+        picAccount = await this.createPicAccount({
+          accountType: 'hero',
+          heroId,
+          accountName: hero.name,
+          description: `PIC account for ${hero.name}`,
+          currentBalance: 0,
+          lifetimeEarned: 0,
+          lifetimeSpent: 0,
+          status: 'active'
+        });
+      }
+      
+      // Convert to PICs (1 Planet Point = 1 PIC, 1 USD = 100 PICs)
+      const picsFromPoints = legacyPlanetPoints;
+      const picsFromStars = legacyStarsValue * 100; // cents to PICs
+      const totalPics = picsFromPoints + picsFromStars;
+      
+      // Create ledger entries
+      const ledgerEntryIds: string[] = [];
+      if (picsFromPoints > 0) {
+        const entry = await this.recordPicTransaction({
+          accountId: picAccount.id,
+          transactionType: 'earned',
+          source: 'conversion',
+          category: 'action',
+          amountPics: picsFromPoints,
+          relatedEntityType: 'legacy_planet_points',
+          relatedEntityId: heroId,
+          metadata: { conversionSource: 'planet_points', originalAmount: legacyPlanetPoints }
+        });
+        ledgerEntryIds.push(entry.id);
+      }
+      
+      if (picsFromStars > 0) {
+        const entry = await this.recordPicTransaction({
+          accountId: picAccount.id,
+          transactionType: 'contributed',
+          source: 'conversion',
+          category: 'monetary',
+          amountPics: picsFromStars,
+          relatedEntityType: 'legacy_stars',
+          relatedEntityId: heroId,
+          metadata: { conversionSource: 'stars', originalAmount: legacyStarsValue }
+        });
+        ledgerEntryIds.push(entry.id);
+      }
+      
+      // Update processing record to completed with final data
+      const conversion = await this.updateRecord(this.picConversionTracking, processingConversion.id, {
+        picAccountId: picAccount.id,
+        legacyPlanetPoints,
+        legacyStarsValue,
+        legacySource: picsFromPoints > 0 && picsFromStars > 0 ? 'both' : picsFromPoints > 0 ? 'planet_points' : 'stars',
+        totalPicsConverted: totalPics,
+        picLedgerEntryIds: ledgerEntryIds,
+        finalPicBalance: await this.getPicBalance(picAccount.id),
+        conversionStatus: 'completed',
+        processedAt: new Date()
       });
-    }
-    
-    // Convert to PICs (1 Planet Point = 1 PIC, 1 USD = 100 PICs)
-    const picsFromPoints = legacyPlanetPoints;
-    const picsFromStars = legacyStarsValue * 100; // cents to PICs
-    const totalPics = picsFromPoints + picsFromStars;
-    
-    // Create ledger entries
-    const ledgerEntryIds: string[] = [];
-    if (picsFromPoints > 0) {
-      const entry = await this.recordPicTransaction({
-        accountId: picAccount.id,
-        transactionType: 'earned',
-        source: 'conversion',
-        category: 'action',
-        amountPics: picsFromPoints,
-        relatedEntityType: 'legacy_planet_points',
-        relatedEntityId: heroId,
-        metadata: { conversionSource: 'planet_points', originalAmount: legacyPlanetPoints }
-      });
-      ledgerEntryIds.push(entry.id);
-    }
-    
-    if (picsFromStars > 0) {
-      const entry = await this.recordPicTransaction({
-        accountId: picAccount.id,
-        transactionType: 'contributed',
-        source: 'conversion',
-        category: 'monetary',
-        amountPics: picsFromStars,
-        relatedEntityType: 'legacy_stars',
-        relatedEntityId: heroId,
-        metadata: { conversionSource: 'stars', originalAmount: legacyStarsValue }
-      });
-      ledgerEntryIds.push(entry.id);
-    }
-    
-    // Create conversion tracking record
-    const conversion = this.createRecord(this.picConversionTracking, {
-      heroId,
-      picAccountId: picAccount.id,
-      legacyPlanetPoints,
-      legacyStarsValue,
-      legacySource: picsFromPoints > 0 && picsFromStars > 0 ? 'both' : picsFromPoints > 0 ? 'planet_points' : 'stars',
-      conversionRate: 1,
-      starsConversionRate: 100,
-      totalPicsConverted: totalPics,
-      picLedgerEntryIds: ledgerEntryIds,
-      finalPicBalance: await this.getPicBalance(picAccount.id),
-      conversionStatus: 'completed',
-      processedAt: new Date()
-    });
-    
-    return conversion;
+      
+      if (!conversion) {
+        throw new Error('Failed to update conversion record');
+      }
+      
+      return conversion;
     } catch (error) {
       // Update conversion status to failed
       await this.updateRecord(this.picConversionTracking, processingConversion.id, {
