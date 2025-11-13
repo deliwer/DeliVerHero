@@ -439,6 +439,7 @@ export interface IStorage {
   // Stars Purchase System - Revenue generation
   createStarsPurchase(purchase: InsertStarsPurchase): Promise<StarsPurchase>;
   getStarsPurchase(id: string): Promise<StarsPurchase | undefined>;
+  updateStarsPurchase(id: string, updates: Partial<StarsPurchase>): Promise<StarsPurchase | undefined>;
   getStarsPurchasesByEmail(email: string): Promise<StarsPurchase[]>;
   getStarsLeaderboard(limit: number): Promise<Array<{ contributorName: string; contributorEmail: string; totalStars: number; totalAmountUSD: number; isAnonymous: boolean }>>;
   getStarsStats(): Promise<{ totalContributions: number; totalAmountUSD: number; totalStarsAwarded: number; totalContributors: number }>;
@@ -5595,6 +5596,19 @@ export class MemStorage implements IStorage {
 
   async getStarsPurchase(id: string): Promise<any | undefined> {
     return this.starsPurchases.get(id);
+  }
+
+  async updateStarsPurchase(id: string, updates: Partial<any>): Promise<any | undefined> {
+    const purchase = this.starsPurchases.get(id);
+    if (!purchase) return undefined;
+    
+    const updated = {
+      ...purchase,
+      ...updates,
+      updatedAt: new Date()
+    };
+    this.starsPurchases.set(id, updated);
+    return updated;
   }
 
   async getStarsPurchasesByEmail(email: string): Promise<any[]> {

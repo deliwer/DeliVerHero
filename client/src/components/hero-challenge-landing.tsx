@@ -11,6 +11,7 @@ import { HeroRegistrationModal, MissionSelectionModal } from "./hero-onboarding-
 import { TombolaWidget } from "./tombola-widget";
 import { ImpactSlotMachine } from "./impact-slot-machine";
 import { DirhamSymbol } from "./dirham-symbol";
+import { StarsSponsorshipSection } from "./stars-sponsorship-section";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";

@@ -79,110 +79,127 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Stars Purchase System - Revenue generation through impact support
-  app.post("/api/stars/create-order", async (req, res) => {
+  app.post("/api/stars/purchase", async (req, res) => {
     try {
-      const { starsTier, contributorEmail, contributorName, impactCategory, dedicatedTo, isAnonymous } = req.body;
+      const { amountUSD, starsAwarded, contributorEmail, contributorName, isAnonymous, displayOnLeaderboard } = req.body;
       
-      // Validate tier
-      const validTiers = ['5', '10', '20', '50', '100'];
-      if (!validTiers.includes(starsTier)) {
-        return res.status(400).json({ error: "Invalid Stars tier. Must be 5, 10, 20, 50, or 100" });
+      // Validate input
+      const validAmounts = [5, 10, 20, 50, 100];
+      if (!validAmounts.includes(amountUSD)) {
+        return res.status(400).json({ error: "Invalid amount. Must be 5, 10, 20, 50, or 100 USD" });
       }
       
       if (!contributorEmail) {
         return res.status(400).json({ error: "Contributor email is required" });
       }
       
-      // Create PayPal order for Stars purchase
-      const amountUSD = parseFloat(starsTier);
+      if (!contributorName) {
+        return res.status(400).json({ error: "Contributor name is required" });
+      }
       
-      const orderRequest = {
-        amount: amountUSD.toString(),
+      // Create pending purchase in storage first
+      const purchaseData: any = {
+        amountUSD,
+        starsAwarded,
+        contributorEmail,
+        contributorName,
+        isAnonymous: isAnonymous || false,
+        displayOnLeaderboard: displayOnLeaderboard !== false,
         currency: "USD",
-        intent: "CAPTURE"
+        paymentGateway: "paypal",
+        status: "pending",
+        impactCategory: "general_sustainability"
       };
       
-      // Create the PayPal order
-      const mockReq = { body: orderRequest } as any;
-      const mockRes = {
-        json: (data: any) => {
-          // Store the Stars purchase record as pending
-          const purchaseData = {
-            starsTier,
-            amountUSD: amountUSD * 100, // Store in cents
-            currency: "USD",
-            paymentGateway: "paypal",
-            contributorEmail,
-            contributorName: contributorName || null,
-            impactCategory: impactCategory || "general_sustainability",
-            dedicatedTo: dedicatedTo || null,
-            isAnonymous: isAnonymous || false,
-            status: "pending",
-            starsAwarded: amountUSD * 10, // Award 10 stars per dollar
-            paypalOrderId: data.id
-          };
-          
-          // Return the order ID and purchase details
-          res.json({
-            orderId: data.id,
-            purchaseData,
-            message: "Stars order created successfully"
-          });
-        },
-        status: (code: number) => ({
-          json: (data: any) => res.status(code).json(data)
-        })
-      } as any;
+      const pendingPurchase = await storage.createStarsPurchase(purchaseData);
       
-      await createPaypalOrder(mockReq, mockRes);
+      // Create PayPal order
+      const paypal = await import("./paypal.js");
+      const order = await paypal.createOrder(amountUSD.toString(), "USD");
+      
+      // Update purchase with PayPal order ID (persist to storage)
+      const updatedPurchase = await storage.updateStarsPurchase(pendingPurchase.id, {
+        paypalOrderId: order.id
+      });
+      
+      // Get approval URL
+      const approvalUrl = order.links?.find((link: any) => link.rel === "approve")?.href;
+      
+      res.json({
+        purchaseId: pendingPurchase.id,
+        orderId: order.id,
+        approvalUrl,
+        message: "Stars order created successfully"
+      });
       
     } catch (error: any) {
-      console.error("Error creating Stars order:", error);
-      res.status(500).json({ error: error.message || "Failed to create Stars order" });
+      console.error("Error creating Stars purchase:", error);
+      res.status(500).json({ error: error.message || "Failed to create Stars purchase" });
     }
   });
 
-  app.post("/api/stars/capture-order/:orderID", async (req, res) => {
+  app.post("/api/stars/capture/:orderID", async (req, res) => {
     try {
       const { orderID } = req.params;
-      const { purchaseData } = req.body;
+      const { purchaseId } = req.body;
       
       // Capture the PayPal order
-      const mockReq = { params: { orderID } } as any;
-      const mockRes = {
-        json: async (data: any) => {
-          try {
-            // Save the Stars purchase to database
-            const savedPurchase = await storage.createStarsPurchase({
-              ...purchaseData,
-              paypalOrderId: orderID,
-              transactionId: data.id,
-              status: "completed",
-              completedAt: new Date()
-            });
-            
-            console.log("Stars purchase completed:", savedPurchase.id, "Amount: $" + (savedPurchase.amountUSD / 100), "Stars awarded:", savedPurchase.starsAwarded);
-            
-            res.json({
-              success: true,
-              purchase: savedPurchase,
-              message: "Thank you for supporting sustainability! Your Stars have been awarded."
-            });
-          } catch (dbError: any) {
-            console.error("Failed to save Stars purchase:", dbError);
-            res.status(500).json({ error: "Payment captured but failed to record purchase" });
-          }
-        },
-        status: (code: number) => ({
-          json: (data: any) => res.status(code).json(data)
-        })
-      } as any;
+      const paypal = await import("./paypal.js");
+      const captureData = await paypal.captureOrder(orderID);
       
-      await capturePaypalOrder(mockReq, mockRes);
+      // Find the pending purchase
+      const purchase = await storage.getStarsPurchase(purchaseId);
+      
+      if (!purchase) {
+        return res.status(404).json({ error: "Purchase not found" });
+      }
+      
+      if (purchase.status !== "pending") {
+        return res.status(400).json({ error: "Purchase already processed" });
+      }
+      
+      // Validate PayPal amount matches stored amount (security check)
+      const capturedAmount = parseFloat(captureData.purchase_units[0]?.amount?.value || "0");
+      if (Math.abs(capturedAmount - purchase.amountUSD) > 0.01) {
+        console.error("Amount mismatch:", { captured: capturedAmount, stored: purchase.amountUSD });
+        return res.status(400).json({ error: "Payment amount mismatch" });
+      }
+      
+      // Update purchase to completed (persist to storage)
+      const completedPurchase = await storage.updateStarsPurchase(purchase.id, {
+        status: "completed",
+        transactionId: captureData.id,
+        completedAt: new Date()
+      });
+      
+      console.log("Stars purchase completed:", completedPurchase?.id, "Amount: $" + completedPurchase?.amountUSD, "Stars awarded:", completedPurchase?.starsAwarded);
+      
+      res.json({
+        success: true,
+        purchase: completedPurchase,
+        message: "Thank you for supporting sustainability! Your Stars have been awarded."
+      });
       
     } catch (error: any) {
       console.error("Error capturing Stars order:", error);
       res.status(500).json({ error: error.message || "Failed to capture Stars order" });
+    }
+  });
+
+  // Get Stars purchase history by email
+  app.get("/api/stars/history", async (req, res) => {
+    try {
+      const { email } = req.query;
+      
+      if (!email) {
+        return res.status(400).json({ error: "Email parameter is required" });
+      }
+      
+      const history = await storage.getStarsPurchasesByEmail(email as string);
+      res.json(history);
+    } catch (error: any) {
+      console.error("Error fetching Stars history:", error);
+      res.status(500).json({ error: "Failed to fetch history" });
     }
   });
 
@@ -203,7 +220,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const stats = await storage.getStarsStats();
       res.json(stats);
     } catch (error: any) {
-      console.error("Error fetching Stars stats:", error);
+      console.error("Error fetching Stars stars:", error);
       res.status(500).json({ error: "Failed to fetch stats" });
     }
   });
