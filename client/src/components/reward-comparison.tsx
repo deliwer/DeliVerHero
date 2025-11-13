@@ -126,11 +126,44 @@ export function RewardComparison() {
           ))}
         </div>
 
+        <Card className="mt-8 bg-gradient-to-r from-green-900/30 to-emerald-900/30 border-emerald-500/40" data-testid="info-pic">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
+                <Star className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-white mb-3">Planet Impact Credits (PIC)</h3>
+                <div className="space-y-2 text-gray-300">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0 text-emerald-400" />
+                    <p className="text-sm"><strong>What it is:</strong> A sustainability metric that tracks your environmental impact from trade-ins, measuring CO₂ and water offset contributions</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0 text-emerald-400" />
+                    <p className="text-sm"><strong>How you earn it:</strong> Automatically issued alongside any reward type you choose - every trade-in generates PIC regardless of your selected reward</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0 text-emerald-400" />
+                    <p className="text-sm"><strong>Why it matters:</strong> Share PIC with employers for CSR reporting, unlock sustainability status tiers, and maximize impact by choosing Planet Points for PIC acceleration</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="mt-10 text-center bg-gradient-to-r from-emerald-900/20 to-blue-900/20 rounded-2xl p-6 border border-emerald-500/30">
           <h3 className="text-xl font-bold text-white mb-3">💡 Pro Tip: Maximize Your Value</h3>
           <p className="text-gray-300 max-w-3xl mx-auto">
             Choose Planet Points for the highest value with 10:1 ratio (1 Point = AED 0.10). 
             Use points for premium products, restaurant rewards, and water delivery while earning sustainability impact credits!
+          </p>
+        </div>
+
+        <div className="mt-6 text-center">
+          <p className="text-xs text-gray-400 max-w-2xl mx-auto">
+            * All trade-in iPhone prices shown are tentative estimates. Final valuations are subject to device testing and verification at our facility.
           </p>
         </div>
       </div>

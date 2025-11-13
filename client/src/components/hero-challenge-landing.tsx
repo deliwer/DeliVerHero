@@ -890,7 +890,7 @@ function StepSellIPhone() {
                   <span className="text-2xl">2️⃣</span>
                 </div>
                 <div className="text-white font-bold mb-1">Ship or Drop-off</div>
-                <div className="text-gray-400">Free pickup in Dubai</div>
+                <div className="text-gray-400">Free pickup for AquaCafe members</div>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
@@ -965,7 +965,7 @@ function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: ()
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">AED 99 Starter Kit Benefits</h3>
                   <p className="text-gray-300 mb-4">
-                    Get FREE Shower Filter (AED 399) + FREE Installation (AED 299) + Chill & Grill D100 Voucher + 1000 Loyalty Points
+                    Get FREE Shower Filter (AED 399) + Discounted Installation for Loyalty Members + Chill & Grill D100 Voucher + 1000 Loyalty Points
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Membership Card</span>
@@ -1020,7 +1020,7 @@ function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: ()
                       <div className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 text-hero-green-400 flex-shrink-0 mt-0.5" />
                         <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">FREE Installation</span> (AED 299 value)
+                          <span className="font-bold text-white">Discounted Installation for Loyalty Members</span>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">

@@ -261,7 +261,7 @@ export default function Home() {
     <div>
       <SEOMeta
         title="Trade Your iPhone for Water Delivery Rewards"
-        description="Dubai's first iPhone to water trade platform. Get instant cash, Planet Points, or water credits for your old iPhone. Free pickup within 24 hours across Dubai, Sharjah & Abu Dhabi. Certified data wipe guaranteed."
+        description="Dubai's first iPhone to water trade platform. Get instant cash, Planet Points, or water credits for your old iPhone. Free pickup for AquaCafe loyalty members within 24 hours across Dubai, Sharjah & Abu Dhabi. Certified data wipe guaranteed."
         keywords="iPhone trade-in Dubai, sell iPhone UAE, Planet Points, water delivery Dubai, sustainability rewards, eco-friendly Dubai, iPhone buyback, DeliWer, trade iPhone for water, circular economy UAE"
       />
 
