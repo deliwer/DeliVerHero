@@ -72,8 +72,8 @@ export default function ContactPage() {
                       <p className="text-white font-medium">Address</p>
                       <p className="text-gray-400">
                         DeliWer Shopping FZCO<br />
-                        Office 1001, API World Tower<br />
-                        Sheikh Zayed Road<br />
+                        50 9WC 523 Block C<br />
+                        Dubai Airport Freezone<br />
                         Dubai, UAE
                       </p>
                     </div>

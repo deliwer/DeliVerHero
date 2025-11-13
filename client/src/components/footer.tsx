@@ -82,7 +82,11 @@ export function Footer() {
             <div className="space-y-3 mb-6">
               <div className="flex items-center text-sm text-emerald-400 font-semibold">
                 <Shield className="w-4 h-4 mr-2 text-emerald-500" />
-                We support Dubaican Initiative
+                We support DubaiCan Initiative
+              </div>
+              <div className="flex items-center text-sm text-blue-400 font-semibold">
+                <Building className="w-4 h-4 mr-2 text-blue-500" />
+                Circle Dubai Initiative by Dubai Municipality
               </div>
               <div className="flex items-center text-sm text-gray-400">
                 <Zap className="w-4 h-4 mr-2 text-amber-500" />
@@ -214,8 +218,8 @@ export function Footer() {
                 <div className="flex items-start text-gray-400">
                   <MapPin className="w-4 h-4 mr-3 text-amber-500 mt-1" />
                   <div>
-                    <div className="text-sm">Dubai Airport Freezone UAE</div>
-                    <div className="text-xs text-gray-500">Serving all Emirates</div>
+                    <div className="text-sm">50 9WC 523 Block C</div>
+                    <div className="text-xs text-gray-500">Dubai Airport Freezone, Dubai UAE</div>
                   </div>
                 </div>
               </div>
@@ -261,7 +265,7 @@ export function Footer() {
               </div>
               <div className="flex items-center text-xs text-emerald-400">
                 <Star className="w-3 h-3 mr-1 text-emerald-500" />
-                We support Dubaican Initiative
+                DubaiCan & Circle Dubai Initiative
               </div>
               <div className="flex items-center text-xs text-gray-500">
                 <Shield className="w-3 h-3 mr-1 text-hero-green-500" />
