@@ -30,18 +30,10 @@ const ctaOptions: CTAOption[] = [
     hoverGradient: "from-purple-400 to-pink-400"
   },
   {
-    id: "rewards",
-    text: "Claim Rewards",
-    icon: "🎁",
-    href: "#step-3", 
-    gradient: "from-amber-500 to-orange-500",
-    hoverGradient: "from-amber-400 to-orange-400"
-  },
-  {
     id: "play",
     text: "Play & Impact",
     icon: "🎮",
-    href: "#step-4",
+    href: "#step-3",
     gradient: "from-emerald-500 to-green-500", 
     hoverGradient: "from-emerald-400 to-green-400"
   }
