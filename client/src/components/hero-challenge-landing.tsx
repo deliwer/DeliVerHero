@@ -168,9 +168,10 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   );
 }
 
-// Step 3: Create Impact Section (Play)
+// Step 3: Create Impact Section (Play) - Now Collapsible
 function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   const [heroId] = useState("demo-hero-id"); // Demo hero ID for tombola
+  const [isExpanded, setIsExpanded] = useState(false);
   
   return (
     <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-3">
@@ -187,8 +188,23 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
         <ProgressIndicator currentStep={3} />
         
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-            Play to Create Impact
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-label="Toggle Play to Create Impact section"
+              data-testid="toggle-play-impact"
+            >
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+                Play to Create Impact
+              </span>
+              {isExpanded ? (
+                <ChevronUp className="w-8 h-8 text-purple-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-purple-400" />
+              )}
+            </button>
           </h2>
           <div className="flex items-center justify-center gap-2 mb-3">
             <Sparkles className="w-5 h-5 text-emerald-400 animate-pulse" />
@@ -212,6 +228,9 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
           </div>
         </div>
 
+        {/* Expanded Content - Full Details */}
+        {isExpanded && (
+        <>
         {/* Play Mission Info Section */}
         <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500">
           {/* Floating particles */}
@@ -382,6 +401,8 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             </div>
           </div>
         </div>
+        </>
+        )}
       </div>
     </section>
   );
@@ -1156,29 +1177,77 @@ export function HeroChallengeLanding() {
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* Flow Connector - Before Steps */}
-        <div className="flex justify-center my-16">
-          <button
-            onClick={() => {
-              const step1Section = document.querySelector('[data-section="step-1"]');
-              if (step1Section) {
-                step1Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            }}
-            className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-            aria-label="Start Your Journey - Scroll to How it Works"
-            data-testid="button-start-journey"
-          >
-            <div className="w-1 h-16 bg-gradient-to-b from-purple-500 to-green-500 mb-2"></div>
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-              <ShoppingCart className="w-8 h-8 text-white" />
-            </div>
-            <div className="w-1 h-16 bg-gradient-to-b from-green-500 to-blue-500 mt-2"></div>
-            <div className="text-sm text-green-400 mt-3 font-bold">START YOUR JOURNEY</div>
-          </button>
+        {/* Step 0: Membership Pre-Step (Collapsed by default) */}
+        <div data-section="step-0" className="mb-16">
+          <MembershipBenefitsSection onJoinMembership={() => setShowHeroRegistration(true)} />
         </div>
 
-        {/* 4-Step Progressive Flow with Visual Connectors */}
+        {/* 3-Way Path Selector - Start Your Journey */}
+        <div className="flex justify-center my-16">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            {/* Path 1: Shop Smart */}
+            <button
+              onClick={() => {
+                const step1Section = document.querySelector('[data-section="step-1"]');
+                if (step1Section) {
+                  step1Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
+              aria-label="Start Your Journey - Shop Smart"
+              data-testid="button-scroll-step-1"
+            >
+              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-green-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <ShoppingCart className="w-7 h-7 text-white" />
+              </div>
+              <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-emerald-500 mt-2"></div>
+              <div className="text-xs text-green-400 mt-3 font-bold">SHOP SMART</div>
+            </button>
+
+            {/* Path 2: Sell iPhone */}
+            <button
+              onClick={() => {
+                const step2Section = document.querySelector('[data-section="step-2"]');
+                if (step2Section) {
+                  step2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
+              aria-label="Start Your Journey - Sell iPhone"
+              data-testid="button-scroll-step-2"
+            >
+              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-pink-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Smartphone className="w-7 h-7 text-white" />
+              </div>
+              <div className="w-1 h-12 bg-gradient-to-b from-pink-500 to-purple-500 mt-2"></div>
+              <div className="text-xs text-purple-400 mt-3 font-bold">SELL IPHONE</div>
+            </button>
+
+            {/* Path 3: Play to Create Impact */}
+            <button
+              onClick={() => {
+                const step3Section = document.querySelector('[data-section="step-3"]');
+                if (step3Section) {
+                  step3Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
+              aria-label="Start Your Journey - Play to Create Impact"
+              data-testid="button-scroll-step-3"
+            >
+              <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-blue-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Play className="w-7 h-7 text-white" />
+              </div>
+              <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-cyan-500 mt-2"></div>
+              <div className="text-xs text-blue-400 mt-3 font-bold">CREATE IMPACT</div>
+            </button>
+          </div>
+        </div>
+
+        {/* 3-Step Progressive Flow with Visual Connectors */}
         {/* Step 1: Shop Smart */}
         <div data-section="step-1">
           <StepTwoExchange />
@@ -1218,9 +1287,9 @@ export function HeroChallengeLanding() {
           <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
         </div>
 
-        {/* Main Tabs Section - Collapsible with AquaCafe Membership Card Banner */}
-        <div data-section="main-tabs" className="mt-16 mb-12">
-          <MembershipBenefitsSection onJoinMembership={() => setShowHeroRegistration(true)} />
+        {/* Stars Sponsorship Section - Post-Step Revenue Upsell */}
+        <div data-section="stars-support" className="mt-16 mb-12">
+          <StarsSponsorshipSection />
         </div>
       </div>
 
