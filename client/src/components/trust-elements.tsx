@@ -12,7 +12,7 @@ export function TrustElements() {
     {
       icon: Clock,
       title: "24-Hour Pickup",
-      description: "Free collection within 24 hours. Schedule at your convenience.",
+      description: "Free collection within 24 hours for AquaCafe loyalty members trading in or contributing old electronics.",
       badge: "Fast Service"
     },
     {
@@ -104,7 +104,7 @@ export function TrustElements() {
               },
               {
                 q: "Is pickup really free?",
-                a: "Yes! Free collection across Dubai, Sharjah & Abu Dhabi within 24 hours."
+                a: "Free pickup is available for AquaCafe loyalty members only who want to trade-in or contribute their old electronics. Service covers Dubai, Sharjah & Abu Dhabi within 24 hours."
               },
               {
                 q: "How is my data protected?",

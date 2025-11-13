@@ -8,7 +8,7 @@ export function AquaCafeComparisonTable() {
     { name: "Flow Rate", starter: "2L/min", pro: "3L/min", elite: "4L/min" },
     { name: "Filter Life", starter: "12 months", pro: "18 months", elite: "36 months" },
     { name: "Warranty", starter: "1 Year", pro: "1 Year", elite: "1 Year" },
-    { name: "Free Installation", starter: true, pro: true, elite: true },
+    { name: "Installation Discount", starter: true, pro: true, elite: true },
     { name: "Smart Monitoring", starter: false, pro: true, elite: true },
     { name: "UV Sterilization", starter: false, pro: false, elite: true },
     { name: "Alkaline Enhancement", starter: false, pro: false, elite: true },
@@ -102,7 +102,7 @@ export function AquaCafeComparisonTable() {
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
-          All systems include free installation across Dubai and 1-year warranty
+          All systems include discounted installation for loyalty members across Dubai and 1-year warranty
         </p>
       </div>
     </section>

@@ -5,8 +5,8 @@ export function AquaCafeServiceHighlights() {
   const highlights = [
     {
       icon: <Truck className="w-10 h-10 text-blue-600 dark:text-blue-400" />,
-      title: "Free Dubai Installation",
-      description: "Professional installation service at no extra cost across all Dubai areas"
+      title: "Professional Installation",
+      description: "Discounted installation for AquaCafe loyalty members across all Dubai areas"
     },
     {
       icon: <Shield className="w-10 h-10 text-green-600 dark:text-green-400" />,

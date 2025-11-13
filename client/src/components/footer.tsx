@@ -257,7 +257,7 @@ export function Footer() {
               <div className="flex items-center space-x-4 text-xs text-gray-500">
                 <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
                 <span>•</span>
-                <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms of Service</Link>
+                <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms & Conditions</Link>
                 <span>•</span>
                 <Link href="/environmental" className="hover:text-gray-300 transition-colors">Environmental Impact</Link>
                 <span>•</span>
