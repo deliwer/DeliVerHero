@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -25,19 +25,56 @@ interface PlayTVProps {
 export function PlayTV({ className = "" }: PlayTVProps) {
   const [selectedTab, setSelectedTab] = useState<"live" | "missions" | "community">("live");
   const [isPlaying, setIsPlaying] = useState(false);
+  const [videoLoadError, setVideoLoadError] = useState(false);
+  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Fetch active missions
-  const { data: missions = [], isLoading } = useQuery<PlanetMission[]>({
+  const { data: missionsData, isLoading } = useQuery<PlanetMission[]>({
     queryKey: ['/api/metaverse/missions'],
   });
+
+  const missions = Array.isArray(missionsData) ? missionsData : [];
 
   const featuredMissions = missions
     ?.filter(m => m.isActive && m.isEpic)
     ?.slice(0, 4) || [];
 
-  // YouTube channel ID for @vdeliwer
-  const YOUTUBE_CHANNEL_ID = "UCyQ8_cR5c6J0rX8fZQx9yKw"; // Replace with actual channel ID
+  // YouTube channel for @vdeliwer
+  const YOUTUBE_PLAYLIST_ID = "UUyQ8_cR5c6J0rX8fZQx9yKw"; // UC -> UU for uploads playlist
   const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@vdeliwer";
+
+  // Add timeout to show fallback if iframe doesn't load
+  useEffect(() => {
+    if (selectedTab === "live") {
+      // Reset error state when switching to live tab
+      setVideoLoadError(false);
+      
+      // Clear any existing timeout
+      if (loadTimeoutRef.current) {
+        clearTimeout(loadTimeoutRef.current);
+      }
+      
+      // Set new timeout for fallback
+      loadTimeoutRef.current = setTimeout(() => {
+        setVideoLoadError(true);
+      }, 10000); // Show fallback after 10 seconds if iframe hasn't loaded
+      
+      return () => {
+        if (loadTimeoutRef.current) {
+          clearTimeout(loadTimeoutRef.current);
+        }
+      };
+    }
+  }, [selectedTab]);
+
+  const handleIframeLoad = () => {
+    // Clear timeout and reset error state on successful load
+    if (loadTimeoutRef.current) {
+      clearTimeout(loadTimeoutRef.current);
+      loadTimeoutRef.current = null;
+    }
+    setVideoLoadError(false);
+  };
   
   return (
     <div className={`${className}`}>
@@ -96,35 +133,61 @@ export function PlayTV({ className = "" }: PlayTVProps) {
             <CardContent className="p-0">
               {selectedTab === "live" && (
                 <div className="aspect-video bg-slate-950 relative group">
-                  {/* YouTube Channel Latest Videos Embed */}
-                  <iframe
-                    src={`https://www.youtube.com/embed?listType=user_uploads&list=${YOUTUBE_CHANNEL_ID}`}
-                    className="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title="DeliWer YouTube Channel"
-                    data-testid="youtube-embed"
-                  />
-                  
-                  {/* Overlay Info */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h4 className="text-white font-bold text-lg mb-1">@vdeliwer Channel</h4>
-                        <p className="text-gray-300 text-sm">Latest sustainability missions and impact stories</p>
+                  {!videoLoadError ? (
+                    <>
+                      {/* YouTube Channel Latest Videos Embed */}
+                      <iframe
+                        src={`https://www.youtube.com/embed?listType=playlist&list=${YOUTUBE_PLAYLIST_ID}`}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title="DeliWer YouTube Channel - Latest Videos"
+                        data-testid="youtube-embed"
+                        onLoad={handleIframeLoad}
+                      />
+                      
+                      {/* Overlay Info */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h4 className="text-white font-bold text-lg mb-1">@vdeliwer Channel</h4>
+                            <p className="text-gray-300 text-sm">Latest sustainability missions and impact stories</p>
+                          </div>
+                          <a
+                            href={YOUTUBE_CHANNEL_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+                            data-testid="button-subscribe-youtube"
+                          >
+                            <Youtube className="w-5 h-5" />
+                            Subscribe
+                          </a>
+                        </div>
                       </div>
-                      <a
-                        href={YOUTUBE_CHANNEL_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
-                        data-testid="button-subscribe-youtube"
-                      >
-                        <Youtube className="w-5 h-5" />
-                        Subscribe
-                      </a>
+                    </>
+                  ) : (
+                    /* Fallback UI when video doesn't load */
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
+                      <div className="text-center p-6 max-w-md">
+                        <Youtube className="w-16 h-16 mx-auto mb-4 text-red-500" />
+                        <h4 className="text-white font-bold text-xl mb-2">Watch on YouTube</h4>
+                        <p className="text-gray-300 mb-6">
+                          See the latest sustainability missions and impact stories from our community
+                        </p>
+                        <a
+                          href={YOUTUBE_CHANNEL_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors font-medium"
+                          data-testid="button-visit-youtube"
+                        >
+                          <Youtube className="w-5 h-5" />
+                          Visit YouTube Channel
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               )}
 
