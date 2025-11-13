@@ -137,7 +137,7 @@ export function PlayTV({ className = "" }: PlayTVProps) {
                     <>
                       {/* YouTube Channel Latest Videos Embed */}
                       <iframe
-                        src={`https://www.youtube.com/embed?listType=playlist&list=${YOUTUBE_PLAYLIST_ID}`}
+                        src={`https://www.youtube.com/embed/videoseries?list=${YOUTUBE_PLAYLIST_ID}`}
                         className="w-full h-full"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -309,28 +309,6 @@ export function PlayTV({ className = "" }: PlayTVProps) {
               )}
             </CardContent>
           </Card>
-
-          {/* Engagement Stats Bar */}
-          <div className="grid grid-cols-3 gap-4 mt-4">
-            <Card className="bg-gradient-to-br from-purple-900/20 to-purple-800/20 border-purple-500/30">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-purple-400 mb-1">12.4K</div>
-                <div className="text-xs text-gray-400">Active Heroes</div>
-              </CardContent>
-            </Card>
-            <Card className="bg-gradient-to-br from-emerald-900/20 to-emerald-800/20 border-emerald-500/30">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-emerald-400 mb-1">2.1M</div>
-                <div className="text-xs text-gray-400">Bottles Prevented</div>
-              </CardContent>
-            </Card>
-            <Card className="bg-gradient-to-br from-amber-900/20 to-amber-800/20 border-amber-500/30">
-              <CardContent className="p-4 text-center">
-                <div className="text-2xl font-bold text-amber-400 mb-1">847K</div>
-                <div className="text-xs text-gray-400">PICs Distributed</div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Sidebar - Featured Content */}
