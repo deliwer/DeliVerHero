@@ -374,7 +374,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link href="/play">
                   <Button className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 text-lg px-8 py-3 rounded-full font-bold shadow-xl transition-all duration-300 hover:scale-105" data-testid="button-play-tombola">
-                    <Gift className="w-5 h-5 mr-2" />
+                    <Gift className="w-5 h-5 mr-2 flex-shrink-0" />
                     🎰 Play Tombola Now
                   </Button>
                 </Link>
@@ -589,7 +589,7 @@ function StepTwoExchange() {
                   className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-6 text-lg shadow-xl"
                   data-testid="button-buy-k8"
                 >
-                  <ShoppingCart className="mr-2 w-5 h-5" />
+                  <ShoppingCart className="mr-2 w-5 h-5 flex-shrink-0" />
                   Order Now with PayPal/Stripe
                 </Button>
               </div>
@@ -628,7 +628,7 @@ function StepTwoExchange() {
                   className="w-full bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white font-bold py-6 text-lg shadow-xl"
                   data-testid="button-buy-aquacafe"
                 >
-                  <ShoppingCart className="mr-2 w-5 h-5" />
+                  <ShoppingCart className="mr-2 w-5 h-5 flex-shrink-0" />
                   Order Now with PayPal/Stripe
                 </Button>
               </div>
@@ -642,7 +642,7 @@ function StepTwoExchange() {
                   className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-4 text-lg shadow-xl transform hover:scale-105 transition-all"
                   data-testid="button-explore-water-products"
                 >
-                  <Droplets className="mr-2 w-6 h-6" />
+                  <Droplets className="mr-2 w-6 h-6 flex-shrink-0" />
                   Explore All Water Filtration Products
                 </Button>
               </Link>
@@ -666,7 +666,7 @@ function StepTwoExchange() {
                 className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 text-2xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
                 data-testid="button-main-aquacafe-cta"
               >
-                <Droplets className="mr-3 w-8 h-8" />
+                <Droplets className="mr-3 w-8 h-8 flex-shrink-0" />
                 View All AquaCafe Products
               </Button>
             </Link>
@@ -960,7 +960,7 @@ function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: ()
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <div className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full px-6 py-2 mb-3 font-bold animate-pulse">
-                    <Gift className="w-5 h-5 mr-2" />
+                    <Gift className="w-5 h-5 mr-2 flex-shrink-0" />
                     <span>LOYALTY PROGRAM</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">AED 99 Starter Kit Benefits</h3>
@@ -985,7 +985,7 @@ function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: ()
               className="w-full max-w-md mx-auto block bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
               data-testid="button-join-loyalty-membership"
             >
-              <Rocket className="mr-3 w-6 h-6" />
+              <Rocket className="mr-3 w-6 h-6 flex-shrink-0" />
               JOIN LOYALTY - AED 99
             </Button>
           </div>
