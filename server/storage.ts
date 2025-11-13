@@ -583,6 +583,16 @@ export class MemStorage implements IStorage {
   // Stars Purchase System
   private starsPurchases: Map<string, any>;
 
+  // PIC (Planet Impact Credits) Unified Currency System
+  private picAccounts: Map<string, PicAccount>;
+  private picLedger: Map<string, PicLedgerEntry>;
+  private picDistributionRules: Map<string, PicDistributionRule>;
+  private picDistributionRecipients: Map<string, PicDistributionRecipient>;
+  private picDistributions: Map<string, PicDistribution>;
+  private ugcSubmissions: Map<string, UgcSubmission>;
+  private globalInitiatives: Map<string, GlobalInitiative>;
+  private picConversionTracking: Map<string, PicConversionTracking>;
+
   constructor() {
     this.users = new Map();
     this.contacts = new Map();
@@ -674,6 +684,16 @@ export class MemStorage implements IStorage {
     
     // Initialize Stars Purchase System
     this.starsPurchases = new Map();
+    
+    // Initialize PIC (Planet Impact Credits) System
+    this.picAccounts = new Map();
+    this.picLedger = new Map();
+    this.picDistributionRules = new Map();
+    this.picDistributionRecipients = new Map();
+    this.picDistributions = new Map();
+    this.ugcSubmissions = new Map();
+    this.globalInitiatives = new Map();
+    this.picConversionTracking = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -5626,6 +5646,46 @@ export class MemStorage implements IStorage {
     return newPricing;
   }
 
+  // Private helper functions for CRUD operations
+  private createRecord<T extends { id: string; createdAt: Date; updatedAt: Date }>(
+    map: Map<string, T>, 
+    insert: Omit<T, 'id' | 'createdAt' | 'updatedAt'>
+  ): T {
+    const record = {
+      id: randomUUID(),
+      ...insert,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    } as T;
+    map.set(record.id, record);
+    return record;
+  }
+
+  private updateRecord<T extends { id: string; updatedAt: Date }>(
+    map: Map<string, T>, 
+    id: string, 
+    updates: Partial<Omit<T, 'id' | 'createdAt' | 'updatedAt'>>
+  ): T | undefined {
+    const record = map.get(id);
+    if (!record) return undefined;
+    
+    const updated = {
+      ...record,
+      ...updates,
+      updatedAt: new Date()
+    } as T;
+    map.set(id, updated);
+    return updated;
+  }
+
+  private filterBy<T>(map: Map<string, T>, predicate: (item: T) => boolean): T[] {
+    return Array.from(map.values()).filter(predicate);
+  }
+
+  private listAll<T>(map: Map<string, T>): T[] {
+    return Array.from(map.values());
+  }
+
   // Stars Purchase System Implementation
   async createStarsPurchase(purchase: any): Promise<any> {
     const newPurchase = {
@@ -5707,6 +5767,376 @@ export class MemStorage implements IStorage {
       totalStarsAwarded: completedPurchases.reduce((sum, p) => sum + (p.starsAwarded || 0), 0),
       totalContributors: uniqueEmails.size
     };
+  }
+
+  // PIC (Planet Impact Credits) System Implementation
+  
+  // PIC Accounts
+  async createPicAccount(account: InsertPicAccount): Promise<PicAccount> {
+    return this.createRecord(this.picAccounts, account);
+  }
+
+  async getPicAccount(id: string): Promise<PicAccount | undefined> {
+    return this.picAccounts.get(id);
+  }
+
+  async getPicAccountByHeroId(heroId: string): Promise<PicAccount | undefined> {
+    return this.filterBy(this.picAccounts, a => a.accountType === 'hero' && a.heroId === heroId)[0];
+  }
+
+  async getPicAccountByInitiativeId(initiativeId: string): Promise<PicAccount | undefined> {
+    return this.filterBy(this.picAccounts, a => a.accountType === 'initiative' && a.initiativeId === initiativeId)[0];
+  }
+
+  async getPicAccountsByType(accountType: string): Promise<PicAccount[]> {
+    return this.filterBy(this.picAccounts, a => a.accountType === accountType);
+  }
+
+  async updatePicAccount(id: string, updates: Partial<PicAccount>): Promise<PicAccount | undefined> {
+    return this.updateRecord(this.picAccounts, id, updates);
+  }
+
+  // PIC Ledger
+  async recordPicTransaction(entry: InsertPicLedgerEntry): Promise<PicLedgerEntry> {
+    // Calculate balance dynamically from ledger
+    const currentBalance = await this.getPicBalance(entry.accountId);
+    const balanceAfter = currentBalance + entry.amountPics;
+    
+    const ledgerEntry = this.createRecord(this.picLedger, {
+      ...entry,
+      balanceAfter
+    });
+    
+    return ledgerEntry;
+  }
+
+  async getPicTransactions(accountId: string, filters?: { limit?: number; transactionType?: string; category?: string }): Promise<PicLedgerEntry[]> {
+    let transactions = this.filterBy(this.picLedger, t => t.accountId === accountId)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    
+    if (filters?.transactionType) {
+      transactions = transactions.filter(t => t.transactionType === filters.transactionType);
+    }
+    if (filters?.category) {
+      transactions = transactions.filter(t => t.category === filters.category);
+    }
+    if (filters?.limit) {
+      transactions = transactions.slice(0, filters.limit);
+    }
+    
+    return transactions;
+  }
+
+  async getPicBalance(accountId: string): Promise<number> {
+    // Always calculate balance from ledger entries (authoritative source)
+    const transactions = this.filterBy(this.picLedger, t => t.accountId === accountId);
+    return transactions.reduce((balance, t) => balance + t.amountPics, 0);
+  }
+
+  // Distribution Rules
+  async createDistributionRule(rule: InsertPicDistributionRule): Promise<PicDistributionRule> {
+    return this.createRecord(this.picDistributionRules, rule);
+  }
+
+  async getDistributionRules(filters?: { sourceType?: string; isActive?: boolean }): Promise<PicDistributionRule[]> {
+    let rules = this.listAll(this.picDistributionRules);
+    
+    if (filters?.sourceType) {
+      rules = rules.filter(r => r.sourceType === filters.sourceType);
+    }
+    if (filters?.isActive !== undefined) {
+      rules = rules.filter(r => r.isActive === filters.isActive);
+    }
+    
+    return rules.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getDistributionRule(id: string): Promise<PicDistributionRule | undefined> {
+    return this.picDistributionRules.get(id);
+  }
+
+  async updateDistributionRule(id: string, updates: Partial<PicDistributionRule>): Promise<PicDistributionRule | undefined> {
+    return this.updateRecord(this.picDistributionRules, id, updates);
+  }
+
+  // Distribution Recipients
+  async createDistributionRecipient(recipient: InsertPicDistributionRecipient): Promise<PicDistributionRecipient> {
+    return this.createRecord(this.picDistributionRecipients, recipient);
+  }
+
+  async getDistributionRecipients(ruleId: string): Promise<PicDistributionRecipient[]> {
+    return this.filterBy(this.picDistributionRecipients, r => r.ruleId === ruleId)
+      .sort((a, b) => a.sortOrder - b.sortOrder);
+  }
+
+  // Distributions
+  async executeDistribution(distribution: InsertPicDistribution): Promise<PicDistribution> {
+    // Validate recipients exist and sum to 10000 basis points
+    const recipients = await this.getDistributionRecipients(distribution.ruleId);
+    if (recipients.length === 0) {
+      throw new Error('No recipients configured for this distribution rule');
+    }
+    
+    const totalBasisPoints = recipients.reduce((sum, r) => sum + r.basisPoints, 0);
+    if (totalBasisPoints !== 10000) {
+      throw new Error(`Recipients basis points sum to ${totalBasisPoints}, must be 10000`);
+    }
+    
+    // Atomic operation: create all ledger entries first, then distribution record
+    const ledgerEntryIds: string[] = [];
+    const createdLedgerEntries: PicLedgerEntry[] = [];
+    let distributionRecord: PicDistribution | null = null;
+    
+    try {
+      // Create ledger entries for each recipient (including zero-amount for audit)
+      for (const recipient of recipients) {
+        const amount = Math.floor((distribution.totalAmount * recipient.basisPoints) / 10000);
+        
+        // Determine recipient account ID based on type
+        let recipientAccountId = '';
+        if (recipient.recipientType === 'initiatives' && recipient.targetInitiativeId) {
+          const initiativeAccount = await this.getPicAccountByInitiativeId(recipient.targetInitiativeId);
+          if (!initiativeAccount) {
+            throw new Error(`Initiative account not found for ${recipient.targetInitiativeId}`);
+          }
+          recipientAccountId = initiativeAccount.id;
+        } else if (recipient.recipientType === 'platform') {
+          const platformAccounts = await this.getPicAccountsByType('platform');
+          if (platformAccounts.length === 0) {
+            throw new Error('No platform account found');
+          }
+          recipientAccountId = platformAccounts[0].id;
+        } else {
+          throw new Error(`Unsupported recipient type: ${recipient.recipientType}`);
+        }
+        
+        // Create ledger entry (even if amount is zero for audit trail)
+        const ledgerEntry = await this.recordPicTransaction({
+          accountId: recipientAccountId,
+          transactionType: 'distributed',
+          source: distribution.sourceType,
+          category: 'distribution',
+          amountPics: amount,
+          relatedEntityType: 'distribution',
+          relatedEntityId: distribution.ruleId,
+          metadata: { recipientType: recipient.recipientType }
+        });
+        
+        ledgerEntryIds.push(ledgerEntry.id);
+        createdLedgerEntries.push(ledgerEntry);
+      }
+      
+      // Create distribution record only after all ledger entries succeed
+      distributionRecord = this.createRecord(this.picDistributions, {
+        ...distribution,
+        ledgerEntryIds,
+        status: 'completed',
+        processedAt: new Date()
+      });
+      
+      return distributionRecord;
+    } catch (error) {
+      // Rollback: remove created ledger entries and distribution record
+      for (const entry of createdLedgerEntries) {
+        this.picLedger.delete(entry.id);
+      }
+      if (distributionRecord) {
+        this.picDistributions.delete(distributionRecord.id);
+      }
+      throw error;
+    }
+  }
+
+  async getDistributions(filters?: { ruleId?: string; sourceId?: string }): Promise<PicDistribution[]> {
+    let distributions = this.listAll(this.picDistributions)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    
+    if (filters?.ruleId) {
+      distributions = distributions.filter(d => d.ruleId === filters.ruleId);
+    }
+    if (filters?.sourceId) {
+      distributions = distributions.filter(d => d.sourceId === filters.sourceId);
+    }
+    
+    return distributions;
+  }
+
+  // UGC Submissions
+  async createUgcSubmission(submission: InsertUgcSubmission): Promise<UgcSubmission> {
+    return this.createRecord(this.ugcSubmissions, submission);
+  }
+
+  async getUgcSubmissions(filters?: { heroId?: string; status?: string; contentType?: string }): Promise<UgcSubmission[]> {
+    let submissions = this.listAll(this.ugcSubmissions)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    
+    if (filters?.heroId) {
+      submissions = submissions.filter(s => s.heroId === filters.heroId);
+    }
+    if (filters?.status) {
+      submissions = submissions.filter(s => s.status === filters.status);
+    }
+    if (filters?.contentType) {
+      submissions = submissions.filter(s => s.contentType === filters.contentType);
+    }
+    
+    return submissions;
+  }
+
+  async getUgcSubmission(id: string): Promise<UgcSubmission | undefined> {
+    return this.ugcSubmissions.get(id);
+  }
+
+  async updateUgcSubmission(id: string, updates: Partial<UgcSubmission>): Promise<UgcSubmission | undefined> {
+    return this.updateRecord(this.ugcSubmissions, id, updates);
+  }
+
+  // Global Initiatives
+  async createGlobalInitiative(initiative: InsertGlobalInitiative): Promise<GlobalInitiative> {
+    return this.createRecord(this.globalInitiatives, initiative);
+  }
+
+  async getGlobalInitiatives(filters?: { initiativeType?: string; partnerId?: string; status?: string }): Promise<GlobalInitiative[]> {
+    let initiatives = this.listAll(this.globalInitiatives)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+    
+    if (filters?.initiativeType) {
+      initiatives = initiatives.filter(i => i.initiativeType === filters.initiativeType);
+    }
+    if (filters?.partnerId) {
+      initiatives = initiatives.filter(i => i.partnerId === filters.partnerId);
+    }
+    if (filters?.status) {
+      initiatives = initiatives.filter(i => i.status === filters.status);
+    }
+    
+    return initiatives;
+  }
+
+  async getGlobalInitiative(id: string): Promise<GlobalInitiative | undefined> {
+    return this.globalInitiatives.get(id);
+  }
+
+  async updateGlobalInitiative(id: string, updates: Partial<GlobalInitiative>): Promise<GlobalInitiative | undefined> {
+    return this.updateRecord(this.globalInitiatives, id, updates);
+  }
+
+  // Conversion - Migrate Legacy to PICs
+  async convertLegacyToPics(heroId: string): Promise<PicConversionTracking> {
+    // Guard against duplicate conversions
+    const existing = await this.getPicConversionStatus(heroId);
+    if (existing) {
+      if (existing.conversionStatus === 'completed') {
+        // Already converted, return existing record
+        return existing;
+      } else if (existing.conversionStatus === 'processing') {
+        throw new Error('Conversion already in progress');
+      }
+      // If failed, allow retry by continuing
+    }
+    
+    // Get hero data
+    const hero = await this.getHero(heroId);
+    if (!hero) {
+      throw new Error('Hero not found');
+    }
+    
+    // Create processing status upfront to prevent concurrent conversions
+    const processingConversion = this.createRecord(this.picConversionTracking, {
+      heroId,
+      picAccountId: '',
+      legacyPlanetPoints: 0,
+      legacyStarsValue: 0,
+      legacySource: 'planet_points',
+      conversionRate: 1,
+      starsConversionRate: 100,
+      totalPicsConverted: 0,
+      picLedgerEntryIds: [],
+      finalPicBalance: 0,
+      conversionStatus: 'processing',
+      processedAt: null
+    });
+    
+    try {
+    
+    // Calculate legacy balances
+    const legacyPlanetPoints = hero.planetPoints || 0;
+    const starsContributions = await this.getStarsPurchasesByEmail(hero.email);
+    const legacyStarsValue = starsContributions
+      .filter(p => p.status === 'completed')
+      .reduce((sum, p) => sum + (p.amountUSD || 0), 0);
+    
+    // Create or get PIC account for hero
+    let picAccount = await this.getPicAccountByHeroId(heroId);
+    if (!picAccount) {
+      picAccount = await this.createPicAccount({
+        accountType: 'hero',
+        heroId,
+        accountName: hero.name,
+        description: `PIC account for ${hero.name}`,
+        currentBalance: 0,
+        lifetimeEarned: 0,
+        lifetimeSpent: 0,
+        status: 'active'
+      });
+    }
+    
+    // Convert to PICs (1 Planet Point = 1 PIC, 1 USD = 100 PICs)
+    const picsFromPoints = legacyPlanetPoints;
+    const picsFromStars = legacyStarsValue * 100; // cents to PICs
+    const totalPics = picsFromPoints + picsFromStars;
+    
+    // Create ledger entries
+    const ledgerEntryIds: string[] = [];
+    if (picsFromPoints > 0) {
+      const entry = await this.recordPicTransaction({
+        accountId: picAccount.id,
+        transactionType: 'earned',
+        source: 'conversion',
+        category: 'action',
+        amountPics: picsFromPoints,
+        relatedEntityType: 'legacy_planet_points',
+        relatedEntityId: heroId,
+        metadata: { conversionSource: 'planet_points', originalAmount: legacyPlanetPoints }
+      });
+      ledgerEntryIds.push(entry.id);
+    }
+    
+    if (picsFromStars > 0) {
+      const entry = await this.recordPicTransaction({
+        accountId: picAccount.id,
+        transactionType: 'contributed',
+        source: 'conversion',
+        category: 'monetary',
+        amountPics: picsFromStars,
+        relatedEntityType: 'legacy_stars',
+        relatedEntityId: heroId,
+        metadata: { conversionSource: 'stars', originalAmount: legacyStarsValue }
+      });
+      ledgerEntryIds.push(entry.id);
+    }
+    
+    // Create conversion tracking record
+    const conversion = this.createRecord(this.picConversionTracking, {
+      heroId,
+      picAccountId: picAccount.id,
+      legacyPlanetPoints,
+      legacyStarsValue,
+      legacySource: picsFromPoints > 0 && picsFromStars > 0 ? 'both' : picsFromPoints > 0 ? 'planet_points' : 'stars',
+      conversionRate: 1,
+      starsConversionRate: 100,
+      totalPicsConverted: totalPics,
+      picLedgerEntryIds: ledgerEntryIds,
+      finalPicBalance: await this.getPicBalance(picAccount.id),
+      conversionStatus: 'completed',
+      processedAt: new Date()
+    });
+    
+    return conversion;
+  }
+
+  async getPicConversionStatus(heroId: string): Promise<PicConversionTracking | undefined> {
+    return this.filterBy(this.picConversionTracking, c => c.heroId === heroId)[0];
   }
 }
 
