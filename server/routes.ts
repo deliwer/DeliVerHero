@@ -114,7 +114,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const pendingPurchase = await storage.createStarsPurchase(purchaseData);
       
       // Create PayPal order
-      const paypal = await import("./paypal.js");
+      const paypal = await import("./paypal");
       const order = await paypal.createOrder(amountUSD.toString(), "USD");
       
       // Update purchase with PayPal order ID (persist to storage)
@@ -144,7 +144,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { purchaseId } = req.body;
       
       // Capture the PayPal order
-      const paypal = await import("./paypal.js");
+      const paypal = await import("./paypal");
       const captureData = await paypal.captureOrder(orderID);
       
       // Find the pending purchase
