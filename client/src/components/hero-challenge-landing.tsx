@@ -254,11 +254,11 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
                 <Link href="/play">
                   <Button 
                     size="lg" 
-                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
                     data-testid="button-visit-play-page"
                   >
-                    <Gamepad2 className="mr-3 w-6 h-6" />
-                    Visit Play Page
+                    <Gamepad2 className="w-6 h-6 flex-shrink-0" />
+                    <span>Visit Play Page</span>
                   </Button>
                 </Link>
                 <div className="text-xs text-gray-400 mt-4">
@@ -498,11 +498,11 @@ function StepTwoExchange() {
             <Link href="/aquacafe">
               <Button
                 size="lg"
-                className="w-full max-w-md mx-auto block bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
                 data-testid="button-view-aquacafe-products"
               >
-                <Droplets className="mr-3 w-6 h-6" />
-                View All Filtration Products
+                <Droplets className="w-6 h-6 flex-shrink-0" />
+                <span>View All Filtration Products</span>
               </Button>
             </Link>
             <p className="text-center text-gray-400 text-sm mt-3">
@@ -769,11 +769,11 @@ function StepSellIPhone() {
             <Link href="/exchange">
               <Button
                 size="lg"
-                className="w-full max-w-md mx-auto block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
                 data-testid="button-sell-iphone-cta"
               >
-                <Smartphone className="mr-3 w-6 h-6" />
-                Sell Your iPhone
+                <Smartphone className="w-6 h-6 flex-shrink-0" />
+                <span>Sell Your iPhone</span>
               </Button>
             </Link>
             <p className="text-center text-gray-400 text-sm mt-3">
