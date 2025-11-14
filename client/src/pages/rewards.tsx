@@ -33,7 +33,7 @@ export default function Rewards() {
       await shopifyCartService.addToCart(starterKitProduct);
       
       toast({
-        title: "Added to Cart! 🎉",
+        title: "Added to Cart!",
         description: "AquaCafe Loyalty Starter Kit (AED 99) - Your gateway to sustainability rewards",
       });
       
@@ -60,7 +60,7 @@ export default function Rewards() {
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-6 py-3 rounded-full mb-6 border border-emerald-500/50">
               <Gift className="w-6 h-6" />
-              <span className="font-bold text-lg">🚀 AQUACAFE LOYALTY GATEWAY</span>
+              <span className="font-bold text-lg">AQUACAFE LOYALTY GATEWAY</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-white mb-6">
               Your Circular Exchange Hub
@@ -85,7 +85,7 @@ export default function Rewards() {
               size="lg"
               onClick={handleOrderStarterKit}
               disabled={isOrderLoading}
-              className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-black px-12 py-8 text-2xl shadow-2xl transform hover:scale-105 transition-all rounded-full border-4 border-white/20 disabled:opacity-50"
+              className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-black px-12 py-8 text-2xl shadow-2xl rounded-full border-4 border-white/20 disabled:opacity-50"
               data-testid="button-order-starter-kit-hero"
             >
               <Zap className="w-8 h-8 mr-3" />
@@ -100,14 +100,14 @@ export default function Rewards() {
         {/* The Circular Exchange Concept */}
         <div className="mb-16">
           <h2 className="text-4xl font-black text-white text-center mb-8">
-            🔄 The Circular Exchange Concept
+            The Circular Exchange Concept
           </h2>
           <p className="text-center text-xl text-gray-300 max-w-3xl mx-auto mb-12">
             This starter kit isn't just a product - it's your lifetime membership to Dubai's most innovative sustainability platform. Every feature works together to create continuous value and environmental impact.
           </p>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border-2 border-blue-500/50 hover:scale-105 transition-transform">
+            <Card className="bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border-2 border-blue-500/50 hover-elevate" data-testid="card-trade-in-hub">
               <CardHeader className="text-center">
                 <Smartphone className="w-16 h-16 text-blue-400 mx-auto mb-4" />
                 <CardTitle className="text-white text-2xl">Trade-In Hub</CardTitle>
@@ -119,7 +119,7 @@ export default function Rewards() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-emerald-900/40 to-green-900/40 border-2 border-emerald-500/50 hover:scale-105 transition-transform">
+            <Card className="bg-gradient-to-br from-emerald-900/40 to-green-900/40 border-2 border-emerald-500/50 hover-elevate" data-testid="card-rewards-engine">
               <CardHeader className="text-center">
                 <Trophy className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
                 <CardTitle className="text-white text-2xl">Rewards Engine</CardTitle>
@@ -131,7 +131,7 @@ export default function Rewards() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-purple-900/40 to-pink-900/40 border-2 border-purple-500/50 hover:scale-105 transition-transform">
+            <Card className="bg-gradient-to-br from-purple-900/40 to-pink-900/40 border-2 border-purple-500/50 hover-elevate" data-testid="card-community-impact">
               <CardHeader className="text-center">
                 <Users className="w-16 h-16 text-purple-400 mx-auto mb-4" />
                 <CardTitle className="text-white text-2xl">Community Impact</CardTitle>
@@ -148,7 +148,7 @@ export default function Rewards() {
         {/* Lifetime Membership Benefits */}
         <div className="mb-16 bg-gradient-to-r from-amber-900/30 to-orange-900/30 rounded-3xl p-8 md:p-12 border-2 border-amber-500/50">
           <h2 className="text-4xl font-black text-white text-center mb-10">
-            💎 Lifetime Membership Benefits
+            Lifetime Membership Benefits
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -242,7 +242,7 @@ export default function Rewards() {
               size="lg"
               onClick={handleOrderStarterKit}
               disabled={isOrderLoading}
-              className="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black px-12 py-8 text-2xl shadow-2xl transform hover:scale-105 transition-all rounded-full disabled:opacity-50"
+              className="bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-black px-12 py-8 text-2xl shadow-2xl rounded-full disabled:opacity-50"
               data-testid="button-order-starter-kit-benefits"
             >
               <Gift className="w-8 h-8 mr-3" />
@@ -370,20 +370,20 @@ export default function Rewards() {
 
           {/* Lifestyle Gallery */}
           <div className="grid md:grid-cols-3 gap-6 mb-10">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img src={pizzaImage} alt="Delicious Pizza" className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-pizza">
+              <img src={pizzaImage} alt="Delicious Pizza" className="w-full h-64 object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <p className="text-white font-bold text-xl">Authentic Pizzas</p>
               </div>
             </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img src={bobaTeaImage} alt="Boba Tea" className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-boba">
+              <img src={bobaTeaImage} alt="Boba Tea" className="w-full h-64 object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <p className="text-white font-bold text-xl">Premium Boba Tea</p>
               </div>
             </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img src={happyDiningImage} alt="Happy Dining Experience" className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300" />
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-dining">
+              <img src={happyDiningImage} alt="Happy Dining Experience" className="w-full h-64 object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                 <p className="text-white font-bold text-xl">Memorable Moments</p>
               </div>
@@ -533,7 +533,7 @@ export default function Rewards() {
         {/* Planet Points & iPhone Trade-In Integration */}
         <div className="mb-16">
           <h2 className="text-4xl font-black text-white text-center mb-12">
-            💰 Maximize Your Rewards
+            Maximize Your Rewards
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -650,7 +650,7 @@ export default function Rewards() {
               size="lg"
               onClick={handleOrderStarterKit}
               disabled={isOrderLoading}
-              className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-black px-16 py-10 text-3xl shadow-2xl transform hover:scale-105 transition-all rounded-full border-4 border-white/20 disabled:opacity-50"
+              className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-black px-16 py-10 text-3xl shadow-2xl rounded-full border-4 border-white/20 disabled:opacity-50"
               data-testid="button-order-starter-kit-final"
             >
               <Gift className="w-10 h-10 mr-4" />
