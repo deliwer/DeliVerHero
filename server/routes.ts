@@ -2049,7 +2049,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
             "24/7 priority phone support",
             "Smart water quality monitoring",
             "Exclusive Hero premium badge",
-            "Free home installation"
+            "Discounted installation for loyalty members"
           ],
           badge: "⚡ MOST POPULAR",
           popular: true,

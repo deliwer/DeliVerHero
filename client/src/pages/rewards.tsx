@@ -279,7 +279,7 @@ export default function Rewards() {
                   </div>
                   <div className="flex items-center gap-2 text-cyan-400">
                     <CheckCircle className="w-5 h-5" />
-                    <span>FREE installation</span>
+                    <span>Discounted installation</span>
                   </div>
                 </div>
               </div>

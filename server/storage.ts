@@ -3790,7 +3790,7 @@ export class MemStorage implements IStorage {
         isDubaiExclusive: true,
         imageUrl: '/rewards/aquacafe-system.jpg',
         partnerBrand: 'AquaCafe',
-        deliveryInfo: 'Free delivery within Dubai, installation included',
+        deliveryInfo: 'Free delivery within Dubai, discounted installation for loyalty members',
         termsConditions: 'Valid for Dubai residents only. Installation within 3 business days.',
         isActive: true,
         createdAt: new Date(),

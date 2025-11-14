@@ -408,7 +408,7 @@ export default function Home() {
                   <h4 className="text-lg font-semibold text-white mb-4">Included in Starter Kit:</h4>
                   <div className="space-y-2 text-gray-300">
                     <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />5-Stage Water Filtration System</div>
-                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />FREE Professional Installation (AED 299 value)</div>
+                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Discounted Installation for Loyalty Members (from AED 299)</div>
                     <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Loyalty Membership Access</div>
                     <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Planet Points Earning System</div>
                   </div>

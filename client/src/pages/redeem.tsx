@@ -131,7 +131,7 @@ export default function Redeem() {
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-hero-green-500" />
-                    <span>Free Installation</span>
+                    <span>Discounted installation</span>
                   </div>
                 </div>
                 <button className="w-full bg-dubai-blue-500 hover:bg-dubai-blue-600 text-white py-2 rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>

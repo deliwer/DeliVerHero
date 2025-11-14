@@ -342,7 +342,7 @@ export function AquaCafeCheckoutModal({ isOpen, onClose, product }: CheckoutModa
               <div className="flex items-center gap-2 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
                 <Truck className="w-5 h-5 text-green-600 dark:text-green-400" />
                 <span className="text-sm text-green-800 dark:text-green-200">
-                  Free installation included across Dubai
+                  Discounted installation for loyalty members across Dubai
                 </span>
               </div>
 

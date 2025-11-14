@@ -51,7 +51,7 @@ export default function AquaCafe() {
         "24/7 priority phone support",
         "Smart water quality monitoring",
         "Exclusive Hero premium badge",
-        "Free home installation"
+        "Discounted installation for loyalty members"
       ],
       badge: "⚡ MOST POPULAR",
       popular: true
@@ -212,7 +212,7 @@ export default function AquaCafe() {
             {/* Urgency Indicator */}
             <div className="inline-flex items-center gap-2 bg-red-500/80 backdrop-blur-sm text-white px-4 py-2 rounded-full animate-pulse" data-testid="urgency-free-installation">
               <Zap className="w-4 h-4" />
-              <span className="font-bold text-sm">⏰ Limited Time: FREE Installation (AED 299 value)</span>
+              <span className="font-bold text-sm">⏰ Loyalty Perk: Discounted Installation (from AED 299)</span>
             </div>
           </div>
         </div>
@@ -249,7 +249,7 @@ export default function AquaCafe() {
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                  <span>FREE Installation (AED 299)</span>
+                  <span>Discounted Installation (from AED 299)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
@@ -362,7 +362,7 @@ export default function AquaCafe() {
             </div>
             <div className="bg-gray-50 rounded-xl p-4 border border-gray-200" data-testid="trust-installation">
               <Zap className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-              <div className="font-bold text-gray-900 text-sm">FREE Installation</div>
+              <div className="font-bold text-gray-900 text-sm">Discounted Install</div>
             </div>
             <div className="bg-gray-50 rounded-xl p-4 border border-gray-200" data-testid="trust-satisfaction">
               <Heart className="w-8 h-8 text-pink-500 mx-auto mb-2" />

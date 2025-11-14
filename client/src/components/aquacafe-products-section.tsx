@@ -18,7 +18,7 @@ const products: Product[] = [
     rating: 4.8,
     reviews: 247,
     description: "Loyalty member exclusive - Essential water filtration starter kit",
-    features: ["5-Stage Filtration", "2L/min Flow Rate", "6-Month Filter Life", "FREE Installation (Loyalty Perk)"],
+    features: ["5-Stage Filtration", "2L/min Flow Rate", "6-Month Filter Life", "Discounted Installation (Loyalty Perk)"],
     badge: "Loyalty Exclusive",
     variantId: "aquacafe-starter-kit",
     available: true,

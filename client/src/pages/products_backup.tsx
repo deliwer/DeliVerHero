@@ -377,7 +377,7 @@ export default function Products() {
             <CardContent className="p-6 text-center">
               <Droplets className="w-12 h-12 text-amber-400 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-white mb-2">Need a Starter System?</h3>
-              <p className="text-gray-300 mb-4">Get AED 1000+ value for only AED 99 with our Loyalty Member Starter Kit - FREE installation included!</p>
+              <p className="text-gray-300 mb-4">Get AED 1000+ value for only AED 99 with our Loyalty Member Starter Kit - Discounted installation for loyalty members!</p>
               <Link href="/aquacafe" className="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors" data-testid="button-aquacafe-crosssell">
                 <Star className="w-4 h-4" />
                 View Starter Kit

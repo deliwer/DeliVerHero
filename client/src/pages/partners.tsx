@@ -604,7 +604,7 @@ export default function Partners() {
                     </div>
                     <div className="flex items-center text-gray-300">
                       <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
-                      FREE Installation (AED 299 value)
+                      Discounted Installation (from AED 299)
                     </div>
                     <div className="flex items-center text-gray-300">
                       <Star className="w-4 h-4 text-green-400 mr-2" />

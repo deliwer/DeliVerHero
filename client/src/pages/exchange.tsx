@@ -148,8 +148,8 @@ export default function Exchange() {
                   <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                     <Gift className="w-6 h-6 text-blue-400" />
                   </div>
-                  <h4 className="font-semibold text-white mb-2">FREE Installation</h4>
-                  <p className="text-gray-300 text-sm">AED 299 value included with every starter kit membership</p>
+                  <h4 className="font-semibold text-white mb-2">Discounted Installation</h4>
+                  <p className="text-gray-300 text-sm">Reduced from AED 299 for loyalty members</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
