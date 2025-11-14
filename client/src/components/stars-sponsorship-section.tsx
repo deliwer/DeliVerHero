@@ -3,9 +3,13 @@ import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gi
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import sustainabilityImage from "@assets/stock_images/clean_water_sustaina_ba5cf3da.jpg";
 
 interface StarsTier {
   id: string;
@@ -116,62 +120,63 @@ export function StarsSponsorshipSection() {
   };
 
   return (
-    <section className="py-16 px-4 relative overflow-hidden">
+    <section className="py-12 px-4 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4">
-            <Sparkles className="w-4 h-4" />
-            <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            Support Global Sustainability
-          </h2>
-          
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-            Purchase Stars to support environmental initiatives worldwide. Your contribution funds clean water projects,
-            renewable energy, and sustainable communities.
-          </p>
-
-          {/* Stats Display */}
-          {stats && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
-              <Card className="p-4">
-                <div className="flex flex-col items-center">
-                  <Star className="w-6 h-6 text-amber-500 mb-2" />
-                  <div className="text-2xl font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
-                  <div className="text-xs text-muted-foreground">Stars Awarded</div>
-                </div>
-              </Card>
-              <Card className="p-4">
-                <div className="flex flex-col items-center">
-                  <TrendingUp className="w-6 h-6 text-emerald-500 mb-2" />
-                  <div className="text-2xl font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
-                  <div className="text-xs text-muted-foreground">Total Raised</div>
-                </div>
-              </Card>
-              <Card className="p-4">
-                <div className="flex flex-col items-center">
-                  <Users className="w-6 h-6 text-blue-500 mb-2" />
-                  <div className="text-2xl font-bold text-primary">{stats.totalContributors}</div>
-                  <div className="text-xs text-muted-foreground">Contributors</div>
-                </div>
-              </Card>
-              <Card className="p-4">
-                <div className="flex flex-col items-center">
-                  <Globe className="w-6 h-6 text-purple-500 mb-2" />
-                  <div className="text-2xl font-bold text-primary">{stats.totalContributions}</div>
-                  <div className="text-xs text-muted-foreground">Contributions</div>
-                </div>
-              </Card>
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Hero Section with Image */}
+        <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
+          {/* Left: Image */}
+          <div className="order-2 md:order-1">
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src={sustainabilityImage}
+                alt="Global Sustainability - Clean Water and Environmental Initiatives"
+                className="w-full h-auto object-cover"
+              />
             </div>
-          )}
+          </div>
+
+          {/* Right: Content */}
+          <div className="order-1 md:order-2">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4">
+              <Sparkles className="w-4 h-4 flex-shrink-0" />
+              <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              Support Global Sustainability
+            </h2>
+            
+            <p className="text-base text-muted-foreground mb-6">
+              Join our mission to create lasting environmental impact. Every contribution supports clean water access, renewable energy, and sustainable communities worldwide.
+            </p>
+
+            {/* Compact Stats */}
+            {stats && (
+              <div className="flex flex-wrap gap-4 mb-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                    <Star className="w-5 h-5 text-amber-500" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
+                    <div className="text-xs text-muted-foreground">Stars Awarded</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-emerald-500" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
+                    <div className="text-xs text-muted-foreground">Raised</div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Stars Tiers */}
@@ -209,14 +214,14 @@ export function StarsSponsorshipSection() {
                     handlePurchase(tier);
                   }}
                   disabled={purchaseMutation.isPending}
-                  className={`w-full bg-gradient-to-r ${tier.color} text-white hover:opacity-90`}
+                  className={`w-full bg-gradient-to-r ${tier.color} text-white`}
                   data-testid={`button-purchase-stars-${tier.amountUSD}`}
                 >
                   {purchaseMutation.isPending && selectedTier?.id === tier.id ? (
                     "Processing..."
                   ) : (
                     <>
-                      Contribute <ArrowRight className="w-4 h-4 ml-1" />
+                      Contribute <ArrowRight className="w-4 h-4 ml-1 flex-shrink-0" />
                     </>
                   )}
                 </Button>
@@ -225,71 +230,54 @@ export function StarsSponsorshipSection() {
           ))}
         </div>
 
-        {/* Contributor Information Form */}
-        <Card className="mb-12 max-w-2xl mx-auto">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Gift className="w-5 h-5 text-primary" />
-              Your Information
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <label htmlFor="contributor-name" className="block text-sm font-medium mb-2">
-                Name
-              </label>
-              <input
-                id="contributor-name"
-                type="text"
-                value={contributorName}
-                onChange={(e) => setContributorName(e.target.value)}
-                placeholder="Enter your name"
-                className="w-full px-4 py-2 rounded-md border border-input bg-background"
-                data-testid="input-contributor-name"
-              />
+        {/* Compact Contributor Form */}
+        <Card className="mb-12 max-w-3xl mx-auto">
+          <CardContent className="p-6">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <Input
+                  id="contributor-name"
+                  type="text"
+                  value={contributorName}
+                  onChange={(e) => setContributorName(e.target.value)}
+                  placeholder="Your name"
+                  data-testid="input-contributor-name"
+                />
+              </div>
+              <div>
+                <Input
+                  id="contributor-email"
+                  type="email"
+                  value={contributorEmail}
+                  onChange={(e) => setContributorEmail(e.target.value)}
+                  placeholder="Your email"
+                  data-testid="input-contributor-email"
+                />
+              </div>
             </div>
-
-            <div>
-              <label htmlFor="contributor-email" className="block text-sm font-medium mb-2">
-                Email
-              </label>
-              <input
-                id="contributor-email"
-                type="email"
-                value={contributorEmail}
-                onChange={(e) => setContributorEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 rounded-md border border-input bg-background"
-                data-testid="input-contributor-email"
-              />
-            </div>
-
-            <div className="flex items-center gap-2">
-              <input
-                id="anonymous"
-                type="checkbox"
-                checked={isAnonymous}
-                onChange={(e) => setIsAnonymous(e.target.checked)}
-                className="rounded"
-                data-testid="checkbox-anonymous"
-              />
-              <label htmlFor="anonymous" className="text-sm">
-                Display as Anonymous on leaderboard
-              </label>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <input
-                id="display-leaderboard"
-                type="checkbox"
-                checked={displayOnLeaderboard}
-                onChange={(e) => setDisplayOnLeaderboard(e.target.checked)}
-                className="rounded"
-                data-testid="checkbox-display-leaderboard"
-              />
-              <label htmlFor="display-leaderboard" className="text-sm">
-                Show my contribution on the leaderboard
-              </label>
+            <div className="flex flex-wrap gap-4 mt-4">
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="anonymous"
+                  checked={isAnonymous}
+                  onCheckedChange={(checked) => setIsAnonymous(checked === true)}
+                  data-testid="checkbox-anonymous"
+                />
+                <Label htmlFor="anonymous" className="text-sm cursor-pointer">
+                  Display as Anonymous
+                </Label>
+              </div>
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="display-leaderboard"
+                  checked={displayOnLeaderboard}
+                  onCheckedChange={(checked) => setDisplayOnLeaderboard(checked === true)}
+                  data-testid="checkbox-display-leaderboard"
+                />
+                <Label htmlFor="display-leaderboard" className="text-sm cursor-pointer">
+                  Show on leaderboard
+                </Label>
+              </div>
             </div>
           </CardContent>
         </Card>
