@@ -12,6 +12,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { TombolaWidget } from "@/components/tombola-widget";
 import { CouponsPanel } from "@/components/coupons-panel";
 import { DubaiWellnessJourney } from "@/components/dubai-wellness-journey";
+import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
+import { RewardComparison } from "@/components/reward-comparison";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
 
@@ -48,9 +50,9 @@ export default function Earn() {
         <div className="w-full max-w-7xl mx-auto text-center relative z-10">
           {/* Title */}
           <div className="inline-flex items-center bg-gradient-to-r from-purple-600 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl animate-pulse">
-            <Rocket className="w-6 h-6 mr-3" />
-            🎯 EARN PLANET POINTS 🎯
-            <Rocket className="w-6 h-6 ml-3" />
+            <Trophy className="w-6 h-6 mr-3" />
+            🏆 EARN REWARDS 🏆
+            <Trophy className="w-6 h-6 ml-3" />
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6 leading-tight">
@@ -66,7 +68,7 @@ export default function Earn() {
           </h2>
           
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Members and affiliates earn Planet Points through various activities and missions. Every action counts towards Dubai's sustainability goals.
+            Join AquaCafe Loyalty, earn Planet Impact Credits (PICs), complete missions, and redeem rewards. Every action counts towards Dubai's sustainability goals.
           </p>
           
           {/* Mission Categories */}
@@ -75,7 +77,7 @@ export default function Earn() {
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <div className="text-blue-600 text-4xl mb-3">📱</div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">Device Trade-ins</h3>
-              <p className="text-gray-600 text-sm mb-4">Trade your iPhone and earn up to 5,000 Planet Points</p>
+              <p className="text-gray-600 text-sm mb-4">Trade your iPhone and earn up to 5,000 PICs</p>
               <Link 
                 href="/exchange"
                 className="inline-block w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 text-sm rounded-lg transition-all"
@@ -108,7 +110,7 @@ export default function Earn() {
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-amber-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <div className="text-amber-600 text-4xl mb-3">👥</div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">Referral Rewards</h3>
-              <p className="text-gray-600 text-sm mb-4">Invite friends and earn AED 100 + bonus points</p>
+              <p className="text-gray-600 text-sm mb-4">Invite friends and earn AED 100 + 500 PICs</p>
               <Link 
                 href="/aquacafe"
                 className="inline-block w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 text-sm rounded-lg transition-all"
@@ -118,6 +120,46 @@ export default function Earn() {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Buy PICs Instantly - Fund Sustainability Projects */}
+      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white" data-testid="buy-pics-section">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
+              <Star className="w-4 h-4 flex-shrink-0" />
+              <span className="font-bold text-sm">MONETIZE SUSTAINABILITY</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Buy PICs to <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Fund Impact</span>
+            </h2>
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
+              Purchase Planet Impact Credits directly to support clean water access, e-waste recycling, and environmental awareness campaigns. 
+              <strong className="text-emerald-400"> 100 PICs = $10 value</strong>
+            </p>
+          </div>
+          <StarsSponsorshipSection />
+        </div>
+      </section>
+
+      {/* AquaCafe Loyalty Membership Tiers - Reward Type Selection */}
+      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900" data-testid="membership-tiers-section">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full border border-cyan-500/30 mb-4">
+              <Trophy className="w-4 h-4 flex-shrink-0" />
+              <span className="font-bold text-sm">AQUACAFE LOYALTY GATEWAY</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Join AquaCafe & <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Start Earning</span>
+            </h2>
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
+              Become an AquaCafe member to unlock multipliers, exclusive perks, and accelerated PIC earning. 
+              Choose how you want to receive value from your iPhone trade-ins and purchases.
+            </p>
+          </div>
+          <RewardComparison />
         </div>
       </section>
 
@@ -169,15 +211,15 @@ export default function Earn() {
         </div>
       </section>
 
-      {/* Missions Hub - Activities to Earn Points */}
+      {/* Missions Hub - Activities to Earn PICs */}
       <section className="w-full py-12 px-4 bg-gradient-to-br from-blue-50 to-emerald-50" data-testid="missions-hub">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              🎯 Missions & Activities Hub
+              🎯 Earn More PICs - Missions Hub
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Complete missions to earn Planet Points. Every action contributes to Dubai's circular economy and sustainability goals.
+              Complete missions to earn Planet Impact Credits (PICs). Trade iPhones, refer friends, share on social media, and participate in sustainability challenges. Every action contributes to Dubai's circular economy.
             </p>
           </div>
 
@@ -191,11 +233,11 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">iPhone Trade-in</h3>
-                    <p className="text-sm text-blue-600">Up to 5,000 Points</p>
+                    <p className="text-sm text-blue-600 font-bold">Up to 5,000 PICs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Trade your old iPhone and get instant Planet Points plus credit toward water systems
+                  Trade your old iPhone and get instant PICs plus credit toward AquaCafe water systems
                 </p>
                 <Link 
                   href="/exchange"
@@ -216,11 +258,11 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">AquaCafe Membership</h3>
-                    <p className="text-sm text-emerald-600">1,000 Points</p>
+                    <p className="text-sm text-emerald-600 font-bold">1,000 PICs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Get the AED 99 Starter Kit and become a Planet Hero Level 2 member
+                  Get the AED 99 Starter Kit and become a Planet Hero Level 2 member with instant PICs
                 </p>
                 <Link 
                   href="/aquacafe"
@@ -241,11 +283,11 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Referral Bonus</h3>
-                    <p className="text-sm text-amber-600">500 Points + AED 100</p>
+                    <p className="text-sm text-amber-600 font-bold">500 PICs + AED 100</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Refer a friend to AquaCafe and both get AED 100 Baker's Kitchen voucher
+                  Refer a friend to AquaCafe and both get AED 100 Chill & Grill voucher + 500 PICs
                 </p>
                 <Button 
                   onClick={() => {
@@ -271,17 +313,17 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Daily Check-in</h3>
-                    <p className="text-sm text-purple-600">50 Points/Day</p>
+                    <p className="text-sm text-purple-600 font-bold">50 PICs/Day</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Log in daily to collect bonus points and maintain your streak
+                  Log in daily to collect 50 PICs and maintain your streak
                 </p>
                 <Button 
                   onClick={() => {
                     toast({
                       title: "Daily Reward Claimed!",
-                      description: "+50 Planet Points. Come back tomorrow!"
+                      description: "+50 PICs earned! Come back tomorrow for more!"
                     });
                   }}
                   className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold"
