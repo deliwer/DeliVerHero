@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useToast } from "@/hooks/use-toast";
-import { Droplets, Filter, Zap, Shield, TrendingUp, Star } from "lucide-react";
+import { Droplets, Filter, Zap, Shield, TrendingUp, Star, Heart, Users, Sparkles, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,11 @@ import { AquaCafeComparisonTable } from "@/components/aquacafe-comparison-table"
 import waterFilter1 from "@assets/stock_images/modern_water_filtrat_b0dbec4a.jpg";
 import waterFilter2 from "@assets/stock_images/5-stage_water_purifi_ca3daeaf.jpg";
 import waterFilter3 from "@assets/stock_images/5-stage_water_purifi_b2e38594.jpg";
+import cleanWater1 from "@assets/stock_images/clean_water_sustaina_50892fbd.jpg";
+import cleanWater2 from "@assets/stock_images/clean_water_sustaina_b2e8ad83.jpg";
+import beautyWater1 from "@assets/Beauty_Water_1_1756065010937.jpg";
+import beautyWater2 from "@assets/Beauty_Water_2_1756065010940.jpg";
+import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 
 interface Product {
   id: string;
@@ -29,6 +34,7 @@ interface Product {
     warranty: string;
   };
   features: string[];
+  picsEarned: number;
 }
 
 export default function AquaCafeEnhanced() {
@@ -46,6 +52,7 @@ export default function AquaCafeEnhanced() {
       originalPrice: 1599,
       image: waterFilter1,
       badge: "🚀 PLANET HERO GATEWAY",
+      picsEarned: 1000,
       specs: {
         stages: "3-Stage",
         tdsReduction: "85%",
@@ -53,15 +60,14 @@ export default function AquaCafeEnhanced() {
         warranty: "1 Year"
       },
       features: [
-        "💧 Premium 3-stage filtration system",
-        "📦 12-month filter supply included",
-        "⭐ Instant Planet Hero Level 2 status",
-        "🎯 1000 starter points + 2X Hero multiplier",
-        "📞 24/7 Planet Hero priority support",
-        "📱 Smart monitoring app with Hero dashboard",
-        "🏆 Exclusive Hero member badge",
-        "💰 20% discount on ALL future plans",
-        "🍰 AED 100 Baker's Kitchen voucher when friend signs up via referral"
+        "Premium 3-stage filtration system",
+        "12-month filter supply included",
+        "Instant Planet Hero Level 2 status",
+        "1000 starter PICs + 2X multiplier",
+        "24/7 priority support",
+        "Smart monitoring app",
+        "Exclusive Hero member badge",
+        "20% discount on ALL future plans"
       ]
     },
     {
@@ -72,6 +78,7 @@ export default function AquaCafeEnhanced() {
       image: waterFilter2,
       badge: "⚡ MOST POPULAR",
       popular: true,
+      picsEarned: 2500,
       specs: {
         stages: "5-Stage",
         tdsReduction: "95%",
@@ -82,7 +89,7 @@ export default function AquaCafeEnhanced() {
         "Advanced 5-stage filtration",
         "18-month filter supply",
         "Planet Hero Level 3 status",
-        "2500 starter points + 2X multiplier",
+        "2500 starter PICs + 2X multiplier",
         "24/7 priority phone support",
         "Smart water quality monitoring",
         "Exclusive Hero premium badge",
@@ -96,6 +103,7 @@ export default function AquaCafeEnhanced() {
       originalPrice: 2999,
       image: waterFilter3,
       badge: "🏆 ULTIMATE HERO",
+      picsEarned: 5000,
       specs: {
         stages: "7-Stage",
         tdsReduction: "99%",
@@ -106,12 +114,11 @@ export default function AquaCafeEnhanced() {
         "Ultimate 7-stage whole-home system",
         "36-month filter supply",
         "Planet Hero Level 4 Elite status",
-        "5000 starter points + 3X multiplier",
+        "5000 starter PICs + 3X multiplier",
         "24/7 VIP concierge support",
         "AI-powered smart home integration",
         "Elite Hero platinum badges",
-        "Free annual maintenance & upgrades",
-        "Carbon footprint certificate"
+        "Free annual maintenance & upgrades"
       ]
     }
   ];
@@ -162,21 +169,21 @@ export default function AquaCafeEnhanced() {
   return (
     <>
       <Helmet>
-        <title>Buy Water Filter in Dubai | AquaCafe by DeliWer</title>
+        <title>Buy Water Filter in Dubai | AquaCafe Lifestyle Marketplace</title>
         <meta 
           name="description" 
-          content="Order 5-stage water purifiers with installation in Dubai. AquaCafe by DeliWer offers eco-friendly filtered water systems with fast delivery. Free installation across Dubai areas." 
+          content="Premium water filtration systems for healthy living in Dubai. Order 5-stage purifiers with installation, earn Planet Impact Credits (PICs), and join the sustainability movement. Free installation across Dubai." 
         />
-        <meta name="keywords" content="water filter Dubai, buy water purifier UAE, AquaCafe water filter Dubai, water filtration Dubai, home water filter Dubai" />
+        <meta name="keywords" content="water filter Dubai, buy water purifier UAE, AquaCafe water filter Dubai, water filtration Dubai, home water filter Dubai, healthy living, wellness Dubai" />
         
-        <meta property="og:title" content="Buy Water Filter in Dubai | AquaCafe by DeliWer" />
-        <meta property="og:description" content="Order premium water purifiers with free installation across Dubai. Eco-friendly 5-stage filtration systems from AED 1,299." />
+        <meta property="og:title" content="Buy Water Filter in Dubai | AquaCafe Lifestyle Marketplace" />
+        <meta property="og:description" content="Premium water filtration for healthy living. Order with free installation, earn PICs, support sustainability." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://deliwer.com/aquacafe" />
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Buy Water Filter in Dubai | AquaCafe" />
-        <meta name="twitter:description" content="Premium water filtration systems with free Dubai installation" />
+        <meta name="twitter:description" content="Premium water filtration systems with free Dubai installation + earn PICs" />
 
         <script type="application/ld+json">
           {JSON.stringify(productJsonLd)}
@@ -184,29 +191,37 @@ export default function AquaCafeEnhanced() {
       </Helmet>
 
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 text-white py-20 px-4">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-300 rounded-full blur-3xl animate-pulse"></div>
+        {/* Lifestyle Hero Section */}
+        <section className="relative bg-gradient-to-br from-cyan-500 via-blue-600 to-teal-600 text-white py-20 px-4 overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src={cleanWater1} 
+              alt="Clean Water Lifestyle" 
+              className="w-full h-full object-cover opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/90 via-blue-700/90 to-teal-700/90"></div>
           </div>
 
           <div className="container mx-auto max-w-6xl relative z-10 text-center">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-white/30">
+              <Sparkles className="w-5 h-5" />
+              <span className="font-bold">AQUACAFE LIFESTYLE MARKETPLACE</span>
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Premium Water Filters for Dubai Homes
+              Premium Water for<br />Healthy Living in Dubai
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-cyan-50">
-              Buy & Install in 24 Hours • Free Installation • 1-Year Warranty
+              Transform your home with clean water • Earn Planet Impact Credits • Support sustainability
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-6">
               <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
-                <span className="font-bold">✓ 85-99% TDS Reduction</span>
+                <span className="font-bold">✓ Earn up to 5,000 PICs</span>
               </div>
               <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
-                <span className="font-bold">✓ Free Dubai Installation</span>
+                <span className="font-bold">✓ Free Installation</span>
               </div>
               <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
-                <span className="font-bold">✓ Eco Rewards Points</span>
+                <span className="font-bold">✓ 1-Year Warranty</span>
               </div>
             </div>
             <Button 
@@ -218,20 +233,134 @@ export default function AquaCafeEnhanced() {
               }}
               data-testid="button-hero-shop-now"
             >
-              Shop Water Filters Now
+              <Gift className="w-5 h-5 mr-2" />
+              Shop & Earn PICs Now
             </Button>
           </div>
         </section>
 
-        {/* Products Section */}
+        {/* Lifestyle Benefits Section */}
+        <section className="py-16 px-4 bg-gradient-to-br from-emerald-50 to-cyan-50">
+          <div className="container mx-auto max-w-7xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                Water Filtration That Transforms Your Lifestyle
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Premium filtration systems that enhance health, beauty, and wellness while earning you rewards for sustainable choices.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {/* Health & Wellness */}
+              <Card className="overflow-hidden hover:shadow-xl transition-all">
+                <div className="relative h-64">
+                  <img 
+                    src={cleanWater2} 
+                    alt="Health & Wellness" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                    <h3 className="text-white font-bold text-2xl">Health & Wellness</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <Heart className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <span>99% removal of contaminants</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Heart className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <span>Enhanced mineral balance</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Heart className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <span>Better hydration for active lifestyles</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Beauty & Skincare */}
+              <Card className="overflow-hidden hover:shadow-xl transition-all">
+                <div className="relative h-64">
+                  <img 
+                    src={beautyWater1} 
+                    alt="Beauty & Skincare" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                    <h3 className="text-white font-bold text-2xl">Beauty & Skincare</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <Sparkles className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
+                      <span>Softer, healthier skin & hair</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Sparkles className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
+                      <span>Chlorine-free shower experience</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Sparkles className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
+                      <span>pH-balanced beauty water</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              {/* Family Wellness */}
+              <Card className="overflow-hidden hover:shadow-xl transition-all">
+                <div className="relative h-64">
+                  <img 
+                    src={beautyWater2} 
+                    alt="Family Wellness" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                    <h3 className="text-white font-bold text-2xl">Family Wellness</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <Users className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span>Safe water for children & elderly</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Users className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span>Peace of mind for families</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Users className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <span>Whole-home protection</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Products Section with PIC Earning */}
         <section id="products" className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
           <div className="container mx-auto max-w-7xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-              Choose Your AquaCafe Water Filter
-            </h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              All systems include free professional installation across Dubai and comprehensive warranty
-            </p>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-700 px-6 py-3 rounded-full mb-6 border border-emerald-500/30">
+                <Gift className="w-5 h-5" />
+                <span className="font-bold">EARN PLANET IMPACT CREDITS (PICs)</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+                Choose Your Water Filter & Start Earning
+              </h2>
+              <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto text-lg">
+                All systems include free professional installation across Dubai, comprehensive warranty, 
+                <strong className="text-emerald-600"> and instant Planet Impact Credits (PICs)</strong> to use toward future purchases or redeem for rewards.
+              </p>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {products.map((product) => (
@@ -250,14 +379,22 @@ export default function AquaCafeEnhanced() {
                     </div>
                   )}
                   
-                  <div className="relative h-64 overflow-hidden">
+                  {/* PIC Earning Badge */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <Badge className="bg-gradient-to-r from-emerald-600 to-green-600 text-white px-4 py-2 text-sm font-bold shadow-lg">
+                      <Gift className="w-4 h-4 mr-1" />
+                      Earn {product.picsEarned.toLocaleString()} PICs
+                    </Badge>
+                  </div>
+                  
+                  <div className="relative h-64 overflow-hidden mt-12">
                     <img 
                       src={product.image} 
                       alt={`${product.name} - Water filter system`}
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute bottom-4 left-4">
                       <Badge className="bg-blue-600 text-white px-3 py-1">
                         {product.badge}
                       </Badge>
@@ -322,17 +459,18 @@ export default function AquaCafeEnhanced() {
                         </span>
                       </div>
                       <p className="text-sm text-green-600 dark:text-green-400 font-semibold">
-                        Save AED {(product.originalPrice - product.price).toFixed(2)}
+                        Save AED {(product.originalPrice - product.price).toFixed(2)} + Earn {product.picsEarned} PICs
                       </p>
                     </div>
 
                     {/* CTA Button */}
                     <Button 
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-6"
+                      className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-6"
                       onClick={() => handleBuyNow(product)}
                       data-testid={`button-buy-${product.id}`}
                     >
-                      Buy & Install in Dubai
+                      <Gift className="w-5 h-5 mr-2" />
+                      Buy & Earn {product.picsEarned} PICs
                     </Button>
 
                     {/* Rating */}
@@ -347,6 +485,93 @@ export default function AquaCafeEnhanced() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+
+            {/* PIC Explainer */}
+            <div className="mt-12 bg-gradient-to-r from-emerald-900/20 to-cyan-900/20 rounded-2xl p-8 border-2 border-emerald-500/30">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  💚 What are Planet Impact Credits (PICs)?
+                </h3>
+                <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-6">
+                  PICs are our sustainability currency. Earn them with every purchase, use them for future orders, 
+                  or redeem them for rewards like dining vouchers, iPhones, and more. 
+                  <strong className="text-emerald-600"> Every PIC earned supports Dubai's circular economy and environmental initiatives.</strong>
+                </p>
+                <a 
+                  href="/earn" 
+                  className="inline-block bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold px-8 py-4 rounded-lg transition-all"
+                >
+                  Learn More About Earning PICs →
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Lifestyle Showcase - Shower Filter */}
+        <section className="py-16 px-4 bg-gradient-to-br from-purple-50 to-pink-50">
+          <div className="container mx-auto max-w-7xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-pink-500/20 text-pink-700 px-6 py-3 rounded-full mb-6">
+                  <Sparkles className="w-5 h-5" />
+                  <span className="font-bold">BEAUTY WATER SOLUTION</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                  Transform Your Beauty Routine
+                </h2>
+                <p className="text-lg text-gray-700 mb-6">
+                  Experience the difference of filtered shower water. Our ionic filtration systems remove chlorine 
+                  and impurities, leaving your skin softer and hair healthier.
+                </p>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-pink-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Sparkles className="w-5 h-5 text-pink-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800">Healthier Skin & Hair</h4>
+                      <p className="text-gray-600">Chlorine-free water for beauty & wellness</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Droplets className="w-5 h-5 text-cyan-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800">pH Balanced Water</h4>
+                      <p className="text-gray-600">Perfect for sensitive skin</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Gift className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800">Earn PICs with Purchase</h4>
+                      <p className="text-gray-600">Included with AquaCafe membership</p>
+                    </div>
+                  </li>
+                </ul>
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-bold"
+                  onClick={() => {
+                    const productsSection = document.getElementById('products');
+                    productsSection?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  Shop Beauty Water Systems
+                </Button>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={showerFilterCollage} 
+                  alt="Ionic Shower Filter Collection" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -366,8 +591,11 @@ export default function AquaCafeEnhanced() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Ready for Pure, Clean Water at Home?
             </h2>
-            <p className="text-xl mb-8">
+            <p className="text-xl mb-4">
               Join thousands of Dubai families enjoying premium filtered water
+            </p>
+            <p className="text-lg mb-8 text-cyan-100">
+              <strong>Plus earn Planet Impact Credits (PICs)</strong> with every purchase to support sustainability
             </p>
             <Button 
               size="lg" 
@@ -378,7 +606,8 @@ export default function AquaCafeEnhanced() {
               }}
               data-testid="button-final-cta"
             >
-              Order Your Water Filter Now
+              <Gift className="w-5 h-5 mr-2" />
+              Order & Start Earning PICs Now
             </Button>
           </div>
         </section>

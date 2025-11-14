@@ -1,24 +1,67 @@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { 
   Home, Rocket, Target, Trophy, Star, Zap, Shield, Award, Heart, 
   Users, Droplets, Leaf, MapPin, Clock, Phone, ChefHat, Gift, 
   CheckCircle, ShoppingCart, Building2, Smartphone, Camera, 
-  Footprints, Bike, TreePine, Ship, Crown, Navigation 
+  Footprints, Bike, TreePine, Ship, Crown, Navigation, Recycle,
+  TrendingUp, Sparkles, ArrowRight, Utensils, Coffee
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { TombolaWidget } from "@/components/tombola-widget";
 import { CouponsPanel } from "@/components/coupons-panel";
 import { DubaiWellnessJourney } from "@/components/dubai-wellness-journey";
 import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
 import { RewardComparison } from "@/components/reward-comparison";
+import { shopifyCartService } from "@/lib/shopify-cart";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
+import showerFilterCollage from "@assets/collage_1755270492135.jpg";
+import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
+import pizzaImage from "@assets/stock_images/delicious_pizza_clos_ace0f742.jpg";
+import bobaTeaImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
+import happyDiningImage from "@assets/stock_images/happy_people_eating__21b9cf0b.jpg";
 
 export default function Earn() {
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const [isOrderLoading, setIsOrderLoading] = useState(false);
+
+  const handleOrderStarterKit = async () => {
+    setIsOrderLoading(true);
+    try {
+      const starterKitProduct = {
+        id: "aquacafe-starter-kit",
+        variantId: "aquacafe-starter-kit-loyalty-gateway",
+        title: "AquaCafe Planet Hero Starter Kit - Loyalty Gateway",
+        variant: "Standard",
+        price: 99,
+        quantity: 1,
+        image: "/aquacafe_shower_main_1755270492134.jpg",
+      };
+      
+      await shopifyCartService.addToCart(starterKitProduct);
+      
+      toast({
+        title: "Added to Cart!",
+        description: "AquaCafe Loyalty Starter Kit (AED 99) - Your gateway to sustainability rewards",
+      });
+      
+      setLocation('/cart');
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast({
+        title: "Error",
+        description: "Failed to add to cart. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsOrderLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 to-cyan-50">
@@ -38,9 +81,8 @@ export default function Earn() {
         </div>
       </div>
       
-      {/* Earn Hero Section */}
+      {/* Main Hero Section - Earn Rewards */}
       <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-blue-500/10 relative overflow-hidden" data-testid="earn-hero-section">
-        {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full animate-pulse"></div>
           <div className="absolute top-32 right-20 w-12 h-12 bg-cyan-400 rounded-full animate-bounce"></div>
@@ -48,7 +90,6 @@ export default function Earn() {
         </div>
         
         <div className="w-full max-w-7xl mx-auto text-center relative z-10">
-          {/* Title */}
           <div className="inline-flex items-center bg-gradient-to-r from-purple-600 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl animate-pulse">
             <Trophy className="w-6 h-6 mr-3" />
             🏆 EARN REWARDS 🏆
@@ -57,82 +98,317 @@ export default function Earn() {
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6 leading-tight">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 animate-pulse drop-shadow-2xl">
-              Complete Missions & Activities
+              Impact Commerce Gateway
             </span>
           </h1>
           
           <h2 className="text-xl sm:text-2xl md:text-3xl mb-6 font-bold">
-            <span className="text-emerald-600 drop-shadow-lg">Trade iPhones</span> • 
-            <span className="text-blue-600 drop-shadow-lg">Complete Challenges</span> • 
-            <span className="text-amber-600 drop-shadow-lg">Earn Rewards</span>
+            <span className="text-emerald-600 drop-shadow-lg">Water Filtration</span> • 
+            <span className="text-blue-600 drop-shadow-lg">iPhone Trade-ins</span> • 
+            <span className="text-amber-600 drop-shadow-lg">Earn PICs</span>
           </h2>
           
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Join AquaCafe Loyalty, earn Planet Impact Credits (PICs), complete missions, and redeem rewards. Every action counts towards Dubai's sustainability goals.
+            Join AquaCafe Loyalty, earn Planet Impact Credits (PICs), complete missions, and redeem rewards. Every action funds Dubai's sustainability initiatives.
           </p>
-          
-          {/* Mission Categories */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-8">
-            {/* Trade-ins */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <div className="text-blue-600 text-4xl mb-3">📱</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Device Trade-ins</h3>
-              <p className="text-gray-600 text-sm mb-4">Trade your iPhone and earn up to 5,000 PICs</p>
-              <Link 
-                href="/exchange"
-                className="inline-block w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 text-sm rounded-lg transition-all"
-                data-testid="button-trade-device"
-              >
-                Start Trade-in
-              </Link>
-            </div>
-            
-            {/* Eco Activities */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-emerald-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <div className="text-emerald-600 text-4xl mb-3">🌱</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Eco Activities</h3>
-              <p className="text-gray-600 text-sm mb-4">Complete daily missions and sustainability challenges</p>
+        </div>
+      </section>
+
+      {/* ⭐ AquaCafe Loyalty Gateway - LEAD WITH THIS */}
+      <section className="w-full py-16 px-4 bg-gradient-to-br from-emerald-900/40 to-blue-900/40 border-y-4 border-emerald-500/50 backdrop-blur-sm" data-testid="aquacafe-loyalty-gateway">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900/60 to-blue-900/60 border-2 border-emerald-500/50 p-12">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.15)_0%,transparent_70%)]"></div>
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-6 py-3 rounded-full mb-6 border border-emerald-500/50">
+                <Gift className="w-6 h-6" />
+                <span className="font-bold text-lg">AQUACAFE LOYALTY GATEWAY</span>
+              </div>
+              <h2 className="text-5xl md:text-7xl font-black text-white mb-6">
+                Your Circular Economy Hub
+                <span className="block text-emerald-400 mt-2">AED 99 Starter Kit</span>
+              </h2>
+              <p className="text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+                The gateway to Dubai's most innovative sustainability platform. Join AquaCafe Loyalty and unlock iPhone trade-ins, water filtration commerce, and continuous PIC rewards.
+              </p>
+              
+              {/* Lifetime Value Badge */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+                <Badge className="bg-amber-500/30 text-amber-300 px-6 py-3 text-xl font-bold border-2 border-amber-500/50">
+                  <Crown className="w-6 h-6 mr-2" />
+                  Lifetime Membership Benefits
+                </Badge>
+                <span className="text-3xl font-black text-white">→</span>
+                <span className="text-4xl font-black text-emerald-400">AED 1000+ Value</span>
+              </div>
+
               <Button 
-                onClick={() => {
-                  const element = document.querySelector('[data-testid="missions-hub"]');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 text-sm rounded-lg"
-                data-testid="button-eco-missions"
+                size="lg"
+                onClick={handleOrderStarterKit}
+                disabled={isOrderLoading}
+                className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-black px-12 py-8 text-2xl shadow-2xl rounded-full border-4 border-white/20 disabled:opacity-50"
+                data-testid="button-order-starter-kit-hero"
               >
-                View Missions
+                <Zap className="w-8 h-8 mr-3" />
+                {isOrderLoading ? "ADDING TO CART..." : "START YOUR JOURNEY - AED 99"}
               </Button>
+              <p className="text-gray-400 mt-4 text-sm">
+                Join thousands of Dubai residents building a sustainable future
+              </p>
             </div>
+          </div>
+
+          {/* What's Included */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-slate-800/50 rounded-2xl p-6 border-2 border-cyan-500/50">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Droplets className="w-8 h-8 text-cyan-400" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-2">FREE Ionic Shower Filter</h3>
+                  <Badge className="bg-amber-500/30 text-amber-300 mb-3">AED 399 value</Badge>
+                  <p className="text-gray-300">Premium beauty & skincare filtration system</p>
+                </div>
+              </div>
+              <img src={showerFilterCollage} alt="Free Shower Filter" className="w-full rounded-lg shadow-lg" data-testid="image-shower-filter" />
+            </div>
+
+            <div className="bg-slate-800/50 rounded-2xl p-6 border-2 border-blue-500/50">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Crown className="w-8 h-8 text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-2">Membership Card & Setup</h3>
+                  <Badge className="bg-amber-500/30 text-amber-300 mb-3">AED 299 value</Badge>
+                  <p className="text-gray-300">Professional installation & lifetime support</p>
+                </div>
+              </div>
+              <img src={membershipCard} alt="Membership Card" className="w-full rounded-lg shadow-lg" data-testid="image-membership-card" />
+            </div>
+          </div>
+
+          {/* 3-Step Journey */}
+          <div className="mb-12">
+            <h3 className="text-4xl font-black text-white text-center mb-12">
+              ⚡ Simple 3-Step Loyalty Journey
+            </h3>
             
-            {/* Referrals */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-amber-300 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <div className="text-amber-600 text-4xl mb-3">👥</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Referral Rewards</h3>
-              <p className="text-gray-600 text-sm mb-4">Invite friends and earn AED 100 + 500 PICs</p>
-              <Link 
-                href="/aquacafe"
-                className="inline-block w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 text-sm rounded-lg transition-all"
-                data-testid="button-referral-rewards"
-              >
-                Get Referral Code
-              </Link>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="relative">
+                <div className="bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border-2 border-blue-500/50 rounded-2xl p-8 text-center">
+                  <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-4xl font-black text-blue-400">1</span>
+                  </div>
+                  <h4 className="text-3xl font-bold text-white mb-4">Join</h4>
+                  <p className="text-gray-300 text-lg mb-6">
+                    Get AED 99 Starter Kit with FREE Filter, Card & Level 2 Status
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-cyan-400">
+                      <CheckCircle className="w-5 h-5" />
+                      <span>Instant activation</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-cyan-400">
+                      <CheckCircle className="w-5 h-5" />
+                      <span>1000 welcome PICs</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                  <ArrowRight className="w-8 h-8 text-emerald-400" />
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="bg-gradient-to-br from-emerald-900/40 to-green-900/40 border-2 border-emerald-500/50 rounded-2xl p-8 text-center">
+                  <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-4xl font-black text-emerald-400">2</span>
+                  </div>
+                  <h4 className="text-3xl font-bold text-white mb-4">Earn</h4>
+                  <p className="text-gray-300 text-lg mb-6">
+                    Collect PICs through iPhone trade-ins, referrals, purchases
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-emerald-400">
+                      <Smartphone className="w-5 h-5" />
+                      <span>iPhone trade-ins</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-emerald-400">
+                      <Users className="w-5 h-5" />
+                      <span>Friend referrals</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                  <ArrowRight className="w-8 h-8 text-amber-400" />
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-amber-900/40 to-orange-900/40 border-2 border-amber-500/50 rounded-2xl p-8 text-center">
+                <div className="w-20 h-20 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-4xl font-black text-amber-400">3</span>
+                </div>
+                <h4 className="text-3xl font-bold text-white mb-4">Redeem</h4>
+                <p className="text-gray-300 text-lg mb-6">
+                  Use PICs for vouchers, iPhones, water systems & rewards
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-amber-400">
+                    <Utensils className="w-5 h-5" />
+                    <span>Chill & Grill meals</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-amber-400">
+                    <Smartphone className="w-5 h-5" />
+                    <span>Latest iPhones</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Buy PICs Instantly - Fund Sustainability Projects */}
-      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white" data-testid="buy-pics-section">
+      {/* ⭐ The Circle Dubai: iPhone Trade-In Hub - ENHANCED */}
+      <section className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 to-cyan-900/30" data-testid="circle-dubai-tradein">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-6 py-3 rounded-full mb-6 border border-blue-500/50">
+              <Recycle className="w-6 h-6 flex-shrink-0" />
+              <span className="font-bold text-lg">INSPIRED BY THE CIRCLE DUBAI</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+              iPhone Trade-In Hub
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mt-2">
+                E-Waste to Rewards
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+              Following Dubai Municipality's The Circle initiative for responsible e-waste collection, trade your old iPhone and earn up to <strong className="text-emerald-400">5,000 PICs</strong> plus instant credit toward water filtration systems.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Trade-in Value Calculator */}
+            <Card className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 border-2 border-blue-500/50 hover-elevate" data-testid="card-tradein-calculator">
+              <CardHeader className="text-center">
+                <Smartphone className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                <CardTitle className="text-white text-2xl">Check Your iPhone Value</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-gray-300 text-lg mb-6">
+                  Select your iPhone model and condition to see instant valuation + PIC rewards
+                </p>
+                <Link 
+                  href="/exchange"
+                  className="inline-block w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-lg transition-all"
+                  data-testid="button-check-value"
+                >
+                  <Smartphone className="w-5 h-5 inline mr-2" />
+                  Get Instant Quote
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Environmental Impact */}
+            <Card className="bg-gradient-to-br from-emerald-900/50 to-green-900/50 border-2 border-emerald-500/50 hover-elevate" data-testid="card-environmental-impact">
+              <CardHeader className="text-center">
+                <Leaf className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
+                <CardTitle className="text-white text-2xl">Environmental Impact</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="space-y-4 text-gray-300">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-emerald-400" />
+                    <span>Prevents toxic e-waste</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-emerald-400" />
+                    <span>Recovers precious metals</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-emerald-400" />
+                    <span>Supports circular economy</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Reward Multipliers */}
+            <Card className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-2 border-purple-500/50 hover-elevate" data-testid="card-reward-multipliers">
+              <CardHeader className="text-center">
+                <Zap className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                <CardTitle className="text-white text-2xl">PIC Multipliers</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-gray-300 mb-4">
+                  AquaCafe members get bonus multipliers:
+                </p>
+                <div className="space-y-3">
+                  <Badge className="bg-blue-500/30 text-blue-300 px-4 py-2 text-lg">
+                    Level 2: 2X PICs
+                  </Badge>
+                  <Badge className="bg-purple-500/30 text-purple-300 px-4 py-2 text-lg">
+                    Level 3: 2.5X PICs
+                  </Badge>
+                  <Badge className="bg-amber-500/30 text-amber-300 px-4 py-2 text-lg">
+                    Level 4: 3X PICs
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Trade-in Process */}
+          <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-500/30">
+            <h3 className="text-3xl font-bold text-white text-center mb-8">
+              📱 How iPhone Trade-In Works
+            </h3>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-blue-400">1</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Get Quote</h4>
+                <p className="text-gray-400 text-sm">Select model & condition</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-cyan-400">2</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Ship or Drop-off</h4>
+                <p className="text-gray-400 text-sm">Free pickup or visit us</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-emerald-400">3</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Verification</h4>
+                <p className="text-gray-400 text-sm">We inspect your device</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-purple-400">4</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Get Rewarded!</h4>
+                <p className="text-gray-400 text-sm">Instant PICs + credit</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ⭐ Stars & PIC Monetization - Fund Sustainability */}
+      <section className="w-full py-16 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white" data-testid="stars-pic-monetization">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
               <Star className="w-4 h-4 flex-shrink-0" />
               <span className="font-bold text-sm">MONETIZE SUSTAINABILITY</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Buy PICs to <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Fund Impact</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              Support Global Sustainability with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Stars & PICs</span>
             </h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
               Purchase Planet Impact Credits directly to support clean water access, e-waste recycling, and environmental awareness campaigns. 
@@ -143,23 +419,62 @@ export default function Earn() {
         </div>
       </section>
 
-      {/* AquaCafe Loyalty Membership Tiers - Reward Type Selection */}
+      {/* AquaCafe Membership Tiers - Reward Type Selection */}
       <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900" data-testid="membership-tiers-section">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full border border-cyan-500/30 mb-4">
               <Trophy className="w-4 h-4 flex-shrink-0" />
-              <span className="font-bold text-sm">AQUACAFE LOYALTY GATEWAY</span>
+              <span className="font-bold text-sm">MEMBERSHIP TIERS & REWARDS</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Join AquaCafe & <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Start Earning</span>
+              Choose Your <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Reward Style</span>
             </h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
-              Become an AquaCafe member to unlock multipliers, exclusive perks, and accelerated PIC earning. 
-              Choose how you want to receive value from your iPhone trade-ins and purchases.
+              Select how you want to receive value from your iPhone trade-ins and purchases. Each tier unlocks unique benefits and multipliers.
             </p>
           </div>
           <RewardComparison />
+        </div>
+      </section>
+
+      {/* Chill & Grill Partnership Experience */}
+      <section className="w-full py-12 px-4 bg-gradient-to-r from-orange-900/30 to-red-900/30" data-testid="chill-grill-partnership">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-6 py-3 rounded-full mb-6 border border-orange-500/30">
+              <Utensils className="w-6 h-6" />
+              <span className="font-bold text-lg">🤝 PARTNERSHIP EXPERIENCE</span>
+            </div>
+            <h2 className="text-4xl font-black text-white mb-4">
+              Chill & Grill: Pizza + Boba Tea for Two
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Your membership includes exclusive access to healthy dining experiences. Every friend you refer earns you both D100 vouchers.
+            </p>
+          </div>
+
+          {/* Lifestyle Gallery */}
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-pizza">
+              <img src={pizzaImage} alt="Delicious Pizza" className="w-full h-64 object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <p className="text-white font-bold text-xl">Authentic Pizzas</p>
+              </div>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-boba">
+              <img src={bobaTeaImage} alt="Boba Tea" className="w-full h-64 object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <p className="text-white font-bold text-xl">Premium Boba Tea</p>
+              </div>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-dining">
+              <img src={happyDiningImage} alt="Happy Dining Experience" className="w-full h-64 object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
+                <p className="text-white font-bold text-xl">Memorable Moments</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -219,7 +534,7 @@ export default function Earn() {
               🎯 Earn More PICs - Missions Hub
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Complete missions to earn Planet Impact Credits (PICs). Trade iPhones, refer friends, share on social media, and participate in sustainability challenges. Every action contributes to Dubai's circular economy.
+              Complete missions to earn Planet Impact Credits. Every action contributes to Dubai's circular economy and funds global sustainability initiatives.
             </p>
           </div>
 
@@ -264,13 +579,14 @@ export default function Earn() {
                 <p className="text-sm text-gray-600 mb-4">
                   Get the AED 99 Starter Kit and become a Planet Hero Level 2 member with instant PICs
                 </p>
-                <Link 
-                  href="/aquacafe"
-                  className="inline-block w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg text-center transition-all"
+                <Button 
+                  onClick={handleOrderStarterKit}
+                  disabled={isOrderLoading}
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
                   data-testid="button-mission-membership"
                 >
-                  Join Now
-                </Link>
+                  {isOrderLoading ? "Adding..." : "Join Now"}
+                </Button>
               </CardContent>
             </Card>
 
@@ -343,7 +659,7 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Plastic-Free Week</h3>
-                    <p className="text-sm text-green-600">1,000 Points</p>
+                    <p className="text-sm text-green-600 font-bold">1,000 PICs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
@@ -368,7 +684,7 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Community Event</h3>
-                    <p className="text-sm text-pink-600">750 Points</p>
+                    <p className="text-sm text-pink-600 font-bold">750 PICs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
@@ -427,7 +743,7 @@ export default function Earn() {
             </div>
             
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Earn Points Through Our Partnership Network
+              Earn PICs Through Our Partnership Network
             </h2>
             
             <p className="text-lg sm:text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
@@ -455,26 +771,26 @@ export default function Earn() {
                   />
                   <div>
                     <h3 className="text-lg font-bold text-gray-800">AquaCafe Rewards</h3>
-                    <p className="text-cyan-600 text-sm font-semibold">Earn points with every purchase</p>
+                    <p className="text-cyan-600 text-sm font-semibold">Earn PICs with every purchase</p>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm text-gray-700">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>Starter Kit: 1,000 pts</span>
+                    <span>Starter Kit: 1,000 PICs</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>Filter refills: 200 pts</span>
+                    <span>Filter refills: 200 PICs</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>System upgrade: 500 pts</span>
+                    <span>System upgrade: 500 PICs</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>Referrals: 500 pts each</span>
+                    <span>Referrals: 500 PICs each</span>
                   </div>
                 </div>
               </CardContent>
@@ -490,7 +806,7 @@ export default function Earn() {
                   />
                   <div>
                     <h3 className="text-lg font-bold text-gray-800">Baker's Kitchen Perks</h3>
-                    <p className="text-amber-600 text-sm font-semibold">Redeem points for dining vouchers</p>
+                    <p className="text-amber-600 text-sm font-semibold">Redeem PICs for dining vouchers</p>
                   </div>
                 </div>
                 
@@ -564,14 +880,15 @@ export default function Earn() {
                 <Smartphone className="inline w-5 h-5 mr-2" />
                 Trade Your iPhone
               </Link>
-              <Link
-                href="/aquacafe"
-                className="inline-block px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all shadow-lg"
+              <Button
+                onClick={handleOrderStarterKit}
+                disabled={isOrderLoading}
+                className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg"
                 data-testid="footer-cta-aquacafe"
               >
                 <Droplets className="inline w-5 h-5 mr-2" />
-                Get Starter Kit
-              </Link>
+                {isOrderLoading ? "Adding..." : "Get Starter Kit"}
+              </Button>
               <Link
                 href="/collect"
                 className="inline-block px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl transition-all shadow-lg"
