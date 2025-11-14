@@ -465,7 +465,7 @@ export function OnboardingWalkthrough({ isOpen, onClose, onComplete }: Onboardin
                       <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                         <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">Pickup Options</h4>
                         <ul className="space-y-1 text-sm text-blue-700 dark:text-blue-300">
-                          <li>📱 Free pickup within 24 hours</li>
+                          <li>📱 Free pickup for loyalty members on trade-ins</li>
                           <li>🚚 Eco-friendly delivery vehicles</li>
                           <li>📍 All Dubai zones covered</li>
                           <li>⏰ Flexible scheduling available</li>

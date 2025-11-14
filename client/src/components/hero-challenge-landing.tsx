@@ -751,7 +751,7 @@ function StepSellIPhone() {
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Exchange your old iPhone for a newer model with our convenient trade-in service. We offer <span className="text-purple-400 font-semibold">free home pickup</span> and easy drop-in options for all loyalty members. Fast, secure, and hassle-free!
+            Exchange your old iPhone for a newer model with our convenient trade-in service. We offer <span className="text-purple-400 font-semibold">free home pickup</span> for AquaCafe loyalty members who trade-in or contribute old electronics, plus easy drop-in options. Fast, secure, and hassle-free!
           </p>
 
           {/* iPhone Trade-In Lifestyle Banner - Always Visible */}
@@ -759,7 +759,7 @@ function StepSellIPhone() {
             <div className="bg-slate-900/50 rounded-xl p-6">
               <img 
                 src={iphoneTradeInLifestyle} 
-                alt="iPhone Trade-In Service - Exchange Your Old Device for a Newer Model with Free Home Pickup" 
+                alt="iPhone Trade-In Service - Exchange Your Old Device for a Newer Model with Free Home Pickup for AquaCafe Loyalty Members" 
                 className="w-full h-auto rounded-lg shadow-lg"
               />
             </div>
@@ -891,7 +891,7 @@ function StepSellIPhone() {
                   <span className="text-2xl">2️⃣</span>
                 </div>
                 <div className="text-white font-bold mb-1">Ship or Drop-off</div>
-                <div className="text-gray-400">Free pickup for AquaCafe members</div>
+                <div className="text-gray-400">Free pickup for loyalty members on trade-ins</div>
               </div>
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">

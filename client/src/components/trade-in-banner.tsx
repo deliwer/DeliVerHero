@@ -32,7 +32,7 @@ export function TradeInBanner() {
             </h2>
             
             <p className="text-lg text-gray-300 max-w-xl">
-              Trade it & earn <span className="font-bold text-emerald-400">water credits</span>, <span className="font-bold text-blue-400">Planet Points</span>, or <span className="font-bold text-purple-400">instant cash</span>. Free pickup within 24 hours across Dubai, Sharjah & Abu Dhabi.
+              Trade it & earn <span className="font-bold text-emerald-400">water credits</span>, <span className="font-bold text-blue-400">Planet Points</span>, or <span className="font-bold text-purple-400">instant cash</span>. Free pickup for AquaCafe loyalty members within 24 hours across Dubai, Sharjah & Abu Dhabi.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
