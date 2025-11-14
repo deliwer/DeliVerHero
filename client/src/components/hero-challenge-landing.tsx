@@ -648,18 +648,30 @@ function StepSellIPhone() {
           {/* iPhone Trade-In Lifestyle Banner - Always Visible */}
           <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 p-2 backdrop-blur-sm">
             <div className="bg-slate-900/50 rounded-xl p-6">
-              <img 
-                src={iphoneTradeInLifestyle} 
-                alt="Planet Hero Package: Filter Service + FREE iPhone Upgrade - Trade in your device and get premium water filtration with AquaCafe loyalty benefits" 
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-              <div className="mt-4 text-center">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                  Planet Hero Package
-                </h3>
-                <p className="text-gray-300 text-sm md:text-base">
-                  Filter Service + <span className="text-purple-400 font-bold">FREE iPhone Upgrade</span>
-                </p>
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-1">
+                  <img 
+                    src={iphoneTradeInLifestyle} 
+                    alt="Planet Hero Package: Filter Service + FREE iPhone Upgrade - Trade in your device and get premium water filtration with AquaCafe loyalty benefits" 
+                    className="w-full h-auto rounded-lg shadow-lg"
+                    data-testid="img-iphone-tradein-banner"
+                  />
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <div className="inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full px-6 py-2 mb-3 font-bold animate-pulse">
+                    <Smartphone className="w-5 h-5 mr-2 flex-shrink-0" />
+                    <span>TRADE-IN PROGRAM</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Planet Hero Package</h3>
+                  <p className="text-gray-300 mb-4">
+                    Filter Service + <span className="text-purple-400 font-bold">FREE iPhone Upgrade</span> - Trade your device for sustainable living rewards
+                  </p>
+                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Instant Quote</span>
+                    <span className="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-sm font-bold">Free Pickup</span>
+                    <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Cash or Points</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
