@@ -7,6 +7,17 @@ DeliWer is a full-stack JavaScript application leveraging React, Express.js, and
 
 ## Recent Changes (November 2025)
 
+### Commerce Enhancement: Water Filtration Campaign & Feature Flags (November 14, 2025)
+- **Schema additions**: Added 4 new tables to support water filtration partnership and safe incremental deployment:
+  - `water_filtration_projects`: Filter kits/products for Dubai Municipality partnership campaign
+  - `water_filtration_contributions`: Purchases/donations tracking with PayPal/Stripe integration
+  - `partner_verifications`: Dubai Municipality verification workflow for installations
+  - `feature_flags`: Safe rollout system with percentage-based deployment and user whitelisting
+- **PIC integration**: Water filtration purchases award PICs (Planet Impact Credits) to contributors
+- **Certificate issuance**: Automated impact certificates for verified contributions
+- **Payment tracking**: Full Stripe and PayPal transaction recording with status workflows
+- **Deployment safety**: Feature flags allow incremental rollout without code changes
+
 ### UI Restructuring: 4-Step → 3-Step Flow
 - **Migration completed**: Successfully migrated from Replit Agent environment to standard Replit
 - **Flow simplification**: Reduced "How it Works" from 4 steps to 3 steps for clearer user journey
@@ -25,6 +36,22 @@ Not specified.
 
 ## System Architecture
 The application features a React + TypeScript frontend with Vite, an Express.js backend with TypeScript, and uses Tailwind CSS + Radix UI for the UI. Data fetching is managed with React Query, and Wouter handles frontend routing. The database is configured for PostgreSQL with Drizzle ORM. The system supports subpath deployments and includes a comprehensive security model for the ChainTrack B2B platform, protecting trade secrets and implementing role-based access control with manual verification for B2B buyers. The UI/UX prioritizes conversion optimization, visual engagement through collapsible sections, consistent iconography, and strategic placement of CTAs and social proof elements. Key design decisions include context-aware routing, a dual fee model for B2B transactions, and a multi-tiered membership structure.
+
+### Commerce & Impact Model
+- **PIC (Planet Impact Credits)**: Unified currency system replacing Planet Points and Stars
+  - 1 Planet Point = 1 PIC
+  - $1 USD in Stars = 100 PICs
+  - Used for trade-in conversions, water filtration purchases, and rewards redemption
+- **Water Filtration Campaign**: Dubai Municipality partnership for community water access
+  - Filter kits available for purchase (AED/USD pricing)
+  - Partner verification workflow for installation proof
+  - Impact metrics tracking (liters filtered, bottles prevented, CO2 saved)
+  - Digital certificates issued upon verification
+- **Feature Flags**: Safe deployment system for commerce features
+  - Percentage-based rollout (0-100%)
+  - User whitelist for beta access
+  - Environment-specific targeting (production, staging, development)
+  - Admin-controlled enable/disable without code changes
 
 ## UI/UX Flow (AquaCafe Loyalty Journey)
 
