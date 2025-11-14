@@ -6,10 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import sustainabilityImage from "@assets/stock_images/clean_water_sustaina_ba5cf3da.jpg";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
 interface StarsTier {
   id: string;
@@ -28,6 +32,13 @@ const STARS_TIERS: StarsTier[] = [
   { id: "tier-100", amountUSD: 100, stars: 1000, label: "Legend", color: "from-red-500 to-rose-500" }
 ];
 
+const contributorFormSchema = z.object({
+  contributorName: z.string().min(1, "Name is required"),
+  contributorEmail: z.string().email("Valid email is required"),
+  isAnonymous: z.boolean().default(false),
+  displayOnLeaderboard: z.boolean().default(true),
+});
+
 interface StarsLeaderboardEntry {
   contributorName: string;
   contributorEmail: string;
@@ -45,11 +56,18 @@ interface StarsStats {
 
 export function StarsSponsorshipSection() {
   const [selectedTier, setSelectedTier] = useState<StarsTier | null>(null);
-  const [contributorName, setContributorName] = useState("");
-  const [contributorEmail, setContributorEmail] = useState("");
-  const [isAnonymous, setIsAnonymous] = useState(false);
-  const [displayOnLeaderboard, setDisplayOnLeaderboard] = useState(true);
   const { toast } = useToast();
+
+  // Form with zod validation
+  const form = useForm<z.infer<typeof contributorFormSchema>>({
+    resolver: zodResolver(contributorFormSchema),
+    defaultValues: {
+      contributorName: "",
+      contributorEmail: "",
+      isAnonymous: false,
+      displayOnLeaderboard: true,
+    },
+  });
 
   // Fetch leaderboard
   const { data: leaderboard } = useQuery<StarsLeaderboardEntry[]>({
@@ -99,23 +117,31 @@ export function StarsSponsorshipSection() {
     },
   });
 
-  const handlePurchase = (tier: StarsTier) => {
-    if (!contributorName || !contributorEmail) {
+  const handlePurchase = async (tier: StarsTier) => {
+    // Trigger validation
+    const isValid = await form.trigger();
+    
+    if (!isValid) {
+      const errors = form.formState.errors;
+      const errorMessage = errors.contributorName?.message || errors.contributorEmail?.message || "Please provide valid information to continue.";
+      
       toast({
         title: "Information Required",
-        description: "Please provide your name and email to continue.",
+        description: errorMessage,
         variant: "destructive",
       });
       return;
     }
 
+    const formValues = form.getValues();
+    
     purchaseMutation.mutate({
       amountUSD: tier.amountUSD,
       starsAwarded: tier.stars,
-      contributorName,
-      contributorEmail,
-      isAnonymous,
-      displayOnLeaderboard,
+      contributorName: formValues.contributorName,
+      contributorEmail: formValues.contributorEmail,
+      isAnonymous: formValues.isAnonymous,
+      displayOnLeaderboard: formValues.displayOnLeaderboard,
     });
   };
 
@@ -233,52 +259,83 @@ export function StarsSponsorshipSection() {
         {/* Compact Contributor Form */}
         <Card className="mb-12 max-w-3xl mx-auto">
           <CardContent className="p-6">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <Input
-                  id="contributor-name"
-                  type="text"
-                  value={contributorName}
-                  onChange={(e) => setContributorName(e.target.value)}
-                  placeholder="Your name"
-                  data-testid="input-contributor-name"
+            <Form {...form}>
+              <div className="grid md:grid-cols-2 gap-4">
+                <FormField
+                  control={form.control}
+                  name="contributorName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="Your name"
+                          data-testid="input-contributor-name"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="contributorEmail"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          type="email"
+                          placeholder="Your email"
+                          data-testid="input-contributor-email"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
                 />
               </div>
-              <div>
-                <Input
-                  id="contributor-email"
-                  type="email"
-                  value={contributorEmail}
-                  onChange={(e) => setContributorEmail(e.target.value)}
-                  placeholder="Your email"
-                  data-testid="input-contributor-email"
+              <div className="flex flex-wrap gap-4 mt-4">
+                <FormField
+                  control={form.control}
+                  name="isAnonymous"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex items-center gap-2">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            data-testid="checkbox-anonymous"
+                          />
+                        </FormControl>
+                        <FormLabel className="text-sm cursor-pointer !mt-0">
+                          Display as Anonymous
+                        </FormLabel>
+                      </div>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="displayOnLeaderboard"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex items-center gap-2">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            data-testid="checkbox-display-leaderboard"
+                          />
+                        </FormControl>
+                        <FormLabel className="text-sm cursor-pointer !mt-0">
+                          Show on leaderboard
+                        </FormLabel>
+                      </div>
+                    </FormItem>
+                  )}
                 />
               </div>
-            </div>
-            <div className="flex flex-wrap gap-4 mt-4">
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  id="anonymous"
-                  checked={isAnonymous}
-                  onCheckedChange={(checked) => setIsAnonymous(checked === true)}
-                  data-testid="checkbox-anonymous"
-                />
-                <Label htmlFor="anonymous" className="text-sm cursor-pointer">
-                  Display as Anonymous
-                </Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  id="display-leaderboard"
-                  checked={displayOnLeaderboard}
-                  onCheckedChange={(checked) => setDisplayOnLeaderboard(checked === true)}
-                  data-testid="checkbox-display-leaderboard"
-                />
-                <Label htmlFor="display-leaderboard" className="text-sm cursor-pointer">
-                  Show on leaderboard
-                </Label>
-              </div>
-            </div>
+            </Form>
           </CardContent>
         </Card>
 
