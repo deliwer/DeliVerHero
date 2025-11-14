@@ -92,7 +92,7 @@ export default function Earn() {
         <div className="w-full max-w-7xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center bg-gradient-to-r from-purple-600 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl animate-pulse">
             <Trophy className="w-6 h-6 mr-3" />
-            🏆 EARN REWARDS 🏆
+            EARN REWARDS
             <Trophy className="w-6 h-6 ml-3" />
           </div>
           
@@ -192,7 +192,7 @@ export default function Earn() {
           {/* 3-Step Journey */}
           <div className="mb-12">
             <h3 className="text-4xl font-black text-white text-center mb-12">
-              ⚡ Simple 3-Step Loyalty Journey
+              Simple 3-Step Loyalty Journey
             </h3>
             
             <div className="grid md:grid-cols-3 gap-8">
@@ -531,7 +531,7 @@ export default function Earn() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              🎯 Earn More PICs - Missions Hub
+              Earn More PICs - Missions Hub
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Complete missions to earn Planet Impact Credits. Every action contributes to Dubai's circular economy and funds global sustainability initiatives.

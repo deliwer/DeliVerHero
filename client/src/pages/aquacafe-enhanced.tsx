@@ -51,7 +51,7 @@ export default function AquaCafeEnhanced() {
       price: 1299,
       originalPrice: 1599,
       image: waterFilter1,
-      badge: "🚀 PLANET HERO GATEWAY",
+      badge: "PLANET HERO GATEWAY",
       picsEarned: 1000,
       specs: {
         stages: "3-Stage",
@@ -76,7 +76,7 @@ export default function AquaCafeEnhanced() {
       price: 1499,
       originalPrice: 1999,
       image: waterFilter2,
-      badge: "⚡ MOST POPULAR",
+      badge: "MOST POPULAR",
       popular: true,
       picsEarned: 2500,
       specs: {
@@ -102,7 +102,7 @@ export default function AquaCafeEnhanced() {
       price: 2299,
       originalPrice: 2999,
       image: waterFilter3,
-      badge: "🏆 ULTIMATE HERO",
+      badge: "ULTIMATE HERO",
       picsEarned: 5000,
       specs: {
         stages: "7-Stage",
@@ -491,7 +491,7 @@ export default function AquaCafeEnhanced() {
             <div className="mt-12 bg-gradient-to-r from-emerald-900/20 to-cyan-900/20 rounded-2xl p-8 border-2 border-emerald-500/30">
               <div className="text-center">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                  💚 What are Planet Impact Credits (PICs)?
+                  What are Planet Impact Credits (PICs)?
                 </h3>
                 <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-6">
                   PICs are our sustainability currency. Earn them with every purchase, use them for future orders, 
