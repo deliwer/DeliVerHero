@@ -487,6 +487,17 @@ export interface IStorage {
   // Conversion - Migrate Planet Points and Stars to PICs
   convertLegacyToPics(heroId: string): Promise<PicConversionTracking>;
   getPicConversionStatus(heroId: string): Promise<PicConversionTracking | undefined>;
+  
+  // Water Filtration Projects - Product catalog for AquaCafe
+  getAllWaterFiltrationProjects(): Promise<WaterFiltrationProject[]>;
+  getWaterFiltrationProject(id: string): Promise<WaterFiltrationProject | undefined>;
+  createWaterFiltrationProject(project: InsertWaterFiltrationProject): Promise<WaterFiltrationProject>;
+  
+  // Water Filtration Contributions - Orders/purchases with PIC awards
+  createWaterFiltrationContribution(contribution: InsertWaterFiltrationContribution): Promise<WaterFiltrationContribution>;
+  getWaterFiltrationContribution(id: string): Promise<WaterFiltrationContribution | undefined>;
+  getWaterFiltrationContributionsByEmail(email: string): Promise<WaterFiltrationContribution[]>;
+  getWaterFiltrationContributionsByHero(heroId: string): Promise<WaterFiltrationContribution[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -593,6 +604,10 @@ export class MemStorage implements IStorage {
   private globalInitiatives: Map<string, GlobalInitiative>;
   private picConversionTracking: Map<string, PicConversionTracking>;
   private picConversionLocks: Map<string, Promise<PicConversionTracking>>;
+  
+  // Water Filtration - AquaCafe Impact Commerce Gateway
+  private waterFiltrationProjects: Map<string, WaterFiltrationProject>;
+  private waterFiltrationContributions: Map<string, WaterFiltrationContribution>;
 
   constructor() {
     this.users = new Map();
@@ -696,6 +711,10 @@ export class MemStorage implements IStorage {
     this.globalInitiatives = new Map();
     this.picConversionTracking = new Map();
     this.picConversionLocks = new Map();
+    
+    // Initialize Water Filtration - AquaCafe
+    this.waterFiltrationProjects = new Map();
+    this.waterFiltrationContributions = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -6161,6 +6180,76 @@ export class MemStorage implements IStorage {
 
   async getPicConversionStatus(heroId: string): Promise<PicConversionTracking | undefined> {
     return this.filterBy(this.picConversionTracking, c => c.heroId === heroId)[0];
+  }
+
+  // Water Filtration - AquaCafe Impact Commerce Gateway
+  
+  // Water Filtration Projects - Product catalog
+  async getAllWaterFiltrationProjects(): Promise<WaterFiltrationProject[]> {
+    return this.listAll(this.waterFiltrationProjects);
+  }
+
+  async getWaterFiltrationProject(id: string): Promise<WaterFiltrationProject | undefined> {
+    return this.waterFiltrationProjects.get(id);
+  }
+
+  async createWaterFiltrationProject(project: InsertWaterFiltrationProject): Promise<WaterFiltrationProject> {
+    return this.createRecord(this.waterFiltrationProjects, project);
+  }
+
+  // Water Filtration Contributions - Orders/purchases with PIC awards
+  async createWaterFiltrationContribution(contribution: InsertWaterFiltrationContribution): Promise<WaterFiltrationContribution> {
+    const newContribution = await this.createRecord(this.waterFiltrationContributions, contribution);
+    
+    // Award PICs for the contribution if heroId is provided
+    if (newContribution.heroId && newContribution.picsAwarded > 0) {
+      let picAccount = await this.getPicAccountByHeroId(newContribution.heroId);
+      
+      // Create PIC account if it doesn't exist
+      if (!picAccount) {
+        picAccount = await this.createPicAccount({
+          accountType: 'hero',
+          heroId: newContribution.heroId,
+          balance: 0,
+          totalEarned: 0,
+          totalSpent: 0,
+          totalConverted: 0
+        });
+      }
+      
+      // Create ledger entry for PIC award
+      await this.createPicLedgerEntry({
+        accountId: picAccount.id,
+        transactionType: 'earned',
+        amount: newContribution.picsAwarded,
+        balance: picAccount.balance + newContribution.picsAwarded,
+        source: 'aquacafe_water_filtration',
+        sourceId: newContribution.id,
+        description: `AquaCafe contribution: ${newContribution.projectName}`,
+        metadata: {
+          projectId: newContribution.projectId,
+          contributorEmail: newContribution.contributorEmail,
+          amountPaid: newContribution.amountPaid,
+          currency: newContribution.currency
+        }
+      });
+    }
+    
+    return newContribution;
+  }
+
+  async getWaterFiltrationContribution(id: string): Promise<WaterFiltrationContribution | undefined> {
+    return this.waterFiltrationContributions.get(id);
+  }
+
+  async getWaterFiltrationContributionsByEmail(email: string): Promise<WaterFiltrationContribution[]> {
+    return this.filterBy(this.waterFiltrationContributions, c => c.contributorEmail === email)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async getWaterFiltrationContributionsByHero(heroId: string): Promise<WaterFiltrationContribution[]> {
+    return this.filterBy(this.waterFiltrationContributions, c => c.heroId === heroId)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 }
 
