@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,9 +24,6 @@ interface PlayTVProps {
 
 export function PlayTV({ className = "" }: PlayTVProps) {
   const [selectedTab, setSelectedTab] = useState<"live" | "missions" | "community">("live");
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [videoLoadError, setVideoLoadError] = useState(false);
-  const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Fetch active missions
   const { data: missionsData, isLoading } = useQuery<PlanetMission[]>({
@@ -40,41 +37,7 @@ export function PlayTV({ className = "" }: PlayTVProps) {
     ?.slice(0, 4) || [];
 
   // YouTube channel for @vdeliwer
-  const YOUTUBE_CHANNEL_ID = "UCyQ8_cR5c6J0rX8fZQx9yKw";
   const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@vdeliwer";
-
-  // Add timeout to show fallback if iframe doesn't load
-  useEffect(() => {
-    if (selectedTab === "live") {
-      // Reset error state when switching to live tab
-      setVideoLoadError(false);
-      
-      // Clear any existing timeout
-      if (loadTimeoutRef.current) {
-        clearTimeout(loadTimeoutRef.current);
-      }
-      
-      // Set new timeout for fallback
-      loadTimeoutRef.current = setTimeout(() => {
-        setVideoLoadError(true);
-      }, 10000); // Show fallback after 10 seconds if iframe hasn't loaded
-      
-      return () => {
-        if (loadTimeoutRef.current) {
-          clearTimeout(loadTimeoutRef.current);
-        }
-      };
-    }
-  }, [selectedTab]);
-
-  const handleIframeLoad = () => {
-    // Clear timeout and reset error state on successful load
-    if (loadTimeoutRef.current) {
-      clearTimeout(loadTimeoutRef.current);
-      loadTimeoutRef.current = null;
-    }
-    setVideoLoadError(false);
-  };
   
   return (
     <div className={`${className}`}>
@@ -133,62 +96,45 @@ export function PlayTV({ className = "" }: PlayTVProps) {
             <CardContent className="p-0">
               {selectedTab === "live" && (
                 <div className="aspect-video bg-slate-950 relative group">
-                  {!videoLoadError ? (
-                    <>
-                      {/* YouTube Channel Embed - Channel Home */}
-                      <iframe
-                        src={`https://www.youtube.com/embed?listType=user_uploads&list=${YOUTUBE_CHANNEL_ID}`}
-                        className="w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        title="DeliWer YouTube Channel - Featured Content"
-                        data-testid="youtube-embed"
-                        onLoad={handleIframeLoad}
-                        onError={() => setVideoLoadError(true)}
-                      />
-                      
-                      {/* Overlay Info */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h4 className="text-white font-bold text-lg mb-1">@vdeliwer Channel</h4>
-                            <p className="text-gray-300 text-sm">Latest sustainability missions and impact stories</p>
-                          </div>
-                          <a
-                            href={YOUTUBE_CHANNEL_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
-                            data-testid="button-subscribe-youtube"
-                          >
-                            <Youtube className="w-5 h-5" />
-                            Subscribe
-                          </a>
-                        </div>
+                  {/* YouTube Channel Placeholder with Direct Link */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900/40 via-slate-900 to-blue-900/40">
+                    <div className="text-center p-8 max-w-lg">
+                      <div className="mb-6 relative">
+                        <div className="absolute inset-0 bg-red-500/20 blur-3xl rounded-full"></div>
+                        <Youtube className="w-20 h-20 mx-auto text-red-500 relative z-10" />
                       </div>
-                    </>
-                  ) : (
-                    /* Fallback UI when video doesn't load */
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-800">
-                      <div className="text-center p-6 max-w-md">
-                        <Youtube className="w-16 h-16 mx-auto mb-4 text-red-500" />
-                        <h4 className="text-white font-bold text-xl mb-2">Watch on YouTube</h4>
-                        <p className="text-gray-300 mb-6">
-                          See the latest sustainability missions and impact stories from our community
-                        </p>
+                      <h4 className="text-white font-bold text-2xl mb-3">DeliWer Sustainability Channel</h4>
+                      <p className="text-gray-300 mb-2 text-lg">
+                        Latest sustainability missions and impact stories
+                      </p>
+                      <p className="text-gray-400 mb-6 text-sm">
+                        Watch how our community is making a difference, one mission at a time
+                      </p>
+                      <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
                           href={YOUTUBE_CHANNEL_URL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg transition-colors font-medium"
+                          className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition-colors font-semibold text-lg shadow-lg shadow-red-500/30"
                           data-testid="button-visit-youtube"
                         >
-                          <Youtube className="w-5 h-5" />
-                          Visit YouTube Channel
+                          <Youtube className="w-6 h-6" />
+                          Watch on YouTube
+                        </a>
+                        <a
+                          href={`${YOUTUBE_CHANNEL_URL}?sub_confirmation=1`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-8 py-4 rounded-lg transition-colors font-semibold border border-slate-600"
+                          data-testid="button-subscribe-youtube"
+                        >
+                          <Sparkles className="w-5 h-5" />
+                          Subscribe
                         </a>
                       </div>
+                      <p className="text-gray-500 text-xs mt-4">@vdeliwer</p>
                     </div>
-                  )}
+                  </div>
                 </div>
               )}
 
@@ -314,27 +260,13 @@ export function PlayTV({ className = "" }: PlayTVProps) {
 
         {/* Sidebar - Featured Content */}
         <div className="space-y-4">
-          {/* Sponsor Spotlight */}
-          <Card className="bg-gradient-to-br from-amber-900/20 to-orange-900/20 border-amber-500/30">
-            <CardContent className="p-4">
-              <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-5 h-5 text-amber-400" />
-                <h4 className="text-white font-bold">Sponsor Spotlight</h4>
-              </div>
-              <p className="text-gray-300 text-sm mb-3">
-                Support sustainability initiatives and get recognized as a Planet Champion
-              </p>
-              <Button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600">
-                <Award className="w-4 h-4 mr-2" />
-                Become a Sponsor
-              </Button>
-            </CardContent>
-          </Card>
-
           {/* Quick Actions */}
-          <Card className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-blue-500/30">
+          <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 border-purple-500/30">
             <CardContent className="p-4">
-              <h4 className="text-white font-bold mb-3">Quick Actions</h4>
+              <h4 className="text-white font-bold mb-4 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-purple-400" />
+                Quick Actions
+              </h4>
               <div className="space-y-2">
                 <Button variant="outline" className="w-full justify-start" data-testid="button-start-mission">
                   <Target className="w-4 h-4 mr-2" />
@@ -344,18 +276,14 @@ export function PlayTV({ className = "" }: PlayTVProps) {
                   <Users className="w-4 h-4 mr-2" />
                   Join Challenge
                 </Button>
-                <Button variant="outline" className="w-full justify-start" data-testid="button-view-channel">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  View Full Channel
-                </Button>
               </div>
             </CardContent>
           </Card>
 
           {/* Live Leaderboard Preview */}
-          <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 border-purple-500/30">
+          <Card className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-blue-500/30">
             <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-4">
                 <h4 className="text-white font-bold">Top Heroes Today</h4>
                 <Badge variant="outline" className="text-xs">
                   <TrendingUp className="w-3 h-3 mr-1" />
@@ -379,7 +307,7 @@ export function PlayTV({ className = "" }: PlayTVProps) {
                     <div className="flex-1">
                       <div className="text-white text-sm font-semibold">{hero.name}</div>
                     </div>
-                    <div className="text-purple-400 text-sm font-bold">{hero.points}</div>
+                    <div className="text-blue-400 text-sm font-bold">{hero.points}</div>
                   </div>
                 ))}
               </div>
