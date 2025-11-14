@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award } from "lucide-react";
+import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -176,7 +176,7 @@ export function StarsSponsorshipSection() {
             </h2>
             
             <p className="text-base text-muted-foreground mb-6">
-              Join our mission to create lasting environmental impact. Every contribution supports clean water access, renewable energy, and sustainable communities worldwide.
+              Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
             </p>
 
             {/* Compact Stats */}
@@ -403,11 +403,11 @@ export function StarsSponsorshipSection() {
           <Card className="p-6">
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
-                <Shield className="w-6 h-6 text-blue-500" />
+                <Recycle className="w-6 h-6 text-blue-500" />
               </div>
-              <h3 className="font-bold mb-2">Renewable Energy</h3>
+              <h3 className="font-bold mb-2">Recycling E-waste</h3>
               <p className="text-sm text-muted-foreground">
-                Support solar panel installations and wind energy projects in developing regions
+                Support responsible electronics recycling and device trade-in programs for sustainable tech consumption
               </p>
             </div>
           </Card>
@@ -415,11 +415,11 @@ export function StarsSponsorshipSection() {
           <Card className="p-6">
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
-                <Award className="w-6 h-6 text-purple-500" />
+                <Users className="w-6 h-6 text-purple-500" />
               </div>
-              <h3 className="font-bold mb-2">Education & Training</h3>
+              <h3 className="font-bold mb-2">Awareness</h3>
               <p className="text-sm text-muted-foreground">
-                Enable sustainability education programs and environmental awareness campaigns
+                Enable community awareness programs and environmental action campaigns
               </p>
             </div>
           </Card>

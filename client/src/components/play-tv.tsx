@@ -40,7 +40,7 @@ export function PlayTV({ className = "" }: PlayTVProps) {
     ?.slice(0, 4) || [];
 
   // YouTube channel for @vdeliwer
-  const YOUTUBE_PLAYLIST_ID = "UUyQ8_cR5c6J0rX8fZQx9yKw"; // UC -> UU for uploads playlist
+  const YOUTUBE_CHANNEL_ID = "UCyQ8_cR5c6J0rX8fZQx9yKw";
   const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@vdeliwer";
 
   // Add timeout to show fallback if iframe doesn't load
@@ -135,15 +135,16 @@ export function PlayTV({ className = "" }: PlayTVProps) {
                 <div className="aspect-video bg-slate-950 relative group">
                   {!videoLoadError ? (
                     <>
-                      {/* YouTube Channel Latest Videos Embed */}
+                      {/* YouTube Channel Embed - Channel Home */}
                       <iframe
-                        src={`https://www.youtube.com/embed/videoseries?list=${YOUTUBE_PLAYLIST_ID}`}
+                        src={`https://www.youtube.com/embed?listType=user_uploads&list=${YOUTUBE_CHANNEL_ID}`}
                         className="w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
-                        title="DeliWer YouTube Channel - Latest Videos"
+                        title="DeliWer YouTube Channel - Featured Content"
                         data-testid="youtube-embed"
                         onLoad={handleIframeLoad}
+                        onError={() => setVideoLoadError(true)}
                       />
                       
                       {/* Overlay Info */}
