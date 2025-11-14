@@ -3541,6 +3541,181 @@ export const picConversionTracking = pgTable("pic_conversion_tracking", {
   };
 });
 
+// =============================================================================
+// WATER FILTRATION CAMPAIGN - DUBAI MUNICIPALITY PARTNERSHIP
+// =============================================================================
+
+// Water Filtration Projects (Filter kits/products available for purchase)
+export const waterFiltrationProjects = pgTable("water_filtration_projects", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Project Details
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  shortDescription: text("short_description"),
+  imageUrl: text("image_url"),
+  
+  // Pricing & Product Info
+  priceAED: integer("price_aed").notNull(), // in fils (1 AED = 100 fils)
+  priceUSD: integer("price_usd"), // in cents
+  picValue: integer("pic_value").notNull(), // PICs awarded on purchase
+  
+  // Impact Metrics
+  litersFiltered: integer("liters_filtered"), // liters per kit/install
+  bottlesPrevented: integer("bottles_prevented"),
+  co2SavedGrams: integer("co2_saved_grams"),
+  
+  // Type & Category
+  projectType: text("project_type").notNull(), // filter_kit, community_install, school_program
+  impactCategory: text("impact_category").notNull().default("water"),
+  
+  // Partnership
+  partnerName: text("partner_name"), // "Dubai Municipality" when verified
+  isPartnerVerified: boolean("is_partner_verified").notNull().default(false),
+  partnerLogoUrl: text("partner_logo_url"),
+  
+  // Inventory & Availability
+  totalAvailable: integer("total_available"),
+  totalFunded: integer("total_funded").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    typeIdx: index("water_filtration_projects_type_idx").on(table.projectType),
+    activeIdx: index("water_filtration_projects_active_idx").on(table.isActive),
+    partnerIdx: index("water_filtration_projects_partner_idx").on(table.isPartnerVerified),
+  };
+});
+
+// Water Filtration Contributions (purchases/donations)
+export const waterFiltrationContributions = pgTable("water_filtration_contributions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Contributor Info
+  heroId: varchar("hero_id").references(() => heroes.id),
+  contributorName: text("contributor_name").notNull(),
+  contributorEmail: text("contributor_email").notNull(),
+  isAnonymous: boolean("is_anonymous").notNull().default(false),
+  
+  // Project Reference
+  projectId: varchar("project_id").notNull().references(() => waterFiltrationProjects.id),
+  
+  // Payment Details
+  amountAED: integer("amount_aed").notNull(), // in fils
+  amountUSD: integer("amount_usd"), // in cents
+  currency: text("currency").notNull().default("AED"),
+  paymentGateway: text("payment_gateway").notNull(), // stripe, paypal
+  paymentId: text("payment_id"), // Stripe/PayPal transaction ID
+  
+  // PICs & Rewards
+  picsAwarded: integer("pics_awarded").notNull().default(0),
+  picAccountId: varchar("pic_account_id").references(() => picAccounts.id),
+  picLedgerEntryId: varchar("pic_ledger_entry_id"), // Nullable - ledger entry created asynchronously
+  
+  // Impact
+  impactMetrics: jsonb("impact_metrics").default({}), // { liters, bottles, co2 }
+  
+  // Certificate
+  certificateUrl: text("certificate_url"),
+  certificateIssuedAt: timestamp("certificate_issued_at"),
+  
+  // Status
+  status: text("status").notNull().default("pending"), // pending, completed, verified, failed
+  verifiedAt: timestamp("verified_at"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    heroIdx: index("water_filtration_contributions_hero_idx").on(table.heroId),
+    projectIdx: index("water_filtration_contributions_project_idx").on(table.projectId),
+    emailIdx: index("water_filtration_contributions_email_idx").on(table.contributorEmail),
+    statusIdx: index("water_filtration_contributions_status_idx").on(table.status),
+  };
+});
+
+// Partner Verifications (Dubai Municipality verification of installations)
+export const partnerVerifications = pgTable("partner_verifications", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Contribution Reference
+  contributionId: varchar("contribution_id").notNull().references(() => waterFiltrationContributions.id),
+  projectId: varchar("project_id").notNull().references(() => waterFiltrationProjects.id),
+  
+  // Partner Info
+  partnerName: text("partner_name").notNull(), // "Dubai Municipality"
+  partnerContactName: text("partner_contact_name"),
+  partnerContactEmail: text("partner_contact_email"),
+  
+  // Installation Details
+  installationDate: timestamp("installation_date"),
+  installationLocation: text("installation_location"),
+  installationAddress: text("installation_address"),
+  
+  // Proof Documents
+  proofPhotosUrls: jsonb("proof_photos_urls").default([]), // Array of photo URLs
+  proofDocumentsUrls: jsonb("proof_documents_urls").default([]),
+  geolocationData: jsonb("geolocation_data").default({}), // { lat, lng, accuracy }
+  
+  // Verification
+  verificationStatus: text("verification_status").notNull().default("pending"), // pending, under_review, verified, rejected
+  verifiedBy: varchar("verified_by"), // Admin user ID
+  verifiedAt: timestamp("verified_at"),
+  verificationNotes: text("verification_notes"),
+  rejectionReason: text("rejection_reason"),
+  
+  // Certificate Generation
+  certificateGenerated: boolean("certificate_generated").notNull().default(false),
+  certificateGeneratedAt: timestamp("certificate_generated_at"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    contributionIdx: index("partner_verifications_contribution_idx").on(table.contributionId),
+    projectIdx: index("partner_verifications_project_idx").on(table.projectId),
+    statusIdx: index("partner_verifications_status_idx").on(table.verificationStatus),
+    verifiedIdx: index("partner_verifications_verified_idx").on(table.verifiedAt),
+    uniqueContributionProject: unique("partner_verifications_unique_contribution_project").on(table.contributionId, table.projectId),
+  };
+});
+
+// Feature Flags (for safe incremental deployment)
+export const featureFlags = pgTable("feature_flags", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Flag Details
+  flagKey: text("flag_key").notNull().unique(), // trade_in_commerce, impact_support, planet_hero_affiliates
+  flagName: text("flag_name").notNull(),
+  description: text("description"),
+  
+  // Status
+  isEnabled: boolean("is_enabled").notNull().default(false),
+  
+  // Rollout Strategy
+  rolloutPercentage: integer("rollout_percentage").notNull().default(0), // 0-100
+  allowedUserIds: jsonb("allowed_user_ids").default([]), // Array of user IDs for beta access
+  
+  // Metadata
+  category: text("category"), // commerce, gamification, partnerships
+  environments: jsonb("environments").default(["production"]), // Array of environments: ["production", "staging", "development"]
+  
+  // Audit
+  enabledBy: varchar("enabled_by"),
+  enabledAt: timestamp("enabled_at"),
+  disabledAt: timestamp("disabled_at"),
+  
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+}, (table) => {
+  return {
+    keyIdx: index("feature_flags_key_idx").on(table.flagKey),
+    categoryIdx: index("feature_flags_category_idx").on(table.category),
+  };
+});
+
 // Insert schemas and types for PIC system
 export const insertPicAccountSchema = createInsertSchema(picAccounts).omit({
   id: true,
@@ -3619,3 +3794,40 @@ export type InsertHeroInitiativeParticipation = z.infer<typeof insertHeroInitiat
 
 export type PicConversionTracking = typeof picConversionTracking.$inferSelect;
 export type InsertPicConversionTracking = z.infer<typeof insertPicConversionTrackingSchema>;
+
+// Insert schemas and types for Water Filtration Campaign
+export const insertWaterFiltrationProjectSchema = createInsertSchema(waterFiltrationProjects).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertWaterFiltrationContributionSchema = createInsertSchema(waterFiltrationContributions).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertPartnerVerificationSchema = createInsertSchema(partnerVerifications).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertFeatureFlagSchema = createInsertSchema(featureFlags).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type WaterFiltrationProject = typeof waterFiltrationProjects.$inferSelect;
+export type InsertWaterFiltrationProject = z.infer<typeof insertWaterFiltrationProjectSchema>;
+
+export type WaterFiltrationContribution = typeof waterFiltrationContributions.$inferSelect;
+export type InsertWaterFiltrationContribution = z.infer<typeof insertWaterFiltrationContributionSchema>;
+
+export type PartnerVerification = typeof partnerVerifications.$inferSelect;
+export type InsertPartnerVerification = z.infer<typeof insertPartnerVerificationSchema>;
+
+export type FeatureFlag = typeof featureFlags.$inferSelect;
+export type InsertFeatureFlag = z.infer<typeof insertFeatureFlagSchema>;
