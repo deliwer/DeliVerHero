@@ -1,0 +1,268 @@
+Great — I’ll make this tightly scoped, deployment-safe, and focused on **D: Water filtration partnership with Dubai Municipality**, while simultaneously unlocking **revenue** from iPhone trade-ins and water-filtration commerce. The approach is **incremental** (enhance, don’t replace), keeps the **site structure untouched**, and produces a **production-ready Replit Core prompt** your engineers can run immediately.
+
+Below is a single ready-to-paste **Replit Core prompt** plus an implementation spec that covers UI, backend, payments (Stripe + PayPal), partnership flows (Dubai Municipality campaign), telemetry, staging, rollback and feature flags so nothing breaks the live site.
+
+---
+
+# Replit Core Prompt — Incremental Commerce + Water Filtration Partnership (DeliWer)
+
+**Prompt title:**
+Enhance DeliWer with safe incremental commerce for iPhone trade-ins + AquaCafe water-filtration fundraising campaign (Dubai Municipality partnership) — Replit Core deployment
+
+**Short brief:**
+Without changing the main site layout or hero fold, add an incremental set of micro-apps and backend routes to: 1) enable iPhone trade-in commerce (quote → payout / loyalty conversion), 2) enable purchase/impact contributions for water filtration projects (partnered campaign with Dubai Municipality), 3) provide PayPal & Stripe payments, 4) preserve stable live site with feature flags and staging, and 5) produce measurable revenue and impact flows.
+
+---
+
+## High-level constraints (must follow)
+
+* **Do NOT change** homepage layout, header, footer, or existing pages outside of *non-invasive* entry points (small banner, top-nav item or card below hero).
+* Deploy new functionality as **micro-apps** under specific routes only: `/trade-in`, `/impact-support` (water-filtration campaign), `/planet-hero` (affiliate/gamification), and `/aquacafe` enhancements.
+* Keep **brand styling** and tokens unchanged. Reuse existing CSS variables and assets.
+* Implement **feature flags** so each micro-app can be toggled on/off without redeploying the main site.
+* Prioritize **production readiness**: staging, secrets management, health checks, rollback plan.
+
+---
+
+## Deliverables (what to build & ship)
+
+1. `/trade-in` micro-app (React + Tailwind): instant quote (local JSON) → choose reward (cash via Stripe/PayPal OR DeliPoints/AquaCafe credit) → schedule pickup or drop-off.
+2. `/impact-support` micro-app: **Dubai Municipality Water Filtration Campaign**: buy PIC tokens or donate-purchase "filter kits" (not called donations — value-exchange model) via PayPal/Stripe to fund filtration installations; partner acknowledgement flow and certificate issuance.
+3. Lightweight loyalty wallet + PIC ledger (Supabase/Replit DB) with redemption hooks into AquaCafe checkout.
+4. Affiliate & mission hooks (`/planet-hero`) for virality (referral links, social sharing, basic tracking).
+5. Backend API endpoints: `/api/quote`, `/api/tradein`, `/api/checkout/stripe`, `/api/checkout/paypal`, `/api/pic/purchase`, `/api/partner/certify`.
+6. Admin dashboard (basic) to: verify trade-ins, mark partner-funded filtration installs as completed, refund/void, and view KPIs.
+7. CI & deployment config: staging branch and production branch deploys, health checks and automatic rollback on failed health checks.
+8. Feature flags to enable/disable `/trade-in` and `/impact-support` from admin panel or environment variables.
+
+---
+
+## Technical stack & services
+
+* Frontend: React + Vite (or Next.js static mode if preferred) + Tailwind (use existing tokens).
+* Backend: Node + Express (Edge functions on Replit Core for serverless endpoints).
+* DB/Auth: **Supabase** (recommended) for user auth, PIC ledger, mission tracking; fallback to Replit DB for lowest cost.
+* Payments: **Stripe Checkout** (primary for card payments) + **PayPal** (express checkout) — both integrated.
+* Email / Certificates: SendGrid or EmailJS for transactional emails and PDF impact certificates.
+* Logging / Analytics: Vercel/Netlify-like deploy logs via Replit + Google Analytics / GTM.
+* Secrets: Replit secrets for STRIPE, PAYPAL, SUPABASE, EMAIL keys.
+* Optional: Simple S3-compatible storage for proof images (or Replit storage).
+
+---
+
+## Folder / Component blueprint
+
+```
+/microapps
+ ├─ /trade-in
+ │   ├─ index.jsx
+ │   ├─ components/
+ │   │   ├─ ModelSelector.jsx
+ │   │   ├─ QuoteCard.jsx
+ │   │   ├─ CheckoutModal.jsx
+ │   └─ data/iphoneQuotes.json
+ ├─ /impact-support
+ │   ├─ index.jsx
+ │   ├─ components/
+ │   │   ├─ PICWallet.jsx
+ │   │   ├─ BuyPIC.jsx
+ │   │   ├─ PartnerCampaign.jsx
+ │   └─ data/filtrationKits.json
+ ├─ /planet-hero
+ │   ├─ index.jsx
+ │   ├─ components/AffiliateSignup.jsx
+ ├─ /api
+ │   ├─ quote.js
+ │   ├─ tradein.js
+ │   ├─ checkout_stripe.js
+ │   ├─ checkout_paypal.js
+ │   ├─ pic_purchase.js
+ │   ├─ partner_certify.js
+ └─ /admin
+     ├─ index.jsx
+     ├─ verifyTradein.jsx
+     └─ partnerInstalls.jsx
+```
+
+---
+
+## Key features & UX details (incremental, non-invasive)
+
+### 1) Homepage entry points (non-destructive)
+
+* Add **small CTA card** beneath hero (or a top nav link) that says:
+  **“♻️ Trade-in / Support Water Filtration — Get Quote or Support a Dubai Filtration Project”** → opens `/trade-in` or `/impact-support`.
+* Keep original hero and first fold intact; do **not** replace or rearrange.
+
+### 2) Trade-in microflow (fast path)
+
+* Step 1: Model → storage → condition → show instant quote (from `iphoneQuotes.json`).
+* Step 2: Choose reward: Cash / DeliPoints / AquaCafe credit. If Cash chosen → proceed to Stripe/PayPal checkout. If DeliPoints → convert immediately to PIC in wallet.
+* Step 3: Schedule pickup (simple date/time & area dropdown) → record in DB → show confirmation + admin notification.
+* Minimal form fields for conversion (name, phone, area) — keep friction low.
+
+### 3) Impact-support microflow (Dubai Municipality filtration initiative)
+
+* Offer **value-exchange** products: “Filter Kit”, “Community Filtration Install”, or “PIC purchase” (packaged impact credits).
+* Payment via PayPal (primary for quick conversion) and Stripe as alternate.
+* On successful payment, create a partner task: `partner_certify` with details to be validated by the partner/admin.
+* After partner confirms install, issue a public certificate (PDF) and credit user’s PIC wallet with a verification badge.
+* Show impact counters on the page: kits funded; liters filtered; active partner installations (pulled from admin verified records).
+
+### 4) Partner flow with Dubai Municipality (compliant)
+
+* Publicly: show **“In partnership with Dubai Municipality”** only if signed/approved. If not yet signed, show “Official campaign with municipal collaboration pending” or “Supported by local municipality initiatives” — be careful to avoid legal misrepresentation. (Admin must confirm copy.)
+* Technical: Add partner onboarding area in Admin to upload partner verification tokens and confirm installations. Partners can upload proof (photos, geotag, certificate). Admin verifies and marks complete.
+
+### 5) PIC (Planet Impact Credits) economics (starter)
+
+* Define base conversions in Admin: e.g., 1 AED → 10 PIC (configurable).
+* Trade-in conversion: option to convert quote to PIC at a small bonus multiplier (e.g., 1.05x) to encourage platform credit redemptions.
+* PIC cap / expiry policy: configurable in Admin.
+
+---
+
+## Payments & payouts
+
+* **Stripe**: use hosted Stripe Checkout sessions for card payments. Create server endpoint `/api/checkout/stripe` to create sessions and return session URL.
+* **PayPal**: use PayPal Checkout / Smart Buttons for fast express checkout; create `/api/checkout/paypal` for create-order and capture workflows.
+* **Payouts for trade-ins (cash to seller)**: Option A (lowest friction) — issue instant bank transfer via a payment partner OR Option B — send payout as **PayPal transfer** or as store credit only initially to reduce payout friction. Implement admin review step for cash payouts to reduce fraud.
+* **Compliance**: Log every payment and create a reconciliation export for finance.
+
+---
+
+## Admin & operations
+
+* Admin verifies trade-ins (photos or live inspection), marks payout or PIC issuance.
+* Admin verifies partner filtration installs and triggers certificate issuance.
+* Admin UI must present a queue: pending trade-ins, pending partner installs, payments reconciliations.
+
+---
+
+## Production safety: staging, feature flags, rollback
+
+* **Branching**: `main` = production; `staging` for preview deployments; PR-based merges.
+* **Feature flags**: store boolean flags in environment or Supabase so `/trade-in` and `/impact-support` can be toggled instantly.
+* **Health checks**: server endpoints `/health` and frontend route smoke-test. Failure triggers automatic rollback.
+* **Backups**: nightly export of Supabase tables; versioned storage of `iphoneQuotes.json` and `filtrationKits.json`.
+* **Monitoring & Alerts**: set up email/Slack webhook for critical failures, payment webhook errors, high queue length.
+
+---
+
+## QA & launch checklist (must pass)
+
+1. Staging deployment with test Stripe & PayPal accounts.
+2. End-to-end test: create quote → choose cash → complete Stripe payment → admin sees new order.
+3. End-to-end test: buy PIC via PayPal → wallet credited → redeem for AquaCafe product in staging checkout.
+4. Admin verify partner installation → certificate generated → public counter updates.
+5. Feature flags tested (on/off toggles).
+6. Mobile UX checks on iPhone and Android browsers.
+7. Rollback tested (revert to previous build in <10 mins).
+
+---
+
+## KPIs & tracking (initial 90 days)
+
+* Trade-in quote → conversion rate (target 5–10%)
+* PIC purchases (number & value)
+* Filtration kits funded (# funded)
+* Average revenue per conversion (iPhone trade-in & PIC sale)
+* Time from purchase → partner verification (days)
+* Churn/complaint rates for payouts
+
+---
+
+## Implementation Notes for Developers (practical tips)
+
+* Reuse existing CSS tokens: import existing style variables to maintain brand consistency.
+* Keep micro-apps static & client-rendered where possible; only use server endpoints for payments & DB.
+* Use JSON schema for quotes and partner kits to allow easy updates without code changes.
+* Don’t hardcode partner names or logos — pull from admin-config to avoid legal misrepresentation until partnership is signed.
+
+---
+
+## Environment variables (must set in Replit secrets)
+
+* `SUPABASE_URL`, `SUPABASE_KEY`
+* `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY`
+* `PAYPAL_CLIENT_ID`, `PAYPAL_SECRET`
+* `EMAIL_API_KEY` (SendGrid or EmailJS)
+* `FEATURE_TRADEIN` (true/false)
+* `FEATURE_IMPACT` (true/false)
+
+---
+
+## Minimal timeline to get a safe MVP live (single deploy)
+
+1. 1–3 days: implement `/trade-in` micro-app with instant quote, basic checkout redirect (Stripe sandbox), Replit DB record + admin queue. Feature flag off.
+2. 1–2 days: implement `/impact-support` page with PayPal Checkout for PIC purchases; partner campaign listing and admin verification skeleton. Feature flag off.
+3. 1 day: QA + staging validation + connect webhook handlers.
+4. 0.5 day: Soft launch by toggling features on in production for limited audience, monitor KPIs.
+   *(Times are developer estimates — adjust to team capacity.)*
+
+---
+
+## Final block: Paste-ready Replit Prompt (YAML)
+
+```yaml
+project:
+  name: deliwer-incremental-commerce-impact
+  stack: node-react-express
+  deployment: replit-core
+  description: >
+    Incremental enhancement for DeliWer: add /trade-in (iPhone commerce),
+    /impact-support (Dubai Municipality filtration campaign using PIC),
+    and /planet-hero affiliate hooks. Preserve homepage layout and enable feature flags.
+
+integrations:
+  - supabase
+  - stripe
+  - paypal
+  - sendgrid
+
+routes:
+  - /trade-in -> microapps/trade-in/index.jsx
+  - /impact-support -> microapps/impact-support/index.jsx
+  - /planet-hero -> microapps/planet-hero/index.jsx
+  - /api/quote -> api/quote.js
+  - /api/tradein -> api/tradein.js
+  - /api/checkout/stripe -> api/checkout_stripe.js
+  - /api/checkout/paypal -> api/checkout_paypal.js
+  - /api/pic/purchase -> api/pic_purchase.js
+  - /api/partner/certify -> api/partner_certify.js
+  - /admin -> admin/index.jsx
+
+feature_flags:
+  tradein: false
+  impact_support: false
+  planet_hero: false
+
+secrets:
+  required:
+    - SUPABASE_URL
+    - SUPABASE_KEY
+    - STRIPE_SECRET_KEY
+    - STRIPE_PUBLISHABLE_KEY
+    - PAYPAL_CLIENT_ID
+    - PAYPAL_SECRET
+    - SENDGRID_API_KEY
+
+deploy:
+  staging_branch: staging
+  production_branch: main
+  health_check: /health
+  rollback_on_failure: true
+
+notes:
+  - "Do not modify header/footer or main hero fold. Only add non-invasive banner or nav link."
+  - "Admin must confirm Dubai Municipality partnership copy before public display."
+```
+
+---
+
+If you want I can now:
+
+* A) Generate the **starter code** for `/impact-support` (React + PayPal + PIC wallet) ready to drop into Replit; **or**
+* B) Generate the **starter code** for `/trade-in` (React + Stripe + admin queue).
+
+Pick **A** or **B** and I’ll output the code scaffold (components, example JSON data, and API stubs) ready to paste into Replit Core.
