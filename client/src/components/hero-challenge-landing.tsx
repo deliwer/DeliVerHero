@@ -28,6 +28,7 @@ import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_175548269630
 import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
 import kangenWaterSystem from "@assets/generated_images/Kangen_K8_water_filtration_system_e7d8eaaa.png";
 import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_collection_cbe8ffe3.png";
+import iphoneTradeInLifestyle from "@assets/stock_images/smartphone_exchange__fed81eff.jpg";
 import pizzaBobaComboImage from "@assets/stock_images/pizza_and_boba_tea_d_a375dab3.jpg";
 
 interface HeroSpotCounterProps {
@@ -750,15 +751,15 @@ function StepSellIPhone() {
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Get instant cash or trade-in credit for your old iPhone. Fast, secure, and hassle-free!
+            Exchange your old iPhone for a newer model with our convenient trade-in service. We offer <span className="text-purple-400 font-semibold">free home pickup</span> and easy drop-in options for all loyalty members. Fast, secure, and hassle-free!
           </p>
 
-          {/* iPhone Collection Banner - Always Visible */}
+          {/* iPhone Trade-In Lifestyle Banner - Always Visible */}
           <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 p-2 backdrop-blur-sm">
             <div className="bg-slate-900/50 rounded-xl p-6">
               <img 
-                src={iphoneCollection} 
-                alt="Sell Your iPhone - Latest Models Accepted" 
+                src={iphoneTradeInLifestyle} 
+                alt="iPhone Trade-In Service - Exchange Your Old Device for a Newer Model with Free Home Pickup" 
                 className="w-full h-auto rounded-lg shadow-lg"
               />
             </div>
@@ -933,7 +934,7 @@ function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: ()
               data-testid="toggle-membership-offer"
             >
               <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                Become a Member + Get FREE BONUS
+                FREE Membership + Welcome Bonus
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-amber-400" />
