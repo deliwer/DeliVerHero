@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema } from "@shared/schema";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import QRCode from "qrcode";
@@ -372,48 +372,72 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
 
-  // AquaCafe product endpoint
+  // Water Filtration - AquaCafe Impact Commerce Gateway Routes
+  
+  // Get all water filtration projects (products)
+  app.get("/api/water-filtration/projects", async (req, res) => {
+    try {
+      const projects = await storage.getAllWaterFiltrationProjects();
+      res.json(projects);
+    } catch (error: any) {
+      console.error("Error fetching water filtration projects:", error);
+      res.status(500).json({ error: "Failed to fetch projects" });
+    }
+  });
+
+  // Get single water filtration project
+  app.get("/api/water-filtration/projects/:id", async (req, res) => {
+    try {
+      const project = await storage.getWaterFiltrationProject(req.params.id);
+      if (!project) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+      res.json(project);
+    } catch (error: any) {
+      console.error("Error fetching water filtration project:", error);
+      res.status(500).json({ error: "Failed to fetch project" });
+    }
+  });
+
+  // Create water filtration contribution (checkout/purchase)
+  app.post("/api/water-filtration/contributions", async (req, res) => {
+    try {
+      const validatedData = insertWaterFiltrationContributionSchema.parse(req.body);
+      const contribution = await storage.createWaterFiltrationContribution(validatedData);
+      res.json(contribution);
+    } catch (error: any) {
+      console.error("Error creating water filtration contribution:", error);
+      res.status(400).json({ error: error.message || "Failed to create contribution" });
+    }
+  });
+
+  // Get contributions by email
+  app.get("/api/water-filtration/contributions/email/:email", async (req, res) => {
+    try {
+      const contributions = await storage.getWaterFiltrationContributionsByEmail(req.params.email);
+      res.json(contributions);
+    } catch (error: any) {
+      console.error("Error fetching contributions:", error);
+      res.status(500).json({ error: "Failed to fetch contributions" });
+    }
+  });
+
+  // Get contributions by hero
+  app.get("/api/water-filtration/contributions/hero/:heroId", async (req, res) => {
+    try {
+      const contributions = await storage.getWaterFiltrationContributionsByHero(req.params.heroId);
+      res.json(contributions);
+    } catch (error: any) {
+      console.error("Error fetching hero contributions:", error);
+      res.status(500).json({ error: "Failed to fetch hero contributions" });
+    }
+  });
+
+  // Legacy AquaCafe product endpoint - redirects to water filtration projects
   app.get("/api/products/aquacafe", async (req, res) => {
     try {
-      const aquacafeProduct = {
-        id: "aquacafe-starter-kit",
-        variantId: "gid://shopify/ProductVariant/aquacafe-starter-2024",
-        productId: "gid://shopify/Product/aquacafe-2024",
-        title: "AquaCafe Starter Kit by DeliWer",
-        variant: "Starter Kit",
-        description: "Transform your water consumption with our premium AquaCafe starter kit. Complete water purification system with trade-in rewards.",
-        price: 299.99,
-        originalPrice: 399.99,
-        image: "/attached_assets/Aquacafe_byDeliWer_Card_Corners.png",
-        available: true,
-        category: "Water Purification",
-        features: [
-          "Advanced filtration technology",
-          "Eco-friendly water solution",
-          "Trade-in rewards program",
-          "Professional installation",
-          "1-year warranty included",
-          "Smart water monitoring"
-        ],
-        badge: "Best Seller",
-        popular: true,
-        rating: 4.9,
-        reviews: 127,
-        shopifyUrl: "https://deliwer.com/products/aquacafe",
-        inStock: 50,
-        shipping: {
-          free: true,
-          estimatedDays: "2-3",
-          regions: ["Dubai", "Abu Dhabi", "Sharjah"]
-        },
-        environmental: {
-          bottlesPrevented: 2400,
-          co2Saved: "12.5kg",
-          waterSaved: "1,200L"
-        }
-      };
-      
-      res.json(aquacafeProduct);
+      const projects = await storage.getAllWaterFiltrationProjects();
+      res.json(projects[0] || {});
     } catch (error: any) {
       console.error("Error fetching AquaCafe product:", error);
       res.status(500).json({ error: "Failed to fetch product" });

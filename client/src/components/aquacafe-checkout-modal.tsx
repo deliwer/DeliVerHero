@@ -47,7 +47,7 @@ function CheckoutForm({
 }: { 
   product: CheckoutModalProps['product'];
   customerDetails: CustomerDetails;
-  onSuccess: () => void;
+  onSuccess: (contributionId: string) => void;
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -64,10 +64,21 @@ function CheckoutForm({
     setIsProcessing(true);
 
     try {
-      const { error } = await stripe.confirmPayment({
+      const { error: submitError } = await elements.submit();
+      if (submitError) {
+        toast({
+          title: "Validation Error",
+          description: submitError.message,
+          variant: "destructive",
+        });
+        setIsProcessing(false);
+        return;
+      }
+
+      const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
+        redirect: 'if_required',
         confirmParams: {
-          return_url: `${window.location.origin}/order-success?product=${product.id}`,
           receipt_email: customerDetails.email,
         },
       });
@@ -78,13 +89,44 @@ function CheckoutForm({
           description: error.message,
           variant: "destructive",
         });
-      } else {
-        onSuccess();
+      } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+        try {
+          const contributionResponse = await apiRequest("POST", "/api/water-filtration/contributions", {
+            projectId: product.id,
+            projectName: product.name,
+            contributorName: customerDetails.name,
+            contributorEmail: customerDetails.email,
+            contributorPhone: customerDetails.phone,
+            amountPaid: product.price,
+            currency: 'AED',
+            picsAwarded: Math.floor(product.price),
+            paymentMethod: 'stripe',
+            paymentId: paymentIntent.id,
+            status: 'completed',
+            metadata: {
+              area: customerDetails.area,
+              address: customerDetails.address,
+              notes: customerDetails.notes
+            }
+          });
+
+          if (!contributionResponse.ok) {
+            console.error("Failed to record contribution - manual reconciliation needed");
+          } else {
+            const contribution = await contributionResponse.json();
+            onSuccess(contribution.id);
+            return;
+          }
+        } catch (contributionError) {
+          console.error("Contribution recording error:", contributionError);
+        }
+        
+        onSuccess(paymentIntent.id);
       }
-    } catch (err) {
+    } catch (err: any) {
       toast({
         title: "Error",
-        description: "An unexpected error occurred. Please try again.",
+        description: err.message || "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -210,10 +252,11 @@ export function AquaCafeCheckoutModal({ isOpen, onClose, product }: CheckoutModa
     window.open(whatsappUrl, '_blank');
   };
 
-  const handleSuccess = () => {
+  const handleSuccess = (contributionId: string) => {
+    const picsAwarded = Math.floor(product.price);
     toast({
       title: "Payment Successful!",
-      description: "Thank you for your order. We'll contact you shortly for installation.",
+      description: `Thank you for your order! You earned ${picsAwarded} Planet Impact Credits (PICs). We'll contact you shortly for installation.`,
     });
     onClose();
     setStep('details');
