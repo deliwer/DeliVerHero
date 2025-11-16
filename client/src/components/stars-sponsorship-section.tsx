@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle } from "lucide-react";
+import { Link } from "wouter";
+import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle, ChevronDown, ChevronUp, Handshake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -56,6 +57,7 @@ interface StarsStats {
 
 export function StarsSponsorshipSection() {
   const [selectedTier, setSelectedTier] = useState<StarsTier | null>(null);
+  const [showSustainabilitySection, setShowSustainabilitySection] = useState(false);
   const { toast } = useToast();
 
   // Form with zod validation
@@ -151,62 +153,94 @@ export function StarsSponsorshipSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Hero Section with Image */}
-        <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
-          {/* Left: Image */}
-          <div className="order-2 md:order-1">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src={sustainabilityImage}
-                alt="Global Sustainability - Clean Water and Environmental Initiatives"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Right: Content */}
-          <div className="order-1 md:order-2">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4">
-              <Sparkles className="w-4 h-4 flex-shrink-0" />
-              <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
-            </div>
-            
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              Support Global Sustainability
-            </h2>
-            
-            <p className="text-base text-muted-foreground mb-6">
-              Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
-            </p>
-
-            {/* Compact Stats */}
-            {stats && (
-              <div className="flex flex-wrap gap-4 mb-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
-                    <Star className="w-5 h-5 text-amber-500" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
-                    <div className="text-xs text-muted-foreground">Stars Awarded</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-emerald-500" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
-                    <div className="text-xs text-muted-foreground">Raised</div>
-                  </div>
-                </div>
-              </div>
-            )}
+        {/* Image - Always Visible */}
+        <div className="mb-8">
+          <div className="rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
+            <img
+              src={sustainabilityImage}
+              alt="Global Sustainability - Clean Water and Environmental Initiatives"
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
 
-        {/* Compact Interactive Stars Tiers */}
-        <div className="mb-12">
+        {/* Collapsible Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4">
+            <Sparkles className="w-4 h-4 flex-shrink-0" />
+            <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
+          </div>
+
+          <h2 
+            className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent cursor-pointer inline-flex items-center gap-3"
+            onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
+            data-testid="button-toggle-sustainability"
+          >
+            Support Global Sustainability
+            {showSustainabilitySection ? <ChevronUp className="w-8 h-8 text-primary" /> : <ChevronDown className="w-8 h-8 text-primary" />}
+          </h2>
+
+          <p className="text-base text-muted-foreground mb-6 max-w-3xl mx-auto">
+            Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
+          </p>
+
+          {/* Compact Stats - Always Visible */}
+          {stats && (
+            <div className="flex flex-wrap gap-6 justify-center mb-6">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
+                  <Star className="w-5 h-5 text-amber-500" />
+                </div>
+                <div>
+                  <div className="text-lg font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground">Stars Awarded</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-emerald-500" />
+                </div>
+                <div>
+                  <div className="text-lg font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground">Raised</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Button
+              onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
+              size="lg"
+              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white px-8 py-6 text-xl font-bold shadow-xl"
+              data-testid="button-join-sustainability-journey"
+            >
+              <Handshake className="w-6 h-6 mr-3" />
+              {showSustainabilitySection ? 'Hide' : 'Join the'} Sustainability Journey
+              {showSustainabilitySection ? <ChevronUp className="w-6 h-6 ml-3" /> : <ChevronDown className="w-6 h-6 ml-3" />}
+            </Button>
+            <Link href="/partners">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-6 text-xl font-bold border-2 border-primary"
+                data-testid="button-partners-link"
+              >
+                <Handshake className="w-6 h-6 mr-3" />
+                Learn About Partnerships
+              </Button>
+            </Link>
+          </div>
+          <p className="text-muted-foreground mt-4">
+            {showSustainabilitySection ? 'Explore contribution options below' : 'Click to explore how you can make a difference'}
+          </p>
+        </div>
+
+        {/* Collapsible Content */}
+        {showSustainabilitySection && (
+          <div className="animate-in slide-in-from-top duration-500">
+            {/* Compact Interactive Stars Tiers */}
+            <div className="mb-12">
           <Card className="overflow-hidden">
             <CardContent className="p-6">
               {/* Tier Selection Grid - Compact */}
@@ -354,91 +388,93 @@ export function StarsSponsorshipSection() {
           </CardContent>
         </Card>
 
-        {/* Leaderboard Section */}
-        {leaderboard && leaderboard.length > 0 && (
-          <Card className="max-w-4xl mx-auto">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-amber-500" />
-                Top Contributors
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {leaderboard.slice(0, 10).map((entry, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover-elevate"
-                    data-testid={`leaderboard-entry-${index}`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
-                        index === 0 ? 'bg-amber-500 text-white' :
-                        index === 1 ? 'bg-gray-400 text-white' :
-                        index === 2 ? 'bg-orange-600 text-white' :
-                        'bg-muted text-foreground'
-                      }`}>
-                        {index + 1}
+            {/* Leaderboard Section */}
+            {leaderboard && leaderboard.length > 0 && (
+              <Card className="max-w-4xl mx-auto mb-12">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Trophy className="w-5 h-5 text-amber-500" />
+                    Top Contributors
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {leaderboard.slice(0, 10).map((entry, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover-elevate"
+                        data-testid={`leaderboard-entry-${index}`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${
+                            index === 0 ? 'bg-amber-500 text-white' :
+                            index === 1 ? 'bg-gray-400 text-white' :
+                            index === 2 ? 'bg-orange-600 text-white' :
+                            'bg-muted text-foreground'
+                          }`}>
+                            {index + 1}
+                          </div>
+                          <div>
+                            <div className="font-semibold">{entry.contributorName}</div>
+                            {!entry.isAnonymous && entry.contributorEmail && (
+                              <div className="text-xs text-muted-foreground">{entry.contributorEmail}</div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="flex items-center gap-1 text-amber-500 font-bold">
+                            <Star className="w-4 h-4" />
+                            {entry.totalStars.toLocaleString()}
+                          </div>
+                          <div className="text-xs text-muted-foreground">${entry.totalAmountUSD.toLocaleString()}</div>
+                        </div>
                       </div>
-                      <div>
-                        <div className="font-semibold">{entry.contributorName}</div>
-                        {!entry.isAnonymous && entry.contributorEmail && (
-                          <div className="text-xs text-muted-foreground">{entry.contributorEmail}</div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center gap-1 text-amber-500 font-bold">
-                        <Star className="w-4 h-4" />
-                        {entry.totalStars.toLocaleString()}
-                      </div>
-                      <div className="text-xs text-muted-foreground">${entry.totalAmountUSD.toLocaleString()}</div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Impact Benefits */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-4">
+                    <Heart className="w-6 h-6 text-emerald-500" />
+                  </div>
+                  <h3 className="font-bold mb-2">Clean Water Access</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Fund water purification systems in communities lacking clean drinking water
+                  </p>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
+                    <Recycle className="w-6 h-6 text-blue-500" />
+                  </div>
+                  <h3 className="font-bold mb-2">Recycling E-waste</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Support responsible electronics recycling and device trade-in programs for sustainable tech consumption
+                  </p>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
+                    <Users className="w-6 h-6 text-purple-500" />
+                  </div>
+                  <h3 className="font-bold mb-2">Awareness</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Enable community awareness programs and environmental action campaigns
+                  </p>
+                </div>
+              </Card>
+            </div>
+          </div>
         )}
-
-        {/* Impact Benefits */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <Card className="p-6">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-4">
-                <Heart className="w-6 h-6 text-emerald-500" />
-              </div>
-              <h3 className="font-bold mb-2">Clean Water Access</h3>
-              <p className="text-sm text-muted-foreground">
-                Fund water purification systems in communities lacking clean drinking water
-              </p>
-            </div>
-          </Card>
-
-          <Card className="p-6">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
-                <Recycle className="w-6 h-6 text-blue-500" />
-              </div>
-              <h3 className="font-bold mb-2">Recycling E-waste</h3>
-              <p className="text-sm text-muted-foreground">
-                Support responsible electronics recycling and device trade-in programs for sustainable tech consumption
-              </p>
-            </div>
-          </Card>
-
-          <Card className="p-6">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
-                <Users className="w-6 h-6 text-purple-500" />
-              </div>
-              <h3 className="font-bold mb-2">Awareness</h3>
-              <p className="text-sm text-muted-foreground">
-                Enable community awareness programs and environmental action campaigns
-              </p>
-            </div>
-          </Card>
-        </div>
       </div>
     </section>
   );
