@@ -153,36 +153,29 @@ export function StarsSponsorshipSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Collapsible Section Header - Matching "Sell Your iPhone" Style */}
-        <div className="mb-6">
-          <button
-            onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
-            className="group w-full bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 rounded-2xl p-6 transition-all shadow-lg hover:shadow-xl"
-            data-testid="button-join-sustainability-journey"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
-                  <Handshake className="w-7 h-7 text-white" />
-                </div>
-                <div className="text-left">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-1">
-                    Join the Sustainability Journey
-                  </h2>
-                  <p className="text-sm text-white/80">
-                    {showSustainabilitySection ? 'Explore contribution options below' : 'Support clean water, e-waste recycling & sustainable communities'}
-                  </p>
-                </div>
-              </div>
-              <div className="flex-shrink-0">
-                {showSustainabilitySection ? (
-                  <ChevronUp className="w-7 h-7 text-white transition-transform" />
-                ) : (
-                  <ChevronDown className="w-7 h-7 text-white transition-transform animate-bounce" />
-                )}
-              </div>
-            </div>
-          </button>
+        {/* Collapsible Section Header - Matching Water Section Style */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
+              aria-expanded={showSustainabilitySection}
+              aria-label="Toggle Join Sustainability Journey section"
+              data-testid="button-join-sustainability-journey"
+            >
+              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                Join the Sustainability Journey
+              </span>
+              {showSustainabilitySection ? (
+                <ChevronUp className="w-8 h-8 text-emerald-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-emerald-400" />
+              )}
+            </button>
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
+            Explore contribution options below
+          </p>
         </div>
 
         {/* Always Visible Banner - Image & Text Side by Side */}
@@ -244,46 +237,27 @@ export function StarsSponsorshipSection() {
           </CardContent>
         </Card>
 
-        {/* Start Your Journey Button - Always Visible Below Banner */}
+        {/* Learn About Partnerships Button - Always Visible Below Banner */}
         <div className="mb-8">
-          <Button
-            size="lg"
-            onClick={() => {
-              if (!showSustainabilitySection) {
-                setShowSustainabilitySection(true);
-              }
-              const section = document.getElementById('sustainability-options');
-              section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-            className="w-full bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 text-white font-bold"
-            data-testid="button-start-journey"
-          >
-            <Sparkles className="w-5 h-5 mr-2" />
-            Start Your Journey
-          </Button>
+          <Link href="/partners" className="block">
+            <Button
+              size="lg"
+              className="w-full bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 text-white font-bold"
+              data-testid="button-partners-link"
+            >
+              <Handshake className="w-5 h-5 mr-2" />
+              Learn About Partnerships
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
           <p className="text-center text-muted-foreground text-sm mt-3">
-            Explore contribution options below
+            Discover corporate solutions and community initiatives
           </p>
         </div>
 
         {/* Expandable Content - Shows when expanded */}
         {showSustainabilitySection && (
           <div id="sustainability-options" className="animate-in slide-in-from-top duration-500">
-            {/* Learn About Partnerships Button */}
-            <div className="mb-8">
-              <Link href="/partners" className="block">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="font-bold border-2 border-primary w-full hover-elevate"
-                  data-testid="button-partners-link"
-                >
-                  <Handshake className="w-5 h-5 mr-2" />
-                  Learn About Partnerships
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-            </div>
 
             {/* Discover Your Path Forward - Step 1, 2, 3 Pattern */}
             <div className="mb-12">
