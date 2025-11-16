@@ -158,13 +158,15 @@ export function StarsSponsorshipSection() {
           <CardContent className="p-0">
             <div className="grid md:grid-cols-2 gap-0">
               {/* Image Side */}
-              <div className="relative h-full min-h-[400px] md:min-h-[500px]">
-                <img
-                  src={sustainabilityImage}
-                  alt="Global Sustainability - Hands in Hand for Environmental Impact"
-                  className="w-full h-full object-cover"
-                  data-testid="image-sustainability-banner"
-                />
+              <div className="relative h-full min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-emerald-950 dark:to-blue-950 p-8">
+                <div className="w-full max-w-md">
+                  <img
+                    src={sustainabilityImage}
+                    alt="Global Sustainability - Hands in Hand for Environmental Impact"
+                    className="w-full h-auto rounded-lg shadow-lg"
+                    data-testid="image-sustainability-banner"
+                  />
+                </div>
               </div>
 
               {/* Content Side */}
@@ -206,36 +208,55 @@ export function StarsSponsorshipSection() {
                   </div>
                 )}
 
-                <div className="flex flex-col gap-3">
-                  <Button
-                    onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
-                    size="lg"
-                    className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-bold shadow-xl w-full"
-                    data-testid="button-join-sustainability-journey"
-                  >
-                    <Handshake className="w-5 h-5 mr-2" />
-                    {showSustainabilitySection ? 'Hide Details' : 'Join the Sustainability Journey'}
-                    {showSustainabilitySection ? <ChevronUp className="w-5 h-5 ml-2" /> : <ChevronDown className="w-5 h-5 ml-2" />}
-                  </Button>
-                  <Link href="/partners" className="w-full">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="font-bold border-2 border-primary w-full"
-                      data-testid="button-partners-link"
-                    >
-                      <Handshake className="w-5 h-5 mr-2" />
-                      Learn About Partnerships
-                    </Button>
-                  </Link>
-                </div>
-                <p className="text-muted-foreground text-sm mt-4 text-center">
-                  {showSustainabilitySection ? 'Explore contribution options below' : 'Click to explore how you can make a difference'}
-                </p>
+                {/* Heading-style collapsible trigger */}
+                <button
+                  onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
+                  className="group text-left w-full mt-4 hover-elevate active-elevate-2 rounded-lg p-4 transition-all"
+                  data-testid="button-join-sustainability-journey"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-br from-emerald-500/20 to-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Handshake className="w-6 h-6 text-emerald-500" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent">
+                          Join the Sustainability Journey
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {showSustainabilitySection ? 'Explore contribution options below' : 'Click to discover how you can make a difference'}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex-shrink-0">
+                      {showSustainabilitySection ? (
+                        <ChevronUp className="w-6 h-6 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      ) : (
+                        <ChevronDown className="w-6 h-6 text-muted-foreground group-hover:text-foreground transition-colors animate-bounce" />
+                      )}
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
           </CardContent>
         </Card>
+
+        {/* Learn About Partnerships Button - Below Banner */}
+        <div className="mb-8">
+          <Link href="/partners" className="block">
+            <Button
+              size="lg"
+              variant="outline"
+              className="font-bold border-2 border-primary w-full hover-elevate"
+              data-testid="button-partners-link"
+            >
+              <Handshake className="w-5 h-5 mr-2" />
+              Learn About Partnerships
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
+        </div>
 
         {/* Collapsible Content */}
         {showSustainabilitySection && (
