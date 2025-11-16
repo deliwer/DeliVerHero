@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Link } from "wouter";
 import { useState } from "react";
 import { SocialChallengesFeed } from "@/components/social-challenges-feed";
+import { MembershipBenefitsSection } from "@/components/hero-challenge-landing";
 
 interface ForumPost {
   id: string;
@@ -54,7 +55,7 @@ interface DeliveryZone {
 
 export default function Leaderboard() {
   const { data: heroes, isLoading, error } = useLeaderboard(50);
-  const [activeTab, setActiveTab] = useState<string>("leaderboard");
+  const [activeTab, setActiveTab] = useState<string>("membership");
   const [newPost, setNewPost] = useState({ title: "", content: "", category: "water" as const });
   const [forumSearchQuery, setForumSearchQuery] = useState("");
   
@@ -423,6 +424,7 @@ export default function Leaderboard() {
         {/* Navigation Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           {[
+            { id: "membership", label: "🚀 Membership", icon: Award },
             { id: "leaderboard", label: "🏆 Rankings", icon: Trophy },
             { id: "live", label: "🔴 Live Feed", icon: Zap },
             { id: "challenges", label: "🎯 Challenges", icon: Target },
@@ -449,6 +451,13 @@ export default function Leaderboard() {
         </div>
 
         {/* Tab Content */}
+        
+        {/* Membership Tab */}
+        {activeTab === "membership" && (
+          <div className="space-y-6 max-w-5xl mx-auto">
+            <MembershipBenefitsSection />
+          </div>
+        )}
         
         {/* Live Feed Tab */}
         {activeTab === "live" && (

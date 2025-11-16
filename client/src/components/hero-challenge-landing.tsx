@@ -822,14 +822,8 @@ function StepSellIPhone() {
 }
 
 // Membership Benefits Section - Uniform Format Following Step 2 Pattern
-function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: () => void }) {
+export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: () => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleJoinClick = () => {
-    if (onJoinMembership) {
-      onJoinMembership();
-    }
-  };
 
   return (
     <section className="py-8 px-4 mb-8" data-section="membership-benefits">
@@ -891,15 +885,16 @@ function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: ()
 
           {/* CTA to Join Loyalty - Always Visible */}
           <div className="mt-6">
-            <Button
-              onClick={handleJoinClick}
-              size="lg"
-              className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-              data-testid="button-join-loyalty-membership"
-            >
-              <Rocket className="w-6 h-6 flex-shrink-0" />
-              <span>JOIN LOYALTY - AED 99</span>
-            </Button>
+            <Link href="/leaderboard" className="block">
+              <Button
+                size="lg"
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-join-loyalty-membership"
+              >
+                <Rocket className="w-6 h-6 flex-shrink-0" />
+                <span>JOIN LOYALTY - AED 99</span>
+              </Button>
+            </Link>
           </div>
         </div>
 
