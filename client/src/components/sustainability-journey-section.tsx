@@ -44,7 +44,7 @@ const starsTiers = [
 
 export function SustainabilityJourneySection() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedTier, setSelectedTier] = useState<number | null>(null);
+  const [selectedTier, setSelectedTier] = useState<number | null>(10); // Default to 10 stars tier
   const { toast } = useToast();
 
   const { data: stats } = useQuery<StarsStats>({
@@ -59,6 +59,8 @@ export function SustainabilityJourneySection() {
     resolver: zodResolver(insertStarsPurchaseSchema),
     defaultValues: {
       starsTier: "10",
+      amountUSD: 10,
+      paymentGateway: "stripe",
       contributorName: "",
       contributorEmail: "",
       isAnonymous: false,
@@ -84,8 +86,18 @@ export function SustainabilityJourneySection() {
         title: "Thank you for your contribution!",
         description: `You've earned ${selectedTier} Planet Impact Credits!`,
       });
-      form.reset();
-      setSelectedTier(null);
+      // Reset both form and selectedTier to default state
+      form.reset({
+        starsTier: "10",
+        amountUSD: 10,
+        paymentGateway: "stripe",
+        contributorName: "",
+        contributorEmail: "",
+        isAnonymous: false,
+        displayOnLeaderboard: true,
+        heroId: undefined,
+      });
+      setSelectedTier(10); // Set to default tier (10 stars)
     },
     onError: () => {
       toast({
@@ -137,7 +149,7 @@ export function SustainabilityJourneySection() {
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Star className="w-6 h-6 text-amber-500" />
-                  <div className="text-3xl font-bold text-white">{stats?.totalStarsAwarded.toLocaleString() || 0}</div>
+                  <div className="text-3xl font-bold text-white">{stats?.totalStarsAwarded?.toLocaleString() ?? 0}</div>
                 </div>
                 <div className="text-sm text-gray-300">Planet Impact Credits Awarded</div>
               </CardContent>
@@ -146,7 +158,7 @@ export function SustainabilityJourneySection() {
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Heart className="w-6 h-6 text-emerald-500" />
-                  <div className="text-3xl font-bold text-white">${stats?.totalAmountUSD.toLocaleString() || 0}</div>
+                  <div className="text-3xl font-bold text-white">${stats?.totalAmountUSD?.toLocaleString() ?? 0}</div>
                 </div>
                 <div className="text-sm text-gray-300">Total Raised for Sustainability</div>
               </CardContent>
@@ -323,7 +335,8 @@ export function SustainabilityJourneySection() {
                     type="button"
                     onClick={() => {
                       setSelectedTier(tier.stars);
-                      form.setValue('starsTier', tier.amount.toString());
+                      form.setValue('starsTier', tier.stars.toString());
+                      form.setValue('amountUSD', tier.amount);
                     }}
                     className={`p-6 rounded-xl border-2 transition-all ${
                       selectedTier === tier.stars
@@ -474,9 +487,9 @@ export function SustainabilityJourneySection() {
                         <div className="text-right">
                           <div className="flex items-center gap-1 text-amber-500 font-bold">
                             <Star className="w-4 h-4" />
-                            {entry.starsAwarded?.toLocaleString() || 0}
+                            {entry.starsAwarded?.toLocaleString() ?? 0} Stars
                           </div>
-                          <div className="text-xs text-muted-foreground">${entry.starsTier}</div>
+                          <div className="text-xs text-muted-foreground">${entry.amountUSD?.toLocaleString() ?? 0}</div>
                         </div>
                       </div>
                     ))}
