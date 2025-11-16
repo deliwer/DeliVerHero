@@ -152,89 +152,90 @@ export function StarsSponsorshipSection() {
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Image - Always Visible */}
-        <div className="mb-8">
-          <div className="rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
-            <img
-              src={sustainabilityImage}
-              alt="Global Sustainability - Clean Water and Environmental Initiatives"
-              className="w-full h-auto object-cover"
-            />
-          </div>
-        </div>
-
-        {/* Collapsible Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4">
-            <Sparkles className="w-4 h-4 flex-shrink-0" />
-            <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
-          </div>
-
-          <h2 
-            className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent cursor-pointer inline-flex items-center gap-3"
-            onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
-            data-testid="button-toggle-sustainability"
-          >
-            Support Global Sustainability
-            {showSustainabilitySection ? <ChevronUp className="w-8 h-8 text-primary" /> : <ChevronDown className="w-8 h-8 text-primary" />}
-          </h2>
-
-          <p className="text-base text-muted-foreground mb-6 max-w-3xl mx-auto">
-            Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
-          </p>
-
-          {/* Compact Stats - Always Visible */}
-          {stats && (
-            <div className="flex flex-wrap gap-6 justify-center mb-6">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center">
-                  <Star className="w-5 h-5 text-amber-500" />
-                </div>
-                <div>
-                  <div className="text-lg font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
-                  <div className="text-xs text-muted-foreground">Stars Awarded</div>
-                </div>
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Always Visible Banner - Image & Text Side by Side */}
+        <Card className="mb-8 overflow-hidden border-2 border-primary/20">
+          <CardContent className="p-0">
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Image Side */}
+              <div className="relative h-full min-h-[400px] md:min-h-[500px]">
+                <img
+                  src={sustainabilityImage}
+                  alt="Global Sustainability - Hands in Hand for Environmental Impact"
+                  className="w-full h-full object-cover"
+                  data-testid="image-sustainability-banner"
+                />
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-emerald-500" />
+
+              {/* Content Side */}
+              <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-primary/5 to-accent/5">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4 w-fit">
+                  <Sparkles className="w-4 h-4 flex-shrink-0" />
+                  <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
                 </div>
-                <div>
-                  <div className="text-lg font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
-                  <div className="text-xs text-muted-foreground">Raised</div>
+
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                  Support Global Sustainability
+                </h2>
+
+                <p className="text-base md:text-lg text-muted-foreground mb-6">
+                  Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
+                </p>
+
+                {/* Stats - Always Visible */}
+                {stats && (
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="bg-card/50 rounded-lg p-4 border border-border">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
+                          <Star className="w-4 h-4 text-amber-500" />
+                        </div>
+                        <span className="text-xs text-muted-foreground">Stars Awarded</span>
+                      </div>
+                      <div className="text-2xl font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
+                    </div>
+                    <div className="bg-card/50 rounded-lg p-4 border border-border">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                          <TrendingUp className="w-4 h-4 text-emerald-500" />
+                        </div>
+                        <span className="text-xs text-muted-foreground">Raised</span>
+                      </div>
+                      <div className="text-2xl font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex flex-col gap-3">
+                  <Button
+                    onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
+                    size="lg"
+                    className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-bold shadow-xl w-full"
+                    data-testid="button-join-sustainability-journey"
+                  >
+                    <Handshake className="w-5 h-5 mr-2" />
+                    {showSustainabilitySection ? 'Hide Details' : 'Join the Sustainability Journey'}
+                    {showSustainabilitySection ? <ChevronUp className="w-5 h-5 ml-2" /> : <ChevronDown className="w-5 h-5 ml-2" />}
+                  </Button>
+                  <Link href="/partners" className="w-full">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="font-bold border-2 border-primary w-full"
+                      data-testid="button-partners-link"
+                    >
+                      <Handshake className="w-5 h-5 mr-2" />
+                      Learn About Partnerships
+                    </Button>
+                  </Link>
                 </div>
+                <p className="text-muted-foreground text-sm mt-4 text-center">
+                  {showSustainabilitySection ? 'Explore contribution options below' : 'Click to explore how you can make a difference'}
+                </p>
               </div>
             </div>
-          )}
-
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button
-              onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
-              size="lg"
-              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white px-8 py-6 text-xl font-bold shadow-xl"
-              data-testid="button-join-sustainability-journey"
-            >
-              <Handshake className="w-6 h-6 mr-3" />
-              {showSustainabilitySection ? 'Hide' : 'Join the'} Sustainability Journey
-              {showSustainabilitySection ? <ChevronUp className="w-6 h-6 ml-3" /> : <ChevronDown className="w-6 h-6 ml-3" />}
-            </Button>
-            <Link href="/partners">
-              <Button
-                size="lg"
-                variant="outline"
-                className="px-8 py-6 text-xl font-bold border-2 border-primary"
-                data-testid="button-partners-link"
-              >
-                <Handshake className="w-6 h-6 mr-3" />
-                Learn About Partnerships
-              </Button>
-            </Link>
-          </div>
-          <p className="text-muted-foreground mt-4">
-            {showSustainabilitySection ? 'Explore contribution options below' : 'Click to explore how you can make a difference'}
-          </p>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Collapsible Content */}
         {showSustainabilitySection && (
