@@ -185,69 +185,91 @@ export function StarsSponsorshipSection() {
           </button>
         </div>
 
-        {/* Content - Shows when expanded */}
-        {showSustainabilitySection && (
-          <div className="animate-in slide-in-from-top duration-500">
-            {/* Always Visible Banner - Image & Text Side by Side */}
-            <Card className="mb-8 overflow-hidden border-2 border-primary/20">
-              <CardContent className="p-0">
-                <div className="grid md:grid-cols-2 gap-0">
-                  {/* Image Side */}
-                  <div className="relative h-full min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-emerald-950 dark:to-blue-950 p-8">
-                    <div className="w-full max-w-md">
-                      <img
-                        src={sustainabilityImage}
-                        alt="Global Sustainability - Hands in Hand for Environmental Impact"
-                        className="w-full h-auto rounded-lg shadow-lg"
-                        data-testid="image-sustainability-banner"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Content Side */}
-                  <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-primary/5 to-accent/5">
-                    <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4 w-fit">
-                      <Sparkles className="w-4 h-4 flex-shrink-0" />
-                      <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
-                    </div>
-
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                      Support Global Sustainability
-                    </h2>
-
-                    <p className="text-base md:text-lg text-muted-foreground mb-6">
-                      Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
-                    </p>
-
-                    {/* Stats - Always Visible */}
-                    {stats && (
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-card/50 rounded-lg p-4 border border-border">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                              <Star className="w-4 h-4 text-amber-500" />
-                            </div>
-                            <span className="text-xs text-muted-foreground">Stars Awarded</span>
-                          </div>
-                          <div className="text-2xl font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
-                        </div>
-                        <div className="bg-card/50 rounded-lg p-4 border border-border">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                              <TrendingUp className="w-4 h-4 text-emerald-500" />
-                            </div>
-                            <span className="text-xs text-muted-foreground">Raised</span>
-                          </div>
-                          <div className="text-2xl font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+        {/* Always Visible Banner - Image & Text Side by Side */}
+        <Card className="mb-8 overflow-hidden border-2 border-primary/20">
+          <CardContent className="p-0">
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Image Side */}
+              <div className="relative h-full min-h-[400px] md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-emerald-50 to-blue-50 dark:from-emerald-950 dark:to-blue-950 p-8">
+                <div className="w-full max-w-md">
+                  <img
+                    src={sustainabilityImage}
+                    alt="Global Sustainability - Hands in Hand for Environmental Impact"
+                    className="w-full h-auto rounded-lg shadow-lg"
+                    data-testid="image-sustainability-banner"
+                  />
                 </div>
-              </CardContent>
-            </Card>
+              </div>
 
-            {/* Learn About Partnerships Button - Below Banner */}
+              {/* Content Side */}
+              <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-primary/5 to-accent/5">
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4 w-fit">
+                  <Sparkles className="w-4 h-4 flex-shrink-0" />
+                  <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
+                </div>
+
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                  Support Global Sustainability
+                </h2>
+
+                <p className="text-base md:text-lg text-muted-foreground mb-6">
+                  Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
+                </p>
+
+                {/* Stats - Always Visible */}
+                {stats && (
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-card/50 rounded-lg p-4 border border-border">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
+                          <Star className="w-4 h-4 text-amber-500" />
+                        </div>
+                        <span className="text-xs text-muted-foreground">Stars Awarded</span>
+                      </div>
+                      <div className="text-2xl font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
+                    </div>
+                    <div className="bg-card/50 rounded-lg p-4 border border-border">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                          <TrendingUp className="w-4 h-4 text-emerald-500" />
+                        </div>
+                        <span className="text-xs text-muted-foreground">Raised</span>
+                      </div>
+                      <div className="text-2xl font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Start Your Journey Button - Always Visible Below Banner */}
+        <div className="mb-8">
+          <Button
+            size="lg"
+            onClick={() => {
+              if (!showSustainabilitySection) {
+                setShowSustainabilitySection(true);
+              }
+              const section = document.getElementById('sustainability-options');
+              section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="w-full bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 text-white font-bold"
+            data-testid="button-start-journey"
+          >
+            <Sparkles className="w-5 h-5 mr-2" />
+            Start Your Journey
+          </Button>
+          <p className="text-center text-muted-foreground text-sm mt-3">
+            Explore contribution options below
+          </p>
+        </div>
+
+        {/* Expandable Content - Shows when expanded */}
+        {showSustainabilitySection && (
+          <div id="sustainability-options" className="animate-in slide-in-from-top duration-500">
+            {/* Learn About Partnerships Button */}
             <div className="mb-8">
               <Link href="/partners" className="block">
                 <Button
