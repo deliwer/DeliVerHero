@@ -96,7 +96,7 @@ export function SustainabilityJourneySection() {
     },
   });
 
-  const onSubmit = (data: typeof insertStarsContributionSchema._type) => {
+  const onSubmit = (data: typeof insertStarsPurchaseSchema._type) => {
     if (!selectedTier) {
       toast({
         title: "Please select a tier",

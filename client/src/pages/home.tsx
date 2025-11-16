@@ -15,6 +15,7 @@ import { TestimonialsSection } from "@/components/testimonials-section";
 import { TrustElements } from "@/components/trust-elements";
 import { RewardComparison } from "@/components/reward-comparison";
 import { SEOMeta } from "@/components/seo-meta";
+import { SustainabilityJourneySection } from "@/components/sustainability-journey-section";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gavel, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -227,7 +228,6 @@ function LiveChallengeWidget() {
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
-  const [showPartnershipSection, setShowPartnershipSection] = useState(false);
   const [isTombolaExpanded, setIsTombolaExpanded] = useState(false);
 
   // Check if user has seen onboarding before
@@ -293,159 +293,8 @@ export default function Home() {
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Now includes How It Works flow */}
       <HeroChallengeLanding />
 
-      {/* Partnership & Starter Kit Convergence Section - Now Collapsible for Partners */}
-      <section className="py-12 px-4 bg-gradient-to-b from-slate-900 via-blue-900 to-slate-900">
-        <div className="max-w-6xl mx-auto">
-          {/* Collapsible Header */}
-          <div className="text-center mb-8">
-            <Button
-              onClick={() => setShowPartnershipSection(!showPartnershipSection)}
-              size="lg"
-              className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white px-8 py-6 text-xl font-bold shadow-xl"
-              data-testid="button-toggle-partnership"
-            >
-              <Handshake className="w-6 h-6 mr-3" />
-              {showPartnershipSection ? 'Hide' : 'Join the'} Sustainability Journey
-              {showPartnershipSection ? <ChevronUp className="w-6 h-6 ml-3" /> : <ChevronDown className="w-6 h-6 ml-3" />}
-            </Button>
-            <p className="text-gray-400 mt-4">
-              {showPartnershipSection ? 'Explore partnership opportunities below' : 'Click to explore partnership opportunities for businesses and organizations'}
-            </p>
-          </div>
-
-          {/* Collapsible Content */}
-          {showPartnershipSection && (
-            <div className="animate-in slide-in-from-top duration-500">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                  Discover Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-green-400">Sustainability Journey</span>
-                </h2>
-                <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                  Every path to environmental impact is unique. Whether you're exploring individual solutions, considering corporate sustainability, or building community initiatives - we're here to help you find what works best for your goals.
-                </p>
-              </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Individual Trade-in */}
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-cyan-500/30 hover:bg-slate-800/70 transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-8 h-8 text-cyan-400" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Individual Explorer</h3>
-              <p className="text-gray-300 mb-6 opacity-100 group-hover:opacity-80">Perfect for those curious about device recycling and water conservation.</p>
-              <div className="space-y-2 text-sm text-gray-400 mb-8 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-32 overflow-hidden transition-all duration-500">
-                <div>✓ Device valuation & trade</div>
-                <div>✓ Water filtration credits</div>
-                <div>✓ Planet Points earning</div>
-                <div>✓ Loyalty member benefits</div>
-              </div>
-              <Link 
-                href="/aquacafe"
-                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-              >
-                Learn More
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
-
-            {/* Corporate Partnership */}
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-emerald-500/30 transform scale-105 hover:bg-slate-800/70 transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Building className="w-8 h-8 text-emerald-400" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Corporate Solutions</h3>
-              <p className="text-gray-300 mb-6 opacity-100 group-hover:opacity-80">Designed for organizations interested in comprehensive sustainability programs.</p>
-              <div className="space-y-2 text-sm text-gray-400 mb-8 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-32 overflow-hidden transition-all duration-500">
-                <div>✓ Bulk device processing</div>
-                <div>✓ ESG impact reporting</div>
-                <div>✓ Employee engagement</div>
-                <div>✓ Enterprise discounts</div>
-              </div>
-              <Link 
-                href="/partners"
-                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-              >
-                Explore Options
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
-
-            {/* Community CSR */}
-            <div className="bg-slate-800/50 rounded-2xl p-8 border border-purple-500/30 hover:bg-slate-800/70 transition-all duration-300 group cursor-pointer">
-              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-8 h-8 text-purple-400" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Community Initiatives</h3>
-              <p className="text-gray-300 mb-6 opacity-100 group-hover:opacity-80">Ideal for neighborhoods and communities who want to collaborate on sustainability goals.</p>
-              <div className="space-y-2 text-sm text-gray-400 mb-8 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-32 overflow-hidden transition-all duration-500">
-                <div>✓ Community leaderboards</div>
-                <div>✓ Shared starter kits</div>
-                <div>✓ Collective impact tracking</div>
-                <div>✓ Group rewards & benefits</div>
-              </div>
-              <Link 
-                href="/leaderboard"
-                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
-              >
-                Discover Benefits
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Unified Starter Kit CTA */}
-          <div className="bg-gradient-to-r from-blue-900/50 to-green-900/50 rounded-3xl p-12 border border-cyan-500/30">
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                🌱 Consider Our Starter Kit: AED 99
-              </h3>
-              <p className="text-xl text-gray-300 mb-8">
-                For those ready to take the next step, our starter kit provides everything you need to begin your sustainability journey. Includes complimentary installation (AED 299 value) and access to our complete ecosystem.
-              </p>
-              
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                <div className="text-left">
-                  <h4 className="text-lg font-semibold text-white mb-4">Included in Starter Kit:</h4>
-                  <div className="space-y-2 text-gray-300">
-                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />5-Stage Water Filtration System</div>
-                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Discounted Installation for Loyalty Members (from AED 299)</div>
-                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Loyalty Membership Access</div>
-                    <div className="flex items-center"><Award className="w-4 h-4 text-green-400 mr-2" />Planet Points Earning System</div>
-                  </div>
-                </div>
-                <div className="text-left">
-                  <h4 className="text-lg font-semibold text-white mb-4">Membership Benefits:</h4>
-                  <div className="space-y-2 text-gray-300">
-                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Device Trade-in Priority</div>
-                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Partnership Program Access</div>
-                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Community Challenges</div>
-                    <div className="flex items-center"><Award className="w-4 h-4 text-blue-400 mr-2" />Exclusive Discounts & Rewards</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/aquacafe"
-                  className="inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105"
-                >
-                  <ShoppingCart className="w-6 h-6 mr-3" />
-                  View Starter Kit Details
-                </Link>
-                <Link
-                  href="/partners"
-                  className="inline-flex items-center justify-center border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-8 py-4 rounded-xl text-lg font-bold transition-all transform hover:scale-105"
-                >
-                  <Handshake className="w-6 h-6 mr-3" />
-                  Learn About Partnerships
-                </Link>
-              </div>
-            </div>
-          </div>
-            </div>
-          )}
-        </div>
-      </section>
+      {/* Comprehensive Sustainability Journey Section - Merged pathway cards, starter kit, and stars contribution */}
+      <SustainabilityJourneySection />
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />
