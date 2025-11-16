@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,33 +7,18 @@ import {
   Tv, 
   TrendingUp, 
   Users, 
-  Globe, 
-  Zap,
-  Award,
-  Target,
+  Upload,
   Sparkles,
-  ExternalLink,
-  Youtube
+  Youtube,
+  Video
 } from "lucide-react";
-import type { PlanetMission } from "@shared/schema";
 
 interface PlayTVProps {
   className?: string;
 }
 
 export function PlayTV({ className = "" }: PlayTVProps) {
-  const [selectedTab, setSelectedTab] = useState<"live" | "missions" | "community">("live");
-
-  // Fetch active missions
-  const { data: missionsData, isLoading } = useQuery<PlanetMission[]>({
-    queryKey: ['/api/metaverse/missions'],
-  });
-
-  const missions = Array.isArray(missionsData) ? missionsData : [];
-
-  const featuredMissions = missions
-    ?.filter(m => m.isActive && m.isEpic)
-    ?.slice(0, 4) || [];
+  const [selectedTab, setSelectedTab] = useState<"live" | "ugc" | "community">("live");
 
   // YouTube channel for @vdeliwer
   const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@vdeliwer";
@@ -69,13 +53,13 @@ export function PlayTV({ className = "" }: PlayTVProps) {
           Live Feed
         </Button>
         <Button
-          variant={selectedTab === "missions" ? "default" : "outline"}
-          onClick={() => setSelectedTab("missions")}
+          variant={selectedTab === "ugc" ? "default" : "outline"}
+          onClick={() => setSelectedTab("ugc")}
           className="toggle-elevate"
-          data-testid="tab-missions"
+          data-testid="tab-ugc"
         >
-          <Target className="w-4 h-4 mr-2" />
-          Active Missions
+          <Video className="w-4 h-4 mr-2" />
+          Featured Videos
         </Button>
         <Button
           variant={selectedTab === "community" ? "default" : "outline"}
@@ -96,86 +80,117 @@ export function PlayTV({ className = "" }: PlayTVProps) {
             <CardContent className="p-0">
               {selectedTab === "live" && (
                 <div className="aspect-video bg-slate-950 relative group">
-                  {/* YouTube Channel Placeholder with Direct Link */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900/40 via-slate-900 to-blue-900/40">
-                    <div className="text-center p-8 max-w-lg">
-                      <div className="mb-6 relative">
+                  {/* YouTube Channel - Simplified for Mobile */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-900/40 via-slate-900 to-blue-900/40 p-4">
+                    <div className="text-center max-w-lg w-full">
+                      <div className="mb-4 relative">
                         <div className="absolute inset-0 bg-red-500/20 blur-3xl rounded-full"></div>
-                        <Youtube className="w-20 h-20 mx-auto text-red-500 relative z-10" />
+                        <Youtube className="w-16 h-16 md:w-20 md:h-20 mx-auto text-red-500 relative z-10" />
                       </div>
-                      <h4 className="text-white font-bold text-2xl mb-3">DeliWer Sustainability Channel</h4>
-                      <p className="text-gray-300 mb-2 text-lg">
-                        Latest sustainability missions and impact stories
+                      <h4 className="text-white font-bold text-xl md:text-2xl mb-2">DeliWer Sustainability Channel</h4>
+                      <p className="text-gray-300 mb-4 text-sm md:text-base">
+                        Watch sustainability impact stories and community missions
                       </p>
-                      <p className="text-gray-400 mb-6 text-sm">
-                        Watch how our community is making a difference, one mission at a time
-                      </p>
-                      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                      <div className="flex flex-col gap-3 max-w-sm mx-auto">
                         <a
                           href={YOUTUBE_CHANNEL_URL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg transition-colors font-semibold text-lg shadow-lg shadow-red-500/30"
+                          className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg transition-colors font-semibold shadow-lg shadow-red-500/30"
                           data-testid="button-visit-youtube"
                         >
-                          <Youtube className="w-6 h-6" />
+                          <Youtube className="w-5 h-5" />
                           Watch on YouTube
                         </a>
                         <a
                           href={`${YOUTUBE_CHANNEL_URL}?sub_confirmation=1`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-8 py-4 rounded-lg transition-colors font-semibold border border-slate-600"
+                          className="inline-flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 md:px-8 md:py-4 rounded-lg transition-colors font-semibold border border-slate-600"
                           data-testid="button-subscribe-youtube"
                         >
                           <Sparkles className="w-5 h-5" />
                           Subscribe
                         </a>
                       </div>
-                      <p className="text-gray-500 text-xs mt-4">@vdeliwer</p>
+                      <p className="text-gray-500 text-xs mt-3">@vdeliwer</p>
                     </div>
                   </div>
                 </div>
               )}
 
-              {selectedTab === "missions" && (
-                <div className="aspect-video bg-gradient-to-br from-purple-900/20 to-blue-900/20 p-6 overflow-y-auto">
-                  <h4 className="text-white font-bold text-xl mb-4 flex items-center gap-2">
-                    <Target className="w-6 h-6 text-purple-400" />
-                    Active Planet Missions
-                  </h4>
+              {selectedTab === "ugc" && (
+                <div className="aspect-video bg-gradient-to-br from-purple-900/20 to-blue-900/20 p-4 md:p-6 overflow-y-auto">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-white font-bold text-lg md:text-xl flex items-center gap-2">
+                      <Video className="w-5 h-5 md:w-6 md:h-6 text-purple-400" />
+                      Featured Impact Videos
+                    </h4>
+                    <Button size="sm" variant="outline" className="border-purple-500/50 text-purple-400" data-testid="button-upload-video">
+                      <Upload className="w-4 h-4 mr-1" />
+                      Upload
+                    </Button>
+                  </div>
+                  
                   <div className="space-y-3">
-                    {isLoading ? (
-                      <p className="text-gray-400">Loading missions...</p>
-                    ) : featuredMissions.length > 0 ? (
-                      featuredMissions.map((mission) => (
-                        <Card key={mission.code} className="bg-slate-800/50 border-purple-500/30 hover-elevate">
-                          <CardContent className="p-4">
-                            <div className="flex items-start gap-3">
-                              <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <Award className="w-6 h-6 text-purple-400" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h5 className="text-white font-semibold mb-1 truncate">{mission.title}</h5>
-                                <p className="text-gray-400 text-sm mb-2 line-clamp-2">{mission.description}</p>
-                                <div className="flex flex-wrap items-center gap-2">
-                                  <Badge variant="outline" className="text-xs">
-                                    <Zap className="w-3 h-3 mr-1" />
-                                    {mission.basePoints} PICs
-                                  </Badge>
-                                  <Badge variant="outline" className="text-xs">
-                                    <Globe className="w-3 h-3 mr-1" />
-                                    {mission.category}
-                                  </Badge>
-                                </div>
-                              </div>
+                    {/* Featured Video 1 */}
+                    <Card className="bg-slate-800/50 border-purple-500/30 hover-elevate">
+                      <CardContent className="p-3 md:p-4">
+                        <div className="flex gap-3">
+                          <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Play className="w-8 h-8 text-purple-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold mb-1 text-sm md:text-base">Dubai Marina Water Cleanup</h5>
+                            <p className="text-gray-400 text-xs md:text-sm mb-2 line-clamp-2">
+                              Community heroes removed 500+ plastic bottles from the marina
+                            </p>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <Badge variant="outline" className="text-xs">
+                                <Users className="w-3 h-3 mr-1" />
+                                142 views
+                              </Badge>
+                              <Badge variant="outline" className="text-xs">
+                                <TrendingUp className="w-3 h-3 mr-1" />
+                                Trending
+                              </Badge>
                             </div>
-                          </CardContent>
-                        </Card>
-                      ))
-                    ) : (
-                      <p className="text-gray-400">No active missions right now. Check back soon!</p>
-                    )}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Featured Video 2 */}
+                    <Card className="bg-slate-800/50 border-pink-500/30 hover-elevate">
+                      <CardContent className="p-3 md:p-4">
+                        <div className="flex gap-3">
+                          <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Play className="w-8 h-8 text-pink-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h5 className="text-white font-semibold mb-1 text-sm md:text-base">iPhone Trade-In Success Story</h5>
+                            <p className="text-gray-400 text-xs md:text-sm mb-2 line-clamp-2">
+                              How Sarah got an AquaCafe system through iPhone trade-in program
+                            </p>
+                            <div className="flex flex-wrap items-center gap-2">
+                              <Badge variant="outline" className="text-xs">
+                                <Users className="w-3 h-3 mr-1" />
+                                89 views
+                              </Badge>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Upload CTA */}
+                    <div className="text-center pt-2">
+                      <p className="text-gray-400 text-xs md:text-sm mb-2">Share your sustainability journey</p>
+                      <Button size="sm" variant="outline" className="border-emerald-500/50 text-emerald-400 hover-elevate">
+                        <Upload className="w-4 h-4 mr-2" />
+                        Submit Your Video
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -268,9 +283,9 @@ export function PlayTV({ className = "" }: PlayTVProps) {
                 Quick Actions
               </h4>
               <div className="space-y-2">
-                <Button variant="outline" className="w-full justify-start" data-testid="button-start-mission">
-                  <Target className="w-4 h-4 mr-2" />
-                  Start a Mission
+                <Button variant="outline" className="w-full justify-start" data-testid="button-upload-impact">
+                  <Upload className="w-4 h-4 mr-2" />
+                  Upload Impact Video
                 </Button>
                 <Button variant="outline" className="w-full justify-start" data-testid="button-join-challenge">
                   <Users className="w-4 h-4 mr-2" />

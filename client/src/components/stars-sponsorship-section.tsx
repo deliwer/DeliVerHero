@@ -10,7 +10,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import sustainabilityImage from "@assets/stock_images/clean_water_sustaina_ba5cf3da.jpg";
+import sustainabilityImage from "@assets/stock_images/people_volunteers_co_32938821.jpg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -205,55 +205,70 @@ export function StarsSponsorshipSection() {
           </div>
         </div>
 
-        {/* Stars Tiers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
-          {STARS_TIERS.map((tier) => (
-            <Card
-              key={tier.id}
-              className={`relative overflow-hidden transition-all duration-300 ${
-                selectedTier?.id === tier.id ? 'ring-2 ring-primary shadow-lg scale-105' : 'hover:shadow-md'
-              } ${tier.popular ? 'border-primary border-2' : ''}`}
-              data-testid={`stars-tier-${tier.amountUSD}`}
-            >
-              {tier.popular && (
-                <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold rounded-bl-lg">
-                  POPULAR
+        {/* Compact Interactive Stars Tiers */}
+        <div className="mb-12">
+          <Card className="overflow-hidden">
+            <CardContent className="p-6">
+              {/* Tier Selection Grid - Compact */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+                {STARS_TIERS.map((tier) => (
+                  <button
+                    key={tier.id}
+                    onClick={() => setSelectedTier(tier)}
+                    className={`relative p-4 rounded-lg border-2 transition-all ${
+                      selectedTier?.id === tier.id
+                        ? 'border-primary bg-primary/10 shadow-lg'
+                        : 'border-border hover-elevate'
+                    }`}
+                    data-testid={`stars-tier-${tier.amountUSD}`}
+                  >
+                    {tier.popular && (
+                      <Badge className="absolute -top-2 -right-2 bg-primary text-xs px-2 py-0">
+                        Popular
+                      </Badge>
+                    )}
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${tier.color} mx-auto mb-2 flex items-center justify-center`}>
+                      <Star className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="text-center">
+                      <div className="text-sm font-semibold text-foreground mb-1">{tier.label}</div>
+                      <div className="text-xl font-bold text-primary">${tier.amountUSD}</div>
+                      <div className="text-xs text-muted-foreground">{tier.stars} PICs</div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Selected Tier Action */}
+              {selectedTier && (
+                <div className="bg-muted/30 rounded-lg p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${selectedTier.color} flex items-center justify-center flex-shrink-0`}>
+                      <Star className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-foreground">{selectedTier.label} Tier</div>
+                      <div className="text-sm text-muted-foreground">${selectedTier.amountUSD} = {selectedTier.stars} Planet Impact Credits</div>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => handlePurchase(selectedTier)}
+                    disabled={purchaseMutation.isPending}
+                    className={`bg-gradient-to-r ${selectedTier.color} text-white flex-shrink-0`}
+                    data-testid={`button-purchase-stars-${selectedTier.amountUSD}`}
+                  >
+                    {purchaseMutation.isPending ? (
+                      "Processing..."
+                    ) : (
+                      <>
+                        Contribute <ArrowRight className="w-4 h-4 ml-1 flex-shrink-0" />
+                      </>
+                    )}
+                  </Button>
                 </div>
               )}
-              
-              <CardHeader className="p-4">
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${tier.color} mx-auto mb-2 flex items-center justify-center`}>
-                  <Star className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-center text-lg">{tier.label}</CardTitle>
-              </CardHeader>
-
-              <CardContent className="p-4 pt-0">
-                <div className="text-center mb-4">
-                  <div className="text-3xl font-bold text-primary mb-1">${tier.amountUSD}</div>
-                  <div className="text-sm text-muted-foreground">{tier.stars} Stars</div>
-                </div>
-
-                <Button
-                  onClick={() => {
-                    setSelectedTier(tier);
-                    handlePurchase(tier);
-                  }}
-                  disabled={purchaseMutation.isPending}
-                  className={`w-full bg-gradient-to-r ${tier.color} text-white`}
-                  data-testid={`button-purchase-stars-${tier.amountUSD}`}
-                >
-                  {purchaseMutation.isPending && selectedTier?.id === tier.id ? (
-                    "Processing..."
-                  ) : (
-                    <>
-                      Contribute <ArrowRight className="w-4 h-4 ml-1 flex-shrink-0" />
-                    </>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+            </CardContent>
+          </Card>
         </div>
 
         {/* Compact Contributor Form */}

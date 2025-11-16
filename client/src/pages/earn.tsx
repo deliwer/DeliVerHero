@@ -15,7 +15,6 @@ import { TombolaWidget } from "@/components/tombola-widget";
 import { CouponsPanel } from "@/components/coupons-panel";
 import { DubaiWellnessJourney } from "@/components/dubai-wellness-journey";
 import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
-import { RewardComparison } from "@/components/reward-comparison";
 import { shopifyCartService } from "@/lib/shopify-cart";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
@@ -419,22 +418,136 @@ export default function Earn() {
         </div>
       </section>
 
-      {/* AquaCafe Membership Tiers - Reward Type Selection */}
-      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900" data-testid="membership-tiers-section">
+      {/* Planet Impact Credits (PICs) - Unified Rewards System */}
+      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900" data-testid="pics-rewards-section">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full border border-cyan-500/30 mb-4">
-              <Trophy className="w-4 h-4 flex-shrink-0" />
-              <span className="font-bold text-sm">MEMBERSHIP TIERS & REWARDS</span>
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
+              <Star className="w-4 h-4 flex-shrink-0" />
+              <span className="font-bold text-sm">UNIFIED REWARDS SYSTEM</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Choose Your <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Reward Style</span>
+              Earn <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Planet Impact Credits (PICs)</span>
             </h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
-              Select how you want to receive value from your iPhone trade-ins and purchases. Each tier unlocks unique benefits and multipliers.
+              One simple reward system that tracks your environmental impact and gives you real value. Use PICs for products, water delivery, dining, and more.
             </p>
           </div>
-          <RewardComparison />
+
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 border-emerald-500/40 mb-8">
+              <CardContent className="p-8">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                    <Star className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-4">What are PICs?</h3>
+                    <div className="space-y-3 text-gray-300">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
+                        <div>
+                          <p className="font-semibold text-white">Universal Currency</p>
+                          <p className="text-sm">Use PICs across our entire ecosystem - water delivery, premium products, restaurant rewards, and sustainability initiatives</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
+                        <div>
+                          <p className="font-semibold text-white">Real Value</p>
+                          <p className="text-sm"><strong className="text-emerald-400">100 PICs = $10 value</strong> - transparent and consistent pricing you can trust</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
+                        <div>
+                          <p className="font-semibold text-white">Impact Tracking</p>
+                          <p className="text-sm">Every PIC earned represents real environmental impact - CO₂ reduction, water saved, and e-waste recycled through your actions</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
+                        <div>
+                          <p className="font-semibold text-white">Flexible Usage</p>
+                          <p className="text-sm">Redeem for cash, products, water subscriptions, or donate to sustainability projects - you choose how to use your rewards</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-slate-800/50 border-slate-700">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                      <Smartphone className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-xl font-bold text-white">Earn PICs</h4>
+                  </div>
+                  <ul className="space-y-2 text-gray-300 text-sm">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
+                      <span>iPhone trade-ins (up to 22,000 PICs)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
+                      <span>Shopping sustainable products</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
+                      <span>Completing sustainability missions</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
+                      <span>Referring friends and family</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800/50 border-slate-700">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+                      <Gift className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-xl font-bold text-white">Use PICs</h4>
+                  </div>
+                  <ul className="space-y-2 text-gray-300 text-sm">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" />
+                      <span>Premium water filtration systems</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" />
+                      <span>Free water delivery subscriptions</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" />
+                      <span>Restaurant vouchers & dining rewards</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" />
+                      <span>Cash withdrawal or sustainability donations</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="mt-8 text-center bg-gradient-to-r from-emerald-900/20 to-cyan-900/20 rounded-2xl p-6 border border-emerald-500/30">
+              <h3 className="text-xl font-bold text-white mb-3 flex items-center justify-center gap-2">
+                <Sparkles className="w-5 h-5 text-emerald-400" />
+                Simple, Transparent, Impactful
+              </h3>
+              <p className="text-gray-300 max-w-3xl mx-auto">
+                No confusing point systems or multiple currencies. Just PICs - one unified reward that combines real value with environmental impact tracking.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
