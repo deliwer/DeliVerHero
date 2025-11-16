@@ -32,7 +32,7 @@ export function TradeInBanner() {
             </h2>
             
             <p className="text-lg text-gray-300 max-w-xl">
-              Trade it & earn <span className="font-bold text-emerald-400">water credits</span>, <span className="font-bold text-blue-400">Planet Points</span>, or <span className="font-bold text-purple-400">instant cash</span>. Free pickup for AquaCafe loyalty members within 24 hours across Dubai, Sharjah & Abu Dhabi.
+              Trade it & earn <span className="font-bold text-emerald-400">PICs</span> (Planet Impact Credits) - your universal reward currency. Free pickup for AquaCafe loyalty members within 24 hours across Dubai, Sharjah & Abu Dhabi.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -79,9 +79,9 @@ export function TradeInBanner() {
                 <h3 className="text-lg font-bold text-white mb-4">Example Trade-In Values</h3>
                 <div className="space-y-3">
                   {[
-                    { model: "iPhone 17 Pro Max 256GB", condition: "Excellent", value: "AED 3,850", points: "38,500 Points", highlight: true },
-                    { model: "iPhone 16 Pro 256GB", condition: "Excellent", value: "AED 3,200", points: "32,000 Points" },
-                    { model: "iPhone 15 Pro Max 256GB", condition: "Good", value: "AED 2,400", points: "24,000 Points" },
+                    { model: "iPhone 17 Pro Max 256GB", condition: "Excellent", value: "AED 3,850", points: "38,500 PICs", highlight: true },
+                    { model: "iPhone 16 Pro 256GB", condition: "Excellent", value: "AED 3,200", points: "32,000 PICs" },
+                    { model: "iPhone 15 Pro Max 256GB", condition: "Good", value: "AED 2,400", points: "24,000 PICs" },
                   ].map((item, idx) => (
                     <div key={idx} className="flex justify-between items-center bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
                       <div>

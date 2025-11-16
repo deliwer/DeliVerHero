@@ -11,7 +11,6 @@ import { HeroRegistrationModal, MissionSelectionModal } from "./hero-onboarding-
 import { TombolaWidget } from "./tombola-widget";
 import { ImpactSlotMachine } from "./impact-slot-machine";
 import { DirhamSymbol } from "./dirham-symbol";
-import { StarsSponsorshipSection } from "./stars-sponsorship-section";
 import { PlayTV } from "./play-tv";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
@@ -1187,11 +1186,6 @@ export function HeroChallengeLanding() {
         {/* Step 3: Create Impact (Play & Gamification) */}
         <div data-section="step-3">
           <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
-        </div>
-
-        {/* Stars Sponsorship Section - Post-Step Revenue Upsell */}
-        <div data-section="stars-support" className="mt-16 mb-12">
-          <StarsSponsorshipSection />
         </div>
       </div>
 

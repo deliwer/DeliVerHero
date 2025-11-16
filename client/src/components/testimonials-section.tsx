@@ -20,9 +20,9 @@ const testimonials: Testimonial[] = [
     initials: "AM",
     model: "iPhone 14 Pro",
     rating: 5,
-    text: "I sold my iPhone 14 Pro and got water credits to cover 6 months of delivery. The process was incredibly easy and the pickup was done within 24 hours!",
+    text: "I sold my iPhone 14 Pro and earned 22,000 PICs which I used for 6 months of premium water delivery. The process was incredibly easy and the pickup was done within 24 hours!",
     value: "AED 2,200",
-    reward: "6 months water delivery"
+    reward: "22,000 PICs earned"
   },
   {
     id: "2",
@@ -30,9 +30,9 @@ const testimonials: Testimonial[] = [
     initials: "SJ",
     model: "iPhone 13",
     rating: 5,
-    text: "Best trade-in experience ever! Got instant cash and the team made sure all my data was securely wiped. Highly recommend DeliWer!",
+    text: "Best trade-in experience ever! Earned 12,000 PICs and the team made sure all my data was securely wiped. Highly recommend DeliWer!",
     value: "AED 1,200",
-    reward: "Instant cash payout"
+    reward: "12,000 PICs earned"
   },
   {
     id: "3",
@@ -40,9 +40,9 @@ const testimonials: Testimonial[] = [
     initials: "MH",
     model: "iPhone 15 Pro Max",
     rating: 5,
-    text: "Traded in my phone and earned 32,000 Planet Points! Used them for premium water systems and restaurant rewards. Amazing platform!",
+    text: "Traded in my phone and earned 32,000 PICs! Used them for premium water systems and restaurant rewards. Amazing platform!",
     value: "AED 3,200",
-    reward: "32,000 Planet Points"
+    reward: "32,000 PICs earned"
   },
   {
     id: "4",
@@ -50,9 +50,9 @@ const testimonials: Testimonial[] = [
     initials: "FA",
     model: "iPhone 12",
     rating: 5,
-    text: "The live inspection video call was super convenient. Got a fair price and the whole process took less than 48 hours from quote to payment.",
+    text: "The live inspection video call was super convenient. Got a fair price and the whole process took less than 48 hours from quote to PICs in my account.",
     value: "AED 800",
-    reward: "Water credits + cash"
+    reward: "8,000 PICs earned"
   }
 ];
 
