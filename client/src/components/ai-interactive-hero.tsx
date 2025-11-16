@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Droplets, Smartphone, Globe, MessageCircle, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@assets/stock_images/lifestyle_people_sho_406e4f34.jpg";
+import heroImage from "@assets/stock_images/people_drinking_wate_750227b9.jpg";
 
 interface CTAOption {
   id: string;
