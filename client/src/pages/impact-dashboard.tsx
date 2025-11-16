@@ -3,6 +3,7 @@ import { ImpactStats } from "@/components/impact-stats";
 import { DeviceSimulator } from "@/components/device-simulator";
 import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
 import { ImpactSlotMachine } from "@/components/impact-slot-machine";
+import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 import { useState } from "react";
 import type { TradeCalculation } from "@/types/hero";
 
@@ -56,7 +57,7 @@ export default function ImpactDashboard() {
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300">Trade Value</span>
                     <span className="text-2xl font-bold text-amber-500" data-testid="result-trade-value">
-                      AED {personalImpact.tradeValue}
+                      <DirhamSymbol size={18} className="mr-1" />{personalImpact.tradeValue}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">

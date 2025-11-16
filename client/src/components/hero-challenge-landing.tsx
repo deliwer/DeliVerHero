@@ -10,7 +10,7 @@ import { AquaCafeTab } from "./aquacafe-tab";
 import { HeroRegistrationModal, MissionSelectionModal } from "./hero-onboarding-modals";
 import { TombolaWidget } from "./tombola-widget";
 import { ImpactSlotMachine } from "./impact-slot-machine";
-import { DirhamSymbol } from "./dirham-symbol";
+import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 import { PlayTV } from "./play-tv";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
@@ -473,7 +473,7 @@ function StepTwoExchange() {
                     <span className="text-gray-300 text-sm">Saves money vs. bottled water</span>
                   </div>
                 </div>
-                <div className="text-center text-2xl font-bold text-blue-400 mb-2">AED 19,250</div>
+                <div className="text-center text-2xl font-bold text-blue-400 mb-2"><DirhamSymbol size={18} className="mr-1" />19,250</div>
                 <p className="text-gray-400 text-sm text-center mb-4">Premium alkaline water system - Direct from Kangen Dubai</p>
                 <Button
                   onClick={() => handleBuyNow("kangen-k8-machine", "Kangen K8 Machine", 19250)}
@@ -510,8 +510,8 @@ function StepTwoExchange() {
                   </div>
                 </div>
                 <div className="text-center mb-2">
-                  <span className="text-2xl font-bold text-cyan-400">AED 99</span>
-                  <span className="text-gray-500 line-through ml-2">AED 1,698</span>
+                  <span className="text-2xl font-bold text-cyan-400"><DirhamSymbol size={18} className="mr-1" />99</span>
+                  <span className="text-gray-500 line-through ml-2"><DirhamSymbol size={14} className="mr-0.5" />1,698</span>
                 </div>
                 <p className="text-gray-400 text-sm text-center mb-4">94% savings - Limited offer</p>
                 <Button
@@ -761,7 +761,7 @@ function StepSellIPhone() {
             <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-8 border-2 border-purple-400/50 text-center">
               <div className="text-gray-300 text-sm mb-2">Your Instant Quote</div>
               <div className="text-5xl font-black text-purple-400 mb-2" data-testid="text-sell-value">
-                AED {calculateTradeInValue().toLocaleString()}
+                <DirhamSymbol size={36} className="mr-2" />{calculateTradeInValue().toLocaleString()}
               </div>
               <div className="text-gray-400 text-sm mb-4">
                 💰 Choose cash payout or redeem for AquaCafe loyalty points
@@ -848,7 +848,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-            <span className="text-amber-400 font-bold">AED 99</span> Loyalty Starter Kit: FREE Shower Filter + Chill & Grill D100 Voucher
+            <span className="text-amber-400 font-bold"><DirhamSymbol size={14} className="mr-0.5" />99</span> Loyalty Starter Kit: FREE Shower Filter + Chill & Grill D100 Voucher
           </p>
           
           {/* Always Visible Banner - Membership Card + Chill & Grill Offer */}
@@ -868,9 +868,9 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
                     <Gift className="w-5 h-5 mr-2 flex-shrink-0" />
                     <span>LOYALTY PROGRAM</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">AED 99 Starter Kit Benefits</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2"><DirhamSymbol size={18} className="mr-1" />99 Starter Kit Benefits</h3>
                   <p className="text-gray-300 mb-4">
-                    Get FREE Shower Filter (AED 399) + Discounted Installation for Loyalty Members + Chill & Grill D100 Voucher + 1000 Loyalty Points
+                    Get FREE Shower Filter (<DirhamSymbol size={12} className="mr-0.5" />399) + Discounted Installation for Loyalty Members + Chill & Grill D100 Voucher + 1000 Loyalty Points
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Membership Card</span>
@@ -891,7 +891,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
                 data-testid="button-join-loyalty-membership"
               >
                 <Rocket className="w-6 h-6 flex-shrink-0" />
-                <span>JOIN LOYALTY - AED 99</span>
+                <span>JOIN LOYALTY - <DirhamSymbol size={14} className="mx-0.5" />99</span>
               </Button>
             </Link>
           </div>
@@ -920,7 +920,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
                       <div className="flex items-start gap-3">
                         <Gift className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                         <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">FREE Ionic Shower Filter</span> (AED 399 value)
+                          <span className="font-bold text-white">FREE Ionic Shower Filter</span> (<DirhamSymbol size={10} className="mr-0.5" />399 value)
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -997,7 +997,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
                       <div className="flex items-start gap-3">
                         <Gift className="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5" />
                         <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">Instant D100 Voucher</span> with AED 99 membership
+                          <span className="font-bold text-white">Instant D100 Voucher</span> with <DirhamSymbol size={10} className="mx-0.5" />99 membership
                         </div>
                       </div>
                       <div className="flex items-start gap-3">

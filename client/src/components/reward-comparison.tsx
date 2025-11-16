@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Coins, CheckCircle, Star, Sparkles, Gift, TrendingUp, Users, Heart } from "lucide-react";
 import { Link } from "wouter";
 import lifestyleRewardsImage from "@assets/stock_images/smartphone_trade-in__bd93d09e.jpg";
+import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 
 export function RewardComparison() {
   return (
@@ -31,7 +32,7 @@ export function RewardComparison() {
                   <CheckCircle className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold">1 PIC = AED 0.10 value</h3>
+                  <h3 className="text-white font-bold">1 PIC = <DirhamSymbol size={14} className="mx-0.5" />0.10 value</h3>
                   <p className="text-gray-400 text-sm">Simple, transparent redemption across all rewards</p>
                 </div>
               </div>
@@ -109,7 +110,7 @@ export function RewardComparison() {
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-400">= Cash value</span>
-                  <span className="text-emerald-300">AED 2,200</span>
+                  <span className="text-emerald-300"><DirhamSymbol size={12} className="mr-0.5" />2,200</span>
                 </div>
               </div>
             </CardContent>
@@ -205,7 +206,7 @@ export function RewardComparison() {
         <div className="mt-10 text-center bg-gradient-to-r from-emerald-900/20 to-blue-900/20 rounded-2xl p-6 border border-emerald-500/30">
           <h3 className="text-xl font-bold text-white mb-3">💡 Maximize Your PICs Value</h3>
           <p className="text-gray-300 max-w-3xl mx-auto">
-            With a 10:1 ratio (1 PIC = AED 0.10), every iPhone trade-in generates significant value. 
+            With a 10:1 ratio (1 PIC = <DirhamSymbol size={14} className="mx-0.5" />0.10), every iPhone trade-in generates significant value. 
             Use your PICs for premium products, restaurant rewards, and water delivery while contributing to Dubai's sustainability goals!
           </p>
         </div>

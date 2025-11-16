@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Smartphone, ArrowRight, Calculator, Sparkles, Shield } from "lucide-react";
 import { Link } from "wouter";
+import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 
 export function TradeInBanner() {
   const [isHovered, setIsHovered] = useState(false);
@@ -79,9 +80,9 @@ export function TradeInBanner() {
                 <h3 className="text-lg font-bold text-white mb-4">Example Trade-In Values</h3>
                 <div className="space-y-3">
                   {[
-                    { model: "iPhone 17 Pro Max 256GB", condition: "Excellent", value: "AED 3,850", points: "38,500 PICs", highlight: true },
-                    { model: "iPhone 16 Pro 256GB", condition: "Excellent", value: "AED 3,200", points: "32,000 PICs" },
-                    { model: "iPhone 15 Pro Max 256GB", condition: "Good", value: "AED 2,400", points: "24,000 PICs" },
+                    { model: "iPhone 17 Pro Max 256GB", condition: "Excellent", value: "3,850", points: "38,500 PICs", highlight: true },
+                    { model: "iPhone 16 Pro 256GB", condition: "Excellent", value: "3,200", points: "32,000 PICs" },
+                    { model: "iPhone 15 Pro Max 256GB", condition: "Good", value: "2,400", points: "24,000 PICs" },
                   ].map((item, idx) => (
                     <div key={idx} className="flex justify-between items-center bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
                       <div>
@@ -89,7 +90,7 @@ export function TradeInBanner() {
                         <p className="text-gray-400 text-xs">{item.condition} condition</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-emerald-400 font-bold">{item.value}</p>
+                        <p className="text-emerald-400 font-bold"><DirhamSymbol size={12} className="mr-0.5" />{item.value}</p>
                         <p className="text-blue-400 text-xs">{item.points}</p>
                       </div>
                     </div>

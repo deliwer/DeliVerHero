@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 
 interface Testimonial {
   id: string;
@@ -21,7 +22,7 @@ const testimonials: Testimonial[] = [
     model: "iPhone 14 Pro",
     rating: 5,
     text: "I sold my iPhone 14 Pro and earned 22,000 PICs which I used for 6 months of premium water delivery. The process was incredibly easy and the pickup was done within 24 hours!",
-    value: "AED 2,200",
+    value: "2,200",
     reward: "22,000 PICs earned"
   },
   {
@@ -31,7 +32,7 @@ const testimonials: Testimonial[] = [
     model: "iPhone 13",
     rating: 5,
     text: "Best trade-in experience ever! Earned 12,000 PICs and the team made sure all my data was securely wiped. Highly recommend DeliWer!",
-    value: "AED 1,200",
+    value: "1,200",
     reward: "12,000 PICs earned"
   },
   {
@@ -41,7 +42,7 @@ const testimonials: Testimonial[] = [
     model: "iPhone 15 Pro Max",
     rating: 5,
     text: "Traded in my phone and earned 32,000 PICs! Used them for premium water systems and restaurant rewards. Amazing platform!",
-    value: "AED 3,200",
+    value: "3,200",
     reward: "32,000 PICs earned"
   },
   {
@@ -51,7 +52,7 @@ const testimonials: Testimonial[] = [
     model: "iPhone 12",
     rating: 5,
     text: "The live inspection video call was super convenient. Got a fair price and the whole process took less than 48 hours from quote to PICs in my account.",
-    value: "AED 800",
+    value: "800",
     reward: "8,000 PICs earned"
   }
 ];
@@ -106,7 +107,7 @@ export function TestimonialsSection() {
                 <div className="pt-4 border-t border-slate-700">
                   <div className="flex justify-between text-xs">
                     <span className="text-gray-400">Value:</span>
-                    <span className="text-emerald-400 font-bold">{testimonial.value}</span>
+                    <span className="text-emerald-400 font-bold"><DirhamSymbol size={10} className="mr-0.5" />{testimonial.value}</span>
                   </div>
                   <div className="flex justify-between text-xs mt-1">
                     <span className="text-gray-400">Reward:</span>
