@@ -28,7 +28,7 @@ import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_175548269630
 import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
 import kangenWaterSystem from "@assets/generated_images/Kangen_K8_water_filtration_system_e7d8eaaa.png";
 import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_collection_cbe8ffe3.png";
-import iphoneTradeInLifestyle from "@assets/stock_images/smartphone_exchange__fed81eff.jpg";
+import iphoneTradeInLifestyle from "@assets/stock_images/smartphone_trade-in__bd93d09e.jpg";
 import pizzaBobaComboImage from "@assets/stock_images/pizza_and_boba_tea_d_a375dab3.jpg";
 
 interface HeroSpotCounterProps {
