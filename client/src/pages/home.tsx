@@ -14,6 +14,7 @@ import { TradeInBanner } from "@/components/trade-in-banner";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import { TrustElements } from "@/components/trust-elements";
 import { RewardComparison } from "@/components/reward-comparison";
+import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
 import { SEOMeta } from "@/components/seo-meta";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gavel, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -455,13 +456,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Reward Comparison Section - Unified PICs */}
+      <RewardComparison />
+
       {/* Trade-In Banner - Prominent CTA for trade-ins */}
       <div className="py-8 px-4">
         <TradeInBanner />
       </div>
 
-      {/* Reward Comparison Section */}
-      <RewardComparison />
+      {/* Sustainability Section - Stars Sponsorship */}
+      <StarsSponsorshipSection />
 
       {/* Testimonials Section */}
       <TestimonialsSection />
