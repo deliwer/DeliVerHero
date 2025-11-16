@@ -15,7 +15,6 @@ import { TestimonialsSection } from "@/components/testimonials-section";
 import { TrustElements } from "@/components/trust-elements";
 import { RewardComparison } from "@/components/reward-comparison";
 import { SEOMeta } from "@/components/seo-meta";
-import { SustainabilityJourneySection } from "@/components/sustainability-journey-section";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gavel, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -292,9 +291,6 @@ export default function Home() {
 
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Now includes How It Works flow */}
       <HeroChallengeLanding />
-
-      {/* Comprehensive Sustainability Journey Section - Merged pathway cards, starter kit, and stars contribution */}
-      <SustainabilityJourneySection />
 
       {/* Instant Impact Unlocks */}
       <InstantImpactUnlocks />

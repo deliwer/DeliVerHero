@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle, ChevronDown, ChevronUp, Handshake } from "lucide-react";
+import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle, ChevronDown, ChevronUp, Handshake, Building, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -240,6 +240,156 @@ export function StarsSponsorshipSection() {
         {/* Collapsible Content */}
         {showSustainabilitySection && (
           <div className="animate-in slide-in-from-top duration-500">
+            {/* Discover Your Path Forward - Step 1, 2, 3 Pattern */}
+            <div className="mb-12">
+              <div className="text-center mb-8">
+                <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                  Discover Your <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Path Forward</span>
+                </h3>
+                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  Every path to environmental impact is unique. Whether you're exploring individual solutions, considering corporate sustainability, or building community initiatives - we're here to help you find what works best for your goals.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                {/* Step 1: Individual Explorer */}
+                <div className="relative">
+                  <Card className="h-full overflow-hidden border-2 border-cyan-500/30 hover-elevate" data-testid="card-individual-explorer">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-2xl font-bold text-cyan-400">1</span>
+                        </div>
+                        <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Users className="w-6 h-6 text-cyan-400" />
+                        </div>
+                      </div>
+                      <h4 className="text-xl font-bold mb-3">Individual Explorer</h4>
+                      <p className="text-muted-foreground mb-4">
+                        Perfect for those curious about device recycling and water conservation.
+                      </p>
+                      <div className="space-y-2 text-sm mb-6">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                          Device valuation & trade
+                        </div>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                          Water filtration credits
+                        </div>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                          Planet Points earning
+                        </div>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                          Loyalty member benefits
+                        </div>
+                      </div>
+                      <Link href="/aquacafe">
+                        <Button className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700" data-testid="button-learn-individual">
+                          Learn More
+                          <ChevronRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                    <ArrowRight className="w-6 h-6 text-emerald-400" />
+                  </div>
+                </div>
+
+                {/* Step 2: Corporate Solutions */}
+                <div className="relative">
+                  <Card className="h-full overflow-hidden border-2 border-emerald-500/30 hover-elevate" data-testid="card-corporate-solutions">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-2xl font-bold text-emerald-400">2</span>
+                        </div>
+                        <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Building className="w-6 h-6 text-emerald-400" />
+                        </div>
+                      </div>
+                      <h4 className="text-xl font-bold mb-3">Corporate Solutions</h4>
+                      <p className="text-muted-foreground mb-4">
+                        Designed for organizations interested in comprehensive sustainability programs.
+                      </p>
+                      <div className="space-y-2 text-sm mb-6">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          Bulk device processing
+                        </div>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          ESG impact reporting
+                        </div>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          Employee engagement
+                        </div>
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          Enterprise discounts
+                        </div>
+                      </div>
+                      <Link href="/partners">
+                        <Button className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700" data-testid="button-explore-corporate">
+                          Explore Options
+                          <ChevronRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                    <ArrowRight className="w-6 h-6 text-purple-400" />
+                  </div>
+                </div>
+
+                {/* Step 3: Community Initiatives */}
+                <Card className="h-full overflow-hidden border-2 border-purple-500/30 hover-elevate" data-testid="card-community-initiatives">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-2xl font-bold text-purple-400">3</span>
+                      </div>
+                      <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Heart className="w-6 h-6 text-purple-400" />
+                      </div>
+                    </div>
+                    <h4 className="text-xl font-bold mb-3">Community Initiatives</h4>
+                    <p className="text-muted-foreground mb-4">
+                      Ideal for neighborhoods and communities who want to collaborate on sustainability goals.
+                    </p>
+                    <div className="space-y-2 text-sm mb-6">
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                        Community leaderboards
+                      </div>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                        Shared starter kits
+                      </div>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                        Collective impact tracking
+                      </div>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                        Group rewards & benefits
+                      </div>
+                    </div>
+                    <Link href="/leaderboard">
+                      <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700" data-testid="button-discover-community">
+                        Discover Benefits
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
             {/* Compact Interactive Stars Tiers */}
             <div className="mb-12">
           <Card className="overflow-hidden">
