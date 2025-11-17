@@ -1,4 +1,4 @@
-import { Trophy, Crown, Medal, Star, Users, Target, Zap, Globe, Heart, Award, TrendingUp, MessageCircle, Share2, MapPin, Gift, Calendar, CheckCircle, Flame, Send, Camera, Hash, Filter, Search, Plus, Droplet, Recycle, ExternalLink, Clock, Play, Phone, Shield, Truck, Navigation, AlertCircle, Headphones, Utensils, Coffee, Smartphone, Building2, Sparkles, ArrowRight, Leaf, ShoppingCart } from "lucide-react";
+import { Trophy, Crown, Medal, Star, Users, Target, Zap, Globe, Heart, Award, TrendingUp, MessageCircle, Share2, MapPin, Gift, Calendar, CheckCircle, Flame, Send, Camera, Hash, Filter, Search, Plus, Droplet, Recycle, ExternalLink, Clock, Play, Phone, Shield, Truck, Navigation, AlertCircle, Headphones, Utensils, Coffee, Smartphone, Building2, Sparkles, ArrowRight, Leaf, ShoppingCart, ChefHat, Footprints } from "lucide-react";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_175548269630
 import pizzaImage from "@assets/stock_images/delicious_pizza_clos_ace0f742.jpg";
 import bobaTeaImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
 import happyDiningImage from "@assets/stock_images/happy_people_eating__21b9cf0b.jpg";
+import { SEOMeta } from "@/components/seo-meta";
 
 interface ForumPost {
   id: string;
@@ -73,7 +74,7 @@ interface FutureEvent {
 
 export default function Leaderboard() {
   const { data: heroes, isLoading, error } = useLeaderboard(50);
-  const [activeTab, setActiveTab] = useState<string>("community-hub");
+  const [activeTab, setActiveTab] = useState<string>("wellness-hub");
   const [newPost, setNewPost] = useState({ title: "", content: "", category: "water" as const });
   const [forumSearchQuery, setForumSearchQuery] = useState("");
   const { toast } = useToast();
@@ -431,6 +432,11 @@ export default function Leaderboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <SEOMeta
+        title="Dubai Future District Wellness Hub | Museum of the Future Tours & Healthy Living"
+        description="Discover Dubai's wellness & innovation hub for international travelers and residents. Museum of the Future tours, Downtown wellness journeys, healthy dining at Baker's Kitchen, La Perle show experiences, and sustainable living rewards. Join AED 99 membership for exclusive discounts."
+        keywords="Museum of the Future Dubai, Dubai wellness journey, Downtown Dubai experiences, healthy dining Dubai, sustainable living UAE, Dubai tourism, wellness travel Dubai, Museum of the Future tickets, La Perle Dubai, Baker's Kitchen Dubai, Dubai Future District, wellness hub Dubai, sustainable tourism, eco-friendly Dubai, Museum tour Dubai, international travelers Dubai"
+      />
       <div className="container mx-auto px-4 py-8">
         {/* Hero Header - Dubai Future District */}
         <div className="text-center mb-12">
@@ -642,6 +648,7 @@ export default function Leaderboard() {
         {/* Navigation Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-8">
           {[
+            { id: "wellness-hub", label: "🌿 Wellness & Discovery", icon: Heart },
             { id: "community-hub", label: "🏢 Community Hub", icon: Building2 },
             { id: "chill-grill", label: "🍕 Chill & Grill", icon: Utensils },
             { id: "future-events", label: "📅 Future Events", icon: Calendar },
@@ -667,6 +674,556 @@ export default function Leaderboard() {
             </button>
           ))}
         </div>
+
+        {/* Wellness & Discovery Hub Tab - International Engagement Lead Magnet */}
+        {activeTab === "wellness-hub" && (
+          <div className="space-y-8">
+            {/* Hero Section for International Travelers */}
+            <section className="relative w-full py-16 px-4 bg-gradient-to-br from-emerald-900/40 via-teal-900/40 to-cyan-900/40 rounded-3xl border-2 border-emerald-500/30 overflow-hidden">
+              <div className="absolute inset-0">
+                <div className="absolute top-10 left-10 w-32 h-32 bg-emerald-400/10 rounded-full animate-pulse"></div>
+                <div className="absolute bottom-10 right-10 w-40 h-40 bg-cyan-400/10 rounded-full animate-pulse"></div>
+              </div>
+              <div className="relative max-w-6xl mx-auto text-center">
+                <Badge className="bg-emerald-500/20 text-emerald-300 px-6 py-3 text-lg font-bold border border-emerald-400/30 mb-6">
+                  <Globe className="w-5 h-5 mr-2" />
+                  Dubai Future District International Engagement Hub
+                </Badge>
+                <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
+                  Discover Dubai's Future
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-cyan-300">
+                    Through Wellness & Purpose
+                  </span>
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto mb-8">
+                  Experience the perfect blend of Museum of the Future tours, wellness journeys, healthy dining, and Downtown Dubai entertainment - all with exclusive member benefits for travelers and residents.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button 
+                    onClick={handleOrderStarterKit}
+                    disabled={isOrderLoading}
+                    className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white text-xl px-10 py-6 rounded-full font-bold shadow-2xl"
+                    data-testid="button-get-starter-kit-wellness"
+                  >
+                    <ShoppingCart className="w-6 h-6 mr-3" />
+                    Get AED 99 Starter Kit & Join
+                  </Button>
+                  <Badge className="bg-white/10 text-white px-6 py-3 text-lg border border-white/20">
+                    <Gift className="w-5 h-5 mr-2" />
+                    Includes All Experience Benefits
+                  </Badge>
+                </div>
+              </div>
+            </section>
+
+            {/* Museum of the Future Tours Section */}
+            <Card className="bg-gradient-to-br from-purple-900/30 via-blue-900/30 to-cyan-900/30 border-2 border-purple-500/30">
+              <CardHeader>
+                <div className="text-center">
+                  <CardTitle className="text-white flex items-center justify-center gap-3 text-3xl mb-4">
+                    <Building2 className="w-10 h-10 text-purple-400" />
+                    Museum of the Future Tours
+                    <Sparkles className="w-10 h-10 text-cyan-400" />
+                  </CardTitle>
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+                    Explore tomorrow's innovations today with exclusive member discounts on Dubai's most iconic destination
+                  </p>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                  {/* Standard Museum Tour */}
+                  <Card className="bg-slate-800/50 border-purple-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="text-center mb-4">
+                        <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Building2 className="w-8 h-8 text-purple-400" />
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2">Discovery Tour</h3>
+                        <Badge className="bg-purple-500/20 text-purple-300">Most Popular</Badge>
+                      </div>
+                      <div className="space-y-3 mb-6">
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Full museum access</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Interactive exhibits</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Future wellness innovations</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Climate solutions showcase</span>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-white mb-2">AED 145</div>
+                        <div className="text-emerald-400 font-semibold mb-4">Members: 10% off</div>
+                        <a href="https://museumofthefuture.ae" target="_blank" rel="noopener noreferrer">
+                          <Button className="w-full bg-purple-500 hover:bg-purple-600" data-testid="button-book-discovery-tour">
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Book Tour
+                          </Button>
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Wellness & Innovation Tour */}
+                  <Card className="bg-slate-800/50 border-emerald-500/50 hover-elevate transform scale-105">
+                    <CardContent className="p-6">
+                      <div className="text-center mb-4">
+                        <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Heart className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2">Wellness & Innovation</h3>
+                        <Badge className="bg-gradient-to-r from-emerald-400 to-cyan-400 text-white">Recommended</Badge>
+                      </div>
+                      <div className="space-y-3 mb-6">
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Everything in Discovery</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Guided wellness journey</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Sustainable living showcase</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Healthy dining voucher</span>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-white mb-2">AED 199</div>
+                        <div className="text-emerald-400 font-semibold mb-4">Members: 15% off + free water</div>
+                        <Button className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600" data-testid="button-book-wellness-tour">
+                          <Heart className="w-4 h-4 mr-2" />
+                          Start Wellness Journey
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* VIP Experience */}
+                  <Card className="bg-slate-800/50 border-amber-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="text-center mb-4">
+                        <div className="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Crown className="w-8 h-8 text-amber-400" />
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-2">VIP Experience</h3>
+                        <Badge className="bg-amber-500/20 text-amber-300">Premium</Badge>
+                      </div>
+                      <div className="space-y-3 mb-6">
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Everything in Wellness</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Private guided tour</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">Downtown dining package</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <span className="text-sm">La Perle show discount</span>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-white mb-2">AED 349</div>
+                        <div className="text-emerald-400 font-semibold mb-4">Members: 20% off + perks</div>
+                        <Button className="w-full bg-amber-500 hover:bg-amber-600" data-testid="button-book-vip-tour">
+                          <Crown className="w-4 h-4 mr-2" />
+                          Book VIP Experience
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <div className="bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-2xl p-6 border border-purple-500/20">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <h4 className="text-lg font-bold text-white mb-2">Combine Museum Tour with Wellness Journey</h4>
+                      <p className="text-gray-300 text-sm">
+                        Members who book a Museum tour get exclusive access to our Dubai Wellness Walk, including stops at Baker's Kitchen, Mazaya Center wellness experiences, and Downtown entertainment.
+                      </p>
+                    </div>
+                    <Button className="bg-white/10 border border-white/20 text-white hover:bg-white/20">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      View Full Journey Map
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Downtown Dubai Wellness Journey */}
+            <Card className="bg-gradient-to-br from-emerald-900/30 via-teal-900/30 to-cyan-900/30 border-2 border-emerald-500/30">
+              <CardHeader>
+                <div className="text-center">
+                  <CardTitle className="text-white flex items-center justify-center gap-3 text-3xl mb-4">
+                    <MapPin className="w-10 h-10 text-emerald-400" />
+                    Downtown Dubai Wellness Journey
+                    <Leaf className="w-10 h-10 text-green-400" />
+                  </CardTitle>
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+                    The world's first urban wellness track connecting luxury hospitality with sustainable living
+                  </p>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                  {/* Step 1: Museum of the Future */}
+                  <Card className="bg-slate-800/50 border-purple-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Building2 className="w-6 h-6 text-purple-400" />
+                        </div>
+                        <h3 className="font-bold text-white mb-3">Museum of the Future</h3>
+                        <p className="text-sm text-gray-300 mb-4">
+                          Begin your journey exploring tomorrow's wellness innovations
+                        </p>
+                        <Badge className="bg-purple-500/20 text-purple-300 mb-2">+100 Points</Badge>
+                        <div className="text-xs text-gray-400 mt-2">
+                          <MapPin className="w-3 h-3 inline mr-1" />
+                          Emirates Towers area
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Step 2: Wellness Walk */}
+                  <Card className="bg-slate-800/50 border-emerald-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Footprints className="w-6 h-6 text-emerald-400" />
+                        </div>
+                        <h3 className="font-bold text-white mb-3">Urban Wellness Walk</h3>
+                        <p className="text-sm text-gray-300 mb-4">
+                          Scenic 3km track along Sheikh Zayed Road with hydration stations
+                        </p>
+                        <Badge className="bg-emerald-500/20 text-emerald-300 mb-2">+150 Points</Badge>
+                        <div className="text-xs text-gray-400 mt-2">
+                          <Clock className="w-3 h-3 inline mr-1" />
+                          45 min walk
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Step 3: Healthy Dining */}
+                  <Card className="bg-slate-800/50 border-amber-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Utensils className="w-6 h-6 text-amber-400" />
+                        </div>
+                        <h3 className="font-bold text-white mb-3">Baker's Kitchen</h3>
+                        <p className="text-sm text-gray-300 mb-4">
+                          Organic meals & Kangen water tasting at Mazaya Center
+                        </p>
+                        <Badge className="bg-amber-500/20 text-amber-300 mb-2">+75 Points</Badge>
+                        <div className="text-xs text-gray-400 mt-2">
+                          <Gift className="w-3 h-3 inline mr-1" />
+                          Members: 20% off
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Step 4: Downtown Entertainment */}
+                  <Card className="bg-slate-800/50 border-cyan-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="text-center">
+                        <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Star className="w-6 h-6 text-cyan-400" />
+                        </div>
+                        <h3 className="font-bold text-white mb-3">Downtown Shows</h3>
+                        <p className="text-sm text-gray-300 mb-4">
+                          La Perle Aqua Show & Dubai Mall experiences
+                        </p>
+                        <Badge className="bg-cyan-500/20 text-cyan-300 mb-2">+100 Points</Badge>
+                        <div className="text-xs text-gray-400 mt-2">
+                          <Trophy className="w-3 h-3 inline mr-1" />
+                          VIP access available
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Journey Benefits */}
+                <div className="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 rounded-2xl p-8 border border-emerald-500/20">
+                  <h3 className="text-2xl font-bold text-white text-center mb-6">Complete Journey Rewards</h3>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="text-center">
+                      <Trophy className="w-12 h-12 text-amber-400 mx-auto mb-3" />
+                      <div className="text-xl font-bold text-white mb-2">425 Total Points</div>
+                      <p className="text-gray-300 text-sm">Unlock exclusive rewards & level up</p>
+                    </div>
+                    <div className="text-center">
+                      <Gift className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
+                      <div className="text-xl font-bold text-white mb-2">AED 200+ Value</div>
+                      <p className="text-gray-300 text-sm">In discounts & free experiences</p>
+                    </div>
+                    <div className="text-center">
+                      <Share2 className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+                      <div className="text-xl font-bold text-white mb-2">Social Rewards</div>
+                      <p className="text-gray-300 text-sm">Share journey for bonus points</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Healthy Living & Dining Experiences */}
+            <Card className="bg-gradient-to-br from-orange-900/30 via-red-900/30 to-pink-900/30 border-2 border-orange-500/30">
+              <CardHeader>
+                <div className="text-center">
+                  <CardTitle className="text-white flex items-center justify-center gap-3 text-3xl mb-4">
+                    <Coffee className="w-10 h-10 text-orange-400" />
+                    Healthy Living & Dining
+                    <Utensils className="w-10 h-10 text-red-400" />
+                  </CardTitle>
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+                    Curated healthy dining experiences across Downtown Dubai with member-exclusive discounts
+                  </p>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Baker's Kitchen */}
+                  <Card className="bg-slate-800/50 border-emerald-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <ChefHat className="w-6 h-6 text-emerald-400" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-white mb-2">Baker's Kitchen</h3>
+                          <p className="text-gray-300 text-sm mb-3">
+                            Organic healthy meals, fresh juices & Kangen water tasting experiences
+                          </p>
+                          <div className="space-y-2 mb-4">
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-emerald-400" />
+                              <span className="text-gray-300">Organic ingredients</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-emerald-400" />
+                              <span className="text-gray-300">Alkaline water tasting</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-emerald-400" />
+                              <span className="text-gray-300">Wellness consultations</span>
+                            </div>
+                          </div>
+                          <Badge className="bg-emerald-500/20 text-emerald-300">Members: 20% off</Badge>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Chill & Grill */}
+                  <Card className="bg-slate-800/50 border-orange-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Utensils className="w-6 h-6 text-orange-400" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-white mb-2">Chill & Grill</h3>
+                          <p className="text-gray-300 text-sm mb-3">
+                            Premium pizzas & boba tea - perfect for community gatherings
+                          </p>
+                          <div className="space-y-2 mb-4">
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-orange-400" />
+                              <span className="text-gray-300">Pizza + Boba for 2</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-orange-400" />
+                              <span className="text-gray-300">Referral rewards</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-orange-400" />
+                              <span className="text-gray-300">Community events</span>
+                            </div>
+                          </div>
+                          <Badge className="bg-orange-500/20 text-orange-300">D100 Vouchers Available</Badge>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Mazaya Center Wellness */}
+                  <Card className="bg-slate-800/50 border-purple-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Heart className="w-6 h-6 text-purple-400" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-white mb-2">Mazaya Center Partners</h3>
+                          <p className="text-gray-300 text-sm mb-3">
+                            Exclusive discounts at 15+ wellness & lifestyle merchants
+                          </p>
+                          <div className="space-y-2 mb-4">
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-purple-400" />
+                              <span className="text-gray-300">Health & beauty</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-purple-400" />
+                              <span className="text-gray-300">Fitness & yoga</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-purple-400" />
+                              <span className="text-gray-300">Spa services</span>
+                            </div>
+                          </div>
+                          <Badge className="bg-purple-500/20 text-purple-300">Up to 20% off</Badge>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Downtown Entertainment */}
+                  <Card className="bg-slate-800/50 border-pink-500/30 hover-elevate">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Star className="w-6 h-6 text-pink-400" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-white mb-2">Entertainment Experiences</h3>
+                          <p className="text-gray-300 text-sm mb-3">
+                            Access to Dubai's best shows, attractions & cultural experiences
+                          </p>
+                          <div className="space-y-2 mb-4">
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-pink-400" />
+                              <span className="text-gray-300">La Perle Aqua Show</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-pink-400" />
+                              <span className="text-gray-300">Dubai Mall attractions</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CheckCircle className="w-4 h-4 text-pink-400" />
+                              <span className="text-gray-300">Cultural tours</span>
+                            </div>
+                          </div>
+                          <Badge className="bg-pink-500/20 text-pink-300">Exclusive Member Rates</Badge>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Member Benefits Summary */}
+            <Card className="bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border-2 border-cyan-500/30">
+              <CardContent className="p-8">
+                <div className="text-center mb-8">
+                  <Crown className="w-16 h-16 text-cyan-400 mx-auto mb-4" />
+                  <h2 className="text-3xl font-bold text-white mb-4">
+                    AED 99 Starter Kit Membership Benefits
+                  </h2>
+                  <p className="text-gray-300 text-lg max-w-3xl mx-auto">
+                    Join as a resident or visitor and unlock exclusive access to Dubai's wellness ecosystem
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="bg-slate-800/30 rounded-xl p-6 text-center">
+                    <Droplet className="w-12 h-12 text-cyan-400 mx-auto mb-3" />
+                    <h3 className="font-bold text-white mb-2">Water Filter System</h3>
+                    <p className="text-sm text-gray-300">Premium shower filter worth AED 299</p>
+                  </div>
+                  <div className="bg-slate-800/30 rounded-xl p-6 text-center">
+                    <Gift className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
+                    <h3 className="font-bold text-white mb-2">Experience Discounts</h3>
+                    <p className="text-sm text-gray-300">10-20% off tours, dining & shows</p>
+                  </div>
+                  <div className="bg-slate-800/30 rounded-xl p-6 text-center">
+                    <Smartphone className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+                    <h3 className="font-bold text-white mb-2">iPhone Trade-in Rewards</h3>
+                    <p className="text-sm text-gray-300">Extra PICs + free pickup</p>
+                  </div>
+                  <div className="bg-slate-800/30 rounded-xl p-6 text-center">
+                    <Trophy className="w-12 h-12 text-amber-400 mx-auto mb-3" />
+                    <h3 className="font-bold text-white mb-2">Rewards & Points</h3>
+                    <p className="text-sm text-gray-300">Earn points for every activity</p>
+                  </div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <Button 
+                    onClick={handleOrderStarterKit}
+                    disabled={isOrderLoading}
+                    className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white text-xl px-12 py-6 rounded-full font-bold"
+                    data-testid="button-join-wellness-community"
+                  >
+                    <ShoppingCart className="w-6 h-6 mr-3" />
+                    Join for AED 99 - Start Your Journey
+                  </Button>
+                  <p className="text-gray-400 mt-4">
+                    Perfect for tourists & residents • Share on social media for bonus rewards
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Social Sharing CTA */}
+            <Card className="bg-gradient-to-r from-pink-900/30 to-purple-900/30 border-2 border-pink-500/30">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Share2 className="w-10 h-10 text-pink-400" />
+                      <h3 className="text-2xl font-bold text-white">Share Your Dubai Journey</h3>
+                    </div>
+                    <p className="text-gray-300 mb-4">
+                      Post about your Museum of the Future visit, wellness walk, or dining experiences with #DubaiWellnessJourney and earn bonus points. Help friends discover sustainable living in Dubai!
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge className="bg-pink-500/20 text-pink-300">#DubaiWellnessJourney</Badge>
+                      <Badge className="bg-purple-500/20 text-purple-300">#MuseumOfTheFuture</Badge>
+                      <Badge className="bg-cyan-500/20 text-cyan-300">#SustainableDubai</Badge>
+                      <Badge className="bg-emerald-500/20 text-emerald-300">#AquaCafeJourney</Badge>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <Button className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white">
+                      <Camera className="w-4 h-4 mr-2" />
+                      Share on Social Media
+                    </Button>
+                    <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+                      <Send className="w-4 h-4 mr-2" />
+                      Invite Friends
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Community Hub Tab */}
         {activeTab === "community-hub" && (
