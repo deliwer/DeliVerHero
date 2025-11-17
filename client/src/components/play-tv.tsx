@@ -73,9 +73,9 @@ export function PlayTV({ className = "" }: PlayTVProps) {
       </div>
 
       {/* Content Area */}
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid lg:grid-cols-1 gap-6">
         {/* Main Video Player */}
-        <div className="lg:col-span-2">
+        <div>
           <Card className="bg-gradient-to-br from-slate-900/90 to-slate-800/90 border-purple-500/30 overflow-hidden">
             <CardContent className="p-0">
               {selectedTab === "live" && (
@@ -273,62 +273,6 @@ export function PlayTV({ className = "" }: PlayTVProps) {
           </Card>
         </div>
 
-        {/* Sidebar - Featured Content */}
-        <div className="space-y-4">
-          {/* Quick Actions */}
-          <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 border-purple-500/30">
-            <CardContent className="p-4">
-              <h4 className="text-white font-bold mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-purple-400" />
-                Quick Actions
-              </h4>
-              <div className="space-y-2">
-                <Button variant="outline" className="w-full justify-start" data-testid="button-upload-impact">
-                  <Upload className="w-4 h-4 mr-2" />
-                  Upload Impact Video
-                </Button>
-                <Button variant="outline" className="w-full justify-start" data-testid="button-join-challenge">
-                  <Users className="w-4 h-4 mr-2" />
-                  Join Challenge
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Live Leaderboard Preview */}
-          <Card className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 border-blue-500/30">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between mb-4">
-                <h4 className="text-white font-bold">Top Heroes Today</h4>
-                <Badge variant="outline" className="text-xs">
-                  <TrendingUp className="w-3 h-3 mr-1" />
-                  Live
-                </Badge>
-              </div>
-              <div className="space-y-2">
-                {[
-                  { name: "Ahmed K.", points: "2.4K", rank: 1 },
-                  { name: "Sarah M.", points: "1.8K", rank: 2 },
-                  { name: "Mohammed A.", points: "1.5K", rank: 3 },
-                ].map((hero) => (
-                  <div key={hero.rank} className="flex items-center gap-3 p-2 rounded-lg bg-slate-800/50">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                      hero.rank === 1 ? "bg-yellow-500 text-black" :
-                      hero.rank === 2 ? "bg-gray-400 text-black" :
-                      "bg-amber-700 text-white"
-                    }`}>
-                      {hero.rank}
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-white text-sm font-semibold">{hero.name}</div>
-                    </div>
-                    <div className="text-blue-400 text-sm font-bold">{hero.points}</div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </div>
   );

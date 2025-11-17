@@ -222,6 +222,20 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
           <div className="max-w-7xl mx-auto">
             <PlayTV />
           </div>
+
+          {/* Win Aqua Show Button - Always Visible */}
+          <div className="text-center mt-6">
+            <Link href="/#aqua-show">
+              <Button 
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 hover:from-blue-500 hover:to-teal-500 text-white font-bold px-8 py-4 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-win-aqua-show"
+              >
+                <Gift className="w-6 h-6 mr-2" />
+                🌊 Win Aqua Show Experience Tickets
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Expanded Content - Full Details */}
@@ -376,9 +390,9 @@ function StepTwoExchange() {
                     <Star className="w-5 h-5" />
                     <span className="font-bold">FLAGSHIP OFFER</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Planet Hero Package: Filter Service + FREE iPhone Upgrade</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Trade-in Package: Filter Service + FREE iPhone Upgrade</h3>
                   <p className="text-gray-300 mb-4">
-                    Get premium K8 water filtration with professional installation service + upgrade your old iPhone to the next model FREE
+                    Trade your old iPhone → Get premium water filtration with professional installation + upgrade to the latest iPhone model FREE
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-hero-green-500/20 text-hero-green-400 px-3 py-1 rounded-full text-sm font-bold">Huge Discounts</span>
@@ -657,7 +671,7 @@ function StepSellIPhone() {
                 <div className="flex-1">
                   <img 
                     src={iphoneTradeInLifestyle} 
-                    alt="Planet Hero Package: Filter Service + FREE iPhone Upgrade - Trade in your device and get premium water filtration with AquaCafe loyalty benefits" 
+                    alt="Trade-in Package: Filter Service + FREE iPhone Upgrade - Trade in your device and get premium water filtration with AquaCafe loyalty benefits" 
                     className="w-full h-auto rounded-lg shadow-lg"
                     data-testid="img-iphone-tradein-banner"
                   />
@@ -667,9 +681,11 @@ function StepSellIPhone() {
                     <Smartphone className="w-5 h-5 mr-2 flex-shrink-0" />
                     <span>TRADE-IN PROGRAM</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Planet Hero Package</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Trade-in Package</h3>
                   <p className="text-gray-300 mb-4">
-                    Filter Service + <span className="text-purple-400 font-bold">FREE iPhone Upgrade</span> - Trade your device for sustainable living rewards
+                    <span className="text-purple-400 font-bold">Step 1:</span> Trade in your old iPhone → 
+                    <span className="text-purple-400 font-bold"> Step 2:</span> Get water filter installation → 
+                    <span className="text-purple-400 font-bold"> Step 3:</span> Receive upgraded iPhone FREE
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Instant Quote</span>

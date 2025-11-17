@@ -39,7 +39,7 @@ export function Navigation() {
     { path: "/earn", label: "Earn+Rewards", id: "earn" },
     { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
-    { path: "/exchange", label: "Sell", id: "sell" },
+    { path: "/exchange", label: "Trade-in", id: "sell" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];
 
