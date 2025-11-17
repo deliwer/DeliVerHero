@@ -99,7 +99,7 @@ export function AIInteractiveHero() {
               data-testid="ai-cta-trigger"
             >
               <Sparkles className="w-6 h-6 mr-3" />
-              Start Your Journey
+              Save Smarter, Upgrade Sooner!
             </Button>
           ) : (
             <div className="space-y-4 animate-in fade-in slide-in-from-top duration-300">

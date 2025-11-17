@@ -293,9 +293,6 @@ export default function Home() {
       {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Now includes How It Works flow */}
       <HeroChallengeLanding />
 
-      {/* Instant Impact Unlocks */}
-      <InstantImpactUnlocks />
-
       {/* La Perle Aqua Show CTA - New Tombola Prizes - Collapsible */}
       <section className="py-4 px-4 bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -466,6 +463,9 @@ export default function Home() {
 
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />
+
+      {/* Impact Slot Machine */}
+      <InstantImpactUnlocks />
 
       {/* Testimonials Section */}
       <TestimonialsSection />

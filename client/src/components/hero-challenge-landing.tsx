@@ -631,7 +631,7 @@ function StepSellIPhone() {
               data-testid="toggle-sell-iphone"
             >
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Sell Your iPhone
+                Trade-in & Upgrade Your iPhone
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-purple-400" />
@@ -684,7 +684,7 @@ function StepSellIPhone() {
                 data-testid="button-sell-iphone-cta"
               >
                 <Smartphone className="w-6 h-6 flex-shrink-0" />
-                <span>Sell Your iPhone</span>
+                <span>Trade-in & Upgrade Your iPhone</span>
               </Button>
             </Link>
             <p className="text-center text-gray-400 text-sm mt-3">
@@ -838,7 +838,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
               data-testid="toggle-membership-offer"
             >
               <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                FREE Membership + Welcome Bonus
+                Join FREE + Welcome Bonus Meals
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-amber-400" />
