@@ -838,7 +838,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
               data-testid="toggle-membership-offer"
             >
               <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                Join FREE + Welcome Bonus Meals
+                Join FREE + Bonus Meals
               </span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-amber-400" />
