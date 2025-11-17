@@ -225,7 +225,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
 
           {/* Win Aqua Show Button - Always Visible */}
           <div className="text-center mt-6">
-            <Link href="/#aqua-show">
+            <Link href="/play">
               <Button 
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 hover:from-blue-500 hover:to-teal-500 text-white font-bold px-8 py-4 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"

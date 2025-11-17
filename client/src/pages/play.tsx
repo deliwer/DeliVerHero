@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { 
   Coins, Trophy, Target, TrendingUp, Gift, Star, Crown, AlertTriangle, Users, 
   Droplets, Zap, Award, Gamepad2, Medal, Sparkles, Clock, Atom, Rocket,
-  CheckCircle, Heart, ShoppingCart, ChevronRight, ArrowRight, Leaf
+  CheckCircle, Heart, ShoppingCart, ChevronRight, ArrowRight, Leaf, ChevronUp, ChevronDown
 } from "lucide-react";
 import { Link } from "wouter";
 import { TombolaWidget } from "@/components/tombola-widget";
@@ -40,6 +40,7 @@ export default function Play() {
   const [activeTab, setActiveTab] = useState<"tombola" | "achievements" | "leaderboard" | "missions">("tombola");
   const [heroId] = useState("current-hero-id"); // This would come from auth context
   const [isLoyaltyMember, setIsLoyaltyMember] = useState(false); // Check loyalty status
+  const [isTombolaExpanded, setIsTombolaExpanded] = useState(false);
   const { toast } = useToast();
 
   // Fetch missions for the missions tab
@@ -162,6 +163,168 @@ export default function Play() {
               </Link>
             </div>
           )}
+
+        {/* La Perle Aqua Show CTA - New Tombola Prizes - Collapsible */}
+        <section className="py-4 px-4 bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden rounded-3xl mb-12">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0">
+            <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
+            <div className="absolute bottom-10 right-10 w-24 h-24 bg-blue-300/20 rounded-full animate-bounce"></div>
+            <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-cyan-300/30 rounded-full animate-ping"></div>
+          </div>
+          
+          <div className="relative max-w-7xl mx-auto">
+            {/* Collapsible Header */}
+            <div className="text-center mb-6">
+              <button
+                onClick={() => setIsTombolaExpanded(!isTombolaExpanded)}
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 hover:from-blue-500/40 hover:to-cyan-500/40 px-8 py-4 rounded-full border border-cyan-400/50 shadow-lg shadow-cyan-400/20 transition-all"
+                data-testid="button-toggle-tombola"
+              >
+                <Gift className="w-8 h-8 text-cyan-300" />
+                <span className="text-2xl font-bold text-white">🌊 Win Aqua Show Experience Tickets</span>
+                {isTombolaExpanded ? (
+                  <ChevronUp className="w-6 h-6 text-white" />
+                ) : (
+                  <ChevronDown className="w-6 h-6 text-white animate-bounce" />
+                )}
+              </button>
+            </div>
+
+            {isTombolaExpanded && (
+              <>
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 px-8 py-4 rounded-full mb-8 border border-cyan-400/50 shadow-lg shadow-cyan-400/20">
+                    <Gift className="w-8 h-8 text-cyan-300 animate-spin" />
+                    <span className="text-2xl font-bold text-white">🌊 NEW TOMBOLA PRIZES</span>
+                    <Trophy className="w-8 h-8 text-blue-300 animate-bounce" />
+                  </div>
+                  
+                  <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Win Aqua Show
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
+                      Experience Tickets
+                    </span>
+                  </h2>
+                  
+                  <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
+                    Premium members can now win exclusive <strong>La Perle by Dragone</strong> aqua show experience tickets through our enhanced tombola system. 
+                    From Silver seating to VIP backstage tours - Dubai's most extraordinary entertainment awaits at the world-renowned aquatic theater!
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {/* Silver Experience */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-gray-300/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Award className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">🥈 Silver Experience</h3>
+                  <div className="text-4xl font-bold text-gray-300 mb-2">5% Chance</div>
+                  <div className="text-white/80 mb-6">Premium seating for Dubai's #1 aqua show</div>
+                  <div className="space-y-2 text-sm text-white/70">
+                    <div>✨ Silver section seating</div>
+                    <div>🎭 Full show experience</div>
+                    <div>📅 6-month validity</div>
+                    <div>🏆 200 XP + 300 Points</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Gold Experience */}
+              <div className="bg-white/15 backdrop-blur-sm rounded-3xl p-8 border-2 border-yellow-400/40 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-yellow-400/20">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Crown className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">🥇 Gold Experience</h3>
+                  <div className="text-4xl font-bold text-yellow-400 mb-2">1% Chance</div>
+                  <div className="text-white/80 mb-6">Premium seating plus refreshments</div>
+                  <div className="space-y-2 text-sm text-white/70">
+                    <div>⭐ Gold section seating</div>
+                    <div>🥂 Welcome refreshments</div>
+                    <div>📅 6-month validity</div>
+                    <div>🏆 500 XP + 750 Points</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* VIP Experience */}
+              <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-3xl p-8 border-2 border-purple-400/50 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-400/30">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Sparkles className="w-8 h-8 text-white animate-pulse" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">💎 VIP Experience</h3>
+                  <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">0.5% Chance</div>
+                  <div className="text-white/80 mb-6">Ultimate experience with backstage tour</div>
+                  <div className="space-y-2 text-sm text-white/70">
+                    <div>👑 VIP section seating</div>
+                    <div>🎭 Backstage tour included</div>
+                    <div>🍽️ Premium dinner experience</div>
+                    <div>🏆 1000 XP + 1500 Points</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/20 max-w-4xl mx-auto">
+                <h3 className="text-3xl font-bold text-white mb-4">🎰 Ready to Win Your Aqua Show Experience?</h3>
+                <p className="text-white/90 text-lg mb-6">
+                  Premium members get exclusive access to these extraordinary entertainment experiences. 
+                  Start playing to unlock your chance at Dubai's most breathtaking aquatic performances!
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button 
+                    onClick={() => setActiveTab("tombola")}
+                    className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-500 hover:to-blue-600 text-xl px-10 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                    data-testid="button-play-tombola-now"
+                  >
+                    <Gift className="w-6 h-6 mr-3" />
+                    🎰 Play Tombola Now
+                  </Button>
+                  
+                  <Link href="/aquacafe">
+                    <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-cyan-600 text-xl px-10 py-4 rounded-full font-bold transition-all duration-300">
+                      <Crown className="w-6 h-6 mr-3" />
+                      Become Premium Member
+                    </Button>
+                  </Link>
+                  
+                  <div className="flex flex-col sm:flex-row gap-3 items-center">
+                    <a 
+                      href="https://www.laperle.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600 px-6 py-3 rounded-full font-bold shadow-lg transition-all duration-300 hover:scale-105 text-center"
+                      data-testid="button-laperle-website"
+                    >
+                      🎭 Visit laperle.com
+                    </a>
+                    <a 
+                      href="https://laperle.platinumlist.net/event-tickets/52238/la-perle-by-dragone" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-white/90 hover:text-white text-lg underline decoration-cyan-300 underline-offset-4 transition-all duration-300 hover:decoration-2"
+                      data-testid="link-laperle-tickets"
+                    >
+                      🎫 Book Tickets
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="text-sm text-white/80 mt-4">
+                  ✨ Premium membership required for enhanced tombola prizes ✨
+                </div>
+              </div>
+                </div>
+              </>
+            )}
+          </div>
+        </section>
 
         {/* Gaming Tabs */}
         <div className="max-w-6xl mx-auto mb-12">
