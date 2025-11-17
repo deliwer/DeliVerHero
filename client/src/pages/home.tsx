@@ -464,9 +464,6 @@ export default function Home() {
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />
 
-      {/* Impact Slot Machine */}
-      <InstantImpactUnlocks />
-
       {/* Testimonials Section */}
       <TestimonialsSection />
 

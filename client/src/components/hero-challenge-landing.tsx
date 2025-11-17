@@ -12,6 +12,7 @@ import { TombolaWidget } from "./tombola-widget";
 import { ImpactSlotMachine } from "./impact-slot-machine";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 import { PlayTV } from "./play-tv";
+import { InstantImpactUnlocks } from "./instant-impact-unlocks";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
@@ -286,6 +287,11 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Impact Slot Machine - Interactive Rewards Preview */}
+        <div className="mt-8">
+          <InstantImpactUnlocks />
         </div>
         </>
         )}

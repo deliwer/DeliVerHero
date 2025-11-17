@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Coins, CheckCircle, Star, Sparkles, Gift, TrendingUp, Users, Heart } from "lucide-react";
 import { Link } from "wouter";
-import lifestyleRewardsImage from "@assets/stock_images/people_volunteers_co_32938821.jpg";
+import lifestyleRewardsImage from "@assets/stock_images/carbon_credits_susta_441cb485.jpg";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 
 export function RewardComparison() {
