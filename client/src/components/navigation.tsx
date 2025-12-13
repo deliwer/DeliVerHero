@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { 
   Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, 
   Briefcase, ShoppingCart, UserCircle, ChevronDown, LogIn, UserPlus, 
-  Settings, HelpCircle, Star, Trophy, TrendingDown, LayoutDashboard, FileText, Package 
+  Settings, HelpCircle, Star, Trophy, TrendingDown, LayoutDashboard, FileText, Package, Globe, Plane 
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
@@ -40,16 +40,17 @@ export function Navigation() {
     { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
     { path: "/exchange", label: "Trade-in", id: "sell" },
+    { path: "/relocate", label: "Relocate", id: "relocate" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];
 
   const b2bNavItems = [
     { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment", featured: true },
     { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack" },
+    { path: "/relocate", label: "Relocate", id: "relocate" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/corporate-partner-portal", label: "Partner Portal", id: "partner-portal" },
     { path: "/investor-dashboard", label: "Investors", id: "investors" },
-    { path: "/impact-methodology", label: "Impact", id: "impact" },
   ];
 
   const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
@@ -122,6 +123,23 @@ export function Navigation() {
                     >
                       <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-blue-600/30 hover:border-purple-400/50 transition-all">
                         <TrendingDown className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for Relocate link
+                if (item.id === "relocate") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-600/20 to-orange-600/20 border border-amber-500/30 rounded-lg text-amber-300 hover:text-white hover:from-amber-600/30 hover:to-orange-600/30 hover:border-amber-400/50 transition-all">
+                        <Globe className="w-4 h-4" />
                         <span className="font-medium">{item.label}</span>
                       </div>
                     </Link>

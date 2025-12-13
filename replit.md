@@ -3,6 +3,13 @@
 ## Overview
 DeliWer is a full-stack JavaScript application leveraging React, Express.js, and various integrations for e-commerce, AI, and rewards. It provides a comprehensive platform for sustainable living, including a climate activism initiative ("Pakistan Planet Hero Mission") and a B2B platform for wholesale phone inventory ("ChainTrack"). The project emphasizes responsive design, gamification, and a user-friendly experience, with a focus on specific regional markets like Dubai and Pakistan.
 
+### DeliWer Relocate (December 2025)
+New Dubai-based relocation and investment gateway connecting global founders, investors, and families to trusted, licensed partners for immigration, business setup, real estate, and capital deployment in the UAE.
+
+**Routes Added:**
+- `/relocate` - Gateway page for Dubai relocation services
+- `/relocate-community` - Membership portal with tiered access (Relocate Circle / Inner Ring)
+
 **AquaCafe Loyalty Journey**: The application features a streamlined 3-step "How it Works" onboarding funnel that emphasizes membership benefits early in the user journey. The Hero section immediately leads into membership perks, followed by a simplified Shop → Sell → Play flow designed to maximize conversion and user engagement.
 
 ## Recent Changes (November 2025)
