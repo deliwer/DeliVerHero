@@ -1,0 +1,260 @@
+Perfect. Here’s a **full Replit-ready prompt** to implement an **advanced membership portal** for `/community` while keeping `/relocate` intact. This includes **tiered access, login/auth, event dashboard, and partner resources**.
+
+---
+
+## **Advanced Replit Prompt: DeliWer Membership Portal**
+
+**Project Name:** `deliwer-relocate-membership`
+**Language:** Node.js + Express + EJS (templating for dynamic membership pages)
+
+**Goal:**
+
+* Keep `/relocate` page unchanged
+* Add `/community` membership portal
+* Tiered access: **Relocate Circle** (open) vs **Inner Ring** (exclusive)
+* Login / registration
+* Event dashboard
+* Partner resources
+
+---
+
+### **Folder Structure**
+
+```
+/ (root)
+│   app.js
+│   package.json
+│   /views
+│       relocate.ejs        (existing page copy)
+│       community.ejs       (membership portal)
+│       login.ejs
+│       dashboard.ejs
+│   /public
+│       style.css
+│       script.js
+│       /assets
+│           logo.png
+│           hero.jpg
+│   /data
+│       members.json       (store members, can migrate to DB later)
+│       events.json
+```
+
+---
+
+### **1. package.json**
+
+```json
+{
+  "name": "deliwer-relocate-membership",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "express-session": "^1.17.3",
+    "ejs": "^3.1.9"
+  }
+}
+```
+
+---
+
+### **2. app.js**
+
+```js
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+
+const app = express();
+const PORT = 3000;
+
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Session setup
+app.use(session({
+  secret: 'deliwer_secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Load members data
+let members = JSON.parse(fs.readFileSync('./data/members.json'));
+let events = JSON.parse(fs.readFileSync('./data/events.json'));
+
+// Routes
+
+// Relocate gateway (unchanged)
+app.get('/relocate', (req, res) => {
+  res.render('relocate');
+});
+
+// Community login/register
+app.get('/community', (req, res) => {
+  res.render('login', { message: null });
+});
+
+app.post('/community/login', (req, res) => {
+  const { email, tier } = req.body;
+  const member = members.find(m => m.email === email && m.tier === tier);
+  if(member){
+    req.session.user = member;
+    res.redirect('/community/dashboard');
+  } else {
+    res.render('login', { message: 'Member not found or wrong tier.' });
+  }
+});
+
+app.post('/community/register', (req, res) => {
+  const { name, email, tier } = req.body;
+  if(members.find(m => m.email === email)) {
+    return res.render('login', { message: 'Email already registered.' });
+  }
+  const newMember = { name, email, tier };
+  members.push(newMember);
+  fs.writeFileSync('./data/members.json', JSON.stringify(members, null, 2));
+  req.session.user = newMember;
+  res.redirect('/community/dashboard');
+});
+
+// Dashboard
+app.get('/community/dashboard', (req, res) => {
+  if(!req.session.user) return res.redirect('/community');
+  // Filter events based on tier
+  const userEvents = events.filter(ev => ev.tiers.includes(req.session.user.tier));
+  res.render('dashboard', { user: req.session.user, events: userEvents });
+});
+
+// Logout
+app.get('/community/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/community');
+});
+
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+```
+
+---
+
+### **3. /views/login.ejs**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DeliWer Community Login</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>DeliWer Community Login / Register</h1>
+    <% if(message){ %>
+      <p style="color:red;"><%= message %></p>
+    <% } %>
+
+    <form action="/community/login" method="POST">
+      <input type="email" name="email" placeholder="Email" required>
+      <select name="tier">
+        <option value="circle">Relocate Circle</option>
+        <option value="inner-ring">Inner Ring</option>
+      </select>
+      <button type="submit">Login</button>
+    </form>
+
+    <h3>Or Register</h3>
+    <form action="/community/register" method="POST">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <select name="tier">
+        <option value="circle">Relocate Circle</option>
+        <option value="inner-ring">Inner Ring</option>
+      </select>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</body>
+</html>
+```
+
+---
+
+### **4. /views/dashboard.ejs**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | <%= user.name %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome, <%= user.name %>!</h1>
+    <p>Membership Tier: <%= user.tier %></p>
+    <a href="/community/logout">Logout</a>
+
+    <h2>Upcoming Events</h2>
+    <ul>
+      <% events.forEach(ev => { %>
+        <li><%= ev.name %> - <%= ev.date %></li>
+      <% }) %>
+    </ul>
+
+    <h2>Partner Resources</h2>
+    <ul>
+      <li>Licensed Immigration Consultants</li>
+      <li>Business Setup Agencies</li>
+      <li>Real Estate Developers & Brokers</li>
+      <li>Banking & Investment Partners</li>
+    </ul>
+  </div>
+</body>
+</html>
+```
+
+---
+
+### **5. /data/members.json**
+
+```json
+[]
+```
+
+---
+
+### **6. /data/events.json**
+
+```json
+[
+  { "name": "Dubai Investment Tour", "date": "2025-12-20", "tiers": ["circle", "inner-ring"] },
+  { "name": "Founder Networking Dinner", "date": "2026-01-15", "tiers": ["inner-ring"] },
+  { "name": "Soft-Landing Orientation", "date": "2026-02-05", "tiers": ["circle", "inner-ring"] }
+]
+```
+
+---
+
+### **7. Notes / Integration**
+
+* **Existing `/relocate` page** is left untouched
+* `/community` is fully dynamic
+* **Login/Register** maps users to tiers
+* Dashboard shows **tier-based events**
+* Partner resources are visible for all members
+* Can later integrate **Stripe / PayPal** for subscription payments for Inner Ring
+* Ready for **deployment on Replit** with CNAME: `relocate.deliwer.com`
+
+---
+
+If you want, I can **generate a ready-to-run Replit template ZIP** with all files prebuilt and instructions for immediate deployment.
+
+Do you want me to do that next?

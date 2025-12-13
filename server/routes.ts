@@ -15,6 +15,7 @@ import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
 import fulfillmentRoutes from "./routes/fulfillment";
 import membershipRoutes from "./routes/memberships";
+import relocateRoutes from "./routes/relocate";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 import { processPurchase, aedToFils } from "./payment-processing";
 
@@ -64,6 +65,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Register membership tier routes
   app.use("/api/memberships", membershipRoutes);
+
+  // Register relocate membership routes
+  app.use("/api/relocate", relocateRoutes);
 
   // PayPal payment endpoints - referenced from PayPal integration blueprint
   app.get("/setup", async (req, res) => {

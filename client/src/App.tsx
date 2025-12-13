@@ -67,6 +67,10 @@ import PlanetHeroMissions from "@/pages/planet-hero-missions";
 import PlanetHeroAffiliates from "@/pages/planet-hero-affiliates";
 import PlanetHeroManual from "@/pages/planet-hero-manual";
 
+// Relocate Membership Portal
+import Relocate from "@/pages/relocate";
+import RelocateCommunity from "@/pages/relocate-community";
+
 function Router() {
   const [location, setLocation] = useLocation();
   const basePath = import.meta.env.VITE_BASE_PATH || "";
@@ -143,6 +147,10 @@ function Router() {
 
         {/* Membership Plans */}
         <Route path="/membership-plans" component={MembershipPlansPage} />
+
+        {/* Relocate Membership Portal */}
+        <Route path="/relocate" component={Relocate} />
+        <Route path="/relocate-community" component={RelocateCommunity} />
 
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
