@@ -33,7 +33,10 @@ import {
   Sun,
   DollarSign,
   Scale,
-  Send
+  Send,
+  Baby,
+  Stethoscope,
+  Building
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -51,7 +54,34 @@ export default function Relocate() {
     message: ""
   });
 
-  const services = [
+  const consumerServices = [
+    {
+      icon: Home,
+      title: "Family Relocation",
+      description: "End-to-end relocation support for individuals and families moving to Dubai",
+      features: ["Housing Assistance", "School Enrollment", "Healthcare Setup", "Banking Services"]
+    },
+    {
+      icon: GraduationCap,
+      title: "Education Planning",
+      description: "Navigate Dubai's world-class international school system for your children",
+      features: ["School Selection", "Admission Support", "Curriculum Guidance", "Extracurricular Activities"]
+    },
+    {
+      icon: Stethoscope,
+      title: "Healthcare Access",
+      description: "Connect with premium healthcare providers and secure comprehensive coverage",
+      features: ["Hospital Registration", "Insurance Setup", "Specialist Referrals", "Emergency Care Access"]
+    },
+    {
+      icon: Heart,
+      title: "Lifestyle Concierge",
+      description: "Personalized support for settling into your new Dubai lifestyle",
+      features: ["Community Integration", "Social Networking", "Recreation Planning", "Cultural Orientation"]
+    }
+  ];
+
+  const businessServices = [
     {
       icon: DollarSign,
       title: "Capital Relocation",
@@ -65,10 +95,10 @@ export default function Relocate() {
       features: ["Free Zone Setup", "Mainland LLC", "Branch Office", "Visa Processing"]
     },
     {
-      icon: Home,
-      title: "Family Relocation",
-      description: "End-to-end relocation support for individuals and families moving to Dubai",
-      features: ["Housing Assistance", "School Enrollment", "Healthcare Setup", "Banking Services"]
+      icon: Building,
+      title: "Real Estate Investment",
+      description: "Access exclusive investment properties with Golden Visa eligibility",
+      features: ["Off-Plan Projects", "Commercial Assets", "Golden Visa Properties", "Portfolio Management"]
     },
     {
       icon: Landmark,
@@ -78,13 +108,22 @@ export default function Relocate() {
     }
   ];
 
-  const dubaiAdvantages = [
+  const consumerAdvantages = [
+    { icon: Shield, title: "World's Safest City", description: "Low crime rate and family-friendly environment" },
+    { icon: GraduationCap, title: "Top International Schools", description: "200+ schools offering global curricula" },
+    { icon: Heart, title: "World-Class Healthcare", description: "JCI-accredited hospitals and specialists" },
+    { icon: Sun, title: "Year-Round Sunshine", description: "Perfect weather for outdoor living" },
+    { icon: Baby, title: "Family-Focused Culture", description: "Child-friendly amenities everywhere" },
+    { icon: ShoppingBag, title: "Premium Lifestyle", description: "World-class shopping and entertainment" }
+  ];
+
+  const businessAdvantages = [
     { icon: DollarSign, title: "0% Personal Income Tax", description: "Keep more of what you earn" },
     { icon: Shield, title: "Political Stability", description: "Safe haven for global capital" },
     { icon: Globe, title: "Strategic Location", description: "Gateway between East and West" },
-    { icon: TrendingUp, title: "Business-Friendly", description: "Rapid company setup in days" },
-    { icon: Heart, title: "World-Class Healthcare", description: "Top-tier medical facilities" },
-    { icon: GraduationCap, title: "Premium Education", description: "International schools and universities" }
+    { icon: TrendingUp, title: "Business-Friendly", description: "Rapid company setup in 1-3 days" },
+    { icon: Building, title: "Golden Visa Program", description: "10-year residency for investors" },
+    { icon: Landmark, title: "Free Zone Benefits", description: "100% foreign ownership allowed" }
   ];
 
   const comparisonData = [
@@ -126,16 +165,47 @@ export default function Relocate() {
     }
   ];
 
-  const lifestyleFeatures = [
-    { icon: Sun, title: "Year-Round Sunshine", description: "300+ days of clear skies" },
-    { icon: ShoppingBag, title: "World-Class Shopping", description: "Luxury brands and unique experiences" },
-    { icon: Leaf, title: "Sustainable Living", description: "Green initiatives and eco-conscious communities" },
-    { icon: Heart, title: "Zen Wellness", description: "Spas, retreats, and holistic health centers" }
+  const consumerLifestyleFeatures = [
+    { icon: Sun, title: "Year-Round Sunshine", description: "300+ days of clear skies for family activities" },
+    { icon: Baby, title: "Family-Friendly", description: "Parks, beaches, and entertainment for all ages" },
+    { icon: Heart, title: "Health & Wellness", description: "World-class spas, gyms, and wellness centers" },
+    { icon: ShoppingBag, title: "Premium Amenities", description: "World-class malls, restaurants, and leisure" }
   ];
+
+  const businessLifestyleFeatures = [
+    { icon: Globe, title: "Global Connectivity", description: "Direct flights to 260+ destinations" },
+    { icon: Building, title: "Premium Offices", description: "World-class business districts and co-working" },
+    { icon: Leaf, title: "Sustainable Living", description: "Green initiatives and eco-conscious communities" },
+    { icon: Heart, title: "Work-Life Balance", description: "Zen living meets professional excellence" }
+  ];
+
+  const services = audienceType === "consumer" ? consumerServices : businessServices;
+  const advantages = audienceType === "consumer" ? consumerAdvantages : businessAdvantages;
+  const lifestyleFeatures = audienceType === "consumer" ? consumerLifestyleFeatures : businessLifestyleFeatures;
+
+  const heroTagline = audienceType === "consumer" 
+    ? "Relocate your family to a safe, thriving, and sustainable city. Expert guidance for families seeking the ultimate quality of life."
+    : "Relocate your capital, family, and business to a safe, thriving, and sustainable city. Expert consulting for founders, investors, and businesses seeking the ultimate global hub.";
+
+  const sectionTitle = audienceType === "consumer" 
+    ? "Why Families Choose Dubai"
+    : "Capital Relocation Consulting";
+
+  const sectionDescription = audienceType === "consumer"
+    ? "Discover why Dubai is the top choice for families seeking safety, education, and quality of life."
+    : "Our flagship service: strategic guidance for high-net-worth individuals and businesses seeking to optimize their global footprint through Dubai.";
+
+  const formTitle = audienceType === "consumer"
+    ? "Plan Your Family's Move to Dubai"
+    : "Assess Your Relocation Readiness";
+
+  const formDescription = audienceType === "consumer"
+    ? "Complete this form and our family relocation specialists will create a personalized transition plan for you."
+    : "Complete this form and our expert advisors will create a personalized relocation roadmap for you.";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Lead form submitted:", formData);
+    console.log("Lead form submitted:", { ...formData, audienceType });
   };
 
   return (
@@ -156,14 +226,13 @@ export default function Relocate() {
             <span className="text-primary"> Climate-Positive Living</span> Converge
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl" data-testid="text-hero-description">
-            Relocate your capital, family, and business to a safe, thriving, and sustainable city. 
-            Expert consulting for founders, investors, and families seeking the ultimate global hub.
+            {heroTagline}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#lead-form">
               <Button size="lg" className="bg-primary text-primary-foreground" data-testid="button-start-journey">
                 <Plane className="w-4 h-4 mr-2" />
-                Start Your Relocation Journey
+                {audienceType === "consumer" ? "Plan Your Family Move" : "Start Your Relocation Journey"}
               </Button>
             </a>
             <a href="#comparison">
@@ -202,19 +271,21 @@ export default function Relocate() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
-              <DollarSign className="w-3 h-3 mr-1" />
-              Core Revenue Driver
+              {audienceType === "consumer" ? (
+                <><Users className="w-3 h-3 mr-1" />Family Benefits</>
+              ) : (
+                <><DollarSign className="w-3 h-3 mr-1" />Core Revenue Driver</>
+              )}
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-capital-title">
-              Capital Relocation Consulting
+              {sectionTitle}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our flagship service: strategic guidance for high-net-worth individuals and businesses 
-              seeking to optimize their global footprint through Dubai.
+              {sectionDescription}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {dubaiAdvantages.map((advantage, index) => (
+            {advantages.map((advantage, index) => (
               <Card key={index} className="text-center hover-elevate" data-testid={`card-advantage-${index}`}>
                 <CardContent className="pt-6">
                   <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
@@ -233,10 +304,12 @@ export default function Relocate() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-services-title">
-              {audienceType === "consumer" ? "Personal Relocation Services" : "Business & Investment Services"}
+              {audienceType === "consumer" ? "Family Relocation Services" : "Business & Investment Services"}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive support for every step of your Dubai journey
+              {audienceType === "consumer" 
+                ? "Comprehensive support for your family's transition to Dubai"
+                : "Comprehensive support for every step of your business journey"}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -271,15 +344,15 @@ export default function Relocate() {
             <div>
               <Badge variant="outline" className="mb-4">
                 <Heart className="w-3 h-3 mr-1" />
-                Lifestyle & Culture
+                {audienceType === "consumer" ? "Family Life" : "Lifestyle & Culture"}
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-6" data-testid="text-lifestyle-title">
-                A Zen & Abundant Lifestyle
+                {audienceType === "consumer" ? "A Safe & Enriching Life for Your Family" : "A Zen & Abundant Lifestyle"}
               </h2>
               <p className="text-muted-foreground mb-8">
-                Dubai offers more than business opportunities. Enjoy safety, world-class schools, 
-                healthcare, shopping, and climate-conscious living in one of the world's most 
-                cosmopolitan cities.
+                {audienceType === "consumer" 
+                  ? "Dubai offers an exceptional quality of life for families. Enjoy world-class schools, safe neighborhoods, family-friendly entertainment, and a multicultural community that welcomes newcomers."
+                  : "Dubai offers more than business opportunities. Enjoy safety, world-class amenities, and climate-conscious living in one of the world's most cosmopolitan cities."}
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {lifestyleFeatures.map((feature, index) => (
@@ -304,7 +377,9 @@ export default function Relocate() {
               />
               <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-md shadow-lg">
                 <p className="text-2xl font-bold text-primary">200+</p>
-                <p className="text-sm text-muted-foreground">Nationalities call Dubai home</p>
+                <p className="text-sm text-muted-foreground">
+                  {audienceType === "consumer" ? "International schools" : "Nationalities call Dubai home"}
+                </p>
               </div>
             </div>
           </div>
@@ -319,10 +394,14 @@ export default function Relocate() {
               Global Comparison
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-comparison-title">
-              Why Dubai vs Other Free-World Cities
+              {audienceType === "consumer" 
+                ? "Why Families Choose Dubai Over Other Cities"
+                : "Why Dubai vs Other Free-World Cities"}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              See how Dubai compares to other popular destinations for capital relocation
+              {audienceType === "consumer"
+                ? "See how Dubai compares to other popular family relocation destinations"
+                : "See how Dubai compares to other popular destinations for capital relocation"}
             </p>
           </div>
           <div className="overflow-x-auto">
@@ -386,11 +465,10 @@ export default function Relocate() {
                 Get Started
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-form-title">
-                Assess Your Relocation Readiness
+                {formTitle}
               </h2>
               <p className="text-muted-foreground">
-                Complete this form and our expert advisors will create a personalized 
-                relocation roadmap for you.
+                {formDescription}
               </p>
             </div>
             <Card>
@@ -430,43 +508,86 @@ export default function Relocate() {
                         data-testid="input-phone"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="capitalRange">Capital to Relocate</Label>
-                      <Select 
-                        value={formData.capitalRange}
-                        onValueChange={(value) => setFormData({...formData, capitalRange: value})}
-                      >
-                        <SelectTrigger data-testid="select-capital">
-                          <SelectValue placeholder="Select range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="under-100k">Under $100,000</SelectItem>
-                          <SelectItem value="100k-500k">$100,000 - $500,000</SelectItem>
-                          <SelectItem value="500k-1m">$500,000 - $1,000,000</SelectItem>
-                          <SelectItem value="1m-5m">$1,000,000 - $5,000,000</SelectItem>
-                          <SelectItem value="5m-plus">$5,000,000+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    {audienceType === "business" ? (
+                      <div className="space-y-2">
+                        <Label htmlFor="capitalRange">Capital to Relocate</Label>
+                        <Select 
+                          value={formData.capitalRange}
+                          onValueChange={(value) => setFormData({...formData, capitalRange: value})}
+                        >
+                          <SelectTrigger data-testid="select-capital">
+                            <SelectValue placeholder="Select range" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="under-100k">Under $100,000</SelectItem>
+                            <SelectItem value="100k-500k">$100,000 - $500,000</SelectItem>
+                            <SelectItem value="500k-1m">$500,000 - $1,000,000</SelectItem>
+                            <SelectItem value="1m-5m">$1,000,000 - $5,000,000</SelectItem>
+                            <SelectItem value="5m-plus">$5,000,000+</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        <Label htmlFor="familySize">Family Size</Label>
+                        <Select 
+                          value={formData.familySize}
+                          onValueChange={(value) => setFormData({...formData, familySize: value})}
+                        >
+                          <SelectTrigger data-testid="select-family">
+                            <SelectValue placeholder="Select size" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="single">Individual</SelectItem>
+                            <SelectItem value="couple">Couple</SelectItem>
+                            <SelectItem value="small-family">Family (1-2 children)</SelectItem>
+                            <SelectItem value="large-family">Family (3+ children)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="familySize">Family Size</Label>
-                      <Select 
-                        value={formData.familySize}
-                        onValueChange={(value) => setFormData({...formData, familySize: value})}
-                      >
-                        <SelectTrigger data-testid="select-family">
-                          <SelectValue placeholder="Select size" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="single">Individual</SelectItem>
-                          <SelectItem value="couple">Couple</SelectItem>
-                          <SelectItem value="small-family">Family (1-2 children)</SelectItem>
-                          <SelectItem value="large-family">Family (3+ children)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    {audienceType === "consumer" ? (
+                      <div className="space-y-2">
+                        <Label htmlFor="schoolPreference">School Preference</Label>
+                        <Select 
+                          value={formData.businessType}
+                          onValueChange={(value) => setFormData({...formData, businessType: value})}
+                        >
+                          <SelectTrigger data-testid="select-school">
+                            <SelectValue placeholder="Select curriculum" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="british">British Curriculum</SelectItem>
+                            <SelectItem value="american">American Curriculum</SelectItem>
+                            <SelectItem value="ib">International Baccalaureate</SelectItem>
+                            <SelectItem value="indian">Indian Curriculum</SelectItem>
+                            <SelectItem value="other">Other / Not Sure</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        <Label htmlFor="businessType">Business/Investment Interest</Label>
+                        <Select 
+                          value={formData.businessType}
+                          onValueChange={(value) => setFormData({...formData, businessType: value})}
+                        >
+                          <SelectTrigger data-testid="select-business">
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="startup">Startup / Tech Company</SelectItem>
+                            <SelectItem value="trading">Trading / Import-Export</SelectItem>
+                            <SelectItem value="consulting">Consulting / Professional Services</SelectItem>
+                            <SelectItem value="real-estate">Real Estate Investment</SelectItem>
+                            <SelectItem value="passive">Passive Investment / Retirement</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
                     <div className="space-y-2">
                       <Label htmlFor="timeline">Relocation Timeline</Label>
                       <Select 
@@ -486,29 +607,14 @@ export default function Relocate() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="businessType">Business/Investment Interest</Label>
-                    <Select 
-                      value={formData.businessType}
-                      onValueChange={(value) => setFormData({...formData, businessType: value})}
-                    >
-                      <SelectTrigger data-testid="select-business">
-                        <SelectValue placeholder="Select type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="startup">Startup / Tech Company</SelectItem>
-                        <SelectItem value="trading">Trading / Import-Export</SelectItem>
-                        <SelectItem value="consulting">Consulting / Professional Services</SelectItem>
-                        <SelectItem value="real-estate">Real Estate Investment</SelectItem>
-                        <SelectItem value="passive">Passive Investment / Retirement</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Additional Information</Label>
+                    <Label htmlFor="message">
+                      {audienceType === "consumer" ? "Tell us about your family's needs" : "Additional Information"}
+                    </Label>
                     <Textarea 
                       id="message"
-                      placeholder="Tell us about your goals, concerns, or specific requirements..."
+                      placeholder={audienceType === "consumer" 
+                        ? "Tell us about your children's ages, educational needs, lifestyle preferences..."
+                        : "Tell us about your goals, concerns, or specific requirements..."}
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       className="min-h-[100px]"
@@ -517,7 +623,9 @@ export default function Relocate() {
                   </div>
                   <Button type="submit" className="w-full" size="lg" data-testid="button-submit-form">
                     <Send className="w-4 h-4 mr-2" />
-                    Submit & Get Your Personalized Roadmap
+                    {audienceType === "consumer" 
+                      ? "Submit & Get Your Family Transition Plan"
+                      : "Submit & Get Your Personalized Roadmap"}
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
                     By submitting, you agree to our privacy policy. We respect your data.
@@ -532,23 +640,26 @@ export default function Relocate() {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-cta-title">
-            Join the DeliWer Community
+            {audienceType === "consumer" 
+              ? "Join the DeliWer Family Community"
+              : "Join the DeliWer Investor Network"}
           </h2>
           <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Connect with founders, investors, and partners. Access exclusive events, 
-            investment opportunities, and personalized advisory services.
+            {audienceType === "consumer"
+              ? "Connect with other relocating families, access exclusive resources, and get personalized support for your Dubai journey."
+              : "Connect with founders, investors, and partners. Access exclusive events, investment opportunities, and personalized advisory services."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/relocate-community">
               <Button size="lg" variant="secondary" data-testid="button-join-circle">
                 <Users className="w-4 h-4 mr-2" />
-                Join Relocate Circle
+                {audienceType === "consumer" ? "Join Family Circle" : "Join Relocate Circle"}
               </Button>
             </Link>
             <Link href="/relocate-community#inner-ring">
               <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground" data-testid="button-apply-inner">
                 <Shield className="w-4 h-4 mr-2" />
-                Apply for Inner Ring
+                {audienceType === "consumer" ? "Apply for VIP Support" : "Apply for Inner Ring"}
               </Button>
             </Link>
           </div>
