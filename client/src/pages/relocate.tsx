@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "wouter";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +15,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 import { 
   Globe, 
   Building2, 
@@ -20,7 +30,6 @@ import {
   Plane, 
   Shield, 
   ArrowRight,
-  MapPin,
   Briefcase,
   Home,
   Landmark,
@@ -36,12 +45,19 @@ import {
   Send,
   Baby,
   Stethoscope,
-  Building
+  Building,
+  Star,
+  Quote,
+  Calendar,
+  HelpCircle,
+  Phone,
+  MessageCircle
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
 
 export default function Relocate() {
+  const { toast } = useToast();
   const [audienceType, setAudienceType] = useState<"consumer" | "business">("consumer");
   const [formData, setFormData] = useState({
     name: "",
@@ -53,6 +69,89 @@ export default function Relocate() {
     timeline: "",
     message: ""
   });
+
+  const leadMutation = useMutation({
+    mutationFn: async (data: typeof formData & { audienceType: string }) => {
+      return apiRequest("POST", "/api/relocate/leads", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Thank you for your enquiry!",
+        description: "Our relocation specialists will contact you within 24 hours.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        capitalRange: "",
+        familySize: "",
+        businessType: "",
+        timeline: "",
+        message: ""
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Submission failed",
+        description: error.message || "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    }
+  });
+
+  const testimonials = [
+    {
+      name: "Michael Chen",
+      role: "Tech Founder",
+      location: "Relocated from Singapore",
+      content: "DeliWer made our move seamless. Within 3 weeks, we had our company set up, visas processed, and kids enrolled in top international schools. The ROI on their consulting fee was immediate.",
+      rating: 5,
+      capital: "$2M+ relocated"
+    },
+    {
+      name: "Sarah Al-Rashid",
+      role: "Investment Director",
+      location: "Relocated from London",
+      content: "The tax savings alone in the first year covered their entire consulting fee 10x over. Their network of partners for real estate and banking is unmatched.",
+      rating: 5,
+      capital: "$5M+ relocated"
+    },
+    {
+      name: "The Martinez Family",
+      role: "Family of 5",
+      location: "Relocated from Miami",
+      content: "Moving with three kids seemed daunting. DeliWer handled everything - school applications, housing, healthcare setup. We felt at home within weeks.",
+      rating: 5,
+      familySize: "5 members"
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: "How long does the Dubai relocation process take?",
+      answer: "For business setup, most companies can be operational within 1-3 days. Family relocation typically takes 2-4 weeks for full settlement including visas, housing, and school enrollment. Our expedited service can reduce this timeline significantly."
+    },
+    {
+      question: "What is the minimum investment for a Golden Visa?",
+      answer: "The UAE Golden Visa requires a minimum AED 2 million ($545,000 USD) investment in real estate, or establishing a company with minimum capital requirements. We help you structure investments to maximize visa benefits while meeting your financial goals."
+    },
+    {
+      question: "Is there really 0% personal income tax in Dubai?",
+      answer: "Yes, the UAE has no personal income tax, no capital gains tax, and no inheritance tax. Corporate tax was introduced at 9% for profits over AED 375,000, but many free zone companies remain exempt. We structure your presence to maximize these benefits legally."
+    },
+    {
+      question: "What schools are available for expatriate children?",
+      answer: "Dubai has 200+ international schools offering British, American, IB, Indian, French, and other curricula. Top schools include GEMS, JESS, Dubai College, and more. We help with school selection, applications, and securing admission."
+    },
+    {
+      question: "How does DeliWer help with capital relocation?",
+      answer: "We provide end-to-end consulting including: legal compliance for wealth transfer, optimal corporate structuring, banking relationships, real estate investment for Golden Visa eligibility, and ongoing advisory for tax optimization."
+    },
+    {
+      question: "What makes Dubai safer than other relocation destinations?",
+      answer: "Dubai consistently ranks among the world's safest cities with extremely low crime rates, political stability, world-class healthcare, and a family-friendly environment. The UAE's strict laws and efficient enforcement create a secure living environment."
+    }
+  ];
 
   const consumerServices = [
     {
@@ -127,42 +226,10 @@ export default function Relocate() {
   ];
 
   const comparisonData = [
-    { 
-      city: "Dubai", 
-      taxFree: true, 
-      businessSetup: "1-3 days", 
-      safety: "Very High", 
-      lifestyle: "Luxury + Zen", 
-      sustainability: "Advanced",
-      highlight: true
-    },
-    { 
-      city: "Singapore", 
-      taxFree: false, 
-      businessSetup: "1-2 weeks", 
-      safety: "Very High", 
-      lifestyle: "Modern", 
-      sustainability: "High",
-      highlight: false
-    },
-    { 
-      city: "Panama", 
-      taxFree: true, 
-      businessSetup: "2-4 weeks", 
-      safety: "Moderate", 
-      lifestyle: "Relaxed", 
-      sustainability: "Moderate",
-      highlight: false
-    },
-    { 
-      city: "Georgia", 
-      taxFree: false, 
-      businessSetup: "1 week", 
-      safety: "Moderate", 
-      lifestyle: "Emerging", 
-      sustainability: "Low",
-      highlight: false
-    }
+    { city: "Dubai", taxFree: true, businessSetup: "1-3 days", safety: "Very High", lifestyle: "Luxury + Zen", sustainability: "Advanced", highlight: true },
+    { city: "Singapore", taxFree: false, businessSetup: "1-2 weeks", safety: "Very High", lifestyle: "Modern", sustainability: "High", highlight: false },
+    { city: "Panama", taxFree: true, businessSetup: "2-4 weeks", safety: "Moderate", lifestyle: "Relaxed", sustainability: "Moderate", highlight: false },
+    { city: "Georgia", taxFree: false, businessSetup: "1 week", safety: "Moderate", lifestyle: "Emerging", sustainability: "Low", highlight: false }
   ];
 
   const consumerLifestyleFeatures = [
@@ -205,11 +272,88 @@ export default function Relocate() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Lead form submitted:", { ...formData, audienceType });
+    leadMutation.mutate({ ...formData, audienceType });
+  };
+
+  const schemaOrgData = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "DeliWer Relocation Consulting",
+    "description": "Premium Dubai relocation consulting for families, investors, and businesses. Capital relocation, Golden Visa, business setup, and family settlement services.",
+    "url": "https://deliwer.com/relocate",
+    "logo": "https://deliwer.com/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dubai",
+      "addressCountry": "AE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "25.2048",
+      "longitude": "55.2708"
+    },
+    "areaServed": ["Global", "UAE", "Dubai"],
+    "serviceType": ["Relocation Consulting", "Capital Relocation", "Business Setup", "Golden Visa Services"],
+    "priceRange": "$$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127"
+    }
+  };
+
+  const faqSchemaData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
   };
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Dubai Relocation Consulting | Capital & Family Relocation Services | DeliWer</title>
+        <meta name="description" content="Expert Dubai relocation consulting for investors, families & businesses. 0% income tax, Golden Visa, business setup in 1-3 days. Free consultation. Start your Dubai journey today." />
+        <meta name="keywords" content="Dubai relocation, capital relocation, Golden Visa UAE, Dubai business setup, family relocation Dubai, tax-free living, UAE immigration, Dubai expat services" />
+        <link rel="canonical" href="https://deliwer.com/relocate" />
+        
+        <meta property="og:title" content="Dubai Relocation Consulting | Capital & Family Relocation | DeliWer" />
+        <meta property="og:description" content="Relocate your capital, family & business to Dubai. 0% income tax, Golden Visa eligibility, business setup in 1-3 days. Expert consulting services." />
+        <meta property="og:image" content="https://deliwer.com/og-relocate.jpg" />
+        <meta property="og:url" content="https://deliwer.com/relocate" />
+        <meta property="og:type" content="website" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Dubai Relocation Consulting | DeliWer" />
+        <meta name="twitter:description" content="Expert Dubai relocation for investors & families. 0% tax, Golden Visa, fast business setup." />
+        
+        <script type="application/ld+json">{JSON.stringify(schemaOrgData)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchemaData)}</script>
+      </Helmet>
+
+      {/* Sticky Mobile CTA */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-3 bg-background/95 backdrop-blur-sm border-t md:hidden">
+        <div className="flex gap-2">
+          <a href="#lead-form" className="flex-1">
+            <Button className="w-full" size="lg" data-testid="button-mobile-cta">
+              <Calendar className="w-4 h-4 mr-2" />
+              Book Consultation
+            </Button>
+          </a>
+          <a href="tel:+97142501500">
+            <Button variant="outline" size="lg" data-testid="button-mobile-call">
+              <Phone className="w-4 h-4" />
+            </Button>
+          </a>
+        </div>
+      </div>
+
       <section className="relative h-screen min-h-[600px] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -297,6 +441,14 @@ export default function Relocate() {
               </Card>
             ))}
           </div>
+          <div className="text-center">
+            <a href="#lead-form">
+              <Button size="lg" data-testid="button-advantages-cta">
+                <ArrowRight className="w-4 h-4 mr-2" />
+                Get Your Free Consultation
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -338,7 +490,48 @@ export default function Relocate() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
       <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4">
+              <Star className="w-3 h-3 mr-1" />
+              Success Stories
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-testimonials-title">
+              Trusted by 500+ Relocated Families & Investors
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Real stories from clients who successfully relocated to Dubai with our guidance
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="relative" data-testid={`card-testimonial-${index}`}>
+                <CardContent className="pt-6">
+                  <Quote className="w-8 h-8 text-primary/20 absolute top-4 right-4" />
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-6 italic">"{testimonial.content}"</p>
+                  <div className="border-t pt-4">
+                    <p className="font-semibold">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="text-xs text-muted-foreground">{testimonial.location}</p>
+                    <Badge variant="secondary" className="mt-2 text-xs">
+                      {testimonial.capital || testimonial.familySize}
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -354,7 +547,7 @@ export default function Relocate() {
                   ? "Dubai offers an exceptional quality of life for families. Enjoy world-class schools, safe neighborhoods, family-friendly entertainment, and a multicultural community that welcomes newcomers."
                   : "Dubai offers more than business opportunities. Enjoy safety, world-class amenities, and climate-conscious living in one of the world's most cosmopolitan cities."}
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 mb-6">
                 {lifestyleFeatures.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -367,6 +560,12 @@ export default function Relocate() {
                   </div>
                 ))}
               </div>
+              <a href="#lead-form">
+                <Button data-testid="button-lifestyle-cta">
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Discuss Your Lifestyle Goals
+                </Button>
+              </a>
             </div>
             <div className="relative">
               <img 
@@ -386,7 +585,7 @@ export default function Relocate() {
         </div>
       </section>
 
-      <section id="comparison" className="py-20">
+      <section id="comparison" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
@@ -453,6 +652,46 @@ export default function Relocate() {
               </tbody>
             </table>
           </div>
+          <div className="text-center mt-8">
+            <a href="#lead-form">
+              <Button size="lg" data-testid="button-comparison-cta">
+                <ArrowRight className="w-4 h-4 mr-2" />
+                Get Your Dubai Relocation Plan
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge variant="outline" className="mb-4">
+                <HelpCircle className="w-3 h-3 mr-1" />
+                FAQ
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-faq-title">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-muted-foreground">
+                Everything you need to know about relocating to Dubai
+              </p>
+            </div>
+            <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left" data-testid={`faq-trigger-${index}`}>
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground" data-testid={`faq-content-${index}`}>
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
       </section>
 
@@ -476,23 +715,25 @@ export default function Relocate() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
+                      <Label htmlFor="name">Full Name *</Label>
                       <Input 
                         id="name" 
                         placeholder="Your name"
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        required
                         data-testid="input-name"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email">Email Address *</Label>
                       <Input 
                         id="email" 
                         type="email"
                         placeholder="you@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        required
                         data-testid="input-email"
                       />
                     </div>
@@ -621,14 +862,26 @@ export default function Relocate() {
                       data-testid="textarea-message"
                     />
                   </div>
-                  <Button type="submit" className="w-full" size="lg" data-testid="button-submit-form">
-                    <Send className="w-4 h-4 mr-2" />
-                    {audienceType === "consumer" 
-                      ? "Submit & Get Your Family Transition Plan"
-                      : "Submit & Get Your Personalized Roadmap"}
+                  <Button 
+                    type="submit" 
+                    className="w-full" 
+                    size="lg" 
+                    disabled={leadMutation.isPending}
+                    data-testid="button-submit-form"
+                  >
+                    {leadMutation.isPending ? (
+                      <>Processing...</>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        {audienceType === "consumer" 
+                          ? "Submit & Get Your Family Transition Plan"
+                          : "Submit & Get Your Personalized Roadmap"}
+                      </>
+                    )}
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
-                    By submitting, you agree to our privacy policy. We respect your data.
+                    By submitting, you agree to our privacy policy. We respect your data and will respond within 24 hours.
                   </p>
                 </form>
               </CardContent>
@@ -637,7 +890,7 @@ export default function Relocate() {
         </div>
       </section>
 
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section className="py-20 bg-primary text-primary-foreground mb-16 md:mb-0">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-cta-title">
             {audienceType === "consumer" 

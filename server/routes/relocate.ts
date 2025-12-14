@@ -1,4 +1,7 @@
 import { Router } from "express";
+import { db } from "../db";
+import { relocateLeads, insertRelocateLeadSchema } from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 const router = Router();
 
@@ -115,6 +118,31 @@ router.get("/members", async (req, res) => {
   } catch (error: any) {
     console.error("Members fetch error:", error);
     res.status(500).json({ error: "Failed to fetch members" });
+  }
+});
+
+// Submit lead form - stores in database
+router.post("/leads", async (req, res) => {
+  try {
+    const validatedData = insertRelocateLeadSchema.parse(req.body);
+    
+    const [lead] = await db.insert(relocateLeads).values(validatedData).returning();
+    
+    res.json({ success: true, lead });
+  } catch (error: any) {
+    console.error("Lead submission error:", error);
+    res.status(500).json({ error: error.message || "Failed to submit lead" });
+  }
+});
+
+// Get all leads (admin)
+router.get("/leads", async (req, res) => {
+  try {
+    const leads = await db.select().from(relocateLeads).orderBy(relocateLeads.createdAt);
+    res.json(leads);
+  } catch (error: any) {
+    console.error("Leads fetch error:", error);
+    res.status(500).json({ error: "Failed to fetch leads" });
   }
 });
 

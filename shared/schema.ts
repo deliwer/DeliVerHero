@@ -3831,3 +3831,37 @@ export type InsertPartnerVerification = z.infer<typeof insertPartnerVerification
 
 export type FeatureFlag = typeof featureFlags.$inferSelect;
 export type InsertFeatureFlag = z.infer<typeof insertFeatureFlagSchema>;
+
+// Relocate Lead Generation Schema
+export const relocateLeads = pgTable("relocate_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  audienceType: text("audience_type").notNull().default("consumer"), // consumer, business
+  capitalRange: text("capital_range"), // for business leads
+  familySize: text("family_size"), // for consumer leads
+  businessType: text("business_type"),
+  timeline: text("timeline"),
+  message: text("message"),
+  source: text("source").default("website"), // website, referral, partner
+  utmSource: text("utm_source"),
+  utmMedium: text("utm_medium"),
+  utmCampaign: text("utm_campaign"),
+  status: text("status").notNull().default("new"), // new, contacted, qualified, converted, lost
+  assignedTo: text("assigned_to"),
+  notes: text("notes"),
+  followUpDate: timestamp("follow_up_date"),
+  convertedAt: timestamp("converted_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const insertRelocateLeadSchema = createInsertSchema(relocateLeads).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type RelocateLead = typeof relocateLeads.$inferSelect;
+export type InsertRelocateLead = z.infer<typeof insertRelocateLeadSchema>;
