@@ -55,6 +55,9 @@ import {
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
+import dubaiFamily from "@assets/stock_images/dubai_family_diverse_5745a5cf.jpg";
+import wellnessResidence from "@assets/stock_images/modern_wellness_luxu_b13619f6.jpg";
+import coworkingOffice from "@assets/stock_images/modern_office_cowork_bfc0360b.jpg";
 
 export default function Relocate() {
   const { toast } = useToast();
@@ -366,11 +369,14 @@ export default function Relocate() {
             The Modern Free-World Capital Hub
           </Badge>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 max-w-5xl" data-testid="text-hero-title">
-            Dubai: Where Capital, Culture & 
-            <span className="text-primary"> Climate-Positive Living</span> Converge
+            Relocate Capital.
+            <span className="text-primary"> Rebalance Life.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8 max-w-3xl" data-testid="text-hero-description">
-            {heroTagline}
+          <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl" data-testid="text-hero-description">
+            Dubai offers peace, opportunity, and global belonging — without compromise.
+          </p>
+          <p className="text-base text-white/70 mb-8 max-w-2xl" data-testid="text-hero-subtext">
+            For families, founders, and investors choosing stability, sustainability, and long-term abundance.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#lead-form">
@@ -486,6 +492,188 @@ export default function Relocate() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How People Actually Live in Dubai Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4">
+              <Home className="w-3 h-3 mr-1" />
+              Real Life in Dubai
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-living-title">
+              How People Actually Live in Dubai
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Beyond the headlines — discover the everyday reality of families, founders, and investors who call Dubai home.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Tranquil Living */}
+            <Card className="overflow-hidden" data-testid="card-tranquil-living">
+              <div className="relative h-48">
+                <img 
+                  src={wellnessResidence} 
+                  alt="Wellness-focused Dubai residence" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <Badge className="bg-white/20 backdrop-blur-sm border-white/30 text-white">
+                    <Heart className="w-3 h-3 mr-1" />
+                    Tranquil Living
+                  </Badge>
+                </div>
+              </div>
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-xl mb-3">Tranquil Residences & Conscious Living</h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Dubai now offers wellness-focused residences designed for calm, longevity, and balance. 
+                  Nature-integrated communities prioritize light, air quality, and mindful design.
+                </p>
+                <p className="text-xs text-muted-foreground italic">
+                  Inspired by concepts such as Wellcube Life — wellness-driven, tranquil residential ecosystems.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Fractional Ownership */}
+            <Card className="overflow-hidden" data-testid="card-fractional-ownership">
+              <div className="relative h-48">
+                <img 
+                  src={dubaiFamily} 
+                  alt="Diverse Dubai community" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <Badge className="bg-white/20 backdrop-blur-sm border-white/30 text-white">
+                    <TrendingUp className="w-3 h-3 mr-1" />
+                    Modern Ownership
+                  </Badge>
+                </div>
+              </div>
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-xl mb-3">Fractional Ownership for a New World</h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  Live, invest, or diversify without full capital lock-in — an emerging model for global citizens 
+                  seeking flexibility and reduced risk exposure.
+                </p>
+                <p className="text-xs text-muted-foreground italic">
+                  An exploratory pathway for those considering partial ownership as part of modern capital allocation.
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Business Setup */}
+            <Card className="overflow-hidden" data-testid="card-business-setup">
+              <div className="relative h-48">
+                <img 
+                  src={coworkingOffice} 
+                  alt="Dubai business ecosystem" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <Badge className="bg-white/20 backdrop-blur-sm border-white/30 text-white">
+                    <Building2 className="w-3 h-3 mr-1" />
+                    Business Ecosystem
+                  </Badge>
+                </div>
+              </div>
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-xl mb-3">Business Setup with Ecosystem Access</h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  From licensing to operational support, Dubai enables founders to establish quickly and scale globally. 
+                  Free zones provide 100% ownership and streamlined processes.
+                </p>
+                <p className="text-xs text-muted-foreground italic">
+                  Business ecosystems such as DubaiSouthBH illustrate how zones support international founders.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Dubai Now Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge variant="outline" className="mb-4">
+                <Globe className="w-3 h-3 mr-1" />
+                Why Dubai, Why Now
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-why-dubai-title">
+                The Modern Free World's Operating System
+              </h2>
+            </div>
+            <div className="prose prose-lg max-w-none dark:prose-invert">
+              <p className="text-lg text-muted-foreground text-center mb-8">
+                Unlike other relocation hubs, Dubai uniquely combines what matters most to global citizens and families seeking a fresh start.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card className="p-6" data-testid="card-dubai-advantage-1">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Shield className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Political Neutrality & Safety</h4>
+                      <p className="text-sm text-muted-foreground">A stable haven with one of the world's lowest crime rates, welcoming all backgrounds equally.</p>
+                    </div>
+                  </div>
+                </Card>
+                <Card className="p-6" data-testid="card-dubai-advantage-2">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Building className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">World-Class Infrastructure</h4>
+                      <p className="text-sm text-muted-foreground">From healthcare to education to transport — everything works, and works exceptionally well.</p>
+                    </div>
+                  </div>
+                </Card>
+                <Card className="p-6" data-testid="card-dubai-advantage-3">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Users className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Cultural Diversity (200+ Nationalities)</h4>
+                      <p className="text-sm text-muted-foreground">Your children grow up with global perspectives. Your network spans continents from day one.</p>
+                    </div>
+                  </div>
+                </Card>
+                <Card className="p-6" data-testid="card-dubai-advantage-4">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Heart className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Lifestyle + Ambition Coexistence</h4>
+                      <p className="text-sm text-muted-foreground">Build your business by day, enjoy pristine beaches and world-class dining by evening.</p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+              <div className="text-center mt-8">
+                <p className="text-muted-foreground mb-6">
+                  Panama, Georgia, and other emerging destinations offer pieces of the puzzle — Dubai delivers the complete picture.
+                </p>
+                <a href="#lead-form">
+                  <Button size="lg" data-testid="button-why-dubai-cta">
+                    <ArrowRight className="w-4 h-4 mr-2" />
+                    Explore Your Dubai Pathway
+                  </Button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
