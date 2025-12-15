@@ -17,6 +17,7 @@ import {
   ShoppingCart,
   Handshake,
   Sparkles,
+  Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -535,6 +536,26 @@ export function SustainabilityJourneySection() {
                   </p>
                 </div>
               </Card>
+            </div>
+
+            {/* Bridge to Relocation - Contextual CTA */}
+            <div className="max-w-3xl mx-auto mt-12 text-center">
+              <p className="text-gray-300 mb-4 text-lg">
+                For many of our members, sustainability is why they chose Dubai.
+              </p>
+              <p className="text-gray-400 mb-6">
+                Living sustainably often begins with choosing the right place to live.
+              </p>
+              <Link href="/relocate">
+                <button 
+                  className="text-emerald-400 hover:text-emerald-300 font-medium flex items-center justify-center mx-auto gap-2 transition-colors duration-200"
+                  data-testid="link-sustainability-relocate"
+                >
+                  <Globe className="w-4 h-4" />
+                  Explore Relocation Pathways
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </Link>
             </div>
           </div>
         )}

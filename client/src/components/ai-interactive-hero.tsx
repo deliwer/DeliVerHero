@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Droplets, Smartphone, Globe, MessageCircle, Sparkles } from "lucide-react";
+import { Droplets, Smartphone, Globe, MessageCircle, Sparkles, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import heroImage from "@assets/stock_images/people_at_home_drink_21a6f771.jpg";
 
 interface CTAOption {
@@ -88,6 +89,11 @@ export function AIInteractiveHero() {
             </span>
           </h2>
           <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold max-w-4xl mx-auto leading-relaxed drop-shadow-2xl">Premium Quality. Below the Market. Planet Impact</p>
+          
+          {/* Trust micro-copy */}
+          <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto" data-testid="text-trust-microcopy">
+            Trusted by families and founders from over 200 nationalities living in Dubai.
+          </p>
         </div>
 
         {/* Simplified CTA */}
@@ -116,6 +122,19 @@ export function AIInteractiveHero() {
               ))}
             </div>
           )}
+          
+          {/* Secondary CTA - soft reveal to /relocate */}
+          <div className="mt-8">
+            <Link href="/relocate">
+              <button 
+                className="text-white/70 hover:text-white text-sm font-medium flex items-center justify-center mx-auto gap-2 transition-colors duration-200"
+                data-testid="link-why-dubai"
+              >
+                Why People Choose Dubai
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

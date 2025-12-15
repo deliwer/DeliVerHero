@@ -251,8 +251,8 @@ export default function Relocate() {
   const lifestyleFeatures = audienceType === "consumer" ? consumerLifestyleFeatures : businessLifestyleFeatures;
 
   const heroTagline = audienceType === "consumer" 
-    ? "Relocate your family to a safe, thriving, and sustainable city. Expert guidance for families seeking the ultimate quality of life."
-    : "Relocate your capital, family, and business to a safe, thriving, and sustainable city. Expert consulting for founders, investors, and businesses seeking the ultimate global hub.";
+    ? "A calm, thoughtful approach to relocating your family. Expert guidance for those seeking safety, quality education, and a sustainable way of life."
+    : "A trusted advisory for founders, investors, and families considering Dubai as their next chapter. Private consultations tailored to your goals.";
 
   const sectionTitle = audienceType === "consumer" 
     ? "Why Families Choose Dubai"
@@ -263,12 +263,12 @@ export default function Relocate() {
     : "Our flagship service: strategic guidance for high-net-worth individuals and businesses seeking to optimize their global footprint through Dubai.";
 
   const formTitle = audienceType === "consumer"
-    ? "Plan Your Family's Move to Dubai"
-    : "Assess Your Relocation Readiness";
+    ? "Begin Your Family's Journey"
+    : "Book a Private Relocation Conversation";
 
   const formDescription = audienceType === "consumer"
-    ? "Complete this form and our family relocation specialists will create a personalized transition plan for you."
-    : "Complete this form and our expert advisors will create a personalized relocation roadmap for you.";
+    ? "Share a few details and our family relocation advisors will reach out for a private, no-obligation conversation."
+    : "Share a few details and our expert advisors will schedule a confidential consultation tailored to your goals.";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -342,8 +342,8 @@ export default function Relocate() {
         <div className="flex gap-2">
           <a href="#lead-form" className="flex-1">
             <Button className="w-full" size="lg" data-testid="button-mobile-cta">
-              <Calendar className="w-4 h-4 mr-2" />
-              Book Consultation
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Book a Private Conversation
             </Button>
           </a>
           <a href="tel:+97142501500">
@@ -375,16 +375,16 @@ export default function Relocate() {
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#lead-form">
               <Button size="lg" className="bg-primary text-primary-foreground" data-testid="button-start-journey">
-                <Plane className="w-4 h-4 mr-2" />
-                {audienceType === "consumer" ? "Plan Your Family Move" : "Start Your Relocation Journey"}
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Book a Private Relocation Conversation
               </Button>
             </a>
-            <a href="#comparison">
-              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-compare">
-                <Scale className="w-4 h-4 mr-2" />
-                Compare Global Destinations
+            <Link href="/community">
+              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-community">
+                <Users className="w-4 h-4 mr-2" />
+                Stay Connected with Our Community
               </Button>
-            </a>
+            </Link>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <Button

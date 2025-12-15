@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { LeaderboardWidget } from '@/components/leaderboard-widget';
+import { Link } from 'wouter';
 import { 
   Users, 
   Trophy, 
@@ -41,7 +42,8 @@ import {
   ExternalLink,
   MessageCircle,
   Play,
-  Award
+  Award,
+  ArrowRight
 } from 'lucide-react';
 import { SocialChallengesFeed } from '@/components/social-challenges-feed';
 
@@ -391,6 +393,26 @@ export default function Community() {
                 <div className="text-3xl font-bold text-purple-500">+{communityStats.monthlyGrowth}%</div>
                 <div className="text-sm text-gray-400">Monthly Growth</div>
               </div>
+            </div>
+
+            {/* Trust-based CTA to Relocation */}
+            <div className="mt-12 text-center">
+              <p className="text-gray-300 text-lg mb-2">
+                Some members start by shopping.
+              </p>
+              <p className="text-gray-400 mb-4">
+                Others go on to build their lives in Dubai.
+              </p>
+              <Link href="/relocate">
+                <button 
+                  className="text-cyan-400 hover:text-cyan-300 font-medium flex items-center justify-center mx-auto gap-2 transition-colors duration-200"
+                  data-testid="link-community-relocate"
+                >
+                  <Globe className="w-4 h-4" />
+                  Explore Relocation Pathways
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
             </div>
           </div>
 
