@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer";
 import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
 import { TooltipManager } from "@/components/tooltip-manager";
 import { ImagePerformanceMonitor } from "@/components/image-performance-monitor";
+import { DelayedContextPopup } from "@/components/delayed-context-popup";
 import { useEffect, lazy } from "react";
 import { useLocation } from "wouter";
 import Home from "@/pages/home";
@@ -71,6 +72,7 @@ import PlanetHeroManual from "@/pages/planet-hero-manual";
 import Relocate from "@/pages/relocate";
 import RelocateCommunity from "@/pages/relocate-community";
 import HomeService from "@/pages/home-service";
+import Housing from "@/pages/housing";
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -156,6 +158,9 @@ function Router() {
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
 
+        {/* Housing - Rent, Buy, Invest */}
+        <Route path="/housing" component={Housing} />
+
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
         <Route path="/environmental" component={Environmental} />
@@ -193,6 +198,7 @@ function App() {
         <Toaster />
         <TooltipManager />
         <ImagePerformanceMonitor />
+        <DelayedContextPopup />
       </TooltipProvider>
     </QueryClientProvider>
   );

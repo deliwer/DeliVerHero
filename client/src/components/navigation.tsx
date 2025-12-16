@@ -38,8 +38,8 @@ export function Navigation() {
     { path: "/play", label: "Play", id: "play", featured: true },
     { path: "/earn", label: "Earn+Rewards", id: "earn" },
     { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
-    { path: "/aquacafe", label: "AquaCafe", id: "aquacafe" },
-    { path: "/exchange", label: "Trade-in", id: "sell" },
+    { path: "/home-service", label: "Home Service", id: "home-service" },
+    { path: "/housing", label: "Housing", id: "housing" },
     { path: "/relocate", label: "Relocate", id: "relocate" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];
@@ -123,6 +123,40 @@ export function Navigation() {
                     >
                       <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-blue-600/30 hover:border-purple-400/50 transition-all">
                         <TrendingDown className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for Home Service link
+                if (item.id === "home-service") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 rounded-lg text-teal-300 hover:text-white hover:from-teal-600/30 hover:to-emerald-600/30 hover:border-teal-400/50 transition-all">
+                        <Sparkles className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for Housing link
+                if (item.id === "housing") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/30 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/30 hover:to-indigo-600/30 hover:border-blue-400/50 transition-all">
+                        <Building className="w-4 h-4" />
                         <span className="font-medium">{item.label}</span>
                       </div>
                     </Link>
@@ -406,6 +440,42 @@ export function Navigation() {
                     >
                       <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg text-purple-300">
                         <TrendingDown className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for home-service link in mobile
+                if (item.id === "home-service") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                      data-testid={`link-mobile-${item.id}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 rounded-lg text-teal-300">
+                        <Sparkles className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for housing link in mobile
+                if (item.id === "housing") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                      data-testid={`link-mobile-${item.id}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/30 rounded-lg text-blue-300">
+                        <Building className="w-4 h-4" />
                         <span className="font-medium">{item.label}</span>
                       </div>
                     </Link>

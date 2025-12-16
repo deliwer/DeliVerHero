@@ -62,17 +62,18 @@ export function AIInteractiveHero() {
           </p>
         </div>
 
-        {/* CTAs - Hierarchy as specified: Primary "Start Playing" + Secondary "Why Dubai" */}
+        {/* CTAs - Primary "Get Home Service" + Secondary actions */}
         <div className="max-w-lg mx-auto space-y-4">
-          {/* Primary CTA */}
-          <Button
-            onClick={handlePlayClick}
-            className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/30"
-            data-testid="button-start-playing"
-          >
-            <Play className="w-6 h-6 mr-3" />
-            Start Playing & Saving
-          </Button>
+          {/* Primary CTA - Home Service */}
+          <Link href="/home-service">
+            <Button
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-xl font-bold rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/30"
+              data-testid="button-get-home-service"
+            >
+              <Sparkles className="w-6 h-6 mr-3" />
+              Get Home Service
+            </Button>
+          </Link>
           
           {/* Secondary CTA - leads to /relocate */}
           <Link href="/relocate">

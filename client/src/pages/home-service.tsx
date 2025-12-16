@@ -21,16 +21,16 @@ export default function HomeService() {
   const services = [
     {
       icon: Droplets,
-      title: "Sustainable Water Solutions",
-      description: "Premium water systems that eliminate plastic waste and earn you rewards",
-      features: ["AquaCafe filtration systems", "Kangen water subscriptions", "Plastic bottle prevention tracking", "Monthly reward earnings"],
+      title: "Smart Water Solutions",
+      description: "Smart, sustainable water solutions designed for modern Dubai living.",
+      features: ["Premium filtration systems", "Zero plastic waste", "Health-focused hydration", "Eco-friendly living"],
       href: "/aquacafe",
       cta: "Explore Water Solutions"
     },
     {
       icon: Smartphone,
-      title: "Smart Trade-In Program",
-      description: "Turn your old devices into value for sustainability products",
+      title: "Smart Asset Conversion",
+      description: "Smart asset conversion to support sustainable lifestyles.",
       features: ["iPhone trade-in for water systems", "Cross-category trading", "Free pickup within 24 hours", "Certified data wipe"],
       href: "/exchange",
       cta: "Start Trade-In"
@@ -72,16 +72,16 @@ export default function HomeService() {
               Sustainable water, smart trade-ins, and everyday essentials — designed for life in Dubai.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/aquacafe">
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500" data-testid="button-explore-water">
-                  <Droplets className="w-4 h-4 mr-2" />
-                  Start with Water
+              <Link href="/relocate">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500" data-testid="button-book-consultation-home-service">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Book a Free Expert Consultation
                 </Button>
               </Link>
-              <Link href="/exchange">
-                <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-explore-tradein">
-                  <Smartphone className="w-4 h-4 mr-2" />
-                  Trade-In Program
+              <Link href="/relocate">
+                <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-speak-advisor-home-service">
+                  <Globe className="w-4 h-4 mr-2" />
+                  Speak to an Advisor
                 </Button>
               </Link>
             </div>
