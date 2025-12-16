@@ -23,7 +23,7 @@ export function RewardComparison() {
             </h2>
             
             <p className="text-gray-300 text-lg mb-6">
-              <strong>Planet Impact Credits (PICs)</strong> are your universal reward currency. Earn them from every iPhone trade-in and redeem across products, water delivery, dining experiences, and exclusive lifestyle perks.
+              <strong>DeliWer Carbon Tokens (DXBs)</strong> are your universal reward currency. Earn them from every iPhone trade-in and redeem across products, water delivery, dining experiences, and exclusive lifestyle perks.
             </p>
 
             <div className="space-y-3 mb-6">
