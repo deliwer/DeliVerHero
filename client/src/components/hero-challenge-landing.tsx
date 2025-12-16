@@ -388,7 +388,7 @@ function StepTwoExchange() {
                     <Star className="w-5 h-5" />
                     <span className="font-bold">FLAGSHIP OFFER</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Trade-in Package: Filter Service + FREE iPhone Upgrade</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Retrofitting: Filter Service + FREE iPhone Upgrade</h3>
                   <p className="text-gray-300 mb-4">
                     Trade your old iPhone → Get premium water filtration with professional installation + upgrade to the latest iPhone model FREE
                   </p>
