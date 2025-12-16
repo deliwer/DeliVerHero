@@ -77,7 +77,7 @@ export function AIInteractiveHero() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 leading-tight">
             <span className="relative inline-block">
               <span className="absolute inset-0 bg-black/70 blur-md rounded-xl px-6 py-3"></span>
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 drop-shadow-2xl animate-pulse-slow font-black px-6 py-3" 
+              <span className="relative bg-clip-text bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 drop-shadow-2xl animate-pulse-slow font-black px-6 py-3 text-[#14b491]" 
                     style={{ 
                       textShadow: '0 0 40px rgba(251, 191, 36, 1), 0 0 60px rgba(236, 72, 153, 0.9), 0 0 80px rgba(168, 85, 247, 0.7)',
                       filter: 'contrast(1.3) brightness(1.4)',
