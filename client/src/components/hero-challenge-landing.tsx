@@ -185,7 +185,6 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
         <div className="absolute bottom-20 left-16 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-700"></div>
         <div className="absolute bottom-10 right-10 w-4 h-4 bg-cyan-400 rounded-full animate-pulse delay-1000"></div>
       </div>
-      
       <div className="max-w-4xl mx-auto relative z-10">
         <ProgressIndicator currentStep={3} />
         
@@ -198,9 +197,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               aria-label="Toggle Play to Create Impact section"
               data-testid="toggle-play-impact"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
-                Play to Create Impact
-              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Play to Earn Credits</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-purple-400" />
               ) : (
