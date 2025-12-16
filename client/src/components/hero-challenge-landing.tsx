@@ -31,6 +31,8 @@ import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_coll
 import iphoneTradeInLifestyle from "@assets/stock_images/smartphone_trade-in__bd93d09e.jpg";
 import pizzaBobaComboImage from "@assets/stock_images/pizza_and_boba_tea_d_a375dab3.jpg";
 
+import Dubai_Creek_Apartment from "@assets/Dubai_Creek_Apartment.jpg";
+
 interface HeroSpotCounterProps {
   initialCount?: number;
 }
@@ -375,7 +377,7 @@ function StepTwoExchange() {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
-                    src={k8MachineImage} 
+                    src={Dubai_Creek_Apartment} 
                     alt="Kangen Water K8 Machine" 
                     className="w-full h-auto rounded-lg shadow-lg"
                   />
