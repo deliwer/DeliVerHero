@@ -1078,7 +1078,7 @@ export default function Relocate() {
         </div>
       </section>
 
-      <section className="py-20 bg-primary text-primary-foreground mb-16 md:mb-0">
+      <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-cta-title">
             {audienceType === "consumer" 
@@ -1101,6 +1101,48 @@ export default function Relocate() {
               <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground" data-testid="button-apply-inner">
                 <Shield className="w-4 h-4 mr-2" />
                 {audienceType === "consumer" ? "Apply for VIP Support" : "Apply for Inner Ring"}
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* PHASE 6: PARTNERS (Trust Expansion - Revealed Last) */}
+      <section className="py-16 bg-muted/30 mb-16 md:mb-0">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto">
+            <Badge variant="outline" className="mb-4">
+              <Landmark className="w-3 h-3 mr-1" />
+              Partner Ecosystem
+            </Badge>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4" data-testid="text-partner-ecosystem">
+              Trusted Partners for Your Dubai Journey
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Our vetted network of real estate, business setup, and lifestyle partners 
+              ensures a seamless transition to your new life in Dubai.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              <div className="p-4 rounded-lg bg-background border">
+                <Building2 className="w-6 h-6 text-emerald-500 mx-auto mb-2" />
+                <h3 className="font-semibold text-sm">Real Estate</h3>
+                <p className="text-xs text-muted-foreground">Tranquil living concepts</p>
+              </div>
+              <div className="p-4 rounded-lg bg-background border">
+                <Briefcase className="w-6 h-6 text-blue-500 mx-auto mb-2" />
+                <h3 className="font-semibold text-sm">Business Setup</h3>
+                <p className="text-xs text-muted-foreground">Dubai South BH & more</p>
+              </div>
+              <div className="p-4 rounded-lg bg-background border">
+                <Heart className="w-6 h-6 text-pink-500 mx-auto mb-2" />
+                <h3 className="font-semibold text-sm">Lifestyle & Services</h3>
+                <p className="text-xs text-muted-foreground">Premium amenities</p>
+              </div>
+            </div>
+            <Link href="/partners">
+              <Button size="lg" variant="outline" data-testid="button-explore-partners">
+                <ArrowRight className="w-4 h-4 mr-2" />
+                Explore Partner Ecosystem
               </Button>
             </Link>
           </div>

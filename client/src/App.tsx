@@ -70,6 +70,7 @@ import PlanetHeroManual from "@/pages/planet-hero-manual";
 // Relocate Membership Portal
 import Relocate from "@/pages/relocate";
 import RelocateCommunity from "@/pages/relocate-community";
+import HomeService from "@/pages/home-service";
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -151,6 +152,9 @@ function Router() {
         {/* Relocate Membership Portal */}
         <Route path="/relocate" component={Relocate} />
         <Route path="/relocate-community" component={RelocateCommunity} />
+
+        {/* Home Service - Unified AquaCafe + Trade-in */}
+        <Route path="/home-service" component={HomeService} />
 
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />

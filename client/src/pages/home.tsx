@@ -1,21 +1,16 @@
 import { useState, useEffect } from "react";
 import { AIInteractiveHero } from "@/components/ai-interactive-hero";
 import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
-import { IPhone17Launch } from "@/components/iphone17-launch";
-import { InstantImpactUnlocks } from "@/components/instant-impact-unlocks";
-import { LeaderboardWidget } from "@/components/leaderboard-widget";
-import { ImpactStats } from "@/components/impact-stats";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { FoundersSection } from "@/components/founders-section";
-import { LiveActivityFeed } from "@/components/live-activity-feed";
-import { PlanetHeroesRewards } from "@/components/planet-heroes-rewards";
-import { MeetDeliInteractive } from "@/components/meet-deli-interactive";
 import { TradeInBanner } from "@/components/trade-in-banner";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import { TrustElements } from "@/components/trust-elements";
 import { RewardComparison } from "@/components/reward-comparison";
 import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
 import { SEOMeta } from "@/components/seo-meta";
+import { HomeServiceSection } from "@/components/home-service-section";
+import { LeaderboardSocialProof } from "@/components/leaderboard-social-proof";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gavel, ArrowRight, Plane, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -286,19 +281,25 @@ export default function Home() {
         </div>
       )}
 
-      {/* AI Interactive Hero Section - New modular hero at the top */}
+      {/* PHASE 1: PLAY (Attraction) - AI Interactive Hero Section */}
       <AIInteractiveHero />
 
-      {/* Enhanced Hero Challenge Landing with Planet Points Challenge - Now includes How It Works flow */}
+      {/* PHASE 2: EARN (Participation) - Planet Points Challenge & Rewards */}
       <HeroChallengeLanding />
 
-      {/* Reward Comparison Section - Unified DXBs */}
+      {/* Reward Comparison Section - Unified DXBs (Part of Earn) */}
       <RewardComparison />
 
-      {/* Trade-In Banner - Prominent CTA for trade-ins */}
+      {/* Trade-In Banner - Prominent CTA for trade-ins (Part of Earn) */}
       <div className="py-8 px-4">
         <TradeInBanner />
       </div>
+
+      {/* PHASE 3: LEADERBOARD (Belonging) - Social Proof Section */}
+      <LeaderboardSocialProof />
+
+      {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
+      <HomeServiceSection />
 
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />
@@ -309,7 +310,7 @@ export default function Home() {
       {/* Trust Elements Section */}
       <TrustElements />
 
-      {/* Relocation Convergence Section - Link shopping journey to Dubai living */}
+      {/* PHASE 5: RELOCATE (Monetization) - Conversion Bridge */}
       <section className="py-16 px-4 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-blue-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
@@ -323,16 +324,29 @@ export default function Home() {
             Join families, founders, and global citizens who discovered that conscious consumption 
             was just the beginning of their journey to the UAE.
           </p>
-          <Link href="/relocate">
-            <Button 
-              size="lg" 
-              data-testid="button-discover-relocate"
-            >
-              <Plane className="w-4 h-4 mr-2" />
-              Discover Why
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/relocate">
+              <Button 
+                size="lg" 
+                data-testid="button-discover-relocate"
+              >
+                <Plane className="w-4 h-4 mr-2" />
+                Book a Private Relocation Conversation
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+            <Link href="/community">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-white/30 text-white backdrop-blur-sm bg-white/10"
+                data-testid="button-community-connect"
+              >
+                <Users className="w-4 h-4 mr-2" />
+                Stay Connected with the Community
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
