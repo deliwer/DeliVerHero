@@ -67,13 +67,12 @@ export function AIInteractiveHero() {
         {/* Simplified dark overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-black/40"></div>
       </div>
-      
       {/* Main Content */}
       <div className="max-w-5xl mx-auto relative z-10 text-center">
         {/* Main Headlines */}
         <div className="mb-16 sm:mb-20">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-            <span className="text-white drop-shadow-2xl">Get Paid for Dubai Living</span>
+            <span className="text-white drop-shadow-2xl">Get Paid for Living</span>
           </h1>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 leading-tight">
             <span className="relative inline-block">
