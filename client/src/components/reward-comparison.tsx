@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Coins, CheckCircle, Star, Sparkles, Gift, TrendingUp, Users, Heart } from "lucide-react";
 import { Link } from "wouter";
-import lifestyleRewardsImage from "@assets/stock_images/people_electronics_r_a39cc14b.jpg";
+import lifestyleRewardsImage from "@assets/Dubai_Creek_1765884931780.jpg";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 
 export function RewardComparison() {
@@ -23,7 +23,7 @@ export function RewardComparison() {
             </h2>
             
             <p className="text-gray-300 text-lg mb-6">
-              <strong>DeliWer Carbon Tokens (DXBs)</strong> are your universal reward currency. Earn them from every iPhone trade-in and redeem across products, water delivery, dining experiences, and exclusive lifestyle perks.
+              <strong>Dubai Carbon Tokens (DXBs)</strong> are your universal reward currency. Earn them from every iPhone trade-in and redeem across products, water delivery, dining experiences, and exclusive lifestyle perks.
             </p>
 
             <div className="space-y-3 mb-6">
@@ -32,7 +32,7 @@ export function RewardComparison() {
                   <CheckCircle className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold">1 PIC = <DirhamSymbol size={14} className="mx-0.5" />0.10 value</h3>
+                  <h3 className="text-white font-bold">1 DXB = <DirhamSymbol size={14} className="mx-0.5" />0.10 value</h3>
                   <p className="text-gray-400 text-sm">Simple, transparent redemption across all rewards</p>
                 </div>
               </div>
@@ -53,7 +53,7 @@ export function RewardComparison() {
                 </div>
                 <div>
                   <h3 className="text-white font-bold">Never expire</h3>
-                  <p className="text-gray-400 text-sm">Your PICs stay active forever with exclusive Planet Hero perks</p>
+                  <p className="text-gray-400 text-sm">Your DXBs stay active forever with exclusive Planet Hero perks</p>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@ export function RewardComparison() {
                 data-testid="button-start-trade-in"
               >
                 <Coins className="w-5 h-5 mr-2" />
-                Start Earning PICs
+                Start Earning DXBs
               </Button>
             </Link>
           </div>
@@ -76,7 +76,7 @@ export function RewardComparison() {
             <div className="relative rounded-3xl overflow-hidden border-2 border-emerald-500/30">
               <img 
                 src={lifestyleRewardsImage} 
-                alt="Happy people enjoying sustainable lifestyle rewards with PICs" 
+                alt="Dubai Creek skyline representing sustainable urban living with DXBs" 
                 className="w-full h-full object-cover"
                 data-testid="img-lifestyle-rewards"
               />
@@ -86,16 +86,16 @@ export function RewardComparison() {
                   Real Impact, Real Rewards
                 </Badge>
                 <p className="text-white text-sm font-medium">
-                  Join thousands earning PICs through sustainable iPhone trade-ins
+                  Join thousands earning DXBs through sustainable iPhone trade-ins
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* PICs Value Breakdown */}
+        {/* DXBs Value Breakdown */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border-emerald-500/40" data-testid="card-pics-value">
+          <Card className="bg-gradient-to-br from-emerald-900/30 to-emerald-800/20 border-emerald-500/40" data-testid="card-dxbs-value">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-emerald-500 to-green-500 flex items-center justify-center">
@@ -106,7 +106,7 @@ export function RewardComparison() {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-300">iPhone 14 Pro</span>
-                  <span className="text-emerald-400 font-bold">22,000 PICs</span>
+                  <span className="text-emerald-400 font-bold">22,000 DXBs</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-400">= Cash value</span>
@@ -116,13 +116,13 @@ export function RewardComparison() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 border-blue-500/40" data-testid="card-pics-usage">
+          <Card className="bg-gradient-to-br from-blue-900/30 to-blue-800/20 border-blue-500/40" data-testid="card-dxbs-usage">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
                   <Heart className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white">Use Your PICs</h3>
+                <h3 className="text-xl font-bold text-white">Use Your DXBs</h3>
               </div>
               <div className="space-y-1 text-sm">
                 <div className="flex items-center gap-2">
@@ -145,7 +145,7 @@ export function RewardComparison() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 border-purple-500/40" data-testid="card-pics-benefits">
+          <Card className="bg-gradient-to-br from-purple-900/30 to-purple-800/20 border-purple-500/40" data-testid="card-dxbs-benefits">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
@@ -156,7 +156,7 @@ export function RewardComparison() {
               <div className="space-y-1 text-sm">
                 <div className="flex items-center gap-2">
                   <Star className="w-3 h-3 text-purple-400" />
-                  <span className="text-gray-300">2X PICs multiplier</span>
+                  <span className="text-gray-300">2X DXBs multiplier</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-3 h-3 text-purple-400" />
@@ -176,7 +176,7 @@ export function RewardComparison() {
         </div>
 
         {/* Impact Tracking Info */}
-        <Card className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border-emerald-500/40" data-testid="info-pic">
+        <Card className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border-emerald-500/40" data-testid="info-dxb">
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
@@ -187,15 +187,15 @@ export function RewardComparison() {
                 <div className="space-y-2 text-gray-300">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0 text-emerald-400" />
-                    <p className="text-sm"><strong>What PICs measure:</strong> Every trade-in generates PICs that track your CO₂ and water offset contributions to sustainability goals</p>
+                    <p className="text-sm"><strong>What DXBs measure:</strong> Every trade-in generates DXBs that track your CO₂ and water offset contributions to sustainability goals</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0 text-emerald-400" />
-                    <p className="text-sm"><strong>How you earn:</strong> Automatically awarded PICs with every iPhone trade-in - the better the device condition, the more PICs you earn</p>
+                    <p className="text-sm"><strong>How you earn:</strong> Automatically awarded DXBs with every iPhone trade-in - the better the device condition, the more DXBs you earn</p>
                   </div>
                   <div className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0 text-emerald-400" />
-                    <p className="text-sm"><strong>Why it matters:</strong> Share your PIC balance with employers for CSR reporting, unlock sustainability tiers, and maximize impact through the circular economy</p>
+                    <p className="text-sm"><strong>Why it matters:</strong> Share your DXB balance with employers for CSR reporting, unlock sustainability tiers, and maximize impact through the circular economy</p>
                   </div>
                 </div>
               </div>
@@ -204,10 +204,10 @@ export function RewardComparison() {
         </Card>
 
         <div className="mt-10 text-center bg-gradient-to-r from-emerald-900/20 to-blue-900/20 rounded-2xl p-6 border border-emerald-500/30">
-          <h3 className="text-xl font-bold text-white mb-3">💡 Maximize Your PICs Value</h3>
+          <h3 className="text-xl font-bold text-white mb-3">Maximize Your DXBs Value</h3>
           <p className="text-gray-300 max-w-3xl mx-auto">
-            With a 10:1 ratio (1 PIC = <DirhamSymbol size={14} className="mx-0.5" />0.10), every iPhone trade-in generates significant value. 
-            Use your PICs for premium products, restaurant rewards, and water delivery while contributing to Dubai's sustainability goals!
+            With a 10:1 ratio (1 DXB = <DirhamSymbol size={14} className="mx-0.5" />0.10), every iPhone trade-in generates significant value. 
+            Use your DXBs for premium products, restaurant rewards, and water delivery while contributing to Dubai's sustainability goals!
           </p>
         </div>
 
