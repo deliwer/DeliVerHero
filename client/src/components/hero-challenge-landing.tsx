@@ -854,9 +854,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
               aria-label="Toggle Become a Member section"
               data-testid="toggle-membership-offer"
             >
-              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                Join FREE + Bonus Meals
-              </span>
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Join FREE + Welcome Bonus</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-amber-400" />
               ) : (
