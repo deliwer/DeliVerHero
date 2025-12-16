@@ -14,6 +14,28 @@ New Dubai-based relocation and investment gateway connecting global founders, in
 
 ## Recent Changes (December 2025)
 
+### Customer Journey Streamlining & Conversion Hardening (December 16, 2025)
+- **Navigation Restructuring**:
+  - Removed AquaCafe and Trade-in from main menu
+  - Added Home Service (sparkle icon), Housing (building icon), Relocate (globe icon)
+  - Consistent desktop/mobile treatment for new menu items
+- **New Housing Page** (`/housing`):
+  - Rent, Buy, Invest cards with icons
+  - Hero CTA "Discuss Housing Options" routes to /relocate
+  - Advisory-first approach with no payment prompts
+- **Home Service Page Enhanced**:
+  - "Book a Free Expert Consultation" primary CTA
+  - "Speak to an Advisor" secondary CTA
+  - Both CTAs route to /relocate booking flow
+- **Homepage Hero Updated**:
+  - Primary CTA "Get Home Service" routes to /home-service
+  - Max 3-step path to booking from any entry point
+- **Delayed Context Popup**:
+  - 45-second delay after page load
+  - Once per session (sessionStorage gated)
+  - "Speak to an Advisor" CTA routes to /relocate
+- **Design Pattern**: Advisory-first conversion (no payment modals, all CTAs lead to consultation booking)
+
 ### Production Launch Flow Optimization (December 16, 2025)
 - **Journey Sequence**: Implemented Play → Earn → Leaderboard → Home Service → Relocate → Partners flow
 - **New Components Added**:
