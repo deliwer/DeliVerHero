@@ -73,7 +73,7 @@ export function AIInteractiveHero() {
         {/* Main Headlines */}
         <div className="mb-16 sm:mb-20">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-            <span className="text-white drop-shadow-2xl">Get Paid for Shopping</span>
+            <span className="text-white drop-shadow-2xl">Get Paid for Dubai Living</span>
           </h1>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-10 leading-tight">
             <span className="relative inline-block">
@@ -84,16 +84,11 @@ export function AIInteractiveHero() {
                       filter: 'contrast(1.3) brightness(1.4)',
                       WebkitTextStroke: '1px rgba(255, 255, 255, 0.3)'
                     }}>
-                From iPhones to Wellness
+                Shop Smart: from iPhones to Wellness
               </span>
             </span>
           </h2>
-          <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold max-w-4xl mx-auto leading-relaxed drop-shadow-2xl">Premium Quality. Below the Market. Planet Impact</p>
-          
-          {/* Trust micro-copy */}
-          <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto" data-testid="text-trust-microcopy">
-            Trusted by families and founders from over 200 nationalities living in Dubai.
-          </p>
+          <p className="text-2xl sm:text-3xl lg:text-4xl text-white font-semibold max-w-4xl mx-auto leading-relaxed drop-shadow-2xl">Many who start here eventually call Dubai home.</p>
         </div>
 
         {/* Simplified CTA */}
