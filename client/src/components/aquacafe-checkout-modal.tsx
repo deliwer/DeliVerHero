@@ -256,7 +256,7 @@ export function AquaCafeCheckoutModal({ isOpen, onClose, product }: CheckoutModa
     const picsAwarded = Math.floor(product.price);
     toast({
       title: "Payment Successful!",
-      description: `Thank you for your order! You earned ${picsAwarded} Planet Impact Credits (PICs). We'll contact you shortly for installation.`,
+      description: `Thank you for your order! You earned ${picsAwarded} Dubai Carbon Tokens (DXBs). We'll contact you shortly for installation.`,
     });
     onClose();
     setStep('details');

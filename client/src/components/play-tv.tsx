@@ -225,7 +225,7 @@ export function PlayTV({ className = "" }: PlayTVProps) {
                         <div className="flex items-center gap-4 text-sm">
                           <span className="text-emerald-400 flex items-center gap-1">
                             <Sparkles className="w-4 h-4" />
-                            2,450 PICs earned
+                            2,450 DXBs earned
                           </span>
                           <span className="text-gray-500">2 hours ago</span>
                         </div>
@@ -251,7 +251,7 @@ export function PlayTV({ className = "" }: PlayTVProps) {
                         <div className="flex items-center gap-4 text-sm">
                           <span className="text-cyan-400 flex items-center gap-1">
                             <Sparkles className="w-4 h-4" />
-                            1,800 PICs earned
+                            1,800 DXBs earned
                           </span>
                           <span className="text-gray-500">5 hours ago</span>
                         </div>

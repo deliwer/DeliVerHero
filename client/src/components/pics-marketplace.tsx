@@ -14,21 +14,21 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-interface PICTier {
+interface DXBTier {
   id: string;
   amountUSD: number;
-  pics: number;
+  dxbs: number;
   label: string;
   color: string;
   popular?: boolean;
 }
 
-const PIC_TIERS: PICTier[] = [
-  { id: "tier-20", amountUSD: 20, pics: 20, label: "Starter", color: "from-blue-500 to-cyan-500" },
-  { id: "tier-50", amountUSD: 50, pics: 50, label: "Supporter", color: "from-emerald-500 to-teal-500" },
-  { id: "tier-100", amountUSD: 100, pics: 100, label: "Champion", color: "from-amber-500 to-orange-500", popular: true },
-  { id: "tier-250", amountUSD: 250, pics: 250, label: "Hero", color: "from-purple-500 to-pink-500" },
-  { id: "tier-500", amountUSD: 500, pics: 500, label: "Legend", color: "from-red-500 to-rose-500" }
+const DXB_TIERS: DXBTier[] = [
+  { id: "tier-20", amountUSD: 20, dxbs: 20, label: "Starter", color: "from-blue-500 to-cyan-500" },
+  { id: "tier-50", amountUSD: 50, dxbs: 50, label: "Supporter", color: "from-emerald-500 to-teal-500" },
+  { id: "tier-100", amountUSD: 100, dxbs: 100, label: "Champion", color: "from-amber-500 to-orange-500", popular: true },
+  { id: "tier-250", amountUSD: 250, dxbs: 250, label: "Hero", color: "from-purple-500 to-pink-500" },
+  { id: "tier-500", amountUSD: 500, dxbs: 500, label: "Legend", color: "from-red-500 to-rose-500" }
 ];
 
 const contributorFormSchema = z.object({
@@ -45,8 +45,8 @@ interface StarsStats {
   totalContributors: number;
 }
 
-export function PICSMarketplace() {
-  const [selectedTier, setSelectedTier] = useState<PICTier | null>(null);
+export function DXBsMarketplace() {
+  const [selectedTier, setSelectedTier] = useState<DXBTier | null>(null);
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof contributorFormSchema>>({
@@ -59,7 +59,7 @@ export function PICSMarketplace() {
     },
   });
 
-  // Fetch stats (using Stars API, convert to PICs for display)
+  // Fetch stats (using Stars API, convert to DXBs for display)
   const { data: stats } = useQuery<StarsStats>({
     queryKey: ['/api/stars/stats'],
   });
@@ -83,7 +83,7 @@ export function PICSMarketplace() {
 
       toast({
         title: "Purchase Initiated!",
-        description: `Redirecting you to PayPal to complete your $${selectedTier?.amountUSD} USD contribution for ${selectedTier?.pics} PICs...`,
+        description: `Redirecting you to PayPal to complete your $${selectedTier?.amountUSD} USD contribution for ${selectedTier?.dxbs} DXBs...`,
       });
 
       if (data.approvalUrl) {
@@ -99,7 +99,7 @@ export function PICSMarketplace() {
     },
   });
 
-  const handlePurchase = async (tier: PICTier) => {
+  const handlePurchase = async (tier: DXBTier) => {
     const isValid = await form.trigger();
     
     if (!isValid) {
@@ -116,8 +116,8 @@ export function PICSMarketplace() {
 
     const formValues = form.getValues();
     
-    // Convert PICs to Stars for backend (10 Stars = 1 PIC)
-    const starsAmount = tier.pics * 10;
+    // Convert DXBs to Stars for backend (10 Stars = 1 DXB)
+    const starsAmount = tier.dxbs * 10;
     
     purchaseMutation.mutate({
       amountUSD: tier.amountUSD,
@@ -129,8 +129,8 @@ export function PICSMarketplace() {
     });
   };
 
-  // Convert Stars stats to PICs for display
-  const totalPICs = stats ? Math.floor(stats.totalStarsAwarded / 10) : 0;
+  // Convert Stars stats to DXBs for display
+  const totalDXBs = stats ? Math.floor(stats.totalStarsAwarded / 10) : 0;
 
   return (
     <div className="space-y-8">
@@ -142,8 +142,8 @@ export function PICSMarketplace() {
               <Star className="w-6 h-6 text-amber-400" />
             </div>
             <div>
-              <div className="text-2xl font-bold text-emerald-400">{totalPICs.toLocaleString()}</div>
-              <div className="text-sm text-gray-400">PICs Funded</div>
+              <div className="text-2xl font-bold text-emerald-400">{totalDXBs.toLocaleString()}</div>
+              <div className="text-sm text-gray-400">DXBs Funded</div>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -158,9 +158,9 @@ export function PICSMarketplace() {
         </div>
       )}
 
-      {/* PIC Purchase Tiers */}
+      {/* DXB Purchase Tiers */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {PIC_TIERS.map((tier) => (
+        {DXB_TIERS.map((tier) => (
           <Card
             key={tier.id}
             className={`relative overflow-hidden transition-all duration-300 bg-slate-800/50 border-slate-700 ${
@@ -184,8 +184,8 @@ export function PICSMarketplace() {
             <CardContent className="p-4 pt-0">
               <div className="text-center mb-4">
                 <div className="text-3xl font-bold text-emerald-400 mb-1">${tier.amountUSD}</div>
-                <div className="text-sm text-gray-300">{tier.pics} PICs</div>
-                <div className="text-xs text-gray-500 mt-1">($1 = 1 PIC)</div>
+                <div className="text-sm text-gray-300">{tier.dxbs} DXBs</div>
+                <div className="text-xs text-gray-500 mt-1">($1 = 1 DXB)</div>
               </div>
 
               <Button

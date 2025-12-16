@@ -104,11 +104,11 @@ export default function Earn() {
           <h2 className="text-xl sm:text-2xl md:text-3xl mb-6 font-bold">
             <span className="text-emerald-600 drop-shadow-lg">Water Filtration</span> • 
             <span className="text-blue-600 drop-shadow-lg">iPhone Trade-ins</span> • 
-            <span className="text-amber-600 drop-shadow-lg">Earn PICs</span>
+            <span className="text-amber-600 drop-shadow-lg">Earn DXBs</span>
           </h2>
           
           <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Join AquaCafe Loyalty, earn Planet Impact Credits (PICs), complete missions, and redeem rewards. Every action funds Dubai's sustainability initiatives.
+            Join AquaCafe Loyalty, earn Dubai Carbon Tokens (DXBs), complete missions, and redeem rewards. Every action funds Dubai's sustainability initiatives.
           </p>
         </div>
       </section>
@@ -128,7 +128,7 @@ export default function Earn() {
                 <span className="block text-emerald-400 mt-2">AED 99 Starter Kit</span>
               </h2>
               <p className="text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-                The gateway to Dubai's most innovative sustainability platform. Join AquaCafe Loyalty and unlock iPhone trade-ins, water filtration commerce, and continuous PIC rewards.
+                The gateway to Dubai's most innovative sustainability platform. Join AquaCafe Loyalty and unlock iPhone trade-ins, water filtration commerce, and continuous DXB rewards.
               </p>
               
               {/* Lifetime Value Badge */}
@@ -211,7 +211,7 @@ export default function Earn() {
                     </div>
                     <div className="flex items-center gap-2 text-cyan-400">
                       <CheckCircle className="w-5 h-5" />
-                      <span>1000 welcome PICs</span>
+                      <span>1000 welcome DXBs</span>
                     </div>
                   </div>
                 </div>
@@ -227,7 +227,7 @@ export default function Earn() {
                   </div>
                   <h4 className="text-3xl font-bold text-white mb-4">Earn</h4>
                   <p className="text-gray-300 text-lg mb-6">
-                    Collect PICs through iPhone trade-ins, referrals, purchases
+                    Collect DXBs through iPhone trade-ins, referrals, purchases
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-emerald-400">
@@ -251,7 +251,7 @@ export default function Earn() {
                 </div>
                 <h4 className="text-3xl font-bold text-white mb-4">Redeem</h4>
                 <p className="text-gray-300 text-lg mb-6">
-                  Use PICs for vouchers, iPhones, water systems & rewards
+                  Use DXBs for vouchers, iPhones, water systems & rewards
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-amber-400">
@@ -284,7 +284,7 @@ export default function Earn() {
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              Following Dubai Municipality's The Circle initiative for responsible e-waste collection, trade your old iPhone and earn up to <strong className="text-emerald-400">5,000 PICs</strong> plus instant credit toward water filtration systems.
+              Following Dubai Municipality's The Circle initiative for responsible e-waste collection, trade your old iPhone and earn up to <strong className="text-emerald-400">5,000 DXBs</strong> plus instant credit toward water filtration systems.
             </p>
           </div>
 
@@ -297,7 +297,7 @@ export default function Earn() {
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-gray-300 text-lg mb-6">
-                  Select your iPhone model and condition to see instant valuation + PIC rewards
+                  Select your iPhone model and condition to see instant valuation + DXB rewards
                 </p>
                 <Link 
                   href="/exchange"
@@ -338,7 +338,7 @@ export default function Earn() {
             <Card className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-2 border-purple-500/50 hover-elevate" data-testid="card-reward-multipliers">
               <CardHeader className="text-center">
                 <Zap className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                <CardTitle className="text-white text-2xl">PIC Multipliers</CardTitle>
+                <CardTitle className="text-white text-2xl">DXB Multipliers</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-gray-300 mb-4">
@@ -346,13 +346,13 @@ export default function Earn() {
                 </p>
                 <div className="space-y-3">
                   <Badge className="bg-blue-500/30 text-blue-300 px-4 py-2 text-lg">
-                    Level 2: 2X PICs
+                    Level 2: 2X DXBs
                   </Badge>
                   <Badge className="bg-purple-500/30 text-purple-300 px-4 py-2 text-lg">
-                    Level 3: 2.5X PICs
+                    Level 3: 2.5X DXBs
                   </Badge>
                   <Badge className="bg-amber-500/30 text-amber-300 px-4 py-2 text-lg">
-                    Level 4: 3X PICs
+                    Level 4: 3X DXBs
                   </Badge>
                 </div>
               </CardContent>
@@ -391,14 +391,14 @@ export default function Earn() {
                   <span className="text-3xl font-bold text-purple-400">4</span>
                 </div>
                 <h4 className="font-bold text-white mb-2">Get Rewarded!</h4>
-                <p className="text-gray-400 text-sm">Instant PICs + credit</p>
+                <p className="text-gray-400 text-sm">Instant DXBs + credit</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ⭐ Stars & PIC Monetization - Fund Sustainability */}
+      {/* ⭐ Stars & DXB Monetization - Fund Sustainability */}
       <section className="w-full py-16 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white" data-testid="stars-pic-monetization">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
@@ -407,18 +407,18 @@ export default function Earn() {
               <span className="font-bold text-sm">MONETIZE SUSTAINABILITY</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Support Global Sustainability with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Stars & PICs</span>
+              Support Global Sustainability with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Stars & DXBs</span>
             </h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
-              Purchase Planet Impact Credits directly to support clean water access, e-waste recycling, and environmental awareness campaigns. 
-              <strong className="text-emerald-400"> 100 PICs = $10 value</strong>
+              Purchase Dubai Carbon Tokens directly to support clean water access, e-waste recycling, and environmental awareness campaigns. 
+              <strong className="text-emerald-400"> 100 DXBs = $10 value</strong>
             </p>
           </div>
           <StarsSponsorshipSection />
         </div>
       </section>
 
-      {/* Planet Impact Credits (PICs) - Unified Rewards System */}
+      {/* Dubai Carbon Tokens (DXBs) - Unified Rewards System */}
       <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900" data-testid="pics-rewards-section">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
@@ -427,10 +427,10 @@ export default function Earn() {
               <span className="font-bold text-sm">UNIFIED REWARDS SYSTEM</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Earn <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Planet Impact Credits (PICs)</span>
+              Earn <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Dubai Carbon Tokens (DXBs)</span>
             </h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
-              One simple reward system that tracks your environmental impact and gives you real value. Use PICs for products, water delivery, dining, and more.
+              One simple reward system that tracks your environmental impact and gives you real value. Use DXBs for products, water delivery, dining, and more.
             </p>
           </div>
 
@@ -442,27 +442,27 @@ export default function Earn() {
                     <Star className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-4">What are PICs?</h3>
+                    <h3 className="text-2xl font-bold text-white mb-4">What are DXBs?</h3>
                     <div className="space-y-3 text-gray-300">
                       <div className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
                         <div>
                           <p className="font-semibold text-white">Universal Currency</p>
-                          <p className="text-sm">Use PICs across our entire ecosystem - water delivery, premium products, restaurant rewards, and sustainability initiatives</p>
+                          <p className="text-sm">Use DXBs across our entire ecosystem - water delivery, premium products, restaurant rewards, and sustainability initiatives</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
                         <div>
                           <p className="font-semibold text-white">Real Value</p>
-                          <p className="text-sm"><strong className="text-emerald-400">100 PICs = $10 value</strong> - transparent and consistent pricing you can trust</p>
+                          <p className="text-sm"><strong className="text-emerald-400">100 DXBs = $10 value</strong> - transparent and consistent pricing you can trust</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
                         <div>
                           <p className="font-semibold text-white">Impact Tracking</p>
-                          <p className="text-sm">Every PIC earned represents real environmental impact - CO₂ reduction, water saved, and e-waste recycled through your actions</p>
+                          <p className="text-sm">Every DXB earned represents real environmental impact - CO₂ reduction, water saved, and e-waste recycled through your actions</p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
@@ -485,12 +485,12 @@ export default function Earn() {
                     <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                       <Smartphone className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="text-xl font-bold text-white">Earn PICs</h4>
+                    <h4 className="text-xl font-bold text-white">Earn DXBs</h4>
                   </div>
                   <ul className="space-y-2 text-gray-300 text-sm">
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
-                      <span>iPhone trade-ins (up to 22,000 PICs)</span>
+                      <span>iPhone trade-ins (up to 22,000 DXBs)</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" />
@@ -514,7 +514,7 @@ export default function Earn() {
                     <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
                       <Gift className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="text-xl font-bold text-white">Use PICs</h4>
+                    <h4 className="text-xl font-bold text-white">Use DXBs</h4>
                   </div>
                   <ul className="space-y-2 text-gray-300 text-sm">
                     <li className="flex items-start gap-2">
@@ -544,7 +544,7 @@ export default function Earn() {
                 Simple, Transparent, Impactful
               </h3>
               <p className="text-gray-300 max-w-3xl mx-auto">
-                No confusing point systems or multiple currencies. Just PICs - one unified reward that combines real value with environmental impact tracking.
+                No confusing point systems or multiple currencies. Just DXBs - one unified reward that combines real value with environmental impact tracking.
               </p>
             </div>
           </div>
@@ -639,15 +639,15 @@ export default function Earn() {
         </div>
       </section>
 
-      {/* Missions Hub - Activities to Earn PICs */}
+      {/* Missions Hub - Activities to Earn DXBs */}
       <section className="w-full py-12 px-4 bg-gradient-to-br from-blue-50 to-emerald-50" data-testid="missions-hub">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              Earn More PICs - Missions Hub
+              Earn More DXBs - Missions Hub
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Complete missions to earn Planet Impact Credits. Every action contributes to Dubai's circular economy and funds global sustainability initiatives.
+              Complete missions to earn Dubai Carbon Tokens. Every action contributes to Dubai's circular economy and funds global sustainability initiatives.
             </p>
           </div>
 
@@ -661,11 +661,11 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">iPhone Trade-in</h3>
-                    <p className="text-sm text-blue-600 font-bold">Up to 5,000 PICs</p>
+                    <p className="text-sm text-blue-600 font-bold">Up to 5,000 DXBs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Trade your old iPhone and get instant PICs plus credit toward AquaCafe water systems
+                  Trade your old iPhone and get instant DXBs plus credit toward AquaCafe water systems
                 </p>
                 <Link 
                   href="/exchange"
@@ -686,11 +686,11 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">AquaCafe Membership</h3>
-                    <p className="text-sm text-emerald-600 font-bold">1,000 PICs</p>
+                    <p className="text-sm text-emerald-600 font-bold">1,000 DXBs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Get the AED 99 Starter Kit and become a Planet Hero Level 2 member with instant PICs
+                  Get the AED 99 Starter Kit and become a Planet Hero Level 2 member with instant DXBs
                 </p>
                 <Button 
                   onClick={handleOrderStarterKit}
@@ -712,11 +712,11 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Referral Bonus</h3>
-                    <p className="text-sm text-amber-600 font-bold">500 PICs + AED 100</p>
+                    <p className="text-sm text-amber-600 font-bold">500 DXBs + AED 100</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Refer a friend to AquaCafe and both get AED 100 Chill & Grill voucher + 500 PICs
+                  Refer a friend to AquaCafe and both get AED 100 Chill & Grill voucher + 500 DXBs
                 </p>
                 <Button 
                   onClick={() => {
@@ -742,17 +742,17 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Daily Check-in</h3>
-                    <p className="text-sm text-purple-600 font-bold">50 PICs/Day</p>
+                    <p className="text-sm text-purple-600 font-bold">50 DXBs/Day</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Log in daily to collect 50 PICs and maintain your streak
+                  Log in daily to collect 50 DXBs and maintain your streak
                 </p>
                 <Button 
                   onClick={() => {
                     toast({
                       title: "Daily Reward Claimed!",
-                      description: "+50 PICs earned! Come back tomorrow for more!"
+                      description: "+50 DXBs earned! Come back tomorrow for more!"
                     });
                   }}
                   className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold"
@@ -772,7 +772,7 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Plastic-Free Week</h3>
-                    <p className="text-sm text-green-600 font-bold">1,000 PICs</p>
+                    <p className="text-sm text-green-600 font-bold">1,000 DXBs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
@@ -797,7 +797,7 @@ export default function Earn() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">Community Event</h3>
-                    <p className="text-sm text-pink-600 font-bold">750 PICs</p>
+                    <p className="text-sm text-pink-600 font-bold">750 DXBs</p>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
@@ -856,7 +856,7 @@ export default function Earn() {
             </div>
             
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Earn PICs Through Our Partnership Network
+              Earn DXBs Through Our Partnership Network
             </h2>
             
             <p className="text-lg sm:text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
@@ -884,26 +884,26 @@ export default function Earn() {
                   />
                   <div>
                     <h3 className="text-lg font-bold text-gray-800">AquaCafe Rewards</h3>
-                    <p className="text-cyan-600 text-sm font-semibold">Earn PICs with every purchase</p>
+                    <p className="text-cyan-600 text-sm font-semibold">Earn DXBs with every purchase</p>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm text-gray-700">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>Starter Kit: 1,000 PICs</span>
+                    <span>Starter Kit: 1,000 DXBs</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>Filter refills: 200 PICs</span>
+                    <span>Filter refills: 200 DXBs</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>System upgrade: 500 PICs</span>
+                    <span>System upgrade: 500 DXBs</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-3 h-3 text-emerald-500" />
-                    <span>Referrals: 500 PICs each</span>
+                    <span>Referrals: 500 DXBs each</span>
                   </div>
                 </div>
               </CardContent>
@@ -919,7 +919,7 @@ export default function Earn() {
                   />
                   <div>
                     <h3 className="text-lg font-bold text-gray-800">Baker's Kitchen Perks</h3>
-                    <p className="text-amber-600 text-sm font-semibold">Redeem PICs for dining vouchers</p>
+                    <p className="text-amber-600 text-sm font-semibold">Redeem DXBs for dining vouchers</p>
                   </div>
                 </div>
                 

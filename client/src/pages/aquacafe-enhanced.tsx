@@ -63,7 +63,7 @@ export default function AquaCafeEnhanced() {
         "Premium 3-stage filtration system",
         "12-month filter supply included",
         "Instant Planet Hero Level 2 status",
-        "1000 starter PICs + 2X multiplier",
+        "1000 starter DXBs + 2X multiplier",
         "24/7 priority support",
         "Smart monitoring app",
         "Exclusive Hero member badge",
@@ -89,7 +89,7 @@ export default function AquaCafeEnhanced() {
         "Advanced 5-stage filtration",
         "18-month filter supply",
         "Planet Hero Level 3 status",
-        "2500 starter PICs + 2X multiplier",
+        "2500 starter DXBs + 2X multiplier",
         "24/7 priority phone support",
         "Smart water quality monitoring",
         "Exclusive Hero premium badge",
@@ -114,7 +114,7 @@ export default function AquaCafeEnhanced() {
         "Ultimate 7-stage whole-home system",
         "36-month filter supply",
         "Planet Hero Level 4 Elite status",
-        "5000 starter PICs + 3X multiplier",
+        "5000 starter DXBs + 3X multiplier",
         "24/7 VIP concierge support",
         "AI-powered smart home integration",
         "Elite Hero platinum badges",
@@ -172,18 +172,18 @@ export default function AquaCafeEnhanced() {
         <title>Buy Water Filter in Dubai | AquaCafe Lifestyle Marketplace</title>
         <meta 
           name="description" 
-          content="Premium water filtration systems for healthy living in Dubai. Order 5-stage purifiers with installation, earn Planet Impact Credits (PICs), and join the sustainability movement. Free installation across Dubai." 
+          content="Premium water filtration systems for healthy living in Dubai. Order 5-stage purifiers with installation, earn Dubai Carbon Tokens (DXBs), and join the sustainability movement. Free installation across Dubai." 
         />
         <meta name="keywords" content="water filter Dubai, buy water purifier UAE, AquaCafe water filter Dubai, water filtration Dubai, home water filter Dubai, healthy living, wellness Dubai" />
         
         <meta property="og:title" content="Buy Water Filter in Dubai | AquaCafe Lifestyle Marketplace" />
-        <meta property="og:description" content="Premium water filtration for healthy living. Order with free installation, earn PICs, support sustainability." />
+        <meta property="og:description" content="Premium water filtration for healthy living. Order with free installation, earn DXBs, support sustainability." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://deliwer.com/aquacafe" />
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Buy Water Filter in Dubai | AquaCafe" />
-        <meta name="twitter:description" content="Premium water filtration systems with free Dubai installation + earn PICs" />
+        <meta name="twitter:description" content="Premium water filtration systems with free Dubai installation + earn DXBs" />
 
         <script type="application/ld+json">
           {JSON.stringify(productJsonLd)}
@@ -211,11 +211,11 @@ export default function AquaCafeEnhanced() {
               Premium Water for<br />Healthy Living in Dubai
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-cyan-50">
-              Transform your home with clean water • Earn Planet Impact Credits • Support sustainability
+              Transform your home with clean water • Earn Dubai Carbon Tokens • Support sustainability
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-6">
               <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
-                <span className="font-bold">✓ Earn up to 5,000 PICs</span>
+                <span className="font-bold">✓ Earn up to 5,000 DXBs</span>
               </div>
               <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
                 <span className="font-bold">✓ Free Installation</span>
@@ -234,7 +234,7 @@ export default function AquaCafeEnhanced() {
               data-testid="button-hero-shop-now"
             >
               <Gift className="w-5 h-5 mr-2" />
-              Shop & Earn PICs Now
+              Shop & Earn DXBs Now
             </Button>
           </div>
         </section>
@@ -345,20 +345,20 @@ export default function AquaCafeEnhanced() {
           </div>
         </section>
 
-        {/* Products Section with PIC Earning */}
+        {/* Products Section with DXB Earning */}
         <section id="products" className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-700 px-6 py-3 rounded-full mb-6 border border-emerald-500/30">
                 <Gift className="w-5 h-5" />
-                <span className="font-bold">EARN PLANET IMPACT CREDITS (PICs)</span>
+                <span className="font-bold">EARN PLANET IMPACT CREDITS (DXBs)</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
                 Choose Your Water Filter & Start Earning
               </h2>
               <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto text-lg">
                 All systems include free professional installation across Dubai, comprehensive warranty, 
-                <strong className="text-emerald-600"> and instant Planet Impact Credits (PICs)</strong> to use toward future purchases or redeem for rewards.
+                <strong className="text-emerald-600"> and instant Dubai Carbon Tokens (DXBs)</strong> to use toward future purchases or redeem for rewards.
               </p>
             </div>
 
@@ -379,11 +379,11 @@ export default function AquaCafeEnhanced() {
                     </div>
                   )}
                   
-                  {/* PIC Earning Badge */}
+                  {/* DXB Earning Badge */}
                   <div className="absolute top-4 left-4 z-10">
                     <Badge className="bg-gradient-to-r from-emerald-600 to-green-600 text-white px-4 py-2 text-sm font-bold shadow-lg">
                       <Gift className="w-4 h-4 mr-1" />
-                      Earn {product.picsEarned.toLocaleString()} PICs
+                      Earn {product.picsEarned.toLocaleString()} DXBs
                     </Badge>
                   </div>
                   
@@ -459,7 +459,7 @@ export default function AquaCafeEnhanced() {
                         </span>
                       </div>
                       <p className="text-sm text-green-600 dark:text-green-400 font-semibold">
-                        Save AED {(product.originalPrice - product.price).toFixed(2)} + Earn {product.picsEarned} PICs
+                        Save AED {(product.originalPrice - product.price).toFixed(2)} + Earn {product.picsEarned} DXBs
                       </p>
                     </div>
 
@@ -470,7 +470,7 @@ export default function AquaCafeEnhanced() {
                       data-testid={`button-buy-${product.id}`}
                     >
                       <Gift className="w-5 h-5 mr-2" />
-                      Buy & Earn {product.picsEarned} PICs
+                      Buy & Earn {product.picsEarned} DXBs
                     </Button>
 
                     {/* Rating */}
@@ -487,22 +487,22 @@ export default function AquaCafeEnhanced() {
               ))}
             </div>
 
-            {/* PIC Explainer */}
+            {/* DXB Explainer */}
             <div className="mt-12 bg-gradient-to-r from-emerald-900/20 to-cyan-900/20 rounded-2xl p-8 border-2 border-emerald-500/30">
               <div className="text-center">
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                  What are Planet Impact Credits (PICs)?
+                  What are Dubai Carbon Tokens (DXBs)?
                 </h3>
                 <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-6">
-                  PICs are our sustainability currency. Earn them with every purchase, use them for future orders, 
+                  DXBs are our sustainability currency. Earn them with every purchase, use them for future orders, 
                   or redeem them for rewards like dining vouchers, iPhones, and more. 
-                  <strong className="text-emerald-600"> Every PIC earned supports Dubai's circular economy and environmental initiatives.</strong>
+                  <strong className="text-emerald-600"> Every DXB earned supports Dubai's circular economy and environmental initiatives.</strong>
                 </p>
                 <a 
                   href="/earn" 
                   className="inline-block bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold px-8 py-4 rounded-lg transition-all"
                 >
-                  Learn More About Earning PICs →
+                  Learn More About Earning DXBs →
                 </a>
               </div>
             </div>
@@ -549,7 +549,7 @@ export default function AquaCafeEnhanced() {
                       <Gift className="w-5 h-5 text-emerald-600" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-800">Earn PICs with Purchase</h4>
+                      <h4 className="font-bold text-gray-800">Earn DXBs with Purchase</h4>
                       <p className="text-gray-600">Included with AquaCafe membership</p>
                     </div>
                   </li>
@@ -595,7 +595,7 @@ export default function AquaCafeEnhanced() {
               Join thousands of Dubai families enjoying premium filtered water
             </p>
             <p className="text-lg mb-8 text-cyan-100">
-              <strong>Plus earn Planet Impact Credits (PICs)</strong> with every purchase to support sustainability
+              <strong>Plus earn Dubai Carbon Tokens (DXBs)</strong> with every purchase to support sustainability
             </p>
             <Button 
               size="lg" 
@@ -607,7 +607,7 @@ export default function AquaCafeEnhanced() {
               data-testid="button-final-cta"
             >
               <Gift className="w-5 h-5 mr-2" />
-              Order & Start Earning PICs Now
+              Order & Start Earning DXBs Now
             </Button>
           </div>
         </section>

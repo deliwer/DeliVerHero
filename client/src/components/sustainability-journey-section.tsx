@@ -85,7 +85,7 @@ export function SustainabilityJourneySection() {
       queryClient.invalidateQueries({ queryKey: ['/api/stars/leaderboard'] });
       toast({
         title: "Thank you for your contribution!",
-        description: `You've earned ${selectedTier} Planet Impact Credits!`,
+        description: `You've earned ${selectedTier} Dubai Carbon Tokens!`,
       });
       // Reset both form and selectedTier to default state
       form.reset({
@@ -152,7 +152,7 @@ export function SustainabilityJourneySection() {
                   <Star className="w-6 h-6 text-amber-500" />
                   <div className="text-3xl font-bold text-white">{stats?.totalStarsAwarded?.toLocaleString() ?? 0}</div>
                 </div>
-                <div className="text-sm text-gray-300">Planet Impact Credits Awarded</div>
+                <div className="text-sm text-gray-300">Dubai Carbon Tokens Awarded</div>
               </CardContent>
             </Card>
             <Card className="bg-gradient-to-br from-emerald-500/10 to-green-500/10 border-emerald-500/20">
@@ -325,7 +325,7 @@ export function SustainabilityJourneySection() {
                   Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">Impact Level</span>
                 </h3>
                 <p className="text-gray-300">
-                  Select a contribution tier to earn Planet Impact Credits (PICs) and support global sustainability initiatives
+                  Select a contribution tier to earn Dubai Carbon Tokens (DXBs) and support global sustainability initiatives
                 </p>
               </div>
 

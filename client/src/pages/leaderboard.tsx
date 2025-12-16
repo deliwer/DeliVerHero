@@ -189,7 +189,7 @@ export default function Leaderboard() {
     {
       id: "recycling-hub",
       title: "Electronics Recycling Hub",
-      description: "Trade your old devices for rewards. iPhone trade-ins, laptop recycling, and e-waste collection with instant PIC credits.",
+      description: "Trade your old devices for rewards. iPhone trade-ins, laptop recycling, and e-waste collection with instant DXB credits.",
       time: "Mon-Sat 9:00 AM - 6:00 PM",
       participants: "3,200+ devices recycled monthly",
       icon: Recycle
@@ -197,7 +197,7 @@ export default function Leaderboard() {
     {
       id: "impact-market",
       title: "Impact Commerce Marketplace",
-      description: "Shop sustainable products, water filtration systems, and eco-friendly goods. Every purchase earns Planet Impact Credits.",
+      description: "Shop sustainable products, water filtration systems, and eco-friendly goods. Every purchase earns Dubai Carbon Tokens.",
       time: "Daily 10:00 AM - 9:00 PM",
       participants: "5,600+ shoppers monthly",
       icon: ShoppingCart
@@ -254,7 +254,7 @@ export default function Leaderboard() {
       id: "4",
       user: "Hassan A.",
       avatar: "HA",
-      action: "earned 500 PICs from sustainability tour",
+      action: "earned 500 DXBs from sustainability tour",
       timeAgo: "12 min ago", 
       type: "earn",
       location: "Museum of the Future"
@@ -587,7 +587,7 @@ export default function Leaderboard() {
                       </div>
                       <div className="flex items-center gap-2 text-cyan-400">
                         <CheckCircle className="w-5 h-5" />
-                        <span>1000 welcome PICs</span>
+                        <span>1000 welcome DXBs</span>
                       </div>
                     </div>
                   </div>
@@ -627,7 +627,7 @@ export default function Leaderboard() {
                   </div>
                   <h4 className="text-3xl font-bold text-white mb-4">Impact</h4>
                   <p className="text-gray-300 text-lg mb-6">
-                    Use PICs for rewards while driving Dubai's environmental leadership
+                    Use DXBs for rewards while driving Dubai's environmental leadership
                   </p>
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-amber-400">
@@ -1164,7 +1164,7 @@ export default function Leaderboard() {
                   <div className="bg-slate-800/30 rounded-xl p-6 text-center">
                     <Smartphone className="w-12 h-12 text-purple-400 mx-auto mb-3" />
                     <h3 className="font-bold text-white mb-2">iPhone Trade-in Rewards</h3>
-                    <p className="text-sm text-gray-300">Extra PICs + free pickup</p>
+                    <p className="text-sm text-gray-300">Extra DXBs + free pickup</p>
                   </div>
                   <div className="bg-slate-800/30 rounded-xl p-6 text-center">
                     <Trophy className="w-12 h-12 text-amber-400 mx-auto mb-3" />

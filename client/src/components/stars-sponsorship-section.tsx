@@ -437,7 +437,7 @@ export function StarsSponsorshipSection() {
                     <div className="text-center">
                       <div className="text-sm font-semibold text-foreground mb-1">{tier.label}</div>
                       <div className="text-xl font-bold text-primary">${tier.amountUSD}</div>
-                      <div className="text-xs text-muted-foreground">{tier.stars} PICs</div>
+                      <div className="text-xs text-muted-foreground">{tier.stars} DXBs</div>
                     </div>
                   </button>
                 ))}
@@ -452,7 +452,7 @@ export function StarsSponsorshipSection() {
                     </div>
                     <div>
                       <div className="font-bold text-foreground">{selectedTier.label} Tier</div>
-                      <div className="text-sm text-muted-foreground">${selectedTier.amountUSD} = {selectedTier.stars} Planet Impact Credits</div>
+                      <div className="text-sm text-muted-foreground">${selectedTier.amountUSD} = {selectedTier.stars} Dubai Carbon Tokens</div>
                     </div>
                   </div>
                   <Button
