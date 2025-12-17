@@ -36,10 +36,10 @@ export function Navigation() {
 
   const consumerNavItems = [
     { path: "/play", label: "Play", id: "play", featured: true },
+    { path: "/housing", label: "Eco-Living", id: "housing" },
+    { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/earn", label: "Earn+Rewards", id: "earn" },
     { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
-    { path: "/home-service", label: "Home Service", id: "home-service" },
-    { path: "/housing", label: "Eco-Living", id: "housing" },
     { path: "/relocate", label: "Relocate", id: "relocate" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];

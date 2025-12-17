@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "wouter";
+import { Link, useSearch } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -61,7 +61,22 @@ import coworkingOffice from "@assets/stock_images/modern_office_cowork_bfc0360b.
 
 export default function Relocate() {
   const { toast } = useToast();
+  const searchString = useSearch();
+  const formRef = useRef<HTMLDivElement>(null);
   const [audienceType, setAudienceType] = useState<"consumer" | "business">("consumer");
+  
+  // Parse service query parameter for direct booking flow
+  const serviceParam = new URLSearchParams(searchString).get("service");
+  
+  const getServiceMessage = () => {
+    if (serviceParam === "smart-home") {
+      return "I'm interested in a Smart Home consultation for water filtration and home automation setup.";
+    } else if (serviceParam === "home-service") {
+      return "I'm interested in Home Service consultation including installation and maintenance options.";
+    }
+    return "";
+  };
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,8 +85,18 @@ export default function Relocate() {
     familySize: "",
     businessType: "",
     timeline: "",
-    message: ""
+    message: getServiceMessage()
   });
+  
+  // Auto-scroll to form and pre-fill message when service param is present
+  useEffect(() => {
+    if (serviceParam && formRef.current) {
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 500);
+      setFormData(prev => ({ ...prev, message: getServiceMessage() }));
+    }
+  }, [serviceParam]);
 
   const leadMutation = useMutation({
     mutationFn: async (data: typeof formData & { audienceType: string }) => {
@@ -883,7 +908,7 @@ export default function Relocate() {
         </div>
       </section>
 
-      <section id="lead-form" className="py-20 bg-muted/50">
+      <section id="lead-form" ref={formRef} className="py-20 bg-muted/50">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">

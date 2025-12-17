@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp, Play, Copy, QrCode, Rocket } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp, Play, Copy, QrCode, Rocket, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +32,8 @@ import iphoneTradeInLifestyle from "@assets/stock_images/smartphone_trade-in__bd
 import pizzaBobaComboImage from "@assets/stock_images/pizza_and_boba_tea_d_a375dab3.jpg";
 
 import Dubai_Creek_Apartment from "@assets/Dubai_Creek_Apartment.jpg";
+import smartHomeLivingRoom from "@assets/stock_images/smart_home_living_ro_92fee3d3.jpg";
+import homeServiceTechnician from "@assets/stock_images/professional_home_se_d1e6daec.jpg";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -377,9 +379,10 @@ function StepTwoExchange() {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
-                    src={Dubai_Creek_Apartment} 
-                    alt="Kangen Water K8 Machine" 
+                    src={smartHomeLivingRoom} 
+                    alt="Smart Home Living Room with Modern Technology" 
                     className="w-full h-auto rounded-lg shadow-lg"
+                    data-testid="img-smart-home-banner"
                   />
                 </div>
                 <div className="flex-1 text-center md:text-left">
@@ -401,20 +404,33 @@ function StepTwoExchange() {
             </div>
           </div>
 
-          {/* CTA to View All AquaCafe Products - Always Visible */}
-          <div className="mt-6">
-            <Link href="/aquacafe">
-              <Button
-                size="lg"
-                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-view-aquacafe-products"
-              >
-                <Droplets className="w-6 h-6 flex-shrink-0" />
-                <span>View All Filtration Products</span>
-              </Button>
-            </Link>
-            <p className="text-center text-gray-400 text-sm mt-3">
-              Explore shower filters, RO systems, and more water treatment solutions
+          {/* CTAs - Expert Consultation and Products */}
+          <div className="mt-6 space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+              <Link href="/relocate?service=smart-home" className="flex-1">
+                <Button
+                  size="lg"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-book-smart-home-consultation"
+                >
+                  <Calendar className="w-5 h-5 flex-shrink-0" />
+                  <span>Book Expert Consultation</span>
+                </Button>
+              </Link>
+              <Link href="/aquacafe" className="flex-1">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full flex items-center justify-center gap-3 border-blue-400/50 text-blue-400 hover:bg-blue-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-view-aquacafe-products"
+                >
+                  <Droplets className="w-5 h-5 flex-shrink-0" />
+                  <span>View Products</span>
+                </Button>
+              </Link>
+            </div>
+            <p className="text-center text-gray-400 text-sm">
+              Free consultation with smart home experts - No payment required
             </p>
           </div>
         </div>
@@ -665,10 +681,10 @@ function StepSellIPhone() {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
-                    src={iphoneTradeInLifestyle} 
-                    alt="Trade-in Package: Filter Service + FREE iPhone Upgrade - Trade in your device and get premium water filtration with AquaCafe loyalty benefits" 
+                    src={homeServiceTechnician} 
+                    alt="Professional Home Service Installation - Expert technicians for smart home setup" 
                     className="w-full h-auto rounded-lg shadow-lg"
-                    data-testid="img-iphone-tradein-banner"
+                    data-testid="img-home-service-banner"
                   />
                 </div>
                 <div className="flex-1 text-center md:text-left">
@@ -692,20 +708,33 @@ function StepSellIPhone() {
             </div>
           </div>
 
-          {/* CTA to Sell iPhone - Always Visible Below Banner */}
-          <div className="mt-6">
-            <Link href="/exchange">
-              <Button
-                size="lg"
-                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-sell-iphone-cta"
-              >
-                <Smartphone className="w-6 h-6 flex-shrink-0" />
-                <span>Trade-in & Upgrade Your iPhone</span>
-              </Button>
-            </Link>
-            <p className="text-center text-gray-400 text-sm mt-3">
-              Get instant cash or trade-in value for your old iPhone
+          {/* CTAs - Expert Consultation and Trade-in */}
+          <div className="mt-6 space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+              <Link href="/relocate?service=home-service" className="flex-1">
+                <Button
+                  size="lg"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-book-home-service-consultation"
+                >
+                  <Calendar className="w-5 h-5 flex-shrink-0" />
+                  <span>Book Free Consultation</span>
+                </Button>
+              </Link>
+              <Link href="/exchange" className="flex-1">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full flex items-center justify-center gap-3 border-purple-400/50 text-purple-400 hover:bg-purple-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-sell-iphone-cta"
+                >
+                  <Smartphone className="w-5 h-5 flex-shrink-0" />
+                  <span>Get Trade-in Quote</span>
+                </Button>
+              </Link>
+            </div>
+            <p className="text-center text-gray-400 text-sm">
+              Speak with our home service experts - No payment required to book
             </p>
           </div>
         </div>
@@ -1093,11 +1122,6 @@ export function HeroChallengeLanding() {
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* Step 0: Membership Pre-Step (Collapsed by default) */}
-        <div data-section="step-0" className="mb-16">
-          <MembershipBenefitsSection onJoinMembership={() => setShowHeroRegistration(true)} />
-        </div>
-
         {/* 3-Way Path Selector - Start Your Journey */}
         <div className="flex justify-center my-16">
           <div className="flex flex-col md:flex-row items-center gap-8">
@@ -1201,6 +1225,11 @@ export function HeroChallengeLanding() {
         {/* Step 3: Create Impact (Play & Gamification) */}
         <div data-section="step-3">
           <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
+        </div>
+
+        {/* Loyalty/Membership Section - After 3-Step Flow */}
+        <div data-section="loyalty" className="mt-16">
+          <MembershipBenefitsSection onJoinMembership={() => setShowHeroRegistration(true)} />
         </div>
       </div>
 

@@ -21,66 +21,8 @@ export interface TooltipHint {
 }
 
 // Predefined tooltip hints for the DeliWer platform
+// Note: Home page hints disabled for cleaner UX - tooltips only shown on specific feature pages
 const defaultHints: TooltipHint[] = [
-  {
-    id: "iphone-calculator-intro",
-    title: "Check Your iPhone Value",
-    content: "Select your iPhone model and condition to see how much it's worth. Our AI calculator gives you instant, accurate valuations.",
-    type: "tip",
-    target: "device-simulator",
-    delay: 30000,
-    position: "right",
-    priority: "high",
-    conditions: {
-      page: ["/", "/home"],
-      firstTime: true
-    },
-    actionText: "Try Calculator",
-    onAction: () => {
-      const element = document.querySelector('[data-testid="device-simulator"]');
-      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  },
-  {
-    id: "start-mission-cta",
-    title: "Ready to Be a Hero?",
-    content: "Click 'Start Mission' to begin your environmental journey. You'll earn points, save the planet, and get premium water systems.",
-    type: "action",
-    target: "button-start-mission",
-    delay: 30000,
-    position: "bottom",
-    priority: "high",
-    conditions: {
-      page: ["/", "/home"]
-    },
-    actionText: "Start Now"
-  },
-  {
-    id: "leaderboard-intro",
-    title: "Join the Heroes",
-    content: "See Dubai's top environmental heroes! Every iPhone trade, referral, and eco-action earns you points and moves you up the rankings.",
-    type: "achievement",
-    target: "leaderboard",
-    delay: 30000,
-    position: "left",
-    priority: "medium",
-    conditions: {
-      page: ["/", "/home"]
-    }
-  },
-  {
-    id: "impact-stats-meaning",
-    title: "Real Environmental Impact",
-    content: "These numbers show the actual environmental impact of our Dubai Heroes community. Your actions contribute to these growing totals!",
-    type: "info",
-    target: "stat-bottles",
-    delay: 30000,
-    position: "top",
-    priority: "medium",
-    conditions: {
-      page: ["/", "/home"]
-    }
-  },
   {
     id: "aquacafe-packages",
     title: "Hero Water Systems",
@@ -95,19 +37,6 @@ const defaultHints: TooltipHint[] = [
     }
   },
   {
-    id: "mobile-navigation",
-    title: "Easy Navigation",
-    content: "Tap the menu button to explore all DeliWer features: Community, Delivery tracking, Impact dashboard, and more!",
-    type: "tip",
-    target: "button-mobile-menu",
-    delay: 1500,
-    position: "bottom",
-    priority: "medium",
-    conditions: {
-      firstTime: true
-    }
-  },
-  {
     id: "ai-concierge-help",
     title: "Need Help? Ask Our AI",
     content: "Our AI Concierge can help you calculate trade values, find the best AquaCafe package, or answer any questions about your hero journey.",
@@ -117,7 +46,7 @@ const defaultHints: TooltipHint[] = [
     position: "left",
     priority: "low",
     conditions: {
-      page: ["/", "/home", "/earn", "/products"]
+      page: ["/earn", "/products"]
     }
   }
 ];
