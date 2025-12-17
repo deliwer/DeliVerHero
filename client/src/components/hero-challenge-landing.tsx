@@ -395,7 +395,7 @@ function StepTwoExchange() {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
-                    src={kangenWaterSystem} 
+                    src={Nicole_Oliver} 
                     alt="Premium Water Purification System for Home" 
                     className="w-full h-auto rounded-lg shadow-lg"
                     data-testid="img-water-purification-banner"
