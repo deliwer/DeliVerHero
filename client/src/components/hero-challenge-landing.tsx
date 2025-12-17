@@ -361,7 +361,7 @@ function StepTwoExchange() {
               aria-label="Toggle Get Clean Water at Home section"
               data-testid="toggle-shop-smart"
             >
-              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Get Your Smart Home</span>
+              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Get Home Service</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-green-400" />
               ) : (
