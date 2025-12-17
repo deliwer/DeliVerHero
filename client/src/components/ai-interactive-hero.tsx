@@ -52,9 +52,7 @@ export function AIInteractiveHero() {
                       textShadow: '0 0 40px rgba(16, 185, 129, 1), 0 0 60px rgba(20, 184, 166, 0.9), 0 0 80px rgba(6, 182, 212, 0.7)',
                       filter: 'contrast(1.3) brightness(1.4)',
                       WebkitTextStroke: '1px rgba(255, 255, 255, 0.3)'
-                    }}>
-                Belong globally.
-              </span>
+                    }}>Renew. Reuse.</span>
             </span>
           </h3>
           <p className="text-xl sm:text-2xl lg:text-3xl text-white/90 font-medium max-w-4xl mx-auto leading-relaxed drop-shadow-2xl">
