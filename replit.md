@@ -14,12 +14,29 @@ New Dubai-based relocation and investment gateway connecting global founders, in
 
 ## Recent Changes (December 2025)
 
+### UX Optimization & Conversion Path Hardening (December 17, 2025)
+- **Navigation Restructuring**:
+  - Reordered navigation: Play → Eco-Living → Home Service (grouped together for logical flow)
+  - Renamed "Housing" to "Eco-Living" with leaf icon
+  - Consistent desktop/mobile treatment maintained
+- **Context Tips Removal**:
+  - Removed tooltip hints from home page for cleaner UX
+  - Tooltips now only appear on specific feature pages (/aquacafe, /earn, /products)
+- **Relocate Page Service Routing**:
+  - Added service query parameter handling (?service=smart-home or ?service=home-service)
+  - Auto-scrolls to booking form when service parameter is present
+  - Pre-fills consultation message based on selected service
+- **Loyalty Section Repositioning**:
+  - Moved MembershipBenefitsSection after the 3-step flow for better engagement timing
+  - Users complete Shop → Sell → Create Impact before seeing membership benefits
+- **Design Pattern**: Advisory-first conversion (no payment modals, all CTAs lead to consultation booking)
+
 ### Customer Journey Streamlining & Conversion Hardening (December 16, 2025)
 - **Navigation Restructuring**:
   - Removed AquaCafe and Trade-in from main menu
-  - Added Home Service (sparkle icon), Housing (building icon), Relocate (globe icon)
+  - Added Home Service (sparkle icon), Eco-Living (leaf icon), Relocate (globe icon)
   - Consistent desktop/mobile treatment for new menu items
-- **New Housing Page** (`/housing`):
+- **Eco-Living Page** (`/housing` → now `/eco-living`):
   - Rent, Buy, Invest cards with icons
   - Hero CTA "Discuss Housing Options" routes to /relocate
   - Advisory-first approach with no payment prompts
@@ -30,11 +47,6 @@ New Dubai-based relocation and investment gateway connecting global founders, in
 - **Homepage Hero Updated**:
   - Primary CTA "Get Home Service" routes to /home-service
   - Max 3-step path to booking from any entry point
-- **Delayed Context Popup**:
-  - 45-second delay after page load
-  - Once per session (sessionStorage gated)
-  - "Speak to an Advisor" CTA routes to /relocate
-- **Design Pattern**: Advisory-first conversion (no payment modals, all CTAs lead to consultation booking)
 
 ### Production Launch Flow Optimization (December 16, 2025)
 - **Journey Sequence**: Implemented Play → Earn → Leaderboard → Home Service → Relocate → Partners flow
