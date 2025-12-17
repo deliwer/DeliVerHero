@@ -35,6 +35,8 @@ import Dubai_Creek_Apartment from "@assets/Dubai_Creek_Apartment.jpg";
 import smartHomeLivingRoom from "@assets/stock_images/smart_home_living_ro_92fee3d3.jpg";
 import homeServiceTechnician from "@assets/stock_images/professional_home_se_d1e6daec.jpg";
 
+import Nicole_Oliver from "@assets/Nicole_Oliver.jpeg";
+
 interface HeroSpotCounterProps {
   initialCount?: number;
 }
@@ -379,7 +381,7 @@ function StepTwoExchange() {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
-                    src={smartHomeLivingRoom} 
+                    src={Nicole_Oliver} 
                     alt="Smart Home Living Room with Modern Technology" 
                     className="w-full h-auto rounded-lg shadow-lg"
                     data-testid="img-smart-home-banner"
