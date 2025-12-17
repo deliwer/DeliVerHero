@@ -46,7 +46,6 @@ export default function HomeService() {
             <div className="flex flex-wrap justify-center gap-4">
               <CalendlyButton 
                 size="lg" 
-                className="bg-emerald-600 hover:bg-emerald-500" 
                 data-testid="button-book-consultation-home-service"
               >
                 <Sparkles className="w-4 h-4 mr-2" />
@@ -101,20 +100,19 @@ export default function HomeService() {
                 </CardContent>
               </Card>
               <div className="flex flex-wrap gap-3">
-                <Link href="/aquacafe">
-                  <Button size="lg" data-testid="button-book-water-demo">
-                    <Droplets className="w-4 h-4 mr-2" />
-                    Book Your Water Demo
-                  </Button>
-                </Link>
                 <CalendlyButton 
                   size="lg" 
-                  variant="outline" 
                   data-testid="button-speak-water-expert"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Speak to a Water Expert
+                  <Droplets className="w-4 h-4 mr-2" />
+                  Schedule a Water Consultation
                 </CalendlyButton>
+                <Link href="/aquacafe">
+                  <Button size="lg" variant="outline" data-testid="button-learn-more-water">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Learn More
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -192,7 +190,6 @@ export default function HomeService() {
               <div className="flex flex-wrap gap-3">
                 <CalendlyButton 
                   size="lg" 
-                  className="bg-orange-600 hover:bg-orange-500"
                   data-testid="button-request-errand"
                 >
                   <Bike className="w-4 h-4 mr-2" />
@@ -261,7 +258,6 @@ export default function HomeService() {
           <div className="text-center">
             <CalendlyButton 
               size="lg" 
-              className="bg-purple-600 hover:bg-purple-500"
               data-testid="button-book-concierge"
             >
               <Sparkles className="w-4 h-4 mr-2" />
@@ -353,7 +349,7 @@ export default function HomeService() {
               If you're thinking long-term — housing, relocation, or investment — we can guide you.
             </p>
             <Link href="/relocate">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500" data-testid="button-relocate-bridge">
+              <Button size="lg" data-testid="button-relocate-bridge">
                 <Globe className="w-4 h-4 mr-2" />
                 Explore Living & Relocation Options
                 <ArrowRight className="w-4 h-4 ml-2" />
