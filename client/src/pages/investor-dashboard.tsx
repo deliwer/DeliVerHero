@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CalendlyButton } from "@/components/calendly-popup";
 import { 
   TrendingUp, 
   Users, 
@@ -575,10 +576,13 @@ export default function InvestorDashboard() {
               Join SOSV Climate Tech and other leading investors in backing the first scalable loyalty-driven carbon reduction platform
             </p>
             <div className="flex gap-3 justify-center">
-              <Button className="bg-hero-green-500 text-black gap-2" data-testid="button-schedule-call">
+              <CalendlyButton 
+                className="bg-hero-green-500 text-black gap-2" 
+                data-testid="button-schedule-call"
+              >
                 Schedule Investor Call
                 <ExternalLink className="w-4 h-4" />
-              </Button>
+              </CalendlyButton>
               <Button variant="outline" className="gap-2" data-testid="button-view-methodology">
                 View Impact Methodology
                 <FileText className="w-4 h-4" />

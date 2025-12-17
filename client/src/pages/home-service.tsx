@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { CalendlyButton } from "@/components/calendly-popup";
 import { 
   Droplets, 
   Smartphone, 
@@ -72,18 +73,23 @@ export default function HomeService() {
               Sustainable water, smart trade-ins, and everyday essentials — designed for life in Dubai.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/relocate">
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500" data-testid="button-book-consultation-home-service">
-                  <Sparkles className="w-4 h-4 mr-2" />
-                  Book a Free Expert Consultation
-                </Button>
-              </Link>
-              <Link href="/relocate">
-                <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-speak-advisor-home-service">
-                  <Globe className="w-4 h-4 mr-2" />
-                  Speak to an Advisor
-                </Button>
-              </Link>
+              <CalendlyButton 
+                size="lg" 
+                className="bg-emerald-600 hover:bg-emerald-500" 
+                data-testid="button-book-consultation-home-service"
+              >
+                <Sparkles className="w-4 h-4 mr-2" />
+                Book a Free Expert Consultation
+              </CalendlyButton>
+              <CalendlyButton 
+                size="lg" 
+                variant="outline" 
+                className="border-white/30 text-white backdrop-blur-sm bg-white/10" 
+                data-testid="button-speak-advisor-home-service"
+              >
+                <Globe className="w-4 h-4 mr-2" />
+                Speak to an Advisor
+              </CalendlyButton>
             </div>
           </div>
         </div>

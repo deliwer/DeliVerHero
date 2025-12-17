@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { CalendlyButton } from "@/components/calendly-popup";
 import { 
   Home, 
   Building2, 
@@ -129,18 +130,23 @@ export default function Housing() {
               Speak with our housing advisors to explore options that match your lifestyle and goals.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/relocate">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-500" data-testid="button-book-housing-consultation">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Book a Free Expert Consultation
-                </Button>
-              </Link>
-              <Link href="/relocate">
-                <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-speak-advisor-housing">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Speak to an Advisor
-                </Button>
-              </Link>
+              <CalendlyButton 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-500" 
+                data-testid="button-book-housing-consultation"
+              >
+                <Calendar className="w-4 h-4 mr-2" />
+                Book a Free Expert Consultation
+              </CalendlyButton>
+              <CalendlyButton 
+                size="lg" 
+                variant="outline" 
+                className="border-white/30 text-white backdrop-blur-sm bg-white/10" 
+                data-testid="button-speak-advisor-housing"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Speak to an Advisor
+              </CalendlyButton>
             </div>
           </div>
         </div>

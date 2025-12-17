@@ -13,6 +13,7 @@ import { ImpactSlotMachine } from "./impact-slot-machine";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 import { PlayTV } from "./play-tv";
 import { InstantImpactUnlocks } from "./instant-impact-unlocks";
+import { CalendlyButton } from "@/components/calendly-popup";
 import { useImpactStats } from "@/hooks/use-impact-stats";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { useImageOptimization, useImageServiceWorker } from "@/hooks/use-image-optimization";
@@ -227,16 +228,16 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
           {/* CTAs - Calendar Booking and Play Page */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <Link href="/relocate?service=gaming-session" className="flex-1">
-                <Button
+              <div className="flex-1">
+                <CalendlyButton
                   size="lg"
                   className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
                   data-testid="button-book-gaming-session"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
                   <span>Book Gaming Session</span>
-                </Button>
-              </Link>
+                </CalendlyButton>
+              </div>
               <Link href="/play" className="flex-1">
                 <Button
                   size="lg"
@@ -423,16 +424,16 @@ function StepTwoExchange() {
           {/* CTAs - Calendar Booking and AquaCafe Products */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <Link href="/relocate?service=water-purification" className="flex-1">
-                <Button
+              <div className="flex-1">
+                <CalendlyButton
                   size="lg"
                   className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
                   data-testid="button-book-water-installation"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
                   <span>Book Installation</span>
-                </Button>
-              </Link>
+                </CalendlyButton>
+              </div>
               <Link href="/aquacafe" className="flex-1">
                 <Button
                   size="lg"
@@ -697,16 +698,16 @@ function StepSellIPhone() {
           {/* CTAs - Calendar Booking and Housing Search */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <Link href="/relocate?service=smart-home" className="flex-1">
-                <Button
+              <div className="flex-1">
+                <CalendlyButton
                   size="lg"
                   className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
                   data-testid="button-book-housing-consultation"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
                   <span>Book Viewing</span>
-                </Button>
-              </Link>
+                </CalendlyButton>
+              </div>
               <Link href="/housing" className="flex-1">
                 <Button
                   size="lg"
