@@ -14,6 +14,27 @@ New Dubai-based relocation and investment gateway connecting global founders, in
 
 ## Recent Changes (December 2025)
 
+### Home Service Page Enhancement (December 17, 2025)
+- **Trade-In Service Section**:
+  - Added prominent Trade-In service section linking to `/exchange` page
+  - Includes AI-powered device valuation, free home pickup, eco-certified recycling
+  - +20% bonus value promotion for store credit option
+- **SEO-Aligned Sustainable Services**:
+  - Solar Panel Installation section (DEWA Shams Dubai eligible)
+  - EV Charging Station installation section
+  - Eco-Friendly Cleaning service section
+- **Real-Life Stock Images**:
+  - Replaced gradient placeholders with professional stock photos
+  - Dark gradient overlays with visible text for high contrast
+  - Images: water filtration, trade-in, solar panels, EV charging, eco-cleaning, errand runner
+- **Referral & Sharing Tools**:
+  - Integrated SocialSharingWidget for multi-platform sharing
+  - Referral code system with copy-to-clipboard functionality
+  - AED 100 credit + Planet Points incentive for referrals
+- **SEO Meta Tags**:
+  - Added Helmet for dynamic meta tags
+  - Keywords: sustainable home services Dubai, water filtration, solar panels, EV charging, eco-cleaning
+
 ### Calendly Integration & Navigation Update (December 17, 2025)
 - **Navigation Restructuring**:
   - Reordered navigation: Home Service → Eco-Living → Play (Home Service now first for conversion priority)
