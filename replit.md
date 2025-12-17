@@ -14,6 +14,16 @@ New Dubai-based relocation and investment gateway connecting global founders, in
 
 ## Recent Changes (December 2025)
 
+### Calendly Integration & Navigation Update (December 17, 2025)
+- **Navigation Restructuring**:
+  - Reordered navigation: Home Service → Eco-Living → Play (Home Service now first for conversion priority)
+  - Consistent desktop/mobile treatment maintained
+- **Calendly Popup Integration**:
+  - Created reusable `CalendlyButton` component using Calendly widget script
+  - Integrated with admin@deliwer.com account (https://calendly.com/admin-deliwer)
+  - Updated booking CTAs across: housing, home-service, investor-dashboard, hero-challenge-landing
+  - All "Book Consultation", "Book Viewing", "Schedule Call" buttons now open Calendly popup
+
 ### UX Optimization & Conversion Path Hardening (December 17, 2025)
 - **Navigation Restructuring**:
   - Reordered navigation: Play → Eco-Living → Home Service (grouped together for logical flow)
