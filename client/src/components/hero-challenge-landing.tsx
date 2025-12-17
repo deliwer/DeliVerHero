@@ -203,7 +203,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               aria-label="Toggle Play to Create Impact section"
               data-testid="toggle-play-impact"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Play to Earn Credits</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Play to Earn DXBs</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-purple-400" />
               ) : (
