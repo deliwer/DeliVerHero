@@ -683,7 +683,7 @@ function StepSellIPhone() {
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
-                    src={homeServiceTechnician} 
+                    src={Dubai_Creek_Apartment} 
                     alt="Professional Home Service Installation - Expert technicians for smart home setup" 
                     className="w-full h-auto rounded-lg shadow-lg"
                     data-testid="img-home-service-banner"
