@@ -27,8 +27,6 @@ import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
 import planetHeroesGaming from "@assets/generated_images/Planet_Heroes_environmental_gaming_7f7bf177.png";
 import kangenWaterSystem from "@assets/generated_images/Kangen_K8_water_filtration_system_e7d8eaaa.png";
-import iphoneCollection from "@assets/generated_images/Latest_iPhone_models_collection_cbe8ffe3.png";
-import iphoneTradeInLifestyle from "@assets/stock_images/smartphone_trade-in__bd93d09e.jpg";
 import pizzaBobaComboImage from "@assets/stock_images/pizza_and_boba_tea_d_a375dab3.jpg";
 
 import Dubai_Creek_Apartment from "@assets/Dubai_Creek_Apartment.jpg";
@@ -120,9 +118,9 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
-    1: { icon: ShoppingCart, label: "Shop Smart", section: "How it Works" },
-    2: { icon: Smartphone, label: "Sell iPhone", section: "How it Works" },
-    3: { icon: Play, label: "Create Impact", section: "How it Works" }
+    1: { icon: Droplets, label: "Home Service", section: "How it Works" },
+    2: { icon: Home, label: "Smart Home", section: "How it Works" },
+    3: { icon: Gamepad2, label: "Play to Earn", section: "How it Works" }
   };
 
   return (
@@ -200,8 +198,8 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Play to Create Impact section"
-              data-testid="toggle-play-impact"
+              aria-label="Toggle Play to Earn DXBs section"
+              data-testid="toggle-play-earn"
             >
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Play to Earn DXBs</span>
               {isExpanded ? (
@@ -212,13 +210,13 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             </button>
           </h2>
           <div className="flex items-center justify-center gap-2 mb-3">
-            <Sparkles className="w-5 h-5 text-emerald-400 animate-pulse" />
-            <span className="text-emerald-400 font-bold text-lg">Guilt Free Living</span>
-            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-ping"></div>
+            <Sparkles className="w-5 h-5 text-purple-400 animate-pulse" />
+            <span className="text-purple-400 font-bold text-lg">Planet Gamification</span>
+            <div className="w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
           </div>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            Your actions fund recycling drives, water renewal, and food security programs across Dubai & Pakistan. 
-            <span className="text-purple-400 font-bold">Watch live, play missions, and see real impact!</span>
+            Join the planet gamification movement! Complete eco-missions, earn DXB tokens, and make real environmental impact. 
+            <span className="text-purple-400 font-bold">Play games, win rewards, save the planet!</span>
           </p>
 
           {/* Play TV Interactive Component - Always Visible */}
@@ -226,25 +224,41 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             <PlayTV />
           </div>
 
-          {/* Win Aqua Show Button - Always Visible */}
-          <div className="text-center mt-6">
-            <Link href="/play">
-              <Button 
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 hover:from-blue-500 hover:to-teal-500 text-white font-bold px-8 py-4 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-win-aqua-show"
-              >
-                <Gift className="w-6 h-6 mr-2" />
-                🌊 Win Aqua Show Experience Tickets
-              </Button>
-            </Link>
+          {/* CTAs - Calendar Booking and Play Page */}
+          <div className="mt-6 space-y-4">
+            <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+              <Link href="/relocate?service=gaming-session" className="flex-1">
+                <Button
+                  size="lg"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-book-gaming-session"
+                >
+                  <Calendar className="w-5 h-5 flex-shrink-0" />
+                  <span>Book Gaming Session</span>
+                </Button>
+              </Link>
+              <Link href="/play" className="flex-1">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full flex items-center justify-center gap-3 border-purple-400/50 text-purple-400 hover:bg-purple-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-start-playing"
+                >
+                  <Gamepad2 className="w-5 h-5 flex-shrink-0" />
+                  <span>Start Playing</span>
+                </Button>
+              </Link>
+            </div>
+            <p className="text-center text-gray-400 text-sm">
+              Join the planet heroes community - Earn DXB tokens while saving the environment
+            </p>
           </div>
         </div>
 
         {/* Expanded Content - Full Details */}
         {isExpanded && (
         <>
-        {/* Play Mission Info Section */}
+        {/* Planet Gamification Info Section */}
         <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500">
           {/* Floating particles */}
           <div className="absolute inset-0 opacity-20">
@@ -258,17 +272,17 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               <div className="text-center mb-6">
                 <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
                   <Gamepad2 className="w-5 h-5" />
-                  <span className="font-bold">🎮 PLAY MISSIONS</span>
+                  <span className="font-bold">PLANET GAMIFICATION</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Win Prizes & Earn Points</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">Earn DXBs While Saving the Planet</h3>
                 <p className="text-gray-200 text-sm">
-                  Complete missions in the metaverse to unlock rewards and build your Planet Points!
+                  Complete eco-missions, earn DXB tokens, and contribute to real environmental impact across Dubai and beyond!
                 </p>
               </div>
               
               {/* Visit Play Page CTA */}
               <div className="text-center">
-                <div className="text-gray-400 text-sm mb-6">Ready to start playing?</div>
+                <div className="text-gray-400 text-sm mb-6">Ready to become a Planet Hero?</div>
                 <Link href="/play">
                   <Button 
                     size="lg" 
@@ -276,11 +290,11 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
                     data-testid="button-visit-play-page"
                   >
                     <Gamepad2 className="w-6 h-6 flex-shrink-0" />
-                    <span>Visit Play Page</span>
+                    <span>Enter the Game</span>
                   </Button>
                 </Link>
                 <div className="text-xs text-gray-400 mt-4">
-                  Access Tombola, Achievements, Leaderboards & More!
+                  Access Tombola, Eco-Missions, Leaderboards & Earn DXB Tokens!
                 </div>
               </div>
               
@@ -360,79 +374,79 @@ function StepTwoExchange() {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Get Clean Water at Home section"
-              data-testid="toggle-shop-smart"
+              aria-label="Toggle Get Home Service section"
+              data-testid="toggle-home-service"
             >
-              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Get Home Service</span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Get Home Service</span>
               {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-green-400" />
+                <ChevronUp className="w-8 h-8 text-cyan-400" />
               ) : (
-                <ChevronDown className="w-8 h-8 text-green-400" />
+                <ChevronDown className="w-8 h-8 text-cyan-400" />
               )}
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-            Premium Water Systems: Get clean alkaline water at home with professional installation
+            Home Water Purification & Installation Packages: Transform your home with clean, alkaline water systems professionally installed
           </p>
           
-          {/* K8 Machine Banner - Always Visible */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-blue-500/50 shadow-2xl bg-gradient-to-br from-blue-600/20 to-green-600/20 p-2 backdrop-blur-sm">
+          {/* Water Purification Banner - Always Visible */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-cyan-500/50 shadow-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 p-2 backdrop-blur-sm">
             <div className="bg-slate-900/50 rounded-xl p-6">
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
-                    src={Nicole_Oliver} 
-                    alt="Smart Home Living Room with Modern Technology" 
+                    src={kangenWaterSystem} 
+                    alt="Premium Water Purification System for Home" 
                     className="w-full h-auto rounded-lg shadow-lg"
-                    data-testid="img-smart-home-banner"
+                    data-testid="img-water-purification-banner"
                   />
                 </div>
                 <div className="flex-1 text-center md:text-left">
-                  <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-3">
-                    <Star className="w-5 h-5" />
-                    <span className="font-bold">FLAGSHIP OFFER</span>
+                  <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full mb-3">
+                    <Droplets className="w-5 h-5" />
+                    <span className="font-bold">WATER PURIFICATION</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Retrofitting: Filter Service + FREE iPhone Upgrade</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Home Water Purification & Installation</h3>
                   <p className="text-gray-300 mb-4">
-                    Trade your old iPhone → Get premium water filtration with professional installation + upgrade to the latest iPhone model FREE
+                    Get clean, alkaline water at home with our premium Kangen water systems. Professional installation included with all packages.
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-hero-green-500/20 text-hero-green-400 px-3 py-1 rounded-full text-sm font-bold">Huge Discounts</span>
-                    <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Exclusive Benefits</span>
-                    <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Premium Quality</span>
+                    <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Professional Install</span>
+                    <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Alkaline Water</span>
+                    <span className="bg-teal-500/20 text-teal-400 px-3 py-1 rounded-full text-sm font-bold">Health Benefits</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTAs - Expert Consultation and Products */}
+          {/* CTAs - Calendar Booking and AquaCafe Products */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <Link href="/relocate?service=smart-home" className="flex-1">
+              <Link href="/relocate?service=water-purification" className="flex-1">
                 <Button
                   size="lg"
-                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-book-smart-home-consultation"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-book-water-installation"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>Book Expert Consultation</span>
+                  <span>Book Installation</span>
                 </Button>
               </Link>
               <Link href="/aquacafe" className="flex-1">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full flex items-center justify-center gap-3 border-blue-400/50 text-blue-400 hover:bg-blue-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-view-aquacafe-products"
+                  className="w-full flex items-center justify-center gap-3 border-cyan-400/50 text-cyan-400 hover:bg-cyan-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-view-aquacafe-packages"
                 >
                   <Droplets className="w-5 h-5 flex-shrink-0" />
-                  <span>View Products</span>
+                  <span>View Packages</span>
                 </Button>
               </Link>
             </div>
             <p className="text-center text-gray-400 text-sm">
-              Free consultation with smart home experts - No payment required
+              Free consultation with water purification experts - Schedule your home visit today
             </p>
           </div>
         </div>
@@ -451,19 +465,19 @@ function StepTwoExchange() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Choose Your Water Solution</h3>
               
-              {/* Free iPhone Upgrade Banner - Always Visible */}
-              <div className="max-w-3xl mx-auto mb-4 rounded-xl overflow-hidden border-2 border-amber-500 shadow-2xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 p-4 backdrop-blur-sm animate-pulse">
+              {/* Free Installation Banner - Always Visible */}
+              <div className="max-w-3xl mx-auto mb-4 rounded-xl overflow-hidden border-2 border-cyan-500 shadow-2xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-4 backdrop-blur-sm animate-pulse">
                 <div className="flex items-center justify-center gap-3">
-                  <Smartphone className="w-6 h-6 text-amber-400" />
+                  <Droplets className="w-6 h-6 text-cyan-400" />
                   <div className="text-center">
-                    <p className="text-lg font-black text-amber-300 mb-1">
-                      🎁 FREE iPhone Upgrade to Next Model
+                    <p className="text-lg font-black text-cyan-300 mb-1">
+                      FREE Professional Installation
                     </p>
-                    <p className="text-sm text-amber-100">
+                    <p className="text-sm text-cyan-100">
                       When you order any water filtration package - Limited time offer!
                     </p>
                   </div>
-                  <Gift className="w-6 h-6 text-amber-400" />
+                  <Gift className="w-6 h-6 text-cyan-400" />
                 </div>
               </div>
 
@@ -619,37 +633,9 @@ function StepTwoExchange() {
   );
 }
 
-// Step 2: Sell iPhone Section
+// Step 2: Smart Home Section
 function StepSellIPhone() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedModel, setSelectedModel] = useState("iPhone 15 Pro");
-  const [selectedCondition, setSelectedCondition] = useState("excellent");
-  const [selectedStorage, setSelectedStorage] = useState("256");
-  
-  const phoneValues: Record<string, Record<string, number>> = {
-    "iPhone 16 Pro Max": { "128": 3600, "256": 3800, "512": 4000, "1024": 4200 },
-    "iPhone 16 Pro": { "128": 3200, "256": 3400, "512": 3600 },
-    "iPhone 15 Pro Max": { "128": 3000, "256": 3200, "512": 3400 },
-    "iPhone 15 Pro": { "128": 2700, "256": 2900, "512": 3100 },
-    "iPhone 14 Pro": { "128": 2000, "256": 2200, "512": 2400 },
-    "iPhone 14": { "128": 1600, "256": 1800, "512": 2000 },
-    "iPhone 13 Pro": { "128": 1300, "256": 1500, "512": 1700 },
-    "iPhone 13": { "128": 1000, "256": 1200, "512": 1400 },
-  };
-  
-  const conditionMultipliers: Record<string, number> = {
-    "excellent": 1.0,
-    "good": 0.85,
-    "fair": 0.7,
-  };
-  
-  const calculateTradeInValue = () => {
-    const modelValues = phoneValues[selectedModel];
-    if (!modelValues) return 0;
-    const baseValue = modelValues[selectedStorage] || 0;
-    const multiplier = conditionMultipliers[selectedCondition] || 0;
-    return Math.round(baseValue * multiplier);
-  };
   
   return (
     <section className="py-8 px-4 mb-8" data-section="step-2">
@@ -662,201 +648,176 @@ function StepSellIPhone() {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Sell iPhone section"
-              data-testid="toggle-sell-iphone"
+              aria-label="Toggle Get Smart Home section"
+              data-testid="toggle-smart-home"
             >
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Get Your Smart Home</span>
+              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">Get Smart Home</span>
               {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-purple-400" />
+                <ChevronUp className="w-8 h-8 text-emerald-400" />
               ) : (
-                <ChevronDown className="w-8 h-8 text-purple-400" />
+                <ChevronDown className="w-8 h-8 text-emerald-400" />
               )}
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Upgrade your lifestyle sustainably
+            Find your perfect smart home in Dubai - Rent or Buy with expert guidance
           </p>
 
-          {/* iPhone Trade-In Lifestyle Banner - Always Visible */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-purple-500/50 shadow-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 p-2 backdrop-blur-sm">
+          {/* Smart Home Search Banner - Always Visible */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-emerald-500/50 shadow-2xl bg-gradient-to-br from-emerald-600/20 to-green-600/20 p-2 backdrop-blur-sm">
             <div className="bg-slate-900/50 rounded-xl p-6">
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
                     src={Dubai_Creek_Apartment} 
-                    alt="Professional Home Service Installation - Expert technicians for smart home setup" 
+                    alt="Modern Smart Home Apartment in Dubai" 
                     className="w-full h-auto rounded-lg shadow-lg"
-                    data-testid="img-home-service-banner"
+                    data-testid="img-smart-home-banner"
                   />
                 </div>
                 <div className="flex-1 text-center md:text-left">
-                  <div className="inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full px-6 py-2 mb-3 font-bold animate-pulse">
-                    <Smartphone className="w-5 h-5 mr-2 flex-shrink-0" />
-                    <span>TRADE-IN PROGRAM</span>
+                  <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-full px-6 py-2 mb-3 font-bold animate-pulse">
+                    <Home className="w-5 h-5 mr-2 flex-shrink-0" />
+                    <span>SMART HOME SEARCH</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Trade-in Package</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Rent or Buy Your Dream Home</h3>
                   <p className="text-gray-300 mb-4">
-                    <span className="text-purple-400 font-bold">Step 1:</span> Trade in your old iPhone → 
-                    <span className="text-purple-400 font-bold"> Step 2:</span> Get water filter installation → 
-                    <span className="text-purple-400 font-bold"> Step 3:</span> Receive upgraded iPhone FREE
+                    Discover premium smart homes across Dubai with integrated technology, water purification, and sustainable living features. Expert relocation support included.
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Instant Quote</span>
-                    <span className="bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-sm font-bold">Free Pickup</span>
-                    <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Cash or Points</span>
+                    <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">Premium Listings</span>
+                    <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">Smart Technology</span>
+                    <span className="bg-teal-500/20 text-teal-400 px-3 py-1 rounded-full text-sm font-bold">Expert Support</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTAs - Expert Consultation and Trade-in */}
+          {/* CTAs - Calendar Booking and Housing Search */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <Link href="/relocate?service=home-service" className="flex-1">
+              <Link href="/relocate?service=smart-home" className="flex-1">
                 <Button
                   size="lg"
-                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-book-home-service-consultation"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-book-housing-consultation"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>Book Free Consultation</span>
+                  <span>Book Viewing</span>
                 </Button>
               </Link>
-              <Link href="/exchange" className="flex-1">
+              <Link href="/housing" className="flex-1">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full flex items-center justify-center gap-3 border-purple-400/50 text-purple-400 hover:bg-purple-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-sell-iphone-cta"
+                  className="w-full flex items-center justify-center gap-3 border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-browse-housing"
                 >
-                  <Smartphone className="w-5 h-5 flex-shrink-0" />
-                  <span>Get Trade-in Quote</span>
+                  <Home className="w-5 h-5 flex-shrink-0" />
+                  <span>Browse Homes</span>
                 </Button>
               </Link>
             </div>
             <p className="text-center text-gray-400 text-sm">
-              Speak with our home service experts - No payment required to book
+              Free property consultation - Schedule your viewing today
             </p>
           </div>
         </div>
 
         {isExpanded && (
         <>
-        {/* iPhone Trade-In Calculator */}
-        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-pink-500/10 mb-8 animate-in slide-in-from-top duration-500">
+        {/* Smart Home Property Search Info */}
+        <div className="glass rounded-2xl p-8 border border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 to-green-500/10 mb-8 animate-in slide-in-from-top duration-500">
           <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
-              <Calculator className="w-5 h-5" />
-              <span className="font-bold">📱 INSTANT VALUATION</span>
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full mb-4">
+              <Home className="w-5 h-5" />
+              <span className="font-bold">SMART HOME FINDER</span>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Check Your iPhone Value</h3>
+            <h3 className="text-2xl font-bold text-white mb-2">Find Your Perfect Home in Dubai</h3>
             <p className="text-gray-300 text-sm">
-              Get an instant quote for your iPhone in seconds
+              Rent or buy smart homes with integrated technology and sustainable living features
             </p>
           </div>
 
-          {/* Interactive Calculator */}
+          {/* Property Types Grid */}
           <div className="max-w-2xl mx-auto mb-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              {/* Model Selection */}
-              <div>
-                <label className="block text-white font-medium mb-3">Select Model</label>
-                <select
-                  value={selectedModel}
-                  onChange={(e) => setSelectedModel(e.target.value)}
-                  className="w-full bg-slate-800/80 border border-purple-400/30 rounded-lg px-4 py-3 text-white focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
-                  data-testid="select-iphone-model-sell"
-                >
-                  {Object.keys(phoneValues).map((model) => (
-                    <option key={model} value={model}>{model}</option>
-                  ))}
-                </select>
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-emerald-400/30 text-center hover:border-emerald-400/60 transition-all">
+                <Building className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+                <h4 className="text-white font-bold mb-2">Apartments</h4>
+                <p className="text-gray-400 text-sm">Modern smart apartments in prime locations</p>
               </div>
-
-              {/* Storage Selection */}
-              <div>
-                <label className="block text-white font-medium mb-3">Storage</label>
-                <select
-                  value={selectedStorage}
-                  onChange={(e) => setSelectedStorage(e.target.value)}
-                  className="w-full bg-slate-800/80 border border-purple-400/30 rounded-lg px-4 py-3 text-white focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
-                  data-testid="select-storage"
-                >
-                  {Object.keys(phoneValues[selectedModel] || {}).map((storage) => (
-                    <option key={storage} value={storage}>{storage}GB</option>
-                  ))}
-                </select>
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-green-400/30 text-center hover:border-green-400/60 transition-all">
+                <Home className="w-10 h-10 text-green-400 mx-auto mb-3" />
+                <h4 className="text-white font-bold mb-2">Villas</h4>
+                <p className="text-gray-400 text-sm">Spacious villas with smart home systems</p>
               </div>
-
-              {/* Condition Selection */}
-              <div>
-                <label className="block text-white font-medium mb-3">Condition</label>
-                <select
-                  value={selectedCondition}
-                  onChange={(e) => setSelectedCondition(e.target.value)}
-                  className="w-full bg-slate-800/80 border border-purple-400/30 rounded-lg px-4 py-3 text-white focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/20"
-                  data-testid="select-condition-sell"
-                >
-                  <option value="excellent">Excellent (100%)</option>
-                  <option value="good">Good (85%)</option>
-                  <option value="fair">Fair (70%)</option>
-                </select>
+              <div className="bg-slate-800/50 rounded-xl p-6 border border-teal-400/30 text-center hover:border-teal-400/60 transition-all">
+                <Building className="w-10 h-10 text-teal-400 mx-auto mb-3" />
+                <h4 className="text-white font-bold mb-2">Townhouses</h4>
+                <p className="text-gray-400 text-sm">Family-friendly townhouses with gardens</p>
               </div>
             </div>
 
-            {/* Calculated Value Display */}
-            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-8 border-2 border-purple-400/50 text-center">
-              <div className="text-gray-300 text-sm mb-2">Your Instant Quote</div>
-              <div className="text-5xl font-black text-purple-400 mb-2" data-testid="text-sell-value">
-                <DirhamSymbol size={36} className="mr-2" />{calculateTradeInValue().toLocaleString()}
-              </div>
-              <div className="text-gray-400 text-sm mb-4">
-                💰 Choose cash payout or redeem for AquaCafe loyalty points
+            {/* Smart Home Features */}
+            <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-2xl p-8 border-2 border-emerald-400/50 text-center">
+              <div className="text-gray-300 text-sm mb-2">Every Smart Home Includes</div>
+              <div className="flex flex-wrap gap-3 justify-center mb-4">
+                <span className="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold">Water Purification</span>
+                <span className="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-bold">Smart Thermostat</span>
+                <span className="bg-teal-500/20 text-teal-400 px-4 py-2 rounded-full text-sm font-bold">Solar Ready</span>
+                <span className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-bold">EV Charging</span>
               </div>
               <div className="flex flex-wrap gap-3 justify-center">
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600"
-                  data-testid="button-cash-payout"
-                >
-                  💵 Get Cash via Stripe
-                </Button>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-blue-400/50 text-blue-400 hover:bg-blue-500/20"
-                  data-testid="button-loyalty-points"
-                >
-                  💧 Redeem for AquaCafe Points
-                </Button>
+                <Link href="/housing">
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
+                    data-testid="button-browse-rent"
+                  >
+                    <Home className="w-5 h-5 mr-2" />
+                    Browse Rentals
+                  </Button>
+                </Link>
+                <Link href="/housing?type=buy">
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20"
+                    data-testid="button-browse-buy"
+                  >
+                    <Building className="w-5 h-5 mr-2" />
+                    Properties for Sale
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-400/30">
+          <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-xl p-6 border border-emerald-400/30">
             <h4 className="text-lg font-bold text-white mb-3 text-center">How It Works</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
               <div className="text-center">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span className="text-2xl">1️⃣</span>
+                <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Target className="w-6 h-6 text-emerald-400" />
                 </div>
-                <div className="text-white font-bold mb-1">Get Quote</div>
-                <div className="text-gray-400">Select your model & condition</div>
+                <div className="text-white font-bold mb-1">Browse Listings</div>
+                <div className="text-gray-400">Search smart homes by area & budget</div>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span className="text-2xl">2️⃣</span>
+                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <Calendar className="w-6 h-6 text-green-400" />
                 </div>
-                <div className="text-white font-bold mb-1">Ship or Drop-off</div>
-                <div className="text-gray-400">Free pickup for loyalty members on trade-ins</div>
+                <div className="text-white font-bold mb-1">Schedule Viewing</div>
+                <div className="text-gray-400">Book a tour with our experts</div>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span className="text-2xl">3️⃣</span>
+                <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <CheckCircle className="w-6 h-6 text-teal-400" />
                 </div>
-                <div className="text-white font-bold mb-1">Get Paid</div>
-                <div className="text-gray-400">Cash or loyalty points</div>
+                <div className="text-white font-bold mb-1">Move In</div>
+                <div className="text-gray-400">Complete relocation support included</div>
               </div>
             </div>
           </div>
@@ -1127,7 +1088,7 @@ export function HeroChallengeLanding() {
         {/* 3-Way Path Selector - Start Your Journey */}
         <div className="flex justify-center my-16">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            {/* Path 1: Shop Smart */}
+            {/* Path 1: Home Service */}
             <button
               onClick={() => {
                 const step1Section = document.querySelector('[data-section="step-1"]');
@@ -1136,18 +1097,18 @@ export function HeroChallengeLanding() {
                 }
               }}
               className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Shop Smart"
+              aria-label="Start Your Journey - Home Service"
               data-testid="button-scroll-step-1"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-green-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <ShoppingCart className="w-7 h-7 text-white" />
+              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-blue-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Droplets className="w-7 h-7 text-white" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-emerald-500 mt-2"></div>
-              <div className="text-xs text-green-400 mt-3 font-bold">SHOP SMART</div>
+              <div className="w-1 h-12 bg-gradient-to-b from-cyan-500 to-teal-500 mt-2"></div>
+              <div className="text-xs text-cyan-400 mt-3 font-bold">HOME SERVICE</div>
             </button>
 
-            {/* Path 2: Sell iPhone */}
+            {/* Path 2: Smart Home */}
             <button
               onClick={() => {
                 const step2Section = document.querySelector('[data-section="step-2"]');
@@ -1156,18 +1117,18 @@ export function HeroChallengeLanding() {
                 }
               }}
               className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Sell iPhone"
+              aria-label="Start Your Journey - Smart Home"
               data-testid="button-scroll-step-2"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-pink-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <Smartphone className="w-7 h-7 text-white" />
+              <div className="w-1 h-12 bg-gradient-to-b from-teal-500 to-emerald-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Home className="w-7 h-7 text-white" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-pink-500 to-purple-500 mt-2"></div>
-              <div className="text-xs text-purple-400 mt-3 font-bold">SELL IPHONE</div>
+              <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-emerald-500 mt-2"></div>
+              <div className="text-xs text-emerald-400 mt-3 font-bold">SMART HOME</div>
             </button>
 
-            {/* Path 3: Play to Create Impact */}
+            {/* Path 3: Play to Earn DXBs */}
             <button
               onClick={() => {
                 const step3Section = document.querySelector('[data-section="step-3"]');
@@ -1176,15 +1137,15 @@ export function HeroChallengeLanding() {
                 }
               }}
               className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Play to Create Impact"
+              aria-label="Start Your Journey - Play to Earn DXBs"
               data-testid="button-scroll-step-3"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-blue-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <Play className="w-7 h-7 text-white" />
+              <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-purple-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Gamepad2 className="w-7 h-7 text-white" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-cyan-500 mt-2"></div>
-              <div className="text-xs text-blue-400 mt-3 font-bold">CREATE IMPACT</div>
+              <div className="w-1 h-12 bg-gradient-to-b from-pink-500 to-purple-500 mt-2"></div>
+              <div className="text-xs text-purple-400 mt-3 font-bold">PLAY TO EARN</div>
             </button>
           </div>
         </div>
