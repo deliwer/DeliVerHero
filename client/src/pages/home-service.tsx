@@ -70,33 +70,52 @@ export default function HomeService() {
         <link rel="canonical" href="https://deliwer.com/home-service" />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-blue-900/20"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-6 bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
-              <Home className="w-3 h-3 mr-1" />
-              DeliWer Home Service
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-home-service-title">
-              Everything you need.
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400"> Without leaving home.</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto" data-testid="text-home-service-description">
-              We keep you fed. We keep your water clean. We give you your time back.
-            </p>
-            <p className="text-lg text-muted-foreground/80 mb-8 max-w-2xl mx-auto">
-              Designed for Dubai living. Built for busy lives.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <CalendlyButton 
-                size="lg" 
-                data-testid="button-book-consultation-home-service"
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Book a Free Home Service Consultation
-              </CalendlyButton>
+      {/* Hero Section - Water Filtration Lifestyle */}
+      <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+        <img 
+          src={waterLifestyleImg} 
+          alt="Family enjoying clean filtered water at home - Dubai lifestyle" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+        <div className="absolute inset-0 flex items-center">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-2xl">
+              <Badge variant="secondary" className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-sm">
+                <Droplets className="w-3 h-3 mr-1" />
+                Launching Dec 25th - Christmas Special
+              </Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-home-service-title">
+                Pure Water.
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300"> Healthy Living.</span>
+              </h1>
+              <p className="text-xl text-white/90 mb-4 max-w-xl" data-testid="text-home-service-description">
+                Professional water filtration, errand runners, and essential home services.
+              </p>
+              <p className="text-lg text-white/70 mb-8 max-w-xl">
+                Designed for Dubai living. Built for busy families.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <CalendlyButton 
+                  size="lg" 
+                  data-testid="button-book-consultation-home-service"
+                >
+                  <Droplets className="w-4 h-4 mr-2" />
+                  Book Water Service Demo
+                </CalendlyButton>
+                <Link href="/launch">
+                  <Button size="lg" variant="outline" className="bg-red-500/20 border-red-400/30 text-white backdrop-blur-sm" data-testid="button-launch-promo">
+                    <Gift className="w-4 h-4 mr-2" />
+                    Dec 25 Launch Special
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button size="lg" variant="ghost" className="text-white/80 hover:text-white" data-testid="button-home-nav">
+                    <Home className="w-4 h-4 mr-2" />
+                    Home
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -552,125 +571,20 @@ export default function HomeService() {
       </section>
 
 
-      {/* Concierge Section */}
-      <section className="py-16 px-4 bg-muted/30" id="concierge">
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-6">
-              <ShoppingBag className="w-4 h-4 text-purple-400" />
-              <span className="text-sm text-purple-400 font-medium">Concierge & Everyday Help</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-concierge-title">
-              A helping hand, on demand.
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Send someone else to handle life's small but time-consuming tasks. Think of it as your personal helper in the city.
-            </p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            <Card className="text-center hover-elevate">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
-                  <ShoppingBag className="w-6 h-6 text-purple-500" />
-                </div>
-                <h3 className="font-semibold mb-2">Grocery Shopping</h3>
-                <p className="text-sm text-muted-foreground">We shop, you relax</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center hover-elevate">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-6 h-6 text-purple-500" />
-                </div>
-                <h3 className="font-semibold mb-2">School Runs</h3>
-                <p className="text-sm text-muted-foreground">Safe & reliable pickup</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center hover-elevate">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
-                  <Package className="w-6 h-6 text-purple-500" />
-                </div>
-                <h3 className="font-semibold mb-2">Contract Delivery</h3>
-                <p className="text-sm text-muted-foreground">Important docs handled</p>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="text-center">
-            <CalendlyButton 
-              size="lg" 
-              data-testid="button-book-concierge"
-            >
-              <Sparkles className="w-4 h-4 mr-2" />
-              Book a Concierge Consultation
-            </CalendlyButton>
-          </div>
-        </div>
-      </section>
-
-      {/* Home Essentials Section */}
-      <section className="py-16 px-4" id="home-essentials">
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-teal-500/10 rounded-full px-4 py-2 mb-6">
-              <Home className="w-4 h-4 text-teal-400" />
-              <span className="text-sm text-teal-400 font-medium">Home Essentials & Services</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-home-essentials-title">
-              Your home, taken care of.
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We connect you with trusted services for daily living. All coordinated — so you don't have to chase multiple providers.
-            </p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <Card className="hover-elevate">
-              <CardContent className="pt-6 text-center">
-                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
-                  <Package className="w-5 h-5 text-teal-500" />
-                </div>
-                <h3 className="font-medium text-sm mb-1">Laundry & Dry Cleaning</h3>
-              </CardContent>
-            </Card>
-            <Card className="hover-elevate">
-              <CardContent className="pt-6 text-center">
-                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
-                  <Gift className="w-5 h-5 text-teal-500" />
-                </div>
-                <h3 className="font-medium text-sm mb-1">Pharmacy Delivery</h3>
-              </CardContent>
-            </Card>
-            <Card className="hover-elevate">
-              <CardContent className="pt-6 text-center">
-                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
-                  <Wrench className="w-5 h-5 text-teal-500" />
-                </div>
-                <h3 className="font-medium text-sm mb-1">Home Maintenance</h3>
-              </CardContent>
-            </Card>
-            <Card className="hover-elevate">
-              <CardContent className="pt-6 text-center">
-                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
-                  <Scissors className="w-5 h-5 text-teal-500" />
-                </div>
-                <h3 className="font-medium text-sm mb-1">Mobile Salon</h3>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="text-center">
-            <CalendlyButton 
-              size="lg" 
-              variant="outline"
-              data-testid="button-discuss-home-support"
-            >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Discuss Home Support Options
-            </CalendlyButton>
-          </div>
+      {/* Concierge & Home Essentials - Moved to /errand */}
+      <section className="py-12 px-4 bg-muted/30" id="more-services">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="text-2xl font-bold mb-4">Looking for Concierge & Home Essentials?</h2>
+          <p className="text-muted-foreground mb-6">
+            We've moved our concierge services, grocery shopping, school runs, laundry, and more to our dedicated Errand Runner page for a better experience.
+          </p>
+          <Link href="/errand">
+            <Button size="lg" data-testid="button-errand-concierge-redirect">
+              <Bike className="w-4 h-4 mr-2" />
+              Explore All Errand & Concierge Services
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
       </section>
 

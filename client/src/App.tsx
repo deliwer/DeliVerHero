@@ -73,6 +73,7 @@ import RelocateCommunity from "@/pages/relocate-community";
 import HomeService from "@/pages/home-service";
 import Housing from "@/pages/housing";
 import ErrandPage from "@/pages/errand";
+import HomeServiceLaunch from "@/pages/home-service-launch";
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -160,6 +161,9 @@ function Router() {
 
         {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
+
+        {/* Home Service Launch Campaign */}
+        <Route path="/launch" component={HomeServiceLaunch} />
 
         {/* Housing - Rent, Buy, Invest */}
         <Route path="/housing" component={Housing} />

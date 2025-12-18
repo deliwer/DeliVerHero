@@ -17,8 +17,16 @@ import {
   Users,
   Share2,
   Copy,
-  Check
+  Check,
+  Home,
+  ShoppingBag,
+  Package,
+  Wrench,
+  Scissors,
+  MessageCircle,
+  Phone
 } from "lucide-react";
+import { SiFacebook, SiInstagram, SiWhatsapp } from "react-icons/si";
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
@@ -82,6 +90,12 @@ export default function ErrandPage() {
                 <Button size="lg" variant="outline" data-testid="button-explore-home-services">
                   <ArrowRight className="w-4 h-4 mr-2" />
                   Explore More Home Services
+                </Button>
+              </Link>
+              <Link href="/">
+                <Button size="lg" variant="ghost" data-testid="button-home-nav-errand">
+                  <Home className="w-4 h-4 mr-2" />
+                  Home
                 </Button>
               </Link>
             </div>
@@ -363,6 +377,248 @@ export default function ErrandPage() {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Concierge Section - MOVED FROM HOME SERVICE */}
+      <section className="py-16 px-4 bg-muted/30" id="concierge">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-purple-500/10 rounded-full px-4 py-2 mb-6">
+              <ShoppingBag className="w-4 h-4 text-purple-400" />
+              <span className="text-sm text-purple-400 font-medium">Concierge & Everyday Help</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-concierge-title">
+              A helping hand, on demand.
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Send someone else to handle life's small but time-consuming tasks. Think of it as your personal helper in the city.
+            </p>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <Card className="text-center hover-elevate">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
+                  <ShoppingBag className="w-6 h-6 text-purple-500" />
+                </div>
+                <h3 className="font-semibold mb-2">Grocery Shopping</h3>
+                <p className="text-sm text-muted-foreground">We shop, you relax</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover-elevate">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-6 h-6 text-purple-500" />
+                </div>
+                <h3 className="font-semibold mb-2">School Runs</h3>
+                <p className="text-sm text-muted-foreground">Safe & reliable pickup</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover-elevate">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center mx-auto mb-4">
+                  <Package className="w-6 h-6 text-purple-500" />
+                </div>
+                <h3 className="font-semibold mb-2">Contract Delivery</h3>
+                <p className="text-sm text-muted-foreground">Important docs handled</p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center">
+            <CalendlyButton 
+              size="lg" 
+              data-testid="button-book-concierge"
+            >
+              <Sparkles className="w-4 h-4 mr-2" />
+              Book a Concierge Consultation
+            </CalendlyButton>
+          </div>
+        </div>
+      </section>
+
+      {/* Home Essentials Section - MOVED FROM HOME SERVICE */}
+      <section className="py-16 px-4" id="home-essentials">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-teal-500/10 rounded-full px-4 py-2 mb-6">
+              <Home className="w-4 h-4 text-teal-400" />
+              <span className="text-sm text-teal-400 font-medium">Home Essentials & Services</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-home-essentials-title">
+              Your home, taken care of.
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              We connect you with trusted services for daily living. All coordinated — so you don't have to chase multiple providers.
+            </p>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <Card className="hover-elevate">
+              <CardContent className="pt-6 text-center">
+                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
+                  <Package className="w-5 h-5 text-teal-500" />
+                </div>
+                <h3 className="font-medium text-sm mb-1">Laundry & Dry Cleaning</h3>
+              </CardContent>
+            </Card>
+            <Card className="hover-elevate">
+              <CardContent className="pt-6 text-center">
+                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
+                  <Gift className="w-5 h-5 text-teal-500" />
+                </div>
+                <h3 className="font-medium text-sm mb-1">Pharmacy Delivery</h3>
+              </CardContent>
+            </Card>
+            <Card className="hover-elevate">
+              <CardContent className="pt-6 text-center">
+                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
+                  <Wrench className="w-5 h-5 text-teal-500" />
+                </div>
+                <h3 className="font-medium text-sm mb-1">Home Maintenance</h3>
+              </CardContent>
+            </Card>
+            <Card className="hover-elevate">
+              <CardContent className="pt-6 text-center">
+                <div className="w-10 h-10 rounded-md bg-teal-500/10 flex items-center justify-center mx-auto mb-3">
+                  <Scissors className="w-5 h-5 text-teal-500" />
+                </div>
+                <h3 className="font-medium text-sm mb-1">Mobile Salon</h3>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center">
+            <CalendlyButton 
+              size="lg" 
+              variant="outline"
+              data-testid="button-discuss-home-support"
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Discuss Home Support Options
+            </CalendlyButton>
+          </div>
+        </div>
+      </section>
+
+      {/* WhatsApp Multi-Agent Viral Section */}
+      <section className="py-16 px-4 bg-gradient-to-br from-green-900/20 via-emerald-900/10 to-teal-900/20" id="whatsapp-agents">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 bg-green-500/10 rounded-full px-4 py-2 mb-6">
+              <SiWhatsapp className="w-4 h-4 text-green-400" />
+              <span className="text-sm text-green-400 font-medium">Chat With Our Team</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-whatsapp-title">
+              Connect Instantly via <span className="text-green-400">WhatsApp</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our dedicated team is ready to help you with errands, concierge services, and home essentials. Tap to chat!
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6 mb-8">
+            <Card className="hover-elevate border-green-500/20">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-full bg-green-500/10 flex items-center justify-center">
+                    <SiWhatsapp className="w-7 h-7 text-green-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg">Hassan Jawad</h3>
+                    <p className="text-sm text-muted-foreground">Senior Concierge Specialist</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <a 
+                    href="https://wa.me/971523946311" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors"
+                    data-testid="link-whatsapp-hassan-1"
+                  >
+                    <Phone className="w-4 h-4" />
+                    +971 52 394 6311
+                  </a>
+                  <a 
+                    href="https://wa.me/971523906019" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors"
+                    data-testid="link-whatsapp-hassan-2"
+                  >
+                    <Phone className="w-4 h-4" />
+                    +971 52 390 6019
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover-elevate border-green-500/20">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-full bg-green-500/10 flex items-center justify-center">
+                    <SiWhatsapp className="w-7 h-7 text-green-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg">Rubab Hassan</h3>
+                    <p className="text-sm text-muted-foreground">Home Essentials Expert</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <a 
+                    href="https://wa.me/971567148381" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors"
+                    data-testid="link-whatsapp-rubab-1"
+                  >
+                    <Phone className="w-4 h-4" />
+                    +971 56 714 8381
+                  </a>
+                  <a 
+                    href="https://wa.me/971504547110" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors"
+                    data-testid="link-whatsapp-rubab-2"
+                  >
+                    <Phone className="w-4 h-4" />
+                    +971 50 454 7110
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <p className="text-sm text-muted-foreground mb-4">
+              Follow us for updates, offers, and launch news!
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a 
+                href="https://facebook.com/deliwer" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-lg text-blue-400 hover:bg-blue-600/30 transition-colors"
+                data-testid="link-facebook"
+              >
+                <SiFacebook className="w-5 h-5" />
+                @deliwer
+              </a>
+              <a 
+                href="https://instagram.com/vdeliwer" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-pink-600/20 border border-pink-500/30 rounded-lg text-pink-400 hover:bg-pink-600/30 transition-colors"
+                data-testid="link-instagram"
+              >
+                <SiInstagram className="w-5 h-5" />
+                @vdeliwer
+              </a>
+            </div>
           </div>
         </div>
       </section>

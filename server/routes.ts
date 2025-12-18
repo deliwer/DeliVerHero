@@ -1776,6 +1776,44 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // Loyalty Program Registration for Home Service Launch
+  app.post("/api/loyalty/register", async (req, res) => {
+    try {
+      const { email, name, phone, type } = req.body;
+      
+      if (!email || !name) {
+        return res.status(400).json({ error: "Name and email are required" });
+      }
+
+      // Create subscriber with loyalty type
+      const subscriber = await storage.createEmailSubscriber({
+        email,
+        firstName: name.split(' ')[0],
+        lastName: name.split(' ').slice(1).join(' ') || '',
+        phone: phone || '',
+        subscriberType: type === 'partner' ? 'corporate' : 'consumer',
+        tags: [type, 'home-service-launch', 'dec-25-2024'],
+        acceptsMarketing: true
+      });
+
+      // Log loyalty registration
+      console.log(`Loyalty registration: ${type} - ${email} - ${name}`);
+
+      res.json({
+        success: true,
+        message: `Welcome to DeliWer's ${type} program!`,
+        subscriber: {
+          id: subscriber.id,
+          email: subscriber.email,
+          type
+        }
+      });
+    } catch (error: any) {
+      console.error('Loyalty registration error:', error);
+      res.status(400).json({ error: error.message || "Registration failed" });
+    }
+  });
+
   // Send targeted corporate outreach
   app.post("/api/email/corporate-outreach", async (req, res) => {
     try {
