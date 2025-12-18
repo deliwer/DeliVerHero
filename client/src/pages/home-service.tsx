@@ -94,7 +94,6 @@ export default function HomeService() {
           }
         })}</script>
       </Helmet>
-
       {/* Hero Section - Home Service Convenience */}
       <section className="relative h-[500px] md:h-[600px] overflow-hidden">
         <img 
@@ -145,7 +144,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Trade-In Service Section - NEW */}
       <section className="py-16 px-4 bg-gradient-to-br from-violet-900/10 via-purple-900/5 to-indigo-900/10" id="trade-in">
         <div className="container mx-auto max-w-5xl">
@@ -224,7 +222,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Water Service Hero Section - FEATURED */}
       <section className="py-0 px-0 relative" id="water-service">
         <div className="h-96 md:h-[500px] lg:h-[600px] relative overflow-hidden">
@@ -241,9 +238,7 @@ export default function HomeService() {
                   <Droplets className="w-3 h-3 mr-1" />
                   Featured: Water Service
                 </Badge>
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                  Clean water, everyday.
-                </h2>
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Kangen Water, everyday.</h2>
                 <p className="text-lg text-white/90 mb-6 max-w-xl">
                   Professional installation with reliable refills and maintenance included.
                 </p>
@@ -261,7 +256,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Water Service Details Section - ENHANCED PROMINENCE */}
       <section className="py-16 px-4 bg-gradient-to-b from-emerald-500/10 via-cyan-500/5 to-blue-500/10" id="water-details">
         <div className="container mx-auto max-w-5xl">
@@ -343,7 +337,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Errand Runner Section - MOVED UP (WAS AFTER CLEANING) */}
       <section className="py-16 px-4 bg-gradient-to-br from-orange-900/10 via-red-900/5 to-pink-900/10" id="errand-runner">
         <div className="container mx-auto max-w-5xl">
@@ -428,7 +421,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Solar Panel Installation Section - NEW */}
       <section className="py-16 px-4 bg-gradient-to-br from-amber-900/10 via-yellow-900/5 to-orange-900/10" id="solar-service">
         <div className="container mx-auto max-w-5xl">
@@ -485,7 +477,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* EV Charging Station Section - NEW */}
       <section className="py-16 px-4" id="ev-charging">
         <div className="container mx-auto max-w-5xl">
@@ -542,7 +533,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Eco-Cleaning Section - NEW */}
       <section className="py-16 px-4 bg-gradient-to-br from-teal-900/10 via-cyan-900/5 to-emerald-900/10" id="eco-cleaning">
         <div className="container mx-auto max-w-5xl">
@@ -599,8 +589,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
-
       {/* Concierge & Home Essentials - Moved to /errand */}
       <section className="py-12 px-4 bg-muted/30" id="more-services">
         <div className="container mx-auto max-w-3xl text-center">
@@ -617,7 +605,6 @@ export default function HomeService() {
           </Link>
         </div>
       </section>
-
       {/* Referral & Sharing Section - NEW */}
       <section className="py-16 px-4 bg-gradient-to-br from-pink-900/10 via-rose-900/5 to-red-900/10" id="referral">
         <div className="container mx-auto max-w-4xl">
@@ -698,7 +685,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Relocation Bridge CTA */}
       <section className="py-20 px-4 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-blue-900/20">
         <div className="container mx-auto">
@@ -726,7 +712,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-
       {/* Legal Note */}
       <section className="py-8 px-4 border-t border-border/50">
         <div className="container mx-auto max-w-3xl text-center">
