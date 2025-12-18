@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, Share2, Copy, CheckCircle2, Home, DollarSign, MapPin, Building2, Clock, FileText, Mail, Phone, User, Facebook, Linkedin, MessageCircle, Link as LinkIcon } from "lucide-react";
 
 interface HousingEnquiryFormProps {
   open: boolean;
@@ -29,6 +29,8 @@ export function HousingEnquiryForm({ open, onOpenChange, segment = "rent" }: Hou
     additionalInfo: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
   const { toast } = useToast();
 
   const areaOptions = [
@@ -45,6 +47,13 @@ export function HousingEnquiryForm({ open, onOpenChange, segment = "rent" }: Hou
     "Bur Dubai",
     "Dune",
     "Open to suggestions"
+  ];
+
+  const steps = [
+    { title: "Contact", icon: User },
+    { title: "Budget", icon: DollarSign },
+    { title: "Preferences", icon: MapPin },
+    { title: "Details", icon: Building2 },
   ];
 
   const handleAreaToggle = (area: string) => {
@@ -105,26 +114,11 @@ Additional Info: ${formData.additionalInfo || 'None'}
         urgency: "high",
       });
 
+      setIsSubmitted(true);
       toast({
         title: "Enquiry submitted successfully!",
         description: "Our housing advisor will contact you within 24 hours.",
       });
-
-      // Reset form and close dialog
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        segment: segment,
-        budget: "",
-        budgetMax: "",
-        areas: [],
-        propertyType: "",
-        bedrooms: "",
-        timeline: "",
-        additionalInfo: "",
-      });
-      onOpenChange(false);
     } catch (error) {
       toast({
         title: "Failed to submit enquiry",
@@ -142,6 +136,162 @@ Additional Info: ${formData.additionalInfo || 'None'}
     invest: "Investment"
   };
 
+  const referralLink = `https://deliwer.com/housing?ref=${formData.email?.split('@')[0] || 'friend'}`;
+
+  const handleShareReferral = (platform: 'whatsapp' | 'email' | 'copy' | 'facebook' | 'linkedin') => {
+    const message = `I found the perfect housing solution on DeliWer! They helped me find my ideal ${formData.segment} property in Dubai. Check it out: ${referralLink}`;
+    const encodedMessage = encodeURIComponent(message);
+
+    switch (platform) {
+      case 'whatsapp':
+        window.open(`https://wa.me/?text=${encodedMessage}`);
+        break;
+      case 'email':
+        window.open(`mailto:?subject=Check Out DeliWer Housing&body=${encodedMessage}`);
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(referralLink);
+        toast({
+          title: "Link copied!",
+          description: "Referral link copied to clipboard.",
+        });
+        break;
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`);
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(referralLink)}`);
+        break;
+    }
+  };
+
+  if (isSubmitted) {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-md" data-testid="dialog-housing-success">
+          <div className="text-center space-y-6 py-8">
+            <div className="flex justify-center">
+              <div className="bg-green-500/20 p-4 rounded-full">
+                <CheckCircle2 className="w-12 h-12 text-green-500" />
+              </div>
+            </div>
+            
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2" data-testid="text-success-title">
+                Enquiry Submitted!
+              </h2>
+              <p className="text-gray-400">
+                {formData.name}, we've received your {formData.segment} enquiry. Our housing advisors will contact you within 24 hours.
+              </p>
+            </div>
+
+            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 text-left space-y-3">
+              <p className="text-sm font-semibold text-gray-300">What's Next?</p>
+              <ul className="text-sm text-gray-400 space-y-2">
+                <li className="flex gap-2">
+                  <span className="text-blue-500 font-bold">1.</span>
+                  <span>We'll verify your preferences and timeline</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-blue-500 font-bold">2.</span>
+                  <span>Our expert will match properties to your needs</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-blue-500 font-bold">3.</span>
+                  <span>You'll receive curated options within 24 hours</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="border-t border-slate-700 pt-6">
+              <p className="text-sm font-semibold text-gray-300 mb-4">Share & Earn Rewards</p>
+              <p className="text-xs text-gray-400 mb-4">Refer a friend and both get exclusive benefits when they complete a housing transaction</p>
+              
+              <div className="grid grid-cols-2 gap-2 mb-4">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleShareReferral('whatsapp')}
+                  className="gap-2 text-xs"
+                  data-testid="button-share-whatsapp"
+                >
+                  <MessageCircle className="w-3 h-3" />
+                  WhatsApp
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleShareReferral('email')}
+                  className="gap-2 text-xs"
+                  data-testid="button-share-email"
+                >
+                  <Mail className="w-3 h-3" />
+                  Email
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleShareReferral('facebook')}
+                  className="gap-2 text-xs"
+                  data-testid="button-share-facebook"
+                >
+                  <Facebook className="w-3 h-3" />
+                  Facebook
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => handleShareReferral('linkedin')}
+                  className="gap-2 text-xs"
+                  data-testid="button-share-linkedin"
+                >
+                  <Linkedin className="w-3 h-3" />
+                  LinkedIn
+                </Button>
+              </div>
+
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={() => handleShareReferral('copy')}
+                className="w-full gap-2"
+                data-testid="button-copy-referral"
+              >
+                <Copy className="w-3 h-3" />
+                Copy Referral Link
+              </Button>
+            </div>
+
+            <Button
+              onClick={() => {
+                setIsSubmitted(false);
+                onOpenChange(false);
+                setFormData({
+                  name: "",
+                  email: "",
+                  phone: "",
+                  segment: segment,
+                  budget: "",
+                  budgetMax: "",
+                  areas: [],
+                  propertyType: "",
+                  bedrooms: "",
+                  timeline: "",
+                  additionalInfo: "",
+                });
+                setCurrentStep(0);
+              }}
+              className="w-full bg-blue-600 hover:bg-blue-500"
+              data-testid="button-close-success"
+            >
+              Close
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid="dialog-housing-enquiry">
@@ -154,185 +304,267 @@ Additional Info: ${formData.additionalInfo || 'None'}
           </DialogDescription>
         </DialogHeader>
 
+        {/* Progress Indicator */}
+        <div className="flex gap-2 mb-6">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            const isActive = currentStep === index;
+            const isCompleted = index < currentStep;
+            
+            return (
+              <div key={index} className="flex flex-col items-center flex-1">
+                <button
+                  onClick={() => setCurrentStep(index)}
+                  className={`mb-2 p-2 rounded-full transition-all ${
+                    isCompleted
+                      ? 'bg-green-500'
+                      : isActive
+                      ? 'bg-blue-600'
+                      : 'bg-slate-700'
+                  }`}
+                  data-testid={`button-step-${index}`}
+                >
+                  <Icon className="w-4 h-4 text-white" />
+                </button>
+                <span className="text-xs text-gray-400 text-center">{step.title}</span>
+              </div>
+            );
+          })}
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Contact Information */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-white">Contact Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                name="name"
-                placeholder="Full Name *"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="bg-slate-900 border-slate-700"
-                data-testid="input-enquiry-name"
-              />
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email *"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="bg-slate-900 border-slate-700"
-                data-testid="input-enquiry-email"
-              />
-            </div>
-            <Input
-              name="phone"
-              placeholder="Phone Number *"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="bg-slate-900 border-slate-700"
-              data-testid="input-enquiry-phone"
-            />
-          </div>
-
-          {/* Budget */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-white">Budget</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm text-gray-400 block mb-2">Minimum Budget (AED)</label>
-                <Input
-                  name="budget"
-                  placeholder="e.g., 50,000"
-                  value={formData.budget}
-                  onChange={handleInputChange}
-                  className="bg-slate-900 border-slate-700"
-                  data-testid="input-enquiry-budget-min"
-                />
-              </div>
-              <div>
-                <label className="text-sm text-gray-400 block mb-2">Maximum Budget (AED)</label>
-                <Input
-                  name="budgetMax"
-                  placeholder="e.g., 200,000"
-                  value={formData.budgetMax}
-                  onChange={handleInputChange}
-                  className="bg-slate-900 border-slate-700"
-                  data-testid="input-enquiry-budget-max"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Areas of Interest */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-white">Areas of Interest</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-48 overflow-y-auto p-2 border border-slate-700 rounded-md bg-slate-900/30">
-              {areaOptions.map(area => (
-                <label key={area} className="flex items-center gap-2 cursor-pointer">
-                  <Checkbox
-                    checked={formData.areas.includes(area)}
-                    onCheckedChange={() => handleAreaToggle(area)}
-                    data-testid={`checkbox-area-${area.toLowerCase().replace(/\s+/g, '-')}`}
+          {/* Step 1: Contact Information */}
+          {currentStep === 0 && (
+            <div className="space-y-4 animate-in fade-in">
+              <h3 className="font-semibold text-white flex items-center gap-2">
+                <User className="w-4 h-4 text-blue-500" />
+                Contact Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-400 block mb-1.5 font-medium">Full Name *</label>
+                  <Input
+                    name="name"
+                    placeholder="John Smith"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="bg-white border-gray-300 text-black placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                    data-testid="input-enquiry-name"
                   />
-                  <span className="text-sm text-gray-300">{area}</span>
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 block mb-1.5 font-medium">Email *</label>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="john@example.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="bg-white border-gray-300 text-black placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                    data-testid="input-enquiry-email"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 block mb-1.5 font-medium">Phone Number *</label>
+                <Input
+                  name="phone"
+                  placeholder="+971 55 123 4567"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="bg-white border-gray-300 text-black placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                  data-testid="input-enquiry-phone"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Step 2: Budget */}
+          {currentStep === 1 && (
+            <div className="space-y-4 animate-in fade-in">
+              <h3 className="font-semibold text-white flex items-center gap-2">
+                <DollarSign className="w-4 h-4 text-green-500" />
+                Budget Range
+              </h3>
+              <p className="text-sm text-gray-400">What's your {formData.segment === 'rent' ? 'monthly' : 'total'} budget?</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-400 block mb-1.5 font-medium">
+                    Minimum ({formData.segment === 'rent' ? 'Monthly' : 'Total'}) AED
+                  </label>
+                  <Input
+                    name="budget"
+                    placeholder="50,000"
+                    value={formData.budget}
+                    onChange={handleInputChange}
+                    className="bg-white border-gray-300 text-black placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                    data-testid="input-enquiry-budget-min"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 block mb-1.5 font-medium">Maximum AED</label>
+                  <Input
+                    name="budgetMax"
+                    placeholder="200,000"
+                    value={formData.budgetMax}
+                    onChange={handleInputChange}
+                    className="bg-white border-gray-300 text-black placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                    data-testid="input-enquiry-budget-max"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Preferences */}
+          {currentStep === 2 && (
+            <div className="space-y-4 animate-in fade-in">
+              <h3 className="font-semibold text-white flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-purple-500" />
+                Areas of Interest
+              </h3>
+              <p className="text-sm text-gray-400">Select all areas you'd like to explore</p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-64 overflow-y-auto p-3 border border-gray-300 rounded-lg bg-gray-50">
+                {areaOptions.map(area => (
+                  <label key={area} className="flex items-center gap-2 cursor-pointer hover:bg-blue-50 p-2 rounded transition-colors">
+                    <Checkbox
+                      checked={formData.areas.includes(area)}
+                      onCheckedChange={() => handleAreaToggle(area)}
+                      data-testid={`checkbox-area-${area.toLowerCase().replace(/\s+/g, '-')}`}
+                    />
+                    <span className="text-sm text-gray-700">{area}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Step 4: Details */}
+          {currentStep === 3 && (
+            <div className="space-y-4 animate-in fade-in">
+              <h3 className="font-semibold text-white flex items-center gap-2">
+                <Building2 className="w-4 h-4 text-amber-500" />
+                Property & Timeline
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs text-gray-400 block mb-1.5 font-medium">Property Type</label>
+                  <Select value={formData.propertyType} onValueChange={(value) => handleSelectChange('propertyType', value)}>
+                    <SelectTrigger className="bg-white border-gray-300 text-gray-900" data-testid="select-property-type">
+                      <SelectValue placeholder="Select type..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="studio">Studio</SelectItem>
+                      <SelectItem value="apartment">Apartment</SelectItem>
+                      <SelectItem value="villa">Villa</SelectItem>
+                      <SelectItem value="townhouse">Townhouse</SelectItem>
+                      <SelectItem value="penthouse">Penthouse</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <label className="text-xs text-gray-400 block mb-1.5 font-medium">Bedrooms</label>
+                  <Select value={formData.bedrooms} onValueChange={(value) => handleSelectChange('bedrooms', value)}>
+                    <SelectTrigger className="bg-white border-gray-300 text-gray-900" data-testid="select-bedrooms">
+                      <SelectValue placeholder="Select bedrooms..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="studio">Studio</SelectItem>
+                      <SelectItem value="1">1 Bedroom</SelectItem>
+                      <SelectItem value="2">2 Bedrooms</SelectItem>
+                      <SelectItem value="3">3 Bedrooms</SelectItem>
+                      <SelectItem value="4">4 Bedrooms</SelectItem>
+                      <SelectItem value="5+">5+ Bedrooms</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              
+              <div>
+                <label className="text-xs text-gray-400 block mb-1.5 font-medium flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  When are you looking to move?
                 </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Property Details */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-white">Property Details</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm text-gray-400 block mb-2">Property Type</label>
-                <Select value={formData.propertyType} onValueChange={(value) => handleSelectChange('propertyType', value)}>
-                  <SelectTrigger className="bg-slate-900 border-slate-700" data-testid="select-property-type">
-                    <SelectValue placeholder="Select type..." />
+                <Select value={formData.timeline} onValueChange={(value) => handleSelectChange('timeline', value)}>
+                  <SelectTrigger className="bg-white border-gray-300 text-gray-900" data-testid="select-timeline">
+                    <SelectValue placeholder="Select timeline..." />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="studio">Studio</SelectItem>
-                    <SelectItem value="apartment">Apartment</SelectItem>
-                    <SelectItem value="villa">Villa</SelectItem>
-                    <SelectItem value="townhouse">Townhouse</SelectItem>
-                    <SelectItem value="penthouse">Penthouse</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectItem value="immediately">Immediately (within 2 weeks)</SelectItem>
+                    <SelectItem value="1month">1 Month</SelectItem>
+                    <SelectItem value="2-3months">2-3 Months</SelectItem>
+                    <SelectItem value="4-6months">4-6 Months</SelectItem>
+                    <SelectItem value="6+months">6+ Months</SelectItem>
+                    <SelectItem value="flexible">Flexible</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
+
               <div>
-                <label className="text-sm text-gray-400 block mb-2">Bedrooms</label>
-                <Select value={formData.bedrooms} onValueChange={(value) => handleSelectChange('bedrooms', value)}>
-                  <SelectTrigger className="bg-slate-900 border-slate-700" data-testid="select-bedrooms">
-                    <SelectValue placeholder="Select bedrooms..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="studio">Studio</SelectItem>
-                    <SelectItem value="1">1 Bedroom</SelectItem>
-                    <SelectItem value="2">2 Bedrooms</SelectItem>
-                    <SelectItem value="3">3 Bedrooms</SelectItem>
-                    <SelectItem value="4">4 Bedrooms</SelectItem>
-                    <SelectItem value="5+">5+ Bedrooms</SelectItem>
-                  </SelectContent>
-                </Select>
+                <label className="text-xs text-gray-400 block mb-1.5 font-medium flex items-center gap-2">
+                  <FileText className="w-4 h-4" />
+                  Any additional information?
+                </label>
+                <textarea
+                  name="additionalInfo"
+                  placeholder="Family status, work location, special requirements, etc."
+                  value={formData.additionalInfo}
+                  onChange={handleInputChange}
+                  className="w-full bg-white border border-gray-300 rounded-md px-3 py-2 text-gray-900 placeholder:text-gray-400 text-sm focus:border-blue-500 focus:ring-blue-500"
+                  rows={3}
+                  data-testid="textarea-enquiry-info"
+                />
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Timeline */}
-          <div className="space-y-4">
-            <label className="text-sm text-gray-400 block">When are you looking to move?</label>
-            <Select value={formData.timeline} onValueChange={(value) => handleSelectChange('timeline', value)}>
-              <SelectTrigger className="bg-slate-900 border-slate-700" data-testid="select-timeline">
-                <SelectValue placeholder="Select timeline..." />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="immediately">Immediately (within 2 weeks)</SelectItem>
-                <SelectItem value="1month">1 Month</SelectItem>
-                <SelectItem value="2-3months">2-3 Months</SelectItem>
-                <SelectItem value="4-6months">4-6 Months</SelectItem>
-                <SelectItem value="6+months">6+ Months</SelectItem>
-                <SelectItem value="flexible">Flexible</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Additional Info */}
-          <div className="space-y-4">
-            <label className="text-sm text-gray-400 block">Any additional information?</label>
-            <textarea
-              name="additionalInfo"
-              placeholder="Tell us anything else we should know (family status, work location, special requirements, etc.)"
-              value={formData.additionalInfo}
-              onChange={handleInputChange}
-              className="w-full bg-slate-900 border border-slate-700 rounded-md px-3 py-2 text-white placeholder:text-gray-500 text-sm"
-              rows={3}
-              data-testid="textarea-enquiry-info"
-            />
-          </div>
-
-          {/* Submit Button */}
-          <div className="flex gap-3 pt-4">
+          {/* Navigation Buttons */}
+          <div className="flex gap-3 pt-4 border-t border-gray-200">
             <Button
               type="button"
               variant="outline"
-              onClick={() => onOpenChange(false)}
+              onClick={() => {
+                if (currentStep > 0) {
+                  setCurrentStep(currentStep - 1);
+                } else {
+                  onOpenChange(false);
+                }
+              }}
               className="flex-1"
-              data-testid="button-enquiry-cancel"
+              data-testid="button-enquiry-previous"
             >
-              Cancel
+              {currentStep === 0 ? "Cancel" : "Back"}
             </Button>
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="flex-1 bg-blue-600 hover:bg-blue-500"
-              data-testid="button-enquiry-submit"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Submitting...
-                </>
-              ) : (
-                <>
-                  <Send className="w-4 h-4 mr-2" />
-                  Submit Enquiry
-                </>
-              )}
-            </Button>
+            {currentStep < 3 ? (
+              <Button
+                type="button"
+                onClick={() => setCurrentStep(currentStep + 1)}
+                className="flex-1 bg-blue-600 hover:bg-blue-500"
+                data-testid="button-enquiry-next"
+              >
+                Next
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex-1 bg-blue-600 hover:bg-blue-500"
+                data-testid="button-enquiry-submit"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Submit Enquiry
+                  </>
+                )}
+              </Button>
+            )}
           </div>
         </form>
       </DialogContent>
