@@ -359,16 +359,15 @@ export default function HomeServiceLaunch() {
               </div>
 
               <div className="flex flex-wrap justify-center gap-3">
-                <a 
-                  href={`https://wa.me/?text=Join%20DeliWer's%20Home%20Service%20Launch!%20${encodeURIComponent(referralLink)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-lg text-green-400 hover:bg-green-600/30 transition-colors"
-                  data-testid="link-share-whatsapp"
-                >
-                  <SiWhatsapp className="w-5 h-5" />
-                  WhatsApp
-                </a>
+                <SocialSharingWidget 
+                  content={{
+                    type: 'trade',
+                    title: 'DeliWer Home Service Launch',
+                    description: 'Join DeliWer on Dec 25th! Water filtration, errand runners, and more home services. Register now for exclusive launch rewards!',
+                    value: 50,
+                    url: referralLink
+                  }}
+                />
                 <a 
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`}
                   target="_blank"

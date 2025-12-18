@@ -59,45 +59,52 @@ export default function ErrandPage() {
         <link rel="canonical" href="https://deliwer.com/errand" />
       </Helmet>
 
-      {/* Hero Section - Eye-catching */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-900/20 via-red-900/10 to-pink-900/20"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-6 bg-orange-500/20 text-orange-400 border-orange-500/30">
-              <Bike className="w-3 h-3 mr-1" />
-              DeliWer Errand Runner
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6" data-testid="text-errand-hero-title">
-              Your Time Is Valuable.
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400"> Let Us Handle It.</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto" data-testid="text-errand-hero-description">
-              Stuck in traffic? Forgot something important? Our errand runners handle your to-do list so you can focus on what matters.
-            </p>
-            <p className="text-lg text-muted-foreground/80 mb-8 max-w-2xl mx-auto">
-              Same-day service. Trusted runners. AED 29 for your first errand.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <CalendlyButton 
-                size="lg" 
-                data-testid="button-book-errand"
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Request Your First Errand
-              </CalendlyButton>
-              <Link href="/home-service">
-                <Button size="lg" variant="outline" data-testid="button-explore-home-services">
-                  <ArrowRight className="w-4 h-4 mr-2" />
-                  Explore More Home Services
-                </Button>
-              </Link>
-              <Link href="/">
-                <Button size="lg" variant="ghost" data-testid="button-home-nav-errand">
-                  <Home className="w-4 h-4 mr-2" />
-                  Home
-                </Button>
-              </Link>
+      {/* Hero Section - Full Background Image */}
+      <section className="relative h-[500px] md:h-[600px] overflow-hidden">
+        <img 
+          src={errandRunnerImg} 
+          alt="Errand runner lifestyle - Your time is valuable" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+        <div className="absolute inset-0 flex items-center">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-2xl">
+              <Badge variant="secondary" className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-sm">
+                <Bike className="w-3 h-3 mr-1" />
+                DeliWer Errand Runner
+              </Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-errand-hero-title">
+                Your Time Is Valuable.
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-red-300"> Let Us Handle It.</span>
+              </h1>
+              <p className="text-xl text-white/90 mb-4 max-w-xl" data-testid="text-errand-hero-description">
+                Stuck in traffic? Forgot something important? Our errand runners handle your to-do list so you can focus on what matters.
+              </p>
+              <p className="text-lg text-white/70 mb-8 max-w-xl">
+                Same-day service. Trusted runners. AED 29 for your first errand.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <CalendlyButton 
+                  size="lg" 
+                  data-testid="button-book-errand"
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Request Your First Errand
+                </CalendlyButton>
+                <Link href="/home-service">
+                  <Button size="lg" variant="outline" className="bg-orange-500/20 border-orange-400/30 text-white backdrop-blur-sm" data-testid="button-explore-home-services">
+                    <ArrowRight className="w-4 h-4 mr-2" />
+                    Explore More Services
+                  </Button>
+                </Link>
+                <Link href="/">
+                  <Button size="lg" variant="ghost" className="text-white/80 hover:text-white" data-testid="button-home-nav-errand">
+                    <Home className="w-4 h-4 mr-2" />
+                    Home
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

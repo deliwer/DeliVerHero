@@ -86,7 +86,7 @@ export default function HomeService() {
                 Launching Dec 25th - Christmas Special
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-home-service-title">
-                Pure Water.
+                Freedom LifeStyle.
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300"> Healthy Living.</span>
               </h1>
               <p className="text-xl text-white/90 mb-4 max-w-xl" data-testid="text-home-service-description">
