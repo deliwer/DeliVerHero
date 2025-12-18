@@ -31,7 +31,8 @@ export function FloatingErrandTips() {
       description: "Grocery, pharmacy, gifts, returns",
       icon: Gift,
       color: "orange",
-      scrollId: "#errand",
+      targetPage: "/errand",
+      targetSection: "errand",
       action: "Browse Services",
       isWhatsApp: false,
     },
@@ -40,7 +41,8 @@ export function FloatingErrandTips() {
       description: "Utility bills, fees, deposits",
       icon: Clock,
       color: "orange",
-      scrollId: "#errand",
+      targetPage: "/errand",
+      targetSection: "errand",
       action: "Learn More",
       isWhatsApp: false,
     },
@@ -49,7 +51,8 @@ export function FloatingErrandTips() {
       description: "Same-day delivery, last-minute gifts",
       icon: MapPin,
       color: "orange",
-      scrollId: "#home-essentials",
+      targetPage: "/errand",
+      targetSection: "home-essentials",
       action: "Get Started",
       isWhatsApp: false,
     },
@@ -58,7 +61,8 @@ export function FloatingErrandTips() {
       description: "Bundle 3+ errands for 15% savings",
       icon: Zap,
       color: "purple",
-      scrollId: "#concierge",
+      targetPage: "/errand",
+      targetSection: "concierge",
       action: "Learn More",
       isWhatsApp: false,
     },
@@ -67,7 +71,8 @@ export function FloatingErrandTips() {
       description: "Direct booking available - average 2 min response",
       icon: WhatsAppIcon,
       color: "green",
-      scrollId: "#whatsapp-agents",
+      targetPage: "/errand",
+      targetSection: "whatsapp-agents",
       action: "Chat Now",
       isWhatsApp: true,
     },
@@ -76,15 +81,21 @@ export function FloatingErrandTips() {
   const currentTip = tips[currentTipIndex];
   const CurrentIcon = currentTip.icon;
 
-  const scrollToSection = () => {
+  const navigateToSection = () => {
     setHasInteracted(true);
-    const element = document.querySelector(currentTip.scrollId);
-    if (element) {
+    
+    // Try to find section on current page first
+    const sectionSelector = `#${currentTip.targetSection}`;
+    const element = document.querySelector(sectionSelector);
+    
+    if (element && location === currentTip.targetPage) {
+      // Section exists on current page - scroll to it
       element.scrollIntoView({ behavior: "smooth", block: "start" });
-      // Keep open for 3 more seconds to show the section
       setTimeout(() => setHasInteracted(false), 3000);
     } else {
-      console.warn(`Section ${currentTip.scrollId} not found on this page`);
+      // Navigate to target page with section anchor
+      // Using window.location.href will navigate and browser auto-scrolls to anchor
+      window.location.href = `${currentTip.targetPage}#${currentTip.targetSection}`;
     }
   };
 
@@ -165,8 +176,8 @@ export function FloatingErrandTips() {
                 size="sm"
                 className="flex-1 text-xs h-8"
                 variant="default"
-                onClick={scrollToSection}
-                data-testid={`button-scroll-${currentTip.title.toLowerCase().replace(/\s+/g, '-')}`}
+                onClick={navigateToSection}
+                data-testid={`button-navigate-${currentTip.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {currentTip.action}
               </Button>

@@ -247,48 +247,47 @@ Created `FloatingErrandTips` component that appears as a sticky floating popup o
 - **Visual consistency** between hero and detail sections now both show water systems
 - **Better conversion** with clear benefit statements and external validation link
 
-### Floating Errand Tips Links Fixed (December 18, 2025 - Final)
+### Floating Errand Tips Links Fixed (December 18, 2025 - FINAL FIX)
 
-#### Problem Diagnosed
-- "Pro Tip" links were not working - section references were broken
-- "WhatsApp Booking" links missing on some pages
-- Tips tried to scroll to non-existent sections
+#### Root Cause Identified
+Non-WhatsApp tips only scrolled to sections on the same page. When users were on /home-service or /housing pages and clicked tips pointing to /errand sections, those sections didn't exist on those pages → links appeared broken.
 
-#### Solution Implemented
+#### Solution: Smart Cross-Page Navigation
 
-**1. Added Missing Section ID**
-- Added `id="errand"` to main service section on /errand page (line 125)
-- All errand-related tips now scroll to working sections
+**1. Restructured Tip Configuration**
+- Changed from simple `scrollId` to `targetPage` + `targetSection` structure
+- Each tip now knows which page has its target section
+- All non-WhatsApp tips point to `/errand` page with specific sections
 
-**2. Fixed Tip Navigation Links**
-```javascript
-Tip 0: "Shopping & Pickup" → #errand (main service section)
-Tip 1: "Bill Payments" → #errand (main service section)  
-Tip 2: "Quick Delivery" → #home-essentials (home essentials section)
-Tip 3: "Pro Tip" → #concierge (concierge section - "Bundle 3+ errands for 15% savings")
-Tip 4: "WhatsApp Booking" → #whatsapp-agents (WhatsApp agents section)
+**2. Implemented Smart Navigation Logic**
+```typescript
+navigateToSection() logic:
+- Check if target section exists on CURRENT page
+  ✓ IF YES → Smooth scroll to it (same page)
+  ✗ IF NO → Navigate to target page with section anchor
+           Browser auto-scrolls to anchor when page loads
 ```
 
-**3. Component Improvements**
-- Added `isWhatsApp` boolean flag to distinguish actions
-- Updated button conditions to use `isWhatsApp` instead of color detection
-- Changed test IDs to be dynamic based on tip title
-- Added console warning if section not found (helpful for debugging)
-- Error handling prevents click failures
+**3. Updated Tip Configuration**
+```
+Tip 0: "Shopping & Pickup" → /errand#errand
+Tip 1: "Bill Payments" → /errand#errand
+Tip 2: "Quick Delivery" → /errand#home-essentials
+Tip 3: "Pro Tip" → /errand#concierge (shows bundling savings)
+Tip 4: "WhatsApp Booking" → opens direct WhatsApp chat (isWhatsApp: true)
+```
 
-#### Current Status
-- ✅ **All 5 tips** have working scroll/navigation
-- ✅ **Error logging** for missing sections  
-- ✅ **No LSP errors** or runtime issues
-- ✅ **Page detection** shows popup on /errand, /home-service, /housing
-- ✅ **Click functionality** fully restored
+#### Navigation Behavior
+- **On /errand page**: All tips scroll smoothly to their sections
+- **On /home-service or /housing pages**: Clicking any non-WhatsApp tip navigates to /errand and scrolls to target section
+- **WhatsApp tip**: Opens chat link regardless of page
 
-#### Tip Details
-- **Shopping & Pickup**: Scrolls to service offerings with checkout
-- **Bill Payments**: Shows payment service features
-- **Quick Delivery**: Shows home essentials and delivery options
-- **Pro Tip**: Shows concierge section with bundling savings offer
-- **WhatsApp Booking**: Opens direct WhatsApp chat to Hassan (971523946311)
+#### Final Status
+- ✅ **All links functional** - no more broken sections
+- ✅ **Cross-page navigation** working seamlessly
+- ✅ **Smart scrolling** - smooth on same page, page nav on different pages
+- ✅ **Error-free** - no console warnings
+- ✅ **Effective alternative navigation** - users can discover all services from any page
 
 ### Previous Enhancements (December 18, 2025)
 - **Home Service Page Hero**: Changed header from "Pure Water. Healthy Living." to "Freedom LifeStyle. Healthy Living."
