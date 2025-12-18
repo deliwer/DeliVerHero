@@ -51,9 +51,46 @@ New Dubai-based relocation and investment gateway connecting global founders, in
 - Prominent offer badge with "SAVE NOW" text
 - Enhanced typography hierarchy with font weights and colors
 
+### Errand Page Enhancement - Time-Saving Focus (December 18, 2025 - Latest Update)
+
+#### Hero Section Transformation
+- **New Background Image**: Changed to busy Dubai urban lifestyle image representing convenience and time-saving
+- **Messaging Shift**: "Stop Wasting Your Time. **Start Saving Hours.**" - emphasizes hours saved per week
+- **Enhanced Copy**: Updated to emphasize Dubai traffic context and time reclamation
+- **Meta Tags Enhanced**: Added "time-saving service", "busy professionals" keywords
+- **Structured Data Ready**: Schema.org JSON-LD compatible
+
+#### Body Text Visibility & Cognitive Appeal Improvements
+- **Main Service Section**: Added semi-transparent container with orange border and backdrop blur
+- **Enhanced Typography**: 
+  - Dark text on light background for superior readability
+  - Added font-weight medium to descriptions for emphasis
+  - Increased cognitive value: "gives you back 5+ hours per week"
+- **Services Section Title**: Changed from "What Can We Handle?" to "What Can We Deliver For You?" (more customer-focused)
+- **Services Description**: Added cognitive trigger: "see how many hours our runners can save you each week"
+- **Color Contrast**: Slate-900 dark text on white/light backgrounds for accessibility
+
+#### Multiple Sharing Options Added
+- **SocialSharingWidget**: Multi-platform sharing component in referral section
+- **Direct Share Buttons**: WhatsApp, Facebook, Instagram sharing with pre-filled referral links in referral section
+- **Enhanced Share Copy**: Emphasizes "Save 5+ hours weekly" and "AED 50 + Planet Points" rewards
+- **WhatsApp Link**: Pre-filled message template for social virality
+- **Facebook/Instagram Share**: Direct sharing with referral link embedded
+
+#### Additional Enhancements
+- **Referral Section Expansion**: New "Share your referral code directly" section with quick-access platform buttons
+- **CTA Optimization**: Better button placement and wording for member popularity
+- **SEO Keywords**: Added "time-saving service", "convenience service", "busy professionals", "save hours weekly"
+- **Twitter Card Support**: Enhanced social media preview tags
+
+#### Design Elements
+- Semi-transparent white/dark container with orange border accent
+- Busy life image showcasing urban Dubai professionals
+- Direct social sharing buttons with platform colors
+- High-contrast text for readability
+
 ### Previous Enhancements (December 18, 2025)
 - **Home Service Page Hero**: Changed header from "Pure Water. Healthy Living." to "Freedom LifeStyle. Healthy Living."
-- **Errand Page Enhancement**: Added full-width hero banner with lifestyle background image (errandRunnerImg) and dark gradient overlay
 - **Launch Page Sharing**: Integrated SocialSharingWidget component for multi-platform social sharing on /home-service-launch
 - **SendGrid Integration**: Set up SendGrid connector for cold outreach emails
   - Note: Integration was dismissed by user - alternative: Store SendGrid API key as secret and use `@sendgrid/mail` directly in backend

@@ -30,6 +30,7 @@ import { SiFacebook, SiInstagram, SiWhatsapp } from "react-icons/si";
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
+import busyLifeImg from "@assets/stock_images/city_rush_hour_shopp_8fe525d9.jpg";
 
 export default function ErrandPage() {
   const { toast } = useToast();
@@ -50,13 +51,20 @@ export default function ErrandPage() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Errand Runner Service Dubai | Personal Delivery & Concierge | DeliWer</title>
-        <meta name="description" content="Professional errand runner service in Dubai. Same-day delivery, bill payments, grocery runs, dry cleaning pickup. Book your errand today - AED 29 first errand!" />
-        <meta name="keywords" content="errand runner Dubai, personal delivery service, concierge service UAE, same-day delivery, bill payment service, grocery delivery Dubai" />
-        <meta property="og:title" content="Errand Runner Service Dubai | DeliWer" />
-        <meta property="og:description" content="Get your errands done fast. Anything DeliWered. Wherever. Whenever." />
+        <title>Errand Runner Service Dubai | Time-Saving Delivery & Concierge | DeliWer</title>
+        <meta name="description" content="Professional errand runner service in Dubai saves busy professionals hours daily. Same-day delivery, bill payments, grocery runs, dry cleaning pickup, document delivery. Book your first errand today - only AED 29!" />
+        <meta name="keywords" content="errand runner Dubai, time-saving service, personal delivery service, concierge service UAE, same-day delivery, busy professionals, bill payment service, grocery delivery Dubai, convenience service" />
+        <meta property="og:title" content="Errand Runner Service Dubai - Save Hours Every Week | DeliWer" />
+        <meta property="og:description" content="Get your errands done fast. Anything DeliWered. Wherever. Whenever. Focus on what matters while we handle the rest." />
         <meta property="og:type" content="website" />
+        <meta name="author" content="DeliWer" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="7 days" />
         <link rel="canonical" href="https://deliwer.com/errand" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Errand Runner Service Dubai - Save Hours Every Week | DeliWer" />
+        <meta name="twitter:description" content="Professional errand runners handle your to-do list. AED 29 first errand. Same-day delivery in Dubai." />
       </Helmet>
 
       {/* Hero Section - Full Background Image */}
@@ -72,17 +80,17 @@ export default function ErrandPage() {
             <div className="max-w-2xl">
               <Badge variant="secondary" className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-sm">
                 <Bike className="w-3 h-3 mr-1" />
-                DeliWer Errand Runner
+                DeliWer Errand Runner - Save Hours Daily
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-errand-hero-title">
-                Your Time Is Valuable.
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-red-300"> Let Us Handle It.</span>
+                Stop Wasting Your Time.
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-red-300"> Start Saving Hours.</span>
               </h1>
-              <p className="text-xl text-white/90 mb-4 max-w-xl" data-testid="text-errand-hero-description">
-                Stuck in traffic? Forgot something important? Our errand runners handle your to-do list so you can focus on what matters.
+              <p className="text-xl text-white/95 mb-4 max-w-xl font-semibold" data-testid="text-errand-hero-description">
+                Stuck in Dubai traffic? Buried in errands? Our trusted runners handle your entire to-do list so you reclaim your time and focus on what truly matters.
               </p>
-              <p className="text-lg text-white/70 mb-8 max-w-xl">
-                Same-day service. Trusted runners. AED 29 for your first errand.
+              <p className="text-lg text-white/80 mb-8 max-w-xl">
+                2-4 hour turnaround. Professional, vetted runners. Tracking every step. Just AED 29 for your first errand.
               </p>
               <div className="flex flex-wrap gap-4">
                 <CalendlyButton 
@@ -114,12 +122,12 @@ export default function ErrandPage() {
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-5xl">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-errand-main-title">
-                Anything DeliWered. <span className="text-orange-400">Wherever. Whenever.</span>
+            <div className="bg-white/40 dark:bg-slate-900/40 p-8 rounded-2xl border border-orange-200 dark:border-orange-900/30 backdrop-blur-sm">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white" data-testid="text-errand-main-title">
+                Anything DeliWered. <span className="text-orange-600 dark:text-orange-400">Wherever. Whenever.</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                From paying bills to picking up groceries, our reliable runners take care of life's small but time-consuming tasks. Focus on what matters while we handle the rest.
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 font-medium">
+                Stop spending hours on repetitive errands. From urgent bill payments to grocery runs, our professional runners handle life's small but consuming tasks — giving you back 5+ hours per week.
               </p>
               
               <div className="space-y-4 mb-8">
@@ -185,16 +193,16 @@ export default function ErrandPage() {
               </CalendlyButton>
             </div>
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
                 <img 
-                  src={errandRunnerImg} 
-                  alt="Errand runner on bike delivering in Dubai" 
+                  src={busyLifeImg} 
+                  alt="Busy Dubai lifestyle - professionals saving time with errand services, urban convenience" 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Fast & Reliable Service</p>
-                  <p className="text-white/80 text-sm">Your personal helper in Dubai</p>
+                  <p className="text-white font-bold text-lg">Your Time Matters</p>
+                  <p className="text-white/90 text-sm">Focus on what truly matters — we handle the rest</p>
                 </div>
               </div>
             </div>
@@ -206,11 +214,11 @@ export default function ErrandPage() {
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-errand-services">
-              What Can We Handle?
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white" data-testid="text-errand-services">
+              What Can We Deliver For You?
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Pretty much anything portable and legal. Here are some common requests:
+            <p className="text-lg text-slate-700 dark:text-slate-300 max-w-2xl mx-auto font-medium">
+              Anything portable and legal. From daily essentials to urgent deliveries — see how many hours our runners can save you each week:
             </p>
           </div>
           
@@ -332,16 +340,52 @@ export default function ErrandPage() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-wrap justify-center gap-3 mb-6">
                 <SocialSharingWidget 
                   content={{
                     type: 'trade',
                     title: 'DeliWer Errand Runner',
-                    description: 'Get your errands done fast! Same-day delivery, bill payments, grocery runs in Dubai.',
+                    description: 'Save 5+ hours weekly! Get your errands done fast. Same-day delivery, bill payments, grocery runs in Dubai. Earn AED 50 + Planet Points when your friends join!',
                     value: 50,
                     url: referralLink
                   }}
                 />
+              </div>
+              
+              <div className="border-t border-border/30 pt-6">
+                <p className="text-sm text-muted-foreground mb-4 font-medium text-center">Share your referral code directly:</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  <a 
+                    href={`https://wa.me/?text=Save hours with DeliWer Errand Runner! I'm earning AED 50 + Planet Points with each friend. Join me: ${referralLink}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-lg text-green-500 hover:bg-green-600/30 transition-colors text-sm font-medium"
+                    data-testid="link-share-whatsapp-errand"
+                  >
+                    <SiWhatsapp className="w-4 h-4" />
+                    Share on WhatsApp
+                  </a>
+                  <a 
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${referralLink}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-lg text-blue-500 hover:bg-blue-600/30 transition-colors text-sm font-medium"
+                    data-testid="link-share-facebook-errand"
+                  >
+                    <SiFacebook className="w-4 h-4" />
+                    Share on Facebook
+                  </a>
+                  <a 
+                    href={`https://instagram.com/?url=${referralLink}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-pink-600/20 border border-pink-500/30 rounded-lg text-pink-500 hover:bg-pink-600/30 transition-colors text-sm font-medium"
+                    data-testid="link-share-instagram-errand"
+                  >
+                    <SiInstagram className="w-4 h-4" />
+                    Share on Instagram
+                  </a>
+                </div>
               </div>
             </CardContent>
           </Card>
