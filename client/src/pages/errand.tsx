@@ -278,6 +278,31 @@ export default function ErrandPage() {
               </CardContent>
             </Card>
           </div>
+
+          {/* Quick Start Context Tip */}
+          <div className="mt-12 max-w-3xl mx-auto">
+            <div className="bg-gradient-to-r from-orange-50/40 dark:from-orange-900/20 to-red-50/40 dark:to-red-900/20 border border-orange-200/50 dark:border-orange-900/30 rounded-xl p-6 backdrop-blur-sm">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-orange-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Sparkles className="w-5 h-5 text-orange-500" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Ready to Reclaim Your Time?</h3>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">
+                    Start your first errand in just 2 minutes. We handle the rest while you focus on what truly matters.
+                  </p>
+                  <CalendlyButton 
+                    size="sm"
+                    data-testid="button-quick-start-errand-tip"
+                    className="text-sm"
+                  >
+                    Book Your First Errand
+                    <ArrowRight className="w-3 h-3 ml-1" />
+                  </CalendlyButton>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -446,6 +471,11 @@ export default function ErrandPage() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Send someone else to handle life's small but time-consuming tasks. Think of it as your personal helper in the city.
             </p>
+            
+            {/* Inline Context Tip */}
+            <div className="mt-6 inline-block px-4 py-2 bg-purple-100/40 dark:bg-purple-900/20 border border-purple-200/50 dark:border-purple-900/30 rounded-full">
+              <p className="text-xs font-medium text-purple-700 dark:text-purple-300">💡 Pro Tip: Bundle 3+ errands for 15% savings</p>
+            </div>
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -504,6 +534,11 @@ export default function ErrandPage() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               We connect you with trusted services for daily living. All coordinated — so you don't have to chase multiple providers.
             </p>
+            
+            {/* Inline Context Tip */}
+            <div className="mt-6 inline-block px-4 py-2 bg-teal-100/40 dark:bg-teal-900/20 border border-teal-200/50 dark:border-teal-900/30 rounded-full">
+              <p className="text-xs font-medium text-teal-700 dark:text-teal-300">🚀 New: WhatsApp direct booking available</p>
+            </div>
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -568,6 +603,11 @@ export default function ErrandPage() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Our dedicated team is ready to help you with errands, concierge services, and home essentials. Tap to chat!
             </p>
+            
+            {/* Inline Context Tip */}
+            <div className="mt-6 inline-block px-4 py-2 bg-green-100/40 dark:bg-green-900/20 border border-green-200/50 dark:border-green-900/30 rounded-full">
+              <p className="text-xs font-medium text-green-700 dark:text-green-300">⚡ Average response time: 2 minutes</p>
+            </div>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -677,9 +717,18 @@ export default function ErrandPage() {
       {/* FAQ Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-3xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12" data-testid="text-faq-title">
-            Frequently Asked Questions
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6" data-testid="text-faq-title">
+              Frequently Asked Questions
+            </h2>
+            
+            {/* Floating Context Tip */}
+            <div className="inline-block px-5 py-3 bg-gradient-to-r from-blue-100/60 dark:from-blue-900/30 to-indigo-100/60 dark:to-indigo-900/30 border border-blue-200/60 dark:border-blue-900/50 rounded-lg backdrop-blur-sm mb-8">
+              <p className="text-sm text-blue-900 dark:text-blue-200">
+                <span className="font-semibold">💬 Still have questions?</span> Our team is here to help on WhatsApp
+              </p>
+            </div>
+          </div>
           
           <div className="space-y-4">
             <Card>
@@ -712,10 +761,16 @@ export default function ErrandPage() {
         </div>
       </section>
 
-      {/* CTA Footer */}
+      {/* CTA Footer with Context Tip */}
       <section className="py-12 px-4 border-t border-border/50 bg-muted/20">
         <div className="container mx-auto max-w-3xl text-center">
-          <h3 className="text-xl font-bold mb-4">Ready to get your first errand done?</h3>
+          <h3 className="text-xl font-bold mb-2">Ready to get your first errand done?</h3>
+          
+          {/* Subtle Achievement Trigger */}
+          <p className="text-sm text-muted-foreground mb-6 font-medium">
+            Join 5,000+ Dubai professionals saving hours daily with DeliWer
+          </p>
+          
           <CalendlyButton 
             size="lg" 
             data-testid="button-final-cta-errand"
@@ -723,6 +778,32 @@ export default function ErrandPage() {
             <Sparkles className="w-4 h-4 mr-2" />
             Book Now - AED 29 First Errand
           </CalendlyButton>
+          
+          {/* Alternative Path Context Tip */}
+          <div className="mt-6 pt-6 border-t border-border/30">
+            <p className="text-xs text-muted-foreground mb-3">Prefer to chat first?</p>
+            <div className="flex justify-center gap-3">
+              <a 
+                href="https://wa.me/971523946311" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sm text-green-600 dark:text-green-400 hover:underline font-medium"
+                data-testid="link-whatsapp-footer-hassan"
+              >
+                Chat with Hassan
+              </a>
+              <span className="text-border/50">•</span>
+              <a 
+                href="https://wa.me/971567148381" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sm text-green-600 dark:text-green-400 hover:underline font-medium"
+                data-testid="link-whatsapp-footer-rubab"
+              >
+                Chat with Rubab
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </div>
