@@ -1,0 +1,294 @@
+Below is a **production-ready, deep-thinking Replit prompt** written **as a digital marketer + growth engineer + QA lead** for **DeliWer.com**.
+This prompt is designed to **audit, fix, and harden** the entire site for a **fail-safe launch by 25 Dec 2025**, with **zero lead loss**, **tracked conversions**, **SendGrid reliability**, and **loyalty + affiliate systems in place**.
+
+You can paste this **directly into Replit Agent**.
+
+---
+
+# ✅ REPLIT MASTER PROMPT
+
+## DeliWer.com – Production Readiness, Conversion QA & Growth System Deployment
+
+**ROLE:**
+You are a **Senior Digital Marketer, Growth Engineer, QA Lead, and CRM Architect** responsible for preparing **deliwer.com** for a **public digital marketing launch by 25 December 2025**.
+
+Your mission is to ensure:
+
+* **No broken CTAs**
+* **No lost leads**
+* **No email failures**
+* **No dead routes**
+* **No untracked conversions**
+* **Reliable loyalty & affiliate tracking**
+* **Production-grade deployment**
+
+You must **analyze, implement, fix, test, and confirm** everything below.
+
+---
+
+## 1️⃣ GLOBAL SITE AUDIT & PAGE FLOW VALIDATION
+
+### Pages to audit
+
+* `/` (Home)
+* `/home-service`
+* `/relocate`
+* `/housing`
+* Any booking / consultation / enquiry routes
+
+### Tasks
+
+1. Crawl the entire site
+2. Identify:
+
+   * Broken links
+   * Non-responsive CTAs
+   * Dead routes
+   * Hidden or duplicated buttons
+3. Validate **desktop + mobile flows**
+4. Ensure **no CTA leads to payment or checkout**
+5. Ensure **all CTAs route to booking, WhatsApp, or enquiry**
+
+✅ **Fix all detected issues immediately**
+
+---
+
+## 2️⃣ CTA & CONVERSION PATH HARDENING (ZERO FAILURE)
+
+### Required CTA types
+
+* Book Consultation
+* Book Demo
+* Speak to Advisor
+* WhatsApp Us
+* Get Home Service
+* Get Smart Home
+* Housing Enquiry
+
+### Requirements
+
+* Every CTA must:
+
+  * Fire a tracking event
+  * Capture lead intent
+  * Trigger confirmation feedback
+* Add **fallback routing**:
+
+  * If calendar fails → enquiry form
+  * If form fails → mailto + WhatsApp
+
+### Output
+
+* A verified CTA map:
+
+```
+Page → CTA → Destination → Lead Capture → Notification
+```
+
+---
+
+## 3️⃣ SENDGRID CONFIGURATION (CRITICAL – NO LEAD LOSS)
+
+### Configure SendGrid for:
+
+* Outbound enquiry emails
+* Booking confirmations
+* Internal lead notifications
+* Loyalty & follow-up sequences
+
+### Mandatory setup
+
+* Verified sender: `info@deliwer.com`
+* Domain authentication (SPF, DKIM)
+* Dedicated transactional templates:
+
+  * Booking confirmation
+  * Housing enquiry
+  * Home service enquiry
+  * Relocation consultation
+
+### Fail-safe logic
+
+* If SendGrid fails:
+
+  * Log error
+  * Trigger backup notification (console + admin email)
+  * Preserve lead in database
+
+---
+
+## 4️⃣ LEAD TRACKING, TAGGING & NURTURING SYSTEM
+
+### Lead schema (must exist)
+
+```
+Lead ID
+Name
+Email
+Phone / WhatsApp
+Source Page
+Service Type (Home Service | Housing | Relocate)
+Intent (Rent | Buy | Invest | Demo | Consultation)
+Timestamp
+Status
+```
+
+### Automation
+
+* Auto-tag leads by page + CTA
+* Send immediate confirmation to user
+* Send internal notification to sales/advisor
+* Store lead permanently (no overwrite)
+
+### Nurturing
+
+* Create basic email sequences:
+
+  * Day 0: Confirmation
+  * Day 2: Value & context
+  * Day 5: Reminder / Advisor touchpoint
+
+---
+
+## 5️⃣ AI AGENT FOR BOOKINGS & FAILSAFE SUPPORT
+
+### Deploy an AI agent or BOT that:
+
+* Helps users:
+
+  * Book meetings
+  * Choose services
+  * Ask basic questions
+* Hands off to:
+
+  * Calendar booking
+  * WhatsApp
+  * Email enquiry
+
+### Agent rules
+
+* Never blocks user flow
+* Always offers human fallback
+* Logs all conversations to lead records
+
+---
+
+## 6️⃣ LOYALTY & AFFILIATE SYSTEM (POST-CONVERSION)
+
+### Loyalty system
+
+* Unique user ID
+* Track:
+
+  * Bookings
+  * Enquiries
+  * Repeat visits
+  * Referrals
+* Display:
+
+  * Loyalty status
+  * Service history (read-only)
+* No wallet or payments required at launch
+
+### Affiliate system
+
+* Generate referral links
+* Track:
+
+  * Source
+  * Conversions
+  * Service interest
+* Simple dashboard for internal use
+
+---
+
+## 7️⃣ ANALYTICS & CAMPAIGN READINESS
+
+### Implement tracking:
+
+* Google Analytics / GA-style events
+* CTA click events
+* Booking completion events
+* WhatsApp click events
+* Lead submission success/failure
+
+### UTM support
+
+* Preserve UTMs through:
+
+  * Booking
+  * Enquiry
+  * Email follow-ups
+
+---
+
+## 8️⃣ DEPLOYMENT & PRODUCTION QA
+
+### Deployment checks
+
+* Confirm Vercel deployment success
+* Environment variables set correctly
+* No exposed API keys
+* SendGrid keys secured
+* No console errors
+
+### Performance
+
+* Page load <3s mobile
+* Images optimized
+* No blocking scripts
+
+---
+
+## 9️⃣ FINAL PRE-LAUNCH VERIFICATION (MANDATORY)
+
+Before marking complete:
+
+* Test 3 dummy leads per service
+* Confirm:
+
+  * Email delivery
+  * Lead storage
+  * Notifications
+  * Booking success
+* Confirm **no lead disappears without trace**
+
+---
+
+## 10️⃣ OUTPUT REQUIRED FROM YOU
+
+At completion, provide:
+
+1. ✅ Fixed issues report
+2. ✅ Verified CTA & lead flow map
+3. ✅ SendGrid confirmation
+4. ✅ Lead & loyalty system summary
+5. ✅ “Launch-Ready” confirmation
+
+---
+
+### 🚨 ABSOLUTE RULE
+
+**No feature is considered complete unless:**
+
+* It captures a lead
+* It notifies the team
+* It confirms to the user
+* It is trackable
+* It is recoverable if something fails
+
+---
+
+**End goal:**
+DeliWer.com must be **100% production-ready** to run **paid and organic campaigns** by **25 December 2025**, with **measurable conversions**, **reliable follow-ups**, and **repeat engagement through loyalty and affiliates**.
+
+---
+
+If you want next:
+
+* 📊 Campaign dashboard structure
+* 🤖 AI agent conversation scripts
+* 📩 SendGrid email copy
+* 🧪 QA testing checklist for interns
+
+Just say the word.
