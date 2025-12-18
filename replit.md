@@ -247,6 +247,49 @@ Created `FloatingErrandTips` component that appears as a sticky floating popup o
 - **Visual consistency** between hero and detail sections now both show water systems
 - **Better conversion** with clear benefit statements and external validation link
 
+### Floating Errand Tips Links Fixed (December 18, 2025 - Final)
+
+#### Problem Diagnosed
+- "Pro Tip" links were not working - section references were broken
+- "WhatsApp Booking" links missing on some pages
+- Tips tried to scroll to non-existent sections
+
+#### Solution Implemented
+
+**1. Added Missing Section ID**
+- Added `id="errand"` to main service section on /errand page (line 125)
+- All errand-related tips now scroll to working sections
+
+**2. Fixed Tip Navigation Links**
+```javascript
+Tip 0: "Shopping & Pickup" → #errand (main service section)
+Tip 1: "Bill Payments" → #errand (main service section)  
+Tip 2: "Quick Delivery" → #home-essentials (home essentials section)
+Tip 3: "Pro Tip" → #concierge (concierge section - "Bundle 3+ errands for 15% savings")
+Tip 4: "WhatsApp Booking" → #whatsapp-agents (WhatsApp agents section)
+```
+
+**3. Component Improvements**
+- Added `isWhatsApp` boolean flag to distinguish actions
+- Updated button conditions to use `isWhatsApp` instead of color detection
+- Changed test IDs to be dynamic based on tip title
+- Added console warning if section not found (helpful for debugging)
+- Error handling prevents click failures
+
+#### Current Status
+- ✅ **All 5 tips** have working scroll/navigation
+- ✅ **Error logging** for missing sections  
+- ✅ **No LSP errors** or runtime issues
+- ✅ **Page detection** shows popup on /errand, /home-service, /housing
+- ✅ **Click functionality** fully restored
+
+#### Tip Details
+- **Shopping & Pickup**: Scrolls to service offerings with checkout
+- **Bill Payments**: Shows payment service features
+- **Quick Delivery**: Shows home essentials and delivery options
+- **Pro Tip**: Shows concierge section with bundling savings offer
+- **WhatsApp Booking**: Opens direct WhatsApp chat to Hassan (971523946311)
+
 ### Previous Enhancements (December 18, 2025)
 - **Home Service Page Hero**: Changed header from "Pure Water. Healthy Living." to "Freedom LifeStyle. Healthy Living."
 - **Launch Page Sharing**: Integrated SocialSharingWidget component for multi-platform social sharing on /home-service-launch

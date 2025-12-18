@@ -119,7 +119,7 @@ export default function ErrandPage() {
       </section>
 
       {/* Main Service Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4" id="errand">
         <div className="container mx-auto max-w-5xl">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="bg-white/40 dark:bg-slate-900/40 p-8 rounded-2xl border border-orange-200 dark:border-orange-900/30 backdrop-blur-sm">

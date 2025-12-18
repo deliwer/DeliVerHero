@@ -33,6 +33,7 @@ export function FloatingErrandTips() {
       color: "orange",
       scrollId: "#errand",
       action: "Browse Services",
+      isWhatsApp: false,
     },
     {
       title: "Bill Payments",
@@ -41,14 +42,16 @@ export function FloatingErrandTips() {
       color: "orange",
       scrollId: "#errand",
       action: "Learn More",
+      isWhatsApp: false,
     },
     {
       title: "Quick Delivery",
       description: "Same-day delivery, last-minute gifts",
       icon: MapPin,
       color: "orange",
-      scrollId: "#errand",
+      scrollId: "#home-essentials",
       action: "Get Started",
+      isWhatsApp: false,
     },
     {
       title: "Pro Tip",
@@ -56,7 +59,8 @@ export function FloatingErrandTips() {
       icon: Zap,
       color: "purple",
       scrollId: "#concierge",
-      action: "Save More",
+      action: "Learn More",
+      isWhatsApp: false,
     },
     {
       title: "WhatsApp Booking",
@@ -65,6 +69,7 @@ export function FloatingErrandTips() {
       color: "green",
       scrollId: "#whatsapp-agents",
       action: "Chat Now",
+      isWhatsApp: true,
     },
   ];
 
@@ -78,6 +83,8 @@ export function FloatingErrandTips() {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
       // Keep open for 3 more seconds to show the section
       setTimeout(() => setHasInteracted(false), 3000);
+    } else {
+      console.warn(`Section ${currentTip.scrollId} not found on this page`);
     }
   };
 
@@ -142,7 +149,7 @@ export function FloatingErrandTips() {
           </p>
 
           <div className="flex gap-2 mb-3">
-            {currentTip.color === "green" ? (
+            {currentTip.isWhatsApp ? (
               <Button
                 size="sm"
                 className="flex-1 text-xs h-8"
@@ -159,7 +166,7 @@ export function FloatingErrandTips() {
                 className="flex-1 text-xs h-8"
                 variant="default"
                 onClick={scrollToSection}
-                data-testid="button-scroll-errand-section"
+                data-testid={`button-scroll-${currentTip.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {currentTip.action}
               </Button>
