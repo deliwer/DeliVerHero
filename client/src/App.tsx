@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer";
 import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
 import { TooltipManager } from "@/components/tooltip-manager";
 import { ImagePerformanceMonitor } from "@/components/image-performance-monitor";
+import { FloatingErrandTips } from "@/components/floating-errand-tips";
 import { useEffect, lazy } from "react";
 import { useLocation } from "wouter";
 import Home from "@/pages/home";
@@ -201,6 +202,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <FloatingErrandTips />
         </div>
         <Toaster />
         <TooltipManager />

@@ -148,6 +148,68 @@ Added multiple attractive but non-intrusive CTAs that guide participation withou
 - Different contexts appeal to different user motivations (efficiency, savings, innovation, support)
 - WhatsApp links provide escape valve for uncertain users
 
+### Site-Wide Floating Errand Tips Popup (December 18, 2025 - Latest)
+
+#### Feature Overview
+Created `FloatingErrandTips` component that appears as a sticky floating popup on /errand, /home-service, and /housing pages with:
+- **Auto-rotating context tips** about errand services (8-second intervals)
+- **Direct scroll-to-section links** for all main services
+- **Interactive navigation** with manual next/prev buttons and dot indicators
+- **Smart WhatsApp integration** for direct chat from popup
+
+#### Component Details
+
+**File**: `client/src/components/floating-errand-tips.tsx`
+**Location**: Bottom-right corner (fixed position, z-index: 40)
+**Pages**: Shows on /errand, /home-service, /housing
+
+**Features**:
+1. **5 Rotating Tips**:
+   - Shopping & Pickup (orange)
+   - Bill Payments (orange)
+   - Quick Delivery (orange)
+   - Pro Tip: Bundle 3+ for 15% savings (purple)
+   - WhatsApp Booking: 2-minute response (green)
+
+2. **Navigation Controls**:
+   - Dot indicators (clickable to jump to specific tip)
+   - Prev/Next arrow buttons
+   - Auto-rotate pauses when user interacts
+
+3. **Actions**:
+   - Regular tips: Scroll to relevant section on page
+   - WhatsApp tip: Opens WhatsApp chat to Hassan (971523946311)
+   - Each action is labeled clearly (Browse Services, Learn More, Get Started, etc.)
+
+4. **User Experience**:
+   - Starts open with auto-rotating tips
+   - Close button (X) to dismiss
+   - Smooth scroll behavior to section anchors
+   - Color-coded by service (orange/purple/green)
+   - Subtle "💡 Service Tips" label below
+
+#### Integration
+- Added to `App.tsx` as global component
+- Renders after Footer but before Toaster/TooltipManager
+- Conditionally shows only on relevant pages
+- Non-intrusive floating design doesn't interfere with page interaction
+
+#### Technical Implementation
+- Uses React hooks (useState, useEffect) for state management
+- `useLocation()` from wouter for page detection
+- Auto-rotate timer clears on unmount
+- User interaction tracking (hasInteracted state) pauses auto-rotate
+- Smooth scroll to anchor links with `scrollIntoView({ behavior: "smooth" })`
+
+#### Expected Behavior
+- Popup opens by default on /errand page
+- Tips rotate automatically every 8 seconds
+- Manual navigation disables auto-rotate for 3 seconds
+- Clicking action button scrolls to relevant section
+- Closing popup removes it until page reload
+- Color changes based on service category
+- Mobile responsive (max-width-xs card on small screens)
+
 ### Previous Enhancements (December 18, 2025)
 - **Home Service Page Hero**: Changed header from "Pure Water. Healthy Living." to "Freedom LifeStyle. Healthy Living."
 - **Launch Page Sharing**: Integrated SocialSharingWidget component for multi-platform social sharing on /home-service-launch
