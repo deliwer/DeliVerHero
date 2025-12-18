@@ -34,8 +34,9 @@ import {
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-import waterServiceImg from "@assets/stock_images/modern_home_water_fi_3a6f205c.jpg";
-import waterLifestyleImg from "@assets/stock_images/people_at_home_drink_21a6f771.jpg";
+import waterServiceImg from "@assets/stock_images/5-stage_water_purifi_4d73f45d.jpg";
+import waterLifestyleImg from "@assets/stock_images/5-stage_water_purifi_b2e38594.jpg";
+import waterPurifierImg from "@assets/stock_images/modern_water_filtrat_3b514222.jpg";
 import homeServiceHeroImg from "@assets/stock_images/professional_service_2cfeb661.jpg";
 import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
 import solarImg from "@assets/stock_images/solar_panels_home_ro_58dd081a.jpg";
@@ -239,9 +240,26 @@ export default function HomeService() {
                   Featured: Water Service
                 </Badge>
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Kangen Water, everyday.</h2>
-                <p className="text-lg text-white/90 mb-6 max-w-xl">
-                  Professional installation with reliable refills and maintenance included.
+                <p className="text-lg text-white/90 mb-4 max-w-xl">
+                  Advanced water ionization technology for healthier, premium-quality drinking water delivered directly to your home.
                 </p>
+                <div className="mb-4 max-w-xl">
+                  <p className="text-sm text-white/80 mb-2 font-medium">Kangen Water Benefits:</p>
+                  <ul className="text-sm text-white/80 space-y-1">
+                    <li>✓ Ionized & alkaline water for better hydration</li>
+                    <li>✓ Removes impurities & chlorine</li>
+                    <li>✓ Professional installation & maintenance</li>
+                  </ul>
+                  <a 
+                    href="https://www.kangenwaterdubai.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white underline hover:text-emerald-300 transition-colors text-sm mt-2 inline-block font-medium"
+                    data-testid="link-kangen-details"
+                  >
+                    Learn more about Kangen Water →
+                  </a>
+                </div>
                 <div className="flex flex-wrap gap-3">
                   <CalendlyButton 
                     size="lg" 
@@ -323,14 +341,14 @@ export default function HomeService() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
                 <img 
-                  src={waterServiceImg} 
-                  alt="Professional home water filtration system installation in Dubai - convenient home service" 
+                  src={waterPurifierImg} 
+                  alt="Advanced water purifier system - Kangen water ionization machine for home" 
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-bold text-lg">Premium Water Filtration</p>
-                  <p className="text-white/90 text-sm">Fresh water delivered & installed at home</p>
+                  <p className="text-white font-bold text-lg">Kangen Water System</p>
+                  <p className="text-white/90 text-sm">Advanced ionization technology for premium water quality</p>
                 </div>
               </div>
             </div>
