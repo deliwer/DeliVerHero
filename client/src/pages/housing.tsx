@@ -20,12 +20,27 @@ import {
   Zap
 } from "lucide-react";
 
+// Import lifestyle images
+import residentsHero from "@assets/stock_images/modern_dubai_apartme_3d49f8dc.jpg";
+import touristsHero from "@assets/stock_images/travelers_tourists_d_dc8fcb30.jpg";
+import investorsHero from "@assets/stock_images/luxury_dubai_real_es_778948b4.jpg";
+import marketImage from "@assets/stock_images/dubai_downtown_skyli_01395ddb.jpg";
+
 export default function Housing() {
   return (
     <div className="min-h-screen bg-background">
       {/* SECTION 1: HERO - "Find Your Place in Dubai" */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/10 to-slate-900/20"></div>
+      <section className="relative py-20 overflow-hidden min-h-[500px] flex items-center">
+        {/* Background Image with Dark Wash Overlay */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.7) 50%, rgba(15, 23, 42, 0.75) 100%), url(${marketImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        ></div>
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-hero-title">
@@ -58,7 +73,7 @@ export default function Housing() {
         </div>
       </section>
 
-      {/* SECTION 2: WHO THIS IS FOR (3 Clarity Cards) */}
+      {/* SECTION 2: WHO THIS IS FOR (3 Clarity Cards with Images) */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
@@ -72,8 +87,16 @@ export default function Housing() {
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {/* Tourists & Short-Term Visitors */}
-            <Card className="hover-elevate" data-testid="card-who-tourists">
-              <CardHeader>
+            <Card className="hover-elevate overflow-hidden" data-testid="card-who-tourists">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={touristsHero} 
+                  alt="Tourists enjoying Dubai short-term rental" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+              <CardHeader className="relative z-10">
                 <div className="w-12 h-12 rounded-md bg-amber-500/10 flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-amber-500" />
                 </div>
@@ -98,8 +121,16 @@ export default function Housing() {
             </Card>
 
             {/* New Residents */}
-            <Card className="hover-elevate" data-testid="card-who-residents">
-              <CardHeader>
+            <Card className="hover-elevate overflow-hidden" data-testid="card-who-residents">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={residentsHero} 
+                  alt="Modern Dubai apartment for new residents" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+              <CardHeader className="relative z-10">
                 <div className="w-12 h-12 rounded-md bg-green-500/10 flex items-center justify-center mb-4">
                   <Home className="w-6 h-6 text-green-500" />
                 </div>
@@ -124,8 +155,16 @@ export default function Housing() {
             </Card>
 
             {/* Investors & Buyers */}
-            <Card className="hover-elevate" data-testid="card-who-investors">
-              <CardHeader>
+            <Card className="hover-elevate overflow-hidden" data-testid="card-who-investors">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={investorsHero} 
+                  alt="Luxury Dubai investment property" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </div>
+              <CardHeader className="relative z-10">
                 <div className="w-12 h-12 rounded-md bg-purple-500/10 flex items-center justify-center mb-4">
                   <TrendingUp className="w-6 h-6 text-purple-500" />
                 </div>
@@ -272,6 +311,7 @@ export default function Housing() {
                   <Key className="w-6 h-6 text-blue-500" />
                 </div>
                 <CardTitle className="text-2xl">Rent</CardTitle>
+                <p className="text-sm text-cyan-300 mt-2">Perfect for travelers & relocating professionals</p>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 mb-6">
@@ -305,6 +345,7 @@ export default function Housing() {
                   <Home className="w-6 h-6 text-green-500" />
                 </div>
                 <CardTitle className="text-2xl">Buy</CardTitle>
+                <p className="text-sm text-emerald-300 mt-2">For residents and Golden Visa seekers</p>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 mb-6">
@@ -338,6 +379,7 @@ export default function Housing() {
                   <TrendingUp className="w-6 h-6 text-purple-500" />
                 </div>
                 <CardTitle className="text-2xl">Invest</CardTitle>
+                <p className="text-sm text-violet-300 mt-2">For wealth-building entrepreneurs</p>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 mb-6">
