@@ -1,8 +1,10 @@
 import { Link } from "wouter";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CalendlyButton } from "@/components/calendly-popup";
+import { HousingEnquiryForm } from "@/components/housing-enquiry-form";
 import { 
   Home, 
   Building2, 
@@ -27,8 +29,17 @@ import investorsHero from "@assets/stock_images/luxury_dubai_real_es_778948b4.jp
 import marketImage from "@assets/stock_images/dubai_downtown_skyli_01395ddb.jpg";
 
 export default function Housing() {
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
+  const [selectedSegment, setSelectedSegment] = useState<"rent" | "buy" | "invest">("rent");
+
+  const openEnquiry = (segment: "rent" | "buy" | "invest") => {
+    setSelectedSegment(segment);
+    setEnquiryOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <HousingEnquiryForm open={enquiryOpen} onOpenChange={setEnquiryOpen} segment={selectedSegment} />
       {/* SECTION 1: HERO - "Find Your Place in Dubai" */}
       <section className="relative py-20 overflow-hidden min-h-[500px] flex items-center">
         {/* Background Image with Dark Wash Overlay */}
@@ -51,18 +62,20 @@ export default function Housing() {
               Whether you're visiting, relocating, or investing — we help you navigate Dubai's housing market with clarity and care.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
-              <CalendlyButton 
+              <Button 
                 size="lg" 
                 className="bg-blue-600 hover:bg-blue-500" 
+                onClick={() => openEnquiry("rent")}
                 data-testid="button-speak-advisor-primary"
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Speak to a Dubai Housing Advisor
-              </CalendlyButton>
+              </Button>
               <Button 
                 size="lg" 
                 variant="outline"
                 className="border-white/30 text-white backdrop-blur-sm bg-white/10" 
+                onClick={() => openEnquiry("rent")}
                 data-testid="button-explore-options"
               >
                 <ArrowRight className="w-4 h-4 mr-2" />
@@ -190,14 +203,15 @@ export default function Housing() {
           </div>
 
           <div className="text-center">
-            <CalendlyButton 
+            <Button 
               size="lg" 
               className="bg-blue-600 hover:bg-blue-500" 
+              onClick={() => openEnquiry("rent")}
               data-testid="button-discuss-situation"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
               Discuss Your Situation
-            </CalendlyButton>
+            </Button>
           </div>
         </div>
       </section>
@@ -239,14 +253,15 @@ export default function Housing() {
               </p>
             </div>
 
-            <CalendlyButton 
+            <Button 
               size="lg" 
               className="bg-blue-600 hover:bg-blue-500 w-full sm:w-auto" 
+              onClick={() => openEnquiry("rent")}
               data-testid="button-book-consultation"
             >
               <Calendar className="w-4 h-4 mr-2" />
               Book a Housing Consultation
-            </CalendlyButton>
+            </Button>
           </div>
         </div>
       </section>
@@ -284,14 +299,15 @@ export default function Housing() {
               Inspired by platforms such as <span className="font-semibold text-gray-300">realiste.ai</span> and <span className="font-semibold text-gray-300">dxbinteract.com</span>, we position market intelligence as <span className="italic text-gray-300">advisor-led insight</span> — not algorithm-driven decisions.
             </p>
 
-            <CalendlyButton 
+            <Button 
               size="lg" 
               className="bg-cyan-600 hover:bg-cyan-500" 
+              onClick={() => openEnquiry("rent")}
               data-testid="button-market-conditions"
             >
               <MessageCircle className="w-4 h-4 mr-2" />
               Ask About Market Conditions
-            </CalendlyButton>
+            </Button>
           </div>
         </div>
       </section>
@@ -328,13 +344,14 @@ export default function Housing() {
                     <span>Fast move-in support</span>
                   </li>
                 </ul>
-                <CalendlyButton 
+                <Button 
                   className="w-full" 
+                  onClick={() => openEnquiry("rent")}
                   data-testid="button-talk-advisor-rent"
                 >
                   Talk to an Advisor
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </CalendlyButton>
+                </Button>
               </CardContent>
             </Card>
 
@@ -362,13 +379,14 @@ export default function Housing() {
                     <span>Ready & off-plan</span>
                   </li>
                 </ul>
-                <CalendlyButton 
+                <Button 
                   className="w-full" 
+                  onClick={() => openEnquiry("buy")}
                   data-testid="button-talk-advisor-buy"
                 >
                   Talk to an Advisor
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </CalendlyButton>
+                </Button>
               </CardContent>
             </Card>
 
@@ -396,13 +414,14 @@ export default function Housing() {
                     <span>Rental income guidance</span>
                   </li>
                 </ul>
-                <CalendlyButton 
+                <Button 
                   className="w-full" 
+                  onClick={() => openEnquiry("invest")}
                   data-testid="button-talk-advisor-invest"
                 >
                   Talk to an Advisor
                   <ArrowRight className="w-4 h-4 ml-2" />
-                </CalendlyButton>
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -444,23 +463,25 @@ export default function Housing() {
               Speak with our housing advisors to explore options that match your lifestyle and goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
-              <CalendlyButton 
+              <Button 
                 size="lg" 
                 className="bg-blue-600 hover:bg-blue-500" 
+                onClick={() => openEnquiry("rent")}
                 data-testid="button-book-free-consultation"
               >
                 <Calendar className="w-4 h-4 mr-2" />
                 Book a Free Expert Consultation
-              </CalendlyButton>
-              <CalendlyButton 
+              </Button>
+              <Button 
                 size="lg" 
                 variant="outline" 
                 className="border-white/30 text-white backdrop-blur-sm bg-white/10" 
+                onClick={() => openEnquiry("rent")}
                 data-testid="button-speak-advisor-final"
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Speak to an Advisor
-              </CalendlyButton>
+              </Button>
             </div>
             <p className="text-gray-400 text-sm mt-8 italic">
               All leads tagged as "Housing Enquiry" are routed to our team at info@deliwer.com
