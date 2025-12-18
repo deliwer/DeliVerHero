@@ -19,7 +19,13 @@ import {
   MapPin,
   Shield,
   FileCheck,
-  Zap
+  Zap,
+  Share2,
+  Facebook,
+  Linkedin,
+  Mail,
+  Phone,
+  ExternalLink
 } from "lucide-react";
 
 // Import lifestyle images
@@ -452,6 +458,215 @@ export default function Housing() {
         </div>
       </section>
 
+      {/* SECTION 7A: EXPERT ADVISOR SPOTLIGHT */}
+      <section className="py-16 px-4 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border-y border-blue-500/20">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-blue-600 text-white" data-testid="badge-featured-expert">
+              Featured Expert Advisor
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Meet Your Real Estate Expert</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <Card className="bg-slate-800 border-blue-500/30 col-span-full md:col-span-2" data-testid="card-advisor-profile">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                      KHS
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-1" data-testid="text-advisor-name">
+                      Kalbe-Hussain Sheikh
+                    </h3>
+                    <p className="text-blue-400 font-semibold mb-3 text-lg" data-testid="text-advisor-title">
+                      Dubai Real Estate Expert & Housing Advisor
+                    </p>
+                    <p className="text-gray-300 mb-4" data-testid="text-advisor-bio">
+                      Specialized in connecting tourists, new residents, investors, and entrepreneurs with ideal properties across Dubai's premium neighborhoods. Trusted broker partner with deep market insight and access to exclusive listings.
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                      <Button 
+                        size="sm" 
+                        className="bg-green-600 hover:bg-green-500 gap-2"
+                        onClick={() => window.open('https://wa.me/+971556573114', '_blank')}
+                        data-testid="button-whatsapp-advisor"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        WhatsApp: +971 55 657 3114
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        variant="outline"
+                        className="border-blue-500 text-blue-400 hover:bg-blue-500/10 gap-2"
+                        onClick={() => window.open('https://www.linkedin.com/in/kalbe-hussain-b89bb1224/', '_blank')}
+                        data-testid="button-linkedin-advisor"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                        LinkedIn Profile
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="bg-slate-800 border-green-500/30" data-testid="card-advisor-support">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg text-white flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-green-500" />
+                  Support Team
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div>
+                  <p className="text-xs text-gray-400 mb-1">Email</p>
+                  <a 
+                    href="mailto:service@deliwer.com" 
+                    className="text-green-400 hover:text-green-300 font-semibold text-sm break-all"
+                    data-testid="link-support-email"
+                  >
+                    service@deliwer.com
+                  </a>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 mb-1">WhatsApp</p>
+                  <a 
+                    href="https://wa.me/+971556573114" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-400 hover:text-green-300 font-semibold text-sm"
+                    data-testid="link-advisor-whatsapp"
+                  >
+                    +971 55 657 3114
+                  </a>
+                </div>
+                <p className="text-xs text-gray-500 mt-4 italic">
+                  Response time: Within 2-4 hours
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7B: BROKER NETWORK & PARTNERSHIPS */}
+      <section className="py-16 px-4 bg-slate-900/50">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-purple-600 text-white" data-testid="badge-broker-network">
+              Trusted Network
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Major Broker & Developer Network</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Our expert advisors work alongside Dubai's most reputable brokers, developers, and real estate firms to give you access to exclusive properties and market insights.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            {[
+              { name: "Fäm Properties", highlight: "Trusted Partner" },
+              { name: "Premium Brokers Network", highlight: "50+ Agents" },
+              { name: "Major Developers", highlight: "Emaar, Damac, etc." },
+              { name: "Exclusive Listings", highlight: "Off-Market Properties" }
+            ].map((item, idx) => (
+              <Card key={idx} className="bg-slate-800 border-purple-500/20 text-center p-4" data-testid={`card-broker-${idx}`}>
+                <p className="text-purple-400 text-sm font-semibold mb-1">{item.highlight}</p>
+                <p className="text-white font-semibold">{item.name}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7C: SHARING & REFERRAL TOOLS */}
+      <section className="py-16 px-4 bg-gradient-to-br from-blue-900/30 to-indigo-900/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-blue-600 text-white" data-testid="badge-share-earn">
+              Share & Earn Rewards
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Help Others Find Their Home</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+              Share DeliWer with your network and earn rewards when referrals complete housing transactions.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto space-y-6">
+            <Card className="bg-slate-800 border-blue-500/30" data-testid="card-share-options">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold text-white mb-6">Share on Social Media</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <Button 
+                    onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://deliwer.com/housing')}`, '_blank')}
+                    className="gap-2 bg-blue-600 hover:bg-blue-500 text-white"
+                    data-testid="button-share-facebook-page"
+                  >
+                    <Facebook className="w-4 h-4" />
+                    Share on Facebook
+                  </Button>
+                  <Button 
+                    onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://deliwer.com/housing')}`, '_blank')}
+                    className="gap-2 bg-blue-700 hover:bg-blue-600 text-white"
+                    data-testid="button-share-linkedin-page"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    Share on LinkedIn
+                  </Button>
+                  <Button 
+                    onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent('Check out this amazing Dubai housing solution: https://deliwer.com/housing')}`, '_blank')}
+                    className="gap-2 bg-green-600 hover:bg-green-500 text-white"
+                    data-testid="button-share-whatsapp-page"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Share on WhatsApp
+                  </Button>
+                  <Button 
+                    onClick={() => window.open(`mailto:?subject=Amazing Dubai Housing Solution&body=${encodeURIComponent('Check out DeliWer for finding your perfect home in Dubai: https://deliwer.com/housing')}`, '_blank')}
+                    className="gap-2 bg-red-600 hover:bg-red-500 text-white"
+                    data-testid="button-share-email-page"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Share via Email
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-800 border-green-500/30" data-testid="card-referral-link">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold text-white mb-4">Get Your Referral Link</h3>
+                <p className="text-gray-300 mb-6">
+                  Submit the form below to get a unique referral link you can share with friends. Track your referrals and earn rewards!
+                </p>
+                <Button 
+                  size="lg"
+                  onClick={() => openEnquiry("rent")}
+                  className="w-full bg-green-600 hover:bg-green-500 gap-2"
+                  data-testid="button-get-referral-link"
+                >
+                  <Share2 className="w-4 h-4" />
+                  Start Your Enquiry & Get Referral Link
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-r from-yellow-900/30 to-amber-900/30 border-yellow-600/30" data-testid="card-christmas-promotion">
+              <CardContent className="p-8">
+                <div className="flex gap-4">
+                  <div className="text-3xl">🎄</div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">Holiday Season Special</h3>
+                    <p className="text-gray-300 mb-3">
+                      <strong>Bonus Referral Rewards</strong> during the Christmas & New Year travel season! More visitors = More opportunities to earn.
+                    </p>
+                    <p className="text-sm text-gray-400">Peak travel season: Dec 20 - Jan 10</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 7: LEAD CAPTURE (No Friction) */}
       <section className="py-16 px-4 bg-gradient-to-br from-blue-900/30 to-indigo-900/30">
         <div className="container mx-auto">
@@ -484,19 +699,58 @@ export default function Housing() {
               </Button>
             </div>
             <p className="text-gray-400 text-sm mt-8 italic">
-              All leads tagged as "Housing Enquiry" are routed to our team at info@deliwer.com
+              All leads tagged as "Housing Enquiry" are routed to our team at info@deliwer.com and Kalbe-Hussain Sheikh
             </p>
           </div>
         </div>
       </section>
 
-      {/* COMPLIANCE FOOTER */}
-      <section className="py-12 px-4 border-t border-gray-800">
+      {/* CHRISTMAS LAUNCH FOOTER */}
+      <section className="py-16 px-4 border-t border-gray-800 bg-slate-900/50">
         <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gray-400 text-sm">
-              <span className="font-semibold text-gray-300">Compliance Note:</span> All housing support is advisory. Final transactions are handled by licensed brokers and partners in accordance with UAE regulations.
-            </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center" data-testid="footer-contact-support">
+                <h3 className="text-white font-bold mb-3 flex items-center justify-center gap-2">
+                  <Mail className="w-4 h-4 text-blue-400" />
+                  Email Support
+                </h3>
+                <a href="mailto:service@deliwer.com" className="text-blue-400 hover:text-blue-300">
+                  service@deliwer.com
+                </a>
+              </div>
+              <div className="text-center" data-testid="footer-whatsapp-advisor">
+                <h3 className="text-white font-bold mb-3 flex items-center justify-center gap-2">
+                  <Phone className="w-4 h-4 text-green-400" />
+                  Expert Advisor
+                </h3>
+                <a href="https://wa.me/+971556573114" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:text-green-300">
+                  Kalbe-Hussain Sheikh
+                </a>
+                <p className="text-xs text-gray-500 mt-1">WhatsApp: +971 55 657 3114</p>
+              </div>
+              <div className="text-center" data-testid="footer-linkedin-connection">
+                <h3 className="text-white font-bold mb-3 flex items-center justify-center gap-2">
+                  <Linkedin className="w-4 h-4 text-blue-500" />
+                  Professional Network
+                </h3>
+                <a href="https://www.linkedin.com/in/kalbe-hussain-b89bb1224/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-800 pt-8 space-y-4 text-center">
+              <p className="text-gray-400 text-sm">
+                <span className="font-semibold text-gray-300">🎄 Christmas Launch 2024:</span> DeliWer Housing is equipped with maximum reach during the peak travel season. Backed by Dubai's trusted broker network.
+              </p>
+              <p className="text-gray-400 text-sm">
+                <span className="font-semibold text-gray-300">Compliance Note:</span> All housing support is advisory. Final transactions are handled by licensed brokers and partners in accordance with UAE regulations. Kalbe-Hussain Sheikh is a trusted real estate advisor and broker partner.
+              </p>
+              <p className="text-gray-500 text-xs mt-6">
+                DeliWer © 2024 | Powered by Expert Real Estate Advisors | All Leads Welcome
+              </p>
+            </div>
           </div>
         </div>
       </section>
