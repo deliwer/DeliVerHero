@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
+import { trackCTA } from "@/lib/analytics";
 
 declare global {
   interface Window {
@@ -37,6 +38,13 @@ export function useCalendlyScript() {
 
 export function openCalendlyPopup(eventType?: string) {
   const url = eventType ? `${CALENDLY_URL}/${eventType}` : CALENDLY_URL;
+  
+  trackCTA({
+    ctaName: 'book_consultation',
+    page: window.location.pathname,
+    destination: 'calendly'
+  });
+  
   if (window.Calendly) {
     window.Calendly.initPopupWidget({ url });
   } else {

@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema } from "@shared/schema";
+import { processLead, trackCTAEvent } from "./lead-service";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import QRCode from "qrcode";
@@ -592,12 +593,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Contact routes
+  // Contact routes with lead notification
   app.post("/api/contact", async (req, res) => {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
-      res.json(contact);
+      
+      const serviceType = validatedData.subject?.toLowerCase().includes('housing') ? 'housing'
+        : validatedData.subject?.toLowerCase().includes('relocate') ? 'relocate'
+        : validatedData.subject?.toLowerCase().includes('home') ? 'home-service'
+        : 'enquiry';
+      
+      const leadResult = await processLead({
+        name: validatedData.name,
+        email: validatedData.email,
+        phone: validatedData.phone || undefined,
+        source: '/contact',
+        serviceType,
+        intent: validatedData.subject,
+        message: validatedData.message,
+        metadata: { category: (validatedData as any).category, urgency: (validatedData as any).urgency }
+      });
+      
+      trackCTAEvent('contact_form_submit', {
+        serviceType,
+        emailSent: leadResult.emailSent,
+        page: '/contact'
+      });
+      
+      res.json({ ...contact, leadProcessed: leadResult.success });
     } catch (error: any) {
       res.status(400).json({ error: error.message || "Invalid contact data" });
     }

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { db } from "../db";
 import { relocateLeads, insertRelocateLeadSchema } from "@shared/schema";
 import { eq } from "drizzle-orm";
+import { processLead, trackCTAEvent } from "../lead-service";
 
 const router = Router();
 
@@ -121,14 +122,40 @@ router.get("/members", async (req, res) => {
   }
 });
 
-// Submit lead form - stores in database
+// Submit lead form - stores in database with email notification
 router.post("/leads", async (req, res) => {
   try {
     const validatedData = insertRelocateLeadSchema.parse(req.body);
     
     const [lead] = await db.insert(relocateLeads).values(validatedData).returning();
     
-    res.json({ success: true, lead });
+    const leadResult = await processLead({
+      name: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone || undefined,
+      source: '/relocate',
+      serviceType: 'relocate',
+      intent: validatedData.audienceType === 'business' ? 'Business Relocation' : 'Family Relocation',
+      message: validatedData.message || undefined,
+      metadata: {
+        audienceType: validatedData.audienceType,
+        capitalRange: validatedData.capitalRange,
+        familySize: validatedData.familySize,
+        businessType: validatedData.businessType,
+        timeline: validatedData.timeline
+      },
+      utmSource: validatedData.utmSource || undefined,
+      utmMedium: validatedData.utmMedium || undefined,
+      utmCampaign: validatedData.utmCampaign || undefined
+    });
+    
+    trackCTAEvent('relocate_lead_submit', {
+      audienceType: validatedData.audienceType,
+      emailSent: leadResult.emailSent,
+      page: '/relocate'
+    });
+    
+    res.json({ success: true, lead, leadProcessed: leadResult.success });
   } catch (error: any) {
     console.error("Lead submission error:", error);
     res.status(500).json({ error: error.message || "Failed to submit lead" });

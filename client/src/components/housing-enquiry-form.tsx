@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { trackFormSubmission, trackCTA, getStoredUTM } from "@/lib/analytics";
 import { Loader2, Send, Share2, Copy, CheckCircle2, Home, DollarSign, MapPin, Building2, Clock, FileText, Mail, Phone, User, Facebook, Linkedin, MessageCircle, Link as LinkIcon } from "lucide-react";
 
 interface HousingEnquiryFormProps {
@@ -94,6 +95,7 @@ export function HousingEnquiryForm({ open, onOpenChange, segment = "rent" }: Hou
     setIsSubmitting(true);
 
     try {
+      const utmParams = getStoredUTM();
       await apiRequest("/api/contact", "POST", {
         name: formData.name,
         email: formData.email,
@@ -110,16 +112,22 @@ Bedrooms: ${formData.bedrooms || 'Not specified'}
 Timeline: ${formData.timeline || 'Not specified'}
 
 Additional Info: ${formData.additionalInfo || 'None'}
+
+UTM Source: ${utmParams.utmSource || 'Direct'}
+UTM Medium: ${utmParams.utmMedium || 'N/A'}
+UTM Campaign: ${utmParams.utmCampaign || 'N/A'}
         `,
         urgency: "high",
       });
 
       setIsSubmitted(true);
+      trackFormSubmission('housing_enquiry', true, { segment: formData.segment, ...utmParams });
       toast({
         title: "Enquiry submitted successfully!",
         description: "Our housing advisor will contact you within 24 hours.",
       });
     } catch (error) {
+      trackFormSubmission('housing_enquiry', false, { segment: formData.segment });
       toast({
         title: "Failed to submit enquiry",
         description: "Please try again or contact us directly.",
