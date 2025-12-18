@@ -14,6 +14,17 @@ New Dubai-based relocation and investment gateway connecting global founders, in
 
 ## Recent Changes (December 2025)
 
+### Page Enhancements & SendGrid Setup (December 18, 2025)
+- **Home Service Page Hero**: Changed header from "Pure Water. Healthy Living." to "Freedom LifeStyle. Healthy Living."
+- **Errand Page Enhancement**: Added full-width hero banner with lifestyle background image (errandRunnerImg) and dark gradient overlay
+- **Launch Page Sharing**: Integrated SocialSharingWidget component for multi-platform social sharing on /home-service-launch
+- **SendGrid Integration**: Set up SendGrid connector for cold outreach emails and customer service inquiries
+  - Primary account: service@deliwer.com
+  - To activate: User must complete SendGrid integration setup via Replit's integration modal
+  - Note: Integration was dismissed by user - alternative approach: Store SendGrid API key as secret and use `@sendgrid/mail` directly in backend
+
+## Previous Changes (December 2025)
+
 ### Home Service Page Enhancement (December 17, 2025)
 - **Trade-In Service Section**:
   - Added prominent Trade-In service section linking to `/exchange` page

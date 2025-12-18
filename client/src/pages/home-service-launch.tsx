@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CalendlyButton } from "@/components/calendly-popup";
+import { SocialSharingWidget } from "@/components/social-sharing-widget";
 import { Helmet } from "react-helmet";
 import { 
   Sparkles, 
