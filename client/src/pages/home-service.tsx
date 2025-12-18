@@ -36,6 +36,7 @@ import { useToast } from "@/hooks/use-toast";
 
 import waterServiceImg from "@assets/stock_images/modern_home_water_fi_3a6f205c.jpg";
 import waterLifestyleImg from "@assets/stock_images/people_at_home_drink_21a6f771.jpg";
+import homeServiceHeroImg from "@assets/stock_images/professional_service_2cfeb661.jpg";
 import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
 import solarImg from "@assets/stock_images/solar_panels_home_ro_58dd081a.jpg";
 import evChargingImg from "@assets/stock_images/electric_vehicle_ev__8c191f69.jpg";
@@ -61,23 +62,47 @@ export default function HomeService() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Sustainable Home Services Dubai | Water, Solar, EV Charging, Eco-Cleaning | DeliWer</title>
-        <meta name="description" content="Premium sustainable home services in Dubai. Water filtration, solar panel installation, EV charging stations, eco-friendly cleaning, device trade-in. Book your free consultation today." />
-        <meta name="keywords" content="sustainable home services Dubai, water filtration UAE, solar panels Dubai, EV charging installation, eco-friendly cleaning, device trade-in Dubai, green home services" />
-        <meta property="og:title" content="Sustainable Home Services Dubai | DeliWer" />
-        <meta property="og:description" content="Transform your home with sustainable services. Water, solar, EV charging, eco-cleaning and more." />
+        <title>Sustainable Home Services Dubai - Water, Solar, EV Charging & More | DeliWer</title>
+        <meta name="description" content="Premium sustainable home services delivered to your door in Dubai. Professional water filtration, solar panel installation, EV charging, eco-friendly cleaning, device trade-in. Book your free consultation today - without leaving home." />
+        <meta name="keywords" content="home services Dubai, water filtration UAE, solar panels Dubai, EV charging installation, eco-friendly cleaning, device trade-in Dubai, sustainable living Dubai, home automation, maintenance services UAE, water refill service, professional installation" />
+        <meta property="og:title" content="Sustainable Home Services Dubai - Delivered to Your Door | DeliWer" />
+        <meta property="og:description" content="Transform your home without leaving. Water filtration, solar panels, EV charging, eco-cleaning, device trade-in and errand services delivered professionally in Dubai." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="author" content="DeliWer" />
+        <meta name="creator" content="DeliWer" />
         <link rel="canonical" href="https://deliwer.com/home-service" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sustainable Home Services in Dubai | DeliWer" />
+        <meta name="twitter:description" content="Professional home services without leaving your home. Water, solar, EV charging, cleaning & more." />
+        <meta name="twitter:creator" content="@deliwer" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "DeliWer Home Services",
+          "description": "Premium sustainable home services in Dubai",
+          "url": "https://deliwer.com/home-service",
+          "areaServed": "Dubai",
+          "serviceType": ["Water Filtration", "Solar Panel Installation", "EV Charging", "Eco-Cleaning", "Device Trade-in", "Errand Runner"],
+          "telephone": "+971 50 xxx xxxx",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dubai",
+            "addressCountry": "AE"
+          }
+        })}</script>
       </Helmet>
 
-      {/* Hero Section - Water Filtration Lifestyle */}
+      {/* Hero Section - Home Service Convenience */}
       <section className="relative h-[500px] md:h-[600px] overflow-hidden">
         <img 
-          src={waterLifestyleImg} 
-          alt="Family enjoying clean filtered water at home - Dubai lifestyle" 
+          src={homeServiceHeroImg} 
+          alt="Professional home service technician delivering convenient home maintenance services - without leaving home" 
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50"></div>
         <div className="absolute inset-0 flex items-center">
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-2xl">
@@ -87,13 +112,13 @@ export default function HomeService() {
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-home-service-title">
                 Freedom LifeStyle.
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300"> Healthy Living.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300"> Without Leaving Home.</span>
               </h1>
-              <p className="text-xl text-white/90 mb-4 max-w-xl" data-testid="text-home-service-description">
-                Professional water filtration, errand runners, and essential home services.
+              <p className="text-xl text-white/95 mb-4 max-w-xl font-semibold" data-testid="text-home-service-description">
+                Professional home services delivered to your door. Water filtration, solar panels, EV charging, and more.
               </p>
               <p className="text-lg text-white/70 mb-8 max-w-xl">
-                Designed for Dubai living. Built for busy families.
+                Designed for Dubai living. Built for busy families. Everything you need, delivered at home.
               </p>
               <div className="flex flex-wrap gap-4">
                 <CalendlyButton 
@@ -101,18 +126,18 @@ export default function HomeService() {
                   data-testid="button-book-consultation-home-service"
                 >
                   <Droplets className="w-4 h-4 mr-2" />
-                  Book Water Service Demo
+                  Book Free Consultation
                 </CalendlyButton>
                 <Link href="/launch">
-                  <Button size="lg" variant="outline" className="bg-red-500/20 border-red-400/30 text-white backdrop-blur-sm" data-testid="button-launch-promo">
+                  <Button size="lg" variant="outline" className="bg-emerald-500/30 border-emerald-400/50 text-white backdrop-blur-sm hover:bg-emerald-500/40" data-testid="button-launch-promo">
                     <Gift className="w-4 h-4 mr-2" />
-                    Dec 25 Launch Special
+                    Launch Special Offer
                   </Button>
                 </Link>
                 <Link href="/">
-                  <Button size="lg" variant="ghost" className="text-white/80 hover:text-white" data-testid="button-home-nav">
+                  <Button size="lg" variant="ghost" className="text-white/90 hover:text-white" data-testid="button-home-nav">
                     <Home className="w-4 h-4 mr-2" />
-                    Home
+                    Back to Home
                   </Button>
                 </Link>
               </div>
@@ -237,45 +262,49 @@ export default function HomeService() {
         </div>
       </section>
 
-      {/* Water Service Details Section */}
-      <section className="py-16 px-4" id="water-details">
+      {/* Water Service Details Section - ENHANCED PROMINENCE */}
+      <section className="py-16 px-4 bg-gradient-to-b from-emerald-500/10 via-cyan-500/5 to-blue-500/10" id="water-details">
         <div className="container mx-auto max-w-5xl">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-blue-500/10 rounded-full px-4 py-2 mb-6">
-                <Droplets className="w-4 h-4 text-blue-400" />
-                <span className="text-sm text-blue-400 font-medium">Water Service Package</span>
+            <div className="bg-white/50 dark:bg-slate-900/50 p-8 rounded-2xl border border-emerald-200 dark:border-emerald-900/30 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 rounded-full px-4 py-2 mb-6 border border-emerald-500/30">
+                <Droplets className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-300">Premium Water Service Package</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-water-service-title">
-                Clean water. Calm living.
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white" data-testid="text-water-service-title">
+                Pure Water. <span className="text-emerald-600 dark:text-emerald-400">Without Effort.</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Enjoy a continuous supply of clean, filtered drinking water at home — without the hassle.
+              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 font-medium">
+                Enjoy a continuous supply of clean, filtered drinking water at home — without the hassle. Professional installation, maintenance, and reliable refills included.
               </p>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                  Home water service setup
+                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                  Professional home installation & setup
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                  Reliable refills & maintenance
+                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                  Weekly refills & monthly maintenance
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <Gift className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-                  <span><strong className="text-foreground">Free shower filter</strong> with every demo</span>
+                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                  <span><strong className="text-slate-900 dark:text-white">Free premium shower filter</strong> with every demo</span>
+                </li>
+                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                  24/7 customer support & emergency service
                 </li>
               </ul>
-              <Card className="bg-emerald-500/5 border-emerald-500/20 mb-6">
+              <Card className="bg-gradient-to-r from-emerald-500/15 to-cyan-500/15 border-emerald-400 dark:border-emerald-600/50 mb-6 shadow-lg">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div>
-                      <p className="text-sm text-muted-foreground mb-1">Special Offer</p>
-                      <p className="text-2xl font-bold text-emerald-500">Demo for AED 99</p>
-                      <p className="text-sm text-muted-foreground">Includes free shower filter</p>
+                      <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300 mb-1">Limited Launch Offer</p>
+                      <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">Demo: AED 99</p>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">Includes free premium shower filter</p>
                     </div>
-                    <Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400">
-                      Limited Time
+                    <Badge variant="secondary" className="bg-emerald-500 text-white border-emerald-600 text-xs font-bold px-3 py-1">
+                      SAVE NOW
                     </Badge>
                   </div>
                 </CardContent>
@@ -283,30 +312,31 @@ export default function HomeService() {
               <div className="flex flex-wrap gap-3">
                 <CalendlyButton 
                   size="lg" 
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
                   data-testid="button-speak-water-expert"
                 >
                   <Droplets className="w-4 h-4 mr-2" />
-                  Book Installation
+                  Book Installation Today
                 </CalendlyButton>
                 <Link href="/aquacafe">
-                  <Button size="lg" variant="outline" data-testid="button-learn-more-water">
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Learn More
+                  <Button size="lg" variant="default" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-0" data-testid="button-learn-more-water">
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Explore AquaCafe
                   </Button>
                 </Link>
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
                 <img 
                   src={waterServiceImg} 
-                  alt="Modern home water filtration system in Dubai" 
+                  alt="Professional home water filtration system installation in Dubai - convenient home service" 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Premium Water Filtration</p>
-                  <p className="text-white/80 text-sm">Clean water shouldn't require effort</p>
+                  <p className="text-white font-bold text-lg">Premium Water Filtration</p>
+                  <p className="text-white/90 text-sm">Fresh water delivered & installed at home</p>
                 </div>
               </div>
             </div>
