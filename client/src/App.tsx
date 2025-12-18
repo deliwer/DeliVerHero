@@ -72,6 +72,7 @@ import Relocate from "@/pages/relocate";
 import RelocateCommunity from "@/pages/relocate-community";
 import HomeService from "@/pages/home-service";
 import Housing from "@/pages/housing";
+import ErrandPage from "@/pages/errand";
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -156,6 +157,9 @@ function Router() {
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
+
+        {/* Errand Runner Service */}
+        <Route path="/errand" component={ErrandPage} />
 
         {/* Housing - Rent, Buy, Invest */}
         <Route path="/housing" component={Housing} />

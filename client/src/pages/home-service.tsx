@@ -35,6 +35,7 @@ import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 import waterServiceImg from "@assets/stock_images/modern_home_water_fi_3a6f205c.jpg";
+import waterLifestyleImg from "@assets/stock_images/people_at_home_drink_21a6f771.jpg";
 import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
 import solarImg from "@assets/stock_images/solar_panels_home_ro_58dd081a.jpg";
 import evChargingImg from "@assets/stock_images/electric_vehicle_ev__8c191f69.jpg";
@@ -180,8 +181,45 @@ export default function HomeService() {
         </div>
       </section>
 
-      {/* Water Service Section */}
-      <section className="py-16 px-4" id="water-service">
+      {/* Water Service Hero Section - FEATURED */}
+      <section className="py-0 px-0 relative" id="water-service">
+        <div className="h-96 md:h-[500px] lg:h-[600px] relative overflow-hidden">
+          <img 
+            src={waterLifestyleImg} 
+            alt="Family enjoying clean water at home - lifestyle image" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="container mx-auto px-4 relative z-10 max-w-5xl">
+              <div className="max-w-2xl">
+                <Badge variant="secondary" className="mb-4 bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
+                  <Droplets className="w-3 h-3 mr-1" />
+                  Featured: Water Service
+                </Badge>
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                  Clean water, everyday.
+                </h2>
+                <p className="text-lg text-white/90 mb-6 max-w-xl">
+                  Professional installation with reliable refills and maintenance included.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <CalendlyButton 
+                    size="lg" 
+                    data-testid="button-water-hero-consultation"
+                  >
+                    <Droplets className="w-4 h-4 mr-2" />
+                    Schedule a Demo - AED 99
+                  </CalendlyButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Water Service Details Section */}
+      <section className="py-16 px-4" id="water-details">
         <div className="container mx-auto max-w-5xl">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
@@ -229,7 +267,7 @@ export default function HomeService() {
                   data-testid="button-speak-water-expert"
                 >
                   <Droplets className="w-4 h-4 mr-2" />
-                  Schedule a Water Consultation
+                  Book Installation
                 </CalendlyButton>
                 <Link href="/aquacafe">
                   <Button size="lg" variant="outline" data-testid="button-learn-more-water">
@@ -250,6 +288,91 @@ export default function HomeService() {
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white font-semibold text-lg">Premium Water Filtration</p>
                   <p className="text-white/80 text-sm">Clean water shouldn't require effort</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Errand Runner Section - MOVED UP (WAS AFTER CLEANING) */}
+      <section className="py-16 px-4 bg-gradient-to-br from-orange-900/10 via-red-900/5 to-pink-900/10" id="errand-runner">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2 mb-6">
+                <Bike className="w-4 h-4 text-orange-400" />
+                <span className="text-sm text-orange-400 font-medium">DeliWery Errand Runner</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-errand-runner-title">
+                Anything DeliWered. Wherever. Whenever.
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                Stuck in traffic? Forgot something important? Let us handle it. Our errand runners take care of your to-do list so you can focus on what matters.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3 mb-8">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                  <span className="text-sm">Picking up dry cleaning</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                  <span className="text-sm">Paying bills</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                  <span className="text-sm">Delivering office items</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                  <span className="text-sm">Grocery & pharmacy runs</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                  <span className="text-sm">Last-minute gifts</span>
+                </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                  <span className="text-sm">School & document drop-offs</span>
+                </div>
+              </div>
+              <Card className="bg-amber-500/5 border-amber-500/20 mb-6">
+                <CardContent className="pt-6 pb-4">
+                  <p className="text-sm text-muted-foreground flex items-center gap-2">
+                    <Gift className="w-4 h-4 text-amber-500" />
+                    First errand: AED 29 (Was AED 49)
+                  </p>
+                </CardContent>
+              </Card>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/errand">
+                  <Button size="lg" data-testid="button-errand-page">
+                    <Bike className="w-4 h-4 mr-2" />
+                    Explore Errand Service
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+                <CalendlyButton 
+                  size="lg" 
+                  variant="outline" 
+                  data-testid="button-talk-advisor"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Talk to an Advisor
+                </CalendlyButton>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
+                <img 
+                  src={errandRunnerImg} 
+                  alt="Delivery courier on bike running errands in Dubai" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white font-semibold text-lg">Fast Errand Service</p>
+                  <p className="text-white/80 text-sm">Your personal helper in Dubai</p>
                 </div>
               </div>
             </div>
@@ -428,90 +551,6 @@ export default function HomeService() {
         </div>
       </section>
 
-      {/* Errand Runner Section */}
-      <section className="py-16 px-4" id="errand-runner">
-        <div className="container mx-auto max-w-5xl">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2 mb-6">
-                <Bike className="w-4 h-4 text-orange-400" />
-                <span className="text-sm text-orange-400 font-medium">DeliWery Errand Runner</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-errand-runner-title">
-                Anything DeliWered. Wherever. Whenever.
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Stuck in traffic? Forgot something important? Let us handle it. Our errand runners take care of your to-do list so you can focus on what matters.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                  <span className="text-sm">Picking up dry cleaning</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                  <span className="text-sm">Paying bills</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                  <span className="text-sm">Delivering office items</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                  <span className="text-sm">Grocery & pharmacy runs</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                  <span className="text-sm">Last-minute gifts</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
-                  <span className="text-sm">School & document drop-offs</span>
-                </div>
-              </div>
-              <Card className="bg-amber-500/5 border-amber-500/20 mb-6">
-                <CardContent className="pt-6 pb-4">
-                  <p className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Gift className="w-4 h-4 text-amber-500" />
-                    Sometimes... we'll even treat you to lunch.
-                  </p>
-                </CardContent>
-              </Card>
-              <div className="flex flex-wrap gap-3">
-                <CalendlyButton 
-                  size="lg" 
-                  data-testid="button-request-errand"
-                >
-                  <Bike className="w-4 h-4 mr-2" />
-                  Request an Errand
-                </CalendlyButton>
-                <CalendlyButton 
-                  size="lg" 
-                  variant="outline" 
-                  data-testid="button-talk-advisor"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Talk to an Advisor
-                </CalendlyButton>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
-                <img 
-                  src={errandRunnerImg} 
-                  alt="Delivery courier on bike running errands in Dubai" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Fast Errand Service</p>
-                  <p className="text-white/80 text-sm">Your personal helper in Dubai</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Concierge Section */}
       <section className="py-16 px-4 bg-muted/30" id="concierge">
