@@ -1634,27 +1634,6 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
-  // Contact form endpoint
-  app.post("/api/contact", async (req, res) => {
-    try {
-      const contactData = req.body;
-      
-      // In production, save to database and send notification
-      console.log("Contact form submission:", contactData);
-      
-      // Mock successful submission
-      res.json({
-        success: true,
-        message: "Contact form submitted successfully",
-        id: Date.now().toString()
-      });
-    } catch (error: any) {
-      res.status(400).json({ 
-        error: error.message || "Failed to submit contact form" 
-      });
-    }
-  });
-
   // Corporate Lead Management
   app.post("/api/corporate/inquiry", async (req, res) => {
     try {

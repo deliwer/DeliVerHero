@@ -1,5 +1,7 @@
-import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type TradeInSellRequest, type InsertTradeInSellRequest, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type LoyaltyMembership, type InsertLoyaltyMembership, type DigitalVoucher, type InsertDigitalVoucher, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory, type ChaintrackMembershipTier, type ChaintrackAuction, type InsertChaintrackAuction, type ChaintrackBid, type InsertChaintrackBid, type ChaintrackSupplier, type InsertChaintrackSupplier, type ChaintrackInventory, type InsertChaintrackInventory, type ChaintrackInspection, type InsertChaintrackInspection, type ChaintrackTransaction, type InsertChaintrackTransaction, type ChaintrackRating, type InsertChaintrackRating, type ChaintrackSeller, type InsertChaintrackSeller, type ChaintrackEscrow, type InsertChaintrackEscrow, type ChaintrackShipment, type InsertChaintrackShipment, type ChaintrackDocument, type InsertChaintrackDocument, type ChaintrackAmlLog, type InsertChaintrackAmlLog, type ChaintrackAuditLog, type InsertChaintrackAuditLog, type ChaintrackComplianceAlert, type InsertChaintrackComplianceAlert, type FulfillmentReseller, type InsertFulfillmentReseller, type FulfillmentOrder, type InsertFulfillmentOrder, type ResellerInventorySubscription, type InsertResellerInventorySubscription, type FulfillmentPricing, type InsertFulfillmentPricing, type StarsPurchase, type InsertStarsPurchase, type PicAccount, type InsertPicAccount, type PicLedgerEntry, type InsertPicLedgerEntry, type PicDistributionRule, type InsertPicDistributionRule, type PicDistributionRecipient, type InsertPicDistributionRecipient, type PicDistribution, type InsertPicDistribution, type UgcSubmission, type InsertUgcSubmission, type GlobalInitiative, type InsertGlobalInitiative, type PicConversionTracking, type InsertPicConversionTracking } from "@shared/schema";
+import { type Hero, type InsertHero, type TradeIn, type InsertTradeIn, type TradeInSellRequest, type InsertTradeInSellRequest, type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, type SponsoredMission, type InsertSponsoredMission, type MissionSponsorship, type InsertMissionSponsorship, type User, type InsertUser, type Contact, type InsertContact, type Quote, type InsertQuote, type CorporateLead, type InsertCorporateLead, type EmailCampaign, type InsertEmailCampaign, type EmailSubscriber, type InsertEmailSubscriber, type Order, type InsertOrder, type Customer, type InsertCustomer, type LoyaltyMembership, type InsertLoyaltyMembership, type DigitalVoucher, type InsertDigitalVoucher, type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, type HeroSpinCount, type RedeemCoupon, type PlanetMission, type InsertPlanetMission, type HeroMissionProgress, type InsertHeroMissionProgress, type PlanetPointsTransaction, type InsertPlanetPointsLedger, type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, type AcceptMission, type UpdateMissionProgress, type CompleteMission, type RedeemReward, type UpdateAvatar, type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, type InsertWellnessJourney, type WellnessJourneyStep, type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, type LuxuryHotelPartner, type InsertLuxuryHotelPartner, type RestaurantPartner, type InsertRestaurantPartner, type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, type City, type InsertCity, type Season, contacts, relocateLeads, type InsertSeason, type ActivitySubmission, type InsertActivitySubmission, type VerificationEvent, type InsertVerificationEvent, type GlobalPartner, type InsertGlobalPartner, type AiMissionTemplate, type InsertAiMissionTemplate, type EnvironmentState, type InsertEnvironmentState, type LeaderboardSnapshot, type InsertLeaderboardSnapshot, type B2bBuyer, type InsertB2bBuyer, type InventorySource, type InsertInventorySource, type InventoryUpload, type InsertInventoryUpload, type WholesaleInventory, type InsertWholesaleInventory, type ChaintrackMembershipTier, type ChaintrackAuction, type InsertChaintrackAuction, type ChaintrackBid, type InsertChaintrackBid, type ChaintrackSupplier, type InsertChaintrackSupplier, type ChaintrackInventory, type InsertChaintrackInventory, type ChaintrackInspection, type InsertChaintrackInspection, type ChaintrackTransaction, type InsertChaintrackTransaction, type ChaintrackRating, type InsertChaintrackRating, type ChaintrackSeller, type InsertChaintrackSeller, type ChaintrackEscrow, type InsertChaintrackEscrow, type ChaintrackShipment, type InsertChaintrackShipment, type ChaintrackDocument, type InsertChaintrackDocument, type ChaintrackAmlLog, type InsertChaintrackAmlLog, type ChaintrackAuditLog, type InsertChaintrackAuditLog, type ChaintrackComplianceAlert, type InsertChaintrackComplianceAlert, type FulfillmentReseller, type InsertFulfillmentReseller, type FulfillmentOrder, type InsertFulfillmentOrder, type ResellerInventorySubscription, type InsertResellerInventorySubscription, type FulfillmentPricing, type InsertFulfillmentPricing, type StarsPurchase, type InsertStarsPurchase, type PicAccount, type InsertPicAccount, type PicLedgerEntry, type InsertPicLedgerEntry, type PicDistributionRule, type InsertPicDistributionRule, type PicDistributionRecipient, type InsertPicDistributionRecipient, type PicDistribution, type InsertPicDistribution, type UgcSubmission, type InsertUgcSubmission, type GlobalInitiative, type InsertGlobalInitiative, type PicConversionTracking, type InsertPicConversionTracking } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { db } from "./db";
+import { desc } from "drizzle-orm";
 
 export interface IStorage {
   // User management
@@ -1803,25 +1805,50 @@ export class MemStorage implements IStorage {
     return updatedUser;
   }
 
-  // Contact operations
+  // Contact operations - persisted to database for zero lead loss
   async createContact(contactData: InsertContact): Promise<Contact> {
-    const contact: Contact = {
-      id: randomUUID(),
-      name: contactData.name,
-      email: contactData.email,
-      phone: contactData.phone || null,
-      company: contactData.company || null,
-      subject: contactData.subject,
-      message: contactData.message,
-      status: "new",
-      createdAt: new Date(),
-    };
-    this.contacts.set(contact.id, contact);
-    return contact;
+    const contactId = randomUUID();
+    try {
+      const [contact] = await db.insert(contacts).values({
+        id: contactId,
+        name: contactData.name,
+        email: contactData.email,
+        phone: contactData.phone || null,
+        company: contactData.company || null,
+        subject: contactData.subject,
+        message: contactData.message,
+        status: "new",
+      }).returning();
+      
+      console.log(`[DB] Contact saved to database: ${contact.id} - ${contact.email}`);
+      return contact;
+    } catch (error) {
+      console.error("[CRITICAL-DB-ERROR] Failed to save contact to database:", error);
+      const fallbackContact: Contact = {
+        id: contactId,
+        name: contactData.name,
+        email: contactData.email,
+        phone: contactData.phone || null,
+        company: contactData.company || null,
+        subject: contactData.subject,
+        message: contactData.message,
+        status: "new",
+        createdAt: new Date(),
+      };
+      console.log(`[FALLBACK-LEAD] CRITICAL: Contact ${fallbackContact.id} saved to memory - database unavailable`);
+      console.log(`[FALLBACK-LEAD] Data: ${JSON.stringify(fallbackContact)}`);
+      this.contacts.set(fallbackContact.id, fallbackContact);
+      return fallbackContact;
+    }
   }
 
   async getAllContacts(): Promise<Contact[]> {
-    return Array.from(this.contacts.values());
+    try {
+      return await db.select().from(contacts).orderBy(desc(contacts.createdAt));
+    } catch (error) {
+      console.error("[DB] Failed to get contacts from database:", error);
+      return Array.from(this.contacts.values());
+    }
   }
 
   // Quote operations  
