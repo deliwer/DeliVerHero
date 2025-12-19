@@ -1,0 +1,68 @@
+/*
+Replit Prompt: Integrate Dealroom Trust Signals + FounderHQ References into /relocate
+Purpose: Add credibility, data trust, and ecosystem recognition for DeliWer's relocation services.
+Pages Affected: /relocate (primary), homepage CTAs (secondary)
+Timeline: Immediate implementation
+*/
+
+1️⃣ **Header Enhancement**
+- Add a hero section mentioning:
+  "Validated by Dealroom — the global startup & investor ecosystem intelligence platform"
+- Include FounderHQ logo with caption:
+  "Part of Dubai's Founders Ecosystem as recognized by Dealroom"
+
+2️⃣ **Content Sections**
+- Create a "Why Dubai" section referencing Dealroom data:
+  - Example metrics: "Dubai's startup ecosystem ranks among top emerging markets — verified by Dealroom."
+  - Include FounderHQ: "Local ecosystem verified by FounderHQ in partnership with Dealroom."
+- Add trust badges/logos in sidebar or under hero section
+
+3️⃣ **Call-to-Action Integration**
+- Add buttons: 
+  - "Book Your Relocation Consultation" (primary CTA)
+  - "Validate Investment Readiness via Gust / Dealroom" (optional secondary CTA)
+- Ensure buttons trigger **short 1-2 step forms**:
+  - Name, email, investment intent, optional LinkedIn profile
+  - All submissions routed to info@deliwer.com
+  - Trigger automatic confirmation email via SendGrid
+
+4️⃣ **Lead Qualification**
+- Tag leads who click "Validate Investment Readiness" as **high-potential investors**
+- Optional: Capture Dealroom or Gust profile URLs in the form
+
+5️⃣ **Real-Life Images**
+- Add curated images of Dubai's business districts, co-working spaces, and FounderHQ ecosystem events
+- Optimize for web performance and responsiveness
+
+6️⃣ **UX / UI**
+- Ensure section density is **light and readable**
+- Mobile-first: Trust badges + CTAs must be visible above the fold on smartphones
+- Delay context tips popup by 45 seconds for first-time visitors
+
+7️⃣ **Analytics & Tracking**
+- Track clicks on:
+  - "Book Consultation" CTA
+  - "Validate Investment Readiness"
+- Ensure no lead is lost (store in CRM + SendGrid + optional Airtable/Google Sheet)
+- Test page flow: homepage -> /relocate -> CTA -> form submission
+
+8️⃣ **SEO / Content**
+- Add microcopy referencing Dealroom and FounderHQ:
+  - Meta description example: "Relocate to Dubai with DeliWer, validated by Dealroom and supported by FounderHQ."
+- Structured data: Include Organization schema with logos of Dealroom and FounderHQ
+
+9️⃣ **Testing & QA**
+- Check all CTAs, forms, email notifications
+- Test mobile responsiveness
+- Confirm hero, images, and badges appear correctly
+- Ensure all external links to Dealroom/FounderHQ open in new tab
+
+🔟 **Deployment**
+- Integrate into deliwer.com via existing CMS or static files
+- No changes to homepage shopping magnet
+- Optional: Homepage CTA can point to /relocate as primary path for investor/relocation traffic
+
+/*
+End of Prompt
+*/
+

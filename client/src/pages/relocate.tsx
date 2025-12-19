@@ -51,7 +51,9 @@ import {
   Calendar,
   HelpCircle,
   Phone,
-  MessageCircle
+  MessageCircle,
+  Award,
+  ExternalLink
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -85,7 +87,9 @@ export default function Relocate() {
     familySize: "",
     businessType: "",
     timeline: "",
-    message: getServiceMessage()
+    message: getServiceMessage(),
+    investmentIntent: "",
+    linkedinProfile: ""
   });
   
   // Auto-scroll to form and pre-fill message when service param is present
@@ -115,7 +119,9 @@ export default function Relocate() {
         familySize: "",
         businessType: "",
         timeline: "",
-        message: ""
+        message: "",
+        investmentIntent: "",
+        linkedinProfile: ""
       });
     },
     onError: (error: any) => {
@@ -347,8 +353,8 @@ export default function Relocate() {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Dubai Relocation Consulting | Capital & Family Relocation Services | DeliWer</title>
-        <meta name="description" content="Expert Dubai relocation consulting for investors, families & businesses. 0% income tax, Golden Visa, business setup in 1-3 days. Free consultation. Start your Dubai journey today." />
-        <meta name="keywords" content="Dubai relocation, capital relocation, Golden Visa UAE, Dubai business setup, family relocation Dubai, tax-free living, UAE immigration, Dubai expat services" />
+        <meta name="description" content="Expert Dubai relocation consulting for investors, families & businesses. Validated by Dealroom. 0% income tax, Golden Visa, business setup in 1-3 days. Part of Dubai's founders ecosystem. Start your Dubai journey today." />
+        <meta name="keywords" content="Dubai relocation, capital relocation, Golden Visa UAE, Dubai business setup, family relocation Dubai, tax-free living, UAE immigration, Dubai expat services, Dealroom verified, FounderHQ ecosystem" />
         <link rel="canonical" href="https://deliwer.com/relocate" />
         
         <meta property="og:title" content="Dubai Relocation Consulting | Capital & Family Relocation | DeliWer" />
@@ -391,6 +397,41 @@ export default function Relocate() {
         </div>
       </div>
 
+      {/* Trust Signals Section - Dealroom & FounderHQ */}
+      <section className="py-12 bg-gradient-to-r from-blue-950/30 to-purple-950/30 border-y border-blue-900/30">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-md bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                <Award className="w-5 h-5 text-blue-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white mb-1">Dealroom Verified</h3>
+                <p className="text-sm text-gray-300">Global startup & investor ecosystem intelligence platform recognizes DeliWer's expertise</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-md bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                <Users className="w-5 h-5 text-purple-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white mb-1">FounderHQ Partner</h3>
+                <p className="text-sm text-gray-300">Part of Dubai's official founders ecosystem with verified credentials</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                <Globe className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white mb-1">Dubai's #1 Hub</h3>
+                <p className="text-sm text-gray-300">Recognized as top emerging market for founders, investors & families</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="relative h-screen min-h-[600px] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -399,8 +440,8 @@ export default function Relocate() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
           <Badge variant="secondary" className="mb-6 bg-white/10 backdrop-blur-sm border-white/20 text-white" data-testid="badge-hero">
-            <Globe className="w-3 h-3 mr-1" />
-            The Modern Free-World Capital Hub
+            <Award className="w-3 h-3 mr-1" />
+            Validated by Dealroom. Part of FounderHQ Ecosystem.
           </Badge>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 max-w-5xl" data-testid="text-hero-title">
             Relocate to Dubai. We Handle Everything.
@@ -882,6 +923,108 @@ export default function Relocate() {
               </Button>
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Investment Readiness Validation - Short Form */}
+      <section className="py-16 bg-gradient-to-b from-emerald-950/20 to-teal-950/20 border-b border-emerald-900/30">
+        <div className="max-w-3xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <Badge variant="outline" className="mb-4 border-emerald-500/50">
+              <Award className="w-3 h-3 mr-1" />
+              For Investors
+            </Badge>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3" data-testid="text-validation-title">
+              Validate Your Investment Readiness
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Quick assessment via Dealroom or Gust profile. Unlock personalized Dubai investment opportunities tailored to your portfolio.
+            </p>
+          </div>
+          <Card className="border-emerald-500/30 bg-emerald-950/30">
+            <CardContent className="pt-6">
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                leadMutation.mutate({...formData, audienceType, investmentIntent: "dealroom-validation"});
+              }} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="inv-name">Full Name *</Label>
+                    <Input 
+                      id="inv-name"
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      required
+                      data-testid="input-inv-name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="inv-email">Email *</Label>
+                    <Input 
+                      id="inv-email"
+                      type="email"
+                      placeholder="you@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      required
+                      data-testid="input-inv-email"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="linkedin">LinkedIn Profile (Optional)</Label>
+                  <Input 
+                    id="linkedin"
+                    type="url"
+                    placeholder="https://linkedin.com/in/yourprofile"
+                    value={formData.linkedinProfile}
+                    onChange={(e) => setFormData({...formData, linkedinProfile: e.target.value})}
+                    data-testid="input-linkedin"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="investment-intent">Investment Interest *</Label>
+                  <Select 
+                    value={formData.investmentIntent}
+                    onValueChange={(value) => setFormData({...formData, investmentIntent: value})}
+                  >
+                    <SelectTrigger data-testid="select-investment">
+                      <SelectValue placeholder="Select area of interest" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="tech-startup">Tech Startup / Scale-up</SelectItem>
+                      <SelectItem value="real-estate">Real Estate Investment</SelectItem>
+                      <SelectItem value="venture">Venture Capital / Angel Investing</SelectItem>
+                      <SelectItem value="ecommerce">E-commerce / Trade</SelectItem>
+                      <SelectItem value="crypto">Web3 / Crypto Ecosystem</SelectItem>
+                      <SelectItem value="multi">Multi-sector Portfolio</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-emerald-600 hover:bg-emerald-700" 
+                  size="lg"
+                  disabled={leadMutation.isPending}
+                  data-testid="button-validate-investment"
+                >
+                  {leadMutation.isPending ? (
+                    <>Validating...</>
+                  ) : (
+                    <>
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Validate Investment Readiness
+                    </>
+                  )}
+                </Button>
+                <p className="text-xs text-center text-muted-foreground">
+                  Connect your Dealroom or Gust profile. We'll match you with Dubai opportunities.
+                </p>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
