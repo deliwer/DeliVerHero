@@ -21,6 +21,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { 
@@ -53,7 +60,9 @@ import {
   Phone,
   MessageCircle,
   Award,
-  ExternalLink
+  ExternalLink,
+  X,
+  Check
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -66,6 +75,18 @@ export default function Relocate() {
   const searchString = useSearch();
   const formRef = useRef<HTMLDivElement>(null);
   const [audienceType, setAudienceType] = useState<"consumer" | "business">("consumer");
+  const [showChristmasPopup, setShowChristmasPopup] = useState(false);
+  const [showLeadCaptureModal, setShowLeadCaptureModal] = useState(false);
+  
+  // Check if today is Christmas 2025
+  useEffect(() => {
+    const today = new Date();
+    const isChristmas = today.getMonth() === 11 && today.getDate() === 25;
+    if (isChristmas && !sessionStorage.getItem("christmasPopupShown")) {
+      setTimeout(() => setShowChristmasPopup(true), 1000);
+      sessionStorage.setItem("christmasPopupShown", "true");
+    }
+  }, []);
   
   // Parse service query parameter for direct booking flow
   const serviceParam = new URLSearchParams(searchString).get("service");
@@ -351,6 +372,129 @@ export default function Relocate() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Christmas 25% Off Popup - Shows on Dec 25 */}
+      <Dialog open={showChristmasPopup} onOpenChange={setShowChristmasPopup}>
+        <DialogContent className="sm:max-w-md bg-gradient-to-br from-red-950/50 to-green-950/50 border-green-600/50" data-testid="dialog-christmas">
+          <DialogHeader>
+            <DialogTitle className="text-center text-2xl font-bold text-white" data-testid="text-christmas-title">
+              Christmas Special 2025
+            </DialogTitle>
+            <DialogDescription className="text-center text-green-200" data-testid="text-christmas-desc">
+              Today only: 25% OFF all relocation consulting services
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center border border-green-500/30">
+              <p className="text-3xl font-bold text-green-400 mb-2">25% OFF</p>
+              <p className="text-white text-sm mb-4">Limited to today, December 25, 2025</p>
+              <p className="text-gray-300 text-xs">Offer ends at midnight UTC</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <a href="#lead-form">
+                <Button 
+                  className="w-full bg-green-600 hover:bg-green-700 text-white" 
+                  size="lg"
+                  onClick={() => setShowChristmasPopup(false)}
+                  data-testid="button-claim-christmas"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Claim Your 25% Discount
+                </Button>
+              </a>
+              <Button 
+                variant="outline" 
+                className="w-full" 
+                size="lg"
+                onClick={() => setShowChristmasPopup(false)}
+                data-testid="button-close-christmas"
+              >
+                <X className="w-4 h-4 mr-2" />
+                Dismiss
+              </Button>
+            </div>
+            <p className="text-xs text-center text-gray-400">
+              Code applied automatically at checkout
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Lead Capture Onboarding Modal */}
+      <Dialog open={showLeadCaptureModal} onOpenChange={setShowLeadCaptureModal}>
+        <DialogContent className="sm:max-w-md" data-testid="dialog-lead-capture">
+          <DialogHeader>
+            <DialogTitle data-testid="text-onboarding-title">Start Your Dubai Journey</DialogTitle>
+            <DialogDescription data-testid="text-onboarding-desc">
+              Quick 2-minute assessment. Get personalized relocation roadmap.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            leadMutation.mutate({...formData, audienceType});
+            setShowLeadCaptureModal(false);
+          }} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="modal-name">Full Name *</Label>
+              <Input 
+                id="modal-name"
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                required
+                data-testid="input-modal-name"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="modal-email">Email *</Label>
+              <Input 
+                id="modal-email"
+                type="email"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                required
+                data-testid="input-modal-email"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="modal-timeline">Timeline *</Label>
+              <Select 
+                value={formData.timeline}
+                onValueChange={(value) => setFormData({...formData, timeline: value})}
+              >
+                <SelectTrigger data-testid="select-modal-timeline">
+                  <SelectValue placeholder="When are you moving?" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="immediate">Within 1 month</SelectItem>
+                  <SelectItem value="soon">1-3 months</SelectItem>
+                  <SelectItem value="planning">3-6 months</SelectItem>
+                  <SelectItem value="exploring">6+ months (exploring)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button 
+              type="submit" 
+              className="w-full" 
+              size="lg"
+              disabled={leadMutation.isPending}
+              data-testid="button-modal-submit"
+            >
+              {leadMutation.isPending ? (
+                <>Loading...</>
+              ) : (
+                <>
+                  <Check className="w-4 h-4 mr-2" />
+                  Get My Personalized Roadmap
+                </>
+              )}
+            </Button>
+            <p className="text-xs text-center text-muted-foreground">
+              We'll email your customized plan + schedule a free call
+            </p>
+          </form>
+        </DialogContent>
+      </Dialog>
       <Helmet>
         <title>Dubai Relocation Consulting | Capital & Family Relocation Services | DeliWer</title>
         <meta name="description" content="Expert Dubai relocation consulting for investors, families & businesses. Validated by Dealroom. 0% income tax, Golden Visa, business setup in 1-3 days. Part of Dubai's founders ecosystem. Start your Dubai journey today." />
@@ -920,6 +1064,176 @@ export default function Relocate() {
               <Button size="lg" data-testid="button-comparison-cta">
                 <ArrowRight className="w-4 h-4 mr-2" />
                 Get Your Dubai Relocation Plan
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing & Consulting Charges Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border-b border-blue-900/30">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge variant="outline" className="mb-4">
+              <DollarSign className="w-3 h-3 mr-1" />
+              Transparent Pricing
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-pricing-title">
+              Relocation Consulting Fees
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Clear, upfront pricing. No hidden charges. 25% discount available through December 31, 2025.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Consumer Package */}
+            <Card className="border-emerald-500/30 hover:border-emerald-400/50 transition-colors" data-testid="card-family-package">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Home className="w-5 h-5 text-emerald-500" />
+                  Family Relocation
+                </CardTitle>
+                <CardDescription>Complete family transition</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <p className="text-3xl font-bold text-primary mb-1">$4,995</p>
+                  <p className="text-sm text-muted-foreground">Full service package</p>
+                  <p className="text-xs text-emerald-500 font-semibold mt-2">25% OFF = $3,746 (until Dec 31)</p>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">School enrollment assistance</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Housing & neighborhood guidance</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Healthcare & lifestyle setup</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">3 months follow-up support</span>
+                  </div>
+                </div>
+                <Button 
+                  className="w-full" 
+                  onClick={() => setShowLeadCaptureModal(true)}
+                  data-testid="button-family-cta"
+                >
+                  Get Started
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Business Package (Featured) */}
+            <Card className="border-primary/50 ring-2 ring-primary/20 hover:ring-primary/40 transition-all relative" data-testid="card-business-package">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
+              </div>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Briefcase className="w-5 h-5 text-primary" />
+                  Capital & Business Setup
+                </CardTitle>
+                <CardDescription>Entrepreneurs & investors</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <p className="text-3xl font-bold text-primary mb-1">$9,995</p>
+                  <p className="text-sm text-muted-foreground">Comprehensive advisory</p>
+                  <p className="text-xs text-primary font-semibold mt-2">25% OFF = $7,496 (until Dec 31)</p>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Golden Visa structuring</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Business setup (Free Zone/Mainland)</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Tax optimization planning</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Banking & capital transfer</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">6 months VIP support</span>
+                  </div>
+                </div>
+                <Button 
+                  className="w-full" 
+                  onClick={() => setShowLeadCaptureModal(true)}
+                  data-testid="button-business-cta"
+                >
+                  Book Consultation
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Premium Package */}
+            <Card className="border-purple-500/30 hover:border-purple-400/50 transition-colors" data-testid="card-premium-package">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Star className="w-5 h-5 text-purple-500" />
+                  Premium VIP
+                </CardTitle>
+                <CardDescription>White-glove service</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <p className="text-3xl font-bold text-primary mb-1">$19,995</p>
+                  <p className="text-sm text-muted-foreground">Ultimate support</p>
+                  <p className="text-xs text-purple-500 font-semibold mt-2">25% OFF = $14,996 (until Dec 31)</p>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Everything in Capital package</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Dedicated account manager</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Multi-asset portfolio setup</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">12 months concierge service</span>
+                  </div>
+                  <div className="flex gap-2 items-start">
+                    <Check className="w-4 h-4 text-purple-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm">Priority partner access</span>
+                  </div>
+                </div>
+                <Button 
+                  className="w-full bg-purple-600 hover:bg-purple-700" 
+                  onClick={() => setShowLeadCaptureModal(true)}
+                  data-testid="button-premium-cta"
+                >
+                  Schedule VIP Call
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="text-center mt-10">
+            <p className="text-sm text-muted-foreground mb-4">
+              All packages include free onboarding consultation via Calendly scheduling
+            </p>
+            <a href="https://calendly.com/deliwer/consultation" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" data-testid="button-schedule-calendly">
+                <Calendar className="w-4 h-4 mr-2" />
+                Schedule Free 30-Min Strategy Call
               </Button>
             </a>
           </div>
