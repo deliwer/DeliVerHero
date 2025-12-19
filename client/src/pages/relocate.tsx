@@ -374,47 +374,52 @@ export default function Relocate() {
     <div className="min-h-screen bg-background">
       {/* Christmas 25% Off Popup - Shows on Dec 25 */}
       <Dialog open={showChristmasPopup} onOpenChange={setShowChristmasPopup}>
-        <DialogContent className="sm:max-w-md bg-gradient-to-br from-red-950/50 to-green-950/50 border-green-600/50" data-testid="dialog-christmas">
+        <DialogContent className="sm:max-w-md bg-gradient-to-br from-red-950/80 to-green-950/80 border-2 border-green-500" data-testid="dialog-christmas">
           <DialogHeader>
-            <DialogTitle className="text-center text-2xl font-bold text-white" data-testid="text-christmas-title">
-              Christmas Special 2025
+            <DialogTitle className="text-center text-2xl md:text-3xl font-bold text-white mb-2" data-testid="text-christmas-title">
+              🎄 Your Last-Minute Chance
             </DialogTitle>
-            <DialogDescription className="text-center text-green-200" data-testid="text-christmas-desc">
-              Today only: 25% OFF all relocation consulting services
+            <DialogDescription className="text-center text-green-300 font-semibold text-base mb-2" data-testid="text-christmas-desc">
+              Christmas Day Deal: 25% OFF Your Dubai Relocation
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center border border-green-500/30">
-              <p className="text-3xl font-bold text-green-400 mb-2">25% OFF</p>
-              <p className="text-white text-sm mb-4">Limited to today, December 25, 2025</p>
-              <p className="text-gray-300 text-xs">Offer ends at midnight UTC</p>
+            <div className="bg-gradient-to-r from-green-500/30 to-red-500/30 backdrop-blur-sm rounded-lg p-6 text-center border-2 border-green-400/50">
+              <p className="text-4xl font-black text-green-300 mb-2">25% OFF</p>
+              <p className="text-white text-sm mb-2">Save $2,500 - $5,000+ on your relocation package</p>
+              <p className="text-red-300 text-lg font-bold mb-2">TODAY ONLY</p>
+              <div className="text-gray-200 text-xs space-y-1">
+                <p>Only 3 spots remaining for consultations</p>
+                <p>Offer expires midnight UTC</p>
+              </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <a href="#lead-form">
+            <div className="flex flex-col gap-2">
+              <a href="#lead-form" className="w-full">
                 <Button 
-                  className="w-full bg-green-600 hover:bg-green-700 text-white" 
+                  className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-base" 
                   size="lg"
                   onClick={() => setShowChristmasPopup(false)}
                   data-testid="button-claim-christmas"
                 >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Claim Your 25% Discount
+                  <Check className="w-5 h-5 mr-2" />
+                  Secure My 25% Christmas Discount
                 </Button>
               </a>
               <Button 
                 variant="outline" 
-                className="w-full" 
+                className="w-full border-white/30 text-white hover:bg-white/10" 
                 size="lg"
                 onClick={() => setShowChristmasPopup(false)}
                 data-testid="button-close-christmas"
               >
-                <X className="w-4 h-4 mr-2" />
-                Dismiss
+                Maybe Later
               </Button>
             </div>
-            <p className="text-xs text-center text-gray-400">
-              Code applied automatically at checkout
-            </p>
+            <div className="bg-yellow-500/20 border border-yellow-500/50 rounded p-3">
+              <p className="text-xs text-white text-center">
+                <span className="font-bold">⚠️ Limited Capacity:</span> Consultations book fast during holidays. Claim now to lock in your spot.
+              </p>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
@@ -583,33 +588,36 @@ export default function Relocate() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-          <Badge variant="secondary" className="mb-6 bg-white/10 backdrop-blur-sm border-white/20 text-white" data-testid="badge-hero">
+          <Badge variant="secondary" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white animate-pulse" data-testid="badge-hero">
             <Award className="w-3 h-3 mr-1" />
             Validated by Dealroom. Part of FounderHQ Ecosystem.
           </Badge>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 max-w-5xl" data-testid="text-hero-title">
-            Relocate to Dubai. We Handle Everything.
-            <span className="text-amber-300"> Business. Housing. Visas. Lifestyle.</span>
+          <div className="mb-6 inline-block bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2">
+            <p className="text-red-300 text-sm font-bold">LIMITED TIME: 25% OFF + Only 3 Spots Left Today</p>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 max-w-5xl leading-tight" data-testid="text-hero-title">
+            Your Dubai Relocation
+            <span className="text-amber-300 block mt-2">Done Right. Done Fast. Done Today.</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl" data-testid="text-hero-description">
-            One trusted gateway for business setup, housing, visas, and lifestyle support.
+          <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl font-semibold" data-testid="text-hero-description">
+            Business setup in 1-3 days. Golden Visa within weeks. Zero income tax. Trusted by 500+ families and founders.
           </p>
           <p className="text-base text-white/70 mb-8 max-w-2xl" data-testid="text-hero-subtext">
-            Delivered by vetted partners. DeliWer earns via referral — never charges you directly. Start your Dubai journey risk-free.
+            Partner-verified. Risk-free guarantee. We earn via referral—your success is our commission. Start your journey today.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#lead-form">
-              <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white" data-testid="button-start-journey">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Start Relocation Assessment (Free)
+              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-bold text-base px-8" data-testid="button-start-journey">
+                <Check className="w-5 h-5 mr-2" />
+                Claim 25% Christmas Offer
               </Button>
             </a>
-            <Link href="/community">
-              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-community">
-                <Users className="w-4 h-4 mr-2" />
-                Join Our Relocating Community
+            <a href="https://calendly.com/deliwer/consultation" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 font-semibold" data-testid="button-free-call">
+                <Calendar className="w-4 h-4 mr-2" />
+                Schedule Free Call (30 min)
               </Button>
-            </Link>
+            </a>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <Button
@@ -1071,18 +1079,24 @@ export default function Relocate() {
       </section>
 
       {/* Pricing & Consulting Charges Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border-b border-blue-900/30">
+      <section className="py-20 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border-b border-blue-900/30 relative overflow-hidden">
+        <div className="absolute top-4 right-4 bg-red-500/20 border border-red-500/50 rounded-lg px-3 py-1 text-xs font-bold text-red-300 animate-pulse">
+          Only 3 Spots Available Today
+        </div>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4">
-              <DollarSign className="w-3 h-3 mr-1" />
-              Transparent Pricing
+              <TrendingUp className="w-3 h-3 mr-1" />
+              Investment-Grade Service
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-pricing-title">
-              Relocation Consulting Fees
+              Relocation Consulting Fees (25% OFF Today)
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Clear, upfront pricing. No hidden charges. 25% discount available through December 31, 2025.
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-2">
+              Investment as low as $3,746. One-time fee. Lifetime support.
+            </p>
+            <p className="text-sm text-amber-500 font-semibold">
+              ✨ Save $2,500 - $5,000 with today's holiday offer
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
@@ -1226,14 +1240,17 @@ export default function Relocate() {
               </CardContent>
             </Card>
           </div>
-          <div className="text-center mt-10">
-            <p className="text-sm text-muted-foreground mb-4">
-              All packages include free onboarding consultation via Calendly scheduling
+          <div className="text-center mt-10 bg-green-500/10 border border-green-500/30 rounded-lg p-6">
+            <p className="text-sm text-muted-foreground mb-2">
+              All packages include free onboarding consultation + 24/7 WhatsApp support
+            </p>
+            <p className="text-xs text-green-400 font-semibold mb-4">
+              ✓ Money-back guarantee if not satisfied within 7 days
             </p>
             <a href="https://calendly.com/deliwer/consultation" target="_blank" rel="noopener noreferrer">
-              <Button variant="outline" size="lg" data-testid="button-schedule-calendly">
+              <Button variant="default" size="lg" className="bg-green-600 hover:bg-green-700" data-testid="button-schedule-calendly">
                 <Calendar className="w-4 h-4 mr-2" />
-                Schedule Free 30-Min Strategy Call
+                Lock In Your Spot Now (Calendly)
               </Button>
             </a>
           </div>
