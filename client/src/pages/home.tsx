@@ -311,27 +311,27 @@ export default function Home() {
       <TrustElements />
 
       {/* PHASE 5: RELOCATE (Monetization) - Conversion Bridge */}
-      <section className="py-16 px-4 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-blue-900/20">
+      <section className="py-16 px-4 bg-gradient-to-br from-amber-900/20 via-orange-900/10 to-red-900/20">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-            <Globe className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm text-white/80">Beyond Shopping</span>
+            <Plane className="w-4 h-4 text-amber-400" />
+            <span className="text-sm text-white/80">Planning to Move?</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="text-relocate-convergence">
-            Many who start with sustainable shopping go on to build their lives in Dubai
+            Many who start here eventually call Dubai home.
           </h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join families, founders, and global citizens who discovered that conscious consumption 
-            was just the beginning of their journey to the UAE.
+            From conscious shopping to building your future — we handle business setup, housing, visas, and lifestyle support. One trusted gateway.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/relocate">
               <Button 
                 size="lg" 
+                className="bg-amber-600 hover:bg-amber-700"
                 data-testid="button-discover-relocate"
               >
                 <Plane className="w-4 h-4 mr-2" />
-                Book a Private Relocation Conversation
+                Start Relocation Assessment
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>

@@ -365,13 +365,22 @@ export default function Relocate() {
         <script type="application/ld+json">{JSON.stringify(faqSchemaData)}</script>
       </Helmet>
 
+      {/* Launch Offer Banner */}
+      <div className="bg-gradient-to-r from-amber-600/20 to-orange-600/20 border-b border-amber-500/40 backdrop-blur-sm">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-center gap-3 text-center">
+          <span className="text-sm md:text-base font-semibold text-white">
+            Limited Time: 25% OFF Relocation Consulting Fees — Enroll by Dec 31, 2025
+          </span>
+        </div>
+      </div>
+
       {/* Sticky Mobile CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-50 p-3 bg-background/95 backdrop-blur-sm border-t md:hidden">
         <div className="flex gap-2">
           <a href="#lead-form" className="flex-1">
             <Button className="w-full" size="lg" data-testid="button-mobile-cta">
               <MessageCircle className="w-4 h-4 mr-2" />
-              Book a Private Conversation
+              Book Strategy Call
             </Button>
           </a>
           <a href="tel:+97142501500">
@@ -394,26 +403,26 @@ export default function Relocate() {
             The Modern Free-World Capital Hub
           </Badge>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 max-w-5xl" data-testid="text-hero-title">
-            Relocate Capital.
-            <span className="text-primary"> Rebalance Life.</span>
+            Relocate to Dubai. We Handle Everything.
+            <span className="text-amber-300"> Business. Housing. Visas. Lifestyle.</span>
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl" data-testid="text-hero-description">
-            Dubai offers peace, opportunity, and global belonging — without compromise.
+            One trusted gateway for business setup, housing, visas, and lifestyle support.
           </p>
           <p className="text-base text-white/70 mb-8 max-w-2xl" data-testid="text-hero-subtext">
-            For families, founders, and investors choosing stability, sustainability, and long-term abundance.
+            Delivered by vetted partners. DeliWer earns via referral — never charges you directly. Start your Dubai journey risk-free.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#lead-form">
-              <Button size="lg" className="bg-primary text-primary-foreground" data-testid="button-start-journey">
+              <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white" data-testid="button-start-journey">
                 <MessageCircle className="w-4 h-4 mr-2" />
-                Book a Private Relocation Conversation
+                Start Relocation Assessment (Free)
               </Button>
             </a>
             <Link href="/community">
               <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10" data-testid="button-community">
                 <Users className="w-4 h-4 mr-2" />
-                Stay Connected with Our Community
+                Join Our Relocating Community
               </Button>
             </Link>
           </div>

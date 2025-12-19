@@ -1,0 +1,85 @@
+ROLE:
+You are a No-Code Solution Architect, Growth Engineer, and UX Strategist
+working on deliwer.com.
+
+CORE OBJECTIVE:
+Make /relocate the primary revenue and trust gateway of DeliWer
+WITHOUT introducing payments or altering the existing commerce structure.
+
+KEY STRATEGY:
+DeliWer does NOT collect payments.
+All fees are collected by vetted partners.
+DeliWer earns via referral + lifecycle engagement.
+
+TASKS:
+
+1. MENU UPDATE
+- Swap "Play" with "Relocate" in main navigation
+- Ensure mobile and desktop parity
+- Keep Play accessible via secondary routes
+
+2. /RELOCATE PAGE ENHANCEMENT
+- Add HERO section:
+  Headline: "Relocate to Dubai. We Handle Everything."
+  Subtext: "Business, housing, visas, lifestyle — one trusted gateway."
+  Real-life Dubai imagery (families, founders, skyline, homes)
+
+- Add Launch Offer Banner:
+  "25% OFF Relocation Fees — Enroll by 31 Dec 2025"
+  Countdown logic (no payment required)
+
+3. FULL-SERVICE PACKAGE SECTION
+- Clearly list included services
+- Emphasize 'Unmatched Globally'
+- Explain partner-delivered execution
+
+4. NO-PAYMENT CONVERSION FLOW
+- Replace any payment CTA with:
+  "Book Strategy Call"
+  "Start Relocation Assessment"
+
+- Connect CTAs to:
+  - Partner intake form (CRM or Airtable)
+  - Calendar booking (Calendly/SavvyCal)
+  - Latenode automation for routing
+
+5. AUTHENTICITY & TRUST
+- Add section:
+  "Delivered by Trusted Partners"
+- Explain:
+  DeliWer = Gateway & Advisor
+  Partners = Licensed executors
+- Display partner logos (business setup, real estate, housing)
+
+6. SITEWIDE CTA CONVERGENCE
+- Homepage HERO → Relocate CTA
+- Home Service pages → "Planning to Move? Start Here"
+- Housing page → "New to Dubai? Talk to Us First"
+- Community page → "Relocating Members Get Priority"
+
+7. DATA & REFERRAL TRACKING
+- Capture:
+  Name, Country, Intent, Capital Range, Timeline
+- Attribute:
+  Source page
+  Campaign
+  Partner referral
+- Store securely (no payments)
+
+8. AI AGENT (OPTIONAL BUT RECOMMENDED)
+- Add AI Relocation Concierge:
+  - Answers FAQs
+  - Qualifies leads
+  - Books meetings
+  - Hands off to human advisor
+
+9. UX & FAILSAFE
+- Ensure zero dead CTAs
+- Add fallback email routing to info@deliwer.com
+- Confirm confirmations sent to user + internal team
+
+OUTPUT REQUIRED:
+- Confirm menu swap live
+- Confirm /relocate conversions working
+- Confirm no payment dependency
+- Confirm referral tracking active

@@ -37,10 +37,10 @@ export function Navigation() {
   const consumerNavItems = [
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/housing", label: "Eco-Living", id: "housing" },
-    { path: "/play", label: "Play", id: "play", featured: true },
+    { path: "/relocate", label: "Relocate", id: "relocate", featured: true },
     { path: "/earn", label: "Earn+Rewards", id: "earn" },
     { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
-    { path: "/relocate", label: "Relocate", id: "relocate" },
+    { path: "/play", label: "Play", id: "play" },
     { path: "/partners", label: "Partners", id: "partners" },
   ];
 
@@ -78,8 +78,8 @@ export function Navigation() {
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
                 
-                // Special styling for featured Play button (Consumer)
-                if (item.id === "play") {
+                // Special styling for featured Relocate button (Consumer)
+                if (item.id === "relocate" && item.featured) {
                   return (
                     <Link
                       key={item.path}
@@ -87,9 +87,9 @@ export function Navigation() {
                       className="relative group transition-all duration-300"
                       data-testid={`link-${item.id}`}
                     >
-                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-purple-600/30 to-hero-green-600/30 border-2 border-purple-500/60 rounded-lg text-white hover:from-purple-600/40 hover:to-hero-green-600/40 hover:border-purple-400/80 transition-all duration-300 shadow-xl hover:shadow-purple-500/30 animate-pulse hover:animate-none">
-                        <span className="font-bold text-lg animate-pulse">{item.label}</span>
-                        <Sparkles className="w-4 h-4 text-yellow-400 animate-spin" />
+                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600/40 to-orange-600/40 border-2 border-amber-500/70 rounded-lg text-white hover:from-amber-600/50 hover:to-orange-600/50 hover:border-amber-400/90 transition-all duration-300 shadow-xl hover:shadow-amber-500/40 animate-pulse hover:animate-none">
+                        <span className="font-bold text-lg">{item.label}</span>
+                        <Plane className="w-4 h-4 text-yellow-300 animate-bounce" />
                       </div>
                     </Link>
                   );
