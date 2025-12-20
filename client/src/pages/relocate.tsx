@@ -122,7 +122,7 @@ export default function Relocate() {
   }, [serviceParam]);
 
   const leadMutation = useMutation({
-    mutationFn: async (data: typeof formData & { audienceType: string }) => {
+    mutationFn: async (data: typeof formData) => {
       return apiRequest("POST", "/api/relocate/leads", data);
     },
     onSuccess: () => {
@@ -744,14 +744,10 @@ export default function Relocate() {
               Global Comparison
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-comparison-title">
-              {audienceType === "consumer" 
-                ? "Why Families Choose Dubai Over Other Cities"
-                : "Why Dubai vs Other Free-World Cities"}
+              Why Dubai vs Other Global Cities
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              {audienceType === "consumer"
-                ? "See how Dubai compares to other popular family relocation destinations"
-                : "See how Dubai compares to other popular destinations for capital relocation"}
+              See how Dubai compares to other premier destinations for capital relocation and business growth
             </p>
           </div>
           <div className="overflow-x-auto">
