@@ -73,6 +73,9 @@ import businessTeamMeeting from "@assets/generated_images/diverse_business_team_
 import dubaiMarinaAerial from "@assets/generated_images/dubai_marina_and_business_district_aerial_view.png";
 import foundersSuccess from "@assets/generated_images/international_founders_celebrating_startup_success.png";
 import familyLuxury from "@assets/generated_images/happy_family_in_modern_dubai_luxury_apartment.png";
+import professionalOffice from "@assets/generated_images/professional_team_in_modern_corporate_office_space.png";
+import celebratingProfessionals from "@assets/generated_images/international_professionals_celebrating_at_dubai_event.png";
+import dubaiBusiness from "@assets/generated_images/dubai_skyline_with_modern_business_architecture.png";
 
 export default function Relocate() {
   const { toast } = useToast();
@@ -646,35 +649,40 @@ export default function Relocate() {
       </section>
 
       {/* Core Services Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${professionalOffice})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-950/85 via-blue-950/80 to-slate-950/85" />
+        <div className="relative z-10 container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <DollarSign className="w-3 h-3 mr-1" />
               Our Services
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-services-title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-services-title">
               Complete Business & Investment Services
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-gray-200 max-w-2xl mx-auto">
               Comprehensive support for capital relocation, business setup, and investment opportunities
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {businessServices.map((service, index) => (
-              <Card key={index} className="hover-elevate" data-testid={`card-service-${index}`}>
+              <Card key={index} className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid={`card-service-${index}`}>
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-md bg-emerald-500/20 flex items-center justify-center mb-4">
+                    <service.icon className="w-6 h-6 text-emerald-400" />
                   </div>
-                  <CardTitle className="text-lg">{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
+                  <CardTitle className="text-lg text-white">{service.title}</CardTitle>
+                  <CardDescription className="text-gray-300">{service.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <li key={idx} className="flex items-center gap-2 text-sm text-gray-300">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                         {feature}
                       </li>
                     ))}
@@ -688,74 +696,79 @@ export default function Relocate() {
 
 
       {/* Why Dubai Now Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiBusiness})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-900/80 to-slate-950/85" />
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">
+              <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
                 <Globe className="w-3 h-3 mr-1" />
                 Why Dubai, Why Now
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-why-dubai-title">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-why-dubai-title">
                 The Modern Free World's Operating System
               </h2>
             </div>
             <div className="prose prose-lg max-w-none dark:prose-invert">
-              <p className="text-lg text-muted-foreground text-center mb-8">
+              <p className="text-lg text-gray-200 text-center mb-8">
                 Unlike other relocation hubs, Dubai uniquely combines what matters most to global citizens and families seeking a fresh start.
               </p>
               <div className="grid md:grid-cols-2 gap-6">
-                <Card className="p-6" data-testid="card-dubai-advantage-1">
+                <Card className="p-6 bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid="card-dubai-advantage-1">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Shield className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                      <Shield className="w-5 h-5 text-emerald-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-2">Political Neutrality & Safety</h4>
-                      <p className="text-sm text-muted-foreground">A stable haven with one of the world's lowest crime rates, welcoming all backgrounds equally.</p>
+                      <h4 className="font-semibold mb-2 text-white">Political Neutrality & Safety</h4>
+                      <p className="text-sm text-gray-300">A stable haven with one of the world's lowest crime rates, welcoming all backgrounds equally.</p>
                     </div>
                   </div>
                 </Card>
-                <Card className="p-6" data-testid="card-dubai-advantage-2">
+                <Card className="p-6 bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid="card-dubai-advantage-2">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Building className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                      <Building className="w-5 h-5 text-emerald-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-2">World-Class Infrastructure</h4>
-                      <p className="text-sm text-muted-foreground">From healthcare to education to transport — everything works, and works exceptionally well.</p>
+                      <h4 className="font-semibold mb-2 text-white">World-Class Infrastructure</h4>
+                      <p className="text-sm text-gray-300">From healthcare to education to transport — everything works, and works exceptionally well.</p>
                     </div>
                   </div>
                 </Card>
-                <Card className="p-6" data-testid="card-dubai-advantage-3">
+                <Card className="p-6 bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid="card-dubai-advantage-3">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Users className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                      <Users className="w-5 h-5 text-emerald-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-2">Cultural Diversity (200+ Nationalities)</h4>
-                      <p className="text-sm text-muted-foreground">Your children grow up with global perspectives. Your network spans continents from day one.</p>
+                      <h4 className="font-semibold mb-2 text-white">Cultural Diversity (200+ Nationalities)</h4>
+                      <p className="text-sm text-gray-300">Your children grow up with global perspectives. Your network spans continents from day one.</p>
                     </div>
                   </div>
                 </Card>
-                <Card className="p-6" data-testid="card-dubai-advantage-4">
+                <Card className="p-6 bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid="card-dubai-advantage-4">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Heart className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                      <Heart className="w-5 h-5 text-emerald-400" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-2">Lifestyle + Ambition Coexistence</h4>
-                      <p className="text-sm text-muted-foreground">Build your business by day, enjoy pristine beaches and world-class dining by evening.</p>
+                      <h4 className="font-semibold mb-2 text-white">Lifestyle + Ambition Coexistence</h4>
+                      <p className="text-sm text-gray-300">Build your business by day, enjoy pristine beaches and world-class dining by evening.</p>
                     </div>
                   </div>
                 </Card>
               </div>
               <div className="text-center mt-8">
-                <p className="text-muted-foreground mb-6">
+                <p className="text-gray-300 mb-6">
                   Panama, Georgia, and other emerging destinations offer pieces of the puzzle — Dubai delivers the complete picture.
                 </p>
                 <a href="#lead-form">
-                  <Button size="lg" data-testid="button-why-dubai-cta">
+                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white" data-testid="button-why-dubai-cta">
                     <ArrowRight className="w-4 h-4 mr-2" />
                     Explore Your Dubai Pathway
                   </Button>
@@ -767,36 +780,41 @@ export default function Relocate() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${celebratingProfessionals})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-950/85 via-blue-950/80 to-purple-950/85" />
+        <div className="relative z-10 container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <Star className="w-3 h-3 mr-1" />
               Success Stories
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-testimonials-title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-testimonials-title">
               Trusted by 500+ Relocated Families & Investors
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-gray-200 max-w-2xl mx-auto">
               Real stories from clients who successfully relocated to Dubai with our guidance
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="relative" data-testid={`card-testimonial-${index}`}>
+              <Card key={index} className="relative bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid={`card-testimonial-${index}`}>
                 <CardContent className="pt-6">
-                  <Quote className="w-8 h-8 text-primary/20 absolute top-4 right-4" />
+                  <Quote className="w-8 h-8 text-emerald-400/30 absolute top-4 right-4" />
                   <div className="flex gap-1 mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                      <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400" />
                     ))}
                   </div>
-                  <p className="text-muted-foreground mb-6 italic">"{testimonial.content}"</p>
-                  <div className="border-t pt-4">
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    <p className="text-xs text-muted-foreground">{testimonial.location}</p>
-                    <Badge variant="secondary" className="mt-2 text-xs">
+                  <p className="text-gray-200 mb-6 italic">"{testimonial.content}"</p>
+                  <div className="border-t border-slate-700 pt-4">
+                    <p className="font-semibold text-white">{testimonial.name}</p>
+                    <p className="text-sm text-gray-300">{testimonial.role}</p>
+                    <p className="text-xs text-gray-400">{testimonial.location}</p>
+                    <Badge variant="secondary" className="mt-2 text-xs bg-emerald-600/30 text-emerald-200 border-emerald-500/30">
                       {testimonial.capital || testimonial.familySize}
                     </Badge>
                   </div>
@@ -855,59 +873,64 @@ export default function Relocate() {
         </div>
       </section>
 
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiBusiness})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-950/85 via-blue-950/80 to-indigo-950/85" />
+        <div className="relative z-10 container mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <Globe className="w-3 h-3 mr-1" />
               Global Comparison
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-comparison-title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-comparison-title">
               Why Dubai vs Other Global Cities
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-gray-200 max-w-2xl mx-auto">
               See how Dubai compares to other premier destinations for capital relocation and business growth
             </p>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse" data-testid="table-comparison">
+            <table className="w-full border-collapse bg-slate-900/60 backdrop-blur-sm rounded-lg overflow-hidden" data-testid="table-comparison">
               <thead>
-                <tr className="border-b">
-                  <th className="text-left py-4 px-4 font-semibold">City</th>
-                  <th className="text-center py-4 px-4 font-semibold">Tax-Free Income</th>
-                  <th className="text-center py-4 px-4 font-semibold">Business Setup</th>
-                  <th className="text-center py-4 px-4 font-semibold">Safety</th>
-                  <th className="text-center py-4 px-4 font-semibold">Lifestyle</th>
-                  <th className="text-center py-4 px-4 font-semibold">Sustainability</th>
+                <tr className="border-b border-slate-700">
+                  <th className="text-left py-4 px-4 font-semibold text-white">City</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Tax-Free Income</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Business Setup</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Safety</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Lifestyle</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Sustainability</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonData.map((row, index) => (
                   <tr 
                     key={index} 
-                    className={`border-b ${row.highlight ? "bg-primary/5" : ""}`}
+                    className={`border-b border-slate-700 ${row.highlight ? "bg-emerald-600/10" : ""}`}
                     data-testid={`row-comparison-${index}`}
                   >
-                    <td className="py-4 px-4 font-medium">
+                    <td className="py-4 px-4 font-medium text-white">
                       {row.city}
                       {row.highlight && (
-                        <Badge variant="default" className="ml-2 text-xs">Recommended</Badge>
+                        <Badge className="ml-2 text-xs bg-emerald-600 text-white">Recommended</Badge>
                       )}
                     </td>
                     <td className="text-center py-4 px-4">
                       {row.taxFree ? (
-                        <CheckCircle2 className="w-5 h-5 text-green-500 mx-auto" />
+                        <CheckCircle2 className="w-5 h-5 text-emerald-400 mx-auto" />
                       ) : (
-                        <span className="text-muted-foreground">No</span>
+                        <span className="text-gray-400">No</span>
                       )}
                     </td>
-                    <td className="text-center py-4 px-4 text-muted-foreground">{row.businessSetup}</td>
+                    <td className="text-center py-4 px-4 text-gray-300">{row.businessSetup}</td>
                     <td className="text-center py-4 px-4">
                       <Badge variant={row.safety === "Very High" ? "default" : "secondary"}>
                         {row.safety}
                       </Badge>
                     </td>
-                    <td className="text-center py-4 px-4 text-muted-foreground">{row.lifestyle}</td>
+                    <td className="text-center py-4 px-4 text-gray-300">{row.lifestyle}</td>
                     <td className="text-center py-4 px-4">
                       <Badge variant={row.sustainability === "Advanced" ? "default" : row.sustainability === "High" ? "secondary" : "outline"}>
                         {row.sustainability}
@@ -920,7 +943,7 @@ export default function Relocate() {
           </div>
           <div className="text-center mt-8">
             <a href="#lead-form">
-              <Button size="lg" data-testid="button-comparison-cta">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white" data-testid="button-comparison-cta">
                 <ArrowRight className="w-4 h-4 mr-2" />
                 Get Your Dubai Relocation Plan
               </Button>
@@ -1243,28 +1266,33 @@ export default function Relocate() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiBusiness})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 to-slate-950/85" />
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <Badge variant="outline" className="mb-4">
+              <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
                 <HelpCircle className="w-3 h-3 mr-1" />
                 FAQ
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-faq-title">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-faq-title">
                 Frequently Asked Questions
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-gray-200">
                 Everything you need to know about relocating to Dubai
               </p>
             </div>
-            <Accordion type="single" collapsible className="w-full" data-testid="accordion-faq">
+            <Accordion type="single" collapsible className="w-full bg-slate-900/60 backdrop-blur-sm p-6 rounded-lg border border-slate-700/50" data-testid="accordion-faq">
               {faqItems.map((item, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left" data-testid={`faq-trigger-${index}`}>
+                <AccordionItem key={index} value={`item-${index}`} className="border-b border-slate-700">
+                  <AccordionTrigger className="text-left text-white hover:text-emerald-300" data-testid={`faq-trigger-${index}`}>
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground" data-testid={`faq-content-${index}`}>
+                  <AccordionContent className="text-gray-300" data-testid={`faq-content-${index}`}>
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
