@@ -430,7 +430,7 @@ export default function Relocate() {
           <DialogHeader>
             <DialogTitle data-testid="text-onboarding-title">Start Your Dubai Journey</DialogTitle>
             <DialogDescription data-testid="text-onboarding-desc">
-              Quick 2-minute assessment. Get personalized relocation roadmap.
+              Quick 2-minute assessment. Get personalized relocation roadmap + 25% off today.
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={(e) => {
@@ -480,13 +480,13 @@ export default function Relocate() {
             </div>
             <Button 
               type="submit" 
-              className="w-full" 
+              className="w-full bg-green-600 hover:bg-green-700" 
               size="lg"
               disabled={leadMutation.isPending}
               data-testid="button-modal-submit"
             >
               {leadMutation.isPending ? (
-                <>Loading...</>
+                <>Submitting...</>
               ) : (
                 <>
                   <Check className="w-4 h-4 mr-2" />
@@ -495,7 +495,7 @@ export default function Relocate() {
               )}
             </Button>
             <p className="text-xs text-center text-muted-foreground">
-              We'll email your customized plan + schedule a free call
+              We'll email your customized plan + schedule a free call within 24 hours
             </p>
           </form>
         </DialogContent>
@@ -612,12 +612,22 @@ export default function Relocate() {
                 Claim 25% Christmas Offer
               </Button>
             </a>
-            <a href="https://calendly.com/deliwer/consultation" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 font-semibold" data-testid="button-free-call">
-                <Calendar className="w-4 h-4 mr-2" />
-                Schedule Free Call (30 min)
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white/30 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 font-semibold" 
+              data-testid="button-free-call"
+              onClick={() => {
+                if (window.Calendly) {
+                  window.Calendly.showPopupWidget('https://calendly.com/deliwer/consultation');
+                } else {
+                  window.open('https://calendly.com/deliwer/consultation', '_blank');
+                }
+              }}
+            >
+              <Calendar className="w-4 h-4 mr-2" />
+              Schedule Free Call (30 min)
+            </Button>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <Button
@@ -1247,12 +1257,23 @@ export default function Relocate() {
             <p className="text-xs text-green-400 font-semibold mb-4">
               ✓ Money-back guarantee if not satisfied within 7 days
             </p>
-            <a href="https://calendly.com/deliwer/consultation" target="_blank" rel="noopener noreferrer">
-              <Button variant="default" size="lg" className="bg-green-600 hover:bg-green-700" data-testid="button-schedule-calendly">
-                <Calendar className="w-4 h-4 mr-2" />
-                Lock In Your Spot Now (Calendly)
-              </Button>
-            </a>
+            <Button 
+              variant="default" 
+              size="lg" 
+              className="bg-green-600 hover:bg-green-700" 
+              data-testid="button-schedule-calendly"
+              onClick={() => {
+                // Open Calendly popup
+                if (window.Calendly) {
+                  window.Calendly.showPopupWidget('https://calendly.com/deliwer/consultation');
+                } else {
+                  window.open('https://calendly.com/deliwer/consultation', '_blank');
+                }
+              }}
+            >
+              <Calendar className="w-4 h-4 mr-2" />
+              Lock In Your Spot Now (Calendly)
+            </Button>
           </div>
         </div>
       </section>
@@ -1395,15 +1416,15 @@ export default function Relocate() {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">
-              <Badge variant="outline" className="mb-4">
+              <Badge variant="outline" className="mb-4 bg-green-500/10 border-green-500/50">
                 <Send className="w-3 h-3 mr-1" />
-                Get Started
+                Quick Assessment (2 min)
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-form-title">
-                {formTitle}
+                Your Personalized Relocation Plan
               </h2>
               <p className="text-muted-foreground">
-                {formDescription}
+                Fill out this short assessment and we'll send you a customized roadmap within 24 hours
               </p>
             </div>
             <Card>

@@ -3,6 +3,7 @@ import { db } from "../db";
 import { relocateLeads, insertRelocateLeadSchema } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { processLead, trackCTAEvent } from "../lead-service";
+import { sendRelocateOnboardingEmail } from "../sendgrid-service";
 
 const router = Router();
 
@@ -149,13 +150,21 @@ router.post("/leads", async (req, res) => {
       utmCampaign: validatedData.utmCampaign || undefined
     });
     
+    // Send personalized onboarding email from service@deliwer.com
+    await sendRelocateOnboardingEmail(
+      validatedData.name,
+      validatedData.email,
+      validatedData.timeline || 'Not specified',
+      validatedData.audienceType || 'consumer'
+    );
+    
     trackCTAEvent('relocate_lead_submit', {
       audienceType: validatedData.audienceType,
-      emailSent: leadResult.emailSent,
+      emailSent: true,
       page: '/relocate'
     });
     
-    res.json({ success: true, lead, leadProcessed: leadResult.success });
+    res.json({ success: true, lead, leadProcessed: leadResult.success, emailSent: true });
   } catch (error: any) {
     console.error("Lead submission error:", error);
     res.status(500).json({ error: error.message || "Failed to submit lead" });

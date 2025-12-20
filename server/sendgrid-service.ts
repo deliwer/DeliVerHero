@@ -139,6 +139,89 @@ export async function sendCorporateWelcomeEmail(email: string, companyName: stri
   });
 }
 
+export async function sendRelocateOnboardingEmail(
+  name: string,
+  email: string,
+  timeline: string,
+  audienceType: string
+): Promise<boolean> {
+  const subject = `Your Personalized Dubai Relocation Roadmap + 25% Holiday Offer`;
+  const isConsumer = audienceType === "consumer";
+  
+  const html = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
+      <div style="background: linear-gradient(135deg, #16a34a, #059669); padding: 40px 20px; text-align: center;">
+        <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700;">Welcome to DeliWer</h1>
+        <p style="color: rgba(255,255,255,0.95); margin: 10px 0 0 0; font-size: 16px;">Your Dubai Relocation Journey Starts Now</p>
+      </div>
+      
+      <div style="padding: 40px 20px; background: white;">
+        <h2 style="color: #1f2937; margin-bottom: 20px;">Hi ${name},</h2>
+        
+        <p style="color: #4b5563; line-height: 1.6; margin-bottom: 20px;">
+          Thank you for your interest in relocating to Dubai! We've received your assessment and are preparing your personalized roadmap based on your timeline of <strong>${timeline}</strong>.
+        </p>
+
+        <div style="background: #ecfdf5; border-left: 4px solid #16a34a; padding: 20px; margin: 30px 0;">
+          <h3 style="color: #047857; margin-top: 0;">🎉 Christmas Holiday Offer (Limited Time)</h3>
+          <p style="color: #065f46; line-height: 1.6; margin: 0;">
+            <strong>25% OFF</strong> your relocation consulting package (valued at $2,500-$5,000+ savings)
+          </p>
+          <p style="color: #065f46; font-size: 13px; margin: 10px 0 0 0;">
+            ⏰ Valid through December 31, 2025 | Only 3 spots available
+          </p>
+        </div>
+
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 30px 0;">
+          <h3 style="color: #1f2937; margin-top: 0;">What happens next?</h3>
+          <ul style="color: #4b5563; line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li>Our relocation specialist reviews your assessment (within 24 hours)</li>
+            <li>Receive your customized roadmap via email</li>
+            <li>Schedule a free 30-minute strategy call via Calendly</li>
+            <li>Get matched with vetted partners (real estate, business setup, visa services)</li>
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+          <a href="https://calendly.com/deliwer/consultation" 
+             style="background: #16a34a; color: white; padding: 15px 40px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; display: inline-block;">
+            Schedule Your Strategy Call Now
+          </a>
+        </div>
+
+        <div style="background: #fff3cd; border-left: 4px solid #f59e0b; padding: 20px; border-radius: 6px; text-align: center; margin: 30px 0;">
+          <p style="color: #92400e; margin: 0; font-weight: bold;">
+            ⚡ Why Choose DeliWer?
+          </p>
+          <p style="color: #92400e; font-size: 14px; margin: 10px 0 0 0;">
+            Partner-verified model (zero payment risk) • Money-back guarantee • 24/7 WhatsApp support • Trusted by 500+ families & founders
+          </p>
+        </div>
+
+        <p style="color: #6b7280; font-size: 14px; line-height: 1.6; margin-top: 30px;">
+          Questions? Reply to this email or contact our team at service@deliwer.com<br />
+          <strong>Phone:</strong> +971 4 250 1500
+        </p>
+      </div>
+      
+      <div style="background: #f9fafb; padding: 20px; text-align: center; border-top: 1px solid #e5e7eb;">
+        <p style="color: #6b7280; font-size: 12px; margin: 0;">
+          This email was sent by DeliWer Relocation Services. 
+          <a href="#" style="color: #16a34a;">Unsubscribe</a> | 
+          <a href="#" style="color: #16a34a;">Update Preferences</a>
+        </p>
+      </div>
+    </div>
+  `;
+
+  return sendEmail({
+    to: email,
+    from: 'service@deliwer.com',
+    subject,
+    html
+  });
+}
+
 export async function sendCorporateCampaignEmail(
   email: string,
   companyName: string,
