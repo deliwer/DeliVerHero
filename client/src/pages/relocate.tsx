@@ -458,45 +458,114 @@ export default function Relocate() {
       </div>
 
       {/* Trust Signals Section - Dealroom & FounderHQ */}
-      <section className="py-12 bg-gradient-to-r from-blue-950/30 to-purple-950/30 border-y border-blue-900/30">
+      <section className="py-16 bg-gradient-to-b from-slate-900/90 via-blue-900/80 to-slate-900/90 border-y border-blue-800/60">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-md bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                <Award className="w-5 h-5 text-blue-400" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div className="flex items-start gap-4 bg-blue-900/40 backdrop-blur-sm border border-blue-800/50 rounded-lg p-4">
+              <div className="w-10 h-10 rounded-md bg-blue-500/30 flex items-center justify-center flex-shrink-0">
+                <Award className="w-5 h-5 text-blue-300" />
               </div>
               <div>
-                <h3 className="font-semibold text-white mb-1">Dealroom Verified</h3>
-                <p className="text-sm text-gray-300">Global startup & investor ecosystem intelligence platform recognizes DeliWer's expertise</p>
+                <h3 className="font-semibold text-blue-100 mb-1">Dealroom Verified</h3>
+                <p className="text-sm text-gray-200">Global startup & investor ecosystem intelligence platform recognizes DeliWer's expertise</p>
               </div>
             </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-md bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-                <Users className="w-5 h-5 text-purple-400" />
+            <div className="flex items-start gap-4 bg-purple-900/40 backdrop-blur-sm border border-purple-800/50 rounded-lg p-4">
+              <div className="w-10 h-10 rounded-md bg-purple-500/30 flex items-center justify-center flex-shrink-0">
+                <Users className="w-5 h-5 text-purple-300" />
               </div>
               <div>
-                <h3 className="font-semibold text-white mb-1">FounderHQ Partner</h3>
-                <p className="text-sm text-gray-300">Part of Dubai's official founders ecosystem with verified credentials</p>
+                <h3 className="font-semibold text-purple-100 mb-1">FounderHQ Partner</h3>
+                <p className="text-sm text-gray-200">Part of Dubai's official founders ecosystem with verified credentials</p>
               </div>
             </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-md bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                <Globe className="w-5 h-5 text-emerald-400" />
+            <div className="flex items-start gap-4 bg-emerald-900/40 backdrop-blur-sm border border-emerald-800/50 rounded-lg p-4">
+              <div className="w-10 h-10 rounded-md bg-emerald-500/30 flex items-center justify-center flex-shrink-0">
+                <Globe className="w-5 h-5 text-emerald-300" />
               </div>
               <div>
-                <h3 className="font-semibold text-white mb-1">Dubai's #1 Hub</h3>
-                <p className="text-sm text-gray-300">Recognized as top emerging market for founders, investors & families</p>
+                <h3 className="font-semibold text-emerald-100 mb-1">Dubai's #1 Hub</h3>
+                <p className="text-sm text-gray-200">Recognized as top emerging market for founders, investors & families</p>
               </div>
             </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-md bg-orange-500/20 flex items-center justify-center flex-shrink-0">
-                <Briefcase className="w-5 h-5 text-orange-400" />
+            <div className="flex items-start gap-4 bg-orange-900/40 backdrop-blur-sm border border-orange-800/50 rounded-lg p-4">
+              <div className="w-10 h-10 rounded-md bg-orange-500/30 flex items-center justify-center flex-shrink-0">
+                <Briefcase className="w-5 h-5 text-orange-300" />
               </div>
               <div>
-                <h3 className="font-semibold text-white mb-1">Partner-Led Model</h3>
-                <p className="text-sm text-gray-300">Vetted network of business setup, visa, and real estate partners</p>
+                <h3 className="font-semibold text-orange-100 mb-1">Partner-Led Model</h3>
+                <p className="text-sm text-gray-200">Vetted network of business setup, visa, and real estate partners</p>
               </div>
             </div>
+          </div>
+
+          {/* Partnership Disclaimer */}
+          <div className="bg-yellow-950/50 border-2 border-yellow-700/70 rounded-lg p-6 backdrop-blur-sm">
+            <div className="flex gap-3">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-yellow-600/30">
+                  <svg className="h-5 w-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-bold text-yellow-200 mb-2">Partnership & Authorization Disclaimer</h4>
+                <p className="text-sm text-yellow-50">DeliWer operates in exclusive partnership with authorized business setup firms, immigration consultants, real estate agencies, and banking partners licensed and authorized by UAE regulatory authorities (DIFC, DED, SCA, DLD, etc.). All services are delivered through our vetted partner network—we do not provide direct legal, visa, or financial advisory services. All recommendations comply with UAE laws and regulations. Clients are advised to conduct independent verification of all services.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Free Zones & Workspaces Logos Section */}
+      <section className="py-16 bg-gradient-to-r from-slate-900/80 via-blue-900/70 to-slate-900/80 border-b border-slate-800/60">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Authorized Partner Access</h3>
+            <p className="text-gray-300">We provide comprehensive services across Dubai's premium business ecosystems</p>
+          </div>
+
+          <div className="mb-12">
+            <h4 className="text-lg font-semibold text-white mb-6 text-center">Premium Free Zones</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { name: "DIFC", icon: "🏛️", desc: "Dubai International Financial Centre" },
+                { name: "DMCC", icon: "💼", desc: "Dubai Multi Commodities Centre" },
+                { name: "DAFZA", icon: "🚢", desc: "Dubai Airport Free Zone" },
+                { name: "Dubai South", icon: "✈️", desc: "Dubai South Free Zone" }
+              ].map((zone, idx) => (
+                <div key={idx} className="bg-gradient-to-br from-blue-900/50 to-purple-900/50 border border-blue-700/50 rounded-lg p-6 text-center hover-elevate cursor-pointer" data-testid={`card-freezone-${idx}`}>
+                  <div className="text-4xl mb-3">{zone.icon}</div>
+                  <h5 className="font-bold text-white mb-1">{zone.name}</h5>
+                  <p className="text-xs text-gray-300">{zone.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-6 text-center">Workspace & Co-Working Partners</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { name: "Enterprise Offices", icon: "🏢", desc: "Premium office spaces" },
+                { name: "Co-Working Hubs", icon: "👥", desc: "Flexible work environments" },
+                { name: "Tech Parks", icon: "💻", desc: "Innovation hubs & incubators" },
+                { name: "Virtual Offices", icon: "🌐", desc: "Professional address solutions" }
+              ].map((workspace, idx) => (
+                <div key={idx} className="bg-gradient-to-br from-emerald-900/50 to-teal-900/50 border border-emerald-700/50 rounded-lg p-6 text-center hover-elevate cursor-pointer" data-testid={`card-workspace-${idx}`}>
+                  <div className="text-4xl mb-3">{workspace.icon}</div>
+                  <h5 className="font-bold text-white mb-1">{workspace.name}</h5>
+                  <p className="text-xs text-gray-300">{workspace.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 p-4 bg-blue-900/30 border border-blue-700/50 rounded-lg text-center">
+            <p className="text-sm text-gray-200">
+              <span className="font-semibold text-blue-200">Seamless Access:</span> As a DeliWer partner, you get one coordinated entry point for all free zones, workspaces, and business infrastructure in Dubai. No juggling multiple vendors—we handle it all.
+            </p>
           </div>
         </div>
       </section>
