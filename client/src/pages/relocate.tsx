@@ -1650,111 +1650,56 @@ export default function Relocate() {
       </section>
 
       {/* PHASE 6: PARTNERS (Trust Expansion - Revealed Last) */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 mb-16 md:mb-0">
+      <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 mb-16 md:mb-0">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <Badge className="mb-4 bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
-              <Landmark className="w-3 h-3 mr-1" />
-              Partner Ecosystem
-            </Badge>
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-partner-ecosystem">
-              Trusted Partners for Your Dubai Journey
+              Trusted Partner Network
             </h2>
-            <p className="text-gray-400 mb-8 text-lg leading-relaxed">
-              Our vetted network of real estate, business setup, and lifestyle partners 
-              ensures a seamless transition to your new life in Dubai.
+            <p className="text-gray-400 text-lg">
+              Vetted partners supporting your Dubai relocation journey
             </p>
           </div>
 
-          {/* Category Overview */}
-          <div className="grid md:grid-cols-3 gap-4 mb-16">
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm hover-elevate">
-              <Building2 className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
-              <h3 className="font-semibold text-white mb-2">Workspaces</h3>
-              <p className="text-sm text-gray-400">Co-working and office solutions</p>
+          {/* Unified Partners Grid */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {/* Workspaces */}
+            <div className="text-center">
+              <div className="flex items-center justify-center w-16 h-16 rounded-lg bg-emerald-500/10 border border-emerald-500/30 mx-auto mb-4">
+                <Building2 className="w-8 h-8 text-emerald-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-3">Workspaces</h3>
+              <p className="text-sm text-gray-400 mb-4">FoundersHQ, in5, Scality</p>
+              <p className="text-xs text-gray-500">Co-working, startup ecosystem, innovation hubs</p>
             </div>
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm hover-elevate">
-              <Briefcase className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-              <h3 className="font-semibold text-white mb-2">Freezones</h3>
-              <p className="text-sm text-gray-400">Business setup & operations</p>
-            </div>
-            <div className="p-6 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm hover-elevate">
-              <Heart className="w-8 h-8 text-pink-400 mx-auto mb-3" />
-              <h3 className="font-semibold text-white mb-2">Lifestyle</h3>
-              <p className="text-sm text-gray-400">Premium amenities & services</p>
-            </div>
-          </div>
 
-          {/* Workspaces Section */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-              <Building2 className="w-6 h-6 text-emerald-400" />
-              Featured Workspaces
-            </h3>
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { name: "FoundersHQ", description: "Startup ecosystem & community", logo: "foundershq_startup_ecosystem_logo" },
-                { name: "Scality", description: "Innovation & tech workspace", logo: "scality_tech_innovation_logo" },
-                { name: "in5", description: "Entrepreneurship & growth hub", logo: "in5_entrepreneurship_hub_logo" },
-                { name: "Expo City", description: "Events & exhibition space", logo: "expo_city_events_venue_logo" }
-              ].map((workspace, idx) => (
-                <div 
-                  key={idx} 
-                  className="p-6 rounded-lg bg-gradient-to-br from-emerald-900/30 to-emerald-900/10 border border-emerald-500/30 hover-elevate transition-all"
-                >
-                  <div className="flex items-center justify-center h-20 bg-white/5 rounded-lg mb-4 border border-emerald-500/20 overflow-hidden">
-                    <img 
-                      src={`/generated_images/${workspace.logo}.png`}
-                      alt={workspace.name}
-                      className="w-16 h-16 object-contain"
-                    />
-                  </div>
-                  <h4 className="font-semibold text-white mb-2 text-center">{workspace.name}</h4>
-                  <p className="text-sm text-gray-400 text-center">{workspace.description}</p>
-                </div>
-              ))}
+            {/* Business Setup */}
+            <div className="text-center">
+              <div className="flex items-center justify-center w-16 h-16 rounded-lg bg-blue-500/10 border border-blue-500/30 mx-auto mb-4">
+                <Briefcase className="w-8 h-8 text-blue-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-3">Freezones</h3>
+              <p className="text-sm text-gray-400 mb-4">DAFZA, IFZA, RAKEZ</p>
+              <p className="text-xs text-gray-500">Business registration, operations support</p>
             </div>
-          </div>
 
-          {/* Freezones Section */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-              <Briefcase className="w-6 h-6 text-blue-400" />
-              Premium Freezones
-            </h3>
-            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {[
-                { name: "DAFZA", description: "Dubai Airport Freezone", logo: "dafza_dubai_airport_logo" },
-                { name: "Commercity", description: "Commerce hub", logo: "commercity_commerce_hub_logo" },
-                { name: "IFZA", description: "International Freezone", logo: "ifza_international_freezone_logo" },
-                { name: "RAKEZ", description: "Ras Al Khaimah", logo: "rakez_economic_zone_logo" },
-                { name: "Dubai South", description: "Southern gateway", logo: "dubai_south_freezone_logo" },
-                { name: "Future District", description: "Innovation zone", logo: "future_district_innovation_zone_logo" }
-              ].map((freezone, idx) => (
-                <div 
-                  key={idx} 
-                  className="p-4 rounded-lg bg-gradient-to-br from-blue-900/30 to-blue-900/10 border border-blue-500/30 hover-elevate transition-all"
-                >
-                  <div className="flex items-center justify-center h-16 bg-white/5 rounded-lg mb-3 border border-blue-500/20 overflow-hidden">
-                    <img 
-                      src={`/generated_images/${freezone.logo}.png`}
-                      alt={freezone.name}
-                      className="w-12 h-12 object-contain"
-                    />
-                  </div>
-                  <h4 className="font-semibold text-white mb-1 text-sm text-center">{freezone.name}</h4>
-                  <p className="text-xs text-gray-400 text-center">{freezone.description}</p>
-                </div>
-              ))}
+            {/* Lifestyle */}
+            <div className="text-center">
+              <div className="flex items-center justify-center w-16 h-16 rounded-lg bg-pink-500/10 border border-pink-500/30 mx-auto mb-4">
+                <Heart className="w-8 h-8 text-pink-400" />
+              </div>
+              <h3 className="font-semibold text-white mb-3">Lifestyle</h3>
+              <p className="text-sm text-gray-400 mb-4">Housing, wellness, community</p>
+              <p className="text-xs text-gray-500">Premium amenities & services</p>
             </div>
           </div>
 
           {/* CTA Button */}
-          <div className="text-center">
+          <div className="text-center mt-12">
             <Link href="/partners">
-              <Button size="lg" className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white" data-testid="button-explore-partners">
+              <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:text-emerald-300" data-testid="button-explore-partners">
                 <ArrowRight className="w-4 h-4 mr-2" />
-                Explore Full Partner Ecosystem
+                View Full Network
               </Button>
             </Link>
           </div>
