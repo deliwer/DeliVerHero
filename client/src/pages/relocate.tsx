@@ -69,6 +69,10 @@ import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.j
 import dubaiFamily from "@assets/stock_images/dubai_family_diverse_5745a5cf.jpg";
 import wellnessResidence from "@assets/stock_images/modern_wellness_luxu_b13619f6.jpg";
 import coworkingOffice from "@assets/stock_images/modern_office_cowork_bfc0360b.jpg";
+import businessTeamMeeting from "@assets/generated_images/diverse_business_team_in_dubai_office_meeting.png";
+import dubaiMarinaAerial from "@assets/generated_images/dubai_marina_and_business_district_aerial_view.png";
+import foundersSuccess from "@assets/generated_images/international_founders_celebrating_startup_success.png";
+import familyLuxury from "@assets/generated_images/happy_family_in_modern_dubai_luxury_apartment.png";
 
 export default function Relocate() {
   const { toast } = useToast();
@@ -544,56 +548,70 @@ export default function Relocate() {
       </section>
 
       {/* Market Pricing Context Section */}
-      <section className="py-16 bg-blue-950/30 border-b border-blue-900/30">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">What Similar Services Cost</h3>
-            <p className="text-gray-300">Understanding Dubai relocation market pricing</p>
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiMarinaAerial})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/75 to-purple-950/85" />
+        <div className="relative z-10 max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Market Reality Check</h3>
+            <p className="text-blue-100 text-lg">What Similar Services Cost Across the Industry</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card className="bg-blue-900/20 border-blue-500/30">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <Card className="bg-blue-900/40 border-blue-400/30 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <p className="text-sm text-gray-400 mb-2">UAE Business Setup + Visa</p>
-                <p className="text-2xl font-bold text-white">$5K – $15K</p>
+                <p className="text-sm text-blue-200 mb-2 font-medium">UAE Business Setup + Visa</p>
+                <p className="text-3xl font-bold text-white">$5K – $15K</p>
               </CardContent>
             </Card>
-            <Card className="bg-purple-900/20 border-purple-500/30">
+            <Card className="bg-purple-900/40 border-purple-400/30 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <p className="text-sm text-gray-400 mb-2">Golden Visa Advisory</p>
-                <p className="text-2xl font-bold text-white">$3K – $10K</p>
+                <p className="text-sm text-purple-200 mb-2 font-medium">Golden Visa Advisory</p>
+                <p className="text-3xl font-bold text-white">$3K – $10K</p>
               </CardContent>
             </Card>
-            <Card className="bg-emerald-900/20 border-emerald-500/30">
+            <Card className="bg-emerald-900/40 border-emerald-400/30 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <p className="text-sm text-gray-400 mb-2">Relocation Concierge</p>
-                <p className="text-2xl font-bold text-white">$10K – $30K</p>
+                <p className="text-sm text-emerald-200 mb-2 font-medium">Relocation Concierge</p>
+                <p className="text-3xl font-bold text-white">$10K – $30K</p>
               </CardContent>
             </Card>
-            <Card className="bg-orange-900/20 border-orange-500/30">
+            <Card className="bg-orange-900/40 border-orange-400/30 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <p className="text-sm text-gray-400 mb-2">Capital Migration Advisory</p>
-                <p className="text-2xl font-bold text-white">$20K – $50K+</p>
+                <p className="text-sm text-orange-200 mb-2 font-medium">Capital Migration Advisory</p>
+                <p className="text-3xl font-bold text-white">$20K – $50K+</p>
               </CardContent>
             </Card>
           </div>
-          <div className="mt-8 bg-emerald-500/20 border border-emerald-500/40 rounded-lg p-6 text-center">
-            <p className="text-emerald-300 font-semibold">
-              Our Model: You pay partners directly. DeliWer earns 20-30% referral share. Your success is our incentive.
+          <div className="bg-gradient-to-r from-emerald-600/30 to-teal-600/30 border-2 border-emerald-400/60 backdrop-blur-sm rounded-lg p-8 text-center">
+            <h4 className="text-xl font-bold text-emerald-100 mb-3">DeliWer's Breakthrough Model</h4>
+            <p className="text-emerald-50 text-lg font-semibold mb-3">
+              You pay partners directly. DeliWer earns 20-30% referral share.
+            </p>
+            <p className="text-emerald-200">
+              Your success is our incentive. No upfront consulting fees. Aligned interests from day one.
             </p>
           </div>
         </div>
       </section>
 
       {/* ICP Targeting Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-950/20 to-transparent">
-        <div className="max-w-5xl mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${foundersSuccess})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/75 to-slate-950/85" />
+        <div className="relative z-10 max-w-5xl mx-auto px-4">
           <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <Users className="w-3 h-3 mr-1" />
               Ideal for You If...
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Are You Ready to Make the Move?</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Are You Ready to Make the Move?</h2>
+            <p className="text-gray-200 max-w-2xl mx-auto text-lg">
               We specialize in helping founders, entrepreneurs, and families from these backgrounds relocate successfully
             </p>
           </div>
@@ -606,19 +624,19 @@ export default function Relocate() {
               { Icon: Heart, country: "South Asian HNW Families", pain: "Safe haven + family-first infrastructure + familiar market" },
               { Icon: DollarSign, country: "Global Investors", pain: "Capital structuring + Golden Visa eligibility" }
             ].map((item, idx) => (
-              <Card key={idx} className="hover-elevate" data-testid={`card-icp-${idx}`}>
+              <Card key={idx} className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid={`card-icp-${idx}`}>
                 <CardContent className="pt-6">
-                  <item.Icon className="w-8 h-8 text-emerald-500 mb-3" />
-                  <h4 className="font-semibold mb-2 text-white">{item.country}</h4>
-                  <p className="text-sm text-muted-foreground">{item.pain}</p>
+                  <item.Icon className="w-8 h-8 text-emerald-400 mb-3" />
+                  <h4 className="font-semibold mb-2 text-white text-lg">{item.country}</h4>
+                  <p className="text-sm text-gray-300">{item.pain}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <p className="text-muted-foreground mb-4">Sound like you? Let's talk.</p>
+          <div className="text-center mt-12">
+            <p className="text-gray-200 mb-6 text-lg">Sound like you? Let's start your Dubai pathway.</p>
             <a href="#lead-form">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Book Your Strategy Call
               </Button>
@@ -1085,13 +1103,21 @@ export default function Relocate() {
               </CardContent>
             </Card>
           </div>
-          <div className="text-center mt-10 bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-6">
-            <p className="text-sm text-foreground mb-2 font-medium">
-              All packages include free onboarding consultation + 24/7 WhatsApp support
+          <div className="text-center mt-10 bg-gradient-to-r from-emerald-600/30 to-teal-600/30 border-2 border-emerald-400/60 rounded-lg p-8">
+            <p className="text-base text-white mb-3 font-semibold">
+              Breakthrough Offer: All packages include free onboarding consultation + 24/7 WhatsApp support
             </p>
-            <p className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold mb-4">
-              ✓ Money-back guarantee if not satisfied within 7 days
-            </p>
+            <div className="flex flex-col gap-2 text-emerald-200 font-semibold mb-4">
+              <p className="flex items-center justify-center gap-2">
+                <Check className="w-4 h-4" /> Money-back guarantee if not satisfied within 7 days
+              </p>
+              <p className="flex items-center justify-center gap-2">
+                <Check className="w-4 h-4" /> 25% OFF all packages through Dec 31, 2025
+              </p>
+              <p className="flex items-center justify-center gap-2">
+                <Check className="w-4 h-4" /> Limited to 3 new clients this month (exclusive access)
+              </p>
+            </div>
             <Button 
               variant="default" 
               size="lg" 
@@ -1248,22 +1274,78 @@ export default function Relocate() {
         </div>
       </section>
 
+      {/* Pricing Justification Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${businessTeamMeeting})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/85 to-indigo-950/85" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4">
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-10 md:p-14">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">Why Our Pricing Delivers Breakthrough Value</h3>
+            <div className="grid md:grid-cols-2 gap-8 text-white">
+              <div>
+                <h4 className="text-xl font-semibold text-emerald-300 mb-3 flex items-start gap-2">
+                  <Check className="w-6 h-6 mt-0.5 flex-shrink-0" />
+                  Aligned Incentives
+                </h4>
+                <p className="text-gray-100 leading-relaxed">
+                  We earn only when you succeed. No upfront consulting fees mean zero risk for you. Your relocation success directly drives our revenue.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xl font-semibold text-emerald-300 mb-3 flex items-start gap-2">
+                  <Check className="w-6 h-6 mt-0.5 flex-shrink-0" />
+                  Vetted Partner Network
+                </h4>
+                <p className="text-gray-100 leading-relaxed">
+                  Leverage partnerships built over years. Partners compete for your business, keeping costs competitive and service quality high.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xl font-semibold text-emerald-300 mb-3 flex items-start gap-2">
+                  <Check className="w-6 h-6 mt-0.5 flex-shrink-0" />
+                  Speed = Lower Cost
+                </h4>
+                <p className="text-gray-100 leading-relaxed">
+                  30-60 day relocations mean lower operational costs. We pass savings to you. Traditional consultants charge premium for speed.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xl font-semibold text-emerald-300 mb-3 flex items-start gap-2">
+                  <Check className="w-6 h-6 mt-0.5 flex-shrink-0" />
+                  Transparent Cost Structure
+                </h4>
+                <p className="text-gray-100 leading-relaxed">
+                  You see exactly what partners charge. No hidden DeliWer markup. You control spending while we ensure quality execution.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Methods Section */}
-      <section className="py-16 bg-gradient-to-r from-emerald-950/30 to-teal-950/30 border-y border-emerald-900/30">
-        <div className="max-w-4xl mx-auto px-4">
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${familyLuxury})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/85 to-teal-950/85" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-            <p className="text-muted-foreground">Multiple ways to start your Dubai journey</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Get in Touch</h2>
+            <p className="text-emerald-100 text-lg">Multiple ways to start your Dubai journey</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="hover-elevate">
+            <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <Calendar className="w-8 h-8 text-emerald-500 mb-4" />
-                <h3 className="font-semibold mb-2">Schedule a Call</h3>
-                <p className="text-sm text-muted-foreground mb-4">Free 30-minute strategy call with our relocation expert</p>
+                <Calendar className="w-8 h-8 text-emerald-400 mb-4" />
+                <h3 className="font-semibold mb-2 text-white">Schedule a Call</h3>
+                <p className="text-sm text-gray-300 mb-4">Free 30-minute strategy call with our relocation expert</p>
                 <Button 
-                  variant="outline"
-                  className="w-full"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700"
                   onClick={() => {
                     const calendlyWindow = window as any;
                     if (calendlyWindow.Calendly) {
@@ -1278,25 +1360,25 @@ export default function Relocate() {
                 </Button>
               </CardContent>
             </Card>
-            <Card className="hover-elevate">
+            <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <MessageCircle className="w-8 h-8 text-blue-500 mb-4" />
-                <h3 className="font-semibold mb-2">WhatsApp</h3>
-                <p className="text-sm text-muted-foreground mb-4">Quick chat to discuss your relocation goals</p>
+                <MessageCircle className="w-8 h-8 text-blue-400 mb-4" />
+                <h3 className="font-semibold mb-2 text-white">WhatsApp</h3>
+                <p className="text-sm text-gray-300 mb-4">Quick chat to discuss your relocation goals</p>
                 <a href="https://wa.me/971542501500?text=Hi%20DeliWer%2C%20I%27m%20interested%20in%20relocating%20to%20Dubai" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="w-full" data-testid="button-whatsapp-card">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700" data-testid="button-whatsapp-card">
                     Message Now
                   </Button>
                 </a>
               </CardContent>
             </Card>
-            <Card className="hover-elevate">
+            <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <Send className="w-8 h-8 text-orange-500 mb-4" />
-                <h3 className="font-semibold mb-2">Email</h3>
-                <p className="text-sm text-muted-foreground mb-4">Send your details and we'll respond within 24 hours</p>
+                <Send className="w-8 h-8 text-orange-400 mb-4" />
+                <h3 className="font-semibold mb-2 text-white">Email</h3>
+                <p className="text-sm text-gray-300 mb-4">Send your details and we'll respond within 24 hours</p>
                 <a href="mailto:relocate@deliwer.com">
-                  <Button variant="outline" className="w-full" data-testid="button-email-card">
+                  <Button className="w-full bg-orange-600 hover:bg-orange-700" data-testid="button-email-card">
                     Email Us
                   </Button>
                 </a>
