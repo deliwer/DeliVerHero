@@ -113,7 +113,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
                   placeholder="Your full name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="pl-10 bg-slate-700 border-slate-600 text-white"
+                  className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:bg-slate-700 focus:border-emerald-500"
                   required
                 />
               </div>
@@ -132,7 +132,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
                   placeholder="your.email@example.com"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="pl-10 bg-slate-700 border-slate-600 text-white"
+                  className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:bg-slate-700 focus:border-emerald-500"
                   required
                 />
               </div>
@@ -153,7 +153,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
                   placeholder="+971 50 123 4567"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="pl-10 bg-slate-700 border-slate-600 text-white"
+                  className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:bg-slate-700 focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -170,7 +170,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
                   placeholder="Your company name"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className="pl-10 bg-slate-700 border-slate-600 text-white"
+                  className="pl-10 bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:bg-slate-700 focus:border-emerald-500"
                 />
               </div>
             </div>
@@ -183,7 +183,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
               </label>
               <Select
                 value={formData.category}
-                onValueChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+                onValueChange={(value) => setFormData(prev => ({ ...prev, category: value as "general" | "support" | "sales" | "partnership" | "feedback" | "complaint" }))}
               >
                 <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
                   <SelectValue placeholder="Select category" />
@@ -230,7 +230,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
               placeholder="Brief description of your inquiry"
               value={formData.subject}
               onChange={handleInputChange}
-              className="bg-slate-700 border-slate-600 text-white"
+              className="bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:bg-slate-700 focus:border-emerald-500"
               required
             />
           </div>
@@ -246,7 +246,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
               value={formData.message}
               onChange={handleInputChange}
               rows={6}
-              className="bg-slate-700 border-slate-600 text-white"
+              className="bg-slate-700 border-slate-600 text-white placeholder:text-gray-400 focus:bg-slate-700 focus:border-emerald-500"
               required
             />
           </div>

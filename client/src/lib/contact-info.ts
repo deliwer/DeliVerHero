@@ -2,8 +2,8 @@ export const contactInfo = {
   company: {
     email: "info@deliwer.com",
     service: "service@deliwer.com",
-    phone: "+971 54 250 1500",
-    whatsapp: "971542501500",
+    phone: "+971 52 394 6311",
+    whatsapp: "971523946311",
     address: {
       name: "DeliWer Shopping FZCO",
       street: "50 9WC 523 Block C",
@@ -24,7 +24,7 @@ export const contactInfo = {
       phone: "+971 52 394 6311",
       phoneSecondary: "+971 52 390 6019",
       whatsapp: "+971 52 394 6311",
-      whatsappLink: "97152394631"
+      whatsappLink: "971523946311"
     },
     {
       name: "Rubab Hassan",
@@ -43,9 +43,18 @@ export const contactInfo = {
       whatsappLink: "971556573114"
     }
   ],
+  social: {
+    facebook: "@deliwer",
+    instagram: "@vdeliwer",
+    twitter: "@vdeliwer",
+    youtube: "@vdeliWer",
+    tiktok: "@vdeliwer"
+  },
   ctas: {
     whatsappBase: "https://wa.me/",
     emailBase: "mailto:",
-    calendly: "https://calendly.com/deliwer/consultation"
+    calendly: "https://calendly.com/deliwer/consultation",
+    crunchbase: "https://www.crunchbase.com/organization/deliwer",
+    gust: "https://gust.com/companies/deliwer"
   }
 };

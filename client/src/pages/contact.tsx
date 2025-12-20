@@ -2,7 +2,7 @@
 import { ContactForm } from "@/components/contact-form";
 import { 
   Mail, Phone, MapPin, Clock, MessageCircle, Globe, Instagram, 
-  Twitter, Linkedin, Youtube 
+  Twitter, Linkedin, Youtube, Facebook, TrendingUp, Briefcase
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { contactInfo } from "@/lib/contact-info";
@@ -106,7 +106,16 @@ export default function ContactPage() {
                   </p>
                   <div className="grid grid-cols-2 gap-3">
                     <a 
-                      href="https://instagram.com/deliwer.official" 
+                      href="https://facebook.com/deliwer" 
+                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Facebook className="w-4 h-4" />
+                      Facebook
+                    </a>
+                    <a 
+                      href="https://instagram.com/vdeliwer" 
                       className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -115,13 +124,31 @@ export default function ContactPage() {
                       Instagram
                     </a>
                     <a 
-                      href="https://twitter.com/deliwer_uae" 
+                      href="https://twitter.com/vdeliwer" 
                       className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <Twitter className="w-4 h-4" />
                       Twitter
+                    </a>
+                    <a 
+                      href="https://youtube.com/@vdeliWer" 
+                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Youtube className="w-4 h-4" />
+                      YouTube
+                    </a>
+                    <a 
+                      href="https://tiktok.com/@vdeliwer" 
+                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Globe className="w-4 h-4" />
+                      TikTok
                     </a>
                     <a 
                       href="https://linkedin.com/company/deliwer" 
@@ -132,15 +159,29 @@ export default function ContactPage() {
                       <Linkedin className="w-4 h-4" />
                       LinkedIn
                     </a>
-                    <a 
-                      href="https://youtube.com/@deliwer" 
-                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Youtube className="w-4 h-4" />
-                      YouTube
-                    </a>
+                  </div>
+                  <div className="pt-4 border-t border-slate-700 space-y-3">
+                    <p className="text-sm text-gray-300 font-semibold">Discover More About Us:</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      <a 
+                        href={contactInfo.ctas.crunchbase}
+                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <TrendingUp className="w-4 h-4" />
+                        Crunchbase
+                      </a>
+                      <a 
+                        href={contactInfo.ctas.gust}
+                        className="flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-medium transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Briefcase className="w-4 h-4" />
+                        Gust
+                      </a>
+                    </div>
                   </div>
                   <div className="pt-4 border-t border-slate-700 space-y-3">
                     <p className="text-sm text-gray-300 font-semibold">Founder Contacts:</p>
@@ -213,8 +254,8 @@ export default function ContactPage() {
                 </div>
                 <div className="mt-4 p-4 bg-slate-700 rounded-lg">
                   <p className="text-sm text-gray-300">
-                    <strong className="text-white">Directions:</strong> We're located in API World Tower on Sheikh Zayed Road. 
-                    Public transport and parking available. Metro: Business Bay Station (5 min walk).
+                    <strong className="text-white">Address:</strong> DeliWer Shopping FZCO is located in Dubai Airport Freezone. 
+                    We're easily accessible with dedicated parking and close proximity to major transportation hubs.
                   </p>
                 </div>
               </CardContent>
