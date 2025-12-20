@@ -451,7 +451,7 @@ export default function Relocate() {
       {/* Trust Signals Section - Dealroom & FounderHQ */}
       <section className="py-12 bg-gradient-to-r from-blue-950/30 to-purple-950/30 border-y border-blue-900/30">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-md bg-blue-500/20 flex items-center justify-center flex-shrink-0">
                 <Award className="w-5 h-5 text-blue-400" />
@@ -479,6 +479,15 @@ export default function Relocate() {
                 <p className="text-sm text-gray-300">Recognized as top emerging market for founders, investors & families</p>
               </div>
             </div>
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-md bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                <Briefcase className="w-5 h-5 text-orange-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white mb-1">Partner-Led Model</h3>
+                <p className="text-sm text-gray-300">Vetted network of business setup, visa, and real estate partners</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -498,14 +507,14 @@ export default function Relocate() {
             <p className="text-red-300 text-sm font-bold">LIMITED TIME: 25% OFF + Only 3 Spots Left Today</p>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 max-w-5xl leading-tight" data-testid="text-hero-title">
-            Your Dubai Relocation
-            <span className="text-amber-300 block mt-2">Done Right. Done Fast. Done Today.</span>
+            Relocate to Dubai in 30–60 Days
+            <span className="text-amber-300 block mt-2">With a Trusted Local Operator</span>
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl font-semibold" data-testid="text-hero-description">
-            Business setup in 1-3 days. Golden Visa within weeks. Zero income tax. Trusted by 500+ families and founders.
+            Business setup in 1-3 days. Golden Visa within weeks. Zero income tax. Partner-led execution. No upfront DeliWer fees.
           </p>
           <p className="text-base text-white/70 mb-8 max-w-2xl" data-testid="text-hero-subtext">
-            Partner-verified. Risk-free guarantee. We earn via referral—your success is our commission. Start your journey today.
+            Trusted by 500+ families and founders. We earn via partner referrals—your success is our incentive. Limited Christmas intake.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#lead-form">
@@ -530,6 +539,90 @@ export default function Relocate() {
               <Calendar className="w-4 h-4 mr-2" />
               Schedule Free Call (30 min)
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Pricing Context Section */}
+      <section className="py-16 bg-blue-950/30 border-b border-blue-900/30">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-10">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">What Similar Services Cost</h3>
+            <p className="text-gray-300">Understanding Dubai relocation market pricing</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Card className="bg-blue-900/20 border-blue-500/30">
+              <CardContent className="pt-6">
+                <p className="text-sm text-gray-400 mb-2">UAE Business Setup + Visa</p>
+                <p className="text-2xl font-bold text-white">$5K – $15K</p>
+              </CardContent>
+            </Card>
+            <Card className="bg-purple-900/20 border-purple-500/30">
+              <CardContent className="pt-6">
+                <p className="text-sm text-gray-400 mb-2">Golden Visa Advisory</p>
+                <p className="text-2xl font-bold text-white">$3K – $10K</p>
+              </CardContent>
+            </Card>
+            <Card className="bg-emerald-900/20 border-emerald-500/30">
+              <CardContent className="pt-6">
+                <p className="text-sm text-gray-400 mb-2">Relocation Concierge</p>
+                <p className="text-2xl font-bold text-white">$10K – $30K</p>
+              </CardContent>
+            </Card>
+            <Card className="bg-orange-900/20 border-orange-500/30">
+              <CardContent className="pt-6">
+                <p className="text-sm text-gray-400 mb-2">Capital Migration Advisory</p>
+                <p className="text-2xl font-bold text-white">$20K – $50K+</p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="mt-8 bg-emerald-500/20 border border-emerald-500/40 rounded-lg p-6 text-center">
+            <p className="text-emerald-300 font-semibold">
+              Our Model: You pay partners directly. DeliWer earns 20-30% referral share. Your success is our incentive.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ICP Targeting Section */}
+      <section className="py-20 bg-gradient-to-b from-slate-950/20 to-transparent">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4">
+              <Users className="w-3 h-3 mr-1" />
+              Ideal for You If...
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Are You Ready to Make the Move?</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We specialize in helping founders, entrepreneurs, and families from these backgrounds relocate successfully
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              { Icon: Building2, country: "Canadian Founders", pain: "Tax pressure, housing crisis seeking lifestyle arbitrage" },
+              { Icon: TrendingUp, country: "US Tech Founders", pain: "Tax optimization + professional ecosystem expansion" },
+              { Icon: Briefcase, country: "UK Entrepreneurs", pain: "Non-dom uncertainty + business growth opportunity" },
+              { Icon: Globe, country: "EU Freelancers & Agencies", pain: "Tax efficiency + access to global markets" },
+              { Icon: Heart, country: "South Asian HNW Families", pain: "Safe haven + family-first infrastructure + familiar market" },
+              { Icon: DollarSign, country: "Global Investors", pain: "Capital structuring + Golden Visa eligibility" }
+            ].map((item, idx) => (
+              <Card key={idx} className="hover-elevate" data-testid={`card-icp-${idx}`}>
+                <CardContent className="pt-6">
+                  <item.Icon className="w-8 h-8 text-emerald-500 mb-3" />
+                  <h4 className="font-semibold mb-2 text-white">{item.country}</h4>
+                  <p className="text-sm text-muted-foreground">{item.pain}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <p className="text-muted-foreground mb-4">Sound like you? Let's talk.</p>
+            <a href="#lead-form">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Book Your Strategy Call
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -1151,6 +1244,64 @@ export default function Relocate() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Methods Section */}
+      <section className="py-16 bg-gradient-to-r from-emerald-950/30 to-teal-950/30 border-y border-emerald-900/30">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
+            <p className="text-muted-foreground">Multiple ways to start your Dubai journey</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="hover-elevate">
+              <CardContent className="pt-6">
+                <Calendar className="w-8 h-8 text-emerald-500 mb-4" />
+                <h3 className="font-semibold mb-2">Schedule a Call</h3>
+                <p className="text-sm text-muted-foreground mb-4">Free 30-minute strategy call with our relocation expert</p>
+                <Button 
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => {
+                    const calendlyWindow = window as any;
+                    if (calendlyWindow.Calendly) {
+                      calendlyWindow.Calendly.showPopupWidget('https://calendly.com/deliwer/consultation');
+                    } else {
+                      window.open('https://calendly.com/deliwer/consultation', '_blank');
+                    }
+                  }}
+                  data-testid="button-calendly-card"
+                >
+                  Via Calendly
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="hover-elevate">
+              <CardContent className="pt-6">
+                <MessageCircle className="w-8 h-8 text-blue-500 mb-4" />
+                <h3 className="font-semibold mb-2">WhatsApp</h3>
+                <p className="text-sm text-muted-foreground mb-4">Quick chat to discuss your relocation goals</p>
+                <a href="https://wa.me/971542501500?text=Hi%20DeliWer%2C%20I%27m%20interested%20in%20relocating%20to%20Dubai" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="w-full" data-testid="button-whatsapp-card">
+                    Message Now
+                  </Button>
+                </a>
+              </CardContent>
+            </Card>
+            <Card className="hover-elevate">
+              <CardContent className="pt-6">
+                <Send className="w-8 h-8 text-orange-500 mb-4" />
+                <h3 className="font-semibold mb-2">Email</h3>
+                <p className="text-sm text-muted-foreground mb-4">Send your details and we'll respond within 24 hours</p>
+                <a href="mailto:relocate@deliwer.com">
+                  <Button variant="outline" className="w-full" data-testid="button-email-card">
+                    Email Us
+                  </Button>
+                </a>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
