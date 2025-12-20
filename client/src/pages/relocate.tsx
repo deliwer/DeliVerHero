@@ -526,12 +526,19 @@ export default function Relocate() {
             Trusted by 500+ families and founders. We earn via partner referrals—your success is our incentive. Limited Christmas intake.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="#lead-form">
-              <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white font-bold text-base px-8" data-testid="button-start-journey">
-                <Check className="w-5 h-5 mr-2" />
-                Claim 25% Christmas Offer
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              className="bg-green-600 hover:bg-green-700 text-white font-bold text-base px-8" 
+              data-testid="button-start-journey"
+              onClick={() => {
+                if (formRef.current) {
+                  formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
+              <Check className="w-5 h-5 mr-2" />
+              Claim 25% Christmas Offer
+            </Button>
             <Button 
               size="lg" 
               variant="outline" 
@@ -641,12 +648,18 @@ export default function Relocate() {
           </div>
           <div className="text-center mt-12">
             <p className="text-gray-200 mb-6 text-lg">Sound like you? Let's start your Dubai pathway.</p>
-            <a href="#lead-form">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Book Your Strategy Call
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+              onClick={() => {
+                if (formRef.current) {
+                  formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Book Your Strategy Call
+            </Button>
           </div>
         </div>
       </section>
@@ -770,12 +783,19 @@ export default function Relocate() {
                 <p className="text-gray-300 mb-6">
                   Panama, Georgia, and other emerging destinations offer pieces of the puzzle — Dubai delivers the complete picture.
                 </p>
-                <a href="#lead-form">
-                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white" data-testid="button-why-dubai-cta">
-                    <ArrowRight className="w-4 h-4 mr-2" />
-                    Explore Your Dubai Pathway
-                  </Button>
-                </a>
+                <Button 
+                  size="lg" 
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white" 
+                  data-testid="button-why-dubai-cta"
+                  onClick={() => {
+                    if (formRef.current) {
+                      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                >
+                  <ArrowRight className="w-4 h-4 mr-2" />
+                  Explore Your Dubai Pathway
+                </Button>
               </div>
             </div>
           </div>
@@ -858,12 +878,17 @@ export default function Relocate() {
                 </div>
               ))}
             </div>
-            <a href="/#lead-form">
-              <Button className="bg-emerald-600 hover:bg-emerald-700">
-                <MessageCircle className="w-4 h-4 mr-2" />
-                Schedule Expert Consultation
-              </Button>
-            </a>
+            <Button 
+              className="bg-emerald-600 hover:bg-emerald-700"
+              onClick={() => {
+                if (formRef.current) {
+                  formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Schedule Expert Consultation
+            </Button>
             <div className="mt-8 bg-white/10 backdrop-blur-sm border border-white/20 rounded-md p-4">
               <p className="text-2xl font-bold text-emerald-400">200+</p>
               <p className="text-sm text-gray-200">Nationalities call Dubai home</p>
@@ -941,12 +966,19 @@ export default function Relocate() {
             </table>
           </div>
           <div className="text-center mt-8">
-            <a href="#lead-form">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white" data-testid="button-comparison-cta">
-                <ArrowRight className="w-4 h-4 mr-2" />
-                Get Your Dubai Relocation Plan
-              </Button>
-            </a>
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-700 text-white" 
+              data-testid="button-comparison-cta"
+              onClick={() => {
+                if (formRef.current) {
+                  formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
+              <ArrowRight className="w-4 h-4 mr-2" />
+              Get Your Dubai Relocation Plan
+            </Button>
           </div>
         </div>
       </section>
@@ -1163,7 +1195,7 @@ export default function Relocate() {
       </section>
 
       {/* Investment Readiness Validation Form - PRIMARY CTA */}
-      <section ref={formRef} className="py-20 bg-gradient-to-b from-emerald-950/20 to-teal-950/20 border-y border-emerald-900/30">
+      <section ref={formRef} id="lead-form" className="py-20 bg-gradient-to-b from-emerald-950/20 to-teal-950/20 border-y border-emerald-900/30">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-10">
             <Badge variant="outline" className="mb-4 border-emerald-500/50 bg-emerald-500/10">

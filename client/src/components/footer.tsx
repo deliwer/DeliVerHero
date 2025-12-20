@@ -28,13 +28,16 @@ export function Footer() {
 
 
   const quickLinks = [
-    { label: "Trade-in iPhone Calculator", url: "/" },
+    { label: "Home", url: "/" },
+    { label: "Relocate to Dubai", url: "/relocate" },
+    { label: "Home Service Launch", url: "/home-service-launch" },
+    { label: "Trade-in iPhone Calculator", url: "/products" },
     { label: "AquaCafe Loyalty Program", url: "/aquacafe" },
     { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
-    { label: "Impact & Rewards Dashboard", url: "/impact-dashboard" },
-    { label: "Leaderboard", url: "/leaderboard" },
+    { label: "Earn & Rewards", url: "/earn" },
     { label: "Corporate Trade-in Solutions", url: "/corporate" },
-    { label: "Ambassador & Champion Programs", url: "/partners" }
+    { label: "Ambassador & Champion Programs", url: "/partners" },
+    { label: "Contact & About Us", url: "/contact" }
   ];
 
   const sponsorshipTiers = [
