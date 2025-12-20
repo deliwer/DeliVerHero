@@ -174,7 +174,7 @@ export default function Relocate() {
       name: "Michael Chen",
       role: "Tech Founder",
       location: "Relocated from Singapore",
-      content: "DeliWer made our move seamless. Within 3 weeks, we had our company set up, visas processed, and kids enrolled in top international schools. The ROI on their consulting fee was immediate.",
+      content: "DeliWer's Golden Visa strategy was game-changing. Within 60 days, my company was set up in a free zone, I had 10-year residency secured, and my family received Golden Visa sponsorship. The tax optimization alone is saving us $150K annually.",
       rating: 5,
       capital: "$2M+ relocated"
     },
@@ -182,7 +182,7 @@ export default function Relocate() {
       name: "Sarah Al-Rashid",
       role: "Investment Director",
       location: "Relocated from London",
-      content: "The tax savings alone in the first year covered their entire consulting fee 10x over. Their network of partners for real estate and banking is unmatched.",
+      content: "As a non-dom struggling with UK tax, Dubai's Golden Visa program via DeliWer was perfect. Zero personal income tax, Golden Visa for family, and direct access to DIFC and DMCC opportunities. They beat every other setup I considered.",
       rating: 5,
       capital: "$5M+ relocated"
     },
@@ -190,7 +190,7 @@ export default function Relocate() {
       name: "The Martinez Family",
       role: "Family of 5",
       location: "Relocated from Miami",
-      content: "Moving with three kids seemed daunting. DeliWer handled everything - school applications, housing, healthcare setup. We felt at home within weeks.",
+      content: "Moving with three kids seemed daunting. DeliWer handled everything - Golden Visa pathways for the whole family, school applications, housing, healthcare setup. We felt at home within weeks with residency secured for 10 years.",
       rating: 5,
       familySize: "5 members"
     }
@@ -198,28 +198,28 @@ export default function Relocate() {
 
   const faqItems = [
     {
-      question: "How long does the Dubai relocation process take?",
-      answer: "For business setup, most companies can be operational within 1-3 days. Family relocation typically takes 2-4 weeks for full settlement including visas, housing, and school enrollment. Our expedited service can reduce this timeline significantly."
+      question: "What are the Golden Visa pathways available in Dubai?",
+      answer: "The UAE offers multiple Golden Visa routes: (1) Real estate investment (AED 2M+), (2) Business establishment (minimum capital depends on sector), (3) Investor visas (AED 10M+ portfolio), (4) Talent visas for executives/specialists, (5) Student visas. DeliWer guides you to the optimal pathway for your situation."
     },
     {
-      question: "What is the minimum investment for a Golden Visa?",
-      answer: "The UAE Golden Visa requires a minimum AED 2 million ($545,000 USD) investment in real estate, or establishing a company with minimum capital requirements. We help you structure investments to maximize visa benefits while meeting your financial goals."
+      question: "How is Dubai's Golden Visa better than other free zones like DIFC, DMCC, DAFZA?",
+      answer: "Unlike DIFC, DMCC, and DAFZA which focus on business licensing alone, Dubai's Golden Visa program offers: 10-year residency for you and family, access to all business zones simultaneously, 0% personal income tax, property investment options, and unified relocation support. DeliWer coordinates everything as one integrated journey."
+    },
+    {
+      question: "How long does it take to get a Golden Visa?",
+      answer: "Golden Visa processing typically takes 30-60 days for real estate investments or business establishment. Our expedited network accelerates this significantly. Full relocation including housing, visas, banking, and business setup can be completed in 60-90 days with our support."
     },
     {
       question: "Is there really 0% personal income tax in Dubai?",
-      answer: "Yes, the UAE has no personal income tax, no capital gains tax, and no inheritance tax. Corporate tax was introduced at 9% for profits over AED 375,000, but many free zone companies remain exempt. We structure your presence to maximize these benefits legally."
+      answer: "Yes, the UAE has zero personal income tax, no capital gains tax, and no inheritance tax. This applies whether you earn through a business, investments, or employment. Only corporate tax (9% on profits over AED 375,000) applies to mainland companies. Free zone companies often remain fully exempt."
     },
     {
-      question: "What schools are available for expatriate children?",
-      answer: "Dubai has 200+ international schools offering British, American, IB, Indian, French, and other curricula. Top schools include GEMS, JESS, Dubai College, and more. We help with school selection, applications, and securing admission."
+      question: "Can my spouse and children get Golden Visas too?",
+      answer: "Yes. Golden Visa family sponsorship is one of the program's greatest advantages. Your spouse and dependent children can receive 10-year residency visas, which is unique compared to traditional employment visas. This creates stability for multi-generational relocation."
     },
     {
-      question: "How does DeliWer help with capital relocation?",
-      answer: "We provide end-to-end consulting including: legal compliance for wealth transfer, optimal corporate structuring, banking relationships, real estate investment for Golden Visa eligibility, and ongoing advisory for tax optimization."
-    },
-    {
-      question: "What makes Dubai safer than other relocation destinations?",
-      answer: "Dubai consistently ranks among the world's safest cities with extremely low crime rates, political stability, world-class healthcare, and a family-friendly environment. The UAE's strict laws and efficient enforcement create a secure living environment."
+      question: "How does DeliWer compare to setting up in DIFC, DMCC, or DAFZA on my own?",
+      answer: "Those free zones require you to navigate licensing separately, then manage family visas through immigration independently. DeliWer unifies the entire process: business setup, Golden Visa structure, banking relationships, housing, schools, and tax optimization—all coordinated by one team with one timeline."
     }
   ];
 
@@ -287,12 +287,12 @@ export default function Relocate() {
   ];
 
   const businessAdvantages = [
-    { icon: DollarSign, title: "0% Personal Income Tax", description: "Keep more of what you earn" },
-    { icon: Shield, title: "Political Stability", description: "Safe haven for global capital" },
-    { icon: Globe, title: "Strategic Location", description: "Gateway between East and West" },
-    { icon: TrendingUp, title: "Business-Friendly", description: "Rapid company setup in 1-3 days" },
-    { icon: Building, title: "Golden Visa Program", description: "10-year residency for investors" },
-    { icon: Landmark, title: "Free Zone Benefits", description: "100% foreign ownership allowed" }
+    { icon: DollarSign, title: "0% Personal Income Tax", description: "Zero tax on your personal income + capital gains + inheritance" },
+    { icon: Building, title: "Golden Visa Program", description: "10-year residency for you, spouse & children via investment or business" },
+    { icon: Globe, title: "Fastest Business Setup", description: "1-3 days to operational status across UAE free zones" },
+    { icon: Shield, title: "100% Foreign Ownership", description: "Mainland, DIFC, DMCC, DAFZA, Dubai South—all accessible" },
+    { icon: TrendingUp, title: "Capital Relocation Hub", description: "Strategic structuring for wealth protection & tax optimization" },
+    { icon: Landmark, title: "Unified Ecosystem", description: "One pathway covers business, family, capital, and residency" }
   ];
 
   const comparisonData = [
@@ -413,19 +413,19 @@ export default function Relocate() {
 
       <Helmet>
         <title>Dubai Relocation Consulting | Capital & Family Relocation Services | DeliWer</title>
-        <meta name="description" content="Expert Dubai relocation consulting for investors, families & businesses. Validated by Dealroom. 0% income tax, Golden Visa, business setup in 1-3 days. Part of Dubai's founders ecosystem. Start your Dubai journey today." />
-        <meta name="keywords" content="Dubai relocation, capital relocation, Golden Visa UAE, Dubai business setup, family relocation Dubai, tax-free living, UAE immigration, Dubai expat services, Dealroom verified, FounderHQ ecosystem" />
+        <meta name="description" content="Dubai Golden Visa + Fast Business Setup via DeliWer. Unified relocation pathway: 10-year residency, 0% personal tax, family visas, business licensing in 1-3 days. Superior to DIFC, DMCC, DAFZA. Dealroom verified. Christmas 25% off through Dec 31." />
+        <meta name="keywords" content="Dubai Golden Visa, UAE Golden Visa 2025, Dubai business setup, family relocation Golden Visa, tax-free UAE, DIFC vs DMCC, free zone comparison, capital relocation, Dealroom verified, FounderHQ" />
         <link rel="canonical" href="https://deliwer.com/relocate" />
         
-        <meta property="og:title" content="Dubai Relocation Consulting | Capital & Family Relocation | DeliWer" />
-        <meta property="og:description" content="Relocate your capital, family & business to Dubai. 0% income tax, Golden Visa eligibility, business setup in 1-3 days. Expert consulting services." />
+        <meta property="og:title" content="Dubai Golden Visa + Business Setup | Family Relocation | DeliWer 2025" />
+        <meta property="og:description" content="Complete Dubai relocation: Golden Visa (10-year residency), business setup in 1-3 days, zero personal tax, family visas. Unified pathway vs fragmented DIFC/DMCC/DAFZA. Christmas 25% off." />
         <meta property="og:image" content="https://deliwer.com/og-relocate.jpg" />
         <meta property="og:url" content="https://deliwer.com/relocate" />
         <meta property="og:type" content="website" />
         
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Dubai Relocation Consulting | DeliWer" />
-        <meta name="twitter:description" content="Expert Dubai relocation for investors & families. 0% tax, Golden Visa, fast business setup." />
+        <meta name="twitter:title" content="Dubai Golden Visa + Business Setup | DeliWer" />
+        <meta name="twitter:description" content="Golden Visa pathway for families & founders. 10-year residency, 0% tax, business in 1-3 days. Unified vs DIFC/DMCC. 25% off through Dec 31." />
         
         <script type="application/ld+json">{JSON.stringify(schemaOrgData)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchemaData)}</script>
@@ -516,14 +516,14 @@ export default function Relocate() {
             <p className="text-red-300 text-sm font-bold">LIMITED TIME: 25% OFF + Only 3 Spots Left Today</p>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 max-w-5xl leading-tight" data-testid="text-hero-title">
-            Relocate to Dubai in 30–60 Days
-            <span className="text-amber-300 block mt-2">With a Trusted Local Operator</span>
+            Dubai Golden Visa + Business Setup
+            <span className="text-emerald-300 block mt-2">30–60 Day Complete Relocation</span>
           </h1>
           <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl font-semibold" data-testid="text-hero-description">
-            Business setup in 1-3 days. Golden Visa within weeks. Zero income tax. Partner-led execution. No upfront DeliWer fees.
+            Golden Visa (10-year residency for family) + Business in 1-3 days + 0% personal tax + Unified pathway (not fragmented DIFC/DMCC/DAFZA)
           </p>
           <p className="text-base text-white/70 mb-8 max-w-2xl" data-testid="text-hero-subtext">
-            Trusted by 500+ families and founders. We earn via partner referrals—your success is our incentive. Limited Christmas intake.
+            Complete relocation—business, visas, housing, banking, schools—coordinated by one team. Partner-led execution. No upfront DeliWer fees. Dealroom verified.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button 
@@ -537,7 +537,7 @@ export default function Relocate() {
               }}
             >
               <Check className="w-5 h-5 mr-2" />
-              Claim 25% Christmas Offer
+              Secure Golden Visa Pathway
             </Button>
             <Button 
               size="lg" 
@@ -554,13 +554,13 @@ export default function Relocate() {
               }}
             >
               <Calendar className="w-4 h-4 mr-2" />
-              Schedule Free Call (30 min)
+              Free Strategy Call (30 min)
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Market Pricing Context Section */}
+      {/* Golden Visa Pathways Section */}
       <section className="relative py-20 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -569,43 +569,131 @@ export default function Relocate() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/75 to-purple-950/85" />
         <div className="relative z-10 max-w-5xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Market Reality Check</h3>
-            <p className="text-blue-100 text-lg">What Similar Services Cost Across the Industry</p>
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Golden Visa Pathways</h3>
+            <p className="text-blue-100 text-lg">Multiple routes to 10-year residency for you and your family</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <Card className="bg-blue-900/40 border-blue-400/30 backdrop-blur-sm">
+            <Card className="bg-blue-900/40 border-blue-400/30 backdrop-blur-sm hover-elevate">
               <CardContent className="pt-6">
-                <p className="text-sm text-blue-200 mb-2 font-medium">UAE Business Setup + Visa</p>
-                <p className="text-3xl font-bold text-white">$5K – $15K</p>
+                <p className="text-sm text-blue-200 mb-2 font-bold">Real Estate Investment</p>
+                <p className="text-2xl font-bold text-white mb-3">AED 2M+</p>
+                <p className="text-xs text-blue-100">Property purchase with 10-year visa</p>
               </CardContent>
             </Card>
-            <Card className="bg-purple-900/40 border-purple-400/30 backdrop-blur-sm">
+            <Card className="bg-purple-900/40 border-purple-400/30 backdrop-blur-sm hover-elevate">
               <CardContent className="pt-6">
-                <p className="text-sm text-purple-200 mb-2 font-medium">Golden Visa Advisory</p>
-                <p className="text-3xl font-bold text-white">$3K – $10K</p>
+                <p className="text-sm text-purple-200 mb-2 font-bold">Business Establishment</p>
+                <p className="text-2xl font-bold text-white mb-3">Flexible</p>
+                <p className="text-xs text-purple-100">Company setup + investor visa</p>
               </CardContent>
             </Card>
-            <Card className="bg-emerald-900/40 border-emerald-400/30 backdrop-blur-sm">
+            <Card className="bg-emerald-900/40 border-emerald-400/30 backdrop-blur-sm hover-elevate">
               <CardContent className="pt-6">
-                <p className="text-sm text-emerald-200 mb-2 font-medium">Relocation Concierge</p>
-                <p className="text-3xl font-bold text-white">$10K – $30K</p>
+                <p className="text-sm text-emerald-200 mb-2 font-bold">Investor Visa</p>
+                <p className="text-2xl font-bold text-white mb-3">AED 10M+</p>
+                <p className="text-xs text-emerald-100">Portfolio-based residency</p>
               </CardContent>
             </Card>
-            <Card className="bg-orange-900/40 border-orange-400/30 backdrop-blur-sm">
+            <Card className="bg-orange-900/40 border-orange-400/30 backdrop-blur-sm hover-elevate">
               <CardContent className="pt-6">
-                <p className="text-sm text-orange-200 mb-2 font-medium">Capital Migration Advisory</p>
-                <p className="text-3xl font-bold text-white">$20K – $50K+</p>
+                <p className="text-sm text-orange-200 mb-2 font-bold">Talent / Executive</p>
+                <p className="text-2xl font-bold text-white mb-3">Specialized</p>
+                <p className="text-xs text-orange-100">For executives & specialists</p>
               </CardContent>
             </Card>
           </div>
           <div className="bg-gradient-to-r from-emerald-600/30 to-teal-600/30 border-2 border-emerald-400/60 backdrop-blur-sm rounded-lg p-8 text-center">
-            <h4 className="text-xl font-bold text-emerald-100 mb-3">DeliWer's Breakthrough Model</h4>
+            <h4 className="text-xl font-bold text-emerald-100 mb-3">DeliWer's Unified Golden Visa Advantage</h4>
             <p className="text-emerald-50 text-lg font-semibold mb-3">
-              You pay partners directly. DeliWer earns 20-30% referral share.
+              Unlike DIFC/DMCC/DAFZA (business licensing only), we combine Golden Visa + Business Setup + Banking + Housing + Tax Optimization
             </p>
-            <p className="text-emerald-200">
-              Your success is our incentive. No upfront consulting fees. Aligned interests from day one.
+            <p className="text-emerald-200 mb-4">
+              All coordinated by one team. One timeline. One success metric: your complete relocation.
             </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              <Badge className="bg-emerald-500 text-white">10-year family residency</Badge>
+              <Badge className="bg-teal-500 text-white">Zero personal income tax</Badge>
+              <Badge className="bg-emerald-600 text-white">1-3 day business setup</Badge>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dubai vs Free Zones Comparison Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${professionalOffice})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/85 to-slate-950/90" />
+        <div className="relative z-10 max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Dubai vs Premium Free Zones</h3>
+            <p className="text-gray-200 text-lg">Why DeliWer's unified approach outperforms fragmented free zone setups</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-slate-800/60 border-b border-slate-600">
+                  <th className="text-left py-4 px-4 font-semibold text-white">Feature</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">DIFC</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">DMCC</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">DAFZA</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Dubai South</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white bg-emerald-600/40 border-l border-emerald-500">DeliWer (Unified)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Golden Visa Eligibility</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ Clear Paths</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Family Visa Included</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ Spouse + Kids</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Business Setup Speed</td>
+                  <td className="text-center py-4 px-4 text-gray-300">1-2 weeks</td>
+                  <td className="text-center py-4 px-4 text-gray-300">1-2 weeks</td>
+                  <td className="text-center py-4 px-4 text-gray-300">1-3 days</td>
+                  <td className="text-center py-4 px-4 text-gray-300">1-3 days</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ 1-3 days</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Full Relocation Support</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Partial</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Partial</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ End-to-End</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Unified Coordination</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ One Team</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Transparent Pricing</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ Hidden</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ Hidden</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Unclear</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Unclear</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ Full Visibility</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -1200,13 +1288,13 @@ export default function Relocate() {
           <div className="text-center mb-10">
             <Badge variant="outline" className="mb-4 border-emerald-500/50 bg-emerald-500/10">
               <Award className="w-3 h-3 mr-1" />
-              Book Your Strategy Call
+              Golden Visa Strategy Call
             </Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-validation-title">
-              Talk to a Dubai Relocation Expert
+              Find Your Golden Visa Pathway
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Schedule a confidential 30-minute strategy call with our investment advisors. We'll assess your goals and create a personalized Dubai pathway.
+              Book a confidential 30-minute strategy call. Our Dubai relocation experts will assess your goals, recommend the optimal Golden Visa route, and outline your complete relocation timeline.
             </p>
           </div>
           <Card className="border-emerald-500/30 bg-emerald-950/20">
