@@ -20,25 +20,23 @@ export function FoundersSection() {
             <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-500/50 shadow-xl">
               <img 
                 src={hassanJawadPhoto} 
-                alt="Hassan Jawad - Founder, ReCommerce Pro" 
+                alt="Hassan Jawad - Founder" 
                 className="w-full h-full object-cover"
               />
             </div>
             <h3 className="text-xl font-bold text-white mb-2">Hassan Jawad</h3>
-            <p className="text-emerald-400 font-medium mb-4">Founder, ReCommerce Pro</p>
+            <p className="text-emerald-400 font-medium mb-4">Founder</p>
             <p className="text-gray-300 text-sm mb-6">
               Leading Dubai's circular economy transformation through innovative technology solutions and sustainable commerce practices.
             </p>
             <div className="space-y-3">
               <a
-                href="https://linkedin.com/in/formatix"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:formatix@deliwer.com"
                 className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full justify-center"
-                data-testid="link-hassan-linkedin"
+                data-testid="link-hassan-email"
               >
                 <Linkedin className="w-4 h-4 mr-2" />
-                Connect on LinkedIn
+                formatix@deliwer.com
               </a>
               <a
                 href="tel:+971523946311"
@@ -61,12 +59,19 @@ export function FoundersSection() {
               />
             </div>
             <h3 className="text-xl font-bold text-white mb-2">Rubab Hassan</h3>
-            <p className="text-emerald-400 font-medium mb-2">Co-Founder & MD</p>
-            <p className="text-amber-400 text-sm font-medium mb-4">Cancer Warrior & Health Coach</p>
+            <p className="text-emerald-400 font-medium mb-4">Co-Founder & MD</p>
             <p className="text-gray-300 text-sm mb-6">
               Empowering Dubai's health and sustainability mission through expert wellness coaching and environmental advocacy.
             </p>
             <div className="space-y-3">
+              <a
+                href="mailto:sales@deliwer.com"
+                className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full justify-center"
+                data-testid="link-rubab-email"
+              >
+                <Linkedin className="w-4 h-4 mr-2" />
+                sales@deliwer.com
+              </a>
               <a
                 href="tel:+971567148381"
                 className="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full justify-center"
@@ -75,7 +80,6 @@ export function FoundersSection() {
                 <Phone className="w-4 h-4 mr-2" />
                 +971 56 714 8381
               </a>
-              <p className="text-gray-400 text-xs">Available for health consultations</p>
             </div>
           </div>
         </div>

@@ -19,24 +19,28 @@ export const contactInfo = {
   founders: [
     {
       name: "Hassan Jawad",
-      title: "Co-Founder & CEO",
-      email: "hassan@deliwer.com",
-      whatsapp: "+971 54 250 1501",
-      whatsappLink: "971542501501"
+      title: "Founder",
+      email: "formatix@deliwer.com",
+      phone: "+971 52 394 6311",
+      phoneSecondary: "+971 52 390 6019",
+      whatsapp: "+971 52 394 6311",
+      whatsappLink: "97152394631"
     },
     {
       name: "Rubab Hassan",
-      title: "Co-Founder & Operations Lead",
-      email: "rubab@deliwer.com",
-      whatsapp: "+971 54 250 1502",
-      whatsappLink: "971542501502"
+      title: "Co-Founder & MD",
+      email: "sales@deliwer.com",
+      phone: "+971 56 714 8381",
+      whatsapp: "+971 504 547 110",
+      whatsappLink: "971504547110"
     },
     {
       name: "Kalbe-Hussain Sheikh",
-      title: "Co-Founder & Strategy Lead",
-      email: "kalbe@deliwer.com",
-      whatsapp: "+971 54 250 1503",
-      whatsappLink: "971542501503"
+      title: "Customer Service Consultant",
+      email: "service@deliwer.com",
+      phone: "+971 55 657 3114",
+      whatsapp: "+971 55 657 3114",
+      whatsappLink: "971556573114"
     }
   ],
   ctas: {

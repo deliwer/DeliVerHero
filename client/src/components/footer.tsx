@@ -200,19 +200,63 @@ export function Footer() {
                 >
                   <Phone className="w-4 h-4 mr-3 text-dubai-blue-500" />
                   <div>
-                    <div className="text-sm">+971 52 394 6311</div>
-                    <div className="text-xs text-gray-500">24/7 Emergency Support</div>
+                    <div className="text-sm">Hassan Jawad: +971 52 394 6311</div>
+                    <div className="text-xs text-gray-500">Founder</div>
                   </div>
                 </a>
                 
                 <a 
-                  href="mailto:partners@deliwer.com"
+                  href="mailto:formatix@deliwer.com"
                   className="flex items-center text-gray-400 hover:text-white transition-colors group"
                 >
                   <Mail className="w-4 h-4 mr-3 text-hero-green-500" />
                   <div>
-                    <div className="text-sm">info@deliwer.com</div>
-                    <div className="text-xs text-gray-500">Champion & Ambassador Inquiries</div>
+                    <div className="text-sm">formatix@deliwer.com</div>
+                    <div className="text-xs text-gray-500">Hassan Jawad</div>
+                  </div>
+                </a>
+
+                <a 
+                  href="tel:+971567148381"
+                  className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                >
+                  <Phone className="w-4 h-4 mr-3 text-dubai-blue-500" />
+                  <div>
+                    <div className="text-sm">Rubab Hassan: +971 56 714 8381</div>
+                    <div className="text-xs text-gray-500">Co-Founder & MD</div>
+                  </div>
+                </a>
+                
+                <a 
+                  href="mailto:sales@deliwer.com"
+                  className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                >
+                  <Mail className="w-4 h-4 mr-3 text-hero-green-500" />
+                  <div>
+                    <div className="text-sm">sales@deliwer.com</div>
+                    <div className="text-xs text-gray-500">Rubab Hassan</div>
+                  </div>
+                </a>
+
+                <a 
+                  href="tel:+971556573114"
+                  className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                >
+                  <Phone className="w-4 h-4 mr-3 text-dubai-blue-500" />
+                  <div>
+                    <div className="text-sm">Kalbe-Hussain: +971 55 657 3114</div>
+                    <div className="text-xs text-gray-500">Customer Service Consultant</div>
+                  </div>
+                </a>
+                
+                <a 
+                  href="mailto:service@deliwer.com"
+                  className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                >
+                  <Mail className="w-4 h-4 mr-3 text-hero-green-500" />
+                  <div>
+                    <div className="text-sm">service@deliwer.com</div>
+                    <div className="text-xs text-gray-500">Kalbe-Hussain Sheikh</div>
                   </div>
                 </a>
                 
@@ -225,15 +269,24 @@ export function Footer() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-slate-700">
+              <div className="mt-6 pt-4 border-t border-slate-700 space-y-2">
                 <a 
                   href="https://wa.me/971523946311"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full bg-hero-green-500 hover:bg-hero-green-600 text-black px-4 py-2 rounded-lg font-medium transition-colors"
+                  className="inline-flex items-center justify-center w-full bg-hero-green-500 hover:bg-hero-green-600 text-black px-4 py-2 rounded-lg font-medium transition-colors text-sm"
                 >
                   <Heart className="w-4 h-4 mr-2" />
-                  WhatsApp Support
+                  Hassan: WhatsApp
+                </a>
+                <a 
+                  href="https://wa.me/971504547110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full bg-hero-green-500 hover:bg-hero-green-600 text-black px-4 py-2 rounded-lg font-medium transition-colors text-sm"
+                >
+                  <Heart className="w-4 h-4 mr-2" />
+                  Rubab: WhatsApp
                 </a>
               </div>
 
