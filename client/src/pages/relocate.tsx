@@ -76,6 +76,14 @@ export default function Relocate() {
   const formRef = useRef<HTMLDivElement>(null);
   const [showChristmasPopup, setShowChristmasPopup] = useState(false);
   
+  // Load Calendly script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+  
   // Check if today is Christmas 2025
   useEffect(() => {
     const today = new Date();
@@ -347,15 +355,15 @@ export default function Relocate() {
         <DialogContent className="sm:max-w-md bg-gradient-to-br from-red-950/80 to-green-950/80 border-2 border-green-500 z-[9999]" data-testid="dialog-christmas">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl md:text-3xl font-bold text-white mb-2" data-testid="text-christmas-title">
-              🎄 Your Last-Minute Chance
+              Your Last-Minute Chance
             </DialogTitle>
-            <DialogDescription className="text-center text-green-300 font-semibold text-base mb-2" data-testid="text-christmas-desc">
+            <DialogDescription className="text-center text-emerald-300 font-semibold text-base mb-2" data-testid="text-christmas-desc">
               Christmas Day Deal: 25% OFF Your Dubai Relocation
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="bg-gradient-to-r from-green-500/30 to-red-500/30 backdrop-blur-sm rounded-lg p-6 text-center border-2 border-green-400/50">
-              <p className="text-4xl font-black text-green-300 mb-2">25% OFF</p>
+              <p className="text-4xl font-black text-emerald-300 mb-2">25% OFF</p>
               <p className="text-white text-sm mb-2">Save $2,500 - $5,000+ on your relocation package</p>
               <p className="text-red-300 text-lg font-bold mb-2">TODAY ONLY</p>
               <div className="text-gray-200 text-xs space-y-1">
@@ -867,7 +875,11 @@ export default function Relocate() {
                 </div>
                 <Button 
                   className="w-full" 
-                  onClick={() => setShowLeadCaptureModal(true)}
+                  onClick={() => {
+                    if (formRef.current) {
+                      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
                   data-testid="button-family-cta"
                 >
                   Get Started
@@ -917,7 +929,11 @@ export default function Relocate() {
                 </div>
                 <Button 
                   className="w-full" 
-                  onClick={() => setShowLeadCaptureModal(true)}
+                  onClick={() => {
+                    if (formRef.current) {
+                      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
                   data-testid="button-business-cta"
                 >
                   Book Consultation
@@ -964,7 +980,11 @@ export default function Relocate() {
                 </div>
                 <Button 
                   className="w-full bg-purple-600 hover:bg-purple-700" 
-                  onClick={() => setShowLeadCaptureModal(true)}
+                  onClick={() => {
+                    if (formRef.current) {
+                      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
                   data-testid="button-premium-cta"
                 >
                   Schedule VIP Call
@@ -972,22 +992,23 @@ export default function Relocate() {
               </CardContent>
             </Card>
           </div>
-          <div className="text-center mt-10 bg-green-500/10 border border-green-500/30 rounded-lg p-6">
-            <p className="text-sm text-muted-foreground mb-2">
+          <div className="text-center mt-10 bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-6">
+            <p className="text-sm text-foreground mb-2 font-medium">
               All packages include free onboarding consultation + 24/7 WhatsApp support
             </p>
-            <p className="text-xs text-green-400 font-semibold mb-4">
+            <p className="text-xs text-emerald-700 dark:text-emerald-400 font-semibold mb-4">
               ✓ Money-back guarantee if not satisfied within 7 days
             </p>
             <Button 
               variant="default" 
               size="lg" 
-              className="bg-green-600 hover:bg-green-700" 
+              className="bg-emerald-600 hover:bg-emerald-700" 
               data-testid="button-schedule-calendly"
               onClick={() => {
-                // Open Calendly popup
-                if (window.Calendly) {
-                  window.Calendly.showPopupWidget('https://calendly.com/deliwer/consultation');
+                // Open Calendly popup with window type annotation
+                const calendlyWindow = window as any;
+                if (calendlyWindow.Calendly) {
+                  calendlyWindow.Calendly.showPopupWidget('https://calendly.com/deliwer/consultation');
                 } else {
                   window.open('https://calendly.com/deliwer/consultation', '_blank');
                 }
