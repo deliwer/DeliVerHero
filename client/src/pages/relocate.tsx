@@ -536,8 +536,9 @@ export default function Relocate() {
               className="border-white/30 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 font-semibold" 
               data-testid="button-free-call"
               onClick={() => {
-                if (window.Calendly) {
-                  window.Calendly.showPopupWidget('https://calendly.com/deliwer/consultation');
+                const calendlyWindow = window as any;
+                if (calendlyWindow.Calendly) {
+                  calendlyWindow.Calendly.initPopupWidget({url: 'https://calendly.com/deliwer/consultation'});
                 } else {
                   window.open('https://calendly.com/deliwer/consultation', '_blank');
                 }
@@ -826,48 +827,44 @@ export default function Relocate() {
       </section>
 
       {/* Why Dubai Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge variant="outline" className="mb-4">
-                <Heart className="w-3 h-3 mr-1" />
-                Why Dubai For Business
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">World-Class Living Meets Global Business</h2>
-              <p className="text-muted-foreground mb-8">
-                Dubai offers the complete package: business growth, lifestyle excellence, and financial optimization. Attract world-class talent, maintain work-life balance, and build wealth in a politically stable, cosmopolitan hub.
-              </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {businessLifestyleFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <feature.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-sm">{feature.title}</h4>
-                      <p className="text-xs text-muted-foreground">{feature.description}</p>
-                    </div>
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${dubaiLifestyle})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/70 to-black/60" />
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-2xl">
+            <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
+              <Heart className="w-3 h-3 mr-1" />
+              Why Dubai For Business
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">World-Class Living Meets Global Business</h2>
+            <p className="text-gray-200 mb-8">
+              Dubai offers the complete package: business growth, lifestyle excellence, and financial optimization. Attract world-class talent, maintain work-life balance, and build wealth in a politically stable, cosmopolitan hub.
+            </p>
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              {businessLifestyleFeatures.map((feature, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-5 h-5 text-emerald-400" />
                   </div>
-                ))}
-              </div>
-              <a href="/#lead-form">
-                <Button>
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Schedule Expert Consultation
-                </Button>
-              </a>
+                  <div>
+                    <h4 className="font-medium text-sm text-white">{feature.title}</h4>
+                    <p className="text-xs text-gray-300">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="relative">
-              <img 
-                src={dubaiLifestyle} 
-                alt="Dubai business lifestyle" 
-                className="rounded-md shadow-lg w-full h-[400px] object-cover"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-md shadow-lg">
-                <p className="text-2xl font-bold text-primary">200+</p>
-                <p className="text-sm text-muted-foreground">Nationalities call Dubai home</p>
-              </div>
+            <a href="/#lead-form">
+              <Button className="bg-emerald-600 hover:bg-emerald-700">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Schedule Expert Consultation
+              </Button>
+            </a>
+            <div className="mt-8 bg-white/10 backdrop-blur-sm border border-white/20 rounded-md p-4">
+              <p className="text-2xl font-bold text-emerald-400">200+</p>
+              <p className="text-sm text-gray-200">Nationalities call Dubai home</p>
             </div>
           </div>
         </div>
@@ -953,35 +950,35 @@ export default function Relocate() {
       </section>
 
       {/* Pricing & Consulting Charges Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900/20 to-purple-900/20 border-b border-blue-900/30 relative overflow-hidden">
-        <div className="absolute top-4 right-4 bg-red-500/20 border border-red-500/50 rounded-lg px-3 py-1 text-xs font-bold text-red-300 animate-pulse">
+      <section className="py-20 bg-gradient-to-r from-blue-900/40 to-purple-900/40 border-b border-blue-800/60 relative overflow-hidden">
+        <div className="absolute top-4 right-4 bg-red-600/40 border border-red-500 rounded-lg px-3 py-1 text-xs font-bold text-red-100 animate-pulse">
           Only 3 Spots Available Today
         </div>
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4">
+            <Badge variant="outline" className="mb-4 border-blue-600 bg-blue-900/30">
               <TrendingUp className="w-3 h-3 mr-1" />
               Investment-Grade Service
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-pricing-title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900" data-testid="text-pricing-title">
               Relocation Consulting Fees (25% OFF Today)
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-2">
+            <p className="text-slate-700 max-w-2xl mx-auto mb-2 font-medium">
               Investment as low as $3,746. One-time fee. Lifetime support.
             </p>
-            <p className="text-sm text-amber-500 font-semibold">
-              ✨ Save $2,500 - $5,000 with today's holiday offer
+            <p className="text-sm text-orange-600 font-semibold">
+              Save $2,500 - $5,000 with today's holiday offer
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {/* Consumer Package */}
-            <Card className="border-emerald-500/30 hover:border-emerald-400/50 transition-colors" data-testid="card-family-package">
+            <Card className="border-emerald-500/50 bg-white/95 shadow-md hover:border-emerald-400/80 transition-colors" data-testid="card-family-package">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Home className="w-5 h-5 text-emerald-500" />
+                <CardTitle className="flex items-center gap-2 text-slate-900">
+                  <Home className="w-5 h-5 text-emerald-600" />
                   Family Relocation
                 </CardTitle>
-                <CardDescription>Complete family transition</CardDescription>
+                <CardDescription className="text-slate-600">Complete family transition</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
@@ -1022,16 +1019,16 @@ export default function Relocate() {
             </Card>
 
             {/* Business Package (Featured) */}
-            <Card className="border-primary/50 ring-2 ring-primary/20 hover:ring-primary/40 transition-all relative" data-testid="card-business-package">
+            <Card className="border-primary/80 ring-2 ring-primary/40 bg-white/98 shadow-lg hover:ring-primary/60 transition-all relative" data-testid="card-business-package">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
+                <Badge className="bg-primary text-primary-foreground font-semibold">Most Popular</Badge>
               </div>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Briefcase className="w-5 h-5 text-primary" />
+                <CardTitle className="flex items-center gap-2 text-slate-900">
+                  <Briefcase className="w-5 h-5 text-blue-600" />
                   Capital & Business Setup
                 </CardTitle>
-                <CardDescription>Entrepreneurs & investors</CardDescription>
+                <CardDescription className="text-slate-600">Entrepreneurs & investors</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
@@ -1076,13 +1073,13 @@ export default function Relocate() {
             </Card>
 
             {/* Premium Package */}
-            <Card className="border-purple-500/30 hover:border-purple-400/50 transition-colors" data-testid="card-premium-package">
+            <Card className="border-purple-500/50 bg-white/95 shadow-md hover:border-purple-400/80 transition-colors" data-testid="card-premium-package">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Star className="w-5 h-5 text-purple-500" />
+                <CardTitle className="flex items-center gap-2 text-slate-900">
+                  <Star className="w-5 h-5 text-purple-600" />
                   Premium VIP
                 </CardTitle>
-                <CardDescription>White-glove service</CardDescription>
+                <CardDescription className="text-slate-600">White-glove service</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
