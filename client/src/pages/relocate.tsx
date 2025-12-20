@@ -498,75 +498,6 @@ export default function Relocate() {
               </div>
             </div>
           </div>
-
-          {/* Partnership Disclaimer */}
-          <div className="bg-yellow-950/50 border-2 border-yellow-700/70 rounded-lg p-6 backdrop-blur-sm">
-            <div className="flex gap-3">
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-yellow-600/30">
-                  <svg className="h-5 w-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-bold text-yellow-200 mb-2">Partnership & Authorization Disclaimer</h4>
-                <p className="text-sm text-yellow-50">DeliWer operates in exclusive partnership with authorized business setup firms, immigration consultants, real estate agencies, and banking partners licensed and authorized by UAE regulatory authorities (DIFC, DED, SCA, DLD, etc.). All services are delivered through our vetted partner network—we do not provide direct legal, visa, or financial advisory services. All recommendations comply with UAE laws and regulations. Clients are advised to conduct independent verification of all services.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Free Zones & Workspaces Logos Section */}
-      <section className="py-16 bg-gradient-to-r from-slate-900/80 via-blue-900/70 to-slate-900/80 border-b border-slate-800/60">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Authorized Partner Access</h3>
-            <p className="text-gray-300">We provide comprehensive services across Dubai's premium business ecosystems</p>
-          </div>
-
-          <div className="mb-12">
-            <h4 className="text-lg font-semibold text-white mb-6 text-center">Premium Free Zones</h4>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { name: "DIFC", icon: "🏛️", desc: "Dubai International Financial Centre" },
-                { name: "DMCC", icon: "💼", desc: "Dubai Multi Commodities Centre" },
-                { name: "DAFZA", icon: "🚢", desc: "Dubai Airport Free Zone" },
-                { name: "Dubai South", icon: "✈️", desc: "Dubai South Free Zone" }
-              ].map((zone, idx) => (
-                <div key={idx} className="bg-gradient-to-br from-blue-900/50 to-purple-900/50 border border-blue-700/50 rounded-lg p-6 text-center hover-elevate cursor-pointer" data-testid={`card-freezone-${idx}`}>
-                  <div className="text-4xl mb-3">{zone.icon}</div>
-                  <h5 className="font-bold text-white mb-1">{zone.name}</h5>
-                  <p className="text-xs text-gray-300">{zone.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-6 text-center">Workspace & Co-Working Partners</h4>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { name: "Enterprise Offices", icon: "🏢", desc: "Premium office spaces" },
-                { name: "Co-Working Hubs", icon: "👥", desc: "Flexible work environments" },
-                { name: "Tech Parks", icon: "💻", desc: "Innovation hubs & incubators" },
-                { name: "Virtual Offices", icon: "🌐", desc: "Professional address solutions" }
-              ].map((workspace, idx) => (
-                <div key={idx} className="bg-gradient-to-br from-emerald-900/50 to-teal-900/50 border border-emerald-700/50 rounded-lg p-6 text-center hover-elevate cursor-pointer" data-testid={`card-workspace-${idx}`}>
-                  <div className="text-4xl mb-3">{workspace.icon}</div>
-                  <h5 className="font-bold text-white mb-1">{workspace.name}</h5>
-                  <p className="text-xs text-gray-300">{workspace.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-10 p-4 bg-blue-900/30 border border-blue-700/50 rounded-lg text-center">
-            <p className="text-sm text-gray-200">
-              <span className="font-semibold text-blue-200">Seamless Access:</span> As a DeliWer partner, you get one coordinated entry point for all free zones, workspaces, and business infrastructure in Dubai. No juggling multiple vendors—we handle it all.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -1649,8 +1580,8 @@ export default function Relocate() {
         </div>
       </section>
 
-      {/* PHASE 6: PARTNERS (Trust Expansion - Revealed Last) */}
-      <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 mb-16 md:mb-0">
+      {/* PHASE 6: PARTNERS & DISCLAIMER (Trust Expansion - Revealed Last) */}
+      <section className="py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-partner-ecosystem">
@@ -1662,7 +1593,7 @@ export default function Relocate() {
           </div>
 
           {/* Unified Partners Grid */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
             {/* Workspaces */}
             <div className="text-center">
               <div className="flex items-center justify-center w-16 h-16 rounded-lg bg-emerald-500/10 border border-emerald-500/30 mx-auto mb-4">
@@ -1695,13 +1626,30 @@ export default function Relocate() {
           </div>
 
           {/* CTA Button */}
-          <div className="text-center mt-12">
+          <div className="text-center mb-12">
             <Link href="/partners">
               <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:text-emerald-300" data-testid="button-explore-partners">
                 <ArrowRight className="w-4 h-4 mr-2" />
                 View Full Network
               </Button>
             </Link>
+          </div>
+
+          {/* Partnership Disclaimer */}
+          <div className="bg-yellow-950/50 border-2 border-yellow-700/70 rounded-lg p-6 backdrop-blur-sm max-w-3xl mx-auto">
+            <div className="flex gap-3">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-yellow-600/30">
+                  <svg className="h-5 w-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-bold text-yellow-200 mb-2">Partnership & Authorization Disclaimer</h4>
+                <p className="text-sm text-yellow-50">DeliWer operates in exclusive partnership with authorized business setup firms, immigration consultants, real estate agencies, and banking partners licensed and authorized by UAE regulatory authorities (DIFC, DED, SCA, DLD, etc.). All services are delivered through our vetted partner network—we do not provide direct legal, visa, or financial advisory services. All recommendations comply with UAE laws and regulations. Clients are advised to conduct independent verification of all services.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
