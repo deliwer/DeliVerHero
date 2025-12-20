@@ -74,9 +74,7 @@ export default function Relocate() {
   const { toast } = useToast();
   const searchString = useSearch();
   const formRef = useRef<HTMLDivElement>(null);
-  const [audienceType, setAudienceType] = useState<"consumer" | "business">("consumer");
   const [showChristmasPopup, setShowChristmasPopup] = useState(false);
-  const [showLeadCaptureModal, setShowLeadCaptureModal] = useState(false);
   
   // Check if today is Christmas 2025
   useEffect(() => {
@@ -301,34 +299,6 @@ export default function Relocate() {
     { icon: Heart, title: "Work-Life Balance", description: "Zen living meets professional excellence" }
   ];
 
-  const services = audienceType === "consumer" ? consumerServices : businessServices;
-  const advantages = audienceType === "consumer" ? consumerAdvantages : businessAdvantages;
-  const lifestyleFeatures = audienceType === "consumer" ? consumerLifestyleFeatures : businessLifestyleFeatures;
-
-  const heroTagline = audienceType === "consumer" 
-    ? "A calm, thoughtful approach to relocating your family. Expert guidance for those seeking safety, quality education, and a sustainable way of life."
-    : "A trusted advisory for founders, investors, and families considering Dubai as their next chapter. Private consultations tailored to your goals.";
-
-  const sectionTitle = audienceType === "consumer" 
-    ? "Why Families Choose Dubai"
-    : "Capital Relocation Consulting";
-
-  const sectionDescription = audienceType === "consumer"
-    ? "Discover why Dubai is the top choice for families seeking safety, education, and quality of life."
-    : "Our flagship service: strategic guidance for high-net-worth individuals and businesses seeking to optimize their global footprint through Dubai.";
-
-  const formTitle = audienceType === "consumer"
-    ? "Begin Your Family's Journey"
-    : "Book a Private Relocation Conversation";
-
-  const formDescription = audienceType === "consumer"
-    ? "Share a few details and our family relocation advisors will reach out for a private, no-obligation conversation."
-    : "Share a few details and our expert advisors will schedule a confidential consultation tailored to your goals.";
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    leadMutation.mutate({ ...formData, audienceType });
-  };
 
   const schemaOrgData = {
     "@context": "https://schema.org",
@@ -374,7 +344,7 @@ export default function Relocate() {
     <div className="min-h-screen bg-background">
       {/* Christmas 25% Off Popup - Shows on Dec 25 */}
       <Dialog open={showChristmasPopup} onOpenChange={setShowChristmasPopup}>
-        <DialogContent className="sm:max-w-md bg-gradient-to-br from-red-950/80 to-green-950/80 border-2 border-green-500" data-testid="dialog-christmas">
+        <DialogContent className="sm:max-w-md bg-gradient-to-br from-red-950/80 to-green-950/80 border-2 border-green-500 z-[9999]" data-testid="dialog-christmas">
           <DialogHeader>
             <DialogTitle className="text-center text-2xl md:text-3xl font-bold text-white mb-2" data-testid="text-christmas-title">
               🎄 Your Last-Minute Chance
@@ -424,82 +394,6 @@ export default function Relocate() {
         </DialogContent>
       </Dialog>
 
-      {/* Lead Capture Onboarding Modal */}
-      <Dialog open={showLeadCaptureModal} onOpenChange={setShowLeadCaptureModal}>
-        <DialogContent className="sm:max-w-md" data-testid="dialog-lead-capture">
-          <DialogHeader>
-            <DialogTitle data-testid="text-onboarding-title">Start Your Dubai Journey</DialogTitle>
-            <DialogDescription data-testid="text-onboarding-desc">
-              Quick 2-minute assessment. Get personalized relocation roadmap + 25% off today.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            leadMutation.mutate({...formData, audienceType});
-            setShowLeadCaptureModal(false);
-          }} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="modal-name">Full Name *</Label>
-              <Input 
-                id="modal-name"
-                placeholder="Your name"
-                value={formData.name}
-                onChange={(e) => setFormData({...formData, name: e.target.value})}
-                required
-                data-testid="input-modal-name"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="modal-email">Email *</Label>
-              <Input 
-                id="modal-email"
-                type="email"
-                placeholder="you@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                required
-                data-testid="input-modal-email"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="modal-timeline">Timeline *</Label>
-              <Select 
-                value={formData.timeline}
-                onValueChange={(value) => setFormData({...formData, timeline: value})}
-              >
-                <SelectTrigger data-testid="select-modal-timeline">
-                  <SelectValue placeholder="When are you moving?" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="immediate">Within 1 month</SelectItem>
-                  <SelectItem value="soon">1-3 months</SelectItem>
-                  <SelectItem value="planning">3-6 months</SelectItem>
-                  <SelectItem value="exploring">6+ months (exploring)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <Button 
-              type="submit" 
-              className="w-full bg-green-600 hover:bg-green-700" 
-              size="lg"
-              disabled={leadMutation.isPending}
-              data-testid="button-modal-submit"
-            >
-              {leadMutation.isPending ? (
-                <>Submitting...</>
-              ) : (
-                <>
-                  <Check className="w-4 h-4 mr-2" />
-                  Get My Personalized Roadmap
-                </>
-              )}
-            </Button>
-            <p className="text-xs text-center text-muted-foreground">
-              We'll email your customized plan + schedule a free call within 24 hours
-            </p>
-          </form>
-        </DialogContent>
-      </Dialog>
       <Helmet>
         <title>Dubai Relocation Consulting | Capital & Family Relocation Services | DeliWer</title>
         <meta name="description" content="Expert Dubai relocation consulting for investors, families & businesses. Validated by Dealroom. 0% income tax, Golden Visa, business setup in 1-3 days. Part of Dubai's founders ecosystem. Start your Dubai journey today." />
@@ -629,86 +523,26 @@ export default function Relocate() {
               Schedule Free Call (30 min)
             </Button>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-            <Button
-              variant={audienceType === "consumer" ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setAudienceType("consumer")}
-              className={audienceType === "consumer" ? "" : "text-white/70"}
-              data-testid="button-toggle-consumer"
-            >
-              <Users className="w-4 h-4 mr-2" />
-              Individuals & Families
-            </Button>
-            <Button
-              variant={audienceType === "business" ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setAudienceType("business")}
-              className={audienceType === "business" ? "" : "text-white/70"}
-              data-testid="button-toggle-business"
-            >
-              <Briefcase className="w-4 h-4 mr-2" />
-              Businesses & Investors
-            </Button>
-          </div>
         </div>
       </section>
 
+      {/* Core Services Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
-              {audienceType === "consumer" ? (
-                <><Users className="w-3 h-3 mr-1" />Family Benefits</>
-              ) : (
-                <><DollarSign className="w-3 h-3 mr-1" />Core Revenue Driver</>
-              )}
+              <DollarSign className="w-3 h-3 mr-1" />
+              Our Services
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-capital-title">
-              {sectionTitle}
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {sectionDescription}
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {advantages.map((advantage, index) => (
-              <Card key={index} className="text-center hover-elevate" data-testid={`card-advantage-${index}`}>
-                <CardContent className="pt-6">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <advantage.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{advantage.title}</h3>
-                  <p className="text-muted-foreground text-sm">{advantage.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="text-center">
-            <a href="#lead-form">
-              <Button size="lg" data-testid="button-advantages-cta">
-                <ArrowRight className="w-4 h-4 mr-2" />
-                Get Your Free Consultation
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-services-title">
-              {audienceType === "consumer" ? "Family Relocation Services" : "Business & Investment Services"}
+              Complete Business & Investment Services
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              {audienceType === "consumer" 
-                ? "Comprehensive support for your family's transition to Dubai"
-                : "Comprehensive support for every step of your business journey"}
+              Comprehensive support for capital relocation, business setup, and investment opportunities
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
+            {businessServices.map((service, index) => (
               <Card key={index} className="hover-elevate" data-testid={`card-service-${index}`}>
                 <CardHeader>
                   <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center mb-4">
@@ -733,108 +567,6 @@ export default function Relocate() {
         </div>
       </section>
 
-      {/* How People Actually Live in Dubai Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge variant="outline" className="mb-4">
-              <Home className="w-3 h-3 mr-1" />
-              Real Life in Dubai
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-living-title">
-              How People Actually Live in Dubai
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Beyond the headlines — discover the everyday reality of families, founders, and investors who call Dubai home.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Tranquil Living */}
-            <Card className="overflow-hidden" data-testid="card-tranquil-living">
-              <div className="relative h-48">
-                <img 
-                  src={wellnessResidence} 
-                  alt="Wellness-focused Dubai residence" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <Badge className="bg-white/20 backdrop-blur-sm border-white/30 text-white">
-                    <Heart className="w-3 h-3 mr-1" />
-                    Tranquil Living
-                  </Badge>
-                </div>
-              </div>
-              <CardContent className="pt-6">
-                <h3 className="font-bold text-xl mb-3">Tranquil Residences & Conscious Living</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  Dubai now offers wellness-focused residences designed for calm, longevity, and balance. 
-                  Nature-integrated communities prioritize light, air quality, and mindful design.
-                </p>
-                <p className="text-xs text-muted-foreground italic">
-                  Inspired by concepts such as Wellcube Life — wellness-driven, tranquil residential ecosystems.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Fractional Ownership */}
-            <Card className="overflow-hidden" data-testid="card-fractional-ownership">
-              <div className="relative h-48">
-                <img 
-                  src={dubaiFamily} 
-                  alt="Diverse Dubai community" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <Badge className="bg-white/20 backdrop-blur-sm border-white/30 text-white">
-                    <TrendingUp className="w-3 h-3 mr-1" />
-                    Modern Ownership
-                  </Badge>
-                </div>
-              </div>
-              <CardContent className="pt-6">
-                <h3 className="font-bold text-xl mb-3">Fractional Ownership for a New World</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  Live, invest, or diversify without full capital lock-in — an emerging model for global citizens 
-                  seeking flexibility and reduced risk exposure.
-                </p>
-                <p className="text-xs text-muted-foreground italic">
-                  An exploratory pathway for those considering partial ownership as part of modern capital allocation.
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Business Setup */}
-            <Card className="overflow-hidden" data-testid="card-business-setup">
-              <div className="relative h-48">
-                <img 
-                  src={coworkingOffice} 
-                  alt="Dubai business ecosystem" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <Badge className="bg-white/20 backdrop-blur-sm border-white/30 text-white">
-                    <Building2 className="w-3 h-3 mr-1" />
-                    Business Ecosystem
-                  </Badge>
-                </div>
-              </div>
-              <CardContent className="pt-6">
-                <h3 className="font-bold text-xl mb-3">Business Setup with Ecosystem Access</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  From licensing to operational support, Dubai enables founders to establish quickly and scale globally. 
-                  Free zones provide 100% ownership and streamlined processes.
-                </p>
-                <p className="text-xs text-muted-foreground italic">
-                  Business ecosystems such as DubaiSouthBH illustrate how zones support international founders.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* Why Dubai Now Section */}
       <section className="py-20">
@@ -956,24 +688,21 @@ export default function Relocate() {
         </div>
       </section>
 
+      {/* Why Dubai Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <Badge variant="outline" className="mb-4">
                 <Heart className="w-3 h-3 mr-1" />
-                {audienceType === "consumer" ? "Family Life" : "Lifestyle & Culture"}
+                Why Dubai For Business
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" data-testid="text-lifestyle-title">
-                {audienceType === "consumer" ? "A Safe & Enriching Life for Your Family" : "A Zen & Abundant Lifestyle"}
-              </h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">World-Class Living Meets Global Business</h2>
               <p className="text-muted-foreground mb-8">
-                {audienceType === "consumer" 
-                  ? "Dubai offers an exceptional quality of life for families. Enjoy world-class schools, safe neighborhoods, family-friendly entertainment, and a multicultural community that welcomes newcomers."
-                  : "Dubai offers more than business opportunities. Enjoy safety, world-class amenities, and climate-conscious living in one of the world's most cosmopolitan cities."}
+                Dubai offers the complete package: business growth, lifestyle excellence, and financial optimization. Attract world-class talent, maintain work-life balance, and build wealth in a politically stable, cosmopolitan hub.
               </p>
               <div className="grid grid-cols-2 gap-4 mb-6">
-                {lifestyleFeatures.map((feature, index) => (
+                {businessLifestyleFeatures.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <feature.icon className="w-5 h-5 text-primary" />
@@ -985,32 +714,29 @@ export default function Relocate() {
                   </div>
                 ))}
               </div>
-              <a href="#lead-form">
-                <Button data-testid="button-lifestyle-cta">
+              <a href="/#lead-form">
+                <Button>
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  Discuss Your Lifestyle Goals
+                  Schedule Expert Consultation
                 </Button>
               </a>
             </div>
             <div className="relative">
               <img 
                 src={dubaiLifestyle} 
-                alt="Dubai luxury lifestyle" 
+                alt="Dubai business lifestyle" 
                 className="rounded-md shadow-lg w-full h-[400px] object-cover"
-                data-testid="img-lifestyle"
               />
               <div className="absolute -bottom-6 -left-6 bg-card p-4 rounded-md shadow-lg">
                 <p className="text-2xl font-bold text-primary">200+</p>
-                <p className="text-sm text-muted-foreground">
-                  {audienceType === "consumer" ? "International schools" : "Nationalities call Dubai home"}
-                </p>
+                <p className="text-sm text-muted-foreground">Nationalities call Dubai home</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="comparison" className="py-20 bg-muted/30">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4">
@@ -1278,27 +1004,27 @@ export default function Relocate() {
         </div>
       </section>
 
-      {/* Investment Readiness Validation - Short Form */}
-      <section className="py-16 bg-gradient-to-b from-emerald-950/20 to-teal-950/20 border-b border-emerald-900/30">
+      {/* Investment Readiness Validation Form - PRIMARY CTA */}
+      <section ref={formRef} className="py-20 bg-gradient-to-b from-emerald-950/20 to-teal-950/20 border-y border-emerald-900/30">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-10">
-            <Badge variant="outline" className="mb-4 border-emerald-500/50">
+            <Badge variant="outline" className="mb-4 border-emerald-500/50 bg-emerald-500/10">
               <Award className="w-3 h-3 mr-1" />
-              For Investors
+              Book Your Strategy Call
             </Badge>
-            <h2 className="text-2xl md:text-3xl font-bold mb-3" data-testid="text-validation-title">
-              Validate Your Investment Readiness
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-validation-title">
+              Talk to a Dubai Relocation Expert
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Quick assessment via Dealroom or Gust profile. Unlock personalized Dubai investment opportunities tailored to your portfolio.
+              Schedule a confidential 30-minute strategy call with our investment advisors. We'll assess your goals and create a personalized Dubai pathway.
             </p>
           </div>
-          <Card className="border-emerald-500/30 bg-emerald-950/30">
-            <CardContent className="pt-6">
+          <Card className="border-emerald-500/30 bg-emerald-950/20">
+            <CardContent className="pt-8">
               <form onSubmit={(e) => {
                 e.preventDefault();
-                leadMutation.mutate({...formData, audienceType, investmentIntent: "dealroom-validation"});
-              }} className="space-y-4">
+                leadMutation.mutate({...formData, investmentIntent: "strategy-call"});
+              }} className="space-y-5">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="inv-name">Full Name *</Label>
@@ -1412,224 +1138,24 @@ export default function Relocate() {
         </div>
       </section>
 
-      <section id="lead-form" ref={formRef} className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-10">
-              <Badge variant="outline" className="mb-4 bg-green-500/10 border-green-500/50">
-                <Send className="w-3 h-3 mr-1" />
-                Quick Assessment (2 min)
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-form-title">
-                Your Personalized Relocation Plan
-              </h2>
-              <p className="text-muted-foreground">
-                Fill out this short assessment and we'll send you a customized roadmap within 24 hours
-              </p>
-            </div>
-            <Card>
-              <CardContent className="pt-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
-                      <Input 
-                        id="name" 
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        required
-                        data-testid="input-name"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
-                      <Input 
-                        id="email" 
-                        type="email"
-                        placeholder="you@example.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        required
-                        data-testid="input-email"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone Number</Label>
-                      <Input 
-                        id="phone" 
-                        placeholder="+1 (555) 000-0000"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        data-testid="input-phone"
-                      />
-                    </div>
-                    {audienceType === "business" ? (
-                      <div className="space-y-2">
-                        <Label htmlFor="capitalRange">Capital to Relocate</Label>
-                        <Select 
-                          value={formData.capitalRange}
-                          onValueChange={(value) => setFormData({...formData, capitalRange: value})}
-                        >
-                          <SelectTrigger data-testid="select-capital">
-                            <SelectValue placeholder="Select range" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="under-100k">Under $100,000</SelectItem>
-                            <SelectItem value="100k-500k">$100,000 - $500,000</SelectItem>
-                            <SelectItem value="500k-1m">$500,000 - $1,000,000</SelectItem>
-                            <SelectItem value="1m-5m">$1,000,000 - $5,000,000</SelectItem>
-                            <SelectItem value="5m-plus">$5,000,000+</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <Label htmlFor="familySize">Family Size</Label>
-                        <Select 
-                          value={formData.familySize}
-                          onValueChange={(value) => setFormData({...formData, familySize: value})}
-                        >
-                          <SelectTrigger data-testid="select-family">
-                            <SelectValue placeholder="Select size" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="single">Individual</SelectItem>
-                            <SelectItem value="couple">Couple</SelectItem>
-                            <SelectItem value="small-family">Family (1-2 children)</SelectItem>
-                            <SelectItem value="large-family">Family (3+ children)</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {audienceType === "consumer" ? (
-                      <div className="space-y-2">
-                        <Label htmlFor="schoolPreference">School Preference</Label>
-                        <Select 
-                          value={formData.businessType}
-                          onValueChange={(value) => setFormData({...formData, businessType: value})}
-                        >
-                          <SelectTrigger data-testid="select-school">
-                            <SelectValue placeholder="Select curriculum" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="british">British Curriculum</SelectItem>
-                            <SelectItem value="american">American Curriculum</SelectItem>
-                            <SelectItem value="ib">International Baccalaureate</SelectItem>
-                            <SelectItem value="indian">Indian Curriculum</SelectItem>
-                            <SelectItem value="other">Other / Not Sure</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <Label htmlFor="businessType">Business/Investment Interest</Label>
-                        <Select 
-                          value={formData.businessType}
-                          onValueChange={(value) => setFormData({...formData, businessType: value})}
-                        >
-                          <SelectTrigger data-testid="select-business">
-                            <SelectValue placeholder="Select type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="startup">Startup / Tech Company</SelectItem>
-                            <SelectItem value="trading">Trading / Import-Export</SelectItem>
-                            <SelectItem value="consulting">Consulting / Professional Services</SelectItem>
-                            <SelectItem value="real-estate">Real Estate Investment</SelectItem>
-                            <SelectItem value="passive">Passive Investment / Retirement</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                    <div className="space-y-2">
-                      <Label htmlFor="timeline">Relocation Timeline</Label>
-                      <Select 
-                        value={formData.timeline}
-                        onValueChange={(value) => setFormData({...formData, timeline: value})}
-                      >
-                        <SelectTrigger data-testid="select-timeline">
-                          <SelectValue placeholder="When?" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="immediate">Within 1 month</SelectItem>
-                          <SelectItem value="soon">1-3 months</SelectItem>
-                          <SelectItem value="planning">3-6 months</SelectItem>
-                          <SelectItem value="exploring">6+ months (exploring)</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">
-                      {audienceType === "consumer" ? "Tell us about your family's needs" : "Additional Information"}
-                    </Label>
-                    <Textarea 
-                      id="message"
-                      placeholder={audienceType === "consumer" 
-                        ? "Tell us about your children's ages, educational needs, lifestyle preferences..."
-                        : "Tell us about your goals, concerns, or specific requirements..."}
-                      value={formData.message}
-                      onChange={(e) => setFormData({...formData, message: e.target.value})}
-                      className="min-h-[100px]"
-                      data-testid="textarea-message"
-                    />
-                  </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    size="lg" 
-                    disabled={leadMutation.isPending}
-                    data-testid="button-submit-form"
-                  >
-                    {leadMutation.isPending ? (
-                      <>Processing...</>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 mr-2" />
-                        {audienceType === "consumer" 
-                          ? "Submit & Get Your Family Transition Plan"
-                          : "Submit & Get Your Personalized Roadmap"}
-                      </>
-                    )}
-                  </Button>
-                  <p className="text-xs text-center text-muted-foreground">
-                    By submitting, you agree to our privacy policy. We respect your data and will respond within 24 hours.
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-primary text-primary-foreground">
+      {/* Investor Network CTA */}
+      <section className="py-16 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-cta-title">
-            {audienceType === "consumer" 
-              ? "Join the DeliWer Family Community"
-              : "Join the DeliWer Investor Network"}
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Join the DeliWer Investor Network</h2>
           <p className="text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            {audienceType === "consumer"
-              ? "Connect with other relocating families, access exclusive resources, and get personalized support for your Dubai journey."
-              : "Connect with founders, investors, and partners. Access exclusive events, investment opportunities, and personalized advisory services."}
+            Connect with founders, investors, and venture partners. Access exclusive investment opportunities, events, and personalized advisory.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/relocate-community">
-              <Button size="lg" variant="secondary" data-testid="button-join-circle">
+              <Button size="lg" variant="secondary">
                 <Users className="w-4 h-4 mr-2" />
-                {audienceType === "consumer" ? "Join Family Circle" : "Join Relocate Circle"}
+                Join Investor Circle
               </Button>
             </Link>
             <Link href="/relocate-community#inner-ring">
-              <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground" data-testid="button-apply-inner">
+              <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground">
                 <Shield className="w-4 h-4 mr-2" />
-                {audienceType === "consumer" ? "Apply for VIP Support" : "Apply for Inner Ring"}
+                Apply for Inner Ring
               </Button>
             </Link>
           </div>

@@ -47,7 +47,7 @@ export function Navigation() {
   const b2bNavItems = [
     { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment", featured: true },
     { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack" },
-    { path: "/relocate", label: "Relocate", id: "relocate" },
+    { path: "/relocate", label: "Relocate Capital", id: "relocate" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/corporate-partner-portal", label: "Partner Portal", id: "partner-portal" },
     { path: "/investor-dashboard", label: "Investors", id: "investors" },
