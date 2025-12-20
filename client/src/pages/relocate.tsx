@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { contactInfo } from "@/lib/contact-info";
 import { 
   Globe, 
   Building2, 
@@ -62,7 +63,8 @@ import {
   Award,
   ExternalLink,
   X,
-  Check
+  Check,
+  Mail
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -1358,12 +1360,12 @@ export default function Relocate() {
           style={{ backgroundImage: `url(${familyLuxury})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/85 to-teal-950/85" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
+        <div className="relative z-10 max-w-5xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Get in Touch</h2>
             <p className="text-emerald-100 text-lg">Multiple ways to start your Dubai journey</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <Calendar className="w-8 h-8 text-emerald-400 mb-4" />
@@ -1374,9 +1376,9 @@ export default function Relocate() {
                   onClick={() => {
                     const calendlyWindow = window as any;
                     if (calendlyWindow.Calendly) {
-                      calendlyWindow.Calendly.showPopupWidget('https://calendly.com/deliwer/consultation');
+                      calendlyWindow.Calendly.initPopupWidget({url: contactInfo.ctas.calendly});
                     } else {
-                      window.open('https://calendly.com/deliwer/consultation', '_blank');
+                      window.open(contactInfo.ctas.calendly, '_blank');
                     }
                   }}
                   data-testid="button-calendly-card"
@@ -1387,28 +1389,49 @@ export default function Relocate() {
             </Card>
             <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
               <CardContent className="pt-6">
-                <MessageCircle className="w-8 h-8 text-blue-400 mb-4" />
-                <h3 className="font-semibold mb-2 text-white">WhatsApp</h3>
-                <p className="text-sm text-gray-300 mb-4">Quick chat to discuss your relocation goals</p>
-                <a href="https://wa.me/971542501500?text=Hi%20DeliWer%2C%20I%27m%20interested%20in%20relocating%20to%20Dubai" target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700" data-testid="button-whatsapp-card">
-                    Message Now
-                  </Button>
-                </a>
-              </CardContent>
-            </Card>
-            <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
-              <CardContent className="pt-6">
                 <Send className="w-8 h-8 text-orange-400 mb-4" />
-                <h3 className="font-semibold mb-2 text-white">Email</h3>
+                <h3 className="font-semibold mb-2 text-white">Email Us</h3>
                 <p className="text-sm text-gray-300 mb-4">Send your details and we'll respond within 24 hours</p>
-                <a href="mailto:relocate@deliwer.com">
+                <a href={`${contactInfo.ctas.emailBase}${contactInfo.company.service}`}>
                   <Button className="w-full bg-orange-600 hover:bg-orange-700" data-testid="button-email-card">
-                    Email Us
+                    {contactInfo.company.service}
                   </Button>
                 </a>
               </CardContent>
             </Card>
+          </div>
+          
+          <div className="bg-slate-800/40 border border-slate-700/50 rounded-lg p-6 mb-8">
+            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+              <MessageCircle className="w-5 h-5 text-blue-400" />
+              Reach Out to Our Founders
+            </h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              {contactInfo.founders.map((founder) => (
+                <div key={founder.name} className="p-4 bg-slate-900/40 rounded border border-slate-700/30">
+                  <p className="text-white font-semibold text-sm mb-1">{founder.name}</p>
+                  <p className="text-xs text-emerald-300 mb-3">{founder.title}</p>
+                  <div className="space-y-2">
+                    <a 
+                      href={`${contactInfo.ctas.emailBase}${founder.email}`}
+                      className="flex items-center gap-2 text-gray-300 hover:text-emerald-400 transition-colors text-xs"
+                    >
+                      <Mail className="w-3 h-3" />
+                      {founder.email}
+                    </a>
+                    <a 
+                      href={`${contactInfo.ctas.whatsappBase}${founder.whatsappLink}?text=Hi%20${founder.name.replace(' ', '%20')}%2C%20I%27m%20interested%20in%20relocating%20to%20Dubai`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors text-xs"
+                    >
+                      <MessageCircle className="w-3 h-3" />
+                      {founder.whatsapp}
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

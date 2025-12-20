@@ -5,6 +5,8 @@ import {
   Twitter, Linkedin, Youtube 
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { contactInfo } from "@/lib/contact-info";
+import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
   return (
@@ -48,12 +50,12 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5 text-emerald-400 mt-0.5" />
                     <div>
                       <p className="text-white font-medium">Email</p>
-                      <a href="mailto:info@deliwer.com" className="text-gray-400 hover:text-emerald-400 transition-colors">
-                        info@deliwer.com
+                      <a href={`${contactInfo.ctas.emailBase}${contactInfo.company.email}`} className="text-gray-400 hover:text-emerald-400 transition-colors">
+                        {contactInfo.company.email}
                       </a>
                       <br />
-                      <a href="mailto:support@deliwer.com" className="text-gray-400 hover:text-emerald-400 transition-colors text-sm">
-                        support@deliwer.com
+                      <a href={`${contactInfo.ctas.emailBase}${contactInfo.company.service}`} className="text-gray-400 hover:text-emerald-400 transition-colors text-sm">
+                        {contactInfo.company.service}
                       </a>
                     </div>
                   </div>
@@ -62,7 +64,7 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5 text-emerald-400 mt-0.5" />
                     <div>
                       <p className="text-white font-medium">Phone & WhatsApp</p>
-                      <a href="tel:+971545454595" className="text-gray-400 hover:text-emerald-400 transition-colors">+971 52 394 6311</a>
+                      <a href={`tel:${contactInfo.company.phone}`} className="text-gray-400 hover:text-emerald-400 transition-colors">{contactInfo.company.phone}</a>
                     </div>
                   </div>
                   
@@ -71,10 +73,10 @@ export default function ContactPage() {
                     <div>
                       <p className="text-white font-medium">Address</p>
                       <p className="text-gray-400">
-                        DeliWer Shopping FZCO<br />
-                        50 9WC 523 Block C<br />
-                        Dubai Airport Freezone<br />
-                        Dubai, UAE
+                        {contactInfo.company.address.name}<br />
+                        {contactInfo.company.address.street}<br />
+                        {contactInfo.company.address.zone}<br />
+                        {contactInfo.company.address.city}
                       </p>
                     </div>
                   </div>
@@ -84,9 +86,9 @@ export default function ContactPage() {
                     <div>
                       <p className="text-white font-medium">Business Hours</p>
                       <p className="text-gray-400">
-                        Sunday - Thursday: 9:00 AM - 6:00 PM<br />
-                        Friday - Saturday: 10:00 AM - 4:00 PM<br />
-                        <span className="text-emerald-400 text-sm">24/7 Online Support Available</span>
+                        {contactInfo.company.hours.weekdays}<br />
+                        {contactInfo.company.hours.weekend}<br />
+                        <span className="text-emerald-400 text-sm">{contactInfo.company.hours.support}</span>
                       </p>
                     </div>
                   </div>
@@ -140,16 +142,30 @@ export default function ContactPage() {
                       YouTube
                     </a>
                   </div>
-                  <div className="pt-2">
-                    <a 
-                      href="https://wa.me/971545454595" 
-                      className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="w-4 h-4" />
-                      WhatsApp Support
-                    </a>
+                  <div className="pt-4 border-t border-slate-700 space-y-3">
+                    <p className="text-sm text-gray-300 font-semibold">Founder Contacts:</p>
+                    {contactInfo.founders.map((founder) => (
+                      <div key={founder.name} className="text-sm">
+                        <p className="text-white font-medium">{founder.name} - {founder.title}</p>
+                        <div className="flex gap-2 mt-1">
+                          <a 
+                            href={`mailto:${founder.email}`} 
+                            className="text-emerald-400 hover:text-emerald-300 text-xs"
+                          >
+                            Email
+                          </a>
+                          <span className="text-gray-600">•</span>
+                          <a 
+                            href={`${contactInfo.ctas.whatsappBase}${founder.whatsappLink}`}
+                            className="text-emerald-400 hover:text-emerald-300 text-xs"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            WhatsApp
+                          </a>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </CardContent>
