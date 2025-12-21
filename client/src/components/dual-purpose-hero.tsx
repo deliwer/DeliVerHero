@@ -3,6 +3,7 @@ import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp } from "lucide-
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroImage from "@assets/generated_images/diverse_global_founders_and_hnwis_from_many_nationalities.png";
+import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
 
 export function DualPurposeHero() {
   const [audience, setAudience] = useState<'consumer' | 'entrepreneur'>('consumer');
@@ -154,7 +155,7 @@ export function DualPurposeHero() {
       <section 
         className="relative py-12 px-4 overflow-hidden"
         style={{
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: `url(${ecosystemImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
