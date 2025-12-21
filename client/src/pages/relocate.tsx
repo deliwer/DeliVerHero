@@ -1583,6 +1583,72 @@ export default function Relocate() {
         </div>
       </section>
 
+      {/* Timeline Guarantee & Social Proof Section */}
+      <section className="py-20 bg-gradient-to-r from-emerald-900/40 to-teal-900/40 border-y border-emerald-700/60">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge variant="outline" className="mb-4 bg-emerald-600/30 border-emerald-400/50 text-emerald-100">
+                <Award className="w-3 h-3 mr-1" />
+                Performance Guarantee
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Your Relocation, On Schedule</h2>
+              <div className="space-y-4">
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                    <Calendar className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">40-90 Day Full Relocation</h4>
+                    <p className="text-sm text-gray-300">Golden Visa, business setup, banking, housing, and family settlement completed within this timeframe—or we extend support at no additional cost.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Milestone-Based Tracking</h4>
+                    <p className="text-sm text-gray-300">Real-time progress dashboard. Know exactly where you stand in Golden Visa approval, business licensing, and housing setup at every step.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Lifetime Support Included</h4>
+                    <p className="text-sm text-gray-300">After relocation closes, ongoing support for visa renewals, business compliance, and life changes—no renewal fees, ever.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <Card className="bg-slate-900/60 border-slate-700/50 backdrop-blur-sm text-center p-6">
+                <p className="text-4xl font-bold text-emerald-400 mb-2">500+</p>
+                <p className="text-sm text-gray-300">Successful Relocations</p>
+                <p className="text-xs text-gray-400 mt-2">Families & businesses</p>
+              </Card>
+              <Card className="bg-slate-900/60 border-slate-700/50 backdrop-blur-sm text-center p-6">
+                <p className="text-4xl font-bold text-emerald-400 mb-2">98%</p>
+                <p className="text-sm text-gray-300">Approval Rate</p>
+                <p className="text-xs text-gray-400 mt-2">Golden Visa success</p>
+              </Card>
+              <Card className="bg-slate-900/60 border-slate-700/50 backdrop-blur-sm text-center p-6">
+                <p className="text-4xl font-bold text-emerald-400 mb-2">4.9/5</p>
+                <p className="text-sm text-gray-300">Client Rating</p>
+                <p className="text-xs text-gray-400 mt-2">230+ reviews</p>
+              </Card>
+              <Card className="bg-slate-900/60 border-slate-700/50 backdrop-blur-sm text-center p-6">
+                <p className="text-4xl font-bold text-emerald-400 mb-2">45 days</p>
+                <p className="text-sm text-gray-300">Average Completion</p>
+                <p className="text-xs text-gray-400 mt-2">Full relocation</p>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="relative py-20 overflow-hidden">
         <div 
@@ -1684,7 +1750,19 @@ export default function Relocate() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Get in Touch</h2>
             <p className="text-emerald-100 text-lg">Multiple ways to start your Dubai journey</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
+              <CardContent className="pt-6">
+                <MessageCircle className="w-8 h-8 text-blue-400 mb-4" />
+                <h3 className="font-semibold mb-2 text-white">WhatsApp Chat</h3>
+                <p className="text-sm text-gray-300 mb-4">Instant messaging with our team (typical response: 15 min)</p>
+                <a href={`${contactInfo.ctas.whatsappBase}${contactInfo.company.whatsapp}?text=Hi%20DeliWer%2C%20I%27m%20interested%20in%20relocating%20to%20Dubai`} target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700" data-testid="button-whatsapp-card">
+                    Message on WhatsApp
+                  </Button>
+                </a>
+              </CardContent>
+            </Card>
             <Card className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm">
               <CardContent className="pt-6">
                 <Calendar className="w-8 h-8 text-emerald-400 mb-4" />
