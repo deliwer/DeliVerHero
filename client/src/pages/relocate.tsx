@@ -64,7 +64,11 @@ import {
   ExternalLink,
   X,
   Check,
-  Mail
+  Mail,
+  PlayCircle,
+  Clock,
+  Zap,
+  TrendingDown
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -1477,6 +1481,111 @@ export default function Relocate() {
               <Calendar className="w-4 h-4 mr-2" />
               Lock In Your Spot Now (Calendly)
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Strategy Video Section */}
+      <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-950 border-y border-slate-700/50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Video Section */}
+            <div>
+              <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                <div 
+                  className="relative w-full bg-slate-800 flex items-center justify-center"
+                  style={{ aspectRatio: "16/9" }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
+                  <div className="relative z-10 text-center">
+                    <a 
+                      href="https://dubaicatch.com" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-20 h-20 bg-emerald-600 hover:bg-emerald-700 rounded-full transition-colors group"
+                      data-testid="button-founder-video"
+                    >
+                      <PlayCircle className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
+                    </a>
+                    <p className="text-gray-300 text-sm mt-4">Watch Founder's Strategy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Section */}
+            <div>
+              <Badge variant="outline" className="mb-4 bg-emerald-600/30 border-emerald-400/50 text-emerald-100">
+                <Clock className="w-3 h-3 mr-1" />
+                Proven Relocation Framework
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Relocate in 3-4 Weeks, Not Months</h2>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/20">
+                      <Zap className="w-6 h-6 text-emerald-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">3-4 Week Timeline</h4>
+                    <p className="text-sm text-gray-300">Unlike traditional 90-day processes, our proven framework gets your Golden Visa, business setup, and banking done in weeks.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/20">
+                      <TrendingDown className="w-6 h-6 text-emerald-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Zero Personal Income Tax</h4>
+                    <p className="text-sm text-gray-300">Exit your home country's tax system entirely. No income tax, capital gains tax, or inheritance tax. Save thousands monthly.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/20">
+                      <Shield className="w-6 h-6 text-emerald-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Avoid Costly Mistakes</h4>
+                    <p className="text-sm text-gray-300">Learn the biggest relocation mistakes entrepreneurs make—wrong visa type, incorrect business structure, improper tax residency setup.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-emerald-500/20">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white mb-1">Proper Structure from Day 1</h4>
+                    <p className="text-sm text-gray-300">Choose the right path: Free Zone vs. Mainland. Banking setup. Family visa sponsorship. All coordinated perfectly.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-gray-200 text-sm">
+                  <strong>In 2025, 9,800+ millionaires relocated to UAE.</strong> Smart entrepreneurs know that waiting costs thousands in taxes every month. Dubai rewards those who plan correctly and follow the proven process.
+                </p>
+                <Button 
+                  variant="outline" 
+                  className="w-full border-emerald-500/50 hover:bg-emerald-600/20 text-white"
+                  onClick={() => window.open('https://dubaicatch.com', '_blank')}
+                  data-testid="button-learn-strategy"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Watch Full Strategy Video
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
