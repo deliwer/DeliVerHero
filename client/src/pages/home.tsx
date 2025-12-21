@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AIInteractiveHero } from "@/components/ai-interactive-hero";
+import { DualPurposeHero } from "@/components/dual-purpose-hero";
 import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
 import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
 import { FoundersSection } from "@/components/founders-section";
@@ -281,8 +281,8 @@ export default function Home() {
         </div>
       )}
 
-      {/* PHASE 1: PLAY (Attraction) - AI Interactive Hero Section */}
-      <AIInteractiveHero />
+      {/* PHASE 1: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
+      <DualPurposeHero />
 
       {/* PHASE 2: EARN (Participation) - Planet Points Challenge & Rewards */}
       <HeroChallengeLanding />
