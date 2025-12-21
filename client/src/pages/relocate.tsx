@@ -1499,7 +1499,7 @@ export default function Relocate() {
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
                   <div className="relative z-10 text-center">
                     <a 
-                      href="https://dubaicatch.com" 
+                      href="https://www.youtube.com/@vdeliwer" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center w-20 h-20 bg-emerald-600 hover:bg-emerald-700 rounded-full transition-colors group"
@@ -1578,7 +1578,7 @@ export default function Relocate() {
                 <Button 
                   variant="outline" 
                   className="w-full border-emerald-500/50 hover:bg-emerald-600/20 text-white"
-                  onClick={() => window.open('https://dubaicatch.com', '_blank')}
+                  onClick={() => window.open('https://www.youtube.com/@vdeliwer', '_blank')}
                   data-testid="button-learn-strategy"
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
