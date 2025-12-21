@@ -1,62 +1,11 @@
 import { useState } from "react";
-import { Sparkles, ArrowRight, Building2, Heart, Zap } from "lucide-react";
+import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroImage from "@assets/stock_images/dubai_home_lifestyle_37638b6f.jpg";
-import nikolayImage from "@assets/stock_images/nikolay_storonsky_re_f17b2833.jpg";
-import sarahImage from "@assets/stock_images/successful_female_te_34bd72c3.jpg";
-import amaraImage from "@assets/stock_images/successful_female_te_e9e679cd.jpg";
-
-interface FounderStory {
-  name: string;
-  company: string;
-  background: string;
-  image: string;
-  lifestylePoints: string[];
-  story: string;
-}
 
 export function DualPurposeHero() {
   const [audience, setAudience] = useState<'consumer' | 'entrepreneur'>('consumer');
-
-  const founderStories: FounderStory[] = [
-    {
-      name: "Nikolay Storonsky",
-      company: "Revolut",
-      background: "$75B Fintech Leader",
-      image: nikolayImage,
-      lifestylePoints: [
-        "Family-friendly communities with world-class schools",
-        "Zero income tax accelerates reinvestment in innovation",
-        "Proximity to both Europe and emerging markets"
-      ],
-      story: "London → Dubai 2025"
-    },
-    {
-      name: "Sarah Chen",
-      company: "GreenScale Tech",
-      background: "Sustainability Tech Founder",
-      image: sarahImage,
-      lifestylePoints: [
-        "Year-round climate enables constant team collaboration",
-        "No income tax funds R&D and talent acquisition",
-        "Gateway to MENA + Asian markets from one hub"
-      ],
-      story: "Singapore → Dubai 2024"
-    },
-    {
-      name: "Amara Okafor",
-      company: "ConnectHub AI",
-      background: "SaaS Scaling Leader",
-      image: amaraImage,
-      lifestylePoints: [
-        "200+ nationalities = diverse talent pool without visa friction",
-        "Lifestyle stability supports founder mental health and longevity",
-        "Low cost of living + tax benefits = extended runway for growth"
-      ],
-      story: "New York → Dubai 2023"
-    }
-  ];
 
   return (
     <section className="relative overflow-hidden">
@@ -201,92 +150,94 @@ export function DualPurposeHero() {
         </div>
       </div>
 
-      {/* Founder Stories Section - Always Visible Below Hero */}
-      <section className="py-16 px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Why Founders Choose Dubai
+      {/* Ecosystem Impact Section - Compact, Statistics-Driven */}
+      <section 
+        className="relative py-12 px-4 overflow-hidden"
+        style={{
+          backgroundImage: `url(${heroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/70"></div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              How Dubai's Ecosystem Empowers Founders
             </h2>
-            <div className="text-gray-400 text-lg max-w-3xl mx-auto space-y-3">
-              <p>
-                <span className="text-emerald-300 font-semibold">Sustainable lifestyle and relocation go hand-in-hand:</span> High-tax countries force founders to choose between personal wellbeing and business reinvestment. Dubai offers zero income tax, freeing capital for innovation while enabling a lifestyle that supports long-term growth.
-              </p>
-              <p>
-                When founders relocate for the right reasons—family safety, climate access, talent ecosystems, regulatory support—they build teams that thrive. A sustainable lifestyle isn't a luxury; it's the foundation for sustainable business.
-              </p>
-              <p className="text-sm text-gray-500 italic">
-                Below are real founders who made this choice in 2023-2025.
-              </p>
+            <p className="text-gray-200 text-base md:text-lg">
+              A thriving environment where many founders build bigger and better
+            </p>
+          </div>
+
+          {/* Statistics Grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Stat 1: Millionaire Relocation */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-emerald-500/30">
+              <div className="flex items-center gap-3 mb-2">
+                <TrendingUp className="w-5 h-5 text-emerald-400" />
+                <p className="text-sm text-gray-300">2023-2025 Trend</p>
+              </div>
+              <p className="text-4xl font-bold text-emerald-300 mb-1">7,800+</p>
+              <p className="text-sm text-gray-300">High-net-worth founders relocated</p>
+            </div>
+
+            {/* Stat 2: Tax Advantage */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-emerald-500/30">
+              <div className="flex items-center gap-3 mb-2">
+                <Zap className="w-5 h-5 text-emerald-400" />
+                <p className="text-sm text-gray-300">Capital Acceleration</p>
+              </div>
+              <p className="text-4xl font-bold text-emerald-300 mb-1">0%</p>
+              <p className="text-sm text-gray-300">Income tax reinvested into growth</p>
+            </div>
+
+            {/* Stat 3: Startup Growth */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-emerald-500/30">
+              <div className="flex items-center gap-3 mb-2">
+                <Building2 className="w-5 h-5 text-emerald-400" />
+                <p className="text-sm text-gray-300">Ecosystem Scale</p>
+              </div>
+              <p className="text-4xl font-bold text-emerald-300 mb-1">500+</p>
+              <p className="text-sm text-gray-300">Active founders building unicorns</p>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {founderStories.map((story, idx) => (
-              <div
-                key={idx}
-                className="group rounded-2xl overflow-hidden bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 hover-elevate"
-                data-testid={`card-founder-story-${idx}`}
-              >
-                {/* Founder Image */}
-                <div className="relative h-64 overflow-hidden bg-slate-700">
-                  <img
-                    src={story.image}
-                    alt={story.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <p className="text-sm text-emerald-400 font-semibold">{story.story}</p>
-                  </div>
-                </div>
-
-                {/* Founder Info */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-1">{story.name}</h3>
-                  <p className="text-emerald-400 font-semibold text-sm mb-2">{story.company}</p>
-                  <p className="text-gray-400 text-sm mb-6">{story.background}</p>
-
-                  {/* Lifestyle Benefits */}
-                  <div className="space-y-3">
-                    {story.lifestylePoints.map((point, pidx) => (
-                      <div key={pidx} className="flex gap-3">
-                        <div className="flex-shrink-0">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2"></div>
-                        </div>
-                        <p className="text-sm text-gray-300">{point}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* CTA */}
-                <div className="px-6 pb-6 pt-0">
-                  <Link href="/relocate">
-                    <Button
-                      variant="outline"
-                      className="w-full text-emerald-400 border-emerald-500/50 hover:bg-emerald-500/10"
-                      size="sm"
-                      data-testid={`button-explore-story-${idx}`}
-                    >
-                      Learn More <ArrowRight className="w-3 h-3 ml-2" />
-                    </Button>
-                  </Link>
-                </div>
+          {/* Environment Benefits */}
+          <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 mb-8">
+            <h3 className="text-lg font-semibold text-white mb-4">Why Founders Build Better Here</h3>
+            <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-200">
+              <div className="flex gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
+                <span>Zero income tax redirects capital to R&D and talent acquisition</span>
               </div>
-            ))}
+              <div className="flex gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
+                <span>200+ nationalities create diverse, frictionless talent pools</span>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
+                <span>Gateway to MENA, Europe, and Asia from a single hub</span>
+              </div>
+              <div className="flex gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
+                <span>Regulatory clarity and founder-friendly policies accelerate scaling</span>
+              </div>
+            </div>
           </div>
 
-          {/* CTA to Relocation */}
-          <div className="mt-12 text-center">
-            <p className="text-gray-400 mb-6">Ready to explore relocation?</p>
+          {/* CTA */}
+          <div className="text-center">
             <Link href="/relocate">
               <Button
                 size="lg"
-                className="bg-emerald-600 hover:bg-emerald-700"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white"
                 data-testid="button-explore-relocation-final"
               >
-                See Full Relocation Options
+                Explore Relocation for Your Startup
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
