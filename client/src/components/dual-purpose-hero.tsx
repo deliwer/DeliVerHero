@@ -3,47 +3,56 @@ import { Sparkles, ArrowRight, Globe, Building2, Heart, Zap } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroImage from "@assets/stock_images/people_at_home_drink_21a6f771.jpg";
-import founderImage1 from "@assets/stock_images/professional_entrepr_fbd58974.jpg";
-import founderImage2 from "@assets/stock_images/professional_entrepr_7fffe470.jpg";
-import founderImage3 from "@assets/stock_images/professional_entrepr_d7f4e7f6.jpg";
+import nikolayImage from "@assets/stock_images/nikolay_storonsky_re_f17b2833.jpg";
+import sarahImage from "@assets/stock_images/successful_female_te_34bd72c3.jpg";
+import amaraImage from "@assets/stock_images/successful_female_te_e9e679cd.jpg";
+
+interface FounderStory {
+  name: string;
+  company: string;
+  background: string;
+  image: string;
+  lifestylePoints: string[];
+  story: string;
+}
 
 export function DualPurposeHero() {
   const [audience, setAudience] = useState<'consumer' | 'entrepreneur'>('consumer');
 
-  const founderStories = [
+  const founderStories: FounderStory[] = [
     {
       name: "Nikolay Storonsky",
       company: "Revolut",
-      background: "Fintech Founder",
-      image: founderImage1,
+      background: "$75B Fintech Leader",
+      image: nikolayImage,
       lifestylePoints: [
         "Family-friendly communities with world-class schools",
-        "No income tax - reinvest in your team",
-        "10-min beach access from downtown"
+        "Zero income tax accelerates reinvestment in innovation",
+        "Proximity to both Europe and emerging markets"
       ],
       story: "London → Dubai 2025"
     },
     {
       name: "Sarah Chen",
       company: "GreenScale Tech",
-      background: "Sustainability Innovator",
-      image: founderImage2,
+      background: "Sustainability Tech Founder",
+      image: sarahImage,
       lifestylePoints: [
-        "Access to MENA market ecosystem",
-        "No income tax for founders",
-        "Year-round outdoor climate for team activities"
+        "Year-round climate enables constant team collaboration",
+        "No income tax funds R&D and talent acquisition",
+        "Gateway to MENA + Asian markets from one hub"
       ],
       story: "Singapore → Dubai 2024"
     },
     {
       name: "Amara Okafor",
       company: "ConnectHub AI",
-      background: "SaaS Leader",
-      image: founderImage3,
+      background: "SaaS Scaling Leader",
+      image: amaraImage,
       lifestylePoints: [
-        "Global talent hub - access 200+ nationalities",
-        "9% corporate tax - build sustainably",
-        "24/7 startup support ecosystem"
+        "200+ nationalities = diverse talent pool without visa friction",
+        "Lifestyle stability supports founder mental health and longevity",
+        "Low cost of living + tax benefits = extended runway for growth"
       ],
       story: "New York → Dubai 2023"
     }
@@ -208,9 +217,17 @@ export function DualPurposeHero() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Why Founders Choose Dubai
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              It's not just about taxes. It's about building a sustainable lifestyle while growing globally.
-            </p>
+            <div className="text-gray-400 text-lg max-w-3xl mx-auto space-y-3">
+              <p>
+                <span className="text-emerald-300 font-semibold">Sustainable lifestyle and relocation go hand-in-hand:</span> High-tax countries force founders to choose between personal wellbeing and business reinvestment. Dubai offers zero income tax, freeing capital for innovation while enabling a lifestyle that supports long-term growth.
+              </p>
+              <p>
+                When founders relocate for the right reasons—family safety, climate access, talent ecosystems, regulatory support—they build teams that thrive. A sustainable lifestyle isn't a luxury; it's the foundation for sustainable business.
+              </p>
+              <p className="text-sm text-gray-500 italic">
+                Below are real founders who made this choice in 2023-2025.
+              </p>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
