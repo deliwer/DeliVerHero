@@ -698,6 +698,205 @@ export default function Relocate() {
         </div>
       </section>
 
+      {/* Pricing & Competitive Advantage Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${coworkingOffice})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/90 via-slate-900/85 to-emerald-950/90" />
+        <div className="relative z-10 max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <Badge variant="outline" className="mb-4 bg-emerald-600/30 border-emerald-400/50 text-emerald-100">
+              <DollarSign className="w-3 h-3 mr-1" />
+              Smart Investment
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Price Comparison & Total Package Value</h2>
+            <p className="text-gray-200 text-lg">DeliWer's innovative approach delivers more at a fraction of traditional costs</p>
+          </div>
+
+          {/* Pricing Comparison Table */}
+          <div className="overflow-x-auto mb-8">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-slate-800/60 border-b border-slate-600">
+                  <th className="text-left py-4 px-4 font-semibold text-white">Service Component</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Traditional Fragmented</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white">Alternative Provider</th>
+                  <th className="text-center py-4 px-4 font-semibold text-white bg-emerald-600/40 border-l border-emerald-500">DeliWer Unified</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Golden Visa Processing</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$5,000 - $8,000</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$6,500 - $9,500</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">Included</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Business & Entity Setup</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$2,000 - $4,000</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$3,500 - $6,000</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">Included</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Bank Account Opening</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$1,500 - $3,000</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$2,500 - $4,500</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">Included</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Housing & Location Strategy</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$1,000 - $2,500</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$1,500 - $3,000</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">Included</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Coordination & Project Management</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$2,000 - $5,000+</td>
+                  <td className="text-center py-4 px-4 text-gray-300">$3,000 - $6,000+</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">Included</td>
+                </tr>
+                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
+                  <td className="py-4 px-4 text-white font-medium">Lifetime Support & Updates</td>
+                  <td className="text-center py-4 px-4 text-gray-400">❌ Not offered</td>
+                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited (extra cost)</td>
+                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ Lifetime</td>
+                </tr>
+                <tr className="bg-slate-800/40 border-t-2 border-emerald-500">
+                  <td className="py-4 px-4 text-white font-bold text-lg">Total Investment Range</td>
+                  <td className="text-center py-4 px-4">
+                    <p className="text-emerald-300 font-bold text-lg">$11,500 - $22,500+</p>
+                    <p className="text-xs text-gray-400">Plus hidden costs & surprises</p>
+                  </td>
+                  <td className="text-center py-4 px-4">
+                    <p className="text-emerald-300 font-bold text-lg">$17,000 - $28,500+</p>
+                    <p className="text-xs text-gray-400">Higher costs, fragmented service</p>
+                  </td>
+                  <td className="text-center py-4 px-4 bg-emerald-600/30 border-l border-emerald-500">
+                    <p className="text-white font-bold text-lg">$3,746 - $4,995</p>
+                    <p className="text-xs text-emerald-200">One transparent fee. Everything included.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Advantages Breakdown */}
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="bg-slate-900/60 border-slate-700/50 backdrop-blur-sm hover-elevate" data-testid="card-advantage-agility">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-md bg-emerald-500/20 flex items-center justify-center mb-4">
+                  <Award className="w-6 h-6 text-emerald-400" />
+                </div>
+                <CardTitle className="text-lg text-white">Agile Execution</CardTitle>
+                <CardDescription className="text-gray-300">Modern Process</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm text-gray-200">1-3 day business setup through automated workflows and streamlined approvals</p>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Real-time progress tracking</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>API-driven integrations</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Digital-first documentation</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900/60 border-slate-700/50 backdrop-blur-sm hover-elevate" data-testid="card-advantage-innovation">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-md bg-emerald-500/20 flex items-center justify-center mb-4">
+                  <TrendingUp className="w-6 h-6 text-emerald-400" />
+                </div>
+                <CardTitle className="text-lg text-white">Innovation-Driven</CardTitle>
+                <CardDescription className="text-gray-300">Tech-Forward Approach</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm text-gray-200">Proprietary platform connects Golden Visa, banking, housing, and tax optimization</p>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>AI-powered matching algorithm</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Continuous optimization</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Predictive guidance system</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900/60 border-slate-700/50 backdrop-blur-sm hover-elevate" data-testid="card-advantage-transparency">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-md bg-emerald-500/20 flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 text-emerald-400" />
+                </div>
+                <CardTitle className="text-lg text-white">Complete Transparency</CardTitle>
+                <CardDescription className="text-gray-300">No Hidden Costs</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <p className="text-sm text-gray-200">All costs upfront. No surprise fees. Price locked for entire process.</p>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Fixed pricing guarantee</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Itemized service breakdown</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-emerald-300">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Lifetime support included</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Bottom Value Proposition */}
+          <div className="bg-gradient-to-r from-emerald-600/20 to-teal-600/20 border border-emerald-400/40 backdrop-blur-sm rounded-lg p-8 text-center mt-8">
+            <h3 className="text-2xl font-bold text-emerald-100 mb-3">Why Pay 3-5X More for Fragmented Services?</h3>
+            <p className="text-emerald-50 text-lg mb-6">
+              Traditional approach: juggle lawyers, consultants, bankers, and housing agents. Track multiple timelines. Face surprise costs.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-slate-900/40 rounded-md p-4">
+                <p className="text-emerald-300 font-semibold mb-1">70% Cost Savings</p>
+                <p className="text-sm text-gray-300">Compared to fragmented services</p>
+              </div>
+              <div className="bg-slate-900/40 rounded-md p-4">
+                <p className="text-emerald-300 font-semibold mb-1">1 Unified Team</p>
+                <p className="text-sm text-gray-300">No coordination chaos or delays</p>
+              </div>
+              <div className="bg-slate-900/40 rounded-md p-4">
+                <p className="text-emerald-300 font-semibold mb-1">Lifetime Protection</p>
+                <p className="text-sm text-gray-300">Support beyond the relocation</p>
+              </div>
+            </div>
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold" 
+              data-testid="button-pricing-cta"
+              onClick={() => {
+                if (formRef.current) {
+                  formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+            >
+              <MessageCircle className="w-4 h-4 mr-2" />
+              Get Your Custom Quote
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* ICP Targeting Section */}
       <section className="relative py-20 overflow-hidden">
         <div 
