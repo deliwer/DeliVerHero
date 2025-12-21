@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import heroImage from "@assets/stock_images/dubai_home_lifestyle_37638b6f.jpg";
+import heroImage from "@assets/generated_images/diverse_global_founders_and_hnwis_from_many_nationalities.png";
 
 export function DualPurposeHero() {
   const [audience, setAudience] = useState<'consumer' | 'entrepreneur'>('consumer');
