@@ -256,47 +256,48 @@ export default function HomeService() {
         </div>
       </section>
       {/* Water Service Details Section - ENHANCED PROMINENCE */}
-      <section className="py-16 px-4 bg-gradient-to-b from-emerald-500/10 via-cyan-500/5 to-blue-500/10" id="water-details">
-        <div className="container mx-auto max-w-5xl">
+      <section className="py-16 px-4 relative overflow-hidden" id="water-details" style={{ backgroundImage: `url(${waterPurifierImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="bg-white/50 dark:bg-slate-900/50 p-8 rounded-2xl border border-emerald-200 dark:border-emerald-900/30 backdrop-blur-sm">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/20 rounded-full px-4 py-2 mb-6 border border-emerald-500/30">
-                <Droplets className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-300">Premium Water Service Package</span>
+            <div className="bg-white/10 dark:bg-white/5 p-8 rounded-2xl border border-white/20 dark:border-white/10 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/30 rounded-full px-4 py-2 mb-6 border border-emerald-400/50">
+                <Droplets className="w-4 h-4 text-emerald-300" />
+                <span className="text-sm font-semibold text-emerald-200">Premium Water Service Package</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white" data-testid="text-water-service-title">
-                Pure Water. <span className="text-emerald-600 dark:text-emerald-400">Without Effort.</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-water-service-title">
+                Pure Water. <span className="text-emerald-300">Without Effort.</span>
               </h2>
-              <p className="text-lg text-slate-700 dark:text-slate-300 mb-6 font-medium">
+              <p className="text-lg text-white/90 mb-6 font-medium">
                 Enjoy a continuous supply of clean, filtered drinking water at home — without the hassle. Professional installation, maintenance, and reliable refills included.
               </p>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
                   Professional home installation & setup
                 </li>
-                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
                   Weekly refills & monthly maintenance
                 </li>
-                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-                  <span><strong className="text-slate-900 dark:text-white">Free premium shower filter</strong> with every demo</span>
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
+                  <span><strong className="text-white">Free premium shower filter</strong> with every demo</span>
                 </li>
-                <li className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
                   24/7 customer support & emergency service
                 </li>
               </ul>
-              <Card className="bg-gradient-to-r from-emerald-500/15 to-cyan-500/15 border-emerald-400 dark:border-emerald-600/50 mb-6 shadow-lg">
+              <Card className="bg-gradient-to-r from-emerald-500/25 to-cyan-500/25 border-emerald-300/50 mb-6 shadow-lg">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div>
-                      <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300 mb-1">Limited Launch Offer</p>
-                      <p className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">Demo: AED 99</p>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">Includes free premium shower filter</p>
+                      <p className="text-sm font-medium text-emerald-200 mb-1">Limited Launch Offer</p>
+                      <p className="text-3xl font-bold text-emerald-300">Demo: AED 99</p>
+                      <p className="text-sm text-white/75">Includes free premium shower filter</p>
                     </div>
-                    <Badge variant="secondary" className="bg-emerald-500 text-white border-emerald-600 text-xs font-bold px-3 py-1">
+                    <Badge variant="secondary" className="bg-emerald-500 text-white border-emerald-400 text-xs font-bold px-3 py-1">
                       SAVE NOW
                     </Badge>
                   </div>
