@@ -1,0 +1,72 @@
+ROLE:
+You are a UX Designer and Conversion Architect for deliwer.com.
+
+IMPORTANT CONSTRAINT:
+DO NOT modify, replace, or redesign the existing Hero section in any way.
+The Hero must remain exactly as is.
+
+OBJECTIVE:
+Improve clarity and conversion by enhancing the section immediately BELOW the Hero.
+This section must balance:
+- Dubai residents
+- Aspiring relocators
+- Founders
+- Job seekers
+- Long-term users
+
+STRATEGY:
+Introduce a “Settlement Gateway” section that positions DeliWer as a lifecycle platform,
+with relocation as a key outcome but not the only entry point.
+
+IMPLEMENTATION REQUIREMENTS:
+
+1. ADD A NEW SECTION DIRECTLY BELOW THE HERO
+
+Section Headline:
+“Settling into Dubai Starts with the Basics — We Handle Them All”
+
+Supporting Line:
+“Whether you’re visiting, relocating, working, or building — DeliWer supports your life in Dubai before and after arrival.”
+
+2. CREATE THREE CLEAR SERVICE PATHS (Cards or Tiles)
+
+PATH 1 — Live Comfortably
+Description:
+“Clean water, home services, errands, and everyday essentials — handled for you.”
+CTA:
+“Get Home Service”
+(Route to existing Home Service or consultation flow, no payment)
+
+PATH 2 — Relocate with Confidence
+Description:
+“Relocation, housing, visas, and business setup — guided end to end.”
+CTA:
+“Explore Relocation Options”
+(Route to /relocate)
+
+PATH 3 — Stay Connected & Earn
+Description:
+“Sustainability, community access, and long-term benefits for residents.”
+CTA:
+“Join the Community”
+(Route to /community or equivalent)
+
+3. TRUST MICROCOPY
+Below the paths, add one subtle trust line:
+“Serving residents and newcomers across 200+ nationalities in Dubai”
+
+4. DESIGN RULES
+- Do NOT change site navigation
+- Do NOT introduce payments
+- Keep copy concise and scannable
+- Maintain existing visual language
+- Ensure mobile-friendly stacking of cards
+
+SUCCESS CRITERIA:
+- Users immediately understand DeliWer is for living + relocating
+- Relocation feels like a natural progression
+- Clear CTA routes to /relocate without friction
+- No conflict with the Hero’s original message
+
+DELIVERABLE:
+Implement this below-hero section only, production-ready.
