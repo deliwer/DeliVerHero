@@ -17,106 +17,57 @@ import { Link } from "wouter";
 
 function OpportunitiesSection() {
   return (
-    <section className="py-12 px-4">
+    <section className="py-8 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="glass rounded-3xl p-8 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10 ring-4 ring-yellow-400/50 shadow-lg shadow-yellow-400/20">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Building className="w-8 h-8 text-emerald-400" />
-              <h2 className="text-3xl font-bold text-white">BEYOND ETISALAT & DU</h2>
-              <Handshake className="w-8 h-8 text-blue-400" />
-            </div>
-            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-              World's first cross-category trade platform. While others stay in electronics, we connect your iPhone to life essentials.
+        <div className="glass rounded-3xl p-6 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-white">BEYOND ETISALAT & DU</h2>
+            <p className="text-gray-300 text-sm max-w-2xl mx-auto mt-2">
+              World's first cross-category trade platform
             </p>
           </div>
           
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {/* iPhone Trade Advantage */}
-            <div className="glass rounded-2xl p-6 border border-amber-500/30 bg-amber-600/5 hover:bg-amber-600/10 transition-all duration-300 group cursor-pointer">
+            <div className="glass rounded-2xl p-4 border border-amber-500/30 bg-amber-600/5 hover:bg-amber-600/10 transition-all duration-300">
               <div className="text-center mb-4">
-                <Building className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-white mb-2">iPHONE TRADE LEADERS</h3>
-                <p className="text-gray-300 text-sm">Cross-category advantage</p>
-              </div>
-              <div className="space-y-3 mb-6 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">vs Etisalat/Du</span>
-                  <span className="text-amber-400 font-bold">+Water Systems</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Trade Categories</span>
-                  <span className="text-amber-400 font-bold">Cross-Category</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Global First</span>
-                  <span className="text-amber-400 font-bold">iPhone→Water</span>
-                </div>
+                <Building className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+                <h3 className="text-base font-bold text-white">iPHONE TRADE</h3>
               </div>
               <Link
                 href="/partners"
-                className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all text-center inline-block"
                 data-testid="button-trade-iphone"
               >
-                Start Trade-in Partnership
+                Start Partnership
               </Link>
             </div>
 
             {/* Gitex Launch Special */}
-            <div className="glass rounded-2xl p-6 border border-hero-green-500/30 bg-hero-green-600/5 hover:bg-hero-green-600/10 transition-all duration-300 group cursor-pointer">
+            <div className="glass rounded-2xl p-4 border border-hero-green-500/30 bg-hero-green-600/5 hover:bg-hero-green-600/10 transition-all duration-300">
               <div className="text-center mb-4">
-                <Heart className="w-10 h-10 text-hero-green-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-white mb-2">GITEX 2025 LAUNCH</h3>
-                <p className="text-gray-300 text-sm">iPhone 17 cash preparation</p>
-              </div>
-              <div className="space-y-3 mb-6 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Trade Now</span>
-                  <span className="text-hero-green-400 font-bold">Get Cash</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">iPhone 17 Launch</span>
-                  <span className="text-hero-green-400 font-bold">First in Line</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Water Systems</span>
-                  <span className="text-hero-green-400 font-bold">Included</span>
-                </div>
+                <Heart className="w-8 h-8 text-hero-green-400 mx-auto mb-2" />
+                <h3 className="text-base font-bold text-white">GITEX 2025</h3>
               </div>
               <Link
                 href="/aquacafe"
-                className="w-full bg-hero-green-600 hover:bg-hero-green-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center inline-block"
+                className="w-full bg-hero-green-600 hover:bg-hero-green-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all text-center inline-block"
                 data-testid="button-gitex-launch"
               >
-                Get Starter Kit - AED 99
+                Starter Kit - د.إ 99
               </Link>
             </div>
 
             {/* Media Story */}
-            <div className="glass rounded-2xl p-6 border border-purple-500/30 bg-purple-600/5 hover:bg-purple-600/10 transition-all duration-300 group cursor-pointer">
+            <div className="glass rounded-2xl p-4 border border-purple-500/30 bg-purple-600/5 hover:bg-purple-600/10 transition-all duration-300">
               <div className="text-center mb-4">
-                <Users className="w-10 h-10 text-purple-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-white mb-2">MEDIA SPOTLIGHT</h3>
-                <p className="text-gray-300 text-sm">Revolutionary trade story</p>
-              </div>
-              <div className="space-y-3 mb-6 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-500">
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Global First</span>
-                  <span className="text-purple-400 font-bold">Cross-Category</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Market Disruption</span>
-                  <span className="text-purple-400 font-bold">Beyond Telcos</span>
-                </div>
-                <div className="flex justify-between items-center text-sm">
-                  <span className="text-gray-400">Rally Story</span>
-                  <span className="text-purple-400 font-bold">iPhone→Water</span>
-                </div>
+                <Users className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+                <h3 className="text-base font-bold text-white">MEDIA KIT</h3>
               </div>
               <button
                 onClick={() => {
                   const mediaKit = `https://deliwer.com/media-kit?story=iphone-water-trade`;
-                  const shareText = `📰 BREAKING: World's first iPhone-to-Water trade platform launches at GITEX 2025! DeliWer disrupts Etisalat/Du with cross-category trading. Media kit: ${mediaKit}`;
+                  const shareText = `World's first iPhone-to-Water trade platform launches at GITEX 2025! Media kit: ${mediaKit}`;
                   
                   if (navigator.share) {
                     navigator.share({ title: 'DeliWer Media Story', text: shareText, url: mediaKit });
@@ -124,18 +75,12 @@ function OpportunitiesSection() {
                     navigator.clipboard.writeText(shareText);
                   }
                 }}
-                className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg font-bold transition-all text-center"
+                className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all text-center"
                 data-testid="button-media-kit"
               >
-                Download Media Kit
+                Download Kit
               </button>
             </div>
-          </div>
-          
-          <div className="text-center space-y-4">
-            <p className="text-gray-400 text-sm">
-              🤝 Cross-category trade advantage • 📈 iPhone 17 launch campaign • 🌍 Media ready sustainability story
-            </p>
           </div>
         </div>
       </div>
@@ -200,7 +145,7 @@ function LiveChallengeWidget() {
           <button
             onClick={() => {
               const challengeLink = `https://deliwer.com/challenge?ref=LIVE${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
-              const shareText = `🔥 Join Dubai's LIVE Community Challenge! 1 Million Bottles to Prevent by Ramadan - 80% Complete! Get Bakers Kitchen AED100 Kangen Water voucher: ${challengeLink}`;
+              const shareText = `🔥 Join Dubai's LIVE Community Challenge! 1 Million Bottles to Prevent by Ramadan - 80% Complete! Get Bakers Kitchen د.إ100 Kangen Water voucher: ${challengeLink}`;
               
               if (navigator.share) {
                 navigator.share({ title: 'Join LIVE Community Challenge', text: shareText, url: challengeLink });

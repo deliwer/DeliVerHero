@@ -183,20 +183,20 @@ export default function CheckoutPage() {
                     {cartItems.map(item => (
                       <div key={item.id} className="flex justify-between text-gray-300 mb-2">
                         <span>{item.title} x {item.quantity}</span>
-                        <span>AED {(item.price * item.quantity).toFixed(2)}</span>
+                        <span>د.إ {(item.price * item.quantity).toFixed(2)}</span>
                       </div>
                     ))}
                     <Separator className="my-4" />
                     <div className="flex justify-between text-white font-bold text-lg">
                       <span>Total:</span>
-                      <span>AED {total.toFixed(2)}</span>
+                      <span>د.إ {total.toFixed(2)}</span>
                     </div>
                   </div>
                   
                   <div className="flex justify-center">
                     <PayPalButton 
                       amount={total.toFixed(2)}
-                      currency="AED"
+                      currency="د.إ"
                       intent="CAPTURE"
                       onSuccess={(orderId) => handlePaymentSuccess(orderId)}
                       onError={(error) => {
@@ -403,7 +403,7 @@ export default function CheckoutPage() {
                         <p className="text-gray-400 text-sm">Qty: {item.quantity}</p>
                       </div>
                       <p className="text-white font-medium">
-                        AED {(item.price * item.quantity).toFixed(2)}
+                        د.إ {(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   ))}
@@ -412,7 +412,7 @@ export default function CheckoutPage() {
                   
                   <div className="flex justify-between items-center text-lg font-bold">
                     <span className="text-white">Total</span>
-                    <span className="text-emerald-400">AED {calculateTotal().toFixed(2)}</span>
+                    <span className="text-emerald-400">د.إ {calculateTotal().toFixed(2)}</span>
                   </div>
                   
                   <Button
