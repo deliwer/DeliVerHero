@@ -146,54 +146,49 @@ export default function HomeService() {
         </div>
       </section>
       {/* Trade-In Service Section - NEW */}
-      <section className="py-16 px-4 bg-gradient-to-br from-violet-900/10 via-purple-900/5 to-indigo-900/10" id="trade-in">
-        <div className="container mx-auto max-w-5xl">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-violet-500/10 rounded-full px-4 py-2 mb-6">
-                <Smartphone className="w-4 h-4 text-violet-400" />
-                <span className="text-sm text-violet-400 font-medium">Smart Trade-In Service</span>
+      <section className="py-0 px-0 relative" id="trade-in">
+        <div className="relative overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center">
+          <img 
+            src={tradeInImg} 
+            alt="Smartphone trade-in and recycling service" 
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+          <div className="container mx-auto px-4 relative z-10 max-w-5xl">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 bg-violet-500/30 rounded-full px-3 py-1.5 mb-3">
+                <Smartphone className="w-4 h-4 text-violet-300" />
+                <span className="text-xs text-violet-300 font-medium">Smart Trade-In Service</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-trade-in-title">
-                Turn Old Devices into <span className="text-violet-400">Cash & Rewards</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2" data-testid="text-trade-in-title">
+                Turn Old Devices into <span className="text-violet-300">Cash & Rewards</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Don't let your old electronics gather dust. Trade them in for instant cash, store credits, and Planet Points while contributing to a sustainable future.
+              <p className="text-base text-white/90 mb-4 max-w-xl">
+                Trade them in for instant cash, store credits, and Planet Points while contributing to a sustainable future.
               </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-violet-500 flex-shrink-0" />
+              <ul className="space-y-2 mb-4 text-sm text-white/85">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-violet-300 flex-shrink-0" />
                   Instant AI-powered device valuation
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-violet-500 flex-shrink-0" />
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-violet-300 flex-shrink-0" />
                   Free pickup from your home
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <Recycle className="w-5 h-5 text-violet-500 flex-shrink-0" />
-                  <span><strong className="text-foreground">Eco-certified recycling</strong> for non-working devices</span>
+                <li className="flex items-center gap-2">
+                  <Recycle className="w-4 h-4 text-violet-300 flex-shrink-0" />
+                  <span><strong className="text-white">Eco-certified recycling</strong> for non-working devices</span>
                 </li>
               </ul>
-              <Card className="bg-violet-500/5 border-violet-500/20 mb-6">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-1">Trade-In Bonus</p>
-                      <p className="text-2xl font-bold text-violet-500">+20% Extra Value</p>
-                      <p className="text-sm text-muted-foreground">When you choose store credit</p>
-                    </div>
-                    <Badge variant="secondary" className="bg-violet-500/20 text-violet-400">
-                      Limited Offer
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-              <div className="flex flex-wrap gap-3">
+              <div className="bg-violet-500/20 backdrop-blur-sm border border-violet-500/30 rounded-lg p-3 mb-4 inline-block">
+                <p className="text-xs text-violet-200 mb-0.5">Trade-In Bonus</p>
+                <p className="text-xl font-bold text-violet-200">+20% Extra Value</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
                 <Link href="/exchange">
                   <Button size="lg" data-testid="button-trade-in-now">
                     <Smartphone className="w-4 h-4 mr-2" />
                     Trade In Your Device
-                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
                 <CalendlyButton 
@@ -202,22 +197,8 @@ export default function HomeService() {
                   data-testid="button-trade-in-consult"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
-                  Get a Free Quote
+                  Get Quote
                 </CalendlyButton>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
-                <img 
-                  src={tradeInImg} 
-                  alt="Smartphone trade-in and recycling service" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Responsible Device Recycling</p>
-                  <p className="text-white/80 text-sm">Certified e-waste processing in UAE</p>
-                </div>
               </div>
             </div>
           </div>
