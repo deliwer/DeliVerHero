@@ -38,7 +38,7 @@ export function Navigation() {
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/housing", label: "Live Comfortably", id: "housing" },
     { path: "/relocate", label: "Relocate", id: "relocate", featured: true },
-    { path: "/earn", label: "Earn+Rewards", id: "earn" },
+    { path: "/earn", label: "Earn Eco-Rewards", id: "earn" },
     { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
     { path: "/play", label: "Play", id: "play" },
     { path: "/partners", label: "Partners", id: "partners" },
