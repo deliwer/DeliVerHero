@@ -338,50 +338,51 @@ export default function HomeService() {
         </div>
       </section>
       {/* Errand Runner Section - MOVED UP (WAS AFTER CLEANING) */}
-      <section className="py-16 px-4 bg-gradient-to-br from-orange-900/10 via-red-900/5 to-pink-900/10" id="errand-runner">
-        <div className="container mx-auto max-w-5xl">
+      <section className="py-16 px-4 relative overflow-hidden" id="errand-runner" style={{ backgroundImage: `url(${errandRunnerImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-orange-500/10 rounded-full px-4 py-2 mb-6">
-                <Bike className="w-4 h-4 text-orange-400" />
-                <span className="text-sm text-orange-400 font-medium">DeliWery Errand Runner</span>
+              <div className="inline-flex items-center gap-2 bg-orange-500/30 rounded-full px-4 py-2 mb-6 border border-orange-400/50">
+                <Bike className="w-4 h-4 text-orange-300" />
+                <span className="text-sm text-orange-200 font-medium">DeliWery Errand Runner</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-errand-runner-title">
-                Anything DeliWered. Wherever. Whenever.
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-errand-runner-title">
+                Anything DeliWered. <span className="text-orange-300">Wherever. Whenever.</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-white/90 mb-6">
                 Stuck in traffic? Forgot something important? Let us handle it. Our errand runners take care of your to-do list so you can focus on what matters.
               </p>
               <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                <div className="flex items-center gap-2 text-white/85">
+                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
                   <span className="text-sm">Picking up dry cleaning</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                <div className="flex items-center gap-2 text-white/85">
+                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
                   <span className="text-sm">Paying bills</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                <div className="flex items-center gap-2 text-white/85">
+                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
                   <span className="text-sm">Delivering office items</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                <div className="flex items-center gap-2 text-white/85">
+                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
                   <span className="text-sm">Grocery & pharmacy runs</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                <div className="flex items-center gap-2 text-white/85">
+                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
                   <span className="text-sm">Last-minute gifts</span>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <CheckCircle2 className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                <div className="flex items-center gap-2 text-white/85">
+                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
                   <span className="text-sm">School & document drop-offs</span>
                 </div>
               </div>
-              <Card className="bg-amber-500/5 border-amber-500/20 mb-6">
+              <Card className="bg-gradient-to-r from-orange-500/25 to-amber-500/25 border-orange-300/50 mb-6 shadow-lg">
                 <CardContent className="pt-6 pb-4">
-                  <p className="text-sm text-muted-foreground flex items-center gap-2">
-                    <Gift className="w-4 h-4 text-amber-500" />
+                  <p className="text-sm text-orange-200 flex items-center gap-2">
+                    <Gift className="w-4 h-4 text-orange-300" />
                     First errand: AED 29 (Was AED 49)
                   </p>
                 </CardContent>
@@ -422,45 +423,46 @@ export default function HomeService() {
         </div>
       </section>
       {/* Solar Panel Installation Section - NEW */}
-      <section className="py-16 px-4 bg-gradient-to-br from-amber-900/10 via-yellow-900/5 to-orange-900/10" id="solar-service">
-        <div className="container mx-auto max-w-5xl">
+      <section className="py-16 px-4 relative overflow-hidden" id="solar-service" style={{ backgroundImage: `url(${solarImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="order-2 lg:order-1 relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
                 <img 
                   src={solarImg} 
                   alt="Solar panel installation on Dubai home rooftop" 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Solar Energy Solutions</p>
-                  <p className="text-white/80 text-sm">Harness Dubai's abundant sunshine</p>
+                  <p className="text-white font-bold text-lg">Solar Energy Solutions</p>
+                  <p className="text-white/90 text-sm">Harness Dubai's abundant sunshine</p>
                 </div>
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 bg-amber-500/10 rounded-full px-4 py-2 mb-6">
-                <Sun className="w-4 h-4 text-amber-400" />
-                <span className="text-sm text-amber-400 font-medium">Solar Panel Installation</span>
+              <div className="inline-flex items-center gap-2 bg-amber-500/30 rounded-full px-4 py-2 mb-6 border border-amber-400/50">
+                <Sun className="w-4 h-4 text-amber-300" />
+                <span className="text-sm text-amber-200 font-medium">Solar Panel Installation</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-solar-service-title">
-                Power your home with <span className="text-amber-400">Dubai sunshine</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-solar-service-title">
+                Power your home with <span className="text-amber-300">Dubai sunshine</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-white/90 mb-6">
                 Reduce your electricity bills by up to 80% with professional solar panel installation. DEWA-approved systems with government incentives.
               </p>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
                   Free site assessment & custom design
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
                   DEWA Shams Dubai program eligible
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-amber-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
                   25-year performance warranty
                 </li>
               </ul>
@@ -478,31 +480,32 @@ export default function HomeService() {
         </div>
       </section>
       {/* EV Charging Station Section - NEW */}
-      <section className="py-16 px-4" id="ev-charging">
-        <div className="container mx-auto max-w-5xl">
+      <section className="py-16 px-4 relative overflow-hidden" id="ev-charging" style={{ backgroundImage: `url(${evChargingImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 bg-green-500/10 rounded-full px-4 py-2 mb-6">
-                <Zap className="w-4 h-4 text-green-400" />
-                <span className="text-sm text-green-400 font-medium">EV Charging Installation</span>
+              <div className="inline-flex items-center gap-2 bg-green-500/30 rounded-full px-4 py-2 mb-6 border border-green-400/50">
+                <Zap className="w-4 h-4 text-green-300" />
+                <span className="text-sm text-green-200 font-medium">EV Charging Installation</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-ev-charging-title">
-                Charge your EV at home. <span className="text-green-400">Effortlessly.</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-ev-charging-title">
+                Charge your EV at home. <span className="text-green-300">Effortlessly.</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-white/90 mb-6">
                 Professional home EV charging station installation. Wake up to a fully charged vehicle every morning without visiting public stations.
               </p>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-green-300 flex-shrink-0" />
                   Compatible with all EV brands
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-green-300 flex-shrink-0" />
                   Smart charging with app control
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-green-300 flex-shrink-0" />
                   DEWA-approved installation
                 </li>
               </ul>
@@ -534,45 +537,46 @@ export default function HomeService() {
         </div>
       </section>
       {/* Eco-Cleaning Section - NEW */}
-      <section className="py-16 px-4 bg-gradient-to-br from-teal-900/10 via-cyan-900/5 to-emerald-900/10" id="eco-cleaning">
-        <div className="container mx-auto max-w-5xl">
+      <section className="py-16 px-4 relative overflow-hidden" id="eco-cleaning" style={{ backgroundImage: `url(${ecoCleaningImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="order-2 lg:order-1 relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
                 <img 
                   src={ecoCleaningImg} 
                   alt="Eco-friendly home cleaning service with natural products" 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Green Cleaning Service</p>
-                  <p className="text-white/80 text-sm">Safe for your family and the planet</p>
+                  <p className="text-white font-bold text-lg">Green Cleaning Service</p>
+                  <p className="text-white/90 text-sm">Safe for your family and the planet</p>
                 </div>
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 bg-teal-500/10 rounded-full px-4 py-2 mb-6">
-                <Leaf className="w-4 h-4 text-teal-400" />
-                <span className="text-sm text-teal-400 font-medium">Eco-Friendly Cleaning</span>
+              <div className="inline-flex items-center gap-2 bg-teal-500/30 rounded-full px-4 py-2 mb-6 border border-teal-400/50">
+                <Leaf className="w-4 h-4 text-teal-300" />
+                <span className="text-sm text-teal-200 font-medium">Eco-Friendly Cleaning</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-eco-cleaning-title">
-                A spotless home. <span className="text-teal-400">Zero harmful chemicals.</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-eco-cleaning-title">
+                A spotless home. <span className="text-teal-300">Zero harmful chemicals.</span>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-white/90 mb-6">
                 Professional cleaning using 100% eco-friendly, plant-based products. Safe for children, pets, and the environment.
               </p>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-teal-300 flex-shrink-0" />
                   Non-toxic, biodegradable products
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-teal-300 flex-shrink-0" />
                   Trained & vetted cleaning teams
                 </li>
-                <li className="flex items-center gap-3 text-muted-foreground">
-                  <CheckCircle2 className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-teal-300 flex-shrink-0" />
                   Flexible scheduling & subscriptions
                 </li>
               </ul>
