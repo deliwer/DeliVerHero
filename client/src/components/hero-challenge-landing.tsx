@@ -202,7 +202,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               aria-label="Toggle Play to Earn DXBs section"
               data-testid="toggle-play-earn"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Play to Grow</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Play the Planet Hero Game</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-purple-400" />
               ) : (
