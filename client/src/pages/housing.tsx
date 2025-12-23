@@ -232,8 +232,17 @@ export default function Housing() {
       </section>
 
       {/* SECTION 3: HOW WE HELP (Trust Builder) */}
-      <section className="py-16 px-4 bg-gradient-to-r from-blue-900/20 to-indigo-900/20">
-        <div className="container mx-auto">
+      <section className="relative py-16 px-4">
+        {/* Background Overlay */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.8) 100%)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        ></div>
+        <div className="container mx-auto relative z-10">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="text-how-we-help">
               How We Help
