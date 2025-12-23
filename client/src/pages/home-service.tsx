@@ -594,10 +594,11 @@ export default function HomeService() {
         </div>
       </section>
       {/* Concierge & Home Essentials - Moved to /errand */}
-      <section className="py-12 px-4 bg-muted/30" id="more-services">
-        <div className="container mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl font-bold mb-4">Looking for Concierge & Home Essentials?</h2>
-          <p className="text-muted-foreground mb-6">
+      <section className="py-12 px-4 relative overflow-hidden" id="more-services" style={{ backgroundImage: `url(${errandRunnerImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
+        <div className="container mx-auto max-w-3xl text-center relative z-10">
+          <h2 className="text-2xl font-bold mb-4 text-white">Looking for Concierge & Home Essentials?</h2>
+          <p className="text-white/90 mb-6">
             We've moved our concierge services, grocery shopping, school runs, laundry, and more to our dedicated Errand Runner page for a better experience.
           </p>
           <Link href="/errand">
@@ -610,49 +611,49 @@ export default function HomeService() {
         </div>
       </section>
       {/* Referral & Sharing Section - NEW */}
-      <section className="py-16 px-4 bg-gradient-to-br from-pink-900/10 via-rose-900/5 to-red-900/10" id="referral">
-        <div className="container mx-auto max-w-4xl">
+      <section className="py-16 px-4 relative overflow-hidden" id="referral" style={{ backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.4) 100%), linear-gradient(to bottom, rgb(190,24,93), rgb(190,24,93))`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="container mx-auto max-w-4xl relative z-10">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-pink-500/10 rounded-full px-4 py-2 mb-6">
-              <Users className="w-4 h-4 text-pink-400" />
-              <span className="text-sm text-pink-400 font-medium">Refer & Earn</span>
+            <div className="inline-flex items-center gap-2 bg-pink-500/30 rounded-full px-4 py-2 mb-6 border border-pink-400/50">
+              <Users className="w-4 h-4 text-pink-300" />
+              <span className="text-sm text-pink-200 font-medium">Refer & Earn</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-referral-title">
-              Share the love. <span className="text-pink-400">Earn rewards.</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-referral-title">
+              Share the love. <span className="text-pink-300">Earn rewards.</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
               Invite friends to experience DeliWer's sustainable home services. You both earn rewards when they sign up!
             </p>
           </div>
 
-          <Card className="mb-8">
+          <Card className="mb-8 bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 backdrop-blur-md">
             <CardContent className="pt-6">
               <div className="grid md:grid-cols-3 gap-6 text-center mb-8">
                 <div>
-                  <div className="w-12 h-12 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-3">
-                    <Share2 className="w-6 h-6 text-pink-500" />
+                  <div className="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center mx-auto mb-3 border border-pink-400/50">
+                    <Share2 className="w-6 h-6 text-pink-300" />
                   </div>
-                  <h3 className="font-semibold mb-1">Share Your Link</h3>
-                  <p className="text-sm text-muted-foreground">Send your unique referral link to friends</p>
+                  <h3 className="font-semibold mb-1 text-white">Share Your Link</h3>
+                  <p className="text-sm text-white/80">Send your unique referral link to friends</p>
                 </div>
                 <div>
-                  <div className="w-12 h-12 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-3">
-                    <Users className="w-6 h-6 text-pink-500" />
+                  <div className="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center mx-auto mb-3 border border-pink-400/50">
+                    <Users className="w-6 h-6 text-pink-300" />
                   </div>
-                  <h3 className="font-semibold mb-1">Friends Sign Up</h3>
-                  <p className="text-sm text-muted-foreground">They book a home service consultation</p>
+                  <h3 className="font-semibold mb-1 text-white">Friends Sign Up</h3>
+                  <p className="text-sm text-white/80">They book a home service consultation</p>
                 </div>
                 <div>
-                  <div className="w-12 h-12 rounded-full bg-pink-500/10 flex items-center justify-center mx-auto mb-3">
-                    <Gift className="w-6 h-6 text-pink-500" />
+                  <div className="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center mx-auto mb-3 border border-pink-400/50">
+                    <Gift className="w-6 h-6 text-pink-300" />
                   </div>
-                  <h3 className="font-semibold mb-1">Both Earn</h3>
-                  <p className="text-sm text-muted-foreground">Get AED 100 credit each + Planet Points</p>
+                  <h3 className="font-semibold mb-1 text-white">Both Earn</h3>
+                  <p className="text-sm text-white/80">Get AED 100 credit each + Planet Points</p>
                 </div>
               </div>
 
-              <div className="bg-muted/50 rounded-lg p-4 mb-6">
-                <p className="text-sm text-muted-foreground mb-2">Your Referral Link</p>
+              <div className="bg-white/10 rounded-lg p-4 mb-6 border border-white/20">
+                <p className="text-sm text-white/80 mb-2">Your Referral Link</p>
                 <div className="flex items-center gap-2">
                   <code className="flex-1 bg-background rounded px-3 py-2 text-sm overflow-hidden text-ellipsis">
                     {referralLink}
@@ -690,20 +691,20 @@ export default function HomeService() {
         </div>
       </section>
       {/* Relocation Bridge CTA */}
-      <section className="py-20 px-4 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-blue-900/20">
-        <div className="container mx-auto">
+      <section className="py-20 px-4 relative overflow-hidden" style={{ backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.4) 100%), linear-gradient(to bottom, rgb(16,185,129), rgb(6,182,212))`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="container mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <Plane className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-foreground/80">From Home Service to Long-Term Living</span>
+            <div className="inline-flex items-center gap-2 bg-emerald-500/30 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-emerald-400/50">
+              <Plane className="w-4 h-4 text-emerald-300" />
+              <span className="text-sm text-emerald-200">From Home Service to Long-Term Living</span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4" data-testid="text-relocation-bridge">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white" data-testid="text-relocation-bridge">
               Many of our members start with home services.
             </h2>
-            <p className="text-muted-foreground mb-2">
-              Some later choose to <strong className="text-foreground">build their lives in Dubai</strong>.
+            <p className="text-white/90 mb-2">
+              Some later choose to <strong className="text-white">build their lives in Dubai</strong>.
             </p>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-white/85 mb-8 max-w-2xl mx-auto">
               If you're thinking long-term — housing, relocation, or investment — we can guide you.
             </p>
             <Link href="/relocate">
