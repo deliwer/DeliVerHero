@@ -183,7 +183,7 @@ export function DualPurposeHero() {
               <div className="mb-4">
                 <ShoppingCart className="w-10 h-10 text-emerald-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Live Comfortably</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">Stay Comfortably</h3>
               <p className="text-gray-200 mb-6">
                 Clean water, home services, errands, and everyday essentials — handled for you.
               </p>

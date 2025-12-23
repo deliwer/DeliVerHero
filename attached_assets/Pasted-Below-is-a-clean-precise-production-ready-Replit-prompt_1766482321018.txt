@@ -1,0 +1,155 @@
+Below is a **clean, precise, production-ready Replit prompt** that implements the **recommended UX corrections** — **without touching the Hero**, **without structural redesign**, and **without breaking existing routes**.
+
+This prompt strictly:
+
+* Reframes the Home Page as a **settlement journey**
+* Makes **Relocate the inevitable outcome**
+* Preserves your shopping / services core
+* Improves conversion clarity
+
+---
+
+# ✅ REPLIT PROMPT — HOME PAGE UX REFINEMENT (SETTLEMENT JOURNEY)
+
+Copy-paste this directly into Replit.
+
+---
+
+### 🔧 **REPLIT PROMPT**
+
+```
+ROLE:
+You are a Senior UX Designer and Conversion Architect working on deliwer.com.
+
+NON-NEGOTIABLE CONSTRAINTS:
+- DO NOT modify, redesign, or replace the existing Hero section
+- DO NOT change overall page structure or layout
+- DO NOT remove any existing routes
+- DO NOT introduce payments or checkout
+- DO NOT break mobile or desktop responsiveness
+
+OBJECTIVE:
+Refine the Home Page UX to reflect a “Settlement in Dubai” journey,
+where Home Services and Housing naturally lead users toward Relocation
+as the primary revenue outcome.
+
+SCOPE:
+- Menu ordering refinement
+- Copy and framing updates to the section immediately below the Hero
+- CTA sequencing improvements
+- No new pages required
+
+------------------------------------
+1. MENU REFINEMENT (ORDER ONLY)
+------------------------------------
+Ensure the main menu reflects the settlement lifecycle in this order:
+
+1. Home Service
+2. Housing
+3. Relocate
+4. Community / Partners
+
+Do NOT rename items.
+Only adjust order to communicate:
+Live → Stay → Relocate → Grow.
+
+------------------------------------
+2. BELOW-HERO SECTION REFRAMING
+------------------------------------
+Keep the existing section under the Hero,
+but reframe it as a journey rather than parallel options.
+
+Replace the section heading with:
+"Your Journey to Living Well in Dubai"
+
+Add a one-line explanation below:
+"Whether you are visiting, relocating, or already living here,
+DeliWer supports every step of your life in Dubai."
+
+------------------------------------
+3. CONVERT EXISTING CARDS INTO STEPS
+------------------------------------
+Do NOT add or remove cards.
+Only update titles, microcopy, and ordering.
+
+STEP 1 — Settle Your Home
+Description:
+"Clean water, smart home setup, errands and daily essentials —
+handled so you can focus on living."
+CTA:
+"Get Home Service"
+(Route to existing Home Service flow — consultation only)
+
+STEP 2 — Secure Your Base
+Description:
+"Find the right place to live or invest —
+with trusted local real estate partners."
+CTA:
+"Find Housing"
+(Route to /housing)
+
+STEP 3 — Relocate & Grow
+Description:
+"Visas, business setup, Golden Visa and capital relocation —
+guided end to end."
+CTA:
+"Relocate to Dubai"
+(Route to /relocate)
+
+------------------------------------
+4. CTA PRIORITIZATION RULES
+------------------------------------
+- Step 3 (Relocate) must be visually emphasized slightly more
+  (button contrast or micro-label like “Most Chosen”)
+- No pricing shown
+- No commitment language (“Apply”, “Pay”, “Buy”)
+
+------------------------------------
+5. TRUST MICROCOPY (KEEP SUBTLE)
+------------------------------------
+Add one trust line below the steps:
+"Supporting residents, founders, professionals and families
+across 200+ nationalities in Dubai."
+
+------------------------------------
+6. UX QUALITY CHECKS
+------------------------------------
+Before finalizing, verify:
+- A job seeker understands the site is for them
+- A founder sees relocation as a natural next step
+- A resident sees ongoing value after relocation
+- All CTAs route correctly
+- No dead ends or broken links
+
+------------------------------------
+DELIVERABLE:
+Implement these refinements on the Home Page only,
+keeping the Hero intact and the design production-ready.
+```
+
+---
+
+## 🎯 WHAT THIS ACHIEVES (STRATEGICALLY)
+
+* **Hero remains aspirational**
+* Home Page now tells a **story**, not a menu
+* Relocation becomes the **logical destination**
+* Home Services retain their importance
+* Better emotional clarity for:
+
+  * Founders
+  * Employees
+  * Families
+  * Residents
+* Higher consultation bookings without friction
+
+---
+
+If you want next:
+
+* A **mobile-first version** of this journey
+* A **1-click consultation CTA** logic
+* A **heatmap-based CTA emphasis plan**
+* Or a **copy A/B test variant**
+
+Just tell me.
