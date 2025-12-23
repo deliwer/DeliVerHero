@@ -93,13 +93,22 @@ export default function Housing() {
       </section>
 
       {/* SECTION 2: WHO THIS IS FOR (3 Clarity Cards with Images) */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
+      <section className="relative py-16 px-4">
+        {/* Background Image with Dark Overlay */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.8) 100%)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        ></div>
+        <div className="container mx-auto relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="text-who-this-is-for">
               Who This Is For
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto" data-testid="text-clarity-description">
+            <p className="text-gray-300 max-w-2xl mx-auto" data-testid="text-clarity-description">
               We serve tourists, new residents, and investors. Each path is unique. We meet you where you are.
             </p>
           </div>
@@ -273,8 +282,17 @@ export default function Housing() {
       </section>
 
       {/* SECTION 4: LIVE MARKET INSIGHT (AI-Assisted Context) */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
+      <section className="relative py-16 px-4">
+        {/* Background Overlay */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.8) 100%)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        ></div>
+        <div className="container mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <Badge variant="secondary" className="mb-6 bg-cyan-500/20 text-cyan-400 border-cyan-500/30">
               <Zap className="w-3 h-3 mr-1" />
@@ -283,7 +301,7 @@ export default function Housing() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" data-testid="text-market-insight">
               Live Market Insight
             </h2>
-            <p className="text-gray-400 text-lg mb-6" data-testid="text-market-insight-intro">
+            <p className="text-gray-300 text-lg mb-6" data-testid="text-market-insight-intro">
               We use market intelligence tools and data platforms to understand:
             </p>
 
