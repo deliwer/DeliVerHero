@@ -652,7 +652,7 @@ function StepSellIPhone() {
               aria-label="Toggle Get Smart Home section"
               data-testid="toggle-smart-home"
             >
-              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">Get Your Smart Home</span>
+              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">Stay at Your Smart Home</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-emerald-400" />
               ) : (
