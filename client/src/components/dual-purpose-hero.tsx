@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroImage from "@assets/generated_images/diverse_global_founders_and_hnwis_from_many_nationalities.png";
 import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
+import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
 
 export function DualPurposeHero() {
   const [audience, setAudience] = useState<'consumer' | 'entrepreneur'>('consumer');
@@ -151,6 +152,90 @@ export function DualPurposeHero() {
         </div>
       </div>
 
+      {/* Settlement Gateway Section */}
+      <section 
+        className="relative py-16 px-4 overflow-hidden"
+        style={{
+          backgroundImage: `url(${settlementImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        <div className="max-w-5xl mx-auto relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Settling into Dubai Starts with the Basics — We Handle Them All
+            </h2>
+            <p className="text-lg text-gray-200 max-w-3xl mx-auto">
+              Whether you're visiting, relocating, working, or building — DeliWer supports your life in Dubai before and after arrival.
+            </p>
+          </div>
+
+          {/* Three Service Paths */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {/* Path 1: Live Comfortably */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate">
+              <div className="mb-4">
+                <ShoppingCart className="w-10 h-10 text-emerald-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Live Comfortably</h3>
+              <p className="text-gray-200 mb-6">
+                Clean water, home services, errands, and everyday essentials — handled for you.
+              </p>
+              <Link href="/home-service">
+                <Button variant="outline" className="border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-settlement-gateway-home-service">
+                  Get Home Service
+                </Button>
+              </Link>
+            </div>
+
+            {/* Path 2: Relocate with Confidence */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate">
+              <div className="mb-4">
+                <Building2 className="w-10 h-10 text-amber-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Relocate with Confidence</h3>
+              <p className="text-gray-200 mb-6">
+                Relocation, housing, visas, and business setup — guided end to end.
+              </p>
+              <Link href="/relocate">
+                <Button variant="outline" className="border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-settlement-gateway-relocate">
+                  Explore Relocation Options
+                </Button>
+              </Link>
+            </div>
+
+            {/* Path 3: Stay Connected & Earn */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate">
+              <div className="mb-4">
+                <Heart className="w-10 h-10 text-teal-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Stay Connected & Earn</h3>
+              <p className="text-gray-200 mb-6">
+                Sustainability, community access, and long-term benefits for residents.
+              </p>
+              <Link href="/community">
+                <Button variant="outline" className="border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-settlement-gateway-community">
+                  Join the Community
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Trust Microcopy */}
+          <div className="text-center">
+            <p className="text-sm text-gray-300">
+              Serving residents and newcomers across 200+ nationalities in Dubai
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Ecosystem Impact Section - Compact, Statistics-Driven */}
       <section 
         className="relative py-12 px-4 overflow-hidden"
@@ -242,79 +327,6 @@ export function DualPurposeHero() {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Settlement Gateway Section */}
-      <section className="relative py-16 px-4 bg-gradient-to-b from-background to-background/80">
-        <div className="max-w-5xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Settling into Dubai Starts with the Basics — We Handle Them All
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Whether you're visiting, relocating, working, or building — DeliWer supports your life in Dubai before and after arrival.
-            </p>
-          </div>
-
-          {/* Three Service Paths */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {/* Path 1: Live Comfortably */}
-            <div className="bg-card border border-border rounded-lg p-8 hover-elevate">
-              <div className="mb-4">
-                <ShoppingCart className="w-10 h-10 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Live Comfortably</h3>
-              <p className="text-muted-foreground mb-6">
-                Clean water, home services, errands, and everyday essentials — handled for you.
-              </p>
-              <Link href="/home-service">
-                <Button variant="outline" data-testid="button-settlement-gateway-home-service">
-                  Get Home Service
-                </Button>
-              </Link>
-            </div>
-
-            {/* Path 2: Relocate with Confidence */}
-            <div className="bg-card border border-border rounded-lg p-8 hover-elevate">
-              <div className="mb-4">
-                <Building2 className="w-10 h-10 text-amber-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Relocate with Confidence</h3>
-              <p className="text-muted-foreground mb-6">
-                Relocation, housing, visas, and business setup — guided end to end.
-              </p>
-              <Link href="/relocate">
-                <Button variant="outline" data-testid="button-settlement-gateway-relocate">
-                  Explore Relocation Options
-                </Button>
-              </Link>
-            </div>
-
-            {/* Path 3: Stay Connected & Earn */}
-            <div className="bg-card border border-border rounded-lg p-8 hover-elevate">
-              <div className="mb-4">
-                <Heart className="w-10 h-10 text-teal-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">Stay Connected & Earn</h3>
-              <p className="text-muted-foreground mb-6">
-                Sustainability, community access, and long-term benefits for residents.
-              </p>
-              <Link href="/community">
-                <Button variant="outline" data-testid="button-settlement-gateway-community">
-                  Join the Community
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Trust Microcopy */}
-          <div className="text-center">
-            <p className="text-sm text-muted-foreground">
-              Serving residents and newcomers across 200+ nationalities in Dubai
-            </p>
           </div>
         </div>
       </section>
