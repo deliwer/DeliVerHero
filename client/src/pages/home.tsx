@@ -11,6 +11,7 @@ import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section"
 import { SEOMeta } from "@/components/seo-meta";
 import { HomeServiceSection } from "@/components/home-service-section";
 import { LeaderboardSocialProof } from "@/components/leaderboard-social-proof";
+import { DirhamCurrency } from "@/components/dirham-currency";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gavel, ArrowRight, Plane, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -54,7 +55,7 @@ function OpportunitiesSection() {
                 className="w-full bg-hero-green-600 hover:bg-hero-green-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all text-center inline-block"
                 data-testid="button-gitex-launch"
               >
-                Starter Kit - د.إ 99
+                Starter Kit - <DirhamCurrency amount={99} iconSize="sm" />
               </Link>
             </div>
 
@@ -145,7 +146,7 @@ function LiveChallengeWidget() {
           <button
             onClick={() => {
               const challengeLink = `https://deliwer.com/challenge?ref=LIVE${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
-              const shareText = `🔥 Join Dubai's LIVE Community Challenge! 1 Million Bottles to Prevent by Ramadan - 80% Complete! Get Bakers Kitchen د.إ100 Kangen Water voucher: ${challengeLink}`;
+              const shareText = `🔥 Join Dubai's LIVE Community Challenge! 1 Million Bottles to Prevent by Ramadan - 80% Complete! Get Bakers Kitchen Dirham 100 Kangen Water voucher: ${challengeLink}`;
               
               if (navigator.share) {
                 navigator.share({ title: 'Join LIVE Community Challenge', text: shareText, url: challengeLink });

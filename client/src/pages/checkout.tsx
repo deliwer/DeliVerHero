@@ -12,6 +12,7 @@ import { shopifyCartService } from "@/lib/shopify-cart";
 import { StripeCheckout } from "@/components/stripe-checkout";
 import { PaymentMethodSelector } from "@/components/payment-method-selector";
 import PayPalButton from "@/components/PayPalButton";
+import { DirhamCurrency } from "@/components/dirham-currency";
 import { Loader2, CreditCard, User, MapPin, ArrowLeft } from "lucide-react";
 
 interface CheckoutItem {
@@ -183,20 +184,20 @@ export default function CheckoutPage() {
                     {cartItems.map(item => (
                       <div key={item.id} className="flex justify-between text-gray-300 mb-2">
                         <span>{item.title} x {item.quantity}</span>
-                        <span>د.إ {(item.price * item.quantity).toFixed(2)}</span>
+                        <span><DirhamCurrency amount={item.price * item.quantity} iconSize="sm" /></span>
                       </div>
                     ))}
                     <Separator className="my-4" />
                     <div className="flex justify-between text-white font-bold text-lg">
                       <span>Total:</span>
-                      <span>د.إ {total.toFixed(2)}</span>
+                      <span><DirhamCurrency amount={total} iconSize="md" /></span>
                     </div>
                   </div>
                   
                   <div className="flex justify-center">
                     <PayPalButton 
                       amount={total.toFixed(2)}
-                      currency="د.إ"
+                      currency="AED"
                       intent="CAPTURE"
                       onSuccess={(orderId) => handlePaymentSuccess(orderId)}
                       onError={(error) => {
@@ -403,7 +404,7 @@ export default function CheckoutPage() {
                         <p className="text-gray-400 text-sm">Qty: {item.quantity}</p>
                       </div>
                       <p className="text-white font-medium">
-                        د.إ {(item.price * item.quantity).toFixed(2)}
+                        <DirhamCurrency amount={item.price * item.quantity} iconSize="sm" />
                       </p>
                     </div>
                   ))}
@@ -412,7 +413,7 @@ export default function CheckoutPage() {
                   
                   <div className="flex justify-between items-center text-lg font-bold">
                     <span className="text-white">Total</span>
-                    <span className="text-emerald-400">د.إ {calculateTotal().toFixed(2)}</span>
+                    <span className="text-emerald-400"><DirhamCurrency amount={calculateTotal()} iconSize="md" /></span>
                   </div>
                   
                   <Button
