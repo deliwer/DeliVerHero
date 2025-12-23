@@ -378,7 +378,7 @@ function StepTwoExchange() {
               aria-label="Toggle Get Home Service section"
               data-testid="toggle-home-service"
             >
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Get Service at Home</span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Enjoy Service at Home</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-cyan-400" />
               ) : (
