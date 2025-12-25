@@ -17,7 +17,8 @@ import {
   Building,
   Award,
   Sparkles,
-  Globe
+  Globe,
+  TrendingUp
 } from "lucide-react";
 import { SiFacebook, SiTiktok } from "react-icons/si";
 import { EmailSubscriptionForm } from "./email-subscription-form";
