@@ -23,36 +23,19 @@ import { SiFacebook, SiTiktok } from "react-icons/si";
 import { EmailSubscriptionForm } from "./email-subscription-form";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
-
-
-  const quickLinks = [
-    { label: "Home", url: "/" },
-    { label: "Relocate to Dubai", url: "/relocate" },
+  const consumerLinks = [
     { label: "Home Service Launch", url: "/home-service-launch" },
-    { label: "Trade-in iPhone Calculator", url: "/products" },
-    { label: "AquaCafe Loyalty Program", url: "/aquacafe" },
-    { label: "Planet Heroes Leaderboard", url: "/leaderboard" },
-    { label: "Earn & Rewards", url: "/earn" },
-    { label: "Corporate Trade-in Solutions", url: "/corporate" },
-    { label: "Ambassador & Champion Programs", url: "/partners" },
-    { label: "Contact & About Us", url: "/contact" }
+    { label: "iPhone Trade-in", url: "/products" },
+    { label: "AquaCafe Loyalty", url: "/aquacafe" },
+    { label: "Leaderboard", url: "/leaderboard" },
+    { label: "Rewards", url: "/earn" },
   ];
 
-  const sponsorshipTiers = [
-    { name: "Bronze Sponsor", amount: "AED 500+", impact: "Fund 5 missions", color: "text-amber-600" },
-    { name: "Silver Sponsor", amount: "AED 1,500+", impact: "Fund 15 missions", color: "text-gray-400" },
-    { name: "Gold Sponsor", amount: "AED 5,000+", impact: "Fund 50 missions", color: "text-yellow-500" },
-    { name: "Platinum Sponsor", amount: "AED 15,000+", impact: "Fund 150 missions", color: "text-purple-400" }
-  ];
-
-  const partnershipPrograms = [
-    { label: "Corporate Trade-in Partner", earnings: "Volume discounts" },
-    { label: "Delivery Agent Program", earnings: "AED 150-300/day" },
-    { label: "Eco-Recycling Partner", earnings: "AED 50-150/device" },
-    { label: "Restaurant Collection", earnings: "10% commission" },
-    { label: "Community Ambassador", earnings: "Token rewards" }
+  const b2bLinks = [
+    { label: "ChainTrack B2B", url: "/chaintrack" },
+    { label: "Corporate Trade-in", url: "/corporate" },
+    { label: "Ambassadors", url: "/partners" },
+    { label: "Investor Relations", url: "/invest" },
   ];
 
   const socialLinks = [
@@ -63,6 +46,8 @@ export function Footer() {
     { icon: Twitter, url: "https://twitter.com/vdeliwer", label: "Twitter" },
     { icon: Linkedin, url: "https://linkedin.com/company/deliwer", label: "LinkedIn" }
   ];
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-slate-900 border-t border-slate-700">
@@ -75,9 +60,9 @@ export function Footer() {
           
           {/* Brand & Mission */}
           <div className="lg:col-span-1">
-            <div className="flex items-center mb-6">
+            <Link href="/" className="flex items-center mb-6 hover:opacity-80 transition-opacity">
               <span className="text-2xl font-bold text-white">DeliWer</span>
-            </div>
+            </Link>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
               World's First Sustainability Game. Trade your iPhone for premium water systems while earning Loyalty Member status and contributing to Dubai's environmental missions.
@@ -173,9 +158,11 @@ export function Footer() {
                 </Link>
               ))}
             </div>
-
-            {/* Platform Features removed or relocated to bottom bar if needed */}
           </div>
+
+          {/* Partnership & Contact */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-6">Partnership & Contact</h3>
 
             {/* Contact Information */}
             <div className="space-y-4">
