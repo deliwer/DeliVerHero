@@ -274,11 +274,13 @@ export default function Partners() {
             <Button
               asChild
               variant="outline"
-              className="border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-white px-8 py-4 text-lg font-semibold"
+              className="border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-white px-8 py-4 text-lg font-semibold h-auto"
             >
               <Link href="/invest">
-                <TrendingUp className="w-5 h-5 mr-2" />
-                Investor Relations
+                <div className="flex items-center">
+                  <TrendingUp className="w-5 h-5 mr-2" />
+                  Investor Relations
+                </div>
               </Link>
             </Button>
             <Button
