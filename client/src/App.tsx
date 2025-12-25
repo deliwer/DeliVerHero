@@ -57,6 +57,7 @@ import NotFound from "@/pages/not-found";
 import ContactPage from "@/pages/contact";
 import AboutPage from "@/pages/about";
 import ProfilePage from "@/pages/profile";
+import InvestPage from "@/pages/invest";
 import HeroDashboard from "@/pages/hero-dashboard";
 import IcelandicGlacialLandingPage from "@/pages/icelandic-glacial";
 import InvestorDashboard from "@/pages/investor-dashboard";
@@ -182,6 +183,7 @@ function Router() {
         <Route path="/account" component={AccountConsolidated} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />
+        <Route path="/invest" component={InvestPage} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />

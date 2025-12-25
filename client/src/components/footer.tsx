@@ -133,15 +133,15 @@ export function Footer() {
 
 
 
-          {/* Quick Navigation */}
+          {/* DeliWer Consumer Navigation */}
           <div>
             <h3 className="text-lg font-bold text-white mb-6 flex items-center">
-              <Globe className="w-5 h-5 mr-2 text-hero-green-500" />
-              Platform Navigation
+              <Sparkles className="w-5 h-5 mr-2 text-hero-green-500" />
+              DeliWer Consumer
             </h3>
             
             <div className="space-y-3">
-              {quickLinks.map((link, index) => (
+              {consumerLinks.map((link, index) => (
                 <Link
                   key={index}
                   href={link.url}
@@ -152,45 +152,30 @@ export function Footer() {
                 </Link>
               ))}
             </div>
-
-            {/* Platform Features */}
-            <div className="mt-8 space-y-3">
-              <div className="flex items-center text-sm text-emerald-400">
-                <Sparkles className="w-4 h-4 mr-2" />
-                Unified Device Trade Calculator
-              </div>
-              <div className="flex items-center text-sm text-amber-400">
-                <Award className="w-4 h-4 mr-2" />
-                AED 1299 Hero Minimal | AED 99 Loyalty Starter
-              </div>
-              <div className="flex items-center text-sm text-blue-400">
-                <Users className="w-4 h-4 mr-2" />
-                Ambassador Earnings Program
-              </div>
-            </div>
-
-            {/* Environmental Impact Stats */}
-            <div className="mt-6 p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-              <h4 className="text-sm font-bold text-white mb-3 flex items-center">
-                <Recycle className="w-4 h-4 mr-2 text-hero-green-500" />
-                Mission Impact
-              </h4>
-              <div className="grid grid-cols-2 gap-3 text-center">
-                <div>
-                  <div className="text-lg font-bold text-hero-green-500">180T</div>
-                  <div className="text-xs text-gray-400">CO₂ Saved</div>
-                </div>
-                <div>
-                  <div className="text-lg font-bold text-blue-500">2.4M</div>
-                  <div className="text-xs text-gray-400">Bottles Prevented</div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* Partnership & Contact */}
+          {/* ChainTrack B2B Navigation */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6">Partnership & Contact</h3>
+            <h3 className="text-lg font-bold text-white mb-6 flex items-center">
+              <Building className="w-5 h-5 mr-2 text-blue-500" />
+              ChainTrack B2B
+            </h3>
+            
+            <div className="space-y-3">
+              {b2bLinks.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.url}
+                  className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                >
+                  <ChevronRight className="w-4 h-4 mr-2 text-gray-600 group-hover:text-blue-500 transition-colors" />
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Platform Features removed or relocated to bottom bar if needed */}
+          </div>
 
             {/* Contact Information */}
             <div className="space-y-4">
