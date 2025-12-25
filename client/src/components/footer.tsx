@@ -27,7 +27,7 @@ export function Footer() {
     { label: "Home Service Launch", url: "/home-service-launch" },
     { label: "iPhone Trade-in", url: "/products" },
     { label: "AquaCafe Loyalty", url: "/aquacafe" },
-    { label: "Leaderboard", url: "/leaderboard" },
+    { label: "E-Waste Mission", url: "/ewaste" },
     { label: "Rewards", url: "/earn" },
   ];
 
@@ -36,6 +36,13 @@ export function Footer() {
     { label: "Corporate Trade-in", url: "/corporate" },
     { label: "Ambassadors", url: "/partners" },
     { label: "Investor Relations", url: "/invest" },
+  ];
+
+  const investorLinks = [
+    { label: "Pitch Deck (Gust)", url: "https://www.gust.com/companies/deliwer" },
+    { label: "Crunchbase Profile", url: "https://www.crunchbase.com/organization/deliwer-shopping" },
+    { label: "Partnership Inquiry", url: "/contact" },
+    { label: "Investment Dashboard", url: "/investor-dashboard" },
   ];
 
   const socialLinks = [
@@ -56,7 +63,7 @@ export function Footer() {
         {/* Highlighted Sponsorship Banner */}
 
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12">
           
           {/* Brand & Mission */}
           <div className="lg:col-span-1">
@@ -87,18 +94,6 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Contact & About Us */}
-            <div className="mb-6">
-              <Link
-                href="/contact"
-                className="flex items-center text-gray-400 hover:text-white transition-colors group"
-                data-testid="link-footer-contact"
-              >
-                <ChevronRight className="w-4 h-4 mr-2 text-gray-600 group-hover:text-hero-green-500 transition-colors" />
-                Contact & About Us
-              </Link>
-            </div>
-
             {/* Social Links */}
             <div className="flex space-x-4">
               {socialLinks.map(({ icon: Icon, url, label }) => (
@@ -115,8 +110,6 @@ export function Footer() {
               ))}
             </div>
           </div>
-
-
 
           {/* DeliWer Consumer Navigation */}
           <div>
@@ -160,9 +153,49 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Partnership & Contact */}
+          {/* Investors & Partners */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6">Partnership & Contact</h3>
+            <h3 className="text-lg font-bold text-white mb-6 flex items-center">
+              <TrendingUp className="w-5 h-5 mr-2 text-amber-500" />
+              Investors & Partners
+            </h3>
+            
+            <div className="space-y-3">
+              {investorLinks.map((link, index) => (
+                link.url.startsWith('http') ? (
+                  <a
+                    key={index}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                  >
+                    <ChevronRight className="w-4 h-4 mr-2 text-gray-600 group-hover:text-amber-500 transition-colors" />
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={index}
+                    href={link.url}
+                    className="flex items-center text-gray-400 hover:text-white transition-colors group"
+                  >
+                    <ChevronRight className="w-4 h-4 mr-2 text-gray-600 group-hover:text-amber-500 transition-colors" />
+                    {link.label}
+                  </Link>
+                )
+              ))}
+            </div>
+
+            {/* Stay Connected */}
+            <div className="mt-8">
+              <h4 className="text-sm font-bold text-white mb-3 flex items-center">
+                <Mail className="w-4 h-4 mr-2 text-hero-green-500" />
+                Newsletter
+              </h4>
+              <EmailSubscriptionForm variant="footer" />
+            </div>
+          </div>
+        </div>
 
             {/* Contact Information */}
             <div className="space-y-4">

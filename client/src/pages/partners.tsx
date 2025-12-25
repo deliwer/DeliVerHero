@@ -263,23 +263,33 @@ export default function Partners() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  onClick={() => setShowAIChat(true)}
-                  className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Start AI Partnership Chat
-                </Button>
-                <Button
-                  onClick={() => document.getElementById('quick-form')?.scrollIntoView({ behavior: 'smooth' })}
-                  variant="outline"
-                  className="border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-8 py-4 text-lg font-semibold"
-                >
-                  <Zap className="w-5 h-5 mr-2" />
-                  Quick Partnership Form
-                </Button>
-              </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => setShowAIChat(true)}
+              className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold"
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Start AI Partnership Chat
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-white px-8 py-4 text-lg font-semibold"
+            >
+              <Link href="/invest">
+                <TrendingUp className="w-5 h-5 mr-2" />
+                Investor Relations
+              </Link>
+            </Button>
+            <Button
+              onClick={() => document.getElementById('quick-form')?.scrollIntoView({ behavior: 'smooth' })}
+              variant="outline"
+              className="border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white px-8 py-4 text-lg font-semibold"
+            >
+              <Zap className="w-5 h-5 mr-2" />
+              Quick Partnership Form
+            </Button>
+          </div>
             </div>
           </Card>
         </div>
