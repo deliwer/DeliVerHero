@@ -1,0 +1,284 @@
+DeliWer.com — Default Move-In Infrastructure (Execution-First Website)
+ROLE & MINDSET
+
+You are a Website Launch Architect for execution-critical startups.
+
+Your job is not branding, not experimentation, and not feature completeness.
+
+Your job is:
+
+Control first impressions
+
+Remove choice overload
+
+Create a default action
+
+Enable immediate organic discovery
+
+Keep future expansion hidden but intact
+
+Assume:
+
+Funding is fragile
+
+Traffic must convert without paid ads
+
+Complexity kills companies
+
+CORE STRATEGIC DIRECTIVE (NON-NEGOTIABLE)
+
+DeliWer.com must launch as a Move-In Service, not a shopping platform.
+
+Shopping, entrepreneurs, and future services:
+
+Must exist
+
+Must be hidden
+
+Must not distract
+
+PRIMARY USER PROMISE (ABOVE THE FOLD)
+
+“Make your apartment livable on Day One — without coordination.”
+
+This is the homepage’s only job.
+
+INFORMATION ARCHITECTURE (CRITICAL)
+🔹 Primary Gateway (Default)
+
+Move-In Services
+
+Local Relocation
+
+International Relocation
+
+Move-In Day Essentials Activation
+
+These must hang together by default.
+
+🔹 Secondary Gateway (Hidden but Accessible)
+
+Explore DeliWer
+
+Shopping (hidden)
+
+Entrepreneurs / Partners (hidden)
+
+Future Services (collapsed)
+
+Community Integrations (collapsed)
+
+No removal — only progressive disclosure.
+
+REQUIRED SITE STRUCTURE
+1️⃣ Homepage (Conversion-First, Not Brand-First)
+
+Above the fold
+
+Headline:
+“Move in. Everything works.”
+
+Sub-line:
+Water, utilities, and essentials ready on Day One.
+
+Primary CTA:
+“Activate My Move-In”
+
+Secondary CTA (low emphasis):
+“I’m exploring”
+
+2️⃣ Move-In Services Page (Core Money Page)
+
+This page must:
+
+Rank on Google
+
+Convert human traffic
+
+Be readable by AI search agents
+
+Sections:
+
+What breaks on move-in day
+
+What DeliWer activates
+
+Who it’s for (expats, corporate, free-zone professionals)
+
+How it works (3 steps max)
+
+What we deliberately do NOT do (builds trust)
+
+Simple pricing placeholder (“Request activation”)
+
+3️⃣ Local + International Relocation (Unified Logic)
+
+One parent page:
+
+“Relocation & Move-In”
+
+Child logic:
+
+Local relocation
+
+International relocation
+
+Both lead to:
+👉 Move-In Essentials Activation
+
+No parallel funnels.
+
+4️⃣ Hidden Shopping Layer (Not Removed)
+
+Shopping should:
+
+Exist under /explore or /future
+
+Be indexed as “coming soon”
+
+Not appear in primary navigation
+
+Be referenced as “activated after move-in”
+
+This keeps:
+
+SEO surface area
+
+Future optionality
+
+Without execution risk
+
+SEO & AI OPTIMIZATION (SURVIVAL MODE)
+🔹 SEO FIRST PRINCIPLES
+
+Target high-intent, low-competition queries:
+
+“move in services Dubai”
+
+“apartment move in checklist Dubai”
+
+“relocation services Dubai expats”
+
+“utilities setup Dubai apartment”
+
+“day one apartment setup Dubai”
+
+Each page must include:
+
+Clear H1 / H2 structure
+
+FAQ schema
+
+Plain English answers
+
+No marketing fluff
+
+🔹 AI SEARCH READINESS (IMPORTANT)
+
+Structure content so:
+
+ChatGPT / Perplexity / Google AI can quote it
+
+Short paragraphs
+
+Bullet answers
+
+Definitions upfront
+
+Include:
+
+“What is move-in services in Dubai?”
+
+“How does relocation activation work?”
+
+“Who is responsible on move-in day?”
+
+UX RULES (DO NOT BREAK)
+
+One primary CTA per page
+
+No carousels
+
+No animations that delay load
+
+Mobile-first
+
+Page load under 2 seconds
+
+Speed = survival.
+
+TECH STACK PREFERENCE (REPLIT-FRIENDLY)
+
+Framework: Next.js or Remix
+
+SEO: Static rendering where possible
+
+CMS: Lightweight (MDX or JSON)
+
+Forms: Simple lead capture (no signup wall)
+
+Analytics: Basic (page views + CTA clicks)
+
+No over-engineering.
+
+COPY TONE RULES
+
+Calm
+
+Confident
+
+Operational
+
+No buzzwords
+
+No “metaverse” language on consumer pages
+
+Sound like:
+
+“This works. We’ve done it before. Here’s how.”
+
+DELIVERABLES REQUIRED FROM REPLIT
+
+Replit must generate:
+
+Homepage (Move-In first)
+
+Move-In Services page
+
+Relocation (Local + International) page
+
+Hidden Shopping / Future Services section
+
+SEO-optimized copy for all pages
+
+Clean navigation logic
+
+Mobile-ready layout
+
+FINAL CHECK (FAIL OR PASS)
+
+This website passes if:
+
+A relocating expat understands value in 10 seconds
+
+A Google crawler understands the service instantly
+
+An investor sees execution discipline
+
+Future features are preserved without distraction
+
+This website fails if:
+
+It feels like a marketplace
+
+It explains too much
+
+It offers too many choices
+
+FINAL INSTRUCTION TO REPLIT
+
+“Build DeliWer.com as if the company dies if move-in does not work.”
+
+No experiments.
+No extras.
+Just control → default → survive.
