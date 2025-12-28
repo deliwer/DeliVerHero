@@ -248,6 +248,57 @@ export default function Home() {
       {/* Hidden Community Leaderboard Section */}
       {/* <LeaderboardSocialProof /> */}
 
+      {/* Collapsible How It Works Steps */}
+      <div className="max-w-4xl mx-auto px-4 space-y-4 mb-12">
+        {/* Step 3: Play */}
+        <div className="glass rounded-3xl border border-purple-500/30 overflow-hidden">
+          <details className="group">
+            <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">3</div>
+                <h3 className="text-xl font-bold text-white">Step 3: Play</h3>
+              </div>
+              <ChevronDown className="w-6 h-6 text-purple-400 group-open:rotate-180 transition-transform" />
+            </summary>
+            <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
+              <p className="text-gray-300 mb-6">Join the planet gamification movement! Complete eco-missions, earn DXB tokens, and make real environmental impact.</p>
+              <Link href="/play">
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-6 rounded-xl shadow-lg transform hover:scale-[1.02] transition-all">
+                  <Play className="w-5 h-5 mr-2" />
+                  Enter the Game
+                </Button>
+              </Link>
+            </div>
+          </details>
+        </div>
+
+        {/* Final Step: Join Free + Welcome Bonus */}
+        <div className="glass rounded-3xl border border-emerald-500/30 overflow-hidden">
+          <details className="group">
+            <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold">★</div>
+                <h3 className="text-xl font-bold text-white">Final Step: Join Free + Welcome Bonus</h3>
+              </div>
+              <ChevronDown className="w-6 h-6 text-emerald-400 group-open:rotate-180 transition-transform" />
+            </summary>
+            <div className="px-6 pb-6 animate-in slide-in-from-top-2 duration-300">
+              <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4 mb-6 text-center">
+                <p className="text-emerald-400 font-bold text-lg mb-1">WELCOME BONUS UNLOCKED</p>
+                <p className="text-white text-3xl font-black">100 DXBs</p>
+              </div>
+              <p className="text-gray-300 mb-6">Claim your instant carbon token rewards by joining Dubai's fastest growing sustainability community today.</p>
+              <Link href="/signup">
+                <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-6 rounded-xl shadow-lg transform hover:scale-[1.02] transition-all">
+                  <Gift className="w-5 h-5 mr-2" />
+                  Claim My 100 DXBs
+                </Button>
+              </Link>
+            </div>
+          </details>
+        </div>
+      </div>
+
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />
 

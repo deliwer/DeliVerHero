@@ -12,7 +12,7 @@ import {
 
 export function HomeServiceSection() {
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-blue-900/20" data-section="step-1">
+    <section className="hidden py-16 px-4 bg-gradient-to-br from-emerald-900/20 via-teal-900/10 to-blue-900/20" data-section="step-1">
       <div className="max-w-4xl mx-auto text-center">
         <Badge variant="secondary" className="mb-6 bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
           <Home className="w-3 h-3 mr-1" />
