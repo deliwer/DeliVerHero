@@ -1151,7 +1151,7 @@ export function HeroChallengeLanding() {
         </div>
 
         {/* 3-Step Progressive Flow with Visual Connectors */}
-        {/* Step 1: Shop Smart */}
+        {/* Step 1: Exchange / Shop Smart */}
         <div data-section="step-1">
           <StepTwoExchange />
         </div>
@@ -1159,40 +1159,52 @@ export function HeroChallengeLanding() {
         {/* Flow Connector 1→2 */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-purple-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-green-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-pink-500 mt-2"></div>
+            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-teal-500 mt-2"></div>
             <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
           </div>
         </div>
 
-        {/* Step 2: Sell iPhone */}
+        {/* Step 2: Home Service / Smart Home */}
         <div data-section="step-2">
           <StepSellIPhone />
-        </div>
-
-        {/* Loyalty Program & Membership Benefits */}
-        <div data-section="membership-benefits">
-          <MembershipBenefitsSection />
         </div>
 
         {/* Flow Connector 2→3 */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-indigo-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-teal-500 to-purple-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-purple-500 mt-2"></div>
+            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-indigo-500 mt-2"></div>
+            <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
+          </div>
+        </div>
+
+        {/* Step 3: Play to Earn */}
+        <div data-section="step-3">
+          <StepOnePlay onJoinMission={() => setShowMissionSelection(true)} />
+        </div>
+
+        {/* Flow Connector 3→Loyalty */}
+        <div className="flex justify-center mb-8">
+          <div className="flex flex-col items-center">
+            <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-amber-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+              <ArrowDown className="w-6 h-6 text-white" />
+            </div>
+            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-orange-500 mt-2"></div>
             <div className="text-xs text-gray-400 mt-2 font-bold">FINAL STEP</div>
           </div>
         </div>
 
-        {/* Step 3: Create Impact Section (Play) */}
-        <div data-section="step-3">
-          <StepOnePlay onJoinMission={() => setShowMissionSelection(true)} />
+        {/* Final Step: Loyalty Program & Membership Benefits */}
+        <div data-section="membership-benefits">
+          <MembershipBenefitsSection />
         </div>
 
       </div>
