@@ -37,8 +37,6 @@ export function Navigation() {
   const consumerNavItems = [
     { path: "/move-in-services", label: "Move-In Services", id: "move-in-services" },
     { path: "/relocation", label: "Relocation", id: "relocation", featured: true },
-    { path: "/explore", label: "Explore", id: "explore" },
-    { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/housing", label: "Stay Comfortably", id: "housing" },
   ];
