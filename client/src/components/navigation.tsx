@@ -52,7 +52,7 @@ export function Navigation() {
     { path: "/investor-dashboard", label: "Investors", id: "investors" },
   ];
 
-  const navItems = isB2BMode ? b2bNavItems : consumerNavItems;
+  const navItems = consumerNavItems;
 
   return (
     <nav className="bg-slate-900/90 backdrop-blur-sm border-b border-slate-700 sticky top-0 z-50">
@@ -60,19 +60,13 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity" data-testid="link-home">
-              {isB2BMode ? (
-                <div className="flex items-center space-x-2">
-                  <div className="text-xl font-bold text-blue-400">ChainTrack</div>
-                </div>
-              ) : (
-                <div className="flex items-center">
-                  <img 
-                    src="/deliwer-logo.png" 
-                    alt="DeliWer Logo" 
-                    className="h-10 w-auto brightness-110 hover:brightness-125 transition-all"
-                  />
-                </div>
-              )}
+              <div className="flex items-center">
+                <img 
+                  src="/deliwer-logo.png" 
+                  alt="DeliWer Logo" 
+                  className="h-10 w-auto brightness-110 hover:brightness-125 transition-all"
+                />
+              </div>
             </Link>
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
@@ -93,7 +87,7 @@ export function Navigation() {
                     </Link>
                   );
                 }
-                
+
                 // Special styling for Move-In Services
                 if (item.id === "move-in-services") {
                   return (
@@ -110,127 +104,6 @@ export function Navigation() {
                     </Link>
                   );
                 }
-                
-                // Special styling for Explore
-                if (item.id === "explore") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-pink-600/30 hover:border-purple-400/50 transition-all">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for featured Fulfillment by DeliWer (B2B)
-                if (item.id === "fulfillment" && item.featured) {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border-2 border-blue-500/60 rounded-lg text-white hover:from-blue-600/40 hover:to-cyan-600/40 hover:border-blue-400/80 transition-all duration-300 shadow-xl hover:shadow-blue-500/30">
-                        <span className="font-bold text-lg">{item.label}</span>
-                        <Package className="w-4 h-4 text-green-400" />
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for Reverse Bidding (B2B)
-                if (item.id === "chaintrack") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-blue-600/30 hover:border-purple-400/50 transition-all">
-                        <TrendingDown className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for Home Service link
-                if (item.id === "home-service") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 rounded-lg text-teal-300 hover:text-white hover:from-teal-600/30 hover:to-emerald-600/30 hover:border-teal-400/50 transition-all">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for Housing link
-                if (item.id === "housing") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/30 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/30 hover:to-indigo-600/30 hover:border-blue-400/50 transition-all">
-                        <Building className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for Relocation link
-                if (item.id === "relocation") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-600/20 to-orange-600/20 border border-amber-500/30 rounded-lg text-amber-300 hover:text-white hover:from-amber-600/30 hover:to-orange-600/30 hover:border-amber-400/50 transition-all">
-                        <Globe className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for partners link (Consumer)
-                if (item.id === "partners") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border border-emerald-500/30 rounded-lg text-emerald-300 hover:text-white hover:from-emerald-600/30 hover:to-blue-600/30 hover:border-emerald-400/50 transition-all">
-                        <Building className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                        <Sparkles className="w-3 h-3 text-yellow-400" />
-                      </div>
-                    </Link>
-                  );
-                }
-                
 
                 return (
                   <Link
@@ -247,58 +120,6 @@ export function Navigation() {
           </div>
 
           <div className="flex items-center space-x-2">
-            {/* B2B/Consumer Toggle */}
-            <div className="flex items-center space-x-3 mr-4">
-              <button
-                onClick={() => setIsB2BMode(!isB2BMode)}
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg border transition-all duration-300 ${
-                  isB2BMode 
-                    ? 'bg-blue-600/20 border-blue-500/50 text-blue-300' 
-                    : 'bg-gray-700/50 border-gray-600/50 text-gray-300 hover:text-white hover:border-gray-500'
-                }`}
-                data-testid="toggle-b2b-mode"
-              >
-                {isB2BMode ? (
-                  <>
-                    <Briefcase className="w-4 h-4" />
-                    <span className="text-sm font-medium">B2B</span>
-                    <ToggleRight className="w-5 h-5" />
-                  </>
-                ) : (
-                  <>
-                    <Users className="w-4 h-4" />
-                    <span className="text-sm font-medium">Consumer</span>
-                    <ToggleLeft className="w-5 h-5" />
-                  </>
-                )}
-              </button>
-            </div>
-
-            {/* Mobile Action Buttons - Compact */}
-            <div className="flex md:hidden items-center space-x-2">
-              <Link
-                href={isB2BMode ? "/corporate" : "/products"}
-                className={`${
-                  isB2BMode 
-                    ? 'bg-blue-600 hover:bg-blue-700' 
-                    : 'bg-dubai-blue-600 hover:bg-dubai-blue-700'
-                } text-white px-2 py-1.5 rounded-lg text-sm font-medium transition-colors`}
-                data-testid="button-shop-all-mobile"
-              >
-                {isB2BMode ? (
-                  <>
-                    <Briefcase className="inline w-3 h-3 mr-1" />
-                    Get Trade Quote
-                  </>
-                ) : (
-                  <>
-                    <Rocket className="inline w-3 h-3 mr-1" />
-                    Shop All
-                  </>
-                )}
-              </Link>
-            </div>
-
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               {/* Planet Points Widget removed from main navigation */}
@@ -349,30 +170,7 @@ export function Navigation() {
                         Sign Up
                       </Link>
                       
-                      {/* B2B specific dropdown items */}
-                      {isB2BMode && (
-                        <>
-                          <div className="border-t border-slate-700 my-1"></div>
-                          <Link
-                            href="/corporate-dashboard"
-                            className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
-                            data-testid="dropdown-dashboard"
-                            onClick={() => setUserDropdownOpen(false)}
-                          >
-                            <LayoutDashboard className="w-4 h-4 mr-3" />
-                            Dashboard
-                          </Link>
-                          <Link
-                            href="/purchase-orders"
-                            className="flex items-center px-4 py-2 text-gray-300 hover:text-white hover:bg-slate-700 transition-colors"
-                            data-testid="dropdown-purchase-orders"
-                            onClick={() => setUserDropdownOpen(false)}
-                          >
-                            <FileText className="w-4 h-4 mr-3" />
-                            Purchase Orders
-                          </Link>
-                        </>
-                      )}
+                      {/* B2B specific dropdown items removed */}
                       
                       <div className="border-t border-slate-700 my-1"></div>
                       <Link
@@ -399,25 +197,12 @@ export function Navigation() {
               </div>
 
               <Link
-                href={isB2BMode ? "/corporate" : "/products"}
-                className={`${
-                  isB2BMode 
-                    ? 'bg-blue-600 hover:bg-blue-700' 
-                    : 'bg-dubai-blue-600 hover:bg-dubai-blue-700'
-                } text-white px-4 py-2 rounded-lg font-medium transition-colors`}
+                href="/products"
+                className="bg-dubai-blue-600 hover:bg-dubai-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 data-testid="button-shop-all"
               >
-                {isB2BMode ? (
-                  <>
-                    <Briefcase className="inline w-4 h-4 mr-2" />
-                    Get Trade Quote
-                  </>
-                ) : (
-                  <>
-                    <Rocket className="inline w-4 h-4 mr-2" />
-                    Shop All
-                  </>
-                )}
+                <Rocket className="inline w-4 h-4 mr-2" />
+                Shop All
               </Link>
             </div>
 

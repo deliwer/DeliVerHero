@@ -102,8 +102,8 @@ function Router() {
   return (
     <WouterRouter base={basePath}>
       <Switch>
-        <Route path="/" component={MoveInLanding} />
-        <Route path="/home-legacy" component={Home} />
+        <Route path="/" component={Home} />
+        <Route path="/move-in-landing" component={MoveInLanding} />
         <Route path="/move-in-services" component={MoveInServices} />
         <Route path="/relocation" component={Relocation} />
         <Route path="/explore" component={Explore} />
