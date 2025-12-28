@@ -35,13 +35,12 @@ export function Navigation() {
   }, []);
 
   const consumerNavItems = [
+    { path: "/move-in-services", label: "Move-In Services", id: "move-in-services" },
+    { path: "/relocation", label: "Relocation", id: "relocation", featured: true },
+    { path: "/explore", label: "Explore", id: "explore" },
+    { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/housing", label: "Stay Comfortably", id: "housing" },
-    { path: "/relocate", label: "Relocate", id: "relocate", featured: true },
-    { path: "/earn", label: "Grow", id: "earn" },
-    { path: "/leaderboard", label: "Leaderboard", id: "leaderboard" },
-    { path: "/play", label: "Play", id: "play" },
-    { path: "/partners", label: "Partners", id: "partners" },
   ];
 
   const b2bNavItems = [
@@ -78,8 +77,8 @@ export function Navigation() {
             <div className="hidden md:flex space-x-6">
               {navItems.map((item) => {
                 
-                // Special styling for featured Relocate button (Consumer)
-                if (item.id === "relocate" && item.featured) {
+                // Special styling for featured Relocation button (Consumer)
+                if (item.id === "relocation" && item.featured) {
                   return (
                     <Link
                       key={item.path}
@@ -90,6 +89,40 @@ export function Navigation() {
                       <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600/40 to-orange-600/40 border-2 border-amber-500/70 rounded-lg text-white hover:from-amber-600/50 hover:to-orange-600/50 hover:border-amber-400/90 transition-all duration-300 shadow-xl hover:shadow-amber-500/40 animate-pulse hover:animate-none">
                         <span className="font-bold text-lg">{item.label}</span>
                         <Plane className="w-4 h-4 text-yellow-300 animate-bounce" />
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for Move-In Services
+                if (item.id === "move-in-services") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/30 hover:to-cyan-600/30 hover:border-blue-400/50 transition-all">
+                        <Home className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
+                      </div>
+                    </Link>
+                  );
+                }
+                
+                // Special styling for Explore
+                if (item.id === "explore") {
+                  return (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="relative group transition-all duration-300"
+                      data-testid={`link-${item.id}`}
+                    >
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-lg text-purple-300 hover:text-white hover:from-purple-600/30 hover:to-pink-600/30 hover:border-purple-400/50 transition-all">
+                        <Sparkles className="w-4 h-4" />
+                        <span className="font-medium">{item.label}</span>
                       </div>
                     </Link>
                   );
@@ -163,8 +196,8 @@ export function Navigation() {
                   );
                 }
                 
-                // Special styling for Relocate link
-                if (item.id === "relocate") {
+                // Special styling for Relocation link
+                if (item.id === "relocation") {
                   return (
                     <Link
                       key={item.path}

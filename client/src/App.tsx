@@ -13,6 +13,10 @@ import { FloatingErrandTips } from "@/components/floating-errand-tips";
 import { useEffect, lazy } from "react";
 import { useLocation } from "wouter";
 import Home from "@/pages/home";
+import MoveInLanding from "@/pages/move-in-landing";
+import MoveInServices from "@/pages/move-in-services";
+import Relocation from "@/pages/relocation";
+import Explore from "@/pages/explore";
 import Leaderboard from "@/pages/leaderboard";
 import ImpactDashboard from "@/pages/impact-dashboard";
 import AquaCafe from "@/pages/aquacafe-enhanced";
@@ -98,7 +102,11 @@ function Router() {
   return (
     <WouterRouter base={basePath}>
       <Switch>
-        <Route path="/" component={Home} />
+        <Route path="/" component={MoveInLanding} />
+        <Route path="/home-legacy" component={Home} />
+        <Route path="/move-in-services" component={MoveInServices} />
+        <Route path="/relocation" component={Relocation} />
+        <Route path="/explore" component={Explore} />
         <Route path="/leaderboard" component={Leaderboard} />
         <Route path="/community" component={Leaderboard} />
         <Route path="/impact-dashboard" component={ImpactDashboard} />
