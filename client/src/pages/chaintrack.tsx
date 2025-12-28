@@ -554,18 +554,6 @@ function ChainTrackLanding() {
               </div>
             </div>
           )}
-                  <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest">Advanced B2B Feature: DXB Tokens Launching Soon</p>
-                </div>
-                <RewardComparison />
-              </div>
-            </div>
-          )}
-            <Link href="/signup">
-              <Button size="lg" variant="outline" className="gap-2" data-testid="button-signup">
-                Request B2B Access
-              </Button>
-            </Link>
-          </div>
 
           {/* Trust Badges */}
           <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-600 dark:text-slate-400 mb-6">
