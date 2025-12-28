@@ -236,9 +236,6 @@ export default function Home() {
       {/* PHASE 2: EARN (Participation) - Planet Points Challenge & Rewards */}
       <HeroChallengeLanding />
 
-      {/* Reward Comparison Section - Unified DXBs (Part of Earn) */}
-      <RewardComparison />
-
       {/* Trade-In Banner - Prominent CTA for trade-ins (Part of Earn) */}
       <div className="py-8 px-4">
         <TradeInBanner />

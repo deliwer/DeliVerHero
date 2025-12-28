@@ -13,35 +13,39 @@ import { Link } from "wouter";
 import { User, ChaintrackAuction, ChaintrackBid, ChaintrackSupplier } from "@shared/schema";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import {
-  Package,
-  TrendingDown,
-  Shield,
-  Zap,
-  Building2,
-  Globe,
-  CheckCircle2,
-  ArrowRight,
-  Phone,
-  Search,
-  BarChart3,
-  Sparkles,
-  Plane,
-  Clock,
-  DollarSign,
-  Users,
-  Star,
-  Boxes,
-  Gavel,
-  Plus,
-  TrendingUp,
-  AlertCircle,
-  X,
-  MapPin,
-  RefreshCw,
-  ShoppingCart,
-  Warehouse,
-  Recycle,
+import { RewardComparison } from "@/components/reward-comparison";
+import { 
+  Package, 
+  TrendingDown, 
+  Shield, 
+  Zap, 
+  Building2, 
+  Globe, 
+  CheckCircle2, 
+  ArrowRight, 
+  Phone, 
+  Search, 
+  BarChart3, 
+  Sparkles, 
+  Plane, 
+  Clock, 
+  DollarSign, 
+  Users, 
+  Star, 
+  Boxes, 
+  Gavel, 
+  Plus, 
+  TrendingUp, 
+  AlertCircle, 
+  X, 
+  MapPin, 
+  RefreshCw, 
+  ShoppingCart, 
+  Warehouse, 
+  Recycle, 
+  ChevronDown, 
+  ChevronUp, 
+  Coins 
 } from "lucide-react";
 import { SiLinkedin, SiFacebook, SiInstagram } from "react-icons/si";
 import heroImage from '@assets/stock_images/business_professiona_0d25c8b9.jpg';
@@ -459,6 +463,7 @@ function DemoDashboardPreview() {
 function ChainTrackLanding() {
   const [showDemo, setShowDemo] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
+  const [showRewards, setShowRewards] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-950 dark:via-blue-950 dark:to-slate-900">
@@ -514,12 +519,47 @@ function ChainTrackLanding() {
               Try Platform Demo
               <ArrowRight className="w-4 h-4" />
             </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="gap-2 border-emerald-500/50 text-emerald-600 dark:text-emerald-400"
+              onClick={() => setShowRewards(!showRewards)}
+              data-testid="button-wholesale-rewards"
+            >
+              <Coins className="w-5 h-5" />
+              Wholesale Rewards
+              {showRewards ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </Button>
             <Link href="/login">
               <Button size="lg" variant="outline" className="gap-2" data-testid="button-login">
                 <Shield className="w-5 h-5" />
                 Buyer Login
               </Button>
             </Link>
+            <Link href="/signup">
+              <Button size="lg" variant="outline" className="gap-2" data-testid="button-signup">
+                Request B2B Access
+              </Button>
+            </Link>
+          </div>
+
+          {/* DXB Rewards Toggle Section */}
+          {showRewards && (
+            <div className="mb-12 animate-in fade-in slide-in-from-top-4 duration-500 text-left">
+              <div className="bg-slate-900/40 rounded-3xl border border-emerald-500/20 overflow-hidden backdrop-blur-sm">
+                <div className="p-4 bg-emerald-500/10 border-b border-emerald-500/20">
+                  <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest text-center">Advanced B2B Feature: DXB Tokens Launching Soon</p>
+                </div>
+                <RewardComparison />
+              </div>
+            </div>
+          )}
+                  <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest">Advanced B2B Feature: DXB Tokens Launching Soon</p>
+                </div>
+                <RewardComparison />
+              </div>
+            </div>
+          )}
             <Link href="/signup">
               <Button size="lg" variant="outline" className="gap-2" data-testid="button-signup">
                 Request B2B Access
