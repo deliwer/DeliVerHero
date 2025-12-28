@@ -830,49 +830,22 @@ function StepSellIPhone() {
   );
 }
 
-// Loyalty Program Section - Restored
-function LoyaltyProgramSection() {
+// Membership Benefits Section - Uniform Format Following Step 2 Pattern
+export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: () => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { toast } = useToast();
-
-  const handleJoinLoyalty = async () => {
-    try {
-      await shopifyCartService.addToCart({
-        id: "aquacafe-loyalty-membership",
-        variantId: "aquacafe-loyalty-membership",
-        title: "AquaCafe Loyalty Membership",
-        variant: "Lifetime",
-        price: 99,
-        image: "/attached_assets/Join_FREE_+_Welcome_Bonus_1766961093288.png",
-        quantity: 1
-      });
-
-      toast({
-        title: "Added to Cart",
-        description: "AquaCafe Loyalty Membership has been added to your cart."
-      });
-
-      window.location.href = "/cart";
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to join loyalty program. Please try again.",
-        variant: "destructive"
-      });
-    }
-  };
 
   return (
-    <section className="py-8 px-4 mb-8" data-section="loyalty-program">
+    <section className="py-8 px-4 mb-8" data-section="membership-benefits">
       <div className="max-w-4xl mx-auto">
+        
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
             <button
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Loyalty Program section"
-              data-testid="toggle-loyalty-program"
+              aria-label="Toggle Become a Member section"
+              data-testid="toggle-membership-offer"
             >
               <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Join FREE + Welcome Bonus</span>
               {isExpanded ? (
@@ -882,66 +855,198 @@ function LoyaltyProgramSection() {
               )}
             </button>
           </h2>
-          <p className="text-lg text-amber-400 font-bold mb-6">
-            <DirhamSymbol size={18} className="mr-1" />99 Loyalty Starter Kit: FREE Shower Filter + Chill & Grill D100 Voucher
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
+            <span className="text-amber-400 font-bold"><DirhamSymbol size={14} className="mr-0.5" />99</span> Loyalty Starter Kit: FREE Shower Filter + Chill & Grill D100 Voucher
           </p>
-
-          <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl bg-[#1a1c2e] p-6 relative">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              {/* Left Side: Image/Card */}
-              <div className="relative group">
-                <img 
-                  src="/attached_assets/Join_FREE_+_Welcome_Bonus_1766961093288.png" 
-                  alt="Loyalty Membership Card and Benefits" 
-                  className="w-full h-auto rounded-2xl shadow-xl transform group-hover:scale-105 transition-all duration-500"
-                  data-testid="img-loyalty-bonus"
-                />
-              </div>
-
-              {/* Right Side: Benefits */}
-              <div className="text-left">
-                <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-2 rounded-lg mb-6 font-bold shadow-lg">
-                  <Gift className="w-5 h-5" />
-                  <span>LOYALTY PROGRAM</span>
+          
+          {/* Always Visible Banner - Membership Card + Chill & Grill Offer */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-amber-500/50 shadow-2xl bg-gradient-to-br from-amber-600/20 to-orange-600/20 p-2 backdrop-blur-sm">
+            <div className="bg-slate-900/50 rounded-xl p-6">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-1">
+                  <img 
+                    src={membershipCard} 
+                    alt="AquaCafe Membership Card" 
+                    className="w-full h-auto rounded-lg shadow-lg"
+                    data-testid="img-membership-card-banner"
+                  />
                 </div>
-                
-                <h3 className="text-3xl font-black text-white mb-4 flex items-center gap-2">
-                  <DirhamSymbol size={24} />99 Starter Kit Benefits
-                </h3>
-                
-                <div className="space-y-4 mb-8">
-                  <p className="text-gray-200 text-lg leading-relaxed">
-                    Get FREE Shower Filter (<DirhamSymbol size={14} className="mx-1" />399) + 
-                    Discounted Installation for Loyalty Members + Chill & Grill D100 Voucher + 1000 Loyalty Points
+                <div className="flex-1 text-center md:text-left">
+                  <div className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full px-6 py-2 mb-3 font-bold animate-pulse">
+                    <Gift className="w-5 h-5 mr-2 flex-shrink-0" />
+                    <span>LOYALTY PROGRAM</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2"><DirhamSymbol size={18} className="mr-1" />99 Starter Kit Benefits</h3>
+                  <p className="text-gray-300 mb-4">
+                    Get FREE Shower Filter (<DirhamSymbol size={12} className="mr-0.5" />399) + Discounted Installation for Loyalty Members + Chill & Grill D100 Voucher + 1000 Loyalty Points
                   </p>
-                  
-                  <div className="flex flex-wrap gap-3">
-                    <Badge className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30 px-4 py-2 text-sm font-bold">
-                      Membership Card
-                    </Badge>
-                    <Badge className="bg-orange-500/20 text-orange-400 border-orange-500/30 px-4 py-2 text-sm font-bold">
-                      Chill & Grill D100
-                    </Badge>
-                    <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2 text-sm font-bold">
-                      Lifetime Access
-                    </Badge>
+                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Membership Card</span>
+                    <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">Chill & Grill D100</span>
+                    <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Lifetime Access</span>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Bottom Join Button */}
-            <div className="mt-10">
+          {/* CTA to Join Loyalty - Always Visible */}
+          <div className="mt-6">
+            <Link href="/leaderboard" className="block">
               <Button
-                onClick={handleJoinLoyalty}
-                className="w-full md:w-auto md:px-16 py-8 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-2xl rounded-full shadow-2xl transform hover:scale-105 active:scale-95 transition-all"
-                data-testid="button-join-loyalty-99"
+                size="lg"
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-join-loyalty-membership"
               >
-                <Zap className="w-6 h-6 mr-3 fill-current" />
-                JOIN LOYALTY - <DirhamSymbol size={20} className="mx-1" />99
+                <Rocket className="w-6 h-6 flex-shrink-0" />
+                <span>JOIN LOYALTY - <DirhamSymbol size={14} className="mx-0.5" />99</span>
               </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Expanded Content - Full Details */}
+        {isExpanded && (
+          <div className="animate-in slide-in-from-top duration-500">
+            <div className="glass rounded-2xl p-8 border border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-hero-green-900/20 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                {/* Left Column: AquaCafe Membership Details */}
+                <Card className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-cyan-500/30 overflow-hidden" data-testid="card-aquacafe-membership">
+                  <div className="p-6">
+                    <div className="text-center mb-4">
+                      <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full mb-4">
+                        <Award className="w-5 h-5" />
+                        <span className="font-bold">AquaCafe Membership</span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-2">Loyalty Member Level 2</h3>
+                      <p className="text-cyan-300 text-sm">Complete Benefits Package</p>
+                    </div>
+
+                    {/* Benefits List */}
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-start gap-3">
+                        <Gift className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">FREE Ionic Shower Filter</span> (<DirhamSymbol size={10} className="mr-0.5" />399 value)
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-hero-green-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">Discounted Installation for Loyalty Members</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Star className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">1000 Loyalty Points</span> + 2X multiplier
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Crown className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">Lifetime Member Benefits</span> & special offers
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Utensils className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">Chill & Grill D100 Voucher</span> included
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Payment Options */}
+                    <div className="bg-white/5 rounded-xl p-4 mb-4">
+                      <div className="text-center">
+                        <div className="text-sm text-gray-400 mb-2">Payment Options Available</div>
+                        <div className="flex justify-center gap-3">
+                          <span className="text-2xl">💳</span>
+                          <span className="text-xl text-white font-bold">PayPal & Stripe</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Right Column: Chill & Grill Offer Details */}
+                <Card className="bg-gradient-to-br from-orange-500/10 to-pink-500/10 border-orange-500/30 overflow-hidden" data-testid="card-chill-grill-offer">
+                  <div className="p-6">
+                    <div className="text-center mb-4">
+                      <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full mb-4">
+                        <Utensils className="w-5 h-5" />
+                        <span className="font-bold">Partner Benefit</span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill Dubai</h3>
+                      <p className="text-orange-300 text-sm">Pizza + Boba Tea for Two</p>
+                    </div>
+
+                    {/* Pizza & Boba Image */}
+                    <div className="mb-6">
+                      <img 
+                        src={pizzaBobaComboImage} 
+                        alt="Pizza and Boba Tea" 
+                        className="w-full h-auto rounded-xl shadow-2xl border border-orange-500/30"
+                        data-testid="img-pizza-boba-combo"
+                      />
+                    </div>
+
+                    {/* Offer Details */}
+                    <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-xl p-4 mb-6 border border-amber-500/30">
+                      <div className="text-center mb-3">
+                        <div className="text-3xl font-bold text-amber-400 mb-1">D100 Voucher</div>
+                        <div className="text-sm text-gray-300">FREE with membership + every referral!</div>
+                      </div>
+                    </div>
+
+                    {/* Benefits */}
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-start gap-3">
+                        <Gift className="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">Instant D100 Voucher</span> with <DirhamSymbol size={10} className="mx-0.5" />99 membership
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Users className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">D100 per Referral</span> for you & your friend
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">Home Delivery</span> via AquaCafe platform
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Clock className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                        <div className="text-sm text-gray-300">
+                          <span className="font-bold text-white">90-day validity</span> on all vouchers
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+              </div>
+            </div>
+
+            {/* After signup message */}
+            <div className="text-center py-6 bg-slate-800/50 rounded-xl border border-slate-600 mb-8">
+              <p className="text-gray-300 text-lg mb-2">
+                <span className="text-hero-green-400 font-bold">Ready to Start?</span> Click "JOIN LOYALTY" above or explore water filtration packages below ⬇️
+              </p>
             </div>
           </div>
+        )}
+
+        {/* Trust Indicators */}
+        <div className="text-center mt-8">
+          <p className="text-gray-400 text-sm">
+            🔒 Secure PayPal & Stripe Checkout • ⚡ Instant Activation • 🌍 Environmental Impact
+          </p>
         </div>
       </div>
     </section>
@@ -1293,9 +1398,9 @@ export function HeroChallengeLanding() {
           <StepSellIPhone />
         </div>
 
-        {/* Loyalty Program Section */}
-        <div data-section="step-loyalty">
-          <LoyaltyProgramSection />
+        {/* Loyalty Program & Membership Benefits */}
+        <div data-section="membership-benefits">
+          <MembershipBenefitsSection />
         </div>
 
         {/* Flow Connector 2→3 */}
@@ -1308,6 +1413,11 @@ export function HeroChallengeLanding() {
             <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-purple-500 mt-2"></div>
             <div className="text-xs text-gray-400 mt-2 font-bold">FINAL STEP</div>
           </div>
+        </div>
+
+        {/* Step 3: Create Impact Section (Play) */}
+        <div data-section="step-3">
+          <StepOnePlay onJoinMission={() => setShowMissionSelection(true)} />
         </div>
 
       </div>
