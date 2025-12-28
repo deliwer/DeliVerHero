@@ -34,7 +34,7 @@ export function DualPurposeHero() {
             {audience === 'consumer' ? (
               <>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
-                  <span className="text-white drop-shadow-lg">Shop smart.</span>
+                  <span className="text-white drop-shadow-lg">Smart move in.</span>
                 </h1>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   <span className="relative inline-block">
@@ -151,7 +151,6 @@ export function DualPurposeHero() {
           </div>
         </div>
       </div>
-
       {/* Settlement Gateway Section */}
       <section 
         className="relative py-16 px-4 overflow-hidden"
@@ -235,7 +234,6 @@ export function DualPurposeHero() {
           </div>
         </div>
       </section>
-
       {/* Ecosystem Impact Section - Compact, Statistics-Driven */}
       <section 
         className="relative py-12 px-4 overflow-hidden"
