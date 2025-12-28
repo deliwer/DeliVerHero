@@ -830,6 +830,125 @@ function StepSellIPhone() {
   );
 }
 
+// Loyalty Program Section - Restored
+function LoyaltyProgramSection() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const { toast } = useToast();
+
+  const handleJoinLoyalty = async () => {
+    try {
+      await shopifyCartService.addToCart({
+        id: "aquacafe-loyalty-membership",
+        variantId: "aquacafe-loyalty-membership",
+        title: "AquaCafe Loyalty Membership",
+        variant: "Lifetime",
+        price: 99,
+        image: "/attached_assets/Join_FREE_+_Welcome_Bonus_1766961093288.png",
+        quantity: 1
+      });
+
+      toast({
+        title: "Added to Cart",
+        description: "AquaCafe Loyalty Membership has been added to your cart."
+      });
+
+      window.location.href = "/cart";
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to join loyalty program. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  return (
+    <section className="py-8 px-4 mb-8" data-section="loyalty-program">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <button
+              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-expanded={isExpanded}
+              aria-label="Toggle Loyalty Program section"
+              data-testid="toggle-loyalty-program"
+            >
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Join FREE + Welcome Bonus</span>
+              {isExpanded ? (
+                <ChevronUp className="w-8 h-8 text-amber-400" />
+              ) : (
+                <ChevronDown className="w-8 h-8 text-amber-400" />
+              )}
+            </button>
+          </h2>
+          <p className="text-lg text-amber-400 font-bold mb-6">
+            <DirhamSymbol size={18} className="mr-1" />99 Loyalty Starter Kit: FREE Shower Filter + Chill & Grill D100 Voucher
+          </p>
+
+          <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl bg-[#1a1c2e] p-6 relative">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              {/* Left Side: Image/Card */}
+              <div className="relative group">
+                <img 
+                  src="/attached_assets/Join_FREE_+_Welcome_Bonus_1766961093288.png" 
+                  alt="Loyalty Membership Card and Benefits" 
+                  className="w-full h-auto rounded-2xl shadow-xl transform group-hover:scale-105 transition-all duration-500"
+                  data-testid="img-loyalty-bonus"
+                />
+              </div>
+
+              {/* Right Side: Benefits */}
+              <div className="text-left">
+                <div className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-2 rounded-lg mb-6 font-bold shadow-lg">
+                  <Gift className="w-5 h-5" />
+                  <span>LOYALTY PROGRAM</span>
+                </div>
+                
+                <h3 className="text-3xl font-black text-white mb-4 flex items-center gap-2">
+                  <DirhamSymbol size={24} />99 Starter Kit Benefits
+                </h3>
+                
+                <div className="space-y-4 mb-8">
+                  <p className="text-gray-200 text-lg leading-relaxed">
+                    Get FREE Shower Filter (<DirhamSymbol size={14} className="mx-1" />399) + 
+                    Discounted Installation for Loyalty Members + Chill & Grill D100 Voucher + 1000 Loyalty Points
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-3">
+                    <Badge className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30 px-4 py-2 text-sm font-bold">
+                      Membership Card
+                    </Badge>
+                    <Badge className="bg-orange-500/20 text-orange-400 border-orange-500/30 px-4 py-2 text-sm font-bold">
+                      Chill & Grill D100
+                    </Badge>
+                    <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2 text-sm font-bold">
+                      Lifetime Access
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Join Button */}
+            <div className="mt-10">
+              <Button
+                onClick={handleJoinLoyalty}
+                className="w-full md:w-auto md:px-16 py-8 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-2xl rounded-full shadow-2xl transform hover:scale-105 active:scale-95 transition-all"
+                data-testid="button-join-loyalty-99"
+              >
+                <Zap className="w-6 h-6 mr-3 fill-current" />
+                JOIN LOYALTY - <DirhamSymbol size={20} className="mx-1" />99
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 // Membership Benefits Section - Uniform Format Following Step 2 Pattern
 export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: () => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -1172,6 +1291,11 @@ export function HeroChallengeLanding() {
         {/* Step 2: Sell iPhone */}
         <div data-section="step-2">
           <StepSellIPhone />
+        </div>
+
+        {/* Loyalty Program Section */}
+        <div data-section="step-loyalty">
+          <LoyaltyProgramSection />
         </div>
 
         {/* Flow Connector 2→3 */}
