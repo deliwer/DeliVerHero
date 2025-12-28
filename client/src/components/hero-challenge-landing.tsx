@@ -121,7 +121,7 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
     1: { icon: Droplets, label: "Home Service", section: "How it Works" },
     2: { icon: Home, label: "Smart Home", section: "How it Works" },
-    3: { icon: Gamepad2, label: "Play to Earn", section: "How it Works" }
+    3: { icon: Crown, label: "Join Loyalty", section: "How it Works" }
   };
 
   return (
@@ -1128,24 +1128,24 @@ export function HeroChallengeLanding() {
               <div className="text-xs text-emerald-400 mt-3 font-bold">SMART HOME</div>
             </button>
 
-            {/* Path 3: Play to Earn DXBs */}
+            {/* Path 3: Join Loyalty */}
             <button
               onClick={() => {
-                const step3Section = document.querySelector('[data-section="step-3"]');
-                if (step3Section) {
-                  step3Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const loyaltySection = document.querySelector('[data-section="membership-benefits"]');
+                if (loyaltySection) {
+                  loyaltySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
               className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Play to Earn DXBs"
-              data-testid="button-scroll-step-3"
+              aria-label="Start Your Journey - Join Loyalty"
+              data-testid="button-scroll-membership"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-purple-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <Gamepad2 className="w-7 h-7 text-white" />
+              <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-amber-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Crown className="w-7 h-7 text-white" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-pink-500 to-purple-500 mt-2"></div>
-              <div className="text-xs text-purple-400 mt-3 font-bold">PLAY TO EARN</div>
+              <div className="w-1 h-12 bg-gradient-to-b from-orange-500 to-amber-500 mt-2"></div>
+              <div className="text-xs text-amber-400 mt-3 font-bold">JOIN LOYALTY</div>
             </button>
           </div>
         </div>
@@ -1185,26 +1185,27 @@ export function HeroChallengeLanding() {
           </div>
         </div>
 
-        {/* Step 3: Play to Earn */}
-        <div data-section="step-3">
-          <StepOnePlay onJoinMission={() => setShowMissionSelection(true)} />
+        {/* Step 3: Join Loyalty (Progress indicator step 3) */}
+        <div data-section="membership-benefits">
+          <ProgressIndicator currentStep={3} />
+          <MembershipBenefitsSection />
         </div>
 
-        {/* Flow Connector 3→Loyalty */}
+        {/* Flow Connector Loyalty→Play */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-amber-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-amber-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-purple-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-amber-500 to-orange-500 mt-2"></div>
-            <div className="text-xs text-gray-400 mt-2 font-bold">FINAL STEP</div>
+            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-indigo-500 mt-2"></div>
+            <div className="text-xs text-gray-400 mt-2 font-bold">BONUS STEP</div>
           </div>
         </div>
 
-        {/* Final Step: Loyalty Program & Membership Benefits */}
-        <div data-section="membership-benefits">
-          <MembershipBenefitsSection />
+        {/* Demoted Play to Earn Section */}
+        <div data-section="step-3">
+          <StepOnePlay onJoinMission={() => setShowMissionSelection(true)} />
         </div>
 
       </div>
