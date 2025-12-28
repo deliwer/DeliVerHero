@@ -242,7 +242,7 @@ export default function Home() {
       </div>
 
       {/* PHASE 3: LEADERBOARD (Belonging) - Social Proof Section */}
-      <LeaderboardSocialProof />
+      {/* <LeaderboardSocialProof /> */}
 
       {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
       <HomeServiceSection />
@@ -257,44 +257,10 @@ export default function Home() {
       <TrustElements />
 
       {/* PHASE 5: RELOCATE (Monetization) - Conversion Bridge */}
-      <section className="py-16 px-4 bg-gradient-to-br from-amber-900/20 via-orange-900/10 to-red-900/20">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-            <Plane className="w-4 h-4 text-amber-400" />
-            <span className="text-sm text-white/80">Planning to Move?</span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4" data-testid="text-relocate-convergence">
-            Many who start here eventually call Dubai home.
-          </h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            From conscious shopping to building your future — we handle business setup, housing, visas, and lifestyle support. One trusted gateway.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/relocate">
-              <Button 
-                size="lg" 
-                className="bg-amber-600 hover:bg-amber-700"
-                data-testid="button-discover-relocate"
-              >
-                <Plane className="w-4 h-4 mr-2" />
-                Start Relocation Assessment
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-            <Link href="/community">
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-white/30 text-white backdrop-blur-sm bg-white/10"
-                data-testid="button-community-connect"
-              >
-                <Users className="w-4 h-4 mr-2" />
-                Stay Connected with the Community
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Hidden Relocate Section */}
+      {/* <section className="py-16 px-4 bg-gradient-to-br from-amber-900/20 via-orange-900/10 to-red-900/20">
+        ...
+      </section> */}
 
       {/* B2B Wholesale Solutions - Concise Footer Section */}
       <section className="py-12 px-4 bg-gradient-to-b from-slate-900 to-slate-950">

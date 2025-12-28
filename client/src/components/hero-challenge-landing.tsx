@@ -1186,15 +1186,6 @@ export function HeroChallengeLanding() {
           </div>
         </div>
 
-        {/* Step 3: Create Impact (Play & Gamification) */}
-        <div data-section="step-3">
-          <StepOnePlay onJoinMission={() => setShowHeroRegistration(true)} />
-        </div>
-
-        {/* Loyalty/Membership Section - After 3-Step Flow */}
-        <div data-section="loyalty" className="mt-16">
-          <MembershipBenefitsSection onJoinMembership={() => setShowHeroRegistration(true)} />
-        </div>
       </div>
 
       {/* Hero Registration Modal */}
