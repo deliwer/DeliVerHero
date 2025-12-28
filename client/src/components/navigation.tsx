@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { 
   Users, Rocket, Menu, X, Building, Sparkles, ToggleLeft, ToggleRight, 
   Briefcase, ShoppingCart, UserCircle, ChevronDown, LogIn, UserPlus, 
-  Settings, HelpCircle, Star, Trophy, TrendingDown, LayoutDashboard, FileText, Package, Globe, Plane 
+  Settings, HelpCircle, Star, Trophy, TrendingDown, LayoutDashboard, FileText, Package, Globe, Plane, Home 
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
