@@ -70,6 +70,11 @@ export default function Exchange() {
   return (
     <div className="min-h-screen bg-dubai-gradient">
       <div className="container mx-auto px-4 py-8">
+        {/* Trade-In Banner Integration */}
+        <div className="mb-16">
+          <TradeInBanner />
+        </div>
+
         {/* Hero Section */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-4 py-2 rounded-full mb-6">

@@ -227,23 +227,40 @@ export default function Home() {
         </div>
       )}
 
-      {/* PHASE 1: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
+      {/* PHASE 1: MOVE-IN (Primary Gateway) - Primary Conversion Bridge */}
+      <section className="py-12 px-4 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-b border-white/5">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-black mb-6 text-white tracking-tight">
+            Move-In to Dubai's Future
+          </h1>
+          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            Your gateway to premium relocation, business setup, and sustainable living in the heart of Dubai.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/relocate">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-bold px-8 rounded-full h-14 text-lg">
+                Relocate Now <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+            <Link href="/move-in-services">
+              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 font-bold px-8 rounded-full h-14 text-lg">
+                View Services
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
 
       {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
       <HomeServiceSection />
 
-      {/* PHASE 2: EARN (Participation) - Planet Points Challenge & Rewards */}
+      {/* PHASE 3: EARN (Participation) - Planet Points Challenge & Rewards */}
       <HeroChallengeLanding />
 
-      {/* Trade-In Banner - Prominent CTA for trade-ins (Part of Earn) */}
-      <div className="py-8 px-4">
-        <TradeInBanner />
-      </div>
-
-      {/* PHASE 3: LEADERBOARD (Belonging) - Social Proof Section */}
-      {/* Hidden Community Leaderboard Section */}
-      {/* <LeaderboardSocialProof /> */}
+      {/* Trade-In Banner - Hidden from Home, Moved to Trade-In page */}
 
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />

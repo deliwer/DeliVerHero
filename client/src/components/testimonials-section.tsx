@@ -19,110 +19,70 @@ const testimonials: Testimonial[] = [
     id: "1",
     name: "Ahmed Al-Maktoum",
     initials: "AM",
-    model: "iPhone 14 Pro",
+    model: "Move-In Partner",
     rating: 5,
-    text: "I sold my iPhone 14 Pro and earned 22,000 DXBs which I used for 6 months of premium water delivery. The process was incredibly easy and the pickup was done within 24 hours!",
-    value: "2,200",
-    reward: "22,000 DXBs earned"
+    text: "Relocating to Dubai was seamless with DeliWer. From business setup to sustainable home services, they handled everything with extreme professionalism.",
+    value: "Premium",
+    reward: "Relocation Success"
   },
   {
     id: "2",
     name: "Sarah Johnson",
     initials: "SJ",
-    model: "iPhone 13",
+    model: "Business Founder",
     rating: 5,
-    text: "Best trade-in experience ever! Earned 12,000 DXBs and the team made sure all my data was securely wiped. Highly recommend DeliWer!",
-    value: "1,200",
-    reward: "12,000 DXBs earned"
-  },
-  {
-    id: "3",
-    name: "Mohammed Hassan",
-    initials: "MH",
-    model: "iPhone 15 Pro Max",
-    rating: 5,
-    text: "Traded in my phone and earned 32,000 DXBs! Used them for premium water systems and restaurant rewards. Amazing platform!",
-    value: "3,200",
-    reward: "32,000 DXBs earned"
-  },
-  {
-    id: "4",
-    name: "Fatima Al-Sharif",
-    initials: "FA",
-    model: "iPhone 12",
-    rating: 5,
-    text: "The live inspection video call was super convenient. Got a fair price and the whole process took less than 48 hours from quote to DXBs in my account.",
-    value: "800",
-    reward: "8,000 DXBs earned"
+    text: "The primary gateway for any entrepreneur moving to Dubai. Clean, fast, and the sustainable living integration is a game-changer.",
+    value: "Corporate",
+    reward: "Business Active"
   }
 ];
 
 export function TestimonialsSection() {
   return (
-    <section className="py-12 px-4" data-testid="testimonials-section">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-12 px-4 bg-slate-900/50" data-testid="testimonials-section">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-            <span className="bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
-              What Our Customers Say
-            </span>
+          <h2 className="text-3xl font-black text-white mb-4">
+            Trusted by Global Professionals
           </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Join thousands of satisfied customers who have traded their iPhones with DeliWer
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Join the community of founders and families who chose DeliWer for their Dubai journey.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((testimonial) => (
             <Card 
               key={testimonial.id} 
-              className="bg-slate-800/50 border-slate-700 hover:border-emerald-500/50 transition-all hover:shadow-lg hover:shadow-emerald-500/20"
+              className="bg-slate-900/40 border-white/5 hover:border-blue-500/30 transition-all hover:shadow-2xl hover:shadow-blue-500/10 rounded-2xl overflow-hidden"
               data-testid={`testimonial-card-${testimonial.id}`}
             >
-              <CardContent className="p-6">
-                <div className="flex items-start gap-3 mb-4">
-                  <Avatar className="bg-gradient-to-r from-emerald-500 to-blue-500">
-                    <AvatarFallback className="text-white font-bold">{testimonial.initials}</AvatarFallback>
+              <CardContent className="p-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <Avatar className="h-12 w-12 border border-white/10">
+                    <AvatarFallback className="bg-slate-800 text-white font-bold">{testimonial.initials}</AvatarFallback>
                   </Avatar>
-                  <div className="flex-1">
-                    <h3 className="text-white font-bold text-sm">{testimonial.name}</h3>
-                    <p className="text-gray-400 text-xs">Traded: {testimonial.model}</p>
+                  <div>
+                    <h3 className="text-white font-bold">{testimonial.name}</h3>
+                    <p className="text-blue-400 text-xs font-medium uppercase tracking-wider">{testimonial.model}</p>
                   </div>
-                  <Quote className="w-6 h-6 text-emerald-500/30" />
                 </div>
 
-                <div className="flex gap-1 mb-3">
+                <p className="text-gray-300 text-base italic leading-relaxed mb-6">
+                  "{testimonial.text}"
+                </p>
+
+                <div className="flex gap-1">
                   {Array.from({ length: 5 }).map((_, idx) => (
                     <Star 
                       key={idx} 
-                      className={`w-4 h-4 ${idx < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-600'}`}
+                      className="w-4 h-4 fill-blue-500 text-blue-500"
                     />
                   ))}
-                </div>
-
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                  {testimonial.text}
-                </p>
-
-                <div className="pt-4 border-t border-slate-700">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-400">Value:</span>
-                    <span className="text-emerald-400 font-bold"><DirhamSymbol size={10} className="mr-0.5" />{testimonial.value}</span>
-                  </div>
-                  <div className="flex justify-between text-xs mt-1">
-                    <span className="text-gray-400">Reward:</span>
-                    <span className="text-blue-400 font-semibold">{testimonial.reward}</span>
-                  </div>
                 </div>
               </CardContent>
             </Card>
           ))}
-        </div>
-
-        <div className="text-center mt-8">
-          <p className="text-gray-400 text-sm">
-            ⭐ Rated 4.9/5 based on 1,247+ customer reviews
-          </p>
         </div>
       </div>
     </section>
