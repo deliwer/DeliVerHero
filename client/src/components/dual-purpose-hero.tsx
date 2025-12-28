@@ -235,7 +235,7 @@ export function DualPurposeHero() {
         </div>
       </section>
       {/* Ecosystem Impact Section - Compact, Statistics-Driven */}
-      <section 
+      {/* <section 
         className="relative py-12 px-4 overflow-hidden"
         style={{
           backgroundImage: `url(${ecosystemImage})`,
@@ -244,90 +244,8 @@ export function DualPurposeHero() {
           backgroundAttachment: 'fixed',
         }}
       >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/70"></div>
-
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-              How Dubai's Ecosystem Empowers Founders
-            </h2>
-            <p className="text-gray-200 text-base md:text-lg">
-              A thriving environment where many founders build bigger and better
-            </p>
-          </div>
-
-          {/* Statistics Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {/* Stat 1: Millionaire Relocation */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-emerald-500/30">
-              <div className="flex items-center gap-3 mb-2">
-                <TrendingUp className="w-5 h-5 text-emerald-400" />
-                <p className="text-sm text-gray-300">2023-2025 Trend</p>
-              </div>
-              <p className="text-4xl font-bold text-emerald-300 mb-1">7,800+</p>
-              <p className="text-sm text-gray-300">High-net-worth founders relocated</p>
-            </div>
-
-            {/* Stat 2: Tax Advantage */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-emerald-500/30">
-              <div className="flex items-center gap-3 mb-2">
-                <Zap className="w-5 h-5 text-emerald-400" />
-                <p className="text-sm text-gray-300">Capital Acceleration</p>
-              </div>
-              <p className="text-4xl font-bold text-emerald-300 mb-1">0%</p>
-              <p className="text-sm text-gray-300">Income tax reinvested into growth</p>
-            </div>
-
-            {/* Stat 3: Startup Growth */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-emerald-500/30">
-              <div className="flex items-center gap-3 mb-2">
-                <Building2 className="w-5 h-5 text-emerald-400" />
-                <p className="text-sm text-gray-300">Ecosystem Scale</p>
-              </div>
-              <p className="text-4xl font-bold text-emerald-300 mb-1">500+</p>
-              <p className="text-sm text-gray-300">Active founders building unicorns</p>
-            </div>
-          </div>
-
-          {/* Environment Benefits */}
-          <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10 mb-8">
-            <h3 className="text-lg font-semibold text-white mb-4">Why Founders Build Better Here</h3>
-            <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-200">
-              <div className="flex gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
-                <span>Zero income tax redirects capital to R&D and talent acquisition</span>
-              </div>
-              <div className="flex gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
-                <span>200+ nationalities create diverse, frictionless talent pools</span>
-              </div>
-              <div className="flex gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
-                <span>Gateway to MENA, Europe, and Asia from a single hub</span>
-              </div>
-              <div className="flex gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0"></div>
-                <span>Regulatory clarity and founder-friendly policies accelerate scaling</span>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center">
-            <Link href="/relocate">
-              <Button
-                size="lg"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                data-testid="button-explore-relocation-final"
-              >
-                Explore Relocation for Your Startup
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+        ...
+      </section> */}
     </section>
   );
 }

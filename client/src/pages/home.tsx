@@ -230,6 +230,9 @@ export default function Home() {
       {/* PHASE 1: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
 
+      {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
+      <HomeServiceSection />
+
       {/* PHASE 2: EARN (Participation) - Planet Points Challenge & Rewards */}
       <HeroChallengeLanding />
 
@@ -242,10 +245,8 @@ export default function Home() {
       </div>
 
       {/* PHASE 3: LEADERBOARD (Belonging) - Social Proof Section */}
+      {/* Hidden Community Leaderboard Section */}
       {/* <LeaderboardSocialProof /> */}
-
-      {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
-      <HomeServiceSection />
 
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />
