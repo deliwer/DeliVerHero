@@ -35,7 +35,7 @@ export function Navigation() {
   }, []);
 
   const consumerNavItems = [
-    { path: "/move-in-services", label: "Move-In Services", id: "move-in-services" },
+    { path: "/move-in-services", label: "Residence in Dubai", id: "move-in-services" },</old_str>
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/housing", label: "Stay Comfortably", id: "housing" },
@@ -97,7 +97,7 @@ export function Navigation() {
                     >
                       <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/30 hover:to-cyan-600/30 hover:border-blue-400/50 transition-all">
                         <Home className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium">Residence in Dubai</span>
                       </div>
                     </Link>
                   );
