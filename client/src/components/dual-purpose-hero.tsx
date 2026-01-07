@@ -34,7 +34,7 @@ export function DualPurposeHero() {
             {audience === 'consumer' ? (
               <>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
-                  <span className="text-white drop-shadow-lg">Move in.</span>
+                  <span className="text-white drop-shadow-lg">Living in Dubai?</span>
                 </h1>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   <span className="relative inline-block">
