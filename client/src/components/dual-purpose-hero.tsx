@@ -46,9 +46,7 @@ export function DualPurposeHero() {
                           }}>Everything you need —</span>
                   </span>
                 </h2>
-                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">
-                  Trade your iPhone. Build a sustainable future.
-                </p>
+                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">before and after you move in.</p>
               </>
             ) : (
               <>
