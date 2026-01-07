@@ -43,7 +43,7 @@ export function DualPurposeHero() {
                           style={{ 
                             textShadow: '0 0 30px rgba(16, 185, 129, 1), 0 0 50px rgba(20, 184, 166, 0.8)',
                             filter: 'contrast(1.2) brightness(1.3)',
-                          }}>Everything works.</span>
+                          }}>Everything you need — before and after you move in.</span>
                   </span>
                 </h2>
                 <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">
