@@ -105,23 +105,23 @@ export function DualPurposeHero() {
             {/* Context-specific CTAs */}
             {audience === 'consumer' ? (
               <div className="space-y-3">
-                <Link href="/home-service">
+                <Link href="/move-in-service">
                   <Button
                     className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
                     data-testid="button-get-home-service-hero"
                   >
                     <Sparkles className="w-5 h-5 mr-3" />
-                    Get Home Service
+                    Start Your Move
                   </Button>
                 </Link>
-                <Link href="/aquacafe">
+                <Link href="/home-service">
                   <Button
                     variant="outline"
                     className="w-full border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-6 text-base font-medium rounded-xl hover:bg-white/20 transition-all"
                     data-testid="button-trade-iphone-hero"
                   >
                     <Heart className="w-4 h-4 mr-2" />
-                    Trade Your iPhone for Water
+                    Already Living Here? Get Services
                   </Button>
                 </Link>
               </div>
