@@ -35,7 +35,7 @@ export function Navigation() {
   }, []);
 
   const consumerNavItems = [
-    { path: "/move-in-services", label: "Move-In Services", id: "move-in-services" },
+    { path: "/move-in-services", label: "Residence in Dubai", id: "move-in-services" },
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/housing", label: "Stay Comfortably", id: "housing" },
