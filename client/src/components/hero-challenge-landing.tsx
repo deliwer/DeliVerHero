@@ -714,7 +714,7 @@ function StepSellIPhone() {
                   data-testid="button-browse-housing"
                 >
                   <Home className="w-5 h-5 flex-shrink-0" />
-                  <span>Browse Homes</span>
+                  <span>I Already Live Here</span>
                 </Button>
               </Link>
             </div>
