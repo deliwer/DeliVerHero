@@ -703,7 +703,7 @@ function StepSellIPhone() {
                   data-testid="button-book-housing-consultation"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>Book Viewing</span>
+                  <span>I’m New to Dubai</span>
                 </CalendlyButton>
               </div>
               <Link href="/housing" className="flex-1">
