@@ -119,8 +119,8 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
-    1: { icon: Droplets, label: "Home Service", section: "How it Works" },
-    2: { icon: Home, label: "Smart Home", section: "How it Works" },
+    1: { icon: Home, label: "Smart Home", section: "How it Works" },
+    2: { icon: Droplets, label: "Home Service", section: "How it Works" },
     3: { icon: Crown, label: "Join Loyalty", section: "How it Works" }
   };
 
@@ -332,7 +332,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   );
 }
 
-// Step 1: Shop Smart Section (formerly Step 2)
+// Step 2: Home Service Section (formerly Step 1)
 function StepTwoExchange() {
   const [isExpanded, setIsExpanded] = useState(false);
   const { toast } = useToast();
@@ -365,9 +365,9 @@ function StepTwoExchange() {
   };
   
   return (
-    <section className="py-8 px-4 mb-8" data-section="step-1">
+    <section className="py-8 px-4 mb-8" data-section="step-2">
       <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={1} />
+        <ProgressIndicator currentStep={2} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
@@ -634,14 +634,14 @@ function StepTwoExchange() {
   );
 }
 
-// Step 2: Smart Home Section
+// Step 1: Smart Home Section
 function StepSellIPhone() {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <section className="py-8 px-4 mb-8" data-section="step-2">
+    <section className="py-8 px-4 mb-8" data-section="step-1">
       <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={2} />
+        <ProgressIndicator currentStep={1} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">
@@ -1086,7 +1086,7 @@ export function HeroChallengeLanding() {
         {/* 3-Way Path Selector - Start Your Journey */}
         <div className="flex justify-center my-16">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            {/* Path 1: Home Service */}
+            {/* Path 1: Smart Home */}
             <button
               onClick={() => {
                 const step1Section = document.querySelector('[data-section="step-1"]');
@@ -1095,18 +1095,18 @@ export function HeroChallengeLanding() {
                 }
               }}
               className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Home Service"
+              aria-label="Start Your Journey - Smart Home"
               data-testid="button-scroll-step-1"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-blue-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <Droplets className="w-7 h-7 text-white" />
+              <div className="w-1 h-12 bg-gradient-to-b from-teal-500 to-emerald-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Home className="w-7 h-7 text-white" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-cyan-500 to-teal-500 mt-2"></div>
-              <div className="text-xs text-cyan-400 mt-3 font-bold">HOME SERVICE</div>
+              <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-emerald-500 mt-2"></div>
+              <div className="text-xs text-emerald-400 mt-3 font-bold">SMART HOME</div>
             </button>
 
-            {/* Path 2: Smart Home */}
+            {/* Path 2: Home Service */}
             <button
               onClick={() => {
                 const step2Section = document.querySelector('[data-section="step-2"]');
@@ -1115,15 +1115,15 @@ export function HeroChallengeLanding() {
                 }
               }}
               className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Smart Home"
+              aria-label="Start Your Journey - Home Service"
               data-testid="button-scroll-step-2"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-teal-500 to-emerald-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <Home className="w-7 h-7 text-white" />
+              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-blue-500 mb-2"></div>
+              <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
+                <Droplets className="w-7 h-7 text-white" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-emerald-500 mt-2"></div>
-              <div className="text-xs text-emerald-400 mt-3 font-bold">SMART HOME</div>
+              <div className="w-1 h-12 bg-gradient-to-b from-cyan-500 to-teal-500 mt-2"></div>
+              <div className="text-xs text-cyan-400 mt-3 font-bold">HOME SERVICE</div>
             </button>
 
             {/* Path 3: Join Loyalty */}
@@ -1149,26 +1149,26 @@ export function HeroChallengeLanding() {
         </div>
 
         {/* 3-Step Progressive Flow with Visual Connectors */}
-        {/* Step 1: Exchange / Shop Smart */}
+        {/* Step 1: Smart Home */}
         <div data-section="step-1">
-          <StepTwoExchange />
+          <StepSellIPhone />
         </div>
 
         {/* Flow Connector 1→2 */}
         <div className="flex justify-center mb-8">
           <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-green-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
+            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-blue-500 mb-2"></div>
+            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <ArrowDown className="w-6 h-6 text-white" />
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-teal-500 mt-2"></div>
+            <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-cyan-500 mt-2"></div>
             <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
           </div>
         </div>
 
-        {/* Step 2: Home Service / Smart Home */}
+        {/* Step 2: Home Service */}
         <div data-section="step-2">
-          <StepSellIPhone />
+          <StepTwoExchange />
         </div>
 
         {/* Flow Connector 2→3 */}
