@@ -660,9 +660,7 @@ function StepSellIPhone() {
               )}
             </button>
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Find your perfect smart home in Dubai - Rent or Buy with expert guidance
-          </p>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">DeliWer does not sell property or act as a real estate agent.</p>
 
           {/* Smart Home Search Banner - Always Visible */}
           <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-emerald-500/50 shadow-2xl bg-gradient-to-br from-emerald-600/20 to-green-600/20 p-2 backdrop-blur-sm">
