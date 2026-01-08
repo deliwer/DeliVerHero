@@ -175,16 +175,16 @@ export function DualPurposeHero() {
 
           {/* Three Service Paths */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {/* Path 1: Live Comfortably */}
+            {/* Path 1: Daily Essentials */}
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate">
               <div className="mb-4">
                 <ShoppingCart className="w-10 h-10 text-emerald-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Stay Comfortably</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">Daily Essentials</h3>
               <p className="text-gray-200 mb-6">
                 Clean water, home services, errands, and everyday essentials — handled for you.
               </p>
-              <Link href="/home-service">
+              <Link href="/aquacafe">
                 <Button variant="outline" className="border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-settlement-gateway-home-service">
                   Get Home Service
                 </Button>
