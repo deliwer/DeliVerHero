@@ -109,7 +109,7 @@ export function DualPurposeHero() {
                     data-testid="button-get-home-service-hero"
                   >
                     <Sparkles className="w-5 h-5 mr-3" />
-                    I’m New to Dubai
+                    Set Up My Residence
                   </Button>
                 </Link>
                 <Link href="/home-service">
@@ -119,7 +119,7 @@ export function DualPurposeHero() {
                     data-testid="button-trade-iphone-hero"
                   >
                     <Heart className="w-4 h-4 mr-2" />
-                    I Already Live Here
+                    Already Living Here? Get Services
                   </Button>
                 </Link>
               </div>
