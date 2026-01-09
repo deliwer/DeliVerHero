@@ -178,7 +178,7 @@ export function DualPurposeHero() {
               <div className="mb-4 flex justify-center">
                 <Building2 className="w-12 h-12 text-emerald-400" />
               </div>
-              <h3 className="text-2xl font-semibold text-white mb-3">Local & International Resident Gateway</h3>
+              <h3 className="text-2xl font-semibold text-white mb-3">ACTIVE IN DUBAI COMMUNITIES</h3>
               <p className="text-gray-200 mb-8">
                 The unified entry point for all your Dubai settlement needs. From essential utilities to luxury housing, we handle your transition seamlessly.
               </p>
