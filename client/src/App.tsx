@@ -12,17 +12,73 @@ import { ImagePerformanceMonitor } from "@/components/image-performance-monitor"
 import { FloatingErrandTips } from "@/components/floating-errand-tips";
 import { useEffect, lazy } from "react";
 import { useLocation } from "wouter";
+
+// Import core pages directly for faster initial load or if they are critical
 import Home from "@/pages/home";
-import MoveInLanding from "@/pages/move-in-landing";
 import MoveInServices from "@/pages/move-in-services";
 import Relocate from "@/pages/relocate";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
-import RelocateCommunity from "@/pages/relocate-community";
 import HomeService from "@/pages/home-service";
 import Housing from "@/pages/housing";
 import ErrandPage from "@/pages/errand";
 import HomeServiceLaunch from "@/pages/home-service-launch";
+import NotFound from "@/pages/not-found";
+
+// B2B Corporate Pages (using direct imports to avoid lazy loading issues with non-default exports)
+import { BulkTradeInPage } from "@/pages/bulk-tradein";
+import { CorporateDashboardPage } from "@/pages/corporate-dashboard";
+import { CorporateQuotesPage } from "@/pages/corporate-quotes";
+import { PurchaseOrdersPage } from "@/pages/purchase-orders";
+import { AccountManagementPage } from "@/pages/account-management";
+
+// Lazy load non-critical pages
+const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
+const RelocateCommunity = lazy(() => import("@/pages/relocate-community"));
+const Privacy = lazy(() => import("@/pages/privacy"));
+const Terms = lazy(() => import("@/pages/terms"));
+const Environmental = lazy(() => import("@/pages/environmental"));
+const DubaiRewards = lazy(() => import("@/pages/dubai-rewards"));
+const Missions = lazy(() => import("@/pages/missions"));
+const CartPage = lazy(() => import("@/pages/cart"));
+const ProfilePage = lazy(() => import("@/pages/profile"));
+const AccountConsolidated = lazy(() => import("@/pages/account-consolidated"));
+const ContactPage = lazy(() => import("@/pages/contact"));
+const AboutPage = lazy(() => import("@/pages/about"));
+const InvestPage = lazy(() => import("@/pages/invest"));
+const EWastePage = lazy(() => import("@/pages/ewaste"));
+const SignupPage = lazy(() => import("@/pages/signup"));
+const LoginPage = lazy(() => import("@/pages/login"));
+const Explore = lazy(() => import("@/pages/explore"));
+const Leaderboard = lazy(() => import("@/pages/leaderboard"));
+const ImpactDashboard = lazy(() => import("@/pages/impact-dashboard"));
+const AquaCafe = lazy(() => import("@/pages/aquacafe-enhanced"));
+const AquaCafeAlliance = lazy(() => import("@/pages/aquacafe-alliance"));
+const Products = lazy(() => import("@/pages/products"));
+const IcelandicGlacialLandingPage = lazy(() => import("@/pages/icelandic-glacial"));
+const Exchange = lazy(() => import("@/pages/exchange"));
+const Earn = lazy(() => import("@/pages/earn"));
+const Collect = lazy(() => import("@/pages/collect"));
+const Redeem = lazy(() => import("@/pages/redeem"));
+const Play = lazy(() => import("@/pages/play"));
+const Rewards = lazy(() => import("@/pages/rewards"));
+const Partners = lazy(() => import("@/pages/partners"));
+const HeroDashboard = lazy(() => import("@/pages/hero-dashboard"));
+const InvestorDashboard = lazy(() => import("@/pages/investor-dashboard"));
+const CorporatePartnerPortal = lazy(() => import("@/pages/corporate-partner-portal"));
+const ImpactMethodology = lazy(() => import("@/pages/impact-methodology"));
+const PlanetHero = lazy(() => import("@/pages/planet-hero"));
+const PlanetHeroMissions = lazy(() => import("@/pages/planet-hero-missions"));
+const PlanetHeroAffiliates = lazy(() => import("@/pages/planet-hero-affiliates"));
+const PlanetHeroManual = lazy(() => import("@/pages/planet-hero-manual"));
+const MissionControlSaqiKawthar = lazy(() => import("@/pages/mission-control-saqi-kawthar"));
+const RestaurantRewards = lazy(() => import("@/pages/restaurant-rewards"));
+const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
+const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
+const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
+const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer"));
+const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
+const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -46,66 +102,104 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/move-in-landing" component={MoveInLanding} />
         <Route path="/move-in-services" component={MoveInServices} />
+        
+        {/* Relocate Membership Portal */}
         <Route path="/relocate" component={Relocate} />
         <Route path="/relocate/move-in-services" component={MoveInServices} />
         <Route path="/relocate/business-setup" component={BusinessSetup} />
         <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
         <Route path="/relocate-community" component={RelocateCommunity} />
+
+        {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
+
+        {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
+
+        {/* Home Service Launch Campaign */}
         <Route path="/launch" component={HomeServiceLaunch} />
+
+        {/* Housing - Rent, Buy, Invest */}
         <Route path="/housing" component={Housing} />
-        <Route path="/privacy" component={lazy(() => import("./pages/privacy"))} />
-        <Route path="/terms" component={lazy(() => import("./pages/terms"))} />
-        <Route path="/environmental" component={lazy(() => import("./pages/environmental"))} />
-        <Route path="/dubai-rewards" component={lazy(() => import("./pages/dubai-rewards"))} />
-        <Route path="/missions" component={lazy(() => import("./pages/missions"))} />
-        <Route path="/cart" component={lazy(() => import("./pages/cart"))} />
+
+        {/* Core Site Pages */}
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/environmental" component={Environmental} />
+        <Route path="/dubai-rewards" component={DubaiRewards} />
+        <Route path="/missions" component={Missions} />
+        <Route path="/cart" component={CartPage} />
         <Route path="/checkout" component={lazy(() => import("./pages/checkout"))} />
         <Route path="/order-success" component={lazy(() => import("./pages/order-success"))} />
-        <Route path="/profile" component={lazy(() => import("./pages/profile"))} />
-        <Route path="/account" component={lazy(() => import("./pages/account-consolidated"))} />
-        <Route path="/contact" component={lazy(() => import("./pages/contact"))} />
-        <Route path="/about" component={lazy(() => import("./pages/about"))} />
-        <Route path="/invest" component={lazy(() => import("./pages/invest"))} />
-        <Route path="/ewaste" component={lazy(() => import("./pages/ewaste"))} />
-        <Route path="/signup" component={lazy(() => import("./pages/signup"))} />
-        <Route path="/login" component={lazy(() => import("./pages/login"))} />
+        <Route path="/profile" component={ProfilePage} />
+        <Route path="/account" component={AccountConsolidated} />
+        <Route path="/contact" component={ContactPage} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/invest" component={InvestPage} />
+        <Route path="/ewaste" component={EWastePage} />
+        <Route path="/signup" component={SignupPage} />
+        <Route path="/login" component={LoginPage} />
         <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />
-        <Route path="/explore" component={lazy(() => import("./pages/explore"))} />
-        <Route path="/leaderboard" component={lazy(() => import("./pages/leaderboard"))} />
-        <Route path="/impact-dashboard" component={lazy(() => import("./pages/impact-dashboard"))} />
-        <Route path="/aquacafe" component={lazy(() => import("./pages/aquacafe-enhanced"))} />
-        <Route path="/aquacafe-alliance" component={lazy(() => import("./pages/aquacafe-alliance"))} />
-        <Route path="/products" component={lazy(() => import("./pages/products"))} />
-        <Route path="/exchange" component={lazy(() => import("./pages/exchange"))} />
-        <Route path="/earn" component={lazy(() => import("./pages/earn"))} />
-        <Route path="/collect" component={lazy(() => import("./pages/collect"))} />
-        <Route path="/redeem" component={lazy(() => import("./pages/redeem"))} />
-        <Route path="/play" component={lazy(() => import("./pages/play"))} />
-        <Route path="/rewards" component={lazy(() => import("./pages/rewards"))} />
-        <Route path="/partners" component={lazy(() => import("./pages/partners"))} />
-        <Route path="/dashboard" component={lazy(() => import("./pages/hero-dashboard"))} />
-        <Route path="/investor-dashboard" component={lazy(() => import("./pages/investor-dashboard"))} />
-        <Route path="/corporate-partner-portal" component={lazy(() => import("./pages/corporate-partner-portal"))} />
-        <Route path="/impact-methodology" component={lazy(() => import("./pages/impact-methodology"))} />
-        <Route path="/planet-hero" component={lazy(() => import("./pages/planet-hero"))} />
-        <Route path="/planet-hero-missions" component={lazy(() => import("./pages/planet-hero-missions"))} />
-        <Route path="/planet-hero-affiliates" component={lazy(() => import("./pages/planet-hero-affiliates"))} />
-        <Route path="/planet-hero-manual" component={lazy(() => import("./pages/planet-hero-manual"))} />
-        <Route path="/mission-control-saqi-kawthar" component={lazy(() => import("./pages/mission-control-saqi-kawthar"))} />
-        <Route path="/restaurant-rewards" component={lazy(() => import("./pages/restaurant-rewards"))} />
-        <Route path="/metaverse-gaming" component={lazy(() => import("./pages/metaverse-gaming-hub"))} />
-        <Route path="/bulk-tradein" component={lazy(() => import("./pages/bulk-tradein"))} />
-        <Route path="/corporate-dashboard" component={lazy(() => import("./pages/corporate-dashboard"))} />
-        <Route path="/corporate-quotes" component={lazy(() => import("./pages/corporate-quotes"))} />
-        <Route path="/purchase-orders" component={lazy(() => import("./pages/purchase-orders"))} />
-        <Route path="/account-management" component={lazy(() => import("./pages/account-management"))} />
-        <Route path="/cobone-corporate" component={lazy(() => import("./pages/corporate-combined"))} />
-        <Route path="/chaintrack" component={lazy(() => import("./pages/chaintrack"))} />
-        <Route path="/fulfillment" component={lazy(() => import("./pages/fulfillment-by-deliwer"))} />
-        <Route path="/bulk-purchasing" component={lazy(() => import("./pages/bulk-purchasing"))} />
-        <Route path="/membership-plans" component={lazy(() => import("./pages/membership-plans"))} />
+
+        {/* Ecosystem Pages */}
+        <Route path="/explore" component={Explore} />
+        <Route path="/leaderboard" component={Leaderboard} />
+        <Route path="/community" component={Leaderboard} />
+        <Route path="/impact-dashboard" component={ImpactDashboard} />
+        <Route path="/aquacafe" component={AquaCafe} />
+        <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
+        <Route path="/products/aquacafe" component={AquaCafeAlliance} />
+        <Route path="/products" component={Products} />
+        <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />
+        <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
+        <Route path="/exchange" component={Exchange} />
+        <Route path="/earn" component={Earn} />
+        <Route path="/collect" component={Collect} />
+        <Route path="/redeem" component={Redeem} />
+        <Route path="/play" component={Play} />
+        <Route path="/rewards" component={Rewards} />
+        <Route path="/partners" component={Partners} />
+        <Route path="/dashboard" component={HeroDashboard} />
+        <Route path="/investor-dashboard" component={InvestorDashboard} />
+        <Route path="/corporate-partner-portal" component={CorporatePartnerPortal} />
+        <Route path="/impact-methodology" component={ImpactMethodology} />
+        
+        {/* Planet Hero Gateway */}
+        <Route path="/planet-hero" component={PlanetHero} />
+        <Route path="/planet-hero-missions" component={PlanetHeroMissions} />
+        <Route path="/planet-hero-affiliates" component={PlanetHeroAffiliates} />
+        <Route path="/planet-hero-manual" component={PlanetHeroManual} />
+        
+        {/* Saqi Kawthar Project Mission */}
+        <Route path="/mission-control-saqi-kawthar" component={MissionControlSaqiKawthar} />
+        <Route path="/restaurant-rewards" component={RestaurantRewards} />
+        
+        {/* Metaverse Gaming Hub */}
+        <Route path="/metaverse-gaming" component={MetaverseGamingHub} />
+        <Route path="/gaming-hub" component={MetaverseGamingHub} />
+
+        {/* B2B Corporate Routes */}
+        <Route path="/bulk-tradein" component={BulkTradeInPage} />
+        <Route path="/corporate-dashboard" component={CorporateDashboardPage} />
+        <Route path="/corporate-quotes" component={CorporateQuotesPage} />
+        <Route path="/purchase-orders" component={PurchaseOrdersPage} />
+        <Route path="/account-management" component={AccountManagementPage} />
+        <Route path="/cobone-corporate" component={CorporateCombined} />
+        <Route path="/corporate" component={CorporateCombined} />
+        <Route path="/partnership" component={Partners} />
+        
+        {/* ChainTrack B2B Wholesale Inventory */}
+        <Route path="/chaintrack" component={ChainTrackPage} />
+
+        {/* Fulfillment by DeliWer */}
+        <Route path="/fulfillment" component={FulfillmentByDeliWer} />
+
+        {/* Bulk Purchasing */}
+        <Route path="/bulk-purchasing" component={BulkPurchasingPage} />
+
+        {/* Membership Plans */}
+        <Route path="/membership-plans" component={MembershipPlansPage} />
+
         <Route component={NotFound} />
       </Switch>
     </WouterRouter>
