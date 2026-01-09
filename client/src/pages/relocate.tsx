@@ -68,7 +68,8 @@ import {
   PlayCircle,
   Clock,
   Zap,
-  TrendingDown
+  TrendingDown,
+  Key
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -229,28 +230,34 @@ export default function Relocate() {
 
   const consumerServices = [
     {
+      icon: Plane,
+      title: "International Relocation",
+      description: "Seamless door-to-door transition from anywhere in the world",
+      features: ["Customs Clearance", "Pet Relocation", "Vehicle Shipping", "Global Tracking"]
+    },
+    {
       icon: Home,
+      title: "Domestic Relocation",
+      description: "Premium moving services within the UAE with zero stress",
+      features: ["Professional Packing", "Furniture Assembly", "Storage Solutions", "Handover Coordination"]
+    },
+    {
+      icon: Users,
       title: "Family Relocation",
-      description: "End-to-end relocation support for individuals and families moving to Dubai",
-      features: ["Housing Assistance", "School Enrollment", "Healthcare Setup", "Banking Services"]
+      description: "Complete support for family settlement and school integration",
+      features: ["School Enrollment", "Healthcare Setup", "Family Visas", "Community Tours"]
     },
     {
-      icon: GraduationCap,
-      title: "Education Planning",
-      description: "Navigate Dubai's world-class international school system for your children",
-      features: ["School Selection", "Admission Support", "Curriculum Guidance", "Extracurricular Activities"]
+      icon: Briefcase,
+      title: "Corporate Relocation",
+      description: "Employee and team transition management with logistical support",
+      features: ["Group Housing", "Onboarding Support", "Logistic Management", "Local Orientation"]
     },
     {
-      icon: Stethoscope,
-      title: "Healthcare Access",
-      description: "Connect with premium healthcare providers and secure comprehensive coverage",
-      features: ["Hospital Registration", "Insurance Setup", "Specialist Referrals", "Emergency Care Access"]
-    },
-    {
-      icon: Heart,
-      title: "Lifestyle Concierge",
-      description: "Personalized support for settling into your new Dubai lifestyle",
-      features: ["Community Integration", "Social Networking", "Recreation Planning", "Cultural Orientation"]
+      icon: Key,
+      title: "Handover & Key Coordination",
+      description: "Physical property inspections and utility activation services",
+      features: ["Snagging Reports", "DEWA/DEWA Connection", "Key Collection", "Move-in Inspection"]
     }
   ];
 
@@ -260,24 +267,6 @@ export default function Relocate() {
       title: "Capital Relocation",
       description: "Strategic tax optimization and wealth structuring for global investors",
       features: ["Tax-Free Income", "Wealth Structuring", "Asset Protection", "Investment Advisory"]
-    },
-    {
-      icon: Building2,
-      title: "Business Setup",
-      description: "Company formation, licensing, and corporate structuring in UAE free zones and mainland",
-      features: ["Free Zone Setup", "Mainland LLC", "Branch Office", "Visa Processing"]
-    },
-    {
-      icon: Building,
-      title: "Real Estate Investment",
-      description: "Access exclusive investment properties with Golden Visa eligibility",
-      features: ["Off-Plan Projects", "Commercial Assets", "Golden Visa Properties", "Portfolio Management"]
-    },
-    {
-      icon: Landmark,
-      title: "Legal & Compliance",
-      description: "Expert legal counsel for business operations, contracts, and regulatory compliance",
-      features: ["Contract Review", "Regulatory Compliance", "IP Protection", "Labor Law"]
     }
   ];
 
@@ -965,17 +954,22 @@ export default function Relocate() {
         <div className="relative z-10 container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge variant="outline" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white">
-              <DollarSign className="w-3 h-3 mr-1" />
-              Our Services
+              <Globe className="w-3 h-3 mr-1" />
+              Our Specialization
             </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-services-title">
-              Complete Business & Investment Services
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Premium Relocation Services
             </h2>
-            <p className="text-gray-200 max-w-2xl mx-auto">
-              Comprehensive support for capital relocation, business setup, and investment opportunities
-            </p>
+            <div className="flex flex-col md:flex-row justify-center gap-4 mt-8">
+               <Link href="/relocate/business-setup">
+                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700">
+                   Dubai Business Setup
+                   <ArrowRight className="ml-2 w-4 h-4" />
+                 </Button>
+               </Link>
+            </div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             {businessServices.map((service, index) => (
               <Card key={index} className="hover-elevate bg-slate-900/60 border-slate-700/50 backdrop-blur-sm" data-testid={`card-service-${index}`}>
                 <CardHeader>
