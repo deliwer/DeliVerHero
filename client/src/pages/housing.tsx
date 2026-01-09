@@ -66,7 +66,7 @@ export default function Housing() {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-hero-title">
               Residence in Dubai.
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400"> Assisted Living Support.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400"> Managed Living Support.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               We help you find, settle, and thrive in Dubai with dedicated relocation and community support.
@@ -83,7 +83,7 @@ export default function Housing() {
               RESIDENCE IN DUBAI
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto italic">
-              Positioned as assisted living support, not brokerage.
+              Positioned as managed living support, not brokerage.
             </p>
           </div>
 
@@ -96,7 +96,7 @@ export default function Housing() {
                 </div>
                 <CardTitle className="text-2xl text-white">Find a Place to Stay</CardTitle>
                 <CardDescription className="text-blue-300/70">
-                  Service-led assisted living flow
+                  Service-led residence enablement
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 flex-1">
@@ -132,7 +132,7 @@ export default function Housing() {
                     <CheckCircle2 className="w-12 h-12 text-blue-400 mx-auto mb-4" />
                     <h4 className="text-xl font-bold text-white mb-2">Request Received</h4>
                     <p className="text-blue-200 font-medium">
-                      “We arrange suitable living options for you.”
+                      “We arrange suitable residence options for you.”
                     </p>
                     <Button 
                       variant="ghost" 
@@ -235,9 +235,9 @@ export default function Housing() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "Tourists & Visitors", icon: Users, color: "amber", img: touristsHero, features: ["Monthly rentals", "Serviced apartments", "Flexible options"] },
-              { title: "New Residents", icon: Home, color: "green", img: residentsHero, features: ["Long-term rentals", "Family communities", "School proximity"] },
-              { title: "Investors & Buyers", icon: TrendingUp, color: "purple", img: investorsHero, features: ["Investment units", "End-user homes", "Ownership guidance"] }
+              { title: "Tourists & Visitors", icon: Users, color: "amber", img: touristsHero, features: ["Monthly options", "Managed apartments", "Flexible stay"] },
+              { title: "New Residents", icon: Home, color: "green", img: residentsHero, features: ["Residence enablement", "Family communities", "School proximity"] },
+              { title: "Investors & Founders", icon: TrendingUp, color: "purple", img: investorsHero, features: ["Residence units", "End-user support", "Market enablement"] }
             ].map((segment, idx) => (
               <div key={idx} className="group relative overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all duration-500 shadow-xl">
                 <div className="relative h-56 overflow-hidden">
@@ -263,64 +263,82 @@ export default function Housing() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="py-16 px-4 bg-slate-950 border-t border-slate-900">
+      {/* SECTION 4: EXPERT ADVISOR SPOTLIGHT */}
+      <section className="py-16 px-4 bg-slate-900/50 border-t border-slate-800">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            <div className="col-span-full md:col-span-1">
-              <h3 className="text-white font-black text-2xl mb-6">DeliWer</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-8">
-                Your dedicated partner for assisted living and residential support in Dubai.
-              </p>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-blue-500 cursor-pointer transition-all">
-                  <Facebook className="w-5 h-5" />
+          <div className="text-center mb-12">
+            <Badge className="mb-4 bg-blue-600 text-white" data-testid="badge-featured-expert">
+              Featured Expert Advisor
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase">Meet Your Residence Enablement Expert</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <Card className="bg-slate-900 border-blue-500/30 col-span-full md:col-span-2 shadow-2xl" data-testid="card-advisor-profile">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row gap-8">
+                  <div className="flex-shrink-0">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-black text-3xl border-4 border-slate-800 shadow-xl">
+                      KHS
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-3xl font-black text-white mb-2" data-testid="text-advisor-name">
+                      Kalbe-Hussain Sheikh
+                    </h3>
+                    <div className="flex items-center gap-2 text-blue-400 font-bold text-sm mb-6 uppercase tracking-wider">
+                      <Shield className="w-4 h-4" />
+                      <span>Residence Enablement & Housing Advisor</span>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed mb-8" data-testid="text-advisor-bio">
+                      Specialized in connecting tourists, new residents, and entrepreneurs with ideal managed living solutions across Dubai's premium neighborhoods. Trusted partner with deep market insight and access to exclusive residence options.
+                    </p>
+                    <div className="flex flex-wrap gap-4">
+                      <Button className="bg-green-600 hover:bg-green-500 text-white font-bold rounded-full px-6" data-testid="button-whatsapp-advisor">
+                        WhatsApp: +971 55 657 3114
+                      </Button>
+                      <Button variant="outline" className="border-slate-700 text-white hover:bg-slate-800 rounded-full px-6" data-testid="button-linkedin-advisor">
+                        LinkedIn Profile
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-blue-500 cursor-pointer transition-all">
-                  <Linkedin className="w-5 h-5" />
-                </div>
-                <div className="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-gray-500 hover:text-white hover:border-blue-500 cursor-pointer transition-all">
-                  <Mail className="w-5 h-5" />
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
             
-            <div>
-              <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Core Services</h4>
-              <ul className="space-y-4 text-sm text-gray-400">
-                <li><Link href="/housing" className="hover:text-blue-400 transition-colors">Residence in Dubai</Link></li>
-                <li><Link href="/move-in-services" className="hover:text-blue-400 transition-colors">Move-In Setup</Link></li>
-                <li><Link href="/relocate" className="hover:text-blue-400 transition-colors">Relocation Support</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Support</h4>
-              <ul className="space-y-4 text-sm text-gray-400">
-                <li><Link href="/contact" className="hover:text-blue-400 transition-colors">Contact Advisor</Link></li>
-                <li><Link href="/faq" className="hover:text-blue-400 transition-colors">Help Center</Link></li>
-                <li><Link href="/community" className="hover:text-blue-400 transition-colors">Community Hub</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Stay Connected</h4>
-              <p className="text-gray-500 text-sm mb-4">Subscribe for resident offers and Dubai insights.</p>
-              <div className="flex gap-2">
-                <input type="email" placeholder="Email" className="bg-slate-900 border-slate-800 rounded-lg px-4 py-2 text-sm w-full outline-none focus:ring-1 focus:ring-blue-500" />
-                <Button size="icon" className="bg-blue-600 hover:bg-blue-500 flex-shrink-0"><ArrowRight className="w-4 h-4" /></Button>
-              </div>
-            </div>
+            <Card className="bg-slate-900 border-slate-800 shadow-2xl" data-testid="card-expert-contact">
+              <CardHeader>
+                <CardTitle className="text-xl text-white flex items-center gap-2">
+                  <Mail className="w-5 h-5 text-green-500" />
+                  Support Team
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <div className="text-xs text-gray-500 uppercase font-black tracking-widest mb-1">Email</div>
+                  <div className="text-green-500 font-bold">service@deliwer.com</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase font-black tracking-widest mb-1">WhatsApp</div>
+                  <div className="text-green-500 font-bold">+971 55 657 3114</div>
+                </div>
+                <div className="pt-4 border-t border-slate-800 text-gray-500 text-xs italic">
+                  Response time: Within 2-4 hours
+                </div>
+              </CardContent>
+            </Card>
           </div>
+        </div>
+      </section>
 
-          <div className="pt-8 border-t border-slate-900 text-center">
-            <div className="inline-block bg-amber-500/10 border border-amber-500/20 rounded-full px-6 py-2 mb-6">
-              <p className="text-amber-500 font-black text-sm uppercase tracking-widest" data-testid="footer-disclaimer">
-                DeliWer does not sell property or act as a real estate agent.
-              </p>
-            </div>
-            <p className="text-gray-600 text-xs">© {new Date().getFullYear()} DeliWer Assisted Living. All rights reserved.</p>
+      {/* MANDATORY DISCLAIMER FOOTER */}
+      <footer className="py-12 px-4 bg-slate-950 border-t border-slate-900">
+        <div className="container mx-auto text-center">
+          <div className="inline-block bg-amber-500/10 border border-amber-500/20 rounded-full px-8 py-3 mb-6">
+            <p className="text-amber-500 font-black text-sm uppercase tracking-widest" data-testid="footer-disclaimer">
+              DeliWer does not sell property or act as a real estate agent.
+            </p>
           </div>
+          <p className="text-gray-600 text-xs">© {new Date().getFullYear()} DeliWer Residence Enablement. All rights reserved.</p>
         </div>
       </footer>
     </div>
