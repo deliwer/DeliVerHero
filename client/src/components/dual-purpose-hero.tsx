@@ -165,9 +165,7 @@ export function DualPurposeHero() {
         <div className="max-w-5xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Settling into Dubai Starts with the Basics — We Handle Them All
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">DeliWer is Dubai’s resident services platform —</h2>
             <p className="text-lg text-gray-200 max-w-3xl mx-auto">
               Whether you're visiting, relocating, working, or building — DeliWer supports your life in Dubai before and after arrival.
             </p>
