@@ -179,11 +179,7 @@ export function DualPurposeHero() {
                 <Building2 className="w-12 h-12 text-emerald-400" />
               </div>
               <h3 className="text-2xl font-semibold text-white mb-3">ACTIVE IN DUBAI COMMUNITIES</h3>
-              <p className="text-gray-200 mb-8">Currently supporting residents in:
-
-              JVC / JVT · Business Bay · Marina / JLT · Barsha Heights
-
-              Move-in services, essentials, and home support — coordinated locally.</p>
+              <p className="text-gray-200 mb-8">Currently supporting residents in: JVC / JVT · Business Bay · Marina / JLT · Barsha Heights</p>
               <Link href="/relocate/move-in-services">
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white w-full" data-testid="button-settlement-gateway-move-in">
                   Access Move-In Services
