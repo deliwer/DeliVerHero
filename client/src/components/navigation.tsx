@@ -39,13 +39,13 @@ export function Navigation() {
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/aquacafe", label: "Daily Essentials", id: "housing" },
-    { path: "/relocate", label: "Business & Documents", id: "business-setup" },
+    { path: "/relocate/business-setup", label: "Business & Documents", id: "business-setup" },
   ];
 
   const b2bNavItems = [
     { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment", featured: true },
     { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack" },
-    { path: "/relocate", label: "Relocate Capital", id: "relocate" },
+    { path: "/relocate/business-setup", label: "Relocate Capital", id: "relocate" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/corporate-partner-portal", label: "Partner Portal", id: "partner-portal" },
     { path: "/investor-dashboard", label: "Investors", id: "investors" },
