@@ -173,52 +173,21 @@ export function DualPurposeHero() {
             </p>
           </div>
 
-          {/* Three Service Paths */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {/* Path 1: Daily Essentials */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate">
-              <div className="mb-4">
-                <ShoppingCart className="w-10 h-10 text-emerald-400" />
+          {/* Single Gateway Path */}
+          <div className="max-w-xl mx-auto mb-12">
+            {/* Path: Move-In Services */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate text-center">
+              <div className="mb-4 flex justify-center">
+                <Building2 className="w-12 h-12 text-emerald-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Daily Essentials</h3>
-              <p className="text-gray-200 mb-6">
-                Clean water, home services, errands, and everyday essentials — handled for you.
+              <h3 className="text-2xl font-semibold text-white mb-3">Local & International Resident Gateway</h3>
+              <p className="text-gray-200 mb-8">
+                The unified entry point for all your Dubai settlement needs. From essential utilities to luxury housing, we handle your transition seamlessly.
               </p>
-              <Link href="/aquacafe">
-                <Button variant="outline" className="border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-settlement-gateway-home-service">
-                  Get Home Service
-                </Button>
-              </Link>
-            </div>
-
-            {/* Path 2: Relocate with Confidence */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate">
-              <div className="mb-4">
-                <Building2 className="w-10 h-10 text-amber-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Relocate with Confidence</h3>
-              <p className="text-gray-200 mb-6">
-                Relocation, housing, visas, and business setup — guided end to end.
-              </p>
-              <Link href="/relocate">
-                <Button variant="outline" className="border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-settlement-gateway-relocate">
-                  Explore Relocation Options
-                </Button>
-              </Link>
-            </div>
-
-            {/* Path 3: Stay Connected & Earn */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate">
-              <div className="mb-4">
-                <Heart className="w-10 h-10 text-teal-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Stay Connected & Earn</h3>
-              <p className="text-gray-200 mb-6">
-                Sustainability, community access, and long-term benefits for residents.
-              </p>
-              <Link href="/community">
-                <Button variant="outline" className="border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-settlement-gateway-community">
-                  Join the Community
+              <Link href="/relocate/move-in-services">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white w-full" data-testid="button-settlement-gateway-move-in">
+                  Access Move-In Services
+                  <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
             </div>
