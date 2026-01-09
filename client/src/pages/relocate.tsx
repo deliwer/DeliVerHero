@@ -616,77 +616,25 @@ export default function Relocate() {
       <section className="relative py-20 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${professionalOffice})` }}
+          style={{ backgroundImage: `url(${coworkingOffice})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/85 to-slate-950/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-950/90 via-slate-900/85 to-blue-950/90" />
         <div className="relative z-10 max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Dubai vs Premium Free Zones</h3>
-            <p className="text-gray-200 text-lg">Why DeliWer's unified approach outperforms fragmented free zone setups</p>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-slate-800/60 border-b border-slate-600">
-                  <th className="text-left py-4 px-4 font-semibold text-white">Feature</th>
-                  <th className="text-center py-4 px-4 font-semibold text-white">DIFC</th>
-                  <th className="text-center py-4 px-4 font-semibold text-white">DMCC</th>
-                  <th className="text-center py-4 px-4 font-semibold text-white">DAFZA</th>
-                  <th className="text-center py-4 px-4 font-semibold text-white">Dubai South</th>
-                  <th className="text-center py-4 px-4 font-semibold text-white bg-emerald-600/40 border-l border-emerald-500">DeliWer (Unified)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
-                  <td className="py-4 px-4 text-white font-medium">Golden Visa Eligibility</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Limited</td>
-                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ Clear Paths</td>
-                </tr>
-                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
-                  <td className="py-4 px-4 text-white font-medium">Family Visa Included</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ Spouse + Kids</td>
-                </tr>
-                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
-                  <td className="py-4 px-4 text-white font-medium">Business Setup Speed</td>
-                  <td className="text-center py-4 px-4 text-gray-300">1-2 weeks</td>
-                  <td className="text-center py-4 px-4 text-gray-300">1-2 weeks</td>
-                  <td className="text-center py-4 px-4 text-gray-300">1-3 days</td>
-                  <td className="text-center py-4 px-4 text-gray-300">1-3 days</td>
-                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ 1-3 days</td>
-                </tr>
-                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
-                  <td className="py-4 px-4 text-white font-medium">Full Relocation Support</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Partial</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Partial</td>
-                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ End-to-End</td>
-                </tr>
-                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
-                  <td className="py-4 px-4 text-white font-medium">Unified Coordination</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ No</td>
-                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ One Team</td>
-                </tr>
-                <tr className="border-b border-slate-700 hover:bg-slate-800/30">
-                  <td className="py-4 px-4 text-white font-medium">Transparent Pricing</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ Hidden</td>
-                  <td className="text-center py-4 px-4 text-gray-400">❌ Hidden</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Unclear</td>
-                  <td className="text-center py-4 px-4 text-gray-400">⚠️ Unclear</td>
-                  <td className="text-center py-4 px-4 text-emerald-300 bg-emerald-600/20 border-l border-emerald-500 font-semibold">✓ Full Visibility</td>
-                </tr>
-              </tbody>
-            </table>
+            <Badge variant="outline" className="mb-4 bg-blue-600/30 border-blue-400/50 text-blue-100">
+              <DollarSign className="w-3 h-3 mr-1" />
+              Transparent Pricing
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Relocation Service Packages</h2>
+            <p className="text-gray-200 text-lg">Detailed plans for families, individuals, and corporate groups.</p>
+            <div className="mt-8">
+              <Link href="/relocate/pricing">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                  View Move Pricing
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
