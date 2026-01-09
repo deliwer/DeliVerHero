@@ -182,7 +182,7 @@ export function DualPurposeHero() {
               <p className="text-gray-200 mb-8">Currently supporting residents in: JVC / JVT · Business Bay · Marina / JLT · Barsha Heights</p>
               <Link href="/relocate/move-in-services">
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white w-full" data-testid="button-settlement-gateway-move-in">
-                  Access Move-In Services
+                  Home essentials, and home support — coordinated locally.
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
