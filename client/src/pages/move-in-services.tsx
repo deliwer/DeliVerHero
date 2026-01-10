@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { 
   CheckCircle2, 
@@ -11,11 +12,134 @@ import {
   Wrench,
   Sparkles,
   ClipboardCheck,
-  Building2
+  Building2,
+  Plus,
+  Minus,
+  Calculator
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
+
+const PRICING_OPTIONS = [
+  { id: "coordination", title: "Move-in coordination", price: 499, icon: Zap },
+  { id: "cleaning", title: "Initial deep cleaning", price: 350, icon: Sparkles },
+  { id: "water", title: "Drinking water setup", price: 299, icon: Droplets },
+  { id: "maintenance", title: "Maintenance checks", price: 450, icon: Wrench },
+  { id: "domestic", title: "Domestic help (1st day)", price: 150, icon: Home },
+  { id: "docs", title: "Document services", price: 800, icon: Building2 },
+];
+
+function PricingCalculator() {
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const toggleOption = (id: string) => {
+    setSelected(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
+  const total = PRICING_OPTIONS
+    .filter(opt => selected.includes(opt.id))
+    .reduce((sum, opt) => sum + opt.price, 0);
+
+  const discount = selected.length >= 3 ? total * 0.1 : 0;
+  const finalTotal = total - discount;
+
+  return (
+    <Card className="w-full max-w-4xl mx-auto bg-white border-slate-200 shadow-xl rounded-3xl overflow-hidden" data-testid="pricing-calculator">
+      <CardHeader className="bg-slate-900 text-white p-8">
+        <div className="flex items-center gap-3 mb-2">
+          <Calculator className="w-6 h-6 text-emerald-400" />
+          <CardTitle className="text-2xl font-black">Move-In Price Estimator</CardTitle>
+        </div>
+        <CardDescription className="text-slate-400">
+          Select the services you need to see your personalized estimate.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="p-8">
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="space-y-4">
+            <h3 className="font-bold text-slate-900 mb-4 uppercase tracking-wider text-xs">Available Services</h3>
+            {PRICING_OPTIONS.map((option) => (
+              <div 
+                key={option.id}
+                className={`flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer ${
+                  selected.includes(option.id) 
+                    ? "border-emerald-500 bg-emerald-50/50" 
+                    : "border-slate-100 bg-white hover:border-slate-300"
+                }`}
+                onClick={() => toggleOption(option.id)}
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-lg ${selected.includes(option.id) ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-500"}`}>
+                    <option.icon className="w-5 h-5" />
+                  </div>
+                  <Label className="font-bold text-slate-800 cursor-pointer">{option.title}</Label>
+                </div>
+                <div className="text-slate-600 font-medium text-sm">
+                  <DirhamSymbol amount={option.price} iconSize="sm" />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-slate-50 rounded-3xl p-8 border border-slate-100 flex flex-col justify-between">
+            <div>
+              <h3 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-xs">Your Summary</h3>
+              <div className="space-y-3 mb-6">
+                {selected.length === 0 ? (
+                  <p className="text-slate-400 italic text-sm text-center py-8">No services selected</p>
+                ) : (
+                  PRICING_OPTIONS.filter(opt => selected.includes(opt.id)).map(opt => (
+                    <div key={opt.id} className="flex justify-between text-sm text-slate-600">
+                      <span>{opt.title}</span>
+                      <span><DirhamSymbol amount={opt.price} iconSize="xs" /></span>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            <div className="border-t border-slate-200 pt-6 space-y-4">
+              {discount > 0 && (
+                <div className="flex justify-between text-emerald-600 font-bold text-sm">
+                  <span>Multi-service Discount (10%)</span>
+                  <span>-<DirhamSymbol amount={Math.round(discount)} iconSize="xs" /></span>
+                </div>
+              )}
+              <div className="flex justify-between items-end">
+                <span className="font-black text-slate-900 text-xl uppercase tracking-tighter">Total Estimate</span>
+                <span className="text-3xl font-black text-blue-600">
+                  <DirhamSymbol amount={Math.round(finalTotal)} />
+                </span>
+              </div>
+              <p className="text-[10px] text-slate-400 italic text-center">
+                *Final price may vary based on property size and specific requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="flex justify-center">
+          <Button 
+            disabled={selected.length === 0}
+            size="lg" 
+            className="w-full bg-slate-900 text-white hover:bg-slate-800 py-6 rounded-2xl font-black text-lg shadow-xl"
+            data-testid="button-get-quote-calculator"
+          >
+            Get Final Quote on WhatsApp
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function MoveInServices() {
   const setupServices = [
@@ -97,9 +221,11 @@ export default function MoveInServices() {
               </div>
             ))}
           </div>
-          <p className="text-center text-slate-500 italic">
+          <p className="text-center text-slate-500 italic mb-16">
             You can start with one service or bundle everything.
           </p>
+
+          <PricingCalculator />
         </div>
       </section>
 
