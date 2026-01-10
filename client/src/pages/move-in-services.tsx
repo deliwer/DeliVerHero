@@ -23,7 +23,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
-import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
+import heroImage from "@assets/generated_images/happy_family_in_modern_dubai_luxury_apartment.png";
+import cleaningImage from "@assets/generated_images/dubai_urban_community_services_background.png";
+import maintenanceImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
 
 const PRICING_OPTIONS = [
   { id: "coordination", title: "Move-in coordination", price: 499, icon: Zap },
@@ -51,8 +53,8 @@ function PricingCalculator() {
   const finalTotal = total - discount;
 
   return (
-    <Card className="w-full max-w-4xl mx-auto bg-white border-slate-200 shadow-xl rounded-3xl overflow-hidden" data-testid="pricing-calculator">
-      <CardHeader className="bg-slate-900 text-white p-8">
+    <Card className="w-full max-w-4xl mx-auto bg-slate-900 border-white/10 shadow-2xl rounded-3xl overflow-hidden" data-testid="pricing-calculator">
+      <CardHeader className="bg-slate-950 text-white p-8 border-b border-white/5">
         <div className="flex items-center gap-3 mb-2">
           <Calculator className="w-6 h-6 text-emerald-400" />
           <CardTitle className="text-2xl font-black">Move-In Price Estimator</CardTitle>
@@ -64,61 +66,61 @@ function PricingCalculator() {
       <CardContent className="p-8">
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <div className="space-y-4">
-            <h3 className="font-bold text-slate-900 mb-4 uppercase tracking-wider text-xs">Available Services</h3>
+            <h3 className="font-bold text-slate-400 mb-4 uppercase tracking-wider text-xs px-2">Available Services</h3>
             {PRICING_OPTIONS.map((option) => (
               <div 
                 key={option.id}
                 className={`flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer ${
                   selected.includes(option.id) 
-                    ? "border-emerald-500 bg-emerald-50/50" 
-                    : "border-slate-100 bg-white hover:border-slate-300"
+                    ? "border-emerald-500 bg-emerald-500/10" 
+                    : "border-white/5 bg-white/5 hover:border-white/20"
                 }`}
                 onClick={() => toggleOption(option.id)}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${selected.includes(option.id) ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-500"}`}>
+                  <div className={`p-2 rounded-lg ${selected.includes(option.id) ? "bg-emerald-500 text-white" : "bg-slate-800 text-slate-400"}`}>
                     <option.icon className="w-5 h-5" />
                   </div>
-                  <Label className="font-bold text-slate-800 cursor-pointer">{option.title}</Label>
+                  <Label className="font-bold text-white cursor-pointer">{option.title}</Label>
                 </div>
-                <div className="text-slate-600 font-medium text-sm">
-                  <DirhamSymbol amount={option.price} iconSize="sm" />
+                <div className="text-slate-300 font-medium text-sm">
+                  <DirhamSymbol />{option.price}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="bg-slate-50 rounded-3xl p-8 border border-slate-100 flex flex-col justify-between">
+          <div className="bg-slate-950 rounded-3xl p-8 border border-white/5 flex flex-col justify-between">
             <div>
-              <h3 className="font-bold text-slate-900 mb-6 uppercase tracking-wider text-xs">Your Summary</h3>
+              <h3 className="font-bold text-slate-400 mb-6 uppercase tracking-wider text-xs px-2">Your Summary</h3>
               <div className="space-y-3 mb-6">
                 {selected.length === 0 ? (
-                  <p className="text-slate-400 italic text-sm text-center py-8">No services selected</p>
+                  <p className="text-slate-500 italic text-sm text-center py-8">No services selected</p>
                 ) : (
                   PRICING_OPTIONS.filter(opt => selected.includes(opt.id)).map(opt => (
-                    <div key={opt.id} className="flex justify-between text-sm text-slate-600">
+                    <div key={opt.id} className="flex justify-between text-sm text-slate-300">
                       <span>{opt.title}</span>
-                      <span><DirhamSymbol amount={opt.price} iconSize="xs" /></span>
+                      <span><DirhamSymbol />{opt.price}</span>
                     </div>
                   ))
                 )}
               </div>
             </div>
 
-            <div className="border-t border-slate-200 pt-6 space-y-4">
+            <div className="border-t border-white/10 pt-6 space-y-4">
               {discount > 0 && (
-                <div className="flex justify-between text-emerald-600 font-bold text-sm">
+                <div className="flex justify-between text-emerald-400 font-bold text-sm">
                   <span>Multi-service Discount (10%)</span>
-                  <span>-<DirhamSymbol amount={Math.round(discount)} iconSize="xs" /></span>
+                  <span>-<DirhamSymbol />{Math.round(discount)}</span>
                 </div>
               )}
               <div className="flex justify-between items-end">
-                <span className="font-black text-slate-900 text-xl uppercase tracking-tighter">Total Estimate</span>
-                <span className="text-3xl font-black text-blue-600">
-                  <DirhamSymbol amount={Math.round(finalTotal)} />
+                <span className="font-black text-white text-xl uppercase tracking-tighter">Total Estimate</span>
+                <span className="text-3xl font-black text-[#14b491]" style={{ textShadow: '0 0 20px rgba(20, 180, 145, 0.3)' }}>
+                  <DirhamSymbol />{Math.round(finalTotal)}
                 </span>
               </div>
-              <p className="text-[10px] text-slate-400 italic text-center">
+              <p className="text-[10px] text-slate-500 italic text-center">
                 *Final price may vary based on property size and specific requirements.
               </p>
             </div>
@@ -129,7 +131,7 @@ function PricingCalculator() {
           <Button 
             disabled={selected.length === 0}
             size="lg" 
-            className="w-full bg-slate-900 text-white hover:bg-slate-800 py-6 rounded-2xl font-black text-lg shadow-xl"
+            className="w-full bg-[#14b491] hover:bg-[#14b491]/90 text-white py-6 rounded-2xl font-black text-lg shadow-xl"
             data-testid="button-get-quote-calculator"
           >
             Get Final Quote on WhatsApp
@@ -166,7 +168,7 @@ export default function MoveInServices() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans leading-relaxed">
+    <div className="min-h-screen bg-slate-950 text-white font-sans leading-relaxed">
       <SEOMeta
         title="Move-In Support for Dubai Residences | DeliWer"
         description="Keys received? We handle the rest. DeliWer helps residents set up their home immediately after handover without agents or multiple vendors."
@@ -174,19 +176,31 @@ export default function MoveInServices() {
       />
 
       {/* Hero Section */}
-      <section className="py-16 px-6 lg:py-24 bg-slate-50 border-b border-slate-100">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+      <section className="relative py-20 px-6 lg:py-32 overflow-hidden flex items-center justify-center min-h-[60vh]">
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-slate-950"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight drop-shadow-2xl">
             Move-In Support for Dubai Residences
           </h1>
-          <p className="text-2xl md:text-3xl font-bold text-blue-600 mb-6">
+          <p className="text-2xl md:text-4xl font-bold text-emerald-400 mb-8 drop-shadow-lg">
             Keys received? We handle the rest.
           </p>
-          <p className="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium">
             DeliWer helps residents set up their home immediately after handover — without agents, listings, or multiple vendors.
           </p>
           <div className="flex justify-center">
-            <Button size="lg" className="bg-slate-900 text-white hover:bg-slate-800 px-10 py-7 text-xl font-bold rounded-2xl shadow-xl transition-all w-full sm:w-auto" data-testid="button-setup-residence-main">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-8 text-xl font-bold rounded-2xl shadow-2xl transition-all w-full sm:w-auto" data-testid="button-setup-residence-main">
               Set Up My Residence
               <ArrowRight className="ml-2 w-6 h-6" />
             </Button>
@@ -195,33 +209,33 @@ export default function MoveInServices() {
       </section>
 
       {/* Clear Boundary Statement */}
-      <section className="py-12 px-6 bg-white">
+      <section className="py-16 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-100 text-amber-800 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-wider">
             <Shield className="w-4 h-4" /> Clear Boundary
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Not a real estate agency.</h2>
-          <p className="text-slate-600">
+          <h2 className="text-3xl font-bold text-white mb-4">Not a real estate agency.</h2>
+          <p className="text-gray-300 text-lg">
             No property listings. No commissions. No agent calls. DeliWer coordinates the <strong>practical work that starts after you get the keys</strong>.
           </p>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-16 px-6 bg-slate-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">What we set up during move‑in</h2>
-          <div className="grid sm:grid-cols-2 gap-4 mb-10">
+      <section className="py-20 px-6 bg-slate-900/50">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">What we set up during move‑in</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {setupServices.map((service, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200 flex items-center gap-4 shadow-sm">
-                <div className="bg-blue-50 p-3 rounded-xl">
-                  <service.icon className="w-6 h-6 text-blue-600" />
+              <div key={idx} className="bg-white/5 p-8 rounded-3xl border border-white/10 flex flex-col items-center text-center gap-4 hover:bg-white/10 transition-all hover-elevate">
+                <div className="bg-emerald-500/20 p-4 rounded-2xl">
+                  <service.icon className="w-8 h-8 text-emerald-400" />
                 </div>
-                <span className="font-semibold text-slate-800">{service.title}</span>
+                <span className="text-lg font-bold text-white leading-tight">{service.title}</span>
               </div>
             ))}
           </div>
-          <p className="text-center text-slate-500 italic mb-16">
+          <p className="text-center text-gray-400 italic mb-20">
             You can start with one service or bundle everything.
           </p>
 
@@ -230,90 +244,109 @@ export default function MoveInServices() {
       </section>
 
       {/* How it works */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">How it works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="py-24 px-6 bg-slate-950">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works</h2>
+          <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step) => (
-              <div key={step.number} className="relative p-8 rounded-3xl bg-slate-50 border border-slate-100 text-center">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div key={step.number} className="relative p-10 rounded-[2.5rem] bg-white/5 border border-white/10 text-center flex flex-col items-center">
+                <div className="w-12 h-12 bg-[#14b491] text-white rounded-full flex items-center justify-center font-black text-xl mb-6 shadow-lg shadow-emerald-500/20">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-bold mb-3 mt-4">{step.title}</h3>
-                <p className="text-slate-600 text-sm">{step.description}</p>
+                <h3 className="text-2xl font-bold mb-4 text-white">{step.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
-          <div className="mt-12 p-6 bg-blue-50 rounded-2xl border border-blue-100 text-center max-w-2xl mx-auto">
-            <p className="font-bold text-blue-900 flex items-center justify-center gap-2">
-              <MessageSquare className="w-5 h-5" /> One point of contact. No chasing vendors.
+          <div className="mt-16 p-8 bg-emerald-500/10 rounded-[2.5rem] border border-emerald-500/20 text-center max-w-2xl mx-auto">
+            <p className="text-xl font-bold text-emerald-400 flex items-center justify-center gap-3">
+              <MessageSquare className="w-6 h-6" /> One point of contact. No chasing vendors.
             </p>
           </div>
         </div>
       </section>
 
       {/* Where this is active */}
-      <section className="py-16 px-6 bg-slate-50">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">Where this is active</h2>
-          <p className="text-slate-600 mb-8">Currently supporting move‑ins in:</p>
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full opacity-30"
+          style={{
+            backgroundImage: `url(${maintenanceImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-950"></div>
+        </div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-8 uppercase tracking-tighter">Where this is active</h2>
+          <p className="text-gray-300 text-lg mb-10">Currently supporting move‑ins in:</p>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
             {communities.map((c) => (
-              <Badge key={c} variant="secondary" className="bg-white border-slate-200 text-slate-700 px-6 py-2 rounded-full text-base font-semibold shadow-sm">
-                <MapPin className="w-4 h-4 mr-2 text-emerald-500" /> {c}
+              <Badge key={c} variant="secondary" className="bg-white/10 border-white/10 text-white px-8 py-3 rounded-full text-lg font-bold shadow-2xl backdrop-blur-md">
+                <MapPin className="w-5 h-5 mr-3 text-emerald-400" /> {c}
               </Badge>
             ))}
           </div>
-          <p className="text-xs text-slate-400 uppercase tracking-widest font-bold">
+          <p className="text-xs text-slate-500 uppercase tracking-widest font-black">
             Local coordination only. No city‑wide overclaims.
           </p>
         </div>
       </section>
 
       {/* Why residents use DeliWer */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">Why residents use DeliWer</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="py-24 px-6 bg-slate-900/30 border-y border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">Why residents use DeliWer</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { title: "One WhatsApp contact", icon: MessageSquare },
               { title: "Fixed scope, clear pricing", icon: ClipboardCheck },
               { title: "Local operators", icon: Building2 },
               { title: "No sales pressure", icon: Shield }
             ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="bg-slate-50 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-100">
-                  <item.icon className="w-8 h-8 text-slate-700" />
+              <div key={idx} className="text-center group">
+                <div className="bg-white/5 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 border border-white/10 group-hover:bg-white/10 transition-all group-hover:border-emerald-500/30">
+                  <item.icon className="w-10 h-10 text-emerald-400" />
                 </div>
-                <h3 className="font-bold text-slate-800 text-sm">{item.title}</h3>
+                <h3 className="font-bold text-white text-lg leading-tight">{item.title}</h3>
               </div>
             ))}
           </div>
-          <p className="text-center text-slate-500 mt-12 italic">
+          <p className="text-center text-slate-400 mt-16 italic text-lg">
             Most residents start during move-in and continue for ongoing services.
           </p>
         </div>
       </section>
 
       {/* Proof Section */}
-      <section className="py-16 px-6 bg-slate-50">
+      <section className="py-24 px-6 bg-slate-950">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">Proof of Service</h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">Proof of Service</h2>
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
               {proofPoints.map((point, idx) => (
-                <div key={idx} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="font-medium text-slate-700">{point}</p>
+                <div key={idx} className="flex items-start gap-5 p-6 bg-white/5 rounded-3xl border border-white/10 shadow-2xl">
+                  <CheckCircle2 className="w-8 h-8 text-emerald-400 shrink-0" />
+                  <p className="text-lg font-bold text-gray-200">{point}</p>
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="aspect-square bg-slate-200 rounded-2xl overflow-hidden border border-slate-300 flex items-center justify-center text-center p-4">
-                <span className="text-[10px] uppercase font-bold text-slate-500">Cleaning in Progress JVC</span>
+            <div className="grid grid-cols-2 gap-6">
+              <div 
+                className="aspect-square rounded-[2rem] overflow-hidden border border-white/10 flex items-end p-6 relative group"
+                style={{ backgroundImage: `url(${cleaningImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <span className="text-[10px] uppercase font-black text-white relative z-10 tracking-widest">Cleaning in Progress JVC</span>
               </div>
-              <div className="aspect-square bg-slate-200 rounded-2xl overflow-hidden border border-slate-300 flex items-center justify-center text-center p-4">
-                <span className="text-[10px] uppercase font-bold text-slate-500">Maintenance Visit Marina</span>
+              <div 
+                className="aspect-square rounded-[2rem] overflow-hidden border border-white/10 flex items-end p-6 relative group"
+                style={{ backgroundImage: `url(${maintenanceImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                <span className="text-[10px] uppercase font-black text-white relative z-10 tracking-widest">Maintenance Visit Marina</span>
               </div>
             </div>
           </div>
@@ -321,23 +354,23 @@ export default function MoveInServices() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 px-6 bg-white border-t border-slate-100">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 shadow-sm">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-6">Ready to simplify your move-in?</h2>
-            <p className="text-lg text-slate-600 mb-10">
+      <section className="py-32 px-6 bg-slate-950 border-t border-white/5 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="bg-gradient-to-br from-emerald-600/20 to-blue-600/20 p-12 md:p-20 rounded-[4rem] border border-emerald-500/20 shadow-2xl backdrop-blur-sm">
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">Ready to simplify your move-in?</h2>
+            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
               DeliWer works with vetted local service partners to ensure consistent delivery across communities.
             </p>
-            <Button size="lg" className="bg-slate-900 text-white hover:bg-slate-800 px-12 py-8 text-2xl font-black rounded-3xl shadow-2xl transition-all w-full sm:w-auto" data-testid="button-setup-residence-final">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white px-12 py-10 text-2xl font-black rounded-[2rem] shadow-2xl transition-all w-full sm:w-auto" data-testid="button-setup-residence-final">
               Set Up My Residence
-              <ArrowRight className="ml-2 w-8 h-8" />
+              <ArrowRight className="ml-3 w-8 h-8" />
             </Button>
           </div>
         </div>
       </section>
 
       {/* Footer Reliability */}
-      <section className="py-12 bg-slate-900 text-white/50 text-center text-xs uppercase tracking-widest font-bold">
+      <section className="py-16 bg-slate-950 border-t border-white/5 text-slate-500 text-center text-xs uppercase tracking-[0.3em] font-black">
         DeliWer Reliability Guarantee • Vetted Local Partners • No Commissions
       </section>
     </div>
