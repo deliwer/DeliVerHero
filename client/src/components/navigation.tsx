@@ -35,7 +35,7 @@ export function Navigation() {
   }, []);
 
   const consumerNavItems = [
-    { path: "/housing", label: "Residence in Dubai", id: "move-in-services" },
+    { path: "/residence", label: "Residence in Dubai", id: "move-in-services" },
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/aquacafe", label: "Daily Essentials", id: "housing" },
@@ -287,7 +287,7 @@ export function Navigation() {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                      className="block px-3 py-2 rounded-md text-base font-medium transition-all duration-300"
                       data-testid={`link-mobile-${item.id}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

@@ -13,7 +13,7 @@ export function FloatingErrandTips() {
   const [hasInteracted, setHasInteracted] = useState(false);
 
   // Only show on /errand page or other service pages
-  const isRelevantPage = location === "/errand" || location === "/home-service" || location === "/housing";
+  const isRelevantPage = location === "/errand" || location === "/home-service" || location === "/residence";
 
   useEffect(() => {
     // Rotate tips every 8 seconds only if open

@@ -652,7 +652,7 @@ function StepSellIPhone() {
               aria-label="Toggle Get Smart Home section"
               data-testid="toggle-smart-home"
             >
-              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent">WHAT DELIWER DOES (NO FLUFF)</span>
+              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent"> Residence in Dubai</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-emerald-400" />
               ) : (
@@ -680,7 +680,11 @@ function StepSellIPhone() {
                     <span>SMART HOME SEARCH</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">WHAT DELIWER DOES (NO FLUFF)</h3>
-                  <p className="text-gray-300 mb-4">We handle the practical work of living in Dubai — so you don’t manage multiple vendors, timelines, or follow-ups.</p>
+                  <p className="text-gray-300 mb-4">We handle the practical work of living in Dubai — so you don’t manage multiple vendors, timelines, or follow-ups.
+FOR NEW RESIDENTS: Moving to Dubai or just arrived?
+
+Most residents start with our New Resident Essentials Pack — covering the basics needed to settle in quickly and comfortably.
+</p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">Premium Listings</span>
                     <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">Smart Technology</span>
@@ -704,7 +708,7 @@ function StepSellIPhone() {
                   <span>New Resident Essentials — AED 1,499</span>
                 </CalendlyButton>
               </div>
-              <Link href="/housing" className="flex-1">
+              <Link href="/residence" className="flex-1">
                 <Button
                   size="lg"
                   variant="outline"
@@ -765,7 +769,7 @@ function StepSellIPhone() {
                 <span className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-bold">EV Charging</span>
               </div>
               <div className="flex flex-wrap gap-3 justify-center">
-                <Link href="/housing">
+                <Link href="/residence">
                   <Button 
                     size="lg"
                     className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
@@ -775,7 +779,7 @@ function StepSellIPhone() {
                     Browse Rentals
                   </Button>
                 </Link>
-                <Link href="/housing?type=buy">
+                <Link href="/residence?type=buy">
                   <Button 
                     size="lg"
                     variant="outline"

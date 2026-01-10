@@ -20,7 +20,7 @@ import Relocate from "@/pages/relocate";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import HomeService from "@/pages/home-service";
-import Housing from "@/pages/housing";
+import Residence from "@/pages/residence";
 import ErrandPage from "@/pages/errand";
 import HomeServiceLaunch from "@/pages/home-service-launch";
 import NotFound from "@/pages/not-found";
@@ -120,7 +120,7 @@ function Router() {
         <Route path="/launch" component={HomeServiceLaunch} />
 
         {/* Housing - Rent, Buy, Invest */}
-        <Route path="/housing" component={Housing} />
+        <Route path="/residence" component={Residence} />
 
         {/* Core Site Pages */}
         <Route path="/privacy" component={Privacy} />

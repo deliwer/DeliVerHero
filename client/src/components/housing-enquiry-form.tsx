@@ -120,6 +120,10 @@ UTM Campaign: ${utmParams.utmCampaign || 'N/A'}
         urgency: "high",
       });
 
+      toast({
+        title: "Enquiry Sent",
+        description: "We'll be in touch shortly to discuss your residence requirements.",
+      });
       setIsSubmitted(true);
       trackFormSubmission('housing_enquiry', true, { segment: formData.segment, ...utmParams });
       toast({
@@ -144,7 +148,7 @@ UTM Campaign: ${utmParams.utmCampaign || 'N/A'}
     invest: "Investment"
   };
 
-  const referralLink = `https://deliwer.com/housing?ref=${formData.email?.split('@')[0] || 'friend'}`;
+  const referralLink = `https://deliwer.com/residence?ref=${formData.email?.split('@')[0] || 'friend'}`;
 
   const handleShareReferral = (platform: 'whatsapp' | 'email' | 'copy' | 'facebook' | 'linkedin') => {
     const message = `I found the perfect housing solution on DeliWer! They helped me find my ideal ${formData.segment} property in Dubai. Check it out: ${referralLink}`;
