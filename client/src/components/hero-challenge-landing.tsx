@@ -715,7 +715,32 @@ function StepSellIPhone() {
                     <span>SMART HOME SEARCH</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">What DeliWer Does?</h3>
-                  <p className="text-gray-300 mb-4">We handle the practical work of living in Dubai — so you don’t manage multiple vendors, timelines, or follow-ups. 1️⃣ Tell us what you need 2️⃣ We coordinate services 3️⃣ You deal with one WhatsApp contact 4️⃣ Everything gets done. No apps to learn. No chasing vendors.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-emerald-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <span className="text-sm font-medium">Tell us what you need</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-green-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-green-400" />
+                      </div>
+                      <span className="text-sm font-medium">We coordinate services</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-teal-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-teal-400" />
+                      </div>
+                      <span className="text-sm font-medium">One WhatsApp contact</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-cyan-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-cyan-400" />
+                      </div>
+                      <span className="text-sm font-medium">Everything gets done</span>
+                    </div>
+                  </div>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">Premium Listings</span>
                     <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">Smart Technology</span>
