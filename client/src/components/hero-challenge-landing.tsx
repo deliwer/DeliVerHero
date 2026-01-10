@@ -35,6 +35,7 @@ import smartHomeLivingRoom from "@assets/stock_images/smart_home_living_ro_92fee
 import homeServiceTechnician from "@assets/stock_images/professional_home_se_d1e6daec.jpg";
 
 import Nicole_Oliver from "@assets/Nicole_Oliver.jpeg";
+import relocationProfessionalImage from "@assets/stock_images/modern_professional__d33c9ad9.jpg";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -247,7 +248,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                   <img 
-                    src={Dubai_Creek_Apartment} 
+                    src={relocationProfessionalImage} 
                     alt="Dubai Relocation" 
                     className="relative w-full h-auto rounded-xl shadow-lg border border-white/10"
                     data-testid="img-relocation-hero"
