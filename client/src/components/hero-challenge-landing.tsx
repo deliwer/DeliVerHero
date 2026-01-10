@@ -407,7 +407,7 @@ function StepTwoExchange() {
                     <Droplets className="w-5 h-5" />
                     <span className="font-bold">WATER PURIFICATION</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Home Water Purification & Installation</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">What Residents Use DeliWer For</h3>
                   <p className="text-gray-300 mb-4">
                     Get clean, alkaline water at home with our premium Kangen water systems. Professional installation included with all packages.
                   </p>
