@@ -239,14 +239,11 @@ export default function Home() {
 
       {/* Trade-In Banner - Hidden from Home, Moved to Trade-In page */}
 
+      {/* Trust & Proof Section */}
+      <TrustAndProofSection />
+
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />
-
-      {/* Testimonials Section */}
-      <TestimonialsSection />
-
-      {/* Trust Elements Section */}
-      <TrustElements />
 
       {/* PHASE 5: RELOCATE (Monetization) - Conversion Bridge */}
       {/* Hidden Relocate Section */}

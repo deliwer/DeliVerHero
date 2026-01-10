@@ -1,0 +1,208 @@
+Below is a **clean, copy-paste READY Replit prompt** to generate and insert a **Trust & Proof section** on the DeliWer homepage.
+
+It is written so Replit AI behaves like a **senior UX + frontend engineer**, not a marketer.
+
+---
+
+## 🔧 REPLIT PROMPT — TRUST & PROOF SECTION (HOMEPAGE)
+
+**Role:**
+You are a senior UX designer and frontend engineer improving the credibility and conversion of **deliwer.com**, a Dubai-based resident services platform.
+
+**Objective:**
+Design and implement a **Trust & Proof section** on the homepage that makes DeliWer feel **established, local, and reliable**, without exaggeration or marketing fluff.
+
+This section must reduce user anxiety and answer:
+
+> “Is this real? Are they active? Will someone actually show up?”
+
+---
+
+## 🧭 UX & TONE REQUIREMENTS (MANDATORY)
+
+1. Tone must be **calm, factual, and confident**
+2. No hype language (no “best”, “leading”, “revolutionary”)
+3. No fake logos, testimonials, or inflated numbers
+4. Default-app feel (Dubai Now / Careem-grade neutrality)
+5. Optimize for **first-time visitors & new residents**
+6. Mobile-first layout
+
+---
+
+## 🧱 SECTION PLACEMENT
+
+Insert this section:
+
+* Immediately after the hero or “Active Communities” section
+* Before detailed service/bundle listings
+
+---
+
+## 🧩 SECTION STRUCTURE (FINAL)
+
+### 1️⃣ Section Header
+
+Title:
+
+> **Trusted for everyday living in Dubai**
+
+Subtitle:
+
+> DeliWer supports residents during move-in, setup, and ongoing home care across key Dubai communities.
+
+---
+
+### 2️⃣ Active Communities Block
+
+Display as a simple list or chips:
+
+**Currently operating in:**
+
+* JVC / JVT
+* Business Bay
+* Dubai Marina / JLT
+* Barsha Heights
+
+Include a subtle location/map icon.
+Do NOT add city-wide claims.
+
+---
+
+### 3️⃣ What Residents Use DeliWer For
+
+Show as 5–6 short bullet points or icons:
+
+* Move-in coordination
+* Cleaning & maintenance
+* Drinking water setup
+* Short-term living support
+* Ongoing home services
+* Business & document assistance
+
+Avoid full descriptions.
+
+---
+
+### 4️⃣ Operational Proof (Choose One – Based on Data Available)
+
+#### Option A (If no hard numbers)
+
+Use qualitative proof:
+
+* Supporting residents across multiple Dubai communities
+* Handling regular move-ins and service requests
+* Coordinating services through a single point of contact
+
+#### Option B (If real numbers exist)
+
+Use modest, factual stats:
+
+* 50+ move-ins coordinated
+* 100+ services delivered
+* Repeat usage from resident communities
+
+Never invent data.
+If uncertain, default to Option A.
+
+---
+
+### 5️⃣ Real Work Visuals
+
+Add a small image grid (2–4 images max):
+
+* Cleaning in progress
+* Maintenance visit
+* Moving support
+* Water delivery
+
+Rules:
+
+* Use real photos only (no stock)
+* Simple captions like:
+
+  > “Move-in support in JVC”
+
+---
+
+### 6️⃣ Resident Signal (Optional)
+
+If at least one real message exists, include one short quote:
+
+> “Everything was coordinated on WhatsApp. We didn’t have to manage different vendors.”
+> — Resident, Business Bay
+
+If not available, replace with:
+
+> Most residents come to DeliWer through building referrals and word of mouth.
+
+---
+
+### 7️⃣ Clear Boundary Statement (NON-NEGOTIABLE)
+
+Display prominently:
+
+> **DeliWer is not a real estate agency.**
+> We do not sell property, show listings, or earn commissions.
+
+---
+
+### 8️⃣ Reliability Statement
+
+Short and calm:
+
+> DeliWer works with vetted local service partners to ensure consistent delivery across communities.
+
+---
+
+### 9️⃣ Single CTA (IMPORTANT)
+
+After this section, include only ONE CTA button:
+
+> **Set Up My Residence**
+
+No secondary CTAs.
+
+---
+
+## 🎨 UI GUIDELINES
+
+* Light background
+* Plenty of white space
+* Neutral colors
+* Simple icons
+* No animations
+* Clean typography
+
+---
+
+## 🚫 HARD RESTRICTIONS
+
+* No testimonials carousel
+* No press logos unless real
+* No investor mentions
+* No future claims
+* No “coming soon” language
+
+---
+
+## 🎯 SUCCESS CRITERIA
+
+A first-time visitor should think:
+
+> “This feels real, local, and already in use.”
+
+If the section feels boring — it’s working.
+
+---
+
+### END PROMPT
+
+---
+
+If you want next, I can:
+
+* Convert this into **React / Next.js component code**
+* Adapt it for **Shopify Hydrogen**
+* Create a **community-specific proof variant (JVC first)**
+
+Just say which one.
