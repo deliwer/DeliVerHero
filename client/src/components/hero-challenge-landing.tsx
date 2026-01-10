@@ -177,17 +177,16 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
 
 // Step 3: Create Impact Section (Play) - Now Collapsible
 function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
-  const [heroId] = useState("demo-hero-id"); // Demo hero ID for tombola
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
     <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-3">
-      {/* Metaverse background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-indigo-900/20 to-blue-900/20"></div>
+      {/* Relocation background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/20 to-teal-900/20"></div>
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-20 right-16 w-3 h-3 bg-blue-400 rounded-full animate-pulse delay-300"></div>
-        <div className="absolute bottom-20 left-16 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-700"></div>
+        <div className="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-20 right-16 w-3 h-3 bg-indigo-400 rounded-full animate-pulse delay-300"></div>
+        <div className="absolute bottom-20 left-16 w-2 h-2 bg-teal-400 rounded-full animate-pulse delay-700"></div>
         <div className="absolute bottom-10 right-10 w-4 h-4 bg-cyan-400 rounded-full animate-pulse delay-1000"></div>
       </div>
       <div className="max-w-4xl mx-auto relative z-10">
@@ -199,133 +198,127 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Play to Earn DXBs section"
-              data-testid="toggle-play-earn"
+              aria-label="Toggle Relocation section"
+              data-testid="toggle-relocation"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Play the Planet Hero Game</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">Expert Relocation Services</span>
               {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-purple-400" />
+                <ChevronUp className="w-8 h-8 text-blue-400" />
               ) : (
-                <ChevronDown className="w-8 h-8 text-purple-400" />
+                <ChevronDown className="w-8 h-8 text-blue-400" />
               )}
             </button>
           </h2>
           <div className="flex items-center justify-center gap-2 mb-3">
-            <Sparkles className="w-5 h-5 text-purple-400 animate-pulse" />
-            <span className="text-purple-400 font-bold text-lg">Planet Gamification</span>
-            <div className="w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+            <Building className="w-5 h-5 text-blue-400 animate-pulse" />
+            <span className="text-blue-400 font-bold text-lg">Dubai Relocation</span>
+            <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
           </div>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            Join the planet gamification movement! Complete eco-missions, earn DXB tokens, and make real environmental impact. 
-            <span className="text-purple-400 font-bold">Play games, win rewards, save the planet!</span>
+            Moving to Dubai? Let our experts handle everything from visa processing to finding your perfect home. 
+            <span className="text-blue-400 font-bold">Seamless relocation, business setup, and local support!</span>
           </p>
 
-          {/* Play TV Interactive Component - Always Visible */}
-          <div className="max-w-7xl mx-auto">
-            <PlayTV />
+          {/* Relocation Content - Replacing Play TV */}
+          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-blue-500/50 shadow-2xl bg-gradient-to-br from-blue-600/20 to-indigo-600/20 p-2 backdrop-blur-sm">
+            <div className="bg-slate-900/50 rounded-xl p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div className="space-y-4 text-left">
+                  <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-2">
+                    <Handshake className="w-5 h-5" />
+                    <span className="font-bold uppercase tracking-wider text-xs">Concierge Support</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white leading-tight">Your Dubai Journey Starts Here</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle className="w-5 h-5 text-teal-400 flex-shrink-0" />
+                      <span>Business Setup & Licensing</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle className="w-5 h-5 text-teal-400 flex-shrink-0" />
+                      <span>Visa & Golden Visa Assistance</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle className="w-5 h-5 text-teal-400 flex-shrink-0" />
+                      <span>Home Search & Move-in Support</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                  <img 
+                    src={Dubai_Creek_Apartment} 
+                    alt="Dubai Relocation" 
+                    className="relative w-full h-auto rounded-xl shadow-lg border border-white/10"
+                    data-testid="img-relocation-hero"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* CTAs - Calendar Booking and Play Page */}
-          <div className="mt-6 space-y-4">
+          {/* CTAs - Business Setup and Relocate Page */}
+          <div className="mt-8 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
               <div className="flex-1">
-                <CalendlyButton
-                  size="lg"
-                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-book-gaming-session"
-                >
-                  <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>Book Gaming Session</span>
-                </CalendlyButton>
+                <Link href="/relocate/business-setup" className="w-full">
+                  <Button
+                    size="lg"
+                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                    data-testid="button-business-setup"
+                  >
+                    <Building className="w-5 h-5 flex-shrink-0" />
+                    <span>Business Setup</span>
+                  </Button>
+                </Link>
               </div>
-              <Link href="/play" className="flex-1">
+              <Link href="/relocate" className="flex-1">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full flex items-center justify-center gap-3 border-purple-400/50 text-purple-400 hover:bg-purple-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-start-playing"
+                  className="w-full flex items-center justify-center gap-3 border-blue-400/50 text-blue-400 hover:bg-blue-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-relocate-page"
                 >
-                  <Gamepad2 className="w-5 h-5 flex-shrink-0" />
-                  <span>Start Playing</span>
+                  <Truck className="w-5 h-5 flex-shrink-0" />
+                  <span>Explore Relocation</span>
                 </Button>
               </Link>
             </div>
             <p className="text-center text-gray-400 text-sm">
-              Join the planet heroes community - Earn DXB tokens while saving the environment
+              Join thousands of successful professionals who relocated with AquaCafe DeliWer
             </p>
           </div>
         </div>
 
-        {/* Expanded Content - Full Details */}
+        {/* Expanded Content - Relocation Details */}
         {isExpanded && (
-        <>
-        {/* Planet Gamification Info Section */}
-        <div className="glass rounded-2xl p-8 border border-purple-500/50 bg-gradient-to-br from-purple-950/30 to-indigo-950/30 relative overflow-hidden animate-in slide-in-from-top duration-500">
-          {/* Floating particles */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-4 left-8 w-1 h-1 bg-purple-400 rounded-full animate-pulse"></div>
-            <div className="absolute top-12 right-12 w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-300"></div>
-            <div className="absolute bottom-12 left-12 w-1 h-1 bg-pink-400 rounded-full animate-pulse delay-700"></div>
-          </div>
-          
-          <div className="max-w-2xl mx-auto relative z-10">
-            <div className="space-y-6">
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center gap-2 bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full mb-4">
-                  <Gamepad2 className="w-5 h-5" />
-                  <span className="font-bold">PLANET GAMIFICATION</span>
+        <div className="animate-in slide-in-from-top duration-500 space-y-8">
+          <div className="glass rounded-2xl p-8 border border-blue-500/50 bg-gradient-to-br from-blue-950/30 to-indigo-950/30">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="bg-white/5 border-blue-500/30 p-6 text-center hover-elevate">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Earn DXBs While Saving the Planet</h3>
-                <p className="text-gray-200 text-sm">
-                  Complete eco-missions, earn DXB tokens, and contribute to real environmental impact across Dubai and beyond!
-                </p>
-              </div>
-              
-              {/* Visit Play Page CTA */}
-              <div className="text-center">
-                <div className="text-gray-400 text-sm mb-6">Ready to become a Planet Hero?</div>
-                <Link href="/play">
-                  <Button 
-                    size="lg" 
-                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold px-8 py-4 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                    data-testid="button-visit-play-page"
-                  >
-                    <Gamepad2 className="w-6 h-6 flex-shrink-0" />
-                    <span>Enter the Game</span>
-                  </Button>
-                </Link>
-                <div className="text-xs text-gray-400 mt-4">
-                  Access Tombola, Eco-Missions, Leaderboards & Earn DXB Tokens!
+                <h4 className="text-white font-bold mb-2">Guided Search</h4>
+                <p className="text-gray-400 text-sm">Personalized property and school finding services</p>
+              </Card>
+              <Card className="bg-white/5 border-blue-500/30 p-6 text-center hover-elevate">
+                <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 text-teal-400" />
                 </div>
-              </div>
-              
-              {/* Ways to earn preview */}
-              <div className="text-center">
-                <div className="text-gray-400 text-sm mb-3">Available on Play page:</div>
-                <div className="flex justify-center gap-4 text-xs">
-                  <div className="text-center">
-                    <div className="text-purple-400 font-bold">Tombola</div>
-                    <div className="text-gray-500">Daily Spins</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-blue-400 font-bold">Achievements</div>
-                    <div className="text-gray-500">Unlock Badges</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-amber-400 font-bold">Leaderboard</div>
-                    <div className="text-gray-500">Compete</div>
-                  </div>
+                <h4 className="text-white font-bold mb-2">Legal Ease</h4>
+                <p className="text-gray-400 text-sm">Expert handling of all documentation and visas</p>
+              </Card>
+              <Card className="bg-white/5 border-blue-500/30 p-6 text-center hover-elevate">
+                <div className="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-6 h-6 text-indigo-400" />
                 </div>
-              </div>
+                <h4 className="text-white font-bold mb-2">Local Support</h4>
+                <p className="text-gray-400 text-sm">Ongoing concierge for a smooth transition</p>
+              </Card>
             </div>
           </div>
         </div>
-
-        {/* Impact Slot Machine - Interactive Rewards Preview */}
-        <div className="mt-8">
-          <InstantImpactUnlocks />
-        </div>
-        </>
         )}
       </div>
     </section>
