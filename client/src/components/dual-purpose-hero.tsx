@@ -166,7 +166,7 @@ export function DualPurposeHero() {
           {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Trusted for everyday living in Dubai</h2>
-            <p className="text-lg text-gray-200 max-w-3xl mx-auto">From your first day in Dubai to everyday home support, everything is handled in one place.</p>
+            <p className="text-lg text-gray-200 max-w-3xl mx-auto">DeliWer supports residents during move-in, setup, and ongoing home care across key Dubai communities.</p>
           </div>
 
           {/* Single Gateway Path */}
