@@ -76,9 +76,6 @@ export default function Housing() {
       <section className="relative py-16 px-4 bg-slate-950" id="residence-menu">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4" data-testid="text-residence-title">
-              RESIDENCE IN DUBAI
-            </h2>
             <p className="text-gray-400 max-w-xl mx-auto italic">DeliWer is built for people who actually live in Dubai.
             Not for listings. Not for commissions. Not for luxury theater.
 

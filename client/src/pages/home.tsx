@@ -12,6 +12,7 @@ import { SEOMeta } from "@/components/seo-meta";
 import { HomeServiceSection } from "@/components/home-service-section";
 import { LeaderboardSocialProof } from "@/components/leaderboard-social-proof";
 import { DirhamCurrency } from "@/components/dirham-currency";
+import { TrustAndProofSection } from "@/components/trust-proof-section";
 import { Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, ChevronUp, Gavel, ArrowRight, Plane, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -229,6 +230,9 @@ export default function Home() {
 
       {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
+
+      {/* Trust & Proof Section */}
+      <TrustAndProofSection />
 
       {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
       <HomeServiceSection />
