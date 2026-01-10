@@ -167,7 +167,6 @@ export function DualPurposeHero() {
           </div>
         </div>
       </div>
-
       {/* Trust & Proof Section Integrated */}
       <section 
         className="relative py-16 px-4 overflow-hidden"
@@ -184,7 +183,7 @@ export function DualPurposeHero() {
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Trusted for everyday living in Dubai</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Already helping residents move in across Dubai</h2>
             <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
               DeliWer supports residents during move-in, setup, and ongoing home care across key Dubai communities.
             </p>
