@@ -679,7 +679,7 @@ function StepSellIPhone() {
                     <Home className="w-5 h-5 mr-2 flex-shrink-0" />
                     <span>SMART HOME SEARCH</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">WHAT DELIWER DOES (NO FLUFF)</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">What DeliWer Does?</h3>
                   <p className="text-gray-300 mb-4">We handle the practical work of living in Dubai — so you don’t manage multiple vendors, timelines, or follow-ups.</p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">Premium Listings</span>
