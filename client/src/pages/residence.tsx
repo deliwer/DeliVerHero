@@ -87,137 +87,150 @@ export default function Housing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* 1) Find a Place to Stay */}
-            <Card className="bg-slate-900 border-blue-500/30 flex flex-col shadow-2xl" data-testid="card-stay-flow">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {/* 1) New Resident Essentials */}
+            <Card className="bg-slate-900 border-emerald-500/30 flex flex-col shadow-2xl hover-elevate" data-testid="card-essentials">
               <CardHeader>
-                <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 border border-blue-500/50">
-                  <Search className="w-6 h-6 text-blue-400" />
+                <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-4 border border-emerald-500/50">
+                  <Home className="w-6 h-6 text-emerald-400" />
                 </div>
-                <CardTitle className="text-2xl text-white">Find a Place to Stay</CardTitle>
-                <CardDescription className="text-blue-300/70">
-                  Service-led residence enablement
+                <CardTitle className="text-xl text-white">New Resident Essentials</CardTitle>
+                <CardDescription className="text-emerald-300/70 font-bold">
+                  AED 1,499
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4 flex-1">
-                {!showStayResponse ? (
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <label className="text-xs text-gray-400 uppercase font-black tracking-wider">Stay Duration</label>
-                      <select className="w-full bg-slate-800 border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all">
-                        <option>1-3 Months</option>
-                        <option>3-6 Months</option>
-                        <option>6-12 Months</option>
-                        <option>1 Year+</option>
-                      </select>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs text-gray-400 uppercase font-black tracking-wider">Preferred Area</label>
-                      <input type="text" placeholder="e.g. Marina, Downtown" className="w-full bg-slate-800 border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-xs text-gray-400 uppercase font-black tracking-wider">Monthly Budget (AED)</label>
-                      <input type="number" placeholder="e.g. 15,000" className="w-full bg-slate-800 border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all" />
-                    </div>
-                    <Button 
-                      className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 rounded-xl transition-all transform hover:scale-[1.02]"
-                      onClick={() => setShowStayResponse(true)}
-                      data-testid="button-submit-stay-request"
-                    >
-                      Search Suitable Options
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 text-center animate-in zoom-in duration-300">
-                    <CheckCircle2 className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                    <h4 className="text-xl font-bold text-white mb-2">Request Received</h4>
-                    <p className="text-blue-200 font-medium">
-                      “We arrange suitable residence options for you.”
-                    </p>
-                    <Button 
-                      variant="ghost" 
-                      className="mt-4 text-blue-400 hover:text-blue-300"
-                      onClick={() => setShowStayResponse(false)}
-                    >
-                      Edit Search
-                    </Button>
-                  </div>
-                )}
+                <p className="text-gray-400 text-sm">FOR NEW RESIDENTS: Moving to Dubai or just arrived?</p>
+                <ul className="space-y-2">
+                  {[
+                    "Deep move-in cleaning",
+                    "Drinking water setup",
+                    "Basic maintenance inspection",
+                    "WhatsApp coordination",
+                    "Priority scheduling"
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button 
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
+                  onClick={() => openEnquiry("rent")}
+                  data-testid="button-start-move-in"
+                >
+                  Start My Move-In
+                </Button>
               </CardContent>
             </Card>
 
-            {/* 2) Short-Term Living */}
-            <Card className="bg-slate-900 border-emerald-500/30 flex flex-col shadow-2xl" data-testid="card-short-term">
+            {/* 2) Move-In Complete */}
+            <Card className="bg-slate-900 border-blue-500/30 flex flex-col shadow-2xl hover-elevate" data-testid="card-move-in-complete">
               <CardHeader>
-                <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mb-4 border border-emerald-500/50">
-                  <Clock className="w-6 h-6 text-emerald-400" />
+                <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4 border border-blue-500/50">
+                  <CheckCircle2 className="w-6 h-6 text-blue-400" />
                 </div>
-                <CardTitle className="text-2xl text-white">Short-Term Living</CardTitle>
-                <CardDescription className="text-emerald-300/70">
-                  Managed serviced apartments
+                <CardTitle className="text-xl text-white">Move-In Complete</CardTitle>
+                <CardDescription className="text-blue-300/70 font-bold">
+                  AED 2,999
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6 flex-1">
-                <p className="text-gray-300 text-sm">
-                  Perfect for newcomers, families, founders, and business travelers needing immediate, managed comfort.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-sm text-gray-200">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    Bundled move-in setup
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-gray-200">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    Utilities & DEWA inclusive
-                  </li>
-                  <li className="flex items-center gap-3 text-sm text-gray-200">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    On-demand support team
-                  </li>
+              <CardContent className="space-y-4 flex-1">
+                <p className="text-gray-400 text-sm">For families and long-term residents who want everything handled.</p>
+                <ul className="space-y-2">
+                  {[
+                    "Local moving assistance",
+                    "Deep cleaning",
+                    "Water setup",
+                    "Maintenance fixes",
+                    "Light furniture assembly",
+                    "Dedicated move-in coordinator"
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
                 </ul>
-                <div className="pt-4 space-y-3">
-                  <Link href="/move-in-services">
-                    <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl transition-all" data-testid="link-move-in-setup">
-                      Move-In Setup
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </Link>
-                </div>
+                <Button 
+                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
+                  onClick={() => openEnquiry("rent")}
+                  data-testid="button-book-move-in-complete"
+                >
+                  Book Move-In Complete
+                </Button>
               </CardContent>
             </Card>
 
-            {/* 4) Community Living */}
-            <Card className="bg-slate-900 border-purple-500/30 flex flex-col shadow-2xl" data-testid="card-community">
+            {/* 3) Short-Term Living Support */}
+            <Card className="bg-slate-900 border-orange-500/30 flex flex-col shadow-2xl hover-elevate" data-testid="card-short-term-support">
+              <CardHeader>
+                <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center mb-4 border border-orange-500/50">
+                  <Clock className="w-6 h-6 text-orange-400" />
+                </div>
+                <CardTitle className="text-xl text-white">Short-Term Living Setup</CardTitle>
+                <CardDescription className="text-orange-300/70 font-bold">
+                  AED 1,999 <span className="text-xs font-normal opacity-70">(excluding rent)</span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4 flex-1">
+                <p className="text-gray-400 text-sm">Not ready for a long-term home? We coordinate short-term and serviced living, and handle the setup around it — so you can focus on work, family, or settling in.</p>
+                <ul className="space-y-2">
+                  {[
+                    "Stay coordination",
+                    "Cleaning & water setup",
+                    "Maintenance support",
+                    "Extension or relocation assistance"
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-orange-500 mt-0.5 shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button 
+                  className="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
+                  onClick={() => openEnquiry("rent")}
+                  data-testid="button-arrange-short-term"
+                >
+                  Arrange Short-Term Living
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* 4) Home Care Subscription */}
+            <Card className="bg-slate-900 border-purple-500/30 flex flex-col shadow-2xl hover-elevate" data-testid="card-home-care">
               <CardHeader>
                 <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4 border border-purple-500/50">
-                  <Users className="w-6 h-6 text-purple-400" />
+                  <Zap className="w-6 h-6 text-purple-400" />
                 </div>
-                <CardTitle className="text-2xl text-white">Community Living</CardTitle>
-                <CardDescription className="text-purple-300/70">
-                  Resident offers & area support
+                <CardTitle className="text-xl text-white">Home Care Subscription</CardTitle>
+                <CardDescription className="text-purple-300/70 font-bold">
+                  AED 299 / month
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6 flex-1">
-                <p className="text-gray-300 text-sm">
-                  Exclusive building services and community-specific support for existing Dubai residents.
-                </p>
-                <div className="grid grid-cols-1 gap-2">
-                  <Badge variant="secondary" className="bg-purple-500/10 text-purple-300 border-purple-500/20 py-2 px-3 justify-start gap-2">
-                    <MapPin className="w-3 h-3" /> Area-specific support
-                  </Badge>
-                  <Badge variant="secondary" className="bg-purple-500/10 text-purple-300 border-purple-500/20 py-2 px-3 justify-start gap-2">
-                    <Zap className="w-3 h-3" /> Resident offers
-                  </Badge>
-                  <Badge variant="secondary" className="bg-purple-500/10 text-purple-300 border-purple-500/20 py-2 px-3 justify-start gap-2">
-                    <Users className="w-3 h-3" /> Member referrals
-                  </Badge>
-                </div>
+              <CardContent className="space-y-4 flex-1">
+                <p className="text-gray-400 text-sm">Once you’re settled, DeliWer continues supporting your home.</p>
+                <ul className="space-y-2">
+                  {[
+                    "Priority maintenance",
+                    "Discounted services",
+                    "WhatsApp ticketing",
+                    "Quarterly checkups"
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-200">
+                      <CheckCircle2 className="w-4 h-4 text-purple-500 mt-0.5 shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
                 <Button 
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-6 rounded-xl mt-auto"
+                  className="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
                   onClick={() => openEnquiry("rent")}
-                  data-testid="button-join-community"
+                  data-testid="button-start-home-care"
                 >
-                  Access Community Hub
+                  Start Home Care
                 </Button>
               </CardContent>
             </Card>
@@ -229,8 +242,9 @@ export default function Housing() {
       <section className="py-20 px-4 bg-slate-900/30">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Who We Support</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 uppercase">FOR RESIDENTS & COMMUNITIES</h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full" />
+            <p className="text-gray-400 mt-4 max-w-2xl mx-auto">Ongoing Home Support</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
