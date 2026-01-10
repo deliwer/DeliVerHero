@@ -47,12 +47,10 @@ export default function Housing() {
   return (
     <div className="min-h-screen bg-background">
       <HousingEnquiryForm open={enquiryOpen} onOpenChange={setEnquiryOpen} segment={selectedSegment} />
-      
       {/* MANDATORY DISCLAIMER BANNER */}
       <div className="bg-amber-500 py-2 px-4 text-center text-black font-bold text-sm">
         ⚠️ DeliWer does not sell property or act as a real estate agent.
       </div>
-
       {/* SECTION 1: HERO */}
       <section className="relative py-20 overflow-hidden min-h-[400px] flex items-center">
         <div 
@@ -74,7 +72,6 @@ export default function Housing() {
           </div>
         </div>
       </section>
-
       {/* SECTION 2: CORE MENU - RESIDENCE IN DUBAI */}
       <section className="relative py-16 px-4 bg-slate-950" id="residence-menu">
         <div className="container mx-auto">
@@ -82,9 +79,10 @@ export default function Housing() {
             <h2 className="text-3xl md:text-5xl font-black text-white mb-4" data-testid="text-residence-title">
               RESIDENCE IN DUBAI
             </h2>
-            <p className="text-gray-400 max-w-xl mx-auto italic">
-              Positioned as managed living support, not brokerage.
-            </p>
+            <p className="text-gray-400 max-w-xl mx-auto italic">DeliWer is built for people who actually live in Dubai.
+            Not for listings. Not for commissions. Not for luxury theater.
+
+            Just reliable execution — when it matters.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
@@ -237,7 +235,6 @@ export default function Housing() {
           </div>
         </div>
       </section>
-
       {/* SECTION 3: WHO THIS IS FOR */}
       <section className="py-20 px-4 bg-slate-900/30">
         <div className="container mx-auto">
@@ -276,7 +273,6 @@ export default function Housing() {
           </div>
         </div>
       </section>
-
       {/* SECTION 4: EXPERT ADVISOR SPOTLIGHT */}
       <section className="py-16 px-4 bg-slate-900/50 border-t border-slate-800">
         <div className="container mx-auto">
@@ -343,7 +339,6 @@ export default function Housing() {
           </div>
         </div>
       </section>
-
       {/* MANDATORY DISCLAIMER FOOTER */}
       <footer className="py-12 px-4 bg-slate-950 border-t border-slate-900">
         <div className="container mx-auto text-center">
