@@ -231,9 +231,6 @@ export default function Home() {
       {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
 
-      {/* Trust & Proof Section */}
-      <TrustAndProofSection />
-
       {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
       <HomeServiceSection />
 

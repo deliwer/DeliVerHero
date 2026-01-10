@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp } from "lucide-react";
+import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp, Shield, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroImage from "@assets/generated_images/diverse_global_founders_and_hnwis_from_many_nationalities.png";
@@ -149,7 +149,7 @@ export function DualPurposeHero() {
           </div>
         </div>
       </div>
-      {/* Settlement Gateway Section */}
+      {/* Trust & Proof Section Integrated */}
       <section 
         className="relative py-16 px-4 overflow-hidden"
         style={{
@@ -160,34 +160,74 @@ export function DualPurposeHero() {
         }}
       >
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
 
-        <div className="max-w-5xl mx-auto relative z-10">
+        <div className="max-w-5xl mx-auto relative z-10 text-center">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Trusted for everyday living in Dubai</h2>
-            <p className="text-lg text-gray-200 max-w-3xl mx-auto">DeliWer supports residents during move-in, setup, and ongoing home care across key Dubai communities.</p>
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Trusted for everyday living in Dubai</h2>
+            <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
+              DeliWer supports residents during move-in, setup, and ongoing home care across key Dubai communities.
+            </p>
           </div>
 
-          {/* Single Gateway Path */}
+          {/* Central Trust Card */}
           <div className="max-w-xl mx-auto mb-12">
-            {/* Path: Move-In Services */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate text-center">
-              <h3 className="text-2xl font-semibold text-white mb-3">What Residents Use DeliWer For</h3>
-              <p className="text-gray-200 mb-8">Currently supporting residents in: JVC / JVT · Business Bay · Marina / JLT · Barsha Heights</p>
-              <Link href="/aquacafe">
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white w-full" data-testid="button-settlement-gateway-move-in">
-                  Home essentials, and home support — coordinated locally.
-                  <ArrowRight className="ml-2 w-4 h-4" />
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover-elevate shadow-2xl">
+              <h3 className="text-2xl font-semibold text-white mb-6">Currently operating in:</h3>
+              <div className="flex flex-wrap justify-center gap-3 mb-8">
+                {["JVC / JVT", "Business Bay", "Marina / JLT", "Barsha Heights"].map((c) => (
+                  <span key={c} className="px-4 py-2 bg-white/20 rounded-full text-white text-sm font-medium border border-white/10">
+                    {c}
+                  </span>
+                ))}
+              </div>
+              
+              <Link href="/relocate/move-in-services">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white w-full py-6 text-lg font-bold rounded-xl shadow-lg transition-all" data-testid="button-setup-residence-hero">
+                  Set Up My Residence
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
             </div>
           </div>
 
+          {/* Operational Proof & Boundary */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left">
+            <div className="bg-black/30 backdrop-blur-sm p-6 rounded-xl border border-white/10">
+              <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm flex items-center gap-2">
+                <Shield className="w-4 h-4 text-blue-400" /> Operational Proof
+              </h4>
+              <ul className="space-y-3 text-gray-300 text-sm">
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
+                  Supporting residents across multiple communities
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
+                  Handling regular move-ins and service requests
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
+                  Coordinating through a single point of contact
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-amber-500/10 backdrop-blur-sm p-6 rounded-xl border border-amber-500/20 flex flex-col justify-center">
+              <p className="text-amber-400 font-bold text-sm mb-2 uppercase tracking-tight">
+                DeliWer is not a real estate agency
+              </p>
+              <p className="text-gray-300 text-xs leading-relaxed">
+                We do not sell property, show listings, or earn commissions. We work with vetted local partners to ensure consistent delivery.
+              </p>
+            </div>
+          </div>
+
           {/* Trust Microcopy */}
-          <div className="text-center">
-            <p className="text-sm text-gray-300">
-              Serving residents and newcomers across 200+ nationalities in Dubai
+          <div className="mt-12 text-center">
+            <p className="text-sm text-gray-400">
+              Most residents come to DeliWer through building referrals and word of mouth.
             </p>
           </div>
         </div>
