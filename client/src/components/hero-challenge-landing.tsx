@@ -408,17 +408,44 @@ function StepTwoExchange() {
                     <span className="font-bold">WATER PURIFICATION</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">What Residents Use DeliWer For</h3>
-                  <p className="text-gray-300 mb-4">Move-in coordination
-
-                  Cleaning & maintenance
-
-                  Drinking water setup
-
-                  Short-term living support
-
-                  Ongoing home services
-
-                  Business & document assistance</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-cyan-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-cyan-400" />
+                      </div>
+                      <span className="text-sm font-medium">Move-in coordination</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-blue-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-blue-400" />
+                      </div>
+                      <span className="text-sm font-medium">Cleaning & maintenance</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-teal-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-teal-400" />
+                      </div>
+                      <span className="text-sm font-medium">Drinking water setup</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-emerald-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-emerald-400" />
+                      </div>
+                      <span className="text-sm font-medium">Short-term living support</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-indigo-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-indigo-400" />
+                      </div>
+                      <span className="text-sm font-medium">Ongoing home services</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <div className="bg-purple-500/20 p-2 rounded-lg">
+                        <CheckCircle className="w-4 h-4 text-purple-400" />
+                      </div>
+                      <span className="text-sm font-medium">Business & document assistance</span>
+                    </div>
+                  </div>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Professional Install</span>
                     <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Alkaline Water</span>
