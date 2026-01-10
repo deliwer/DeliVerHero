@@ -173,7 +173,7 @@ export function DualPurposeHero() {
           <div className="max-w-xl mx-auto mb-12">
             {/* Path: Move-In Services */}
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate text-center">
-              <h3 className="text-2xl font-semibold text-white mb-3">ACTIVE IN DUBAI COMMUNITIES</h3>
+              <h3 className="text-2xl font-semibold text-white mb-3">What Residents Use DeliWer For</h3>
               <p className="text-gray-200 mb-8">Currently supporting residents in: JVC / JVT · Business Bay · Marina / JLT · Barsha Heights</p>
               <Link href="/aquacafe">
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white w-full" data-testid="button-settlement-gateway-move-in">
