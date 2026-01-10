@@ -239,9 +239,6 @@ export default function Home() {
 
       {/* Trade-In Banner - Hidden from Home, Moved to Trade-In page */}
 
-      {/* Trust & Proof Section */}
-      <TrustAndProofSection />
-
       {/* Sustainability Section - Stars Sponsorship */}
       <StarsSponsorshipSection />
 
