@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle, ChevronDown, ChevronUp, Handshake, Building, ChevronRight } from "lucide-react";
+import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle, ChevronDown, ChevronUp, Handshake, Building, ChevronRight, Gamepad2, Coins } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -160,11 +160,11 @@ export function StarsSponsorshipSection() {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setShowSustainabilitySection(!showSustainabilitySection)}
               aria-expanded={showSustainabilitySection}
-              aria-label="Toggle Join Sustainability Journey section"
+              aria-label="Toggle Live in Dubai section"
               data-testid="button-join-sustainability-journey"
             >
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Join the Sustainability Journey
+                Relocate & Play: Dubai's Green Future
               </span>
               {showSustainabilitySection ? (
                 <ChevronUp className="w-8 h-8 text-emerald-400" />
@@ -174,11 +174,11 @@ export function StarsSponsorshipSection() {
             </button>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
-            Explore contribution options below
+            Relocation with purpose: Gamifying sustainability for Dubai residents
           </p>
         </div>
 
-        {/* Always Visible Banner - Image & Text Side by Side */}
+        {/* Always Visible Banner - Relocation & Gaming Focus */}
         <Card className="mb-8 overflow-hidden border-2 border-primary/20">
           <CardContent className="p-0">
             <div className="grid md:grid-cols-2 gap-0">
@@ -187,7 +187,7 @@ export function StarsSponsorshipSection() {
                 <div className="w-full max-w-md">
                   <img
                     src={sustainabilityImage}
-                    alt="Global Sustainability - Hands in Hand for Environmental Impact"
+                    alt="Dubai Green Relocation - Planet Hero Gaming"
                     className="w-full h-auto rounded-lg shadow-lg"
                     data-testid="image-sustainability-banner"
                   />
@@ -197,215 +197,156 @@ export function StarsSponsorshipSection() {
               {/* Content Side */}
               <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-primary/5 to-accent/5">
                 <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4 w-fit">
-                  <Sparkles className="w-4 h-4 flex-shrink-0" />
-                  <span className="font-bold text-sm">AMPLIFY YOUR IMPACT</span>
+                  <Gamepad2 className="w-4 h-4 flex-shrink-0" />
+                  <span className="font-bold text-sm text-emerald-500">RESIDENT IMPACT</span>
                 </div>
 
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                  Support Global Sustainability
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500 bg-clip-text text-transparent">
+                  Live, Play, Impact Dubai
                 </h2>
 
                 <p className="text-base md:text-lg text-muted-foreground mb-6">
-                  Join our mission to create lasting environmental impact. Every contribution supports clean water access, e-waste recycling, and sustainable communities worldwide.
+                  Make Dubai your home and join Planet Hero Gaming. Every mission you complete in the game funds local environmental impact, from water security to e-waste recycling.
                 </p>
 
-                {/* Stats - Always Visible */}
-                {stats && (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-card/50 rounded-lg p-4 border border-border">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center">
-                          <Star className="w-4 h-4 text-amber-500" />
-                        </div>
-                        <span className="text-xs text-muted-foreground">Stars Awarded</span>
-                      </div>
-                      <div className="text-2xl font-bold text-primary">{stats.totalStarsAwarded.toLocaleString()}</div>
-                    </div>
-                    <div className="bg-card/50 rounded-lg p-4 border border-border">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                          <TrendingUp className="w-4 h-4 text-emerald-500" />
-                        </div>
-                        <span className="text-xs text-muted-foreground">Raised</span>
-                      </div>
-                      <div className="text-2xl font-bold text-primary">${stats.totalAmountUSD.toLocaleString()}</div>
-                    </div>
+                {/* Compact Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-card/50 rounded-lg p-4 border border-border">
+                    <div className="text-xs text-muted-foreground mb-1">Impact Tokens</div>
+                    <div className="text-2xl font-bold text-primary">DXB Earned</div>
                   </div>
-                )}
+                  <div className="bg-card/50 rounded-lg p-4 border border-border">
+                    <div className="text-xs text-muted-foreground mb-1">Local Support</div>
+                    <div className="text-2xl font-bold text-primary">Partners</div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link href="/play" className="flex-1">
+                    <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-full">
+                      Start Playing
+                    </Button>
+                  </Link>
+                  <Link href="/earn" className="flex-1">
+                    <Button variant="outline" className="w-full border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 rounded-full">
+                      Earn DXB
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Learn About Partnerships Button - Always Visible Below Banner */}
+        {/* Partners CTA - Crucial for Sponsorship */}
         <div className="mb-8">
           <Link href="/partners" className="block">
             <Button
               size="lg"
-              className="w-full bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 hover:from-emerald-600 hover:via-blue-600 hover:to-purple-600 text-white font-bold"
+              className="w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500 hover:from-emerald-600 text-white font-black py-8 text-xl shadow-xl rounded-2xl border-4 border-emerald-400/20"
               data-testid="button-partners-link"
             >
-              <Handshake className="w-5 h-5 mr-2" />
-              Learn About Partnerships
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <Handshake className="w-6 h-6 mr-3" />
+              Sponsor the Future: Partner with Us
+              <ArrowRight className="w-6 h-6 ml-3" />
             </Button>
           </Link>
-          <p className="text-center text-muted-foreground text-sm mt-3">
-            Discover corporate solutions and community initiatives
-          </p>
         </div>
 
         {/* Expandable Content - Shows when expanded */}
         {showSustainabilitySection && (
           <div id="sustainability-options" className="animate-in slide-in-from-top duration-500">
 
-            {/* Discover Your Path Forward - Step 1, 2, 3 Pattern */}
+            {/* Discover Your Path Forward - Updated for Relocation Focus */}
             <div className="mb-12">
               <div className="text-center mb-8">
                 <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                  Discover Your <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Path Forward</span>
+                  Why Dubai? <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Relocate with Purpose</span>
                 </h3>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  Every path to environmental impact is unique. Whether you're exploring individual solutions, considering corporate sustainability, or building community initiatives - we're here to help you find what works best for your goals.
+                  Dubai isn't just a destination; it's a global leader in sustainability. Join our community of residents turning daily actions into environmental impact.
                 </p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
-                {/* Step 1: Individual Explorer */}
+                {/* Step 1: Resident Hero */}
                 <div className="relative">
                   <Card className="h-full overflow-hidden border-2 border-cyan-500/30 hover-elevate" data-testid="card-individual-explorer">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                          <span className="text-2xl font-bold text-cyan-400">1</span>
-                        </div>
-                        <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Users className="w-6 h-6 text-cyan-400" />
+                          <Gamepad2 className="w-6 h-6 text-cyan-400" />
                         </div>
                       </div>
-                      <h4 className="text-xl font-bold mb-3">Individual Explorer</h4>
+                      <h4 className="text-xl font-bold mb-3">Resident Hero</h4>
                       <p className="text-muted-foreground mb-4">
-                        Perfect for those curious about device recycling and water conservation.
+                        Play to Earn DXB tokens while contributing to Dubai's green transition.
                       </p>
                       <div className="space-y-2 text-sm mb-6">
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                          Device valuation & trade
+                          <Coins className="w-4 h-4 text-amber-400" />
+                          Earn DXB for sustainable choices
                         </div>
                         <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                          Water filtration credits
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                          Planet Points earning
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                          Loyalty member benefits
+                          <Shield className="w-4 h-4 text-emerald-400" />
+                          Support local eco-missions
                         </div>
                       </div>
-                      <Link href="/aquacafe">
-                        <Button className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700" data-testid="button-learn-individual">
-                          Learn More
+                      <Link href="/play">
+                        <Button className="w-full bg-cyan-600 hover:bg-cyan-700">
+                          Start Playing
                           <ChevronRight className="w-4 h-4 ml-2" />
                         </Button>
                       </Link>
                     </CardContent>
                   </Card>
-                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-emerald-400" />
-                  </div>
                 </div>
 
-                {/* Step 2: Corporate Solutions */}
+                {/* Step 2: Eco-Sponsorship */}
                 <div className="relative">
                   <Card className="h-full overflow-hidden border-2 border-emerald-500/30 hover-elevate" data-testid="card-corporate-solutions">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                          <span className="text-2xl font-bold text-emerald-400">2</span>
-                        </div>
-                        <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Building className="w-6 h-6 text-emerald-400" />
+                          <Handshake className="w-6 h-6 text-emerald-400" />
                         </div>
                       </div>
-                      <h4 className="text-xl font-bold mb-3">Corporate Solutions</h4>
+                      <h4 className="text-xl font-bold mb-3">Partner with Us</h4>
                       <p className="text-muted-foreground mb-4">
-                        Designed for organizations interested in comprehensive sustainability programs.
+                        Scale your impact. Sponsors enable large-scale environmental projects across the UAE.
                       </p>
-                      <div className="space-y-2 text-sm mb-6">
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                          Bulk device processing
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                          ESG impact reporting
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                          Employee engagement
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                          Enterprise discounts
-                        </div>
-                      </div>
                       <Link href="/partners">
-                        <Button className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700" data-testid="button-explore-corporate">
-                          Explore Options
+                        <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                          Partner Portal
                           <ChevronRight className="w-4 h-4 ml-2" />
                         </Button>
                       </Link>
                     </CardContent>
                   </Card>
-                  <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <ArrowRight className="w-6 h-6 text-purple-400" />
-                  </div>
                 </div>
 
-                {/* Step 3: Community Initiatives */}
-                <Card className="h-full overflow-hidden border-2 border-purple-500/30 hover-elevate" data-testid="card-community-initiatives">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-2xl font-bold text-purple-400">3</span>
+                {/* Step 3: Token Economy */}
+                <div className="relative">
+                  <Card className="h-full overflow-hidden border-2 border-purple-500/30 hover-elevate" data-testid="card-community-initiatives">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                          <TrendingUp className="w-6 h-6 text-purple-400" />
+                        </div>
                       </div>
-                      <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Heart className="w-6 h-6 text-purple-400" />
-                      </div>
-                    </div>
-                    <h4 className="text-xl font-bold mb-3">Community Initiatives</h4>
-                    <p className="text-muted-foreground mb-4">
-                      Ideal for neighborhoods and communities who want to collaborate on sustainability goals.
-                    </p>
-                    <div className="space-y-2 text-sm mb-6">
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                        Community leaderboards
-                      </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                        Shared starter kits
-                      </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                        Collective impact tracking
-                      </div>
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                        Group rewards & benefits
-                      </div>
-                    </div>
-                    <Link href="/leaderboard">
-                      <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700" data-testid="button-discover-community">
-                        Discover Benefits
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
+                      <h4 className="text-xl font-bold mb-3">DXB Economy</h4>
+                      <p className="text-muted-foreground mb-4">
+                        Your DXB tokens represent real-world impact. Learn how to maximize your earnings.
+                      </p>
+                      <Link href="/earn">
+                        <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                          Learn Earning
+                          <ChevronRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </div>
 
