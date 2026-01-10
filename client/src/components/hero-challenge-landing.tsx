@@ -679,7 +679,7 @@ function StepSellIPhone() {
                     <Home className="w-5 h-5 mr-2 flex-shrink-0" />
                     <span>SMART HOME SEARCH</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Rent or Buy Your Dream Home</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">WHAT DELIWER DOES (NO FLUFF)</h3>
                   <p className="text-gray-300 mb-4">DeliWer does not sell property.
                   DeliWer does not act as a real estate agent.
 
