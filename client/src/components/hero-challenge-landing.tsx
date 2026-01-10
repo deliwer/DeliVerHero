@@ -701,7 +701,7 @@ function StepSellIPhone() {
                   data-testid="button-book-housing-consultation"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>New Resident Essentials — AED 1,499</span>
+                  <span>New Resident Essentials</span>
                 </CalendlyButton>
               </div>
               <Link href="/residence" className="flex-1">
