@@ -173,9 +173,6 @@ export function DualPurposeHero() {
           <div className="max-w-xl mx-auto mb-12">
             {/* Path: Move-In Services */}
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-8 hover-elevate text-center">
-              <div className="mb-4 flex justify-center">
-                <Building2 className="w-12 h-12 text-emerald-400" />
-              </div>
               <h3 className="text-2xl font-semibold text-white mb-3">ACTIVE IN DUBAI COMMUNITIES</h3>
               <p className="text-gray-200 mb-8">Currently supporting residents in: JVC / JVT · Business Bay · Marina / JLT · Barsha Heights</p>
               <Link href="/aquacafe">
