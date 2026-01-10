@@ -716,9 +716,7 @@ function StepSellIPhone() {
                 </Button>
               </Link>
             </div>
-            <p className="text-center text-gray-400 text-sm">
-              Free property consultation - Schedule your viewing today
-            </p>
+            <p className="text-center text-gray-400 text-sm">Free consultation - Schedule your meeting today</p>
           </div>
         </div>
 
