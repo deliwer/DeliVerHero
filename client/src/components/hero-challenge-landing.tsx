@@ -680,9 +680,10 @@ function StepSellIPhone() {
                     <span>SMART HOME SEARCH</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">Rent or Buy Your Dream Home</h3>
-                  <p className="text-gray-300 mb-4">
-                    Discover premium smart homes across Dubai with integrated technology, water purification, and sustainable living features. Expert relocation support included.
-                  </p>
+                  <p className="text-gray-300 mb-4">DeliWer does not sell property.
+                  DeliWer does not act as a real estate agent.
+
+                  We handle the practical work of living in Dubai — so you don’t manage multiple vendors, timelines, or follow-ups.</p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">Premium Listings</span>
                     <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">Smart Technology</span>
