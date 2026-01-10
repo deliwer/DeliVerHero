@@ -121,7 +121,7 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
     1: { icon: Home, label: "Smart Home", section: "How it Works" },
     2: { icon: Droplets, label: "Home Service", section: "How it Works" },
-    3: { icon: ShoppingBag, label: "Daily Essentials", section: "How it Works" }
+    3: { icon: Building, label: "Relocation", section: "How it Works" }
   };
 
   return (
@@ -898,10 +898,10 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Daily Essentials section"
-              data-testid="toggle-daily-essentials"
+              aria-label="Toggle Relocation section"
+              data-testid="toggle-relocation"
             >
-              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Join AquaCafe for Daily Essentials</span>
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Expert Relocation & Business Setup</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-amber-400" />
               ) : (
@@ -910,50 +910,50 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-            Step 3: Access your <span className="text-amber-400 font-bold">Daily Essentials</span> + Get a Welcome Bonus with AquaCafe by DeliWer Loyalty
+            Step 3: Seamless <span className="text-amber-400 font-bold">Relocation</span> & Professional Business Setup in Dubai with AquaCafe by DeliWer
           </p>
           
-          {/* Always Visible Banner - Daily Essentials Focus */}
+          {/* Always Visible Banner - Relocation Focus */}
           <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-amber-500/50 shadow-2xl bg-gradient-to-br from-amber-600/20 to-orange-600/20 p-2 backdrop-blur-sm">
             <div className="bg-slate-900/50 rounded-xl p-6">
               <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1">
                   <img 
                     src={membershipCard} 
-                    alt="AquaCafe by DeliWer Loyalty" 
+                    alt="AquaCafe by DeliWer Relocation" 
                     className="w-full h-auto rounded-lg shadow-lg"
-                    data-testid="img-loyalty-banner"
+                    data-testid="img-relocation-banner"
                   />
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <div className="inline-flex items-center bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-full px-6 py-2 mb-3 font-bold animate-pulse">
-                    <ShoppingBag className="w-5 h-5 mr-2 flex-shrink-0" />
-                    <span>DAILY ESSENTIALS</span>
+                    <Building className="w-5 h-5 mr-2 flex-shrink-0" />
+                    <span>RELOCATION SERVICES</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">AquaCafe by DeliWer Loyalty</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">AquaCafe by DeliWer Relocation</h3>
                   <p className="text-gray-300 mb-4">
-                    Your gateway to daily savings on water, fresh produce, and home essentials. Join today for exclusive member-only pricing and rewards.
+                    Expert assistance for your move to Dubai. From visa processing to office setup, we handle the complexities while you focus on your growth.
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Daily Savings</span>
-                    <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">Member Deals</span>
-                    <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Fast Delivery</span>
+                    <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Visa Support</span>
+                    <span className="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-sm font-bold">Business Setup</span>
+                    <span className="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm font-bold">Move Management</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTA to Join Loyalty - Always Visible */}
+          {/* CTA to Relocate - Always Visible */}
           <div className="mt-6">
-            <Link href="/aquacafe" className="block">
+            <Link href="/relocate/business-setup" className="block">
               <Button
                 size="lg"
                 className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-join-aquacafe-loyalty"
+                data-testid="button-relocate-business-setup"
               >
                 <Rocket className="w-6 h-6 flex-shrink-0" />
-                <span>JOIN LOYALTY - AQUACAFE</span>
+                <span>RELOCATE & SETUP BUSINESS</span>
               </Button>
             </Link>
           </div>
@@ -1182,7 +1182,7 @@ export function HeroChallengeLanding() {
               <div className="text-xs text-cyan-400 mt-3 font-bold">HOME SERVICE</div>
             </button>
 
-            {/* Path 3: Join Loyalty */}
+            {/* Path 3: Relocation */}
             <button
               onClick={() => {
                 const loyaltySection = document.querySelector('[data-section="membership-benefits"]');
@@ -1191,15 +1191,15 @@ export function HeroChallengeLanding() {
                 }
               }}
               className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Daily Essentials"
+              aria-label="Start Your Journey - Relocation"
               data-testid="button-scroll-membership"
             >
               <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-amber-500 mb-2"></div>
               <div className="w-14 h-14 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <ShoppingBag className="w-7 h-7 text-white" />
+                <Building className="w-7 h-7 text-white" />
               </div>
               <div className="w-1 h-12 bg-gradient-to-b from-orange-500 to-amber-500 mt-2"></div>
-              <div className="text-xs text-amber-400 mt-3 font-bold">DAILY ESSENTIALS</div>
+              <div className="text-xs text-amber-400 mt-3 font-bold">RELOCATION</div>
             </button>
           </div>
         </div>
