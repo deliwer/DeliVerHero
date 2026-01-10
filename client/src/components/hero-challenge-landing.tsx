@@ -712,7 +712,7 @@ function StepSellIPhone() {
                   data-testid="button-browse-housing"
                 >
                   <Home className="w-5 h-5 flex-shrink-0" />
-                  <span>I Already Live Here</span>
+                  <span>Move-In Complete — AED 2,999</span>
                 </Button>
               </Link>
             </div>
