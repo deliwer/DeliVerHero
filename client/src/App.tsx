@@ -105,7 +105,7 @@ function Router() {
         
         {/* Relocate Membership Portal */}
         <Route path="/relocate" component={Relocate} />
-        <Route path="/relocate/move-in-services" component={MoveInServices} />
+        <Route path="/residence/move-in-services" component={MoveInServices} />
         <Route path="/relocate/business-setup" component={BusinessSetup} />
         <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
         <Route path="/relocate-community" component={RelocateCommunity} />
