@@ -408,9 +408,17 @@ function StepTwoExchange() {
                     <span className="font-bold">WATER PURIFICATION</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">What Residents Use DeliWer For</h3>
-                  <p className="text-gray-300 mb-4">
-                    Get clean, alkaline water at home with our premium Kangen water systems. Professional installation included with all packages.
-                  </p>
+                  <p className="text-gray-300 mb-4">Move-in coordination
+
+                  Cleaning & maintenance
+
+                  Drinking water setup
+
+                  Short-term living support
+
+                  Ongoing home services
+
+                  Business & document assistance</p>
                   <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Professional Install</span>
                     <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Alkaline Water</span>
