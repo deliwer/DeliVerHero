@@ -286,7 +286,7 @@ export default function MoveInServices() {
       {/* Visual Proof Section */}
       <section className="py-24 px-6 bg-slate-950">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">Visual Proof</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">our clients</h2>
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
               {proofPoints.map((point, idx) => (
