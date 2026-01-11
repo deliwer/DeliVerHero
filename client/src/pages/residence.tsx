@@ -22,6 +22,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 // Import lifestyle images
 import marketImage from "@assets/stock_images/dubai_downtown_skyli_01395ddb.jpg";
 import residentsHero from "@assets/stock_images/modern_dubai_apartme_3d49f8dc.jpg";
+import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
 import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
 
 export default function Residence() {
@@ -101,8 +102,18 @@ export default function Residence() {
       </section>
 
       {/* SECTION 3: RESIDENCE JOURNEY (MENU EXPLANATION) */}
-      <section ref={journeySectionRef} className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
+      <section 
+        ref={journeySectionRef} 
+        className="relative py-20 px-4 overflow-hidden"
+        style={{
+          backgroundImage: `url(${ecosystemImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/85"></div>
+        <div className="container mx-auto max-w-6xl relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">How DeliWer supports residents</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -112,7 +123,7 @@ export default function Residence() {
               { title: "Utilities & Home Setup", description: "Help with water, internet, and essential home services.", icon: Zap },
               { title: "Community Living", description: "Support designed around real communities and buildings — not generic listings.", icon: Building2 }
             ].map((item, idx) => (
-              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover-elevate">
+              <div key={idx} className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover-elevate">
                 <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-blue-400" />
                 </div>
@@ -189,8 +200,8 @@ export default function Residence() {
       </section>
 
       {/* SECTION 5: ANTI-BROKER TRUST STATEMENT */}
-      <section className="py-20 px-4 border-t border-white/5">
-        <div className="container mx-auto max-w-3xl text-center">
+      <section className="relative py-20 px-4 overflow-hidden bg-black">
+        <div className="container mx-auto max-w-3xl text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Guidance, not listings</h2>
           <div className="space-y-4 text-lg text-gray-400">
             <p>We don’t display hundreds of properties.</p>
@@ -215,8 +226,17 @@ export default function Residence() {
       </section>
 
       {/* FINAL CTA (BOTTOM) */}
-      <section className="py-20 px-4 bg-gradient-to-b from-slate-900 to-black">
-        <div className="container mx-auto max-w-4xl text-center">
+      <section 
+        className="relative py-28 px-4 overflow-hidden"
+        style={{
+          backgroundImage: `url(${marketImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'bottom',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black/80"></div>
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Just received your keys?</h2>
           <p className="text-xl text-gray-400 mb-10">Start with what you need — services or a complete move-in plan.</p>
           
@@ -231,7 +251,7 @@ export default function Residence() {
                 See move-in packages
               </Button>
             </Link>
-            <Button variant="outline" className="w-full border-white/20 text-white py-6 rounded-xl font-bold hover:bg-white/10">
+            <Button variant="outline" className="w-full border-white/20 text-white py-6 rounded-xl font-bold hover:bg-white/10 backdrop-blur-sm">
               <MessageCircle className="w-5 h-5 mr-2" />
               WhatsApp us
             </Button>
