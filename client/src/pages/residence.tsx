@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,8 +21,16 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 // Import lifestyle images
 import marketImage from "@assets/stock_images/dubai_downtown_skyli_01395ddb.jpg";
+import residentsHero from "@assets/stock_images/modern_dubai_apartme_3d49f8dc.jpg";
+import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
 
 export default function Residence() {
+  const journeySectionRef = useRef<HTMLElement>(null);
+
+  const scrollToJourney = () => {
+    journeySectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* MANDATORY DISCLAIMER BANNER */}
@@ -31,7 +39,7 @@ export default function Residence() {
       </div>
 
       {/* SECTION 1: HERO */}
-      <section className="relative py-20 overflow-hidden min-h-[500px] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[600px] flex items-center">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -48,7 +56,12 @@ export default function Residence() {
               Support for every stage of living in Dubai — from finding a place to stay to getting fully set up after move-in.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-8 text-lg rounded-2xl shadow-2xl transition-all" data-testid="button-start-journey">
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-8 text-lg rounded-2xl shadow-2xl transition-all" 
+                data-testid="button-start-journey"
+                onClick={scrollToJourney}
+              >
                 Start your residence journey
               </Button>
               <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-8 text-lg font-medium rounded-2xl hover:bg-white/20 transition-all" data-testid="button-whatsapp-contact">
@@ -64,8 +77,17 @@ export default function Residence() {
       </section>
 
       {/* SECTION 2: JOURNEY INTRO */}
-      <section className="py-20 px-4 bg-slate-900/30">
-        <div className="container mx-auto max-w-4xl text-center">
+      <section 
+        className="relative py-24 px-4 overflow-hidden"
+        style={{
+          backgroundImage: `url(${residentsHero})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/75"></div>
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Living in Dubai is a journey, not a transaction</h2>
           <div className="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed">
             <p>
@@ -79,7 +101,7 @@ export default function Residence() {
       </section>
 
       {/* SECTION 3: RESIDENCE JOURNEY (MENU EXPLANATION) */}
-      <section className="py-20 px-4">
+      <section ref={journeySectionRef} className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">How DeliWer supports residents</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -103,11 +125,20 @@ export default function Residence() {
       </section>
 
       {/* SECTION 4: TWO CLEAR PATHS (PRIMARY CONVERSION) */}
-      <section className="py-20 px-4 bg-slate-900/50">
-        <div className="container mx-auto max-w-5xl">
+      <section 
+        className="relative py-24 px-4 overflow-hidden"
+        style={{
+          backgroundImage: `url(${settlementImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/80"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
             {/* PATH 1: MOVE-IN SERVICES */}
-            <Card className="bg-slate-900 border-white/10 overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 shadow-2xl">
+            <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 shadow-2xl">
               <CardHeader className="p-8">
                 <h3 className="text-3xl font-bold text-white mb-2">Move-In Services</h3>
                 <p className="text-gray-400">Choose individual services you may need when settling into a new home in Dubai.</p>
@@ -131,7 +162,7 @@ export default function Residence() {
             </Card>
 
             {/* PATH 2: MOVE-IN PACKAGES */}
-            <Card className="bg-slate-900 border-white/10 overflow-hidden group hover:border-blue-500/50 transition-all duration-500 shadow-2xl">
+            <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-blue-500/50 transition-all duration-500 shadow-2xl">
               <CardHeader className="p-8">
                 <h3 className="text-3xl font-bold text-white mb-2">Move-In Packages</h3>
                 <p className="text-gray-400">Bundled move-in solutions designed to reduce stress and avoid managing multiple vendors.</p>
