@@ -248,7 +248,7 @@ export function DualPurposeHero() {
             <div className="space-y-6">
               <div className="bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/10">
                 <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-blue-400" /> Operational Proof
+                  <Shield className="w-4 h-4 text-blue-400" /> Current Operations
                 </h4>
                 <ul className="space-y-3 text-gray-300 text-sm">
                   <li className="flex items-center gap-2">
