@@ -14,6 +14,7 @@ import {
   Zap,
   MessageCircle,
   Clock,
+  Search,
   Info
 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
