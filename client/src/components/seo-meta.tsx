@@ -22,24 +22,26 @@ export function SEOMeta({
 
   return (
     <Helmet>
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
+      <title>Dubai Everyday Living | DeliWer - Lifestyle Marketplace</title>
+      <meta name="description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins. Experience the best of Dubai living with DeliWer." />
+      <meta name="keywords" content="Dubai Everyday Living, Dubai lifestyle, sustainable Dubai, water delivery Dubai, iPhone trade-in Dubai, DeliWer marketplace" />
       <link rel="canonical" href={url} />
 
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content="Dubai Everyday Living | DeliWer" />
+      <meta property="og:description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins." />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content="DeliWer" />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content="Dubai Everyday Living | DeliWer" />
+      <meta name="twitter:description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins." />
       <meta name="twitter:image" content={ogImage} />
 
       <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
     </Helmet>

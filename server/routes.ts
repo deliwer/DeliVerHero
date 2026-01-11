@@ -230,6 +230,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // SEO & Sitemap Routes
+  app.get("/robots.txt", (req, res) => {
+    res.type("text/plain");
+    res.send(`User-agent: *
+Allow: /
+Sitemap: ${req.protocol}://${req.get("host")}/sitemap.xml
+`);
+  });
+
+  app.get("/sitemap.xml", (req, res) => {
+    const host = `${req.protocol}://${req.get("host")}`;
+    const pages = [
+      "",
+      "/aquacafe",
+      "/relocate",
+      "/business-setup",
+      "/home-service",
+      "/errand"
+    ];
+
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${pages
+    .map(
+      (page) => `
+  <url>
+    <loc>${host}${page}</loc>
+    <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${page === "" ? "1.0" : "0.8"}</priority>
+  </url>`
+    )
+    .join("")}
+</urlset>`;
+
+    res.type("application/xml");
+    res.send(sitemap);
+  });
+
   // Stripe payment endpoints
   app.post("/api/create-payment-intent", async (req, res) => {
     if (!stripe) {
