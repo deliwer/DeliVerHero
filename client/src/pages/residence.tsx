@@ -3,56 +3,34 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CalendlyButton } from "@/components/calendly-popup";
-import { HousingEnquiryForm } from "@/components/housing-enquiry-form";
 import { 
   Home, 
   Building2, 
-  TrendingUp, 
   ArrowRight, 
   CheckCircle2,
   Key,
-  Users,
-  Calendar,
-  MessageCircle,
   MapPin,
   Shield,
-  FileCheck,
   Zap,
-  Facebook,
-  Linkedin,
-  Mail,
-  Phone,
-  Search,
+  MessageCircle,
   Clock,
   Info
 } from "lucide-react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 // Import lifestyle images
 import marketImage from "@assets/stock_images/dubai_downtown_skyli_01395ddb.jpg";
-import touristsHero from "@assets/stock_images/travelers_tourists_d_dc8fcb30.jpg";
-import residentsHero from "@assets/stock_images/modern_dubai_apartme_3d49f8dc.jpg";
-import investorsHero from "@assets/stock_images/luxury_dubai_real_es_778948b4.jpg";
 
-export default function Housing() {
-  const [enquiryOpen, setEnquiryOpen] = useState(false);
-  const [selectedSegment, setSelectedSegment] = useState<"rent" | "buy" | "invest">("rent");
-  const [showStayResponse, setShowStayResponse] = useState(false);
-
-  const openEnquiry = (segment: "rent" | "buy" | "invest") => {
-    setSelectedSegment(segment);
-    setEnquiryOpen(true);
-  };
-
+export default function Residence() {
   return (
     <div className="min-h-screen bg-background">
-      <HousingEnquiryForm open={enquiryOpen} onOpenChange={setEnquiryOpen} segment={selectedSegment} />
       {/* MANDATORY DISCLAIMER BANNER */}
       <div className="bg-amber-500 py-2 px-4 text-center text-black font-bold text-sm">
-        ⚠️ DeliWer does not sell property or act as a real estate agent.
+        ⚠️ DeliWer does not sell property or act as a real estate agent. Not a property listing platform.
       </div>
+
       {/* SECTION 1: HERO */}
-      <section className="relative py-20 overflow-hidden min-h-[400px] flex items-center">
+      <section className="relative py-20 overflow-hidden min-h-[500px] flex items-center">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -62,129 +40,182 @@ export default function Housing() {
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-hero-title">
-              Residence in Dubai.
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400"> Managed Living Support.</span>
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6" data-testid="text-hero-title">
+              Residence services for moving into a home in Dubai
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              We help you find, settle, and thrive in Dubai with dedicated relocation and community support.
+            <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              Support for every stage of living in Dubai — from finding a place to stay to getting fully set up after move-in.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-8 text-lg rounded-2xl shadow-2xl transition-all" data-testid="button-start-journey">
+                Start your residence journey
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-8 text-lg font-medium rounded-2xl hover:bg-white/20 transition-all" data-testid="button-whatsapp-contact">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                WhatsApp +971 523 946 311
+              </Button>
+            </div>
+            <p className="text-[12px] text-gray-400 mt-6 font-medium uppercase tracking-widest">
+              Not a real estate agency. Not a property listing platform.
             </p>
           </div>
         </div>
       </section>
-      {/* SECTION 3: WHO THIS IS FOR */}
-      <section className="py-20 px-4 bg-slate-900/30">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 uppercase">FOR RESIDENTS & COMMUNITIES</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto rounded-full" />
-            <p className="text-gray-400 mt-4 max-w-2xl mx-auto">Ongoing Home Support</p>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* SECTION 2: JOURNEY INTRO */}
+      <section className="py-20 px-4 bg-slate-900/30">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Living in Dubai is a journey, not a transaction</h2>
+          <div className="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed">
+            <p>
+              Finding a place, settling in, and managing daily life often involve different providers and confusing handoffs.
+            </p>
+            <p className="font-semibold text-blue-400">
+              DeliWer brings these moments together — guiding residents before and after they move in.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: RESIDENCE JOURNEY (MENU EXPLANATION) */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">How DeliWer supports residents</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "Tourists & Visitors", icon: Users, color: "amber", img: touristsHero, features: ["Monthly options", "Managed apartments", "Flexible stay"] },
-              { title: "New Residents", icon: Home, color: "green", img: residentsHero, features: ["Residence enablement", "Family communities", "School proximity"] },
-              { title: "Investors & Founders", icon: TrendingUp, color: "purple", img: investorsHero, features: ["Residence units", "End-user support", "Market enablement"] }
-            ].map((segment, idx) => (
-              <div key={idx} className="group relative overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all duration-500 shadow-xl">
-                <div className="relative h-56 overflow-hidden">
-                  <img src={segment.img} alt={segment.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                  <div className="absolute bottom-4 left-6">
-                    <h3 className="text-2xl font-bold text-white">{segment.title}</h3>
-                  </div>
+              { title: "Find a Place to Stay", description: "Guidance for choosing the right living option based on stay duration, location, and budget — without agent pressure.", icon: Search },
+              { title: "Short-Term Living (Managed)", description: "Arranged serviced apartments and short-term homes with move-in support and ongoing assistance.", icon: Clock },
+              { title: "Move-In Services", description: "Essential services to prepare your home after keys are received.", icon: Key },
+              { title: "Utilities & Home Setup", description: "Help with water, internet, and essential home services.", icon: Zap },
+              { title: "Community Living", description: "Support designed around real communities and buildings — not generic listings.", icon: Building2 }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover-elevate">
+                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-blue-400" />
                 </div>
-                <div className="p-6 space-y-4">
-                  <ul className="space-y-3">
-                    {segment.features.map((f, fidx) => (
-                      <li key={fidx} className="flex items-center gap-3 text-gray-300 text-sm">
-                        <CheckCircle2 className={`w-4 h-4 text-${segment.color}-500`} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-      {/* SECTION 4: EXPERT ADVISOR SPOTLIGHT */}
-      <section className="py-16 px-4 bg-slate-900/50 border-t border-slate-800">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <Badge className="mb-4 bg-blue-600 text-white" data-testid="badge-featured-expert">
-              Featured Expert Advisor
-            </Badge>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase">Meet Your Residence Enablement Expert</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-slate-900 border-blue-500/30 col-span-full md:col-span-2 shadow-2xl" data-testid="card-advisor-profile">
-              <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="flex-shrink-0">
-                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-black text-3xl border-4 border-slate-800 shadow-xl">
-                      KHS
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-3xl font-black text-white mb-2" data-testid="text-advisor-name">
-                      Kalbe-Hussain Sheikh
-                    </h3>
-                    <div className="flex items-center gap-2 text-blue-400 font-bold text-sm mb-6 uppercase tracking-wider">
-                      <Shield className="w-4 h-4" />
-                      <span>Residence Enablement & Housing Advisor</span>
-                    </div>
-                    <p className="text-gray-300 leading-relaxed mb-8" data-testid="text-advisor-bio">
-                      Specialized in connecting tourists, new residents, and entrepreneurs with ideal managed living solutions across Dubai's premium neighborhoods. Trusted partner with deep market insight and access to exclusive residence options.
-                    </p>
-                    <div className="flex flex-wrap gap-4">
-                      <Button className="bg-green-600 hover:bg-green-500 text-white font-bold rounded-full px-6" data-testid="button-whatsapp-advisor">
-                        WhatsApp: +971 55 657 3114
-                      </Button>
-                      <Button variant="outline" className="border-slate-700 text-white hover:bg-slate-800 rounded-full px-6" data-testid="button-linkedin-advisor">
-                        LinkedIn Profile
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+
+      {/* SECTION 4: TWO CLEAR PATHS (PRIMARY CONVERSION) */}
+      <section className="py-20 px-4 bg-slate-900/50">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* PATH 1: MOVE-IN SERVICES */}
+            <Card className="bg-slate-900 border-white/10 overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 shadow-2xl">
+              <CardHeader className="p-8">
+                <h3 className="text-3xl font-bold text-white mb-2">Move-In Services</h3>
+                <p className="text-gray-400">Choose individual services you may need when settling into a new home in Dubai.</p>
+              </CardHeader>
+              <CardContent className="p-8 pt-0">
+                <ul className="space-y-3 mb-8">
+                  {["Initial cleaning", "Drinking water setup", "Basic maintenance checks", "Move-in day coordination"].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/residence/move-in-services">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl" data-testid="link-move-in-services">
+                    View move-in services
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
-            
-            <Card className="bg-slate-900 border-slate-800 shadow-2xl" data-testid="card-expert-contact">
-              <CardHeader>
-                <CardTitle className="text-xl text-white flex items-center gap-2">
-                  <Mail className="w-5 h-5 text-green-500" />
-                  Support Team
-                </CardTitle>
+
+            {/* PATH 2: MOVE-IN PACKAGES */}
+            <Card className="bg-slate-900 border-white/10 overflow-hidden group hover:border-blue-500/50 transition-all duration-500 shadow-2xl">
+              <CardHeader className="p-8">
+                <h3 className="text-3xl font-bold text-white mb-2">Move-In Packages</h3>
+                <p className="text-gray-400">Bundled move-in solutions designed to reduce stress and avoid managing multiple vendors.</p>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <div className="text-xs text-gray-500 uppercase font-black tracking-widest mb-1">Email</div>
-                  <div className="text-green-500 font-bold">service@deliwer.com</div>
-                </div>
-                <div>
-                  <div className="text-xs text-gray-500 uppercase font-black tracking-widest mb-1">WhatsApp</div>
-                  <div className="text-green-500 font-bold">+971 55 657 3114</div>
-                </div>
-                <div className="pt-4 border-t border-slate-800 text-gray-500 text-xs italic">
-                  Response time: Within 2-4 hours
-                </div>
+              <CardContent className="p-8 pt-0">
+                <ul className="space-y-3 mb-8">
+                  {["Starter homes", "Family apartments", "Full home setups"].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle2 className="w-5 h-5 text-blue-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/residence/move-in-packages">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 rounded-xl" data-testid="link-move-in-packages">
+                    View move-in packages
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
+
+      {/* SECTION 5: ANTI-BROKER TRUST STATEMENT */}
+      <section className="py-20 px-4 border-t border-white/5">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Guidance, not listings</h2>
+          <div className="space-y-4 text-lg text-gray-400">
+            <p>We don’t display hundreds of properties.</p>
+            <p>We don’t push agent commissions.</p>
+            <p className="text-white font-semibold pt-4">
+              Our role is to help residents make the right living decisions and support them after move-in.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: LOCATION SIGNAL */}
+      <section className="py-12 px-4 bg-slate-950/50">
+        <div className="container mx-auto text-center">
+          <p className="text-gray-300 mb-2">
+            Residence services currently support selected Dubai communities, including <span className="text-white font-bold">JVC</span>.
+          </p>
+          <p className="text-xs text-gray-500 italic">
+            Coverage expands based on building access and demand.
+          </p>
+        </div>
+      </section>
+
+      {/* FINAL CTA (BOTTOM) */}
+      <section className="py-20 px-4 bg-gradient-to-b from-slate-900 to-black">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Just received your keys?</h2>
+          <p className="text-xl text-gray-400 mb-10">Start with what you need — services or a complete move-in plan.</p>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Link href="/residence/move-in-services">
+              <Button className="w-full bg-emerald-600 hover:bg-emerald-500 py-6 rounded-xl font-bold">
+                Start with services
+              </Button>
+            </Link>
+            <Link href="/residence/move-in-packages">
+              <Button className="w-full bg-blue-600 hover:bg-blue-500 py-6 rounded-xl font-bold">
+                See move-in packages
+              </Button>
+            </Link>
+            <Button variant="outline" className="w-full border-white/20 text-white py-6 rounded-xl font-bold hover:bg-white/10">
+              <MessageCircle className="w-5 h-5 mr-2" />
+              WhatsApp us
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* MANDATORY DISCLAIMER FOOTER */}
-      <footer className="py-12 px-4 bg-slate-950 border-t border-slate-900">
+      <footer className="py-12 px-4 bg-black border-t border-white/5">
         <div className="container mx-auto text-center">
           <div className="inline-block bg-amber-500/10 border border-amber-500/20 rounded-full px-8 py-3 mb-6">
-            <p className="text-amber-500 font-black text-sm uppercase tracking-widest" data-testid="footer-disclaimer">
+            <p className="text-amber-500 font-bold text-sm uppercase tracking-widest">
               DeliWer does not sell property or act as a real estate agent.
             </p>
           </div>
-          <p className="text-gray-600 text-xs">© {new Date().getFullYear()} DeliWer Residence Enablement. All rights reserved.</p>
+          <p className="text-gray-600 text-xs">© {new Date().getFullYear()} DeliWer Residence. All rights reserved.</p>
         </div>
       </footer>
     </div>

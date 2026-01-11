@@ -1,0 +1,223 @@
+Below is a **clean, copy-paste Replit prompt** you can use to implement the **/residence** page exactly as discussed.
+
+It is written for:
+
+* **Microcopy only** (no redesign)
+* **Journey-based UX**
+* **Anti-broker positioning**
+* Clear routing to subpages
+* Survival-mode clarity
+
+---
+
+## ✅ REPLIT PROMPT — `/residence` PAGE (MICROCOPY ONLY)
+
+> You are a senior UX copywriter and product designer working on **deliwer.com**.
+>
+> Your task is to rewrite the **/residence** page content **only** (headings, paragraphs, labels, CTA text).
+>
+> ❗ Do NOT change layout, components, styling, or structure.
+> ❗ Do NOT add listings, property cards, or agent references.
+>
+> The goal is to position **Residence in Dubai** as a **guided living journey**, not a real estate marketplace.
+
+---
+
+### PAGE OBJECTIVE
+
+* Help users understand **when** to use DeliWer
+* Make it clear DeliWer is **not a broker or property portal**
+* Guide users to the correct next step:
+
+  * `/residence/move-in-services`
+  * `/residence/move-in-packages`
+
+---
+
+### HERO SECTION COPY
+
+**Headline:**
+
+> Residence services for moving into a home in Dubai
+
+**Subheadline:**
+
+> Support for every stage of living in Dubai — from finding a place to stay to getting fully set up after move-in.
+
+**Trust line (small text):**
+
+> Not a real estate agency. Not a property listing platform.
+
+**Primary CTA:**
+
+> Start your residence journey
+
+**Secondary CTA:**
+
+> WhatsApp +971 523 946 311
+
+---
+
+### SECTION 1 — JOURNEY INTRO
+
+**Title:**
+
+> Living in Dubai is a journey, not a transaction
+
+**Body copy:**
+
+> Finding a place, settling in, and managing daily life often involve different providers and confusing handoffs.
+>
+> DeliWer brings these moments together — guiding residents before and after they move in.
+
+---
+
+### SECTION 2 — RESIDENCE JOURNEY (MENU EXPLANATION)
+
+**Title:**
+
+> How DeliWer supports residents
+
+For each item, use **short, explanatory copy** (no links yet):
+
+**Find a Place to Stay**
+
+> Guidance for choosing the right living option based on stay duration, location, and budget — without agent pressure.
+
+**Short-Term Living (Managed)**
+
+> Arranged serviced apartments and short-term homes with move-in support and ongoing assistance.
+
+**Move-In Services**
+
+> Essential services to prepare your home after keys are received.
+
+**Utilities & Home Setup**
+
+> Help with water, internet, and essential home services.
+
+**Community Living**
+
+> Support designed around real communities and buildings — not generic listings.
+
+---
+
+### SECTION 3 — TWO CLEAR PATHS (PRIMARY CONVERSION)
+
+#### BLOCK 1 — MOVE-IN SERVICES
+
+**Title:**
+
+> Move-In Services
+
+**Description:**
+
+> Choose individual services you may need when settling into a new home in Dubai.
+
+**Examples (bullet list):**
+
+* Initial cleaning
+* Drinking water setup
+* Basic maintenance checks
+* Move-in day coordination
+
+**CTA BUTTON TEXT:**
+
+> View move-in services
+> **Link to:** `/residence/move-in-services`
+
+---
+
+#### BLOCK 2 — MOVE-IN PACKAGES
+
+**Title:**
+
+> Move-In Packages
+
+**Description:**
+
+> Bundled move-in solutions designed to reduce stress and avoid managing multiple vendors.
+
+**Examples:**
+
+* Starter homes
+* Family apartments
+* Full home setups
+
+**CTA BUTTON TEXT:**
+
+> View move-in packages
+> **Link to:** `/residence/move-in-packages`
+
+---
+
+### SECTION 4 — ANTI-BROKER TRUST STATEMENT
+
+**Title:**
+
+> Guidance, not listings
+
+**Copy:**
+
+> We don’t display hundreds of properties.
+> We don’t push agent commissions.
+>
+> Our role is to help residents make the right living decisions and support them after move-in.
+
+---
+
+### SECTION 5 — LOCATION SIGNAL
+
+**Copy:**
+
+> Residence services currently support selected Dubai communities, including JVC.
+
+**Small note:**
+
+> Coverage expands based on building access and demand.
+
+---
+
+### FINAL CTA (BOTTOM)
+
+**Headline:**
+
+> Just received your keys?
+
+**Subtext:**
+
+> Start with what you need — services or a complete move-in plan.
+
+**Buttons:**
+
+* Start with services → `/residence/move-in-services`
+* See move-in packages → `/residence/move-in-packages`
+* WhatsApp us → +971 523 946 311
+
+---
+
+### TONE & CONSTRAINTS
+
+* Calm, clear, operational
+* No luxury language
+* No sales hype
+* No property marketing terms
+* Assume user is time-poor and stressed
+
+---
+
+### SUCCESS CRITERIA
+
+* User understands DeliWer in under 10 seconds
+* User does NOT confuse DeliWer with a broker or portal
+* User clicks into one of the two subpages
+
+---
+
+If you want next:
+
+* Replit prompt for **/find-a-place-to-stay (Living Options)**
+* Replit prompt for **Short-Term Living (Managed)**
+* Single **intake flow prompt** for all residence journeys
+
+Say the number.
