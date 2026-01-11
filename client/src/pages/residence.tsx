@@ -110,13 +110,14 @@ export default function Housing() {
                     </li>
                   ))}
                 </ul>
-                <Button 
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
-                  onClick={() => openEnquiry("rent")}
-                  data-testid="button-start-move-in"
-                >
-                  Start My Move-In
-                </Button>
+                <Link href="/residence/move-in-packages#essentials">
+                  <Button 
+                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
+                    data-testid="button-start-move-in"
+                  >
+                    Start My Move-In
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
@@ -148,13 +149,14 @@ export default function Housing() {
                     </li>
                   ))}
                 </ul>
-                <Button 
-                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
-                  onClick={() => openEnquiry("rent")}
-                  data-testid="button-book-move-in-complete"
-                >
-                  Book Move-In Complete
-                </Button>
+                <Link href="/residence/move-in-packages#complete">
+                  <Button 
+                    className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 rounded-xl transition-all mt-auto"
+                    data-testid="button-book-move-in-complete"
+                  >
+                    Book Move-In Complete
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
