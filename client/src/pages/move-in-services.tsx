@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import useEmblaCarousel from 'embla-carousel-react';
 import { SEOMeta } from "@/components/seo-meta";
 import { 
   CheckCircle2, 
@@ -15,7 +16,10 @@ import {
   Building2,
   Plus,
   Minus,
-  Calculator
+  Calculator,
+  ChevronLeft,
+  ChevronRight,
+  Quote
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -37,6 +41,77 @@ const PRICING_OPTIONS = [
   { id: "domestic", title: "Domestic help (1st day)", price: 150, icon: Home },
   { id: "docs", title: "Document services", price: 800, icon: Building2 },
 ];
+
+const testimonials = [
+  {
+    quote: "DeliWer made my move into Binghatti Gate so much easier. The deep cleaning was spotless and the water setup was done before I even arrived.",
+    author: "Sarah J.",
+    location: "Binghatti Gate, JVC"
+  },
+  {
+    quote: "I didn't have to worry about a thing. One WhatsApp message and my AC was serviced and domestic help was arranged for the first day.",
+    author: "Michael R.",
+    location: "Diamond Views, JVC"
+  },
+  {
+    quote: "The price estimator was spot on. Highly recommend for anyone new to JVC who wants a stress-free move-in experience.",
+    author: "Ahmed K.",
+    location: "Signature Livings, JVC"
+  }
+];
+
+function TestimonialsCarousel() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  return (
+    <div className="relative group max-w-4xl mx-auto px-12">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {testimonials.map((t, idx) => (
+            <div key={idx} className="flex-[0_0_100%] min-w-0 px-4">
+              <div className="bg-white/5 backdrop-blur-md p-10 md:p-16 rounded-[3rem] border border-white/10 text-center relative">
+                <Quote className="w-12 h-12 text-emerald-500/20 absolute top-8 left-8" />
+                <p className="text-xl md:text-2xl font-medium text-gray-200 mb-8 italic leading-relaxed">
+                  "{t.quote}"
+                </p>
+                <div>
+                  <div className="text-lg font-black text-white">{t.author}</div>
+                  <div className="text-sm text-emerald-400 font-bold uppercase tracking-widest">{t.location}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        className="absolute left-0 top-1/2 -translate-y-1/2 text-white/40 hover:text-white hover:bg-white/10 rounded-full"
+        onClick={scrollPrev}
+      >
+        <ChevronLeft className="w-8 h-8" />
+      </Button>
+      
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        className="absolute right-0 top-1/2 -translate-y-1/2 text-white/40 hover:text-white hover:bg-white/10 rounded-full"
+        onClick={scrollNext}
+      >
+        <ChevronRight className="w-8 h-8" />
+      </Button>
+    </div>
+  );
+}
 
 function PricingCalculator() {
   const [selected, setSelected] = useState<string[]>([]);
@@ -360,6 +435,23 @@ export default function MoveInServices() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      {/* Testimonials Section */}
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full opacity-40"
+          style={{
+            backgroundImage: `url(${jvcBuilding})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-950/80"></div>
+        </div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">What JVC residents say</h2>
+          <TestimonialsCarousel />
         </div>
       </section>
       {/* Final CTA */}
