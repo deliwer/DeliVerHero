@@ -123,13 +123,13 @@ export function DualPurposeHero() {
             {/* Context-specific CTAs */}
             {audience === 'consumer' ? (
               <div className="space-y-3">
-                <Link href="/residence/move-in-packages">
+                <Link href="/residence/move-in-services">
                   <Button
                     className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
                     data-testid="button-get-home-service-hero"
                   >
                     <Sparkles className="w-5 h-5 mr-3" />
-                    Check Move-In Packages
+                    Check Move-In Services
                   </Button>
                 </Link>
                 <p className="text-[12px] text-gray-400 mt-2 font-medium">No agents. No commissions. No pressure.</p>
@@ -275,9 +275,9 @@ export function DualPurposeHero() {
               </div>
 
               <div className="pt-2">
-                <Link href="/residence/move-in-packages">
+                <Link href="/residence/move-in-services">
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white w-full py-7 text-lg font-bold rounded-2xl shadow-2xl transition-all" data-testid="button-setup-residence-hero-final">
-                    Check Move-In Packages
+                    Check Move-In Services
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
