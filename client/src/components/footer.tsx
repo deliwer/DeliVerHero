@@ -44,7 +44,7 @@ export function Footer() {
   const investorLinks = [
     { label: "Pitch Deck (Gust)", url: "https://www.gust.com/companies/deliwer" },
     { label: "Crunchbase Profile", url: "https://www.crunchbase.com/organization/deliwer-shopping" },
-    { label: "Partnership Inquiry", url: "/contact" },
+    { label: "Partners & Sponsors", url: "/partners" },
     { label: "Investment Dashboard", url: "/investor-dashboard" },
   ];
 
