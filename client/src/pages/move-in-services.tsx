@@ -231,7 +231,6 @@ export default function MoveInServices() {
           </p>
         </div>
       </section>
-
       {/* Services Section */}
       <section className="relative py-20 px-6 overflow-hidden">
         <div 
@@ -263,7 +262,6 @@ export default function MoveInServices() {
           <PricingCalculator />
         </div>
       </section>
-
       {/* How it works */}
       <section className="relative py-24 px-6 overflow-hidden">
         <div 
@@ -277,7 +275,7 @@ export default function MoveInServices() {
           <div className="absolute inset-0 bg-slate-950/60"></div>
         </div>
         <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works (Local JVC Framing)</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works </h2>
           <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step) => (
               <div key={step.number} className="relative p-10 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/10 text-center flex flex-col items-center">
