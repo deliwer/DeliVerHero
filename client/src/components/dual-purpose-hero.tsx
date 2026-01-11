@@ -275,12 +275,6 @@ export function DualPurposeHero() {
               </div>
 
               <div className="pt-2">
-                <Link href="/residence/move-in-services">
-                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white w-full py-7 text-lg font-bold rounded-2xl shadow-2xl transition-all" data-testid="button-setup-residence-hero-final">
-                    Check Move-In Services
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
                 <p className="text-[10px] text-gray-500 italic mt-3 text-center">
                   DeliWer works with vetted local service partners to ensure consistent delivery.
                 </p>
