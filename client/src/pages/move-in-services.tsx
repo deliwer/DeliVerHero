@@ -185,7 +185,7 @@ export default function MoveInServices() {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-slate-950"></div>
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -212,14 +212,14 @@ export default function MoveInServices() {
       {/* Clear Boundary Statement */}
       <section className="relative py-16 px-6 overflow-hidden">
         <div 
-          className="absolute inset-0 w-full h-full opacity-20"
+          className="absolute inset-0 w-full h-full opacity-40"
           style={{
             backgroundImage: `url(${jvcBoxes})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-slate-950"></div>
+          <div className="absolute inset-0 bg-slate-950/60"></div>
         </div>
         <div className="max-w-2xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-wider">
@@ -235,14 +235,14 @@ export default function MoveInServices() {
       {/* Services Section */}
       <section className="relative py-20 px-6 overflow-hidden">
         <div 
-          className="absolute inset-0 w-full h-full opacity-20"
+          className="absolute inset-0 w-full h-full opacity-40"
           style={{
             backgroundImage: `url(${cleaningImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-slate-900"></div>
+          <div className="absolute inset-0 bg-slate-900/60"></div>
         </div>
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">What JVC residents typically need</h2>
@@ -267,14 +267,14 @@ export default function MoveInServices() {
       {/* How it works */}
       <section className="relative py-24 px-6 overflow-hidden">
         <div 
-          className="absolute inset-0 w-full h-full opacity-20"
+          className="absolute inset-0 w-full h-full opacity-40"
           style={{
             backgroundImage: `url(${maintenanceImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-slate-950"></div>
+          <div className="absolute inset-0 bg-slate-950/60"></div>
         </div>
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works (Local JVC Framing)</h2>
