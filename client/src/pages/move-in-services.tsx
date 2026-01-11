@@ -271,7 +271,7 @@ export default function MoveInServices() {
         </div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-8 uppercase tracking-tighter">Local Support</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-8 uppercase tracking-tighter">Local Service</h2>
           <p className="text-gray-300 text-lg mb-10">Currently supporting move‑ins within JVC and nearby buildings.</p>
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <Badge variant="secondary" className="bg-white/10 border-white/10 text-white px-8 py-3 rounded-full text-lg font-bold shadow-2xl backdrop-blur-md">
