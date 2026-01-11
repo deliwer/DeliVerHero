@@ -16,6 +16,7 @@ import { useLocation } from "wouter";
 // Import core pages directly for faster initial load or if they are critical
 import Home from "@/pages/home";
 import MoveInServices from "@/pages/move-in-services";
+import MoveInPackages from "@/pages/move-in-packages";
 import Relocate from "@/pages/relocate";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
@@ -102,6 +103,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/move-in-landing" component={MoveInLanding} />
         <Route path="/move-in-services" component={MoveInServices} />
+        <Route path="/residence/move-in-packages" component={MoveInPackages} />
         
         {/* Relocate Membership Portal */}
         <Route path="/relocate" component={Relocate} />
