@@ -20,6 +20,7 @@ import jvcBuilding from "@assets/generated_images/modern_jvc_dubai_residential_b
 
 const PACKAGES = [
   {
+    id: "essentials",
     title: "New Resident Essentials",
     price: 1499,
     tagline: "Moving to Dubai or just arrived?",
@@ -35,6 +36,7 @@ const PACKAGES = [
     color: "emerald"
   },
   {
+    id: "complete",
     title: "Move-In Complete",
     price: 2999,
     tagline: "MOVE-IN, DONE PROPERLY",
@@ -129,7 +131,7 @@ export default function MoveInPackages() {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
           {PACKAGES.map((pkg, idx) => (
-            <Card key={idx} className="bg-white/5 border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col hover-elevate transition-all">
+            <Card key={idx} id={pkg.id} className="bg-white/5 border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col hover-elevate transition-all scroll-mt-24">
               <CardHeader className="p-10 pb-0">
                 <div className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 mb-4">{pkg.tagline}</div>
                 <CardTitle className="text-3xl font-black text-white mb-2">{pkg.title}</CardTitle>

@@ -129,7 +129,7 @@ export function DualPurposeHero() {
                     data-testid="button-get-home-service-hero"
                   >
                     <Sparkles className="w-5 h-5 mr-3" />
-                    Set Up My Residence
+                    Check Move-In Packages
                   </Button>
                 </Link>
                 <p className="text-[12px] text-gray-400 mt-2 font-medium">No agents. No commissions. No pressure.</p>
@@ -277,7 +277,7 @@ export function DualPurposeHero() {
               <div className="pt-2">
                 <Link href="/residence/move-in-packages">
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white w-full py-7 text-lg font-bold rounded-2xl shadow-2xl transition-all" data-testid="button-setup-residence-hero-final">
-                    Set Up My Residence
+                    Check Move-In Packages
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
