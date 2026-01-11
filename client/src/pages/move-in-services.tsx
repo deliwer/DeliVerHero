@@ -173,7 +173,6 @@ export default function MoveInServices() {
         description="Just moved into JVC? We handle the setup. From cleaning to water to maintenance — coordinated after you get the keys."
         keywords="move-in services JVC, apartment setup Jumeirah Village Circle, JVC home services, JVC move-in coordination"
       />
-
       {/* Hero Section */}
       <section className="relative py-20 px-6 lg:py-32 overflow-hidden flex items-center justify-center min-h-[60vh]">
         <div 
@@ -203,7 +202,6 @@ export default function MoveInServices() {
           </div>
         </div>
       </section>
-
       {/* Clear Boundary Statement */}
       <section className="py-16 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-2xl mx-auto text-center">
@@ -216,7 +214,6 @@ export default function MoveInServices() {
           </p>
         </div>
       </section>
-
       {/* Services Section */}
       <section className="py-20 px-6 bg-slate-900/50">
         <div className="max-w-5xl mx-auto">
@@ -238,11 +235,10 @@ export default function MoveInServices() {
           <PricingCalculator />
         </div>
       </section>
-
       {/* How it works */}
       <section className="py-24 px-6 bg-slate-950">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works (Local JVC Framing)</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works </h2>
           <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step) => (
               <div key={step.number} className="relative p-10 rounded-[2.5rem] bg-white/5 border border-white/10 text-center flex flex-col items-center">
@@ -261,7 +257,6 @@ export default function MoveInServices() {
           </div>
         </div>
       </section>
-
       {/* Local Proof Section */}
       <section className="relative py-24 px-6 overflow-hidden">
         <div 
@@ -288,7 +283,6 @@ export default function MoveInServices() {
           </p>
         </div>
       </section>
-
       {/* Visual Proof Section */}
       <section className="py-24 px-6 bg-slate-950">
         <div className="max-w-5xl mx-auto">
@@ -321,7 +315,6 @@ export default function MoveInServices() {
           </div>
         </div>
       </section>
-
       {/* Final CTA */}
       <section className="py-32 px-6 bg-slate-950 border-t border-white/5 relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -339,7 +332,6 @@ export default function MoveInServices() {
           </div>
         </div>
       </section>
-
       {/* Footer Reliability */}
       <section className="py-16 bg-slate-950 border-t border-white/5 text-slate-500 text-center text-xs uppercase tracking-[0.3em] font-black">
         DeliWer JVC Community Focus • Vetted Local Partners • No Commissions
