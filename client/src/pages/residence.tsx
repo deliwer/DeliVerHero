@@ -101,7 +101,7 @@ export default function Residence() {
         </div>
       </section>
 
-      {/* SECTION 3: RESIDENCE JOURNEY (MENU EXPLANATION) */}
+      {/* SECTION 3: FIND A PLACE & COMMUNITY */}
       <section 
         ref={journeySectionRef} 
         className="relative py-20 px-4 overflow-hidden"
@@ -114,13 +114,11 @@ export default function Residence() {
       >
         <div className="absolute inset-0 bg-black/85"></div>
         <div className="container mx-auto max-w-6xl relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">How DeliWer supports residents</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">Find a Place & Community</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
               { title: "Find a Place to Stay", description: "Guidance for choosing the right living option based on stay duration, location, and budget — without agent pressure.", icon: Search },
               { title: "Short-Term Living (Managed)", description: "Arranged serviced apartments and short-term homes with move-in support and ongoing assistance.", icon: Clock },
-              { title: "Move-In Services", description: "Essential services to prepare your home after keys are received.", icon: Key },
-              { title: "Utilities & Home Setup", description: "Help with water, internet, and essential home services.", icon: Zap },
               { title: "Community Living", description: "Support designed around real communities and buildings — not generic listings.", icon: Building2 }
             ].map((item, idx) => (
               <div key={idx} className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover-elevate">
@@ -131,6 +129,56 @@ export default function Residence() {
                 <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
+          </div>
+          <div className="flex justify-center">
+            <Link href="/residence/find-a-place">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-6 rounded-xl">
+                Explore Living Options
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: MOVE-IN & SETUP */}
+      <section 
+        className="relative py-20 px-4 overflow-hidden border-t border-white/5"
+        style={{
+          backgroundImage: `url(${settlementImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/85"></div>
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">Move-In & Home Setup</h2>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {[
+              { title: "Move-In Services", description: "Essential services to prepare your home after keys are received.", icon: Key },
+              { title: "Utilities & Home Setup", description: "Help with water, internet, and essential home services.", icon: Zap }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover-elevate">
+                <div className="w-12 h-12 bg-emerald-600/20 rounded-xl flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-emerald-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/residence/move-in-services">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-6 rounded-xl">
+                View Move-In Services
+              </Button>
+            </Link>
+            <Link href="/residence/move-in-packages">
+              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-6 rounded-xl hover:bg-white/20">
+                See Move-In Packages
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
