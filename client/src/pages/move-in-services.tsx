@@ -33,213 +33,56 @@ import cleaningImage from "@assets/generated_images/jvc_dubai_apartment_cleaning
 import maintenanceImage from "@assets/generated_images/jvc_dubai_ac_maintenance_service.png";
 import { SiWhatsapp } from "react-icons/si";
 
-const PRICING_OPTIONS = [
-  { id: "coordination", title: "Move-in coordination", price: 499, icon: Zap },
-  { id: "cleaning", title: "Initial deep cleaning", price: 350, icon: Sparkles },
-  { id: "water", title: "Drinking water setup", price: 299, icon: Droplets },
-  { id: "maintenance", title: "Maintenance checks", price: 450, icon: Wrench },
-  { id: "domestic", title: "Domestic help (1st day)", price: 150, icon: Home },
-  { id: "docs", title: "Document services", price: 800, icon: Building2 },
-];
-
-const testimonials = [
+const PRICING_PACKS = [
   {
-    quote: "DeliWer made my move into Binghatti Gate so much easier. The deep cleaning was spotless and the water setup was done before I even arrived.",
-    author: "Sarah J.",
-    location: "Binghatti Gate, JVC"
+    id: "starter",
+    title: "MOVE-IN STARTER",
+    price: "1,250",
+    description: "Best for studios & 1-beds",
+    features: [
+      "Initial move-in cleaning",
+      "Drinking water setup",
+      "Basic maintenance check",
+      "Building access coordination"
+    ],
+    footer: "*Moving not included*",
+    color: "emerald"
   },
   {
-    quote: "I didn't have to worry about a thing. One WhatsApp message and my AC was serviced and domestic help was arranged for the first day.",
-    author: "Michael R.",
-    location: "Diamond Views, JVC"
+    id: "family",
+    title: "FAMILY MOVE-IN",
+    price: "2,250",
+    description: "Best for 2–3 bedroom homes",
+    features: [
+      "Deep cleaning",
+      "Water + consumables setup",
+      "Maintenance & minor fixes",
+      "Move-in day coordination",
+      "Vendor scheduling"
+    ],
+    color: "blue"
   },
   {
-    quote: "The price estimator was spot on. Highly recommend for anyone new to JVC who wants a stress-free move-in experience.",
-    author: "Ahmed K.",
-    location: "Signature Livings, JVC"
+    id: "full",
+    title: "FULL MOVE-IN",
+    price: "Custom",
+    description: "For villas & full setups",
+    features: [
+      "Everything above",
+      "Furniture placement coordination",
+      "Internet & utilities assistance",
+      "Ongoing support for first 7 days"
+    ],
+    cta: "Talk to us on WhatsApp",
+    color: "purple"
   }
 ];
 
-function TestimonialsCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-
-  return (
-    <div className="relative group max-w-4xl mx-auto px-12">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {testimonials.map((t, idx) => (
-            <div key={idx} className="flex-[0_0_100%] min-w-0 px-4">
-              <div className="bg-white/5 backdrop-blur-md p-10 md:p-16 rounded-[3rem] border border-white/10 text-center relative">
-                <Quote className="w-12 h-12 text-emerald-500/20 absolute top-8 left-8" />
-                <p className="text-xl md:text-2xl font-medium text-gray-200 mb-8 italic leading-relaxed">
-                  "{t.quote}"
-                </p>
-                <div>
-                  <div className="text-lg font-black text-white">{t.author}</div>
-                  <div className="text-sm text-emerald-400 font-bold uppercase tracking-widest">{t.location}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      <Button 
-        variant="ghost" 
-        size="icon" 
-        className="absolute left-0 top-1/2 -translate-y-1/2 text-white/40 hover:text-white hover:bg-white/10 rounded-full"
-        onClick={scrollPrev}
-      >
-        <ChevronLeft className="w-8 h-8" />
-      </Button>
-      
-      <Button 
-        variant="ghost" 
-        size="icon" 
-        className="absolute right-0 top-1/2 -translate-y-1/2 text-white/40 hover:text-white hover:bg-white/10 rounded-full"
-        onClick={scrollNext}
-      >
-        <ChevronRight className="w-8 h-8" />
-      </Button>
-    </div>
-  );
-}
-
-function PricingCalculator() {
-  const [selected, setSelected] = useState<string[]>([]);
-
-  const toggleOption = (id: string) => {
-    setSelected(prev => 
-      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
-  };
-
-  const total = PRICING_OPTIONS
-    .filter(opt => selected.includes(opt.id))
-    .reduce((sum, opt) => sum + opt.price, 0);
-
-  const discount = selected.length >= 3 ? total * 0.1 : 0;
-  const finalTotal = total - discount;
-
-  return (
-    <Card className="w-full max-w-4xl mx-auto bg-slate-900 border-white/10 shadow-2xl rounded-3xl overflow-hidden" data-testid="pricing-calculator">
-      <CardHeader className="bg-slate-950 text-white p-8 border-b border-white/5">
-        <div className="flex items-center gap-3 mb-2">
-          <Calculator className="w-6 h-6 text-emerald-400" />
-          <CardTitle className="text-2xl font-black">Move-In Price Estimator</CardTitle>
-        </div>
-        <CardDescription className="text-slate-400">
-          Select the services you need to see your personalized estimate.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="p-8">
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <div className="space-y-4">
-            <h3 className="font-bold text-slate-400 mb-4 uppercase tracking-wider text-xs px-2">Available Services</h3>
-            {PRICING_OPTIONS.map((option) => (
-              <div 
-                key={option.id}
-                className={`flex items-center justify-between p-4 rounded-2xl border transition-all cursor-pointer ${
-                  selected.includes(option.id) 
-                    ? "border-emerald-500 bg-emerald-500/10" 
-                    : "border-white/5 bg-white/5 hover:border-white/20"
-                }`}
-                onClick={() => toggleOption(option.id)}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 rounded-lg ${selected.includes(option.id) ? "bg-emerald-500 text-white" : "bg-slate-800 text-slate-400"}`}>
-                    <option.icon className="w-5 h-5" />
-                  </div>
-                  <Label className="font-bold text-white cursor-pointer">{option.title}</Label>
-                </div>
-                <div className="text-slate-300 font-medium text-sm">
-                  <DirhamSymbol />{option.price}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-slate-950 rounded-3xl p-8 border border-white/5 flex flex-col justify-between">
-            <div>
-              <h3 className="font-bold text-slate-400 mb-6 uppercase tracking-wider text-xs px-2">Your Summary</h3>
-              <div className="space-y-3 mb-6">
-                {selected.length === 0 ? (
-                  <p className="text-slate-500 italic text-sm text-center py-8">No services selected</p>
-                ) : (
-                  PRICING_OPTIONS.filter(opt => selected.includes(opt.id)).map(opt => (
-                    <div key={opt.id} className="flex justify-between text-sm text-slate-300">
-                      <span>{opt.title}</span>
-                      <span><DirhamSymbol />{opt.price}</span>
-                    </div>
-                  ))
-                )}
-              </div>
-            </div>
-
-            <div className="border-t border-white/10 pt-6 space-y-4">
-              {discount > 0 && (
-                <div className="flex justify-between text-emerald-400 font-bold text-sm">
-                  <span>Multi-service Discount (10%)</span>
-                  <span>-<DirhamSymbol />{Math.round(discount)}</span>
-                </div>
-              )}
-              <div className="flex justify-between items-end">
-                <span className="font-black text-white text-xl uppercase tracking-tighter">Total Estimate</span>
-                <span className="text-3xl font-black text-[#14b491]" style={{ textShadow: '0 0 20px rgba(20, 180, 145, 0.3)' }}>
-                  <DirhamSymbol />{Math.round(finalTotal)}
-                </span>
-              </div>
-              <p className="text-[10px] text-slate-500 italic text-center">
-                *Final price may vary based on property size and specific requirements.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div className="flex justify-center">
-          <Button 
-            disabled={selected.length === 0}
-            size="lg" 
-            className="w-full bg-[#14b491] hover:bg-[#14b491]/90 text-white py-6 rounded-2xl font-black text-lg shadow-xl"
-            data-testid="button-get-quote-calculator"
-          >
-            Get Final Quote on WhatsApp
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
 export default function MoveInServices() {
-  const setupServices = [
-    { icon: Sparkles, title: "Initial deep cleaning" },
-    { icon: Droplets, title: "Drinking water setup" },
-    { icon: Wrench, title: "AC & maintenance checks" },
-    { icon: Zap, title: "Move-in coordination" },
-    { icon: Home, title: "Optional domestic help" },
-  ];
-
-  const communities = ["JVC (Jumeirah Village Circle)"];
-
   const steps = [
     { number: "1", title: "Keys received in JVC", description: "You've got your new home keys in JVC." },
     { number: "2", title: "Message DeliWer on WhatsApp", description: "Quick message to our community-specific support line." },
     { number: "3", title: "Setup coordinated within 24–48 hours", description: "Everything handled while you relax." },
-  ];
-
-  const proofPoints = [
-    "Currently supporting move-ins within JVC and nearby buildings.",
-    "Most requests come from building referrals.",
   ];
 
   return (
@@ -249,6 +92,7 @@ export default function MoveInServices() {
         description="Just moved into JVC? We handle the setup. From cleaning to water to maintenance — coordinated after you get the keys."
         keywords="move-in services JVC, apartment setup Jumeirah Village Circle, JVC home services, JVC move-in coordination"
       />
+      
       {/* Hero Section */}
       <section className="relative py-20 px-6 lg:py-32 overflow-hidden flex items-center justify-center min-h-[60vh]">
         <div 
@@ -260,101 +104,122 @@ export default function MoveInServices() {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight drop-shadow-2xl">
-            Just moved into JVC? We handle the setup.
+          <h1 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tight drop-shadow-2xl uppercase">
+            Your home, ready from Day One
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium">
-            From cleaning to water to maintenance — coordinated after you get the keys.
+          <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto font-medium">
+            Move-in services for new homes in Dubai — cleaning, water, maintenance & setup after you get the keys.
           </p>
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-8 text-xl font-bold rounded-2xl shadow-2xl transition-all w-full sm:w-auto" 
-              data-testid="button-setup-residence-main"
+              onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+            >
+              Start my move-in
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-white/20 hover:bg-white/10 text-white px-10 py-8 text-xl font-bold rounded-2xl backdrop-blur-md w-full sm:w-auto"
               onClick={() => window.open("https://wa.me/971523946311", "_blank")}
             >
               <SiWhatsapp className="mr-2 w-6 h-6" />
-              Set up my JVC residence
-              <ArrowRight className="ml-2 w-6 h-6" />
+              WhatsApp Support
             </Button>
           </div>
-        </div>
-      </section>
-      {/* Clear Boundary Statement */}
-      <section className="relative py-16 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${jvcBoxes})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-950/60"></div>
-        </div>
-        <div className="max-w-2xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-wider">
-            <Shield className="w-4 h-4" /> Disclaimer
-          </div>
-          <h2 className="text-3xl font-bold text-white mb-4">Not a real estate agency.</h2>
-          <p className="text-gray-300 text-lg">
-            No listings. No agents. No commissions.
+          <p className="mt-8 text-slate-400 text-sm font-bold uppercase tracking-widest">
+            Not a real estate agency. Not a moving company.
           </p>
         </div>
       </section>
-      {/* Services Section */}
-      <section className="relative py-20 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${cleaningImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-900/60"></div>
-        </div>
-        <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">What JVC residents typically need</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {setupServices.map((service, idx) => (
-              <div key={idx} className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 flex flex-col items-center text-center gap-4 hover:bg-white/10 transition-all hover-elevate">
-                <div className="bg-emerald-500/20 p-4 rounded-2xl">
-                  <service.icon className="w-8 h-8 text-emerald-400" />
-                </div>
-                <span className="text-lg font-bold text-white leading-tight">{service.title}</span>
+
+      {/* Pain Points Section */}
+      <section className="py-24 px-6 bg-slate-900/50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-12 text-center uppercase tracking-tighter">
+            The hardest part of moving isn't the truck
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {[
+              "Apartment isn’t clean",
+              "Water not delivered",
+              "AC or lights not working",
+              "Building access confusion",
+              "Too many vendors to call"
+            ].map((pain, idx) => (
+              <div key={idx} className="flex items-center gap-4 p-6 bg-slate-950 rounded-2xl border border-white/5 shadow-xl">
+                <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 font-bold">!</div>
+                <span className="text-lg font-bold text-gray-300">{pain}</span>
               </div>
             ))}
           </div>
-          <p className="text-center text-gray-400 italic mb-20">
-            Familiar problems only. Short and efficient.
-          </p>
-
-          <PricingCalculator />
+          <div className="text-center">
+            <p className="text-2xl font-black text-emerald-400 uppercase italic">
+              DeliWer handles everything after keys are handed over.
+            </p>
+          </div>
         </div>
       </section>
-      {/* How it works */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${maintenanceImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-950/60"></div>
+
+      {/* Pricing Packs */}
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-16 text-center uppercase tracking-tighter">Move-In Pricing</h2>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {PRICING_PACKS.map((pkg) => (
+              <Card key={pkg.id} className="bg-slate-900 border-white/10 rounded-[3rem] overflow-hidden flex flex-col hover-elevate transition-all">
+                <CardHeader className="p-10 pb-0">
+                  <div className={`text-xs font-black uppercase tracking-[0.2em] mb-4 text-${pkg.color}-400`}>{pkg.id} pack</div>
+                  <CardTitle className="text-3xl font-black text-white mb-2">{pkg.title}</CardTitle>
+                  <div className="text-4xl font-black text-white mb-6 flex items-baseline gap-1">
+                    {pkg.price !== "Custom" && <DirhamSymbol className="text-2xl" />}
+                    {pkg.price === "Custom" ? pkg.price : `From ${pkg.price}`}
+                  </div>
+                  <p className="text-gray-400 font-bold">{pkg.description}</p>
+                </CardHeader>
+                <CardContent className="p-10 flex-1 flex flex-col">
+                  <div className="space-y-4 mb-10 flex-1">
+                    {pkg.features.map((f, i) => (
+                      <div key={i} className="flex items-center gap-3 text-gray-300">
+                        <CheckCircle2 className={`w-5 h-5 text-${pkg.color}-500 shrink-0`} />
+                        <span className="font-medium">{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {pkg.footer && <p className="text-xs text-slate-500 italic mb-6 text-center">{pkg.footer}</p>}
+                  <Button 
+                    className={`w-full bg-${pkg.color}-600 hover:bg-${pkg.color}-500 text-white py-8 rounded-2xl font-black text-lg shadow-xl`}
+                    onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+                  >
+                    {pkg.cta || `Start ${pkg.title.split(' ')[0]} Pack`}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="mt-16 text-center p-12 bg-slate-900 rounded-[3rem] border border-white/5 max-w-3xl mx-auto shadow-2xl">
+            <div className="space-y-4 text-xl font-black text-white uppercase tracking-tight">
+              <p>We don’t charge commissions.</p>
+              <p>We don’t lock you into vendors.</p>
+              <p className="text-emerald-400">We manage your move-in so you don’t have to.</p>
+            </div>
+          </div>
         </div>
-        <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works </h2>
+      </section>
+
+      {/* How it works */}
+      <section className="py-24 px-6 bg-slate-900/30 border-y border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works</h2>
           <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step) => (
-              <div key={step.number} className="relative p-10 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/10 text-center flex flex-col items-center">
-                <div className="w-12 h-12 bg-[#14b491] text-white rounded-full flex items-center justify-center font-black text-xl mb-6 shadow-lg shadow-emerald-500/20">
+              <div key={step.number} className="relative p-10 rounded-[2.5rem] bg-slate-900 border border-white/10 text-center flex flex-col items-center">
+                <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center font-black text-xl mb-6">
                   {step.number}
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-white">{step.title}</h3>
@@ -362,135 +227,25 @@ export default function MoveInServices() {
               </div>
             ))}
           </div>
-          <div className="mt-16 p-8 bg-emerald-500/10 backdrop-blur-sm rounded-[2.5rem] border border-emerald-500/20 text-center max-w-2xl mx-auto">
-            <p className="text-xl font-bold text-emerald-400 flex items-center justify-center gap-3">
-              <MessageSquare className="w-6 h-6" /> One coordinator until completion.
-            </p>
-          </div>
         </div>
       </section>
-      {/* Local Proof Section */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${maintenanceImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-950/60"></div>
-        </div>
-        
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-8 uppercase tracking-tighter">Local Service</h2>
-          <p className="text-gray-300 text-lg mb-10">Currently supporting move‑ins within JVC and nearby buildings.</p>
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <Badge variant="secondary" className="bg-white/10 border-white/10 text-white px-8 py-3 rounded-full text-lg font-bold shadow-2xl backdrop-blur-md">
-              <MapPin className="w-5 h-5 mr-3 text-emerald-400" /> JVC (Jumeirah Village Circle)
-            </Badge>
-          </div>
-          <p className="text-xs text-slate-500 uppercase tracking-widest font-black">
-            Most requests come from building referrals.
-          </p>
-        </div>
-      </section>
-      {/* Visual Proof Section */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${jvcBuilding})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-950/60"></div>
-        </div>
-        <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">our clients</h2>
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              {proofPoints.map((point, idx) => (
-                <div key={idx} className="flex items-start gap-5 p-6 bg-white/5 rounded-3xl border border-white/10 shadow-2xl">
-                  <CheckCircle2 className="w-8 h-8 text-emerald-400 shrink-0" />
-                  <p className="text-lg font-bold text-gray-200">{point}</p>
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div 
-                className="aspect-square rounded-[2rem] overflow-hidden border border-white/10 flex items-end p-6 relative group"
-                style={{ backgroundImage: `url(${jvcBoxes})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                <span className="text-[10px] uppercase font-black text-white relative z-10 tracking-widest">Move-in support in JVC</span>
-              </div>
-              <div 
-                className="aspect-square rounded-[2rem] overflow-hidden border border-white/10 flex items-end p-6 relative group"
-                style={{ backgroundImage: `url(${jvcBuilding})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                <span className="text-[10px] uppercase font-black text-white relative z-10 tracking-widest">JVC Residence Setup</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Testimonials Section */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${jvcBuilding})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-950/80"></div>
-        </div>
-        <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">What JVC residents say</h2>
-          <TestimonialsCarousel />
-        </div>
-      </section>
+
       {/* Final CTA */}
-      <section className="relative py-32 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${jvcBuilding})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-950/80"></div>
-        </div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="bg-gradient-to-br from-emerald-600/40 to-blue-600/40 p-12 md:p-20 rounded-[4rem] border border-emerald-500/30 shadow-2xl backdrop-blur-xl">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">Set up my JVC residence</h2>
-            <div className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-medium space-y-2">
-              <p>Contact below:</p>
-              <p className="text-2xl font-black text-white">+971 523 946 311</p>
-              <p className="text-emerald-400">info@deliwer.com</p>
-            </div>
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white px-12 py-10 text-2xl font-black rounded-[2rem] shadow-2xl transition-all w-full sm:w-auto" 
-              data-testid="button-setup-residence-final"
-              onClick={() => window.open("https://wa.me/971523946311", "_blank")}
-            >
-              <SiWhatsapp className="mr-3 w-8 h-8" />
-              Set Up Now
-              <ArrowRight className="ml-3 w-8 h-8" />
+      <footer className="py-24 px-6 text-center bg-slate-950">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-8 uppercase">Just received your keys?</h2>
+          <p className="text-xl text-gray-400 mb-12">We'll take it from here.</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white px-12 py-8 text-xl font-black rounded-2xl" onClick={() => window.open("https://wa.me/971523946311", "_blank")}>
+              Start move-in
+            </Button>
+            <Button size="lg" variant="outline" className="border-white/20 text-white px-12 py-8 text-xl font-black rounded-2xl" onClick={() => window.open("https://wa.me/971523946311", "_blank")}>
+              WhatsApp now
             </Button>
           </div>
         </div>
-      </section>
-      {/* Footer Reliability */}
-      <section className="py-16 bg-slate-950 border-t border-white/5 text-slate-500 text-center text-xs uppercase tracking-[0.3em] font-black">
-        DeliWer JVC Community Focus • Vetted Local Partners • No Commissions
-      </section>
+      </footer>
     </div>
   );
 }
+

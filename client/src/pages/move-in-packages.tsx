@@ -1,21 +1,17 @@
 import { SEOMeta } from "@/components/seo-meta";
 import { 
   CheckCircle2, 
-  Zap, 
   ArrowRight, 
-  Sparkles,
-  Droplets,
-  Wrench,
   Shield,
   Clock,
-  Briefcase,
-  Users,
   Home,
+  Zap,
   Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
+import { Link } from "wouter";
 import jvcBuilding from "@assets/generated_images/modern_jvc_dubai_residential_building_exterior.png";
 
 const PACKAGES = [
@@ -24,7 +20,7 @@ const PACKAGES = [
     title: "New Resident Essentials",
     price: 1499,
     tagline: "Moving to Dubai or just arrived?",
-    description: "Most residents start with our New Resident Essentials Pack — covering the basics needed to settle in quickly and comfortably.",
+    description: "DeliWer is built for people who actually live in Dubai. Just reliable execution — when it matters.",
     features: [
       "Deep move-in cleaning",
       "Drinking water setup",
@@ -39,7 +35,7 @@ const PACKAGES = [
     id: "complete",
     title: "Move-In Complete",
     price: 2999,
-    tagline: "MOVE-IN, DONE PROPERLY",
+    tagline: "For families and long-term residents",
     description: "For families and long-term residents who want everything handled.",
     features: [
       "Local moving assistance",
@@ -53,11 +49,12 @@ const PACKAGES = [
     color: "blue"
   },
   {
+    id: "short-term",
     title: "Short-Term Living Setup",
     price: 1999,
-    tagline: "SHORT-TERM LIVING SUPPORT",
+    tagline: "Not ready for a long-term home?",
     note: "(excluding rent)",
-    description: "Not ready for a long-term home? We coordinate short-term and serviced living, and handle the setup around it.",
+    description: "We coordinate short-term and serviced living, and handle the setup around it — so you can focus on settling in.",
     features: [
       "Stay coordination",
       "Cleaning & water setup",
@@ -65,7 +62,7 @@ const PACKAGES = [
       "Extension or relocation assistance"
     ],
     cta: "Arrange Short-Term Living",
-    color: "amber"
+    color: "orange"
   }
 ];
 
@@ -74,8 +71,8 @@ const ONGOING_SUPPORT = [
     title: "Home Care Subscription",
     price: 299,
     unit: "/ month",
-    tagline: "FOR RESIDENTS & COMMUNITIES",
-    description: "Once you’re settled, DeliWer continues supporting your home.",
+    tagline: "Once you’re settled",
+    description: "DeliWer continues supporting your home with priority maintenance and discounted services.",
     features: [
       "Priority maintenance",
       "Discounted services",
@@ -83,17 +80,6 @@ const ONGOING_SUPPORT = [
       "Quarterly checkups"
     ],
     cta: "Start Home Care"
-  },
-  {
-    title: "Business & Document Support",
-    tagline: "FOR FOUNDERS & PROFESSIONALS",
-    description: "For residents setting up businesses or managing documentation in Dubai.",
-    features: [
-      "Company setup guidance",
-      "PRO & document coordination",
-      "Visa & renewals support"
-    ],
-    cta: "Get Business Support"
   }
 ];
 
@@ -121,8 +107,8 @@ export default function MoveInPackages() {
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight uppercase">
             Move-In Packages
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto font-medium">
-            Professional setup services for your new Dubai residence.
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto font-medium italic">
+            DeliWer is built for people who actually live in Dubai. Not for listings. Not for commissions. Not for luxury theater.
           </p>
         </div>
       </section>
@@ -131,9 +117,9 @@ export default function MoveInPackages() {
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8">
           {PACKAGES.map((pkg, idx) => (
-            <Card key={idx} id={pkg.id} className="bg-white/5 border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col hover-elevate transition-all scroll-mt-24">
+            <Card key={idx} id={pkg.id} className="bg-slate-900 border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col hover-elevate transition-all scroll-mt-24">
               <CardHeader className="p-10 pb-0">
-                <div className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 mb-4">{pkg.tagline}</div>
+                <div className={`text-xs font-black uppercase tracking-[0.2em] mb-4 text-${pkg.color}-400`}>{pkg.tagline}</div>
                 <CardTitle className="text-3xl font-black text-white mb-2">{pkg.title}</CardTitle>
                 <div className="text-4xl font-black text-white mb-6 flex items-baseline gap-1">
                   <DirhamSymbol className="text-2xl" />{pkg.price.toLocaleString()}
@@ -145,13 +131,13 @@ export default function MoveInPackages() {
                 <div className="space-y-4 mb-10 flex-1">
                   {pkg.features.map((feature, fIdx) => (
                     <div key={fIdx} className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                      <CheckCircle2 className={`w-5 h-5 text-${pkg.color}-500 shrink-0`} />
                       <span className="font-medium">{feature}</span>
                     </div>
                   ))}
                 </div>
                 <Button 
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-8 rounded-2xl font-black text-lg shadow-xl"
+                  className={`w-full bg-${pkg.color}-600 hover:bg-${pkg.color}-500 text-white py-8 rounded-2xl font-black text-lg shadow-xl`}
                   onClick={() => window.open("https://wa.me/971523946311", "_blank")}
                 >
                   {pkg.cta}
