@@ -54,6 +54,7 @@ export function DualPurposeHero() {
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
                   <span className="text-white drop-shadow-lg">Living in Dubai, simplified.</span>
                 </h1>
+                <p className="text-xl font-bold text-emerald-400 mb-4 drop-shadow-lg">Move-in setups are typically coordinated within 24–48 hours of contact.</p>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   <span className="relative inline-block">
                     <span className="absolute inset-0 bg-black/70 blur-md rounded-lg px-4 py-2"></span>
@@ -71,6 +72,7 @@ export function DualPurposeHero() {
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
                   <span className="text-white drop-shadow-lg">Build globally.</span>
                 </h1>
+                <p className="text-xl font-bold text-amber-400 mb-4 drop-shadow-lg">Move-in setups are typically coordinated within 24–48 hours of contact.</p>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   <span className="relative inline-block">
                     <span className="absolute inset-0 bg-black/70 blur-md rounded-lg px-4 py-2"></span>
@@ -130,6 +132,7 @@ export function DualPurposeHero() {
                     Set Up My Residence
                   </Button>
                 </Link>
+                <p className="text-[12px] text-gray-400 mt-2 font-medium">No agents. No commissions. No pressure.</p>
                 <Link href="/home-service">
                   <Button
                     variant="outline"
@@ -152,6 +155,7 @@ export function DualPurposeHero() {
                     Start Relocation Assessment
                   </Button>
                 </Link>
+                <p className="text-[12px] text-gray-400 mt-2 font-medium">No agents. No commissions. No pressure.</p>
                 <Link href="/relocate">
                   <Button
                     variant="outline"
@@ -262,6 +266,10 @@ export function DualPurposeHero() {
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
                     Coordinating through a single point of contact
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
+                    One DeliWer coordinator remains responsible until setup is complete.
                   </li>
                 </ul>
               </div>

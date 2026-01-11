@@ -542,6 +542,7 @@ export function StarsSponsorshipSection() {
                       </div>
                     ))}
                   </div>
+                  <p className="text-center text-sm text-muted-foreground mt-6 italic">Many residents continue using DeliWer for ongoing home services after move-in.</p>
                 </CardContent>
               </Card>
             )}
