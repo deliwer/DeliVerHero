@@ -2,84 +2,60 @@ import { SEOMeta } from "@/components/seo-meta";
 import { 
   CheckCircle2, 
   ArrowRight, 
-  Shield,
-  Clock,
-  Home,
-  Zap,
-  Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
-import { Link } from "wouter";
 import jvcBuilding from "@assets/generated_images/modern_jvc_dubai_residential_building_exterior.png";
 
 const PACKAGES = [
   {
-    id: "essentials",
-    title: "New Resident Essentials",
-    price: 1499,
-    tagline: "Moving to Dubai or just arrived?",
-    description: "DeliWer is built for people who actually live in Dubai. Just reliable execution — when it matters.",
+    id: "starter",
+    title: "Move-In Starter",
+    price: 1250,
+    tagline: "Best for studios & 1-beds",
+    description: "Essential home readiness so you can walk in and start living.",
     features: [
-      "Deep move-in cleaning",
+      "Initial move-in cleaning",
       "Drinking water setup",
-      "Basic maintenance inspection",
-      "WhatsApp coordination",
-      "Priority scheduling"
+      "Basic maintenance check",
+      "Building access coordination",
+      "Moving not included"
     ],
-    cta: "Start My Move-In",
+    cta: "Start Starter Pack",
     color: "emerald"
   },
   {
-    id: "complete",
-    title: "Move-In Complete",
-    price: 2999,
-    tagline: "For families and long-term residents",
-    description: "For families and long-term residents who want everything handled.",
+    id: "family",
+    title: "Family Move-In",
+    price: 2250,
+    tagline: "Best for 2–3 bedroom homes",
+    description: "Complete coordination for growing households and larger spaces.",
     features: [
-      "Local moving assistance",
       "Deep cleaning",
-      "Water setup",
-      "Maintenance fixes",
-      "Light furniture assembly",
-      "Dedicated move-in coordinator"
+      "Water + consumables setup",
+      "Maintenance & minor fixes",
+      "Move-in day coordination",
+      "Vendor scheduling"
     ],
-    cta: "Book Move-In Complete",
+    cta: "Start Family Pack",
     color: "blue"
   },
   {
-    id: "short-term",
-    title: "Short-Term Living Setup",
-    price: 1999,
-    tagline: "Not ready for a long-term home?",
-    note: "(excluding rent)",
-    description: "We coordinate short-term and serviced living, and handle the setup around it — so you can focus on settling in.",
+    id: "full",
+    title: "Full Move-In",
+    price: "Custom",
+    tagline: "For villas & full setups",
+    description: "Our most popular choice for high-end residential setups and relocations.",
     features: [
-      "Stay coordination",
-      "Cleaning & water setup",
-      "Maintenance support",
-      "Extension or relocation assistance"
+      "Everything in Family Pack",
+      "Furniture placement coordination",
+      "Internet & utilities assistance",
+      "Ongoing support for first 7 days",
+      "Zero-stress management"
     ],
-    cta: "Arrange Short-Term Living",
-    color: "orange"
-  }
-];
-
-const ONGOING_SUPPORT = [
-  {
-    title: "Home Care Subscription",
-    price: 299,
-    unit: "/ month",
-    tagline: "Once you’re settled",
-    description: "DeliWer continues supporting your home with priority maintenance and discounted services.",
-    features: [
-      "Priority maintenance",
-      "Discounted services",
-      "WhatsApp ticketing",
-      "Quarterly checkups"
-    ],
-    cta: "Start Home Care"
+    cta: "Talk to us on WhatsApp",
+    color: "purple"
   }
 ];
 
@@ -122,8 +98,14 @@ export default function MoveInPackages() {
                 <div className={`text-xs font-black uppercase tracking-[0.2em] mb-4 text-${pkg.color}-400`}>{pkg.tagline}</div>
                 <CardTitle className="text-3xl font-black text-white mb-2">{pkg.title}</CardTitle>
                 <div className="text-4xl font-black text-white mb-6 flex items-baseline gap-1">
-                  <DirhamSymbol className="text-2xl" />{pkg.price.toLocaleString()}
-                  {pkg.note && <span className="text-sm font-normal text-gray-500 ml-2">{pkg.note}</span>}
+                  {typeof pkg.price === 'number' ? (
+                    <>
+                      <span className="text-sm font-medium text-gray-500 mr-2 uppercase tracking-wider">From</span>
+                      <DirhamSymbol className="text-2xl" />{pkg.price.toLocaleString()}
+                    </>
+                  ) : (
+                    <span className="text-3xl uppercase tracking-tighter">{pkg.price}</span>
+                  )}
                 </div>
                 <p className="text-gray-400 leading-relaxed font-medium">{pkg.description}</p>
               </CardHeader>
@@ -147,43 +129,13 @@ export default function MoveInPackages() {
             </Card>
           ))}
         </div>
-      </section>
-
-      {/* Ongoing Support */}
-      <section className="py-20 px-6 bg-white/5 border-y border-white/10">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-16 text-center uppercase tracking-tighter">Ongoing Support</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {ONGOING_SUPPORT.map((item, idx) => (
-              <Card key={idx} className="bg-slate-900 border-white/10 rounded-[2.5rem] p-10 flex flex-col justify-between hover-elevate transition-all">
-                <div>
-                  <div className="text-xs font-black uppercase tracking-[0.2em] text-blue-400 mb-4">{item.tagline}</div>
-                  <h3 className="text-2xl font-black text-white mb-4">{item.title}</h3>
-                  {item.price && (
-                    <div className="text-3xl font-black text-white mb-6">
-                      <DirhamSymbol />{item.price}{item.unit}
-                    </div>
-                  )}
-                  <p className="text-gray-400 mb-8 font-medium">{item.description}</p>
-                  <div className="space-y-4 mb-10">
-                    {item.features.map((feature, fIdx) => (
-                      <div key={fIdx} className="flex items-center gap-3 text-gray-300">
-                        <Star className="w-4 h-4 text-blue-500 shrink-0" />
-                        <span className="font-medium text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <Button 
-                  variant="outline"
-                  className="w-full border-white/20 hover:bg-white/10 text-white py-7 rounded-2xl font-black"
-                  onClick={() => window.open("https://wa.me/971523946311", "_blank")}
-                >
-                  {item.cta}
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Card>
-            ))}
+        
+        {/* Trust Microcopy */}
+        <div className="max-w-4xl mx-auto mt-16 text-center">
+          <div className="space-y-4 text-gray-400 font-medium uppercase tracking-[0.2em] text-sm md:text-base">
+            <p>We don’t charge commissions.</p>
+            <p>We don’t lock you into vendors.</p>
+            <p className="text-white font-bold">We manage your move-in so you don’t have to.</p>
           </div>
         </div>
       </section>
