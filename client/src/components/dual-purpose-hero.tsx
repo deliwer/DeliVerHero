@@ -3,13 +3,11 @@ import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp, Shield, CheckC
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import heroImage from "@assets/generated_images/diverse_global_founders_and_hnwis_from_many_nationalities.png";
+import heroImage from "@assets/generated_images/move-in_day_chaos_with_keys_in_hand..png";
 import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
 import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
 
 export function DualPurposeHero() {
-  const [audience, setAudience] = useState<'consumer' | 'entrepreneur'>('consumer');
-
   const testimonials = [
     {
       id: 1,
@@ -30,7 +28,7 @@ export function DualPurposeHero() {
   return (
     <section className="relative overflow-hidden">
       {/* Main Hero Section */}
-      <div className="relative py-12 sm:py-16 lg:py-20 px-4 overflow-hidden flex items-center">
+      <div className="relative py-20 sm:py-24 lg:py-32 px-4 overflow-hidden flex items-center min-h-[70vh]">
         {/* Full-width Hero Background Image */}
         <div 
           className="absolute inset-0 w-full h-full"
@@ -42,132 +40,36 @@ export function DualPurposeHero() {
           }}
         >
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/65 to-black/60"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
         </div>
 
         {/* Main Content */}
         <div className="max-w-4xl mx-auto relative z-10 text-center">
-          {/* Dual-purpose Headlines */}
-          <div className="mb-10 sm:mb-12">
-            {audience === 'consumer' ? (
-              <>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
-                  <span className="text-white drop-shadow-lg">Living in Dubai, simplified.</span>
-                </h1>
-                <p className="text-xl font-bold text-emerald-400 mb-4 drop-shadow-lg">Move-in setups are typically coordinated within 24–48 hours of contact.</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                  <span className="relative inline-block">
-                    <span className="absolute inset-0 bg-black/70 blur-md rounded-lg px-4 py-2"></span>
-                    <span className="relative bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 drop-shadow-lg font-bold px-4 py-2 text-[#14b491]" 
-                          style={{ 
-                            textShadow: '0 0 30px rgba(16, 185, 129, 1), 0 0 50px rgba(20, 184, 166, 0.8)',
-                            filter: 'contrast(1.2) brightness(1.3)',
-                          }}>Everything you need — done for you</span>
-                  </span>
-                </h2>
-                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">before and after you move in.</p>
-              </>
-            ) : (
-              <>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
-                  <span className="text-white drop-shadow-lg">Build globally.</span>
-                </h1>
-                <p className="text-xl font-bold text-amber-400 mb-4 drop-shadow-lg">Move-in setups are typically coordinated within 24–48 hours of contact.</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                  <span className="relative inline-block">
-                    <span className="absolute inset-0 bg-black/70 blur-md rounded-lg px-4 py-2"></span>
-                    <span className="relative bg-clip-text bg-gradient-to-r from-amber-300 via-orange-200 to-red-300 drop-shadow-lg font-bold px-4 py-2 text-[#f59e0b]" 
-                          style={{ 
-                            textShadow: '0 0 30px rgba(245, 158, 11, 1), 0 0 50px rgba(251, 146, 60, 0.8)',
-                            filter: 'contrast(1.2) brightness(1.3)',
-                          }}>Live in Dubai.</span>
-                  </span>
-                </h2>
-                <p className="text-lg sm:text-xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">
-                  Join 500+ founders who relocated for family, lifestyle, and opportunity.
-                </p>
-              </>
-            )}
+          {/* Simplified Headlines */}
+          <div className="mb-10">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="text-white drop-shadow-2xl">Living in Dubai, simplified.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">
+              One point of contact for your entire move-in setup. 
+              Professional orchestration before and after you get your keys.
+            </p>
           </div>
 
-          {/* Audience Toggle & CTAs */}
-          <div className="max-w-2xl mx-auto space-y-4">
-            {/* Toggle Buttons */}
-            <div className="flex gap-2 justify-center mb-6">
-              <button
-                onClick={() => setAudience('consumer')}
-                className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                  audience === 'consumer'
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm'
-                }`}
-                data-testid="button-toggle-consumer"
+          {/* Primary CTA Only */}
+          <div className="max-w-md mx-auto">
+            <Link href="/residence/move-in-services">
+              <Button
+                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
+                data-testid="button-get-home-service-hero"
               >
-                <ShoppingCart className="w-4 h-4 inline mr-2" />
-                Consumer
-              </button>
-              <button
-                onClick={() => setAudience('entrepreneur')}
-                className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                  audience === 'entrepreneur'
-                    ? 'bg-amber-600 text-white'
-                    : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm'
-                }`}
-                data-testid="button-toggle-entrepreneur"
-              >
-                <Building2 className="w-4 h-4 inline mr-2" />
-                Entrepreneur
-              </button>
-            </div>
-
-            {/* Context-specific CTAs */}
-            {audience === 'consumer' ? (
-              <div className="space-y-3">
-                <Link href="/residence/move-in-services">
-                  <Button
-                    className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
-                    data-testid="button-get-home-service-hero"
-                  >
-                    <Sparkles className="w-5 h-5 mr-3" />
-                    Start my move-in
-                  </Button>
-                </Link>
-                <p className="text-[12px] text-gray-400 mt-2 font-medium">No agents. No commissions. No pressure.</p>
-                <Link href="/home-service">
-                  <Button
-                    variant="outline"
-                    className="w-full border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-6 text-base font-medium rounded-xl hover:bg-white/20 transition-all"
-                    data-testid="button-trade-iphone-hero"
-                  >
-                    <Heart className="w-4 h-4 mr-2" />
-                    Already Living Here? Get Services
-                  </Button>
-                </Link>
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <Link href="/relocate">
-                  <Button
-                    className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
-                    data-testid="button-start-relocation-hero"
-                  >
-                    <Zap className="w-5 h-5 mr-3" />
-                    Start Relocation Assessment
-                  </Button>
-                </Link>
-                <p className="text-[12px] text-gray-400 mt-2 font-medium">No agents. No commissions. No pressure.</p>
-                <Link href="/relocate">
-                  <Button
-                    variant="outline"
-                    className="w-full border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-6 text-base font-medium rounded-xl hover:bg-white/20 transition-all"
-                    data-testid="button-founder-stories-hero"
-                  >
-                    Founder Success Stories
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            )}
+                <Sparkles className="w-5 h-5 mr-3" />
+                Start my move-in
+              </Button>
+            </Link>
+            <p className="text-[12px] text-gray-300 mt-4 font-medium drop-shadow-md">
+              No agents. No commissions. No pressure.
+            </p>
           </div>
         </div>
       </div>
