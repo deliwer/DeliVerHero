@@ -132,7 +132,7 @@ export default function Residence() {
           </div>
           <div className="flex justify-center">
             <Link href="/residence/find-a-place">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-6 rounded-xl">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-6 rounded-xl" data-testid="link-explore-living">
                 Explore Living Options
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>

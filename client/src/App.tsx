@@ -22,6 +22,7 @@ import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import HomeService from "@/pages/home-service";
 import Residence from "@/pages/residence";
+import FindAPlace from "@/pages/residence/find-a-place";
 import ErrandPage from "@/pages/errand";
 import HomeServiceLaunch from "@/pages/home-service-launch";
 import NotFound from "@/pages/not-found";
@@ -123,6 +124,7 @@ function Router() {
 
         {/* Housing - Rent, Buy, Invest */}
         <Route path="/residence" component={Residence} />
+        <Route path="/residence/find-a-place" component={FindAPlace} />
 
         {/* Core Site Pages */}
         <Route path="/privacy" component={Privacy} />

@@ -1,0 +1,211 @@
+Below is the **single intake flow Replit prompt** that unifies **all Residence journeys** into **one calm, trust-building entry point**.
+
+This is critical for:
+
+* Survival (no fragmentation)
+* Anti-broker positioning
+* Higher WhatsApp + form conversion
+* Becoming a *default* starting point
+
+---
+
+## ✅ REPLIT PROMPT — SINGLE INTAKE FLOW (RESIDENCE)
+
+> You are a senior product designer and UX copywriter working on **deliwer.com**.
+>
+> Your task is to create a **single intake flow** that serves **all Residence in Dubai journeys**, including:
+>
+> * Finding a place to stay (Living Options)
+> * Short-term living (managed)
+> * Move-in services
+> * Move-in packages
+>
+> ❗ Do NOT redesign pages or introduce multiple forms.
+> ❗ Use one shared intake entry across all residence-related pages.
+> ❗ The flow must clearly position DeliWer as **guidance and execution**, not a broker or marketplace.
+
+---
+
+## FLOW OBJECTIVE
+
+* Reduce user confusion
+* Capture intent quickly
+* Route internally (not visibly) to the correct service
+* Encourage WhatsApp handoff without pressure
+
+---
+
+## ENTRY POINT (USED EVERYWHERE)
+
+**CTA LABEL (consistent across site):**
+
+> Get residence help
+
+Secondary CTA:
+
+> WhatsApp +971 523 946 311
+
+Microcopy under CTA:
+
+> One conversation. We guide you from here.
+
+---
+
+## STEP 1 — CONTEXT (NON-INTIMIDATING)
+
+**Title:**
+
+> What do you need help with?
+
+**Instruction (small text):**
+
+> Choose what best describes your situation. You can change this later.
+
+**Options (radio buttons, not checkboxes):**
+
+* I’m looking for a place to stay
+* I’ve found a place and need move-in help
+* I need short-term living
+* I’m not sure yet
+
+---
+
+## STEP 2 — STAY TIMELINE (ONLY IF RELEVANT)
+
+**Title:**
+
+> How long do you plan to stay?
+
+**Options:**
+
+* Less than 1 month
+* 1–3 months
+* 3–6 months
+* 6+ months
+* Not sure yet
+
+*(If user selected move-in services, this step is optional and skippable.)*
+
+---
+
+## STEP 3 — LOCATION SIGNAL (LIGHTWEIGHT)
+
+**Title:**
+
+> Preferred area (if known)
+
+**Input:**
+
+> Text field (e.g., JVC, Marina, Business Bay)
+
+Helper text:
+
+> This helps us check community coverage. Exact address not needed.
+
+---
+
+## STEP 4 — MOVE-IN STATUS (KEY DIFFERENTIATOR)
+
+**Title:**
+
+> Have you received your keys?
+
+**Options:**
+
+* Yes, I have the keys
+* Not yet
+* I’m just exploring
+
+This question is **strategic** — it separates you from agents instantly.
+
+---
+
+## STEP 5 — CONTACT (LOW FRICTION)
+
+**Title:**
+
+> How should we reach you?
+
+**Fields:**
+
+* Name
+* WhatsApp number
+
+Optional field (collapsed):
+
+* Email (optional)
+
+Trust note (small):
+
+> We don’t share your details. No agent calls.
+
+---
+
+## STEP 6 — CONFIRMATION (EXPECTATION SETTING)
+
+**Confirmation Message:**
+
+> Thanks — a DeliWer team member will review your request and guide you on the next steps.
+
+**Expectation line:**
+
+> Usually within the same day.
+
+---
+
+## POST-SUBMIT ROUTING (INVISIBLE TO USER)
+
+Based on answers:
+
+* Route internally to:
+
+  * Living Options / Stay guidance
+  * Short-Term Living (Managed)
+  * Move-In Services
+  * Move-In Packages
+* Trigger WhatsApp follow-up when number is provided
+
+---
+
+## WHATSAPP AUTO-MESSAGE (CRITICAL)
+
+**Auto-prefilled WhatsApp text:**
+
+> Hi DeliWer, I need help with residence in Dubai.
+> I’ve submitted the form and would like guidance.
+
+---
+
+## UX TONE RULES
+
+* No pricing at intake stage
+* No property talk
+* No urgency language
+* Calm, human, reassuring
+
+---
+
+## SUCCESS CRITERIA
+
+* One intake used across all residence pages
+* User understands DeliWer in under 30 seconds
+* Reduced bounce from “I’m not sure yet” users
+* Higher WhatsApp continuation rate
+
+---
+
+## INTERNAL PRODUCT NOTE (DO NOT SHOW TO USERS)
+
+This intake flow is a **decision engine**, not a lead form.
+Routing logic happens behind the scenes. The user only experiences guidance.
+
+---
+
+If you want next:
+
+* WhatsApp **human reply script** (anti-broker tone)
+* CRM tagging logic
+* Intake → service **handover checklist**
+* “We are not agents” legal-safe disclaimer
+
+Say the number.
