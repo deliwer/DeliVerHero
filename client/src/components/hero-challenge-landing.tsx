@@ -765,7 +765,7 @@ function StepSellIPhone() {
                   <span>New Resident Essentials</span>
                 </CalendlyButton>
               </div>
-              <Link href="/residence" className="flex-1">
+              <Link href="/residence/move-in-packages" className="flex-1">
                 <Button
                   size="lg"
                   variant="outline"
