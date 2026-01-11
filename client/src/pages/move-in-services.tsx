@@ -297,14 +297,14 @@ export default function MoveInServices() {
       {/* Local Proof Section */}
       <section className="relative py-24 px-6 overflow-hidden">
         <div 
-          className="absolute inset-0 w-full h-full opacity-30"
+          className="absolute inset-0 w-full h-full opacity-40"
           style={{
             backgroundImage: `url(${maintenanceImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-slate-950"></div>
+          <div className="absolute inset-0 bg-slate-950/60"></div>
         </div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -321,8 +321,18 @@ export default function MoveInServices() {
         </div>
       </section>
       {/* Visual Proof Section */}
-      <section className="py-24 px-6 bg-slate-950">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full opacity-40"
+          style={{
+            backgroundImage: `url(${jvcBuilding})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-950/60"></div>
+        </div>
+        <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">our clients</h2>
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="space-y-6">
