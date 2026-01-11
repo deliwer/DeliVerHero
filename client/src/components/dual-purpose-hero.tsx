@@ -208,9 +208,7 @@ export function DualPurposeHero() {
               </div>
 
               <div className="bg-amber-500/10 backdrop-blur-sm p-6 rounded-2xl border border-amber-500/20">
-                <p className="text-amber-400 font-bold text-xs mb-2 uppercase tracking-tight">
-                  DeliWer is not a real estate agency
-                </p>
+                <p className="text-amber-400 font-bold text-xs mb-2 uppercase tracking-tight">Not a real estate agency. Not a moving company.</p>
                 <p className="text-gray-300 text-xs leading-relaxed">
                   We do not sell property, show listings, or earn commissions. We work with vetted local partners to ensure consistent delivery.
                 </p>
