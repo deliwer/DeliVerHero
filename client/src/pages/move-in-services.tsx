@@ -25,8 +25,9 @@ import { Label } from "@/components/ui/label";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 import jvcBuilding from "@assets/generated_images/modern_jvc_dubai_residential_building_exterior.png";
 import jvcBoxes from "@assets/generated_images/jvc_dubai_apartment_move-in_boxes.png";
-import cleaningImage from "@assets/generated_images/dubai_urban_community_services_background.png";
-import maintenanceImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
+import cleaningImage from "@assets/generated_images/jvc_dubai_apartment_cleaning_service.png";
+import maintenanceImage from "@assets/generated_images/jvc_dubai_ac_maintenance_service.png";
+import { SiWhatsapp } from "react-icons/si";
 
 const PRICING_OPTIONS = [
   { id: "coordination", title: "Move-in coordination", price: 499, icon: Zap },
@@ -195,7 +196,13 @@ export default function MoveInServices() {
             From cleaning to water to maintenance — coordinated after you get the keys.
           </p>
           <div className="flex justify-center">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-8 text-xl font-bold rounded-2xl shadow-2xl transition-all w-full sm:w-auto" data-testid="button-setup-residence-main">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-8 text-xl font-bold rounded-2xl shadow-2xl transition-all w-full sm:w-auto" 
+              data-testid="button-setup-residence-main"
+              onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+            >
+              <SiWhatsapp className="mr-2 w-6 h-6" />
               Set up my JVC residence
               <ArrowRight className="ml-2 w-6 h-6" />
             </Button>
@@ -203,8 +210,18 @@ export default function MoveInServices() {
         </div>
       </section>
       {/* Clear Boundary Statement */}
-      <section className="py-16 px-6 bg-slate-950 border-y border-white/5">
-        <div className="max-w-2xl mx-auto text-center">
+      <section className="relative py-16 px-6 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full opacity-20"
+          style={{
+            backgroundImage: `url(${jvcBoxes})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-950"></div>
+        </div>
+        <div className="max-w-2xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-wider">
             <Shield className="w-4 h-4" /> Clear Boundary
           </div>
@@ -214,13 +231,24 @@ export default function MoveInServices() {
           </p>
         </div>
       </section>
+
       {/* Services Section */}
-      <section className="py-20 px-6 bg-slate-900/50">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative py-20 px-6 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full opacity-20"
+          style={{
+            backgroundImage: `url(${cleaningImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-900"></div>
+        </div>
+        <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-3xl md:text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter">What JVC residents typically need</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {setupServices.map((service, idx) => (
-              <div key={idx} className="bg-white/5 p-8 rounded-3xl border border-white/10 flex flex-col items-center text-center gap-4 hover:bg-white/10 transition-all hover-elevate">
+              <div key={idx} className="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 flex flex-col items-center text-center gap-4 hover:bg-white/10 transition-all hover-elevate">
                 <div className="bg-emerald-500/20 p-4 rounded-2xl">
                   <service.icon className="w-8 h-8 text-emerald-400" />
                 </div>
@@ -235,13 +263,24 @@ export default function MoveInServices() {
           <PricingCalculator />
         </div>
       </section>
+
       {/* How it works */}
-      <section className="py-24 px-6 bg-slate-950">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works </h2>
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full opacity-20"
+          style={{
+            backgroundImage: `url(${maintenanceImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-950"></div>
+        </div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-16 text-center uppercase tracking-tighter">How it works (Local JVC Framing)</h2>
           <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step) => (
-              <div key={step.number} className="relative p-10 rounded-[2.5rem] bg-white/5 border border-white/10 text-center flex flex-col items-center">
+              <div key={step.number} className="relative p-10 rounded-[2.5rem] bg-white/10 backdrop-blur-md border border-white/10 text-center flex flex-col items-center">
                 <div className="w-12 h-12 bg-[#14b491] text-white rounded-full flex items-center justify-center font-black text-xl mb-6 shadow-lg shadow-emerald-500/20">
                   {step.number}
                 </div>
@@ -250,7 +289,7 @@ export default function MoveInServices() {
               </div>
             ))}
           </div>
-          <div className="mt-16 p-8 bg-emerald-500/10 rounded-[2.5rem] border border-emerald-500/20 text-center max-w-2xl mx-auto">
+          <div className="mt-16 p-8 bg-emerald-500/10 backdrop-blur-sm rounded-[2.5rem] border border-emerald-500/20 text-center max-w-2xl mx-auto">
             <p className="text-xl font-bold text-emerald-400 flex items-center justify-center gap-3">
               <MessageSquare className="w-6 h-6" /> One coordinator until completion.
             </p>
@@ -316,16 +355,32 @@ export default function MoveInServices() {
         </div>
       </section>
       {/* Final CTA */}
-      <section className="py-32 px-6 bg-slate-950 border-t border-white/5 relative overflow-hidden">
+      <section className="relative py-32 px-6 overflow-hidden">
+        <div 
+          className="absolute inset-0 w-full h-full opacity-40"
+          style={{
+            backgroundImage: `url(${jvcBuilding})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="absolute inset-0 bg-slate-950/80"></div>
+        </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="bg-gradient-to-br from-emerald-600/20 to-blue-600/20 p-12 md:p-20 rounded-[4rem] border border-emerald-500/20 shadow-2xl backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-emerald-600/40 to-blue-600/40 p-12 md:p-20 rounded-[4rem] border border-emerald-500/30 shadow-2xl backdrop-blur-xl">
             <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">Set up my JVC residence</h2>
             <div className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-medium space-y-2">
               <p>Contact below:</p>
               <p className="text-2xl font-black text-white">+971 523 946 311</p>
               <p className="text-emerald-400">info@deliwer.com</p>
             </div>
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white px-12 py-10 text-2xl font-black rounded-[2rem] shadow-2xl transition-all w-full sm:w-auto" data-testid="button-setup-residence-final">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white px-12 py-10 text-2xl font-black rounded-[2rem] shadow-2xl transition-all w-full sm:w-auto" 
+              data-testid="button-setup-residence-final"
+              onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+            >
+              <SiWhatsapp className="mr-3 w-8 h-8" />
               Set Up Now
               <ArrowRight className="ml-3 w-8 h-8" />
             </Button>

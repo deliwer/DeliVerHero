@@ -29,7 +29,8 @@ import {
   Share2,
   Users,
   Copy,
-  Check
+  Check,
+  Shield
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -43,6 +44,7 @@ import solarImg from "@assets/stock_images/solar_panels_home_ro_58dd081a.jpg";
 import evChargingImg from "@assets/stock_images/electric_vehicle_ev__8c191f69.jpg";
 import ecoCleaningImg from "@assets/stock_images/eco-friendly_cleanin_0650dea4.jpg";
 import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
+import jvcBoxes from "@assets/generated_images/jvc_dubai_apartment_move-in_boxes.png";
 
 export default function HomeService() {
   const { toast } = useToast();
@@ -95,6 +97,52 @@ export default function HomeService() {
           }
         })}</script>
       </Helmet>
+      {/* Featured: JVC Residence Setup */}
+      <section className="py-16 px-4 bg-slate-950 border-y border-white/5">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-wider">
+                <Home className="w-4 h-4" /> Just Moved into JVC?
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight uppercase">
+                Complete Setup <span className="text-emerald-400">Coordinated.</span>
+              </h2>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed font-medium">
+                Deep cleaning, drinking water, maintenance checks, and coordination. Everything handled while you relax.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link href="/residence">
+                  <Button size="lg" className="bg-[#14b491] hover:bg-[#14b491]/90 text-white px-8 py-7 text-xl font-bold rounded-2xl shadow-2xl transition-all">
+                    View Setup Packages
+                    <ArrowRight className="ml-2 w-6 h-6" />
+                  </Button>
+                </Link>
+                <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                  <Shield className="w-5 h-5 text-amber-400" />
+                  <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">JVC Community Support</span>
+                </div>
+              </div>
+            </div>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative aspect-video rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+                <img 
+                  src={jvcBoxes} 
+                  alt="JVC Dubai apartment move-in support" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                <div className="absolute bottom-6 left-6">
+                  <p className="text-white font-black text-lg uppercase tracking-tighter">Exclusive for JVC Residents</p>
+                  <p className="text-gray-400 text-sm">Building referrals welcome.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section - Home Service Convenience */}
       <section className="relative h-[500px] md:h-[600px] overflow-hidden">
         <img 
