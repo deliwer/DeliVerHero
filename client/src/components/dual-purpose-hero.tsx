@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp, Shield, CheckCircle2, Star } from "lucide-react";
+import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp, Shield, CheckCircle2, Star, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -53,8 +53,8 @@ export function DualPurposeHero() {
             <p className="text-xl md:text-2xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">We help residents settle in after they receive their keys — cleaning, setup, maintenance, and support.</p>
           </div>
 
-          {/* Primary CTA Only */}
-          <div className="max-w-md mx-auto">
+          {/* CTA Section */}
+          <div className="max-w-md mx-auto space-y-4">
             <Link href="/residence/move-in-services">
               <Button
                 className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
@@ -64,6 +64,17 @@ export function DualPurposeHero() {
                 Get help moving in
               </Button>
             </Link>
+            
+            <Button
+              variant="outline"
+              className="w-full border-white/30 bg-white/10 text-white hover:bg-white/20 px-10 py-8 text-lg font-bold rounded-2xl backdrop-blur-md transition-all flex items-center justify-center gap-3"
+              onClick={() => window.open('https://wa.me/971501234567', '_blank')}
+              data-testid="button-whatsapp-contact"
+            >
+              <MessageCircle className="w-6 h-6" />
+              WhatsApp Contact
+            </Button>
+
             <p className="text-[12px] text-gray-300 mt-4 font-medium drop-shadow-md">
               No agents. No commissions. No pressure.
             </p>
