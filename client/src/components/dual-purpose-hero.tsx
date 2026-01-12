@@ -86,7 +86,7 @@ export function DualPurposeHero() {
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Your home, ready from Day One</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">How DeliWer helps</h2>
             <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">Move-in services for new homes in Dubai — cleaning, water, maintenance & setup after you get the keys.</p>
           </div>
 
