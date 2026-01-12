@@ -683,8 +683,7 @@ function StepSellIPhone() {
         </div>
         </>
         )}
-      </div>
-    </motion.section>
+    </motion.div>
   );
 }
 
@@ -905,11 +904,11 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
         {/* Trust Indicators */}
         <div className="text-center mt-8">
           <p className="text-gray-400 text-sm">
-            🔒 Secure PayPal & Stripe Checkout • ⚡ Instant Activation • 🌍 Environmental Impact
+            Secure PayPal & Stripe Checkout - Instant Activation - Environmental Impact
           </p>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
