@@ -698,56 +698,29 @@ function StepSellIPhone() {
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">DeliWer does not sell property or act as a real estate agent.</p>
 
-          {/* Smart Home Search Banner - Always Visible */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-emerald-500/50 shadow-2xl bg-gradient-to-br from-emerald-600/20 to-green-600/20 p-2 backdrop-blur-sm">
-            <div className="bg-slate-900/50 rounded-xl p-6">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-1">
-                  <img 
-                    src={Dubai_Creek_Apartment} 
-                    alt="Modern Smart Home Apartment in Dubai" 
-                    className="w-full h-auto rounded-lg shadow-lg"
-                    data-testid="img-smart-home-banner"
-                  />
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-green-500 text-white rounded-full px-6 py-2 mb-3 font-bold animate-pulse">
-                    <Home className="w-5 h-5 mr-2 flex-shrink-0" />
-                    <span>SMART HOME SEARCH</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">What DeliWer Does?</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-emerald-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-emerald-400" />
-                      </div>
-                      <span className="text-sm font-medium">Tell us what you need</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-green-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-green-400" />
-                      </div>
-                      <span className="text-sm font-medium">We coordinate services</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-teal-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-teal-400" />
-                      </div>
-                      <span className="text-sm font-medium">One WhatsApp contact</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-cyan-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-cyan-400" />
-                      </div>
-                      <span className="text-sm font-medium">Everything gets done</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">Premium Listings</span>
-                    <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">Smart Technology</span>
-                    <span className="bg-teal-500/20 text-teal-400 px-3 py-1 rounded-full text-sm font-bold">Expert Support</span>
-                  </div>
-                </div>
+          {/* Text-led What DeliWer Does Section */}
+          <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
+            <div className="border-l-2 border-emerald-500/30 pl-6">
+              <h3 className="text-2xl font-bold text-white mb-4">What DeliWer Does?</h3>
+              <div className="space-y-4 text-gray-300">
+                <p className="text-lg leading-relaxed">
+                  We act as your <span className="text-emerald-400 font-bold">professional orchestrator</span> for everything related to your move-in. 
+                  No searching for vendors, no multiple apps, no language barriers.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-emerald-400 font-bold mt-1">•</span>
+                    <span>Tell us what you need via a single WhatsApp contact.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-emerald-400 font-bold mt-1">•</span>
+                    <span>We coordinate vetted local partners for cleaning, water, maintenance, and setup.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-emerald-400 font-bold mt-1">•</span>
+                    <span>One DeliWer coordinator remains responsible until everything is complete.</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
