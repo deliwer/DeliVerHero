@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp, Play, Copy, QrCode, Rocket, Calendar, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -209,7 +210,14 @@ function StepTwoExchange() {
   };
   
   return (
-    <section className="py-8 px-4 mb-8" data-section="step-2">
+    <motion.section 
+      initial={ { opacity: 0, y: 20 } }
+      whileInView={ { opacity: 1, y: 0 } }
+      viewport={ { once: true } }
+      transition={ { duration: 0.6 } }
+      className="py-8 px-4 mb-8" 
+      data-section="step-2"
+    >
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={2} />
         
@@ -481,18 +489,23 @@ function StepTwoExchange() {
         </>
         )}
       </div>
-    </section>
+    </motion.section>
   );
 }
 
 // Step 1: Smart Home Section
 function StepSellIPhone() {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   return (
-    <section className="py-8 px-4 mb-8" data-section="step-1">
-      <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={1} />
+    <motion.div
+      initial={ { opacity: 0, y: 20 } }
+      whileInView={ { opacity: 1, y: 0 } }
+      viewport={ { once: true } }
+      transition={ { duration: 0.6 } }
+      className="max-w-4xl mx-auto px-4 py-12"
+    >
+      <ProgressIndicator currentStep={1} />
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">
@@ -671,7 +684,7 @@ function StepSellIPhone() {
         </>
         )}
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -680,10 +693,8 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section className="py-8 px-4 mb-8" data-section="membership-benefits">
-      <div className="max-w-4xl mx-auto">
-        
-        <div className="text-center mb-8">
+    <div className="max-w-4xl mx-auto">
+      <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
             <button
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
@@ -1018,9 +1029,16 @@ export function HeroChallengeLanding() {
         </div>
 
         {/* Step 2: Home Service */}
-        <div data-section="step-2">
+        <motion.div 
+          initial={ { opacity: 0, y: 20 } }
+          whileInView={ { opacity: 1, y: 0 } }
+          viewport={ { once: true } }
+          transition={ { duration: 0.6 } }
+          className="py-8 px-4 mb-8"
+          data-section="step-2"
+        >
           <StepTwoExchange />
-        </div>
+        </motion.div>
 
         {/* Flow Connector 2→3 */}
         <div className="flex justify-center mb-8">
@@ -1035,12 +1053,18 @@ export function HeroChallengeLanding() {
         </div>
 
         {/* Step 3: Join Loyalty (Progress indicator step 3) */}
-        <div data-section="membership-benefits">
+        <motion.div 
+          initial={ { opacity: 0, y: 20 } }
+          whileInView={ { opacity: 1, y: 0 } }
+          viewport={ { once: true } }
+          transition={ { duration: 0.6 } }
+          className="py-8 px-4 mb-8"
+          data-section="membership-benefits"
+        >
           <ProgressIndicator currentStep={3} />
           <MembershipBenefitsSection />
-        </div>
-
-        </div>
+        </motion.div>
+      </div>
 
       {/* Hero Registration Modal */}
       <HeroRegistrationModal 
