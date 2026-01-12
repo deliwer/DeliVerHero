@@ -391,66 +391,38 @@ function StepTwoExchange() {
             Home Water Purification & Installation Packages: Transform your home with clean, alkaline water systems professionally installed
           </p>
           
-          {/* Water Purification Banner - Always Visible */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-cyan-500/50 shadow-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 p-2 backdrop-blur-sm">
-            <div className="bg-slate-900/50 rounded-xl p-6">
-              <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-1">
-                  <img 
-                    src={Nicole_Oliver} 
-                    alt="Premium Water Purification System for Home" 
-                    className="w-full h-auto rounded-lg shadow-lg"
-                    data-testid="img-water-purification-banner"
-                  />
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full mb-3">
-                    <Droplets className="w-5 h-5" />
-                    <span className="font-bold">WATER PURIFICATION</span>
+          {/* Text-led What Residents Use DeliWer For - Sequential Checklist */}
+          <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
+            <div className="border-l-2 border-cyan-500/30 pl-6">
+              <h3 className="text-2xl font-bold text-white mb-6">What Residents Actually Use DeliWer For</h3>
+              <div className="space-y-6 text-gray-300">
+                <p className="text-lg leading-relaxed">
+                  We provide <span className="text-cyan-400 font-bold">calm execution</span> for the most stressful parts of living in Dubai. 
+                  One service at a time, until your home is ready.
+                </p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4 group">
+                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <span className="text-base font-medium">Move-in coordination (Cleaning & Utilities)</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">What Residents Use DeliWer For</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-cyan-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-cyan-400" />
-                      </div>
-                      <span className="text-sm font-medium">Move-in coordination</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-blue-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-blue-400" />
-                      </div>
-                      <span className="text-sm font-medium">Cleaning & maintenance</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-teal-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-teal-400" />
-                      </div>
-                      <span className="text-sm font-medium">Drinking water setup</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-emerald-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-emerald-400" />
-                      </div>
-                      <span className="text-sm font-medium">Short-term living support</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-indigo-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-indigo-400" />
-                      </div>
-                      <span className="text-sm font-medium">Ongoing home services</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <div className="bg-purple-500/20 p-2 rounded-lg">
-                        <CheckCircle className="w-4 h-4 text-purple-400" />
-                      </div>
-                      <span className="text-sm font-medium">Business & document assistance</span>
-                    </div>
+                  <div className="h-px bg-white/5 w-1/4"></div>
+                  
+                  <div className="flex items-center gap-4 group">
+                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <span className="text-base font-medium">Drinking water setup (Filtration & Delivery)</span>
                   </div>
-                  <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                    <span className="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm font-bold">Professional Install</span>
-                    <span className="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm font-bold">Alkaline Water</span>
-                    <span className="bg-teal-500/20 text-teal-400 px-3 py-1 rounded-full text-sm font-bold">Health Benefits</span>
+                  <div className="h-px bg-white/5 w-1/4"></div>
+                  
+                  <div className="flex items-center gap-4 group">
+                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <span className="text-base font-medium">Ongoing home maintenance & support</span>
+                  </div>
+                  <div className="h-px bg-white/5 w-1/4"></div>
+                  
+                  <div className="flex items-center gap-4 group">
+                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <span className="text-base font-medium">Business & document assistance</span>
                   </div>
                 </div>
               </div>
