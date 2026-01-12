@@ -519,8 +519,10 @@ function StepSellIPhone() {
               <h3 className="text-2xl font-bold text-white mb-4">What DeliWer Does?</h3>
               <div className="space-y-4 text-gray-300">
                 <p className="text-lg leading-relaxed">
-                  We act as your <span className="text-emerald-400 font-bold">professional orchestrator</span> for everything related to your move-in. 
-                  No searching for vendors, no multiple apps, no language barriers.
+                  DeliWer supports residents during the most stressful part of living in Dubai — the move-in phase.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Once you receive your apartment keys, we help you get set up properly so you can live comfortably from day one.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
