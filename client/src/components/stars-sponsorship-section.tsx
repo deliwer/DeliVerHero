@@ -238,19 +238,27 @@ export function StarsSponsorshipSection() {
           </CardContent>
         </Card>
 
-        {/* Partners CTA - Crucial for Sponsorship */}
-        <div className="mb-8">
-          <Link href="/partners" className="block">
-            <Button
-              size="lg"
-              className="w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500 hover:from-emerald-600 text-white font-black py-8 text-xl shadow-xl rounded-2xl border-4 border-emerald-400/20"
-              data-testid="button-partners-link"
-            >
-              <Handshake className="w-6 h-6 mr-3" />
-              Sponsor the Future: Partner with Us
-              <ArrowRight className="w-6 h-6 ml-3" />
-            </Button>
-          </Link>
+        {/* Partners CTA - Refined for Calm, Human Feel */}
+        <div className="mb-12 max-w-2xl mx-auto text-center">
+          <div className="space-y-6">
+            <p className="text-lg text-muted-foreground italic">
+              "We believe in making Dubai's green transition simple for everyone."
+            </p>
+            <Link href="/partners" className="block">
+              <Button
+                size="lg"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-6 text-lg shadow-xl rounded-full border border-white/10 transform hover:scale-105 transition-all"
+                data-testid="button-partners-link"
+              >
+                <Handshake className="w-5 h-5 mr-3" />
+                Partner with DeliWer
+                <ArrowRight className="w-5 h-5 ml-3" />
+              </Button>
+            </Link>
+            <p className="text-xs text-gray-500 uppercase tracking-widest">
+              Quietly building the future of JVC
+            </p>
+          </div>
         </div>
 
         {/* Expandable Content - Shows when expanded */}
