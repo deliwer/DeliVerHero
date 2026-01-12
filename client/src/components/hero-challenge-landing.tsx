@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp, Play, Copy, QrCode, Rocket, Calendar, ShoppingBag } from "lucide-react";
+import { Star, Clock, Users, Zap, Trophy, Target, Timer, Calculator, Smartphone, Leaf, ShoppingCart, Crown, Gift, Shield, CheckCircle, Building, Handshake, Heart, Sparkles, ChevronRight, Award, TrendingUp, ArrowRight, Gamepad2, Repeat, Droplets, Home, Package, Truck, Utensils, ArrowDown, BarChart, X, User, Mail, Phone, MapPin, ChevronDown, ChevronUp, Play, Copy, QrCode, Rocket, Calendar, ShoppingBag, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -321,7 +321,7 @@ function StepTwoExchange() {
             <div className="text-center mb-6">
               <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-4">
                 <Droplets className="w-5 h-5" />
-                <span className="font-bold">💧 PREMIUM WATER SYSTEMS</span>
+                <span className="font-bold inline-flex items-center gap-1"><Droplets className="w-4 h-4" /> PREMIUM WATER SYSTEMS</span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Choose Your Water Solution</h3>
               
@@ -821,7 +821,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
                       <div className="text-center">
                         <div className="text-sm text-gray-400 mb-2">Payment Options Available</div>
                         <div className="flex justify-center gap-3">
-                          <span className="text-2xl">💳</span>
+                          <CreditCard className="w-6 h-6 text-blue-400" />
                           <span className="text-xl text-white font-bold">PayPal & Stripe</span>
                         </div>
                       </div>

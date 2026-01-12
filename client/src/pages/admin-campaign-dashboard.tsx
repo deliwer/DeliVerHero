@@ -186,32 +186,32 @@ export default function AdminCampaignDashboard() {
 
   if (!isAuthenticated) {
     return (
-      <div className=\"flex items-center justify-center min-h-screen bg-gray-50\">
-        <Card className=\"w-full max-w-md\">
-          <CardHeader className=\"text-center\">
-            <Shield className=\"w-12 h-12 mx-auto mb-4 text-blue-600\" />
+      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <Shield className="w-12 h-12 mx-auto mb-4 text-blue-600" />
             <CardTitle>Admin Access Required</CardTitle>
             <CardDescription>
               This campaign management system is only accessible to verified Shopify store admins.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className=\"space-y-4 text-sm text-gray-600\">
-              <div className=\"flex items-center gap-2\">
-                <Lock className=\"w-4 h-4\" />
+            <div className="space-y-4 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <Lock className="w-4 h-4" />
                 <span>Secured with Shopify Admin authentication</span>
               </div>
-              <div className=\"flex items-center gap-2\">
-                <Mail className=\"w-4 h-4\" />
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
                 <span>Separate from internal store messaging</span>
               </div>
-              <div className=\"flex items-center gap-2\">
-                <Users className=\"w-4 h-4\" />
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4" />
                 <span>Campaign-only customer data access</span>
               </div>
             </div>
             <Button 
-              className=\"w-full mt-6\" 
+              className="w-full mt-6" 
               onClick={() => {
                 // Redirect to Shopify admin login
                 window.location.href = '/shopify/auth/verify';
@@ -227,10 +227,10 @@ export default function AdminCampaignDashboard() {
 
   if (isLoading) {
     return (
-      <div className=\"flex items-center justify-center min-h-screen\">
-        <div className=\"text-center\">
-          <div className=\"animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto\"></div>
-          <p className=\"mt-4 text-gray-600\">Loading admin dashboard...</p>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading admin dashboard...</p>
         </div>
       </div>
     );
@@ -238,15 +238,15 @@ export default function AdminCampaignDashboard() {
 
   if (error) {
     return (
-      <div className=\"flex items-center justify-center min-h-screen\">
-        <Card className=\"w-full max-w-md\">
+      <div className="flex items-center justify-center min-h-screen">
+        <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className=\"text-red-600\">Access Error</CardTitle>
+            <CardTitle className="text-red-600">Access Error</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className=\"text-gray-600\">{error}</p>
+            <p className="text-gray-600">{error}</p>
             <Button 
-              className=\"w-full mt-4\" 
+              className="w-full mt-4" 
               onClick={() => window.location.reload()}
             >
               Retry
@@ -258,57 +258,57 @@ export default function AdminCampaignDashboard() {
   }
 
   return (
-    <div className=\"min-h-screen bg-gray-50 p-4\">
-      <div className=\"max-w-7xl mx-auto\">
-        <div className=\"mb-8\">
-          <h1 className=\"text-3xl font-bold text-gray-900\">SendGrid Campaign Management</h1>
-          <p className=\"text-gray-600 mt-2\">
+    <div className="min-h-screen bg-gray-50 p-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">SendGrid Campaign Management</h1>
+          <p className="text-gray-600 mt-2">
             Secure email campaign management for Shopify store admins
           </p>
-          <div className=\"flex items-center gap-2 mt-2\">
-            <Badge variant=\"outline\">Admin Only</Badge>
-            <Badge variant=\"outline\">Campaign Data Access</Badge>
-            <Badge variant=\"outline\">Separated from Store Messaging</Badge>
+          <div className="flex items-center gap-2 mt-2">
+            <Badge variant="outline">Admin Only</Badge>
+            <Badge variant="outline">Campaign Data Access</Badge>
+            <Badge variant="outline">Separated from Store Messaging</Badge>
           </div>
         </div>
 
-        <Tabs defaultValue=\"campaigns\" className=\"space-y-6\">
-          <TabsList className=\"grid w-full grid-cols-4\">
-            <TabsTrigger value=\"campaigns\" className=\"flex items-center gap-2\">
-              <Mail className=\"w-4 h-4\" />
+        <Tabs defaultValue="campaigns" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="campaigns" className="flex items-center gap-2">
+              <Mail className="w-4 h-4" />
               Campaigns
             </TabsTrigger>
-            <TabsTrigger value=\"segments\" className=\"flex items-center gap-2\">
-              <Users className=\"w-4 h-4\" />
+            <TabsTrigger value="segments" className="flex items-center gap-2">
+              <Users className="w-4 h-4" />
               Segments
             </TabsTrigger>
-            <TabsTrigger value=\"analytics\" className=\"flex items-center gap-2\">
-              <BarChart3 className=\"w-4 h-4\" />
+            <TabsTrigger value="analytics" className="flex items-center gap-2">
+              <BarChart3 className="w-4 h-4" />
               Analytics
             </TabsTrigger>
-            <TabsTrigger value=\"admins\" className=\"flex items-center gap-2\">
-              <Settings className=\"w-4 h-4\" />
+            <TabsTrigger value="admins" className="flex items-center gap-2">
+              <Settings className="w-4 h-4" />
               Admin Roles
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value=\"campaigns\" className=\"space-y-6\">
-            <div className=\"flex justify-between items-center\">
-              <h2 className=\"text-xl font-semibold\">Email Campaigns</h2>
+          <TabsContent value="campaigns" className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold">Email Campaigns</h2>
               <Button onClick={() => {/* Open create campaign modal */}}>
-                <Plus className=\"w-4 h-4 mr-2\" />
+                <Plus className="w-4 h-4 mr-2" />
                 Create Campaign
               </Button>
             </div>
 
-            <div className=\"grid gap-4\">
+            <div className="grid gap-4">
               {campaigns.length === 0 ? (
                 <Card>
-                  <CardContent className=\"pt-6\">
-                    <div className=\"text-center text-gray-500\">
-                      <Mail className=\"w-12 h-12 mx-auto mb-4 opacity-50\" />
+                  <CardContent className="pt-6">
+                    <div className="text-center text-gray-500">
+                      <Mail className="w-12 h-12 mx-auto mb-4 opacity-50" />
                       <p>No campaigns created yet</p>
-                      <p className=\"text-sm\">Create your first email campaign to get started</p>
+                      <p className="text-sm">Create your first email campaign to get started</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -316,21 +316,21 @@ export default function AdminCampaignDashboard() {
                 campaigns.map(campaign => (
                   <Card key={campaign.id}>
                     <CardHeader>
-                      <div className=\"flex justify-between items-start\">
+                      <div className="flex justify-between items-start">
                         <div>
-                          <CardTitle className=\"text-lg\">{campaign.name}</CardTitle>
+                          <CardTitle className="text-lg">{campaign.name}</CardTitle>
                           <CardDescription>{campaign.subject}</CardDescription>
                         </div>
-                        <div className=\"flex items-center gap-2\">
+                        <div className="flex items-center gap-2">
                           {getStatusBadge(campaign.status)}
-                          <Button variant=\"outline\" size=\"sm\">
-                            <Eye className=\"w-4 h-4\" />
+                          <Button variant="outline" size="sm">
+                            <Eye className="w-4 h-4" />
                           </Button>
                           {campaign.status === 'draft' && (
                             <AlertDialog>
                               <AlertDialogTrigger asChild>
-                                <Button size=\"sm\">
-                                  <Send className=\"w-4 h-4 mr-2\" />
+                                <Button size="sm">
+                                  <Send className="w-4 h-4 mr-2" />
                                   Send
                                 </Button>
                               </AlertDialogTrigger>
@@ -354,7 +354,7 @@ export default function AdminCampaignDashboard() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className=\"flex items-center justify-between text-sm text-gray-600\">
+                      <div className="flex items-center justify-between text-sm text-gray-600">
                         <span>Segments: {campaign.segmentIds.length}</span>
                         <span>Created: {new Date(campaign.createdAt).toLocaleDateString()}</span>
                       </div>
@@ -365,28 +365,28 @@ export default function AdminCampaignDashboard() {
             </div>
           </TabsContent>
 
-          <TabsContent value=\"segments\" className=\"space-y-6\">
-            <div className=\"flex justify-between items-center\">
+          <TabsContent value="segments" className="space-y-6">
+            <div className="flex justify-between items-center">
               <div>
-                <h2 className=\"text-xl font-semibold\">Customer Segments</h2>
-                <p className=\"text-gray-600 text-sm\">Campaign targeting only - no order management data</p>
+                <h2 className="text-xl font-semibold">Customer Segments</h2>
+                <p className="text-gray-600 text-sm">Campaign targeting only - no order management data</p>
               </div>
               <Button>
-                <Plus className=\"w-4 h-4 mr-2\" />
+                <Plus className="w-4 h-4 mr-2" />
                 Create Segment
               </Button>
             </div>
 
-            <div className=\"grid gap-4\">
+            <div className="grid gap-4">
               {segments.map(segment => (
                 <Card key={segment.id}>
                   <CardHeader>
-                    <div className=\"flex justify-between items-start\">
+                    <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle className=\"text-lg\">{segment.name}</CardTitle>
+                        <CardTitle className="text-lg">{segment.name}</CardTitle>
                         <CardDescription>{segment.description}</CardDescription>
                       </div>
-                      <Badge variant=\"outline\">{segment.customerCount} customers</Badge>
+                      <Badge variant="outline">{segment.customerCount} customers</Badge>
                     </div>
                   </CardHeader>
                 </Card>
@@ -394,55 +394,55 @@ export default function AdminCampaignDashboard() {
             </div>
           </TabsContent>
 
-          <TabsContent value=\"analytics\" className=\"space-y-6\">
-            <h2 className=\"text-xl font-semibold\">Campaign Analytics</h2>
+          <TabsContent value="analytics" className="space-y-6">
+            <h2 className="text-xl font-semibold">Campaign Analytics</h2>
             <Card>
-              <CardContent className=\"pt-6\">
-                <div className=\"text-center text-gray-500\">
-                  <BarChart3 className=\"w-12 h-12 mx-auto mb-4 opacity-50\" />
+              <CardContent className="pt-6">
+                <div className="text-center text-gray-500">
+                  <BarChart3 className="w-12 h-12 mx-auto mb-4 opacity-50" />
                   <p>Analytics will appear here after sending campaigns</p>
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
-          <TabsContent value=\"admins\" className=\"space-y-6\">
-            <div className=\"flex justify-between items-center\">
+          <TabsContent value="admins" className="space-y-6">
+            <div className="flex justify-between items-center">
               <div>
-                <h2 className=\"text-xl font-semibold\">Admin Role Management</h2>
-                <p className=\"text-gray-600 text-sm\">Manage admin access and permissions for campaign management</p>
+                <h2 className="text-xl font-semibold">Admin Role Management</h2>
+                <p className="text-gray-600 text-sm">Manage admin access and permissions for campaign management</p>
               </div>
               <Button>
-                <Plus className=\"w-4 h-4 mr-2\" />
+                <Plus className="w-4 h-4 mr-2" />
                 Add Admin
               </Button>
             </div>
 
-            <div className=\"grid gap-4\">
+            <div className="grid gap-4">
               {admins.map(admin => (
                 <Card key={admin.id}>
                   <CardHeader>
-                    <div className=\"flex justify-between items-start\">
+                    <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle className=\"text-lg\">{admin.email}</CardTitle>
+                        <CardTitle className="text-lg">{admin.email}</CardTitle>
                         <CardDescription>{admin.roleName}</CardDescription>
                       </div>
-                      <div className=\"flex items-center gap-2\">
+                      <div className="flex items-center gap-2">
                         <Badge variant={admin.role === 'owner' ? 'default' : 'secondary'}>
                           {admin.role}
                         </Badge>
                         {admin.role !== 'owner' && (
-                          <Button variant=\"outline\" size=\"sm\">
-                            <Trash2 className=\"w-4 h-4\" />
+                          <Button variant="outline" size="sm">
+                            <Trash2 className="w-4 h-4" />
                           </Button>
                         )}
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className=\"flex flex-wrap gap-1\">
+                    <div className="flex flex-wrap gap-1">
                       {admin.permissions.map(permission => (
-                        <Badge key={permission} variant=\"outline\" className=\"text-xs\">
+                        <Badge key={permission} variant="outline" className="text-xs">
                           {permission.replace('_', ' ')}
                         </Badge>
                       ))}
