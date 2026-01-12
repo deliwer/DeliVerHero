@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle, ChevronDown, ChevronUp, Handshake, Building, ChevronRight, Gamepad2, Coins, MapPin, Truck, Calendar } from "lucide-react";
+import { Star, Trophy, Heart, Sparkles, TrendingUp, Users, Globe, ArrowRight, Gift, Shield, Award, Recycle, ChevronDown, ChevronUp, Handshake, Building, ChevronRight, Gamepad2, Coins } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,44 +15,6 @@ import sustainabilityImage from "@assets/stock_images/people_volunteers_co_32938
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { CalendlyButton } from "./calendly-button";
-
-function FinalCTA() {
-  return (
-    <div className="mt-16 mb-8 text-center border-t border-white/5 pt-16">
-      <div className="max-w-xl mx-auto space-y-6">
-        <h3 className="text-2xl font-bold text-white">Ready to start your Dubai journey?</h3>
-        <p className="text-gray-400">
-          Join a community of residents who value simplicity, sustainability, and calm execution. No pressure, just professional support.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href="/relocate" className="w-full sm:w-auto">
-            <Button
-              size="lg"
-              className="w-full sm:min-w-[200px] bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white font-bold rounded-full py-6"
-              data-testid="button-final-relocate"
-            >
-              <Truck className="w-5 h-5 mr-2" />
-              Explore Relocation
-            </Button>
-          </Link>
-          <CalendlyButton
-            size="lg"
-            variant="outline"
-            className="w-full sm:w-auto sm:min-w-[200px] border-blue-400/50 text-blue-400 hover:bg-blue-500/10 font-bold rounded-full py-6"
-            data-testid="button-final-consultation"
-          >
-            <Calendar className="w-5 h-5 mr-2" />
-            Book Consultation
-          </CalendlyButton>
-        </div>
-        <p className="text-xs text-gray-500 italic">
-          Simple support for your everyday living in JVC & Dubai.
-        </p>
-      </div>
-    </div>
-  );
-}
 
 interface StarsTier {
   id: string;
@@ -276,11 +238,20 @@ export function StarsSponsorshipSection() {
           </CardContent>
         </Card>
 
-        <FinalCTA />
-      </div>
-    </section>
-  );
-}
+        {/* Partners CTA - Crucial for Sponsorship */}
+        <div className="mb-8">
+          <Link href="/partners" className="block">
+            <Button
+              size="lg"
+              className="w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500 hover:from-emerald-600 text-white font-black py-8 text-xl shadow-xl rounded-2xl border-4 border-emerald-400/20"
+              data-testid="button-partners-link"
+            >
+              <Handshake className="w-6 h-6 mr-3" />
+              Sponsor the Future: Partner with Us
+              <ArrowRight className="w-6 h-6 ml-3" />
+            </Button>
+          </Link>
+        </div>
 
         {/* Expandable Content - Shows when expanded */}
         {showSustainabilitySection && (
