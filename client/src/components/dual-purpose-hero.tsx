@@ -64,7 +64,7 @@ export function DualPurposeHero() {
                 data-testid="button-get-home-service-hero"
               >
                 <Sparkles className="w-5 h-5 mr-3" />
-                Start my move-in
+                Get help moving in
               </Button>
             </Link>
             <p className="text-[12px] text-gray-300 mt-4 font-medium drop-shadow-md">
