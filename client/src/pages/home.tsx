@@ -21,24 +21,25 @@ function OpportunitiesSection() {
   return (
     <section className="py-8 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="glass rounded-3xl p-6 border border-emerald-500/30 bg-gradient-to-br from-emerald-600/10 via-teal-600/10 to-blue-600/10">
+        <div className="bg-slate-900 rounded-3xl p-6 border border-slate-800">
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-white">BEYOND ETISALAT & DU</h2>
-            <p className="text-gray-300 text-sm max-w-2xl mx-auto mt-2">
-              World's first cross-category trade platform
+            <h2 className="text-2xl font-bold text-white uppercase tracking-tight">Ecosystem Partnerships</h2>
+            <p className="text-gray-400 text-sm max-w-2xl mx-auto mt-2">
+              Expanding sustainable trade and relocation orchestration in JVC.
             </p>
           </div>
           
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* iPhone Trade Advantage */}
-            <div className="glass rounded-2xl p-4 border border-amber-500/30 bg-amber-600/5 hover:bg-amber-600/10 transition-all duration-300">
-              <div className="text-center mb-4">
-                <Building className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-                <h3 className="text-base font-bold text-white">iPHONE TRADE</h3>
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-300">
+              <div className="text-left mb-4">
+                <Building className="w-8 h-8 text-blue-400 mb-4" />
+                <h3 className="text-lg font-bold text-white uppercase">iPhone Trade</h3>
+                <p className="text-sm text-gray-400 mt-2 mb-4">Certified trade-in program for JVC residents.</p>
               </div>
               <Link
                 href="/partners"
-                className="w-full bg-amber-600 hover:bg-amber-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all text-center inline-block"
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg text-sm font-bold transition-all text-center inline-block"
                 data-testid="button-trade-iphone"
               >
                 Start Partnership
@@ -46,25 +47,27 @@ function OpportunitiesSection() {
             </div>
 
             {/* Gitex Launch Special */}
-            <div className="glass rounded-2xl p-4 border border-hero-green-500/30 bg-hero-green-600/5 hover:bg-hero-green-600/10 transition-all duration-300">
-              <div className="text-center mb-4">
-                <Heart className="w-8 h-8 text-hero-green-400 mx-auto mb-2" />
-                <h3 className="text-base font-bold text-white">GITEX 2025</h3>
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-300">
+              <div className="text-left mb-4">
+                <Heart className="w-8 h-8 text-emerald-400 mb-4" />
+                <h3 className="text-lg font-bold text-white uppercase">Community Impact</h3>
+                <p className="text-sm text-gray-400 mt-2 mb-4">Join our local environmental missions.</p>
               </div>
               <Link
                 href="/aquacafe"
-                className="w-full bg-hero-green-600 hover:bg-hero-green-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all text-center inline-block"
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg text-sm font-bold transition-all text-center inline-block"
                 data-testid="button-gitex-launch"
               >
-                Starter Kit - <DirhamCurrency amount={99} iconSize="sm" />
+                Learn More
               </Link>
             </div>
 
             {/* Media Story */}
-            <div className="glass rounded-2xl p-4 border border-purple-500/30 bg-purple-600/5 hover:bg-purple-600/10 transition-all duration-300">
-              <div className="text-center mb-4">
-                <Users className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-                <h3 className="text-base font-bold text-white">MEDIA KIT</h3>
+            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-300">
+              <div className="text-left mb-4">
+                <Users className="w-8 h-8 text-purple-400 mb-4" />
+                <h3 className="text-lg font-bold text-white uppercase">Media Relations</h3>
+                <p className="text-sm text-gray-400 mt-2 mb-4">Access our JVC orchestration story assets.</p>
               </div>
               <button
                 onClick={() => {
@@ -77,10 +80,10 @@ function OpportunitiesSection() {
                     navigator.clipboard.writeText(shareText);
                   }
                 }}
-                className="w-full bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all text-center"
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg text-sm font-bold transition-all text-center"
                 data-testid="button-media-kit"
               >
-                Download Kit
+                Media Kit
               </button>
             </div>
           </div>
@@ -92,74 +95,69 @@ function OpportunitiesSection() {
 
 function LiveChallengeWidget() {
   return (
-    <div className="glass rounded-2xl p-6 border border-slate-600" data-testid="live-challenge">
-      <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-        <Flame className="w-6 h-6 text-red-500 mr-2" />
-        LIVE COMMUNITY CHALLENGE
+    <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800" data-testid="live-challenge">
+      <h3 className="text-lg font-bold text-white mb-6 flex items-center uppercase tracking-tight">
+        <Flame className="w-5 h-5 text-slate-400 mr-2" />
+        Community Mission
       </h3>
 
-      <div className="text-center mb-8">
-        <h4 className="text-2xl font-bold text-white mb-2">1 MILLION BOTTLES PREVENTED BY RAMADAN</h4>
-        <p className="text-gray-300">Join Dubai's biggest environmental mission</p>
+      <div className="text-left mb-8">
+        <h4 className="text-xl font-bold text-white mb-2 uppercase">1 Million Bottles Target</h4>
+        <p className="text-gray-400 text-sm italic">Local JVC environmental initiative</p>
       </div>
 
       {/* Progress Bar */}
       <div className="mb-6">
-        <div className="flex justify-between text-sm text-gray-400 mb-2">
-          <span>Progress</span>
-          <span>80% Complete</span>
+        <div className="flex justify-between text-xs text-gray-500 mb-2">
+          <span>Current Impact</span>
+          <span>80% Verified</span>
         </div>
-        <div className="w-full bg-slate-700 rounded-full h-4">
-          <div className="bg-gradient-to-r from-hero-green-500 to-hero-green-600 h-4 rounded-full" style={{width: '80%'}}></div>
+        <div className="w-full bg-slate-800 rounded-full h-2">
+          <div className="bg-slate-600 h-2 rounded-full" style={{width: '80%'}}></div>
         </div>
       </div>
 
       {/* Challenge Stats */}
       <div className="grid grid-cols-2 gap-4 mb-6">
-        <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-          <Clock className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-white">23</div>
-          <div className="text-sm text-gray-400">days left</div>
+        <div className="text-left p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+          <div className="text-xl font-bold text-white">23 Days</div>
+          <div className="text-xs text-gray-500">Remaining</div>
         </div>
-        <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-          <TrendingUp className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-          <div className="text-2xl font-bold text-white">200K</div>
-          <div className="text-sm text-gray-400">bottles to go</div>
+        <div className="text-left p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+          <div className="text-xl font-bold text-white">200K</div>
+          <div className="text-xs text-gray-500">To target</div>
         </div>
       </div>
 
       {/* Live Activity Feed */}
-      <div className="border-t border-slate-600 pt-4">
-        <div className="flex items-center mb-2">
-          <div className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-          <span className="text-sm text-gray-300">LIVE: Planet Heroes in Action</span>
+      <div className="pt-4">
+        <div className="flex items-center mb-4">
+          <div className="w-1.5 h-1.5 bg-slate-500 rounded-full mr-2"></div>
+          <span className="text-xs text-gray-500 uppercase font-bold">Recent Impact Log</span>
         </div>
 
-        <div className="space-y-2 text-sm">
-          <div className="text-gray-300">🎉 Sarah M. just became Level 2!</div>
-          <div className="text-gray-300">🏅 Ahmed K. earned "Water Warrior"</div>
-          <div className="text-gray-300">⚡ Fatima A. prevented 500 bottles</div>
-          <div className="text-gray-300">🚀 YOU could be next! Join the mission</div>
+        <div className="space-y-3 text-sm text-gray-400">
+          <div className="flex gap-2"><span>•</span> <span>Community mission updated: 500 bottles prevented</span></div>
+          <div className="flex gap-2"><span>•</span> <span>New local partner joined environmental initiative</span></div>
         </div>
         
         {/* Live Challenge CTA */}
-        <div className="mt-4 pt-4 border-t border-slate-600">
+        <div className="mt-8">
           <button
             onClick={() => {
               const challengeLink = `https://deliwer.com/challenge?ref=LIVE${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
-              const shareText = `🔥 Join Dubai's LIVE Community Challenge! 1 Million Bottles to Prevent by Ramadan - 80% Complete! Get Bakers Kitchen Dirham 100 Kangen Water voucher: ${challengeLink}`;
+              const shareText = `Join Dubai's JVC Community Challenge! 1 Million Bottles target. Get local support details: ${challengeLink}`;
               
               if (navigator.share) {
-                navigator.share({ title: 'Join LIVE Community Challenge', text: shareText, url: challengeLink });
+                navigator.share({ title: 'JVC Community Challenge', text: shareText, url: challengeLink });
               } else {
                 navigator.clipboard.writeText(shareText);
                 window.open('/?utm_source=live_challenge&utm_medium=share_cta', '_blank');
               }
             }}
-            className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-bold transition-all flex items-center justify-center"
+            className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg font-bold transition-all flex items-center justify-center text-sm"
           >
-            <Flame className="w-4 h-4 mr-2" />
-            Share Challenge & Join
+            Mission Details
           </button>
         </div>
       </div>
@@ -249,40 +247,40 @@ export default function Home() {
       </section> */}
 
       {/* B2B Wholesale Solutions - Concise Footer Section */}
-      <section className="py-12 px-4 bg-gradient-to-b from-slate-900 to-slate-950">
+      <section className="py-12 px-4 bg-slate-950">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-white mb-2">
-              B2B Solutions
+            <h2 className="text-2xl font-bold text-white mb-2 uppercase tracking-tight">
+              B2B Orchestration
             </h2>
-            <p className="text-gray-400">
-              Bulk procurement & fulfillment for wholesale buyers
+            <p className="text-gray-500 text-sm">
+              Bulk fulfillment for JVC commercial partners
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-500/20">
+            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
               <div className="flex items-center gap-2 mb-3">
-                <Gavel className="w-5 h-5 text-blue-400" />
-                <h3 className="text-lg font-bold text-white">ChainTrack</h3>
+                <Gavel className="w-5 h-5 text-slate-400" />
+                <h3 className="text-lg font-bold text-white uppercase">ChainTrack</h3>
               </div>
-              <p className="text-sm text-gray-400 mb-4">Reverse auctions for bulk iPhone procurement</p>
+              <p className="text-sm text-gray-400 mb-4 italic">B2B bulk iPhone procurement orchestration.</p>
               <Link href="/chaintrack">
-                <Button variant="outline" size="sm" className="w-full border-blue-500/50" data-testid="button-chaintrack-footer">
-                  Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                <Button variant="outline" size="sm" className="w-full border-slate-700 hover:bg-slate-800" data-testid="button-chaintrack-footer">
+                  Details <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             </div>
 
-            <div className="bg-slate-800/50 rounded-xl p-6 border border-purple-500/20">
+            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
               <div className="flex items-center gap-2 mb-3">
-                <ShoppingCart className="w-5 h-5 text-purple-400" />
-                <h3 className="text-lg font-bold text-white">Fulfillment by DeliWer</h3>
+                <ShoppingCart className="w-5 h-5 text-slate-400" />
+                <h3 className="text-lg font-bold text-white uppercase">Fulfillment</h3>
               </div>
-              <p className="text-sm text-gray-400 mb-4">Dropship program with quality guarantee</p>
+              <p className="text-sm text-gray-400 mb-4 italic">JVC local dropship orchestration.</p>
               <Link href="/fulfillment">
-                <Button variant="outline" size="sm" className="w-full border-purple-500/50" data-testid="button-fulfillment-footer">
-                  Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                <Button variant="outline" size="sm" className="w-full border-slate-700 hover:bg-slate-800" data-testid="button-fulfillment-footer">
+                  Details <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             </div>

@@ -57,10 +57,10 @@ function HeroSpotCounter({ initialCount = 47 }: HeroSpotCounterProps) {
   }, []);
   
   return (
-    <div className="inline-flex items-center bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2" data-testid="hero-spots-counter">
-      <div className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
-      <span className="text-red-400 font-bold text-sm">
-        Only {spotsLeft} Founding Hero spots left today
+    <div className="inline-flex items-center bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-2" data-testid="hero-spots-counter">
+      <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+      <span className="text-blue-400 font-bold text-sm">
+        JVC Local Support Channel Active
       </span>
     </div>
   );
@@ -107,12 +107,9 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
   const formatTime = (time: number) => time.toString().padStart(2, '0');
   
   return (
-    <div className="flex items-center space-x-2 text-amber-500" data-testid="hero-countdown">
+    <div className="flex items-center space-x-2 text-slate-400" data-testid="hero-countdown">
       <Timer className="w-4 h-4" />
-      <span className="font-mono font-bold">
-        {formatTime(time.hours)}:{formatTime(time.minutes)}:{formatTime(time.seconds)}
-      </span>
-      <span className="text-sm text-gray-400">until double points end</span>
+      <span className="text-sm">Response time: &lt; 24 hours</span>
     </div>
   );
 }
