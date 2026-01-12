@@ -3,9 +3,9 @@ import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp, Shield, CheckC
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import heroImage from "@assets/generated_images/move-in_day_chaos_with_keys_in_hand..png";
+import heroImage from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
-import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
+import settlementImage from "@assets/generated_images/cleaning_in_progress_in_a_dubai_home..png";
 
 export function DualPurposeHero() {
   const testimonials = [
