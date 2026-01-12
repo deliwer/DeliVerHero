@@ -205,7 +205,7 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
               aria-label="Toggle Relocation section"
               data-testid="toggle-relocation"
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">Expert Relocation Services</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-teal-400">Expert Relocation Support</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-blue-400" />
               ) : (
@@ -214,48 +214,41 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
             </button>
           </h2>
           <div className="flex items-center justify-center gap-2 mb-3">
-            <Building className="w-5 h-5 text-blue-400 animate-pulse" />
-            <span className="text-blue-400 font-bold text-lg">Dubai Relocation</span>
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+            <MapPin className="w-5 h-5 text-blue-400" />
+            <span className="text-blue-400 font-bold text-lg">Focused on JVC</span>
           </div>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            Moving to Dubai? Let our experts handle everything from visa processing to finding your perfect home. 
-            <span className="text-blue-400 font-bold">Seamless relocation, business setup, and local support!</span>
+            Honest relocation assistance for Jumeirah Village Circle. We don't try to cover all of Dubai—we focus on being the best orchestrator for JVC residents.
           </p>
 
-          {/* Relocation Content - Replacing Play TV */}
-          <div className="max-w-3xl mx-auto mt-6 rounded-2xl overflow-hidden border border-blue-500/50 shadow-2xl bg-gradient-to-br from-blue-600/20 to-indigo-600/20 p-2 backdrop-blur-sm">
-            <div className="bg-slate-900/50 rounded-xl p-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div className="space-y-4 text-left">
-                  <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-2">
-                    <Handshake className="w-5 h-5" />
-                    <span className="font-bold uppercase tracking-wider text-xs">Concierge Support</span>
+          {/* Relocation Content - Text-led, Quiet & Confident */}
+          <div className="max-w-2xl mx-auto mt-6 rounded-2xl overflow-hidden border border-blue-500/30 bg-slate-900/40 p-8 backdrop-blur-sm">
+            <div className="space-y-8 text-left">
+              <div className="border-l-2 border-blue-500/30 pl-6">
+                <h3 className="text-2xl font-bold text-white mb-6">JVC Local Orchestration</h3>
+                <div className="space-y-6 text-gray-300">
+                  <p className="text-lg leading-relaxed">
+                    Relocating is stressful. We simplify it by focusing exclusively on <span className="text-blue-400 font-bold">JVC local knowledge</span> and vetted community partners.
+                  </p>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-4 group">
+                      <CheckCircle className="w-5 h-5 text-blue-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      <span className="text-base font-medium">Focused JVC Home Search & Move-in</span>
+                    </div>
+                    <div className="h-px bg-white/5 w-1/4"></div>
+                    
+                    <div className="flex items-center gap-4 group">
+                      <CheckCircle className="w-5 h-5 text-blue-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      <span className="text-base font-medium">Business Setup & Golden Visa Support</span>
+                    </div>
+                    <div className="h-px bg-white/5 w-1/4"></div>
+                    
+                    <div className="flex items-center gap-4 group">
+                      <CheckCircle className="w-5 h-5 text-blue-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      <span className="text-base font-medium">Local JVC Concierge & Documentation</span>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white leading-tight">Your Dubai Journey Starts Here</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-teal-400 flex-shrink-0" />
-                      <span>Business Setup & Licensing</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-teal-400 flex-shrink-0" />
-                      <span>Visa & Golden Visa Assistance</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-teal-400 flex-shrink-0" />
-                      <span>Home Search & Move-in Support</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="relative group">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-teal-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                  <img 
-                    src={relocationProfessionalImage} 
-                    alt="Dubai Relocation" 
-                    className="relative w-full h-auto rounded-xl shadow-lg border border-white/10"
-                    data-testid="img-relocation-hero"
-                  />
                 </div>
               </div>
             </div>
@@ -292,9 +285,6 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
                 <p className="text-[10px] text-gray-500 mt-2 text-center">No agents. No commissions. No pressure.</p>
               </div>
             </div>
-            <p className="text-center text-gray-400 text-sm">
-              Join thousands of successful professionals who relocated with AquaCafe DeliWer
-            </p>
           </div>
         </div>
 
