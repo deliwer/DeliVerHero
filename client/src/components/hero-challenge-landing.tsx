@@ -181,17 +181,8 @@ function StepOnePlay({ onJoinMission }: { onJoinMission: () => void }) {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <section className="py-8 px-4 mb-8 relative overflow-hidden" data-section="step-3">
-      {/* Relocation background effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/20 to-teal-900/20"></div>
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-20 right-16 w-3 h-3 bg-indigo-400 rounded-full animate-pulse delay-300"></div>
-        <div className="absolute bottom-20 left-16 w-2 h-2 bg-teal-400 rounded-full animate-pulse delay-700"></div>
-        <div className="absolute bottom-10 right-10 w-4 h-4 bg-cyan-400 rounded-full animate-pulse delay-1000"></div>
-      </div>
-      <div className="max-w-4xl mx-auto relative z-10">
-        <ProgressIndicator currentStep={3} />
+    <section className="py-8 px-4 mb-8" data-section="step-3">
+      <div className="max-w-4xl mx-auto">
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">
