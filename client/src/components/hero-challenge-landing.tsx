@@ -110,7 +110,7 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
   return (
     <div className="flex items-center space-x-2 text-slate-400" data-testid="hero-countdown">
       <Timer className="w-4 h-4" />
-      <span className="text-sm">Response time: &lt; 24 hours</span>
+      <span className="text-sm">Response time: {"<"} 24 hours</span>
     </div>
   );
 }
@@ -895,7 +895,7 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
             {/* After signup message */}
             <div className="text-center py-6 bg-slate-800/50 rounded-xl border border-slate-600 mb-8">
               <p className="text-gray-300 text-lg mb-2">
-                <span className="text-hero-green-400 font-bold">Ready to Start?</span> Click "JOIN LOYALTY" above or explore water filtration packages below ⬇️
+                <span className="text-hero-green-400 font-bold">Ready to Start?</span> Click "JOIN LOYALTY" above or explore water filtration packages below
               </p>
             </div>
           </div>
