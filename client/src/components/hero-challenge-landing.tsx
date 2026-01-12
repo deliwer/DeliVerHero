@@ -552,7 +552,7 @@ function StepSellIPhone() {
                   data-testid="button-book-housing-consultation"
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>New Resident Essentials</span>
+                  <span>Move-In Services</span>
                 </CalendlyButton>
               </div>
               <Link href="/residence/move-in-packages" className="flex-1">
