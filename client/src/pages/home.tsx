@@ -198,7 +198,7 @@ export default function Home() {
   return (
     <div>
       <SEOMeta
-        title="Trade Your iPhone for DXBs - Dubai Carbon Tokens Rewards"
+        title="Your Everyday Living Companion for Dubai"
         description="Dubai's first iPhone to water trade platform. Earn DXBs (Dubai Carbon Tokens) for your old iPhone. Free pickup for AquaCafe loyalty members within 24 hours across Dubai, Sharjah & Abu Dhabi. Certified data wipe guaranteed."
         keywords="iPhone trade-in Dubai, sell iPhone UAE, DXBs, Dubai Carbon Tokens, water delivery Dubai, sustainability rewards, eco-friendly Dubai, iPhone buyback, DeliWer, trade iPhone for water, circular economy UAE"
       />

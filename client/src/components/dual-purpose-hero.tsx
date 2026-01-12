@@ -96,15 +96,12 @@ export function DualPurposeHero() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Column 1: Core Operations */}
             <div className="space-y-6">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover-elevate">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-4 flex items-center gap-2">
-                  <MapPin className="w-4 h-4" /> Focused on JVC
+                  <MapPin className="w-4 h-4" /> Currently operating in:
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                  We focus exclusively on Jumeirah Village Circle to ensure professional orchestration and local expertise.
-                </p>
                 <div className="flex flex-wrap gap-2">
-                  {["JVC", "JVT"].map((c) => (
+                  {["JVC / JVT", "Business Bay", "Marina / JLT", "Barsha Heights"].map((c) => (
                     <span key={c} className="px-3 py-1 bg-white/20 rounded-full text-white text-xs font-medium border border-white/10">
                       {c}
                     </span>
