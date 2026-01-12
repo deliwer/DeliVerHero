@@ -516,7 +516,7 @@ function StepSellIPhone() {
           {/* Text-led What DeliWer Does Section */}
           <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
             <div className="border-l-2 border-emerald-500/30 pl-6">
-              <h3 className="text-2xl font-bold text-white mb-4">What DeliWer Does?</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">How DeliWer helps</h3>
               <div className="space-y-4 text-gray-300">
                 <p className="text-lg leading-relaxed">
                   DeliWer supports residents during the most stressful part of living in Dubai — the move-in phase.
