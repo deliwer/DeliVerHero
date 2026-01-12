@@ -245,48 +245,6 @@ export default function Home() {
         ...
       </section> */}
 
-      {/* B2B Wholesale Solutions - Concise Footer Section */}
-      <section className="py-12 px-4 bg-slate-950">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold text-white mb-2 uppercase tracking-tight">
-              B2B Orchestration
-            </h2>
-            <p className="text-gray-500 text-sm">
-              Bulk fulfillment for JVC commercial partners
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
-              <div className="flex items-center gap-2 mb-3">
-                <Gavel className="w-5 h-5 text-slate-400" />
-                <h3 className="text-lg font-bold text-white uppercase">ChainTrack</h3>
-              </div>
-              <p className="text-sm text-gray-400 mb-4 italic">B2B bulk iPhone procurement orchestration.</p>
-              <Link href="/chaintrack">
-                <Button variant="outline" size="sm" className="w-full border-slate-700 hover:bg-slate-800" data-testid="button-chaintrack-footer">
-                  Details <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-
-            <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
-              <div className="flex items-center gap-2 mb-3">
-                <ShoppingCart className="w-5 h-5 text-slate-400" />
-                <h3 className="text-lg font-bold text-white uppercase">Fulfillment</h3>
-              </div>
-              <p className="text-sm text-gray-400 mb-4 italic">JVC local dropship orchestration.</p>
-              <Link href="/fulfillment">
-                <Button variant="outline" size="sm" className="w-full border-slate-700 hover:bg-slate-800" data-testid="button-fulfillment-footer">
-                  Details <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Founders Section */}
       <FoundersSection />
 
