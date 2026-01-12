@@ -684,7 +684,7 @@ function StepSellIPhone() {
         </>
         )}
       </div>
-    </div>
+    </motion.section>
   );
 }
 
