@@ -40,16 +40,6 @@ export function DualPurposeHero() {
 
           {/* CTA Section */}
           <div className="max-w-md mx-auto space-y-4">
-            <Button
-              variant="outline"
-              className="w-full border-white/30 bg-white/10 text-white hover:bg-white/20 px-10 py-8 text-lg font-bold rounded-2xl backdrop-blur-md transition-all flex items-center justify-center gap-3"
-              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
-              data-testid="button-whatsapp-contact"
-            >
-              <MessageCircle className="w-6 h-6" />
-              WhatsApp Contact
-            </Button>
-
             <Link href="/residence/move-in-services">
               <Button
                 className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
