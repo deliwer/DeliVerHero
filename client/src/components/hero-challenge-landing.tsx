@@ -560,14 +560,16 @@ function StepSellIPhone() {
         <div className="mt-6 space-y-4">
           <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
             <div className="flex-1">
-              <CalendlyButton
-                size="lg"
-                className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-book-housing-consultation"
-              >
-                <Calendar className="w-5 h-5 flex-shrink-0" />
-                <span> → View move-in services</span>
-              </CalendlyButton>
+              <Link href="/residence/move-in-services" className="w-full">
+                <Button
+                  size="lg"
+                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                  data-testid="button-view-move-in-services"
+                >
+                  <Calendar className="w-5 h-5 flex-shrink-0" />
+                  <span> → View move-in services</span>
+                </Button>
+              </Link>
             </div>
             <Link href="/residence/move-in-packages" className="flex-1">
               <Button
