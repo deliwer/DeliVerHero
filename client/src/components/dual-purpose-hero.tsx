@@ -140,11 +140,19 @@ export function DualPurposeHero() {
                   DeliWer works alongside building teams, service providers, and community developments to support residents during move-in and early living stages.
                 </p>
                 {/* Logo Placeholder Area */}
-                <div className="flex flex-wrap items-center gap-8 mt-8 opacity-40 grayscale">
-                  <Building2 className="w-10 h-10 text-white" />
-                  <Building2 className="w-10 h-10 text-white" />
-                  <Building2 className="w-10 h-10 text-white" />
-                  <Building2 className="w-10 h-10 text-white" />
+                <div className="flex flex-wrap items-center gap-8 mt-8 opacity-60 grayscale hover:grayscale-0 transition-all">
+                  <div className="flex flex-col items-center">
+                    <span className="text-white font-black text-xl tracking-tighter">EMAAR</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-white font-black text-xl tracking-widest">DAMAC</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-white font-black text-xl tracking-tight">NAKHEEL</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <Building2 className="w-10 h-10 text-white" />
+                  </div>
                 </div>
               </div>
             </div>
