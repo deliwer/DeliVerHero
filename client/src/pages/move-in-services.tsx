@@ -461,11 +461,9 @@ export default function MoveInServices() {
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="bg-gradient-to-br from-emerald-600/40 to-blue-600/40 p-12 md:p-20 rounded-[4rem] border border-emerald-500/30 shadow-2xl backdrop-blur-xl">
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">Set up my JVC residence</h2>
-            <div className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-medium space-y-2">
-              <p>Contact below:</p>
-              <p className="text-2xl font-black text-white">+971 523 946 311</p>
-              <p className="text-emerald-400">info@deliwer.com</p>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 leading-tight">Just moved in?</h2>
+            <div className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">
+              <p>Tell us where you’re living and what you need help with.<br />We’ll guide you step by step.</p>
             </div>
             <Button 
               size="lg" 
@@ -473,7 +471,10 @@ export default function MoveInServices() {
               onClick={() => window.open("https://wa.me/971523946311", "_blank")}
             >
               <SiWhatsapp className="mr-3 w-8 h-8" />
-              Set Up Now
+              <div className="flex flex-col items-start">
+                <span className="text-sm uppercase tracking-widest opacity-80">Chat on WhatsApp</span>
+                <span>+971 523 946 311</span>
+              </div>
               <ArrowRight className="ml-3 w-8 h-8" />
             </Button>
           </div>
