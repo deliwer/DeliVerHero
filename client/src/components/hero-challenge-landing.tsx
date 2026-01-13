@@ -508,183 +508,181 @@ function StepSellIPhone() {
       className="max-w-4xl mx-auto px-4 py-12"
     >
       <ProgressIndicator currentStep={1} />
-        
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4">
-            <button
-              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
-              onClick={() => setIsExpanded(!isExpanded)}
-              aria-expanded={isExpanded}
-              aria-label="Toggle Get Smart Home section"
-              data-testid="toggle-smart-home"
-            >
-              <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent"> Residence in Dubai</span>
-              {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-emerald-400" />
-              ) : (
-                <ChevronDown className="w-8 h-8 text-emerald-400" />
-              )}
-            </button>
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">DeliWer does not sell property or act as a real estate agent.</p>
+      <div className="text-center mb-8">
+        <h2 className="text-3xl md:text-5xl font-black mb-4">
+          <button
+            className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-expanded={isExpanded}
+            aria-label="Toggle Get Smart Home section"
+            data-testid="toggle-smart-home"
+          >
+            <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent"> Residence in Dubai</span>
+            {isExpanded ? (
+              <ChevronUp className="w-8 h-8 text-emerald-400" />
+            ) : (
+              <ChevronDown className="w-8 h-8 text-emerald-400" />
+            )}
+          </button>
+        </h2>
+        <p className="text-lg text-gray-300 max-w-2xl mx-auto">DeliWer does not sell property or act as a real estate agent.</p>
 
-          {/* Text-led What DeliWer Does Section */}
-          <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
-            <div className="border-l-2 border-emerald-500/30 pl-6">
-              <h3 className="text-2xl font-bold text-white mb-4">How DeliWer helps</h3>
-              <div className="space-y-4 text-gray-300">
-                <p className="text-lg leading-relaxed">
-                  DeliWer supports residents during the most stressful part of living in Dubai — the move-in phase.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  Once you receive your apartment keys, we help you get set up properly so you can live comfortably from day one.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold mt-1">•</span>
-                    <span>Tell us what you need via a single WhatsApp contact.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold mt-1">•</span>
-                    <span>We coordinate vetted local partners for cleaning, water, maintenance, and setup.</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-emerald-400 font-bold mt-1">•</span>
-                    <span>One DeliWer coordinator remains responsible until everything is complete.</span>
-                  </li>
-                </ul>
-              </div>
+        {/* Text-led What DeliWer Does Section */}
+        <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
+          <div className="border-l-2 border-emerald-500/30 pl-6">
+            <h3 className="text-2xl font-bold text-white mb-4">Help after you get your apartment keys in Dubai</h3>
+            <div className="space-y-4 text-gray-300">
+              <p className="text-lg leading-relaxed">
+                DeliWer supports residents during the most stressful part of living in Dubai — the move-in phase.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Once you receive your apartment keys, we help you get set up properly so you can live comfortably from day one.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold mt-1">•</span>
+                  <span>Tell us what you need via a single WhatsApp contact.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold mt-1">•</span>
+                  <span>We coordinate vetted local partners for cleaning, water, maintenance, and setup.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold mt-1">•</span>
+                  <span>One DeliWer coordinator remains responsible until everything is complete.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* CTAs - Calendar Booking and Housing Search */}
+        <div className="mt-6 space-y-4">
+          <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+            <div className="flex-1">
+              <CalendlyButton
+                size="lg"
+                className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-book-housing-consultation"
+              >
+                <Calendar className="w-5 h-5 flex-shrink-0" />
+                <span>Move-In Services</span>
+              </CalendlyButton>
+            </div>
+            <Link href="/residence/move-in-packages" className="flex-1">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full flex items-center justify-center gap-3 border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
+                data-testid="button-browse-housing"
+              >
+                <Home className="w-5 h-5 flex-shrink-0" />
+                <span>Move-In Packages</span>
+              </Button>
+            </Link>
+          </div>
+          <p className="text-center text-gray-400 text-sm">Free consultation - Schedule your meeting today</p>
+        </div>
+      </div>
+      {isExpanded && (
+      <>
+      {/* Smart Home Property Search Info */}
+      <div className="glass rounded-2xl p-8 border border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 to-green-500/10 mb-8 animate-in slide-in-from-top duration-500">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full mb-4">
+            <Home className="w-5 h-5" />
+            <span className="font-bold">SMART HOME FINDER</span>
+          </div>
+          <h3 className="text-2xl font-bold text-white mb-2">Find Your Perfect Home in Dubai</h3>
+          <p className="text-gray-300 text-sm">
+            Rent or buy smart homes with integrated technology and sustainable living features
+          </p>
+        </div>
+
+        {/* Property Types Grid */}
+        <div className="max-w-2xl mx-auto mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-emerald-400/30 text-center hover:border-emerald-400/60 transition-all">
+              <Building className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Apartments</h4>
+              <p className="text-gray-400 text-sm">Modern smart apartments in prime locations</p>
+            </div>
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-green-400/30 text-center hover:border-green-400/60 transition-all">
+              <Home className="w-10 h-10 text-green-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Villas</h4>
+              <p className="text-gray-400 text-sm">Spacious villas with smart home systems</p>
+            </div>
+            <div className="bg-slate-800/50 rounded-xl p-6 border border-teal-400/30 text-center hover:border-teal-400/60 transition-all">
+              <Building className="w-10 h-10 text-teal-400 mx-auto mb-3" />
+              <h4 className="text-white font-bold mb-2">Townhouses</h4>
+              <p className="text-gray-400 text-sm">Family-friendly townhouses with gardens</p>
             </div>
           </div>
 
-          {/* CTAs - Calendar Booking and Housing Search */}
-          <div className="mt-6 space-y-4">
-            <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <div className="flex-1">
-                <CalendlyButton
+          {/* Smart Home Features */}
+          <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-2xl p-8 border-2 border-emerald-400/50 text-center">
+            <div className="text-gray-300 text-sm mb-2">Every Smart Home Includes</div>
+            <div className="flex flex-wrap gap-3 justify-center mb-4">
+              <span className="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold">Water Purification</span>
+              <span className="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-bold">Smart Thermostat</span>
+              <span className="bg-teal-500/20 text-teal-400 px-4 py-2 rounded-full text-sm font-bold">Solar Ready</span>
+              <span className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-bold">EV Charging</span>
+            </div>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Link href="/residence">
+                <Button 
                   size="lg"
-                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-book-housing-consultation"
+                  className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
+                  data-testid="button-browse-rent"
                 >
-                  <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>Move-In Services</span>
-                </CalendlyButton>
-              </div>
-              <Link href="/residence/move-in-packages" className="flex-1">
-                <Button
+                  <Home className="w-5 h-5 mr-2" />
+                  Browse Rentals
+                </Button>
+              </Link>
+              <Link href="/residence?type=buy">
+                <Button 
                   size="lg"
                   variant="outline"
-                  className="w-full flex items-center justify-center gap-3 border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-browse-housing"
+                  className="border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20"
+                  data-testid="button-browse-buy"
                 >
-                  <Home className="w-5 h-5 flex-shrink-0" />
-                  <span>Move-In Packages</span>
+                  <Building className="w-5 h-5 mr-2" />
+                  Properties for Sale
                 </Button>
               </Link>
             </div>
-            <p className="text-center text-gray-400 text-sm">Free consultation - Schedule your meeting today</p>
           </div>
         </div>
 
-        {isExpanded && (
-        <>
-        {/* Smart Home Property Search Info */}
-        <div className="glass rounded-2xl p-8 border border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 to-green-500/10 mb-8 animate-in slide-in-from-top duration-500">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full mb-4">
-              <Home className="w-5 h-5" />
-              <span className="font-bold">SMART HOME FINDER</span>
+        <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-xl p-6 border border-emerald-400/30">
+          <h4 className="text-lg font-bold text-white mb-3 text-center">How It Works</h4>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div className="text-center">
+              <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                <Target className="w-6 h-6 text-emerald-400" />
+              </div>
+              <div className="text-white font-bold mb-1">Browse Listings</div>
+              <div className="text-gray-400">Search smart homes by area & budget</div>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Find Your Perfect Home in Dubai</h3>
-            <p className="text-gray-300 text-sm">
-              Rent or buy smart homes with integrated technology and sustainable living features
-            </p>
-          </div>
-
-          {/* Property Types Grid */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <div className="bg-slate-800/50 rounded-xl p-6 border border-emerald-400/30 text-center hover:border-emerald-400/60 transition-all">
-                <Building className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
-                <h4 className="text-white font-bold mb-2">Apartments</h4>
-                <p className="text-gray-400 text-sm">Modern smart apartments in prime locations</p>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                <Calendar className="w-6 h-6 text-green-400" />
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-6 border border-green-400/30 text-center hover:border-green-400/60 transition-all">
-                <Home className="w-10 h-10 text-green-400 mx-auto mb-3" />
-                <h4 className="text-white font-bold mb-2">Villas</h4>
-                <p className="text-gray-400 text-sm">Spacious villas with smart home systems</p>
-              </div>
-              <div className="bg-slate-800/50 rounded-xl p-6 border border-teal-400/30 text-center hover:border-teal-400/60 transition-all">
-                <Building className="w-10 h-10 text-teal-400 mx-auto mb-3" />
-                <h4 className="text-white font-bold mb-2">Townhouses</h4>
-                <p className="text-gray-400 text-sm">Family-friendly townhouses with gardens</p>
-              </div>
+              <div className="text-white font-bold mb-1">Schedule Viewing</div>
+              <div className="text-gray-400">Book a tour with our experts</div>
             </div>
-
-            {/* Smart Home Features */}
-            <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-2xl p-8 border-2 border-emerald-400/50 text-center">
-              <div className="text-gray-300 text-sm mb-2">Every Smart Home Includes</div>
-              <div className="flex flex-wrap gap-3 justify-center mb-4">
-                <span className="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold">Water Purification</span>
-                <span className="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-bold">Smart Thermostat</span>
-                <span className="bg-teal-500/20 text-teal-400 px-4 py-2 rounded-full text-sm font-bold">Solar Ready</span>
-                <span className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-bold">EV Charging</span>
+            <div className="text-center">
+              <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                <CheckCircle className="w-6 h-6 text-teal-400" />
               </div>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Link href="/residence">
-                  <Button 
-                    size="lg"
-                    className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
-                    data-testid="button-browse-rent"
-                  >
-                    <Home className="w-5 h-5 mr-2" />
-                    Browse Rentals
-                  </Button>
-                </Link>
-                <Link href="/residence?type=buy">
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    className="border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20"
-                    data-testid="button-browse-buy"
-                  >
-                    <Building className="w-5 h-5 mr-2" />
-                    Properties for Sale
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-xl p-6 border border-emerald-400/30">
-            <h4 className="text-lg font-bold text-white mb-3 text-center">How It Works</h4>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <Target className="w-6 h-6 text-emerald-400" />
-                </div>
-                <div className="text-white font-bold mb-1">Browse Listings</div>
-                <div className="text-gray-400">Search smart homes by area & budget</div>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <Calendar className="w-6 h-6 text-green-400" />
-                </div>
-                <div className="text-white font-bold mb-1">Schedule Viewing</div>
-                <div className="text-gray-400">Book a tour with our experts</div>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <CheckCircle className="w-6 h-6 text-teal-400" />
-                </div>
-                <div className="text-white font-bold mb-1">Move In</div>
-                <div className="text-gray-400">Complete relocation support included</div>
-              </div>
+              <div className="text-white font-bold mb-1">Move In</div>
+              <div className="text-gray-400">Complete relocation support included</div>
             </div>
           </div>
         </div>
-        </>
-        )}
+      </div>
+      </>
+      )}
     </motion.div>
   );
 }
