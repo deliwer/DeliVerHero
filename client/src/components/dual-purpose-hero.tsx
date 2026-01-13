@@ -43,7 +43,7 @@ export function DualPurposeHero() {
             <Button
               variant="outline"
               className="w-full border-white/30 bg-white/10 text-white hover:bg-white/20 px-10 py-8 text-lg font-bold rounded-2xl backdrop-blur-md transition-all flex items-center justify-center gap-3"
-              onClick={() => window.open('https://wa.me/971501234567', '_blank')}
+              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
               data-testid="button-whatsapp-contact"
             >
               <MessageCircle className="w-6 h-6" />
@@ -86,27 +86,17 @@ export function DualPurposeHero() {
             <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">Move-in services for new homes in Dubai — cleaning, water, maintenance & setup after you get the keys.</p>
           </div>
 
-          {/* Media & Ecosystem Presence */}
-          <div className="mb-16">
-            <p className="text-center text-gray-400 text-sm font-bold uppercase tracking-widest mb-8">Seen across Dubai’s living ecosystem</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-              <div className="flex flex-col items-center">
-                <Building2 className="w-10 h-10 text-white mb-2" />
-                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">JVC / JVT</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Building2 className="w-10 h-10 text-white mb-2" />
-                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">Business Bay</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Building2 className="w-10 h-10 text-white mb-2" />
-                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">Marina / JLT</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <Building2 className="w-10 h-10 text-white mb-2" />
-                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">Barsha Heights</span>
-              </div>
-            </div>
+          {/* Secondary WhatsApp CTA */}
+          <div className="mb-16 flex justify-center">
+            <Button
+              variant="outline"
+              className="w-full max-w-md border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 px-10 py-8 text-lg font-bold rounded-2xl backdrop-blur-md transition-all flex items-center justify-center gap-3"
+              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+              data-testid="button-whatsapp-ecosystem-cta"
+            >
+              <MessageCircle className="w-6 h-6" />
+              Chat on WhatsApp
+            </Button>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
