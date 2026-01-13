@@ -908,7 +908,6 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
           </p>
         </div>
       </div>
-    </div>
   );
 }
 
