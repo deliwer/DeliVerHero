@@ -35,7 +35,7 @@ export function DualPurposeHero() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="text-white drop-shadow-2xl">Living in Dubai, made easier — start your move-in.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">We help residents settle in after they receive their keys — cleaning, setup, maintenance, and support.</p>
+            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">We help residents settle in after they receive their keys — </p>
           </div>
 
           {/* CTA Section */}
