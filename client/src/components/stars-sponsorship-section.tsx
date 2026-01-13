@@ -151,7 +151,6 @@ export function StarsSponsorshipSection() {
     <section className="py-12 px-4 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Collapsible Section Header - Matching Water Section Style */}
         <div className="text-center mb-8">
@@ -255,7 +254,7 @@ export function StarsSponsorshipSection() {
                 <ArrowRight className="w-5 h-5 ml-3" />
               </Button>
             </Link>
-            <p className="text-xs text-gray-500 uppercase tracking-widest">
+            <p className="text-xs uppercase tracking-widest text-[#ffffff]">
               Quietly building the future of JVC
             </p>
           </div>
