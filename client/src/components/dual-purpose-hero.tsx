@@ -40,16 +40,6 @@ export function DualPurposeHero() {
 
           {/* CTA Section */}
           <div className="max-w-md mx-auto space-y-4">
-            <Link href="/residence/move-in-services">
-              <Button
-                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
-                data-testid="button-get-home-service-hero"
-              >
-                <Sparkles className="w-5 h-5 mr-3" />
-                Get help moving in
-              </Button>
-            </Link>
-            
             <Button
               variant="outline"
               className="w-full border-white/30 bg-white/10 text-white hover:bg-white/20 px-10 py-8 text-lg font-bold rounded-2xl backdrop-blur-md transition-all flex items-center justify-center gap-3"
@@ -59,6 +49,16 @@ export function DualPurposeHero() {
               <MessageCircle className="w-6 h-6" />
               WhatsApp Contact
             </Button>
+
+            <Link href="/residence/move-in-services">
+              <Button
+                className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
+                data-testid="button-get-home-service-hero"
+              >
+                <Sparkles className="w-5 h-5 mr-3" />
+                Get help moving in
+              </Button>
+            </Link>
 
             <p className="text-[12px] text-gray-300 mt-4 font-medium drop-shadow-md">
               No agents. No commissions. No pressure.
