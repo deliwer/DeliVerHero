@@ -1,30 +1,14 @@
 import { useState } from "react";
-import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp, Shield, CheckCircle2, Star, MessageCircle } from "lucide-react";
+import { Sparkles, ArrowRight, Building2, Heart, Zap, TrendingUp, Shield, CheckCircle2, Star, MessageCircle, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import heroImage from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
 import settlementImage from "@assets/generated_images/cleaning_in_progress_in_a_dubai_home..png";
+import nicolePhoto from "@assets/Nicole_Oliver.jpeg";
 
 export function DualPurposeHero() {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Ahmed Al-Maktoum",
-      initials: "AM",
-      model: "Move-In Partner",
-      text: "Relocating to Dubai was seamless with DeliWer. From business setup to sustainable home services, they handled everything with extreme professionalism."
-    },
-    {
-      id: 2,
-      name: "Sarah Johnson",
-      initials: "SJ",
-      model: "Business Founder",
-      text: "The primary go-to for setup in Business Bay. Everything was coordinated on WhatsApp. We didn't have to manage different vendors."
-    }
-  ];
-
   return (
     <section className="relative overflow-hidden">
       {/* Main Hero Section */}
@@ -81,6 +65,7 @@ export function DualPurposeHero() {
           </div>
         </div>
       </div>
+
       {/* Trust & Proof Section Integrated */}
       <section 
         className="relative py-16 px-4 overflow-hidden"
@@ -101,88 +86,93 @@ export function DualPurposeHero() {
             <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">Move-in services for new homes in Dubai — cleaning, water, maintenance & setup after you get the keys.</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Column 1: Core Operations */}
-            <div className="space-y-6">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover-elevate">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-400 mb-4 flex items-center gap-2">
-                  <MapPin className="w-4 h-4" /> Currently operating in:
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {["JVC / JVT", "Business Bay", "Marina / JLT", "Barsha Heights"].map((c) => (
-                    <span key={c} className="px-3 py-1 bg-white/20 rounded-full text-white text-xs font-medium border border-white/10">
-                      {c}
-                    </span>
-                  ))}
-                </div>
+          {/* Media & Ecosystem Presence */}
+          <div className="mb-16">
+            <p className="text-center text-gray-400 text-sm font-bold uppercase tracking-widest mb-8">Seen across Dubai’s living ecosystem</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+              <div className="flex flex-col items-center">
+                <Building2 className="w-10 h-10 text-white mb-2" />
+                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">JVC / JVT</span>
               </div>
-
-              <div className="bg-amber-500/10 backdrop-blur-sm p-6 rounded-2xl border border-amber-500/20">
-                <p className="text-amber-400 font-bold text-xs mb-2 uppercase tracking-tight">Not a real estate agency. Not a moving company.</p>
-                <p className="text-gray-300 text-xs leading-relaxed">
-                  We do not sell property, show listings, or earn commissions. We work with vetted local partners to ensure consistent delivery.
-                </p>
+              <div className="flex flex-col items-center">
+                <Building2 className="w-10 h-10 text-white mb-2" />
+                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">Business Bay</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Building2 className="w-10 h-10 text-white mb-2" />
+                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">Marina / JLT</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Building2 className="w-10 h-10 text-white mb-2" />
+                <span className="text-white text-[10px] font-bold uppercase tracking-tighter">Barsha Heights</span>
               </div>
             </div>
+          </div>
 
-            {/* Column 2: Resident Feedback */}
-            <div className="space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 px-2">Resident Feedback</h3>
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Avatar className="h-10 w-10 border border-white/20">
-                      <AvatarFallback className="bg-white/10 text-white font-bold text-xs">{testimonial.initials}</AvatarFallback>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Human Proof: Nikole */}
+            <div className="space-y-6">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 px-2">Real people. Real help.</h3>
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover-elevate transition-all">
+                <div className="flex flex-col md:flex-row gap-8 items-center">
+                  <div className="shrink-0">
+                    <Avatar className="h-32 w-32 border-4 border-emerald-500/30">
+                      <AvatarImage src={nicolePhoto} alt="Nikole" className="object-cover" />
+                      <AvatarFallback className="bg-emerald-500/20 text-emerald-400 font-bold text-2xl">N</AvatarFallback>
                     </Avatar>
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <div className="flex justify-center md:justify-start gap-1 mb-4">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <p className="text-white text-xl md:text-2xl italic leading-relaxed mb-6 font-medium">
+                      "I had just moved in and didn’t know where to start. DeliWer helped me set everything up so I could actually relax."
+                    </p>
                     <div>
-                      <h4 className="text-white font-bold text-sm">{testimonial.name}</h4>
-                      <p className="text-emerald-400 text-[10px] font-medium uppercase tracking-wider">{testimonial.model}</p>
+                      <h4 className="text-white font-bold text-lg">Nikole</h4>
+                      <p className="text-emerald-400 text-sm font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-2">
+                        <MapPin className="w-4 h-4" /> JVC resident
+                      </p>
                     </div>
                   </div>
-                  <p className="text-gray-300 text-sm italic leading-relaxed mb-3">
-                    "{testimonial.text}"
-                  </p>
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                      <Star key={idx} className="w-3 h-3 fill-emerald-500 text-emerald-500" />
-                    ))}
-                  </div>
                 </div>
-              ))}
+              </div>
               <p className="text-xs text-gray-400 italic px-2 border-l-2 border-emerald-500 ml-2">
-                Most residents come through building referrals and word of mouth.
+                Supporting residents in Dubai's premier communities since Day One.
               </p>
             </div>
 
-            {/* Column 3: Operational Proof & CTA */}
+            {/* Operational Proof & CTA */}
             <div className="space-y-6">
-              <div className="bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-                <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-xs flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-blue-400" /> Current Operations
+              <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10">
+                <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-blue-400" /> Operating across communities
                 </h4>
-                <ul className="space-y-3 text-gray-300 text-sm">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
-                    Supporting residents across multiple communities
+                <ul className="space-y-4 text-gray-300 text-base">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> 
+                    <span>Not a real estate agency or moving company.</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
-                    Handling regular move-ins and service requests
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> 
+                    <span>Zero property sales or commission-based listings.</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
-                    Coordinating through a single point of contact
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> 
+                    <span>Coordinating through a single human point of contact.</span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 
-                    One DeliWer coordinator remains responsible until setup is complete.
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> 
+                    <span>Accountable until your home setup is complete.</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="pt-2">
-                <p className="text-[10px] text-gray-500 italic mt-3 text-center">
-                  DeliWer works with vetted local service partners to ensure consistent delivery.
+              <div className="bg-amber-500/10 backdrop-blur-sm p-6 rounded-2xl border border-amber-500/20">
+                <p className="text-gray-300 text-xs leading-relaxed text-center italic">
+                  DeliWer works with vetted local service partners to ensure consistent delivery across JVC, JVT, Business Bay, and Marina.
                 </p>
               </div>
             </div>
@@ -193,15 +183,7 @@ export function DualPurposeHero() {
   );
 }
 
-// Icon components
-function ShoppingCart({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-    </svg>
-  );
-}
-
+// Icon components - simplified
 function MapPin({ className }: { className?: string }) {
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
