@@ -113,7 +113,7 @@ export function DualPurposeHero() {
 
           <div className="grid lg:grid-cols-2 gap-8 items-center mb-16">
             {/* Block 3 — HUMAN PROOF (SINGLE, STRONG) */}
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover-elevate transition-all font-extrabold">
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover-elevate transition-all font-extrabold pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="shrink-0">
                   <Avatar className="h-24 w-24 border-2 border-emerald-500/30">
