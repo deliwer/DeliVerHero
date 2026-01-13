@@ -277,28 +277,51 @@ export default function MoveInServices() {
           </div>
         </div>
       </section>
-      {/* Clear Boundary Statement */}
-      <section className="relative py-16 px-6 overflow-hidden">
-        <div 
-          className="absolute inset-0 w-full h-full opacity-40"
-          style={{
-            backgroundImage: `url(${jvcBoxes})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-950/60"></div>
-        </div>
-        <div className="max-w-2xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 text-amber-400 px-4 py-2 rounded-full mb-6 font-bold text-sm uppercase tracking-wider">
-            <Shield className="w-4 h-4" /> Disclaimer
+      {/* Problems Section - Replacement for Section 2 */}
+      <section className="relative py-24 px-6 overflow-hidden bg-slate-900/50">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-12 text-center uppercase tracking-tighter">
+            What usually goes wrong after move-in
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-white/5 backdrop-blur-md p-8 rounded-[2rem] border border-white/10">
+              <p className="text-emerald-400 font-bold uppercase tracking-widest text-sm mb-6">Common frustrations</p>
+              <ul className="space-y-6">
+                {[
+                  "Calling multiple vendors",
+                  "Unclear building rules",
+                  "Delays and no-shows",
+                  "No single person responsible"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4 text-lg font-medium text-gray-200">
+                    <div className="w-2 h-2 rounded-full bg-red-500/50" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="flex flex-col justify-center space-y-8 p-4">
+              <div className="space-y-4">
+                <p className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                  Most new residents face the same issues.
+                </p>
+                <p className="text-xl text-emerald-400 font-black">
+                  DeliWer removes this coordination headache.
+                </p>
+              </div>
+              
+              <div className="pt-6 border-t border-white/10">
+                <p className="text-sm text-slate-400 uppercase tracking-widest font-black">
+                  Supporting residents moving into JVC apartments.
+                </p>
+              </div>
+            </div>
           </div>
-          <h2 className="text-3xl font-bold text-white mb-4">Not a real estate agency.</h2>
-          <p className="text-gray-300 text-lg">
-            No listings. No agents. No commissions.
-          </p>
         </div>
       </section>
+
       {/* Services Section */}
       <section className="relative py-20 px-6 overflow-hidden">
         <div 
