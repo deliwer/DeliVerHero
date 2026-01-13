@@ -80,6 +80,29 @@ export function DualPurposeHero() {
             <h2 className="md:text-5xl text-white mb-4 font-normal text-[32px]">Why residents trust DeliWer during move-in</h2>
           </div>
 
+          {/* Block 3 — HUMAN PROOF (SINGLE, STRONG) */}
+          <div className="mb-16 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover-elevate transition-all font-extrabold">
+            <div className="flex flex-col md:flex-row gap-8 items-center max-w-4xl mx-auto">
+              <div className="shrink-0">
+                <Avatar className="h-24 w-24 border-2 border-emerald-500/30">
+                  <AvatarImage src={nicolePhoto} alt="Nikole" className="object-cover" />
+                  <AvatarFallback className="bg-emerald-500/20 text-emerald-400 font-bold text-xl">N</AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="flex-1 text-center md:text-left">
+                <p className="text-white italic mb-4 text-[18px] font-medium">
+                  “I had just moved in and didn’t know where to start. DeliWer helped me get everything set up without dealing with multiple people.”
+                </p>
+                <div>
+                  <h4 className="text-white font-bold text-lg">— Nikole</h4>
+                  <p className="text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-1 mt-1">
+                    <MapPinIcon className="w-4 h-4" /> JVC resident
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Block — WHEN PEOPLE USE DELIWER */}
           <div className="mb-16 bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-4 text-amber-400">
@@ -141,31 +164,8 @@ export function DualPurposeHero() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 items-center mb-16">
-            {/* Block 3 — HUMAN PROOF (SINGLE, STRONG) */}
-            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover-elevate transition-all font-extrabold pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-                <div className="shrink-0">
-                  <Avatar className="h-24 w-24 border-2 border-emerald-500/30">
-                    <AvatarImage src={nicolePhoto} alt="Nikole" className="object-cover" />
-                    <AvatarFallback className="bg-emerald-500/20 text-emerald-400 font-bold text-xl">N</AvatarFallback>
-                  </Avatar>
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <p className="text-white italic mb-4 text-[18px] font-medium">
-                    “I had just moved in and didn’t know where to start. DeliWer helped me get everything set up without dealing with multiple people.”
-                  </p>
-                  <div>
-                    <h4 className="text-white font-bold text-lg">— Nikole</h4>
-                    <p className="text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-1 mt-1">
-                      <MapPinIcon className="w-4 h-4" /> JVC resident
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Block 4 — ECOSYSTEM SIGNAL (QUIET, NOT BRAGGY) */}
-            <div className="space-y-6">
+            <div className="space-y-6 h-full">
               <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-center">
                 <h4 className="text-gray-400 font-bold mb-4 uppercase tracking-wider text-xs">
                   Part of Dubai’s residential living ecosystem
