@@ -37,6 +37,8 @@ import homeServiceTechnician from "@assets/stock_images/professional_home_se_d1e
 
 import Nicole_Oliver from "@assets/Nicole_Oliver.jpeg";
 import relocationProfessionalImage from "@assets/stock_images/modern_professional__d33c9ad9.jpg";
+import sayNoToPlasticImg from "@assets/IMG-20191119-WA0023_1768286821283.jpg";
+import beautyFilterProof from "@assets/IMG-20210310-WA0681_1768287533319.jpg";
 
 interface HeroSpotCounterProps {
   initialCount?: number;
@@ -790,6 +792,13 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
                           <span className="font-bold text-white">FREE Ionic Shower Filter</span> (<DirhamSymbol size={10} className="mr-0.5" />399 value)
                         </div>
                       </div>
+                      <div className="mt-2 mb-4 overflow-hidden rounded-xl border border-white/10">
+                        <img 
+                          src={beautyFilterProof} 
+                          alt="Beauty Filter Proof" 
+                          className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity"
+                        />
+                      </div>
                       <div className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 text-hero-green-400 flex-shrink-0 mt-0.5" />
                         <div className="text-sm text-gray-300">
@@ -894,9 +903,16 @@ export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembersh
 
             {/* After signup message */}
             <div className="text-center py-6 bg-slate-800/50 rounded-xl border border-slate-600 mb-8">
-              <p className="text-gray-300 text-lg mb-2">
+              <p className="text-gray-300 text-lg mb-4">
                 <span className="text-hero-green-400 font-bold">Ready to Start?</span> Click "JOIN LOYALTY" above or explore water filtration packages below
               </p>
+              <div className="max-w-xs mx-auto overflow-hidden rounded-xl border border-slate-700 shadow-lg">
+                <img 
+                  src={sayNoToPlasticImg} 
+                  alt="Planet Heroes #SayNoToPlastic" 
+                  className="w-full h-auto"
+                />
+              </div>
             </div>
           </div>
         )}

@@ -7,6 +7,7 @@ import heroImage from "@assets/generated_images/empty_dubai_apartment_interior_w
 import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
 import settlementImage from "@assets/generated_images/cleaning_in_progress_in_a_dubai_home..png";
 import nicolePhoto from "@assets/Nicole_Oliver.jpeg";
+import residentProof from "@assets/IMG-20200320-WA0164_1768287785562.jpg";
 
 export function DualPurposeHero() {
   return (
@@ -142,6 +143,13 @@ export function DualPurposeHero() {
               <p className="text-xs text-gray-400 italic px-2 border-l-2 border-emerald-500 ml-2">
                 Supporting residents in Dubai's premier communities since Day One.
               </p>
+              <div className="mt-4 px-2">
+                <img 
+                  src={residentProof} 
+                  alt="DeliWer Community Support" 
+                  className="w-full h-48 object-cover rounded-2xl border border-white/10 opacity-80 grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
             </div>
 
             {/* Operational Proof & CTA */}
