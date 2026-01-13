@@ -282,7 +282,7 @@ function StepTwoExchange() {
             </div>
           </div>
 
-          {/* CTAs - Calendar Booking and Move-in Services */}
+          {/* CTAs - Calendar Booking and AquaCafe Products */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
               <div className="flex-1">
@@ -295,15 +295,15 @@ function StepTwoExchange() {
                   <span>Book Installation</span>
                 </CalendlyButton>
               </div>
-              <Link href="/move-in-services" className="flex-1">
+              <Link href="/aquacafe" className="flex-1">
                 <Button
                   size="lg"
                   variant="outline"
                   className="w-full flex items-center justify-center gap-3 border-cyan-400/50 text-cyan-400 hover:bg-cyan-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-view-move-in-services"
+                  data-testid="button-view-aquacafe-packages"
                 >
-                  <ArrowRight className="w-5 h-5 flex-shrink-0" />
-                  <span> → View move-in services</span>
+                  <Droplets className="w-5 h-5 flex-shrink-0" />
+                  <span>View Packages</span>
                 </Button>
               </Link>
             </div>
