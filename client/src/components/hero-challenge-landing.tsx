@@ -303,7 +303,7 @@ function StepTwoExchange() {
                   data-testid="button-view-move-in-services"
                 >
                   <ArrowRight className="w-5 h-5 flex-shrink-0" />
-                  <span>View move-in services</span>
+                  <span> → View move-in services</span>
                 </Button>
               </Link>
             </div>
