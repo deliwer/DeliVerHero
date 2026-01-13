@@ -8,6 +8,7 @@ import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_env
 import settlementImage from "@assets/generated_images/cleaning_in_progress_in_a_dubai_home..png";
 import nicolePhoto from "@assets/Nicole_Oliver.jpeg";
 import residentProof from "@assets/IMG-20200320-WA0164_1768287785562.jpg";
+import moveInBg from "@assets/generated_images/modern_dubai_apartment_handover_and_move-in_scene.png";
 import emaarLogo from "@assets/generated_images/minimalist_white_emaar_developer_logo.png";
 import damacLogo from "@assets/generated_images/minimalist_white_damac_developer_logo.png";
 import nakheelLogo from "@assets/generated_images/minimalist_white_nakheel_developer_logo.png";
@@ -64,14 +65,14 @@ export function DualPurposeHero() {
       <section 
         className="relative py-16 px-4 overflow-hidden"
         style={{
-          backgroundImage: `url(${settlementImage})`,
+          backgroundImage: `url(${moveInBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
         }}
       >
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/65"></div>
+        <div className="absolute inset-0 bg-black/75"></div>
 
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
@@ -131,6 +132,35 @@ export function DualPurposeHero() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Block — WHEN PEOPLE USE DELIWER */}
+            <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center">
+              <div className="flex items-center gap-3 mb-4 text-amber-400">
+                <Zap className="w-6 h-6" />
+                <h3 className="text-lg font-bold uppercase tracking-wider">When people use DeliWer</h3>
+              </div>
+              <div className="space-y-6 text-gray-200">
+                <div className="space-y-2">
+                  <p className="text-xl font-medium text-white">Most people don’t struggle with finding a home.</p>
+                  <p className="text-xl font-medium text-gray-400">They struggle with everything that comes after.</p>
+                </div>
+                <ul className="space-y-4">
+                  {[
+                    "You’ve just received your apartment keys",
+                    "You’re moving into a new home",
+                    "You need essentials set up quickly and correctly"
+                  ].map((bullet, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
+                      <span className="text-lg">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="font-bold text-white border-l-4 border-amber-500 pl-4 py-2 bg-amber-500/5 text-lg">
+                  This is the exact moment DeliWer exists for.
+                </p>
               </div>
             </div>
 
