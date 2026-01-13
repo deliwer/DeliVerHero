@@ -282,7 +282,7 @@ function StepTwoExchange() {
             </div>
           </div>
 
-          {/* CTAs - Calendar Booking and AquaCafe Products */}
+          {/* CTAs - Calendar Booking and Move-in Services */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
               <div className="flex-1">
