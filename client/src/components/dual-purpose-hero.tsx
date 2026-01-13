@@ -166,7 +166,7 @@ export function DualPurposeHero() {
           <div className="grid lg:grid-cols-2 gap-8 items-center mb-16">
             {/* Block 4 — ECOSYSTEM SIGNAL (QUIET, NOT BRAGGY) */}
             <div className="space-y-6 h-full">
-              <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-center">
+              <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-center pt-[0px] pb-[0px] pl-[0px] pr-[0px]">
                 <h4 className="text-gray-400 font-bold mb-4 uppercase tracking-wider text-xs">
                   Part of Dubai’s residential living ecosystem
                 </h4>
