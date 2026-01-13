@@ -72,7 +72,7 @@ export function DualPurposeHero() {
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Help after you get your apartment keys in Dubai</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Help after you get your apartment keys</h2>
             <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">DeliWer is not a real estate agency and does not list properties.
             We don’t earn commissions and we don’t push vendors.
 
