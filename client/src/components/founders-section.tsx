@@ -84,13 +84,7 @@ export function FoundersSection() {
           </div>
         </div>
 
-        {/* Trust Indicators */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center bg-slate-800/50 rounded-full px-6 py-3 border border-emerald-500/30">
-            <ShieldCheck className="w-5 h-5 text-emerald-500 mr-2" />
-            <span className="text-white font-medium">Trusted by 12,847+ Planet Heroes in Dubai</span>
-          </div>
-        </div>
+        
       </div>
     </section>
   );
