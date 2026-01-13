@@ -525,7 +525,7 @@ function StepSellIPhone() {
             )}
           </button>
         </h2>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">DeliWer does not sell property or act as a real estate agent.</p>
+        <p className="text-lg text-gray-300 max-w-2xl mx-auto">Choose individual services you need after moving into your home.</p>
 
         {/* Text-led What DeliWer Does Section */}
         <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
