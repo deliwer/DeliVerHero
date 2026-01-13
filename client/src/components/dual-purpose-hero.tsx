@@ -111,45 +111,69 @@ export function DualPurposeHero() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Human Proof: Nikole */}
+            {/* Human Proof: Residents */}
             <div className="space-y-6">
               <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 px-2">Real people. Real help.</h3>
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover-elevate transition-all">
-                <div className="flex flex-col md:flex-row gap-8 items-center">
+              
+              {/* Nikole */}
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover-elevate transition-all">
+                <div className="flex flex-col sm:flex-row gap-6 items-center">
                   <div className="shrink-0">
-                    <Avatar className="h-32 w-32 border-4 border-emerald-500/30">
+                    <Avatar className="h-20 w-20 border-2 border-emerald-500/30">
                       <AvatarImage src={nicolePhoto} alt="Nikole" className="object-cover" />
-                      <AvatarFallback className="bg-emerald-500/20 text-emerald-400 font-bold text-2xl">N</AvatarFallback>
+                      <AvatarFallback className="bg-emerald-500/20 text-emerald-400 font-bold">N</AvatarFallback>
                     </Avatar>
                   </div>
-                  <div className="flex-1 text-center md:text-left">
-                    <div className="flex justify-center md:justify-start gap-1 mb-4">
+                  <div className="flex-1 text-center sm:text-left">
+                    <div className="flex justify-center sm:justify-start gap-0.5 mb-2">
                       {[1, 2, 3, 4, 5].map((i) => (
-                        <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
-                    <p className="text-white text-xl md:text-2xl italic leading-relaxed mb-6 font-medium">
-                      "I had just moved in and didn’t know where to start. DeliWer helped me set everything up so I could actually relax."
+                    <p className="text-white text-sm italic leading-relaxed mb-2 font-medium">
+                      "DeliWer helped me set everything up so I could actually relax."
                     </p>
                     <div>
-                      <h4 className="text-white font-bold text-lg">Nikole</h4>
-                      <p className="text-emerald-400 text-sm font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-2">
-                        <MapPinIcon className="w-4 h-4" /> JVC resident
+                      <h4 className="text-white font-bold text-sm">Nikole</h4>
+                      <p className="text-emerald-400 text-[10px] font-bold uppercase tracking-widest flex items-center justify-center sm:justify-start gap-1">
+                        <MapPinIcon className="w-3 h-3" /> JVC resident
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-gray-400 italic px-2 border-l-2 border-emerald-500 ml-2">
+
+              {/* Resident Support */}
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 hover-elevate transition-all">
+                <div className="flex flex-col sm:flex-row gap-6 items-center">
+                  <div className="shrink-0">
+                    <Avatar className="h-20 w-20 border-2 border-emerald-500/30">
+                      <AvatarImage src={residentProof} alt="Resident Support" className="object-cover" />
+                      <AvatarFallback className="bg-emerald-500/20 text-emerald-400 font-bold">R</AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <div className="flex-1 text-center sm:text-left">
+                    <div className="flex justify-center sm:justify-start gap-0.5 mb-2">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+                    <p className="text-white text-sm italic leading-relaxed mb-2 font-medium">
+                      "The move-in coordination was a lifesaver. Everything handled by one person."
+                    </p>
+                    <div>
+                      <h4 className="text-white font-bold text-sm">Resident Support</h4>
+                      <p className="text-emerald-400 text-[10px] font-bold uppercase tracking-widest flex items-center justify-center sm:justify-start gap-1">
+                        <MapPinIcon className="w-3 h-3" /> Community verified
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-[10px] text-gray-400 italic px-2 border-l-2 border-emerald-500 ml-2">
                 Supporting residents in Dubai's premier communities since Day One.
               </p>
-              <div className="mt-4 px-2">
-                <img 
-                  src={residentProof} 
-                  alt="DeliWer Community Support" 
-                  className="w-full h-48 object-cover rounded-2xl border border-white/10 opacity-80 grayscale hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
             </div>
 
             {/* Operational Proof & CTA */}
