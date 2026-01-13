@@ -77,7 +77,7 @@ export function DualPurposeHero() {
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl text-white mb-4 font-normal">Why residents trust DeliWer during move-in</h2>
+            <h2 className="md:text-5xl text-white mb-4 font-normal text-[32px]">Why residents trust DeliWer during move-in</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
