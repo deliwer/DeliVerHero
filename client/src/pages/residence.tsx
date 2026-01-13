@@ -197,12 +197,28 @@ export default function Residence() {
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid md:grid-cols-2 gap-8">
             {/* PATH 1: MOVE-IN SERVICES */}
-            <Link href="/residence/move-in-services">
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl" data-testid="link-move-in-services">
-                View move-in services
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
+            <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 shadow-2xl">
+              <CardHeader className="p-8">
+                <h3 className="text-3xl font-bold text-white mb-2">Move-In Services</h3>
+                <p className="text-gray-400">Choose individual services you may need when settling into a new home in Dubai.</p>
+              </CardHeader>
+              <CardContent className="p-8 pt-0">
+                <ul className="space-y-3 mb-8">
+                  {["Initial cleaning", "Drinking water setup", "Basic maintenance checks", "Move-in day coordination"].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/residence/move-in-services">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl" data-testid="link-move-in-services">
+                    View move-in services
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
 
             {/* PATH 2: MOVE-IN PACKAGES */}
             <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-blue-500/50 transition-all duration-500 shadow-2xl">
