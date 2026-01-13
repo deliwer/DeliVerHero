@@ -151,7 +151,7 @@ export function DualPurposeHero() {
                   </Avatar>
                 </div>
                 <div className="flex-1 text-center md:text-left">
-                  <p className="text-white text-xl italic leading-relaxed mb-4 font-medium">
+                  <p className="text-white italic mb-4 font-medium text-[24px]">
                     “I had just moved in and didn’t know where to start. DeliWer helped me get everything set up without dealing with multiple people.”
                   </p>
                   <div>
