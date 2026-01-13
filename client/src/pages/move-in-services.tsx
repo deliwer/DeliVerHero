@@ -30,7 +30,8 @@ import maintenanceImage from "@assets/generated_images/jvc_dubai_ac_maintenance_
 import { SiWhatsapp } from "react-icons/si";
 
 const PRICING_OPTIONS = [
-  { id: "coordination", title: "Move-in coordination", price: 499, icon: Zap },
+  { id: "coordination-in", title: "Move-in coordination", price: 499, icon: Zap },
+  { id: "coordination-out", title: "Move-out coordination", price: 499, icon: Home },
   { id: "cleaning", title: "Initial deep cleaning", price: 350, icon: Sparkles },
   { id: "water", title: "Drinking water setup", price: 299, icon: Droplets },
   { id: "maintenance", title: "Maintenance checks", price: 450, icon: Wrench },
@@ -218,10 +219,11 @@ function PricingCalculator() {
 
 export default function MoveInServices() {
   const setupServices = [
+    { icon: Zap, title: "Move-in coordination" },
+    { icon: Home, title: "Move-out coordination" },
     { icon: Sparkles, title: "Initial deep cleaning" },
     { icon: Droplets, title: "Drinking water setup" },
     { icon: Wrench, title: "AC & maintenance checks" },
-    { icon: Zap, title: "Move-in coordination" },
     { icon: Home, title: "Optional domestic help" },
   ];
 
