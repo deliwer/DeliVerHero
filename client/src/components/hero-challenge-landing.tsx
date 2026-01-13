@@ -232,7 +232,7 @@ function StepTwoExchange() {
               aria-label="Toggle Get Home Service section"
               data-testid="toggle-home-service"
             >
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Enjoy Service at Home</span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Complete Your Setup</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-cyan-400" />
               ) : (
@@ -241,7 +241,7 @@ function StepTwoExchange() {
             </button>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-            Home Water Purification & Installation Packages: Transform your home with clean, alkaline water systems professionally installed
+            Step 2: Vetted support for your daily comfort. From professional cleaning to premium water filtration, we handle the execution.
           </p>
           
           {/* Text-led What Residents Use DeliWer For - Sequential Checklist */}
@@ -282,18 +282,20 @@ function StepTwoExchange() {
             </div>
           </div>
 
-          {/* CTAs - Calendar Booking and AquaCafe Products */}
+          {/* CTAs - Calendar Booking and Home Service Detail */}
           <div className="mt-6 space-y-4">
             <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
               <div className="flex-1">
-                <CalendlyButton
-                  size="lg"
-                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-book-water-installation"
-                >
-                  <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span>Book Installation</span>
-                </CalendlyButton>
+                <Link href="/home-service" className="w-full">
+                  <Button
+                    size="lg"
+                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
+                    data-testid="button-view-home-service"
+                  >
+                    <Droplets className="w-5 h-5 flex-shrink-0" />
+                    <span>View Home Services</span>
+                  </Button>
+                </Link>
               </div>
               <Link href="/aquacafe" className="flex-1">
                 <Button
@@ -302,13 +304,13 @@ function StepTwoExchange() {
                   className="w-full flex items-center justify-center gap-3 border-cyan-400/50 text-cyan-400 hover:bg-cyan-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
                   data-testid="button-view-aquacafe-packages"
                 >
-                  <Droplets className="w-5 h-5 flex-shrink-0" />
-                  <span>View Packages</span>
+                  <ShoppingBag className="w-5 h-5 flex-shrink-0" />
+                  <span>View Essentials</span>
                 </Button>
               </Link>
             </div>
             <p className="text-center text-gray-400 text-sm">
-              Free consultation with water purification experts - Schedule your home visit today
+              One-stop local support for your household needs in JVC
             </p>
           </div>
         </div>
