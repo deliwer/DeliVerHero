@@ -61,10 +61,6 @@ interface CalendlyButtonProps {
   "data-testid"?: string;
 }
 
-import { Link } from "wouter";
-
-// ... existing code ...
-
 export function CalendlyButton({
   children,
   eventType,
@@ -74,21 +70,6 @@ export function CalendlyButton({
   "data-testid": testId,
 }: CalendlyButtonProps) {
   useCalendlyScript();
-
-  if (children && typeof children === 'object' && 'props' in children && children.props.children === ' → View move-in services') {
-    return (
-      <Link href="/move-in-services" className="flex-1">
-        <Button
-          variant={variant}
-          size={size}
-          className={className}
-          data-testid={testId || "button-move-in-services-link"}
-        >
-          {children}
-        </Button>
-      </Link>
-    );
-  }
 
   return (
     <Button
