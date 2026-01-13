@@ -73,7 +73,10 @@ export function DualPurposeHero() {
           {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Real people. Real help.</h2>
-            <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">Move-in services for new homes in Dubai — cleaning, water, maintenance & setup after you get the keys.</p>
+            <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">DeliWer is not a real estate agency and does not list properties.
+            We don’t earn commissions and we don’t push vendors.
+
+            Our role starts after you receive your apartment keys — when practical help matters most.</p>
           </div>
 
           {/* Secondary WhatsApp CTA */}
