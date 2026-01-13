@@ -80,6 +80,35 @@ export function DualPurposeHero() {
             <h2 className="md:text-5xl text-white mb-4 font-normal text-[32px]">Why residents trust DeliWer during move-in</h2>
           </div>
 
+          {/* Block — WHEN PEOPLE USE DELIWER */}
+          <div className="mb-16 bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 mb-4 text-amber-400">
+              <Zap className="w-6 h-6" />
+              <h3 className="text-lg font-bold uppercase tracking-wider">When people use DeliWer</h3>
+            </div>
+            <div className="space-y-6 text-gray-200">
+              <div className="space-y-2">
+                <p className="text-xl font-medium text-white">Most people don’t struggle with finding a home.</p>
+                <p className="text-xl font-medium text-gray-400">They struggle with everything that comes after.</p>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "You’ve just received your apartment keys",
+                  "You’re moving into a new home",
+                  "You need essentials set up quickly and correctly"
+                ].map((bullet, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
+                    <span className="text-lg">{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="font-bold text-white border-l-4 border-amber-500 pl-4 py-2 bg-amber-500/5 text-lg">
+                This is the exact moment DeliWer exists for.
+              </p>
+            </div>
+          </div>
+
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
             {/* Block 1 — POSITIONAL TRUST (WHO WE ARE NOT) */}
             <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center">
@@ -132,35 +161,6 @@ export function DualPurposeHero() {
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Block — WHEN PEOPLE USE DELIWER */}
-            <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-4 text-amber-400">
-                <Zap className="w-6 h-6" />
-                <h3 className="text-lg font-bold uppercase tracking-wider">When people use DeliWer</h3>
-              </div>
-              <div className="space-y-6 text-gray-200">
-                <div className="space-y-2">
-                  <p className="text-xl font-medium text-white">Most people don’t struggle with finding a home.</p>
-                  <p className="text-xl font-medium text-gray-400">They struggle with everything that comes after.</p>
-                </div>
-                <ul className="space-y-4">
-                  {[
-                    "You’ve just received your apartment keys",
-                    "You’re moving into a new home",
-                    "You need essentials set up quickly and correctly"
-                  ].map((bullet, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                      <span className="text-lg">{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="font-bold text-white border-l-4 border-amber-500 pl-4 py-2 bg-amber-500/5 text-lg">
-                  This is the exact moment DeliWer exists for.
-                </p>
               </div>
             </div>
 
