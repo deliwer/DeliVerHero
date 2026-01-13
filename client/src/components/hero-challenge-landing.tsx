@@ -240,9 +240,7 @@ function StepTwoExchange() {
               )}
             </button>
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-            Step 2: Vetted support for your daily comfort. From professional cleaning to premium water filtration, we handle the execution.
-          </p>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">Vetted support for your daily comfort. From professional cleaning to premium water filtration, we handle the execution.</p>
           
           {/* Text-led What Residents Use DeliWer For - Sequential Checklist */}
           <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
