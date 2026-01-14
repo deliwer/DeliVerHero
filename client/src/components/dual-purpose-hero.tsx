@@ -9,10 +9,7 @@ import settlementImage from "@assets/generated_images/cleaning_in_progress_in_a_
 import nicolePhoto from "@assets/Nicole_Oliver.jpeg";
 import residentProof from "@assets/IMG-20200320-WA0164_1768287785562.jpg";
 import moveInBg from "@assets/generated_images/modern_dubai_apartment_handover_and_move-in_scene.png";
-import emaarLogo from "@assets/generated_images/minimalist_white_emaar_developer_logo.png";
-import damacLogo from "@assets/generated_images/minimalist_white_damac_developer_logo.png";
-import nakheelLogo from "@assets/generated_images/minimalist_white_nakheel_developer_logo.png";
-import binghattiLogo from "@assets/generated_images/minimalist_white_binghatti_developer_logo.png";
+
 
 export function DualPurposeHero() {
   return (
