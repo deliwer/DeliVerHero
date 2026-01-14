@@ -58,6 +58,12 @@ export function DualPurposeHero() {
             <p className="text-[12px] text-gray-300 mt-4 font-medium drop-shadow-md">
               No agents. No commissions. No pressure.
             </p>
+
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <p className="text-[14px] text-white/80 font-medium">
+                Already moved in? <Link href="/home-service" className="text-emerald-400 hover:underline inline-flex items-center gap-1 font-bold">Explore Home Services <ArrowRight className="w-3 h-3" /></Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>

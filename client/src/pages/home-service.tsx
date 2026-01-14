@@ -112,11 +112,6 @@ export default function HomeService() {
                 <Droplets className="w-3 h-3 mr-1" />
                 Exclusive for JVC Launch Special
               </Badge>
-              <div className="mb-6 text-sm text-emerald-300 font-medium">
-                <Link href="/home-service" className="hover:underline flex items-center gap-1">
-                  Explore all our home services <ArrowRight className="w-3 h-3" />
-                </Link>
-              </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-home-service-title">
                 Freedom LifeStyle.
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300"> Without Leaving Home.</span>
