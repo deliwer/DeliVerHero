@@ -14,11 +14,14 @@ import {
   MessageCircle,
   Users,
   Utensils,
-  CreditCard
+  CreditCard,
+  Target
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import beautyFilterProof from "@assets/IMG-20210310-WA0681_1768287533319.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
+import smartHomeLivingRoom from "@assets/stock_images/smart_home_living_ro_92fee3d3.jpg";
+import relocationProfessionalImage from "@assets/stock_images/modern_professional__d33c9ad9.jpg";
 
 export default function HomeServiceLaunch() {
   return (
@@ -29,20 +32,20 @@ export default function HomeServiceLaunch() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden bg-dubai-gradient">
+      <section className="relative py-20 lg:py-32 overflow-hidden bg-dubai-gradient text-white">
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <Badge variant="outline" className="mb-6 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-medium">
+          <Badge variant="outline" className="mb-6 bg-white/10 text-white border-white/20 px-4 py-1.5 text-sm font-medium">
             For new residents moving into JVC & nearby communities
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight" data-testid="text-launch-title">
-            Just Moved Into Your <span className="text-primary">Apartment?</span>
+          <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight" data-testid="text-launch-title">
+            Just Moved Into Your <span className="text-cyan-400">Apartment?</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
             Start living comfortably from Day One — without running around Dubai.
           </p>
           <Link href="/residence/move-in-services">
-            <Button size="lg" className="h-12 px-8 text-lg font-semibold hover-elevate active-elevate-2" data-testid="button-cta-hero">
-              Check Your Move-In Offer <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="h-14 px-10 text-xl font-bold hover-elevate active-elevate-2 bg-white text-blue-600 hover:bg-gray-100 rounded-full" data-testid="button-cta-hero">
+              Check Your Move-In Offer <ArrowRight className="ml-2 h-6 w-6" />
             </Button>
           </Link>
         </div>
@@ -95,7 +98,7 @@ export default function HomeServiceLaunch() {
           className="absolute inset-0 z-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${beautyFilterProof})` }}
         />
-        <div className="absolute inset-0 z-0 bg-black/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 z-0 bg-black/75 backdrop-blur-[2px]" />
 
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="text-center mb-12">
@@ -206,81 +209,110 @@ export default function HomeServiceLaunch() {
         </div>
       </section>
 
-      {/* SECTION 4 — BONUS PERKS (LOCAL & HUMAN) */}
-      <section className="py-20 px-4 bg-primary/5">
-        <div className="container mx-auto max-w-3xl text-center">
-          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Utensils className="w-8 h-8 text-primary" />
-          </div>
-          <h2 className="text-3xl font-bold mb-4">🍔 Chill & Grill Voucher</h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            Enjoy a complimentary food voucher from a local JVC restaurant partner when you activate your move-in support.
-          </p>
-          <p className="italic text-muted-foreground/80">
-            (Because moving in shouldn’t mean skipping meals.)
-          </p>
-        </div>
-      </section>
-
       {/* SECTION 5 — HOW IT WORKS (SIMPLE FLOW) */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold text-center mb-16">How It Works</h2>
+      <section className="relative py-24 px-4 overflow-hidden">
+        {/* Background Image with Dark Wash */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${smartHomeLivingRoom})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-black/80 backdrop-blur-[2px]" />
+
+        <div className="container mx-auto max-w-5xl relative z-10 text-white">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full mb-4 border border-white/20">
+              <Target className="w-5 h-5" />
+              <span className="font-bold text-sm">SIMPLE ONBOARDING</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black mb-4">How It Works</h2>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8">
             <div className="text-center group">
-              <div className="w-16 h-16 rounded-full bg-card border shadow-sm flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                <QrCode className="w-8 h-8" />
+              <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-500 group-hover:border-cyan-400 transition-all duration-300 transform group-hover:-translate-y-2">
+                <QrCode className="w-10 h-10" />
               </div>
-              <p className="font-medium">Scan the QR or visit this page</p>
+              <p className="font-bold text-lg text-white">Scan & Visit</p>
+              <p className="text-sm text-gray-300 mt-2">QR or direct link</p>
             </div>
             <div className="text-center group">
-              <div className="w-16 h-16 rounded-full bg-card border shadow-sm flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                <Calculator className="w-8 h-8" />
+              <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-500 group-hover:border-cyan-400 transition-all duration-300 transform group-hover:-translate-y-2">
+                <Calculator className="w-10 h-10" />
               </div>
-              <p className="font-medium">Use the Move-In Calculator</p>
+              <p className="font-bold text-lg text-white">Calculate</p>
+              <p className="text-sm text-gray-300 mt-2">Use the estimator</p>
             </div>
             <div className="text-center group">
-              <div className="w-16 h-16 rounded-full bg-card border shadow-sm flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                <Sparkles className="w-8 h-8" />
+              <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-500 group-hover:border-cyan-400 transition-all duration-300 transform group-hover:-translate-y-2">
+                <Sparkles className="w-10 h-10" />
               </div>
-              <p className="font-medium">See your AED 99 launch offer</p>
+              <p className="font-bold text-lg text-white">Get Offer</p>
+              <p className="text-sm text-gray-300 mt-2">AED 99 starter</p>
             </div>
             <div className="text-center group">
-              <div className="w-16 h-16 rounded-full bg-card border shadow-sm flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                <Gift className="w-8 h-8" />
+              <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-500 group-hover:border-cyan-400 transition-all duration-300 transform group-hover:-translate-y-2">
+                <Gift className="w-10 h-10" />
               </div>
-              <p className="font-medium">Get your free filter + voucher</p>
+              <p className="font-bold text-lg text-white">Claim Gift</p>
+              <p className="text-sm text-gray-300 mt-2">Free filter + voucher</p>
             </div>
             <div className="text-center group">
-              <div className="w-16 h-16 rounded-full bg-card border shadow-sm flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                <MessageCircle className="w-8 h-8" />
+              <div className="w-20 h-20 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md shadow-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-500 group-hover:border-cyan-400 transition-all duration-300 transform group-hover:-translate-y-2">
+                <MessageCircle className="w-10 h-10" />
               </div>
-              <p className="font-medium">We coordinate on WhatsApp</p>
+              <p className="font-bold text-lg text-white">Connect</p>
+              <p className="text-sm text-gray-300 mt-2">WhatsApp concierge</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* SECTION 6 — WHO THIS IS FOR */}
-      <section className="py-20 px-4 bg-muted/50">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl font-bold text-center mb-12">Who This Launch Is For</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="p-6 bg-card rounded-xl border flex items-center gap-4 hover-elevate transition-all">
-              <Users className="w-6 h-6 text-primary" />
-              <span className="font-semibold text-lg">New tenants</span>
+      <section className="relative py-24 px-4 overflow-hidden">
+        {/* Background Image with Dark Wash */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${relocationProfessionalImage})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-black/75 backdrop-blur-[2px]" />
+
+        <div className="container mx-auto max-w-4xl relative z-10 text-white text-center">
+          <h2 className="text-3xl md:text-5xl font-black mb-12">Who This Launch Is For</h2>
+          <div className="grid sm:grid-cols-2 gap-6 text-left">
+            <div className="p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center gap-6 hover:bg-white/20 transition-all group">
+              <div className="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Users className="w-8 h-8 text-blue-400" />
+              </div>
+              <div>
+                <span className="font-bold text-xl block">New Tenants</span>
+                <span className="text-sm text-gray-300">Just signed your lease?</span>
+              </div>
             </div>
-            <div className="p-6 bg-card rounded-xl border flex items-center gap-4 hover-elevate transition-all">
-              <Sparkles className="w-6 h-6 text-primary" />
-              <span className="font-semibold text-lg">Renters moving into JVC</span>
+            <div className="p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center gap-6 hover:bg-white/20 transition-all group">
+              <div className="w-14 h-14 rounded-xl bg-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Sparkles className="w-8 h-8 text-cyan-400" />
+              </div>
+              <div>
+                <span className="font-bold text-xl block">JVC Renters</span>
+                <span className="text-sm text-gray-300">New to the neighborhood?</span>
+              </div>
             </div>
-            <div className="p-6 bg-card rounded-xl border flex items-center gap-4 hover-elevate transition-all">
-              <Users className="w-6 h-6 text-primary" />
-              <span className="font-semibold text-lg">Families & Professionals Relocating</span>
+            <div className="p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center gap-6 hover:bg-white/20 transition-all group">
+              <div className="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Users className="w-8 h-8 text-emerald-400" />
+              </div>
+              <div>
+                <span className="font-bold text-xl block">Relocators</span>
+                <span className="text-sm text-gray-300">Families & Professionals</span>
+              </div>
             </div>
-            <div className="p-6 bg-card rounded-xl border flex items-center gap-4 hover-elevate transition-all">
-              <CheckCircle2 className="w-6 h-6 text-primary" />
-              <span className="font-semibold text-lg">Anyone who wants help after keys</span>
+            <div className="p-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl flex items-center gap-6 hover:bg-white/20 transition-all group">
+              <div className="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <CheckCircle2 className="w-8 h-8 text-purple-400" />
+              </div>
+              <div>
+                <span className="font-bold text-xl block">Admin Relief</span>
+                <span className="text-sm text-gray-300">Need help after keys?</span>
+              </div>
             </div>
           </div>
         </div>
