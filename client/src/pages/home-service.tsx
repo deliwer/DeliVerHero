@@ -110,7 +110,7 @@ export default function HomeService() {
             <div className="max-w-2xl">
               <Badge variant="secondary" className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-sm">
                 <Droplets className="w-3 h-3 mr-1" />
-                Launching Dec 25th - Christmas Special
+                Exclusive for JVC Launch Special
               </Badge>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-home-service-title">
                 Freedom LifeStyle.
