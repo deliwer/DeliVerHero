@@ -472,7 +472,6 @@ export default function HomeService() {
       </section>
       {/* Solar Panel Installation Section - NEW */}
       <section className="py-16 px-4 relative overflow-hidden" id="solar-service" style={{ backgroundImage: `url(${solarImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="order-2 lg:order-1 relative">
