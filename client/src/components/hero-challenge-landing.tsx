@@ -232,7 +232,7 @@ function StepTwoExchange() {
               aria-label="Toggle Get Home Service section"
               data-testid="toggle-home-service"
             >
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Complete Your Setup</span>
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Everyday Living Support</span>
               {isExpanded ? (
                 <ChevronUp className="w-8 h-8 text-cyan-400" />
               ) : (
@@ -240,40 +240,40 @@ function StepTwoExchange() {
               )}
             </button>
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">Vetted support for your daily comfort. From professional cleaning to premium water filtration, we handle the execution.</p>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">On-demand assistance for the essentials of Dubai life. From pure water systems to reliable home maintenance, we manage the logistics so you don't have to.</p>
           
           {/* Text-led What Residents Use DeliWer For - Sequential Checklist */}
           <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
             <div className="border-l-2 border-cyan-500/30 pl-6">
-              <h3 className="text-2xl font-bold text-white mb-6">What Residents Actually Use DeliWer For</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">How We Support Your Dubai Routine</h3>
               <div className="space-y-6 text-gray-300">
                 <p className="text-lg leading-relaxed">
-                  We provide <span className="text-cyan-400 font-bold">calm execution</span> for the most stressful parts of living in Dubai. 
-                  One service at a time, until your home is ready.
+                  Living in Dubai is fast-paced; keeping your home running shouldn't be a second job. 
+                  We step in to bridge the gap between <span className="text-cyan-400 font-bold">moving in and living well</span>.
                 </p>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 group">
                     <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Move-in coordination (Cleaning & Utilities)</span>
+                    <span className="text-base font-medium">Post-handover essentials (Deep cleaning & DEWA/Chiller support)</span>
                   </div>
                   <div className="h-px bg-white/5 w-1/4"></div>
                   
                   <div className="flex items-center gap-4 group">
                     <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Drinking water setup (Filtration & Delivery)</span>
+                    <span className="text-base font-medium">Health-first water setup (Shower filters & RO installation)</span>
                   </div>
                   <div className="h-px bg-white/5 w-1/4"></div>
                   
                   <div className="flex items-center gap-4 group">
                     <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Ongoing home maintenance & support</span>
+                    <span className="text-base font-medium">Routine comfort (AC servicing, plumbing & pest control)</span>
                   </div>
                   <div className="h-px bg-white/5 w-1/4"></div>
                   
                   <div className="flex items-center gap-4 group">
                     <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Business & document assistance</span>
+                    <span className="text-base font-medium">Admin relief (Visa assistance & document processing)</span>
                   </div>
                 </div>
               </div>
