@@ -141,7 +141,7 @@ export default function Explore() {
           <p className="text-gray-300 mb-8">
             Begin your relocation journey today with our core move-in services.
           </p>
-          <Link href="/move-in-services">
+          <Link href="/residence/move-in-services">
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700" data-testid="button-back-to-movein">
               Activate Move-In Services
               <ArrowRight className="w-4 h-4 ml-2" />

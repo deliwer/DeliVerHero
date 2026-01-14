@@ -29,7 +29,7 @@ export default function MoveInLanding() {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-16">
-            <Link href="/move-in-services">
+            <Link href="/residence/move-in-services">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8" data-testid="button-activate-hero">
                 Activate My Move-In
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -183,7 +183,7 @@ export default function MoveInLanding() {
             </p>
           </div>
 
-          <Link href="/move-in-services">
+          <Link href="/residence/move-in-services">
             <Button size="lg" className="bg-blue-600 hover:bg-blue-700" data-testid="button-request-quote-hero">
               Request Custom Quote
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -232,7 +232,7 @@ export default function MoveInLanding() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/move-in-services">
+            <Link href="/residence/move-in-services">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8" data-testid="button-activate-final-hero">
                 Activate Now
                 <Zap className="w-4 h-4 ml-2" />

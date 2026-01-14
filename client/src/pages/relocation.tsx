@@ -282,7 +282,7 @@ export default function Relocation() {
             Start your relocation journey today. Our team is ready to help.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/move-in-services">
+            <Link href="/residence/move-in-services">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700" data-testid="button-move-in-cta-relocation">
                 Explore Move-In Services
                 <ArrowRight className="w-4 h-4 ml-2" />
