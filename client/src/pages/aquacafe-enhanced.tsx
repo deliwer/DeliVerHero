@@ -169,14 +169,14 @@ export default function AquaCafeEnhanced() {
   return (
     <>
       <Helmet>
-        <title>Buy Water Filter in Dubai | AquaCafe Lifestyle Marketplace</title>
+        <title>Buy Water Filter in Dubai | AquaCafe Dubai Everyday Living Support</title>
         <meta 
           name="description" 
           content="Premium water filtration systems for healthy living in Dubai. Order 5-stage purifiers with installation, earn Dubai Carbon Tokens (DXBs), and join the sustainability movement. Free installation across Dubai." 
         />
         <meta name="keywords" content="water filter Dubai, buy water purifier UAE, AquaCafe water filter Dubai, water filtration Dubai, home water filter Dubai, healthy living, wellness Dubai" />
         
-        <meta property="og:title" content="Buy Water Filter in Dubai | AquaCafe Lifestyle Marketplace" />
+        <meta property="og:title" content="Buy Water Filter in Dubai | AquaCafe Dubai Everyday Living Support" />
         <meta property="og:description" content="Premium water filtration for healthy living. Order with free installation, earn DXBs, support sustainability." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://deliwer.com/aquacafe" />
@@ -205,7 +205,7 @@ export default function AquaCafeEnhanced() {
           <div className="container mx-auto max-w-6xl relative z-10 text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6 border border-white/30">
               <Sparkles className="w-5 h-5" />
-              <span className="font-bold">AQUACAFE LIFESTYLE MARKETPLACE</span>
+              <span className="font-bold">AQUACAFE DUBAI EVERYDAY LIVING SUPPORT</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Premium Water for<br />Healthy Living in Dubai

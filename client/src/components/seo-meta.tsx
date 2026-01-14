@@ -22,21 +22,21 @@ export function SEOMeta({
 
   return (
     <Helmet>
-      <title>Dubai Everyday Living | DeliWer - Lifestyle Marketplace</title>
-      <meta name="description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins. Experience the best of Dubai living with DeliWer." />
-      <meta name="keywords" content="Dubai Everyday Living, Dubai lifestyle, sustainable Dubai, water delivery Dubai, iPhone trade-in Dubai, DeliWer marketplace" />
+      <title>Dubai Everyday Living Support | DeliWer</title>
+      <meta name="description" content="Dubai Everyday Living Support - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins. Experience the best of Dubai living with DeliWer." />
+      <meta name="keywords" content="Dubai Everyday Living Support, Dubai lifestyle, sustainable Dubai, water delivery Dubai, iPhone trade-in Dubai, DeliWer marketplace" />
       <link rel="canonical" href={url} />
 
-      <meta property="og:title" content="Dubai Everyday Living | DeliWer" />
-      <meta property="og:description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins." />
+      <meta property="og:title" content="Dubai Everyday Living Support | DeliWer" />
+      <meta property="og:description" content="Dubai Everyday Living Support - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins." />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content="DeliWer" />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Dubai Everyday Living | DeliWer" />
-      <meta name="twitter:description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins." />
+      <meta name="twitter:title" content="Dubai Everyday Living Support | DeliWer" />
+      <meta name="twitter:description" content="Dubai Everyday Living Support - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins." />
       <meta name="twitter:image" content={ogImage} />
 
       <meta name="robots" content="index, follow" />
