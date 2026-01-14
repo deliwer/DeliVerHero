@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 import { Helmet } from "react-helmet";
 import { useToast } from "@/hooks/use-toast";
 import { Droplets, Filter, Zap, Shield, TrendingUp, Star, Heart, Users, Sparkles, Gift } from "lucide-react";
