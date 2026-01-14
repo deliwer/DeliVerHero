@@ -120,60 +120,81 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
-    1: { icon: Home, label: "Smart Home", section: "How it Works" },
-    2: { icon: Droplets, label: "Home Service", section: "How it Works" },
-    3: { icon: ShoppingBag, label: "Daily Essentials", section: "How it Works" }
+    1: { icon: Home, label: "Home Setup", description: "Smart handover & essential activation" },
+    2: { icon: Droplets, label: "Everyday Living", description: "Ongoing maintenance & wellness" },
+    3: { icon: ShoppingBag, label: "Home Essentials", description: "Seamless loyalty & daily support" }
   };
 
   return (
-    <div className="flex flex-col items-center mb-8">
+    <div className="flex flex-col items-center mb-12">
       {/* Section indicator */}
-      <div className="mb-4">
-        <div className="inline-flex items-center gap-2 bg-hero-green-500/20 text-hero-green-400 px-4 py-2 rounded-full border border-hero-green-500/50">
-          <Target className="w-4 h-4" />
-          <span className="font-bold text-sm">HOW IT WORKS</span>
+      <div className="mb-6 relative">
+        <div className="absolute inset-0 bg-hero-green-500/20 blur-xl rounded-full"></div>
+        <div className="relative inline-flex items-center gap-2 bg-black/40 backdrop-blur-md text-hero-green-400 px-6 py-2 rounded-full border border-hero-green-500/30">
+          <Target className="w-4 h-4 animate-pulse" />
+          <span className="font-bold text-xs tracking-widest uppercase">The Dubai Operating System</span>
         </div>
       </div>
       
-      {/* Steps */}
-      <div className="flex items-center justify-center overflow-x-auto">
-        <div className="flex items-center space-x-4 sm:space-x-6 px-4">
+      {/* Unified Lifecycle Flow */}
+      <div className="w-full max-w-5xl mx-auto px-4">
+        <div className="relative flex items-center justify-between">
+          {/* Connecting Line Background */}
+          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-800 -translate-y-1/2 z-0"></div>
+          
+          {/* Active Progress Line */}
+          <motion.div 
+            className="absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-hero-green-500 via-blue-500 to-amber-500 -translate-y-1/2 z-0"
+            initial={{ width: "0%" }}
+            animate={{ width: currentStep === 1 ? "15%" : currentStep === 2 ? "50%" : "100%" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          />
+
           {[1, 2, 3].map((step) => {
-            const { icon: StepIcon, label } = stepConfig[step as keyof typeof stepConfig];
+            const { icon: StepIcon, label, description } = stepConfig[step as keyof typeof stepConfig];
+            const isActive = currentStep === step;
+            const isCompleted = currentStep > step;
+
             return (
-              <div key={step} className="flex flex-col items-center">
-                <div className="flex items-center">
-                  <div 
-                    className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-2 ${
-                      currentStep >= step 
-                        ? 'bg-hero-green-500 text-black animate-pulse border-hero-green-400 shadow-lg shadow-hero-green-500/30' 
-                        : 'bg-gray-600 text-gray-400 border-gray-500'
-                    }`}
-                  >
-                    {currentStep > step ? (
-                      <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8" />
-                    ) : (
-                      <StepIcon className="w-6 h-6 sm:w-8 sm:h-8" />
-                    )}
-                  </div>
-                  {step < 3 && (
-                    <div className={`w-16 sm:w-20 h-1 transition-all duration-300 rounded-full ${
-                      currentStep > step ? 'bg-hero-green-500 shadow-md shadow-hero-green-500/30' : 'bg-gray-600'
-                    }`} />
+              <div key={step} className="relative z-10 flex flex-col items-center text-center max-w-[120px] sm:max-w-[200px]">
+                <motion.div 
+                  whileHover={{ scale: 1.1 }}
+                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 border-2 backdrop-blur-xl ${
+                    isActive 
+                      ? 'bg-white/10 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.2)]' 
+                      : isCompleted 
+                        ? 'bg-hero-green-500/20 border-hero-green-500/50 text-hero-green-400'
+                        : 'bg-gray-900/50 border-gray-800 text-gray-500'
+                  }`}
+                >
+                  {isCompleted ? (
+                    <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10" />
+                  ) : (
+                    <StepIcon className={`w-8 h-8 sm:w-10 sm:h-10 ${isActive ? 'text-white' : ''}`} />
                   )}
-                </div>
-                <div className={`mt-2 text-xs font-bold whitespace-nowrap ${
-                  currentStep >= step ? 'text-hero-green-400' : 'text-gray-400'
-                }`}>
-                  {label}
+                </motion.div>
+                <div className="mt-4 space-y-1">
+                  <div className={`text-sm font-black uppercase tracking-tight ${isActive ? 'text-white' : 'text-gray-500'}`}>
+                    {label}
+                  </div>
+                  <div className={`text-[10px] sm:text-xs leading-tight hidden sm:block ${isActive ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {description}
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
       </div>
-      {currentStep === 3 && (
-        <p className="text-center text-xs text-gray-400 mt-4">One DeliWer coordinator remains responsible until setup is complete.</p>
+      
+      {currentStep && (
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center text-[10px] text-gray-400 mt-8 tracking-widest uppercase font-bold"
+        >
+          {currentStep === 3 ? "Complete lifecycle management active" : "Continuity coordination in progress"}
+        </motion.p>
       )}
     </div>
   );
@@ -977,7 +998,10 @@ export function HeroChallengeLanding() {
 
         {/* 3-Way Path Selector - Start Your Journey */}
         <div className="flex justify-center my-16">
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-8 relative">
+            {/* Background Video Suggestion: Would go here if enabled */}
+            <div className="absolute inset-0 bg-hero-green-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+
             {/* Path 1: Smart Home */}
             <button
               onClick={() => {
@@ -986,19 +1010,22 @@ export function HeroChallengeLanding() {
                   step1Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Smart Home"
+              className="flex flex-col items-center cursor-pointer group transition-all duration-500 border-0 bg-transparent p-0"
+              aria-label="Phase 1: Home Setup"
               data-testid="button-scroll-step-1"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-teal-500 to-emerald-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <Home className="w-7 h-7 text-white" />
+              <div className="w-[2px] h-12 bg-gradient-to-b from-transparent to-emerald-500/30 mb-2"></div>
+              <div className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-2xl border border-white/10 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 transition-all duration-500">
+                <Home className="w-8 h-8 text-emerald-400 group-hover:scale-110 transition-transform" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-emerald-500 mt-2"></div>
-              <div className="text-xs text-emerald-400 mt-3 font-bold">SMART HOME</div>
+              <div className="w-[2px] h-12 bg-gradient-to-b from-emerald-500/30 to-transparent mt-2"></div>
+              <div className="mt-4 text-center">
+                <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Phase 01</div>
+                <div className="text-sm text-white font-black group-hover:text-emerald-400 transition-colors">HOME SETUP</div>
+              </div>
             </button>
 
-            {/* Path 2: Home Service */}
+            {/* Path 2: Everyday Living */}
             <button
               onClick={() => {
                 const step2Section = document.querySelector('[data-section="step-2"]');
@@ -1006,19 +1033,22 @@ export function HeroChallengeLanding() {
                   step2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Home Service"
+              className="flex flex-col items-center cursor-pointer group transition-all duration-500 border-0 bg-transparent p-0"
+              aria-label="Phase 2: Everyday Living"
               data-testid="button-scroll-step-2"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-blue-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <Droplets className="w-7 h-7 text-white" />
+              <div className="w-[2px] h-12 bg-gradient-to-b from-transparent to-cyan-500/30 mb-2"></div>
+              <div className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-2xl border border-white/10 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/10 transition-all duration-500">
+                <Droplets className="w-8 h-8 text-cyan-400 group-hover:scale-110 transition-transform" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-cyan-500 to-teal-500 mt-2"></div>
-              <div className="text-xs text-cyan-400 mt-3 font-bold">HOME SERVICE</div>
+              <div className="w-[2px] h-12 bg-gradient-to-b from-cyan-500/30 to-transparent mt-2"></div>
+              <div className="mt-4 text-center">
+                <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Phase 02</div>
+                <div className="text-sm text-white font-black group-hover:text-cyan-400 transition-colors">LIVING SUPPORT</div>
+              </div>
             </button>
 
-            {/* Path 3: Join Loyalty */}
+            {/* Path 3: Home Essentials */}
             <button
               onClick={() => {
                 const loyaltySection = document.querySelector('[data-section="membership-benefits"]');
@@ -1026,16 +1056,19 @@ export function HeroChallengeLanding() {
                   loyaltySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="flex flex-col items-center cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0"
-              aria-label="Start Your Journey - Daily Essentials"
+              className="flex flex-col items-center cursor-pointer group transition-all duration-500 border-0 bg-transparent p-0"
+              aria-label="Phase 3: Home Essentials"
               data-testid="button-scroll-membership"
             >
-              <div className="w-1 h-12 bg-gradient-to-b from-indigo-500 to-amber-500 mb-2"></div>
-              <div className="w-14 h-14 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center animate-pulse shadow-2xl border-4 border-white/20">
-                <ShoppingBag className="w-7 h-7 text-white" />
+              <div className="w-[2px] h-12 bg-gradient-to-b from-transparent to-amber-500/30 mb-2"></div>
+              <div className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-2xl border border-white/10 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-all duration-500">
+                <ShoppingBag className="w-8 h-8 text-amber-400 group-hover:scale-110 transition-transform" />
               </div>
-              <div className="w-1 h-12 bg-gradient-to-b from-orange-500 to-amber-500 mt-2"></div>
-              <div className="text-xs text-amber-400 mt-3 font-bold">DAILY ESSENTIALS</div>
+              <div className="w-[2px] h-12 bg-gradient-to-b from-amber-500/30 to-transparent mt-2"></div>
+              <div className="mt-4 text-center">
+                <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Phase 03</div>
+                <div className="text-sm text-white font-black group-hover:text-amber-400 transition-colors">ESSENTIALS</div>
+              </div>
             </button>
           </div>
         </div>
@@ -1047,38 +1080,50 @@ export function HeroChallengeLanding() {
         </div>
 
         {/* Flow Connector 1→2 */}
-        <div className="flex justify-center mb-8">
-          <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-green-500 to-blue-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
-              <ArrowDown className="w-6 h-6 text-white" />
+        <div className="flex justify-center mb-12">
+          <div className="flex flex-col items-center group cursor-pointer" onClick={() => {
+            const step2Section = document.querySelector('[data-section="step-2"]');
+            if (step2Section) step2Section.scrollIntoView({ behavior: 'smooth' });
+          }}>
+            <div className="w-[1px] h-16 bg-gradient-to-b from-emerald-500/50 via-blue-500/50 to-cyan-500/50 group-hover:h-24 transition-all duration-700"></div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full scale-150"></div>
+              <div className="w-10 h-10 bg-black/40 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center group-hover:border-blue-500/50 transition-colors">
+                <ArrowDown className="w-5 h-5 text-blue-400 group-hover:translate-y-1 transition-transform" />
+              </div>
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-blue-500 to-cyan-500 mt-2"></div>
-            <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
+            <div className="mt-4 text-[10px] text-gray-500 font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">Continue Lifecycle</div>
           </div>
         </div>
 
         {/* Step 2: Home Service */}
         <motion.div 
-          initial={ { opacity: 0, y: 20 } }
-          whileInView={ { opacity: 1, y: 0 } }
-          viewport={ { once: true } }
-          transition={ { duration: 0.6 } }
-          className="py-8 px-4 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="py-12 px-4 mb-12 relative overflow-hidden rounded-3xl"
           data-section="step-2"
         >
+          {/* Subtle Background wash for phase 2 */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 pointer-events-none"></div>
           <StepTwoExchange />
         </motion.div>
 
         {/* Flow Connector 2→3 */}
-        <div className="flex justify-center mb-8">
-          <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-gradient-to-b from-teal-500 to-purple-500 mb-2"></div>
-            <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-purple-500 rounded-full flex items-center justify-center animate-pulse shadow-lg">
-              <ArrowDown className="w-6 h-6 text-white" />
+        <div className="flex justify-center mb-12">
+          <div className="flex flex-col items-center group cursor-pointer" onClick={() => {
+            const membershipSection = document.querySelector('[data-section="membership-benefits"]');
+            if (membershipSection) membershipSection.scrollIntoView({ behavior: 'smooth' });
+          }}>
+            <div className="w-[1px] h-16 bg-gradient-to-b from-cyan-500/50 via-purple-500/50 to-amber-500/50 group-hover:h-24 transition-all duration-700"></div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full scale-150"></div>
+              <div className="w-10 h-10 bg-black/40 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center group-hover:border-amber-500/50 transition-colors">
+                <ArrowDown className="w-5 h-5 text-amber-400 group-hover:translate-y-1 transition-transform" />
+              </div>
             </div>
-            <div className="w-1 h-12 bg-gradient-to-b from-purple-500 to-indigo-500 mt-2"></div>
-            <div className="text-xs text-gray-400 mt-2 font-bold">NEXT STEP</div>
+            <div className="mt-4 text-[10px] text-gray-500 font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">Establish Routine</div>
           </div>
         </div>
 
