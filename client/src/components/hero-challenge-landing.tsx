@@ -120,34 +120,33 @@ function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTim
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
-    1: { icon: Home, label: "Home Setup", description: "Smart handover & essential activation" },
-    2: { icon: Droplets, label: "Everyday Living", description: "Ongoing maintenance & wellness" },
-    3: { icon: ShoppingBag, label: "Home Essentials", description: "Seamless loyalty & daily support" }
+    1: { icon: Home, label: "Home", description: "Seamless Move-In" },
+    2: { icon: Droplets, label: "Home Service", description: "Everyday Support" },
+    3: { icon: ShoppingBag, label: "Loyalty", description: "Exclusive Perks" }
   };
 
   return (
     <div className="flex flex-col items-center mb-12">
       {/* Section indicator */}
-      <div className="mb-6 relative">
-        <div className="absolute inset-0 bg-hero-green-500/20 blur-xl rounded-full"></div>
-        <div className="relative inline-flex items-center gap-2 bg-black/40 backdrop-blur-md text-hero-green-400 px-6 py-2 rounded-full border border-hero-green-500/30">
-          <Target className="w-4 h-4 animate-pulse" />
-          <span className="font-bold text-xs tracking-widest uppercase">The Dubai Operating System</span>
+      <div className="mb-6">
+        <div className="inline-flex items-center gap-2 bg-hero-green-500/10 text-hero-green-400 px-5 py-2 rounded-full border border-hero-green-500/20 backdrop-blur-sm">
+          <Target className="w-4 h-4" />
+          <span className="font-bold text-[10px] tracking-[0.2em] uppercase">The DeliWer Journey</span>
         </div>
       </div>
       
       {/* Unified Lifecycle Flow */}
-      <div className="w-full max-w-5xl mx-auto px-4">
+      <div className="w-full max-w-3xl mx-auto px-4">
         <div className="relative flex items-center justify-between">
           {/* Connecting Line Background */}
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-800 -translate-y-1/2 z-0"></div>
+          <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-800 -translate-y-1/2 z-0"></div>
           
           {/* Active Progress Line */}
           <motion.div 
-            className="absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-hero-green-500 via-blue-500 to-amber-500 -translate-y-1/2 z-0"
+            className="absolute top-1/2 left-0 h-[1px] bg-gradient-to-r from-hero-green-500 via-blue-500 to-amber-500 -translate-y-1/2 z-0"
             initial={{ width: "0%" }}
-            animate={{ width: currentStep === 1 ? "15%" : currentStep === 2 ? "50%" : "100%" }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            animate={{ width: currentStep === 1 ? "10%" : currentStep === 2 ? "50%" : "100%" }}
+            transition={{ duration: 0.8, ease: "circOut" }}
           />
 
           {[1, 2, 3].map((step) => {
@@ -156,28 +155,27 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
             const isCompleted = currentStep > step;
 
             return (
-              <div key={step} className="relative z-10 flex flex-col items-center text-center max-w-[120px] sm:max-w-[200px]">
+              <div key={step} className="relative z-10 flex flex-col items-center text-center">
                 <motion.div 
-                  whileHover={{ scale: 1.1 }}
-                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 border-2 backdrop-blur-xl ${
+                  className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center transition-all duration-500 border backdrop-blur-md ${
                     isActive 
-                      ? 'bg-white/10 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.2)]' 
+                      ? 'bg-white/10 border-white/30 shadow-lg' 
                       : isCompleted 
-                        ? 'bg-hero-green-500/20 border-hero-green-500/50 text-hero-green-400'
-                        : 'bg-gray-900/50 border-gray-800 text-gray-500'
+                        ? 'bg-hero-green-500/10 border-hero-green-500/30 text-hero-green-400'
+                        : 'bg-gray-950 border-gray-800 text-gray-600'
                   }`}
                 >
                   {isCompleted ? (
-                    <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10" />
+                    <CheckCircle className="w-6 h-6 sm:w-7 sm:h-7" />
                   ) : (
-                    <StepIcon className={`w-8 h-8 sm:w-10 sm:h-10 ${isActive ? 'text-white' : ''}`} />
+                    <StepIcon className={`w-6 h-6 sm:w-7 sm:h-7 ${isActive ? 'text-white' : ''}`} />
                   )}
                 </motion.div>
-                <div className="mt-4 space-y-1">
-                  <div className={`text-sm font-black uppercase tracking-tight ${isActive ? 'text-white' : 'text-gray-500'}`}>
+                <div className="mt-4">
+                  <div className={`text-[10px] sm:text-xs font-black uppercase tracking-widest ${isActive ? 'text-white' : 'text-gray-500'}`}>
                     {label}
                   </div>
-                  <div className={`text-[10px] sm:text-xs leading-tight hidden sm:block ${isActive ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <div className={`text-[9px] mt-1 text-gray-400 hidden sm:block ${isActive ? 'opacity-100' : 'opacity-0'}`}>
                     {description}
                   </div>
                 </div>
@@ -186,16 +184,6 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
           })}
         </div>
       </div>
-      
-      {currentStep && (
-        <motion.p 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center text-[10px] text-gray-400 mt-8 tracking-widest uppercase font-bold"
-        >
-          {currentStep === 3 ? "Complete lifecycle management active" : "Continuity coordination in progress"}
-        </motion.p>
-      )}
     </div>
   );
 }
