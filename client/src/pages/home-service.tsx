@@ -470,62 +470,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-      {/* Solar Panel Installation Section - NEW */}
-      <section className="py-16 px-4 relative overflow-hidden" id="solar-service" style={{ backgroundImage: `url(${solarImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="order-2 lg:order-1 relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
-                <img 
-                  src={solarImg} 
-                  alt="Solar panel installation on Dubai home rooftop" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-bold text-lg">Solar Energy Solutions</p>
-                  <p className="text-white/90 text-sm">Harness Dubai's abundant sunshine</p>
-                </div>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 bg-amber-500/30 rounded-full px-4 py-2 mb-6 border border-amber-400/50">
-                <Sun className="w-4 h-4 text-amber-300" />
-                <span className="text-sm text-amber-200 font-medium">Solar Panel Installation</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-solar-service-title">
-                Power your home with <span className="text-amber-300">Dubai sunshine</span>
-              </h2>
-              <p className="text-lg text-white/90 mb-6">
-                Reduce your electricity bills by up to 80% with professional solar panel installation. DEWA-approved systems with government incentives.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
-                  Free site assessment & custom design
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
-                  DEWA Shams Dubai program eligible
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
-                  25-year performance warranty
-                </li>
-              </ul>
-              <div className="flex flex-wrap gap-3">
-                <CalendlyButton 
-                  size="lg" 
-                  data-testid="button-solar-consultation"
-                >
-                  <Sun className="w-4 h-4 mr-2" />
-                  Get Free Solar Assessment
-                </CalendlyButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       {/* EV Charging Station Section - NEW */}
       <section className="py-16 px-4 relative overflow-hidden" id="ev-charging" style={{ backgroundImage: `url(${evChargingImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
