@@ -100,7 +100,7 @@ export default function ErrandPage() {
                   <Sparkles className="w-4 h-4 mr-2" />
                   Request Your First Errand
                 </CalendlyButton>
-                <Link href="/home-service">
+                <Link href="/residence/move-in-services">
                   <Button size="lg" variant="outline" className="bg-orange-500/20 border-orange-400/30 text-white backdrop-blur-sm" data-testid="button-explore-home-services">
                     <ArrowRight className="w-4 h-4 mr-2" />
                     Explore More Services
@@ -419,7 +419,7 @@ export default function ErrandPage() {
             <p className="text-sm text-muted-foreground mb-4">
               Unlimited referrals. Unlimited rewards. Share the love!
             </p>
-            <Link href="/home-service">
+            <Link href="/residence/move-in-services">
               <Button variant="outline" data-testid="button-explore-all-services">
                 Explore All DeliWer Home Services
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -446,7 +446,7 @@ export default function ErrandPage() {
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               One platform. All your home needs covered.
             </p>
-            <Link href="/home-service">
+            <Link href="/residence/move-in-services">
               <Button size="lg" data-testid="button-home-services-bridge">
                 <Sparkles className="w-4 h-4 mr-2" />
                 Discover All Home Services

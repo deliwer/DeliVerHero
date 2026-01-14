@@ -213,10 +213,10 @@ function StepTwoExchange() {
   
   return (
     <motion.section 
-      initial={ { opacity: 0, y: 20 } }
-      whileInView={ { opacity: 1, y: 0 } }
-      viewport={ { once: true } }
-      transition={ { duration: 0.6 } }
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
       className="py-8 px-4 mb-8" 
       data-section="step-2"
     >
@@ -229,7 +229,7 @@ function StepTwoExchange() {
               className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-expanded={isExpanded}
-              aria-label="Toggle Get Home Service section"
+              aria-label="Toggle Everyday Living Support section"
               data-testid="toggle-home-service"
             >
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Everyday Living Support</span>
@@ -237,43 +237,59 @@ function StepTwoExchange() {
                 <ChevronUp className="w-8 h-8 text-cyan-400" />
               ) : (
                 <ChevronDown className="w-8 h-8 text-cyan-400" />
-              )}
+              ) }
             </button>
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">On-demand assistance for the essentials of Dubai life. From pure water systems to reliable home maintenance, we manage the logistics so you don't have to.</p>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">Ongoing assistance for the essentials of Dubai life. We don't just set you up; we ensure your home runs smoothly every single day.</p>
           
           {/* Text-led What Residents Use DeliWer For - Sequential Checklist */}
           <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
             <div className="border-l-2 border-cyan-500/30 pl-6">
-              <h3 className="text-2xl font-bold text-white mb-6">How We Support Your Dubai Routine</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">A Lifetime of Local Support</h3>
               <div className="space-y-6 text-gray-300">
                 <p className="text-lg leading-relaxed">
-                  Living in Dubai is fast-paced; keeping your home running shouldn't be a second job. 
-                  We step in to bridge the gap between <span className="text-cyan-400 font-bold">moving in and living well</span>.
+                  Moving in is just the beginning. Our mission is to handle the logistics of <span className="text-cyan-400 font-bold">everyday living in Dubai</span> so you can focus on what matters.
                 </p>
                 
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 group">
-                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Post-handover essentials (Deep cleaning & DEWA/Chiller support)</span>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4 group">
+                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <span className="text-lg font-bold text-white block">Day One Comfort</span>
+                      <span className="text-base text-gray-400">Post-handover deep cleaning, DEWA activation, and chiller setup support to make your first night perfect.</span>
+                    </div>
                   </div>
-                  <div className="h-px bg-white/5 w-1/4"></div>
                   
-                  <div className="flex items-center gap-4 group">
-                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Health-first water setup (Shower filters & RO installation)</span>
+                  <div className="flex items-start gap-4 group">
+                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
+                      <Droplets className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <span className="text-lg font-bold text-white block">Health-First Environment</span>
+                      <span className="text-base text-gray-400">Immediate installation of high-performance shower filters and alkaline RO systems for your long-term wellness.</span>
+                    </div>
                   </div>
-                  <div className="h-px bg-white/5 w-1/4"></div>
                   
-                  <div className="flex items-center gap-4 group">
-                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Routine comfort (AC servicing, plumbing & pest control)</span>
+                  <div className="flex items-start gap-4 group">
+                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
+                      <Clock className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <span className="text-lg font-bold text-white block">Continuous Maintenance</span>
+                      <span className="text-base text-gray-400">Routine AC servicing, plumbing, and pest control scheduled automatically to prevent issues before they start.</span>
+                    </div>
                   </div>
-                  <div className="h-px bg-white/5 w-1/4"></div>
                   
-                  <div className="flex items-center gap-4 group">
-                    <CheckCircle className="w-5 h-5 text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Admin relief (Visa assistance & document processing)</span>
+                  <div className="flex items-start gap-4 group">
+                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
+                      <Shield className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <span className="text-lg font-bold text-white block">Admin & Lifestyle Relief</span>
+                      <span className="text-base text-gray-400">Ongoing visa renewals, document processing, and errand support whenever you need an extra pair of hands.</span>
+                    </div>
                   </div>
                 </div>
               </div>

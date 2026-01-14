@@ -44,7 +44,7 @@ export function AIInteractiveHero() {
 
         {/* CTAs */}
         <div className="max-w-md mx-auto space-y-3">
-          <Link href="/home-service">
+          <Link href="/residence/move-in-services">
             <Button
               className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-8 py-6 text-lg font-semibold rounded-xl shadow-xl transform hover:scale-105 transition-all duration-300 border border-white/20"
               data-testid="button-get-home-service"

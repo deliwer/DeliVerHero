@@ -53,7 +53,7 @@ export function HomeServiceSection() {
           </div>
         </div>
 
-        <Link href="/home-service">
+        <Link href="/residence/move-in-services">
           <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500" data-testid="button-explore-home-services">
             <Recycle className="w-4 h-4 mr-2" />
             Explore Home Services
