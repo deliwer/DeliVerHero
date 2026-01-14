@@ -228,6 +228,28 @@ export default function Home() {
       {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
 
+      {/* JVC Move-In Launch Offer Banner */}
+      <section className="py-6 px-4">
+        <div className="max-w-6xl mx-auto">
+          <Link href="/launch">
+            <div className="bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border-2 border-emerald-500/30 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover-elevate transition-all cursor-pointer group">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <Gift className="w-6 h-6 text-emerald-500" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white uppercase tracking-tight">Exclusive JVC Move-In Offer</h3>
+                  <p className="text-emerald-400/80 font-medium">Free Shower Filter + Installation for new residents</p>
+                </div>
+              </div>
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 shrink-0">
+                Claim Offer <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          </Link>
+        </div>
+      </section>
+
       {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
       <HomeServiceSection />
 

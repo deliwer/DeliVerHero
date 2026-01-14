@@ -153,15 +153,22 @@ export default function Residence() {
       >
         <div className="absolute inset-0 bg-black/85"></div>
         <div className="container mx-auto max-w-6xl relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">Move-In & Home Setup</h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="text-center mb-12">
+            <Badge className="bg-emerald-500 text-white px-4 py-1.5 rounded-full mb-4 animate-pulse">
+              LIMITED TIME: JVC LAUNCH OFFER
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-wider">Move-In & Home Setup</h2>
+            <p className="text-emerald-400 font-bold mt-2">Claim your Free Shower Filter + AED 99 Starter Deal</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
               { title: "Move-In Services", description: "Essential services to prepare your home after keys are received.", icon: Key },
-              { title: "Utilities & Home Setup", description: "Help with water, internet, and essential home services.", icon: Zap }
+              { title: "Utilities & Home Setup", description: "Help with water, internet, and essential home services.", icon: Zap },
+              { title: "Exclusive JVC Offer", description: "Free shower filter installation + AED 99 move-in starter for new residents.", icon: Gift, highlight: true }
             ].map((item, idx) => (
-              <div key={idx} className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover-elevate">
-                <div className="w-12 h-12 bg-emerald-600/20 rounded-xl flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-emerald-400" />
+              <div key={idx} className={`bg-black/40 backdrop-blur-md border ${item.highlight ? 'border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.2)]' : 'border-white/10'} rounded-2xl p-6 hover-elevate`}>
+                <div className={`w-12 h-12 ${item.highlight ? 'bg-emerald-600/30' : 'bg-emerald-600/20'} rounded-xl flex items-center justify-center mb-4`}>
+                  <item.icon className={`w-6 h-6 ${item.highlight ? 'text-emerald-400' : 'text-emerald-400'}`} />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
@@ -169,14 +176,15 @@ export default function Residence() {
             ))}
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/residence/move-in-services">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-6 rounded-xl">
-                View Move-In Services
+            <Link href="/launch">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-6 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+                Claim Launch Offer
+                <Gift className="w-5 h-5 ml-2" />
               </Button>
             </Link>
-            <Link href="/residence/move-in-packages">
+            <Link href="/residence/move-in-services">
               <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-6 rounded-xl hover:bg-white/20">
-                See Move-In Packages
+                Individual Services
               </Button>
             </Link>
           </div>

@@ -236,6 +236,20 @@ export default function AquaCafeEnhanced() {
               <Gift className="w-5 h-5 mr-2" />
               Shop & Earn DXBs Now
             </Button>
+            
+            <div className="mt-8 flex justify-center">
+              <Link href="/launch">
+                <div className="bg-emerald-500/20 backdrop-blur-md border border-emerald-400/30 rounded-2xl px-6 py-4 flex items-center gap-4 hover-elevate transition-all cursor-pointer group max-w-md">
+                  <div className="w-10 h-10 bg-emerald-500/30 rounded-full flex items-center justify-center shrink-0">
+                    <Gift className="w-5 h-5 text-emerald-300" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-bold text-emerald-300 uppercase tracking-wider">Move-In Special</p>
+                    <p className="text-white text-sm">Just moved to JVC? Claim your <span className="font-bold underline">Free Shower Filter</span> here →</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </section>
 
