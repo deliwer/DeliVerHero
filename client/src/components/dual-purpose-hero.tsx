@@ -166,27 +166,6 @@ export function DualPurposeHero() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-center mb-16">
-            {/* Block 4 — ECOSYSTEM SIGNAL (QUIET, NOT BRAGGY) */}
-            <div className="space-y-6 h-full">
-              <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 h-full flex flex-col justify-center pt-[0px] pb-[0px] pl-[0px] pr-[0px]">
-                <h4 className="text-gray-400 font-bold mb-4 uppercase tracking-wider text-xs">
-                  Part of Dubai’s residential living ecosystem
-                </h4>
-                <p className="text-gray-300 text-base leading-relaxed">
-                  DeliWer works alongside building teams, service providers, and community developments to support residents during move-in and early living stages.
-                </p>
-                {/* Logo Placeholder Area */}
-                <div className="flex flex-wrap items-center gap-6 mt-8 opacity-60 grayscale hover:grayscale-0 transition-all">
-                  <img src={emaarLogo} alt="Emaar" className="h-12 w-auto object-contain" />
-                  <img src={damacLogo} alt="Damac" className="h-10 w-auto object-contain" />
-                  <img src={nakheelLogo} alt="Nakheel" className="h-10 w-auto object-contain" />
-                  <img src={binghattiLogo} alt="Binghatti" className="h-10 w-auto object-contain" />
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Secondary WhatsApp CTA */}
           <div className="flex justify-center">
             <Button
