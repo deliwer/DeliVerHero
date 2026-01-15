@@ -40,83 +40,6 @@ import relocationProfessionalImage from "@assets/stock_images/modern_professiona
 import sayNoToPlasticImg from "@assets/IMG-20191119-WA0023_1768286821283.jpg";
 import beautyFilterProof from "@assets/IMG-20210310-WA0681_1768287533319.jpg";
 
-interface HeroSpotCounterProps {
-  initialCount?: number;
-}
-
-function HeroSpotCounter({ initialCount = 47 }: HeroSpotCounterProps) {
-  const [spotsLeft, setSpotsLeft] = useState(initialCount);
-  
-  useEffect(() => {
-    // Simulate spots being taken every 30-60 seconds
-    const interval = setInterval(() => {
-      setSpotsLeft(prev => {
-        const newCount = Math.max(1, prev - Math.floor(Math.random() * 2));
-        return newCount;
-      });
-    }, 45000 + Math.random() * 30000);
-    
-    return () => clearInterval(interval);
-  }, []);
-  
-  return (
-    <div className="inline-flex items-center bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-2" data-testid="hero-spots-counter">
-      <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-      <span className="text-blue-400 font-bold text-sm">
-        JVC Local Support Channel Active
-      </span>
-    </div>
-  );
-}
-
-interface CountdownTimerProps {
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
-}
-
-function CountdownTimer({ hours = 23, minutes = 47, seconds = 32 }: CountdownTimerProps) {
-  const [time, setTime] = useState({ hours, minutes, seconds });
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(prev => {
-        let { hours, minutes, seconds } = prev;
-        
-        if (seconds > 0) {
-          seconds -= 1;
-        } else {
-          seconds = 59;
-          if (minutes > 0) {
-            minutes -= 1;
-          } else {
-            minutes = 59;
-            if (hours > 0) {
-              hours -= 1;
-            } else {
-              // Reset when reaches zero
-              return { hours: 23, minutes: 47, seconds: 32 };
-            }
-          }
-        }
-        
-        return { hours, minutes, seconds };
-      });
-    }, 1000);
-    
-    return () => clearInterval(interval);
-  }, []);
-  
-  const formatTime = (time: number) => time.toString().padStart(2, '0');
-  
-  return (
-    <div className="flex items-center space-x-2 text-slate-400" data-testid="hero-countdown">
-      <Timer className="w-4 h-4" />
-      <span className="text-sm">Response time: {"<"} 24 hours</span>
-    </div>
-  );
-}
-
 // Progress flow step indicator component
 function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   const stepConfig = {
@@ -127,7 +50,6 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
 
   return (
     <div className="flex flex-col items-center mb-12">
-      {/* Section indicator */}
       <div className="mb-6">
         <div className="inline-flex items-center gap-2 bg-hero-green-500/10 text-hero-green-400 px-5 py-2 rounded-full border border-hero-green-500/20 backdrop-blur-sm">
           <Target className="w-4 h-4" />
@@ -135,13 +57,10 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
         </div>
       </div>
       
-      {/* Unified Lifecycle Flow */}
       <div className="w-full max-w-3xl mx-auto px-4">
         <div className="relative flex items-center justify-between">
-          {/* Connecting Line Background */}
           <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gray-800 -translate-y-1/2 z-0"></div>
           
-          {/* Active Progress Line */}
           <motion.div 
             className="absolute top-1/2 left-0 h-[1px] bg-gradient-to-r from-hero-green-500 via-blue-500 to-amber-500 -translate-y-1/2 z-0"
             initial={{ width: "0%" }}
@@ -188,8 +107,94 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
   );
 }
 
-// Step 2: Home Service Section (formerly Step 1)
-function StepTwoExchange() {
+// Phase 1: Home Setup component
+function PhaseOneSetup() {
+  return (
+    <div className="max-w-4xl mx-auto py-12 px-4" data-section="step-1">
+      <ProgressIndicator currentStep={1} />
+      
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-5xl font-black mb-6 text-white uppercase tracking-tighter">
+          Phase 01 — Home Setup
+        </h2>
+        <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-8 italic">
+          Keys Received. Stress Removed.
+        </h3>
+        
+        <div className="max-w-2xl mx-auto text-left space-y-8 bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
+          <div className="space-y-4">
+            <h4 className="text-xl font-bold text-white flex items-center gap-2">
+              <Building className="w-5 h-5 text-emerald-400" />
+              Residence in Dubai
+            </h4>
+            <p className="text-gray-300 leading-relaxed">
+              The most stressful moment of living in Dubai is not finding a home. It’s everything that comes <span className="text-white font-bold">after</span> you get the keys.
+            </p>
+            <p className="text-gray-400 text-sm italic">
+              Cleaning. Water. Utilities. Setup. Multiple vendors. No accountability.
+            </p>
+            <p className="text-emerald-400 font-black text-lg">
+              This is where DeliWer starts.
+            </p>
+            <p className="text-gray-300">
+              Once you receive your apartment keys, we take over the coordination so you can move in comfortably from day one.
+            </p>
+          </div>
+
+          <div className="border-t border-white/10 pt-8 space-y-6">
+            <h4 className="text-xl font-bold text-white flex items-center gap-2">
+              <Target className="w-5 h-5 text-emerald-400" />
+              How DeliWer Works
+            </h4>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3 text-gray-300">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                <span>One WhatsApp conversation — no apps, no portals</span>
+              </li>
+              <li className="flex items-center gap-3 text-gray-300">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                <span>One DeliWer coordinator — fully accountable</span>
+              </li>
+              <li className="flex items-center gap-3 text-gray-300">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                <span>Vetted local partners — cleaning, water, maintenance</span>
+              </li>
+              <li className="flex items-center gap-3 text-gray-300">
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                <span>We stay responsible until everything is complete</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="text-center pt-4">
+            <p className="text-white font-bold text-lg mb-6">
+              You tell us what you need. We execute. You move in calmly.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/residence/move-in-services">
+                <Button className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-full px-8 py-6">
+                  View Move-In Services
+                </Button>
+              </Link>
+              <Link href="/residence/move-in-landing">
+                <Button variant="outline" className="w-full sm:w-auto border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 rounded-full px-8 py-6">
+                  View Move-In Packages
+                </Button>
+              </Link>
+            </div>
+            <div className="mt-6 flex flex-col items-center gap-2">
+              <p className="text-emerald-400 font-bold text-sm">Free consultation</p>
+              <p className="text-gray-500 text-xs uppercase tracking-widest">Speak to a real coordinator before spending anything</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Phase 2: Living Support Section
+function PhaseTwoSupport() {
   const [isExpanded, setIsExpanded] = useState(false);
   const { toast } = useToast();
   
@@ -226,846 +231,315 @@ function StepTwoExchange() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="py-8 px-4 mb-8" 
+      className="py-12 px-4 mb-12 relative overflow-hidden rounded-3xl"
       data-section="step-2"
     >
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={2} />
         
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            <button
-              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
-              onClick={() => setIsExpanded(!isExpanded)}
-              aria-expanded={isExpanded}
-              aria-label="Toggle Everyday Living Support section"
-              data-testid="toggle-home-service"
-            >
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Everyday Living Support</span>
-              {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-cyan-400" />
-              ) : (
-                <ChevronDown className="w-8 h-8 text-cyan-400" />
-              ) }
-            </button>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-tighter">
+            Phase 02 — Living Support
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">Ongoing assistance for the essentials of Dubai life. We don't just set you up; we ensure your home runs smoothly every single day.</p>
-          
-          {/* Text-led What Residents Use DeliWer For - Sequential Checklist */}
-          <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
-            <div className="border-l-2 border-cyan-500/30 pl-6">
-              <h3 className="text-2xl font-bold text-white mb-6">A Lifetime of Local Support</h3>
-              <div className="space-y-6 text-gray-300">
-                <p className="text-lg leading-relaxed">
-                  Moving in is just the beginning. Our mission is to handle the logistics of <span className="text-cyan-400 font-bold">everyday living in Dubai</span> so you can focus on what matters.
-                </p>
-                
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4 group">
-                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
-                      <CheckCircle className="w-5 h-5 text-cyan-400" />
-                    </div>
-                    <div>
-                      <span className="text-lg font-bold text-white block">Day One Comfort</span>
-                      <span className="text-base text-gray-400">Post-handover deep cleaning, DEWA activation, and chiller setup support to make your first night perfect.</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4 group">
-                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
-                      <Droplets className="w-5 h-5 text-cyan-400" />
-                    </div>
-                    <div>
-                      <span className="text-lg font-bold text-white block">Health-First Environment</span>
-                      <span className="text-base text-gray-400">Immediate installation of high-performance shower filters and alkaline RO systems for your long-term wellness.</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4 group">
-                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
-                      <Clock className="w-5 h-5 text-cyan-400" />
-                    </div>
-                    <div>
-                      <span className="text-lg font-bold text-white block">Continuous Maintenance</span>
-                      <span className="text-base text-gray-400">Routine AC servicing, plumbing, and pest control scheduled automatically to prevent issues before they start.</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4 group">
-                    <div className="mt-1 bg-cyan-500/20 p-2 rounded-lg">
-                      <Shield className="w-5 h-5 text-cyan-400" />
-                    </div>
-                    <div>
-                      <span className="text-lg font-bold text-white block">Admin & Lifestyle Relief</span>
-                      <span className="text-base text-gray-400">Ongoing visa renewals, document processing, and errand support whenever you need an extra pair of hands.</span>
-                    </div>
-                  </div>
+          <h3 className="text-xl md:text-2xl font-bold text-cyan-400 mb-8 italic">
+            Your Home, Running Smoothly — Not Just on Day One
+          </h3>
+
+          <div className="max-w-2xl mx-auto text-left space-y-8 bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold text-white flex items-center gap-2">
+                <Droplets className="w-5 h-5 text-cyan-400" />
+                Everyday Living Support
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                Most services disappear after move-in. <span className="text-cyan-400 font-bold">DeliWer stays.</span>
+              </p>
+              <p className="text-gray-300">
+                We don’t just help you set up your home — we help you <span className="text-white font-bold">live well in it</span>.
+              </p>
+            </div>
+
+            <div className="border-t border-white/10 pt-8">
+              <h4 className="text-xl font-bold text-white mb-6">What Ongoing Support Looks Like</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <span className="text-cyan-400 font-bold block">Day-One Comfort</span>
+                  <p className="text-sm text-gray-400 leading-relaxed">Post-handover deep cleaning, DEWA and chiller setup guidance so your first night feels right.</p>
+                </div>
+                <div className="space-y-2">
+                  <span className="text-cyan-400 font-bold block">Health-First Environment</span>
+                  <p className="text-sm text-gray-400 leading-relaxed">Immediate installation of shower filters and alkaline RO systems — because water quality affects your daily life.</p>
+                </div>
+                <div className="space-y-2">
+                  <span className="text-cyan-400 font-bold block">Preventive Maintenance</span>
+                  <p className="text-sm text-gray-400 leading-relaxed">Scheduled AC servicing, plumbing, and pest control to avoid emergencies before they happen.</p>
+                </div>
+                <div className="space-y-2">
+                  <span className="text-cyan-400 font-bold block">Admin & Lifestyle Relief</span>
+                  <p className="text-sm text-gray-400 leading-relaxed">Visa renewals, document help, errands — whenever Dubai life gets overwhelming.</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* CTAs - Calendar Booking and Home Service Detail */}
-          <div className="mt-6 space-y-4">
-            <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <div className="flex-1">
-                <Link href="/residence/move-in-services" className="w-full">
-                  <Button
-                    size="lg"
-                    className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                    data-testid="button-view-home-service"
-                  >
-                    <Droplets className="w-5 h-5 flex-shrink-0" />
-                    <span>View Home Services</span>
+            <div className="text-center pt-8 border-t border-white/10">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/residence/move-in-services">
+                  <Button className="w-full sm:w-auto bg-cyan-500 hover:bg-cyan-600 text-black font-bold rounded-full px-8 py-6">
+                    View Home Services
+                  </Button>
+                </Link>
+                <Link href="/aquacafe">
+                  <Button variant="outline" className="w-full sm:w-auto border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 rounded-full px-8 py-6">
+                    View Essentials
                   </Button>
                 </Link>
               </div>
-              <Link href="/aquacafe" className="flex-1">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full flex items-center justify-center gap-3 border-cyan-400/50 text-cyan-400 hover:bg-cyan-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-view-aquacafe-packages"
-                >
-                  <ShoppingBag className="w-5 h-5 flex-shrink-0" />
-                  <span>View Essentials</span>
-                </Button>
-              </Link>
-            </div>
-            <p className="text-center text-gray-400 text-sm">
-              One-stop local support for your household needs in JVC
-            </p>
-          </div>
-        </div>
-
-        {/* Product Showcase */}
-        {isExpanded && (
-        <>
-
-        {/* Water Filtration Systems Showcase */}
-        <div className="mb-8 animate-in slide-in-from-top duration-500">
-          <div className="glass rounded-2xl p-8 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-4">
-                <Droplets className="w-5 h-5" />
-                <span className="font-bold inline-flex items-center gap-1"><Droplets className="w-4 h-4" /> PREMIUM WATER SYSTEMS</span>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Choose Your Water Solution</h3>
+              <p className="mt-6 text-gray-500 text-xs italic">One coordinated support system for your household — starting in JVC, expanding citywide.</p>
               
-              {/* Free Installation Banner - Always Visible */}
-              <div className="max-w-3xl mx-auto mb-4 rounded-xl overflow-hidden border-2 border-cyan-500 shadow-2xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-4 backdrop-blur-sm animate-pulse">
-                <div className="flex items-center justify-center gap-3">
-                  <Droplets className="w-6 h-6 text-cyan-400" />
-                  <div className="text-center">
-                    <p className="text-lg font-black text-cyan-300 mb-1">
-                      FREE Professional Installation
-                    </p>
-                    <p className="text-sm text-cyan-100">
-                      When you order any water filtration package - Limited time offer!
-                    </p>
-                  </div>
-                  <Gift className="w-6 h-6 text-cyan-400" />
-                </div>
-              </div>
-
-              <p className="text-gray-300 text-sm max-w-2xl mx-auto">
-                Get clean, alkaline water at home with our premium filtration systems
-              </p>
-            </div>
-
-            {/* Product Image Showcase */}
-            <div className="mb-8 max-w-3xl mx-auto">
-              <img 
-                src={kangenWaterSystem} 
-                alt="Kangen K8 Premium Water Filtration System" 
-                className="w-full h-auto rounded-xl shadow-2xl border border-blue-400/30"
-                data-testid="img-water-filtration-system"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Kangen K8 */}
-              <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-400/30 hover:border-blue-400/60 transition-all">
-                <div className="flex items-center gap-2 mb-4">
-                  <Badge className="bg-amber-500/20 text-amber-400">FLAGSHIP</Badge>
-                  <Badge className="bg-blue-500/20 text-blue-400">Most Popular</Badge>
-                </div>
-                <h4 className="text-xl font-bold text-white mb-3">Kangen K8 Machine</h4>
-                <div className="space-y-3 mb-4">
-                  <div className="flex items-start">
-                    <Zap className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">8 platinum-coated titanium plates for superior ionization</span>
-                  </div>
-                  <div className="flex items-start">
-                    <Droplets className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Produces 5 types of water (pH 2.5-11.5)</span>
-                  </div>
-                  <div className="flex items-start">
-                    <Shield className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Medical-grade quality, 15-year warranty</span>
-                  </div>
-                  <div className="flex items-start">
-                    <Home className="w-4 h-4 text-blue-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Saves money vs. bottled water</span>
-                  </div>
-                </div>
-                <div className="text-center text-2xl font-bold text-blue-400 mb-2"><DirhamSymbol size={18} className="mr-1" />19,250</div>
-                <p className="text-gray-400 text-sm text-center mb-4">Premium alkaline water system - Direct from Kangen Dubai</p>
-                <Button
-                  onClick={() => handleBuyNow("kangen-k8-machine", "Kangen K8 Machine", 19250)}
-                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-6 text-lg shadow-xl"
-                  data-testid="button-buy-k8"
-                >
-                  <ShoppingCart className="mr-2 w-5 h-5 flex-shrink-0" />
-                  Order Now with PayPal/Stripe
-                </Button>
-              </div>
-
-              {/* Shower Filters & Portable */}
-              <div className="bg-slate-800/50 rounded-xl p-6 border border-cyan-400/30 hover:border-cyan-400/60 transition-all">
-                <div className="flex items-center gap-2 mb-4">
-                  <Badge className="bg-cyan-500/20 text-cyan-400">Starter Friendly</Badge>
-                </div>
-                <h4 className="text-xl font-bold text-white mb-3">AquaCafe Starter Kit</h4>
-                <div className="space-y-3 mb-4">
-                  <div className="flex items-start">
-                    <Droplets className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Remove chlorine, heavy metals & impurities</span>
-                  </div>
-                  <div className="flex items-start">
-                    <Heart className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Healthier skin & hair from filtered shower water</span>
-                  </div>
-                  <div className="flex items-start">
-                    <Package className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Professional installation included</span>
-                  </div>
-                  <div className="flex items-start">
-                    <Zap className="w-4 h-4 text-cyan-400 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">Instant results, easy maintenance</span>
-                  </div>
-                </div>
-                <div className="text-center mb-2">
-                  <span className="text-2xl font-bold text-cyan-400"><DirhamSymbol size={18} className="mr-1" />99</span>
-                  <span className="text-gray-500 line-through ml-2"><DirhamSymbol size={14} className="mr-0.5" />1,698</span>
-                </div>
-                <p className="text-gray-400 text-sm text-center mb-4">94% savings - Limited offer</p>
-                <Button
-                  onClick={() => handleBuyNow("aquacafe-starter-kit", "AquaCafe Starter Kit", 99)}
-                  className="w-full bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white font-bold py-6 text-lg shadow-xl"
-                  data-testid="button-buy-aquacafe"
-                >
-                  <ShoppingCart className="mr-2 w-5 h-5 flex-shrink-0" />
-                  Order Now with PayPal/Stripe
-                </Button>
-              </div>
-            </div>
-            
-            {/* Always-visible button to explore more products */}
-            <div className="mt-6 text-center">
-              <Link href="/aquacafe">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-4 text-lg shadow-xl transform hover:scale-105 transition-all"
-                  data-testid="button-explore-water-products"
-                >
-                  <Droplets className="mr-2 w-6 h-6 flex-shrink-0" />
-                  Explore All Water Filtration Products
-                </Button>
-              </Link>
-              <p className="text-gray-400 text-sm mt-2">
-                See shower filters, RO systems, and more
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Main CTA to AquaCafe */}
-        <div className="mb-8 animate-in slide-in-from-top duration-500">
-          <div className="glass rounded-2xl p-8 border border-green-500/50 bg-gradient-to-br from-green-500/10 to-emerald-500/10 text-center">
-            <h3 className="text-3xl font-bold text-white mb-4">Want More Options?</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Explore our full range of premium water products and Icelandic Glacial water delivery
-            </p>
-            <Link href="/aquacafe">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-12 py-6 text-2xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-main-aquacafe-cta"
+              <button
+                className="mt-8 text-cyan-400 font-bold text-sm flex items-center gap-2 mx-auto hover:text-cyan-300 transition-colors"
+                onClick={() => setIsExpanded(!isExpanded)}
               >
-                <Droplets className="mr-3 w-8 h-8 flex-shrink-0" />
-                View All AquaCafe Products
-              </Button>
-            </Link>
-            <div className="mt-4 flex items-center justify-center gap-6 text-sm text-gray-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>Free Delivery</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>Secure Checkout</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span>Premium Quality</span>
-              </div>
+                {isExpanded ? "Hide Detailed Options" : "Show Premium Water Solutions"}
+                {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
             </div>
           </div>
         </div>
-        </>
+
+        {isExpanded && (
+          <div className="mt-8 animate-in fade-in slide-in-from-top-4 duration-500">
+            <div className="glass rounded-2xl p-8 border border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full mb-4">
+                  <Droplets className="w-5 h-5" />
+                  <span className="font-bold inline-flex items-center gap-1">PREMIUM WATER SYSTEMS</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">Choose Your Water Solution</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-slate-800/50 rounded-xl p-6 border border-blue-400/30">
+                  <h4 className="text-xl font-bold text-white mb-3">Kangen K8 Machine</h4>
+                  <div className="text-2xl font-bold text-blue-400 mb-4"><DirhamSymbol size={18} /> 19,250</div>
+                  <Button
+                    onClick={() => handleBuyNow("kangen-k8-machine", "Kangen K8 Machine", 19250)}
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-4"
+                  >
+                    Order Now
+                  </Button>
+                </div>
+                <div className="bg-slate-800/50 rounded-xl p-6 border border-cyan-400/30">
+                  <h4 className="text-xl font-bold text-white mb-3">AquaCafe Starter Kit</h4>
+                  <div className="text-2xl font-bold text-cyan-400 mb-4"><DirhamSymbol size={18} /> 99</div>
+                  <Button
+                    onClick={() => handleBuyNow("aquacafe-starter-kit", "AquaCafe Starter Kit", 99)}
+                    className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4"
+                  >
+                    Order Now
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </motion.section>
   );
 }
 
-// Step 1: Smart Home Section
-function StepSellIPhone() {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+// Phase 3: Essentials & Loyalty Section
+function PhaseThreeLoyalty() {
   return (
-    <motion.div
-      initial={ { opacity: 0, y: 20 } }
-      whileInView={ { opacity: 1, y: 0 } }
-      viewport={ { once: true } }
-      transition={ { duration: 0.6 } }
-      className="max-w-4xl mx-auto px-4 py-12"
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="py-12 px-4 mb-12 relative overflow-hidden rounded-3xl"
+      data-section="membership-benefits"
     >
-      <ProgressIndicator currentStep={1} />
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-5xl font-black mb-4">
-          <button
-            className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
-            onClick={() => setIsExpanded(!isExpanded)}
-            aria-expanded={isExpanded}
-            aria-label="Toggle Get Smart Home section"
-            data-testid="toggle-smart-home"
-          >
-            <span className="bg-gradient-to-r from-emerald-400 to-green-400 bg-clip-text text-transparent"> Residence in Dubai</span>
-            {isExpanded ? (
-              <ChevronUp className="w-8 h-8 text-emerald-400" />
-            ) : (
-              <ChevronDown className="w-8 h-8 text-emerald-400" />
-            )}
-          </button>
-        </h2>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">Choose individual services you need after moving into your home, or bundled support designed to reduce stress and save time during move-in.</p>
+      <div className="max-w-4xl mx-auto">
+        <ProgressIndicator currentStep={3} />
+        
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-tighter">
+            Phase 03 — Essentials & Loyalty
+          </h2>
+          <h3 className="text-xl md:text-2xl font-bold text-amber-400 mb-8 italic">
+            Daily Essentials That Actually Reduce Your Costs
+          </h3>
 
-        {/* Text-led What DeliWer Does Section */}
-        <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
-          <div className="border-l-2 border-emerald-500/30 pl-6">
-            <h3 className="text-2xl font-bold text-white mb-4">Help after you get your apartment keys in Dubai</h3>
-            <div className="space-y-4 text-gray-300">
-              <p className="text-lg leading-relaxed">
-                DeliWer supports residents during the most stressful part of living in Dubai — the move-in phase.
+          <div className="max-w-2xl mx-auto text-left space-y-8 bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold text-white flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-amber-400" />
+                Daily Essentials & Loyalty
+              </h4>
+              <p className="text-gray-300 leading-relaxed">
+                Once your home is running smoothly, DeliWer helps you <span className="text-white font-bold">spend less every month</span>, not more.
               </p>
-              <p className="text-lg leading-relaxed">
-                Once you receive your apartment keys, we help you get set up properly so you can live comfortably from day one.
+              <p className="text-gray-300">
+                Through the <span className="text-amber-400 font-bold">AquaCafe ecosystem</span>, members access sustainable essentials with better pricing — without subscriptions or complexity.
               </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold mt-1">•</span>
-                  <span>Tell us what you need via a single WhatsApp contact.</span>
+            </div>
+
+            <div className="border-t border-white/10 pt-8">
+              <h4 className="text-xl font-bold text-white mb-6">What You Get</h4>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3 text-gray-300">
+                  <CheckCircle className="w-5 h-5 text-amber-500" />
+                  <span>Daily savings on drinking water</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold mt-1">•</span>
-                  <span>We coordinate vetted local partners for cleaning, water, maintenance, and setup.</span>
+                <li className="flex items-center gap-3 text-gray-300">
+                  <CheckCircle className="w-5 h-5 text-amber-500" />
+                  <span>Sustainable household replenishment</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold mt-1">•</span>
-                  <span>One DeliWer coordinator remains responsible until everything is complete.</span>
+                <li className="flex items-center gap-3 text-gray-300">
+                  <CheckCircle className="w-5 h-5 text-amber-500" />
+                  <span>Loyalty rewards for responsible choices</span>
                 </li>
               </ul>
+              <p className="mt-6 text-white font-bold text-lg text-center">Your everyday consumption starts working in your favor.</p>
             </div>
-          </div>
-        </div>
 
-        {/* CTAs - Calendar Booking and Housing Search */}
-        <div className="mt-6 space-y-4">
-          <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-            <div className="flex-1">
-              <Link href="/residence/move-in-services" className="w-full">
-                <Button
-                  size="lg"
-                  className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold px-8 py-6 text-lg shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                  data-testid="button-view-move-in-services"
-                >
-                  <Calendar className="w-5 h-5 flex-shrink-0" />
-                  <span> → View move-in services</span>
+            <div className="text-center pt-8 border-t border-white/10">
+              <Link href="/aquacafe">
+                <Button className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-full px-8 py-6 text-lg">
+                  Join AquaCafe Loyalty
                 </Button>
               </Link>
-            </div>
-            <Link href="/residence/move-in-packages" className="flex-1">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full flex items-center justify-center gap-3 border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20 font-bold px-8 py-6 text-lg shadow-xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-browse-housing"
-              >
-                <Home className="w-5 h-5 flex-shrink-0" />
-                <span>→ View move-in packages</span>
-              </Button>
-            </Link>
-          </div>
-          <p className="text-center text-gray-400 text-sm">Free consultation - Schedule your meeting today</p>
-        </div>
-      </div>
-      {isExpanded && (
-      <>
-      {/* Smart Home Property Search Info */}
-      <div className="glass rounded-2xl p-8 border border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 to-green-500/10 mb-8 animate-in slide-in-from-top duration-500">
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full mb-4">
-            <Home className="w-5 h-5" />
-            <span className="font-bold">SMART HOME FINDER</span>
-          </div>
-          <h3 className="text-2xl font-bold text-white mb-2">Find Your Perfect Home in Dubai</h3>
-          <p className="text-gray-300 text-sm">
-            Rent or buy smart homes with integrated technology and sustainable living features
-          </p>
-        </div>
-
-        {/* Property Types Grid */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="bg-slate-800/50 rounded-xl p-6 border border-emerald-400/30 text-center hover:border-emerald-400/60 transition-all">
-              <Building className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
-              <h4 className="text-white font-bold mb-2">Apartments</h4>
-              <p className="text-gray-400 text-sm">Modern smart apartments in prime locations</p>
-            </div>
-            <div className="bg-slate-800/50 rounded-xl p-6 border border-green-400/30 text-center hover:border-green-400/60 transition-all">
-              <Home className="w-10 h-10 text-green-400 mx-auto mb-3" />
-              <h4 className="text-white font-bold mb-2">Villas</h4>
-              <p className="text-gray-400 text-sm">Spacious villas with smart home systems</p>
-            </div>
-            <div className="bg-slate-800/50 rounded-xl p-6 border border-teal-400/30 text-center hover:border-teal-400/60 transition-all">
-              <Building className="w-10 h-10 text-teal-400 mx-auto mb-3" />
-              <h4 className="text-white font-bold mb-2">Townhouses</h4>
-              <p className="text-gray-400 text-sm">Family-friendly townhouses with gardens</p>
-            </div>
-          </div>
-
-          {/* Smart Home Features */}
-          <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-2xl p-8 border-2 border-emerald-400/50 text-center">
-            <div className="text-gray-300 text-sm mb-2">Every Smart Home Includes</div>
-            <div className="flex flex-wrap gap-3 justify-center mb-4">
-              <span className="bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold">Water Purification</span>
-              <span className="bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-bold">Smart Thermostat</span>
-              <span className="bg-teal-500/20 text-teal-400 px-4 py-2 rounded-full text-sm font-bold">Solar Ready</span>
-              <span className="bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-bold">EV Charging</span>
-            </div>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Link href="/residence">
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600"
-                  data-testid="button-browse-rent"
-                >
-                  <Home className="w-5 h-5 mr-2" />
-                  Browse Rentals
-                </Button>
-              </Link>
-              <Link href="/residence?type=buy">
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-emerald-400/50 text-emerald-400 hover:bg-emerald-500/20"
-                  data-testid="button-browse-buy"
-                >
-                  <Building className="w-5 h-5 mr-2" />
-                  Properties for Sale
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-r from-emerald-500/10 to-green-500/10 rounded-xl p-6 border border-emerald-400/30">
-          <h4 className="text-lg font-bold text-white mb-3 text-center">How It Works</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Target className="w-6 h-6 text-emerald-400" />
-              </div>
-              <div className="text-white font-bold mb-1">Browse Listings</div>
-              <div className="text-gray-400">Search smart homes by area & budget</div>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                <Calendar className="w-6 h-6 text-green-400" />
-              </div>
-              <div className="text-white font-bold mb-1">Schedule Viewing</div>
-              <div className="text-gray-400">Book a tour with our experts</div>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                <CheckCircle className="w-6 h-6 text-teal-400" />
-              </div>
-              <div className="text-white font-bold mb-1">Move In</div>
-              <div className="text-gray-400">Complete relocation support included</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </>
-      )}
-    </motion.div>
-  );
-}
-
-// Membership Benefits Section - Uniform Format Following Step 2 Pattern
-export function MembershipBenefitsSection({ onJoinMembership }: { onJoinMembership?: () => void }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  return (
-    <div className="max-w-4xl mx-auto">
-      <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white">
-            <button
-              className="cursor-pointer hover:scale-105 transition-all duration-300 border-0 bg-transparent p-0 inline-flex items-center gap-3"
-              onClick={() => setIsExpanded(!isExpanded)}
-              aria-expanded={isExpanded}
-              aria-label="Toggle Daily Essentials section"
-              data-testid="toggle-daily-essentials"
-            >
-              <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Daily Essentials & Loyalty</span>
-              {isExpanded ? (
-                <ChevronUp className="w-8 h-8 text-amber-400" />
-              ) : (
-                <ChevronDown className="w-8 h-8 text-amber-400" />
-              )}
-            </button>
-          </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
-            Step 3: Access your <span className="text-amber-400 font-bold">Daily Essentials</span> and sustainable household solutions.
-          </p>
-          
-          {/* Neutral, text-led Loyalty Path */}
-          <div className="max-w-2xl mx-auto mt-10 mb-12 text-left space-y-8">
-            <div className="border-l-2 border-amber-500/30 pl-6">
-              <h3 className="text-2xl font-bold text-white mb-6">Continuous Support</h3>
-              <div className="space-y-6 text-gray-300">
-                <p className="text-lg leading-relaxed">
-                  Beyond moving in, DeliWer remains your partner for <span className="text-amber-400 font-bold">sustainable daily living</span>. 
-                  Access members-only pricing on essentials through the AquaCafe ecosystem.
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 group">
-                    <CheckCircle className="w-5 h-5 text-amber-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Daily savings on water & fresh produce</span>
-                  </div>
-                  <div className="h-px bg-white/5 w-1/4"></div>
-                  
-                  <div className="flex items-center gap-4 group">
-                    <CheckCircle className="w-5 h-5 text-amber-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Sustainable household replenishment</span>
-                  </div>
-                  <div className="h-px bg-white/5 w-1/4"></div>
-                  
-                  <div className="flex items-center gap-4 group">
-                    <CheckCircle className="w-5 h-5 text-amber-400 opacity-60 group-hover:opacity-100 transition-opacity" />
-                    <span className="text-base font-medium">Earn loyalty rewards for green choices</span>
-                  </div>
+              <div className="mt-8 grid grid-cols-3 gap-4">
+                <div className="flex flex-col items-center gap-2">
+                  <Shield className="w-6 h-6 text-amber-400" />
+                  <span className="text-[10px] text-gray-400 uppercase font-bold text-center">Secure Checkout</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Trophy className="w-6 h-6 text-amber-400" />
+                  <span className="text-[10px] text-gray-400 uppercase font-bold text-center">Member Pricing</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Leaf className="w-6 h-6 text-amber-400" />
+                  <span className="text-[10px] text-gray-400 uppercase font-bold text-center">Impact Tracking</span>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Primary CTA to Join Loyalty */}
-          <div className="mt-6">
-            <Link href="/aquacafe" className="block">
-              <Button
-                size="lg"
-                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black font-bold px-12 py-6 text-xl shadow-2xl transform hover:scale-105 transition-all rounded-full"
-                data-testid="button-join-aquacafe-loyalty"
-              >
-                <ShoppingBag className="w-6 h-6 flex-shrink-0" />
-                <span>Join AquaCafe Loyalty</span>
-              </Button>
-            </Link>
-            <p className="text-center text-gray-400 text-sm mt-4">
-              Access member-only pricing and rewards for your daily essentials
-            </p>
-          </div>
-        </div>
-
-        {/* Expanded Content - Full Details */}
-        {isExpanded && (
-          <div className="animate-in slide-in-from-top duration-500">
-            <div className="glass rounded-2xl p-8 border border-amber-500/30 bg-gradient-to-br from-amber-900/20 to-hero-green-900/20 mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                {/* Left Column: AquaCafe Membership Details */}
-                <Card className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-cyan-500/30 overflow-hidden" data-testid="card-aquacafe-membership">
-                  <div className="p-6">
-                    <div className="text-center mb-4">
-                      <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full mb-4">
-                        <Award className="w-5 h-5" />
-                        <span className="font-bold">AquaCafe Membership</span>
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">Loyalty Member Level 2</h3>
-                      <p className="text-cyan-300 text-sm">Complete Benefits Package</p>
-                    </div>
-
-                    {/* Benefits List */}
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-start gap-3">
-                        <Gift className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">FREE Ionic Shower Filter</span> (<DirhamSymbol size={10} className="mr-0.5" />399 value)
-                        </div>
-                      </div>
-                      <div className="mt-2 mb-4 overflow-hidden rounded-xl border border-white/10">
-                        <img 
-                          src={beautyFilterProof} 
-                          alt="Beauty Filter Proof" 
-                          className="w-full h-auto opacity-90 hover:opacity-100 transition-opacity"
-                        />
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-hero-green-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">Discounted Installation for Loyalty Members</span>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <Star className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">1000 Loyalty Points</span> + 2X multiplier
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <Crown className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">Lifetime Member Benefits</span> & special offers
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <Utensils className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">Chill & Grill D100 Voucher</span> included
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Payment Options */}
-                    <div className="bg-white/5 rounded-xl p-4 mb-4">
-                      <div className="text-center">
-                        <div className="text-sm text-gray-400 mb-2">Payment Options Available</div>
-                        <div className="flex justify-center gap-3">
-                          <CreditCard className="w-6 h-6 text-blue-400" />
-                          <span className="text-xl text-white font-bold">PayPal & Stripe</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-
-                {/* Right Column: Chill & Grill Offer Details */}
-                <Card className="bg-gradient-to-br from-orange-500/10 to-pink-500/10 border-orange-500/30 overflow-hidden" data-testid="card-chill-grill-offer">
-                  <div className="p-6">
-                    <div className="text-center mb-4">
-                      <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full mb-4">
-                        <Utensils className="w-5 h-5" />
-                        <span className="font-bold">Partner Benefit</span>
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-2">Chill & Grill Dubai</h3>
-                      <p className="text-orange-300 text-sm">Pizza + Boba Tea for Two</p>
-                    </div>
-
-                    {/* Pizza & Boba Image */}
-                    <div className="mb-6">
-                      <img 
-                        src={pizzaBobaComboImage} 
-                        alt="Pizza and Boba Tea" 
-                        className="w-full h-auto rounded-xl shadow-2xl border border-orange-500/30"
-                        data-testid="img-pizza-boba-combo"
-                      />
-                    </div>
-
-                    {/* Offer Details */}
-                    <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-xl p-4 mb-6 border border-amber-500/30">
-                      <div className="text-center mb-3">
-                        <div className="text-3xl font-bold text-amber-400 mb-1">D100 Voucher</div>
-                        <div className="text-sm text-gray-300">FREE with membership + every referral!</div>
-                      </div>
-                    </div>
-
-                    {/* Benefits */}
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-start gap-3">
-                        <Gift className="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">Instant D100 Voucher</span> with <DirhamSymbol size={10} className="mx-0.5" />99 membership
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <Users className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">D100 per Referral</span> for you & your friend
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <MapPin className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">Home Delivery</span> via AquaCafe platform
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <Clock className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm text-gray-300">
-                          <span className="font-bold text-white">90-day validity</span> on all vouchers
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-
-              </div>
-            </div>
-
-            {/* After signup message */}
-            <div className="text-center py-6 bg-slate-800/50 rounded-xl border border-slate-600 mb-8">
-              <p className="text-gray-300 text-lg mb-4">
-                <span className="text-hero-green-400 font-bold">Ready to Start?</span> Click "JOIN LOYALTY" above or explore water filtration packages below
-              </p>
-              <div className="max-w-xs mx-auto overflow-hidden rounded-xl border border-slate-700 shadow-lg">
-                <img 
-                  src={sayNoToPlasticImg} 
-                  alt="Planet Heroes #SayNoToPlastic" 
-                  className="w-full h-auto"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Trust Indicators */}
-        <div className="text-center mt-8">
-          <p className="text-gray-400 text-sm">
-            Secure PayPal & Stripe Checkout - Instant Activation - Environmental Impact
-          </p>
         </div>
       </div>
+    </motion.section>
+  );
+}
+
+// Closing Anchor Component
+function ClosingAnchor() {
+  return (
+    <div className="max-w-4xl mx-auto py-16 px-4 text-center">
+      <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-6 py-3 rounded-full mb-8">
+        <Handshake className="w-5 h-5 text-hero-green-400" />
+        <span className="text-white font-bold tracking-widest uppercase text-xs">ONE SIMPLE PROMISE</span>
+      </div>
+      <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter">
+        One contact. One coordinator.<br />One less thing to worry about in Dubai.
+      </h2>
+      <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+        DeliWer exists so residents don’t have to manage Dubai alone.
+      </p>
+      <div className="mt-12">
+        <Button 
+          size="lg" 
+          className="bg-hero-green-500 hover:bg-hero-green-600 text-black font-bold rounded-full px-12 py-8 text-xl shadow-2xl"
+          onClick={() => window.open('https://wa.me/yourwhatsappnumber', '_blank')}
+        >
+          Message our Coordinator
+        </Button>
+      </div>
+    </div>
   );
 }
 
 export function HeroChallengeLanding() {
-  const { data: stats } = useImpactStats();
-  const { isRegistered } = useImageServiceWorker();
   const [showHeroRegistration, setShowHeroRegistration] = useState(false);
   const [showMissionSelection, setShowMissionSelection] = useState(false);
   const [registeredHero, setRegisteredHero] = useState<any>(null);
-  
-  return (
-    <section className="relative py-12 sm:py-20 px-4 overflow-hidden">
-      {/* iPhone Water Circular Exchange Background */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/attached_assets/generated_images/iPhone_water_circular_exchange_e4541c3c.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-          }}
-        />
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(34,197,94,0.3)_0%,transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(59,130,246,0.3)_0%,transparent_50%)]"></div>
-        </div>
-        <div className="absolute top-10 right-10 w-20 h-20 bg-hero-green-500/10 rounded-full blur-xl animate-float"></div>
-        <div className="absolute top-32 left-10 w-16 h-16 bg-blue-500/10 rounded-full blur-lg animate-float-delayed"></div>
-        <div className="absolute bottom-32 right-32 w-24 h-24 bg-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
-        <div className="absolute bottom-20 left-20 w-12 h-12 bg-amber-500/10 rounded-full blur-lg animate-bounce-slow"></div>
-        <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/10 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/10 to-transparent"></div>
-      </div>
-      <div className="max-w-7xl mx-auto relative z-10">
 
+  return (
+    <div className="min-h-screen bg-black text-white relative overflow-hidden" data-testid="hero-challenge-landing">
+      {/* Background elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(34,197,94,0.3)_0% ,transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,rgba(59,130,246,0.3)_0%,transparent_50%)]"></div>
+      </div>
+      <div className="absolute top-10 right-10 w-20 h-20 bg-hero-green-500/10 rounded-full blur-xl animate-float"></div>
+      <div className="absolute top-32 left-10 w-16 h-16 bg-blue-500/10 rounded-full blur-lg animate-float-delayed"></div>
+      <div className="absolute bottom-32 right-32 w-24 h-24 bg-purple-500/10 rounded-full blur-xl animate-pulse-slow"></div>
+      <div className="absolute bottom-20 left-20 w-12 h-12 bg-amber-500/10 rounded-full blur-lg animate-bounce-slow"></div>
+      <div className="absolute top-0 left-0 w-full h-1/4 bg-gradient-to-b from-hero-green-900/10 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-dubai-blue-900/10 to-transparent"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* 3-Way Path Selector - Start Your Journey */}
         <div className="flex justify-center my-16">
-          <div className="flex flex-col md:flex-row items-center gap-8 relative">
-            {/* Background Video Suggestion: Would go here if enabled */}
-            <div className="absolute inset-0 bg-hero-green-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+          <div className="flex flex-col md:flex-row items-center gap-12 relative">
+            <div className="absolute inset-0 bg-hero-green-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-            {/* Path 1: Smart Home */}
+            {/* Path 1: Home */}
             <button
               onClick={() => {
                 const step1Section = document.querySelector('[data-section="step-1"]');
-                if (step1Section) {
-                  step1Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (step1Section) step1Section.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="flex flex-col items-center cursor-pointer group transition-all duration-500 border-0 bg-transparent p-0"
-              aria-label="Phase 1: Home Setup"
+              className="flex flex-col items-center cursor-pointer group transition-all duration-300 border-0 bg-transparent p-0"
+              aria-label="Home"
               data-testid="button-scroll-step-1"
             >
-              <div className="w-[2px] h-12 bg-gradient-to-b from-transparent to-emerald-500/30 mb-2"></div>
-              <div className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-2xl border border-white/10 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10 transition-all duration-500">
-                <Home className="w-8 h-8 text-emerald-400 group-hover:scale-110 transition-transform" />
+              <div className="w-16 h-16 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-lg border border-white/10 group-hover:border-emerald-500/40 group-hover:bg-emerald-500/5 transition-all">
+                <Home className="w-7 h-7 text-emerald-400" />
               </div>
-              <div className="w-[2px] h-12 bg-gradient-to-b from-emerald-500/30 to-transparent mt-2"></div>
               <div className="mt-4 text-center">
-                <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Phase 01</div>
-                <div className="text-sm text-white font-black group-hover:text-emerald-400 transition-colors">HOME SETUP</div>
+                <div className="text-[10px] text-white font-black tracking-widest uppercase">Home</div>
               </div>
             </button>
 
-            {/* Path 2: Everyday Living */}
+            {/* Path 2: Home Service */}
             <button
               onClick={() => {
                 const step2Section = document.querySelector('[data-section="step-2"]');
-                if (step2Section) {
-                  step2Section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (step2Section) step2Section.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="flex flex-col items-center cursor-pointer group transition-all duration-500 border-0 bg-transparent p-0"
-              aria-label="Phase 2: Everyday Living"
+              className="flex flex-col items-center cursor-pointer group transition-all duration-300 border-0 bg-transparent p-0"
+              aria-label="Home Service"
               data-testid="button-scroll-step-2"
             >
-              <div className="w-[2px] h-12 bg-gradient-to-b from-transparent to-cyan-500/30 mb-2"></div>
-              <div className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-2xl border border-white/10 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/10 transition-all duration-500">
-                <Droplets className="w-8 h-8 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <div className="w-16 h-16 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-lg border border-white/10 group-hover:border-cyan-500/40 group-hover:bg-cyan-500/5 transition-all">
+                <Droplets className="w-7 h-7 text-cyan-400" />
               </div>
-              <div className="w-[2px] h-12 bg-gradient-to-b from-cyan-500/30 to-transparent mt-2"></div>
               <div className="mt-4 text-center">
-                <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Phase 02</div>
-                <div className="text-sm text-white font-black group-hover:text-cyan-400 transition-colors">LIVING SUPPORT</div>
+                <div className="text-[10px] text-white font-black tracking-widest uppercase">Home Service</div>
               </div>
             </button>
 
-            {/* Path 3: Home Essentials */}
+            {/* Path 3: Loyalty */}
             <button
               onClick={() => {
                 const loyaltySection = document.querySelector('[data-section="membership-benefits"]');
-                if (loyaltySection) {
-                  loyaltySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (loyaltySection) loyaltySection.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="flex flex-col items-center cursor-pointer group transition-all duration-500 border-0 bg-transparent p-0"
-              aria-label="Phase 3: Home Essentials"
+              className="flex flex-col items-center cursor-pointer group transition-all duration-300 border-0 bg-transparent p-0"
+              aria-label="Loyalty"
               data-testid="button-scroll-membership"
             >
-              <div className="w-[2px] h-12 bg-gradient-to-b from-transparent to-amber-500/30 mb-2"></div>
-              <div className="w-20 h-20 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-2xl border border-white/10 group-hover:border-amber-500/50 group-hover:bg-amber-500/10 transition-all duration-500">
-                <ShoppingBag className="w-8 h-8 text-amber-400 group-hover:scale-110 transition-transform" />
+              <div className="w-16 h-16 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-lg border border-white/10 group-hover:border-amber-500/40 group-hover:bg-amber-500/5 transition-all">
+                <ShoppingBag className="w-7 h-7 text-amber-400" />
               </div>
-              <div className="w-[2px] h-12 bg-gradient-to-b from-amber-500/30 to-transparent mt-2"></div>
               <div className="mt-4 text-center">
-                <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">Phase 03</div>
-                <div className="text-sm text-white font-black group-hover:text-amber-400 transition-colors">ESSENTIALS</div>
+                <div className="text-[10px] text-white font-black tracking-widest uppercase">Loyalty</div>
               </div>
             </button>
           </div>
         </div>
 
-        {/* 3-Step Progressive Flow with Visual Connectors */}
-        {/* Step 1: Smart Home */}
-        <div data-section="step-1">
-          <StepSellIPhone />
-        </div>
+        {/* 3-Step Progressive Flow with Storytelling Version */}
+        <PhaseOneSetup />
 
         {/* Flow Connector 1→2 */}
         <div className="flex justify-center mb-12">
@@ -1080,23 +554,10 @@ export function HeroChallengeLanding() {
                 <ArrowDown className="w-5 h-5 text-blue-400 group-hover:translate-y-1 transition-transform" />
               </div>
             </div>
-            <div className="mt-4 text-[10px] text-gray-500 font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">Continue Lifecycle</div>
           </div>
         </div>
 
-        {/* Step 2: Home Service */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="py-12 px-4 mb-12 relative overflow-hidden rounded-3xl"
-          data-section="step-2"
-        >
-          {/* Subtle Background wash for phase 2 */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 pointer-events-none"></div>
-          <StepTwoExchange />
-        </motion.div>
+        <PhaseTwoSupport />
 
         {/* Flow Connector 2→3 */}
         <div className="flex justify-center mb-12">
@@ -1111,25 +572,18 @@ export function HeroChallengeLanding() {
                 <ArrowDown className="w-5 h-5 text-amber-400 group-hover:translate-y-1 transition-transform" />
               </div>
             </div>
-            <div className="mt-4 text-[10px] text-gray-500 font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity">Establish Routine</div>
           </div>
         </div>
 
-        {/* Step 3: Join Loyalty (Progress indicator step 3) */}
-        <motion.div 
-          initial={ { opacity: 0, y: 20 } }
-          whileInView={ { opacity: 1, y: 0 } }
-          viewport={ { once: true } }
-          transition={ { duration: 0.6 } }
-          className="py-8 px-4 mb-8"
-          data-section="membership-benefits"
-        >
-          <ProgressIndicator currentStep={3} />
-          <MembershipBenefitsSection />
-        </motion.div>
+        <PhaseThreeLoyalty />
+
+        <ClosingAnchor />
       </div>
 
-      {/* Hero Registration Modal */}
+      <div className="max-w-7xl mx-auto px-4 py-24 border-t border-white/5">
+        <MeetDeliInteractive />
+      </div>
+
       <HeroRegistrationModal 
         open={showHeroRegistration}
         onClose={() => setShowHeroRegistration(false)}
@@ -1140,17 +594,15 @@ export function HeroChallengeLanding() {
         }}
       />
 
-      {/* Mission Selection Modal */}
       <MissionSelectionModal 
         open={showMissionSelection}
         onClose={() => setShowMissionSelection(false)}
         hero={registeredHero}
         onMissionSelect={(mission) => {
           setShowMissionSelection(false);
-          // Navigate to dashboard with mission
           window.location.href = `/dashboard?mission=${mission.id}`;
         }}
       />
-    </section>
+    </div>
   );
 }
