@@ -115,7 +115,7 @@ function PhaseOneSetup() {
       
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-black mb-6 text-white uppercase tracking-tighter">
-          Phase 01 — Home Setup
+          Home Setup
         </h2>
         <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-8 italic">
           Keys Received. Stress Removed.
@@ -239,7 +239,7 @@ function PhaseTwoSupport() {
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-tighter">
-            Phase 02 — Living Support
+            Living Support
           </h2>
           <h3 className="text-xl md:text-2xl font-bold text-cyan-400 mb-8 italic">
             Your Home, Running Smoothly — Not Just on Day One
@@ -363,7 +363,7 @@ function PhaseThreeLoyalty() {
         
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-tighter">
-            Phase 03 — Essentials & Loyalty
+            Essentials & Loyalty
           </h2>
           <h3 className="text-xl md:text-2xl font-bold text-amber-400 mb-8 italic">
             Daily Essentials That Actually Reduce Your Costs

@@ -1,40 +1,29 @@
 import { useState } from "react";
-import { Bot, Send, Calendar, Smartphone, Calculator, ArrowRight, Leaf, Star, Trophy, Rocket, MessageCircle, Zap, Target, Gift, CheckCircle, Clock, TrendingUp, Gamepad2, Crown } from "lucide-react";
+import { Bot, Send, Calendar, Smartphone, Calculator, ArrowRight, Leaf, Star, Trophy, Rocket, MessageCircle, Zap, Target, Gift, CheckCircle, Clock, TrendingUp, Gamepad2, Crown, MapPin, Key, Home, Sparkles, Thermometer, Truck, Loader2, Users, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { openAIService } from "@/lib/openai-service";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { shopifyCartService } from "@/lib/shopify-cart";
+import { Badge } from "@/components/ui/badge";
 
-const DEVICE_OPTIONS = [
-  { model: "iPhone 16 Pro Max", baseValue: 4200, points: 4000 },
-  { model: "iPhone 16 Pro", baseValue: 3800, points: 3600 },
-  { model: "iPhone 16", baseValue: 3200, points: 3000 },
-  { model: "iPhone 15 Pro Max", baseValue: 3500, points: 3200 },
-  { model: "iPhone 15 Pro", baseValue: 3100, points: 2800 },
-  { model: "iPhone 15", baseValue: 2800, points: 2500 },
-  { model: "iPhone 14 Pro Max", baseValue: 2900, points: 2600 },
-  { model: "iPhone 14 Pro", baseValue: 2500, points: 2300 },
-  { model: "iPhone 14", baseValue: 2200, points: 2000 },
+// Move-In Calculator Constants
+const MOVE_IN_STEPS = [
+  { id: "find", label: "Find a place", icon: MapPin, description: "Searching for the right property in JVC" },
+  { id: "handover", label: "Handover", icon: Key, description: "Keys received, waiting for setup" },
+  { id: "settled", label: "Settled", icon: Home, description: "Already moved in, need ongoing support" }
 ];
 
-const CONDITION_OPTIONS = [
-  { condition: "excellent", label: "Excellent", multiplier: 1.0 },
-  { condition: "good", label: "Good", multiplier: 0.8 },
-  { condition: "fair", label: "Fair", multiplier: 0.6 },
+const REQUIREMENTS_OPTIONS = [
+  { id: "cleaning", label: "Deep Cleaning", icon: Sparkles },
+  { id: "utilities", label: "DEWA/Chiller Setup", icon: Zap },
+  { id: "water", label: "Drinking Water", icon: Droplets },
+  { id: "maintenance", label: "AC Maintenance", icon: Thermometer },
+  { id: "relocation", label: "Relocation Help", icon: Truck }
 ];
-
-interface TradeCalculationResult {
-  tradeValue: number;
-  points: number;
-  co2Saved: number;
-  bottlesPrevented: number;
-  waterSaved: string;
-}
 
 export function MeetDeliInteractive() {
   const { toast } = useToast();
@@ -42,19 +31,12 @@ export function MeetDeliInteractive() {
   // AI Chat State
   const [inputMessage, setInputMessage] = useState("");
   const [isAILoading, setIsAILoading] = useState(false);
-  const [aiResponse, setAIResponse] = useState<string>("");
+  const [aiResponse, setAiResponse] = useState<string>("");
 
   // Calculator State
-  const [selectedDevice, setSelectedDevice] = useState(DEVICE_OPTIONS[0].model);
-  const [selectedCondition, setSelectedCondition] = useState(CONDITION_OPTIONS[0].condition);
-  const [calculationResult, setCalculationResult] = useState<TradeCalculationResult | null>(null);
-  const [calculatedValue, setCalculatedValue] = useState<number | null>(null);
-  const [calculatedPoints, setCalculatedPoints] = useState<number | null>(null);
-  const [activeStep, setActiveStep] = useState(1);
-  const [savedQuoteId, setSavedQuoteId] = useState<string | null>(null);
-
-  // Active interaction mode
   const [activeTab, setActiveTab] = useState("calculator");
+  const [currentStep, setCurrentStep] = useState("find");
+  const [selectedRequirements, setSelectedRequirements] = useState<string[]>([]);
 
   // AI Chat Functions
   const sendMessage = async (message: string) => {
@@ -64,24 +46,14 @@ export function MeetDeliInteractive() {
     setIsAILoading(true);
 
     try {
-      const response = await openAIService.sendMessage(message, {
-        phoneModels: DEVICE_OPTIONS.map(d => d.model),
-        recentMessages: [],
+      const response = await apiRequest("POST", "/api/chat", {
+        message: message,
+        context: "Deli Interactive Move-In Assistant"
       });
-
-      let enhancedContent = response.response || response.fallback || "Hi! I'm Deli, your trade-in assistant. I'm here to help with your iPhone trade!";
-      
-      // Add contextual responses for better conversational experience
-      if (message.toLowerCase().includes('iphone')) {
-        const deviceMatch = DEVICE_OPTIONS.find(d => message.toLowerCase().includes(d.model.toLowerCase()));
-        if (deviceMatch) {
-          enhancedContent = `Great! Your ${deviceMatch.model} has a trade value of AED ${deviceMatch.baseValue}. This trade will save 12,500L water and earn you +2,400 Planet Points! 🌍✨`;
-        }
-      }
-      
-      setAIResponse(enhancedContent);
+      const data = await response.json();
+      setAiResponse(data.reply);
     } catch (error) {
-      setAIResponse("I'm temporarily unavailable, but I'll be back soon to help with your iPhone trade-in! 🤖");
+      setAiResponse("I'm temporarily unavailable, but I'll be back soon to help with your JVC move-in! 🤖");
     } finally {
       setIsAILoading(false);
     }
@@ -94,333 +66,200 @@ export function MeetDeliInteractive() {
     }
   };
 
-  // Calculator Functions
-  const calculationMutation = useMutation({
-    mutationFn: async (data: { device: string; condition: string }): Promise<TradeCalculationResult> => {
-      const response = await apiRequest('/api/calculate-trade', 'POST', data);
-      const result = await response.json() as TradeCalculationResult;
-      return result;
-    },
-    onSuccess: (result: TradeCalculationResult) => {
-      setCalculationResult(result);
-    },
-  });
+  const toggleRequirement = (id: string) => {
+    setSelectedRequirements(prev => 
+      prev.includes(id) ? prev.filter(r => r !== id) : [...prev, id]
+    );
+  };
 
-  const saveQuoteMutation = useMutation({
-    mutationFn: async (data: { phoneModel: string; phoneCondition: string; estimatedValue: number }) => {
-      return await apiRequest('/api/quotes', 'POST', {
-        ...data,
-        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
-      });
-    },
-    onSuccess: (quote: any) => {
-      setSavedQuoteId(quote.id);
+  const handleCalculateMoveIn = () => {
+    if (selectedRequirements.length === 0) {
       toast({
-        title: "Quote saved successfully!",
-        description: "Your trade-in quote is valid for 7 days.",
+        title: "Selection Required",
+        description: "Please select at least one requirement to calculate.",
+        variant: "destructive"
       });
-      queryClient.invalidateQueries({ queryKey: ['/api/quotes'] });
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Failed to save quote",
-        description: error.message || "Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleCalculate = () => {
-    if (selectedDevice && selectedCondition) {
-      const device = DEVICE_OPTIONS.find(d => d.model === selectedDevice);
-      const condition = CONDITION_OPTIONS.find(c => c.condition === selectedCondition);
-      
-      if (device && condition) {
-        const value = Math.round(device.baseValue * condition.multiplier);
-        const points = Math.round(device.points * condition.multiplier);
-        setCalculatedValue(value);
-        setCalculatedPoints(points);
-        setActiveStep(2);
-      }
+      return;
     }
     
-    calculationMutation.mutate({
-      device: selectedDevice,
-      condition: selectedCondition,
+    toast({
+      title: "Calculation Complete",
+      description: "Deli has prepared your move-in plan. Check the summary below.",
     });
   };
 
-  const handleSaveQuote = () => {
-    if (calculatedValue && selectedDevice && selectedCondition) {
-      saveQuoteMutation.mutate({
-        phoneModel: selectedDevice,
-        phoneCondition: selectedCondition,
-        estimatedValue: calculatedValue,
-      });
-    }
-  };
-
-  const handleAddToCart = () => {
-    if (calculatedValue && selectedDevice && selectedCondition) {
-      const conditionLabel = CONDITION_OPTIONS.find(c => c.condition === selectedCondition)?.label || "Good";
-      const cartItem = {
-        id: `quote-${selectedDevice.replace(/\s+/g, '-')}-${selectedCondition}`,
-        variantId: `variant-${selectedDevice.replace(/\s+/g, '-')}-${selectedCondition}`,
-        productId: `product-${selectedDevice.replace(/\s+/g, '-')}`,
-        title: `${selectedDevice} Trade-In Quote`,
-        variant: `${conditionLabel} Condition`,
-        price: calculatedValue * 100, // Convert AED to fils (cents)
-        image: "/iphone-trade-placeholder.png",
-        quantity: 1,
-        available: true,
-      };
-
-      shopifyCartService.addToCart(cartItem);
-      toast({
-        title: "Added to Cart!",
-        description: `${selectedDevice} trade-in quote (AED ${calculatedValue}) added to cart`,
-      });
-    }
-  };
-
-  const handleStepClick = (step: number) => {
-    if (step === 1) {
-      setActiveStep(1);
-    } else if (step === 2 && calculatedValue) {
-      setActiveStep(2);
-    } else if (step === 3 && calculatedValue) {
-      setActiveStep(3);
-    }
-  };
-
   return (
-    <section id="meet-deli" className="relative py-12 sm:py-20 px-4 bg-gradient-to-br from-hero-green-900/20 via-slate-800 to-dubai-blue-900/20 overflow-hidden">
+    <section id="meet-deli" className="relative py-12 sm:py-20 px-4 bg-gradient-to-br from-hero-green-900/20 via-slate-800 to-dubai-blue-900/20 overflow-hidden rounded-3xl">
       <div className="max-w-7xl mx-auto relative z-10">
         
-
-        
-
-        {/* Trade Value Display */}
-        {calculatedValue && (
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center bg-hero-green-900/30 border border-hero-green-500/50 rounded-full px-6 py-3">
-              <Trophy className="w-5 h-5 text-hero-green-400 mr-2" />
-              <span className="text-hero-green-400 font-bold">Your Trade Value: AED {calculatedValue} + {calculatedPoints} Planet Points</span>
-            </div>
-          </div>
-        )}
-
         {/* Meet Deli Header */}
-        <div className="text-center mb-8" data-testid="meet-deli-interactive" data-section="meet-deli">
+        <div className="text-center mb-12" data-testid="meet-deli-interactive" data-section="meet-deli">
           <div className="inline-flex items-center bg-gradient-to-r from-hero-green-500/30 to-dubai-blue-500/30 border border-hero-green-400/50 rounded-full px-6 py-2 shadow-lg backdrop-blur-sm mb-6">
             <div className="w-2 h-2 bg-hero-green-400 rounded-full mr-2 animate-pulse"></div>
-            <span className="text-hero-green-200 font-bold text-sm tracking-wide">START YOUR TRADE-IN JOURNEY</span>
+            <span className="text-hero-green-200 font-bold text-sm tracking-wide uppercase">Start Your Move-In Journey</span>
           </div>
           <div className="flex items-center justify-center mb-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 rounded-full flex items-center justify-center mr-4">
+            <div className="w-16 h-16 bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 rounded-full flex items-center justify-center mr-4 shadow-xl">
               <Bot className="w-8 h-8 text-white" />
             </div>
-            <div>
-              <h3 className="text-3xl font-bold text-white mb-2">Meet Deli</h3>
-              <div className="flex items-center text-emerald-300">
+            <div className="text-left">
+              <h3 className="text-3xl font-black text-white mb-1 uppercase tracking-tighter">Meet Deli</h3>
+              <div className="flex items-center text-emerald-300 font-bold italic">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></div>
-                Your Interactive Trade Assistant
+                Your Interactive Move-In Coordinator
               </div>
             </div>
           </div>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-            Choose how you want to interact: Chat naturally with Deli or use our quick calculator for instant device valuation
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            Tell Deli what you need for your JVC home. We'll calculate the impact and coordination required for a stress-free move.
           </p>
         </div>
 
         {/* Interactive Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8 bg-slate-700/80">
+          <TabsList className="grid w-full grid-cols-2 mb-12 bg-white/5 backdrop-blur-xl border border-white/10 p-1 rounded-2xl h-16">
             <TabsTrigger 
               value="calculator" 
-              className="flex items-center gap-2 data-[state=active]:bg-hero-green-500 data-[state=active]:text-white"
+              className="flex items-center gap-2 rounded-xl text-lg font-bold data-[state=active]:bg-hero-green-500 data-[state=active]:text-black transition-all"
               data-testid="tab-calculator"
             >
-              <Calculator className="w-4 h-4" />
-              Quick Calculator
+              <Calculator className="w-5 h-5" />
+              Move-In Calculator
             </TabsTrigger>
             <TabsTrigger 
               value="chat" 
-              className="flex items-center gap-2 data-[state=active]:bg-dubai-blue-500 data-[state=active]:text-white"
+              className="flex items-center gap-2 rounded-xl text-lg font-bold data-[state=active]:bg-dubai-blue-500 data-[state=active]:text-white transition-all"
               data-testid="tab-chat"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-5 h-5" />
               Chat with Deli
             </TabsTrigger>
           </TabsList>
 
           {/* Calculator Tab */}
-          <TabsContent value="calculator" className="space-y-6">
-            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-              {/* Device Selection Side */}
-              <div className="flex flex-col items-center">
-                <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 items-center mb-8 w-full max-w-lg">
-                  {/* Device Selection */}
-                  <div className="text-center" data-testid="device-selection">
-                    <div className="bg-slate-700 rounded-xl p-6 mb-4 hover:bg-slate-600 transition-colors">
-                      <Smartphone className="w-12 h-12 text-white mx-auto mb-4" />
-                      <Select value={selectedDevice} onValueChange={setSelectedDevice}>
-                        <SelectTrigger className="bg-slate-600 text-white border-slate-500 mb-3" data-testid="select-device">
-                          <SelectValue placeholder="Choose iPhone Model" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {DEVICE_OPTIONS.map((device) => (
-                            <SelectItem key={device.model} value={device.model}>
-                              {device.model}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    
-                      <Select value={selectedCondition} onValueChange={setSelectedCondition}>
-                        <SelectTrigger className="bg-slate-600 text-white border-slate-500" data-testid="select-condition">
-                          <SelectValue placeholder="Device Condition" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {CONDITION_OPTIONS.map((condition) => (
-                            <SelectItem key={condition.condition} value={condition.condition}>
-                              {condition.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <p className="text-gray-400">Select Your Device</p>
-                  </div>
-
-                  {/* Calculate Button */}
-                  <div className="text-center">
-                    <div className="flex justify-center mb-4">
-                      <ArrowRight className="w-8 h-8 text-hero-green-500 animate-pulse" />
-                    </div>
-                    <Button
-                      onClick={handleCalculate}
-                      disabled={calculationMutation.isPending}
-                      className="bg-hero-green-500 hover:bg-hero-green-600 text-white px-6 py-3 rounded-lg font-bold transition-colors"
-                      data-testid="button-calculate"
-                    >
-                      {calculationMutation.isPending ? (
-                        <>
-                          <Rocket className="mr-2 w-5 h-5 animate-spin" />
-                          CALCULATING...
-                        </>
-                      ) : (
-                        <>
-                          <Calculator className="mr-2 w-5 h-5" />
-                          CALCULATE IMPACT
-                        </>
-                      )}
-                    </Button>
+          <TabsContent value="calculator" className="space-y-12">
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Requirements Selection Side */}
+              <div className="space-y-10">
+                {/* Step 1: Current Status */}
+                <div>
+                  <h4 className="text-white font-black text-xl mb-6 flex items-center gap-2 uppercase tracking-tight">
+                    <span className="bg-hero-green-500 text-black w-6 h-6 flex items-center justify-center rounded-md text-xs">1</span>
+                    Where are you now?
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {MOVE_IN_STEPS.map((step) => (
+                      <button
+                        key={step.id}
+                        onClick={() => setCurrentStep(step.id)}
+                        className={`flex flex-col items-center p-6 rounded-2xl border transition-all ${
+                          currentStep === step.id 
+                            ? 'bg-hero-green-500/20 border-hero-green-500 shadow-[0_0_20px_rgba(34,197,94,0.2)]' 
+                            : 'bg-white/5 border-white/10 hover:border-white/20'
+                        }`}
+                      >
+                        <step.icon className={`w-8 h-8 mb-3 ${currentStep === step.id ? 'text-hero-green-400' : 'text-gray-400'}`} />
+                        <span className={`text-sm font-bold ${currentStep === step.id ? 'text-white' : 'text-gray-400'}`}>{step.label}</span>
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                {/* Mission Contribution Message */}
-                <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-lg p-4 border border-emerald-500/30 text-center">
-                  <p className="text-emerald-400 font-medium">
-                    🌍 Every trade-in contributes to Dubai's 2030 sustainability missions
-                  </p>
+                {/* Step 2: Select Requirements */}
+                <div>
+                  <h4 className="text-white font-black text-xl mb-6 flex items-center gap-2 uppercase tracking-tight">
+                    <span className="bg-hero-green-500 text-black w-6 h-6 flex items-center justify-center rounded-md text-xs">2</span>
+                    What do you need?
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {REQUIREMENTS_OPTIONS.map((req) => (
+                      <button
+                        key={req.id}
+                        onClick={() => toggleRequirement(req.id)}
+                        className={`flex items-center gap-4 p-5 rounded-2xl border transition-all text-left ${
+                          selectedRequirements.includes(req.id)
+                            ? 'bg-hero-green-500/20 border-hero-green-500'
+                            : 'bg-white/5 border-white/10 hover:border-white/20'
+                        }`}
+                      >
+                        <div className={`p-3 rounded-xl ${selectedRequirements.includes(req.id) ? 'bg-hero-green-500 text-black' : 'bg-white/5 text-gray-400'}`}>
+                          <req.icon className="w-5 h-5" />
+                        </div>
+                        <span className={`font-bold ${selectedRequirements.includes(req.id) ? 'text-white' : 'text-gray-400'}`}>{req.label}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
+
+                <Button
+                  onClick={handleCalculateMoveIn}
+                  className="w-full h-16 bg-hero-green-500 hover:bg-hero-green-600 text-black font-black text-lg rounded-2xl shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <Calculator className="mr-3 w-6 h-6" />
+                  CALCULATE MOVE-IN PLAN
+                </Button>
               </div>
 
-              {/* Calculation Results */}
-              <div>
-                <div className="bg-gradient-to-br from-slate-800/90 to-slate-900/95 backdrop-blur-sm rounded-2xl p-6 border border-hero-green-500/30 shadow-xl">
-                  <div className="space-y-4">
-                    {/* Device Info Display */}
-                    <div className="flex items-center justify-between p-4 bg-slate-700/50 rounded-xl">
-                      <div className="flex items-center">
-                        <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-lg flex items-center justify-center mr-4">
-                          <Smartphone className="w-6 h-6 text-white" />
+              {/* Summary Side */}
+              <div className="lg:sticky lg:top-24 h-fit">
+                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-2xl space-y-8">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-6">
+                    <div>
+                      <h4 className="text-white font-black text-2xl uppercase tracking-tighter">Coordination Plan</h4>
+                      <p className="text-gray-400 text-sm italic">Estimated based on JVC standards</p>
+                    </div>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 px-3 py-1">Ready to Deploy</Badge>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-hero-green-500 rounded-xl flex items-center justify-center">
+                          <Users className="w-6 h-6 text-black" />
                         </div>
                         <div>
-                          <div className="text-white font-bold">{selectedDevice}</div>
-                          <div className="text-gray-400 text-sm">{CONDITION_OPTIONS.find(c => c.condition === selectedCondition)?.label || "Excellent Condition"}</div>
+                          <p className="text-white font-bold">Coordination Time</p>
+                          <p className="text-gray-400 text-xs uppercase tracking-widest font-bold">12-24 Hours</p>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-hero-green-500">AED {calculationResult?.tradeValue || 3100}</div>
-                        <div className="text-gray-400 text-sm">Trade Value</div>
+                        <p className="text-emerald-400 font-black text-xl">IMMEDIATE</p>
                       </div>
                     </div>
 
-                    {/* Impact Breakdown */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="text-center p-4 bg-amber-500/10 rounded-xl border border-amber-500/30">
-                        <div className="text-xl font-bold text-amber-500">+{calculationResult?.points || 2800}</div>
-                        <div className="text-gray-300 text-sm">Planet Points</div>
-                      </div>
-                      <div className="text-center p-4 bg-hero-green-500/10 rounded-xl border border-hero-green-500/30">
-                        <div className="text-xl font-bold text-hero-green-500">{calculationResult ? Math.floor(calculationResult.bottlesPrevented / 200) : 18} Months</div>
-                        <div className="text-gray-300 text-sm">Water Protection</div>
-                      </div>
-                    </div>
-
-                    {/* Environmental Impact */}
-                    <div className="p-4 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-xl border border-emerald-500/30">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <Leaf className="w-5 h-5 text-emerald-500 mr-2" />
-                          <span className="text-white font-medium">Environmental Impact</span>
-                        </div>
-                        <div className="text-emerald-500 font-bold">-{calculationResult ? (calculationResult.co2Saved || 2.4) : 2.4} kg CO₂</div>
-                      </div>
-                      <div className="mt-2 text-gray-300 text-sm">
-                        Equal to removing {calculationResult?.bottlesPrevented || 520} plastic bottles from waste
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    {calculatedValue && (
-                      <div className="flex gap-3 pt-4">
-                        {!savedQuoteId && (
-                          <Button
-                            onClick={handleSaveQuote}
-                            disabled={saveQuoteMutation.isPending}
-                            className="flex-1 bg-gradient-to-r from-dubai-blue-500 to-dubai-blue-600 hover:from-dubai-blue-600 hover:to-dubai-blue-700 text-white"
-                            data-testid="button-save-quote"
-                          >
-                            {saveQuoteMutation.isPending ? (
-                              <>
-                                <Rocket className="mr-2 w-4 h-4 animate-spin" />
-                                Saving Quote...
-                              </>
-                            ) : (
-                              <>
-                                <Star className="mr-2 w-4 h-4" />
-                                Save Quote
-                              </>
-                            )}
-                          </Button>
+                    <div className="space-y-4">
+                      <h5 className="text-white font-bold text-sm uppercase tracking-widest flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-emerald-400" />
+                        Selected Services
+                      </h5>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedRequirements.length > 0 ? selectedRequirements.map(id => (
+                          <Badge key={id} variant="outline" className="bg-white/5 border-white/10 text-gray-300 py-2 px-4 rounded-full">
+                            {REQUIREMENTS_OPTIONS.find(r => r.id === id)?.label}
+                          </Badge>
+                        )) : (
+                          <p className="text-gray-500 italic text-sm">No services selected yet...</p>
                         )}
-                        <Button
-                          onClick={handleAddToCart}
-                          className="flex-1 bg-gradient-to-r from-hero-green-500 to-hero-green-600 hover:from-hero-green-600 hover:to-hero-green-700 text-white"
-                          data-testid="button-add-to-cart"
-                        >
-                          <Trophy className="mr-2 w-4 h-4" />
-                          Add to Cart
-                        </Button>
                       </div>
-                    )}
+                    </div>
 
-                    {/* Quote Saved Confirmation */}
-                    {savedQuoteId && (
-                      <div className="p-4 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-xl border border-green-500/30">
-                        <div className="flex items-center justify-center">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                          <span className="text-green-400 font-medium">Quote saved! Valid for 7 days</span>
-                        </div>
-                        <p className="text-gray-300 text-sm text-center mt-2">
-                          Quote ID: {savedQuoteId.slice(0, 8)}...
-                        </p>
+                    <div className="p-6 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-2xl border border-emerald-500/20">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Bot className="w-5 h-5 text-emerald-400" />
+                        <span className="text-white font-bold">Deli's Recommendation</span>
                       </div>
-                    )}
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        Based on JVC's water hardness, we strongly recommend adding <span className="text-emerald-400 font-bold">Drinking Water Filtration</span> to your plan to save <span className="text-white font-bold">AED 150/month</span> on plastic bottles.
+                      </p>
+                    </div>
                   </div>
+
+                  <Button 
+                    className="w-full h-14 bg-white text-black font-black uppercase tracking-widest hover:bg-gray-200 transition-all rounded-xl"
+                    onClick={() => window.open('https://wa.me/yourwhatsappnumber', '_blank')}
+                  >
+                    Confirm with Coordinator
+                  </Button>
                 </div>
               </div>
             </div>
@@ -428,85 +267,72 @@ export function MeetDeliInteractive() {
 
           {/* AI Chat Tab */}
           <TabsContent value="chat" className="space-y-6">
-            {/* AI Response Display */}
-            {aiResponse && (
-              <div className="p-4 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/30 rounded-xl">
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-white font-medium">Deli says:</p>
-                    <p className="text-gray-300 mt-1">{aiResponse}</p>
+            <div className="max-w-4xl mx-auto space-y-6">
+              {/* AI Response Display */}
+              {aiResponse && (
+                <div className="p-6 bg-white/5 backdrop-blur-md border border-emerald-500/20 rounded-2xl animate-in fade-in slide-in-from-bottom-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-500/20">
+                      <Bot className="w-6 h-6 text-black" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-emerald-400 font-black uppercase tracking-widest text-xs mb-2">Deli says</p>
+                      <p className="text-gray-200 text-lg leading-relaxed">{aiResponse}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Chat Input */}
-            <div className="flex space-x-3">
-              <div className="flex-1 relative">
-                <Input
-                  type="text"
-                  placeholder="👋 Hi Deli! What iPhone model do you want to trade?"
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyDown={handleKeyPress}
-                  className="h-16 px-6 text-lg bg-white/95 text-slate-900 border-2 border-emerald-400/50 focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 rounded-xl shadow-xl placeholder:text-slate-500 transition-all duration-300"
-                  disabled={isAILoading}
-                  data-testid="input-deli-message"
-                />
-                {!inputMessage && (
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 animate-pulse">
-                    <Bot className="w-6 h-6" />
-                  </div>
-                )}
+              {/* Chat Input */}
+              <div className="relative group">
+                <div className="absolute inset-0 bg-emerald-500/20 blur-2xl rounded-full scale-90 opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+                <div className="relative flex gap-3">
+                  <Input
+                    type="text"
+                    placeholder="👋 Hi Deli! I'm moving to JVC next week. What do I need?"
+                    value={inputMessage}
+                    onChange={(e) => setInputMessage(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                    className="h-16 px-6 text-lg bg-white border-0 text-slate-900 rounded-2xl shadow-2xl placeholder:text-slate-400"
+                    disabled={isAILoading}
+                    data-testid="input-deli-message"
+                  />
+                  <Button
+                    onClick={() => sendMessage(inputMessage)}
+                    disabled={isAILoading || !inputMessage.trim()}
+                    className="h-16 w-16 bg-emerald-500 hover:bg-emerald-600 text-black rounded-2xl shadow-xl transition-all hover:scale-105 active:scale-95"
+                    data-testid="button-send-deli-message"
+                  >
+                    {isAILoading ? (
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                    ) : (
+                      <Send className="w-6 h-6" />
+                    )}
+                  </Button>
+                </div>
               </div>
-              <Button
-                onClick={() => sendMessage(inputMessage)}
-                disabled={isAILoading || !inputMessage.trim()}
-                className="h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-8 rounded-xl shadow-xl font-bold text-lg transition-all duration-300 transform hover:scale-105"
-                data-testid="button-send-deli-message"
-              >
-                {isAILoading ? (
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '0.1s'}}></div>
-                    <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{animationDelay: '0.2s'}}></div>
-                  </div>
-                ) : (
-                  <Send className="w-5 h-5" />
-                )}
-              </Button>
-            </div>
 
-            {/* Quick Action Buttons */}
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Button
-                onClick={() => sendMessage("What's my iPhone 15 Pro worth?")}
-                variant="outline"
-                size="sm"
-                className="bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-white border-emerald-500/50 hover:border-emerald-500 transition-all"
-                data-testid="button-quick-valuation"
-              >
-                <Zap className="w-4 h-4 mr-2" />
-                Quick Valuation
-              </Button>
-              <Button
-                onClick={() => sendMessage("Book pickup for my iPhone")}
-                variant="outline"
-                size="sm"
-                className="bg-blue-500/20 hover:bg-blue-500 text-blue-300 hover:text-white border-blue-500/50 hover:border-blue-500 transition-all"
-                data-testid="button-book-pickup"
-              >
-                <Calendar className="w-4 h-4 mr-2" />
-                Book Pickup
-              </Button>
+              {/* Quick Action Buttons */}
+              <div className="flex flex-wrap gap-3 justify-center">
+                {[
+                  "What are JVC move-in requirements?",
+                  "Help me find a place in JVC",
+                  "I need deep cleaning services",
+                  "How do I set up DEWA?"
+                ].map((text) => (
+                  <Button
+                    key={text}
+                    onClick={() => sendMessage(text)}
+                    variant="outline"
+                    className="bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border-white/10 rounded-full px-6 transition-all"
+                  >
+                    {text}
+                  </Button>
+                ))}
+              </div>
             </div>
           </TabsContent>
         </Tabs>
-
-        
       </div>
     </section>
   );
