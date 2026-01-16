@@ -110,35 +110,38 @@ function ProgressIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
 // Phase 1: Home Setup component
 function PhaseOneSetup() {
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4" data-section="step-1">
+    <div className="max-w-4xl mx-auto py-16 px-4" data-section="step-1">
       <ProgressIndicator currentStep={1} />
       
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-5xl font-black mb-6 text-white uppercase tracking-tighter">
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-6xl font-black mb-4 text-white uppercase tracking-tighter">
           Home Setup
         </h2>
-        <h3 className="text-xl md:text-2xl font-bold text-emerald-400 mb-8 italic">
+        <p className="text-xl md:text-2xl font-bold text-emerald-400 mb-12 italic">
           Keys Received. Stress Removed.
-        </h3>
+        </p>
         
-        <div className="max-w-2xl mx-auto text-left space-y-8 bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
-          <div className="space-y-4">
-            <h4 className="text-xl font-bold text-white flex items-center gap-2">
-              <Building className="w-5 h-5 text-emerald-400" />
+        <div className="max-w-3xl mx-auto text-left space-y-10 bg-white/5 backdrop-blur-xl p-10 rounded-[2.5rem] border border-white/10 shadow-3xl overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl rounded-full"></div>
+          
+          <div className="space-y-6">
+            <h4 className="text-2xl font-bold text-white flex items-center gap-3">
+              <div className="w-10 h-10 bg-emerald-500/20 rounded-xl flex items-center justify-center">
+                <Building className="w-6 h-6 text-emerald-400" />
+              </div>
               Residence in Dubai
             </h4>
-            <p className="text-gray-300 leading-relaxed">
-              The most stressful moment of living in Dubai is not finding a home. It’s everything that comes <span className="text-white font-bold">after</span> you get the keys.
-            </p>
-            <p className="text-gray-400 text-sm italic">
-              Cleaning. Water. Utilities. Setup. Multiple vendors. No accountability.
-            </p>
-            <p className="text-emerald-400 font-black text-lg">
-              This is where DeliWer starts.
-            </p>
-            <p className="text-gray-300">
-              Once you receive your apartment keys, we take over the coordination so you can move in comfortably from day one.
-            </p>
+            <div className="space-y-4 text-lg">
+              <p className="text-gray-300 leading-relaxed">
+                The most stressful moment of living in Dubai is not finding a home. It’s everything that comes <span className="text-white font-bold">after</span> you get the keys.
+              </p>
+              <p className="text-emerald-400/80 font-medium italic">
+                Cleaning. Water. Utilities. Setup. Multiple vendors. No accountability.
+              </p>
+              <p className="text-emerald-400 font-black text-xl">
+                This is where DeliWer starts.
+              </p>
+            </div>
           </div>
 
           <div className="border-t border-white/10 pt-8 space-y-6">
@@ -231,31 +234,30 @@ function PhaseTwoSupport() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="py-12 px-4 mb-12 relative overflow-hidden rounded-3xl"
+      className="py-16 px-4 mb-16 relative overflow-hidden rounded-3xl"
       data-section="step-2"
     >
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={2} />
         
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-tighter">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-6xl font-black mb-4 text-white uppercase tracking-tighter">
             Living Support
           </h2>
-          <h3 className="text-xl md:text-2xl font-bold text-cyan-400 mb-8 italic">
-            Your Home, Running Smoothly — Not Just on Day One
-          </h3>
+          <p className="text-xl md:text-2xl font-bold text-cyan-400 mb-12 italic">
+            Your Home, Running Smoothly
+          </p>
 
-          <div className="max-w-2xl mx-auto text-left space-y-8 bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
-            <div className="space-y-4">
-              <h4 className="text-xl font-bold text-white flex items-center gap-2">
-                <Droplets className="w-5 h-5 text-cyan-400" />
+          <div className="max-w-3xl mx-auto text-left space-y-10 bg-white/5 backdrop-blur-xl p-10 rounded-[2.5rem] border border-white/10 shadow-3xl">
+            <div className="space-y-6">
+              <h4 className="text-2xl font-bold text-white flex items-center gap-3">
+                <div className="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center">
+                  <Droplets className="w-6 h-6 text-cyan-400" />
+                </div>
                 Everyday Living Support
               </h4>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 text-lg leading-relaxed">
                 Most services disappear after move-in. <span className="text-cyan-400 font-bold">DeliWer stays.</span>
-              </p>
-              <p className="text-gray-300">
-                We don’t just help you set up your home — we help you <span className="text-white font-bold">live well in it</span>.
               </p>
             </div>
 
@@ -355,31 +357,30 @@ function PhaseThreeLoyalty() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="py-12 px-4 mb-12 relative overflow-hidden rounded-3xl"
+      className="py-16 px-4 mb-16 relative overflow-hidden rounded-3xl"
       data-section="membership-benefits"
     >
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={3} />
         
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-tighter">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-6xl font-black mb-4 text-white uppercase tracking-tighter">
             Essentials & Loyalty
           </h2>
-          <h3 className="text-xl md:text-2xl font-bold text-amber-400 mb-8 italic">
-            Daily Essentials That Actually Reduce Your Costs
-          </h3>
+          <p className="text-xl md:text-2xl font-bold text-amber-400 mb-12 italic">
+            Daily Essentials, Real Savings
+          </p>
 
-          <div className="max-w-2xl mx-auto text-left space-y-8 bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
-            <div className="space-y-4">
-              <h4 className="text-xl font-bold text-white flex items-center gap-2">
-                <ShoppingBag className="w-5 h-5 text-amber-400" />
+          <div className="max-w-3xl mx-auto text-left space-y-10 bg-white/5 backdrop-blur-xl p-10 rounded-[2.5rem] border border-white/10 shadow-3xl">
+            <div className="space-y-6">
+              <h4 className="text-2xl font-bold text-white flex items-center gap-3">
+                <div className="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center">
+                  <ShoppingBag className="w-6 h-6 text-amber-400" />
+                </div>
                 Daily Essentials & Loyalty
               </h4>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 text-lg leading-relaxed">
                 Once your home is running smoothly, DeliWer helps you <span className="text-white font-bold">spend less every month</span>, not more.
-              </p>
-              <p className="text-gray-300">
-                Through the <span className="text-amber-400 font-bold">AquaCafe ecosystem</span>, members access sustainable essentials with better pricing — without subscriptions or complexity.
               </p>
             </div>
 

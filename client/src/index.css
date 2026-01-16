@@ -214,7 +214,13 @@
   
   --hero-green-500: hsl(158 64% 52%);
   --hero-green-600: hsl(158 64% 42%);
+  --hero-green-900: hsl(158 64% 15%);
   
+  --nature-green-50: hsl(142 76% 95%);
+  --nature-green-100: hsl(142 76% 90%);
+  --nature-green-500: hsl(142 76% 36%);
+  --nature-green-900: hsl(142 76% 12%);
+
   --amber-500: hsl(43 96% 56%);
   --amber-600: hsl(38 92% 50%);
   --orange-500: hsl(25 95% 53%);
@@ -301,6 +307,10 @@
     background: linear-gradient(to right, var(--hero-green-500), var(--hero-green-600));
   }
   
+  .bg-nature-gradient {
+    background: linear-gradient(to bottom, var(--nature-green-900), var(--slate-900));
+  }
+
   .bg-amber-gradient {
     background: linear-gradient(to right, var(--amber-500), var(--orange-500));
   }

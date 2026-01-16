@@ -228,44 +228,48 @@ export default function Home() {
       {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
 
-      {/* JVC Move-In Launch Offer Banner */}
-      <section className="py-6 px-4">
-        <div className="max-w-6xl mx-auto">
-          <Link href="/launch">
-            <div className="bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border-2 border-emerald-500/30 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 hover-elevate transition-all cursor-pointer group">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <Gift className="w-6 h-6 text-emerald-500" />
+      {/* Environmental Sustainability Journey - Smooth Merge */}
+      <div className="relative bg-nature-gradient overflow-hidden">
+        {/* Organic background blobs */}
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-1/2 -right-24 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-float"></div>
+
+        <div className="relative z-20 space-y-0">
+          {/* JVC Move-In Launch Offer Banner - Redesigned for calm feel */}
+          <section className="py-12 px-4">
+            <div className="max-w-4xl mx-auto">
+              <Link href="/launch">
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 hover-elevate transition-all cursor-pointer group shadow-2xl">
+                  <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center shrink-0 group-hover:rotate-6 transition-transform">
+                      <Gift className="w-8 h-8 text-emerald-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white tracking-tight mb-1">Exclusive JVC Move-In Offer</h3>
+                      <p className="text-emerald-400/90 text-lg font-medium">Free Shower Filter + Installation for new residents</p>
+                    </div>
+                  </div>
+                  <Button size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black px-10 rounded-full shadow-lg shadow-emerald-500/20">
+                    Claim Now
+                  </Button>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white uppercase tracking-tight">Exclusive JVC Move-In Offer</h3>
-                  <p className="text-emerald-400/80 font-medium">Free Shower Filter + Installation for new residents</p>
-                </div>
-              </div>
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 shrink-0">
-                Claim Offer <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              </Link>
             </div>
-          </Link>
+          </section>
+
+          {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
+          <HomeServiceSection />
+
+          {/* PHASE 3: EARN (Participation) - Planet Points Challenge & Rewards */}
+          <HeroChallengeLanding />
+
+          {/* Sustainability Section - Stars Sponsorship */}
+          <StarsSponsorshipSection />
         </div>
-      </section>
-
-      {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
-      <HomeServiceSection />
-
-      {/* PHASE 3: EARN (Participation) - Planet Points Challenge & Rewards */}
-      <HeroChallengeLanding />
-
-      {/* Trade-In Banner - Hidden from Home, Moved to Trade-In page */}
-
-      {/* Sustainability Section - Stars Sponsorship */}
-      <StarsSponsorshipSection />
-
-      {/* PHASE 5: RELOCATE (Monetization) - Conversion Bridge */}
-      {/* Hidden Relocate Section */}
-      {/* <section className="py-16 px-4 bg-gradient-to-br from-amber-900/20 via-orange-900/10 to-red-900/20">
-        ...
-      </section> */}
+        
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
+      </div>
 
       {/* Founders Section */}
       <FoundersSection />
