@@ -18,7 +18,6 @@ import Home from "@/pages/home";
 import MoveInServices from "@/pages/move-in-services";
 import MoveInPackages from "@/pages/move-in-packages";
 import Relocate from "@/pages/relocate";
-import VisaServices from "@/pages/relocate/visa";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import HomeService from "@/pages/home-service";
@@ -109,7 +108,6 @@ function Router() {
         
         {/* Relocate Membership Portal */}
         <Route path="/relocate" component={Relocate} />
-        <Route path="/relocate/visa" component={VisaServices} />
         <Route path="/residence/move-in-services" component={MoveInServices} />
         <Route path="/relocate/business-setup" component={BusinessSetup} />
         <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
