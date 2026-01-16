@@ -135,10 +135,23 @@ function PhaseOneSetup() {
               <p className="text-gray-300 leading-relaxed">
                 The most stressful moment of living in Dubai is not finding a home. It’s everything that comes <span className="text-white font-bold">after</span> you get the keys.
               </p>
-              <p className="text-emerald-400/80 font-medium italic">
-                Cleaning. Water. Utilities. Setup. Multiple vendors. No accountability.
-              </p>
-              <p className="text-emerald-400 font-black text-xl">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div className="p-4 bg-red-500/5 border border-red-500/10 rounded-2xl">
+                  <h5 className="text-red-400 font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
+                    <X className="w-3 h-3" /> The Fragmented Risk
+                  </h5>
+                  <p className="text-gray-400 text-sm">Movers, random truckers, and brokers often provide broken, uncoordinated services with no accountability and hidden costs.</p>
+                </div>
+                <div className="p-4 bg-emerald-500/5 border border-emerald-500/10 rounded-2xl">
+                  <h5 className="text-emerald-400 font-bold text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
+                    <CheckCircle className="w-3 h-3" /> The DeliWer Journey
+                  </h5>
+                  <p className="text-gray-300 text-sm">One orchestrated experience. We coordinate every professional vendor, ensuring a seamless move-in with zero fragmentation.</p>
+                </div>
+              </div>
+
+              <p className="text-emerald-400 font-black text-xl pt-4">
                 This is where DeliWer starts.
               </p>
             </div>
@@ -262,23 +275,35 @@ function PhaseTwoSupport() {
             </div>
 
             <div className="border-t border-white/10 pt-8">
-              <h4 className="text-xl font-bold text-white mb-6">What Ongoing Support Looks Like</h4>
+              <h4 className="text-xl font-bold text-white mb-6">Orchestration vs. Fragmentation</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <span className="text-cyan-400 font-bold block">Day-One Comfort</span>
-                  <p className="text-sm text-gray-400 leading-relaxed">Post-handover deep cleaning, DEWA and chiller setup guidance so your first night feels right.</p>
+                <div className="space-y-2 group">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-cyan-400 font-bold block">Professional Orchestration</span>
+                    <Badge variant="outline" className="text-[8px] bg-cyan-500/10 border-cyan-500/20 text-cyan-400">DeliWer</Badge>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">Coordinated deep cleaning, DEWA and chiller setup guidance by verified professionals. One point of contact, total accountability.</p>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-cyan-400 font-bold block">Health-First Environment</span>
-                  <p className="text-sm text-gray-400 leading-relaxed">Immediate installation of shower filters and alkaline RO systems — because water quality affects your daily life.</p>
+                <div className="space-y-2 opacity-60">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-gray-400 font-bold block">Random Support</span>
+                    <Badge variant="outline" className="text-[8px] bg-red-500/10 border-red-500/20 text-red-400">Risk</Badge>
+                  </div>
+                  <p className="text-sm text-gray-500 leading-relaxed">Unverified truckers and fragmented brokers often lead to property damage, delays, and higher unexpected costs.</p>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-cyan-400 font-bold block">Preventive Maintenance</span>
-                  <p className="text-sm text-gray-400 leading-relaxed">Scheduled AC servicing, plumbing, and pest control to avoid emergencies before they happen.</p>
+                <div className="space-y-2 group">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-cyan-400 font-bold block">Health-First Continuity</span>
+                    <Badge variant="outline" className="text-[8px] bg-cyan-500/10 border-cyan-500/20 text-cyan-400">Certified</Badge>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">Immediate installation of certified shower filters and alkaline RO systems by trained technicians, not general handymen.</p>
                 </div>
-                <div className="space-y-2">
-                  <span className="text-cyan-400 font-bold block">Admin & Lifestyle Relief</span>
-                  <p className="text-sm text-gray-400 leading-relaxed">Visa renewals, document help, errands — whenever Dubai life gets overwhelming.</p>
+                <div className="space-y-2 group">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-cyan-400 font-bold block">Preventive Maintenance</span>
+                    <Badge variant="outline" className="text-[8px] bg-cyan-500/10 border-cyan-500/20 text-cyan-400">Proactive</Badge>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">Scheduled AC servicing and plumbing to avoid emergencies before they happen, managed by your dedicated coordinator.</p>
                 </div>
               </div>
             </div>
