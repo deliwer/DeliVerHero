@@ -35,18 +35,16 @@ export function Navigation() {
   }, []);
 
   const consumerNavItems = [
-    { path: "/residence", label: "Residence in Dubai", id: "move-in-services" },
-    { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
-    { path: "/home-service", label: "Home Service", id: "home-service" },
-    { path: "/aquacafe", label: "Daily Essentials", id: "housing" },
-    { path: "/relocate/business-setup", label: "Business & Documents", id: "business-setup" },
-    { path: "/contact", label: "Support", id: "support" },
+    { path: "/residence", label: "Move-In Services", id: "move-in-services" },
+    { path: "/relocation", label: "Relocation", id: "relocation", featured: true },
+    { path: "/relocate/visa", label: "Visa Services", id: "visa-services" },
+    { path: "/contact", label: "Contact", id: "support" },
   ];
 
   const b2bNavItems = [
     { path: "/fulfillment", label: "Fulfillment by DeliWer", id: "fulfillment", featured: true },
     { path: "/chaintrack", label: "Reverse Bidding", id: "chaintrack" },
-    { path: "/relocate/business-setup", label: "Relocate Capital", id: "relocate" },
+    { path: "/relocate/business-setup", label: "Business Setup", id: "business-setup" },
     { path: "/corporate", label: "Corporate Trade-in", id: "corporate-tradein" },
     { path: "/corporate-partner-portal", label: "Partner Portal", id: "partner-portal" },
     { path: "/investor-dashboard", label: "Investors", id: "investors" },
