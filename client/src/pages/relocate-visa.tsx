@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
-import { Link, useSearch } from "wouter";
+import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,27 +24,21 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { 
-  Globe, 
-  Users, 
-  Plane, 
   Shield, 
   ArrowRight,
   Briefcase,
   Home,
   CheckCircle2,
-  TrendingUp,
-  Heart,
   DollarSign,
-  MessageCircle,
   Award,
   Check,
-  Calendar,
-  Clock,
-  Zap,
   Star,
-  Quote
+  Quote,
+  Building,
+  Globe,
+  TrendingUp,
+  Landmark
 } from "lucide-react";
-import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiMarinaAerial from "@assets/generated_images/dubai_marina_and_business_district_aerial_view.png";
 import professionalOffice from "@assets/generated_images/professional_team_in_modern_corporate_office_space.png";
 
@@ -119,19 +113,59 @@ export default function VisaServices() {
     }
   ];
 
+  const testimonials = [
+    {
+      name: "Michael Chen",
+      role: "Tech Founder",
+      location: "Relocated from Singapore",
+      content: "DeliWer's Golden Visa strategy was game-changing. Within 60 days, my company was set up in a free zone, I had 10-year residency secured, and my family received Golden Visa sponsorship.",
+      rating: 5,
+      capital: "$2M+ relocated"
+    },
+    {
+      name: "Sarah Al-Rashid",
+      role: "Investment Director",
+      location: "Relocated from London",
+      content: "As a non-dom struggling with UK tax, Dubai's Golden Visa program via DeliWer was perfect. Zero personal income tax and direct access to DIFC and DMCC opportunities.",
+      rating: 5,
+      capital: "$5M+ relocated"
+    },
+    {
+      name: "The Martinez Family",
+      role: "Family of 5",
+      location: "Relocated from Miami",
+      content: "Moving with three kids seemed daunting. DeliWer handled everything - Golden Visa pathways for the whole family, residency secured for 10 years.",
+      rating: 5,
+      familySize: "5 members"
+    }
+  ];
+
   const faqItems = [
     {
-      question: "What is the UAE Golden Visa?",
-      answer: "The Golden Visa is a long-term residence visa which enables foreign talents to live, work or study in the UAE while enjoying exclusive benefits including 10-year residency, no need for a national sponsor, and 100% ownership of their business on UAE's mainland."
+      question: "What are the Golden Visa pathways available in Dubai?",
+      answer: "The UAE offers multiple Golden Visa routes: (1) Real estate investment (AED 2M+), (2) Business establishment, (3) Investor visas (AED 10M+ portfolio), (4) Talent visas for executives/specialists. DeliWer guides you to the optimal pathway."
     },
     {
-      question: "Can I sponsor my family with a Golden Visa?",
-      answer: "Yes, the Golden Visa allows you to sponsor your family members, including spouse and children regardless of their age, and domestic helpers without limit on the number."
+      question: "Can my spouse and children get Golden Visas too?",
+      answer: "Yes. Golden Visa family sponsorship allows your spouse and dependent children to receive 10-year residency visas, creating long-term stability for your family."
     },
     {
-      question: "What is the processing time?",
-      answer: "Typical processing time for a Golden Visa is between 30 to 60 days, depending on the pathway chosen and documentation readiness."
+      question: "How long does it take to get a Golden Visa?",
+      answer: "Golden Visa processing typically takes 30-60 days for real estate investments or business establishment. Our expedited network accelerates this significantly."
+    },
+    {
+      question: "Is there really 0% personal income tax in Dubai?",
+      answer: "Yes, the UAE has zero personal income tax, no capital gains tax, and no inheritance tax. This applies whether you earn through a business, investments, or employment."
     }
+  ];
+
+  const businessAdvantages = [
+    { icon: DollarSign, title: "0% Personal Income Tax", description: "Zero tax on your personal income + capital gains + inheritance" },
+    { icon: Building, title: "Golden Visa Program", description: "10-year residency for you, spouse & children via investment or business" },
+    { icon: Globe, title: "Fastest Business Setup", description: "1-3 days to operational status across UAE free zones" },
+    { icon: Shield, title: "100% Foreign Ownership", description: "Mainland, DIFC, DMCC, DAFZA, Dubai South—all accessible" },
+    { icon: TrendingUp, title: "Capital Relocation Hub", description: "Strategic structuring for wealth protection & tax optimization" },
+    { icon: Landmark, title: "Unified Ecosystem", description: "One pathway covers business, family, capital, and residency" }
   ];
 
   return (
@@ -159,14 +193,37 @@ export default function VisaServices() {
             Your gateway to 10-year residency, tax optimization, and a global lifestyle. Unified visa processing for you and your family.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 font-bold" onClick={() => formRef.current?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 font-bold h-14 px-8 rounded-full" onClick={() => formRef.current?.scrollIntoView({ behavior: 'smooth' })}>
               Start Visa Application
             </Button>
             <Link href="/relocate">
-              <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10">
+              <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10 h-14 px-8 rounded-full">
                 Need Relocation? Visit Relocate
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Advantages Section */}
+      <section className="py-20 bg-white dark:bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Dubai's Golden Visa?</h2>
+            <p className="text-muted-foreground">The world's most competitive residency program for investors and founders.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {businessAdvantages.map((adv, i) => (
+              <div key={i} className="flex gap-4 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 hover-elevate transition-all">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+                  <adv.icon className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg mb-1">{adv.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{adv.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -175,17 +232,47 @@ export default function VisaServices() {
       <section className="py-20 bg-slate-50 dark:bg-slate-900/50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Golden Visa Pathways</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Residency Pathways</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">Choose the residency route that best fits your investment or professional profile.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {visaPathways.map((path, i) => (
-              <Card key={i} className={`${path.color} border backdrop-blur-sm hover-elevate`}>
-                <CardContent className="pt-6">
-                  <path.icon className="w-8 h-8 text-white mb-4" />
+              <Card key={i} className={`${path.color} border-none backdrop-blur-sm hover-elevate shadow-xl`}>
+                <CardContent className="pt-8">
+                  <path.icon className="w-10 h-10 text-white mb-6" />
                   <p className="text-xs font-bold text-white/70 uppercase tracking-wider mb-1">{path.title}</p>
-                  <p className="text-2xl font-bold text-white mb-2">{path.amount}</p>
-                  <p className="text-sm text-white/80">{path.description}</p>
+                  <p className="text-2xl font-bold text-white mb-3">{path.amount}</p>
+                  <p className="text-sm text-white/80 leading-relaxed">{path.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-white dark:bg-slate-950">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-16">Investor Success Stories</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((t, i) => (
+              <Card key={i} className="bg-slate-50 dark:bg-slate-900 border-none shadow-sm hover-elevate">
+                <CardContent className="pt-8">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <Quote className="w-8 h-8 text-blue-500/20 mb-4" />
+                  <p className="text-muted-foreground italic mb-6">"{t.content}"</p>
+                  <div className="border-t pt-4">
+                    <p className="font-bold">{t.name}</p>
+                    <p className="text-xs text-blue-600 font-semibold">{t.role}</p>
+                    <p className="text-xs text-muted-foreground">{t.location}</p>
+                    <Badge variant="outline" className="mt-3 bg-blue-500/5 text-blue-600 border-blue-200">
+                      {t.capital || t.familySize}
+                    </Badge>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -194,28 +281,30 @@ export default function VisaServices() {
       </section>
 
       {/* Unified Advantage */}
-      <section className="py-20 border-y border-slate-200 dark:border-slate-800">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-blue-600 rounded-3xl p-8 md:p-12 text-white text-center shadow-2xl relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-slate-950 opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-transparent" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <div className="bg-blue-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 p-4 opacity-10">
               <Shield className="w-32 h-32" />
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">The DeliWer Visa Advantage</h3>
-            <p className="text-lg text-blue-100 mb-8">
-              We don't just process papers. We coordinate your entire residency journey, ensuring your Golden Visa integrates perfectly with your business and tax structure.
+            <h3 className="text-3xl font-bold mb-6">The DeliWer Visa Advantage</h3>
+            <p className="text-lg text-blue-100 mb-10 leading-relaxed">
+              We coordinate your entire residency journey, ensuring your Golden Visa integrates perfectly with your business setup and long-term goals in the UAE.
             </p>
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="bg-white/10 rounded-xl p-4">
-                <p className="font-bold text-xl">100%</p>
-                <p className="text-xs text-blue-200">Success Rate</p>
+            <div className="grid sm:grid-cols-3 gap-6">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                <p className="font-black text-3xl mb-1">100%</p>
+                <p className="text-xs text-blue-200 font-bold uppercase tracking-widest">Success Rate</p>
               </div>
-              <div className="bg-white/10 rounded-xl p-4">
-                <p className="font-bold text-xl">30-60 Days</p>
-                <p className="text-xs text-blue-200">Average Processing</p>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                <p className="font-black text-3xl mb-1">30-60</p>
+                <p className="text-xs text-blue-200 font-bold uppercase tracking-widest">Day Processing</p>
               </div>
-              <div className="bg-white/10 rounded-xl p-4">
-                <p className="font-bold text-xl">Family</p>
-                <p className="text-xs text-blue-200">Visas Included</p>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                <p className="font-black text-3xl mb-1">Full</p>
+                <p className="text-xs text-blue-200 font-bold uppercase tracking-widest">Family Support</p>
               </div>
             </div>
           </div>
@@ -223,42 +312,43 @@ export default function VisaServices() {
       </section>
 
       {/* Lead Form */}
-      <section id="lead-form" ref={formRef} className="py-20 bg-white dark:bg-slate-950">
+      <section id="lead-form" ref={formRef} className="py-24 bg-white dark:bg-slate-950">
         <div className="max-w-3xl mx-auto px-4">
-          <Card className="p-8 shadow-2xl border-blue-100 dark:border-blue-900">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold">Start Your Residency Journey</h2>
-              <p className="text-muted-foreground mt-2">Get a complimentary consultation with a Golden Visa specialist.</p>
+          <Card className="p-8 md:p-12 shadow-3xl border-blue-100 dark:border-blue-900/30">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl font-black mb-4">Visa Eligibility Check</h2>
+              <p className="text-muted-foreground text-lg">Receive a personalized Golden Visa assessment within 24 hours.</p>
             </div>
-            <form onSubmit={(e) => { e.preventDefault(); leadMutation.mutate(formData); }} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
+            <form onSubmit={(e) => { e.preventDefault(); leadMutation.mutate(formData); }} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label>Full Name</Label>
-                  <Input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="John Doe" />
+                  <Label className="text-base">Full Name</Label>
+                  <Input required className="h-12 text-lg" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">
-                  <Label>Email</Label>
-                  <Input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="john@example.com" />
+                  <Label className="text-base">Email</Label>
+                  <Input required type="email" className="h-12 text-lg" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="john@example.com" />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label>Visa Pathway</Label>
+                <Label className="text-base">Visa Pathway Interest</Label>
                 <Select value={formData.visaType} onValueChange={v => setFormData({...formData, visaType: v})}>
-                  <SelectTrigger><SelectValue placeholder="Select interest" /></SelectTrigger>
+                  <SelectTrigger className="h-12 text-lg"><SelectValue placeholder="Select interest" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="real-estate">Real Estate Investment</SelectItem>
+                    <SelectItem value="real-estate">Real Estate (AED 2M+)</SelectItem>
                     <SelectItem value="business">Business / Entrepreneur</SelectItem>
-                    <SelectItem value="talent">Talent / Executive</SelectItem>
+                    <SelectItem value="talent">Specialized Talent / Executive</SelectItem>
+                    <SelectItem value="investor">Investor (AED 10M+)</SelectItem>
                     <SelectItem value="other">Other UAE Visa</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label>Message</Label>
-                <Textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="min-h-[100px]" />
+                <Label className="text-base">Message</Label>
+                <Textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="min-h-[120px] text-lg" />
               </div>
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 font-bold" disabled={leadMutation.isPending}>
-                {leadMutation.isPending ? "Submitting..." : "Get Started"}
+              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 h-14 text-xl font-bold rounded-full" disabled={leadMutation.isPending}>
+                {leadMutation.isPending ? "Submitting..." : "Get Free Assessment"}
               </Button>
             </form>
           </Card>
@@ -266,14 +356,16 @@ export default function VisaServices() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 bg-slate-50 dark:bg-slate-900/50">
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
         <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
-          <Accordion type="single" collapsible>
+          <h2 className="text-3xl font-bold mb-12 text-center">Residency FAQs</h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
             {faqItems.map((item, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger>{item.question}</AccordionTrigger>
-                <AccordionContent>{item.answer}</AccordionContent>
+              <AccordionItem key={i} value={`item-${i}`} className="bg-white dark:bg-slate-900 border rounded-2xl px-6">
+                <AccordionTrigger className="text-lg hover:no-underline">{item.question}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-base pb-6 leading-relaxed">
+                  {item.answer}
+                </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
