@@ -308,7 +308,18 @@
   }
   
   .bg-nature-gradient {
-    background: linear-gradient(to bottom, var(--nature-green-900), var(--slate-900));
+    background: linear-gradient(to bottom, var(--nature-green-900) 0%, #060a0f 20%, #080d14 40%, #0a0f1a 60%, #0c121e 80%, var(--nature-green-900) 100%);
+  }
+
+  @keyframes floating-leaf {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+    25% { transform: translate(10px, 10px) rotate(5deg); opacity: 0.2; }
+    50% { transform: translate(0, 20px) rotate(0deg); opacity: 0.1; }
+    75% { transform: translate(-10px, 10px) rotate(-5deg); opacity: 0.2; }
+  }
+
+  .leaf-bg-element {
+    animation: floating-leaf 15s ease-in-out infinite;
   }
 
   .bg-amber-gradient {

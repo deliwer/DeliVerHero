@@ -228,19 +228,25 @@ export default function Home() {
       {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
 
-      {/* Environmental Sustainability Journey - Smooth Merge */}
-      <div className="relative bg-nature-gradient overflow-hidden">
-        {/* Organic background blobs */}
-        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent z-10"></div>
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute top-1/2 -right-24 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-float"></div>
+      {/* Environmental Sustainability Journey - Continuous Thematic Background */}
+      <div className="relative bg-nature-gradient">
+        {/* Thematic Decorative Elements for Liveliness */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[10%] left-[5%] w-64 h-64 bg-emerald-500/5 rounded-full blur-[120px] leaf-bg-element"></div>
+          <div className="absolute top-[30%] right-[10%] w-96 h-96 bg-blue-500/5 rounded-full blur-[140px] leaf-bg-element" style={{ animationDelay: '-5s' }}></div>
+          <div className="absolute top-[60%] left-[15%] w-72 h-72 bg-emerald-400/5 rounded-full blur-[110px] leaf-bg-element" style={{ animationDelay: '-10s' }}></div>
+          <div className="absolute top-[80%] right-[5%] w-80 h-80 bg-cyan-500/5 rounded-full blur-[130px] leaf-bg-element" style={{ animationDelay: '-3s' }}></div>
+          
+          {/* Subtle noise texture for depth */}
+          <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+        </div>
 
         <div className="relative z-20 space-y-0">
-          {/* JVC Move-In Launch Offer Banner - Redesigned for calm feel */}
+          {/* JVC Move-In Launch Offer Banner */}
           <section className="py-12 px-4">
             <div className="max-w-4xl mx-auto">
               <Link href="/launch">
-                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8 hover-elevate transition-all cursor-pointer group shadow-2xl">
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 flex flex-col md:flex-row items-center justify-between gap-8 hover-elevate transition-all cursor-pointer group shadow-3xl">
                   <div className="flex items-center gap-6">
                     <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center shrink-0 group-hover:rotate-6 transition-transform">
                       <Gift className="w-8 h-8 text-emerald-400" />
@@ -258,21 +264,21 @@ export default function Home() {
             </div>
           </section>
 
-          {/* PHASE 4: HOME SERVICE - Unified AquaCafe + Trade-in */}
+          {/* Home Service Section */}
           <HomeServiceSection />
 
-          {/* PHASE 3: EARN (Participation) - Planet Points Challenge & Rewards */}
+          {/* Hero Challenge Landing */}
           <HeroChallengeLanding />
 
-          {/* Sustainability Section - Stars Sponsorship */}
+          {/* Stars Sponsorship Section */}
           <StarsSponsorshipSection />
-        </div>
-        
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent z-10"></div>
-      </div>
 
-      {/* Founders Section */}
-      <FoundersSection />
+          {/* Founders Section - Integrated into the continuous flow */}
+          <div className="pb-24">
+            <FoundersSection />
+          </div>
+        </div>
+      </div>
 
     </div>
   );
