@@ -228,6 +228,9 @@ export default function Home() {
       {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
       <DualPurposeHero />
 
+      {/* Trust & Proof Section */}
+      <TrustElements />
+
       {/* Environmental Sustainability Journey - Continuous Thematic Background */}
       <div className="relative bg-nature-gradient">
         {/* Thematic Decorative Elements for Liveliness */}

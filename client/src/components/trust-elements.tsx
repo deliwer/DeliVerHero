@@ -1,31 +1,31 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, Clock, MapPin, CheckCircle, Smartphone, Award, Lock, TrendingUp } from "lucide-react";
+import { Shield, Clock, MapPin, CheckCircle, Award, Users, Globe, Briefcase } from "lucide-react";
 
 export function TrustElements() {
   const features = [
     {
-      icon: Shield,
-      title: "Secure Relocation",
-      description: "End-to-end relocation support with certified legal and business advisory.",
+      icon: Award,
+      title: "Dealroom Verified",
+      description: "Global startup & investor ecosystem intelligence platform recognizes DeliWer's expertise",
       badge: "Verified"
     },
     {
-      icon: Clock,
-      title: "Fast Execution",
-      description: "Swift business setup and home services deployment across all Emirates.",
-      badge: "Efficient"
+      icon: Users,
+      title: "FounderHQ Partner",
+      description: "Part of Dubai's official founders ecosystem with verified credentials",
+      badge: "Partner"
     },
     {
-      icon: MapPin,
-      title: "Dubai Experts",
-      description: "Deep local knowledge and integration with Dubai's 2030 sustainability goals.",
-      badge: "Local Presence"
+      icon: Globe,
+      title: "Dubai's #1 Hub",
+      description: "Recognized as top emerging market for founders, investors & families",
+      badge: "Market Leader"
     },
     {
-      icon: CheckCircle,
-      title: "Quality Guaranteed",
-      description: "Premium standards for both physical installations and digital services.",
-      badge: "Certified"
+      icon: Briefcase,
+      title: "Partner-Led Model",
+      description: "Vetted network of business setup, visa, and real estate partners",
+      badge: "Vetted"
     }
   ];
 

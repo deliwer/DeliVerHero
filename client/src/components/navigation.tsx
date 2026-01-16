@@ -39,7 +39,6 @@ export function Navigation() {
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/aquacafe", label: "Daily Essentials", id: "housing" },
-    { path: "/relocate/business-setup", label: "Business & Documents", id: "business-setup" },
     { path: "/contact", label: "Support", id: "support" },
   ];
 

@@ -428,7 +428,7 @@ export default function Relocate() {
       <div className="bg-gradient-to-r from-amber-600/20 to-orange-600/20 border-b border-amber-500/40 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-center gap-3 text-center">
           <span className="text-sm md:text-base font-semibold text-white">
-            Limited Time: 25% OFF Relocation Consulting Fees — Enroll by Dec 31, 2025
+            Launch Offer: 25% OFF Relocation Consulting Fees — Enroll by Dec 31, 2025
           </span>
         </div>
       </div>
@@ -450,49 +450,7 @@ export default function Relocate() {
         </div>
       </div>
 
-      {/* Trust Signals Section - Dealroom & FounderHQ */}
-      <section className="py-16 bg-gradient-to-b from-slate-900/90 via-blue-900/80 to-slate-900/90 border-y border-blue-800/60">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="flex items-start gap-4 bg-blue-900/40 backdrop-blur-sm border border-blue-800/50 rounded-lg p-4">
-              <div className="w-10 h-10 rounded-md bg-blue-500/30 flex items-center justify-center flex-shrink-0">
-                <Award className="w-5 h-5 text-blue-300" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-blue-100 mb-1">Dealroom Verified</h3>
-                <p className="text-sm text-gray-200">Global startup & investor ecosystem intelligence platform recognizes DeliWer's expertise</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 bg-purple-900/40 backdrop-blur-sm border border-purple-800/50 rounded-lg p-4">
-              <div className="w-10 h-10 rounded-md bg-purple-500/30 flex items-center justify-center flex-shrink-0">
-                <Users className="w-5 h-5 text-purple-300" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-purple-100 mb-1">FounderHQ Partner</h3>
-                <p className="text-sm text-gray-200">Part of Dubai's official founders ecosystem with verified credentials</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 bg-emerald-900/40 backdrop-blur-sm border border-emerald-800/50 rounded-lg p-4">
-              <div className="w-10 h-10 rounded-md bg-emerald-500/30 flex items-center justify-center flex-shrink-0">
-                <Globe className="w-5 h-5 text-emerald-300" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-emerald-100 mb-1">Dubai's #1 Hub</h3>
-                <p className="text-sm text-gray-200">Recognized as top emerging market for founders, investors & families</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 bg-orange-900/40 backdrop-blur-sm border border-orange-800/50 rounded-lg p-4">
-              <div className="w-10 h-10 rounded-md bg-orange-500/30 flex items-center justify-center flex-shrink-0">
-                <Briefcase className="w-5 h-5 text-orange-300" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-orange-100 mb-1">Partner-Led Model</h3>
-                <p className="text-sm text-gray-200">Vetted network of business setup, visa, and real estate partners</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Launch Offer Banner removed - duplicate */}
 
       <section className="relative h-screen min-h-[600px] overflow-hidden">
         <div 
@@ -503,10 +461,10 @@ export default function Relocate() {
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
           <Badge variant="secondary" className="mb-4 bg-white/10 backdrop-blur-sm border-white/20 text-white animate-pulse" data-testid="badge-hero">
             <Award className="w-3 h-3 mr-1" />
-            Validated by Dealroom. Part of FounderHQ Ecosystem.
+            Launch Offer Active. Part of FounderHQ Ecosystem.
           </Badge>
           <div className="mb-6 inline-block bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2">
-            <p className="text-red-300 text-sm font-bold">LIMITED TIME: 25% OFF + Only 3 Spots Left Today</p>
+            <p className="text-red-300 text-sm font-bold">LAUNCH OFFER: 25% OFF + Only 3 Spots Left Today</p>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 max-w-5xl leading-tight" data-testid="text-hero-title">
             Dubai Golden Visa + Business Setup
