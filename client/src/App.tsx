@@ -10,7 +10,7 @@ import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
 import { TooltipManager } from "@/components/tooltip-manager";
 import { ImagePerformanceMonitor } from "@/components/image-performance-monitor";
 import { FloatingErrandTips } from "@/components/floating-errand-tips";
-import { useEffect, lazy } from "react";
+import { Suspense, useEffect, lazy } from "react";
 import { useLocation } from "wouter";
 
 // Import core pages directly for faster initial load or if they are critical
@@ -26,6 +26,13 @@ import FindAPlace from "@/pages/residence/find-a-place";
 import ErrandPage from "@/pages/errand";
 import HomeServiceLaunch from "@/pages/home-service-launch";
 import NotFound from "@/pages/not-found";
+
+// Loader component for Suspense
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[60vh]">
+    <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 // B2B Corporate Pages (using direct imports to avoid lazy loading issues with non-default exports)
 import { BulkTradeInPage } from "@/pages/bulk-tradein";
@@ -100,20 +107,21 @@ function Router() {
 
   return (
     <WouterRouter base={basePath}>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/move-in-landing" component={MoveInLanding} />
-        <Route path="/move-in-services" component={MoveInServices} />
-        <Route path="/residence/move-in-packages" component={MoveInPackages} />
-        
-        {/* Relocate Membership Portal */}
-        <Route path="/relocate" component={Relocate} />
-        <Route path="/relocate/visa" component={lazy(() => import("./pages/relocate-visa"))} />
-        <Route path="/visa" component={lazy(() => import("./pages/relocate-visa"))} />
-        <Route path="/relocate/business-setup" component={BusinessSetup} />
-        <Route path="/residence/move-in-services" component={MoveInServices} />
-        <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
-        <Route path="/relocate-community" component={RelocateCommunity} />
+      <Suspense fallback={<PageLoader />}>
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/move-in-landing" component={MoveInLanding} />
+          <Route path="/move-in-services" component={MoveInServices} />
+          <Route path="/residence/move-in-packages" component={MoveInPackages} />
+          
+          {/* Relocate Membership Portal */}
+          <Route path="/relocate" component={Relocate} />
+          <Route path="/relocate/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
+          <Route path="/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
+          <Route path="/relocate/business-setup" component={BusinessSetup} />
+          <Route path="/residence/move-in-services" component={MoveInServices} />
+          <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
+          <Route path="/relocate-community" component={RelocateCommunity} />
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
@@ -207,7 +215,8 @@ function Router() {
         <Route path="/membership-plans" component={MembershipPlansPage} />
 
         <Route component={NotFound} />
-      </Switch>
+        </Switch>
+      </Suspense>
     </WouterRouter>
   );
 }
