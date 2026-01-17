@@ -39,8 +39,8 @@ import {
   TrendingUp,
   Landmark
 } from "lucide-react";
-import dubaiMarinaAerial from "@assets/generated_images/dubai_marina_and_business_district_aerial_view.png";
-import professionalOffice from "@assets/generated_images/professional_team_in_modern_corporate_office_space.png";
+import dubaiMarinaAerial from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
+import professionalOffice from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
 
 export default function VisaServices() {
   const { toast } = useToast();
@@ -176,20 +176,20 @@ export default function VisaServices() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative h-[80vh] min-h-[600px] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${dubaiMarinaAerial})` }}
         />
-        <div className="absolute inset-0 bg-slate-950/80" />
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
           <Badge className="mb-4 bg-blue-500/20 text-blue-400 border-blue-500/30">
             Residency & Visas
           </Badge>
           <h1 className="text-4xl md:text-7xl font-black text-white mb-6">
             UAE Golden Visa <span className="text-blue-400">Services</span>
           </h1>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Your gateway to 10-year residency, tax optimization, and a global lifestyle. Unified visa processing for you and your family.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
