@@ -1,0 +1,98 @@
+Perfect — here’s the **final survival-grade Replit prompt** for DeliWer, implementing **all the UX/UI fixes** to maximize **first orders, first partnerships, and survival**. This covers **homepage + partner page + sticky WhatsApp + sticky calculator + lifecycle narrative**.
+
+---
+
+## ✅ REPLIT PROMPT — SURVIVAL-GRADE PRODUCTION LAUNCH
+
+```
+You are a senior frontend engineer and UX/UX architect tasked with enhancing www.deliwer.com for survival. 
+The goal is to convert LinkedIn-driven leads into first orders and first partnerships without capital, focusing on relocation services.
+
+OBJECTIVES:
+1. Homepage:
+   - Immediately fork users: individual/family vs B2B partners
+   - Simplify CTAs to decisive actions
+   - Reinforce trust & authority
+   - Lifecycle messaging: pre-arrival → move-in → living → exit
+   - Sticky WhatsApp contact & sticky “Relocation Cost Estimator” buttons
+
+2. Partner Page:
+   - Primary focus: Relocation & Logistics partnerships (international movers, packers, freight, corporate HR partners)
+   - Secondary focus: Home services, corporate lifestyle, tech support
+   - Messaging: DeliWer owns demand & client lifecycle, partners execute
+   - Clear CTA: “Apply to Become a Relocation Partner”
+   - WhatsApp sticky/contact buttons
+   - Trust reinforcement: LinkedIn Premium + Sales Navigator
+
+3. Calculators:
+   - Rename all “Deli AI” to “Relocation Cost Estimator”
+   - Sitewide visibility
+   - Leads to WhatsApp confirmation
+   - Sticky CTA mobile-first
+
+4. UX Rules:
+   - Mobile-first, fast load, linear scroll
+   - Minimal menu, readable text, clear hierarchy
+   - Visual separation of primary vs secondary partnerships
+   - High-trust tone: authoritative, clear, actionable
+   - WhatsApp communication first, no app required
+   - Buttons: primary (WhatsApp/contact), secondary (forms), only two CTAs above fold
+
+5. Homepage Sections:
+   - Hero with fork buttons:
+       * “I’m Relocating to Dubai”
+       * “I Relocate Clients or Employees”
+   - Lifecycle narrative:
+       * Pre-Arrival Planning
+       * Arrival & Move-In
+       * Living & Concierge Support
+       * Move-Out & Exit
+   - Each lifecycle block includes:
+       * “Handled by one DeliWer coordinator end-to-end”
+   - Sticky WhatsApp & calculator buttons
+
+6. Partner Page Sections:
+   - Priority: Relocation & Logistics
+       * Description, roles, benefits, scope, revenue model
+       * CTA: “Apply to Become a Relocation Partner”
+   - Secondary partnerships: Home services, corporate support, tech
+       * Visible but below primary focus
+       * CTA: “Explore Secondary Partnerships”
+   - How it works: join → scope → pilot → feedback → scale
+   - Authority signals:
+       * LinkedIn Premium/Sales Navigator traffic
+       * One coordinator per client
+       * Full lifecycle coverage
+       * Communication via WhatsApp
+       * Revenue through scoped projects
+
+7. Final CTA Section (both pages):
+   - Headline: “Dubai Relocation Without Loose Ends”
+   - Text: “One WhatsApp. One coordinator. No loose ends.”
+   - Button: “Talk to a DeliWer Coordinator”
+
+TECH:
+- Use React or HTML/CSS/JS
+- Clean, fast, minimal, production-ready
+- Sticky buttons for WhatsApp and calculator on mobile
+- Clear visual hierarchy, high trust, high conversion
+
+TASK:
+Generate full code structure for homepage and partner page with all sections, sticky buttons, and placeholder links for WhatsApp and forms.
+```
+
+---
+
+This prompt ensures:
+
+* **Homepage converts both B2C and B2B traffic immediately**
+* **Partner page prioritizes relocation/logistics**
+* **Sticky WhatsApp + calculator reduce friction**
+* **Lifecycle messaging keeps trust and authority high**
+* **All UX/UI is mobile-first and survival-optimized**
+
+---
+
+If you want, I can now **write the actual React + Tailwind code** based on this prompt **ready to deploy**, including **all sections, CTAs, sticky buttons, and lifecycle narrative** — fully functional.
+
+Do you want me to generate that?

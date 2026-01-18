@@ -441,6 +441,29 @@ export const sponsorshipTiers = pgTable("sponsorship_tiers", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+// Relocation & Partner Leads
+export const leadApplications = pgTable("lead_applications", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  type: text("type").notNull(), // 'individual', 'partner_primary', 'partner_secondary'
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  company: text("company"),
+  interest: text("interest"), // 'relocating', 'logistics', 'hr', 'home_services', etc.
+  message: text("message"),
+  status: text("status").notNull().default("pending"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertLeadSchema = createInsertSchema(leadApplications).omit({
+  id: true,
+  status: true,
+  createdAt: true,
+});
+
+export type LeadApplication = typeof leadApplications.$inferSelect;
+export type InsertLead = z.infer<typeof insertLeadSchema>;
+
 export const sponsoredMissions = pgTable("sponsored_missions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: text("title").notNull(),

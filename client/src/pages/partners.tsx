@@ -1,413 +1,376 @@
-import { useState } from 'react';
-import { Link } from 'wouter';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { useToast } from '@/hooks/use-toast';
-import { useMutation } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
-import {
-  Building2,
-  Users,
-  Smartphone,
-  CheckCircle,
+import { useState } from "react";
+import { SEOMeta } from "@/components/seo-meta";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Link } from "wouter";
+import { 
+  Handshake, 
+  Truck, 
+  Users, 
+  Settings, 
+  Globe, 
+  Briefcase, 
+  CheckCircle, 
+  MessageSquare,
   ArrowRight,
-  Star,
+  ShieldCheck,
   Zap,
-  Shield,
-  MessageCircle,
-  Handshake,
-  Globe,
-  Rocket,
-  Ship,
-  Truck,
-  Briefcase,
-  Home,
-  Wrench,
-  Stethoscope,
-  Laptop,
-  ChefHat
-} from 'lucide-react';
+  Building
+} from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { insertLeadSchema, type InsertLead } from "@shared/schema";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
-import { TrustElements } from '@/components/trust-elements';
-import relocationImg from "@assets/stock_images/dubai_relocation_log_70eb5cb1.jpg";
-import corporateImg from "@assets/stock_images/modern_dubai_office__97a31756.jpg";
-import homeImg from "@assets/stock_images/dubai_luxury_villa_i_9244d415.jpg";
-import skylineImg from "@assets/stock_images/dubai_skyline_sunset_21b85db0.jpg";
-import networkImg from "@assets/stock_images/dubai_business_corpo_60a4c0bf.jpg";
-import logisticsImg from "@assets/stock_images/modern_logistics_war_f64b7709.jpg";
-
-interface PartnerInquiry {
-  email: string;
-  partnerType: string;
-  message: string;
-}
-
-export default function Partners() {
+export default function PartnersPage() {
   const { toast } = useToast();
-  const [inquiry, setInquiry] = useState<PartnerInquiry>({
-    email: '',
-    partnerType: '',
-    message: ''
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const partnershipMutation = useMutation({
-    mutationFn: (data: PartnerInquiry) => apiRequest('/api/sponsors', 'POST', {
-      name: `${data.partnerType} Partner Inquiry`,
-      email: data.email,
-      organizationType: data.partnerType,
-      description: data.message || `Partnership inquiry for ${data.partnerType} program`,
-      contactPerson: data.email.split('@')[0] || 'Partner Contact'
-    }),
-    onSuccess: () => {
-      toast({
-        title: 'Partnership Inquiry Submitted',
-        description: 'DeliWer will analyze your requirements and contact you within 24 hours with a customized partnership plan.',
-      });
-      setInquiry({ email: '', partnerType: '', message: '' });
-    },
-    onError: () => {
-      toast({
-        title: 'Submission Failed',
-        description: 'Please try again or contact us via WhatsApp.',
-        variant: 'destructive',
-      });
+  const form = useForm<InsertLead>({
+    resolver: zodResolver(insertLeadSchema),
+    defaultValues: {
+      type: "partner_primary",
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      interest: "logistics",
+      message: "",
     },
   });
 
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/971500000000', '_blank'); // Placeholder WhatsApp number
-  };
-
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  async function onSubmit(data: InsertLead) {
+    setIsSubmitting(true);
+    try {
+      await apiRequest("POST", "/api/leads", data);
+      toast({
+        title: "Application Submitted",
+        description: "One of our partner coordinators will reach out via WhatsApp shortly.",
+      });
+      form.reset();
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Please try again or contact us via WhatsApp.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Sticky WhatsApp Button */}
-      <Button
-        onClick={handleWhatsAppClick}
-        className="fixed bottom-6 right-6 z-50 rounded-full w-14 h-14 bg-green-500 hover:bg-green-600 shadow-lg p-0"
-        size="icon"
-        data-testid="button-whatsapp-sticky"
-      >
-        <MessageCircle className="w-8 h-8 text-white" />
-      </Button>
+    <div className="min-h-screen bg-slate-950 text-white">
+      <SEOMeta 
+        title="Become a Relocation Partner | DeliWer Dubai"
+        description="Join Dubai's most advanced relocation orchestration network. We own the demand and client lifecycle, you execute excellence. Partnerships for logistics, HR, and home services."
+      />
 
-      {/* 1. HERO / INTRO with Background */}
-      <div className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0 scale-105"
-          style={{
-            backgroundImage: `url(${skylineImg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-        </div>
-        
-        <div className="container mx-auto px-4 py-20 relative z-10 text-center">
-          <Badge variant="outline" className="mb-6 border-primary/50 text-primary-foreground bg-primary/20 backdrop-blur-md px-4 py-1">
-            Partnership Network
+      {/* Hero Section */}
+      <section className="relative py-24 px-4 overflow-hidden border-b border-white/5">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-600/10 to-transparent pointer-events-none" />
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <Badge className="mb-6 bg-blue-500/10 text-blue-400 border-blue-500/20 px-4 py-1">
+            B2B PARTNERSHIP PROGRAM
           </Badge>
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight text-white">
-            Partner with DeliWer — Dubai’s <span className="text-primary">End-to-End</span> Relocation & Concierge Network
+          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">
+            DeliWer Owns Demand.<br />
+            <span className="text-blue-500">Partners Execute Excellence.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-            DeliWer owns client relationships and lifecycle, while our trusted partners execute locally and internationally.
+          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+            We manage the client lifecycle. You provide the muscle. 
+            Join the ecosystem orchestrating relocation for international talent and corporate HR.
           </p>
-          
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="h-12 px-8" onClick={() => scrollToSection('relocation-partners')} data-testid="button-apply-relocation">
-              Apply to Become a Relocation Partner
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl" onClick={() => document.getElementById('apply-section')?.scrollIntoView({ behavior: 'smooth' })}>
+              Apply to Partner
             </Button>
-            <Button size="lg" variant="outline" className="h-12 px-8 bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20" onClick={() => scrollToSection('secondary-partners')} data-testid="button-explore-secondary">
-              Explore Secondary Partnerships
-            </Button>
-            <Button size="lg" variant="ghost" onClick={handleWhatsAppClick} className="h-12 px-8 border border-white/20 text-white hover:bg-white/10 backdrop-blur-md" data-testid="button-whatsapp-desk">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              WhatsApp Partnership Desk
+            <Button size="lg" variant="outline" className="border-white/10 text-white hover:bg-white/5 rounded-full px-12 h-16 text-lg" onClick={() => window.open('https://wa.me/971523946311', '_blank')}>
+              WhatsApp Inquiry
             </Button>
           </div>
+          
+          <div className="mt-16 flex items-center justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5" />
+              <span className="text-sm font-bold uppercase tracking-widest">LinkedIn Premium Partner</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Zap className="w-5 h-5" />
+              <span className="text-sm font-bold uppercase tracking-widest">Sales Navigator Verified</span>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="container mx-auto px-4 py-16">
-        {/* Watch Our Channel Section (Restored) */}
-        <div className="bg-slate-900/80 rounded-3xl p-8 mb-24 border border-red-500/30 overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent" />
-          <div className="relative z-10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
+      {/* Primary Focus: Relocation & Logistics */}
+      <section className="py-24 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Relocation & Logistics</h2>
+            <p className="text-xl text-blue-400 font-medium">Our Primary Partnership Focus</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="bg-white/5 border-white/10 rounded-[2.5rem] overflow-hidden hover-elevate transition-all">
+              <CardHeader className="p-8">
+                <Truck className="w-12 h-12 text-blue-500 mb-4" />
+                <CardTitle className="text-2xl font-black uppercase text-white">International Movers</CardTitle>
+                <CardDescription className="text-gray-400 text-lg">
+                  Freight forwarders and international moving companies for global relocation.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-8 pt-0">
+                <ul className="space-y-4 text-gray-400 font-medium">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-blue-500 shrink-0" />
+                    Customs Compliance Support
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-blue-500 shrink-0" />
+                    Door-to-Door Coordination
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 rounded-[2.5rem] overflow-hidden hover-elevate transition-all">
+              <CardHeader className="p-8">
+                <Building className="w-12 h-12 text-emerald-500 mb-4" />
+                <CardTitle className="text-2xl font-black uppercase text-white">Corporate HR</CardTitle>
+                <CardDescription className="text-gray-400 text-lg">
+                  HR managers and recruitment firms relocating employees to Dubai.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-8 pt-0">
+                <ul className="space-y-4 text-gray-400 font-medium">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
+                    Seamless Employee Onboarding
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
+                    Lifecycle Support for Talent
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 rounded-[2.5rem] overflow-hidden hover-elevate transition-all">
+              <CardHeader className="p-8">
+                <Users className="w-12 h-12 text-purple-500 mb-4" />
+                <CardTitle className="text-2xl font-black uppercase text-white">Destination Services</CardTitle>
+                <CardDescription className="text-gray-400 text-lg">
+                  Local experts handling visas, school search, and home finding.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-8 pt-0">
+                <ul className="space-y-4 text-gray-400 font-medium">
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-purple-500 shrink-0" />
+                    Local Compliance Expertise
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-purple-500 shrink-0" />
+                    Exclusive Client Referrals
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Secondary Partnerships */}
+      <section className="py-24 px-4 bg-white/[0.02]">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-3xl font-black uppercase tracking-tighter mb-4 text-gray-400">Secondary Partnerships</h2>
+            <p className="text-lg text-gray-500 font-medium">Home Services, Lifestyle & Tech Support</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 opacity-80 hover:opacity-100 transition-opacity">
+            {['Home Cleaning', 'Maintenance', 'Pet Relocation', 'Tech Setup'].map((item) => (
+              <div key={item} className="bg-white/5 border border-white/10 p-6 rounded-2xl hover-elevate">
+                <h3 className="text-xl font-bold uppercase mb-2 text-white">{item}</h3>
+                <p className="text-sm text-gray-500">Integrated into the move-in lifecycle.</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16 text-center underline decoration-blue-500 decoration-8 underline-offset-8">The Partner Journey</h2>
+          <div className="space-y-12 relative">
+            <div className="absolute left-8 top-0 bottom-0 w-1 bg-white/5 hidden md:block" />
+            
+            {[
+              { title: "Join Network", desc: "Submit application and verify credentials.", icon: Globe },
+              { title: "Define Scope", desc: "We align your execution capabilities with our client demand.", icon: Settings },
+              { title: "Pilot Project", desc: "Execute your first project under DeliWer orchestration.", icon: Zap },
+              { title: "Scale Excellence", desc: "Unlock recurring revenue through our client lifecycle.", icon: Rocket }
+            ].map((step, idx) => ( step.icon &&
+              <div key={idx} className="flex flex-col md:flex-row gap-8 items-start relative z-10">
+                <div className="w-16 h-16 rounded-2xl bg-slate-900 border border-white/10 flex items-center justify-center text-blue-500 shrink-0 shadow-2xl">
+                  <step.icon className="w-8 h-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Watch Our Channel</h3>
-                  <p className="text-gray-400">@vdeliwer - Latest AquaCafe Loyalty insights</p>
+                  <h3 className="text-2xl font-black uppercase mb-2 text-white">{step.title}</h3>
+                  <p className="text-lg text-gray-400 leading-relaxed">{step.desc}</p>
                 </div>
               </div>
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white" onClick={() => window.open('https://www.youtube.com/@vdeliwer', '_blank', 'noopener,noreferrer')} data-testid="button-subscribe-youtube">
-                Subscribe on YouTube
-              </Button>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="bg-slate-950/50 border-white/5 overflow-hidden group">
-                <div className="aspect-video relative">
-                  <iframe 
-                    className="w-full h-full" 
-                    src="https://www.youtube-nocookie.com/embed/NeVhACQEXG4" 
-                    title="AquaCafe Loyalty Program - Complete Overview" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                    data-testid="embed-video-1"
-                  ></iframe>
-                </div>
-                <div className="p-4">
-                  <h4 className="text-lg font-semibold text-white group-hover:text-red-400 transition-colors">AquaCafe Loyalty Program - Overview</h4>
-                  <p className="text-sm text-gray-400 mt-2">Complete overview of the loyalty program mechanics</p>
-                </div>
-              </Card>
-              <Card className="bg-slate-950/50 border-white/5 overflow-hidden group">
-                <div className="aspect-video relative">
-                  <iframe 
-                    className="w-full h-full" 
-                    src="https://www.youtube-nocookie.com/embed/f_-CblN9xEo" 
-                    title="Loyalty Mechanics & ROI Deep Dive" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                    data-testid="embed-video-2"
-                  ></iframe>
-                </div>
-                <div className="p-4">
-                  <h4 className="text-lg font-semibold text-white group-hover:text-red-400 transition-colors">Loyalty Mechanics & ROI Deep Dive</h4>
-                  <p className="text-sm text-gray-400 mt-2">Detailed ROI projections and financial mechanics</p>
-                </div>
-              </Card>
-            </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* 2. PRIORITY PARTNERSHIP BLOCK with Background */}
-        <section id="relocation-partners" className="mb-24 scroll-mt-20 relative rounded-3xl overflow-hidden min-h-[600px] flex items-center">
-          <div 
-            className="absolute inset-0 z-0"
-            style={{
-              backgroundImage: `url(${relocationImg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <div className="absolute inset-0 bg-black/75 backdrop-blur-[1px]" />
-          </div>
-          
-          <div className="relative z-10 p-8 md:p-16 w-full">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white">Relocation & Logistics Partners — Our Core Syndication</h2>
-                <div className="space-y-8">
-                  <div className="flex gap-4">
-                    <div className="mt-1 bg-primary/20 p-2 rounded-lg backdrop-blur-md border border-primary/30">
-                      <Globe className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-xl text-white">Who we look for:</h3>
-                      <p className="text-gray-300">International movers, packers, freight, and logistics companies. Corporate relocation specialists and HR partners.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10">
-                    <h3 className="font-semibold mb-6 flex items-center gap-2 text-white text-lg">
-                      <Zap className="w-5 h-5 text-primary" />
-                      DeliWer provides:
-                    </h3>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-200">
-                      <li className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/30">
-                          <CheckCircle className="w-3 h-3 text-green-400" />
-                        </div>
-                        Client onboarding
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/30">
-                          <CheckCircle className="w-3 h-3 text-green-400" />
-                        </div>
-                        Scope & SLA alignment
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/30">
-                          <CheckCircle className="w-3 h-3 text-green-400" />
-                        </div>
-                        Dedicated WhatsApp coordinator
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/30">
-                          <CheckCircle className="w-3 h-3 text-green-400" />
-                        </div>
-                        Revenue via wholesale agreements
-                      </li>
-                    </ul>
-                  </div>
-
-                  <Button size="lg" className="h-14 px-10 text-lg shadow-xl" onClick={handleWhatsAppClick} data-testid="button-apply-relocation-inner">
-                    Apply to Become a Relocation Partner
-                  </Button>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <Card className="p-6 flex flex-col items-center text-center gap-4 bg-white/5 backdrop-blur-md border-white/10 text-white">
-                    <Ship className="w-10 h-10 text-primary" />
-                    <span className="font-medium">International Freight</span>
-                  </Card>
-                  <Card className="p-6 flex flex-col items-center text-center gap-4 bg-white/5 backdrop-blur-md border-white/10 text-white">
-                    <Truck className="w-10 h-10 text-primary" />
-                    <span className="font-medium">Local Logistics</span>
-                  </Card>
-                </div>
-                <div className="space-y-4 pt-8">
-                  <Card className="p-6 flex flex-col items-center text-center gap-4 bg-white/5 backdrop-blur-md border-white/10 text-white">
-                    <Briefcase className="w-10 h-10 text-primary" />
-                    <span className="font-medium">Corporate HR</span>
-                  </Card>
-                  <Card className="p-6 flex flex-col items-center text-center gap-4 bg-white/5 backdrop-blur-md border-white/10 text-white">
-                    <Home className="w-10 h-10 text-primary" />
-                    <span className="font-medium">Packers & Movers</span>
-                  </Card>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. SECONDARY PARTNERSHIP BLOCK with Backgrounds */}
-        <section id="secondary-partners" className="mb-24 scroll-mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Secondary Partnerships — Home & Corporate Services</h2>
-            <p className="text-xl text-muted-foreground">Access ongoing clients and lifecycle revenue without managing leads.</p>
+      {/* Application Form */}
+      <section id="apply-section" className="py-24 px-4 bg-blue-600/5">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 text-white">Apply for Partnership</h2>
+            <p className="text-xl text-blue-400">Join the relocation ecosystem in Dubai.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Home Services */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[400px] flex items-end group shadow-2xl">
-              <div 
-                className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-110"
-                style={{
-                  backgroundImage: `url(${homeImg})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-              </div>
-              <div className="relative z-10 p-8 w-full">
-                <div className="w-14 h-14 bg-blue-500/20 backdrop-blur-md rounded-xl flex items-center justify-center mb-6 border border-blue-500/30">
-                  <Wrench className="w-8 h-8 text-blue-400" />
+          <Card className="bg-slate-900 border-white/10 p-8 md:p-12 rounded-[2.5rem]">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Full Name</FormLabel>
+                        <FormControl>
+                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="John Doe" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Email Address</FormLabel>
+                        <FormControl>
+                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="john@company.com" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">Home Services</h3>
-                <p className="text-gray-200 mb-8 max-w-md">Cleaning, maintenance, AC, plumbing, pest control, water & essentials.</p>
-                <Button variant="secondary" className="bg-white/90 hover:bg-white text-blue-950 h-12 px-8" onClick={handleWhatsAppClick} data-testid="button-home-services">
-                  Partner with Home Services
-                </Button>
-              </div>
-            </div>
 
-            {/* Corporate Services */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[400px] flex items-end group shadow-2xl">
-              <div 
-                className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-110"
-                style={{
-                  backgroundImage: `url(${corporateImg})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-              </div>
-              <div className="relative z-10 p-8 w-full">
-                <div className="w-14 h-14 bg-purple-500/20 backdrop-blur-md rounded-xl flex items-center justify-center mb-6 border border-purple-500/30">
-                  <Building2 className="w-8 h-8 text-purple-400" />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Phone / WhatsApp</FormLabel>
+                        <FormControl>
+                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="+971 50 000 0000" />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="company"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Company Name</FormLabel>
+                        <FormControl>
+                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="Logistics Co." />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
-                <h3 className="text-3xl font-bold text-white mb-4">Corporate / HR</h3>
-                <p className="text-gray-200 mb-8 max-w-md">Visa processing, PRO, corporate housing, employee lifestyle.</p>
-                <Button variant="secondary" className="bg-white/90 hover:bg-white text-purple-950 h-12 px-8" onClick={handleWhatsAppClick} data-testid="button-corporate-services">
-                  Join Corporate Network
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* 4. HOW IT WORKS SECTION with Background */}
-        <section className="mb-24 relative rounded-3xl overflow-hidden py-24 px-8 border border-border/50 shadow-2xl">
-          <div 
-            className="absolute inset-0 z-0 scale-105"
-            style={{
-              backgroundImage: `url(${logisticsImg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <div className="absolute inset-0 bg-black/85 backdrop-blur-[2px]" />
-          </div>
-          
-          <div className="relative z-10 max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-24 text-white">How It Works</h2>
-            <div className="grid md:grid-cols-5 gap-12 relative">
-              {[
-                { title: 'Join the ecosystem', desc: 'Submit your profile for review' },
-                { title: 'Scope alignment', desc: 'Define your role in the lifecycle' },
-                { title: 'Pilot projects', desc: 'First jobs under DeliWer coordination' },
-                { title: 'Feedback & onboarding', desc: 'Fully integrated as execution partner' },
-                { title: 'Scale', desc: 'Recurring assignments from all segments' }
-              ].map((step, i) => (
-                <div key={i} className="flex flex-col items-center text-center relative z-10 group">
-                  <div className="w-20 h-20 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mb-8 shadow-2xl shadow-primary/40 transform group-hover:scale-110 transition-transform rotate-3">
-                    <span className="-rotate-3">{i + 1}</span>
-                  </div>
-                  <h3 className="font-bold text-xl mb-4 text-white tracking-tight">{step.title}</h3>
-                  <p className="text-base text-gray-300 leading-relaxed font-light">{step.desc}</p>
-                  {i < 4 && (
-                    <div className="hidden md:block absolute top-10 left-[calc(50%+40px)] w-[calc(100%-80px)] h-[1px] bg-gradient-to-r from-primary/50 to-transparent" />
+                <FormField
+                  control={form.control}
+                  name="interest"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Primary Service Focus</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="bg-white/5 border-white/10 h-14 text-white rounded-xl">
+                            <SelectValue placeholder="Select service" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="bg-slate-900 border-white/10 text-white">
+                          <SelectItem value="logistics">Relocation & Logistics</SelectItem>
+                          <SelectItem value="hr">Corporate HR Partnership</SelectItem>
+                          <SelectItem value="home_services">Secondary Home Services</SelectItem>
+                          <SelectItem value="tech">Tech & Concierge Support</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
                   )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+                />
 
-        {/* 5. TRUST & AUTHORITY SECTION (Unified) */}
-        <TrustElements />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Operational Scope / Benefits</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} className="bg-white/5 border-white/10 min-h-[150px] text-white rounded-xl" placeholder="Tell us about your fleet, expertise, or corporate requirements..." />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-        {/* 6. FINAL CTA SECTION */}
-        <section className="text-center py-28 bg-primary text-primary-foreground rounded-3xl overflow-hidden relative shadow-2xl shadow-primary/40">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent opacity-50" />
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
-          <div className="relative z-10 px-4">
-            <h2 className="text-4xl md:text-7xl font-bold mb-10 tracking-tighter">Start Partnering with DeliWer Today</h2>
-            <p className="text-xl md:text-2xl mb-16 max-w-3xl mx-auto opacity-90 font-light leading-relaxed">
-              Whether you specialize in international relocation, home setup, or corporate services, join our ecosystem to execute Dubai-side and grow with us.
-            </p>
-            <div className="flex flex-wrap justify-center gap-6">
-              <Button size="lg" variant="secondary" className="h-16 px-12 text-xl bg-white text-primary hover:bg-white/90 shadow-2xl transform hover:-translate-y-1 transition-transform" onClick={handleWhatsAppClick} data-testid="button-apply-relocation-final">
-                Apply to Become a Relocation Partner
-              </Button>
-              <Button size="lg" variant="outline" className="h-16 px-12 text-xl border-white/40 text-white hover:bg-white/10 backdrop-blur-md shadow-2xl transform hover:-translate-y-1 transition-transform" onClick={() => scrollToSection('secondary-partners')} data-testid="button-explore-secondary-final">
-                Explore Secondary Partnerships
-              </Button>
-              <Button size="lg" variant="outline" className="h-16 px-12 text-xl border-white/40 text-white hover:bg-white/10 backdrop-blur-md shadow-2xl transform hover:-translate-y-1 transition-transform" onClick={handleWhatsAppClick} data-testid="button-whatsapp-final">
-                <MessageCircle className="w-6 h-6 mr-3" />
-                WhatsApp Partnership Desk
-              </Button>
-            </div>
-          </div>
-        </section>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black h-16 rounded-xl text-lg uppercase tracking-widest"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Apply to Become a Relocation Partner"}
+                </Button>
+              </form>
+            </Form>
+          </Card>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 px-4 border-t border-white/5 text-center">
+        <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6">Dubai Relocation Without Loose Ends.</h2>
+        <p className="text-xl text-gray-400 mb-12">One WhatsApp. One coordinator. No loose ends.</p>
+        <Button size="lg" className="bg-white hover:bg-gray-200 text-black font-black rounded-full px-16 h-20 text-xl shadow-2xl transition-all" onClick={() => window.open('https://wa.me/971523946311', '_blank')}>
+          <MessageSquare className="w-6 h-6 mr-3" />
+          Talk to a DeliWer Coordinator
+        </Button>
+      </section>
+
+      {/* Sticky WhatsApp - Specific for Partners */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-full h-16 w-16 p-0 shadow-2xl animate-bounce"
+          onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+        >
+          <MessageSquare className="w-8 h-8" />
+        </Button>
       </div>
     </div>
   );

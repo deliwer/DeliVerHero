@@ -45,6 +45,26 @@ const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: bo
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
+  // Lead Applications & Partner Applications
+  app.post("/api/leads", async (req, res) => {
+    try {
+      const validatedData = insertLeadSchema.parse(req.body);
+      const lead = await storage.createLeadApplication(validatedData);
+      res.json(lead);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to submit application" });
+    }
+  });
+
+  app.get("/api/leads", async (req, res) => {
+    try {
+      const leads = await storage.getLeadApplications();
+      res.json(leads);
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch applications" });
+    }
+  });
+
   // Register admin-only routes (Shopify admin authentication required)
   app.use("/api/admin/campaigns", adminCampaignRoutes);
   app.use("/api/admin/roles", adminRoleRoutes);

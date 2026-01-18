@@ -197,6 +197,77 @@ export default function Home() {
 
   return (
     <div>
+      {/* Hero with fork buttons */}
+      <section className="relative py-24 px-4 overflow-hidden">
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white">
+            Relocation<br />
+            <span className="text-emerald-500">Without Loose Ends.</span>
+          </h1>
+          <div className="flex flex-wrap justify-center gap-6 mb-12">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-2xl transition-all" onClick={() => window.open('https://wa.me/971523946311', '_blank')}>
+              I’m Relocating to Dubai
+            </Button>
+            <Link href="/partners">
+              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-12 h-20 text-xl backdrop-blur-md">
+                I Relocate Clients
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Lifecycle narrative */}
+      <section className="py-24 px-4 bg-slate-950/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">Relocation Operating Lifecycle</h2>
+            <p className="text-xl text-emerald-400 font-medium max-w-3xl mx-auto">
+              One DeliWer coordinator responsible end-to-end.
+            </p>
+          </div>
+
+          <div className="grid gap-8">
+            {[
+              { title: "Pre-Arrival Planning", icon: Plane, color: "blue", desc: "Readiness and coordination before your flight. We ensure your transition is operationally ready." },
+              { title: "Arrival & Move-In", icon: Clock, color: "emerald", desc: "Keys to a fully functional home. Vetted execution for cleaning, utilities, and maintenance." },
+              { title: "Living & Concierge", icon: Globe, color: "purple", desc: "Continuous home support, admin assistance, and essentials. We manage the lifestyle." },
+              { title: "Move-Out & Exit", icon: TrendingUp, color: "red", desc: "Handover, compliance, and utility closure. A professional exit as smooth as your arrival." }
+            ].map((step, idx) => (
+              <div key={idx} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                  <div className={`w-16 h-16 bg-${step.color}-500/20 rounded-2xl flex items-center justify-center shrink-0`}>
+                    <step.icon className={`w-8 h-8 text-${step.color}-400`} />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white uppercase mb-2">{step.title}</h3>
+                    <p className="text-gray-400 mb-6 leading-relaxed">{step.desc}</p>
+                    <p className="text-sm font-black uppercase text-emerald-500 tracking-widest">Handled by one DeliWer coordinator end-to-end</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sticky Components */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <Button 
+          className="bg-blue-600 hover:bg-blue-500 text-white rounded-full h-16 px-6 shadow-2xl font-bold"
+          onClick={() => window.open('https://wa.me/971523946311?text=I%20need%20a%20relocation%20cost%20estimate', '_blank')}
+        >
+          <Zap className="w-5 h-5 mr-2" />
+          Relocation Cost Estimator
+        </Button>
+        <Button 
+          className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-full h-16 w-16 p-0 shadow-2xl animate-bounce ml-auto"
+          onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+        >
+          <MessageSquare className="w-8 h-8" />
+        </Button>
+      </div>
+
       <SEOMeta
         title="Your Everyday Living Companion for Dubai"
         description="Dubai's first iPhone to water trade platform. Earn DXBs (Dubai Carbon Tokens) for your old iPhone. Free pickup for AquaCafe loyalty members within 24 hours across Dubai, Sharjah & Abu Dhabi. Certified data wipe guaranteed."

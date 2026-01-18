@@ -4,6 +4,16 @@ import { db } from "./db";
 import { desc } from "drizzle-orm";
 
 export interface IStorage {
+  // Lead Applications
+  async createLeadApplication(lead: InsertLead): Promise<LeadApplication> {
+    const [application] = await db.insert(leadApplications).values(lead).returning();
+    return application;
+  }
+
+  async getLeadApplications(): Promise<LeadApplication[]> {
+    return await db.select().from(leadApplications).orderBy(desc(leadApplications.createdAt));
+  }
+
   // User management
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
