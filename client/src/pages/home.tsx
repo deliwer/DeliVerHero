@@ -164,7 +164,7 @@ function LiveChallengeWidget() {
   );
 }
 
-import relocationHeroPng from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
+import relocationHeroPng from "@assets/Dubai_Creek_Apartment.jpg";
 
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
