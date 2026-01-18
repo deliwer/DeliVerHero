@@ -26,8 +26,6 @@ export function DualPurposeHero() {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/50"></div>
         </div>
 
         {/* Main Content */}
