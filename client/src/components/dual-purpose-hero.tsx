@@ -14,57 +14,6 @@ import moveInBg from "@assets/generated_images/modern_dubai_apartment_handover_a
 export function DualPurposeHero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Main Hero Section */}
-      <div className="relative py-20 sm:py-24 lg:py-32 px-4 overflow-hidden flex items-center min-h-[70vh]">
-        {/* Main Content */}
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          {/* Simplified Headlines */}
-          <div className="mb-10">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <span className="text-white drop-shadow-2xl">Relocating to Dubai? We Operate Everything After Arrival.</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-3xl mx-auto drop-shadow-lg">
-              DeliWer is the Dubai-side execution and concierge partner for expats, businesses, and relocation professionals.
-            </p>
-          </div>
-
-          {/* Demand Ownership Statement */}
-          <div className="mb-8">
-            <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-              DeliWer works directly with clients and international relocation stakeholders to safely settle people, families, and businesses in Dubai — from arrival to exit.
-            </p>
-          </div>
-
-          {/* CTA Section */}
-          <div className="max-w-xl mx-auto space-y-4">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/residence/move-in-services" className="w-full sm:w-auto">
-                <Button
-                  className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all"
-                  data-testid="button-get-home-service-hero"
-                >
-                  <Sparkles className="w-5 h-5 mr-3" />
-                  I’m Relocating to Dubai
-                </Button>
-              </Link>
-              <Link href="/partners" className="w-full sm:w-auto">
-                <Button
-                  variant="outline"
-                  className="w-full border-white/20 bg-white/10 text-white hover:bg-white/20 px-10 py-8 text-lg font-bold rounded-2xl shadow-2xl transition-all backdrop-blur-sm"
-                  data-testid="button-partner-hero"
-                >
-                  <Building2 className="w-5 h-5 mr-3" />
-                  I Relocate Clients or Employees
-                </Button>
-              </Link>
-            </div>
-
-            <p className="text-[12px] text-gray-300 mt-4 font-medium drop-shadow-md">
-              No agents. No commissions. No pressure.
-            </p>
-          </div>
-        </div>
-      </div>
       {/* Trust & Proof Section Integrated */}
       <section 
         className="relative py-16 px-4 overflow-hidden"
