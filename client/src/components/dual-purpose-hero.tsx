@@ -16,18 +16,6 @@ export function DualPurposeHero() {
     <section className="relative overflow-hidden">
       {/* Main Hero Section */}
       <div className="relative py-20 sm:py-24 lg:py-32 px-4 overflow-hidden flex items-center min-h-[70vh]">
-        {/* Full-width Hero Background Image */}
-        <div 
-          className="absolute inset-0 w-full h-full"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-          }}
-        >
-        </div>
-
         {/* Main Content */}
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           {/* Simplified Headlines */}
