@@ -33,6 +33,8 @@ import relocationImg from "@assets/stock_images/dubai_relocation_log_70eb5cb1.jp
 import corporateImg from "@assets/stock_images/modern_dubai_office__97a31756.jpg";
 import homeImg from "@assets/stock_images/dubai_luxury_villa_i_9244d415.jpg";
 import skylineImg from "@assets/stock_images/dubai_skyline_sunset_21b85db0.jpg";
+import networkImg from "@assets/stock_images/dubai_business_corpo_60a4c0bf.jpg";
+import logisticsImg from "@assets/stock_images/modern_logistics_war_f64b7709.jpg";
 
 interface PartnerInquiry {
   email: string;
@@ -292,7 +294,7 @@ export default function Partners() {
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Home Services */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[400px] flex items-end group">
+            <div className="relative rounded-3xl overflow-hidden min-h-[400px] flex items-end group shadow-2xl">
               <div 
                 className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-110"
                 style={{
@@ -309,14 +311,14 @@ export default function Partners() {
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-4">Home Services</h3>
                 <p className="text-gray-200 mb-8 max-w-md">Cleaning, maintenance, AC, plumbing, pest control, water & essentials.</p>
-                <Button variant="secondary" className="bg-white/90 hover:bg-white text-blue-950" onClick={handleWhatsAppClick} data-testid="button-home-services">
+                <Button variant="secondary" className="bg-white/90 hover:bg-white text-blue-950 h-12 px-8" onClick={handleWhatsAppClick} data-testid="button-home-services">
                   Partner with Home Services
                 </Button>
               </div>
             </div>
 
             {/* Corporate Services */}
-            <div className="relative rounded-3xl overflow-hidden min-h-[400px] flex items-end group">
+            <div className="relative rounded-3xl overflow-hidden min-h-[400px] flex items-end group shadow-2xl">
               <div 
                 className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-110"
                 style={{
@@ -333,7 +335,7 @@ export default function Partners() {
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-4">Corporate / HR</h3>
                 <p className="text-gray-200 mb-8 max-w-md">Visa processing, PRO, corporate housing, employee lifestyle.</p>
-                <Button variant="secondary" className="bg-white/90 hover:bg-white text-purple-950" onClick={handleWhatsAppClick} data-testid="button-corporate-services">
+                <Button variant="secondary" className="bg-white/90 hover:bg-white text-purple-950 h-12 px-8" onClick={handleWhatsAppClick} data-testid="button-corporate-services">
                   Join Corporate Network
                 </Button>
               </div>
@@ -341,109 +343,136 @@ export default function Partners() {
           </div>
         </section>
 
-        {/* 4. HOW IT WORKS SECTION */}
-        <section className="mb-24 py-20 bg-muted/30 rounded-3xl px-8 border border-border/50">
-          <h2 className="text-4xl font-bold text-center mb-20">How It Works</h2>
-          <div className="grid md:grid-cols-5 gap-12 relative max-w-6xl mx-auto">
-            {[
-              { title: 'Join the ecosystem', desc: 'Submit your profile for review' },
-              { title: 'Scope alignment', desc: 'Define your role in the lifecycle' },
-              { title: 'Pilot projects', desc: 'First jobs under DeliWer coordination' },
-              { title: 'Feedback & onboarding', desc: 'Fully integrated as execution partner' },
-              { title: 'Scale', desc: 'Recurring assignments from all segments' }
-            ].map((step, i) => (
-              <div key={i} className="flex flex-col items-center text-center relative z-10">
-                <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold mb-6 shadow-xl shadow-primary/20">
-                  {i + 1}
-                </div>
-                <h3 className="font-bold text-lg mb-3">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                {i < 4 && (
-                  <div className="hidden md:block absolute top-8 left-[calc(50%+32px)] w-[calc(100%-64px)] h-[2px] bg-gradient-to-r from-primary/30 to-transparent" />
-                )}
-              </div>
-            ))}
+        {/* 4. HOW IT WORKS SECTION with Background */}
+        <section className="mb-24 relative rounded-3xl overflow-hidden py-24 px-8 border border-border/50 shadow-2xl">
+          <div 
+            className="absolute inset-0 z-0 scale-105"
+            style={{
+              backgroundImage: `url(${logisticsImg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            <div className="absolute inset-0 bg-black/85 backdrop-blur-[2px]" />
           </div>
-        </section>
-
-        {/* 5. TRUST & AUTHORITY SECTION */}
-        <section className="mb-24 grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-4xl font-bold mb-10">Trust & Authority</h2>
-            <div className="space-y-6">
+          
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-24 text-white">How It Works</h2>
+            <div className="grid md:grid-cols-5 gap-12 relative">
               {[
-                { title: 'Demand Ownership', desc: 'Demand owned by DeliWer via LinkedIn Premium & Sales Navigator.', icon: Globe },
-                { title: 'Accountability', desc: 'One coordinator per client ensures absolute accountability.', icon: Shield },
-                { title: 'Full Lifecycle Coverage', desc: 'Pre-arrival, move-in, living, move-out — we cover it all.', icon: Rocket },
-                { title: 'Frictionless Comms', desc: 'Communication via WhatsApp — no app required for partners.', icon: MessageCircle },
-                { title: 'Revenue Focus', desc: 'Revenue through scoped projects, not client management overhead.', icon: Zap }
-              ].map((item, i) => (
-                <div key={i} className="flex gap-6 p-6 rounded-2xl hover:bg-muted/50 transition-all border border-transparent hover:border-border group">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <item.icon className="w-6 h-6 text-primary" />
+                { title: 'Join the ecosystem', desc: 'Submit your profile for review' },
+                { title: 'Scope alignment', desc: 'Define your role in the lifecycle' },
+                { title: 'Pilot projects', desc: 'First jobs under DeliWer coordination' },
+                { title: 'Feedback & onboarding', desc: 'Fully integrated as execution partner' },
+                { title: 'Scale', desc: 'Recurring assignments from all segments' }
+              ].map((step, i) => (
+                <div key={i} className="flex flex-col items-center text-center relative z-10 group">
+                  <div className="w-20 h-20 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mb-8 shadow-2xl shadow-primary/40 transform group-hover:scale-110 transition-transform rotate-3">
+                    <span className="-rotate-3">{i + 1}</span>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
-                  </div>
+                  <h3 className="font-bold text-xl mb-4 text-white tracking-tight">{step.title}</h3>
+                  <p className="text-base text-gray-300 leading-relaxed font-light">{step.desc}</p>
+                  {i < 4 && (
+                    <div className="hidden md:block absolute top-10 left-[calc(50%+40px)] w-[calc(100%-80px)] h-[1px] bg-gradient-to-r from-primary/50 to-transparent" />
+                  )}
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/20 blur-[120px] rounded-full animate-pulse" />
-            <Card className="relative p-10 border-primary/20 bg-background/80 backdrop-blur-xl shadow-2xl">
-              <div className="space-y-10">
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Star className="w-8 h-8 text-primary" />
+        </section>
+
+        {/* 5. TRUST & AUTHORITY SECTION with Background */}
+        <section className="mb-24 relative rounded-3xl overflow-hidden py-24 px-8 md:px-16 shadow-2xl">
+          <div 
+            className="absolute inset-0 z-0 scale-105"
+            style={{
+              backgroundImage: `url(${networkImg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
+          </div>
+          
+          <div className="relative z-10 grid md:grid-cols-2 gap-20 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white tracking-tight">Trust & Authority</h2>
+              <div className="space-y-6">
+                {[
+                  { title: 'Demand Ownership', desc: 'Demand owned by DeliWer via LinkedIn Premium & Sales Navigator.', icon: Globe },
+                  { title: 'Accountability', desc: 'One coordinator per client ensures absolute accountability.', icon: Shield },
+                  { title: 'Full Lifecycle Coverage', desc: 'Pre-arrival, move-in, living, move-out — we cover it all.', icon: Rocket },
+                  { title: 'Frictionless Comms', desc: 'Communication via WhatsApp — no app required for partners.', icon: MessageCircle },
+                  { title: 'Revenue Focus', desc: 'Revenue through scoped projects, not client management overhead.', icon: Zap }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-6 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group">
+                    <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-primary/20">
+                      <item.icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-xl mb-1 text-white">{item.title}</h3>
+                      <p className="text-gray-300 leading-relaxed font-light">{item.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold">100%</div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-widest font-semibold mt-1">Execution Reliability</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Users className="w-8 h-8 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-primary">Dubai-Wide</div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-widest font-semibold mt-1">Strategic Service Coverage</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                    <Smartphone className="w-8 h-8 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold">Real-time</div>
-                    <div className="text-sm text-muted-foreground uppercase tracking-widest font-semibold mt-1">WhatsApp Sync & Updates</div>
-                  </div>
-                </div>
+                ))}
               </div>
-            </Card>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/30 blur-[150px] rounded-full animate-pulse" />
+              <Card className="relative p-12 border-white/10 bg-black/40 backdrop-blur-2xl shadow-3xl overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 -mr-16 -mt-16 rounded-full blur-2xl" />
+                <div className="space-y-12">
+                  <div className="flex items-center gap-8">
+                    <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
+                      <Star className="w-10 h-10 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold text-white tracking-tighter">100%</div>
+                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">Execution Reliability</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-8">
+                    <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
+                      <Users className="w-10 h-10 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold text-white tracking-tighter">Dubai-Wide</div>
+                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">Strategic Service Coverage</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-8">
+                    <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
+                      <Smartphone className="w-10 h-10 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold text-white tracking-tighter">Real-time</div>
+                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">WhatsApp Sync & Updates</div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         </section>
 
         {/* 6. FINAL CTA SECTION */}
-        <section className="text-center py-24 bg-primary text-primary-foreground rounded-3xl overflow-hidden relative shadow-2xl shadow-primary/40">
+        <section className="text-center py-28 bg-primary text-primary-foreground rounded-3xl overflow-hidden relative shadow-2xl shadow-primary/40">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent opacity-50" />
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
           <div className="relative z-10 px-4">
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">Start Partnering with DeliWer Today</h2>
-            <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto opacity-90 font-light leading-relaxed">
+            <h2 className="text-4xl md:text-7xl font-bold mb-10 tracking-tighter">Start Partnering with DeliWer Today</h2>
+            <p className="text-xl md:text-2xl mb-16 max-w-3xl mx-auto opacity-90 font-light leading-relaxed">
               Whether you specialize in international relocation, home setup, or corporate services, join our ecosystem to execute Dubai-side and grow with us.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-              <Button size="lg" variant="secondary" className="h-16 px-10 text-lg bg-white text-primary hover:bg-white/90 shadow-xl" onClick={handleWhatsAppClick} data-testid="button-apply-relocation-final">
+              <Button size="lg" variant="secondary" className="h-16 px-12 text-xl bg-white text-primary hover:bg-white/90 shadow-2xl transform hover:-translate-y-1 transition-transform" onClick={handleWhatsAppClick} data-testid="button-apply-relocation-final">
                 Apply to Become a Relocation Partner
               </Button>
-              <Button size="lg" variant="outline" className="h-16 px-10 text-lg border-white/40 text-white hover:bg-white/10 backdrop-blur-md shadow-xl" onClick={() => scrollToSection('secondary-partners')} data-testid="button-explore-secondary-final">
+              <Button size="lg" variant="outline" className="h-16 px-12 text-xl border-white/40 text-white hover:bg-white/10 backdrop-blur-md shadow-2xl transform hover:-translate-y-1 transition-transform" onClick={() => scrollToSection('secondary-partners')} data-testid="button-explore-secondary-final">
                 Explore Secondary Partnerships
               </Button>
-              <Button size="lg" variant="outline" className="h-16 px-10 text-lg border-white/40 text-white hover:bg-white/10 backdrop-blur-md shadow-xl" onClick={handleWhatsAppClick} data-testid="button-whatsapp-final">
-                <MessageCircle className="w-5 h-5 mr-2" />
+              <Button size="lg" variant="outline" className="h-16 px-12 text-xl border-white/40 text-white hover:bg-white/10 backdrop-blur-md shadow-2xl transform hover:-translate-y-1 transition-transform" onClick={handleWhatsAppClick} data-testid="button-whatsapp-final">
+                <MessageCircle className="w-6 h-6 mr-3" />
                 WhatsApp Partnership Desk
               </Button>
             </div>
