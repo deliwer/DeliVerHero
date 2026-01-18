@@ -161,15 +161,15 @@ function Router() {
         <Route path="/login" component={LoginPage} />
         <Route path="/email-campaigns" component={lazy(() => import("./pages/email-campaigns"))} />
 
-        {/* Ecosystem Pages */}
-        <Route path="/explore" component={Explore} />
-        <Route path="/leaderboard" component={Leaderboard} />
-        <Route path="/community" component={Leaderboard} />
-        <Route path="/impact-dashboard" component={ImpactDashboard} />
-        <Route path="/aquacafe" component={AquaCafe} />
-        <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
-        <Route path="/products/aquacafe" component={AquaCafeAlliance} />
-        <Route path="/products" component={Products} />
+          {/* Ecosystem Pages */}
+          <Route path="/explore" component={Explore} />
+          <Route path="/leaderboard" component={Leaderboard} />
+          <Route path="/community" component={Leaderboard} />
+          <Route path="/impact-dashboard" component={ImpactDashboard} />
+          <Route path="/residence/aquacafe" component={AquaCafe} />
+          <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
+          <Route path="/products/aquacafe" component={AquaCafeAlliance} />
+          <Route path="/products" component={Products} />
         <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />
         <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
         <Route path="/exchange" component={Exchange} />
