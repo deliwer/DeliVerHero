@@ -48,7 +48,6 @@ export function TrustElements() {
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="max-w-xl mx-auto">
           <div className="relative">
-            <div className="absolute inset-0 bg-primary/30 blur-[150px] rounded-full animate-pulse" />
             <div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {features.map((feature, idx) => (
