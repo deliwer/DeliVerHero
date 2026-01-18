@@ -217,6 +217,11 @@ export default function Home() {
             <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-2xl transition-all" onClick={() => window.open('https://wa.me/971523946311', '_blank')}>
               I’m Relocating to Dubai
             </Button>
+            <Link href="/business-setup">
+              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-12 h-20 text-xl backdrop-blur-md">
+                I’m Starting a Business
+              </Button>
+            </Link>
             <Link href="/partners">
               <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-12 h-20 text-xl backdrop-blur-md">
                 I Relocate Clients

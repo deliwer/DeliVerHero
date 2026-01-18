@@ -126,6 +126,8 @@ function Router() {
           <Route path="/relocate/exit" component={RelocateExit} />
           <Route path="/exit" component={RelocateExit} />
           <Route path="/relocation" component={Relocate} />
+          <Route path="/business-setup" component={BusinessSetup} />
+          <Route path="/move-in-services" component={MoveInServices} />
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
