@@ -350,9 +350,8 @@ export default function Home() {
               </div>
 
               {/* Signals */}
-              <div className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-6 text-center max-w-4xl mx-auto px-4">
+              <div className="mt-16 grid grid-cols-2 md:grid-cols-2 gap-6 text-center max-w-4xl mx-auto px-4">
                 {[
-                  "Zero app dependency",
                   "Partner-led execution",
                   "Full relocation lifecycle"
                 ].map((signal, idx) => (
