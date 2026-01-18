@@ -30,7 +30,8 @@ import {
   Users,
   Copy,
   Check,
-  Shield
+  Shield,
+  Briefcase
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
