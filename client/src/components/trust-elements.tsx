@@ -46,15 +46,6 @@ export function TrustElements() {
       </div>
       
       <div className="relative z-10 max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
-            Why Trust DeliWer
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto font-light">
-            Providing transparency and excellence in Dubai's most critical service sectors.
-          </p>
-        </div>
-
         <div className="max-w-xl mx-auto">
           <div className="relative">
             <div className="absolute inset-0 bg-primary/30 blur-[150px] rounded-full animate-pulse" />
