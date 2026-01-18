@@ -58,40 +58,7 @@ export function TrustElements() {
         <div className="max-w-xl mx-auto">
           <div className="relative">
             <div className="absolute inset-0 bg-primary/30 blur-[150px] rounded-full animate-pulse" />
-            <div className="space-y-6">
-              <Card className="relative p-8 border-white/10 bg-black/40 backdrop-blur-2xl shadow-3xl overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 -mr-16 -mt-16 rounded-full blur-2xl" />
-                <div className="space-y-8">
-                  <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
-                      <Star className="w-8 h-8 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-3xl font-bold text-white tracking-tighter">100%</div>
-                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-1">Execution Reliability</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
-                      <Users className="w-8 h-8 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-3xl font-bold text-white tracking-tighter">Dubai-Wide</div>
-                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-1">Strategic Service Coverage</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
-                      <Smartphone className="w-8 h-8 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-3xl font-bold text-white tracking-tighter">Real-time</div>
-                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-1">WhatsApp Sync & Updates</div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-
+            <div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {features.map((feature, idx) => (
                   <div 
