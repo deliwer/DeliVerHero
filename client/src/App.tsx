@@ -166,7 +166,8 @@ function Router() {
           <Route path="/leaderboard" component={Leaderboard} />
           <Route path="/community" component={Leaderboard} />
           <Route path="/impact-dashboard" component={ImpactDashboard} />
-          <Route path="/residence/aquacafe" component={AquaCafe} />
+          <Route path="/home-service/aquacafe" component={AquaCafe} />
+          <Route path="/aquacafe" component={AquaCafe} />
           <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
           <Route path="/products/aquacafe" component={AquaCafeAlliance} />
           <Route path="/products" component={Products} />
