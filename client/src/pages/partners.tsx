@@ -26,7 +26,10 @@ import {
   Wrench,
   Stethoscope,
   Laptop,
-  ChefHat
+  ChefHat,
+  Search,
+  Award,
+  Target
 } from 'lucide-react';
 
 import relocationImg from "@assets/stock_images/dubai_relocation_log_70eb5cb1.jpg";
@@ -394,63 +397,108 @@ export default function Partners() {
             <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
           </div>
           
-          <div className="relative z-10 grid md:grid-cols-2 gap-20 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-12 text-white tracking-tight">Trust & Authority</h2>
-              <div className="space-y-6">
-                {[
-                  { title: 'Demand Ownership', desc: 'Demand owned by DeliWer via LinkedIn Premium & Sales Navigator.', icon: Globe },
-                  { title: 'Accountability', desc: 'One coordinator per client ensures absolute accountability.', icon: Shield },
-                  { title: 'Full Lifecycle Coverage', desc: 'Pre-arrival, move-in, living, move-out — we cover it all.', icon: Rocket },
-                  { title: 'Frictionless Comms', desc: 'Communication via WhatsApp — no app required for partners.', icon: MessageCircle },
-                  { title: 'Revenue Focus', desc: 'Revenue through scoped projects, not client management overhead.', icon: Zap }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-6 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group">
-                    <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-primary/20">
-                      <item.icon className="w-7 h-7 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-xl mb-1 text-white">{item.title}</h3>
-                      <p className="text-gray-300 leading-relaxed font-light">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Why Trust DeliWer</h2>
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto font-light">
+                Providing transparency and excellence in Dubai's most critical service sectors.
+              </p>
             </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/30 blur-[150px] rounded-full animate-pulse" />
-              <Card className="relative p-12 border-white/10 bg-black/40 backdrop-blur-2xl shadow-3xl overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 -mr-16 -mt-16 rounded-full blur-2xl" />
-                <div className="space-y-12">
-                  <div className="flex items-center gap-8">
-                    <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
-                      <Star className="w-10 h-10 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-white tracking-tighter">100%</div>
-                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">Execution Reliability</div>
-                    </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+              {[
+                {
+                  title: "Dealroom Verified",
+                  description: "Global startup & investor ecosystem intelligence platform recognizes DeliWer's expertise",
+                  icon: Search
+                },
+                {
+                  title: "FounderHQ Partner",
+                  description: "Part of Dubai's official founders ecosystem with verified credentials",
+                  icon: Award
+                },
+                {
+                  title: "Dubai's #1 Hub",
+                  description: "Recognized as top emerging market for founders and B2B expansion",
+                  icon: Target
+                },
+                {
+                  title: "Vetted Network",
+                  description: "Rigorous partner screening process ensuring top-tier service delivery",
+                  icon: Shield
+                }
+              ].map((feature, idx) => (
+                <div 
+                  key={idx}
+                  className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-primary/30 transition-all text-center group"
+                >
+                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg shadow-primary/20">
+                    <feature.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <div className="flex items-center gap-8">
-                    <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
-                      <Users className="w-10 h-10 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-white tracking-tighter">Dubai-Wide</div>
-                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">Strategic Service Coverage</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-8">
-                    <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
-                      <Smartphone className="w-10 h-10 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-white tracking-tighter">Real-time</div>
-                      <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">WhatsApp Sync & Updates</div>
-                    </div>
-                  </div>
+                  <h3 className="text-white font-bold mb-2 text-lg">{feature.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed font-light">{feature.description}</p>
                 </div>
-              </Card>
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-20 items-center">
+              <div>
+                <h2 className="text-3xl font-bold mb-8 text-white tracking-tight">Authority & Execution</h2>
+                <div className="space-y-6">
+                  {[
+                    { title: 'Demand Ownership', desc: 'Demand owned by DeliWer via LinkedIn Premium & Sales Navigator.', icon: Globe },
+                    { title: 'Accountability', desc: 'One coordinator per client ensures absolute accountability.', icon: Shield },
+                    { title: 'Full Lifecycle Coverage', desc: 'Pre-arrival, move-in, living, move-out — we cover it all.', icon: Rocket },
+                    { title: 'Frictionless Comms', desc: 'Communication via WhatsApp — no app required for partners.', icon: MessageCircle },
+                    { title: 'Revenue Focus', desc: 'Revenue through scoped projects, not client management overhead.', icon: Zap }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-6 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-primary/20">
+                        <item.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-xl mb-1 text-white">{item.title}</h3>
+                        <p className="text-gray-300 leading-relaxed font-light">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="relative">
+                <div className="absolute inset-0 bg-primary/30 blur-[150px] rounded-full animate-pulse" />
+                <Card className="relative p-12 border-white/10 bg-black/40 backdrop-blur-2xl shadow-3xl overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 -mr-16 -mt-16 rounded-full blur-2xl" />
+                  <div className="space-y-12">
+                    <div className="flex items-center gap-8">
+                      <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
+                        <Star className="w-10 h-10 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-4xl font-bold text-white tracking-tighter">100%</div>
+                        <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">Execution Reliability</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-8">
+                      <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
+                        <Users className="w-10 h-10 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-4xl font-bold text-white tracking-tighter">Dubai-Wide</div>
+                        <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">Strategic Service Coverage</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-8">
+                      <div className="w-20 h-20 rounded-3xl bg-primary/20 flex items-center justify-center border border-primary/30 shadow-xl shadow-primary/20">
+                        <Smartphone className="w-10 h-10 text-primary" />
+                      </div>
+                      <div>
+                        <div className="text-4xl font-bold text-white tracking-tighter">Real-time</div>
+                        <div className="text-sm text-primary uppercase tracking-[0.2em] font-bold mt-2">WhatsApp Sync & Updates</div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
