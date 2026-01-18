@@ -42,7 +42,9 @@ import {
   Smartphone,
   Droplets,
   Wifi,
-  Truck
+  Truck,
+  ShieldCheck,
+  Plug
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -166,15 +168,20 @@ export default function Relocate() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 bg-white dark:bg-slate-950">
-        <div className="max-w-6xl mx-auto px-4">
+      <section className="py-24 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0 opacity-20 grayscale"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1582653280643-e79c79219b19?auto=format&fit=crop&q=80')` }}
+        />
+        <div className="absolute inset-0 bg-white/90 dark:bg-slate-950/90 z-0" />
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Relocation Services</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">Everything you need to move and settle in Dubai, managed through a single point of contact.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {relocationServices.map((service, i) => (
-              <Card key={i} className="hover-elevate border-slate-100 dark:border-slate-800 shadow-sm">
+              <Card key={i} className="hover-elevate border-slate-100 dark:border-slate-800 shadow-sm bg-card/50 backdrop-blur-sm">
                 <CardHeader>
                   <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-4">
                     <service.icon className="w-7 h-7 text-emerald-600" />
@@ -198,9 +205,59 @@ export default function Relocate() {
         </div>
       </section>
 
+      {/* Exit Concierge Highlight */}
+      <section className="py-24 relative overflow-hidden text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')` }}
+        />
+        <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm z-0" />
+        <div className="max-w-5xl mx-auto px-4 relative z-10">
+          <div className="bg-slate-800/50 p-8 md:p-16 rounded-[2.5rem] border border-white/10 shadow-2xl backdrop-blur-md">
+            <div className="flex flex-col md:flex-row gap-12 items-center">
+              <div className="flex-1">
+                <Badge className="mb-6 bg-red-500/20 text-red-400 border-red-500/30 px-4 py-1 text-sm font-bold uppercase tracking-widest">
+                  Survival Grade Exit
+                </Badge>
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6">
+                  Leaving Dubai? <br />
+                  <span className="text-emerald-400">Don’t Lose Your Deposit.</span>
+                </h2>
+                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
+                  Our Exit Concierge manages final cleaning, snag fixing, DEWA closure, and landlord handover. We guarantee a seamless departure without loose ends.
+                </p>
+                <Link href="/exit">
+                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl">
+                    Explore Exit Concierge
+                    <ArrowRight className="ml-2 w-6 h-6" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 gap-4 w-full md:w-auto shrink-0">
+                {[
+                  { icon: ShieldCheck, label: "Deposit Recovery" },
+                  { icon: Plug, label: "Utility Closure" },
+                  { icon: Plane, label: "Move Support" },
+                  { icon: CheckCircle2, label: "Zero Admin" }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center text-center gap-3">
+                    <item.icon className="w-8 h-8 text-emerald-400" />
+                    <span className="text-sm font-bold uppercase tracking-tight">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 4-Step Journey */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/50">
-        <div className="max-w-6xl mx-auto px-4">
+      <section className="py-24 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center z-0 opacity-10"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&q=80')` }}
+        />
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
           <h2 className="text-3xl font-bold text-center mb-16">Your 4-Step Relocation Journey</h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[
