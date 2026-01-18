@@ -249,11 +249,11 @@ export default function Home() {
           <section className="py-24 px-4 bg-slate-950/50">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">The DeliWer Journey</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">The DeliWer Operating Lifecycle</h2>
                 <p className="text-xl text-emerald-400 font-medium max-w-3xl mx-auto">
-                  From international relocation to everyday living — and a clean exit when it's time to leave Dubai.
+                  From pre-arrival planning to everyday living — and a clean exit when it's time to leave Dubai.
                 </p>
-                <p className="text-gray-400 mt-4">One trusted partner for expats, families, businesses, and the teams that move them.</p>
+                <p className="text-gray-400 mt-4 italic font-bold">One DeliWer coordinator accountable end-to-end.</p>
               </div>
 
               <div className="grid gap-8">
