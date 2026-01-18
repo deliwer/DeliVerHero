@@ -55,21 +55,7 @@ export function TrustElements() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-20 items-center">
-          <div className="space-y-6">
-            {trustItems.map((item, i) => (
-              <div key={i} className="flex gap-6 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all group">
-                <div className="w-14 h-14 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-primary/20">
-                  <item.icon className="w-7 h-7 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-xl mb-1 text-white">{item.title}</h3>
-                  <p className="text-gray-300 leading-relaxed font-light">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          
+        <div className="max-w-xl mx-auto">
           <div className="relative">
             <div className="absolute inset-0 bg-primary/30 blur-[150px] rounded-full animate-pulse" />
             <div className="space-y-6">
