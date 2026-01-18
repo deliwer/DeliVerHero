@@ -42,7 +42,7 @@ export function TrustElements() {
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
       </div>
       
       <div className="relative z-10 max-w-6xl mx-auto">
