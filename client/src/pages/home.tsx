@@ -164,6 +164,8 @@ function LiveChallengeWidget() {
   );
 }
 
+import relocationHeroPng from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
+
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
@@ -198,9 +200,16 @@ export default function Home() {
   return (
     <div>
       {/* Hero with fork buttons */}
-      <section className="relative py-24 px-4 overflow-hidden">
+      <section className="relative py-24 px-4 overflow-hidden min-h-[600px] flex items-center">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${relocationHeroPng})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-slate-950/70 backdrop-blur-[2px]" />
+
         <div className="max-w-6xl mx-auto text-center relative z-10">
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white">
+          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white drop-shadow-2xl">
             Relocation<br />
             <span className="text-emerald-500">Without Loose Ends.</span>
           </h1>
