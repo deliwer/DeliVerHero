@@ -349,19 +349,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Signals */}
-              <div className="mt-16 grid grid-cols-2 md:grid-cols-2 gap-6 text-center max-w-4xl mx-auto px-4">
-                {[
-                  "Partner-led execution",
-                  "Full relocation lifecycle"
-                ].map((signal, idx) => (
-                  <div key={idx} className="flex flex-col items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span className="text-xs font-bold text-gray-300 uppercase tracking-tighter">{signal}</span>
-                  </div>
-                ))}
-              </div>
-
               {/* Final CTA */}
               <div className="mt-24 text-center pb-24 border-t border-white/5 pt-24">
                 <h3 className="text-4xl font-black text-white uppercase tracking-tighter mb-4">Relocation Without Loose Ends.</h3>
