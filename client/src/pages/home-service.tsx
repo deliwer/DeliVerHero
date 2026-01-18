@@ -45,6 +45,7 @@ import evChargingImg from "@assets/stock_images/electric_vehicle_ev__8c191f69.jp
 import ecoCleaningImg from "@assets/stock_images/eco-friendly_cleanin_0650dea4.jpg";
 import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
 import jvcBoxes from "@assets/generated_images/jvc_dubai_apartment_move-in_boxes.png";
+import dailyEssentialsImg from "@assets/stock_images/5-stage_water_purifi_b2e38594.jpg";
 
 export default function HomeService() {
   const { toast } = useToast();
@@ -424,6 +425,70 @@ export default function HomeService() {
           </div>
         </div>
       </section>
+      {/* Daily Essentials - NEW SECTION */}
+      <section className="py-16 px-4 relative overflow-hidden" id="daily-essentials" style={{ backgroundImage: `url(${dailyEssentialsImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="order-2 lg:order-1 relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl border border-white/10">
+                <img 
+                  src={dailyEssentialsImg} 
+                  alt="Daily essentials and premium water service for your home" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white font-bold text-lg">AquaCafe Essentials</p>
+                  <p className="text-white/90 text-sm">Everyday premium hydration</p>
+                </div>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="inline-flex items-center gap-2 bg-blue-500/30 rounded-full px-4 py-2 mb-6 border border-blue-400/50">
+                <ShoppingBag className="w-4 h-4 text-blue-300" />
+                <span className="text-sm font-semibold text-blue-200">Daily Essentials</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                Lifestyle Support. <span className="text-blue-300">Managed Daily.</span>
+              </h2>
+              <p className="text-lg text-white/90 mb-6 font-medium">
+                From premium water refills to your daily lifestyle needs, AquaCafe ensures your home is always stocked and managed without you lifting a finger.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-blue-300 flex-shrink-0" />
+                  Subscription-based water refill management
+                </li>
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-blue-300 flex-shrink-0" />
+                  Premium tea & coffee supplies
+                </li>
+                <li className="flex items-center gap-3 text-white/85">
+                  <CheckCircle2 className="w-5 h-5 text-blue-300 flex-shrink-0" />
+                  Automated delivery scheduling
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/home-service/aquacafe">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 h-14 rounded-full shadow-lg transition-all">
+                    Explore Daily Essentials
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+                <CalendlyButton 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm h-14 rounded-full px-8"
+                >
+                  Learn About AquaCafe
+                </CalendlyButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* EV Charging Station Section - NEW */}
       <section className="py-16 px-4 relative overflow-hidden" id="ev-charging" style={{ backgroundImage: `url(${evChargingImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
