@@ -245,6 +245,183 @@ export default function Home() {
         </div>
 
         <div className="relative z-20 space-y-0">
+          {/* Relocation Lifecycle Journey */}
+          <section className="py-24 px-4 bg-slate-950/50">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">The DeliWer Journey</h2>
+                <p className="text-xl text-emerald-400 font-medium max-w-3xl mx-auto">
+                  From international relocation to everyday living — and a clean exit when it's time to leave Dubai.
+                </p>
+                <p className="text-gray-400 mt-4">One trusted partner for expats, families, businesses, and the teams that move them.</p>
+              </div>
+
+              <div className="grid gap-8">
+                {/* Step 1: Before You Arrive */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center shrink-0">
+                      <Plane className="w-8 h-8 text-blue-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-bold text-blue-400 uppercase tracking-widest bg-blue-400/10 px-3 py-1 rounded-full">Phase 01</span>
+                        <h3 className="text-2xl font-bold text-white uppercase">Before You Arrive</h3>
+                      </div>
+                      <h4 className="text-lg text-gray-300 mb-6 italic">Moving to Dubai Starts Before the Flight</h4>
+                      <p className="text-gray-400 mb-8 leading-relaxed">
+                        Relocating to Dubai is a financial, legal, and operational transition. DeliWer supports international relocation partners and their clients from day zero, ensuring homes are ready before the first night.
+                      </p>
+                      
+                      <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                        <div className="flex items-center gap-3 text-gray-300">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span>Move-in planning</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-gray-300">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span>Utility coordination</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-gray-300">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span>Home readiness</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-gray-300">
+                          <CheckCircle className="w-5 h-5 text-emerald-500" />
+                          <span>Local orchestration</span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-4">
+                        <Link href="/relocate">
+                          <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full px-8">
+                            Partner for Relocations
+                          </Button>
+                        </Link>
+                        <Link href="/relocate/visa">
+                          <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-8">
+                            Relocation Consultation
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 2: Arrival & Move-In */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center shrink-0">
+                      <Clock className="w-8 h-8 text-emerald-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-400/10 px-3 py-1 rounded-full">Phase 02</span>
+                        <h3 className="text-2xl font-bold text-white uppercase">Arrival & Move-In</h3>
+                      </div>
+                      <h4 className="text-lg text-gray-300 mb-6 italic">Keys Received. Everything Else Handled.</h4>
+                      <p className="text-gray-400 mb-8 leading-relaxed">
+                        Once keys are received, DeliWer becomes the local execution arm. One WhatsApp contact, one coordinator, and a network of vetted partners for cleaning, water, and maintenance.
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-4">
+                        <Link href="/move-in-services">
+                          <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full px-8">
+                            View Move-In Services
+                          </Button>
+                        </Link>
+                        <Link href="/relocate/pricing">
+                          <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-8">
+                            Corporate Packages
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 3: Living in Dubai */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center shrink-0">
+                      <Globe className="w-8 h-8 text-purple-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-bold text-purple-400 uppercase tracking-widest bg-purple-400/10 px-3 py-1 rounded-full">Phase 03</span>
+                        <h3 className="text-2xl font-bold text-white uppercase">Living in Dubai</h3>
+                      </div>
+                      <h4 className="text-lg text-gray-300 mb-6 italic">Beyond Move-In: Everyday Support</h4>
+                      <p className="text-gray-400 mb-8 leading-relaxed">
+                        DeliWer stays throughout your stay. We manage preventive maintenance, health-first water solutions, and administrative assistance so you can focus on your life or business.
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-4">
+                        <Link href="/home-service">
+                          <Button size="lg" className="bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-full px-8">
+                            View Home Services
+                          </Button>
+                        </Link>
+                        <Link href="/errand">
+                          <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-8">
+                            Everyday Support
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 4: Move-Out & Exit */}
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="w-16 h-16 bg-red-500/20 rounded-2xl flex items-center justify-center shrink-0">
+                      <TrendingUp className="rotate-180 w-8 h-8 text-red-400" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-xs font-bold text-red-400 uppercase tracking-widest bg-red-400/10 px-3 py-1 rounded-full">Phase 04</span>
+                        <h3 className="text-2xl font-bold text-white uppercase">Move-Out & Exit</h3>
+                      </div>
+                      <h4 className="text-lg text-gray-300 mb-6 italic">Leaving Dubai Should Be as Smooth as Arriving</h4>
+                      <p className="text-gray-400 mb-8 leading-relaxed">
+                        When it's time to move, we manage the exit lifecycle—from end-of-lease coordination and deep cleaning to utility closures, ensuring a professional handover.
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-4">
+                        <Link href="/move-in-services">
+                          <Button size="lg" className="bg-red-600 hover:bg-red-500 text-white font-bold rounded-full px-8">
+                            View Exit Services
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* B2B / Founder CTA Section */}
+              <div className="mt-24 text-center">
+                <div className="inline-block bg-emerald-500/10 border border-emerald-500/20 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
+                  <h3 className="text-3xl font-black text-white uppercase tracking-tight mb-4">Relocating People or Clients to Dubai?</h3>
+                  <p className="text-xl text-gray-400 mb-8">Let DeliWer handle what happens after the keys. Partner with the default Dubai concierge.</p>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    <Link href="/partners">
+                      <Button size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-full px-12 shadow-lg shadow-emerald-500/20">
+                        Partner with DeliWer
+                      </Button>
+                    </Link>
+                    <Link href="/contact">
+                      <Button size="lg" variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 rounded-full px-12">
+                        Talk to a Coordinator
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* JVC Move-In Launch Offer Banner */}
           <section className="py-12 px-4">
             <div className="max-w-4xl mx-auto">
