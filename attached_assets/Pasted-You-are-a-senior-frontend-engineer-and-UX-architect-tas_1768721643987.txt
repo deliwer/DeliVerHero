@@ -1,0 +1,96 @@
+You are a senior frontend engineer and UX architect tasked with enhancing only the DeliWer Partner Page (www.deliwer.com/partners).
+
+OBJECTIVE:
+- Convert visitors into relocation partners first
+- Invite secondary partners (home services, corporate, lifestyle) in a clear, non-distracting way
+- Signal authority, trust, and lifecycle ownership
+- Drive immediate engagement via WhatsApp and online forms
+- Align messaging for LinkedIn-driven demand and B2B partnerships
+- No capital, high-trust, zero-friction
+
+PAGE REQUIREMENTS:
+
+1. HERO / INTRO
+Headline:
+"Partner with DeliWer — Dubai’s End-to-End Relocation & Concierge Network"
+
+Subheadline:
+"DeliWer owns client relationships and lifecycle, while our trusted partners execute locally and internationally."
+
+CTA Buttons (top):
+- "Apply to Become a Relocation Partner"
+- "Explore Secondary Partnerships"
+- "WhatsApp Partnership Desk"
+
+2. PRIORITY PARTNERSHIP BLOCK
+Title:
+"Relocation & Logistics Partners — Our Core Syndication"
+
+Content:
+- International movers, packers, freight, and logistics companies
+- Corporate relocation specialists and HR partners
+- DeliWer provides:
+   • Client onboarding
+   • Scope & SLA alignment
+   • Dedicated WhatsApp coordinator
+   • Revenue via wholesale agreements
+- Partner role: Execute Dubai-side relocation services safely and on time
+- DeliWer role: Owns client communication, lifecycle, and coordination
+
+CTA:
+- "Apply to Become a Relocation Partner"
+
+3. SECONDARY PARTNERSHIP BLOCK
+Title:
+"Secondary Partnerships — Home & Corporate Services"
+
+Content:
+- Home services: cleaning, maintenance, AC, plumbing, pest control, water & essentials
+- Corporate / HR services: visa processing, PRO, corporate housing, employee lifestyle
+- Technology & support providers: SaaS, payment, or coordination tools
+- Benefit: Access ongoing clients and lifecycle revenue without managing leads
+
+CTA:
+- "Explore Secondary Partnerships"
+
+4. HOW IT WORKS SECTION
+Steps:
+1. Join the ecosystem → submit profile
+2. Scope alignment → define your role in lifecycle
+3. Pilot projects → first jobs executed under DeliWer coordination
+4. Feedback & onboarding → fully integrated as Dubai-side execution partner
+5. Scale → recurring assignments from individuals and corporates
+
+5. TRUST & AUTHORITY SECTION
+Bullets:
+- Demand owned by DeliWer via LinkedIn Premium & Sales Navigator
+- One coordinator per client ensures accountability
+- Full lifecycle coverage: pre-arrival, move-in, living, move-out
+- Communication via WhatsApp — no app required
+- Revenue through scoped projects, not client management
+
+6. FINAL CTA SECTION
+Headline:
+"Start Partnering with DeliWer Today"
+Text:
+"Whether you specialize in international relocation, home setup, or corporate services, join our ecosystem to execute Dubai-side and grow with us."
+
+Buttons:
+- "Apply to Become a Relocation Partner"
+- "Explore Secondary Partnerships"
+- "WhatsApp Partnership Desk"
+
+UX RULES:
+- Mobile-first
+- Sticky WhatsApp button for contact
+- Clean hierarchy, minimal text blocks, readable fonts
+- Visual separation for primary vs secondary partnerships
+- Production-ready HTML/CSS/JS or React
+- Fast load, high trust, high conversion
+
+TONE:
+- Authoritative but approachable
+- High-trust, professional, B2B + B2C friendly
+- Clear, concise, actionable
+
+Generate full HTML/CSS/JS (or React) structure for the partner page with buttons, sections, and placeholder links for forms and WhatsApp.
