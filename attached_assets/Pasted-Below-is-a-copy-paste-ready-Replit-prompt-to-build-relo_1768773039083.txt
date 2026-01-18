@@ -1,0 +1,186 @@
+Below is a **copy-paste ready Replit prompt** to build **`/relocate/exit`** fast, clean, and conversion-first.
+It is written for **survival mode**: WhatsApp clicks > everything else.
+
+---
+
+## ✅ REPLIT PROMPT
+
+**(Paste this directly into Replit / AI site builder / Cursor / Lovable etc.)**
+
+---
+
+**ROLE:**
+You are a **Senior UX Engineer & Conversion-Focused Web Builder** working on **[www.deliwer.com](http://www.deliwer.com)**.
+
+**OBJECTIVE:**
+Create a **high-conversion subpage** at
+👉 **`/relocate/exit`**
+for **DeliWer Exit Concierge**, optimized for:
+
+* WhatsApp Communities
+* LinkedIn Premium Page traffic
+* Instagram Story swipe-ups
+* Mobile-first users leaving Dubai
+
+This page must load fast, look premium, and convert immediately.
+
+---
+
+## 🔧 PAGE RULES (IMPORTANT)
+
+* Mobile-first layout (80% traffic expected)
+* Sticky WhatsApp CTA on bottom
+* One-column, scrollable, no distractions
+* No heavy animations
+* Clear trust + authority tone
+* Survival-grade clarity (no fluff)
+
+---
+
+## 🧱 PAGE STRUCTURE (BUILD EXACTLY IN THIS ORDER)
+
+---
+
+### 🔴 HERO SECTION (Above the Fold)
+
+**Headline (H1):**
+Leaving Dubai? Don’t lose your deposit or waste weeks on admin.
+
+**Subheading:**
+DeliWer Exit Concierge guarantees a seamless, stress-free departure from the UAE.
+
+**Primary CTA (Button – Green):**
+💬 Get Free Exit Consultation on WhatsApp
+
+**Secondary Text CTA:**
+Fastest response on WhatsApp: **+971 52 394 6311**
+
+---
+
+### ✅ SECTION: “WHAT WE HANDLE”
+
+Create 3 stacked cards with icons:
+
+**1. Deposit Recovery**
+We manage final cleaning, snag fixing, and landlord handover to maximize your security deposit refund.
+
+**2. Utility & Liability Closure**
+DEWA, internet, telecom, and all final bills closed and settled for you. Zero loose ends.
+
+**3. International Move Support**
+Connect with trusted global moving partners for your next destination (USA, UK, Europe, Asia).
+
+---
+
+### 🧠 SECTION: “WHY DELIWER”
+
+Short paragraph:
+
+Most Dubai exits fail due to missed steps, poor handover, and unmanaged admin.
+DeliWer acts as your **single accountable exit partner** — so you leave clean, compliant, and stress-free.
+
+Add 4 bullet trust points:
+
+* UAE-experienced team
+* WhatsApp-first support
+* Process-driven exits
+* Professional & confidential
+
+---
+
+### 🧳 SECTION: “FOR EXPATS & FAMILIES”
+
+**Headline:**
+Stop stressing. Start packing.
+
+Short copy:
+We handle the admin while you plan your next chapter.
+
+**CTA Button:**
+📲 Chat on WhatsApp Now
+
+---
+
+### 🏢 SECTION: “FOR FOUNDERS, EXECUTIVES & HR”
+
+**Headline:**
+Professional Exit Concierge for Corporate & High-Net-Worth Clients
+
+Copy block:
+An unmanaged exit from Dubai creates financial risk, compliance issues, and reputational damage.
+DeliWer eliminates that risk.
+
+**Value Blocks (3):**
+
+* **Financial Security:** Maximize deposit recovery
+* **Compliance Assurance:** Close all liabilities
+* **Global Network:** Seamless onward relocation
+
+**CTA Button:**
+Request Corporate Exit Briefing
+
+---
+
+### 📞 CONTACT SECTION (HIGH VISIBILITY)
+
+Display as boxed section:
+
+**Need Immediate or Confidential Help?**
+
+📲 **WhatsApp (Fastest): +971 52 394 6311**
+📞 **CEO Line: +971 52 390 6019**
+🌐 **[www.deliwer.com](http://www.deliwer.com)**
+
+---
+
+### 🧲 STICKY FOOTER CTA (Mobile)
+
+Sticky bottom bar:
+
+> 💬 Chat on WhatsApp — Leave Dubai Without Loose Ends
+
+Button opens WhatsApp chat to **+971523946311**
+
+---
+
+## 🎨 DESIGN GUIDELINES
+
+* Brand colors only
+* White background, dark text
+* Green WhatsApp CTAs
+* Icons: checklist, plug, cleaning, airplane
+* No stock photos required (optional subtle illustration)
+
+---
+
+## 🔍 SEO BASICS
+
+* Page title:
+  **Exit Concierge Dubai | Close DEWA, Recover Deposit | DeliWer**
+* Meta description:
+  Stress-free Dubai exit concierge. Deposit recovery, utility closure & relocation support. Chat on WhatsApp now.
+
+---
+
+## ✅ FINAL CHECK
+
+* All CTAs open WhatsApp
+* Phone numbers clickable
+* Page works standalone (no menu dependency)
+* Ready for Instagram & LinkedIn traffic
+
+---
+
+### 🚀 OUTPUT REQUIRED
+
+Generate the **final HTML / React / Liquid page** (depending on stack) and confirm URL is `/relocate/exit`.
+
+---
+
+If you want next, I can:
+
+* Generate the **exact WhatsApp auto-reply script**
+* Create **LinkedIn Premium Page post copy**
+* Convert this into a **1-screen Instagram Story landing**
+
+Say **Second** or **Next**.

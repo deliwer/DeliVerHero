@@ -36,12 +36,12 @@ export function Navigation() {
 
   const consumerNavItems = [
     { path: "/", label: "Home", id: "home" },
-    { path: "/partners", label: "Partners", id: "partners" },
     { path: "/residence", label: "Residence in Dubai", id: "move-in-services" },
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/aquacafe", label: "Daily Essentials", id: "housing" },
     { path: "/contact", label: "Support", id: "support" },
+    { path: "/partners", label: "Partners", id: "partners" },
   ];
 
   const b2bNavItems = [

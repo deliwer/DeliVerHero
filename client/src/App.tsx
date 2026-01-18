@@ -88,6 +88,7 @@ const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer"));
 const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
 const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
+const RelocateExit = lazy(() => import("@/pages/relocate-exit"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -122,6 +123,7 @@ function Router() {
           <Route path="/residence/move-in-services" component={MoveInServices} />
           <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
           <Route path="/relocate-community" component={RelocateCommunity} />
+          <Route path="/relocate/exit" component={RelocateExit} />
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />

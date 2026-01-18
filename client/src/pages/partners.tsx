@@ -16,7 +16,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Zap,
-  Building
+  Building,
+  Rocket
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -294,7 +295,7 @@ export default function PartnersPage() {
                       <FormItem>
                         <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Company Name</FormLabel>
                         <FormControl>
-                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="Logistics Co." />
+                          <Input {...field} value={field.value ?? ""} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="Logistics Co." />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -308,7 +309,7 @@ export default function PartnersPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Primary Service Focus</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select onValueChange={field.onChange} defaultValue={field.value ?? ""}>
                         <FormControl>
                           <SelectTrigger className="bg-white/5 border-white/10 h-14 text-white rounded-xl">
                             <SelectValue placeholder="Select service" />
@@ -333,7 +334,7 @@ export default function PartnersPage() {
                     <FormItem>
                       <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Operational Scope / Benefits</FormLabel>
                       <FormControl>
-                        <Textarea {...field} className="bg-white/5 border-white/10 min-h-[150px] text-white rounded-xl" placeholder="Tell us about your fleet, expertise, or corporate requirements..." />
+                        <Textarea {...field} value={field.value ?? ""} className="bg-white/5 border-white/10 min-h-[150px] text-white rounded-xl" placeholder="Tell us about your fleet, expertise, or corporate requirements..." />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
