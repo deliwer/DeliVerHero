@@ -241,7 +241,7 @@ export default function Home() {
               { title: "Pre-Arrival Planning", icon: Plane, color: "blue", desc: "Readiness and coordination before your flight. We ensure your transition is operationally ready." },
               { title: "Arrival & Move-In", icon: Clock, color: "emerald", desc: "Keys to a fully functional home. Vetted execution for cleaning, utilities, and maintenance." },
               { title: "Living & Concierge", icon: Globe, color: "purple", desc: "Continuous home support, admin assistance, and essentials. We manage the lifestyle." },
-              { title: "Move-Out & Exit", icon: TrendingUp, color: "red", desc: "Handover, compliance, and utility closure. A professional exit as smooth as your arrival." }
+              { title: "Move-Out & Exit", icon: TrendingUp, color: "red", desc: "Handover, compliance, and utility closure. A professional exit as smooth as your arrival.", href: "/exit" }
             ].map((step, idx) => (
               <div key={idx} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -251,7 +251,16 @@ export default function Home() {
                   <div className="flex-1">
                     <h3 className="text-2xl font-bold text-white uppercase mb-2">{step.title}</h3>
                     <p className="text-gray-400 mb-6 leading-relaxed">{step.desc}</p>
-                    <p className="text-sm font-black uppercase text-emerald-500 tracking-widest">Handled by one DeliWer coordinator end-to-end</p>
+                    <div className="flex flex-wrap items-center gap-4">
+                      <p className="text-sm font-black uppercase text-emerald-500 tracking-widest">Handled by one DeliWer coordinator end-to-end</p>
+                      {step.href && (
+                        <Link href={step.href}>
+                          <Button variant="link" className="text-emerald-400 hover:text-emerald-300 p-0 h-auto font-bold uppercase tracking-widest text-sm">
+                            Learn More <ChevronRight className="w-4 h-4 ml-1" />
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

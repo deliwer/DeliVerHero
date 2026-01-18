@@ -124,6 +124,7 @@ function Router() {
           <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
           <Route path="/relocate-community" component={RelocateCommunity} />
           <Route path="/relocate/exit" component={RelocateExit} />
+          <Route path="/exit" component={RelocateExit} />
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
