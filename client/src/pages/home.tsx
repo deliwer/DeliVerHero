@@ -294,7 +294,7 @@ export default function Home() {
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold text-white uppercase mb-2">Living & Support</h3>
                       <p className="text-gray-400 mb-6 leading-relaxed">
-                        Ongoing home support and concierge assistance. We manage the home so you focus on the growth.
+                        Continuous home support, admin assistance, and essentials. We manage the lifestyle so you focus on the flight.
                       </p>
                       <Link href="/home-service">
                         <Button size="lg" className="bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-full px-8">
@@ -355,7 +355,7 @@ export default function Home() {
                   "One accountable coordinator",
                   "Zero app dependency",
                   "Partner-led execution",
-                  "Full lifecycle coverage"
+                  "Full relocation lifecycle"
                 ].map((signal, idx) => (
                   <div key={idx} className="flex flex-col items-center gap-2">
                     <CheckCircle className="w-5 h-5 text-emerald-500" />
