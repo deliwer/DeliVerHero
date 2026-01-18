@@ -5,14 +5,8 @@ import { desc } from "drizzle-orm";
 
 export interface IStorage {
   // Lead Applications
-  async createLeadApplication(lead: InsertLead): Promise<LeadApplication> {
-    const [application] = await db.insert(leadApplications).values(lead).returning();
-    return application;
-  }
-
-  async getLeadApplications(): Promise<LeadApplication[]> {
-    return await db.select().from(leadApplications).orderBy(desc(leadApplications.createdAt));
-  }
+  createLeadApplication(lead: InsertLead): Promise<LeadApplication>;
+  getLeadApplications(): Promise<LeadApplication[]>;
 
   // User management
   getUser(id: string): Promise<User | undefined>;
@@ -562,6 +556,7 @@ export class MemStorage implements IStorage {
   private luxuryHotelPartners: Map<string, LuxuryHotelPartner>;
   private restaurantPartners: Map<string, RestaurantPartner>;
   private wellnessJourneyParticipants: Map<string, WellnessJourneyParticipant>;
+  private leadApplications: Map<string, LeadApplication>;
 
   // Global Sustainability Framework
   private cities: Map<string, City>;
@@ -727,6 +722,9 @@ export class MemStorage implements IStorage {
     // Initialize Water Filtration - AquaCafe
     this.waterFiltrationProjects = new Map();
     this.waterFiltrationContributions = new Map();
+
+    // Initialize Lead Applications
+    this.leadApplications = new Map();
     
     // Initialize impact stats
     this.impactStats = {
@@ -4830,7 +4828,23 @@ export class MemStorage implements IStorage {
     return updated;
   }
 
-  // ChainTrack membership tiers
+  async getLeadApplications(): Promise<LeadApplication[]> {
+    return Array.from(this.leadApplications.values()).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+  }
+
+  async createLeadApplication(lead: InsertLead): Promise<LeadApplication> {
+    const id = randomUUID();
+    const application: LeadApplication = {
+      ...lead,
+      id,
+      status: "pending",
+      createdAt: new Date(),
+    };
+    this.leadApplications.set(id, application);
+    return application;
+  }
+
+  // ChainTrack membership tiers implementation
   async getChaintrackMembershipTiers(): Promise<ChaintrackMembershipTier[]> {
     // Return hardcoded tier data with proper pricing structure
     // Note: All fees stored in basis points (50 = 0.5%), USD amounts in cents
@@ -4865,15 +4879,15 @@ export class MemStorage implements IStorage {
         maxDevicesPerMonth: 249,
         monthlyFeeUSD: 0,
         transactionFeePercent: 30, // Average transaction fee (basis points)
-        minimumMonthlyFeeUSD: 50000, // $500 minimum (in cents)
+        minimumMonthlyFeeUSD: 150000, // $1,500 minimum (in cents)
         asisAuctionAccess: true,
         readyToShipAccess: true,
-        asisFeePercent: 30, // 0.3% fee on ASIS stock (basis points)
-        readyToShipFeePercent: 50, // 0.5% fee on tested stock (basis points)
-        features: ['ASIS Auction Stock Access', 'Ready-to-Ship Stock', '0.3% fee on ASIS stock', '0.5% fee on tested stock', 'Priority support'],
+        asisFeePercent: 30,
+        readyToShipFeePercent: 30,
+        features: ['Access to ASIS Auctions', '0.3% transaction fee', '$1,500 minimum per month', 'Batch bidding enabled'],
         priority: 2,
-        badgeColor: '#a855f7',
-        badgeText: 'MOST POPULAR',
+        badgeColor: '#10b981',
+        badgeText: 'Popular',
         isActive: true,
         isPublic: true,
         createdAt: new Date(),
@@ -4881,48 +4895,26 @@ export class MemStorage implements IStorage {
       },
       {
         id: '3',
-        tierName: 'Growth',
-        tierCode: 'growth',
-        minDevicesPerMonth: 250,
-        maxDevicesPerMonth: 499,
-        monthlyFeeUSD: 0,
-        transactionFeePercent: 25, // Average transaction fee (basis points)
-        minimumMonthlyFeeUSD: 50000, // $500 minimum (in cents)
-        asisAuctionAccess: true,
-        readyToShipAccess: true,
-        asisFeePercent: 25, // 0.25% fee on ASIS stock (basis points)
-        readyToShipFeePercent: 40, // 0.4% fee on tested stock (basis points)
-        features: ['All Starter features', '0.25% fee on ASIS stock', '0.4% fee on tested stock', 'Dedicated account manager', 'Custom sourcing requests'],
-        priority: 3,
-        badgeColor: '#3b82f6',
-        badgeText: null,
-        isActive: true,
-        isPublic: true,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        id: '4',
         tierName: 'Enterprise',
         tierCode: 'enterprise',
-        minDevicesPerMonth: 500,
-        maxDevicesPerMonth: null, // Unlimited for enterprise
-        monthlyFeeUSD: 0,
-        transactionFeePercent: 20, // Average (basis points)
-        minimumMonthlyFeeUSD: 50000, // $500 minimum (in cents)
+        minDevicesPerMonth: 250,
+        maxDevicesPerMonth: null,
+        monthlyFeeUSD: 250000, // $2,500 monthly fixed fee (in cents)
+        transactionFeePercent: 15, // 0.15% general transaction fee (basis points)
+        minimumMonthlyFeeUSD: 0, // Fixed fee covers minimum
         asisAuctionAccess: true,
         readyToShipAccess: true,
-        asisFeePercent: 20, // Custom negotiated, starting at 0.2% (basis points)
-        readyToShipFeePercent: 35, // Custom negotiated, starting at 0.35% (basis points)
-        features: ['All Growth features', 'Custom negotiated rates', 'Direct auction participation', 'API integration available', 'White-glove service'],
-        priority: 4,
-        badgeColor: '#f59e0b',
-        badgeText: null,
+        asisFeePercent: 15,
+        readyToShipFeePercent: 15,
+        features: ['0.15% transaction fee', 'Fixed monthly subscription', 'Dedicated account manager', 'API access for bulk orders'],
+        priority: 3,
+        badgeColor: '#3b82f6',
+        badgeText: 'Best Value',
         isActive: true,
         isPublic: true,
         createdAt: new Date(),
         updatedAt: new Date(),
-      },
+      }
     ];
   }
 
