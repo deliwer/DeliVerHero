@@ -26,11 +26,8 @@ import {
   Wrench,
   Stethoscope,
   Laptop,
-  ChefHat,
-  CheckCircle2,
-  MapPin
+  ChefHat
 } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import relocationImg from "@assets/stock_images/dubai_relocation_log_70eb5cb1.jpg";
 import corporateImg from "@assets/stock_images/modern_dubai_office__97a31756.jpg";
@@ -38,8 +35,6 @@ import homeImg from "@assets/stock_images/dubai_luxury_villa_i_9244d415.jpg";
 import skylineImg from "@assets/stock_images/dubai_skyline_sunset_21b85db0.jpg";
 import networkImg from "@assets/stock_images/dubai_business_corpo_60a4c0bf.jpg";
 import logisticsImg from "@assets/stock_images/modern_logistics_war_f64b7709.jpg";
-import nicolePhoto from "@assets/Nicole_Oliver.jpeg";
-import moveInBg from "@assets/generated_images/modern_dubai_apartment_handover_and_move-in_scene.png";
 
 interface PartnerInquiry {
   email: string;
@@ -137,123 +132,6 @@ export default function Partners() {
           </div>
         </div>
       </div>
-
-      {/* Trust & Proof Section Integrated */}
-      <section 
-        className="relative py-16 px-4 overflow-hidden"
-        style={{
-          backgroundImage: `url(${moveInBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/75"></div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="md:text-5xl text-white mb-4 font-normal text-[32px]">Why residents trust DeliWer during move-in</h2>
-          </div>
-
-          {/* Block 3 — HUMAN PROOF (SINGLE, STRONG) */}
-          <div className="mb-16 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 hover-elevate transition-all font-extrabold">
-            <div className="flex flex-col md:flex-row gap-8 items-center max-w-4xl mx-auto">
-              <div className="shrink-0">
-                <Avatar className="h-24 w-24 border-2 border-emerald-500/30">
-                  <AvatarImage src={nicolePhoto} alt="Nikole" className="object-cover" />
-                  <AvatarFallback className="bg-emerald-500/20 text-emerald-400 font-bold text-xl">N</AvatarFallback>
-                </Avatar>
-              </div>
-              <div className="flex-1 text-center md:text-left">
-                <p className="text-white italic mb-4 text-[18px] font-medium">
-                  “I had just moved in and didn’t know where to start. DeliWer helped me get everything set up without dealing with multiple people.”
-                </p>
-                <div>
-                  <h4 className="text-white font-bold text-lg">— Nikole</h4>
-                  <p className="text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center justify-center md:justify-start gap-1 mt-1">
-                    <MapPin className="w-4 h-4" /> JVC resident
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Block — WHEN PEOPLE USE DELIWER */}
-          <div className="mb-16 bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-4 text-amber-400">
-              <Zap className="w-6 h-6" />
-              <h3 className="text-lg font-bold uppercase tracking-wider">When people use DeliWer</h3>
-            </div>
-            <div className="space-y-6 text-gray-200">
-              <div className="space-y-2">
-                <p className="text-xl font-medium text-white">Most people don’t struggle with finding a home.</p>
-                <p className="text-xl font-medium text-gray-400">They struggle with everything that comes after.</p>
-              </div>
-              <ul className="space-y-4">
-                {[
-                  "You’ve just received your apartment keys",
-                  "You’re moving into a new home",
-                  "You need essentials set up quickly and correctly"
-                ].map((bullet, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                    <span className="text-lg">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="font-bold text-white border-l-4 border-amber-500 pl-4 py-2 bg-amber-500/5 text-lg">
-                This is the exact moment DeliWer exists for.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            {/* Block 1 — POSITIONAL TRUST (WHO WE ARE NOT) */}
-            <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-4 text-emerald-400">
-                <Shield className="w-6 h-6" />
-                <h3 className="text-lg font-bold uppercase tracking-wider">Who we are not</h3>
-              </div>
-              <div className="space-y-4 text-gray-200 text-lg">
-                <p>DeliWer is not a real estate agency and does not list properties.</p>
-                <p>We don’t earn commissions and we don’t push vendors.</p>
-                <p className="font-bold text-white border-l-4 border-emerald-500 pl-4 py-2 bg-emerald-500/5 text-base">
-                  Our role starts after you receive your apartment keys — when practical help matters most.
-                </p>
-              </div>
-            </div>
-
-            {/* Block 2 — LOCAL REALITY (WHERE WE OPERATE) */}
-            <div className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-4 text-blue-400">
-                <Building2 className="w-6 h-6" />
-                <h3 className="text-lg font-bold uppercase tracking-wider">Local Reality</h3>
-              </div>
-              <div className="space-y-4 text-gray-200 text-lg">
-                <p>We currently support residents moving into selected Dubai communities, including JVC.</p>
-                <p className="text-gray-400 italic text-base">
-                  Coverage expands carefully, based on building access and on-ground readiness.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Secondary WhatsApp CTA */}
-          <div className="flex justify-center">
-            <Button
-              variant="outline"
-              className="w-full max-w-md border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 px-10 py-8 text-lg font-bold rounded-2xl backdrop-blur-md transition-all flex items-center justify-center gap-3"
-              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
-              data-testid="button-whatsapp-ecosystem-cta"
-            >
-              <MessageCircle className="w-6 h-6" />
-              Chat on WhatsApp
-            </Button>
-          </div>
-        </div>
-      </section>
 
       <div className="container mx-auto px-4 py-16">
         {/* Watch Our Channel Section (Restored) */}
