@@ -1,0 +1,106 @@
+You are a senior growth engineer and UX architect launching the production homepage for www.deliwer.com.
+
+OBJECTIVE:
+Convert LinkedIn-driven inbound traffic into:
+1) Relocation clients (individuals, families, founders)
+2) Strategic partnerships (HR, brokers, logistics, relocation firms)
+
+CONSTRAINTS:
+- No ad spend
+- No capital
+- High-trust, high-stakes relocations
+- Homepage must signal maturity, reliability, and operational readiness
+
+POSITIONING:
+DeliWer is the Dubai-side operating and concierge layer for international relocations.
+We own the client relationship and syndicate execution with trusted partners.
+
+HOMEPAGE STRUCTURE:
+
+1. HERO SECTION
+Headline:
+"Relocating to Dubai? We Operate Everything After Arrival."
+
+Subheadline:
+"DeliWer is the Dubai-side execution and concierge partner for expats, businesses, and relocation professionals."
+
+Primary CTAs (two buttons only):
+- "I’m Relocating to Dubai"
+- "I Relocate Clients or Employees"
+
+2. DEMAND OWNERSHIP STATEMENT
+Short trust paragraph:
+"DeliWer works directly with clients and international relocation stakeholders to safely settle people, families, and businesses in Dubai — from arrival to exit."
+
+3. DELIWER OPERATING LIFECYCLE
+Present as a lifecycle, not phases:
+
+- Pre-Arrival Planning
+  (scope, readiness, coordination)
+- Arrival & Move-In
+  (keys to fully functional home)
+- Living & Concierge Support
+  (maintenance, essentials, admin)
+- Move-Out & Exit
+  (handover, compliance, closure)
+
+Each step must include:
+"One DeliWer coordinator accountable end-to-end."
+
+4. RELOCATION COST ESTIMATOR (SITEWIDE)
+Rename tools as:
+"Relocation & Living Cost Estimator"
+
+Fields:
+- Relocation type (Individual / Family / Corporate)
+- Property size
+- Services required
+
+Output:
+Estimated cost range
+Note:
+"Final scope and pricing confirmed by DeliWer coordinator."
+
+CTA:
+"Discuss on WhatsApp"
+
+5. PARTNERSHIP INVITATION BLOCK (CRITICAL)
+Headline:
+"Partners Welcome: Logistics, HR & Relocation Firms"
+
+Text:
+"DeliWer invites international and regional partners to syndicate Dubai-side execution while we manage the client relationship and concierge lifecycle."
+
+Buttons:
+- "Explore Partnership"
+- "WhatsApp Partnerships Desk"
+
+6. AUTHORITY SIGNALS (TEXT-ONLY)
+Bullets:
+- Demand generated via LinkedIn & direct outreach
+- One accountable coordinator per client
+- No app dependency
+- Partner-led execution model
+- Full relocation lifecycle coverage
+
+7. FINAL CTA
+Headline:
+"Dubai Relocation Without Loose Ends."
+
+Text:
+"Whether you are arriving, living, or exiting — DeliWer stays responsible."
+
+Button:
+"Talk to a DeliWer Coordinator"
+
+UX RULES:
+- Mobile-first
+- Clear hierarchy
+- No jargon
+- High-trust language
+- WhatsApp sticky button
+- Production-ready
+
+TECH:
+React or clean HTML/CSS/JS.
+Fast load. No unnecessary libraries.

@@ -304,6 +304,7 @@ export default function Home() {
                           </Button>
                         </Link>
                       </div>
+                      <p className="mt-4 text-xs text-blue-400/70 font-medium italic">One DeliWer coordinator accountable end-to-end.</p>
                     </div>
                   </div>
                 </div>
@@ -336,6 +337,7 @@ export default function Home() {
                           </Button>
                         </Link>
                       </div>
+                      <p className="mt-4 text-xs text-emerald-400/70 font-medium italic">One DeliWer coordinator accountable end-to-end.</p>
                     </div>
                   </div>
                 </div>
@@ -368,6 +370,7 @@ export default function Home() {
                           </Button>
                         </Link>
                       </div>
+                      <p className="mt-4 text-xs text-purple-400/70 font-medium italic">One DeliWer coordinator accountable end-to-end.</p>
                     </div>
                   </div>
                 </div>
@@ -395,29 +398,60 @@ export default function Home() {
                           </Button>
                         </Link>
                       </div>
+                      <p className="mt-4 text-xs text-red-400/70 font-medium italic">One DeliWer coordinator accountable end-to-end.</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* B2B / Founder CTA Section */}
+              {/* Partnership Invitation Block (CRITICAL) */}
               <div className="mt-24 text-center">
                 <div className="inline-block bg-emerald-500/10 border border-emerald-500/20 rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
-                  <h3 className="text-3xl font-black text-white uppercase tracking-tight mb-4">Relocating People or Clients to Dubai?</h3>
-                  <p className="text-xl text-gray-400 mb-8">Let DeliWer handle what happens after the keys. Partner with the default Dubai concierge.</p>
+                  <h3 className="text-3xl font-black text-white uppercase tracking-tight mb-4">Partners Welcome: Logistics, HR & Relocation Firms</h3>
+                  <p className="text-xl text-gray-400 mb-8">DeliWer invites international and regional partners to syndicate Dubai-side execution while we manage the client relationship and concierge lifecycle.</p>
                   <div className="flex flex-wrap justify-center gap-4">
                     <Link href="/partners">
                       <Button size="lg" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black rounded-full px-12 shadow-lg shadow-emerald-500/20">
-                        Partner with DeliWer
+                        Explore Partnership
                       </Button>
                     </Link>
-                    <Link href="/contact">
-                      <Button size="lg" variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 rounded-full px-12">
-                        Talk to a Coordinator
-                      </Button>
-                    </Link>
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 rounded-full px-12"
+                      onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+                    >
+                      WhatsApp Partnerships Desk
+                    </Button>
                   </div>
                 </div>
+              </div>
+
+              {/* Authority Signals (TEXT-ONLY) */}
+              <div className="mt-16 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center max-w-6xl mx-auto px-4">
+                {[
+                  "Demand generated via LinkedIn & direct outreach",
+                  "One accountable coordinator per client",
+                  "No app dependency",
+                  "Partner-led execution model",
+                  "Full relocation lifecycle coverage"
+                ].map((signal, idx) => (
+                  <div key={idx} className="flex flex-col items-center gap-2">
+                    <CheckCircle className="w-5 h-5 text-emerald-500" />
+                    <span className="text-xs font-bold text-gray-300 uppercase tracking-tighter leading-tight">{signal}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* FINAL CTA */}
+              <div className="mt-24 text-center pb-24">
+                <h3 className="text-4xl font-black text-white uppercase tracking-tighter mb-4">Dubai Relocation Without Loose Ends.</h3>
+                <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Whether you are arriving, living, or exiting — DeliWer stays responsible.</p>
+                <Link href="/contact">
+                  <Button size="lg" className="bg-white hover:bg-gray-200 text-black font-black rounded-full px-16 py-8 text-xl shadow-2xl shadow-white/10 transition-all hover:scale-105 active:scale-95">
+                    Talk to a DeliWer Coordinator
+                  </Button>
+                </Link>
               </div>
             </div>
           </section>
