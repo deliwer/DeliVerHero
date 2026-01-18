@@ -1,0 +1,214 @@
+Understood.
+I’ll do this as a **Senior UI Architect designing a survival-grade, B2B2C homepage journey** that:
+
+* Expands DeliWer from **home services → full international relocation lifecycle**
+* Speaks clearly to **HR, brokers, logistics specialists, founders, and corporates**
+* Still remains understandable to **families and expats**
+* Positions DeliWer as the **default concierge before arrival, during stay, and on exit**
+* Does **not break the existing site structure**, only enhances the **Journey section**
+
+This is not branding fluff. This is **partnership-ready UX copy**.
+
+---
+
+# 🔁 ENHANCED DELIWER JOURNEY (HOMEPAGE – SINGLE SCROLL)
+
+## **The DeliWer Journey**
+
+**From international relocation to everyday living — and a clean exit when it’s time to leave Dubai.**
+
+> One trusted partner for expats, families, businesses, and the teams that move them.
+
+---
+
+## **Before You Arrive — International Relocation & Setup**
+
+### *Moving to Dubai Starts Before the Flight*
+
+Relocating to Dubai is not just a move.
+It’s a **financial, legal, and operational transition** — for individuals, families, and businesses.
+
+**DeliWer supports international relocation partners and their clients from day zero.**
+
+**Who This Is For**
+
+* HR teams relocating employees
+* Real estate brokers onboarding tenants & buyers
+* Logistics & relocation specialists
+* Entrepreneurs relocating capital or operations
+* Corporates setting up regional teams
+
+**What DeliWer Handles**
+
+* Move-in planning before arrival
+* Home readiness coordination (cleaning, water, utilities)
+* Trusted local partner execution
+* One local coordinator responsible on the ground
+
+👉 **Partner with DeliWer for Relocations**
+👉 **Relocation Planning Consultation**
+
+*Your clients arrive to a ready home — not open tasks.*
+
+---
+
+## **Arrival & Move-In — Safe, Coordinated, Stress-Free**
+
+### *Keys Received. Everything Else Handled.*
+
+Once your client or employee receives their apartment keys, DeliWer becomes their **local execution arm**.
+
+**How It Works**
+
+* One WhatsApp contact — no apps, no portals
+* One DeliWer coordinator — accountable until completion
+* Vetted local partners — cleaning, water, maintenance, setup
+* Transparent communication for clients and partners
+
+**For Brokers & HR**
+
+* Faster move-ins
+* Fewer complaints
+* Higher client satisfaction
+* Reduced post-handover friction
+
+👉 **View Move-In Services**
+👉 **View Corporate & Broker Packages**
+
+---
+
+## **Living in Dubai — Ongoing Concierge & Home Support**
+
+### *Beyond Move-In: Everyday Living Managed*
+
+Most relocation services stop at handover.
+DeliWer stays throughout the stay.
+
+**Ongoing Support Includes**
+
+* Preventive home maintenance
+* Health-first water & air solutions
+* Admin and lifestyle assistance
+* Single point of contact for residents
+
+**Why Partners Choose This**
+
+* Clients don’t call you for daily issues
+* DeliWer becomes the default local concierge
+* Your brand is associated with reliability
+
+👉 **View Home Services**
+👉 **Everyday Support & Essentials**
+
+---
+
+## **Capital, Business & Corporate Support**
+
+### *Relocation Isn’t Just Personal — It’s Strategic*
+
+For founders, investors, and corporate teams, relocation includes **capital, compliance, and continuity**.
+
+**DeliWer Supports**
+
+* Entrepreneur & founder relocations
+* Corporate staff housing coordination
+* Family settlement support
+* Ongoing concierge during business setup phase
+
+*We don’t replace legal or PRO services — we ensure life works smoothly around them.*
+
+👉 **Discuss Corporate & Founder Relocation**
+
+---
+
+## **Move-Out & Exit — Clean, Compliant, Professional**
+
+### *Leaving Dubai Should Be as Smooth as Arriving*
+
+When clients leave Dubai, DeliWer manages the **exit lifecycle**.
+
+**Move-Out Support**
+
+* End-of-lease coordination
+* Deep cleaning & maintenance fixes
+* Utility closures guidance
+* Handover readiness for landlords or brokers
+
+**For Partners**
+
+* Faster unit turnaround
+* Better landlord relations
+* Reduced disputes
+
+👉 **View Move-Out Services**
+
+---
+
+## **Smart Planning Tools — Deli AI Calculators (Sitewide)**
+
+### *Clarity Before Commitment*
+
+DeliWer provides **simple planning calculators** to help individuals, HR teams, and brokers estimate costs and scope **before onboarding**.
+
+**Available Sitewide**
+
+* Move-In Cost Calculator
+* Monthly Home Support Estimator
+* Corporate Relocation Planning Tool
+
+*Estimates first. Human confirmation next.*
+
+👉 **Calculate Relocation Costs**
+
+---
+
+## **Why Partners Choose DeliWer**
+
+✔ One accountable coordinator
+✔ WhatsApp-first communication
+✔ No app adoption required
+✔ Vetted local execution
+✔ Covers full lifecycle: arrive → live → exit
+
+> DeliWer becomes your **default Dubai concierge**, not just another vendor.
+
+---
+
+## **Final Anchor CTA (Dual Audience)**
+
+### **Relocating People or Clients to Dubai?**
+
+Let DeliWer handle what happens after the keys.
+
+👉 **Partner with DeliWer**
+👉 **Talk to a Relocation Coordinator**
+
+---
+
+# 🧠 SENIOR UI ARCHITECT NOTES (INTERNAL LOGIC)
+
+### Why this works:
+
+* **HR & Brokers** see operational relief and risk reduction
+* **Logistics firms** see execution support, not competition
+* **Families** still understand “they handle everything”
+* **Founders** see capital & lifestyle continuity
+* Journey reads as **lifecycle, not services**
+
+### Critical positioning shift:
+
+❌ “Home services platform”
+✅ **“Relocation & living infrastructure partner”**
+
+---
+
+## NEXT (HIGH-IMPACT OPTIONS)
+
+I can now:
+
+1. Create a **Brokers / HR Partner landing page** from this
+2. Design a **2-column B2B vs B2C homepage toggle**
+3. Write **outreach copy for HR, brokers, and logistics partners**
+4. Convert this into **exact Shopify/Liquid homepage blocks**
+
+Tell me which one you want.
