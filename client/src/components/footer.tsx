@@ -25,7 +25,7 @@ import { EmailSubscriptionForm } from "./email-subscription-form";
 
 export function Footer() {
   const consumerLinks = [
-    { label: "Home Service Launch", url: "/home-service-launch" },
+    { label: "Home Service Launch", url: "/launch" },
     { label: "Explore", url: "/explore" },
     { label: "Leaderboard", url: "/leaderboard" },
     { label: "iPhone Trade-in", url: "/products" },

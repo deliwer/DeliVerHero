@@ -147,6 +147,7 @@ function Router() {
 
         {/* Home Service Launch Campaign */}
         <Route path="/launch" component={HomeServiceLaunch} />
+        <Route path="/home-service-launch" component={HomeServiceLaunch} />
 
         {/* Housing - Rent, Buy, Invest */}
         <Route path="/residence" component={Residence} />
