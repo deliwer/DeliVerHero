@@ -17,7 +17,8 @@ import {
   ClipboardCheck,
   Globe2,
   Lock,
-  Clock
+  Clock,
+  Star
 } from "lucide-react";
 import { useLocation } from "wouter";
 
