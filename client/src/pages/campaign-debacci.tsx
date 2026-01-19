@@ -12,7 +12,12 @@ import {
   ArrowRight,
   Target,
   BarChart3,
-  Users
+  Users,
+  AlertTriangle,
+  ClipboardCheck,
+  Globe2,
+  Lock,
+  Clock
 } from "lucide-react";
 import { useLocation } from "wouter";
 
@@ -56,64 +61,202 @@ export default function CampaignDeBacciPage() {
           </p>
 
           <div className="flex flex-col items-center gap-8 max-w-3xl mx-auto">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-emerald-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-              <div className="relative bg-slate-900 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
-                <div className="text-6xl md:text-8xl font-black text-amber-500 mb-2">20% OFF</div>
-                <div className="text-xl font-bold uppercase tracking-widest text-white/70">Exclusive DeBacci Network Rate</div>
-                <div className="mt-8 py-4 px-8 bg-white/5 rounded-2xl border border-white/10">
-                  <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-1">Redeem with Code</p>
-                  <p className="text-2xl font-black text-emerald-500">{REF_CODE}</p>
-                </div>
-              </div>
-            </div>
-
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-xl shadow-2xl transition-all w-full md:w-auto"
               onClick={() => window.open(WHATSAPP_LINK, '_blank')}
             >
               <MessageSquare className="mr-3 h-6 w-6" />
-              Claim My Exclusive Discount
+              Claim My 20% Exit Concierge Discount
             </Button>
+
+            <div className="relative group mt-8">
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-emerald-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="relative bg-slate-900 border border-white/10 rounded-3xl p-6 shadow-2xl">
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-1">Redeem with Code</p>
+                <p className="text-2xl font-black text-emerald-500">{REF_CODE}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Campaign Details */}
+      {/* PAIN ALIGNMENT */}
+      <section className="py-24 px-4 bg-slate-900/50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <AlertTriangle className="w-12 h-12 text-amber-500 mx-auto mb-6" />
+            <h2 className="text-4xl font-black uppercase tracking-tighter">Why Leaving Dubai Is Risky <br />Without Support</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              "Security deposits delayed or lost",
+              "DEWA & internet left open → surprise bills",
+              "Landlord handovers mishandled",
+              "Too many vendors, zero accountability",
+              "Time pressure before departure"
+            ].map((pain, i) => (
+              <div key={i} className="flex items-center gap-4 p-5 bg-slate-950 border border-white/5 rounded-2xl">
+                <div className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
+                <p className="text-gray-300 font-medium">{pain}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <div className="inline-block px-8 py-4 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl">
+              <p className="text-xl font-bold text-emerald-400 italic">
+                👉 DeliWer replaces all of this with one exit partner.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CORE OFFER */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black uppercase tracking-tighter">What DeliWer Handles</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-white/5 border-white/10 rounded-[2rem] overflow-hidden">
+              <CardHeader className="p-8 pb-0">
+                <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6">
+                  <CheckCircle className="w-6 h-6 text-emerald-500" />
+                </div>
+                <CardTitle className="text-2xl font-black uppercase text-white">Deposit & Property</CardTitle>
+              </CardHeader>
+              <CardContent className="p-8 pt-4 space-y-4">
+                <ul className="space-y-3 text-gray-400">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-emerald-500 rounded-full" /> Move-out cleaning coordination</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-emerald-500 rounded-full" /> Landlord / agent handover support</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-emerald-500 rounded-full" /> Deposit recovery focus</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 rounded-[2rem] overflow-hidden">
+              <CardHeader className="p-8 pb-0">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
+                  <ClipboardCheck className="w-6 h-6 text-blue-500" />
+                </div>
+                <CardTitle className="text-2xl font-black uppercase text-white">Utility Closures</CardTitle>
+              </CardHeader>
+              <CardContent className="p-8 pt-4 space-y-4">
+                <ul className="space-y-3 text-gray-400">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-blue-500 rounded-full" /> DEWA settlement</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-blue-500 rounded-full" /> Internet / telecom cancellation</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-blue-500 rounded-full" /> Final bill settlements</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 rounded-[2rem] overflow-hidden">
+              <CardHeader className="p-8 pb-0">
+                <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center mb-6">
+                  <Globe2 className="w-6 h-6 text-amber-500" />
+                </div>
+                <CardTitle className="text-2xl font-black uppercase text-white">Next-Destination</CardTitle>
+              </CardHeader>
+              <CardContent className="p-8 pt-4 space-y-4">
+                <ul className="space-y-3 text-gray-400">
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-500 rounded-full" /> Introductions to global movers</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-500 rounded-full" /> US, UK, EU, Singapore & more</li>
+                  <li className="flex items-center gap-2"><div className="w-1 h-1 bg-amber-500 rounded-full" /> Seamless door-to-door moving</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* SELF-QUALIFICATION */}
+      <section className="py-24 px-4 bg-emerald-950/20">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <Users className="w-12 h-12 text-emerald-500 mx-auto mb-6" />
+            <h2 className="text-4xl font-black uppercase tracking-tighter">Who This Is For</h2>
+            <p className="text-xl text-gray-400 mt-4">This service is ideal if you are:</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              { label: "Relocating Professional", desc: "Moving out of Dubai for your next career move." },
+              { label: "Exiting Founder", desc: "Closing one chapter to open another internationally." },
+              { label: "Global Corporate", desc: "Employee on a structured global relocation move." },
+              { label: "Expiring Lease", desc: "Family wrapping up a lease and final utilities." }
+            ].map((item, i) => (
+              <div key={i} className="p-8 bg-slate-900 border border-white/5 rounded-3xl">
+                <h4 className="text-xl font-bold text-white mb-2">{item.label}</h4>
+                <p className="text-gray-400">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          
+          <p className="text-center text-2xl font-serif italic text-amber-500 mt-16">
+            If time, money, and peace of mind matter — this is for you.
+          </p>
+        </div>
+      </section>
+
+      {/* DEBACCI BENEFIT */}
+      <section className="py-24 px-4 border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className="text-4xl font-black uppercase tracking-tighter">Zero Stress. <br />Total Recovery.</h2>
-              <p className="text-xl text-gray-400 leading-relaxed">
-                For DeBacci Group founders and executives, time is the most valuable asset. Our specialized team handles every administrative and logistical detail of your relocation.
+            <div>
+              <h2 className="text-5xl font-black uppercase tracking-tighter mb-8">Debacci Community <br />Benefit</h2>
+              <p className="text-xl text-gray-400 mb-12">
+                As a Debacci community member, you receive exclusive priority handling and discounted rates.
               </p>
-              <div className="space-y-4">
+              
+              <div className="space-y-4 mb-12">
                 {[
-                  { title: "Maximum Deposit Recovery", desc: "Professional apartment handover and deep cleaning to ensure your security deposit returns to you." },
-                  { title: "White-Glove Utility Closure", desc: "End-to-end settlement of DEWA, Du/Etisalat, and Empower without you lifting a finger." },
-                  { title: "Verified Global Relocation", desc: "Seamless door-to-door moving services through our audited network of international logistics partners." }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
-                    <CheckCircle className="w-6 h-6 text-emerald-500 mt-1" />
-                    <div>
-                      <h4 className="font-bold text-white uppercase text-lg">{item.title}</h4>
-                      <p className="text-gray-400">{item.desc}</p>
-                    </div>
+                  "20% off DeliWer Exit Concierge",
+                  "Priority handling",
+                  "Confidential coordination"
+                ].map((benefit, i) => (
+                  <div key={i} className="flex items-center gap-3 text-lg font-bold text-emerald-400">
+                    <CheckCircle className="w-6 h-6 shrink-0" />
+                    {benefit}
                   </div>
                 ))}
               </div>
+
+              <div className="p-8 bg-white/5 rounded-[2.5rem] border border-white/10">
+                <h4 className="text-xl font-black uppercase mb-6 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-amber-500" />
+                  How to Redeem
+                </h4>
+                <div className="space-y-4">
+                  {[
+                    "Click \"Claim My 20% Discount\"",
+                    "Chat with DeliWer on WhatsApp",
+                    "Mention code DEBACCI20",
+                    "Discount applied instantly"
+                  ].map((step, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center font-black text-amber-500 shrink-0">
+                        {i + 1}
+                      </div>
+                      <p className="text-gray-300 font-medium">{step}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
+
             <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
               <img 
                 src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&q=80" 
                 alt="Dubai Marina" 
-                className="w-full h-[600px] object-cover"
+                className="w-full h-[600px] object-cover opacity-50"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
-              <div className="absolute bottom-12 left-12 right-12 text-center">
-                <p className="text-3xl font-serif italic mb-4 text-amber-500">Scan to Claim</p>
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center">
+                <p className="text-3xl font-serif italic mb-8 text-amber-500">Scan to Claim</p>
                 <div className="bg-white p-4 inline-block rounded-3xl shadow-2xl">
                   <img 
                     src={qrCodeImage} 
@@ -127,42 +270,52 @@ export default function CampaignDeBacciPage() {
         </div>
       </section>
 
-      {/* Manual Tracking Info */}
-      <section className="py-24 px-4 bg-white/5 border-y border-white/5 text-center">
-        <div className="max-w-3xl mx-auto">
-          <Target className="w-16 h-16 text-emerald-500 mx-auto mb-8" />
-          <h2 className="text-3xl font-black uppercase tracking-tighter mb-4">Partner Syndication Active</h2>
-          <p className="text-xl text-gray-400 mb-8">
-            This exclusive rate is secured via the DeBacci Group syndicated network. Each referral is manually verified and tracked via WhatsApp to ensure priority handling for the network's elite members.
-          </p>
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 text-emerald-400 font-bold">
-            <BarChart3 className="w-5 h-5" />
-            Verified DeBacci Referral: {REF_CODE}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
+      {/* TRUST & DELIVERY */}
       <section className="py-24 px-4 text-center">
-        <h3 className="text-2xl font-bold uppercase mb-8">Need Immediate Assistance?</h3>
-        <div className="flex flex-col md:flex-row justify-center gap-8 mb-16">
-          <div className="space-y-2">
-            <p className="text-gray-500 uppercase tracking-widest text-sm">Fastest Response</p>
-            <p className="text-2xl font-black text-emerald-500">{WHATSAPP_NUMBER}</p>
+        <div className="max-w-4xl mx-auto">
+          <ShieldCheck className="w-16 h-16 text-emerald-500 mx-auto mb-12" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {[
+              { icon: Globe2, label: "UAE-based Team" },
+              { icon: ClipboardCheck, label: "Single Accountability" },
+              { icon: Lock, label: "Confidential Handling" },
+              { icon: Star, label: "Trusted Partners" }
+            ].map((item, i) => (
+              <div key={i} className="space-y-3">
+                <item.icon className="w-8 h-8 text-gray-500 mx-auto" />
+                <p className="font-bold uppercase tracking-tighter text-sm">{item.label}</p>
+              </div>
+            ))}
           </div>
-          <div className="h-px w-12 bg-white/10 md:h-12 md:w-px self-center" />
-          <div className="space-y-2">
-            <p className="text-gray-500 uppercase tracking-widest text-sm">CEO Support Line</p>
-            <p className="text-2xl font-black text-white">{CEO_NUMBER}</p>
+          
+          <div className="p-8 bg-slate-900 border border-white/5 rounded-3xl mb-16">
+            <p className="text-gray-400 leading-relaxed italic">
+              "Shared by Debacci as a community benefit. <br />
+              Service delivery managed by DeliWer."
+            </p>
           </div>
+
+          <h3 className="text-2xl font-bold uppercase mb-8">Need Immediate Assistance?</h3>
+          <div className="flex flex-col md:flex-row justify-center gap-8 mb-16">
+            <div className="space-y-2">
+              <p className="text-gray-500 uppercase tracking-widest text-sm">Fastest Response</p>
+              <p className="text-2xl font-black text-emerald-500">{WHATSAPP_NUMBER}</p>
+            </div>
+            <div className="h-px w-12 bg-white/10 md:h-12 md:w-px self-center" />
+            <div className="space-y-2">
+              <p className="text-gray-500 uppercase tracking-widest text-sm">CEO Support Line</p>
+              <p className="text-2xl font-black text-white">{CEO_NUMBER}</p>
+            </div>
+          </div>
+          
+          <Button 
+            size="lg" 
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-xl shadow-2xl transition-all"
+            onClick={() => window.open(WHATSAPP_LINK, '_blank')}
+          >
+            Claim My 20% Exit Concierge Discount
+          </Button>
         </div>
-        <Button 
-          size="lg" 
-          className="bg-white hover:bg-gray-200 text-black font-black rounded-full px-16 h-20 text-xl shadow-2xl transition-all"
-          onClick={() => window.open(WHATSAPP_LINK, '_blank')}
-        >
-          Talk to a DeliWer Coordinator
-        </Button>
       </section>
     </div>
   );
