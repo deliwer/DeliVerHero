@@ -15,6 +15,35 @@ export function Navigation() {
   const [cartCount, setCartCount] = useState(0);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
+  // Hide nav on exit concierge page
+  const isExitPage = location === "/relocate/exit";
+
+  if (isExitPage) {
+    return (
+      <nav className="bg-slate-950/90 backdrop-blur-sm border-b border-white/5 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link href="/relocate/exit" className="flex items-center hover:opacity-80 transition-opacity" data-testid="link-home">
+              <img 
+                src="/deliwer-logo.png" 
+                alt="DeliWer Logo" 
+                className="h-10 w-auto brightness-110 hover:brightness-125 transition-all"
+              />
+            </Link>
+            <Button 
+              size="sm"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full"
+              onClick={() => window.open("https://wa.me/971523946311?text=I%20need%20to%20start%20my%20exit%20concierge%20process", '_blank')}
+            >
+              <MessageSquare className="w-4 h-4 mr-2" />
+              WhatsApp
+            </Button>
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
   // Automatically detect B2B mode based on subdomain
   const isChainTrackDomain = window.location.hostname.includes('chaintrack');
   const [isB2BMode, setIsB2BMode] = useState(isChainTrackDomain);

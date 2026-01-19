@@ -1,0 +1,262 @@
+Perfect. Below are **both deliverables**, written as if this is a **24–48 hour production sprint before GTM launch**.
+
+---
+
+# 🔒 PART 1: UX LOCKDOWN CHECKLIST
+
+**(24-Hour Sprint – Survival Mode)**
+**Objective:** Force the shortest, clearest path to **Exit Concierge → WhatsApp**
+
+This is **not optimization**.
+This is **elimination + focus**.
+
+---
+
+## 🔥 A. Global UX Lockdown (Site-wide)
+
+### ✅ Navigation
+
+* [ ] **Remove / hide top navigation** on:
+
+  * `/relocate/exit`
+* [ ] Keep only:
+
+  * Logo (click → Exit page, not homepage)
+  * WhatsApp icon
+
+👉 Reason: Navigation = distraction = lost exit customer
+
+---
+
+### ✅ Sticky Conversion Layer (Mandatory)
+
+* [ ] Add **sticky bottom bar (mobile + desktop)**:
+
+  * WhatsApp icon
+  * Text: **“Chat for Exit Concierge”**
+* [ ] One-tap WhatsApp → no intermediate steps
+
+---
+
+### ✅ CTA Consistency
+
+Replace all vague CTAs with ONE action:
+
+❌ “Explore Services”
+❌ “Learn More”
+❌ “Contact Us”
+
+✅ **“Start Exit on WhatsApp”**
+
+---
+
+## 🔥 B. Exit Concierge Page Lockdown (`/relocate/exit`)
+
+### ABOVE THE FOLD (Non-negotiable)
+
+* [ ] Headline:
+
+  > **Leaving Dubai? We Handle Your Exit End-to-End**
+* [ ] Subline:
+
+  > DEWA · Ejari · Move-out · Deposit · Handover · Closure
+* [ ] Primary CTA:
+
+  > **Chat on WhatsApp – Exit Checklist in 2 Minutes**
+
+---
+
+### Visual Confidence Injection
+
+* [ ] Add **3-step visual flow** (icons or cards):
+
+**1️⃣ Exit Audit**
+Checklist + risks identified
+
+**2️⃣ Execution**
+Closures, handovers, coordination
+
+**3️⃣ Clean Exit**
+Confirmations & peace of mind
+
+👉 This reduces anxiety = higher conversion
+
+---
+
+### Trust Layer (Light, not corporate-heavy)
+
+* [ ] “UAE-based team”
+* [ ] “Confidential handling”
+* [ ] “Designed for professionals & families”
+
+---
+
+### Footer (Exit-only)
+
+Remove:
+
+* Marketplace language
+* Metaverse references
+* Non-exit services
+
+Keep:
+
+* WhatsApp
+* Email
+* Legal address
+
+---
+
+## 🔥 C. Temporary De-Prioritization (30–45 days)
+
+* [ ] Grey out or label:
+
+  * “Other services available on request”
+* [ ] No internal links pulling users away from Exit
+
+This is **wartime UX**.
+
+---
+
+# 🏠 PART 2: HOMEPAGE REWRITE
+
+**(Homepage becomes an Exit Concierge front, not a platform index)**
+
+Think of homepage as:
+
+> **A giant signpost pointing to Exit Concierge**
+
+---
+
+## 🔷 HOMEPAGE STRUCTURE (RECOMMENDED)
+
+---
+
+### 1️⃣ Hero Section (Immediate Intent Capture)
+
+**Headline**
+
+> **Leaving Dubai? Don’t Handle the Exit Alone.**
+
+**Subheadline**
+
+> We manage your entire move-out and closure process — professionally, compliantly, end-to-end.
+
+**Primary CTA (ONLY ONE)**
+
+> **Start Exit on WhatsApp**
+
+Secondary (smaller):
+
+> View Exit Concierge →
+
+---
+
+### 2️⃣ Why Exit Is Hard (Problem Validation)
+
+Use short bullets:
+
+* DEWA & utility closures
+* Ejari & landlord coordination
+* Deposit recovery
+* Timelines & penalties
+* Too many vendors
+
+End with:
+
+> **DeliWer replaces all of them with one point of contact.**
+
+---
+
+### 3️⃣ Exit Concierge Snapshot (Mini Version)
+
+**Exit Concierge includes:**
+
+* Move-out coordination
+* Utility & account closures
+* Property handover support
+* Documentation & checklist
+* Optional relocation logistics
+
+CTA repeated:
+
+> **Chat on WhatsApp to Start**
+
+---
+
+### 4️⃣ Who This Is For (Persona Clarity)
+
+Cards or bullets:
+
+* Professionals relocating
+* Families exiting UAE
+* Executives & HR-supported exits
+* Time-sensitive departures
+
+This helps visitors self-qualify quickly.
+
+---
+
+### 5️⃣ Authority Without Noise
+
+Short, calm section:
+
+> UAE-based team · Compliance-first · Confidential handling
+
+No testimonials yet. No logos needed.
+
+---
+
+### 6️⃣ Footer (Simplified)
+
+Remove:
+
+* Over-branding
+* Too many links
+
+Keep:
+
+* WhatsApp (primary)
+* Email
+* Address
+* “Exit Concierge” link highlighted
+
+---
+
+## 🚨 What You Must NOT Do (Right Now)
+
+* ❌ Add more services
+* ❌ Add calculators
+* ❌ Add long forms
+* ❌ Add blog content
+* ❌ Add investor language
+
+Those come **after revenue proof**.
+
+---
+
+## 🎯 Final Founder-Level Truth
+
+> DeliWer does not fail because of lack of ideas.
+> It risks failing because of **too much surface area**.
+
+Exit Concierge is:
+
+* Urgent
+* Painful
+* Paid
+* High intent
+
+Your UX must behave like:
+
+> *“This is what we do. Start here. Now.”*
+
+---
+
+### Next logical steps (pick one):
+
+* **WhatsApp Closing Script (5-message flow)**
+* **Exit Concierge pricing & packaging**
+* **48-hour GTM checklist (LinkedIn + brokers + agents)**
+
+Just say the word.

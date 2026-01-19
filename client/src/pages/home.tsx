@@ -198,91 +198,148 @@ export default function Home() {
   };
 
   return (
-    <div>
-      {/* Hero with fork buttons */}
-      <section className="relative py-24 px-4 overflow-hidden min-h-[600px] flex items-center">
-        {/* Background Image with Overlay */}
+    <div className="min-h-screen bg-slate-950">
+      {/* Hero Section - Exit Concierge Focus */}
+      <section className="relative py-32 px-4 overflow-hidden min-h-[80vh] flex items-center">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40"
           style={{ backgroundImage: `url(${relocationHeroPng})` }}
         />
-        <div className="absolute inset-0 z-0 bg-slate-950/70 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 z-0 bg-slate-950/80 backdrop-blur-[2px]" />
 
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white drop-shadow-2xl">
-            Relocation<br />
-            <span className="text-emerald-500">Without Loose Ends.</span>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white leading-none">
+            Leaving Dubai?<br />
+            <span className="text-emerald-500">Don’t Handle the Exit Alone.</span>
           </h1>
-          <div className="flex flex-wrap justify-center gap-6 mb-12">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-2xl transition-all" onClick={() => window.open('https://wa.me/971523946311', '_blank')}>
-              I’m Relocating to Dubai
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
+            We manage your entire move-out and closure process — professionally, compliantly, end-to-end.
+          </p>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-24 text-2xl shadow-2xl transition-all w-full md:w-auto" 
+              onClick={() => window.open('https://wa.me/971523946311?text=I%20need%20to%20start%20my%20exit%20concierge%20process', '_blank')}
+            >
+              <MessageSquare className="w-8 h-8 mr-3" />
+              Start Exit on WhatsApp
             </Button>
-            <Link href="/business-setup">
-              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-12 h-20 text-xl backdrop-blur-md">
-                I’m Starting a Business
-              </Button>
-            </Link>
-            <Link href="/partners">
-              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-12 h-20 text-xl backdrop-blur-md">
-                I Relocate Clients
+            <Link href="/relocate/exit">
+              <Button size="lg" variant="ghost" className="text-white hover:bg-white/5 rounded-full px-12 h-20 text-xl backdrop-blur-md font-bold underline decoration-emerald-500 decoration-2 underline-offset-8">
+                View Exit Concierge
+                <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Lifecycle narrative */}
-      <section className="py-24 px-4 bg-slate-950/50">
+      {/* Why Exit Is Hard */}
+      <section className="py-24 px-4 bg-slate-900/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-16">Why Exit Is Hard</h2>
+          <div className="grid md:grid-cols-2 gap-8 text-left">
+            {[
+              "DEWA & utility closures",
+              "Ejari & landlord coordination",
+              "Deposit recovery",
+              "Timelines & penalties",
+              "Too many vendors"
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl">
+                <div className="w-3 h-3 bg-red-500 rounded-full" />
+                <span className="text-lg text-gray-300 font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-16 p-8 bg-emerald-500/10 border border-emerald-500/20 rounded-[2rem]">
+             <p className="text-2xl font-bold text-white uppercase tracking-tight">DeliWer replaces all of them with one point of contact.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Exit Concierge Snapshot */}
+      <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">Relocation Operating Lifecycle</h2>
-            <p className="text-xl text-emerald-400 font-medium max-w-3xl mx-auto">
-              One DeliWer coordinator responsible end-to-end.
-            </p>
+            <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">Exit Concierge includes:</h2>
           </div>
-
-          <div className="grid gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "Pre-Arrival Planning", icon: Plane, color: "blue", desc: "Readiness and coordination before your flight. We ensure your transition is operationally ready.", href: "/relocate/planning" },
-              { title: "Arrival & Move-In", icon: Clock, color: "emerald", desc: "Keys to a fully functional home. Vetted execution for cleaning, utilities, and maintenance.", href: "/relocate/arrival" },
-              { title: "Living & Concierge", icon: Globe, color: "purple", desc: "Continuous home support, admin assistance, and essentials. We manage the lifestyle.", href: "/relocate/concierge" },
-              { title: "Move-Out & Exit", icon: TrendingUp, color: "red", desc: "Handover, compliance, and utility closure. A professional exit as smooth as your arrival.", href: "/relocate/exit" }
-            ].map((step, idx) => (
-              <div key={idx} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
-                <div className="flex flex-col md:flex-row gap-8 items-start">
-                  <div className={`w-16 h-16 bg-${step.color}-500/20 rounded-2xl flex items-center justify-center shrink-0`}>
-                    <step.icon className={`w-8 h-8 text-${step.color}-400`} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white uppercase mb-2">{step.title}</h3>
-                    <p className="text-gray-400 mb-6 leading-relaxed">{step.desc}</p>
-                    <div className="flex flex-wrap items-center gap-4">
-                      <p className="text-sm font-black uppercase text-emerald-500 tracking-widest">Handled by one DeliWer coordinator end-to-end</p>
-                      {step.href && (
-                        <Link href={step.href}>
-                          <Button variant="link" className="text-emerald-400 hover:text-emerald-300 p-0 h-auto font-bold uppercase tracking-widest text-sm">
-                            Learn More <ChevronRight className="w-4 h-4 ml-1" />
-                          </Button>
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-                </div>
+              "Move-out coordination",
+              "Utility & account closures",
+              "Property handover support",
+              "Documentation & checklist",
+              "Optional relocation logistics"
+            ].map((item, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[2rem] hover-elevate transition-all">
+                <CheckCircle2 className="w-8 h-8 text-emerald-500 mb-4" />
+                <h3 className="text-xl font-bold text-white uppercase">{item}</h3>
+              </div>
+            ))}
+          </div>
+          <div className="mt-16 text-center">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-2xl transition-all"
+              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+            >
+              Chat on WhatsApp to Start
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Who This Is For */}
+      <section className="py-24 px-4 bg-slate-900/50">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-black text-white text-center uppercase tracking-tighter mb-16">Who This Is For</h2>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {[
+              "Professionals relocating",
+              "Families exiting UAE",
+              "Executives & HR-supported exits",
+              "Time-sensitive departures"
+            ].map((persona, i) => (
+              <div key={i} className="flex items-center gap-4 p-6 bg-slate-950 border border-white/5 rounded-2xl">
+                <UserCheck className="w-6 h-6 text-emerald-500" />
+                <span className="text-lg text-white font-bold">{persona}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Authority Without Noise */}
+      <section className="py-24 px-4 border-t border-white/5">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-gray-500 font-bold uppercase tracking-[0.2em] text-sm">
+            <span>UAE-based team</span>
+            <span>Compliance-first</span>
+            <span>Confidential handling</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer - Exit Focus */}
+      <footer className="py-12 px-4 border-t border-white/5 bg-slate-950">
+        <div className="max-w-4xl mx-auto text-center">
+          <Link href="/relocate/exit" className="inline-block mb-8">
+            <img src="/deliwer-logo.png" alt="DeliWer" className="h-8 w-auto opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all" />
+          </Link>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+            <a href="https://wa.me/971523946311" className="text-emerald-500 font-bold hover:underline">WhatsApp</a>
+            <a href="mailto:hello@deliwer.com" className="text-gray-400 hover:text-white">hello@deliwer.com</a>
+            <span className="text-gray-600 text-sm">Dubai, United Arab Emirates</span>
+          </div>
+          <Link href="/relocate/exit" className="text-emerald-500 font-black uppercase tracking-widest text-sm hover:underline">
+            Exit Concierge →
+          </Link>
+        </div>
+      </footer>
+
       {/* Sticky Components */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <Button 
-          className="bg-blue-600 hover:bg-blue-500 text-white rounded-full h-16 px-6 shadow-2xl font-bold"
-          onClick={() => window.open('https://wa.me/971523946311?text=I%20need%20a%20relocation%20cost%20estimate', '_blank')}
-        >
-          <Zap className="w-5 h-5 mr-2" />
-          Relocation Cost Estimator
-        </Button>
         <Button 
           className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-full h-16 w-16 p-0 shadow-2xl animate-bounce ml-auto"
           onClick={() => window.open('https://wa.me/971523946311', '_blank')}
@@ -292,53 +349,10 @@ export default function Home() {
       </div>
 
       <SEOMeta
-        title="Your Everyday Living Companion for Dubai"
-        description="Dubai's first iPhone to water trade platform. Earn DXBs (Dubai Carbon Tokens) for your old iPhone. Free pickup for AquaCafe loyalty members within 24 hours across Dubai, Sharjah & Abu Dhabi. Certified data wipe guaranteed."
-        keywords="iPhone trade-in Dubai, sell iPhone UAE, DXBs, Dubai Carbon Tokens, water delivery Dubai, sustainability rewards, eco-friendly Dubai, iPhone buyback, DeliWer, trade iPhone for water, circular economy UAE"
+        title="DeliWer | Dubai Exit Concierge - Move Out Professionally"
+        description="Leaving Dubai? We handle your entire move-out and closure process. DEWA, Ejari, property handover, and deposit recovery. UAE-based end-to-end support."
+        keywords="Dubai move out, leaving Dubai, exit concierge UAE, DEWA closure, Ejari cancellation, Dubai property handover, deposit recovery Dubai"
       />
-
-      {/* Onboarding Tutorial */}
-      {showOnboarding && (
-        <HeroOnboardingTutorial 
-          onComplete={handleOnboardingComplete}
-          onSkip={handleOnboardingSkip}
-        />
-      )}
-
-      {/* Tutorial Restart Button (for returning users) */}
-      {hasSeenOnboarding && (
-        <div className="fixed bottom-6 right-6 z-30">
-          <Button
-            onClick={handleRestartTutorial}
-            className="bg-gradient-to-r from-emerald-500/90 to-blue-500/90 hover:from-emerald-600 hover:to-blue-600 text-white shadow-lg backdrop-blur-sm"
-            data-testid="restart-tutorial"
-          >
-            <Play className="w-4 h-4 mr-2" />
-            Tutorial
-          </Button>
-        </div>
-      )}
-
-      {/* PHASE 2: PLAY (Attraction) - Dual-Purpose Hero with Founder Stories */}
-      <DualPurposeHero />
-
-      {/* Trust & Proof Section */}
-      <TrustElements />
-
-      {/* Final CTA moved out of the removed section */}
-      <div className="relative bg-slate-950">
-        <div className="relative z-20 space-y-0">
-          <div className="mt-24 text-center pb-24 border-t border-white/5 pt-24">
-            <h3 className="text-4xl font-black text-white uppercase tracking-tighter mb-4">Relocation Without Loose Ends.</h3>
-            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Arriving, living, or exiting — DeliWer stays responsible.</p>
-            <Link href="/contact">
-              <Button size="lg" className="bg-white hover:bg-gray-200 text-black font-black rounded-full px-16 py-8 text-xl shadow-2xl transition-all">
-                Talk to a Coordinator
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
