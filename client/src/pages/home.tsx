@@ -243,10 +243,10 @@ export default function Home() {
 
           <div className="grid gap-8">
             {[
-              { title: "Pre-Arrival Planning", icon: Plane, color: "blue", desc: "Readiness and coordination before your flight. We ensure your transition is operationally ready.", href: "/planning" },
-              { title: "Arrival & Move-In", icon: Clock, color: "emerald", desc: "Keys to a fully functional home. Vetted execution for cleaning, utilities, and maintenance.", href: "/arrival" },
-              { title: "Living & Concierge", icon: Globe, color: "purple", desc: "Continuous home support, admin assistance, and essentials. We manage the lifestyle.", href: "/concierge" },
-              { title: "Move-Out & Exit", icon: TrendingUp, color: "red", desc: "Handover, compliance, and utility closure. A professional exit as smooth as your arrival.", href: "/exit" }
+              { title: "Pre-Arrival Planning", icon: Plane, color: "blue", desc: "Readiness and coordination before your flight. We ensure your transition is operationally ready.", href: "/relocate/planning" },
+              { title: "Arrival & Move-In", icon: Clock, color: "emerald", desc: "Keys to a fully functional home. Vetted execution for cleaning, utilities, and maintenance.", href: "/relocate/arrival" },
+              { title: "Living & Concierge", icon: Globe, color: "purple", desc: "Continuous home support, admin assistance, and essentials. We manage the lifestyle.", href: "/relocate/concierge" },
+              { title: "Move-Out & Exit", icon: TrendingUp, color: "red", desc: "Handover, compliance, and utility closure. A professional exit as smooth as your arrival.", href: "/relocate/exit" }
             ].map((step, idx) => (
               <div key={idx} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover-elevate transition-all">
                 <div className="flex flex-col md:flex-row gap-8 items-start">

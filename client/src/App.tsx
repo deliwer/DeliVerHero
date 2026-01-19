@@ -43,6 +43,10 @@ import { AccountManagementPage } from "@/pages/account-management";
 
 // Lazy load non-critical pages
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
+const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
+const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
+const RelocateConcierge = lazy(() => import("@/pages/relocate/concierge"));
+const RelocateExitSubpage = lazy(() => import("@/pages/relocate/exit"));
 const RelocateCommunity = lazy(() => import("@/pages/relocate-community"));
 const Privacy = lazy(() => import("@/pages/privacy"));
 const Terms = lazy(() => import("@/pages/terms"));
@@ -118,6 +122,10 @@ function Router() {
           
           {/* Relocate Membership Portal */}
           <Route path="/relocate" component={Relocate} />
+          <Route path="/relocate/planning" component={RelocatePlanning} />
+          <Route path="/relocate/arrival" component={RelocateArrival} />
+          <Route path="/relocate/concierge" component={RelocateConcierge} />
+          <Route path="/relocate/exit" component={RelocateExitSubpage} />
           <Route path="/relocate/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
           <Route path="/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
           <Route path="/relocate/business-setup" component={BusinessSetup} />
