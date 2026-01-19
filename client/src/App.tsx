@@ -132,8 +132,8 @@ function Router() {
           <Route path="/residence/move-in-services" component={MoveInServices} />
           <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
           <Route path="/relocate-community" component={RelocateCommunity} />
-          <Route path="/relocate/exit" component={RelocateExit} />
-          <Route path="/exit" component={RelocateExit} />
+          <Route path="/exit" component={RelocateExitSubpage} />
+          <Route path="/claim-redemption" component={lazy(() => import("@/pages/claim-redemption"))} />
           <Route path="/relocation" component={Relocate} />
           <Route path="/business-setup" component={BusinessSetup} />
           <Route path="/relocate/business-setup" component={BusinessSetup} />

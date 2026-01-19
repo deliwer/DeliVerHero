@@ -6,7 +6,7 @@ import relocationHeroPng from "@assets/generated_images/professional_dubai_reloc
 import apartmentKeysPng from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
 export default function ExitConciergePage() {
-  const whatsappLink = "https://wa.me/971523946311?text=I%20need%20to%20start%20my%20exit%20concierge%20process";
+  const whatsappLink = "https://wa.me/971523946311?text=I%20am%20contacting%20from%20DeBacci%20Group%20Community.%20I%20need%20to%20start%20my%20exit%20concierge%20process.%20Please%20guide%20me%20through%20DEWA%2C%20Ejari%20and%20Deposit%20recovery.";
 
   return (
     <div className="min-h-screen bg-slate-950 pb-24">

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertLeadApplicationSchema, insertCommissionClaimSchema } from "@shared/schema";
 import { processLead, trackCTAEvent } from "./lead-service";
 import OpenAI from "openai";
 import Stripe from "stripe";
@@ -510,58 +510,28 @@ Sitemap: ${req.protocol}://${req.get("host")}/sitemap.xml
 
   // Products listing endpoint
   app.get("/api/products", async (req, res) => {
+    // ...
+  });
+
+  // Commission Claims & Requirements Tracking
+  app.post("/api/claims", async (req, res) => {
     try {
-      const products = [
-        {
-          id: "aquacafe-starter-kit",
-          variantId: "gid://shopify/ProductVariant/aquacafe-starter-2024",
-          productId: "gid://shopify/Product/aquacafe-2024",
-          title: "AquaCafe Starter Kit",
-          variant: "Starter Kit",
-          price: 299.99,
-          originalPrice: 399.99,
-          image: "/attached_assets/Aquacafe_byDeliWer_Card_Corners.png",
-          available: true,
-          category: "Water Purification",
-          features: [
-            "Advanced filtration",
-            "Eco-friendly solution",
-            "Trade-in rewards",
-            "Professional installation"
-          ],
-          badge: "Best Seller",
-          popular: true,
-          rating: 4.9,
-          reviews: 127
-        },
-        {
-          id: "aquacafe-pro-kit",
-          variantId: "gid://shopify/ProductVariant/aquacafe-pro-2024",
-          productId: "gid://shopify/Product/aquacafe-pro-2024",
-          title: "AquaCafe Pro Kit",
-          variant: "Pro Kit",
-          price: 499.99,
-          originalPrice: 599.99,
-          image: "/attached_assets/Aquacafe_shower_front_1755270492133.jpg",
-          available: true,
-          category: "Water Purification",
-          features: [
-            "Premium filtration system",
-            "Smart monitoring",
-            "Extended warranty",
-            "Priority support"
-          ],
-          badge: "Professional",
-          popular: false,
-          rating: 4.8,
-          reviews: 89
-        }
-      ];
-      
-      res.json(products);
+      const validatedData = insertCommissionClaimSchema.parse(req.body);
+      const claim = await storage.createCommissionClaim(validatedData);
+      res.json(claim);
     } catch (error: any) {
-      console.error("Error fetching products:", error);
-      res.status(500).json({ error: "Failed to fetch products" });
+      res.status(400).json({ error: error.message || "Failed to submit claim" });
+    }
+  });
+
+  app.patch("/api/leads/:id/requirements", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { requirements, whatsappResponses } = req.body;
+      const lead = await storage.updateLeadRequirements(id, requirements, whatsappResponses);
+      res.json(lead);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to update lead requirements" });
     }
   });
 

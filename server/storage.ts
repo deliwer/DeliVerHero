@@ -5,8 +5,14 @@ import { desc } from "drizzle-orm";
 
 export interface IStorage {
   // Lead Applications
-  createLeadApplication(lead: InsertLead): Promise<LeadApplication>;
+  createLeadApplication(lead: InsertLeadApplication): Promise<LeadApplication>;
   getLeadApplications(): Promise<LeadApplication[]>;
+  updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<LeadApplication | undefined>;
+
+  // Commission Claims
+  createCommissionClaim(claim: InsertCommissionClaim): Promise<CommissionClaim>;
+  getCommissionClaim(id: string): Promise<CommissionClaim | undefined>;
+  getCommissionClaimsByPartner(partnerId: string): Promise<CommissionClaim[]>;
 
   // User management
   getUser(id: string): Promise<User | undefined>;

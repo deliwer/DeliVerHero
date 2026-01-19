@@ -444,10 +444,35 @@ export const sponsorshipTiers = pgTable("sponsorship_tiers", {
 // Relocation & Partner Leads
 export const leadApplications = pgTable("lead_applications", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  service: text("service").notNull(), // exit_concierge, relocation, business_setup, etc.
+  requirements: text("requirements"), // Specific needs
+  whatsappResponses: jsonb("whatsapp_responses").default([]), // Store key requirement extraction from WA
+  status: text("status").notNull().default("pending"), // pending, contact_initiated, requirements_gathered, quote_sent, completed
+  trackingCode: text("tracking_code").unique(), // Commission tracking
+  manualVerificationNotes: text("manual_verification_notes"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const commissionClaims = pgTable("commission_claims", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  leadId: varchar("lead_id").references(() => leadApplications.id),
+  partnerId: text("partner_id").notNull(), // DeBacci Group partner ID
+  claimAmount: integer("claim_amount").notNull().default(0), // in fils
+  status: text("status").notNull().default("pending"), // pending, verified, paid, rejected
+  verificationProof: text("verification_proof"), // Manual tracking note/link
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const partnerProfiles = pgTable("partner_profiles", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   type: text("type").notNull(), // 'individual', 'partner_primary', 'partner_secondary'
   name: text("name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
+});
   company: text("company"),
   interest: text("interest"), // 'relocating', 'logistics', 'hr', 'home_services', etc.
   message: text("message"),
