@@ -46,10 +46,14 @@ export default function CampaignDeBacciPage() {
             Exclusive Partner Offer
           </Badge>
 
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-none">
-            Your Next Chapter <br />
-            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Starts Here.</span>
+          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none">
+            Your Dubai Exit, <br />
+            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Redefined.</span>
           </h1>
+
+          <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            The exclusive white-glove concierge for the DeBacci Group network. Hand over your keys—we handle the professional close-out of your UAE chapter.
+          </p>
 
           <div className="flex flex-col items-center gap-8 max-w-3xl mx-auto">
             <div className="relative group">
@@ -81,15 +85,15 @@ export default function CampaignDeBacciPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <h2 className="text-4xl font-black uppercase tracking-tighter">Exit Dubai Without <br />Loose Ends.</h2>
+              <h2 className="text-4xl font-black uppercase tracking-tighter">Zero Stress. <br />Total Recovery.</h2>
               <p className="text-xl text-gray-400 leading-relaxed">
-                For the DeBacci Group network of founders and executives, we've optimized our Exit Concierge to handle every professional liability.
+                For DeBacci Group founders and executives, time is the most valuable asset. Our specialized team handles every administrative and logistical detail of your relocation.
               </p>
               <div className="space-y-4">
                 {[
-                  { title: "Deposit Recovery", desc: "Expert handover to maximize your security refund." },
-                  { title: "Utility Closure", desc: "DEWA and bill settlement handled end-to-end." },
-                  { title: "Global Moving", desc: "Seamless connection to verified global partners." }
+                  { title: "Maximum Deposit Recovery", desc: "Professional apartment handover and deep cleaning to ensure your security deposit returns to you." },
+                  { title: "White-Glove Utility Closure", desc: "End-to-end settlement of DEWA, Du/Etisalat, and Empower without you lifting a finger." },
+                  { title: "Verified Global Relocation", desc: "Seamless door-to-door moving services through our audited network of international logistics partners." }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
                     <CheckCircle className="w-6 h-6 text-emerald-500 mt-1" />
@@ -127,13 +131,13 @@ export default function CampaignDeBacciPage() {
       <section className="py-24 px-4 bg-white/5 border-y border-white/5 text-center">
         <div className="max-w-3xl mx-auto">
           <Target className="w-16 h-16 text-emerald-500 mx-auto mb-8" />
-          <h2 className="text-3xl font-black uppercase tracking-tighter mb-4">Partner Syndication Tracking</h2>
+          <h2 className="text-3xl font-black uppercase tracking-tighter mb-4">Partner Syndication Active</h2>
           <p className="text-xl text-gray-400 mb-8">
-            This campaign is part of the DeBacci Group syndicated network. All referrals are tracked manually via WhatsApp based on client name and the unique {REF_CODE} identifier.
+            This exclusive rate is secured via the DeBacci Group syndicated network. Each referral is manually verified and tracked via WhatsApp to ensure priority handling for the network's elite members.
           </p>
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 text-emerald-400 font-bold">
             <BarChart3 className="w-5 h-5" />
-            Partner Syndication Active
+            Verified DeBacci Referral: {REF_CODE}
           </div>
         </div>
       </section>
