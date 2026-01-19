@@ -15,8 +15,27 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  
+  // Automatically detect B2B mode based on subdomain
+  const isChainTrackDomain = typeof window !== 'undefined' && window.location.hostname.includes('chaintrack');
+  const [isB2BMode, setIsB2BMode] = useState(isChainTrackDomain);
 
-  // Hide nav on exit concierge page
+  // Update cart count whenever navigation component mounts or updates
+  useEffect(() => {
+    const updateCartCount = () => {
+      const count = shopifyCartService.getCartCount();
+      setCartCount(count);
+    };
+
+    updateCartCount();
+
+    // Poll for cart updates every 2 seconds when component is mounted
+    const interval = setInterval(updateCartCount, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Hide nav on exit concierge page - MOVED AFTER ALL HOOKS
   const isExitPage = location === "/relocate/exit";
 
   if (isExitPage) {
@@ -44,25 +63,6 @@ export function Navigation() {
       </nav>
     );
   }
-
-  // Automatically detect B2B mode based on subdomain
-  const isChainTrackDomain = window.location.hostname.includes('chaintrack');
-  const [isB2BMode, setIsB2BMode] = useState(isChainTrackDomain);
-
-  // Update cart count whenever navigation component mounts or updates
-  useEffect(() => {
-    const updateCartCount = () => {
-      const count = shopifyCartService.getCartCount();
-      setCartCount(count);
-    };
-
-    updateCartCount();
-
-    // Poll for cart updates every 2 seconds when component is mounted
-    const interval = setInterval(updateCartCount, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const consumerNavItems = [
     { path: "/", label: "Home", id: "home" },
