@@ -1,0 +1,212 @@
+Below is a **production-ready campaign page blueprint + copy** for
+**`deliwer.com/campaign/debacci`**, designed for **referral network distribution and fast conversions** (brokers, HR, founders, community admins, restaurant owners, freelancers).
+
+This is **GTM-grade**, not branding fluff.
+
+---
+
+# 🔥 `/campaign/debacci` — EXIT CONCIERGE REFERRAL CAMPAIGN
+
+**Objective:**
+Turn *Debacci + trusted partners* into a **lead distribution node** that drives WhatsApp conversations **within days**, not weeks.
+
+---
+
+## 1️⃣ PAGE ROLE (IMPORTANT)
+
+This page is **NOT** for cold public traffic.
+It is for:
+
+* WhatsApp sharing
+* LinkedIn DMs
+* Community posts
+* Broker & HR referrals
+
+👉 Therefore:
+
+* No menus
+* No distractions
+* One outcome: **WhatsApp lead**
+
+---
+
+## 2️⃣ HERO SECTION (Above the Fold)
+
+### Headline (Clear + Urgent)
+
+**Leaving Dubai Soon?
+Don’t Lose Your Deposit or Weeks on Admin.**
+
+### Sub-headline (Authority + Relief)
+
+**DeliWer Exit Concierge** helps professionals, founders, and families
+close their Dubai chapter *cleanly, compliantly, and stress-free*.
+
+### Primary CTA (ONLY CTA)
+
+🟢 **Chat on WhatsApp – Priority Support**
++971 52 394 6311
+
+> Small note below CTA:
+> *This page is shared by trusted partners.*
+
+---
+
+## 3️⃣ WHY THIS PAGE EXISTS (Trust Fast)
+
+### Section Title:
+
+**Why Partners Share DeliWer Exit Concierge**
+
+Short bullets (easy to scan):
+
+* Dubai exits are chaotic, time-sensitive, and risky
+* Deposits get delayed or lost
+* Utilities remain open, causing liabilities
+* People leave without closure or documentation
+
+👉 **DeliWer fixes this in one coordinated service.**
+
+---
+
+## 4️⃣ WHAT DELIWER HANDLES (CORE OFFER)
+
+### Section Title:
+
+**What We Take Off Your Plate**
+
+Use 3 cards / blocks:
+
+### 🧹 Deposit & Handover Protection
+
+* Final cleaning coordination
+* Landlord handover support
+* Deposit recovery focus
+
+### 📑 Utility & Account Closures
+
+* DEWA
+* Internet / Telecom
+* Final bill settlements
+
+### ✈️ Next-Destination Support
+
+* Introductions to global movers
+* Support for US, UK, EU, Singapore & more
+
+---
+
+## 5️⃣ WHO THIS IS PERFECT FOR (Self-Qualification)
+
+### Section Title:
+
+**This Service Is Ideal For:**
+
+* Professionals exiting Dubai
+* Founders relocating to a new market
+* Employees on global mobility plans
+* Families wrapping up leases & utilities
+
+> If time matters and mistakes are costly — this is for you.
+
+---
+
+## 6️⃣ WHY PARTNERS TRUST DELIWER (LIGHT AUTHORITY)
+
+Keep this lean — no heavy logos yet.
+
+* UAE-based coordination team
+* Confidential handling
+* Single point of accountability
+* Built specifically for Dubai exits
+
+Optional line:
+
+> *DeliWer works with trusted logistics and service partners for execution.*
+
+---
+
+## 7️⃣ REFERRAL CONTEXT (DEBACCI POSITIONING)
+
+### Section Title:
+
+**Shared by Our Partner Network**
+
+Short, neutral positioning (important legally):
+
+> This page is shared by trusted partners such as **Debacci**
+> to help their community exit Dubai smoothly.
+>
+> Service delivery and coordination are handled by **DeliWer**.
+
+(No commissions mentioned publicly.)
+
+---
+
+## 8️⃣ FINAL CTA (REPEAT – STRONG)
+
+### Headline:
+
+**Don’t Leave Dubai With Loose Ends**
+
+🟢 **Chat on WhatsApp Now**
+📲 +971 52 394 6311
+
+Secondary (small text):
+
+* Email: [info@deliwer.com](mailto:info@deliwer.com)
+* Website: [www.deliwer.com/relocate/exit](http://www.deliwer.com/relocate/exit)
+
+---
+
+## 9️⃣ UX / TECH REQUIREMENTS (CRITICAL)
+
+For fast results:
+
+### ✅ UX
+
+* No top navigation
+* Sticky WhatsApp button (mobile + desktop)
+* Page loads in <2 seconds
+* One scroll = CTA visible at all times
+
+### ✅ Tracking
+
+* WhatsApp click tracking
+* UTM support: `?source=debacci`
+* Simple conversion logging (manual ok initially)
+
+---
+
+## 10️⃣ HOW THIS PAGE WINS (REALITY CHECK)
+
+### Why this will convert fast:
+
+* High-intent audience (already leaving Dubai)
+* Referral trust layer (Debacci)
+* Clear pain + relief
+* No forms
+* No pricing confusion
+* Human WhatsApp close
+
+---
+
+## 🎯 FINAL FOUNDER VERDICT
+
+This page:
+
+* **Shortens the sales cycle**
+* **Reduces explanation overhead**
+* **Turns partners into distribution**
+* **Fits zero-capital GTM**
+* **Keeps DeliWer alive through revenue, not hope**
+
+---
+
+If you want next:
+
+* ✅ **WhatsApp auto-reply script for Debacci leads**
+* ✅ **1-message referral text partners can copy-paste**
+* ✅ **Pricing & referral incentive structure (private)**
+
+Say which one.

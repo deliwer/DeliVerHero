@@ -1,163 +1,264 @@
-import { SEOMeta } from "@/components/seo-meta";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { 
   MessageSquare, 
-  CheckCircle, 
+  CheckCircle2, 
   ShieldCheck, 
-  Zap, 
+  FileText, 
   Plane, 
   ArrowRight,
-  Target,
-  BarChart3,
-  Users
+  Shield,
+  Clock,
+  ExternalLink
 } from "lucide-react";
-import { useLocation } from "wouter";
+import { useEffect } from "react";
 
-export default function CampaignDeBacciPage() {
-  const WHATSAPP_NUMBER = "+971523946311";
-  const CEO_NUMBER = "+971523906019";
-  const REF_CODE = "DEBACCI20";
-  
-  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(`Hello DeliWer, I am interested in the Exit Concierge service. Referral Code: ${REF_CODE}`)}`;
+export default function CampaignDeBacci() {
+  // UTM source tracking
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get('source');
+    if (source) {
+      console.log(`Campaign source: ${source}`);
+    }
+  }, []);
+
+  const whatsappLink = "https://wa.me/971523946311?text=I%20saw%20DeliWer%20on%20DeBacci%20and%20need%20help%20with%20my%20Dubai%20exit";
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      <SEOMeta 
-        title="DeBacci Group Exclusive Partner Offer | DeliWer Exit Concierge"
-        description="Exclusive 20% off DeliWer Exit Concierge for DeBacci Group network members. Professional Dubai exit management."
-      />
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
+      {/* Hero Section */}
+      <section className="relative pt-20 pb-32 overflow-hidden border-b border-white/5">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/90 to-slate-950 z-10" />
+          <img 
+            src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80" 
+            alt="Dubai Skyline"
+            className="w-full h-full object-cover opacity-30 grayscale"
+          />
+        </div>
 
-      {/* Hero Section with DeBacci Branding */}
-      <section className="relative py-24 px-4 overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')] opacity-20 bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 to-slate-950" />
-        
-        <div className="max-w-6xl mx-auto relative z-10 text-center">
-          <div className="flex justify-center items-center gap-8 mb-12">
-            <img src="/deliwer-logo.png" alt="DeliWer" className="h-12 w-auto brightness-110" />
-            <div className="h-12 w-px bg-white/20" />
-            <div className="text-2xl font-serif tracking-widest uppercase">De Bacci Group</div>
+        <div className="container relative z-20 mx-auto px-4 text-center">
+          <div className="mb-8 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium animate-pulse">
+            <ShieldCheck className="w-4 h-4" />
+            Priority Exit Concierge
           </div>
-
-          <Badge className="mb-6 bg-amber-500 text-black border-none py-2 px-6 rounded-full text-sm font-black animate-pulse uppercase tracking-widest">
-            Exclusive Partner Offer
-          </Badge>
-
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-none">
-            Your Next Chapter <br />
-            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Starts Here.</span>
+          
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
+            Leaving Dubai Soon? <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+              Don’t Lose Your Deposit or Weeks on Admin.
+            </span>
           </h1>
+          
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            DeliWer Exit Concierge helps professionals, founders, and families close their Dubai chapter <span className="text-white font-semibold">cleanly, compliantly, and stress-free.</span>
+          </p>
 
-          <div className="flex flex-col items-center gap-8 max-w-3xl mx-auto">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-500 to-emerald-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-              <div className="relative bg-slate-900 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
-                <div className="text-6xl md:text-8xl font-black text-amber-500 mb-2">20% OFF</div>
-                <div className="text-xl font-bold uppercase tracking-widest text-white/70">Exclusive DeBacci Network Rate</div>
-                <div className="mt-8 py-4 px-8 bg-white/5 rounded-2xl border border-white/10">
-                  <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-1">Redeem with Code</p>
-                  <p className="text-2xl font-black text-emerald-500">{REF_CODE}</p>
-                </div>
-              </div>
-            </div>
-
+          <div className="flex flex-col items-center gap-4">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-xl shadow-2xl transition-all w-full md:w-auto"
-              onClick={() => window.open(WHATSAPP_LINK, '_blank')}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-lg px-8 py-7 rounded-full shadow-2xl shadow-emerald-600/20 transition-all hover:scale-105 active:scale-95"
+              onClick={() => window.open(whatsappLink, '_blank')}
             >
-              <MessageSquare className="mr-3 h-6 w-6" />
-              Claim My Exclusive Discount
+              <MessageSquare className="w-6 h-6 mr-3 fill-current" />
+              Chat on WhatsApp – Priority Support
             </Button>
+            <p className="text-slate-500 text-sm italic flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5" />
+              This page is shared by trusted partners.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Campaign Details */}
-      <section className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className="text-4xl font-black uppercase tracking-tighter">Exit Dubai Without <br />Loose Ends.</h2>
-              <p className="text-xl text-gray-400 leading-relaxed">
-                For the DeBacci Group network of founders and executives, we've optimized our Exit Concierge to handle every professional liability.
-              </p>
-              <div className="space-y-4">
-                {[
-                  { title: "Deposit Recovery", desc: "Expert handover to maximize your security refund." },
-                  { title: "Utility Closure", desc: "DEWA and bill settlement handled end-to-end." },
-                  { title: "Global Moving", desc: "Seamless connection to verified global partners." }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
-                    <CheckCircle className="w-6 h-6 text-emerald-500 mt-1" />
-                    <div>
-                      <h4 className="font-bold text-white uppercase text-lg">{item.title}</h4>
-                      <p className="text-gray-400">{item.desc}</p>
-                    </div>
+      {/* Why Partners Share Section */}
+      <section className="py-24 bg-slate-900/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-12 text-center">Why Partners Share DeliWer Exit Concierge</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                "Dubai exits are chaotic, time-sensitive, and risky",
+                "Deposits get delayed or lost",
+                "Utilities remain open, causing liabilities",
+                "People leave without closure or documentation"
+              ].map((text, idx) => (
+                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-slate-900 border border-white/5 hover:border-emerald-500/30 transition-colors group">
+                  <div className="mt-1 p-1 rounded-full bg-emerald-500/10 text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                    <CheckCircle2 className="w-5 h-5" />
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&q=80" 
-                alt="Dubai Marina" 
-                className="w-full h-[600px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
-              <div className="absolute bottom-12 left-12 right-12 text-center">
-                <p className="text-3xl font-serif italic mb-4 text-amber-500">Scan to Claim</p>
-                <div className="bg-white p-4 inline-block rounded-3xl shadow-2xl">
-                  {/* Placeholder for QR - In production we'd use a real QR generator */}
-                  <div className="w-48 h-48 bg-slate-100 flex items-center justify-center border-4 border-slate-900">
-                    <Zap className="w-24 h-24 text-slate-900" />
-                  </div>
+                  <p className="text-slate-300 font-medium">{text}</p>
                 </div>
-              </div>
+              ))}
+            </div>
+            <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/20 text-center">
+              <p className="text-emerald-400 font-bold text-xl">DeliWer fixes this in one coordinated service.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Manual Tracking Info */}
-      <section className="py-24 px-4 bg-white/5 border-y border-white/5 text-center">
-        <div className="max-w-3xl mx-auto">
-          <Target className="w-16 h-16 text-emerald-500 mx-auto mb-8" />
-          <h2 className="text-3xl font-black uppercase tracking-tighter mb-4">Partner Syndication Tracking</h2>
-          <p className="text-xl text-gray-400 mb-8">
-            This campaign is part of the DeBacci Group syndicated network. All referrals are tracked manually via WhatsApp based on client name and the unique {REF_CODE} identifier.
-          </p>
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 text-emerald-400 font-bold">
-            <BarChart3 className="w-5 h-5" />
-            Partner Syndication Active
+      {/* Core Offer Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-4 text-center mb-16">
+          <h2 className="text-3xl font-bold mb-4">What We Take Off Your Plate</h2>
+          <p className="text-slate-400">Complete end-to-end management for a smooth departure.</p>
+        </div>
+        
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-slate-900 border-white/5 hover:border-emerald-500/50 transition-all hover:-translate-y-2 group">
+              <CardContent className="pt-8">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <ShieldCheck className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-white">Deposit & Handover Protection</h3>
+                <ul className="space-y-3 text-slate-400 text-left">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Final cleaning coordination</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Landlord handover support</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Deposit recovery focus</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900 border-white/5 hover:border-cyan-500/50 transition-all hover:-translate-y-2 group">
+              <CardContent className="pt-8">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <FileText className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-white">Utility & Account Closures</h3>
+                <ul className="space-y-3 text-slate-400 text-left">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-cyan-500" /> DEWA settlements</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-cyan-500" /> Internet / Telecom closure</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-cyan-500" /> Final bill clearances</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900 border-white/5 hover:border-indigo-500/50 transition-all hover:-translate-y-2 group">
+              <CardContent className="pt-8">
+                <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Plane className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-white">Next-Destination Support</h3>
+                <ul className="space-y-3 text-slate-400 text-left">
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500" /> Introductions to global movers</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500" /> Support for US, UK, EU, SG & more</li>
+                  <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-indigo-500" /> Seamless coordination</li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 px-4 text-center">
-        <h3 className="text-2xl font-bold uppercase mb-8">Need Immediate Assistance?</h3>
-        <div className="flex flex-col md:flex-row justify-center gap-8 mb-16">
-          <div className="space-y-2">
-            <p className="text-gray-500 uppercase tracking-widest text-sm">Fastest Response</p>
-            <p className="text-2xl font-black text-emerald-500">{WHATSAPP_NUMBER}</p>
-          </div>
-          <div className="h-px w-12 bg-white/10 md:h-12 md:w-px self-center" />
-          <div className="space-y-2">
-            <p className="text-gray-500 uppercase tracking-widest text-sm">CEO Support Line</p>
-            <p className="text-2xl font-black text-white">{CEO_NUMBER}</p>
+      {/* Ideal For Section */}
+      <section className="py-24 bg-slate-900/50 border-y border-white/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-12">This Service Is Ideal For:</h2>
+            <div className="flex flex-wrap justify-center gap-4">
+              {[
+                "Professionals exiting Dubai",
+                "Founders relocating to a new market",
+                "Employees on global mobility plans",
+                "Families wrapping up leases & utilities"
+              ].map((tag, idx) => (
+                <div key={idx} className="px-6 py-3 rounded-full bg-slate-800 border border-white/10 text-slate-300 font-medium hover:bg-slate-700 transition-colors">
+                  {tag}
+                </div>
+              ))}
+            </div>
+            <p className="mt-12 text-xl text-slate-400">
+              If time matters and mistakes are costly — <span className="text-white font-bold underline decoration-emerald-500 underline-offset-4">this is for you.</span>
+            </p>
           </div>
         </div>
-        <Button 
-          size="lg" 
-          className="bg-white hover:bg-gray-200 text-black font-black rounded-full px-16 h-20 text-xl shadow-2xl transition-all"
-          onClick={() => window.open(WHATSAPP_LINK, '_blank')}
-        >
-          Talk to a DeliWer Coordinator
-        </Button>
       </section>
+
+      {/* Why Partners Trust Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-emerald-500">UAE-Based</div>
+              <p className="text-slate-500 text-sm font-medium uppercase tracking-wider">Coordination Team</p>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-cyan-500">Confidential</div>
+              <p className="text-slate-500 text-sm font-medium uppercase tracking-wider">Handling</p>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-indigo-500">Single Point</div>
+              <p className="text-slate-500 text-sm font-medium uppercase tracking-wider">Of Accountability</p>
+            </div>
+            <div className="space-y-2">
+              <div className="text-3xl font-bold text-emerald-500">Built for Dubai</div>
+              <p className="text-slate-500 text-sm font-medium uppercase tracking-wider">Exit Specifics</p>
+            </div>
+          </div>
+          <div className="mt-16 text-center text-slate-500 italic">
+            DeliWer works with trusted logistics and service partners for execution.
+          </div>
+        </div>
+      </section>
+
+      {/* Referral Context Section */}
+      <section className="py-24 bg-emerald-600/5 border-y border-emerald-500/10">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center space-y-6">
+            <h2 className="text-2xl font-bold text-emerald-400">Shared by Our Partner Network</h2>
+            <p className="text-slate-300 leading-relaxed">
+              This page is shared by trusted partners such as <span className="text-white font-bold">Debacci</span> to help their community exit Dubai smoothly.
+            </p>
+            <p className="text-slate-400 text-sm">
+              Service delivery and coordination are handled by <span className="font-semibold text-slate-300">DeliWer</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-emerald-600/20 blur-[120px] rounded-full translate-y-1/2" />
+        <div className="container relative z-10 mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-12">Don’t Leave Dubai With Loose Ends</h2>
+          <div className="flex flex-col items-center gap-8">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xl px-12 py-8 rounded-full shadow-2xl shadow-emerald-600/30 transition-all hover:scale-110 active:scale-95 group"
+              onClick={() => window.open(whatsappLink, '_blank')}
+            >
+              <MessageSquare className="w-8 h-8 mr-4 fill-current" />
+              Chat on WhatsApp Now
+              <ArrowRight className="w-6 h-6 ml-4 group-hover:translate-x-2 transition-transform" />
+            </Button>
+            
+            <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 text-slate-400">
+              <a href="mailto:service@deliwer.com" className="hover:text-white transition-colors flex items-center gap-2">
+                <FileText className="w-4 h-4" /> service@deliwer.com
+              </a>
+              <a href="/relocate/exit" className="hover:text-white transition-colors flex items-center gap-2 underline underline-offset-4">
+                <ExternalLink className="w-4 h-4" /> View Service Details
+              </a>
+              <span className="flex items-center gap-2">
+                <Clock className="w-4 h-4" /> Available 24/7
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sticky WhatsApp for Mobile */}
+      <div className="fixed bottom-6 right-6 z-[100] md:hidden">
+        <button 
+          onClick={() => window.open(whatsappLink, '_blank')}
+          className="bg-emerald-600 text-white p-4 rounded-full shadow-2xl shadow-emerald-600/40 active:scale-90 transition-transform"
+        >
+          <MessageSquare className="w-8 h-8 fill-current" />
+        </button>
+      </div>
     </div>
   );
 }
