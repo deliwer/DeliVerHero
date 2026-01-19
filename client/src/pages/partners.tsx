@@ -96,8 +96,180 @@ export default function PartnersPage() {
               WhatsApp Inquiry
             </Button>
           </div>
-          
-          
+        </div>
+      </section>
+
+      {/* Referral & Syndication Tracking Explanation */}
+      <section className="py-24 px-4 bg-emerald-600/5 border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 leading-none">
+                Syndication <br />
+                <span className="text-emerald-500">Tracking System</span>
+              </h2>
+              <div className="space-y-6">
+                <p className="text-xl text-gray-300 leading-relaxed">
+                  Our partner syndication model is built on transparency and manual verification. We track every referral through specialized landing pages and direct WhatsApp handovers.
+                </p>
+                <div className="grid gap-4">
+                  {[
+                    { title: "5% Partner Incentive", desc: "Earn a fixed 5% commission on all closed sales generated through your network." },
+                    { title: "Specific Referral Codes", desc: "Every partner receives a unique ID (e.g., DEBACCI20) for precise traffic attribution." },
+                    { title: "Manual Verification", desc: "Client names and deal status are logged manually via our WhatsApp coordination desk." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/10">
+                      <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                        <CheckCircle className="w-6 h-6 text-emerald-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white uppercase text-sm mb-1">{item.title}</h4>
+                        <p className="text-gray-400 text-sm">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-emerald-500/20 blur-3xl rounded-full" />
+              <Card className="relative bg-slate-900 border-white/10 p-8 rounded-[2.5rem] shadow-2xl overflow-hidden">
+                <div className="flex items-center justify-between mb-8">
+                  <Badge variant="outline" className="border-emerald-500/50 text-emerald-400">Campaign Preview</Badge>
+                  <Users className="w-6 h-6 text-gray-600" />
+                </div>
+                <div className="space-y-6">
+                  <div className="h-4 w-3/4 bg-white/5 rounded-full" />
+                  <div className="h-4 w-1/2 bg-white/5 rounded-full" />
+                  <div className="py-8 flex flex-col items-center justify-center border-2 border-dashed border-white/10 rounded-3xl">
+                    <div className="w-24 h-24 bg-white/10 rounded-2xl mb-4 flex items-center justify-center">
+                      <Zap className="w-12 h-12 text-emerald-500" />
+                    </div>
+                    <p className="text-emerald-500 font-bold tracking-tighter text-xl">DEBACCI20</p>
+                  </div>
+                  <Link href="/campaign/debacci">
+                    <Button className="w-full bg-emerald-600 h-14 rounded-xl font-bold">Launch Campaign</Button>
+                  </Link>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Referral & Syndication Tracking Explanation */}
+      <section className="py-24 px-4 bg-emerald-600/5 border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 leading-none">
+                Syndication <br />
+                <span className="text-emerald-500">Tracking System</span>
+              </h2>
+              <div className="space-y-6">
+                <p className="text-xl text-gray-300 leading-relaxed">
+                  Our partner syndication model is built on transparency and manual verification. We track every referral through specialized landing pages and direct WhatsApp handovers.
+                </p>
+                <div className="grid gap-4">
+                  {[
+                    { title: "5% Partner Incentive", desc: "Earn a fixed 5% commission on all closed sales generated through your network." },
+                    { title: "Specific Referral Codes", desc: "Every partner receives a unique ID (e.g., DEBACCI20) for precise traffic attribution." },
+                    { title: "Manual Verification", desc: "Client names and deal status are logged manually via our WhatsApp coordination desk." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/10">
+                      <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                        <CheckCircle className="w-6 h-6 text-emerald-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white uppercase text-sm mb-1">{item.title}</h4>
+                        <p className="text-gray-400 text-sm">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-emerald-500/20 blur-3xl rounded-full" />
+              <Card className="relative bg-slate-900 border-white/10 p-8 rounded-[2.5rem] shadow-2xl overflow-hidden">
+                <div className="flex items-center justify-between mb-8">
+                  <Badge variant="outline" className="border-emerald-500/50 text-emerald-400">Campaign Preview</Badge>
+                  <Users className="w-6 h-6 text-gray-600" />
+                </div>
+                <div className="space-y-6">
+                  <div className="h-4 w-3/4 bg-white/5 rounded-full" />
+                  <div className="h-4 w-1/2 bg-white/5 rounded-full" />
+                  <div className="py-8 flex flex-col items-center justify-center border-2 border-dashed border-white/10 rounded-3xl">
+                    <div className="w-24 h-24 bg-white/10 rounded-2xl mb-4 flex items-center justify-center">
+                      <Zap className="w-12 h-12 text-emerald-500" />
+                    </div>
+                    <p className="text-emerald-500 font-bold tracking-tighter text-xl">DEBACCI20</p>
+                  </div>
+                  <Link href="/campaign/debacci">
+                    <Button className="w-full bg-emerald-600 h-14 rounded-xl font-bold">Launch Campaign</Button>
+                  </Link>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Referral & Syndication Tracking Explanation */}
+      <section className="py-24 px-4 bg-emerald-600/5 border-y border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 leading-none">
+                Syndication <br />
+                <span className="text-emerald-500">Tracking System</span>
+              </h2>
+              <div className="space-y-6">
+                <p className="text-xl text-gray-300 leading-relaxed">
+                  Our partner syndication model is built on transparency and manual verification. We track every referral through specialized landing pages and direct WhatsApp handovers.
+                </p>
+                <div className="grid gap-4">
+                  {[
+                    { title: "5% Partner Incentive", desc: "Earn a fixed 5% commission on all closed sales generated through your network." },
+                    { title: "Specific Referral Codes", desc: "Every partner receives a unique ID (e.g., DEBACCI20) for precise traffic attribution." },
+                    { title: "Manual Verification", desc: "Client names and deal status are logged manually via our WhatsApp coordination desk." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/10">
+                      <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                        <CheckCircle className="w-6 h-6 text-emerald-500" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white uppercase text-sm mb-1">{item.title}</h4>
+                        <p className="text-gray-400 text-sm">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-emerald-500/20 blur-3xl rounded-full" />
+              <Card className="relative bg-slate-900 border-white/10 p-8 rounded-[2.5rem] shadow-2xl overflow-hidden">
+                <div className="flex items-center justify-between mb-8">
+                  <Badge variant="outline" className="border-emerald-500/50 text-emerald-400">Campaign Preview</Badge>
+                  <Users className="w-6 h-6 text-gray-600" />
+                </div>
+                <div className="space-y-6">
+                  <div className="h-4 w-3/4 bg-white/5 rounded-full" />
+                  <div className="h-4 w-1/2 bg-white/5 rounded-full" />
+                  <div className="py-8 flex flex-col items-center justify-center border-2 border-dashed border-white/10 rounded-3xl">
+                    <div className="w-24 h-24 bg-white/10 rounded-2xl mb-4 flex items-center justify-center">
+                      <Zap className="w-12 h-12 text-emerald-500" />
+                    </div>
+                    <p className="text-emerald-500 font-bold tracking-tighter text-xl">DEBACCI20</p>
+                  </div>
+                  <Link href="/campaign/debacci">
+                    <Button className="w-full bg-emerald-600 h-14 rounded-xl font-bold hover-elevate">Launch Campaign</Button>
+                  </Link>
+                </div>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -89,6 +89,7 @@ const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer")
 const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
 const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
 const RelocateExit = lazy(() => import("@/pages/relocate-exit"));
+const CampaignDeBacci = lazy(() => import("@/pages/campaign-debacci"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -181,6 +182,7 @@ function Router() {
         <Route path="/play" component={Play} />
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners" component={Partners} />
+        <Route path="/campaign/debacci" component={CampaignDeBacci} />
         <Route path="/dashboard" component={HeroDashboard} />
         <Route path="/investor-dashboard" component={InvestorDashboard} />
         <Route path="/corporate-partner-portal" component={CorporatePartnerPortal} />
