@@ -2,6 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, MessageSquare, CheckCircle2, ShieldCheck, UserCheck, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import relocationHeroPng from "@assets/generated_images/professional_dubai_relocation_exit_concierge_ad..png";
+import apartmentKeysPng from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
 export default function ExitConciergePage() {
   const whatsappLink = "https://wa.me/971523946311?text=I%20need%20to%20start%20my%20exit%20concierge%20process";
@@ -9,18 +11,24 @@ export default function ExitConciergePage() {
   return (
     <div className="min-h-screen bg-slate-950 pb-24">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-6 leading-none">
+      <section className="relative pt-32 pb-16 px-4 min-h-[60vh] flex items-center overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${relocationHeroPng})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-[#0A3D62]/90 backdrop-blur-[2px]" />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h1 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter mb-6 leading-none drop-shadow-2xl">
             Leaving Dubai?<br />
-            <span className="text-emerald-500">We Handle Your Exit End-to-End</span>
+            <span className="text-[#FFC845]">We Handle Your Exit End-to-End</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-400 mb-10 font-medium">
+          <p className="text-xl md:text-2xl text-gray-200 mb-10 font-medium">
             DEWA · Ejari · Move-out · Deposit · Handover · Closure
           </p>
           <Button 
             size="lg" 
-            className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-2xl transition-all w-full md:w-auto"
+            className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-black rounded-full px-12 h-20 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2"
             onClick={() => window.open(whatsappLink, '_blank')}
           >
             <MessageSquare className="w-6 h-6 mr-2" />
@@ -30,51 +38,57 @@ export default function ExitConciergePage() {
       </section>
 
       {/* 3-Step Visual Flow */}
-      <section className="py-16 px-4 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative py-24 px-4 overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 grayscale"
+          style={{ backgroundImage: `url(${apartmentKeysPng})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-slate-950/80" />
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover-elevate transition-all">
+            <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover-elevate transition-all backdrop-blur-sm">
               <div className="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center mb-6">
                 <span className="text-3xl font-black text-blue-400">1</span>
               </div>
               <h3 className="text-2xl font-bold text-white uppercase mb-4">Exit Audit</h3>
-              <p className="text-gray-400 leading-relaxed">Checklist + risks identified. We map out every closure needed for a clean break.</p>
+              <p className="text-gray-300 leading-relaxed">Checklist + risks identified. We map out every closure needed for a clean break.</p>
             </div>
             
-            <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover-elevate transition-all">
+            <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover-elevate transition-all backdrop-blur-sm">
               <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-6">
                 <span className="text-3xl font-black text-emerald-400">2</span>
               </div>
               <h3 className="text-2xl font-bold text-white uppercase mb-4">Execution</h3>
-              <p className="text-gray-400 leading-relaxed">Closures, handovers, and vendor coordination. We do the legwork while you focus on your move.</p>
+              <p className="text-gray-300 leading-relaxed">Closures, handovers, and vendor coordination. We do the legwork while you focus on your move.</p>
             </div>
 
-            <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover-elevate transition-all">
+            <div className="bg-white/5 border border-white/10 p-8 rounded-[2.5rem] hover-elevate transition-all backdrop-blur-sm">
               <div className="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center mb-6">
                 <span className="text-3xl font-black text-purple-400">3</span>
               </div>
               <h3 className="text-2xl font-bold text-white uppercase mb-4">Clean Exit</h3>
-              <p className="text-gray-400 leading-relaxed">Confirmations & peace of mind. All accounts closed, deposits recovered, compliance secured.</p>
+              <p className="text-gray-300 leading-relaxed">Confirmations & peace of mind. All accounts closed, deposits recovered, compliance secured.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Trust Layer */}
-      <section className="py-16 px-4">
+      <section className="py-24 px-4 bg-[#0A3D62]/20 border-y border-white/5">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div className="flex flex-col items-center">
-              <ShieldCheck className="w-10 h-10 text-emerald-500 mb-4" />
+              <ShieldCheck className="w-12 h-12 text-[#FFC845] mb-6" />
               <span className="text-white font-bold uppercase tracking-widest text-sm">UAE-based team</span>
             </div>
             <div className="flex flex-col items-center">
-              <UserCheck className="w-10 h-10 text-emerald-500 mb-4" />
+              <UserCheck className="w-12 h-12 text-[#FFC845] mb-6" />
               <span className="text-white font-bold uppercase tracking-widest text-sm">Confidential handling</span>
             </div>
             <div className="flex flex-col items-center">
-              <CheckCircle2 className="w-10 h-10 text-emerald-500 mb-4" />
-              <span className="text-white font-bold uppercase tracking-widest text-sm">Designed for Pros & Families</span>
+              <CheckCircle2 className="w-12 h-12 text-[#FFC845] mb-6" />
+              <span className="text-white font-bold uppercase tracking-widest text-sm">Pros & Families</span>
             </div>
           </div>
         </div>
