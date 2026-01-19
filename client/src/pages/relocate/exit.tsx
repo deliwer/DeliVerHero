@@ -90,7 +90,7 @@ export default function ExitConciergePage() {
         <div className="max-w-4xl mx-auto text-center text-gray-500">
           <div className="flex flex-wrap justify-center gap-8 mb-6">
             <a href="https://wa.me/971523946311" className="hover:text-emerald-500 font-bold">WhatsApp</a>
-            <a href="mailto:hello@deliwer.com" className="hover:text-white">Email</a>
+            <a href="mailto:service@deliwer.com" className="hover:text-white">Email</a>
             <span>Dubai, United Arab Emirates</span>
           </div>
           <p className="text-xs uppercase tracking-widest opacity-50">© 2026 DeliWer Relocate</p>

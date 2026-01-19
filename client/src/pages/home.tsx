@@ -324,7 +324,7 @@ export default function Home() {
           </Link>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
             <a href="https://wa.me/971523946311" className="text-emerald-500 font-bold hover:underline">WhatsApp</a>
-            <a href="mailto:hello@deliwer.com" className="text-gray-400 hover:text-white">service@deliwer.com</a>
+            <a href="mailto:service@deliwer.com" className="text-gray-400 hover:text-white">service@deliwer.com</a>
             <span className="text-gray-600 text-sm">Dubai, United Arab Emirates</span>
           </div>
           <Link href="/relocate/exit" className="text-emerald-500 font-black uppercase tracking-widest text-sm hover:underline">
