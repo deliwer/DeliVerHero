@@ -3,11 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, CheckCircle, Package, Plug, ShieldCheck, Zap, Plane, Building } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function RelocateExitPage() {
+  const [location] = useLocation();
+  const searchParams = new URLSearchParams(window.location.search);
+  const refCode = searchParams.get("ref") || "";
+
   const WHATSAPP_NUMBER = "+971523946311";
   const CEO_NUMBER = "+971523906019";
-  const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}`;
+  
+  const getWhatsAppLink = (message: string) => {
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodedMessage}`;
+  };
+
+  const defaultMessage = refCode 
+    ? `Hello DeliWer, I am interested in the Exit Concierge service. Referral Code: ${refCode}`
+    : "Hello DeliWer, I am interested in the Exit Concierge service.";
+
+  const WHATSAPP_LINK = getWhatsAppLink(defaultMessage);
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -21,6 +36,11 @@ export default function RelocateExitPage() {
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')] opacity-20 bg-cover bg-center" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
+          {refCode === "DEBACCI20" && (
+            <Badge className="mb-6 bg-emerald-500 text-white border-none py-2 px-4 rounded-full text-sm font-bold animate-pulse">
+              DEBACCI GROUP EXCLUSIVE PARTNER OFFER
+            </Badge>
+          )}
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
             Leaving Dubai? Don’t lose your deposit or waste weeks on admin.
           </h1>
@@ -36,6 +56,11 @@ export default function RelocateExitPage() {
               <MessageSquare className="mr-2 h-6 w-6" />
               Get Free Exit Consultation on WhatsApp
             </Button>
+            {refCode && (
+              <p className="text-emerald-400 font-bold bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
+                Active Referral Code: {refCode}
+              </p>
+            )}
             <p className="text-slate-400 font-medium">
               Fastest response on WhatsApp: <span className="text-white">{WHATSAPP_NUMBER}</span>
             </p>
