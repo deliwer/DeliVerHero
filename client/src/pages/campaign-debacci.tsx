@@ -2,6 +2,7 @@ import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import qrCodeImage from "@assets/DeliWer_Debacci_QRCode_1768848760432.png";
 import { 
   MessageSquare, 
   CheckCircle, 
@@ -110,10 +111,11 @@ export default function CampaignDeBacciPage() {
               <div className="absolute bottom-12 left-12 right-12 text-center">
                 <p className="text-3xl font-serif italic mb-4 text-amber-500">Scan to Claim</p>
                 <div className="bg-white p-4 inline-block rounded-3xl shadow-2xl">
-                  {/* Placeholder for QR - In production we'd use a real QR generator */}
-                  <div className="w-48 h-48 bg-slate-100 flex items-center justify-center border-4 border-slate-900">
-                    <Zap className="w-24 h-24 text-slate-900" />
-                  </div>
+                  <img 
+                    src={qrCodeImage} 
+                    alt="Scan to Claim" 
+                    className="w-48 h-48 object-contain"
+                  />
                 </div>
               </div>
             </div>
