@@ -48,19 +48,26 @@ export default function RelocateExitPage() {
             DeliWer Exit Concierge guarantees a seamless, stress-free departure from the UAE.
           </p>
           <div className="flex flex-col items-center gap-4">
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full px-8 h-16 text-lg w-full md:w-auto shadow-xl"
-              onClick={() => window.open(WHATSAPP_LINK, '_blank')}
-            >
-              <MessageSquare className="mr-2 h-6 w-6" />
-              Get Free Exit Consultation on WhatsApp
-            </Button>
-            {refCode && (
-              <p className="text-emerald-400 font-bold bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
-                Active Referral Code: {refCode}
-              </p>
-            )}
+            <div className="w-full md:w-auto space-y-3">
+              <Button 
+                size="lg" 
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full px-8 h-16 text-lg w-full shadow-xl"
+                onClick={() => window.open(WHATSAPP_LINK, '_blank')}
+              >
+                <MessageSquare className="mr-2 h-6 w-6" />
+                Get Free Exit Consultation on WhatsApp
+              </Button>
+              {refCode && (
+                <div className="p-4 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+                  <p className="text-emerald-400 font-bold mb-1">
+                    Partner Tracking Active: {refCode}
+                  </p>
+                  <p className="text-xs text-slate-400">
+                    Your referral is recorded. We track client names manually via WhatsApp for 5% commission calculation.
+                  </p>
+                </div>
+              )}
+            </div>
             <p className="text-slate-400 font-medium">
               Fastest response on WhatsApp: <span className="text-white">{WHATSAPP_NUMBER}</span>
             </p>
