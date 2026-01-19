@@ -131,7 +131,7 @@ export default function CampaignDeBacciPage() {
           </p>
           <div className="inline-flex items-center gap-3 px-6 py-3 bg-emerald-500/10 rounded-full border border-emerald-500/20 text-emerald-400 font-bold">
             <BarChart3 className="w-5 h-5" />
-            5% Partner Commission Active
+            Partner Syndication Active
           </div>
         </div>
       </section>
