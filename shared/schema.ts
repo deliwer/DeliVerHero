@@ -472,7 +472,6 @@ export const partnerProfiles = pgTable("partner_profiles", {
   name: text("name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
-});
   company: text("company"),
   interest: text("interest"), // 'relocating', 'logistics', 'hr', 'home_services', etc.
   message: text("message"),
@@ -486,8 +485,18 @@ export const insertLeadSchema = createInsertSchema(leadApplications).omit({
   createdAt: true,
 });
 
+export const insertLeadApplicationSchema = insertLeadSchema;
+
+export const insertCommissionClaimSchema = createInsertSchema(commissionClaims).omit({
+  id: true,
+  status: true,
+  createdAt: true,
+});
+
 export type LeadApplication = typeof leadApplications.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
+export type CommissionClaim = typeof commissionClaims.$inferSelect;
+export type InsertCommissionClaim = z.infer<typeof insertCommissionClaimSchema>;
 
 export const sponsoredMissions = pgTable("sponsored_missions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
