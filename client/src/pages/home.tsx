@@ -233,7 +233,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Why Exit Is Hard */}
       <section className="py-24 px-4 bg-slate-900/30">
         <div className="max-w-4xl mx-auto text-center">
@@ -257,7 +256,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Exit Concierge Snapshot */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
@@ -289,7 +287,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Who This Is For */}
       <section className="py-24 px-4 bg-slate-900/50">
         <div className="max-w-4xl mx-auto">
@@ -309,7 +306,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Authority Without Noise */}
       <section className="py-24 px-4 border-t border-white/5">
         <div className="max-w-4xl mx-auto text-center">
@@ -320,7 +316,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Footer - Exit Focus */}
       <footer className="py-12 px-4 border-t border-white/5 bg-slate-950">
         <div className="max-w-4xl mx-auto text-center">
@@ -329,7 +324,7 @@ export default function Home() {
           </Link>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
             <a href="https://wa.me/971523946311" className="text-emerald-500 font-bold hover:underline">WhatsApp</a>
-            <a href="mailto:hello@deliwer.com" className="text-gray-400 hover:text-white">hello@deliwer.com</a>
+            <a href="mailto:hello@deliwer.com" className="text-gray-400 hover:text-white">service@deliwer.com</a>
             <span className="text-gray-600 text-sm">Dubai, United Arab Emirates</span>
           </div>
           <Link href="/relocate/exit" className="text-emerald-500 font-black uppercase tracking-widest text-sm hover:underline">
@@ -337,7 +332,6 @@ export default function Home() {
           </Link>
         </div>
       </footer>
-
       {/* Sticky Components */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
         <Button 
@@ -347,7 +341,6 @@ export default function Home() {
           <MessageSquare className="w-8 h-8" />
         </Button>
       </div>
-
       <SEOMeta
         title="DeliWer | Dubai Exit Concierge - Move Out Professionally"
         description="Leaving Dubai? We handle your entire move-out and closure process. DEWA, Ejari, property handover, and deposit recovery. UAE-based end-to-end support."
