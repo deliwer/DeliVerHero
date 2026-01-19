@@ -97,16 +97,7 @@ export default function PartnersPage() {
             </Button>
           </div>
           
-          <div className="mt-16 flex items-center justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-5 h-5" />
-              <span className="text-sm font-bold uppercase tracking-widest">LinkedIn Premium Partner</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Zap className="w-5 h-5" />
-              <span className="text-sm font-bold uppercase tracking-widest">Sales Navigator Verified</span>
-            </div>
-          </div>
+          
         </div>
       </section>
 
