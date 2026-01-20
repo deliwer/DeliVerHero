@@ -213,7 +213,7 @@ export default function Home() {
           </div>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white leading-[0.9] drop-shadow-2xl">
             Leaving Dubai?<br />
-            <span className="text-[#FFC845]">Don’t Handle the Exit Alone.</span>
+            <span className="text-[#FFC845]">Don’t lose your deposit or leave liabilities behind.</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">We manage your entire move-out and closure process — professionally, compliantly, end-to-end.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
