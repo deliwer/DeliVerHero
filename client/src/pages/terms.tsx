@@ -270,9 +270,7 @@ export default function Terms() {
                 <a 
                   href="mailto:legal@deliwer.com"
                   className="bg-hero-green-500 hover:bg-hero-green-600 text-black px-6 py-3 rounded-lg font-medium transition-colors"
-                >
-                  legal@deliwer.com
-                </a>
+                >admin@deliwer.com</a>
                 <a 
                   href="tel:+971523946311"
                   className="bg-dubai-blue-500 hover:bg-dubai-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
