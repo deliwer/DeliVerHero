@@ -213,7 +213,7 @@ export default function Home() {
           </div>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white leading-[0.9] drop-shadow-2xl">
             Leaving Dubai?<br />
-            <span className="text-[#FFC845]">Don’t Lose Your Deposit, Time, or Peace of Mind.</span>
+            <span className="text-[#FFC845]">Don’t Handle the Exit Alone.</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">
             We handle the move-out admin so you can focus on your next life chapter. professionally, compliantly, end-to-end.
@@ -236,7 +236,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* 3 Quick Value Points */}
       <section className="py-24 px-4 bg-[#0A3D62] border-y border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -267,7 +266,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Why Exit Is Hard */}
       <section className="py-24 px-4 bg-slate-900/30">
         <div className="max-w-4xl mx-auto text-center">
@@ -291,7 +289,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Authority & Contact Section */}
       <section className="py-24 px-4 border-t border-white/5 bg-slate-950">
         <div className="max-w-4xl mx-auto text-center">
@@ -314,7 +311,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Footer - Exit Focus */}
       <footer className="py-12 px-4 border-t border-white/5 bg-slate-950">
         <div className="max-w-4xl mx-auto text-center">
@@ -331,7 +327,6 @@ export default function Home() {
           </Link>
         </div>
       </footer>
-
       {/* Sticky Components */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
         <Button 
@@ -341,7 +336,6 @@ export default function Home() {
           <MessageSquare className="w-8 h-8" />
         </Button>
       </div>
-
       <SEOMeta
         title="DeliWer | Dubai Exit Concierge - Move Out Professionally"
         description="Leaving Dubai? We handle your entire move-out and closure process. DEWA, Ejari, property handover, and deposit recovery. UAE-based end-to-end support."
