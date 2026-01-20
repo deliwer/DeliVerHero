@@ -215,9 +215,7 @@ export default function Home() {
             Leaving Dubai?<br />
             <span className="text-[#FFC845]">Don’t Handle the Exit Alone.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">
-            We handle the move-out admin so you can focus on your next life chapter. professionally, compliantly, end-to-end.
-          </p>
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">We manage your entire move-out and closure process — professionally, compliantly, end-to-end.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Button 
               size="lg" 
