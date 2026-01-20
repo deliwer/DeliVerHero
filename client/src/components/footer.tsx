@@ -28,7 +28,6 @@ export function Footer() {
     { label: "Home Service Launch", url: "/launch" },
     { label: "Explore", url: "/explore" },
     { label: "AquaCafe Loyalty", url: "/aquacafe" },
-    { label: "E-Waste Mission", url: "/ewaste" },
     { label: "Rewards", url: "/earn" },
   ];
 
