@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Handshake, 
   Users, 
   Globe, 
   CheckCircle, 
@@ -12,9 +11,8 @@ import {
   ShieldCheck,
   Zap,
   Building,
-  ArrowRight,
   Target,
-  Heart
+  Briefcase
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,13 +31,11 @@ export default function PartnersPage() {
   const form = useForm<InsertLead>({
     resolver: zodResolver(insertLeadSchema),
     defaultValues: {
-      type: "partner_primary",
       name: "",
       email: "",
       phone: "",
-      company: "",
-      interest: "community",
-      message: "",
+      service: "community",
+      requirements: "",
     },
   });
 
@@ -91,7 +87,7 @@ export default function PartnersPage() {
             DeliWer partners with <strong>founder, investor, and professional communities</strong> to support members relocating out of Dubai through a discreet, concierge-grade Exit service.
           </p>
           <div className="flex flex-col items-center gap-4">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl" onClick={handleWhatsApp}>
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl" onClick={handleWhatsApp} data-testid="button-partner-whatsapp">
               <MessageSquare className="w-6 h-6 mr-2" />
               Become a Community Referral Partner
             </Button>
@@ -140,7 +136,7 @@ export default function PartnersPage() {
               { title: "Expat Leadership Circles", icon: Globe },
               { title: "HR & Global Mobility Networks", icon: Target }
             ].map((item, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 rounded-[2rem] hover-elevate transition-all">
+              <Card key={i} className="bg-white/5 border-white/10 rounded-[2rem] hover-elevate transition-all" data-testid={`card-ideal-partner-${i}`}>
                 <CardHeader className="p-8">
                   <item.icon className="w-12 h-12 text-blue-500 mb-4" />
                   <CardTitle className="text-xl font-bold uppercase text-white">{item.title}</CardTitle>
@@ -231,7 +227,7 @@ export default function PartnersPage() {
       <section className="py-24 px-4 border-b border-white/5 bg-emerald-600/5">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl font-black uppercase tracking-tighter mb-8 text-gray-400">Example Community Partner</h2>
-          <Card className="bg-slate-900/80 border-white/10 p-10 rounded-[2.5rem] shadow-2xl">
+          <Card className="bg-slate-900/80 border-white/10 p-10 rounded-[2.5rem] shadow-2xl" data-testid="card-example-partner">
             <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tighter italic">Debacci Noble Family Community</h3>
             <p className="text-xl text-gray-400 leading-relaxed italic">
               "Founder and investor networks supporting members relocating globally."
@@ -268,7 +264,7 @@ export default function PartnersPage() {
             <p className="text-xl text-blue-400">Request private partnership access below.</p>
           </div>
 
-          <Card className="bg-slate-900 border-white/10 p-8 md:p-12 rounded-[2.5rem]">
+          <Card className="bg-slate-900 border-white/10 p-8 md:p-12 rounded-[2.5rem]" data-testid="card-partnership-form">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -279,7 +275,7 @@ export default function PartnersPage() {
                       <FormItem>
                         <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Full Name</FormLabel>
                         <FormControl>
-                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="John Doe" />
+                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="John Doe" data-testid="input-name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -292,7 +288,7 @@ export default function PartnersPage() {
                       <FormItem>
                         <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Email Address</FormLabel>
                         <FormControl>
-                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="john@company.com" />
+                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="john@company.com" data-testid="input-email" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -308,7 +304,7 @@ export default function PartnersPage() {
                       <FormItem>
                         <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Phone / WhatsApp</FormLabel>
                         <FormControl>
-                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="+971 50 000 0000" />
+                          <Input {...field} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="+971 50 000 0000" data-testid="input-phone" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -316,13 +312,23 @@ export default function PartnersPage() {
                   />
                   <FormField
                     control={form.control}
-                    name="company"
+                    name="service"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Community / Organization</FormLabel>
-                        <FormControl>
-                          <Input {...field} value={field.value ?? ""} className="bg-white/5 border-white/10 h-14 text-white rounded-xl" placeholder="e.g. Founders Network" />
-                        </FormControl>
+                        <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Community Type</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="bg-white/5 border-white/10 h-14 text-white rounded-xl" data-testid="select-service">
+                              <SelectValue placeholder="Select community type" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-slate-900 border-white/10 text-white">
+                            <SelectItem value="community">Founder & Investor Network</SelectItem>
+                            <SelectItem value="professional_group">Professional/Executive Group</SelectItem>
+                            <SelectItem value="family_office">Family Office / Private Network</SelectItem>
+                            <SelectItem value="other">Other Curated Community</SelectItem>
+                          </SelectContent>
+                        </Select>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -331,36 +337,12 @@ export default function PartnersPage() {
 
                 <FormField
                   control={form.control}
-                  name="interest"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Community Type</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value ?? ""}>
-                        <FormControl>
-                          <SelectTrigger className="bg-white/5 border-white/10 h-14 text-white rounded-xl">
-                            <SelectValue placeholder="Select community type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent className="bg-slate-900 border-white/10 text-white">
-                          <SelectItem value="founder_investor">Founder & Investor Network</SelectItem>
-                          <SelectItem value="professional_group">Professional/Executive Group</SelectItem>
-                          <SelectItem value="family_office">Family Office / Private Network</SelectItem>
-                          <SelectItem value="other">Other Curated Community</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="message"
+                  name="requirements"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-gray-400 uppercase tracking-widest text-xs font-black">Community Overview</FormLabel>
                       <FormControl>
-                        <Textarea {...field} value={field.value ?? ""} className="bg-white/5 border-white/10 min-h-[120px] text-white rounded-xl" placeholder="Briefly describe your members and network scale..." />
+                        <Textarea {...field} value={field.value ?? ""} className="bg-white/5 border-white/10 min-h-[120px] text-white rounded-xl" placeholder="Briefly describe your members and network scale..." data-testid="textarea-requirements" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -371,10 +353,11 @@ export default function PartnersPage() {
                   type="submit" 
                   className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black h-16 rounded-xl text-lg uppercase tracking-widest transition-all"
                   disabled={isSubmitting}
+                  data-testid="button-submit-partnership"
                 >
                   {isSubmitting ? "Sending Request..." : "Request Partnership Access"}
                 </Button>
-                <p className="text-center text-xs text-gray-500 mt-4 italic">
+                <p className="text-center text-sm text-gray-500 mt-4 italic">
                   Partnerships are reviewed to ensure alignment, confidentiality, and service standards.
                 </p>
               </form>
@@ -385,7 +368,7 @@ export default function PartnersPage() {
 
       {/* Footer Note */}
       <footer className="py-12 px-4 border-t border-white/5 text-center bg-slate-950">
-        <p className="text-gray-500 max-w-2xl mx-auto italic">
+        <p className="text-gray-500 max-w-2xl mx-auto italic" data-testid="text-footer-note">
           DeliWer is a UAE-based coordination platform focused on relocation, exit, and settlement journeys — delivered through trusted partners and communities.
         </p>
       </footer>
@@ -395,6 +378,7 @@ export default function PartnersPage() {
         <Button 
           className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-full h-16 w-16 p-0 shadow-2xl animate-bounce"
           onClick={handleWhatsApp}
+          data-testid="button-sticky-whatsapp"
         >
           <MessageSquare className="w-8 h-8" />
         </Button>
