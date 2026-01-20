@@ -27,8 +27,6 @@ export function Footer() {
   const consumerLinks = [
     { label: "Home Service Launch", url: "/launch" },
     { label: "Explore", url: "/explore" },
-    { label: "Leaderboard", url: "/leaderboard" },
-    { label: "iPhone Trade-in", url: "/products" },
     { label: "AquaCafe Loyalty", url: "/aquacafe" },
     { label: "E-Waste Mission", url: "/ewaste" },
     { label: "Rewards", url: "/earn" },
