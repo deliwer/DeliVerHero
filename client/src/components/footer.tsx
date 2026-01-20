@@ -68,7 +68,7 @@ export function Footer() {
           {/* Brand & Mission */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center mb-6 hover:opacity-80 transition-opacity">
-              <span className="text-2xl font-bold text-white">DeliWer</span>
+              <span className="text-2xl font-bold text-white">DeliWer Sustainability</span>
             </Link>
             
             <p className="text-gray-300 mb-6 leading-relaxed">

@@ -7,9 +7,41 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Smartphone, CreditCard, Gift, Recycle, Star, TrendingUp, Package, DollarSign, Clock } from "lucide-react";
+import { Smartphone, CreditCard, Gift, Recycle, Star, TrendingUp, Package, DollarSign, Clock, ShieldCheck, Zap } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+
+function TradeInBanner() {
+  return (
+    <div className="bg-gradient-to-r from-emerald-600/20 to-blue-600/20 rounded-3xl p-8 border border-white/10 backdrop-blur-sm">
+      <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="flex-1 space-y-4">
+          <Badge className="bg-emerald-500 text-black border-none px-4 py-1">Featured Program</Badge>
+          <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic">The Sustainability Exchange</h2>
+          <p className="text-gray-300 text-lg leading-relaxed">
+            Trade your old iPhone for a premium AquaCafe water filtration system. 
+            Reduce plastic waste while upgrading your home with pure, mineral-rich water.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <div className="flex items-center gap-2 text-emerald-400 font-bold">
+              <ShieldCheck className="w-5 h-5" />
+              <span>Verified Appraisal</span>
+            </div>
+            <div className="flex items-center gap-2 text-blue-400 font-bold">
+              <Zap className="w-5 h-5" />
+              <span>Instant Credit</span>
+            </div>
+          </div>
+        </div>
+        <div className="w-full md:w-auto">
+          <Button size="lg" className="bg-white hover:bg-gray-100 text-black font-black px-8 py-6 rounded-2xl w-full">
+            Start Exchange
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Exchange() {
   const { toast } = useToast();
