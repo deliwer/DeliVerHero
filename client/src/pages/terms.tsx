@@ -268,7 +268,7 @@ export default function Terms() {
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="mailto:legal@deliwer.com"
+                  href="mailto:admin@deliwer.com"
                   className="bg-hero-green-500 hover:bg-hero-green-600 text-black px-6 py-3 rounded-lg font-medium transition-colors"
                 >admin@deliwer.com</a>
                 <a 
