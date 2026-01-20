@@ -35,7 +35,6 @@ export default function CampaignDeBacciPage() {
         title="DeBacci Group Exclusive Partner Offer | DeliWer Exit Concierge"
         description="Exclusive 20% off DeliWer Exit Concierge for DeBacci Group network members. Professional Dubai exit management."
       />
-
       {/* Hero Section with DeBacci Branding */}
       <section className="relative py-24 px-4 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')] opacity-20 bg-cover bg-center" />
@@ -54,7 +53,7 @@ export default function CampaignDeBacciPage() {
 
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none">
             Your Dubai Exit, <br />
-            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Redefined.</span>
+            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Exit Cleanly. Exit Confidently.</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -81,7 +80,6 @@ export default function CampaignDeBacciPage() {
           </div>
         </div>
       </section>
-
       {/* PAIN ALIGNMENT */}
       <section className="py-24 px-4 bg-slate-900/50">
         <div className="max-w-4xl mx-auto">
@@ -114,7 +112,6 @@ export default function CampaignDeBacciPage() {
           </div>
         </div>
       </section>
-
       {/* CORE OFFER */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
@@ -173,7 +170,6 @@ export default function CampaignDeBacciPage() {
           </div>
         </div>
       </section>
-
       {/* SELF-QUALIFICATION */}
       <section className="py-24 px-4 bg-emerald-950/20">
         <div className="max-w-4xl mx-auto">
@@ -202,7 +198,6 @@ export default function CampaignDeBacciPage() {
           </p>
         </div>
       </section>
-
       {/* DEBACCI BENEFIT */}
       <section className="py-24 px-4 border-y border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -270,7 +265,6 @@ export default function CampaignDeBacciPage() {
           </div>
         </div>
       </section>
-
       {/* TRUST & DELIVERY */}
       <section className="py-24 px-4 text-center">
         <div className="max-w-4xl mx-auto">
