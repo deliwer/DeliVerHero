@@ -56,9 +56,8 @@ export default function CampaignDeBacciPage() {
             <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Exit Cleanly. Exit Confidently.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            The exclusive white-glove concierge for the DeBacci Group network. Hand over your keys—we handle the professional close-out of your UAE chapter.
-          </p>
+          <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">An exclusive Exit Concierge service by DeliWer
+          for Debacci Community members leaving Dubai for their next chapter.</p>
 
           <div className="flex flex-col items-center gap-8 max-w-3xl mx-auto">
             <Button 
