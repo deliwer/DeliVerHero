@@ -215,7 +215,7 @@ export default function Home() {
             Leaving Dubai?<br />
             <span className="text-[#FFC845]">Don’t lose your deposit or leave liabilities behind.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">We manage your entire move-out and closure process — professionally, compliantly, end-to-end.</p>
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">This is a concierge exit service founders are quietly using.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Button 
               size="lg" 
