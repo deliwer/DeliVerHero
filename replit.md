@@ -3,15 +3,13 @@
 ## Overview
 DeliWer is a full-stack JavaScript application designed for sustainable living, e-commerce, AI integration, and rewards. It serves as a comprehensive platform including a climate activism initiative ("Pakistan Planet Hero Mission"), a B2B wholesale platform ("ChainTrack"), and a Dubai-based relocation and investment gateway ("DeliWer Relocate"). The project focuses on responsive design, gamification, and a user-friendly experience, targeting markets in Dubai and Pakistan, with a strong emphasis on lead generation and conversion optimization for production launch.
 
-## Recent Updates (Dec 20, 2025) - FINAL QA COMPLETE
-- **Relocate Page Production Fixes**:
-  - Fixed Calendly popup buttons - now loads external widget script dynamically
-  - Fixed critical `setShowLeadCaptureModal` undefined error on all 3 pricing buttons
-  - All 3 pricing card buttons now scroll to form section on click (Family, Business, Premium)
-  - Fixed text visibility issues: Changed light greens to emerald colors with proper contrast
-  - Added dark mode support for popup text colors
-  - Removed emojis from dialog titles per design guidelines
-  - All buttons now fully functional and tested
+## Recent Updates (Jan 21, 2026)
+- **Residence & Relocate Integration**:
+  - Added `/residence/move-in` and `/residence/move-out` subpages for targeted enquiries
+  - Integrated WhatsApp enquiry links with pre-filled targeted messages for move-in/out services
+  - Implemented a sitewide `ExitPricingCalculator` component for move-out/exit packages
+  - Added smooth click flow CTAs between `/residence` and `/relocate` to guide users through the living journey
+  - Enhanced `/relocate` hero with a direct path to `/residence` for users still looking for a home
 
 ## User Preferences
 Not specified.

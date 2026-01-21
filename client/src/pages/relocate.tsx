@@ -153,13 +153,13 @@ export default function Relocate() {
             >
               Start Relocation Calculator
             </Button>
-            <Link href="/relocate/visa">
+            <Link href="/residence">
               <Button 
                 size="lg" 
                 variant="outline" 
                 className="border-white/30 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 font-bold h-14 px-8 rounded-full"
               >
-                Visa or Golden Visa? Visit Visa Services
+                Find a Home? Visit Residence
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>

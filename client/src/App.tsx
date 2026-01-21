@@ -42,6 +42,8 @@ import { PurchaseOrdersPage } from "@/pages/purchase-orders";
 import { AccountManagementPage } from "@/pages/account-management";
 
 // Lazy load non-critical pages
+const MoveInSubpage = lazy(() => import("@/pages/residence/move-in"));
+const MoveOutSubpage = lazy(() => import("@/pages/residence/move-out"));
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
 const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
 const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
@@ -152,6 +154,8 @@ function Router() {
         {/* Housing - Rent, Buy, Invest */}
         <Route path="/residence" component={Residence} />
         <Route path="/residence/find-a-place" component={FindAPlace} />
+        <Route path="/residence/move-in" component={MoveInSubpage} />
+        <Route path="/residence/move-out" component={MoveOutSubpage} />
 
         {/* Core Site Pages */}
         <Route path="/privacy" component={Privacy} />

@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
   Home, 
@@ -16,8 +16,11 @@ import {
   Clock,
   Search,
   Info,
-  Gift
+  Gift,
+  ArrowDownCircle,
+  LogOut
 } from "lucide-react";
+import { ExitPricingCalculator } from "@/components/exit-pricing-calculator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 // Import lifestyle images
@@ -192,7 +195,7 @@ export default function Residence() {
         </div>
       </section>
 
-      {/* SECTION 4: TWO CLEAR PATHS (PRIMARY CONVERSION) */}
+      {/* SECTION 4: THREE CLEAR PATHS (PRIMARY CONVERSION) */}
       <section 
         className="relative py-24 px-4 overflow-hidden"
         style={{
@@ -203,37 +206,70 @@ export default function Residence() {
         }}
       >
         <div className="absolute inset-0 bg-black/80"></div>
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid md:grid-cols-2 gap-8">
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="grid md:grid-cols-3 gap-8">
             {/* PATH 1: MOVE-IN SERVICES */}
             <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 shadow-2xl">
               <CardHeader className="p-8">
-                <h3 className="text-3xl font-bold text-white mb-2">Move-In Services</h3>
-                <p className="text-gray-400">Choose individual services you may need when settling into a new home in Dubai.</p>
+                <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-2">
+                  <ArrowDownCircle className="w-6 h-6 text-emerald-500" />
+                  Move-In
+                </h3>
+                <p className="text-gray-400">Everything you need to settle into your new home smoothly.</p>
               </CardHeader>
               <CardContent className="p-8 pt-0">
                 <ul className="space-y-3 mb-8">
-                  {["Initial cleaning", "Drinking water setup", "Basic maintenance checks", "Move-in day coordination"].map((item, i) => (
+                  {["Initial cleaning", "Utility activation", "Internet setup", "Furniture coordination"].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-300">
                       <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                       {item}
                     </li>
                   ))}
                 </ul>
-                <Link href="/residence/move-in-services">
-                  <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl" data-testid="link-move-in-services">
-                    View move-in services
+                <Link href="/residence/move-in">
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl">
+                    View Move-In Services
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
 
-            {/* PATH 2: MOVE-IN PACKAGES */}
+            {/* PATH 2: MOVE-OUT SERVICES */}
+            <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-red-500/50 transition-all duration-500 shadow-2xl">
+              <CardHeader className="p-8">
+                <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-2">
+                  <LogOut className="w-6 h-6 text-red-500" />
+                  Move-Out
+                </h3>
+                <p className="text-gray-400">Professional exit concierge to help you leave without loose ends.</p>
+              </CardHeader>
+              <CardContent className="p-8 pt-0">
+                <ul className="space-y-3 mb-8">
+                  {["Deposit recovery", "Utility closure", "Professional cleaning", "Global move intro"].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle2 className="w-5 h-5 text-red-500" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link href="/residence/move-out">
+                  <Button className="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-6 rounded-xl">
+                    View Move-Out Services
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* PATH 3: MOVE-IN PACKAGES */}
             <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-blue-500/50 transition-all duration-500 shadow-2xl">
               <CardHeader className="p-8">
-                <h3 className="text-3xl font-bold text-white mb-2">Move-In Packages</h3>
-                <p className="text-gray-400">Bundled move-in solutions designed to reduce stress and avoid managing multiple vendors.</p>
+                <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-2">
+                  <Zap className="w-6 h-6 text-blue-500" />
+                  Packages
+                </h3>
+                <p className="text-gray-400">Bundled move-in solutions designed for families and professionals.</p>
               </CardHeader>
               <CardContent className="p-8 pt-0">
                 <ul className="space-y-3 mb-8">
@@ -246,13 +282,24 @@ export default function Residence() {
                 </ul>
                 <Link href="/residence/move-in-packages">
                   <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 rounded-xl" data-testid="link-move-in-packages">
-                    View move-in packages
+                    View Packages
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Pricing Calculator Section */}
+      <section className="py-24 px-4 bg-slate-950">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black uppercase tracking-tighter mb-4">Calculate Your Exit Cost</h2>
+            <p className="text-gray-400 text-lg">Transparent pricing for move-out packages across Dubai.</p>
+          </div>
+          <ExitPricingCalculator />
         </div>
       </section>
 
