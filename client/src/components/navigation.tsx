@@ -232,7 +232,7 @@ export function Navigation() {
                 data-testid="button-shop-all"
               >
                 <Rocket className="inline w-4 h-4 mr-2" />
-                Shop All
+                Shop Sustainable
               </Link>
             </div>
 
@@ -369,7 +369,7 @@ export function Navigation() {
                 data-testid="link-mobile-shop-all"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Shop all
+                Shop Sustainable
               </Link>
               
               <Link 
