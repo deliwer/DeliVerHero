@@ -43,252 +43,148 @@ export default function Residence() {
         ⚠️ DeliWer does not sell property or act as a real estate agent. Not a property listing platform.
       </div>
 
-      {/* SECTION 1: HERO */}
-      <section className="relative py-20 overflow-hidden min-h-[600px] flex items-center">
+      {/* SECTION 1: HERO - SIMPLIFIED */}
+      <section className="relative py-28 overflow-hidden min-h-[70vh] flex items-center">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(30, 41, 59, 0.8) 100%), url(${marketImage})`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${marketImage})`,
           }}
         ></div>
         
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6" data-testid="text-hero-title">
-              Residence services for moving into a home in Dubai
-            </h1>
-            <p className="text-lg md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Support for every stage of living in Dubai — from finding a place to stay to getting fully set up after move-in.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                size="lg" 
-                className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-8 text-lg rounded-2xl shadow-2xl transition-all" 
-                data-testid="button-start-journey"
-                onClick={scrollToJourney}
-              >
-                Start your residence journey
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-8 text-lg font-medium rounded-2xl hover:bg-white/20 transition-all" data-testid="button-whatsapp-contact">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                WhatsApp +971 523 946 311
-              </Button>
-            </div>
-            <p className="text-[12px] text-gray-400 mt-6 font-medium uppercase tracking-widest">
-              Not a real estate agency. Not a property listing platform.
-            </p>
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter" data-testid="text-hero-title">
+            DUBAI RESIDENCE <br />
+            <span className="text-blue-400">MADE SIMPLE.</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-medium">
+            Find your home, settle in, and live stress-free. Guidance for every stage of your Dubai life.
+          </p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Button 
+              size="lg" 
+              className="bg-blue-600 hover:bg-blue-500 text-white font-black px-12 h-20 text-xl rounded-full shadow-2xl transition-transform hover:scale-105" 
+              onClick={scrollToJourney}
+            >
+              Start Journey
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white/40 text-white backdrop-blur-md bg-white/10 px-12 h-20 text-xl font-black rounded-full hover:bg-white/20"
+              onClick={() => window.open('https://wa.me/971523946311?text=Hi, I need help with residence services in Dubai.', '_blank')}
+            >
+              <MessageCircle className="w-8 h-8 mr-3" />
+              WhatsApp Us
+            </Button>
           </div>
+          <p className="text-xs text-white/50 mt-8 uppercase tracking-[0.3em] font-bold">
+            No Agents. No Pressure. Just Support.
+          </p>
         </div>
       </section>
 
-      {/* SECTION 2: JOURNEY INTRO */}
-      <section 
-        className="relative py-24 px-4 overflow-hidden"
-        style={{
-          backgroundImage: `url(${residentsHero})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/75"></div>
-        <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Living in Dubai is a journey, not a transaction</h2>
-          <div className="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed">
-            <p>
-              Finding a place, settling in, and managing daily life often involve different providers and confusing handoffs.
-            </p>
-            <p className="font-semibold text-blue-400">
-              DeliWer brings these moments together — guiding residents before and after they move in.
-            </p>
+      {/* SECTION 2: SIMPLIFIED THREE PATHS */}
+      <section ref={journeySectionRef} className="py-32 bg-slate-50 dark:bg-slate-900/50">
+        <div className="container mx-auto max-w-7xl px-6">
+          <div className="text-center mb-24">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">HOW CAN WE HELP?</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Choose your path and let us handle the rest.</p>
           </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: FIND A PLACE & COMMUNITY */}
-      <section 
-        ref={journeySectionRef} 
-        className="relative py-20 px-4 overflow-hidden"
-        style={{
-          backgroundImage: `url(${ecosystemImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/85"></div>
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center uppercase tracking-wider">Find a Place & Community</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-12">
             {[
-              { title: "Find a Place to Stay", description: "Guidance for choosing the right living option based on stay duration, location, and budget — without agent pressure.", icon: Search },
-              { title: "Short-Term Living (Managed)", description: "Arranged serviced apartments and short-term homes with move-in support and ongoing assistance.", icon: Clock },
-              { title: "Community Living", description: "Support designed around real communities and buildings — not generic listings.", icon: Building2 }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover-elevate">
-                <div className="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-blue-400" />
+              { 
+                title: "FIND A HOME", 
+                desc: "Guidance on locations, stay duration, and community living without broker pressure.",
+                link: "/residence/find-a-place",
+                icon: Search,
+                color: "blue"
+              },
+              { 
+                title: "MOVE-IN", 
+                desc: "Cleaning, utilities, internet, and furniture setup. Everything ready for your arrival.",
+                link: "/residence/move-in",
+                icon: ArrowDownCircle,
+                color: "emerald"
+              },
+              { 
+                title: "MOVE-OUT", 
+                desc: "Professional exit concierge. Deposit recovery, cleaning, and utility closures.",
+                link: "/residence/move-out",
+                icon: LogOut,
+                color: "red"
+              }
+            ].map((path, i) => (
+              <div key={i} className="flex flex-col items-center text-center group">
+                <div className={`w-24 h-24 rounded-[2rem] bg-${path.color}-500/10 flex items-center justify-center mb-10 transition-all group-hover:scale-110`}>
+                  <path.icon className={`w-12 h-12 text-${path.color}-500`} />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                <h3 className="text-3xl font-black mb-4 tracking-tight">{path.title}</h3>
+                <p className="text-lg text-muted-foreground mb-10 leading-relaxed">{path.desc}</p>
+                <Link href={path.link}>
+                  <Button variant="outline" className={`border-${path.color}-500/20 text-${path.color}-600 hover:bg-${path.color}-500/10 font-bold rounded-full px-8 h-12`}>
+                    Explore {path.title.toLowerCase()}
+                  </Button>
+                </Link>
               </div>
             ))}
           </div>
-          <div className="flex justify-center">
-            <Link href="/residence/find-a-place">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-6 rounded-xl" data-testid="link-explore-living">
-                Explore Living Options
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* SECTION 4: MOVE-IN & SETUP */}
-      <section 
-        className="relative py-20 px-4 overflow-hidden border-t border-white/5"
-        style={{
-          backgroundImage: `url(${settlementImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/85"></div>
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-12">
-            <Badge className="bg-emerald-500 text-white px-4 py-1.5 rounded-full mb-4 animate-pulse">
-              LIMITED TIME: JVC LAUNCH OFFER
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-wider">Move-In & Home Setup</h2>
-            <p className="text-emerald-400 font-bold mt-2">Claim your Free Shower Filter + AED 99 Starter Deal</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {[
-              { title: "Move-In Services", description: "Essential services to prepare your home after keys are received.", icon: Key },
-              { title: "Utilities & Home Setup", description: "Help with water, internet, and essential home services.", icon: Zap },
-              { title: "Exclusive JVC Offer", description: "Free shower filter installation + AED 99 move-in starter for new residents.", icon: Gift, highlight: true }
-            ].map((item, idx) => (
-              <div key={idx} className={`bg-black/40 backdrop-blur-md border ${item.highlight ? 'border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.2)]' : 'border-white/10'} rounded-2xl p-6 hover-elevate`}>
-                <div className={`w-12 h-12 ${item.highlight ? 'bg-emerald-600/30' : 'bg-emerald-600/20'} rounded-xl flex items-center justify-center mb-4`}>
-                  <item.icon className={`w-6 h-6 ${item.highlight ? 'text-emerald-400' : 'text-emerald-400'}`} />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/launch">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-6 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-                Claim Launch Offer
-                <Gift className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
-            <Link href="/residence/move-in-services">
-              <Button size="lg" variant="outline" className="border-white/30 text-white backdrop-blur-sm bg-white/10 px-8 py-6 rounded-xl hover:bg-white/20">
-                Individual Services
-              </Button>
-            </Link>
-          </div>
+      {/* SECTION 3: WHATSAPP QUICK ACTION */}
+      <section className="relative py-32 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${settlementImage})` }}
+        />
+        <div className="absolute inset-0 bg-blue-950/90 backdrop-blur-md" />
+        <div className="container mx-auto max-w-5xl px-6 relative z-10 text-center text-white">
+          <Badge className="bg-emerald-500 text-white px-6 py-2 rounded-full mb-8 text-lg font-black tracking-widest uppercase">
+            JVC Residents
+          </Badge>
+          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
+            JUST GOT YOUR KEYS?
+          </h2>
+          <p className="text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Message us on WhatsApp for a free shower filter installation and your AED 99 move-in starter deal.
+          </p>
+          <Button 
+            size="lg" 
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-2xl shadow-2xl transition-all hover:scale-105"
+            onClick={() => window.open('https://wa.me/971523946311?text=Hi, I am a JVC resident and I want to claim the move-in offer.', '_blank')}
+          >
+            <MessageCircle className="w-10 h-10 mr-4 animate-bounce" />
+            Claim on WhatsApp
+          </Button>
         </div>
       </section>
 
-      {/* SECTION 4: THREE CLEAR PATHS (PRIMARY CONVERSION) */}
-      <section 
-        className="relative py-24 px-4 overflow-hidden"
-        style={{
-          backgroundImage: `url(${settlementImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/80"></div>
-        <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* PATH 1: MOVE-IN SERVICES */}
-            <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 shadow-2xl">
-              <CardHeader className="p-8">
-                <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-2">
-                  <ArrowDownCircle className="w-6 h-6 text-emerald-500" />
-                  Move-In
-                </h3>
-                <p className="text-gray-400">Everything you need to settle into your new home smoothly.</p>
-              </CardHeader>
-              <CardContent className="p-8 pt-0">
-                <ul className="space-y-3 mb-8">
-                  {["Initial cleaning", "Utility activation", "Internet setup", "Furniture coordination"].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/residence/move-in">
-                  <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-6 rounded-xl">
-                    View Move-In Services
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* PATH 2: MOVE-OUT SERVICES */}
-            <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-red-500/50 transition-all duration-500 shadow-2xl">
-              <CardHeader className="p-8">
-                <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-2">
-                  <LogOut className="w-6 h-6 text-red-500" />
-                  Move-Out
-                </h3>
-                <p className="text-gray-400">Professional exit concierge to help you leave without loose ends.</p>
-              </CardHeader>
-              <CardContent className="p-8 pt-0">
-                <ul className="space-y-3 mb-8">
-                  {["Deposit recovery", "Utility closure", "Professional cleaning", "Global move intro"].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle2 className="w-5 h-5 text-red-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/residence/move-out">
-                  <Button className="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-6 rounded-xl">
-                    View Move-Out Services
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* PATH 3: MOVE-IN PACKAGES */}
-            <Card className="bg-black/40 backdrop-blur-md border-white/10 overflow-hidden group hover:border-blue-500/50 transition-all duration-500 shadow-2xl">
-              <CardHeader className="p-8">
-                <h3 className="text-3xl font-bold text-white mb-2 flex items-center gap-2">
-                  <Zap className="w-6 h-6 text-blue-500" />
-                  Packages
-                </h3>
-                <p className="text-gray-400">Bundled move-in solutions designed for families and professionals.</p>
-              </CardHeader>
-              <CardContent className="p-8 pt-0">
-                <ul className="space-y-3 mb-8">
-                  {["Starter homes", "Family apartments", "Full home setups"].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-gray-300">
-                      <CheckCircle2 className="w-5 h-5 text-blue-500" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/residence/move-in-packages">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 rounded-xl" data-testid="link-move-in-packages">
-                    View Packages
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
+      {/* SECTION 3: WHATSAPP QUICK ACTION */}
+      <section className="relative py-32 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${settlementImage})` }}
+        />
+        <div className="absolute inset-0 bg-blue-950/90 backdrop-blur-md" />
+        <div className="container mx-auto max-w-5xl px-6 relative z-10 text-center text-white">
+          <Badge className="bg-emerald-500 text-white px-6 py-2 rounded-full mb-8 text-lg font-black tracking-widest uppercase">
+            JVC Residents
+          </Badge>
+          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
+            JUST GOT YOUR KEYS?
+          </h2>
+          <p className="text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Message us on WhatsApp for a free shower filter installation and your AED 99 move-in starter deal.
+          </p>
+          <Button 
+            size="lg" 
+            className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-2xl shadow-2xl transition-all hover:scale-105"
+            onClick={() => window.open('https://wa.me/971523946311?text=Hi, I am a JVC resident and I want to claim the move-in offer.', '_blank')}
+          >
+            <MessageCircle className="w-10 h-10 mr-4 animate-bounce" />
+            Claim on WhatsApp
+          </Button>
         </div>
       </section>
 
@@ -304,61 +200,46 @@ export default function Residence() {
       </section>
 
       {/* SECTION 5: ANTI-BROKER TRUST STATEMENT */}
-      <section className="relative py-20 px-4 overflow-hidden bg-black">
-        <div className="container mx-auto max-w-3xl text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Guidance, not listings</h2>
-          <div className="space-y-4 text-lg text-gray-400">
-            <p>We don’t display hundreds of properties.</p>
-            <p>We don’t push agent commissions.</p>
-            <p className="text-white font-semibold pt-4">
-              Our role is to help residents make the right living decisions and support them after move-in.
+      <section className="relative py-20 px-4 overflow-hidden bg-black text-center">
+        <div className="container mx-auto max-w-3xl relative z-10">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-8 tracking-tighter">GUIDANCE, NOT LISTINGS</h2>
+          <div className="space-y-4 text-xl text-gray-400 font-medium">
+            <p>No generic property listings.</p>
+            <p>No broker commissions.</p>
+            <p className="text-blue-400 font-black pt-4 text-2xl uppercase">
+              Pure support for residents.
             </p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: LOCATION SIGNAL */}
-      <section className="py-12 px-4 bg-slate-950/50">
-        <div className="container mx-auto text-center">
-          <p className="text-gray-300 mb-2">
-            Residence services currently support selected Dubai communities, including <span className="text-white font-bold">JVC</span>.
-          </p>
-          <p className="text-xs text-gray-500 italic">
-            Coverage expands based on building access and demand.
-          </p>
-        </div>
-      </section>
-
       {/* FINAL CTA (BOTTOM) */}
       <section 
-        className="relative py-28 px-4 overflow-hidden"
+        className="relative py-32 px-6 overflow-hidden text-center"
         style={{
           backgroundImage: `url(${marketImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'bottom',
-          backgroundAttachment: 'fixed',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black/80"></div>
-        <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Just received your keys?</h2>
-          <p className="text-xl text-gray-400 mb-10">Start with what you need — services or a complete move-in plan.</p>
+        <div className="absolute inset-0 bg-black/90 backdrop-blur-sm"></div>
+        <div className="container mx-auto max-w-4xl relative z-10">
+          <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter uppercase">Ready to Start?</h2>
+          <p className="text-xl text-gray-400 mb-12 font-medium">Our team is ready to guide you through your move.</p>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Link href="/residence/move-in-services">
-              <Button className="w-full bg-emerald-600 hover:bg-emerald-500 py-6 rounded-xl font-bold">
-                Start with services
-              </Button>
-            </Link>
-            <Link href="/residence/move-in-packages">
-              <Button className="w-full bg-blue-600 hover:bg-blue-500 py-6 rounded-xl font-bold">
-                See move-in packages
-              </Button>
-            </Link>
-            <Button variant="outline" className="w-full border-white/20 text-white py-6 rounded-xl font-bold hover:bg-white/10 backdrop-blur-sm">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              WhatsApp us
+          <div className="flex flex-wrap justify-center gap-6">
+            <Button 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-12 h-20 text-xl rounded-full shadow-2xl transition-all hover:scale-105"
+              onClick={() => window.open('https://wa.me/971523946311?text=Hi, I am ready to start my residence journey.', '_blank')}
+            >
+              <MessageCircle className="w-8 h-8 mr-3" />
+              WhatsApp Us
             </Button>
+            <Link href="/residence/move-in-packages">
+              <Button size="lg" variant="outline" className="border-white/40 text-white backdrop-blur-md bg-white/10 px-12 h-20 text-xl font-black rounded-full hover:bg-white/20">
+                View Packages
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -366,12 +247,10 @@ export default function Residence() {
       {/* MANDATORY DISCLAIMER FOOTER */}
       <footer className="py-12 px-4 bg-black border-t border-white/5">
         <div className="container mx-auto text-center">
-          <div className="inline-block bg-amber-500/10 border border-amber-500/20 rounded-full px-8 py-3 mb-6">
-            <p className="text-amber-500 font-bold text-sm uppercase tracking-widest">
-              DeliWer does not sell property or act as a real estate agent.
-            </p>
-          </div>
-          <p className="text-gray-600 text-xs">© {new Date().getFullYear()} DeliWer Residence. All rights reserved.</p>
+          <p className="text-amber-500 font-black text-sm uppercase tracking-widest mb-6">
+            DeliWer does not sell property or act as a real estate agent.
+          </p>
+          <p className="text-gray-600 text-xs font-medium">© {new Date().getFullYear()} DeliWer Residence. All rights reserved.</p>
         </div>
       </footer>
     </div>
