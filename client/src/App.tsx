@@ -10,6 +10,7 @@ import { StickyNeonHeadline } from "@/components/sticky-neon-headline";
 import { TooltipManager } from "@/components/tooltip-manager";
 import { ImagePerformanceMonitor } from "@/components/image-performance-monitor";
 import { FloatingErrandTips } from "@/components/floating-errand-tips";
+import { BackToTop } from "@/components/back-to-top";
 import { Suspense, useEffect, lazy } from "react";
 import { useLocation } from "wouter";
 
@@ -258,6 +259,7 @@ function App() {
           </main>
           <Footer />
           <FloatingErrandTips />
+          <BackToTop />
         </div>
         <Toaster />
         <TooltipManager />

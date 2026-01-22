@@ -65,7 +65,6 @@ export function Navigation() {
   }
 
   const consumerNavItems = [
-    { path: "/", label: "Home", id: "home" },
     { path: "/ewaste", label: "Recycle", id: "recycle", icon: Recycle },
     { path: "/residence", label: "Residence in Dubai", id: "move-in-services" },
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
