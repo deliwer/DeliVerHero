@@ -108,14 +108,14 @@ export default function Residence() {
               { 
                 title: "MOVE-IN", 
                 desc: "Cleaning, utilities, internet, and furniture setup. Everything ready for your arrival.",
-                link: "/residence/move-in",
+                link: "/residence/move-in-services",
                 icon: ArrowDownCircle,
                 color: "emerald"
               },
               { 
                 title: "MOVE-OUT", 
                 desc: "Professional exit concierge. Deposit recovery, cleaning, and utility closures.",
-                link: "/residence/move-out",
+                link: "/residence/move-out-services",
                 icon: LogOut,
                 color: "red"
               }
