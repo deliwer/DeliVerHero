@@ -37,7 +37,7 @@ import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 import waterServiceImg from "@assets/stock_images/5-stage_water_purifi_4d73f45d.jpg";
-import waterLifestyleImg from "@assets/stock_images/5-stage_water_purifi_b2e38594.jpg";
+import waterLifestyleImg from "@assets/without_text_1756065010951.jpg";
 import waterPurifierImg from "@assets/stock_images/modern_water_filtrat_3b514222.jpg";
 import homeServiceHeroImg from "@assets/stock_images/professional_service_2cfeb661.jpg";
 import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
@@ -212,12 +212,14 @@ export default function HomeService() {
       {/* Water Service Hero Section - FEATURED */}
       <section className="py-0 px-0 relative" id="water-service">
         <div className="h-96 md:h-[500px] lg:h-[600px] relative overflow-hidden">
-          <img 
-            src={waterLifestyleImg} 
-            alt="Family enjoying clean water at home - lifestyle image" 
-            className="w-full h-full object-cover"
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ 
+              backgroundImage: `url(${waterLifestyleImg})`,
+              backgroundPosition: 'center 0%' // This helps "remove" the white strip by focusing on the top/center
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
           <div className="absolute inset-0 flex items-center">
             <div className="container mx-auto px-4 relative z-10 max-w-5xl">
               <div className="max-w-2xl">
