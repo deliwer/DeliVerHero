@@ -45,6 +45,7 @@ import { AccountManagementPage } from "@/pages/account-management";
 const MoveInSubpage = lazy(() => import("@/pages/residence/move-in"));
 const MoveOutSubpage = lazy(() => import("@/pages/residence/move-out"));
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
+const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
 const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
 const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
 const RelocateConcierge = lazy(() => import("@/pages/relocate/concierge"));
@@ -130,7 +131,7 @@ function Router() {
           <Route path="/relocate/exit" component={RelocateExitSubpage} />
           <Route path="/relocate/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
           <Route path="/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
-          <Route path="/relocate/business-setup" component={BusinessSetup} />
+          <Route path="/relocate/business-setup" component={BusinessSetupPage} />
           <Route path="/residence/move-in-services" component={MoveInServices} />
           <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
           <Route path="/relocate-community" component={RelocateCommunity} />
@@ -138,7 +139,7 @@ function Router() {
           <Route path="/claim-redemption" component={lazy(() => import("@/pages/claim-redemption"))} />
           <Route path="/relocation" component={Relocate} />
           <Route path="/business-setup" component={BusinessSetup} />
-          <Route path="/relocate/business-setup" component={BusinessSetup} />
+          <Route path="/relocate/business-setup" component={BusinessSetupPage} />
           <Route path="/move-in-services" component={MoveInServices} />
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
