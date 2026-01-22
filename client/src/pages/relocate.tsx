@@ -48,7 +48,7 @@ import {
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
-import relocationHero from "@assets/stock_images/relocation_hero.jpg";
+import relocationHero from "../assets/stock_images/relocation_hero.jpg";
 
 export default function Relocate() {
   const { toast } = useToast();
