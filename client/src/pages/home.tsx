@@ -164,7 +164,7 @@ function LiveChallengeWidget() {
   );
 }
 
-import relocationHeroPng from "@/assets/generated_images/dubai-relocation-luxury-moment.png";
+import relocationHeroPng from "@/assets/generated_images/dubai-relocation-risk-management.png";
 
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -199,67 +199,67 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      {/* Hero Section - Elite Concierge Focus */}
+      {/* Hero Section - Elite Concierge & Risk Mitigation Focus */}
       <section className="relative py-24 md:py-40 px-4 overflow-hidden min-h-[90vh] flex items-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${relocationHeroPng})` }}
         />
-        <div className="absolute inset-0 z-0 bg-[#0A3D62]/75 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 z-0 bg-[#0A3D62]/60 backdrop-blur-[0.5px]" />
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="mb-6 inline-block px-4 py-1 bg-[#FFC845] text-[#0A3D62] font-black text-sm uppercase tracking-[0.3em] rounded-full">
-            Elite Concierge by DeliWer
+            Elite Concierge & Risk Mitigation by DeliWer
           </div>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white leading-[0.9] drop-shadow-2xl">
-            Arriving in Dubai?<br />
-            <span className="text-[#FFC845]">Your New Chapter, Handled Right.</span>
+            Entering Dubai?<br />
+            <span className="text-[#FFC845]">Ensure Your Exit is Already Handled.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">Relocation, company setup, and premium living managed with absolute clarity.</p>
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">Most relocations fail at the end. We manage your arrival with a focus on mitigating the liabilities that trap founders upon exit.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Button 
               size="lg" 
               className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-black rounded-full px-16 h-24 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2" 
-              onClick={() => window.open('https://wa.me/971523946311?text=I%20am%20interested%20in%20DeliWer%20premium%20concierge%20services', '_blank')}
+              onClick={() => window.open('https://wa.me/971523946311?text=I%20want%20to%20avoid%20relocation%20mishandling%20and%20exit%20traps', '_blank')}
             >
               <MessageSquare className="w-8 h-8 mr-3" />
-              Get Started on WhatsApp
+              Mitigate Risk on WhatsApp
             </Button>
             <Link href="/relocate">
               <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-12 h-20 text-xl backdrop-blur-md font-bold">
-                Explore Relocation
+                Relocate with Certainty
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
           </div>
         </div>
       </section>
-      {/* 3 Quick Value Points */}
+      {/* 3 Quick Value Points - Focus on Dilemma & Consequences */}
       <section className="py-24 px-4 bg-[#0A3D62] border-y border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12">
             <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-emerald-500/20 rounded-3xl flex items-center justify-center mb-6 border border-emerald-500/30 group-hover:scale-110 transition-transform">
-                <Sparkles className="w-10 h-10 text-emerald-400" />
+              <div className="w-20 h-20 bg-red-500/20 rounded-3xl flex items-center justify-center mb-6 border border-red-500/30 group-hover:scale-110 transition-transform">
+                <Gavel className="w-10 h-10 text-red-400" />
               </div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Max Deposit Recovery</h3>
-              <p className="text-blue-100/70 text-lg leading-relaxed">We manage move-out cleaning and handover to ensure you get your money back.</p>
+              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Avoid Exit Traps</h3>
+              <p className="text-blue-100/70 text-lg leading-relaxed">Mishandled Ejari or DEWA closures at arrival create massive legal liabilities when you eventually leave.</p>
             </div>
             
             <div className="flex flex-col items-center text-center group">
               <div className="w-20 h-20 bg-[#FFC845]/20 rounded-3xl flex items-center justify-center mb-6 border border-[#FFC845]/30 group-hover:scale-110 transition-transform">
                 <FileText className="w-10 h-10 text-[#FFC845]" />
               </div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Utility & Billing Closure</h3>
-              <p className="text-blue-100/70 text-lg leading-relaxed">DEWA, Internet, and final settlements handled professionally and compliantly.</p>
+              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Liability Protection</h3>
+              <p className="text-blue-100/70 text-lg leading-relaxed">We audit your contracts from day one to ensure a smooth, penalty-free exit when the time comes.</p>
             </div>
 
             <div className="flex flex-col items-center text-center group">
               <div className="w-20 h-20 bg-blue-400/20 rounded-3xl flex items-center justify-center mb-6 border border-blue-400/30 group-hover:scale-110 transition-transform">
                 <Plane className="w-10 h-10 text-blue-400" />
               </div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">International Move Support</h3>
-              <p className="text-blue-100/70 text-lg leading-relaxed">Expert connections for your next destination—wherever that may be.</p>
+              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Zero-Friction Departure</h3>
+              <p className="text-blue-100/70 text-lg leading-relaxed">Whether you're moving in or ready to move out, we ensure no loose ends are left behind in Dubai.</p>
             </div>
           </div>
         </div>
