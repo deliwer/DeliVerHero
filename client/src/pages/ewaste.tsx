@@ -16,7 +16,9 @@ import {
   Leaf,
   ShoppingBag,
   Gift,
-  LayoutGrid
+  LayoutGrid,
+  ArrowUpRight,
+  Target
 } from "lucide-react";
 import { Link } from "wouter";
 import ewasteHeroImg from "@/assets/images/ewaste-hero.jpg";
