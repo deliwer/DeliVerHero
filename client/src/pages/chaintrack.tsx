@@ -295,7 +295,8 @@ function DemoDashboardPreview() {
   const sampleAuctions = [
     {
       id: "demo-1",
-      device: "iPhone 17 Pro Max 256GB",
+      device: "Refurbished iPhone 15 Pro Max",
+      category: "Preowned Mobile",
       quantity: 100,
       targetPrice: 485,
       currentBestBid: 475,
@@ -305,7 +306,8 @@ function DemoDashboardPreview() {
     },
     {
       id: "demo-2",
-      device: "iPhone 17 Pro 256GB",
+      device: "Refurbished Samsung S24 Ultra",
+      category: "Preowned Mobile",
       quantity: 150,
       targetPrice: 425,
       currentBestBid: 415,
@@ -315,7 +317,8 @@ function DemoDashboardPreview() {
     },
     {
       id: "demo-3",
-      device: "iPhone 16 Pro Max 512GB",
+      device: "Premium Reconditioned Coffee Machines",
+      category: "Household Goods",
       quantity: 200,
       targetPrice: 450,
       currentBestBid: 438,
@@ -325,7 +328,8 @@ function DemoDashboardPreview() {
     },
     {
       id: "demo-4",
-      device: "iPhone 15 Pro Max 256GB",
+      device: "Eco-Friendly Refurbished Home Appliances",
+      category: "Household Goods",
       quantity: 250,
       targetPrice: 380,
       currentBestBid: 372,
@@ -360,8 +364,9 @@ function DemoDashboardPreview() {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <Phone className="w-5 h-5 text-blue-600" />
+                    <Recycle className="w-5 h-5 text-emerald-500" />
                     <h4 className="font-bold text-lg">{auction.device}</h4>
+                    <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">{auction.category}</Badge>
                     <Badge variant="outline">{auction.sourceCountry}</Badge>
                   </div>
                   <p className="text-sm text-slate-600 dark:text-slate-400">{auction.quantity} units</p>
@@ -489,16 +494,16 @@ function ChainTrackLanding() {
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
-              ChainTrack
+              ChainTrack Sustainability Hub
             </h1>
             
             <p className="text-xl md:text-2xl text-white mb-4">
-              B2B Wholesale Mobile Sourcing Platform
+              Preowned Mobiles, Household Goods & Refurbished Items
             </p>
             
             <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-              AI-powered reverse bidding platform with full compliance support. 
-              Access global inventory from Dubai Airport Freezone with competitive pricing and verified suppliers.
+              The ultimate B2B marketplace for sustainable commerce. 
+              Buy and sell refurbished electronics and household essentials with full transparency and verified quality.
             </p>
           </div>
         </div>
