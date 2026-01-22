@@ -84,7 +84,7 @@ export default function Relocation() {
   return (
     <div>
       <SEOMeta
-        title="Relocation Services Dubai - Local & International Moving Support"
+        title="Dubai Relocation & Home Setup - Moving Simplified"
         description="Complete relocation support for Dubai and UAE. From apartment activation and utilities to visa coordination and legal documentation. Serving expats, families, and corporate relocations."
         keywords="relocation Dubai, moving services UAE, expat relocation, corporate relocation, international moving, visa support, apartment activation, move-in services"
       />

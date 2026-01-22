@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://deliwer.com/sitemap.xml

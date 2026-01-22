@@ -123,7 +123,7 @@ export default function Relocate() {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Dubai Relocation Services | Moving & Home Setup | DeliWer</title>
+        <title>Dubai Relocation Services | Home Setup & Moving | DeliWer</title>
         <meta name="description" content="Moving to Dubai? We handle the entire relocation. International shipping, home setup, utilities, and lifestyle support." />
       </Helmet>
 
