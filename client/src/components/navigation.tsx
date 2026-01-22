@@ -66,7 +66,7 @@ export function Navigation() {
 
   const consumerNavItems = [
     { path: "/", label: "Home", id: "home" },
-    { path: "/ewaste", label: "Recycle", id: "recycle" },
+    { path: "/ewaste", label: "Recycle", id: "recycle", icon: Recycle },
     { path: "/residence", label: "Residence in Dubai", id: "move-in-services" },
     { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
@@ -99,7 +99,7 @@ export function Navigation() {
                 />
               </div>
             </Link>
-            <div className="hidden md:flex space-x-6">
+            <div className="hidden md:flex items-center space-x-6">
               {navItems.map((item) => {
                 
                 // Special styling for featured Relocation button (Consumer)
@@ -140,10 +140,11 @@ export function Navigation() {
                   <Link
                     key={item.path}
                     href={item.path}
-                    className="transition-colors text-gray-300 hover:text-white text-center"
+                    className="transition-colors text-gray-300 hover:text-white flex items-center gap-2"
                     data-testid={`link-${item.id}`}
                   >
-                    {item.label}
+                    {item.icon && <item.icon className="w-4 h-4" />}
+                    <span>{item.label}</span>
                   </Link>
                 );
               })}
@@ -259,62 +260,29 @@ export function Navigation() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-700">
               {navItems.map((item) => {
-                // Special styling for featured Fulfillment by DeliWer in mobile
-                if (item.id === "fulfillment" && item.featured) {
+                // Special styling for featured Relocation button (Consumer)
+                if (item.id === "relocation" && item.featured) {
                   return (
                     <Link
                       key={item.path}
-                      href={item.path}
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
+                      href="/relocate"
+                      className="block px-3 py-2 rounded-md text-base font-medium transition-all duration-300"
                       data-testid={`link-mobile-${item.id}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/30 to-cyan-600/30 border-2 border-blue-500/60 rounded-lg text-white shadow-lg">
-                        <span className="font-bold">{item.label}</span>
-                        <Package className="w-4 h-4 text-green-400 ml-auto" />
+                      <div className="flex items-center justify-between px-3 py-3 bg-gradient-to-r from-amber-600/40 to-orange-600/40 border-2 border-amber-500/70 rounded-lg text-white shadow-xl">
+                        <div className="flex items-center gap-2">
+                          <Plane className="w-5 h-5 text-yellow-300" />
+                          <span className="font-bold">Relocation in/out Dubai</span>
+                        </div>
+                        <ArrowRight className="w-4 h-4" />
                       </div>
                     </Link>
                   );
                 }
-                
-                // Special styling for ChainTrack/Reverse Bidding in mobile
-                if (item.id === "chaintrack") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
-                      data-testid={`link-mobile-${item.id}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-lg text-purple-300">
-                        <TrendingDown className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for home-service link in mobile
-                if (item.id === "home-service") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
-                      data-testid={`link-mobile-${item.id}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-teal-600/20 to-emerald-600/20 border border-teal-500/30 rounded-lg text-teal-300">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for housing link in mobile
-                if (item.id === "housing") {
+
+                // Special styling for Move-In Services
+                if (item.id === "move-in-services") {
                   return (
                     <Link
                       key={item.path}
@@ -323,28 +291,9 @@ export function Navigation() {
                       data-testid={`link-mobile-${item.id}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 border border-blue-500/30 rounded-lg text-blue-300">
-                        <Building className="w-4 h-4" />
+                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-lg text-blue-300">
+                        <Home className="w-4 h-4" />
                         <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-                
-                // Special styling for partners link in mobile
-                if (item.id === "partners") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-colors"
-                      data-testid={`link-mobile-${item.id}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border border-emerald-500/30 rounded-lg text-emerald-300">
-                        <Building className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                        <Sparkles className="w-3 h-3 text-yellow-400 ml-auto" />
                       </div>
                     </Link>
                   );
@@ -354,33 +303,17 @@ export function Navigation() {
                   <Link
                     key={item.path}
                     href={item.path}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2"
                     data-testid={`link-mobile-${item.id}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item.label}
+                    {item.icon && <item.icon className="w-4 h-4" />}
+                    <span>{item.label}</span>
                   </Link>
                 );
               })}
 
-              {/* Add Shop all link to mobile menu only */}
-              <Link
-                href="/chaintrack"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
-                data-testid="link-mobile-shop-all"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Shop Sustainable
-              </Link>
-              
-              <Link 
-                href="/email-campaigns" 
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
-                data-testid="link-mobile-email-campaigns"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Email Campaigns
-              </Link>
+              {/* Add Shop all link to mobile menu removed - now in main nav items */}
 
             </div>
           </div>

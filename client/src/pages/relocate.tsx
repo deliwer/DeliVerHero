@@ -48,7 +48,7 @@ import {
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
-import wellnessResidence from "@assets/stock_images/modern_wellness_luxu_b13619f6.jpg";
+import relocationHero from "@assets/stock_images/relocation_hero.jpg";
 
 export default function Relocate() {
   const { toast } = useToast();
@@ -131,7 +131,7 @@ export default function Relocate() {
       <section className="relative h-[80vh] min-h-[600px] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${dubaiSkyline})` }}
+          style={{ backgroundImage: `url(${relocationHero})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">

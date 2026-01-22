@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
 
+import relocationHero from "@assets/stock_images/relocation_hero.jpg";
+
 export default function Relocation() {
   const [activeTab, setActiveTab] = useState("local");
 
@@ -88,8 +90,13 @@ export default function Relocation() {
       />
 
       {/* Hero Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-amber-600/20 via-slate-900 to-slate-900">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="relative py-16 px-4 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${relocationHero})` }}
+        />
+        <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Relocation Made Simple
           </h1>
