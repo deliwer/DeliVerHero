@@ -27,291 +27,123 @@ import planetHeroesImg from "@/assets/images/planet-heroes.jpg";
 
 export default function EWastePage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      {/* Hero Section - Everyday Living & Sustainable Products */}
-      <div className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-white/5">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
+      {/* Hero Section - Minimalist & Spacious */}
+      <div className="relative h-[85vh] flex items-center justify-center overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30 scale-105 transition-transform duration-[20000ms] ease-linear"
           style={{ backgroundImage: `url(${ewasteHeroImg})` }}
         />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/40 to-slate-950" />
         
-        <div className="relative z-10 text-center px-4 max-w-5xl">
-          <div className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-sm font-bold uppercase tracking-wider animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <ShoppingBag className="w-4 h-4" />
-            Sustainable Living Goals
+        <div className="relative z-10 text-center px-4 max-w-4xl">
+          <div className="mb-8 inline-flex items-center gap-2 px-5 py-2 bg-emerald-500/5 border border-emerald-500/10 rounded-full text-emerald-400/80 text-xs font-bold uppercase tracking-[0.2em] animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <ShoppingBag className="w-3.5 h-3.5" />
+            Sustainable Living
           </div>
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 bg-gradient-to-r from-emerald-400 via-white to-blue-400 bg-clip-text text-transparent leading-[0.9]">
-            Live Better,<br />Consume Smarter.
+          <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter mb-8 bg-gradient-to-r from-emerald-400 via-white to-blue-400 bg-clip-text text-transparent leading-[0.85]">
+            Live Better.<br />Consume Less.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium mb-10">
-            Achieve your daily environmental goals by choosing sustainable tech and furniture. 
-            Turn your consumption into a contribution to Dubai's circular economy.
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-medium mb-12 opacity-90">
+            A conscious approach to technology. Transition from ownership to contribution within Dubai's circular economy.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" className="bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-black uppercase tracking-widest rounded-full px-10 h-16 text-lg active-elevate-2 shadow-xl">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Button asChild size="lg" className="bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-black uppercase tracking-widest rounded-full px-12 h-16 text-sm active-elevate-2 shadow-2xl transition-all">
               <Link href="/contact">
-                <CalendarCheck className="mr-2 w-6 h-6" />
                 Book Collection
               </Link>
             </Button>
-            <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-black font-black uppercase tracking-widest rounded-full px-10 h-16 text-lg active-elevate-2 shadow-xl">
+            <Button asChild size="lg" variant="ghost" className="text-white hover:bg-white/5 font-bold uppercase tracking-widest rounded-full px-12 h-16 text-sm backdrop-blur-sm">
               <Link href="/aquacafe">
-                Explore AquaCafe <ArrowRight className="ml-2 w-5 h-5" />
+                Explore AquaCafe
               </Link>
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 pb-20 space-y-20 mt-20">
-        {/* Planet Heroes Interactivity & Missions */}
-        <div className="relative overflow-hidden rounded-[3rem] p-12 border border-white/5">
-          <div 
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
-            style={{ backgroundImage: `url(${planetHeroesImg})` }}
-          />
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent" />
-          
-          <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-            <div className="pl-4">
-              <div className="inline-flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-widest text-xs mb-4">
-                <Target className="w-4 h-4" />
-                Daily Environmental Goals
-              </div>
-              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-6 leading-none">
-                Missions Integrated With <span className="text-[#FFC845]">Everyday Living.</span>
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed font-medium">
-                We've gamified sustainability. Every piece of e-waste recycled and every sustainable product consumed contributes to your Planet Hero ranking and unlocks exclusive <strong>/rewards</strong>.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center gap-4 p-5 bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur-md">
-                  <Gift className="w-8 h-8 text-[#FFC845] shrink-0" />
-                  <div>
-                    <h4 className="font-bold text-white uppercase text-xs tracking-wider">Rewards Tier</h4>
-                    <p className="text-gray-400 text-[10px] font-bold">Unlock exclusive Dubai perks.</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-5 bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur-md">
-                  <LayoutGrid className="w-8 h-8 text-blue-400 shrink-0" />
-                  <div>
-                    <h4 className="font-bold text-white uppercase text-xs tracking-wider">Mission Control</h4>
-                    <p className="text-gray-400 text-[10px] font-bold">Track your impact in real-time.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-4">
-                <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200 font-black uppercase tracking-widest rounded-full px-8 shadow-xl">
-                  <Link href="/rewards">
-                    View Your Rewards
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 font-bold uppercase tracking-widest rounded-full px-8 backdrop-blur-md">
-                  <Link href="/community">
-                    Join Community
-                  </Link>
-                </Button>
-              </div>
-            </div>
-            
-            <div className="relative group hidden md:block">
+      <div className="max-w-6xl mx-auto px-6 pb-32 space-y-40">
+        {/* Planet Heroes - Focused & Visual */}
+        <div className="relative group">
+          <div className="grid md:grid-cols-2 gap-20 items-center">
+            <div className="relative">
+              <div className="absolute -inset-10 bg-emerald-500/10 blur-[120px] rounded-full" />
               <img 
                 src={planetHeroesImg} 
-                alt="Sustainability in Action" 
-                className="rounded-[2.5rem] border border-white/10 shadow-2xl"
+                alt="Community" 
+                className="relative z-10 rounded-[3rem] border border-white/5 grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl"
               />
-              <div className="absolute -bottom-6 -right-6 z-20 bg-[#FFC845] p-6 rounded-[2rem] shadow-2xl text-slate-950 max-w-[200px]">
-                <p className="text-xs font-black uppercase leading-tight">12,000+ Active Heroes this month</p>
-              </div>
             </div>
-          </div>
-        </div>
 
-        {/* Municipality Initiative Section */}
-        <div className="relative overflow-hidden rounded-[3rem] p-12 border border-white/5">
-          <div 
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-15"
-            style={{ backgroundImage: `url(${ewasteHeroImg})` }}
-          />
-          <div className="absolute inset-0 z-0 bg-gradient-to-l from-slate-950 via-slate-950/80 to-transparent" />
-
-          <div className="relative z-10 grid md:grid-cols-2 gap-16 items-center">
-            <Card className="bg-slate-900/40 border-slate-800 p-1 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-3xl overflow-hidden backdrop-blur-md order-2 md:order-1">
-               <div className="p-8">
-                 <div className="flex items-center gap-3 mb-6">
-                   <div className="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400">
-                      <Droplets className="w-6 h-6" />
-                   </div>
-                   <h3 className="text-2xl font-black uppercase tracking-tight">The AquaCafe Ecosystem</h3>
-                 </div>
-                 <p className="text-gray-300 mb-8 font-medium">
-                   Upgrade your home with atmospheric water generators. Eliminate single-use plastic while enjoying premium hydration. 
-                   It's the ultimate sustainable product for everyday living.
-                 </p>
-                 <div className="flex flex-col gap-4">
-                   <Button asChild className="w-full bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-black uppercase tracking-widest rounded-xl h-14">
-                     <Link href="/contact">
-                       Request Setup
-                     </Link>
-                   </Button>
-                   <Button asChild variant="ghost" className="w-full text-emerald-400 hover:text-emerald-300 font-bold uppercase tracking-widest h-14">
-                     <Link href="/aquacafe">
-                       Learn More <ArrowRight className="ml-2 w-4 h-4" />
-                     </Link>
-                   </Button>
-                 </div>
-               </div>
-            </Card>
-
-            <div className="order-1 md:order-2">
-              <h2 className="text-3xl font-black uppercase tracking-tight mb-6 flex items-center gap-3">
-                <Recycle className="w-8 h-8 text-emerald-400" />
-                Municipality Initiative
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                DeliWer's e-waste and furniture collection services are fully aligned with the <strong>Dubai Municipality Waste Department</strong>. We provide residents with a professional gateway to dispose of bulky items and retired technology.
-              </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-4 p-4 bg-slate-900/60 border border-slate-800 rounded-xl backdrop-blur-sm">
-                  <Truck className="w-6 h-6 text-blue-400 shrink-0" />
-                  <div>
-                    <h4 className="font-bold text-white uppercase text-sm">Direct Home Collection</h4>
-                    <p className="text-gray-400 text-xs">Scheduled pickup for furniture and electronics directly from your doorstep.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 bg-slate-900/60 border border-slate-800 rounded-xl backdrop-blur-sm">
-                  <Leaf className="w-6 h-6 text-emerald-400 shrink-0" />
-                  <div>
-                    <h4 className="font-bold text-white uppercase text-sm">Sustainability Goals</h4>
-                    <p className="text-gray-400 text-xs">Contributing to UAE's Net Zero 2050 through efficient waste diversion.</p>
-                  </div>
-                </div>
-              </div>
-              <Button asChild size="lg" className="bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-black uppercase tracking-widest rounded-full px-10 h-16 w-full sm:w-auto">
-                <Link href="/contact">
-                  <CalendarCheck className="mr-2 w-5 h-5" />
-                  Book Your Pickup
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Saqi Kawthar Project Section */}
-        <div className="relative overflow-hidden rounded-[3rem] border border-white/5">
-          <div 
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
-            style={{ backgroundImage: `url(${ewasteHeroImg})` }}
-          />
-          <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent" />
-          
-          <Card className="bg-transparent border-0 relative z-10 overflow-hidden">
-            <div className="grid md:grid-cols-2">
-              <div className="p-8 md:p-16">
-                <div className="flex items-center gap-2 mb-4 text-emerald-400">
-                  <Droplets className="w-6 h-6" />
-                  <span className="font-bold uppercase tracking-wider">The Saqi Kawthar Project</span>
-                </div>
-                <h2 className="text-4xl font-black mb-6 uppercase tracking-tight leading-none">Life-Giving Water from Tech Trade-ins</h2>
-                <p className="text-gray-300 mb-8 leading-relaxed font-medium">
-                  Our flagship initiative connects the world of high-end technology with the fundamental 
-                  need for clean water. By trading in your iPhone or e-waste, you directly fund 
-                  the installation of atmospheric water generators and advanced filtration systems.
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="text-[#FFC845] font-black uppercase tracking-[0.2em] text-xs">Mission Layer</div>
+                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">
+                  Everyday<br />Impact.
+                </h2>
+                <p className="text-gray-400 text-lg leading-relaxed max-w-md">
+                  Gamified sustainability that rewards your transition to a circular lifestyle.
                 </p>
-                <ul className="space-y-4 mb-10">
-                  <li className="flex items-start gap-3">
-                    <Shield className="w-5 h-5 text-emerald-500 mt-1" />
-                    <span className="text-sm text-gray-400 font-bold">Eliminate 2,000+ plastic bottles per year with every home system</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Smartphone className="w-5 h-5 text-blue-500 mt-1" />
-                    <span className="text-sm text-gray-400 font-bold">Responsible recycling of 100% of e-waste components</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Zap className="w-5 h-5 text-amber-500 mt-1" />
-                    <span className="text-sm text-gray-400 font-bold">Powered by sustainable energy solutions</span>
-                  </li>
-                </ul>
-                <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-black uppercase tracking-wider rounded-full px-12 h-16 shadow-xl">
-                    <Link href="/contact">
-                      <CalendarCheck className="mr-2 w-5 h-5" />
-                      Book Collection
-                    </Link>
-                  </Button>
-                  <Button asChild size="lg" variant="ghost" className="text-white hover:bg-white/10 font-black uppercase tracking-wider rounded-full px-8 h-16 backdrop-blur-md">
-                    <Link href="/products">
-                      Trade-in Now <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
-                  </Button>
-                </div>
               </div>
-              <div className="bg-gradient-to-br from-emerald-900/40 via-blue-900/20 to-slate-900 flex items-center justify-center p-12 relative overflow-hidden hidden md:flex">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
-                <div className="relative w-full aspect-square max-w-sm">
-                  <div className="absolute inset-0 bg-emerald-500/20 rounded-full animate-pulse blur-2xl" />
-                  <div className="absolute inset-4 border-4 border-dashed border-emerald-500/30 rounded-full animate-[spin_20s_linear_infinite]" />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                    <Smartphone className="w-20 h-20 text-emerald-400 mb-4 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]" />
-                    <ArrowRight className="w-10 h-10 text-white/50 mb-4 rotate-90" />
-                    <Droplets className="w-20 h-20 text-blue-400 drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]" />
-                  </div>
-                </div>
+              
+              <div className="flex gap-6">
+                <Button asChild variant="outline" className="border-white/10 text-white hover:bg-white/5 rounded-full px-8 h-12 text-xs font-black uppercase tracking-widest">
+                  <Link href="/rewards">Rewards Dashboard</Link>
+                </Button>
+                <Button asChild variant="ghost" className="text-gray-500 hover:text-white text-xs font-black uppercase tracking-widest">
+                  <Link href="/community">Community hub</Link>
+                </Button>
               </div>
             </div>
-          </Card>
+          </div>
         </div>
 
-        {/* Circular Economy Impact */}
-        <div className="grid md:grid-cols-3 gap-8">
-          <Card className="bg-slate-900/60 border-slate-800 p-10 hover-elevate rounded-[2rem] border-t-emerald-500/50 border-t-2 backdrop-blur-md">
-            <Cpu className="w-14 h-14 text-amber-500 mb-8" />
-            <h3 className="text-2xl font-black mb-4 uppercase tracking-tight">Resource Recovery</h3>
-            <p className="text-base text-gray-400 leading-relaxed font-medium">
-              Recovering precious metals like gold, silver, and palladium from e-waste reduces the 
-              need for destructive mining operations.
-            </p>
-          </Card>
-          <Card className="bg-slate-900/60 border-slate-800 p-10 hover-elevate rounded-[2rem] border-t-blue-500/50 border-t-2 backdrop-blur-md">
-            <Globe className="w-14 h-14 text-emerald-500 mb-8" />
-            <h3 className="text-2xl font-black mb-4 uppercase tracking-tight">Carbon Footprint</h3>
-            <p className="text-base text-gray-400 leading-relaxed font-medium">
-              Extending device lifecycles and local recycling saves 180+ tons of CO2 
-              emissions annually across our Dubai network.
-            </p>
-          </Card>
-          <Card className="bg-slate-900/60 border-slate-800 p-10 hover-elevate rounded-[2rem] border-t-[#FFC845]/50 border-t-2 backdrop-blur-md">
-            <TrendingUp className="w-14 h-14 text-blue-500 mb-8" />
-            <h3 className="text-2xl font-black mb-4 uppercase tracking-tight">Sustainable Growth</h3>
-            <p className="text-base text-gray-400 leading-relaxed font-medium">
-              Our B2B ChainTrack platform ensures wholesale inventory follows a strict 
-              circular path, minimizing landfill contributions.
-            </p>
-          </Card>
+        {/* Municipality Initiative - Clean & Information Light */}
+        <div className="grid md:grid-cols-2 gap-24 items-center">
+          <div className="space-y-8 order-2 md:order-1">
+            <div className="space-y-4">
+              <div className="text-emerald-400 font-black uppercase tracking-[0.2em] text-xs">Municipality Link</div>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none text-white">
+                Zero<br />Waste.
+              </h2>
+              <p className="text-gray-400 text-lg leading-relaxed max-w-md">
+                Direct doorstep collection of furniture and electronics for local resource recovery.
+              </p>
+            </div>
+            
+            <Button asChild size="lg" className="bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-black uppercase tracking-widest rounded-full px-12 h-16 text-sm">
+              <Link href="/contact">Schedule Pickup</Link>
+            </Button>
+          </div>
+
+          <div className="bg-slate-900/40 border border-white/5 p-12 rounded-[3rem] backdrop-blur-xl space-y-8 order-1 md:order-2">
+             <div className="space-y-4">
+               <Droplets className="w-12 h-12 text-emerald-400 opacity-50" />
+               <h3 className="text-2xl font-black uppercase tracking-tight">Hydration 2.0</h3>
+               <p className="text-gray-500 font-medium leading-relaxed">
+                 Eliminate plastic with AquaCafe setup. Atmospheric water for the conscious home.
+               </p>
+             </div>
+             <Button asChild variant="outline" className="w-full border-white/10 hover:bg-white/5 h-14 rounded-2xl uppercase font-black tracking-widest text-xs text-white">
+               <Link href="/aquacafe">Switch to circular water</Link>
+             </Button>
+          </div>
         </div>
 
-        {/* Impact Stats */}
-        <div className="bg-slate-900/50 border border-slate-800 rounded-[3rem] p-16 text-center relative overflow-hidden backdrop-blur-lg">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
-          <h2 className="text-4xl font-black uppercase tracking-tighter mb-16">Environmental Milestones</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-16">
-            <div>
-              <div className="text-5xl font-black text-emerald-400 mb-2">100%</div>
-              <div className="text-xs text-gray-500 uppercase font-black tracking-[0.2em]">Recycle Rate</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-blue-400 mb-2">2.4M</div>
-              <div className="text-xs text-gray-500 uppercase font-black tracking-[0.2em]">Bottles Saved</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-[#FFC845] mb-2">12k+</div>
-              <div className="text-xs text-gray-500 uppercase font-black tracking-[0.2em]">Active Heroes</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-purple-400 mb-2">50+</div>
-              <div className="text-xs text-gray-500 uppercase font-black tracking-[0.2em]">B2B Partners</div>
-            </div>
+        {/* Impact Stats - Silent & Powerful */}
+        <div className="pt-20 border-t border-white/5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+            {[
+              { label: "Recycle Rate", val: "100%", color: "text-emerald-400" },
+              { label: "Bottles Saved", val: "2.4M", color: "text-blue-400" },
+              { label: "Active Heroes", val: "12k+", color: "text-[#FFC845]" },
+              { label: "B2B Partners", val: "50+", color: "text-purple-400" }
+            ].map((s, i) => (
+              <div key={i} className="space-y-2">
+                <div className={`text-4xl md:text-5xl font-black ${s.color}`}>{s.val}</div>
+                <div className="text-[10px] text-gray-600 uppercase font-black tracking-[0.3em]">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
