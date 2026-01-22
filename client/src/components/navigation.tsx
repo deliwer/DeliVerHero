@@ -110,7 +110,7 @@ export function Navigation() {
                       className="relative group transition-all duration-300"
                       data-testid={`link-${item.id}`}
                     >
-                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600/40 to-orange-600/40 border-2 border-amber-500/70 rounded-lg text-white hover:from-amber-600/50 hover:to-orange-600/50 hover:border-amber-400/90 transition-all duration-300 shadow-xl hover:shadow-amber-500/40 animate-pulse hover:animate-none">
+                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600/10 to-orange-600/10 border-2 border-amber-500/20 rounded-lg text-white hover:from-amber-600/20 hover:to-orange-600/20 hover:border-amber-400/30 transition-all duration-300 shadow-xl hover:shadow-amber-500/40 animate-pulse hover:animate-none">
                         <span className="font-bold text-lg">Relocation Entry/Exit</span>
                         <Plane className="w-4 h-4 text-yellow-300 animate-bounce" />
                       </div>
@@ -127,7 +127,7 @@ export function Navigation() {
                       className="relative group transition-all duration-300"
                       data-testid={`link-${item.id}`}
                     >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/30 hover:to-cyan-600/30 hover:border-blue-400/50 transition-all">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-500/20 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/20 hover:to-cyan-600/20 hover:border-blue-400/30 transition-all">
                         <Home className="w-4 h-4" />
                         <span className="font-medium">{item.label}</span>
                       </div>
@@ -269,10 +269,10 @@ export function Navigation() {
                       data-testid={`link-mobile-${item.id}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <div className="flex items-center justify-between px-3 py-3 bg-gradient-to-r from-amber-600/40 to-orange-600/40 border-2 border-amber-500/70 rounded-lg text-white shadow-xl">
+                      <div className="flex items-center justify-between px-3 py-3 bg-gradient-to-r from-amber-600/10 to-orange-600/10 border-2 border-amber-500/20 rounded-lg text-white shadow-xl">
                         <div className="flex items-center gap-2">
                           <Plane className="w-5 h-5 text-yellow-300" />
-                          <span className="font-bold">Relocation in/out Dubai</span>
+                          <span className="font-bold">Relocation Entry/Exit</span>
                         </div>
                         <ArrowRight className="w-4 h-4" />
                       </div>
@@ -290,7 +290,7 @@ export function Navigation() {
                       data-testid={`link-mobile-${item.id}`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-lg text-blue-300">
+                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-500/20 rounded-lg text-blue-300">
                         <Home className="w-4 h-4" />
                         <span className="font-medium">{item.label}</span>
                       </div>
