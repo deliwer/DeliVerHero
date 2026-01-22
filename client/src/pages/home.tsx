@@ -164,7 +164,7 @@ function LiveChallengeWidget() {
   );
 }
 
-import relocationHeroPng from "@assets/generated_images/dubai-relocation-real-moment.png";
+import relocationHeroPng from "@/assets/generated_images/dubai-relocation-real-moment.png";
 
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
