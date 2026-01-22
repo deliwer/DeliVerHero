@@ -1,0 +1,139 @@
+Here is a production-grade Replit prompt you can use directly with an AI image / design / frontend agent (or paste into Replit AI) to generate a high-impact Hero Image aligned with HNWI, founders, and global families arriving in Dubai.
+
+This is written to avoid generic “Dubai skyline” clichés and instead trigger the deciding moment psychology you need.
+
+🎯 REPLIT PROMPT — HERO IMAGE FOR DeliWer (Relocation & Company Setup)
+
+ROLE
+You are a Luxury Brand Visual Director + Behavioral Economist designing a hero image for DeliWer, a premium relocation and company setup concierge in Dubai.
+
+This hero image targets:
+
+High-Net-Worth Individuals
+
+Founders & Executives
+
+Global Families & Investors
+Arriving in Dubai to start a new chapter of life and business
+
+The visual must communicate certainty at a moment of transition.
+
+🧠 CORE PSYCHOLOGY TO CAPTURE
+
+This image should reflect the exact mental state of the target user:
+
+“I am about to commit my family, capital, and reputation to Dubai.
+I need clarity, trust, and someone who already knows the path.”
+
+This is not about excitement alone — it is about assurance.
+
+🖼️ HERO IMAGE COMPOSITION
+
+Scene Concept
+A refined, cinematic transition moment:
+
+A well-dressed founder or couple (gender-neutral, multi-ethnic representation)
+
+Standing near a large glass window or terrace
+
+Overlooking Dubai’s skyline at golden hour
+
+Light is warm, calm, confident (not flashy)
+
+Key Detail
+One subtle anchor of decision:
+
+A phone with a minimal checklist
+
+A document folder
+
+A calm pause, not motion
+
+This is the moment after the decision, not before.
+
+🌍 REPRESENTATION & INCLUSIVITY
+
+No single ethnicity dominance
+
+Subtle European, Middle Eastern, South Asian, and East Asian cues
+
+Modern, global, understated elegance
+
+Avoid:
+❌ Tourists
+❌ Models posing
+❌ Skyscraper worship visuals
+
+🎨 VISUAL STYLE
+
+Palette: Warm neutrals, sand, charcoal, soft gold accents
+
+Lighting: Natural, diffused, premium
+
+Mood: Calm confidence, discretion, longevity
+
+Depth: Shallow depth of field (cinematic focus)
+
+🧱 BRANDING & LAYOUT RULES
+
+Leave clear negative space for headline text
+
+Image must work on:
+
+Desktop hero
+
+Mobile hero crop
+
+LinkedIn banner variant
+
+No visible logos inside the image itself.
+
+🧾 OPTIONAL HERO TEXT OVERLAY (GUIDANCE ONLY)
+
+(Do not hard-embed — leave space)
+
+Primary Headline (choose one):
+
+“Your New Chapter in Dubai, Handled.”
+
+“Arriving in Dubai Isn’t the Risk. Doing It Wrong Is.”
+
+“From Arrival to Establishment — Done Right.”
+
+Sub-line (optional):
+
+“Relocation, Company Setup, and Living — Seamlessly Managed.”
+
+🚫 STRICT AVOIDS
+
+No stock-photo smiles
+
+No exaggerated luxury
+
+No crowded scenes
+
+No loud colors
+
+No airport clichés
+
+This is quiet confidence.
+
+📐 OUTPUT REQUIREMENTS
+
+Generate:
+
+1 primary hero image (desktop-first)
+
+Aspect ratio: 16:9
+
+Resolution: 4K preferred
+
+Export-safe for web (no compression artifacts)
+
+✅ SUCCESS CRITERIA
+
+If a founder sees this for 3 seconds and thinks:
+
+“These people understand what this decision actually feels like.”
+
+Then the hero image is successful.

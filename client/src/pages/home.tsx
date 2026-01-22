@@ -164,7 +164,7 @@ function LiveChallengeWidget() {
   );
 }
 
-import relocationHeroPng from "@/assets/generated_images/dubai-relocation-real-moment.png";
+import relocationHeroPng from "@/assets/generated_images/dubai-relocation-luxury-moment.png";
 
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -199,35 +199,35 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-950">
-      {/* Hero Section - Exit Concierge Focus */}
+      {/* Hero Section - Elite Concierge Focus */}
       <section className="relative py-24 md:py-40 px-4 overflow-hidden min-h-[90vh] flex items-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${relocationHeroPng})` }}
         />
-        <div className="absolute inset-0 z-0 bg-[#0A3D62]/85 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 z-0 bg-[#0A3D62]/75 backdrop-blur-[1px]" />
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="mb-6 inline-block px-4 py-1 bg-[#FFC845] text-[#0A3D62] font-black text-sm uppercase tracking-[0.3em] rounded-full">
-            Exit Concierge by DeliWer
+            Elite Concierge by DeliWer
           </div>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white leading-[0.9] drop-shadow-2xl">
-            Leaving Dubai?<br />
-            <span className="text-[#FFC845]">Don’t lose your deposit or leave liabilities behind.</span>
+            Arriving in Dubai?<br />
+            <span className="text-[#FFC845]">Your New Chapter, Handled Right.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">This is a concierge exit service founders are quietly using.</p>
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">Relocation, company setup, and premium living managed with absolute clarity.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Button 
               size="lg" 
               className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-black rounded-full px-16 h-24 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2" 
-              onClick={() => window.open('https://wa.me/971523946311?text=I%20need%20to%20start%20my%20exit%20concierge%20process', '_blank')}
+              onClick={() => window.open('https://wa.me/971523946311?text=I%20am%20interested%20in%20DeliWer%20premium%20concierge%20services', '_blank')}
             >
               <MessageSquare className="w-8 h-8 mr-3" />
-              Start Exit on WhatsApp
+              Get Started on WhatsApp
             </Button>
-            <Link href="/relocate/exit">
+            <Link href="/relocate">
               <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-12 h-20 text-xl backdrop-blur-md font-bold">
-                View Exit Concierge
+                Explore Relocation
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
