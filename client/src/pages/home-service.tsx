@@ -262,82 +262,102 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-      {/* Water Service Details Section - ENHANCED PROMINENCE */}
-      <section className="py-16 px-4 relative overflow-hidden" id="water-details" style={{ backgroundImage: `url(${waterPurifierImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* AquaCafe Unified Lifestyle Section - MERGED WATER & DAILY ESSENTIALS */}
+      <section className="py-16 px-4 relative overflow-hidden" id="aquacafe-lifestyle" style={{ backgroundImage: `url(${waterPurifierImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
         <div className="container mx-auto max-w-5xl relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="bg-white/10 dark:bg-white/5 p-8 rounded-2xl border border-white/20 dark:border-white/10 backdrop-blur-md">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/30 rounded-full px-4 py-2 mb-6 border border-emerald-400/50">
-                <Droplets className="w-4 h-4 text-emerald-300" />
-                <span className="text-sm font-semibold text-emerald-200">Premium Water Service Package</span>
+              <div className="inline-flex items-center gap-2 bg-blue-500/30 rounded-full px-4 py-2 mb-6 border border-blue-400/50">
+                <ShoppingBag className="w-4 h-4 text-blue-300" />
+                <span className="text-sm font-semibold text-blue-200">AquaCafe Lifestyle & Essentials</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-water-service-title">
-                Pure Water. <span className="text-emerald-300">Without Effort.</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                Premium Hydration. <span className="text-blue-300">Daily Essentials Managed.</span>
               </h2>
               <p className="text-lg text-white/90 mb-6 font-medium">
-                Enjoy a continuous supply of clean, filtered drinking water at home — without the hassle. Professional installation, maintenance, and reliable refills included.
+                Experience the ultimate home lifestyle with AquaCafe. From professional Kangen water systems to subscription-based essentials, we ensure your home is always stocked and managed.
               </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
-                  Professional home installation & setup
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
-                  Weekly refills & monthly maintenance
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
-                  <span><strong className="text-white">Free premium shower filter</strong> with every demo</span>
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-300 flex-shrink-0" />
-                  24/7 customer support & emergency service
-                </li>
-              </ul>
-              <Card className="bg-gradient-to-r from-emerald-500/25 to-cyan-500/25 border-emerald-300/50 mb-6 shadow-lg">
+              
+              <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                <div className="space-y-3">
+                  <h3 className="text-blue-300 font-bold text-sm uppercase tracking-wider">Hydration</h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-white/85 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+                      Kangen Water Ionization
+                    </li>
+                    <li className="flex items-center gap-2 text-white/85 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+                      Free Premium Shower Filter
+                    </li>
+                    <li className="flex items-center gap-2 text-white/85 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+                      Weekly Refills & Maintenance
+                    </li>
+                  </ul>
+                </div>
+                <div className="space-y-3">
+                  <h3 className="text-blue-300 font-bold text-sm uppercase tracking-wider">Essentials</h3>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-white/85 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-blue-300 flex-shrink-0" />
+                      Premium Tea & Coffee
+                    </li>
+                    <li className="flex items-center gap-2 text-white/85 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-blue-300 flex-shrink-0" />
+                      Subscription Management
+                    </li>
+                    <li className="flex items-center gap-2 text-white/85 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-blue-300 flex-shrink-0" />
+                      Automated Scheduling
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <Card className="bg-gradient-to-r from-blue-500/25 to-emerald-500/25 border-blue-300/50 mb-6 shadow-lg">
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div>
-                      <p className="text-sm font-medium text-emerald-200 mb-1">Limited Launch Offer</p>
-                      <p className="text-3xl font-bold text-emerald-300">Demo: AED 99</p>
-                      <p className="text-sm text-white/75">Includes free premium shower filter</p>
+                      <p className="text-sm font-medium text-blue-200 mb-1">AquaCafe Membership</p>
+                      <p className="text-2xl font-bold text-white">Full Setup: AED 99 Demo</p>
+                      <p className="text-sm text-white/75">Includes filter & first week of essentials</p>
                     </div>
-                    <Badge variant="secondary" className="bg-emerald-500 text-white border-emerald-400 text-xs font-bold px-3 py-1">
-                      SAVE NOW
+                    <Badge variant="secondary" className="bg-blue-500 text-white border-blue-400 text-xs font-bold px-3 py-1">
+                      BEST VALUE
                     </Badge>
                   </div>
                 </CardContent>
               </Card>
+
               <div className="flex flex-wrap gap-3">
-                <CalendlyButton 
-                  size="lg" 
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                  data-testid="button-speak-water-expert"
-                >
-                  <Droplets className="w-4 h-4 mr-2" />
-                  Book Installation Today
-                </CalendlyButton>
-                <Link href="/aquacafe">
-                  <Button size="lg" variant="default" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-0" data-testid="button-learn-more-water">
-                    <Sparkles className="w-4 h-4 mr-2" />
+                <Link href="/home-service/aquacafe">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 h-14 rounded-full shadow-lg transition-all">
                     Explore AquaCafe
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
+                <CalendlyButton 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm h-14 rounded-full px-8"
+                >
+                  Speak to an Expert
+                </CalendlyButton>
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl border border-white/10">
                 <img 
                   src={waterPurifierImg} 
-                  alt="Advanced water purifier system - Kangen water ionization machine for home" 
+                  alt="AquaCafe Lifestyle - Premium water and home essentials" 
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-bold text-lg">Kangen Water System</p>
-                  <p className="text-white/90 text-sm">Advanced ionization technology for premium water quality</p>
+                  <p className="text-white font-bold text-lg">AquaCafe Premium Lifestyle</p>
+                  <p className="text-white/90 text-sm">Complete hydration and home management</p>
                 </div>
               </div>
             </div>
@@ -429,70 +449,6 @@ export default function HomeService() {
           </div>
         </div>
       </section>
-      {/* Daily Essentials - NEW SECTION */}
-      <section className="py-16 px-4 relative overflow-hidden" id="daily-essentials" style={{ backgroundImage: `url(${dailyEssentialsImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="order-2 lg:order-1 relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl border border-white/10">
-                <img 
-                  src={dailyEssentialsImg} 
-                  alt="Daily essentials and premium water service for your home" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-bold text-lg">AquaCafe Essentials</p>
-                  <p className="text-white/90 text-sm">Everyday premium hydration</p>
-                </div>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 bg-blue-500/30 rounded-full px-4 py-2 mb-6 border border-blue-400/50">
-                <ShoppingBag className="w-4 h-4 text-blue-300" />
-                <span className="text-sm font-semibold text-blue-200">Daily Essentials</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                Lifestyle Support. <span className="text-blue-300">Managed Daily.</span>
-              </h2>
-              <p className="text-lg text-white/90 mb-6 font-medium">
-                From premium water refills to your daily lifestyle needs, AquaCafe ensures your home is always stocked and managed without you lifting a finger.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-blue-300 flex-shrink-0" />
-                  Subscription-based water refill management
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-blue-300 flex-shrink-0" />
-                  Premium tea & coffee supplies
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-blue-300 flex-shrink-0" />
-                  Automated delivery scheduling
-                </li>
-              </ul>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/home-service/aquacafe">
-                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 h-14 rounded-full shadow-lg transition-all">
-                    Explore Daily Essentials
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-                <CalendlyButton 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm h-14 rounded-full px-8"
-                >
-                  Learn About AquaCafe
-                </CalendlyButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* EV Charging Station Section - NEW */}
       <section className="py-16 px-4 relative overflow-hidden" id="ev-charging" style={{ backgroundImage: `url(${evChargingImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
