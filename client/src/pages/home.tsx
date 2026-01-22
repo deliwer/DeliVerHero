@@ -164,6 +164,7 @@ function LiveChallengeWidget() {
   );
 }
 
+import relocationHeroPng from "@/assets/generated_images/dubai-relocation-risk-management.png";
 import nightmarePng from "@/assets/generated_images/dubai-relocation-nightmare.png";
 import expertSupportPng from "@/assets/generated_images/dubai-relocation-expert-support.png";
 
