@@ -128,148 +128,97 @@ export default function Relocate() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] overflow-hidden">
+      <section className="relative h-[90vh] min-h-[700px] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${relocationHero})` }}
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&q=80')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
-        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
-          <Badge variant="secondary" className="mb-4 bg-emerald-500/20 backdrop-blur-sm border-emerald-500/30 text-emerald-400 font-bold">
-            Dubai's #1 Relocation Orchestrator
-          </Badge>
-          <h1 className="text-4xl md:text-7xl font-black text-white mb-6 max-w-5xl leading-tight">
-            Moving to Dubai? <br />
-            <span className="text-emerald-400 text-3xl md:text-5xl">We Handle the Entire Relocation.</span>
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 max-w-5xl mx-auto">
+          <h1 className="text-5xl md:text-8xl font-black text-white mb-8 leading-tight tracking-tight">
+            Relocate to Dubai <br />
+            <span className="text-emerald-400">Stress-Free.</span>
           </h1>
-          <p className="text-xl text-white/90 mb-10 max-w-3xl font-medium">
-            Complete door-to-door transition—shipping, home setup, utilities, and local living support. Coordinated by one team. No stress.
+          <p className="text-2xl text-white/95 mb-12 max-w-2xl font-medium leading-relaxed">
+            From international shipping to your first home, we coordinate every detail of your transition.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-6">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 h-14 text-lg rounded-full"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 h-16 text-xl rounded-full shadow-2xl transition-transform hover:scale-105"
               onClick={() => formRef.current?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Start Relocation Calculator
+              Start Your Move
             </Button>
             <Link href="/residence">
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-white/30 text-white backdrop-blur-sm bg-white/10 hover:bg-white/20 font-bold h-14 px-8 rounded-full"
+                className="border-white/40 text-white backdrop-blur-md bg-white/10 hover:bg-white/20 font-bold h-16 px-10 rounded-full text-xl"
               >
-                Find a Home? Visit Residence
-                <ArrowRight className="ml-2 w-5 h-5" />
+                Find a Residence
+                <ArrowRight className="ml-2 w-6 h-6" />
               </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-24 relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0 opacity-20 grayscale"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1582653280643-e79c79219b19?auto=format&fit=crop&q=80')` }}
-        />
-        <div className="absolute inset-0 bg-white/90 dark:bg-slate-950/90 z-0" />
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Relocation Services</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Everything you need to move and settle in Dubai, managed through a single point of contact.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
+      {/* Simplified Services Overview */}
+      <section className="py-32 bg-slate-50 dark:bg-slate-900/50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-12 text-center">
             {relocationServices.map((service, i) => (
-              <Card key={i} className="hover-elevate border-slate-100 dark:border-slate-800 shadow-sm bg-card/50 backdrop-blur-sm">
-                <CardHeader>
-                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-4">
-                    <service.icon className="w-7 h-7 text-emerald-600" />
-                  </div>
-                  <CardTitle className="text-2xl">{service.title}</CardTitle>
-                  <CardDescription className="text-lg">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="grid grid-cols-1 gap-3">
-                    {service.features.map((f, j) => (
-                      <li key={j} className="flex items-center gap-3 text-slate-600 dark:text-slate-300 font-medium">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              <div key={i} className="flex flex-col items-center group">
+                <div className="w-20 h-20 rounded-3xl bg-emerald-500/10 flex items-center justify-center mb-8 transition-colors group-hover:bg-emerald-500/20">
+                  <service.icon className="w-10 h-10 text-emerald-600" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                <p className="text-muted-foreground text-lg leading-relaxed">{service.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Exit Concierge Highlight */}
-      <section className="py-24 relative overflow-hidden text-white">
+      {/* High Impact Visual - Exit Concierge */}
+      <section className="relative py-40 overflow-hidden text-white">
         <div 
-          className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')` }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1582653280643-e79c79219b19?auto=format&fit=crop&q=80')` }}
         />
-        <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm z-0" />
-        <div className="max-w-5xl mx-auto px-4 relative z-10">
-          <div className="bg-slate-800/50 p-8 md:p-16 rounded-[2.5rem] border border-white/10 shadow-2xl backdrop-blur-md">
-            <div className="flex flex-col md:flex-row gap-12 items-center">
-              <div className="flex-1">
-                <Badge className="mb-6 bg-red-500/20 text-red-400 border-red-500/30 px-4 py-1 text-sm font-bold uppercase tracking-widest">
-                  Survival Grade Exit
-                </Badge>
-                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6">
-                  Leaving Dubai? <br />
-                  <span className="text-emerald-400">Don’t Lose Your Deposit.</span>
-                </h2>
-                <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-                  Our Exit Concierge manages final cleaning, snag fixing, DEWA closure, and landlord handover. We guarantee a seamless departure without loose ends.
-                </p>
-                <Link href="/exit">
-                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl">
-                    Explore Exit Concierge
-                    <ArrowRight className="ml-2 w-6 h-6" />
-                  </Button>
-                </Link>
-              </div>
-              <div className="grid grid-cols-2 gap-4 w-full md:w-auto shrink-0">
-                {[
-                  { icon: ShieldCheck, label: "Deposit Recovery" },
-                  { icon: Plug, label: "Utility Closure" },
-                  { icon: Plane, label: "Move Support" },
-                  { icon: CheckCircle2, label: "Zero Admin" }
-                ].map((item, i) => (
-                  <div key={i} className="bg-white/5 border border-white/10 p-6 rounded-2xl flex flex-col items-center text-center gap-3">
-                    <item.icon className="w-8 h-8 text-emerald-400" />
-                    <span className="text-sm font-bold uppercase tracking-tight">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className="absolute inset-0 bg-emerald-950/80 backdrop-blur-sm" />
+        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
+          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
+            LEAVING DUBAI?
+          </h2>
+          <p className="text-2xl text-emerald-50 mb-12 max-w-3xl mx-auto leading-relaxed opacity-90">
+            Secure your deposit. We handle the cleaning, utility closures, and landlord handovers so you can leave with peace of mind.
+          </p>
+          <Link href="/exit">
+            <Button size="lg" className="bg-white text-emerald-900 hover:bg-emerald-50 font-black rounded-full px-16 h-20 text-2xl shadow-2xl">
+              Exit Concierge
+              <ArrowRight className="ml-2 w-8 h-8" />
+            </Button>
+          </Link>
         </div>
       </section>
 
-      {/* 4-Step Journey */}
-      <section className="py-24 relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center z-0 opacity-10"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&q=80')` }}
-        />
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <h2 className="text-3xl font-bold text-center mb-16">Your 4-Step Relocation Journey</h2>
-          <div className="grid md:grid-cols-4 gap-8">
+      {/* Simplified Journey */}
+      <section className="py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-center mb-24">The Easy 4-Step Move</h2>
+          <div className="grid md:grid-cols-4 gap-16 relative">
             {[
-              { step: "01", title: "Strategy Call", desc: "Consult with a specialist to map your move." },
-              { step: "02", title: "Custom Roadmap", desc: "Receive a fixed-price relocation plan." },
-              { step: "03", title: "Active Move", desc: "We manage shipping and setup in parallel." },
-              { step: "04", title: "Welcome Home", desc: "Arrive to a fully functional home & life." }
+              { step: "01", title: "Plan", desc: "Expert strategy call." },
+              { step: "02", title: "Price", desc: "Fixed-cost roadmap." },
+              { step: "03", title: "Move", desc: "We manage everything." },
+              { step: "04", title: "Live", desc: "Arrive home ready." }
             ].map((s, i) => (
-              <div key={i} className="relative">
-                <div className="text-5xl font-black text-emerald-500/20 mb-4">{s.step}</div>
-                <h3 className="text-xl font-bold mb-2">{s.title}</h3>
-                <p className="text-muted-foreground">{s.desc}</p>
+              <div key={i} className="text-center">
+                <div className="text-7xl font-black text-emerald-500/10 mb-6">{s.step}</div>
+                <h3 className="text-2xl font-bold mb-4">{s.title}</h3>
+                <p className="text-muted-foreground text-lg">{s.desc}</p>
               </div>
             ))}
           </div>
