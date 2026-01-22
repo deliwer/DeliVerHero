@@ -1,58 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
-import { Link, useSearch } from "wouter";
-import { useMutation } from "@tanstack/react-query";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Card } from "@/components/ui/card";
 import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
-import { 
-  Globe, 
-  Plane, 
-  Shield, 
   ArrowRight,
-  Home,
-  CheckCircle2,
-  Heart,
   MessageCircle,
-  Award,
-  Check,
-  Calendar,
-  Clock,
-  Zap,
-  Star,
-  Quote,
-  Smartphone,
+  Plane,
+  Shield,
+  Home,
   Droplets,
-  Wifi,
-  Truck,
-  ShieldCheck,
-  Plug
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
 import relocationHero from "../assets/stock_images/relocation_hero.jpg";
 
 export default function Relocate() {
-  const { toast } = useToast();
-  const searchString = useSearch();
   const formRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -61,37 +24,6 @@ export default function Relocate() {
     script.async = true;
     document.body.appendChild(script);
   }, []);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    movingFrom: "",
-    familySize: "",
-    timeline: "",
-    message: "I am interested in relocation services to Dubai."
-  });
-
-  const leadMutation = useMutation({
-    mutationFn: async (data: typeof formData) => {
-      return apiRequest("POST", "/api/relocate/leads", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Relocation Request Sent",
-        description: "Our specialists will contact you shortly.",
-      });
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        movingFrom: "",
-        familySize: "",
-        timeline: "",
-        message: ""
-      });
-    }
-  });
 
   const relocationServices = [
     {
