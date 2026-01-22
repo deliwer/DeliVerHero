@@ -204,9 +204,14 @@ export default function Relocate() {
         </div>
       </section>
 
-      {/* Simplified Journey */}
-      <section className="py-32">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* 4-Step Journey with Background */}
+      <section className="relative py-32 overflow-hidden text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&q=80')` }}
+        />
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           <h2 className="text-4xl font-black text-center mb-24">The Easy 4-Step Move</h2>
           <div className="grid md:grid-cols-4 gap-16 relative">
             {[
@@ -216,75 +221,42 @@ export default function Relocate() {
               { step: "04", title: "Live", desc: "Arrive home ready." }
             ].map((s, i) => (
               <div key={i} className="text-center">
-                <div className="text-7xl font-black text-emerald-500/10 mb-6">{s.step}</div>
+                <div className="text-7xl font-black text-emerald-400/20 mb-6">{s.step}</div>
                 <h3 className="text-2xl font-bold mb-4">{s.title}</h3>
-                <p className="text-muted-foreground text-lg">{s.desc}</p>
+                <p className="text-emerald-50/80 text-lg">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Lead Form */}
-      <section id="lead-form" ref={formRef} className="py-24 relative overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-5"
-          style={{ backgroundImage: `url(${dubaiLifestyle})` }}
-        />
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <Card className="p-8 md:p-12 shadow-3xl border-emerald-100 dark:border-emerald-900/30">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-black mb-4">Relocation Enquiry</h2>
-              <p className="text-muted-foreground text-lg">Receive a custom relocation quote within 24 hours with WhatsApp follow-up.</p>
+      {/* WhatsApp Enquiry Section */}
+      <section id="lead-form" ref={formRef} className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-900">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <Card className="p-8 md:p-12 shadow-3xl border-emerald-100 dark:border-emerald-900/30 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-bl-full -mr-16 -mt-16" />
+            <div className="text-center mb-10 relative z-10">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full mb-6">
+                <MessageCircle className="w-10 h-10 text-emerald-600" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black mb-4">Instant Relocation Enquiry</h2>
+              <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
+                Skip the forms. Message our relocation experts directly on WhatsApp for an immediate response.
+              </p>
             </div>
-            <form onSubmit={(e) => { e.preventDefault(); leadMutation.mutate(formData); }} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label className="text-base">Full Name</Label>
-                  <Input required className="h-12 text-lg" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="John Doe" />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-base">Email</Label>
-                  <Input required type="email" className="h-12 text-lg" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="john@example.com" />
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label className="text-base">Moving From (City/Country)</Label>
-                  <Input required className="h-12 text-lg" value={formData.movingFrom} onChange={e => setFormData({...formData, movingFrom: e.target.value})} placeholder="London, UK" />
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-base">Timeline</Label>
-                  <Select value={formData.timeline} onValueChange={v => setFormData({...formData, timeline: v})}>
-                    <SelectTrigger className="h-12 text-lg"><SelectValue placeholder="When are you moving?" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="immediate">Immediate (Next 30 days)</SelectItem>
-                      <SelectItem value="1-3-months">1-3 Months</SelectItem>
-                      <SelectItem value="3-6-months">3-6 Months</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label className="text-base">Family Size</Label>
-                <Select value={formData.familySize} onValueChange={v => setFormData({...formData, familySize: v})}>
-                  <SelectTrigger className="h-12 text-lg"><SelectValue placeholder="Number of people" /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="single">Single / Individual</SelectItem>
-                    <SelectItem value="couple">Couple</SelectItem>
-                    <SelectItem value="family-small">Family (3-4 members)</SelectItem>
-                    <SelectItem value="family-large">Family (5+ members)</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label className="text-base">Special Requirements</Label>
-                <Textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="min-h-[120px] text-lg" placeholder="Mention pets, cars, or specific home setup needs..." />
-              </div>
-              <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700 h-14 text-xl font-bold rounded-full" disabled={leadMutation.isPending}>
-                {leadMutation.isPending ? "Submitting..." : "Send My Request"}
+            
+            <div className="flex flex-col gap-6 max-w-lg mx-auto relative z-10">
+              <Button 
+                onClick={() => window.open('https://wa.me/971501234567?text=Hi, I am interested in relocation services to Dubai. Please let me know the process.', '_blank')}
+                className="bg-emerald-600 hover:bg-emerald-700 h-20 text-2xl font-black rounded-full shadow-xl transition-all hover:scale-105 group"
+              >
+                <MessageCircle className="mr-3 w-8 h-8 group-hover:animate-bounce" />
+                Chat via WhatsApp
               </Button>
-            </form>
+              <p className="text-sm text-muted-foreground italic">
+                Our team usually responds within 15 minutes during Dubai business hours.
+              </p>
+            </div>
           </Card>
         </div>
       </section>
