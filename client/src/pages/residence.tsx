@@ -84,12 +84,17 @@ export default function Residence() {
         </div>
       </section>
 
-      {/* SECTION 2: SIMPLIFIED THREE PATHS */}
-      <section ref={journeySectionRef} className="py-32 bg-slate-50 dark:bg-slate-900/50">
-        <div className="container mx-auto max-w-7xl px-6">
+      {/* SECTION 2: SIMPLIFIED THREE PATHS WITH BACKGROUND */}
+      <section ref={journeySectionRef} className="relative py-32 overflow-hidden text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${residentsHero})` }}
+        />
+        <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" />
+        <div className="container mx-auto max-w-7xl px-6 relative z-10">
           <div className="text-center mb-24">
             <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">HOW CAN WE HELP?</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Choose your path and let us handle the rest.</p>
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">Choose your path and let us handle the rest.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-12">
             {[
@@ -116,13 +121,13 @@ export default function Residence() {
               }
             ].map((path, i) => (
               <div key={i} className="flex flex-col items-center text-center group">
-                <div className={`w-24 h-24 rounded-[2rem] bg-${path.color}-500/10 flex items-center justify-center mb-10 transition-all group-hover:scale-110`}>
-                  <path.icon className={`w-12 h-12 text-${path.color}-500`} />
+                <div className={`w-24 h-24 rounded-[2rem] bg-${path.color}-500/20 flex items-center justify-center mb-10 transition-all group-hover:scale-110 backdrop-blur-md border border-white/10`}>
+                  <path.icon className={`w-12 h-12 text-${path.color}-400`} />
                 </div>
                 <h3 className="text-3xl font-black mb-4 tracking-tight">{path.title}</h3>
-                <p className="text-lg text-muted-foreground mb-10 leading-relaxed">{path.desc}</p>
+                <p className="text-lg text-slate-300 mb-10 leading-relaxed">{path.desc}</p>
                 <Link href={path.link}>
-                  <Button variant="outline" className={`border-${path.color}-500/20 text-${path.color}-600 hover:bg-${path.color}-500/10 font-bold rounded-full px-8 h-12`}>
+                  <Button variant="outline" className={`border-${path.color}-500/40 text-${path.color}-400 hover:bg-${path.color}-500/10 font-bold rounded-full px-8 h-12 backdrop-blur-sm`}>
                     Explore {path.title.toLowerCase()}
                   </Button>
                 </Link>
@@ -160,42 +165,14 @@ export default function Residence() {
         </div>
       </section>
 
-      {/* SECTION 3: WHATSAPP QUICK ACTION */}
-      <section className="relative py-32 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${settlementImage})` }}
-        />
-        <div className="absolute inset-0 bg-blue-950/90 backdrop-blur-md" />
-        <div className="container mx-auto max-w-5xl px-6 relative z-10 text-center text-white">
-          <Badge className="bg-emerald-500 text-white px-6 py-2 rounded-full mb-8 text-lg font-black tracking-widest uppercase">
-            JVC Residents
-          </Badge>
-          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
-            JUST GOT YOUR KEYS?
-          </h2>
-          <p className="text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Message us on WhatsApp for a free shower filter installation and your AED 99 move-in starter deal.
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-2xl shadow-2xl transition-all hover:scale-105"
-            onClick={() => window.open('https://wa.me/971523946311?text=Hi, I am a JVC resident and I want to claim the move-in offer.', '_blank')}
-          >
-            <MessageCircle className="w-10 h-10 mr-4 animate-bounce" />
-            Claim on WhatsApp
-          </Button>
-        </div>
-      </section>
-
       {/* Pricing Calculator Section */}
       <section className="py-24 px-4 bg-slate-950">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black uppercase tracking-tighter mb-4">Calculate Your Exit Cost</h2>
-            <p className="text-gray-400 text-lg">Transparent pricing for move-out packages across Dubai.</p>
+            <h2 className="text-4xl font-black uppercase tracking-tighter mb-4">Calculate Your Move-In Cost</h2>
+            <p className="text-gray-400 text-lg">Transparent pricing for move-in packages across Dubai.</p>
           </div>
-          <ExitPricingCalculator />
+          <ExitPricingCalculator isMoveIn />
         </div>
       </section>
 

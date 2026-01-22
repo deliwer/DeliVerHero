@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { MessageCircle, Calculator } from "lucide-react";
 
-export function ExitPricingCalculator() {
+export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
   const [apartmentSize, setApartmentSize] = useState("studio");
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -14,7 +14,7 @@ export function ExitPricingCalculator() {
     "1br": 1499,
     "2br": 1999,
     "3br": 2499,
-    villa: 3499
+    "villa": 3499
   };
 
   useEffect(() => {
@@ -22,7 +22,8 @@ export function ExitPricingCalculator() {
   }, [apartmentSize]);
 
   const handleWhatsApp = () => {
-    const text = `Hello DeliWer, I used the Exit Calculator for my ${apartmentSize} apartment. Quote: AED ${totalPrice}. I'd like to proceed.`;
+    const type = isMoveIn ? "Move-In" : "Exit";
+    const text = `Hello DeliWer, I used the ${type} Calculator for my ${apartmentSize} apartment. Quote: AED ${totalPrice}. I'd like to proceed.`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -31,7 +32,7 @@ export function ExitPricingCalculator() {
       <CardHeader className="p-8 border-b border-white/5 bg-white/5">
         <CardTitle className="text-2xl font-black uppercase flex items-center gap-2 text-white">
           <Calculator className="w-6 h-6 text-emerald-500" />
-          Exit & Move-Out Calculator
+          {isMoveIn ? "Move-In Calculator" : "Exit & Move-Out Calculator"}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-8 space-y-8">
@@ -66,7 +67,7 @@ export function ExitPricingCalculator() {
           Get Exact Quote via WhatsApp
         </Button>
         <p className="text-center text-[10px] text-gray-500 uppercase font-bold tracking-tighter">
-          *Price includes base cleaning, utility closure assistance, and handover support.
+          *{isMoveIn ? "Price includes deep cleaning, utility setup assistance, and move-in support." : "Price includes base cleaning, utility closure assistance, and handover support."}
         </p>
       </CardContent>
     </Card>
