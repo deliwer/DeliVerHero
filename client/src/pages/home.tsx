@@ -183,22 +183,6 @@ export default function Home() {
     }
   }, []);
 
-  const handleOnboardingComplete = () => {
-    localStorage.setItem('hero-onboarding-completed', 'true');
-    setShowOnboarding(false);
-    setHasSeenOnboarding(true);
-  };
-
-  const handleOnboardingSkip = () => {
-    localStorage.setItem('hero-onboarding-completed', 'true');
-    setShowOnboarding(false);
-    setHasSeenOnboarding(true);
-  };
-
-  const handleRestartTutorial = () => {
-    setShowOnboarding(true);
-  };
-
   return (
     <div className="min-h-screen bg-slate-950">
       {/* Hero Section - Elite Concierge & Risk Mitigation Focus */}
@@ -211,7 +195,7 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="mb-6 inline-block px-4 py-1 bg-[#FFC845] text-[#0A3D62] font-black text-sm uppercase tracking-[0.3em] rounded-full">
-            Elite Concierge & Risk Mitigation by DeliWer
+            Elite Concierge & Risk Mitigation
           </div>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white leading-[0.9] drop-shadow-2xl">
             Entering Dubai?<br />
@@ -238,143 +222,64 @@ export default function Home() {
       </section>
 
       {/* Nightmare vs Success Section */}
-      <section className="relative py-32 px-4 overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 grayscale"
-          style={{ backgroundImage: `url(${nightmarePng})` }}
-        />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950 via-red-950/20 to-slate-950" />
-        
+      <section className="relative py-32 px-4 overflow-hidden bg-slate-950">
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter mb-6">When Relocation Turns Into a Nightmare</h2>
-            <p className="text-xl text-red-200/70 max-w-2xl mx-auto">One small oversight at arrival can lead to legal blocks, frozen deposits, and travel bans at exit.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              {[
-                { title: "Ejari Misalignment", desc: "Contracts that don't protect your move-out rights." },
-                { title: "Utility Liability", desc: "Accumulated bills hidden in unclosed accounts." },
-                { title: "Deposit Erosion", desc: "Landlords withholding 100% due to technicalities." },
-                { title: "Compliance Gaps", desc: "Failing to deregister correctly, leading to future fines." }
-              ].map((item, i) => (
-                <div key={i} className="flex gap-4 p-6 bg-red-950/10 border border-red-500/20 rounded-2xl backdrop-blur-sm">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0" />
-                  <div>
-                    <h3 className="text-lg font-bold text-white uppercase tracking-tight">{item.title}</h3>
-                    <p className="text-gray-400 text-sm">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Nightmare Side */}
+            <div className="relative group p-8 rounded-3xl bg-red-950/5 border border-red-500/10 backdrop-blur-xl">
+               <div className="mb-8">
+                  <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-4">The Nightmare</h2>
+                  <p className="text-red-200/60">One small oversight at arrival can lead to legal blocks, frozen deposits, and travel bans at exit.</p>
+               </div>
+               <div className="space-y-4">
+                  {[
+                    { title: "Ejari Misalignment", desc: "Contracts that don't protect your move-out rights." },
+                    { title: "Utility Liability", desc: "Accumulated bills hidden in unclosed accounts." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4 p-4 bg-red-950/10 border border-red-500/20 rounded-xl">
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 shrink-0" />
+                      <div>
+                        <h3 className="text-sm font-bold text-white uppercase tracking-tight">{item.title}</h3>
+                        <p className="text-gray-400 text-xs">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+               </div>
+               <div className="mt-8 opacity-40 grayscale group-hover:grayscale-0 transition-all">
+                  <img src={nightmarePng} alt="Nightmare scenario" className="rounded-2xl border border-white/5 shadow-2xl h-48 w-full object-cover" />
+               </div>
             </div>
-            <div className="relative group">
-               <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-               <img src={nightmarePng} alt="Nightmare scenario" className="relative rounded-3xl border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" />
+
+            {/* Success Side */}
+            <div className="relative group p-8 rounded-3xl bg-emerald-950/5 border border-emerald-500/10 backdrop-blur-xl">
+               <div className="mb-8">
+                  <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-4">The Success</h2>
+                  <p className="text-emerald-100/60">Emerging without pitfalls. Our local experts handle the complexity from Day 1.</p>
+               </div>
+               <div className="space-y-4">
+                  {[
+                    { title: "Proactive Audits", desc: "Digital liability tracking and contract protection." },
+                    { title: "Express Clearance", desc: "Direct landlord mediation and deposit recovery." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex gap-4 p-4 bg-emerald-950/10 border border-emerald-500/20 rounded-xl">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                      <div>
+                        <h3 className="text-sm font-bold text-white uppercase tracking-tight">{item.title}</h3>
+                        <p className="text-gray-400 text-xs">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+               </div>
+               <div className="mt-8 group-hover:scale-[1.02] transition-all">
+                  <img src={expertSupportPng} alt="Expert support" className="rounded-2xl border border-white/5 shadow-2xl h-48 w-full object-cover" />
+               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Expert Success Section */}
-      <section className="relative py-32 px-4 overflow-hidden bg-slate-900/50">
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{ backgroundImage: `url(${expertSupportPng})` }}
-        />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950 via-emerald-950/10 to-slate-950" />
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="order-2 md:order-1 relative group">
-               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-               <img src={expertSupportPng} alt="Expert support" className="relative rounded-3xl border border-white/10 shadow-2xl" />
-            </div>
-            <div className="order-1 md:order-2 space-y-8">
-              <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter">Emerging Successful Without Pitfalls</h2>
-              <p className="text-xl text-emerald-100/70">Our local experts handle the complexity from Day 1, ensuring you are always ready to scale or ready to exit safely.</p>
-              
-              <div className="space-y-4">
-                {[
-                  "Proactive Contract Audits",
-                  "Digital Liability Tracking",
-                  "Direct Landlord Mediation",
-                  "Express Exit Clearance"
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-lg font-bold text-white">
-                    <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-                    <span className="uppercase tracking-tight">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Button 
-                size="lg" 
-                className="bg-[#FFC845] hover:bg-[#e6b43e] text-[#0A3D62] font-black rounded-full px-12 h-20 text-xl shadow-xl w-full md:w-auto"
-                onClick={() => window.open('https://wa.me/971523946311', '_blank')}
-              >
-                Secure Your Relocation
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3 Quick Value Points - Focus on Dilemma & Consequences */}
-      <section className="py-24 px-4 bg-[#0A3D62] border-y border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-red-500/20 rounded-3xl flex items-center justify-center mb-6 border border-red-500/30 group-hover:scale-110 transition-transform">
-                <Gavel className="w-10 h-10 text-red-400" />
-              </div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Avoid Exit Traps</h3>
-              <p className="text-blue-100/70 text-lg leading-relaxed">Mishandled Ejari or DEWA closures at arrival create massive legal liabilities when you eventually leave.</p>
-            </div>
-            
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-[#FFC845]/20 rounded-3xl flex items-center justify-center mb-6 border border-[#FFC845]/30 group-hover:scale-110 transition-transform">
-                <FileText className="w-10 h-10 text-[#FFC845]" />
-              </div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Liability Protection</h3>
-              <p className="text-blue-100/70 text-lg leading-relaxed">We audit your contracts from day one to ensure a smooth, penalty-free exit when the time comes.</p>
-            </div>
-
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-20 h-20 bg-blue-400/20 rounded-3xl flex items-center justify-center mb-6 border border-blue-400/30 group-hover:scale-110 transition-transform">
-                <Plane className="w-10 h-10 text-blue-400" />
-              </div>
-              <h3 className="text-2xl font-black text-white uppercase mb-4 tracking-tight">Zero-Friction Departure</h3>
-              <p className="text-blue-100/70 text-lg leading-relaxed">Whether you're moving in or ready to move out, we ensure no loose ends are left behind in Dubai.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Why Exit Is Hard */}
-      <section className="py-24 px-4 bg-slate-900/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter mb-16">The Reality of Leaving Dubai</h2>
-          <div className="grid md:grid-cols-2 gap-8 text-left">
-            {[
-              "DEWA & utility closures",
-              "Ejari & landlord coordination",
-              "Deposit recovery",
-              "Timelines & penalties",
-              "Too many vendors"
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl">
-                <div className="w-3 h-3 bg-red-500 rounded-full" />
-                <span className="text-lg text-gray-300 font-medium">{item}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-16 p-8 bg-[#FFC845]/10 border border-[#FFC845]/20 rounded-[2rem]">
-             <p className="text-2xl font-bold text-white uppercase tracking-tight">“Your Dubai chapter should end with clarity — not loose ends.”</p>
-          </div>
-        </div>
-      </section>
-      {/* Authority & Contact Section */}
-      <section className="py-24 px-4 border-t border-white/5 bg-slate-950">
+      {/* Immediate Support */}
+      <section className="py-32 px-4 border-t border-white/5 bg-slate-950">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-black text-white uppercase tracking-tighter mb-12">Immediate Professional Support</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-16">
@@ -387,27 +292,19 @@ export default function Home() {
               <a href="tel:+971523906019" className="text-3xl font-black text-white hover:text-[#FFC845] transition-colors tracking-tight">+971 52 390 6019</a>
             </div>
           </div>
-          
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-gray-500 font-bold uppercase tracking-[0.2em] text-xs">
-            <span>UAE-based team</span>
-            <span>Compliance-first</span>
-            <span>Confidential & Professional</span>
-          </div>
         </div>
       </section>
-      {/* Footer - Exit Focus */}
+
+      {/* Simplified Footer */}
       <footer className="py-12 px-4 border-t border-white/5 bg-slate-950">
         <div className="max-w-4xl mx-auto text-center">
-          <Link href="/relocate/exit" className="inline-block mb-8">
-            <img src="/deliwer-logo.png" alt="DeliWer" className="h-8 w-auto opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all" />
-          </Link>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
             <a href="https://wa.me/971523946311" className="text-[#FFC845] font-bold hover:underline">WhatsApp</a>
             <a href="mailto:service@deliwer.com" className="text-gray-400 hover:text-white">service@deliwer.com</a>
             <span className="text-gray-600 text-sm">Dubai, United Arab Emirates</span>
           </div>
           <Link href="/relocate/exit" className="text-emerald-500 font-black uppercase tracking-widest text-sm hover:underline">
-            Exit Concierge →
+            Relocation & Exit Concierge →
           </Link>
         </div>
       </footer>
