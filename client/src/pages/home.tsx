@@ -233,7 +233,7 @@ export default function Home() {
                </div>
                <div className="space-y-4">
                   {[
-                    { title: "Ejari Misalignment", desc: "Contracts that don't protect your move-out rights." },
+                    { title: "Jurisdiction Misalignment", desc: "Contracts that don't protect your move-out rights." },
                     { title: "Utility Liability", desc: "Accumulated bills hidden in unclosed accounts." }
                   ].map((item, i) => (
                     <div key={i} className="flex gap-4 p-4 bg-red-950/10 border border-red-500/20 rounded-xl">
