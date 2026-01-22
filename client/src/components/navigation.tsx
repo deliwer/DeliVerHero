@@ -111,7 +111,7 @@ export function Navigation() {
                       data-testid={`link-${item.id}`}
                     >
                       <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600/40 to-orange-600/40 border-2 border-amber-500/70 rounded-lg text-white hover:from-amber-600/50 hover:to-orange-600/50 hover:border-amber-400/90 transition-all duration-300 shadow-xl hover:shadow-amber-500/40 animate-pulse hover:animate-none">
-                        <span className="font-bold text-lg">Relocation in/out</span>
+                        <span className="font-bold text-lg">Relocation Entry/Exit</span>
                         <Plane className="w-4 h-4 text-yellow-300 animate-bounce" />
                       </div>
                     </Link>
