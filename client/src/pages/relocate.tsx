@@ -96,17 +96,22 @@ export default function Relocate() {
         </div>
       </section>
 
-      {/* Simplified Services Overview */}
-      <section className="py-32 bg-slate-50 dark:bg-slate-900/50">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* Simplified Services Overview with Background */}
+      <section className="relative py-32 overflow-hidden text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')` }}
+        />
+        <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-4 gap-12 text-center">
             {relocationServices.map((service, i) => (
               <div key={i} className="flex flex-col items-center group">
-                <div className="w-20 h-20 rounded-3xl bg-emerald-500/10 flex items-center justify-center mb-8 transition-colors group-hover:bg-emerald-500/20">
-                  <service.icon className="w-10 h-10 text-emerald-600" />
+                <div className="w-20 h-20 rounded-3xl bg-emerald-500/20 flex items-center justify-center mb-8 transition-colors group-hover:bg-emerald-500/40 backdrop-blur-md border border-white/10">
+                  <service.icon className="w-10 h-10 text-emerald-400" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">{service.description}</p>
+                <p className="text-emerald-50/90 text-lg leading-relaxed">{service.description}</p>
               </div>
             ))}
           </div>
