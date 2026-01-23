@@ -73,8 +73,8 @@ export default function HomeService() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Dubai Everyday Living Organiser | Home Services | DeliWer</title>
-        <meta name="description" content="Dubai Everyday Living Organiser: Your partner in avoiding hidden home costs. Expert cooling, water, and essential home readiness for new expats." />
+        <title>Your Dubai Concierge | DeliWer</title>
+        <meta name="description" content="Everyday Living Organiser: Your partner in avoiding hidden home costs. Expert cooling, water, and essential home readiness for new expats." />
       </Helmet>
 
       {/* 🔴 HERO SECTION */}
@@ -86,7 +86,7 @@ export default function HomeService() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-slate-950" />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-6 px-4 py-1.5 rounded-full uppercase tracking-widest font-black text-xs">
-            Dubai Everyday Living Organiser
+            Everyday Living Organiser
           </Badge>
           <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase leading-none">
             Stop Paying for <br /><span className="text-emerald-400">Hidden Inefficiency</span>
@@ -254,7 +254,7 @@ export default function HomeService() {
       <footer className="py-12 px-6 bg-slate-950 border-t border-white/5 text-center text-white">
         <div className="container mx-auto">
           <p className="text-emerald-500 font-black text-xs uppercase tracking-widest mb-6">
-            Dubai Everyday Living Organiser
+            Everyday Living Organiser
           </p>
           <p className="text-slate-500 text-[10px] font-medium max-w-2xl mx-auto uppercase tracking-tighter">
             © {new Date().getFullYear()} DeliWer Home Operations. All services are performed by licensed professionals according to UAE safety and building regulations.
