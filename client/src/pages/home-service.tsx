@@ -237,7 +237,7 @@ export default function HomeService() {
       <section className="relative py-32 md:py-48 overflow-hidden bg-slate-950 text-white">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-60"
-          style={{ backgroundImage: `url(${homeCleanImg})` }}
+          style={{ backgroundImage: `url(${waterLifestyleImg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-slate-950" />
         <div className="container mx-auto px-6 relative z-10 text-center">
