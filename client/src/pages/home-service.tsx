@@ -21,7 +21,8 @@ import {
   Bike,
   Package,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Droplets
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -159,7 +160,7 @@ export default function HomeService() {
   const referralLink = useMemo(() => `https://deliwer.com/home-service?ref=${referralCode}`, [referralCode]);
 
   const handleWhatsApp = (serviceName: string) => {
-    const text = `Hi DeliWer, I'm interested in the ${serviceName} assessment for my home.`;
+    const text = `Hi DeliWer, I'm interested in the ${serviceName} assessment for my home. I want to make sure my home is summer-ready and avoid any summer shocks!`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -229,11 +230,11 @@ export default function HomeService() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Home Services & Smart Upgrades Dubai | DeliWer</title>
-        <meta name="description" content="Essential maintenance and smart upgrades for apartments and villas in Dubai — installed, managed, and supported by DeliWer." />
+        <title>Dubai Summer Ready Home | Home Services & Upgrades | DeliWer</title>
+        <meta name="description" content="Move into a Dubai home that's summer-ready from day one. Cooling, water, and essential readiness inspected, fixed, and supported by DeliWer." />
       </Helmet>
 
-      {/* Hero Section */}
+      {/* Hero Section - Optimized for Summer Readiness */}
       <section className="relative py-32 md:py-48 overflow-hidden bg-slate-950 text-white">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-60"
@@ -242,24 +243,97 @@ export default function HomeService() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-slate-950" />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-6 px-4 py-1.5 rounded-full uppercase tracking-widest font-black text-xs">
-            Dubai Home Operating System
+            Dubai Summer Readiness
           </Badge>
           <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-none">
-            Your Home. <br /><span className="text-emerald-400 font-black">Better Managed.</span>
+            Move In. <br /><span className="text-emerald-400 font-black">Summer-Ready.</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
-            The all-in-one platform for maintenance, upgrades, essentials, and sustainable living in Dubai.
+            Avoid summer shocks. Cooling, water, and essential home readiness — inspected, fixed, and supported by DeliWer from Day One.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.5)] transition-all hover:scale-105"
-              onClick={() => handleWhatsApp("General Inquiry")}
+              onClick={() => handleWhatsApp("Summer Ready Assessment")}
             >
-              <MessageCircle className="w-6 h-6 mr-2" />
-              WhatsApp Us
+              Book Summer Ready Assessment
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* DNA Section: The Summer Ready Move-In Pack */}
+      <section className="py-24 px-6 relative overflow-hidden bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-emerald-100 text-emerald-700 border-emerald-200">The Primary Offer</Badge>
+            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase">Dubai Summer Ready Home <br /><span className="text-emerald-500">Move-In Pack</span></h2>
+            <p className="text-xl text-slate-500 font-medium italic max-w-2xl mx-auto">"Before your first night, we make sure your home can survive Dubai summer. No long contracts, just survival."</p>
+          </div>
+
+          <Card className="border-4 border-slate-950 shadow-[20px_20px_0_0_rgba(2,6,23,1)] rounded-[3rem] overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid md:grid-cols-2">
+                <div className="p-8 md:p-12 bg-white dark:bg-slate-900 text-slate-950 dark:text-white">
+                  <h3 className="text-3xl font-black mb-8 uppercase">Survival DNA</h3>
+                  <div className="space-y-8 text-left">
+                    <div className="flex gap-4">
+                      <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-2xl h-fit">
+                        <Thermometer className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-black text-xl uppercase mb-1">Cooling Readiness</h4>
+                        <p className="text-slate-600 dark:text-slate-400 font-medium">Full AC inspection, basic servicing, and efficiency check to prevent mid-summer breakdowns.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="bg-cyan-50 dark:bg-cyan-900/20 p-3 rounded-2xl h-fit">
+                        <Droplets className="w-6 h-6 text-cyan-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-black text-xl uppercase mb-1">Water Readiness</h4>
+                        <p className="text-slate-600 dark:text-slate-400 font-medium">Drinking water starter delivery, leak detection, and pressure optimization.</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-2xl h-fit">
+                        <Home className="w-6 h-6 text-emerald-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-black text-xl uppercase mb-1">Move-In Support</h4>
+                        <p className="text-slate-600 dark:text-slate-400 font-medium">Minor fixes coordination and emergency access to our maintenance network.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-slate-950 text-white p-8 md:p-12 flex flex-col justify-between">
+                  <div>
+                    <div className="mb-8">
+                      <span className="text-slate-400 uppercase font-black tracking-widest text-sm">One-Time Price</span>
+                      <div className="text-5xl md:text-7xl font-black mt-2">From <span className="text-emerald-400">AED 399</span></div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4 mb-12 text-left">
+                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                        <div className="text-xs uppercase font-black text-slate-500">Service Time</div>
+                        <div className="font-bold">2–4 Hours</div>
+                      </div>
+                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                        <div className="text-xs uppercase font-black text-slate-500">Property</div>
+                        <div className="font-bold">Apt • T-House</div>
+                      </div>
+                    </div>
+                  </div>
+                  <Button 
+                    className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black h-20 text-2xl rounded-2xl shadow-xl transition-all hover:scale-[1.02]"
+                    onClick={() => handleWhatsApp("Summer Ready Pack Booking")}
+                  >
+                    Book Assessment
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -270,7 +344,7 @@ export default function HomeService() {
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Maintenance & <br /><span className="text-emerald-500">Smart Upgrades</span></h2>
-            <p className="text-xl text-slate-500 max-w-2xl font-medium">Keep your home running efficiently with expert technical support and future-proof technology.</p>
+            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl font-medium">Keep your home running efficiently with expert technical support and future-proof technology.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {maintenanceServices.map((service) => (
@@ -304,7 +378,7 @@ export default function HomeService() {
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Circular <br /><span className="text-amber-500">Trade-In & Recycle</span></h2>
-            <p className="text-xl text-slate-500 max-w-2xl font-medium">Upgrade smarter by trading in or recycling what you no longer need.</p>
+            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl font-medium">Upgrade smarter by trading in or recycling what you no longer need.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl">
             {circularServices.map((service) => (

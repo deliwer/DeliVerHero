@@ -146,8 +146,6 @@ function Router() {
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
-        <Route path="/summer-ready-home" component={SummerReadyHome} />
-        <Route path="/summer-ready" component={SummerReadyHome} />
 
         {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
