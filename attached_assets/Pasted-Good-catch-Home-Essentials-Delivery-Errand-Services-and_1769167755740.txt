@@ -1,0 +1,217 @@
+Good catch — **Home Essentials Delivery, Errand Services, and Trade-In** are *core cash-flow and differentiation levers* for DeliWer and should **not** be sidelined as “other services”.
+
+Below is a **clean way to include them without clutter**, followed by a **revised Replit add-on prompt** you can directly append to what you already used.
+
+---
+
+# 1️⃣ Strategic Placement (Very Important)
+
+You should **NOT mix everything into one flat grid**.
+Instead, use **3 clear sub-sections under Home Services**:
+
+```
+Home Services
+├── Maintenance & Smart Upgrades
+├── Home Essentials & Errands
+└── Circular Trade-In & Recycle
+```
+
+This keeps:
+
+* UX clean
+* SEO strong
+* Monetization clear
+* Your “operating system for homes” story intact
+
+---
+
+# 2️⃣ How Each Missing Service Is Positioned
+
+## A. Home Essentials Delivery (Recurring Revenue)
+
+### Positioning
+
+> “Everyday living essentials delivered to your door — on demand or scheduled.”
+
+### Why it belongs here
+
+* Ties to **move-in**
+* Ties to **maintenance**
+* Enables **subscriptions**
+* Supports smart water & sustainability narrative
+
+### Examples
+
+* Drinking water
+* Filters
+* Cleaning essentials
+* Starter packs for new homes
+
+---
+
+## B. Errand Services (High Margin, Low Complexity)
+
+### Positioning
+
+> “We handle the small tasks so you don’t have to.”
+
+Examples:
+
+* Pick & drop
+* Installation coordination
+* Government or utility errands (light)
+* One-off home support tasks
+
+This is your **human layer** over all other services.
+
+---
+
+## C. Trade-In Services (Strategic Differentiator)
+
+This deserves its **own category**, not buried.
+
+### Positioning
+
+> “Upgrade your home. Trade in what you no longer need.”
+
+Trade-in can include:
+
+* Appliances
+* Furniture
+* Electronics
+* Water dispensers
+* AC units (via partners)
+
+This connects directly to:
+
+* Recycle & Removal
+* Smart upgrades
+* Sustainability gateway
+
+---
+
+# 3️⃣ REPLIT PROMPT — ADD MISSING SERVICE SECTIONS
+
+👉 **Append the following to your existing prompt**
+
+---
+
+## 🔹 ADD NEW SUB-SECTION: HOME ESSENTIALS & ERRANDS
+
+### Section Title
+
+**Home Essentials & Errand Services**
+
+### Section Subtitle
+
+“Everyday support for smooth living — delivered, managed, and coordinated by DeliWer.”
+
+---
+
+### 🟦 CARD 8 — Home Essentials Delivery
+
+**Title:** Home Essentials Delivery
+**Description:** Drinking water, filters, and everyday home essentials delivered on demand or via subscription.
+**Starting Price:** From AED 49
+**Delivery Time:** Same Day / Scheduled
+**Property Type:** Apartment • Villa
+**CTA:** Order Essentials
+
+Tag: “Recurring • Convenience”
+
+---
+
+### 🟩 CARD 9 — Errand Services
+
+**Title:** Errand & Home Support Services
+**Description:** Pick-up, drop-off, installations, and small home tasks handled by DeliWer.
+**Starting Price:** From AED 79
+**Service Time:** 1–3 hours
+**Property Type:** Apartment • Villa
+**CTA:** Book Errand
+
+Tag: “On-Demand Help”
+
+---
+
+## 🔹 ADD NEW SUB-SECTION: CIRCULAR TRADE-IN & RECYCLE
+
+### Section Title
+
+**Trade-In, Recycle & Responsible Removal**
+
+### Section Subtitle
+
+“Upgrade smarter by trading in or recycling what you no longer need.”
+
+---
+
+### 🟨 CARD 10 — Home Appliance & Furniture Trade-In
+
+**Title:** Home Trade-In Services
+**Description:** Trade in old appliances, furniture, or electronics when upgrading or moving out.
+**Starting Price:** Free Assessment
+**Service Time:** Valuation in 24–48 hrs
+**Property Type:** Apartment • Villa
+**CTA:** Check Trade-In Value
+
+Tag: “Circular Economy”
+
+---
+
+### 🟥 CARD 11 — Recycle & Removal (Standalone + Upgrade-Linked)
+
+**Title:** Recycle & Responsible Removal
+**Description:** Eco-friendly disposal and recycling of appliances, fixtures, and furniture.
+**Starting Price:** From AED 149
+**Service Time:** Same / Next Day
+**Property Type:** Apartment • Villa
+**CTA:** Book Removal
+
+Tag: “Sustainability”
+
+---
+
+# 4️⃣ UX LOGIC (Critical)
+
+### Card Ordering Priority
+
+1. Maintenance & Smart Upgrades (High ticket)
+2. Home Essentials & Errands (Recurring)
+3. Trade-In & Recycle (Cost offset + sustainability)
+
+### Smart Cross-Links
+
+* Trade-In suggested during:
+
+  * Smart upgrades
+  * Move-out
+* Recycle auto-suggested during:
+
+  * AC replacement
+  * Appliance upgrades
+* Essentials upsell after:
+
+  * Move-in
+  * Maintenance booking
+
+---
+
+# 5️⃣ One-Line Internal Rule (Use This)
+
+> **Every DeliWer service must either maintain the home, upgrade the home, supply the home, or remove waste from the home.**
+
+This keeps future additions disciplined.
+
+---
+
+## 🔜 If you want next
+
+I can:
+
+* Rewrite the **full Home Services sitemap**
+* Create **bundle logic** (Upgrade + Trade-In + Recycle discount)
+* Write **partner-facing version of Trade-In**
+* Design **move-in → lifetime services funnel**
+
+Just tell me which one to execute.

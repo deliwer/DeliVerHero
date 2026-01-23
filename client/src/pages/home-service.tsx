@@ -2,38 +2,36 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CalendlyButton } from "@/components/calendly-popup";
 import { Helmet } from "react-helmet";
 import { 
-  Droplets, 
   Home, 
-  ArrowRight, 
-  CheckCircle2, 
-  Sparkles,
-  Gift,
-  Bike,
+  Clock, 
+  MessageCircle, 
+  Smartphone, 
+  Recycle, 
+  Zap, 
+  Leaf, 
+  Copy, 
+  Check, 
+  Thermometer, 
+  Waves, 
+  Gauge, 
+  Lightbulb,
   ShoppingBag,
-  Clock,
-  MessageCircle,
-  Smartphone,
-  Recycle,
-  Sun,
-  Zap,
-  Leaf,
-  Users,
-  Copy,
-  Check,
-  Thermometer,
-  Waves,
-  Gauge,
-  Lightbulb
+  Bike,
+  Package,
+  Sparkles,
+  ArrowRight
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 import homeServiceHeroImg from "@assets/stock_images/professional_service_2cfeb661.jpg";
+import waterLifestyleImg from "@assets/without_text_1756065010951.jpg";
+import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
+import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
 
-const homeServicesData = [
+const maintenanceServices = [
   {
     id: "ac-maint",
     title: "AC Maintenance & Servicing",
@@ -53,7 +51,7 @@ const homeServicesData = [
     time: "2–4 hours",
     property: "Apartment • Villa",
     icon: Waves,
-    tag: "Water Saving • Sustainability",
+    tag: "Sustainability",
     color: "emerald"
   },
   {
@@ -64,7 +62,7 @@ const homeServicesData = [
     time: "1 Day",
     property: "Villa • Selected Apartments",
     icon: Zap,
-    tag: "EV Ready Home",
+    tag: "EV Ready",
     color: "blue"
   },
   {
@@ -75,7 +73,7 @@ const homeServicesData = [
     time: "3–5 hours",
     property: "Apartment • Villa",
     icon: Lightbulb,
-    tag: "Comfort • Control",
+    tag: "Automation",
     color: "amber"
   },
   {
@@ -97,18 +95,57 @@ const homeServicesData = [
     time: "1 Day",
     property: "Apartment • Villa",
     icon: Leaf,
-    tag: "Best Value • Sustainability",
+    tag: "Best Value",
     color: "emerald"
+  }
+];
+
+const essentialServices = [
+  {
+    id: "essentials-delivery",
+    title: "Home Essentials Delivery",
+    description: "Drinking water, filters, and everyday home essentials delivered on demand or via subscription.",
+    price: "From AED 49",
+    time: "Same Day / Scheduled",
+    property: "Apartment • Villa",
+    icon: ShoppingBag,
+    tag: "Recurring • Convenience",
+    color: "blue"
+  },
+  {
+    id: "errand-services",
+    title: "Errand & Home Support",
+    description: "Pick-up, drop-off, installations, and small home tasks handled by DeliWer.",
+    price: "From AED 79",
+    time: "1–3 hours",
+    property: "Apartment • Villa",
+    icon: Bike,
+    tag: "On-Demand Help",
+    color: "orange"
+  }
+];
+
+const circularServices = [
+  {
+    id: "trade-in",
+    title: "Home Trade-In Services",
+    description: "Trade in old appliances, furniture, or electronics when upgrading or moving out.",
+    price: "Free Assessment",
+    time: "Valuation in 24–48 hrs",
+    property: "Apartment • Villa",
+    icon: Smartphone,
+    tag: "Circular Economy",
+    color: "amber"
   },
   {
     id: "recycle-removal",
     title: "Recycle & Removal",
-    description: "Responsible removal and recycling of old appliances, fixtures, or furniture during upgrades or move-out.",
+    description: "Eco-friendly disposal and recycling of appliances, fixtures, and furniture.",
     price: "From AED 149",
-    time: "Same Day",
+    time: "Same / Next Day",
     property: "Apartment • Villa",
     icon: Recycle,
-    tag: "Circular Living",
+    tag: "Sustainability",
     color: "orange"
   }
 ];
@@ -134,6 +171,59 @@ export default function HomeService() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const ServiceCard = ({ service }: { service: any }) => (
+    <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-white/5 rounded-[2rem] overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+      <CardHeader className="p-8 pb-4">
+                  <div className={`w-16 h-16 rounded-2xl bg-${service.color === 'emerald' ? 'emerald' : service.color === 'blue' ? 'blue' : service.color === 'amber' ? 'amber' : 'orange'}-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <service.icon className={`w-8 h-8 text-${service.color === 'emerald' ? 'emerald' : service.color === 'blue' ? 'blue' : service.color === 'amber' ? 'amber' : 'orange'}-500`} />
+                  </div>
+        <Badge variant="secondary" className="mb-4 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border-transparent text-[10px] font-black tracking-widest uppercase">
+          {service.tag}
+        </Badge>
+        <CardTitle className="text-2xl font-black tracking-tight mb-2 uppercase">
+          {service.title}
+        </CardTitle>
+        <CardDescription className="text-base text-slate-500 dark:text-slate-400 leading-relaxed min-h-[3rem]">
+          {service.description}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="p-8 pt-4 space-y-6">
+        <div className="flex flex-wrap gap-4 text-sm font-bold uppercase tracking-tight">
+          <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+            <Clock className="w-4 h-4" />
+            {service.time}
+          </div>
+          <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
+            <Home className="w-4 h-4" />
+            {service.property}
+          </div>
+        </div>
+        
+        <div className="pt-4 border-t border-slate-100 dark:border-white/5">
+          <p className="text-xs text-slate-400 uppercase font-black tracking-widest mb-1">Starting Price</p>
+          <p className="text-3xl font-black text-slate-900 dark:text-white">{service.price}</p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-3 pt-4">
+          <Button 
+            onClick={() => handleWhatsApp(service.title)}
+            className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black h-14 rounded-xl text-base hover:opacity-90 transition-opacity"
+          >
+            {service.id.includes('essentials') ? 'Order Essentials' : service.id.includes('errand') ? 'Book Errand' : service.id.includes('trade-in') ? 'Check Value' : 'Book Assessment'}
+          </Button>
+          <Button 
+            variant="ghost"
+            onClick={() => handleWhatsApp(service.title)}
+            className="w-full text-slate-500 dark:text-slate-400 font-black h-14 rounded-xl text-base hover:bg-slate-100 dark:hover:bg-white/5"
+          >
+            <MessageCircle className="w-4 h-4 mr-2" />
+            WhatsApp Inquiry
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
@@ -142,95 +232,79 @@ export default function HomeService() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden bg-slate-950 text-white">
+      <section className="relative py-32 overflow-hidden bg-slate-950 text-white">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: `url(${homeServiceHeroImg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-slate-950" />
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-6 px-4 py-1.5 rounded-full">
-            Dubai Home Operations
+          <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-6 px-4 py-1.5 rounded-full uppercase tracking-widest font-black text-xs">
+            Dubai Home Operating System
           </Badge>
-          <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase">
-            Home Services & <br /><span className="text-emerald-400">Smart Upgrades</span>
+          <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-none">
+            Your Home. <br /><span className="text-emerald-400">Better Managed.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
-            Essential maintenance and smart upgrades for apartments and villas in Dubai — installed, managed, and supported by DeliWer.
+          <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
+            The all-in-one platform for maintenance, upgrades, essentials, and sustainable living in Dubai.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-10 h-16 text-lg"
-              onClick={() => handleWhatsApp("General Home Services")}
+              onClick={() => handleWhatsApp("General Inquiry")}
             >
               <MessageCircle className="w-5 h-5 mr-2" />
               WhatsApp Us
             </Button>
-            <Link href="/launch">
-              <Button size="lg" variant="outline" className="border-white/20 text-white backdrop-blur-md bg-white/5 px-10 h-16 text-lg font-black rounded-full hover:bg-white/10">
-                View Launch Offers
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-24 px-6 bg-slate-50 dark:bg-slate-950">
-        <div className="container mx-auto max-w-7xl">
+      {/* Sub-Section 1: Maintenance & Upgrades */}
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-10 grayscale" style={{ backgroundImage: `url(${homeServiceHeroImg})` }} />
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Maintenance & <br /><span className="text-emerald-500">Smart Upgrades</span></h2>
+            <p className="text-xl text-slate-500 max-w-2xl font-medium">Keep your home running efficiently with expert technical support and future-proof technology.</p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {homeServicesData.map((service) => (
-              <Card key={service.id} className="bg-white dark:bg-slate-900 border-slate-200 dark:border-white/5 rounded-[2rem] overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
-                <CardHeader className="p-8 pb-4">
-                  <div className={`w-16 h-16 rounded-2xl bg-${service.color}-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    <service.icon className={`w-8 h-8 text-${service.color}-500`} />
-                  </div>
-                  <Badge variant="secondary" className="mb-4 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border-transparent text-[10px] font-black tracking-widest uppercase">
-                    {service.tag}
-                  </Badge>
-                  <CardTitle className="text-2xl font-black tracking-tight mb-2 uppercase">
-                    {service.title}
-                  </CardTitle>
-                  <CardDescription className="text-base text-slate-500 dark:text-slate-400 leading-relaxed min-h-[3rem]">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-8 pt-4 space-y-6">
-                  <div className="flex flex-wrap gap-4 text-sm font-bold uppercase tracking-tight">
-                    <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-                      <Clock className="w-4 h-4" />
-                      {service.time}
-                    </div>
-                    <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
-                      <Home className="w-4 h-4" />
-                      {service.property}
-                    </div>
-                  </div>
-                  
-                  <div className="pt-4 border-t border-slate-100 dark:border-white/5">
-                    <p className="text-xs text-slate-400 uppercase font-black tracking-widest mb-1">Starting Price</p>
-                    <p className="text-3xl font-black text-slate-900 dark:text-white">{service.price}</p>
-                  </div>
+            {maintenanceServices.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-                  <div className="grid grid-cols-1 gap-3 pt-4">
-                    <Button 
-                      onClick={() => handleWhatsApp(service.title)}
-                      className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black h-14 rounded-xl text-base hover:opacity-90 transition-opacity"
-                    >
-                      Book Assessment
-                    </Button>
-                    <Button 
-                      variant="ghost"
-                      onClick={() => handleWhatsApp(service.title)}
-                      className="w-full text-slate-500 dark:text-slate-400 font-black h-14 rounded-xl text-base hover:bg-slate-100 dark:hover:bg-white/5"
-                    >
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      WhatsApp Inquiry
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+      {/* Sub-Section 2: Essentials & Errands */}
+      <section className="relative py-24 px-6 bg-slate-950 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-20 grayscale" style={{ backgroundImage: `url(${errandRunnerImg})` }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent" />
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Home Essentials <br />& <span className="text-blue-400">Errand Services</span></h2>
+            <p className="text-xl text-slate-400 max-w-2xl font-medium">Everyday support for smooth living — delivered, managed, and coordinated by DeliWer.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl">
+            {essentialServices.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sub-Section 3: Trade-In & Recycle */}
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-10 grayscale" style={{ backgroundImage: `url(${tradeInImg})` }} />
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Circular <br /><span className="text-amber-500">Trade-In & Recycle</span></h2>
+            <p className="text-xl text-slate-500 max-w-2xl font-medium">Upgrade smarter by trading in or recycling what you no longer need.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl">
+            {circularServices.map((service) => (
+              <ServiceCard key={service.id} service={service} />
             ))}
           </div>
         </div>
@@ -245,7 +319,7 @@ export default function HomeService() {
           </Badge>
           <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase">Share the <br />Sustainability</h2>
           <p className="text-xl text-emerald-50 mb-12 font-medium max-w-2xl mx-auto">
-            Refer a friend to DeliWer Home Services and you both get AED 100 credit toward your next smart upgrade.
+            Refer a friend to DeliWer and you both get AED 100 credit toward your next home service or upgrade.
           </p>
           <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-[2rem] p-4 flex flex-col md:flex-row items-center gap-4 max-w-2xl mx-auto">
             <code className="bg-black/20 px-6 py-4 rounded-xl font-mono text-lg flex-1 text-center md:text-left overflow-hidden text-ellipsis whitespace-nowrap">
