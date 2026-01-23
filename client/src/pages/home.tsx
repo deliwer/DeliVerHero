@@ -203,20 +203,24 @@ export default function Home() {
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">Most relocations fail at the end. We manage your arrival with a focus on mitigating the liabilities that trap founders upon exit.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-            <Button 
-              size="lg" 
-              className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-black rounded-full px-16 h-24 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2" 
-              onClick={() => window.open('https://wa.me/971523946311?text=I%20want%20to%20avoid%20relocation%20mishandling%20and%20exit%20traps', '_blank')}
-            >
-              <MessageSquare className="w-8 h-8 mr-3" />
-              Mitigate Risk on WhatsApp
-            </Button>
-            <Link href="/relocate">
-              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-12 h-20 text-xl backdrop-blur-md font-bold">
-                Relocate with Certainty
-                <ChevronRight className="w-5 h-5 ml-2" />
+            <Link href="/summer-ready-home">
+              <Button 
+                size="lg" 
+                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-full px-16 h-24 text-2xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.5)] transition-all w-full md:w-auto active-elevate-2 animate-pulse" 
+              >
+                <Zap className="w-8 h-8 mr-3" />
+                Summer-Ready Pack
               </Button>
             </Link>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-black rounded-full px-12 h-24 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2" 
+              onClick={() => window.open('https://wa.me/971523946311?text=I%20want%20to%20avoid%20relocation%20mishandling%20and%20exit%20traps', '_blank')}
+            >
+              <MessageSquare className="w-6 h-6 mr-3" />
+              WhatsApp Help
+            </Button>
           </div>
         </div>
       </section>

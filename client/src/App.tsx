@@ -22,6 +22,7 @@ import Relocate from "@/pages/relocate";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import HomeService from "@/pages/home-service";
+import SummerReadyHome from "@/pages/summer-ready-home";
 import Residence from "@/pages/residence";
 import FindAPlace from "@/pages/residence/find-a-place";
 import ErrandPage from "@/pages/errand";
@@ -145,6 +146,8 @@ function Router() {
 
         {/* Home Service - Unified AquaCafe + Trade-in */}
         <Route path="/home-service" component={HomeService} />
+        <Route path="/summer-ready-home" component={SummerReadyHome} />
+        <Route path="/summer-ready" component={SummerReadyHome} />
 
         {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
