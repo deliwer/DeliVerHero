@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { CalendlyButton } from "@/components/calendly-popup";
 import { Helmet } from "react-helmet";
-import { SocialSharingWidget } from "@/components/social-sharing-widget";
 import { 
   Droplets, 
   Home, 
@@ -12,13 +11,8 @@ import {
   CheckCircle2, 
   Sparkles,
   Gift,
-  Plane,
-  Globe,
   Bike,
   ShoppingBag,
-  Scissors,
-  Wrench,
-  Package,
   Clock,
   MessageCircle,
   Smartphone,
@@ -26,34 +20,109 @@ import {
   Sun,
   Zap,
   Leaf,
-  Share2,
   Users,
   Copy,
   Check,
-  Shield,
-  Briefcase
+  Thermometer,
+  Waves,
+  Gauge,
+  Lightbulb
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-import waterServiceImg from "@assets/stock_images/5-stage_water_purifi_4d73f45d.jpg";
-import waterLifestyleImg from "@assets/without_text_1756065010951.jpg";
-import waterPurifierImg from "@assets/stock_images/modern_water_filtrat_3b514222.jpg";
 import homeServiceHeroImg from "@assets/stock_images/professional_service_2cfeb661.jpg";
-import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
-import solarImg from "@assets/stock_images/solar_panels_home_ro_58dd081a.jpg";
-import evChargingImg from "@assets/stock_images/electric_vehicle_ev__8c191f69.jpg";
-import ecoCleaningImg from "@assets/stock_images/eco-friendly_cleanin_0650dea4.jpg";
-import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
-import jvcBoxes from "@assets/generated_images/jvc_dubai_apartment_move-in_boxes.png";
-import dailyEssentialsImg from "@assets/stock_images/5-stage_water_purifi_b2e38594.jpg";
-import businessSetupImg from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
+
+const homeServicesData = [
+  {
+    id: "ac-maint",
+    title: "AC Maintenance & Servicing",
+    description: "Prevent breakdowns, improve cooling efficiency, and extend AC life with scheduled or on-demand servicing.",
+    price: "From AED 199",
+    time: "60–90 min",
+    property: "Apartment • Villa",
+    icon: Thermometer,
+    tag: "Core Service",
+    color: "blue"
+  },
+  {
+    id: "smart-water",
+    title: "Smart Water Retrofit",
+    description: "Reduce water waste and prevent leaks with smart meters, flow regulators, and auto shut-off systems.",
+    price: "From AED 499",
+    time: "2–4 hours",
+    property: "Apartment • Villa",
+    icon: Waves,
+    tag: "Water Saving • Sustainability",
+    color: "emerald"
+  },
+  {
+    id: "ev-charger",
+    title: "EV Charger Installation",
+    description: "Home EV charger installation with load assessment and building compliance support.",
+    price: "From AED 2,499",
+    time: "1 Day",
+    property: "Villa • Selected Apartments",
+    icon: Zap,
+    tag: "EV Ready Home",
+    color: "blue"
+  },
+  {
+    id: "smart-home",
+    title: "Smart Home Starter Kit",
+    description: "Smart lighting, thermostat, sensors, and mobile app control for everyday comfort and efficiency.",
+    price: "From AED 899",
+    time: "3–5 hours",
+    property: "Apartment • Villa",
+    icon: Lightbulb,
+    tag: "Comfort • Control",
+    color: "amber"
+  },
+  {
+    id: "energy-monitor",
+    title: "Home Energy Monitoring",
+    description: "Track electricity usage in real time and identify savings without modifying DEWA infrastructure.",
+    price: "From AED 399",
+    time: "2–3 hours",
+    property: "Apartment • Villa",
+    icon: Gauge,
+    tag: "Energy Insight",
+    color: "emerald"
+  },
+  {
+    id: "sustainable-upgrade",
+    title: "Sustainable Home Upgrade",
+    description: "Bundled water efficiency, energy monitoring, and smart controls for greener living.",
+    price: "From AED 1,499",
+    time: "1 Day",
+    property: "Apartment • Villa",
+    icon: Leaf,
+    tag: "Best Value • Sustainability",
+    color: "emerald"
+  },
+  {
+    id: "recycle-removal",
+    title: "Recycle & Removal",
+    description: "Responsible removal and recycling of old appliances, fixtures, or furniture during upgrades or move-out.",
+    price: "From AED 149",
+    time: "Same Day",
+    property: "Apartment • Villa",
+    icon: Recycle,
+    tag: "Circular Living",
+    color: "orange"
+  }
+];
 
 export default function HomeService() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
   const referralCode = useMemo(() => "DELIWER" + Math.random().toString(36).substr(2, 6).toUpperCase(), []);
   const referralLink = useMemo(() => `https://deliwer.com/home-service?ref=${referralCode}`, [referralCode]);
+
+  const handleWhatsApp = (serviceName: string) => {
+    const text = `Hi DeliWer, I'm interested in the ${serviceName} assessment for my home.`;
+    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
+  };
 
   const handleCopyReferral = () => {
     navigator.clipboard.writeText(referralLink);
@@ -66,635 +135,144 @@ export default function HomeService() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Sustainable Home Services Dubai - Water, Solar, EV Charging & More | DeliWer</title>
-        <meta name="description" content="Premium sustainable home services delivered to your door in Dubai. Professional water filtration, solar panel installation, EV charging, eco-friendly cleaning, device trade-in. Book your free consultation today - without leaving home." />
-        <meta name="keywords" content="home services Dubai, water filtration UAE, solar panels Dubai, EV charging installation, eco-friendly cleaning, device trade-in Dubai, sustainable living Dubai, home automation, maintenance services UAE, water refill service, professional installation" />
-        <meta property="og:title" content="Sustainable Home Services Dubai - Delivered to Your Door | DeliWer" />
-        <meta property="og:description" content="Transform your home without leaving. Water filtration, solar panels, EV charging, eco-cleaning, device trade-in and errand services delivered professionally in Dubai." />
-        <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="language" content="English" />
-        <meta name="revisit-after" content="7 days" />
-        <meta name="author" content="DeliWer" />
-        <meta name="creator" content="DeliWer" />
-        <link rel="canonical" href="https://deliwer.com/home-service" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sustainable Home Services in Dubai | DeliWer" />
-        <meta name="twitter:description" content="Professional home services without leaving your home. Water, solar, EV charging, cleaning & more." />
-        <meta name="twitter:creator" content="@deliwer" />
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "DeliWer Home Services",
-          "description": "Premium sustainable home services in Dubai",
-          "url": "https://deliwer.com/home-service",
-          "areaServed": "Dubai",
-          "serviceType": ["Water Filtration", "Solar Panel Installation", "EV Charging", "Eco-Cleaning", "Device Trade-in", "Errand Runner"],
-          "telephone": "+971 50 xxx xxxx",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Dubai",
-            "addressCountry": "AE"
-          }
-        })}</script>
+        <title>Home Services & Smart Upgrades Dubai | DeliWer</title>
+        <meta name="description" content="Essential maintenance and smart upgrades for apartments and villas in Dubai — installed, managed, and supported by DeliWer." />
       </Helmet>
-      {/* Hero Section - Home Service Convenience */}
-      <section className="relative h-[500px] md:h-[600px] overflow-hidden">
-        <img 
-          src={homeServiceHeroImg} 
-          alt="Professional home service technician delivering convenient home maintenance services - without leaving home" 
-          className="absolute inset-0 w-full h-full object-cover"
+
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden bg-slate-950 text-white">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-40"
+          style={{ backgroundImage: `url(${homeServiceHeroImg})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/50"></div>
-        <div className="absolute inset-0 flex items-center">
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-2xl">
-              <Badge variant="secondary" className="mb-6 bg-white/20 text-white border-white/30 backdrop-blur-sm">
-                <Droplets className="w-3 h-3 mr-1" />
-                Exclusive for JVC Launch Special
-              </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6" data-testid="text-home-service-title">
-                Freedom LifeStyle.
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300"> Without Leaving Home.</span>
-              </h1>
-              <p className="text-xl text-white/95 mb-4 max-w-xl font-semibold" data-testid="text-home-service-description">
-                Professional home services delivered to your door. Water filtration, solar panels, EV charging, and more.
-              </p>
-              <p className="text-lg text-white/70 mb-8 max-w-xl">
-                Designed for Dubai living. Built for busy families. Everything you need, delivered at home.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <CalendlyButton 
-                  size="lg" 
-                  data-testid="button-book-consultation-home-service"
-                >
-                  <Droplets className="w-4 h-4 mr-2" />
-                  Book Free Consultation
-                </CalendlyButton>
-                <Link href="/launch">
-                  <Button size="lg" variant="outline" className="bg-emerald-500/30 border-emerald-400/50 text-white backdrop-blur-sm hover:bg-emerald-500/40" data-testid="button-launch-promo">
-                    <Gift className="w-4 h-4 mr-2" />
-                    Launch Special Offer
-                  </Button>
-                </Link>
-                <Link href="/">
-                  <Button size="lg" variant="ghost" className="text-white/90 hover:text-white" data-testid="button-home-nav">
-                    <Home className="w-4 h-4 mr-2" />
-                    Back to Home
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Trade-In Service Section - NEW */}
-      <section className="py-0 px-0 relative" id="trade-in">
-        <div className="relative overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center">
-          <img 
-            src={tradeInImg} 
-            alt="Smartphone trade-in and recycling service" 
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
-          <div className="container mx-auto px-4 relative z-10 max-w-5xl">
-            <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-violet-500/30 rounded-full px-3 py-1.5 mb-3">
-                <Smartphone className="w-4 h-4 text-violet-300" />
-                <span className="text-xs text-violet-300 font-medium">Smart Trade-In Service</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2" data-testid="text-trade-in-title">
-                Turn Old Devices into <span className="text-violet-300">Cash & Rewards</span>
-              </h2>
-              <p className="text-base text-white/90 mb-4 max-w-xl">
-                Trade them in for instant cash, store credits, and Planet Points while contributing to a sustainable future.
-              </p>
-              <ul className="space-y-2 mb-4 text-sm text-white/85">
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-violet-300 flex-shrink-0" />
-                  Instant AI-powered device valuation
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-violet-300 flex-shrink-0" />
-                  Free pickup from your home
-                </li>
-                <li className="flex items-center gap-2">
-                  <Recycle className="w-4 h-4 text-violet-300 flex-shrink-0" />
-                  <span><strong className="text-white">Eco-certified recycling</strong> for non-working devices</span>
-                </li>
-              </ul>
-              <div className="bg-violet-500/20 backdrop-blur-sm border border-violet-500/30 rounded-lg p-3 mb-4 inline-block">
-                <p className="text-xs text-violet-200 mb-0.5">Trade-In Bonus</p>
-                <p className="text-xl font-bold text-violet-200">+20% Extra Value</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Link href="/exchange">
-                  <Button size="lg" data-testid="button-trade-in-now">
-                    <Smartphone className="w-4 h-4 mr-2" />
-                    Trade In Your Device
-                  </Button>
-                </Link>
-                <CalendlyButton 
-                  size="lg" 
-                  variant="outline" 
-                  data-testid="button-trade-in-consult"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Get Quote
-                </CalendlyButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Water Service Hero Section - FEATURED */}
-      <section className="py-0 px-0 relative" id="water-service">
-        <div className="h-96 md:h-[500px] lg:h-[600px] relative overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ 
-              backgroundImage: `url(${waterLifestyleImg})`,
-              backgroundPosition: 'center 0%' // This helps "remove" the white strip by focusing on the top/center
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
-          <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-4 relative z-10 max-w-5xl">
-              <div className="max-w-2xl">
-                <Badge variant="secondary" className="mb-4 bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
-                  <Droplets className="w-3 h-3 mr-1" />
-                  Featured: Water Service
-                </Badge>
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Kangen Water, everyday.</h2>
-                <p className="text-lg text-white/90 mb-4 max-w-xl">
-                  Advanced water ionization technology for healthier, premium-quality drinking water delivered directly to your home.
-                </p>
-                <div className="mb-4 max-w-xl">
-                  <p className="text-sm text-white/80 mb-2 font-medium">Kangen Water Benefits:</p>
-                  <ul className="text-sm text-white/80 space-y-1">
-                    <li>✓ Ionized & alkaline water for better hydration</li>
-                    <li>✓ Removes impurities & chlorine</li>
-                    <li>✓ Professional installation & maintenance</li>
-                  </ul>
-                  <a 
-                    href="https://www.kangenwaterdubai.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-white underline hover:text-emerald-300 transition-colors text-sm mt-2 inline-block font-medium"
-                    data-testid="link-kangen-details"
-                  >
-                    Learn more about Kangen Water →
-                  </a>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  <CalendlyButton 
-                    size="lg" 
-                    data-testid="button-water-hero-consultation"
-                  >
-                    <Droplets className="w-4 h-4 mr-2" />
-                    Schedule a Demo - AED 99
-                  </CalendlyButton>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* AquaCafe Unified Lifestyle Section - MERGED WATER & DAILY ESSENTIALS */}
-      <section className="py-16 px-4 relative overflow-hidden" id="aquacafe-lifestyle" style={{ backgroundImage: `url(${waterPurifierImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="bg-white/10 dark:bg-white/5 p-8 rounded-2xl border border-white/20 dark:border-white/10 backdrop-blur-md">
-              <div className="inline-flex items-center gap-2 bg-blue-500/30 rounded-full px-4 py-2 mb-6 border border-blue-400/50">
-                <ShoppingBag className="w-4 h-4 text-blue-300" />
-                <span className="text-sm font-semibold text-blue-200">AquaCafe Lifestyle & Essentials</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                Premium Hydration. <span className="text-blue-300">Daily Essentials Managed.</span>
-              </h2>
-              <p className="text-lg text-white/90 mb-6 font-medium">
-                Experience the ultimate home lifestyle with AquaCafe. From professional Kangen water systems to subscription-based essentials, we ensure your home is always stocked and managed.
-              </p>
-              
-              <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                <div className="space-y-3">
-                  <h3 className="text-blue-300 font-bold text-sm uppercase tracking-wider">Hydration</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-center gap-2 text-white/85 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
-                      Kangen Water Ionization
-                    </li>
-                    <li className="flex items-center gap-2 text-white/85 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
-                      Free Premium Shower Filter
-                    </li>
-                    <li className="flex items-center gap-2 text-white/85 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-300 flex-shrink-0" />
-                      Weekly Refills & Maintenance
-                    </li>
-                  </ul>
-                </div>
-                <div className="space-y-3">
-                  <h3 className="text-blue-300 font-bold text-sm uppercase tracking-wider">Essentials</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-center gap-2 text-white/85 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-blue-300 flex-shrink-0" />
-                      Premium Tea & Coffee
-                    </li>
-                    <li className="flex items-center gap-2 text-white/85 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-blue-300 flex-shrink-0" />
-                      Subscription Management
-                    </li>
-                    <li className="flex items-center gap-2 text-white/85 text-sm">
-                      <CheckCircle2 className="w-4 h-4 text-blue-300 flex-shrink-0" />
-                      Automated Scheduling
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <Card className="bg-gradient-to-r from-blue-500/25 to-emerald-500/25 border-blue-300/50 mb-6 shadow-lg">
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div>
-                      <p className="text-sm font-medium text-blue-200 mb-1">AquaCafe Membership</p>
-                      <p className="text-2xl font-bold text-white">Full Setup: AED 99 Demo</p>
-                      <p className="text-sm text-white/75">Includes filter & first week of essentials</p>
-                    </div>
-                    <Badge variant="secondary" className="bg-blue-500 text-white border-blue-400 text-xs font-bold px-3 py-1">
-                      BEST VALUE
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <div className="flex flex-wrap gap-3">
-                <Link href="/home-service/aquacafe">
-                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 h-14 rounded-full shadow-lg transition-all">
-                    Explore AquaCafe
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-                <CalendlyButton 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white/20 text-white hover:bg-white/10 backdrop-blur-sm h-14 rounded-full px-8"
-                >
-                  Speak to an Expert
-                </CalendlyButton>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl border border-white/10">
-                <img 
-                  src={waterPurifierImg} 
-                  alt="AquaCafe Lifestyle - Premium water and home essentials" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-bold text-lg">AquaCafe Premium Lifestyle</p>
-                  <p className="text-white/90 text-sm">Complete hydration and home management</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Errand Runner Section - MOVED UP (WAS AFTER CLEANING) */}
-      <section className="py-16 px-4 relative overflow-hidden" id="errand-runner" style={{ backgroundImage: `url(${errandRunnerImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-orange-500/30 rounded-full px-4 py-2 mb-6 border border-orange-400/50">
-                <Bike className="w-4 h-4 text-orange-300" />
-                <span className="text-sm text-orange-200 font-medium">DeliWery Errand Runner</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-errand-runner-title">
-                Anything DeliWered. <span className="text-orange-300">Wherever. Whenever.</span>
-              </h2>
-              <p className="text-lg text-white/90 mb-6">
-                Stuck in traffic? Forgot something important? Let us handle it. Our errand runners take care of your to-do list so you can focus on what matters.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                <div className="flex items-center gap-2 text-white/85">
-                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
-                  <span className="text-sm">Picking up dry cleaning</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/85">
-                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
-                  <span className="text-sm">Paying bills</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/85">
-                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
-                  <span className="text-sm">Delivering office items</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/85">
-                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
-                  <span className="text-sm">Grocery & pharmacy runs</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/85">
-                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
-                  <span className="text-sm">Last-minute gifts</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/85">
-                  <CheckCircle2 className="w-4 h-4 text-orange-300 flex-shrink-0" />
-                  <span className="text-sm">School & document drop-offs</span>
-                </div>
-              </div>
-              <Card className="bg-gradient-to-r from-orange-500/25 to-amber-500/25 border-orange-300/50 mb-6 shadow-lg">
-                <CardContent className="pt-6 pb-4">
-                  <p className="text-sm text-orange-200 flex items-center gap-2">
-                    <Gift className="w-4 h-4 text-orange-300" />
-                    First errand: AED 29 (Was AED 49)
-                  </p>
-                </CardContent>
-              </Card>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/errand">
-                  <Button size="lg" data-testid="button-errand-page">
-                    <Bike className="w-4 h-4 mr-2" />
-                    Explore Errand Service
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-                <CalendlyButton 
-                  size="lg" 
-                  variant="outline" 
-                  data-testid="button-talk-advisor"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Talk to an Advisor
-                </CalendlyButton>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
-                <img 
-                  src={errandRunnerImg} 
-                  alt="Delivery courier on bike running errands in Dubai" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Fast Errand Service</p>
-                  <p className="text-white/80 text-sm">Your personal helper in Dubai</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* EV Charging Station Section - NEW */}
-      <section className="py-16 px-4 relative overflow-hidden" id="ev-charging" style={{ backgroundImage: `url(${evChargingImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 bg-green-500/30 rounded-full px-4 py-2 mb-6 border border-green-400/50">
-                <Zap className="w-4 h-4 text-green-300" />
-                <span className="text-sm text-green-200 font-medium">EV Charging Installation</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-ev-charging-title">
-                Charge your EV at home. <span className="text-green-300">Effortlessly.</span>
-              </h2>
-              <p className="text-lg text-white/90 mb-6">
-                Professional home EV charging station installation. Wake up to a fully charged vehicle every morning without visiting public stations.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-green-300 flex-shrink-0" />
-                  Compatible with all EV brands
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-green-300 flex-shrink-0" />
-                  Smart charging with app control
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-green-300 flex-shrink-0" />
-                  DEWA-approved installation
-                </li>
-              </ul>
-              <div className="flex flex-wrap gap-3">
-                <CalendlyButton 
-                  size="lg" 
-                  data-testid="button-ev-consultation"
-                >
-                  <Zap className="w-4 h-4 mr-2" />
-                  Schedule EV Charger Installation
-                </CalendlyButton>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
-                <img 
-                  src={evChargingImg} 
-                  alt="Electric vehicle charging at home station" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-semibold text-lg">Home EV Charging</p>
-                  <p className="text-white/80 text-sm">Never queue at charging stations again</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Eco-Cleaning Section - NEW */}
-      <section className="py-16 px-4 relative overflow-hidden" id="eco-cleaning" style={{ backgroundImage: `url(${ecoCleaningImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="order-2 lg:order-1 relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
-                <img 
-                  src={ecoCleaningImg} 
-                  alt="Eco-friendly home cleaning service with natural products" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-bold text-lg">Green Cleaning Service</p>
-                  <p className="text-white/90 text-sm">Safe for your family and the planet</p>
-                </div>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 bg-teal-500/30 rounded-full px-4 py-2 mb-6 border border-teal-400/50">
-                <Leaf className="w-4 h-4 text-teal-300" />
-                <span className="text-sm text-teal-200 font-medium">Eco-Friendly Cleaning</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-eco-cleaning-title">
-                A spotless home. <span className="text-teal-300">Zero harmful chemicals.</span>
-              </h2>
-              <p className="text-lg text-white/90 mb-6">
-                Professional cleaning using 100% eco-friendly, plant-based products. Safe for children, pets, and the environment.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-teal-300 flex-shrink-0" />
-                  Non-toxic, biodegradable products
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-teal-300 flex-shrink-0" />
-                  Trained & vetted cleaning teams
-                </li>
-                <li className="flex items-center gap-3 text-white/85">
-                  <CheckCircle2 className="w-5 h-5 text-teal-300 flex-shrink-0" />
-                  Flexible scheduling & subscriptions
-                </li>
-              </ul>
-              <div className="flex flex-wrap gap-3">
-                <CalendlyButton 
-                  size="lg" 
-                  data-testid="button-eco-cleaning-book"
-                >
-                  <Leaf className="w-4 h-4 mr-2" />
-                  Book Eco-Cleaning Service
-                </CalendlyButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Concierge & Home Essentials - Moved to /errand */}
-      <section className="py-12 px-4 relative overflow-hidden" id="more-services" style={{ backgroundImage: `url(${errandRunnerImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/40"></div>
-        <div className="container mx-auto max-w-3xl text-center relative z-10">
-          <h2 className="text-2xl font-bold mb-4 text-white">Looking for Concierge & Home Essentials?</h2>
-          <p className="text-white/90 mb-6">
-            We've moved our concierge services, grocery shopping, school runs, laundry, and more to our dedicated Errand Runner page for a better experience.
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-slate-950" />
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-6 px-4 py-1.5 rounded-full">
+            Dubai Home Operations
+          </Badge>
+          <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase">
+            Home Services & <br /><span className="text-emerald-400">Smart Upgrades</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
+            Essential maintenance and smart upgrades for apartments and villas in Dubai — installed, managed, and supported by DeliWer.
           </p>
-          <Link href="/errand">
-            <Button size="lg" data-testid="button-errand-concierge-redirect">
-              <Bike className="w-4 h-4 mr-2" />
-              Explore All Errand & Concierge Services
-              <ArrowRight className="w-4 h-4 ml-2" />
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-10 h-16 text-lg"
+              onClick={() => handleWhatsApp("General Home Services")}
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              WhatsApp Us
             </Button>
-          </Link>
-        </div>
-      </section>
-      {/* Referral & Sharing Section - NEW */}
-      <section className="py-16 px-4 relative overflow-hidden" id="referral" style={{ backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.4) 100%), linear-gradient(to bottom, rgb(190,24,93), rgb(190,24,93))`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="container mx-auto max-w-4xl relative z-10">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-pink-500/30 rounded-full px-4 py-2 mb-6 border border-pink-400/50">
-              <Users className="w-4 h-4 text-pink-300" />
-              <span className="text-sm text-pink-200 font-medium">Refer & Earn</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white" data-testid="text-referral-title">
-              Share the love. <span className="text-pink-300">Earn rewards.</span>
-            </h2>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto">
-              Invite friends to experience DeliWer's sustainable home services. You both earn rewards when they sign up!
-            </p>
-          </div>
-
-          <Card className="mb-8 bg-white/10 dark:bg-white/5 border-white/20 dark:border-white/10 backdrop-blur-md">
-            <CardContent className="pt-6">
-              <div className="grid md:grid-cols-3 gap-6 text-center mb-8">
-                <div>
-                  <div className="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center mx-auto mb-3 border border-pink-400/50">
-                    <Share2 className="w-6 h-6 text-pink-300" />
-                  </div>
-                  <h3 className="font-semibold mb-1 text-white">Share Your Link</h3>
-                  <p className="text-sm text-white/80">Send your unique referral link to friends</p>
-                </div>
-                <div>
-                  <div className="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center mx-auto mb-3 border border-pink-400/50">
-                    <Users className="w-6 h-6 text-pink-300" />
-                  </div>
-                  <h3 className="font-semibold mb-1 text-white">Friends Sign Up</h3>
-                  <p className="text-sm text-white/80">They book a home service consultation</p>
-                </div>
-                <div>
-                  <div className="w-12 h-12 rounded-full bg-pink-500/30 flex items-center justify-center mx-auto mb-3 border border-pink-400/50">
-                    <Gift className="w-6 h-6 text-pink-300" />
-                  </div>
-                  <h3 className="font-semibold mb-1 text-white">Both Earn</h3>
-                  <p className="text-sm text-white/80">Get AED 100 credit each + Planet Points</p>
-                </div>
-              </div>
-
-              <div className="bg-white/10 rounded-lg p-4 mb-6 border border-white/20">
-                <p className="text-sm text-white/80 mb-2">Your Referral Link</p>
-                <div className="flex items-center gap-2">
-                  <code className="flex-1 bg-background rounded px-3 py-2 text-sm overflow-hidden text-ellipsis">
-                    {referralLink}
-                  </code>
-                  <Button 
-                    size="icon" 
-                    variant="outline" 
-                    onClick={handleCopyReferral}
-                    data-testid="button-copy-referral"
-                  >
-                    {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  </Button>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap justify-center gap-3">
-                <SocialSharingWidget 
-                  content={{
-                    type: 'trade',
-                    title: 'DeliWer Home Services',
-                    description: 'Sustainable home services in Dubai - water, solar, EV charging and more!',
-                    value: 100,
-                    url: referralLink
-                  }}
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="text-center">
-            <p className="text-sm text-muted-foreground">
-              Unlimited referrals. Unlimited rewards. Help us build a sustainable Dubai!
-            </p>
-          </div>
-        </div>
-      </section>
-      {/* Relocation Bridge CTA */}
-      <section className="py-20 px-4 relative overflow-hidden" style={{ backgroundImage: `linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.4) 100%), linear-gradient(to bottom, rgb(16,185,129), rgb(6,182,212))`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/30 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-emerald-400/50">
-              <Plane className="w-4 h-4 text-emerald-300" />
-              <span className="text-sm text-emerald-200">From Home Service to Long-Term Living</span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white" data-testid="text-relocation-bridge">
-              Many of our members start with home services.
-            </h2>
-            <p className="text-white/90 mb-2">
-              Some later choose to <strong className="text-white">build their lives in Dubai</strong>.
-            </p>
-            <p className="text-white/85 mb-8 max-w-2xl mx-auto">
-              If you're thinking long-term — housing, relocation, or investment — we can guide you.
-            </p>
-            <Link href="/relocate">
-              <Button size="lg" data-testid="button-relocate-bridge">
-                <Globe className="w-4 h-4 mr-2" />
-                Explore Living & Relocation Options
-                <ArrowRight className="w-4 h-4 ml-2" />
+            <Link href="/launch">
+              <Button size="lg" variant="outline" className="border-white/20 text-white backdrop-blur-md bg-white/5 px-10 h-16 text-lg font-black rounded-full hover:bg-white/10">
+                View Launch Offers
               </Button>
             </Link>
           </div>
         </div>
       </section>
-      {/* Legal Note */}
-      <section className="py-8 px-4 border-t border-border/50">
-        <div className="container mx-auto max-w-3xl text-center">
-          <p className="text-xs text-muted-foreground">
-            All services comply with UAE laws and company policies. Requests must be portable and legal.
-          </p>
+
+      {/* Services Grid */}
+      <section className="py-24 px-6 bg-slate-50 dark:bg-slate-950">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {homeServicesData.map((service) => (
+              <Card key={service.id} className="bg-white dark:bg-slate-900 border-slate-200 dark:border-white/5 rounded-[2rem] overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                <CardHeader className="p-8 pb-4">
+                  <div className={`w-16 h-16 rounded-2xl bg-${service.color}-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <service.icon className={`w-8 h-8 text-${service.color}-500`} />
+                  </div>
+                  <Badge variant="secondary" className="mb-4 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border-transparent text-[10px] font-black tracking-widest uppercase">
+                    {service.tag}
+                  </Badge>
+                  <CardTitle className="text-2xl font-black tracking-tight mb-2 uppercase">
+                    {service.title}
+                  </CardTitle>
+                  <CardDescription className="text-base text-slate-500 dark:text-slate-400 leading-relaxed min-h-[3rem]">
+                    {service.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="p-8 pt-4 space-y-6">
+                  <div className="flex flex-wrap gap-4 text-sm font-bold uppercase tracking-tight">
+                    <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                      <Clock className="w-4 h-4" />
+                      {service.time}
+                    </div>
+                    <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
+                      <Home className="w-4 h-4" />
+                      {service.property}
+                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-slate-100 dark:border-white/5">
+                    <p className="text-xs text-slate-400 uppercase font-black tracking-widest mb-1">Starting Price</p>
+                    <p className="text-3xl font-black text-slate-900 dark:text-white">{service.price}</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-3 pt-4">
+                    <Button 
+                      onClick={() => handleWhatsApp(service.title)}
+                      className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black h-14 rounded-xl text-base hover:opacity-90 transition-opacity"
+                    >
+                      Book Assessment
+                    </Button>
+                    <Button 
+                      variant="ghost"
+                      onClick={() => handleWhatsApp(service.title)}
+                      className="w-full text-slate-500 dark:text-slate-400 font-black h-14 rounded-xl text-base hover:bg-slate-100 dark:hover:bg-white/5"
+                    >
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      WhatsApp Inquiry
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Referral Section */}
+      <section className="py-24 px-6 bg-emerald-600 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
+          <Badge className="bg-white/20 text-white border-white/30 mb-8 px-4 py-1.5 rounded-full uppercase tracking-widest font-black text-xs">
+            Refer & Earn
+          </Badge>
+          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase">Share the <br />Sustainability</h2>
+          <p className="text-xl text-emerald-50 mb-12 font-medium max-w-2xl mx-auto">
+            Refer a friend to DeliWer Home Services and you both get AED 100 credit toward your next smart upgrade.
+          </p>
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-[2rem] p-4 flex flex-col md:flex-row items-center gap-4 max-w-2xl mx-auto">
+            <code className="bg-black/20 px-6 py-4 rounded-xl font-mono text-lg flex-1 text-center md:text-left overflow-hidden text-ellipsis whitespace-nowrap">
+              {referralCode}
+            </code>
+            <Button 
+              onClick={handleCopyReferral}
+              className="w-full md:w-auto bg-white text-emerald-600 font-black h-14 px-10 rounded-xl shadow-xl hover:bg-emerald-50"
+            >
+              {copied ? <Check className="w-5 h-5 mr-2" /> : <Copy className="w-5 h-5 mr-2" />}
+              {copied ? "Copied!" : "Copy Link"}
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Disclaimer */}
+      <footer className="py-12 px-6 bg-slate-950 border-t border-white/5 text-center">
+        <div className="container mx-auto">
+          <p className="text-amber-500 font-black text-sm uppercase tracking-widest mb-6">
+            Supported by Dubai Municipality & DEWA Guidelines
+          </p>
+          <p className="text-slate-500 text-xs font-medium max-w-2xl mx-auto">
+            © {new Date().getFullYear()} DeliWer Home Operations. All services are performed by licensed professionals according to UAE safety and building regulations.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

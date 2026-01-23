@@ -1,0 +1,198 @@
+Below is a **clean, copy-paste ready Replit prompt** you can use to implement **AC Maintenance + Smart Retrofit Service Cards** on **DeliWer.com** with proper UX, pricing clarity, and conversion focus.
+
+This prompt is written so Replit (or an AI dev agent) understands **structure, UX intent, and business logic**, not just UI.
+
+---
+
+## ✅ REPLIT PROMPT — HOME SERVICES CARDS (AC + SMART RETROFITS)
+
+### 🎯 Goal
+
+Enhance the **Home Services** section of **[www.deliwer.com](http://www.deliwer.com)** by adding **conversion-optimized service cards** for AC Maintenance and Smart Home Retrofits, aligned with DeliWer’s sustainability and move-in services strategy.
+
+---
+
+### 📌 Scope
+
+1. Add / enhance **AC Maintenance** service
+2. Add **6 new Smart & Sustainable Home service cards**
+3. Ensure **clear pricing, install time, property type tagging, and CTA**
+4. Keep design **professional, Dubai market-ready, not experimental**
+
+---
+
+### 🧱 UX STRUCTURE REQUIREMENTS
+
+#### Section Title
+
+**Home Services & Smart Upgrades**
+
+#### Section Subtitle
+
+“Essential maintenance and smart upgrades for apartments and villas in Dubai — installed, managed, and supported by DeliWer.”
+
+---
+
+### 🟦 SERVICE CARDS TO ADD (7 TOTAL)
+
+Each card must include:
+
+* Service icon
+* Service name
+* One-line benefit description
+* **Fixed starting price**
+* **Estimated install / service time**
+* **Property tag**: Apartment / Villa / Both
+* Primary CTA: **“Book Assessment”**
+* Secondary CTA (optional): “WhatsApp Us”
+
+---
+
+### 🟧 CARD 1 — AC Maintenance (Core Service)
+
+**Title:** AC Maintenance & Servicing
+**Description:** Prevent breakdowns, improve cooling efficiency, and extend AC life with scheduled or on-demand servicing.
+**Starting Price:** From AED 199
+**Service Time:** 60–90 minutes
+**Property Type:** Apartment • Villa
+**CTA:** Book Assessment
+
+Include options internally for:
+
+* One-time service
+* Annual maintenance contract (AMC)
+
+---
+
+### 🟦 CARD 2 — Smart Water Retrofit
+
+**Title:** Smart Water Retrofit
+**Description:** Reduce water waste and prevent leaks with smart meters, flow regulators, and auto shut-off systems.
+**Starting Price:** From AED 499
+**Install Time:** 2–4 hours
+**Property Type:** Apartment • Villa
+**CTA:** Book Assessment
+
+Tag: “Water Saving • Sustainability”
+
+---
+
+### 🟩 CARD 3 — EV Charger Installation
+
+**Title:** EV Charger Installation
+**Description:** Home EV charger installation with load assessment and building compliance support.
+**Starting Price:** From AED 2,499
+**Install Time:** 1 Day
+**Property Type:** Villa • Selected Apartments
+**CTA:** Book Assessment
+
+Tag: “EV Ready Home”
+
+---
+
+### 🟨 CARD 4 — Smart Home Starter Kit
+
+**Title:** Smart Home Starter Kit
+**Description:** Smart lighting, thermostat, sensors, and mobile app control for everyday comfort and efficiency.
+**Starting Price:** From AED 899
+**Install Time:** 3–5 hours
+**Property Type:** Apartment • Villa
+**CTA:** Book Assessment
+
+Tag: “Comfort • Control”
+
+---
+
+### 🟪 CARD 5 — Home Energy Monitoring
+
+**Title:** Home Energy Monitoring
+**Description:** Track electricity usage in real time and identify savings without modifying DEWA infrastructure.
+**Starting Price:** From AED 399
+**Install Time:** 2–3 hours
+**Property Type:** Apartment • Villa
+**CTA:** Book Assessment
+
+Tag: “Energy Insight”
+
+---
+
+### 🟫 CARD 6 — Sustainable Home Upgrade
+
+**Title:** Sustainable Home Upgrade
+**Description:** Bundled water efficiency, energy monitoring, and smart controls for greener living.
+**Starting Price:** From AED 1,499
+**Install Time:** 1 Day
+**Property Type:** Apartment • Villa
+**CTA:** Book Assessment
+
+Tag: “Best Value • Sustainability”
+
+---
+
+### 🟥 CARD 7 — Recycle & Removal (Upgrade-Linked)
+
+**Title:** Recycle & Removal
+**Description:** Responsible removal and recycling of old appliances, fixtures, or furniture during upgrades or move-out.
+**Starting Price:** From AED 149
+**Service Time:** Same Day / Next Day
+**Property Type:** Apartment • Villa
+**CTA:** Book Assessment
+
+Tag: “Circular Living”
+
+---
+
+### 🔘 CTA BEHAVIOR
+
+**Book Assessment** should:
+
+* Open a short form OR
+* Deep-link to WhatsApp with prefilled service name
+* Pass service ID for CRM tracking
+
+---
+
+### 🎨 UI / DESIGN RULES
+
+* Use **card grid (3 per row desktop, 1 per row mobile)**
+* Clear icons (AC, water, EV, smart home, recycle)
+* Price and time must be **visually prominent**
+* Use soft sustainability cues (blue / green / neutral)
+* Avoid technical jargon
+
+---
+
+### 🧠 TECH NOTES
+
+* Make cards reusable components
+* Services should be configurable via JSON
+* Enable future tagging (Move-In / Maintenance / Sustainability)
+* Keep SEO-friendly headings and schema-ready structure
+
+---
+
+### ✅ SUCCESS CRITERIA
+
+* User understands **what**, **how long**, and **how much** instantly
+* Clear pathway to **assessment → installation → maintenance**
+* Positions DeliWer as **home operations + sustainability platform**
+
+---
+
+### 🧩 Output Expected from Replit
+
+* Updated Home Services section
+* Clean, responsive service cards
+* Conversion-ready CTAs
+* No broken navigation or layout regressions
+
+---
+
+If you want next, I can:
+
+* Convert this into **Shopify section JSON**
+* Write **WhatsApp prefill message templates**
+* Create **pricing logic for bundles**
+* Draft **partner onboarding version of these services**
+
+Just tell me the next step.
