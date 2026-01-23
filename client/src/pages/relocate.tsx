@@ -68,7 +68,7 @@ export default function Relocate() {
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-5xl md:text-8xl font-black text-white mb-8 leading-tight tracking-tight">
             Relocate to Dubai <br />
-            <span className="text-emerald-400">Stress-Free.</span>
+            <span className="text-emerald-400">Move Into a Home That’s Ready From Day One.</span>
           </h1>
           <p className="text-2xl text-white/95 mb-12 max-w-2xl font-medium leading-relaxed">Cooling, water, and home readiness managed for expats — especially during summer.</p>
           <div className="flex flex-wrap justify-center gap-6">
