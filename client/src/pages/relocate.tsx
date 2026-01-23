@@ -114,8 +114,13 @@ export default function Relocate() {
         </div>
       </section>
       {/* Pricing Packs Section */}
-      <section className="py-24 bg-white dark:bg-slate-950">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative py-24 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80')` }}
+        />
+        <div className="absolute inset-0 bg-white/90 dark:bg-slate-950/90 backdrop-blur-sm" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">Choose Your Relocation Pack</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
