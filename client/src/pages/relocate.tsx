@@ -58,7 +58,6 @@ export default function Relocate() {
         <title>Dubai Relocation Services | Home Setup & Moving | DeliWer</title>
         <meta name="description" content="Moving to Dubai? We handle the entire relocation. International shipping, home setup, utilities, and lifestyle support." />
       </Helmet>
-
       {/* Hero Section */}
       <section className="relative h-[90vh] min-h-[700px] overflow-hidden">
         <div 
@@ -71,9 +70,7 @@ export default function Relocate() {
             Relocate to Dubai <br />
             <span className="text-emerald-400">Stress-Free.</span>
           </h1>
-          <p className="text-2xl text-white/95 mb-12 max-w-2xl font-medium leading-relaxed">
-            From international shipping to your first home, we coordinate every detail of your transition.
-          </p>
+          <p className="text-2xl text-white/95 mb-12 max-w-2xl font-medium leading-relaxed">Cooling, water, and home readiness managed for expats — especially during summer.</p>
           <div className="flex flex-wrap justify-center gap-6">
             <Button 
               size="lg" 
@@ -95,7 +92,6 @@ export default function Relocate() {
           </div>
         </div>
       </section>
-
       {/* Simplified Services Overview with Background */}
       <section className="relative py-32 overflow-hidden text-white">
         <div 
@@ -117,7 +113,6 @@ export default function Relocate() {
           </div>
         </div>
       </section>
-
       {/* High Impact Visual - Exit Concierge */}
       <section className="relative py-40 overflow-hidden text-white">
         <div 
@@ -140,7 +135,6 @@ export default function Relocate() {
           </Link>
         </div>
       </section>
-
       {/* 4-Step Journey with Background */}
       <section className="relative py-32 overflow-hidden text-white">
         <div 
@@ -166,7 +160,6 @@ export default function Relocate() {
           </div>
         </div>
       </section>
-
       {/* WhatsApp Enquiry Section */}
       <section id="lead-form" ref={formRef} className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-900">
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
@@ -197,7 +190,6 @@ export default function Relocate() {
           </Card>
         </div>
       </section>
-
       {/* Visa Divider */}
       <section className="py-20 bg-slate-900 text-white">
         <div className="max-w-5xl mx-auto px-4 text-center">
