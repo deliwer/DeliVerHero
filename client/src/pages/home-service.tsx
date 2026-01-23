@@ -1,335 +1,176 @@
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Helmet } from "react-helmet";
 import { 
   Home, 
-  Clock, 
   MessageCircle, 
-  Smartphone, 
-  Recycle, 
-  Zap, 
-  Leaf, 
-  Copy, 
-  Check, 
   Thermometer, 
-  Waves, 
-  Gauge, 
-  Lightbulb,
-  ShoppingBag,
-  Bike,
-  Package,
-  Sparkles,
-  ArrowRight,
-  Droplets
+  Droplets,
+  Check,
+  Zap,
+  User,
+  Building,
+  Calendar,
+  Sparkles
 } from "lucide-react";
 import { useState, useMemo } from "react";
-import { useToast } from "@/hooks/use-toast";
-
-import homeServiceHeroImg from "@assets/stock_images/professional_service_2cfeb661.jpg";
 import waterLifestyleImg from "@assets/without_text_1756065010951.jpg";
-import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
-import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
-import homeCleanImg from "@assets/stock_images/eco-friendly_cleanin_0650dea4.jpg";
-import furnitureImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
-
-const maintenanceServices = [
-  {
-    id: "ac-maint",
-    title: "AC Maintenance & Servicing",
-    description: "Prevent breakdowns, improve cooling efficiency, and extend AC life with scheduled or on-demand servicing.",
-    price: "From AED 199",
-    time: "60–90 min",
-    property: "Apartment • Villa",
-    icon: Thermometer,
-    tag: "Core Service",
-    color: "blue"
-  },
-  {
-    id: "smart-water",
-    title: "Smart Water Retrofit",
-    description: "Reduce water waste and prevent leaks with smart meters, flow regulators, and auto shut-off systems.",
-    price: "From AED 499",
-    time: "2–4 hours",
-    property: "Apartment • Villa",
-    icon: Waves,
-    tag: "Sustainability",
-    color: "emerald"
-  },
-  {
-    id: "ev-charger",
-    title: "EV Charger Installation",
-    description: "Home EV charger installation with load assessment and building compliance support.",
-    price: "From AED 2,499",
-    time: "1 Day",
-    property: "Villa • Selected Apartments",
-    icon: Zap,
-    tag: "EV Ready",
-    color: "blue"
-  },
-  {
-    id: "smart-home",
-    title: "Smart Home Starter Kit",
-    description: "Smart lighting, thermostat, sensors, and mobile app control for everyday comfort and efficiency.",
-    price: "From AED 899",
-    time: "3–5 hours",
-    property: "Apartment • Villa",
-    icon: Lightbulb,
-    tag: "Automation",
-    color: "amber"
-  },
-  {
-    id: "energy-monitor",
-    title: "Home Energy Monitoring",
-    description: "Track electricity usage in real time and identify savings without modifying DEWA infrastructure.",
-    price: "From AED 399",
-    time: "2–3 hours",
-    property: "Apartment • Villa",
-    icon: Gauge,
-    tag: "Energy Insight",
-    color: "emerald"
-  },
-  {
-    id: "sustainable-upgrade",
-    title: "Sustainable Home Upgrade",
-    description: "Bundled water efficiency, energy monitoring, and smart controls for greener living.",
-    price: "From AED 1,499",
-    time: "1 Day",
-    property: "Apartment • Villa",
-    icon: Leaf,
-    tag: "Best Value",
-    color: "emerald"
-  }
-];
-
-const essentialServices = [
-  {
-    id: "essentials-delivery",
-    title: "Home Essentials Delivery",
-    description: "Drinking water, filters, and everyday home essentials delivered on demand or via subscription.",
-    price: "From AED 49",
-    time: "Same Day / Scheduled",
-    property: "Apartment • Villa",
-    icon: ShoppingBag,
-    tag: "Recurring • Convenience",
-    color: "blue"
-  },
-  {
-    id: "errand-services",
-    title: "Errand & Home Support",
-    description: "Pick-up, drop-off, installations, and small home tasks handled by DeliWer.",
-    price: "From AED 79",
-    time: "1–3 hours",
-    property: "Apartment • Villa",
-    icon: Bike,
-    tag: "On-Demand Help",
-    color: "orange"
-  }
-];
-
-const circularServices = [
-  {
-    id: "trade-in",
-    title: "Home Trade-In Services",
-    description: "Trade in old appliances, furniture, or electronics when upgrading or moving out.",
-    price: "Free Assessment",
-    time: "Valuation in 24–48 hrs",
-    property: "Apartment • Villa",
-    icon: Smartphone,
-    tag: "Circular Economy",
-    color: "amber"
-  },
-  {
-    id: "recycle-removal",
-    title: "Recycle & Removal",
-    description: "Eco-friendly disposal and recycling of appliances, fixtures, and furniture.",
-    price: "From AED 149",
-    time: "Same / Next Day",
-    property: "Apartment • Villa",
-    icon: Recycle,
-    tag: "Sustainability",
-    color: "orange"
-  }
-];
 
 export default function HomeService() {
-  const { toast } = useToast();
-  const [copied, setCopied] = useState(false);
-  const referralCode = useMemo(() => "DELIWER" + Math.random().toString(36).substr(2, 6).toUpperCase(), []);
-  const referralLink = useMemo(() => `https://deliwer.com/home-service?ref=${referralCode}`, [referralCode]);
-
   const handleWhatsApp = (serviceName: string) => {
-    const text = `Hi DeliWer, I'm interested in the ${serviceName} assessment for my home. I want to make sure my home is summer-ready and avoid any summer shocks!`;
+    const text = `Hi DeliWer, I'm interested in the ${serviceName} for my home. I want to make sure my home is summer-ready and avoid any summer shocks!`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
-  const handleCopyReferral = () => {
-    navigator.clipboard.writeText(referralLink);
-    setCopied(true);
-    toast({
-      title: "Referral Link Copied!",
-      description: "Share with friends to earn rewards when they sign up.",
-    });
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const audience = [
+    { icon: User, text: "New Expats" },
+    { icon: Building, text: "Rental Apartments & Townhouses" },
+    { icon: Calendar, text: "Summer Move-ins" },
+    { icon: Sparkles, text: "Relocations via agents" }
+  ];
 
-  const ServiceCard = ({ service }: { service: any }) => (
-    <Card className="bg-white dark:bg-slate-900 border-slate-200 dark:border-white/5 rounded-[2rem] overflow-hidden group hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
-      <CardHeader className="p-8 pb-4">
-                  <div className={`w-16 h-16 rounded-2xl bg-${service.color === 'emerald' ? 'emerald' : service.color === 'blue' ? 'blue' : service.color === 'amber' ? 'amber' : 'orange'}-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                    <service.icon className={`w-8 h-8 text-${service.color === 'emerald' ? 'emerald' : service.color === 'blue' ? 'blue' : service.color === 'amber' ? 'amber' : 'orange'}-500`} />
-                  </div>
-        <Badge variant="secondary" className="mb-4 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border-transparent text-[10px] font-black tracking-widest uppercase">
-          {service.tag}
-        </Badge>
-        <CardTitle className="text-2xl font-black tracking-tight mb-2 uppercase">
-          {service.title}
-        </CardTitle>
-        <CardDescription className="text-base text-slate-500 dark:text-slate-400 leading-relaxed min-h-[3rem]">
-          {service.description}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="p-8 pt-4 space-y-6">
-        <div className="flex flex-wrap gap-4 text-sm font-bold uppercase tracking-tight">
-          <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-            <Clock className="w-4 h-4" />
-            {service.time}
-          </div>
-          <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
-            <Home className="w-4 h-4" />
-            {service.property}
-          </div>
-        </div>
-        
-        <div className="pt-4 border-t border-slate-100 dark:border-white/5">
-          <p className="text-xs text-slate-400 uppercase font-black tracking-widest mb-1">Starting Price</p>
-          <p className="text-3xl font-black text-slate-900 dark:text-white">{service.price}</p>
-        </div>
-
-        <div className="grid grid-cols-1 gap-3 pt-4">
-          <Button 
-            onClick={() => handleWhatsApp(service.title)}
-            className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-black h-14 rounded-xl text-base hover:opacity-90 transition-opacity"
-          >
-            {service.id.includes('essentials') ? 'Order Essentials' : service.id.includes('errand') ? 'Book Errand' : service.id.includes('trade-in') ? 'Check Value' : 'Book Assessment'}
-          </Button>
-          <Button 
-            variant="ghost"
-            onClick={() => handleWhatsApp(service.title)}
-            className="w-full text-slate-500 dark:text-slate-400 font-black h-14 rounded-xl text-base hover:bg-slate-100 dark:hover:bg-white/5"
-          >
-            <MessageCircle className="w-4 h-4 mr-2" />
-            WhatsApp Inquiry
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-  );
+  const coreOffer = [
+    {
+      title: "Cooling Readiness",
+      icon: Thermometer,
+      items: ["AC Inspection", "Basic AC Servicing", "Airflow & Cooling Efficiency Check", "Early Fault Detection"]
+    },
+    {
+      title: "Water Readiness",
+      icon: Droplets,
+      items: ["Drinking Water Starter Delivery", "Tap / Leak Quick Check", "Water Pressure & Wastage Scan"]
+    },
+    {
+      title: "Home Readiness",
+      icon: Home,
+      items: ["Minor Fixes Coordination", "Emergency Support Access", "Maintenance Handover Summary"]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>Dubai Summer Ready Home | Home Services & Upgrades | DeliWer</title>
+        <title>Dubai Summer Ready Home | DeliWer</title>
         <meta name="description" content="Move into a Dubai home that's summer-ready from day one. Cooling, water, and essential readiness inspected, fixed, and supported by DeliWer." />
       </Helmet>
 
-      {/* Hero Section - Optimized for Summer Readiness */}
-      <section className="relative py-32 md:py-48 overflow-hidden bg-slate-950 text-white">
+      {/* 🔴 HERO SECTION */}
+      <section className="relative py-24 md:py-32 overflow-hidden bg-slate-950 text-white">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-60"
+          className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: `url(${waterLifestyleImg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-slate-950" />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-6 px-4 py-1.5 rounded-full uppercase tracking-widest font-black text-xs">
-            Dubai Summer Readiness
+            The Dubai Survival Guide
           </Badge>
-          <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-none">
-            Move In. <br /><span className="text-emerald-400 font-black">Summer-Ready.</span>
+          <h1 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase leading-none">
+            Move Into a Dubai Home That’s <br /><span className="text-emerald-400">Summer-Ready From Day One</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
-            Avoid summer shocks. Cooling, water, and essential home readiness — inspected, fixed, and supported by DeliWer from Day One.
+            Cooling, water, and essential home readiness — inspected, fixed, and supported by DeliWer.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col md:flex-row justify-center gap-4">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.5)] transition-all hover:scale-105"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg transition-all hover:scale-105"
               onClick={() => handleWhatsApp("Summer Ready Assessment")}
             >
               Book Summer Ready Assessment
+            </Button>
+            <Button 
+              variant="outline"
+              size="lg"
+              className="bg-white/10 backdrop-blur-md text-white border-white/20 font-black rounded-full px-12 h-16 text-lg hover:bg-white/20 transition-all"
+              onClick={() => handleWhatsApp("General Inquiry")}
+            >
+              <MessageCircle className="w-6 h-6 mr-2" />
+              WhatsApp Inquiry
             </Button>
           </div>
         </div>
       </section>
 
-      {/* DNA Section: The Summer Ready Move-In Pack */}
-      <section className="py-24 px-6 relative overflow-hidden bg-slate-50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+      {/* 🟠 WHO THIS IS FOR */}
+      <section className="py-20 px-6 bg-slate-50 dark:bg-slate-900/50">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-black uppercase tracking-tight">Perfect For:</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {audience.map((item, i) => (
+              <div key={i} className="flex flex-col items-center text-center space-y-3 p-6 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-white/5 shadow-sm">
+                <div className="bg-emerald-500/10 p-3 rounded-2xl">
+                  <item.icon className="w-6 h-6 text-emerald-500" />
+                </div>
+                <span className="font-black text-sm uppercase tracking-tight text-slate-600 dark:text-slate-400">{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 🟡 THE CORE OFFER */}
+      <section className="py-24 px-6 relative overflow-hidden bg-white dark:bg-slate-950">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-emerald-100 text-emerald-700 border-emerald-200">The Primary Offer</Badge>
-            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase">Dubai Summer Ready Home <br /><span className="text-emerald-500">Move-In Pack</span></h2>
-            <p className="text-xl text-slate-500 font-medium italic max-w-2xl mx-auto">"Before your first night, we make sure your home can survive Dubai summer. No long contracts, just survival."</p>
+            <h2 className="text-4xl md:text-6xl font-black mb-4 tracking-tighter uppercase">Move-In Summer Ready Pack</h2>
+            <p className="text-xl text-slate-500 font-bold italic">“Before your first night, we make sure your home can survive Dubai summer.”</p>
           </div>
 
-          <Card className="border-4 border-slate-950 shadow-[20px_20px_0_0_rgba(2,6,23,1)] rounded-[3rem] overflow-hidden">
+          <Card className="border-0 shadow-2xl rounded-[3rem] overflow-hidden bg-slate-50 dark:bg-slate-900">
             <CardContent className="p-0">
               <div className="grid md:grid-cols-2">
-                <div className="p-8 md:p-12 bg-white dark:bg-slate-900 text-slate-950 dark:text-white">
-                  <h3 className="text-3xl font-black mb-8 uppercase">Survival DNA</h3>
-                  <div className="space-y-8 text-left">
-                    <div className="flex gap-4">
-                      <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-2xl h-fit">
-                        <Thermometer className="w-6 h-6 text-blue-600" />
+                <div className="p-8 md:p-12">
+                  <h3 className="text-2xl font-black mb-10 uppercase tracking-tighter">What’s Inside (Survival Only)</h3>
+                  <div className="space-y-10">
+                    {coreOffer.map((section, i) => (
+                      <div key={i} className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-emerald-500/10 p-2 rounded-xl">
+                            <section.icon className="w-5 h-5 text-emerald-500" />
+                          </div>
+                          <h4 className="font-black uppercase text-lg">{section.title}</h4>
+                        </div>
+                        <ul className="space-y-2 ml-10">
+                          {section.items.map((item, j) => (
+                            <li key={j} className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
+                              <Check className="w-4 h-4 text-emerald-500 shrink-0" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <div>
-                        <h4 className="font-black text-xl uppercase mb-1">Cooling Readiness</h4>
-                        <p className="text-slate-600 dark:text-slate-400 font-medium">Full AC inspection, basic servicing, and efficiency check to prevent mid-summer breakdowns.</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-4">
-                      <div className="bg-cyan-50 dark:bg-cyan-900/20 p-3 rounded-2xl h-fit">
-                        <Droplets className="w-6 h-6 text-cyan-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-black text-xl uppercase mb-1">Water Readiness</h4>
-                        <p className="text-slate-600 dark:text-slate-400 font-medium">Drinking water starter delivery, leak detection, and pressure optimization.</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-4">
-                      <div className="bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-2xl h-fit">
-                        <Home className="w-6 h-6 text-emerald-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-black text-xl uppercase mb-1">Move-In Support</h4>
-                        <p className="text-slate-600 dark:text-slate-400 font-medium">Minor fixes coordination and emergency access to our maintenance network.</p>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
-                <div className="bg-slate-950 text-white p-8 md:p-12 flex flex-col justify-between">
-                  <div>
-                    <div className="mb-8">
-                      <span className="text-slate-400 uppercase font-black tracking-widest text-sm">One-Time Price</span>
-                      <div className="text-5xl md:text-7xl font-black mt-2">From <span className="text-emerald-400">AED 399</span></div>
+
+                <div className="bg-slate-950 text-white p-8 md:p-12 flex flex-col justify-center text-center space-y-8">
+                  <div className="space-y-2">
+                    <span className="text-slate-400 uppercase font-black tracking-widest text-xs">Summer Ready Assessment Pack</span>
+                    <div className="text-5xl md:text-7xl font-black">AED 399</div>
+                  </div>
+                  
+                  <div className="flex justify-center gap-8 py-6 border-y border-white/10">
+                    <div className="text-center">
+                      <div className="text-[10px] uppercase font-black text-slate-500 mb-1">Time</div>
+                      <div className="font-bold">2–4 Hours</div>
                     </div>
-                    <div className="grid grid-cols-2 gap-4 mb-12 text-left">
-                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                        <div className="text-xs uppercase font-black text-slate-500">Service Time</div>
-                        <div className="font-bold">2–4 Hours</div>
-                      </div>
-                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                        <div className="text-xs uppercase font-black text-slate-500">Property</div>
-                        <div className="font-bold">Apt • T-House</div>
-                      </div>
+                    <div className="text-center">
+                      <div className="text-[10px] uppercase font-black text-slate-500 mb-1">Property</div>
+                      <div className="font-bold">Apt • T-House</div>
                     </div>
                   </div>
+
                   <Button 
-                    className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black h-20 text-2xl rounded-2xl shadow-xl transition-all hover:scale-[1.02]"
+                    className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black h-16 text-xl rounded-2xl transition-all hover:scale-[1.02]"
                     onClick={() => handleWhatsApp("Summer Ready Pack Booking")}
                   >
-                    Book Assessment
+                    Get Summer Ready
                   </Button>
+                  <p className="text-xs text-slate-500 font-medium italic">Same day or next day service available.</p>
                 </div>
               </div>
             </CardContent>
@@ -337,90 +178,37 @@ export default function HomeService() {
         </div>
       </section>
 
-      {/* Sub-Section 1: Maintenance & Upgrades */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${homeServiceHeroImg})` }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Maintenance & <br /><span className="text-emerald-500">Smart Upgrades</span></h2>
-            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl font-medium">Keep your home running efficiently with expert technical support and future-proof technology.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {maintenanceServices.map((service) => (
-              <ServiceCard key={service.id} service={service} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sub-Section 2: Essentials & Errands */}
-      <section className="relative py-24 px-6 bg-slate-950 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: `url(${waterLifestyleImg})` }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/40" />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Home Essentials <br />& <span className="text-blue-400">Errand Services</span></h2>
-            <p className="text-xl text-slate-300 max-w-2xl font-medium">Everyday support for smooth living — delivered, managed, and coordinated by DeliWer.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl">
-            {essentialServices.map((service) => (
-              <ServiceCard key={service.id} service={service} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sub-Section 3: Trade-In & Recycle */}
-      <section className="relative py-24 px-6 overflow-hidden bg-slate-50 dark:bg-slate-900/50">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${tradeInImg})` }} />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/95 via-slate-50/80 to-slate-50 dark:from-slate-900/95 dark:via-slate-900/80 dark:to-slate-900" />
-        <div className="container mx-auto max-w-7xl relative z-10">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Circular <br /><span className="text-amber-500">Trade-In & Recycle</span></h2>
-            <p className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl font-medium">Upgrade smarter by trading in or recycling what you no longer need.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl">
-            {circularServices.map((service) => (
-              <ServiceCard key={service.id} service={service} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Referral Section */}
-      <section className="py-24 px-6 bg-emerald-600 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-        <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <Badge className="bg-white/20 text-white border-white/30 mb-8 px-4 py-1.5 rounded-full uppercase tracking-widest font-black text-xs">
-            Refer & Earn
-          </Badge>
-          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter uppercase">Share the <br />Sustainability</h2>
-          <p className="text-xl text-emerald-50 mb-12 font-medium max-w-2xl mx-auto">
-            Refer a friend to DeliWer and you both get AED 100 credit toward your next home service or upgrade.
-          </p>
-          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-[2rem] p-4 flex flex-col md:flex-row items-center gap-4 max-w-2xl mx-auto">
-            <code className="bg-black/20 px-6 py-4 rounded-xl font-mono text-lg flex-1 text-center md:text-left overflow-hidden text-ellipsis whitespace-nowrap">
-              {referralCode}
-            </code>
-            <Button 
-              onClick={handleCopyReferral}
-              className="w-full md:w-auto bg-white text-emerald-600 font-black h-14 px-10 rounded-xl shadow-xl hover:bg-emerald-50"
-            >
-              {copied ? <Check className="w-5 h-5 mr-2" /> : <Copy className="w-5 h-5 mr-2" />}
-              {copied ? "Copied!" : "Copy Link"}
-            </Button>
+      {/* REPEATABILITY / TRUST */}
+      <section className="py-20 px-6 bg-slate-50 dark:bg-slate-900/50 text-center">
+        <div className="container mx-auto max-w-3xl">
+          <p className="text-lg text-slate-500 font-bold uppercase tracking-widest mb-4">Why DeliWer?</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-12 tracking-tighter uppercase leading-tight">
+            One Accountable Operator. <br /><span className="text-emerald-500">Zero Summer Shocks.</span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div className="space-y-2">
+              <h4 className="font-black uppercase text-sm">No Contracts</h4>
+              <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">One-time assessment. No long-term commitment required to start.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-black uppercase text-sm">Immediate Fixes</h4>
+              <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">We don't just inspect. We coordinate minor fixes on the spot.</p>
+            </div>
+            <div className="space-y-2">
+              <h4 className="font-black uppercase text-sm">Expert Network</h4>
+              <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Instant access to Dubai's best maintenance professionals if needed.</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer Disclaimer */}
-      <footer className="py-12 px-6 bg-slate-950 border-t border-white/5 text-center">
+      <footer className="py-12 px-6 bg-slate-950 border-t border-white/5 text-center text-white">
         <div className="container mx-auto">
-          <p className="text-amber-500 font-black text-sm uppercase tracking-widest mb-6">
+          <p className="text-emerald-500 font-black text-xs uppercase tracking-widest mb-6">
             Supported by Dubai Municipality & DEWA Guidelines
           </p>
-          <p className="text-slate-500 text-xs font-medium max-w-2xl mx-auto">
+          <p className="text-slate-500 text-[10px] font-medium max-w-2xl mx-auto uppercase tracking-tighter">
             © {new Date().getFullYear()} DeliWer Home Operations. All services are performed by licensed professionals according to UAE safety and building regulations.
           </p>
         </div>
