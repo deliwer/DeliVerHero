@@ -30,6 +30,8 @@ import homeServiceHeroImg from "@assets/stock_images/professional_service_2cfeb6
 import waterLifestyleImg from "@assets/without_text_1756065010951.jpg";
 import errandRunnerImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
 import tradeInImg from "@assets/stock_images/smartphone_trade-in__f695fa93.jpg";
+import homeCleanImg from "@assets/stock_images/eco-friendly_cleanin_0650dea4.jpg";
+import furnitureImg from "@assets/stock_images/errand_delivery_serv_6f2364e8.jpg";
 
 const maintenanceServices = [
   {
@@ -232,29 +234,29 @@ export default function HomeService() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden bg-slate-950 text-white">
+      <section className="relative py-32 md:py-48 overflow-hidden bg-slate-950 text-white">
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: `url(${homeServiceHeroImg})` }}
+          className="absolute inset-0 bg-cover bg-center opacity-60"
+          style={{ backgroundImage: `url(${homeCleanImg})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-slate-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-slate-950" />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-6 px-4 py-1.5 rounded-full uppercase tracking-widest font-black text-xs">
             Dubai Home Operating System
           </Badge>
           <h1 className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase leading-none">
-            Your Home. <br /><span className="text-emerald-400">Better Managed.</span>
+            Your Home. <br /><span className="text-emerald-400 font-black">Better Managed.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
+          <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
             The all-in-one platform for maintenance, upgrades, essentials, and sustainable living in Dubai.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-10 h-16 text-lg"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-20 text-xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.5)] transition-all hover:scale-105"
               onClick={() => handleWhatsApp("General Inquiry")}
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
+              <MessageCircle className="w-6 h-6 mr-2" />
               WhatsApp Us
             </Button>
           </div>
@@ -263,7 +265,8 @@ export default function HomeService() {
 
       {/* Sub-Section 1: Maintenance & Upgrades */}
       <section className="relative py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-10 grayscale" style={{ backgroundImage: `url(${homeServiceHeroImg})` }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${homeServiceHeroImg})` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Maintenance & <br /><span className="text-emerald-500">Smart Upgrades</span></h2>
@@ -279,12 +282,12 @@ export default function HomeService() {
 
       {/* Sub-Section 2: Essentials & Errands */}
       <section className="relative py-24 px-6 bg-slate-950 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20 grayscale" style={{ backgroundImage: `url(${errandRunnerImg})` }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent" />
+        <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{ backgroundImage: `url(${waterLifestyleImg})` }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/40" />
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Home Essentials <br />& <span className="text-blue-400">Errand Services</span></h2>
-            <p className="text-xl text-slate-400 max-w-2xl font-medium">Everyday support for smooth living — delivered, managed, and coordinated by DeliWer.</p>
+            <p className="text-xl text-slate-300 max-w-2xl font-medium">Everyday support for smooth living — delivered, managed, and coordinated by DeliWer.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl">
             {essentialServices.map((service) => (
@@ -295,8 +298,9 @@ export default function HomeService() {
       </section>
 
       {/* Sub-Section 3: Trade-In & Recycle */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-10 grayscale" style={{ backgroundImage: `url(${tradeInImg})` }} />
+      <section className="relative py-24 px-6 overflow-hidden bg-slate-50 dark:bg-slate-900/50">
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${tradeInImg})` }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/95 via-slate-50/80 to-slate-50 dark:from-slate-900/95 dark:via-slate-900/80 dark:to-slate-900" />
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="mb-16">
             <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Circular <br /><span className="text-amber-500">Trade-In & Recycle</span></h2>
