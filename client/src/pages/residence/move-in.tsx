@@ -32,14 +32,23 @@ export default function MoveInSubpage() {
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
             Professional coordination of utilities, internet, and essentials. No stress, no coordination needed.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-blue-600 hover:bg-blue-500 text-white font-black rounded-xl px-12 h-16 text-lg shadow-xl"
-            onClick={() => window.open(getWhatsAppLink('General Move-In Enquiry'), '_blank')}
-          >
-            <MessageCircle className="mr-2 h-6 w-6" />
-            Enquire via WhatsApp
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/summer-ready-home">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-8 h-16 rounded-xl w-full sm:w-auto shadow-lg shadow-emerald-500/20">
+                <Zap className="mr-2 h-6 w-6" />
+                Get Summer-Ready Pack
+              </Button>
+            </Link>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-blue-500 text-blue-400 hover:bg-blue-500/10 px-8 h-16 rounded-xl w-full sm:w-auto font-black"
+              onClick={() => window.open(getWhatsAppLink('General Move-In Enquiry'), '_blank')}
+            >
+              <MessageCircle className="mr-2 h-6 w-6" />
+              Chat with Assistant
+            </Button>
+          </div>
         </div>
       </section>
 
