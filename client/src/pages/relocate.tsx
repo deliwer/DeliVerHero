@@ -10,6 +10,8 @@ import {
   Shield,
   Home,
   Droplets,
+  Check,
+  Star,
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiLifestyle from "@assets/stock_images/luxury_dubai_lifesty_e9f4e72e.jpg";
@@ -111,6 +113,116 @@ export default function Relocate() {
           </div>
         </div>
       </section>
+      {/* Pricing Packs Section */}
+      <section className="py-24 bg-white dark:bg-slate-950">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">Choose Your Relocation Pack</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Transparent, fixed-price packages designed to get you settled without the stress.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Essential Move-In",
+                price: "299",
+                description: "Basic home readiness and coordination.",
+                features: [
+                  "Move-in coordination",
+                  "Basic home readiness check",
+                  "Utility checklist",
+                  "Issue reporting & follow-up"
+                ]
+              },
+              {
+                name: "Summer Ready Home",
+                price: "599",
+                recommended: true,
+                description: "Complete cooling and water setup for Dubai's heat.",
+                features: [
+                  "Everything in Essential",
+                  "AC inspection & basic service",
+                  "Cooling efficiency check",
+                  "Drinking water starter delivery",
+                  "Leak & water pressure check",
+                  "Minor fix coordination"
+                ]
+              },
+              {
+                name: "Full Relocation Comfort",
+                price: "1,199",
+                description: "The ultimate white-glove relocation experience.",
+                features: [
+                  "Everything in Summer Ready",
+                  "Deep cleaning",
+                  "AC AMC (initial visit)",
+                  "Water subscription setup",
+                  "Trade-in / recycle coordination",
+                  "Dedicated relocation manager"
+                ]
+              }
+            ].map((pack, i) => (
+              <Card 
+                key={i} 
+                className={`relative p-8 flex flex-col h-full transition-all hover:shadow-2xl border-2 ${
+                  pack.recommended 
+                    ? "border-emerald-500 shadow-xl scale-105 z-10 bg-emerald-50/30 dark:bg-emerald-950/10" 
+                    : "border-slate-100 dark:border-slate-800"
+                }`}
+              >
+                {pack.recommended && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-current" />
+                    Recommended
+                  </div>
+                )}
+                
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold mb-2">{pack.name}</h3>
+                  <p className="text-muted-foreground text-sm h-10">{pack.description}</p>
+                </div>
+
+                <div className="mb-8">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-sm font-bold text-muted-foreground uppercase">From</span>
+                    <span className="text-4xl font-black text-emerald-600">AED {pack.price}</span>
+                  </div>
+                  <div className="mt-2 space-y-1">
+                    <p className="text-xs text-muted-foreground">Apartment & Townhouse: Fixed Price</p>
+                    <p className="text-xs text-emerald-600 font-medium">Villa: Custom Quote</p>
+                  </div>
+                </div>
+
+                <ul className="space-y-4 mb-10 flex-1">
+                  {pack.features.map((feature, index) => (
+                    <li key={index} className="flex gap-3 text-sm leading-relaxed">
+                      <div className="mt-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full p-0.5 shrink-0 h-5 w-5 flex items-center justify-center">
+                        <Check className="w-3 h-3 text-emerald-600" />
+                      </div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <Button 
+                  onClick={() => window.open(`https://wa.me/971501234567?text=Hi, I am interested in the ${pack.name} relocation pack. Please let me know the next steps. Source: Relocation`, '_blank')}
+                  className={`w-full h-14 text-lg font-black rounded-xl ${
+                    pack.recommended 
+                      ? "bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-200 dark:shadow-none" 
+                      : "variant-outline border-2"
+                  }`}
+                  data-testid={`button-select-pack-${pack.name.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  Select Pack
+                </Button>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* High Impact Visual - Exit Concierge */}
       <section className="relative py-40 overflow-hidden text-white">
         <div 
