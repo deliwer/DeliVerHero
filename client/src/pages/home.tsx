@@ -198,10 +198,10 @@ export default function Home() {
             Elite Concierge & Risk Mitigation
           </div>
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 text-white leading-[0.9] drop-shadow-2xl">
-            Entering Dubai?<br />
-            <span className="text-[#FFC845]">Ensure Your Exit is Already Handled.</span>
+            Resident Hub<br />
+            <span className="text-emerald-400">Everything for Your Dubai Life.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">Most relocations fail at the end. We manage your arrival with a focus on mitigating the liabilities that trap founders upon exit.</p>
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">Access premium home services, community missions, and exclusive rewards tailored for Dubai residents.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Link href="/home-service">
               <Button 

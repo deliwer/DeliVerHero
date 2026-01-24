@@ -65,12 +65,11 @@ export function Navigation() {
   }
 
   const consumerNavItems = [
+    { path: "/home", label: "Resident Home", id: "resident-home", icon: Home },
+    { path: "/relocate", label: "Relocation Mode", id: "relocation", featured: true },
     { path: "/ewaste", label: "Recycle", id: "recycle", icon: Recycle },
-    { path: "/residence", label: "Residence in Dubai", id: "move-in-services" },
-    { path: "/relocation", label: "Relocate", id: "relocation", featured: true },
     { path: "/home-service", label: "Home Service", id: "home-service" },
     { path: "/contact", label: "Support", id: "support" },
-    { path: "/partners", label: "Partners", id: "partners" },
   ];
 
   const b2bNavItems = [

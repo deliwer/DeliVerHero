@@ -16,6 +16,7 @@ import { useLocation } from "wouter";
 
 // Import core pages directly for faster initial load or if they are critical
 import Home from "@/pages/home";
+import Landing from "@/pages/landing";
 import MoveInServices from "@/pages/move-in-services";
 import MoveInPackages from "@/pages/move-in-packages";
 import Relocate from "@/pages/relocate";
@@ -120,7 +121,8 @@ function Router() {
     <WouterRouter base={basePath}>
       <Suspense fallback={<PageLoader />}>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route path="/" component={Landing} />
+          <Route path="/home" component={Home} />
           <Route path="/move-in-landing" component={MoveInLanding} />
           <Route path="/move-in-services" component={MoveInServices} />
           <Route path="/residence/move-in-packages" component={MoveInPackages} />
