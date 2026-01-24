@@ -213,9 +213,17 @@ export default function Home() {
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">Access premium home services, community missions, and exclusive rewards tailored for Dubai residents.</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+            <Link href="/residence/find-a-place">
+              <Button 
+                size="lg" 
+                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-full px-16 h-24 text-2xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.5)] transition-all w-full md:w-auto active-elevate-2" 
+              >
+                Find a Residence
+              </Button>
+            </Link>
             <Button 
               size="lg" 
-              className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-full px-16 h-24 text-2xl shadow-[0_0_50px_-12px_rgba(16,185,129,0.5)] transition-all w-full md:w-auto active-elevate-2 animate-pulse" 
+              className="bg-blue-600 hover:bg-blue-500 text-white font-black rounded-full px-16 h-24 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2" 
               onClick={() => {
                 document.getElementById('summer-ready')?.scrollIntoView({ behavior: 'smooth' });
               }}

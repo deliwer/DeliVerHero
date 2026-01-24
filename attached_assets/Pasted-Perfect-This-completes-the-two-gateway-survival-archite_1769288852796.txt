@@ -1,0 +1,313 @@
+Perfect.
+This completes the **two-gateway survival architecture**.
+
+I’ll design **`/residents`** as a **Senior UX Architect**, with one objective:
+
+> **Help residents already living in Dubai decide what to do in under 5 seconds.**
+
+No catalogs. No exploration.
+Only **recognition → action**.
+
+---
+
+# ✅ `/RESIDENTS` PAGE — FINAL SURVIVAL DESIGN
+
+## PURPOSE (LOCK THIS)
+
+`/residents` is for users thinking:
+
+> “I live in Dubai and need help with my home right now.”
+
+This page must:
+
+* Reduce cognitive load
+* Convert daily-life needs
+* Enable repeat usage
+* Avoid relocation language
+
+---
+
+# 1️⃣ INFORMATION ARCHITECTURE (NON-NEGOTIABLE)
+
+### The page has only **3 layers**:
+
+1. Situation recognition
+2. One clear action
+3. Fast execution (Book / Order / WhatsApp)
+
+Anything beyond that is removed.
+
+---
+
+# 2️⃣ HERO SECTION — RESIDENT MODE
+
+### Headline
+
+**Everything Your Dubai Home Needs — Without the Hassle**
+
+Why:
+
+* Broad enough for all residents
+* Clear ownership of the home experience
+* No jargon
+
+---
+
+### Subheadline
+
+Maintenance, water, essentials, and support — designed for expats living in rental homes.
+
+---
+
+### Primary CTA (soft, not pushy)
+
+🟢 **Get Help With My Home**
+
+Scrolls to action tiles below.
+
+---
+
+# 3️⃣ THE CORE UX MOVE (THIS IS THE KEY)
+
+## ❌ Do NOT show services
+
+## ✅ Show **4 SITUATIONS**
+
+Residents don’t think in services.
+They think in **problems**.
+
+---
+
+# 4️⃣ THE 4 ACTION GATEWAYS (CENTER OF PAGE)
+
+### 🟦 1. “Something Needs Fixing”
+
+**CTA:** Book Maintenance
+
+Leads to:
+
+* AC servicing
+* Plumbing
+* Electrical
+* Emergency support
+
+Helper text:
+
+> AC, water leaks, electrical issues, or general maintenance.
+
+---
+
+### 🟩 2. “I Need Water or Essentials”
+
+**CTA:** Order Essentials
+
+Leads to:
+
+* Drinking water delivery
+* Filters
+* Subscriptions
+
+Helper text:
+
+> Reliable water and home essentials delivered on demand.
+
+---
+
+### 🟨 3. “I Want to Improve or Reduce Bills”
+
+**CTA:** Upgrade My Home
+
+Leads to:
+
+* Smart water devices
+* Energy monitoring
+* Minor efficiency upgrades
+
+Helper text:
+
+> Small upgrades that improve comfort and reduce waste.
+
+---
+
+### 🟥 4. “I Need to Remove or Replace Items”
+
+**CTA:** Trade-In / Recycle
+
+Leads to:
+
+* Appliance & furniture trade-in
+* Recycling & removal
+
+Helper text:
+
+> Replace what you don’t need responsibly.
+
+---
+
+### UX RULES FOR THIS SECTION
+
+* Exactly **4 tiles**
+* Equal visual weight
+* One clear CTA per tile
+* No pricing shown here (avoid friction)
+* Icons > text
+
+This is the **decision engine** of DeliWer.
+
+---
+
+# 5️⃣ WHAT COMES AFTER A CLICK (IMPORTANT)
+
+Each tile leads to a **focused sub-flow**, not a big page.
+
+Example:
+
+* “Book Maintenance” → AC / Plumbing / Electrical choice
+* “Order Essentials” → Water subscription defaulted
+* “Upgrade My Home” → Smart water first
+* “Trade-In / Recycle” → Free assessment CTA
+
+This keeps `/residents` clean and fast.
+
+---
+
+# 6️⃣ TRUST & REASSURANCE (LOW ON PAGE)
+
+Small strip only:
+
+* Designed for expats & rental homes
+* Fixed pricing where possible
+* One accountable support team
+* WhatsApp support available
+
+Do **not** add long testimonials here.
+
+---
+
+# 7️⃣ SOFT LIFECYCLE LINK (VERY SUBTLE)
+
+At the bottom:
+
+> “Moving in or moving out of Dubai?”
+> 👉 **Go to Relocation Services**
+
+This prevents journey confusion.
+
+---
+
+# 8️⃣ WHAT IS EXPLICITLY REMOVED FROM `/RESIDENTS`
+
+❌ Relocation packs
+❌ Summer messaging
+❌ EV charging
+❌ Fit-out / microcement
+❌ Sustainability philosophy
+❌ Platform explanations
+
+Residents want **help now**, not vision.
+
+---
+
+# 9️⃣ REPLIT PROMPT — `/RESIDENTS` PAGE
+
+Copy-paste ready.
+
+---
+
+## ✅ REPLIT PROMPT: CREATE /RESIDENTS PAGE
+
+**Objective:**
+Create a `/residents` gateway page for users already living in Dubai, merging `/residence` and `/home-services` into a single low-cognitive-load experience focused on daily home needs.
+
+---
+
+### Hero Section
+
+* Headline: “Everything Your Dubai Home Needs — Without the Hassle”
+* Subheadline: “Maintenance, water, essentials, and support — designed for expats living in rental homes.”
+* Primary CTA: “Get Help With My Home” (scrolls to action tiles)
+
+---
+
+### Core Action Tiles (4 Only)
+
+1. **Something Needs Fixing**
+   CTA: Book Maintenance
+   Leads to AC, plumbing, electrical, emergency services
+
+2. **I Need Water or Essentials**
+   CTA: Order Essentials
+   Leads to water delivery, filters, subscriptions
+
+3. **I Want to Improve or Reduce Bills**
+   CTA: Upgrade My Home
+   Leads to smart water and energy efficiency upgrades
+
+4. **I Need to Remove or Replace Items**
+   CTA: Trade-In / Recycle
+   Leads to trade-in, recycling, responsible removal
+
+---
+
+### UX Rules
+
+* Exactly 4 tiles
+* Situation-based language
+* One CTA per tile
+* Mobile-first layout
+* No service grids or clutter
+
+---
+
+### Trust Strip (Bottom)
+
+* Designed for expats & rental homes
+* Fixed pricing where possible
+* One accountable support team
+* WhatsApp support available
+
+---
+
+### Lifecycle Link
+
+Include a subtle link:
+“Moving in or moving out of Dubai?” → `/relocate`
+
+---
+
+### Success Criteria
+
+* User understands where to click in <5 seconds
+* Reduced bounce rate
+* Higher repeat usage
+* Clear separation from relocation journey
+
+---
+
+# 10️⃣ FINAL UX CHECK (SURVIVAL SCORE)
+
+With:
+
+* Homepage (2 gateways)
+* `/residents`
+* `/relocate`
+
+You now have:
+
+✔ Clear segmentation
+✔ Reduced cognitive load
+✔ Repeatable daily-life usage
+✔ Strong relocation monetization
+✔ Scalable without chaos
+
+This is **operator-grade UX**, not startup noise.
+
+---
+
+## Next logical step (recommended order):
+
+1. Update top navigation to only **Residents / Relocation**
+2. Hide legacy pages from nav
+3. Create WhatsApp scripts per tile
+
+If you want, say **“nav + header next”** and I’ll lock it cleanly.

@@ -76,7 +76,7 @@ export default function Relocate() {
           <div className="flex flex-wrap justify-center gap-6">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 h-16 text-xl rounded-full shadow-2xl transition-transform hover:scale-105"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 h-16 text-xl rounded-full shadow-2xl transition-transform hover:scale-105"
               onClick={() => formRef.current?.scrollIntoView({ behavior: 'smooth' })}
             >View Relocation Packs</Button>
             <Link href="/residence">
