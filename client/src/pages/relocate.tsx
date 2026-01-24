@@ -16,6 +16,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { TrustStrip, PartnerStrip, TestimonialCarousel } from "@/components/trust-strip";
 
 export default function Relocate() {
   const moveInRef = useRef<HTMLDivElement>(null);
@@ -92,8 +93,15 @@ export default function Relocate() {
         <meta name="description" content="Moving to or from Dubai? Get fixed-price relocation packs. Move-in readiness, summer survival, and smooth exit — managed by one accountable team." />
       </Helmet>
 
+      {/* Micro Trust Line - Always Above Fold */}
+      <section className="px-4 py-3 border-b border-white/10">
+        <div className="max-w-4xl mx-auto">
+          <TrustStrip variant="dark" showContact={true} />
+        </div>
+      </section>
+
       {/* Hero Section */}
-      <section className="px-4 py-16 md:py-24">
+      <section className="px-4 py-16 md:py-20">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -135,6 +143,13 @@ export default function Relocate() {
         </div>
       </section>
 
+      {/* Partner Strip */}
+      <section className="px-4">
+        <div className="max-w-4xl mx-auto">
+          <PartnerStrip />
+        </div>
+      </section>
+
       {/* Move-In Packs Section */}
       <section ref={moveInRef} id="move-in-packs" className="px-4 py-16 md:py-20">
         <div className="max-w-6xl mx-auto">
@@ -143,6 +158,7 @@ export default function Relocate() {
             <p className="text-lg text-emerald-100/70 max-w-2xl mx-auto">
               Fixed-price packages to get your new Dubai home ready from day one
             </p>
+            <p className="text-sm text-emerald-400 mt-2">No hidden fees • Apartments & Townhouses: Fixed Price • Villas: Custom Quote</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-6">
@@ -206,6 +222,19 @@ export default function Relocate() {
               </motion.div>
             ))}
           </div>
+
+          {/* Testimonial for Summer Ready */}
+          <div className="mt-8 max-w-xl mx-auto">
+            <div className="bg-emerald-950/30 border border-emerald-500/30 rounded-xl p-4 text-center">
+              <div className="flex justify-center gap-1 mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-sm text-white italic">"AC serviced and water delivered in hours — DeliWer saved our move-in week."</p>
+              <p className="text-xs text-emerald-100/60 mt-2">— Ahmed, JVC</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -266,6 +295,19 @@ export default function Relocate() {
               </div>
             </Card>
           </motion.div>
+
+          {/* Exit testimonial */}
+          <div className="mt-8 max-w-xl mx-auto">
+            <div className="bg-blue-950/30 border border-blue-500/30 rounded-xl p-4 text-center">
+              <div className="flex justify-center gap-1 mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-sm text-white italic">"Exit handover was smooth. Got our full deposit back without any issues."</p>
+              <p className="text-xs text-blue-100/60 mt-2">— Michael, Downtown Dubai</p>
+            </div>
+          </div>
         </div>
       </section>
 

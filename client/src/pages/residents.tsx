@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Wrench, Droplets, Zap, Recycle, ArrowRight, MessageCircle, Shield, DollarSign, Users } from "lucide-react";
 import { motion } from "framer-motion";
+import { TrustStrip, TestimonialCarousel, ProcessMicroflow } from "@/components/trust-strip";
 
 const actionTiles = [
   {
@@ -81,8 +82,15 @@ export default function ResidentsPage() {
 
   return (
     <div className="min-h-screen bg-dubai-gradient">
+      {/* Micro Trust Line - Always Above Fold */}
+      <section className="px-4 py-3 border-b border-white/10">
+        <div className="max-w-4xl mx-auto">
+          <TrustStrip variant="dark" showContact={true} />
+        </div>
+      </section>
+
       {/* Hero Section */}
-      <section className="px-4 py-16 md:py-24">
+      <section className="px-4 py-16 md:py-20">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -150,6 +158,22 @@ export default function ResidentsPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Process Microflow */}
+      <section className="px-4 py-12 border-t border-white/10">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-lg font-semibold text-white text-center mb-8">How It Works</h3>
+          <ProcessMicroflow variant="dark" />
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="px-4 py-12">
+        <div className="max-w-5xl mx-auto">
+          <h3 className="text-lg font-semibold text-white text-center mb-8">What Residents Say</h3>
+          <TestimonialCarousel variant="dark" limit={2} />
         </div>
       </section>
 
