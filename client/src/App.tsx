@@ -22,7 +22,6 @@ import MoveInPackages from "@/pages/move-in-packages";
 import Relocate from "@/pages/relocate";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
-import HomeService from "@/pages/home-service";
 import Residence from "@/pages/residence";
 import FindAPlace from "@/pages/residence/find-a-place";
 import ErrandPage from "@/pages/errand";
