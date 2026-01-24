@@ -78,7 +78,7 @@ export default function Relocate() {
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 h-16 text-xl rounded-full shadow-2xl transition-transform hover:scale-105"
               onClick={() => formRef.current?.scrollIntoView({ behavior: 'smooth' })}
-            >Choose Your Relocation Pack</Button>
+            >View Relocation Packs</Button>
             <Link href="/residence">
               <Button 
                 size="lg" 
