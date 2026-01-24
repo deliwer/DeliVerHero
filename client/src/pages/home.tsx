@@ -24,11 +24,11 @@ import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import relocationHeroPng from "@assets/generated_images/dubai-relocation-risk-management.png";
-import nightmarePng from "@assets/generated_images/dubai-relocation-nightmare.png";
-import expertSupportPng from "@assets/generated_images/dubai-relocation-expert-support.png";
-import waterLifestyleImg from "@assets/without_text_1756065010951.jpg";
-import relocationHero from "@assets/stock_images/relocation_hero.jpg";
+import relocationHeroPng from "@/assets/generated_images/dubai-relocation-risk-management.png";
+import nightmarePng from "@/assets/generated_images/dubai-relocation-nightmare.png";
+import expertSupportPng from "@/assets/generated_images/dubai-relocation-expert-support.png";
+import waterLifestyleImg from "@/assets/without_text_1756065010951.jpg";
+import relocationHero from "@/assets/stock_images/relocation_hero.jpg";
 
 function HomeServiceIntegration() {
   const handleWhatsApp = (serviceName: string) => {
