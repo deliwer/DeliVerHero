@@ -66,6 +66,7 @@ export function Navigation() {
 
   const consumerNavItems = [
     { path: "/home", label: "Resident Home", id: "resident-home", icon: Home },
+    { path: "/move-in-landing", label: "Move-In Guide", id: "move-in-guide" },
     { path: "/relocate", label: "Relocation Mode", id: "relocation", featured: true },
     { path: "/ewaste", label: "Recycle", id: "recycle", icon: Recycle },
     { path: "/contact", label: "Support", id: "support" },
