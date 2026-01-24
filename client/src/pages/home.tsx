@@ -1,38 +1,18 @@
 import { useState, useEffect } from "react";
-import { DualPurposeHero } from "@/components/dual-purpose-hero";
-import { HeroChallengeLanding } from "@/components/hero-challenge-landing";
-import { HeroOnboardingTutorial } from "@/components/hero-onboarding-tutorial";
-import { FoundersSection } from "@/components/founders-section";
-import { TradeInBanner } from "@/components/trade-in-banner";
-import { TestimonialsSection } from "@/components/testimonials-section";
-import { TrustElements } from "@/components/trust-elements";
-import { RewardComparison } from "@/components/reward-comparison";
-import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
 import { SEOMeta } from "@/components/seo-meta";
-import { HomeServiceSection } from "@/components/home-service-section";
-import { LeaderboardSocialProof } from "@/components/leaderboard-social-proof";
 import { 
-  Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, 
-  ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, 
-  Gift, Crown, Trophy, Sparkles, Rocket, Star, Zap, ChevronDown, 
-  ChevronUp, Gavel, ArrowRight, Plane, Globe, MessageSquare, 
-  CheckCircle2, UserCheck, FileText, Thermometer, Droplets, AlertTriangle, Coins, ShieldCheck, Check
+  Zap, MessageSquare, CheckCircle2, Thermometer, Droplets, 
+  AlertTriangle, Coins, ShieldCheck, Check, Home as HomeIcon
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-// import relocationHeroPng from "@/assets/generated_images/dubai-relocation-risk-management.png";
-// import nightmarePng from "@/assets/generated_images/dubai-relocation-nightmare.png";
-// import expertSupportPng from "@/assets/generated_images/dubai-relocation-expert-support.png";
-const relocationHeroPng = "https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?auto=format&fit=crop&q=80&w=2000";
-const nightmarePng = "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&q=80&w=1000";
-const expertSupportPng = "https://images.unsplash.com/photo-1454165833767-027ff33027ef?auto=format&fit=crop&q=80&w=1000";
-// import waterLifestyleImg from "@/assets/stock_images/clean_water_sustaina_ba5cf3da.jpg";
-// import relocationHero from "@/assets/stock_images/relocation_hero.jpg";
-const waterLifestyleImg = "https://images.unsplash.com/photo-1548337138-e87d889cc369?auto=format&fit=crop&q=80&w=2000";
-const relocationHero = "https://images.unsplash.com/photo-1512453979798-5ea4a73a88d0?auto=format&fit=crop&q=80&w=2000";
+import relocationHeroPng from "@/assets/images/relocation-hero.jpg";
+import nightmarePng from "@/assets/images/nightmare-scenario.jpg";
+import expertSupportPng from "@/assets/images/expert-support.jpg";
+import waterLifestyleImg from "@/assets/images/water-lifestyle.jpg";
 import { DirhamCurrency } from "@/components/dirham-currency";
 
 function HomeServiceIntegration() {
@@ -72,7 +52,7 @@ function HomeServiceIntegration() {
     },
     {
       title: "Home Readiness",
-      icon: Home,
+      icon: HomeIcon,
       items: ["Appliance efficiency check", "Emergency support access", "Maintenance handover summary"]
     }
   ];
