@@ -11,7 +11,6 @@ import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section"
 import { SEOMeta } from "@/components/seo-meta";
 import { HomeServiceSection } from "@/components/home-service-section";
 import { LeaderboardSocialProof } from "@/components/leaderboard-social-proof";
-import { DirhamCurrency } from "@/components/dirham-currency";
 import { 
   Flame, Clock, TrendingUp, Play, Building, Heart, Users, Award, 
   ChevronRight, Handshake, ShoppingCart, ChefHat, CheckCircle, 
@@ -27,8 +26,9 @@ import { Badge } from "@/components/ui/badge";
 import relocationHeroPng from "@/assets/generated_images/dubai-relocation-risk-management.png";
 import nightmarePng from "@/assets/generated_images/dubai-relocation-nightmare.png";
 import expertSupportPng from "@/assets/generated_images/dubai-relocation-expert-support.png";
-import waterLifestyleImg from "@/assets/without_text_1756065010951.jpg";
+import waterLifestyleImg from "@/assets/stock_images/clean_water_sustaina_ba5cf3da.jpg";
 import relocationHero from "@/assets/stock_images/relocation_hero.jpg";
+import { DirhamCurrency } from "@/components/dirham-currency";
 
 function HomeServiceIntegration() {
   const handleWhatsApp = (serviceName: string) => {
