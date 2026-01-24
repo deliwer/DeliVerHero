@@ -20,6 +20,7 @@ import Landing from "@/pages/landing";
 import MoveInServices from "@/pages/move-in-services";
 import MoveInPackages from "@/pages/move-in-packages";
 import Relocate from "@/pages/relocate";
+import Residents from "@/pages/residents";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import Residence from "@/pages/residence";
@@ -126,6 +127,9 @@ function Router() {
             <Redirect to="/move-in-landing" />
           </Route>
           <Route path="/move-in-landing" component={MoveInLanding} />
+
+        {/* Residents Page */}
+        <Route path="/residents" component={Residents} />
 
         {/* Relocation Services */}
         <Route path="/relocate" component={Relocate} />

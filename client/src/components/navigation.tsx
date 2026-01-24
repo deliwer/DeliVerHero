@@ -65,11 +65,9 @@ export function Navigation() {
   }
 
   const consumerNavItems = [
-    { path: "/home", label: "Resident Home", id: "resident-home", icon: Home },
-    { path: "/move-in-landing", label: "Move-In Guide", id: "move-in-landing" },
-    { path: "/relocate", label: "Relocation Mode", id: "relocation", featured: true },
-    { path: "/ewaste", label: "Recycle", id: "recycle", icon: Recycle },
-    { path: "/contact", label: "Support", id: "support" },
+    { path: "/residents", label: "Residents", id: "residents", icon: Home },
+    { path: "/relocate", label: "Relocation", id: "relocation", icon: Plane },
+    { path: "/contact", label: "Contact", id: "contact", icon: MessageSquare },
   ];
 
   const b2bNavItems = [
@@ -99,54 +97,17 @@ export function Navigation() {
               </div>
             </Link>
             <div className="hidden md:flex items-center space-x-6">
-              {navItems.map((item) => {
-                
-                // Special styling for featured Relocation button (Consumer)
-                if (item.id === "relocation" && item.featured) {
-                  return (
-                    <Link
-                      key={item.path}
-                      href="/relocate"
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-amber-600/10 to-orange-600/10 border-2 border-amber-500/20 rounded-lg text-white hover:from-amber-600/20 hover:to-orange-600/20 hover:border-amber-400/30 transition-all duration-300 shadow-xl hover:shadow-amber-500/40 animate-pulse hover:animate-none">
-                        <span className="font-bold text-lg">Relocation Entry/Exit</span>
-                        <Plane className="w-4 h-4 text-yellow-300 animate-bounce" />
-                      </div>
-                    </Link>
-                  );
-                }
-
-                // Special styling for Move-In Guide
-                if (item.id === "move-in-landing") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="relative group transition-all duration-300"
-                      data-testid={`link-${item.id}`}
-                    >
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-500/20 rounded-lg text-blue-300 hover:text-white hover:from-blue-600/20 hover:to-cyan-600/20 hover:border-blue-400/30 transition-all">
-                        <Home className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-
-                return (
-                  <Link
-                    key={item.path}
-                    href={item.path}
-                    className="transition-colors text-gray-300 hover:text-white flex items-center gap-2"
-                    data-testid={`link-${item.id}`}
-                  >
-                    {item.icon && <item.icon className="w-4 h-4" />}
-                    <span>{item.label}</span>
-                  </Link>
-                );
-              })}
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className="transition-colors text-gray-300 hover:text-white flex items-center gap-2"
+                  data-testid={`link-${item.id}`}
+                >
+                  {item.icon && <item.icon className="w-4 h-4" />}
+                  <span>{item.label}</span>
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -258,62 +219,20 @@ export function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-slate-700">
-              {navItems.map((item) => {
-                // Special styling for featured Relocation button (Consumer)
-                if (item.id === "relocation" && item.featured) {
-                  return (
-                    <Link
-                      key={item.path}
-                      href="/relocate"
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-all duration-300"
-                      data-testid={`link-mobile-${item.id}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <div className="flex items-center justify-between px-3 py-3 bg-gradient-to-r from-amber-600/10 to-orange-600/10 border-2 border-amber-500/20 rounded-lg text-white shadow-xl">
-                        <div className="flex items-center gap-2">
-                          <Plane className="w-5 h-5 text-yellow-300" />
-                          <span className="font-bold">Relocation Entry/Exit</span>
-                        </div>
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
-                    </Link>
-                  );
-                }
-
-                // Special styling for Move-In Guide
-                if (item.id === "move-in-landing") {
-                  return (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="block px-3 py-2 rounded-md text-base font-medium transition-all duration-300"
-                      data-testid={`link-mobile-${item.id}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <div className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 border border-blue-500/20 rounded-lg text-blue-300">
-                        <Home className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
-                      </div>
-                    </Link>
-                  );
-                }
-
-                return (
-                  <Link
-                    key={item.path}
-                    href={item.path}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors flex items-center gap-2"
-                    data-testid={`link-mobile-${item.id}`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
+                  data-testid={`link-mobile-${item.id}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <div className="flex items-center gap-2">
                     {item.icon && <item.icon className="w-4 h-4" />}
                     <span>{item.label}</span>
-                  </Link>
-                );
-              })}
-
-              {/* Add Shop all link to mobile menu removed - now in main nav items */}
-
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         )}
