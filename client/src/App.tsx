@@ -1,4 +1,4 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Redirect, Router as WouterRouter } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -122,31 +122,10 @@ function Router() {
         <Switch>
           <Route path="/" component={Landing} />
           <Route path="/home" component={Home} />
+          <Route path="/home-service">
+            <Redirect to="/home" />
+          </Route>
           <Route path="/move-in-landing" component={MoveInLanding} />
-          <Route path="/move-in-services" component={MoveInServices} />
-          <Route path="/residence/move-in-packages" component={MoveInPackages} />
-          
-          {/* Relocate Membership Portal */}
-          <Route path="/relocate" component={Relocate} />
-          <Route path="/relocate/planning" component={RelocatePlanning} />
-          <Route path="/relocate/arrival" component={RelocateArrival} />
-          <Route path="/relocate/concierge" component={RelocateConcierge} />
-          <Route path="/relocate/exit" component={RelocateExitSubpage} />
-          <Route path="/relocate/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
-          <Route path="/visa" component={lazy(() => import("@/pages/relocate-visa"))} />
-          <Route path="/relocate/business-setup" component={BusinessSetupPage} />
-          <Route path="/residence/move-in-services" component={MoveInServices} />
-          <Route path="/relocate/pricing" component={InternationalRelocationPricing} />
-          <Route path="/relocate-community" component={RelocateCommunity} />
-          <Route path="/exit" component={RelocateExitSubpage} />
-          <Route path="/claim-redemption" component={lazy(() => import("@/pages/claim-redemption"))} />
-          <Route path="/relocation" component={Relocate} />
-          <Route path="/business-setup" component={BusinessSetup} />
-          <Route path="/relocate/business-setup" component={BusinessSetupPage} />
-          <Route path="/move-in-services" component={MoveInServices} />
-
-        {/* Home Service - Unified AquaCafe + Trade-in */}
-        <Route path="/home-service" component={HomeService} />
 
         {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
