@@ -3,7 +3,16 @@
 ## Overview
 DeliWer is a full-stack JavaScript application designed for sustainable living, e-commerce, AI integration, and rewards. It serves as a comprehensive platform including a climate activism initiative ("Pakistan Planet Hero Mission"), a B2B wholesale platform ("ChainTrack"), and a Dubai-based relocation and investment gateway ("DeliWer Relocate"). The project focuses on responsive design, gamification, and a user-friendly experience, targeting markets in Dubai and Pakistan, with a strong emphasis on lead generation and conversion optimization for production launch.
 
-## Recent Updates (Jan 21, 2026)
+## Recent Updates (Jan 24, 2026)
+- **Survival-Grade UX Refactor**:
+  - Refactored homepage hero with simplified two-gateway approach: "I Live in Dubai" and "I'm Relocating"
+  - Created new `/residents` page with 4 action tiles: Maintenance, Water/Essentials, Home Upgrades, Trade-In/Recycle
+  - Redesigned `/relocate` page with clear move-in packs (Essential, Summer Ready, Full Comfort) and move-out pack
+  - Simplified navigation to three items: Residents | Relocation | Contact
+  - Added trust strips with WhatsApp support, Fixed pricing, Rental-friendly services messaging
+  - All CTAs lead to WhatsApp or focused action flows for high conversion
+
+## Previous Updates (Jan 21, 2026)
 - **Residence & Relocate Integration**:
   - Added `/residence/move-in` and `/residence/move-out` subpages for targeted enquiries
   - Integrated WhatsApp enquiry links with pre-filled targeted messages for move-in/out services
