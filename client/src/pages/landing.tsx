@@ -70,6 +70,11 @@ export default function LandingPage() {
                     Start Your Move <ArrowRight className="w-5 h-5" />
                   </Button>
                 </Link>
+                <div className="pt-4 border-t border-blue-500/20 w-full text-center">
+                  <Link href="/relocate/exit" className="text-blue-400 hover:text-blue-300 text-sm font-medium">
+                    Already leaving? Exit Concierge →
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </motion.div>

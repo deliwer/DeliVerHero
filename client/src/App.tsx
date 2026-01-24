@@ -23,7 +23,6 @@ import Relocate from "@/pages/relocate";
 import BusinessSetup from "@/pages/business-setup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import HomeService from "@/pages/home-service";
-import SummerReadyHome from "@/pages/summer-ready-home";
 import Residence from "@/pages/residence";
 import FindAPlace from "@/pages/residence/find-a-place";
 import ErrandPage from "@/pages/errand";
@@ -152,9 +151,6 @@ function Router() {
         {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
 
-        {/* Home Service Launch Campaign */}
-        <Route path="/launch" component={HomeServiceLaunch} />
-        <Route path="/home-service-launch" component={HomeServiceLaunch} />
 
         {/* Housing - Rent, Buy, Invest */}
         <Route path="/residence" component={Residence} />
