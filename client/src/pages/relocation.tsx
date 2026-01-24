@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState } from "react";
 
-import relocationHero from "../assets/stock_images/relocation_hero.jpg";
+// import relocationHero from "../assets/stock_images/relocation_hero.jpg";
+const relocationHero = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2000";
 
 export default function Relocation() {
   const [activeTab, setActiveTab] = useState("local");

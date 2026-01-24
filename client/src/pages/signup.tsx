@@ -13,7 +13,7 @@ export default function SignupPage() {
       <div className="w-full max-w-lg space-y-6">
         <div className="text-center">
           <img 
-            src="/deliwer-logo.png" 
+            src="https://images.unsplash.com/photo-1614026480209-cd9934144671?auto=format&fit=crop&q=80&w=200" 
             alt="DeliWer Logo" 
             className="h-12 w-auto mx-auto mb-4"
           />

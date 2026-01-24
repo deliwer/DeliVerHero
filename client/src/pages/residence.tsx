@@ -23,11 +23,14 @@ import {
 import { ExitPricingCalculator } from "@/components/exit-pricing-calculator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-// Import lifestyle images
-import marketImage from "@assets/stock_images/dubai_downtown_skyli_01395ddb.jpg";
-import residentsHero from "@assets/stock_images/modern_dubai_apartme_3d49f8dc.jpg";
-import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
-import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
+// import marketImage from "@assets/stock_images/dubai_downtown_skyli_01395ddb.jpg";
+// import residentsHero from "@assets/stock_images/modern_dubai_apartme_3d49f8dc.jpg";
+// import ecosystemImage from "@assets/generated_images/peaceful_and_safe_dubai_environment_encouraging_relocation.png";
+// import settlementImage from "@assets/generated_images/dubai_urban_community_services_background.png";
+const marketImage = "https://images.unsplash.com/photo-1512453979798-5ea4a73a88d0?auto=format&fit=crop&q=80&w=2000";
+const residentsHero = "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&q=80&w=2000";
+const ecosystemImage = "https://images.unsplash.com/photo-1523496929142-f36cc7d3d2ca?auto=format&fit=crop&q=80&w=2000";
+const settlementImage = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000";
 
 export default function Residence() {
   const journeySectionRef = useRef<HTMLElement>(null);

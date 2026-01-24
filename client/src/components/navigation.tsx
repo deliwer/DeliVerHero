@@ -91,7 +91,7 @@ export function Navigation() {
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity" data-testid="link-home">
               <div className="flex items-center">
                 <img 
-                  src="/deliwer-logo.png" 
+                  src="https://images.unsplash.com/photo-1614026480209-cd9934144671?auto=format&fit=crop&q=80&w=200" 
                   alt="DeliWer Logo" 
                   className="h-10 w-auto brightness-110 hover:brightness-125 transition-all"
                 />
