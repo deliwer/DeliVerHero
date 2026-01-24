@@ -124,7 +124,6 @@ function Router() {
           <Route path="/home-service">
             <Redirect to="/home" />
           </Route>
-          <Route path="/move-in-landing" component={MoveInLanding} />
 
         {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
