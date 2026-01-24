@@ -66,7 +66,7 @@ export function Navigation() {
 
   const consumerNavItems = [
     { path: "/home", label: "Resident Home", id: "resident-home", icon: Home },
-    { path: "/move-in-landing", label: "Move-In Guide", id: "move-in-guide" },
+    { path: "/move-in-landing", label: "Move-In Guide", id: "move-in-landing" },
     { path: "/relocate", label: "Relocation Mode", id: "relocation", featured: true },
     { path: "/ewaste", label: "Recycle", id: "recycle", icon: Recycle },
     { path: "/contact", label: "Support", id: "support" },
@@ -117,8 +117,8 @@ export function Navigation() {
                   );
                 }
 
-                // Special styling for Move-In Services
-                if (item.id === "move-in-services") {
+                // Special styling for Move-In Guide
+                if (item.id === "move-in-landing") {
                   return (
                     <Link
                       key={item.path}
@@ -279,8 +279,8 @@ export function Navigation() {
                   );
                 }
 
-                // Special styling for Move-In Services
-                if (item.id === "move-in-services") {
+                // Special styling for Move-In Guide
+                if (item.id === "move-in-landing") {
                   return (
                     <Link
                       key={item.path}

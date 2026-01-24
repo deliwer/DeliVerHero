@@ -23,11 +23,16 @@ import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import relocationHeroPng from "@/assets/generated_images/dubai-relocation-risk-management.png";
-import nightmarePng from "@/assets/generated_images/dubai-relocation-nightmare.png";
-import expertSupportPng from "@/assets/generated_images/dubai-relocation-expert-support.png";
-import waterLifestyleImg from "@/assets/stock_images/clean_water_sustaina_ba5cf3da.jpg";
-import relocationHero from "@/assets/stock_images/relocation_hero.jpg";
+// import relocationHeroPng from "@/assets/generated_images/dubai-relocation-risk-management.png";
+// import nightmarePng from "@/assets/generated_images/dubai-relocation-nightmare.png";
+// import expertSupportPng from "@/assets/generated_images/dubai-relocation-expert-support.png";
+const relocationHeroPng = "https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?auto=format&fit=crop&q=80&w=2000";
+const nightmarePng = "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&q=80&w=1000";
+const expertSupportPng = "https://images.unsplash.com/photo-1454165833767-027ff33027ef?auto=format&fit=crop&q=80&w=1000";
+// import waterLifestyleImg from "@/assets/stock_images/clean_water_sustaina_ba5cf3da.jpg";
+// import relocationHero from "@/assets/stock_images/relocation_hero.jpg";
+const waterLifestyleImg = "https://images.unsplash.com/photo-1548337138-e87d889cc369?auto=format&fit=crop&q=80&w=2000";
+const relocationHero = "https://images.unsplash.com/photo-1512453979798-5ea4a73a88d0?auto=format&fit=crop&q=80&w=2000";
 import { DirhamCurrency } from "@/components/dirham-currency";
 
 function HomeServiceIntegration() {
@@ -352,9 +357,9 @@ export default function Home() {
         </Button>
       </div>
       <SEOMeta
-        title="DeliWer | Dubai Exit Concierge - Move Out Professionally"
-        description="Leaving Dubai? We handle your entire move-out and closure process. DEWA, Ejari, property handover, and deposit recovery. UAE-based end-to-end support."
-        keywords="Dubai move out, leaving Dubai, exit concierge UAE, DEWA closure, Ejari cancellation, Dubai property handover, deposit recovery Dubai"
+        title="DeliWer | Dubai Resident Hub - Everything for Your Dubai Life"
+        description="Access premium home services, community missions, and exclusive rewards tailored for Dubai residents. Move-in summer ready pack and elite concierge support."
+        keywords="Dubai resident hub, home services Dubai, summer ready pack, Dubai living, elite concierge Dubai"
       />
     </div>
   );

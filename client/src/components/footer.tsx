@@ -25,7 +25,7 @@ import { EmailSubscriptionForm } from "./email-subscription-form";
 
 export function Footer() {
   const consumerLinks = [
-    { label: "Home Service Launch", url: "/launch" },
+    { label: "Home Service", url: "/home" },
     { label: "Explore", url: "/explore" },
     { label: "AquaCafe Loyalty", url: "/aquacafe" },
     { label: "Rewards", url: "/earn" },
