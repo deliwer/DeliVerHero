@@ -29,8 +29,8 @@ export function Navigation() {
 
     updateCartCount();
 
-    // Poll for cart updates every 2 seconds when component is mounted
-    const interval = setInterval(updateCartCount, 2000);
+    // Poll for cart updates every 10 seconds when component is mounted (reduced from 2s for performance)
+    const interval = setInterval(updateCartCount, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -91,9 +91,10 @@ export function Navigation() {
             <Link href="/" className="flex items-center hover:opacity-80 transition-opacity" data-testid="link-home">
               <div className="flex items-center">
                 <img 
-                  src="https://images.unsplash.com/photo-1614026480209-cd9934144671?auto=format&fit=crop&q=80&w=200" 
+                  src="/deliwer-logo.png" 
                   alt="DeliWer Logo" 
                   className="h-10 w-auto brightness-110 hover:brightness-125 transition-all"
+                  loading="eager"
                 />
               </div>
             </Link>
