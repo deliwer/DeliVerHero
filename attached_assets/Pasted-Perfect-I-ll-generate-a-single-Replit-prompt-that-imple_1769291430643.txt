@@ -1,0 +1,129 @@
+Perfect. I’ll generate a **single Replit prompt** that implements all three — **homepage hero, `/residents`, and `/relocate` page structures** — with **survival-grade UX** ready for execution.
+
+This prompt is **developer-ready**, describing layout, content, CTA flow, and UX rules.
+
+---
+
+## ✅ REPLIT PROMPT — DELIWER SURVIVAL UX IMPLEMENTATION
+
+**Objective:**
+Refactor `DeliWer.com` to a survival-grade, conversion-first UX with **two main gateways** (Residents / Relocation) and clear action flows. Implement homepage hero, `/residents`, and `/relocate` pages with low cognitive load, situation-based decision-making, and actionable CTAs.
+
+---
+
+### 1️⃣ HOMEPAGE HERO
+
+**Hero Section**
+
+* Headline: “Home Life in Dubai, Simplified.”
+* Subheadline: “Practical home services for expats — whether you already live in Dubai or are moving in or out.”
+* Primary CTAs (equal visual weight):
+
+  * 🟢 “I Live in Dubai” → `/residents`
+  * ✈️ “I’m Relocating” → `/relocate`
+* Optional micro-trust line: “WhatsApp support • Fixed pricing • Rental-friendly services”
+
+**UX Rules:**
+
+* Two clear buttons only; no service lists above fold
+* Mobile-first, single scroll
+* Hero occupies full viewport height
+* Visual hierarchy emphasizes the two buttons
+
+---
+
+### 2️⃣ `/RESIDENTS` PAGE
+
+**Purpose:** For residents already living in Dubai, enabling them to identify and act on home needs quickly.
+
+**Hero Section:**
+
+* Headline: “Everything Your Dubai Home Needs — Without the Hassle”
+* Subheadline: “Maintenance, water, essentials, and support — designed for expats in rental homes”
+* CTA: “Get Help With My Home” (scrolls to action tiles)
+
+**Core Action Tiles (4 tiles, equal visual weight):**
+
+1. **Something Needs Fixing** → Book Maintenance (AC, plumbing, electrical, emergency)
+2. **I Need Water or Essentials** → Order Water & Essentials
+3. **I Want to Improve or Reduce Bills** → Upgrade My Home (Smart water / energy)
+4. **I Need to Remove or Replace Items** → Trade-In / Recycle
+
+**UX Rules:**
+
+* Only 4 tiles; no clutter
+* Situation-based language; icons preferred
+* One CTA per tile, leading to focused flows
+* Subtle link at bottom: “Moving in or moving out of Dubai?” → `/relocate`
+* Trust strip: Rental-friendly • Fixed pricing • One accountable support team • WhatsApp available
+
+---
+
+### 3️⃣ `/RELOCATE` PAGE
+
+**Purpose:** For high-intent users entering or leaving Dubai. Convert immediately into move-in or move-out packs.
+
+**Hero Section:**
+
+* Headline: “Relocating To or From Dubai? We Handle Your Home Before and After You Move.”
+* Subheadline: “Move-in readiness, summer survival, and smooth move-out — managed by one accountable team”
+* Two primary buttons:
+
+  * 🟢 “I’m Moving Into Dubai” → anchors to Move-In Packs
+  * 🔵 “I’m Moving Out of Dubai” → anchors to Move-Out Packs
+
+**Move-In Packs (3 options):**
+
+1. Essential Move-In → From AED 299, basic home readiness
+2. ⭐ Summer Ready Home → From AED 599, AC check, water delivery, minor fixes, priority support
+3. Full Relocation Comfort → From AED 1,199, deep cleaning, subscriptions, trade-in, dedicated manager
+
+**Move-Out Pack:**
+
+* Smooth Exit Pack → From AED 499, move-out coordination, trade-in, recycling, final checks
+
+**UX Rules:**
+
+* Highlight Summer Ready Home visually
+* Packs displayed inline with pricing and CTA
+* Minimal scrolling, mobile-first
+* No unrelated services, no sustainability / EV / smart home jargon
+* Every CTA either opens booking form or WhatsApp prefilled message
+
+---
+
+### 4️⃣ NAVIGATION SIMPLIFICATION
+
+* Top nav: Residents | Relocation | Contact / WhatsApp
+* Hide all other legacy pages and clutter
+* Footer: operational info, WhatsApp, email, Dubai address
+
+---
+
+### 5️⃣ DESIGN PRINCIPLES (ENFORCE ACROSS ALL PAGES)
+
+* User decides in <5 seconds
+* Low cognitive load, no more than 2–4 main options per page
+* Actionable decision flows, not educational copy
+* Mobile-first, accessibility-friendly
+* Trust signals visible but non-intrusive
+
+---
+
+### 6️⃣ SUCCESS CRITERIA
+
+* User clicks correct gateway (Resident / Relocation) in <5 seconds
+* Pack / action CTA clicked within first scroll
+* Reduced bounce rate
+* Repeat engagement possible for Residents
+* High-value relocation packages discoverable and bookable immediately
+
+---
+
+This single Replit prompt **covers the full survival UX stack**: homepage hero, `/residents`, `/relocate`, top navigation, action tiles, packs, and trust elements.
+
+---
+
+If you want, I can **also generate the complete layout wireframe + CSS/HTML skeleton ready for Replit** to drop in and start testing live immediately — fully aligned with this survival UX.
+
+Do you want me to do that next?
