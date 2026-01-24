@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect, Router as WouterRouter } from "wouter";
+import { Switch, Route, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -101,7 +101,6 @@ const CampaignDeBacci = lazy(() => import("@/pages/campaign-debacci"));
 
 function Router() {
   const [location, setLocation] = useLocation();
-  const basePath = import.meta.env.VITE_BASE_PATH || "";
 
   useEffect(() => {
     // Domain-based routing for ChainTrack - handles both www.chaintrack.com and chaintrack.com
@@ -116,9 +115,8 @@ function Router() {
   }, [location, setLocation]);
 
   return (
-    <WouterRouter base={basePath}>
-      <Suspense fallback={<PageLoader />}>
-        <Switch>
+    <Suspense fallback={<PageLoader />}>
+      <Switch>
           <Route path="/" component={Landing} />
           <Route path="/home" component={Home} />
           <Route path="/home-service">
@@ -128,6 +126,17 @@ function Router() {
             <Redirect to="/move-in-landing" />
           </Route>
           <Route path="/move-in-landing" component={MoveInLanding} />
+
+        {/* Relocation Services */}
+        <Route path="/relocate" component={Relocate} />
+        <Route path="/relocate/business-setup" component={BusinessSetupPage} />
+        <Route path="/relocate/planning" component={RelocatePlanning} />
+        <Route path="/relocate/arrival" component={RelocateArrival} />
+        <Route path="/relocate/concierge" component={RelocateConcierge} />
+        <Route path="/relocate/exit" component={RelocateExitSubpage} />
+        <Route path="/relocate-exit" component={RelocateExit} />
+        <Route path="/relocate-community" component={RelocateCommunity} />
+        <Route path="/relocate-pricing" component={InternationalRelocationPricing} />
 
         {/* Errand Runner Service */}
         <Route path="/errand" component={ErrandPage} />
@@ -222,7 +231,6 @@ function Router() {
         <Route component={NotFound} />
         </Switch>
       </Suspense>
-    </WouterRouter>
   );
 }
 
