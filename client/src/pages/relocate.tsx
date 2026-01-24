@@ -72,7 +72,7 @@ export default function Relocate() {
             Relocate to Dubai <br />
             <span className="text-emerald-400">Move Into a Home That’s Ready From Day One.</span>
           </h1>
-          <p className="text-2xl text-white/95 mb-12 max-w-2xl font-medium leading-relaxed">Cooling, water, and home readiness managed for expats — especially during summer.</p>
+          <p className="text-2xl text-white/95 mb-12 max-w-2xl font-medium leading-relaxed">Cooling, water, and move-in readiness managed for rental homes — especially during Dubai summer.</p>
           <div className="flex flex-wrap justify-center gap-6">
             <Button 
               size="lg" 
@@ -227,7 +227,6 @@ export default function Relocate() {
           </div>
         </div>
       </section>
-
       {/* High Impact Visual - Exit Concierge */}
       <section className="relative py-40 overflow-hidden text-white">
         <div 
