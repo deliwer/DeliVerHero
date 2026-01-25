@@ -26,8 +26,8 @@ const actionTiles = [
   },
   {
     id: "upgrade",
-    title: "I Want to Improve or Reduce Bills",
-    description: "Smart water systems, energy efficiency upgrades",
+    title: "I Want to Improve my Home",
+    description: "Interior Fitouts, Smart Home Systems",
     icon: Zap,
     color: "amber",
     href: "/contact?service=upgrade",
