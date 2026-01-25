@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Wrench, Droplets, Zap, Recycle, ArrowRight, MessageCircle, Shield, DollarSign, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip, TestimonialCarousel, ProcessMicroflow } from "@/components/trust-strip";
+import acMaintenanceHero from "@/assets/images/ac-maintenance-hero.jpg";
 
 const actionTiles = [
   {
@@ -90,8 +91,13 @@ export default function ResidentsPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="px-4 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+      <section className="relative px-4 py-16 md:py-24 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${acMaintenanceHero})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
+        <div className="relative max-w-4xl mx-auto text-center space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
