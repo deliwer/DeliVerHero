@@ -336,14 +336,7 @@ export default function Home() {
         </div>
       </footer>
       {/* Sticky Components */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <Button 
-          className="bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full h-16 w-16 p-0 shadow-2xl animate-bounce ml-auto"
-          onClick={() => window.open('https://wa.me/971523946311', '_blank')}
-        >
-          <MessageSquare className="w-8 h-8" />
-        </Button>
-      </div>
+      {/* WhatsApp button is now handled globally in App.tsx */}
       <SEOMeta
         title="DeliWer | Dubai Resident Hub - Everything for Your Dubai Life"
         description="Access premium home services, community missions, and exclusive rewards tailored for Dubai residents. Move-in summer ready pack and elite concierge support."
