@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip, PartnerStrip, TestimonialCarousel } from "@/components/trust-strip";
+import relocateHero from "@/assets/images/relocate-hero.jpg";
 
 export default function Relocate() {
   const moveInRef = useRef<HTMLDivElement>(null);
@@ -101,8 +102,13 @@ export default function Relocate() {
       </section>
 
       {/* Hero Section */}
-      <section className="px-4 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
+      <section className="relative px-4 py-16 md:py-24 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${relocateHero})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
+        <div className="relative max-w-4xl mx-auto text-center space-y-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
