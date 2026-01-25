@@ -76,6 +76,10 @@ const colorClasses = {
 };
 
 export default function ResidentsPage() {
+  const scrollToTiles = () => {
+    document.getElementById('action-tiles')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-dubai-gradient">
       {/* Micro Trust Line - Always Above Fold */}
@@ -106,14 +110,13 @@ export default function ResidentsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Link href="/home-service">
-              <Button 
-                className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2 h-12 text-lg px-8"
-                data-testid="button-get-help"
-              >
-                Get Help With My Home <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
+            <Button 
+              onClick={scrollToTiles}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2 h-12 text-lg px-8"
+              data-testid="button-get-help"
+            >
+              Get Help With My Home <ArrowRight className="w-5 h-5" />
+            </Button>
           </motion.div>
         </div>
       </section>
