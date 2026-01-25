@@ -4,9 +4,19 @@ import { Link } from "wouter";
 import { Wrench, Droplets, Zap, Recycle, ArrowRight, MessageCircle, Shield, DollarSign, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip, TestimonialCarousel, ProcessMicroflow } from "@/components/trust-strip";
-import acMaintenanceHero from "@/assets/images/ac-maintenance-hero.jpg";
+import recyclingHero from "@/assets/images/recycling-hero.jpg";
 
 const actionTiles = [
+  {
+    id: "tradein",
+    title: "I Need to Remove or Replace Items",
+    description: "Trade-in old items, e-waste recycling, responsible disposal",
+    icon: Recycle,
+    color: "green",
+    href: "/ewaste",
+    cta: "Trade-In / Recycle",
+    featured: true
+  },
   {
     id: "maintenance",
     title: "Something Needs Fixing",
@@ -33,15 +43,6 @@ const actionTiles = [
     color: "amber",
     href: "/contact?service=upgrade",
     cta: "Upgrade My Home"
-  },
-  {
-    id: "tradein",
-    title: "I Need to Remove or Replace Items",
-    description: "Trade-in old items, e-waste recycling, responsible disposal",
-    icon: Recycle,
-    color: "green",
-    href: "/ewaste",
-    cta: "Trade-In / Recycle"
   }
 ];
 
@@ -94,7 +95,7 @@ export default function ResidentsPage() {
       <section className="relative px-4 py-16 md:py-24 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${acMaintenanceHero})` }}
+          style={{ backgroundImage: `url(${recyclingHero})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
         <div className="relative max-w-4xl mx-auto text-center space-y-6">
@@ -104,10 +105,10 @@ export default function ResidentsPage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
-              Everything Your Dubai Home Needs — <span className="text-emerald-400">Without the Hassle</span>
+              Give Your Old Electronics <span className="text-green-400">A Second Life</span>
             </h1>
-            <p className="text-lg md:text-xl text-emerald-100/80 max-w-2xl mx-auto">
-              Maintenance, water, essentials, and support — designed for expats in rental homes
+            <p className="text-lg md:text-xl text-green-100/80 max-w-2xl mx-auto">
+              Sustainable trade-ins and responsible e-waste recycling for a greener Dubai home
             </p>
           </motion.div>
 
@@ -116,13 +117,14 @@ export default function ResidentsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Button 
-              onClick={scrollToTiles}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2 h-12 text-lg px-8"
-              data-testid="button-get-help"
-            >
-              Get Help With My Home <ArrowRight className="w-5 h-5" />
-            </Button>
+            <Link href="/ewaste">
+              <Button 
+                className="bg-green-600 hover:bg-green-500 text-white gap-2 h-12 text-lg px-8"
+                data-testid="button-get-started"
+              >
+                Start Your Trade-In <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -139,18 +141,19 @@ export default function ResidentsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
+                  className={tile.featured ? "md:col-span-2" : ""}
                 >
-                  <Card className={`bg-black/40 ${colors.border} ${colors.hoverBorder} transition-all duration-300 group overflow-hidden relative h-full`}>
+                  <Card className={`bg-black/40 ${colors.border} ${colors.hoverBorder} transition-all duration-300 group overflow-hidden relative h-full ${tile.featured ? 'border-green-500/50 shadow-lg shadow-green-500/10' : ''}`}>
                     <div className={`absolute inset-0 ${colors.bg} opacity-0 group-hover:opacity-50 transition-opacity`} />
-                    <CardContent className="p-6 md:p-8 flex flex-col space-y-4 h-full relative">
-                      <div className={`w-14 h-14 rounded-full ${colors.bg} flex items-center justify-center ${colors.text}`}>
+                    <CardContent className={`p-6 md:p-8 flex flex-col space-y-4 h-full relative ${tile.featured ? 'md:flex-row md:items-center md:space-y-0 md:gap-8' : ''}`}>
+                      <div className={`w-14 h-14 rounded-full ${colors.bg} flex items-center justify-center ${colors.text} shrink-0`}>
                         <tile.icon className="w-7 h-7" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white mb-2">{tile.title}</h3>
+                        <h3 className={`${tile.featured ? 'text-2xl' : 'text-xl'} font-bold text-white mb-2`}>{tile.title}</h3>
                         <p className="text-gray-300/70">{tile.description}</p>
                       </div>
-                      <Link href={tile.href}>
+                      <Link href={tile.href} className={tile.featured ? 'md:w-64' : 'w-full'}>
                         <Button 
                           className={`w-full ${colors.button} text-white gap-2`}
                           data-testid={`button-${tile.id}`}
