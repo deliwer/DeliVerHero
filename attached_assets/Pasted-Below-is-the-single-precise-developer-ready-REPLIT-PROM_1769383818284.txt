@@ -1,0 +1,230 @@
+Below is the **single, precise, developer-ready REPLIT PROMPT** to implement **(1) `/ewaste` as a compliance layer** and **(2) the rewritten Move-Out (Smooth Exit) Pack** exactly as designed for survival.
+
+No fluff. This is **build-grade**.
+
+---
+
+## ✅ REPLIT PROMPT — EWASTE COMPLIANCE + MOVE-OUT HARD BUNDLE
+
+**Objective:**
+Implement `/ewaste` as a **non-marketing compliance page** and rewrite the **Move-Out service** into a **Smooth Exit Pack** with **mandatory e-waste handling bundled**, improving cash generation, objection handling, and exit conversion.
+
+---
+
+# 1️⃣ `/EWASTE` PAGE — COMPLIANCE LAYER (NOT A SERVICE)
+
+### Page URL
+
+`/ewaste`
+
+### Page Role
+
+* NOT a lead-generation page
+* NOT a standalone service
+* Linked only from:
+
+  * Move-Out Pack
+  * Trade-In flows
+  * Upgrade / Replacement flows
+
+---
+
+### HERO SECTION
+
+**Headline:**
+Responsible Removal & E-Waste Handling — Managed for You
+
+**Subheadline:**
+Included as part of DeliWer move-out, trade-in, and replacement services.
+
+**UX RULE:**
+No primary CTA button in hero.
+
+---
+
+### SECTION 1 — WHY THIS EXISTS
+
+**Heading:**
+Why Proper Disposal Matters in Dubai
+
+**Bullet Points (short, factual):**
+
+* Improper disposal can delay handovers
+* Landlords may raise disputes or withhold deposits
+* Dubai has defined disposal expectations
+* Expats want zero last-minute issues
+
+---
+
+### SECTION 2 — HOW DELIWER HANDLES IT
+
+**Heading:**
+How DeliWer Handles This for You
+
+**3-Step Microflow (icons + labels):**
+
+1. Assessment during move-out or replacement
+2. Sorting: Trade-In / Recycle / Dispose
+3. Removal via licensed, municipality-aligned partners
+
+**Micro-Trust Line:**
+Coordinated through approved partners aligned with local regulations.
+
+---
+
+### SECTION 3 — WHAT’S INCLUDED
+
+**Heading:**
+Automatically Included When You Use DeliWer For:
+
+* Move-Out Services
+* Trade-In or Replacement
+* Home Upgrades
+
+**Examples List:**
+
+* Appliances
+* Electronics
+* Furniture
+* Fixtures
+
+**Important Line (bold):**
+You don’t need to book this separately.
+
+---
+
+### SECTION 4 — WHAT THIS PAGE IS NOT
+
+Small neutral text:
+
+* Not a public pickup service
+* Not a marketplace listing
+* Not a sustainability campaign
+
+---
+
+### FOOTER LINK
+
+Text link only:
+← Back to Move-Out Services
+
+---
+
+# 2️⃣ MOVE-OUT PAGE — REWRITE AS “SMOOTH EXIT PACK”
+
+### Replace Existing “Move-Out” Content With:
+
+---
+
+### PACK NAME (IMPORTANT)
+
+**Smooth Exit Pack**
+
+---
+
+### HERO SECTION
+
+**Headline:**
+Leaving Dubai? We Handle Your Home Exit — End to End.
+
+**Subheadline:**
+From assessment to handover, including trade-in and compliant disposal.
+
+---
+
+### WHAT’S INCLUDED (BULLETED, CLEAR)
+
+✔ Move-out inspection coordination
+✔ Trade-in or removal of unwanted items
+✔ **E-waste & disposal handling (mandatory)**
+✔ Home readiness for final handover
+✔ Single accountable coordination team
+
+---
+
+### PRICING BLOCK
+
+**Smooth Exit Pack**
+From **AED 499**
+
+**Micro-Text:**
+Includes exit clearance, trade-in coordination, and compliant disposal.
+
+⚠️ Do NOT itemize e-waste separately.
+
+---
+
+### TRUST STRIP (UNDER PRICING)
+
+* Designed for expats leaving Dubai
+* Prevents landlord & handover issues
+* No multiple vendors to manage
+* WhatsApp support throughout exit
+
+---
+
+### OPTIONAL ADD-ON (ONLY ONE)
+
+Add-On:
+
+* Deep Cleaning / Painting (if applicable)
+
+Do NOT add more upsells.
+
+---
+
+### PRIMARY CTA (ONLY ONE)
+
+🟢 **Book Exit Assessment**
+
+CTA opens:
+
+* Booking form OR
+* WhatsApp with prefilled message:
+
+  > “Hi, I’m planning a move-out and want to book a Smooth Exit assessment.”
+
+---
+
+### INTERNAL LINKING
+
+* Link text “Learn how disposal is handled” → `/ewaste`
+* This link appears only once, near the included items list
+
+---
+
+# 3️⃣ UX & BUSINESS RULES (ENFORCE)
+
+* E-waste is NEVER optional
+* Never price e-waste separately
+* Never market sustainability here
+* Frame value as **risk avoidance & compliance**
+* Keep page short, decisive, mobile-first
+
+---
+
+# 4️⃣ SUCCESS CRITERIA
+
+* Reduced price objections during move-out
+* Faster booking decisions
+* Higher AOV without higher CAC
+* Brokers & landlords support the pack
+* No comparison with junk haulers
+
+---
+
+## 🔒 FINAL NOTE FOR REPLIT EXECUTION
+
+This implementation:
+
+* Strengthens cash velocity
+* Prevents operational chaos
+* Avoids aspirational distractions
+* Increases real survival probability
+
+---
+
+If you want next, I strongly recommend:
+**WhatsApp sales scripts** to defend the mandatory bundle (this is where deals are won or lost).
+
+Just say **“WhatsApp scripts”**.
