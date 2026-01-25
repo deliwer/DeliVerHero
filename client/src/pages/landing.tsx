@@ -16,8 +16,18 @@ export default function LandingPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="min-h-[80vh] flex flex-col items-center justify-center px-4 py-12">
-        <div className="max-w-4xl w-full text-center space-y-8">
+      <section className="min-h-[80vh] flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+        {/* Background Image with Wash */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url('/src/assets/hero-bg.jpg')`,
+          }}
+        >
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+        </div>
+
+        <div className="max-w-4xl w-full text-center space-y-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
