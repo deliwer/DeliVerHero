@@ -238,6 +238,8 @@ function Router() {
   );
 }
 
+import { WhatsAppSticky } from "@/components/whatsapp-sticky";
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -250,6 +252,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <WhatsAppSticky />
           <FloatingErrandTips />
           <BackToTop />
         </div>
