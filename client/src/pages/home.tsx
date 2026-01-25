@@ -178,6 +178,8 @@ function HomeServiceIntegration() {
   );
 }
 
+import heroHomeNew from "@/assets/images/hero-home-new.png";
+
 export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
@@ -199,9 +201,9 @@ export default function Home() {
       <section className="relative py-24 md:py-40 px-4 overflow-hidden min-h-[90vh] flex items-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${relocationHeroPng})` }}
+          style={{ backgroundImage: `url(${heroHomeNew})` }}
         />
-        <div className="absolute inset-0 z-0 bg-[#0A3D62]/60 backdrop-blur-[0.5px]" />
+        <div className="absolute inset-0 z-0 bg-black/40" />
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="mb-6 inline-block px-4 py-1 bg-[#FFC845] text-[#0A3D62] font-black text-sm uppercase tracking-[0.3em] rounded-full">
