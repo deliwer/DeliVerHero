@@ -2,7 +2,7 @@ import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageCircle, CheckCircle, ShieldCheck, Zap, ArrowRight, Plane } from "lucide-react";
+import { MessageCircle, CheckCircle, ShieldCheck, Zap, ArrowRight, Plane, Recycle, Users2 } from "lucide-react";
 import { Link } from "wouter";
 
 export default function MoveOutSubpage() {
@@ -23,53 +23,98 @@ export default function MoveOutSubpage() {
       <section className="relative py-20 px-4 overflow-hidden border-b border-white/5">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <Badge className="mb-6 bg-emerald-500 text-white border-none py-2 px-6 rounded-full text-sm font-black uppercase tracking-widest">
-            Exit & Move-Out
+            Smooth Exit Pack
           </Badge>
           <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none">
-            Exit cleanly. <br />
-            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Recover your deposit.</span>
+            Leaving Dubai? <br />
+            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">We Handle Your Home Exit — End to End.</span>
           </h1>
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Professional exit management including utility closures, handover support, and deposit recovery.
+            From AED 499. Includes exit clearance, trade-in coordination, and compliant disposal.
           </p>
           <Button 
             size="lg" 
             className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-12 h-16 text-lg shadow-xl"
-            onClick={() => window.open(getWhatsAppLink('General Move-Out Enquiry'), '_blank')}
+            onClick={() => window.open(getWhatsAppLink('Smooth Exit Pack Assessment'), '_blank')}
           >
             <MessageCircle className="mr-2 h-6 w-6" />
-            Enquire via WhatsApp
+            Book Exit Assessment
           </Button>
+          <p className="text-xs text-gray-500 mt-4 uppercase tracking-widest font-bold">
+            Mandatory E-Waste & Disposal Handling Included
+          </p>
         </div>
       </section>
 
       <section className="py-20 px-4 bg-slate-900/50">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-black uppercase tracking-tight mb-4">What’s Included</h2>
+          </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
-              { title: "Utility Closure", desc: "DEWA, gas, and telecom cancellation managed for you.", icon: Zap },
-              { title: "Deposit Recovery", desc: "Painting, cleaning, and snag fixing to maximize your refund.", icon: ShieldCheck },
-              { title: "Global Move", desc: "Introduction to trusted international shipping partners.", icon: Plane }
+              { title: "Inspection", desc: "Move-out inspection coordination.", icon: Zap },
+              { title: "Trade-In", desc: "Removal of unwanted items.", icon: ShieldCheck },
+              { title: "E-Waste", desc: "Compliant disposal handling.", icon: Recycle },
+              { title: "Handover", desc: "Final readiness for handover.", icon: CheckCircle },
+              { title: "Coordination", desc: "Single coordination team.", icon: Users2 }
             ].map((item, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 rounded-[2rem] overflow-hidden">
-                <CardHeader className="p-8 pb-0 text-center">
-                  <div className="w-16 h-16 bg-emerald-500/20 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                    <item.icon className="w-8 h-8 text-emerald-400" />
-                  </div>
-                  <CardTitle className="text-2xl font-black uppercase text-white">{item.title}</CardTitle>
+              <Card key={i} className="bg-white/5 border-white/10 rounded-2xl">
+                <CardHeader className="p-6 pb-2 text-center">
+                  <item.icon className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
+                  <CardTitle className="text-lg font-black uppercase text-white leading-tight">{item.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="p-8 pt-4 text-center text-gray-400">
+                <CardContent className="p-6 pt-0 text-center text-sm text-gray-400">
                   {item.desc}
-                  <Button 
-                    variant="link" 
-                    className="mt-4 text-emerald-400 font-bold block mx-auto"
-                    onClick={() => window.open(getWhatsAppLink(item.title), '_blank')}
-                  >
-                    Enquire Now <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-left border-t border-white/5 pt-12">
+            {[
+              "Designed for expats leaving Dubai",
+              "Avoid last-minute landlord issues",
+              "No need to manage multiple vendors",
+              "WhatsApp support throughout exit"
+            ].map((text, i) => (
+              <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-400 uppercase tracking-tight">
+                <CheckCircle className="w-4 h-4 text-emerald-500 shrink-0" />
+                {text}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4 bg-emerald-950/20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-black uppercase mb-8">Service Details & Compliance</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-white/5 border-white/10 p-8 text-left">
+              <h3 className="text-xl font-black uppercase mb-4">E-Waste Compliance</h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                All move-outs include mandatory e-waste assessment and compliant removal to ensure professional property handover.
+              </p>
+              <Link href="/ewaste">
+                <Button variant="link" className="p-0 text-emerald-400 font-bold h-auto">
+                  View E-Waste Compliance Layer <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </Card>
+            <Card className="bg-white/5 border-white/10 p-8 text-left">
+              <h3 className="text-xl font-black uppercase mb-4">Optional Add-On</h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                Need the property ready for immediate handover? Add deep cleaning or professional painting to your exit pack.
+              </p>
+              <Button 
+                variant="outline" 
+                className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10 w-full"
+                onClick={() => window.open(getWhatsAppLink('Move-Out Add-ons (Cleaning/Painting)'), '_blank')}
+              >
+                Request Quote
+              </Button>
+            </Card>
           </div>
         </div>
       </section>
