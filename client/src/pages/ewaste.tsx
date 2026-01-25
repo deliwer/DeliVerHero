@@ -36,6 +36,8 @@ import {
 import { Link } from "wouter";
 import ewasteHeroImg from "@/assets/images/ewaste-hero.jpg";
 import planetHeroesImg from "@/assets/images/planet-heroes.jpg";
+import furnitureBgImg from "@/assets/images/furniture-bg.jpg";
+import electronicsBgImg from "@/assets/images/electronics-bg.jpg";
 
 export default function EWastePage() {
   const whatsappPickupMessage = (type: string, area: string) => {
@@ -63,26 +65,18 @@ Please confirm pickup availability.`;
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/60 to-slate-950" />
         
-        <div className="relative z-10 text-center px-4 max-w-5xl py-20">
-          <div className="mb-6 inline-flex items-center gap-2 px-5 py-2 bg-[#FFC845]/10 border border-[#FFC845]/20 rounded-full text-[#FFC845] text-xs font-bold uppercase tracking-[0.2em]">
-            <Coins className="w-3.5 h-3.5" />
-            Get Paid for Your Old Items
-          </div>
-          
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
+        <div className="relative z-10 text-center px-4 max-w-5xl py-24">
+          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
             <span className="text-white">Your Trash.</span><br />
             <span className="bg-gradient-to-r from-[#FFC845] via-emerald-400 to-[#FFC845] bg-clip-text text-transparent">Our Treasure.</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4">
-            Turn your old furniture and electronics into <span className="text-[#FFC845] font-bold">instant cash</span>, <span className="text-emerald-400 font-bold">AquaCafe credits</span>, or <span className="text-blue-400 font-bold">filter exchange rewards</span>.
-          </p>
-          <p className="text-base text-gray-500 max-w-2xl mx-auto mb-10">
-            Free doorstep pickup across Dubai. We collect, refurbish, and recycle - you get rewarded.
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-12">
+            Turn old furniture and electronics into cash. Free pickup across Dubai.
           </p>
 
-          {/* Main CTA Cards */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+          {/* Main CTA Cards with Background Images */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
             {/* Furniture Collection */}
             <a 
               href={whatsappPickupMessage("Furniture", "Municipality/Freehold")}
@@ -91,25 +85,26 @@ Please confirm pickup availability.`;
               className="group"
               data-testid="card-furniture-pickup"
             >
-              <Card className="bg-gradient-to-br from-[#FFC845]/20 to-[#FFC845]/5 border-[#FFC845]/30 hover:border-[#FFC845]/60 p-8 rounded-3xl transition-all duration-300 h-full cursor-pointer">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-[#FFC845]/20 flex items-center justify-center">
-                    <Sofa className="w-7 h-7 text-[#FFC845]" />
+              <div className="relative h-72 rounded-3xl overflow-hidden cursor-pointer">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${furnitureBgImg})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-6 text-left">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#FFC845]/20 flex items-center justify-center">
+                      <Sofa className="w-5 h-5 text-[#FFC845]" />
+                    </div>
+                    <span className="px-3 py-1 bg-[#FFC845]/20 text-[#FFC845] text-xs font-bold rounded-full">Up to AED 500</span>
                   </div>
-                  <div className="text-left flex-1">
-                    <h3 className="text-xl font-bold text-white mb-1">Furniture Pickup</h3>
-                    <p className="text-gray-400 text-sm">Sofas, beds, tables, chairs, wardrobes</p>
-                  </div>
+                  <h3 className="text-2xl font-black text-white mb-2">Furniture</h3>
+                  <Button className="w-full bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-bold h-12 rounded-xl gap-2">
+                    <MessageCircle className="w-4 h-4" />
+                    Schedule Pickup
+                  </Button>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-[#FFC845]/10 text-[#FFC845] text-xs font-bold rounded-full">Up to AED 500 value</span>
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full">Free Pickup</span>
-                </div>
-                <Button className="w-full bg-[#FFC845] hover:bg-[#e6b43d] text-slate-950 font-black uppercase tracking-wider h-14 rounded-2xl gap-2 text-sm">
-                  <MessageCircle className="w-5 h-5" />
-                  Schedule via WhatsApp
-                </Button>
-              </Card>
+              </div>
             </a>
 
             {/* Electronics Collection */}
@@ -120,37 +115,38 @@ Please confirm pickup availability.`;
               className="group"
               data-testid="card-electronics-pickup"
             >
-              <Card className="bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border-emerald-500/30 hover:border-emerald-500/60 p-8 rounded-3xl transition-all duration-300 h-full cursor-pointer">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center">
-                    <Tv className="w-7 h-7 text-emerald-400" />
+              <div className="relative h-72 rounded-3xl overflow-hidden cursor-pointer">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${electronicsBgImg})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-6 text-left">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                      <Tv className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full">Up to AED 300</span>
                   </div>
-                  <div className="text-left flex-1">
-                    <h3 className="text-xl font-bold text-white mb-1">Electronics Pickup</h3>
-                    <p className="text-gray-400 text-sm">TVs, laptops, phones, appliances</p>
-                  </div>
+                  <h3 className="text-2xl font-black text-white mb-2">Electronics</h3>
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold h-12 rounded-xl gap-2">
+                    <MessageCircle className="w-4 h-4" />
+                    Schedule Pickup
+                  </Button>
                 </div>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full">Up to AED 300 value</span>
-                  <span className="px-3 py-1 bg-blue-500/10 text-blue-400 text-xs font-bold rounded-full">Same Day Available</span>
-                </div>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider h-14 rounded-2xl gap-2 text-sm">
-                  <MessageCircle className="w-5 h-5" />
-                  Schedule via WhatsApp
-                </Button>
-              </Card>
+              </div>
             </a>
           </div>
 
           {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
+          <div className="flex flex-wrap justify-center gap-8 text-gray-400 text-sm">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span>100% Free Collection</span>
+              <span>Free Collection</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-[#FFC845]" />
-              <span>All Dubai Areas</span>
+              <span>All Dubai</span>
             </div>
             <div className="flex items-center gap-2">
               <Timer className="w-4 h-4 text-blue-400" />
