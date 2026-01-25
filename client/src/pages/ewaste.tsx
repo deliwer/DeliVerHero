@@ -38,6 +38,8 @@ import ewasteHeroImg from "@/assets/images/ewaste-hero.jpg";
 import planetHeroesImg from "@/assets/images/planet-heroes.jpg";
 import furnitureBgImg from "@/assets/images/furniture-bg.jpg";
 import electronicsBgImg from "@/assets/images/electronics-bg.jpg";
+import earnBgImg from "@/assets/images/earn-rewards-bg.jpg";
+import rewardsBgImg from "@/assets/images/rewards-bg.jpg";
 
 export default function EWastePage() {
   const whatsappPickupMessage = (type: string, area: string) => {
@@ -158,101 +160,59 @@ Please confirm pickup availability.`;
 
       <div className="max-w-6xl mx-auto px-6 pb-32 space-y-32">
         
-        {/* Trade-In Rewards Section - THE MAIN USP */}
+        {/* Trade-In Rewards Section - Simplified */}
         <div className="relative">
-          <div className="absolute -inset-20 bg-gradient-to-r from-[#FFC845]/10 via-emerald-500/10 to-blue-500/10 blur-[100px] rounded-full opacity-50" />
-          
-          <div className="relative text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FFC845]/20 to-emerald-500/20 border border-[#FFC845]/30 rounded-full text-[#FFC845] text-xs font-bold uppercase tracking-[0.2em] mb-6">
-              <Award className="w-4 h-4" />
-              Exclusive Rewards Program
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">
-              Trade In.<br /><span className="text-emerald-400">Cash Out.</span>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">
+              Trade In. <span className="text-emerald-400">Get Rewarded.</span>
             </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              Choose how you want to be rewarded for your contribution to Dubai's circular economy.
+            <p className="text-gray-400 text-lg max-w-xl mx-auto">
+              Multiple ways to earn from your old items.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Instant Cash */}
-            <Card className="bg-slate-900/60 border border-[#FFC845]/20 hover:border-[#FFC845]/40 p-8 rounded-3xl transition-all group" data-testid="reward-cash">
-              <div className="w-16 h-16 rounded-2xl bg-[#FFC845]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Coins className="w-8 h-8 text-[#FFC845]" />
-              </div>
-              <h3 className="text-2xl font-black uppercase tracking-tight mb-3 text-white">Instant Cash</h3>
-              <p className="text-gray-400 mb-6 leading-relaxed">
-                Get paid on the spot when we collect. Working items fetch premium prices.
-              </p>
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Working Appliances</span>
-                  <span className="text-[#FFC845] font-bold">Up to AED 500</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Furniture (Good)</span>
-                  <span className="text-[#FFC845] font-bold">Up to AED 400</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Electronics</span>
-                  <span className="text-[#FFC845] font-bold">Up to AED 300</span>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Earn Card */}
+            <Link href="/earn" data-testid="card-earn-link">
+              <div className="group relative h-64 rounded-3xl overflow-hidden cursor-pointer">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${earnBgImg})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#FFC845]/20 flex items-center justify-center">
+                      <Coins className="w-5 h-5 text-[#FFC845]" />
+                    </div>
+                    <span className="px-3 py-1 bg-[#FFC845]/20 text-[#FFC845] text-xs font-bold rounded-full">Up to AED 500</span>
+                  </div>
+                  <h3 className="text-2xl font-black text-white mb-1">Earn Cash</h3>
+                  <p className="text-gray-400 text-sm">Get paid instantly for your items</p>
                 </div>
               </div>
-            </Card>
+            </Link>
 
-            {/* AquaCafe Credits */}
-            <Card className="bg-slate-900/60 border border-emerald-500/20 hover:border-emerald-500/40 p-8 rounded-3xl transition-all group relative overflow-hidden" data-testid="reward-aquacafe">
-              <div className="absolute top-4 right-4">
-                <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full">Best Value</span>
-              </div>
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Droplets className="w-8 h-8 text-emerald-400" />
-              </div>
-              <h3 className="text-2xl font-black uppercase tracking-tight mb-3 text-white">AquaCafe Bundle</h3>
-              <p className="text-gray-400 mb-6 leading-relaxed">
-                Trade in items for credits toward AquaCafe water systems. Get 150% value boost!
-              </p>
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">AquaCafe Starter</span>
-                  <span className="text-emerald-400 font-bold">50% off setup</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Monthly Filters</span>
-                  <span className="text-emerald-400 font-bold">3 months free</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Trade-in Bonus</span>
-                  <span className="text-emerald-400 font-bold">+50% value</span>
+            {/* Rewards Card */}
+            <Link href="/rewards" data-testid="card-rewards-link">
+              <div className="group relative h-64 rounded-3xl overflow-hidden cursor-pointer">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${rewardsBgImg})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-end p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                      <Award className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full">Exclusive Perks</span>
+                  </div>
+                  <h3 className="text-2xl font-black text-white mb-1">Redeem Rewards</h3>
+                  <p className="text-gray-400 text-sm">Credits, bundles & special offers</p>
                 </div>
               </div>
-            </Card>
-
-            {/* Filter Exchange */}
-            <Card className="bg-slate-900/60 border border-blue-500/20 hover:border-blue-500/40 p-8 rounded-3xl transition-all group" data-testid="reward-filters">
-              <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Recycle className="w-8 h-8 text-blue-400" />
-              </div>
-              <h3 className="text-2xl font-black uppercase tracking-tight mb-3 text-white">Filter Rewards</h3>
-              <p className="text-gray-400 mb-6 leading-relaxed">
-                Earn filter credits for every item collected. Never pay for replacements again.
-              </p>
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Per Working Item</span>
-                  <span className="text-blue-400 font-bold">2 filter credits</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Per Recycled Item</span>
-                  <span className="text-blue-400 font-bold">1 filter credit</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Referral Bonus</span>
-                  <span className="text-blue-400 font-bold">+3 credits each</span>
-                </div>
-              </div>
-            </Card>
+            </Link>
           </div>
         </div>
 
