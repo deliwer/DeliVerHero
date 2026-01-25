@@ -5,6 +5,8 @@ import { Home, Plane, ArrowRight, MessageCircle, DollarSign, Shield, CheckCircle
 import { motion } from "framer-motion";
 import { TrustStrip, PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
 
+import heroBg from "@/assets/hero-bg.png";
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-dubai-gradient">
@@ -21,7 +23,7 @@ export default function LandingPage() {
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url('/src/assets/hero-bg.jpg')`,
+            backgroundImage: `url(${heroBg})`,
           }}
         >
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />

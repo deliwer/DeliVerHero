@@ -17,18 +17,18 @@ export function SEOMeta({
   ogImage = "/deliwer-og-image.png",
   keywords = "Dubai Everyday Living, Dubai lifestyle, sustainable Dubai, water delivery Dubai, iPhone trade-in Dubai, DeliWer marketplace"
 }: SEOMetaProps) {
-  const fullTitle = `${title} | Dubai Everyday Living`;
+  const fullTitle = `${title} | Dubai Everyday Living Services`;
   const url = canonical || window.location.href;
 
   return (
     <Helmet>
-      <title>Dubai Everyday Living | DeliWer</title>
-      <meta name="description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins. Experience the best of Dubai living with DeliWer." />
-      <meta name="keywords" content="Dubai Everyday Living, Dubai lifestyle, sustainable Dubai, water delivery Dubai, iPhone trade-in Dubai, DeliWer marketplace" />
+      <title>Dubai Everyday Living Services | DeliWer</title>
+      <meta name="description" content="Dubai Everyday Living Services - Practical home services for expats. Move-in packs, exit support, and lifestyle concierge in Dubai." />
+      <meta name="keywords" content="Dubai Everyday Living Services, Dubai lifestyle, sustainable Dubai, water delivery Dubai, iPhone trade-in Dubai, DeliWer marketplace" />
       <link rel="canonical" href={url} />
 
-      <meta property="og:title" content="Dubai Everyday Living | DeliWer" />
-      <meta property="og:description" content="Dubai Everyday Living - Premium lifestyle services, sustainable water solutions, and iPhone trade-ins." />
+      <meta property="og:title" content="Dubai Everyday Living Services | DeliWer" />
+      <meta property="og:description" content="Dubai Everyday Living Services - Practical home services for expats. Move-in packs, exit support, and lifestyle concierge in Dubai." />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={ogImage} />
