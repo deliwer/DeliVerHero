@@ -47,12 +47,8 @@ export default function LandingPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div 
-                onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I live in Dubai and I'm interested in your home services.")}`, '_blank')}
-                className="block h-full cursor-pointer" 
-                data-testid="card-residents"
-              >
-                <Card className="bg-black/40 border-emerald-500/30 hover:border-emerald-500/60 transition-all duration-300 group overflow-hidden relative h-full">
+              <Link href="/residents" data-testid="card-residents">
+                <Card className="bg-black/40 border-emerald-500/30 hover:border-emerald-500/60 transition-all duration-300 group overflow-hidden relative h-full cursor-pointer">
                   <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <CardContent className="p-8 flex flex-col items-center text-center space-y-6 h-full">
                     <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
@@ -69,12 +65,12 @@ export default function LandingPage() {
                         className="w-full bg-emerald-600 hover:bg-emerald-500 text-white gap-2 h-12 text-lg"
                         data-testid="button-residents"
                       >
-                        WhatsApp Us <MessageCircle className="w-5 h-5" />
+                        Explore Services <ArrowRight className="w-5 h-5" />
                       </Button>
                     </div>
                   </CardContent>
                 </Card>
-              </div>
+              </Link>
             </motion.div>
 
             <motion.div
@@ -82,12 +78,8 @@ export default function LandingPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div 
-                onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I'm relocating and I need support with my move.")}`, '_blank')}
-                className="block h-full cursor-pointer" 
-                data-testid="card-relocate"
-              >
-                <Card className="bg-black/40 border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 group overflow-hidden relative h-full">
+              <Link href="/relocate" data-testid="card-relocate">
+                <Card className="bg-black/40 border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 group overflow-hidden relative h-full cursor-pointer">
                   <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <CardContent className="p-8 flex flex-col items-center text-center space-y-6 h-full">
                     <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
@@ -104,12 +96,12 @@ export default function LandingPage() {
                         className="w-full bg-blue-600 hover:bg-blue-500 text-white gap-2 h-12 text-lg"
                         data-testid="button-relocate"
                       >
-                        WhatsApp Support <MessageCircle className="w-5 h-5" />
+                        View Packages <ArrowRight className="w-5 h-5" />
                       </Button>
                     </div>
                   </CardContent>
                 </Card>
-              </div>
+              </Link>
             </motion.div>
           </div>
 
