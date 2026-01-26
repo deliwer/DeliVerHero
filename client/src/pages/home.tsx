@@ -10,6 +10,7 @@ import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
+import { motion } from "framer-motion";
 
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
 import waterLifestyleImg from "@/assets/images/water-lifestyle.jpg";
@@ -43,7 +44,11 @@ export default function Home() {
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
         
         <div className="relative z-10 text-center max-w-5xl mx-auto space-y-8 py-24">
-          <motion_div_placeholder>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-6"
+          >
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.9] drop-shadow-2xl">
               Your Home in Dubai.<br />
               Ready, Fixed, or Closed — <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Without the Stress.</span>
@@ -51,7 +56,7 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">
               Move-In setup • Ongoing fixes • Smooth Move-Out • Apartments & Villas
             </p>
-          </motion_div_placeholder>
+          </motion.div>
           
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Link href="/residents">
@@ -181,10 +186,3 @@ export default function Home() {
     </div>
   );
 }
-
-// Fixed motion div placeholder for build speed
-const motion_div_placeholder = ({ children }: { children: React.ReactNode }) => (
-  <div className="space-y-6">
-    {children}
-  </div>
-);
