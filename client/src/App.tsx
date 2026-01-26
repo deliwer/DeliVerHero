@@ -23,7 +23,7 @@ import MoveInPackagePage from "@/pages/move-in-package";
 import MoveOutPackagePage from "@/pages/move-out-package";
 import Relocate from "@/pages/relocate";
 import Residents from "@/pages/residents";
-import BusinessSetup from "@/pages/business-setup";
+import BusinessSetup from "@/pages/BusinessSetup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import Residence from "@/pages/residence";
 import FindAPlace from "@/pages/residence/find-a-place";
@@ -139,6 +139,7 @@ function Router() {
           <Redirect to="/move-out-package" />
         </Route>
         <Route path="/relocate/business-setup" component={BusinessSetupPage} />
+        <Route path="/business-setup" component={BusinessSetup} />
         <Route path="/relocate/planning" component={RelocatePlanning} />
         <Route path="/relocate/arrival" component={RelocateArrival} />
         <Route path="/relocate/concierge" component={RelocateConcierge} />
