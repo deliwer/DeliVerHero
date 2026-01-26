@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { Wrench, ArrowRight, Home, LogOut, CheckCircle2, MessageSquare, Clock, MapPin, UserCheck, ShieldCheck } from "lucide-react";
+import { Wrench, ArrowRight, Home, LogOut, CheckCircle2, MessageSquare, Clock, MapPin, UserCheck, ShieldCheck, Zap, Droplets, Hammer } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
 import { SEOMeta } from "@/components/seo-meta";
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
+import acMaintenanceHero from "@/assets/images/ac-maintenance-hero.jpg";
 
 const WHATSAPP_NUMBER = "+971523946311";
 const getWhatsAppLink = (service: string) => {
@@ -29,14 +30,14 @@ export default function ResidentsPage() {
       </section>
 
       {/* 1. Hero Section (Above the Fold) */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden px-4">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"
           style={{ backgroundImage: `url(${maintenanceHero})` }}
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950" />
         
-        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-10 py-20">
+        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-8 py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -45,147 +46,149 @@ export default function ResidentsPage() {
           >
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] text-white drop-shadow-2xl">
               Your Home in Dubai.<br />
-              Ready, Fixed, or Closed — <span className="text-emerald-500">Without the Stress.</span>
+              <span className="text-emerald-500">Ready, Fixed, or Closed.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-bold">
-              Move-In setup • Ongoing fixes • Smooth Move-Out • Apartments & Villas
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-bold">
+              Professional maintenance, move-in setup, and secure exit packages.
             </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col md:flex-row justify-center items-center gap-6"
-          >
-            <Link href="/relocate#move-in-packs">
-              <Button 
-                size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider rounded-xl h-20 px-12 text-xl shadow-2xl shadow-emerald-900/40 w-full md:w-auto flex gap-3"
-              >
-                <Home className="w-6 h-6" /> I’m Moving In
-              </Button>
-            </Link>
-            <Link href="/relocate#move-out-pack">
-              <Button 
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-wider rounded-xl h-20 px-12 text-xl shadow-2xl shadow-blue-900/40 w-full md:w-auto flex gap-3"
-              >
-                <LogOut className="w-6 h-6" /> I’m Moving Out
-              </Button>
-            </Link>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 0.5 }}
+            className="flex flex-wrap justify-center gap-4"
           >
             <Link href="/contact">
-              <button className="text-gray-400 hover:text-emerald-400 text-sm font-bold uppercase tracking-widest transition-colors">
+              <Button variant="outline" className="border-white/10 hover:bg-white/5 text-gray-400 font-bold uppercase tracking-widest text-xs h-12 rounded-xl">
                 I already live here → Resident Services
-              </button>
+              </Button>
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. 3-Tile Decision Flow */}
-      <section className="px-4 py-24 bg-slate-950 border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Tile 1: Moving In */}
+      {/* 2. Focused Decision Flow */}
+      <section className="px-4 py-16 bg-slate-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Main Featured Card: Something Needs Fixing */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="h-full"
+              className="lg:col-span-8 h-full"
             >
-              <Card className="bg-emerald-500/5 border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 h-full rounded-[2.5rem] overflow-hidden group">
-                <CardContent className="p-10 flex flex-col h-full space-y-6">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                    <Home className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1 space-y-3">
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-white">I’m Moving In</h3>
-                    <p className="text-gray-400 font-medium leading-relaxed">Prepare home fully before unpacking. AC deep cleaning, painting, and essential setup.</p>
-                  </div>
+              <Card className="relative group min-h-[500px] border-emerald-500/30 overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl shadow-emerald-500/10">
+                <div 
+                  className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40"
+                  style={{ backgroundImage: `url(${acMaintenanceHero})` }}
+                />
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+                
+                <CardContent className="relative z-20 p-10 md:p-14 flex flex-col h-full justify-end space-y-8">
                   <div className="space-y-4">
-                    <Link href="/relocate#move-in-packs">
-                      <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest h-14 rounded-xl gap-2">
-                        View Move-In Package <ArrowRight className="w-5 h-5" />
-                      </Button>
-                    </Link>
-                    <p className="text-emerald-500/60 text-[10px] font-black uppercase tracking-[0.2em] text-center">Assessment & setup within 24–48h</p>
+                    <div className="inline-flex items-center gap-2 px-4 py-1 bg-emerald-500 text-slate-950 font-black text-xs uppercase tracking-widest rounded-full mb-4">
+                      <Zap className="w-3 h-3" /> Priority Service
+                    </div>
+                    <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+                      Something Needs <br /><span className="text-emerald-500">Fixing?</span>
+                    </h3>
+                    <p className="text-lg md:text-xl text-gray-200 font-bold max-w-xl leading-relaxed">
+                      Urgent AC, plumbing, or electrical issues? Our certified technicians provide professional maintenance and repairs with fixed starting prices.
+                    </p>
+                    
+                    <div className="grid sm:grid-cols-2 gap-4 pt-4">
+                      <div className="flex items-center gap-3 text-emerald-400 font-bold">
+                        <CheckCircle2 className="w-5 h-5" /> <span>AC Deep Cleaning</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-emerald-400 font-bold">
+                        <CheckCircle2 className="w-5 h-5" /> <span>Electrical & Plumbing</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-emerald-400 font-bold">
+                        <CheckCircle2 className="w-5 h-5" /> <span>Water Filtration</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-emerald-400 font-bold">
+                        <CheckCircle2 className="w-5 h-5" /> <span>Appliance Repair</span>
+                      </div>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
 
-            {/* Tile 2: Fixing */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="h-full"
-            >
-              <Card className="bg-white/5 border-white/10 hover:border-white/20 transition-all duration-300 h-full rounded-[2.5rem] overflow-hidden group">
-                <CardContent className="p-10 flex flex-col h-full space-y-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center text-white">
-                    <Wrench className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1 space-y-3">
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-white">Something Needs Fixing</h3>
-                    <p className="text-gray-400 font-medium leading-relaxed">AC, plumbing, electrical. Urgent repairs and ongoing maintenance by experts.</p>
-                  </div>
-                  <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button 
                       onClick={() => window.open(getWhatsAppLink("Home Maintenance"), '_blank')}
-                      className="w-full bg-white text-slate-950 hover:bg-gray-100 font-black uppercase tracking-widest h-14 rounded-xl gap-2"
+                      className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider h-16 px-10 rounded-2xl text-lg flex gap-3 shadow-xl shadow-emerald-900/40"
                     >
-                      Book Maintenance <ArrowRight className="w-5 h-5" />
+                      Book Maintenance <ArrowRight className="w-6 h-6" />
                     </Button>
-                    <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] text-center">Apartment & villa coverage</p>
+                    <div className="flex items-center gap-2 px-6 py-4 bg-white/5 rounded-2xl border border-white/10">
+                      <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                      <span className="text-xs font-black uppercase tracking-widest text-gray-400">Apartment & Villa Coverage</span>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Tile 3: Moving Out */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="h-full"
-            >
-              <Card className="bg-blue-500/5 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 h-full rounded-[2.5rem] overflow-hidden group">
-                <CardContent className="p-10 flex flex-col h-full space-y-6">
-                  <div className="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-400">
-                    <LogOut className="w-8 h-8" />
-                  </div>
-                  <div className="flex-1 space-y-3">
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-white">I’m Moving Out</h3>
-                    <p className="text-gray-400 font-medium leading-relaxed">Removal, e-waste, handover. We ensure you get your deposit back without the stress.</p>
-                  </div>
-                  <div className="space-y-4">
-                    <Link href="/relocate#move-out-pack">
-                      <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest h-14 rounded-xl gap-2">
-                        View Move-Out Package <ArrowRight className="w-5 h-5" />
+            {/* Demoted Secondary Cards */}
+            <div className="lg:col-span-4 flex flex-col gap-8">
+              {/* Moving In */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <Card className="bg-white/5 border-white/10 hover:border-emerald-500/30 transition-all duration-300 rounded-[2rem] overflow-hidden">
+                  <CardContent className="p-8 space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                        <Home className="w-6 h-6" />
+                      </div>
+                      <h4 className="text-xl font-black uppercase tracking-tight text-white">I’m Moving In</h4>
+                    </div>
+                    <p className="text-gray-400 text-sm font-medium leading-relaxed">Prepare home fully before unpacking. Assessment & setup within 24–48h.</p>
+                    <Link href="/move-in-package">
+                      <Button variant="link" className="p-0 h-auto text-emerald-500 font-black uppercase tracking-widest text-xs flex gap-2 group">
+                        View Move-In Package <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </Button>
                     </Link>
-                    <p className="text-blue-500/60 text-[10px] font-black uppercase tracking-[0.2em] text-center">Old items handled compliantly</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Moving Out */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                <Card className="bg-white/5 border-white/10 hover:border-blue-500/30 transition-all duration-300 rounded-[2rem] overflow-hidden">
+                  <CardContent className="p-8 space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400">
+                        <LogOut className="w-6 h-6" />
+                      </div>
+                      <h4 className="text-xl font-black uppercase tracking-tight text-white">I’m Moving Out</h4>
+                    </div>
+                    <p className="text-gray-400 text-sm font-medium leading-relaxed">Removal, e-waste, and handover. Handle your exit compliantly.</p>
+                    <Link href="/move-out-package">
+                      <Button variant="link" className="p-0 h-auto text-blue-500 font-black uppercase tracking-widest text-xs flex gap-2 group">
+                        View Move-Out Package <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* 4. Micro-Flow Module */}
-      <section className="px-4 py-24 border-t border-white/5 bg-slate-900/30">
+      <section className="px-4 py-16 border-t border-white/5 bg-slate-900/30">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12">
             {[
@@ -199,8 +202,8 @@ export default function ResidentsPage() {
                   <span className="absolute -top-2 -right-2 bg-emerald-500 text-slate-950 font-black text-xs px-2 py-1 rounded-lg">{item.step}</span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-black uppercase text-white tracking-tight">{item.title}</h3>
-                  <p className="text-gray-500 text-sm font-bold">{item.desc}</p>
+                  <h3 className="text-lg font-black uppercase text-white tracking-tight">{item.title}</h3>
+                  <p className="text-gray-500 text-xs font-bold">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -209,10 +212,10 @@ export default function ResidentsPage() {
       </section>
 
       {/* 3. Trust / Proof Module */}
-      <section className="px-4 py-24 border-t border-white/5">
-        <div className="max-w-4xl mx-auto text-center space-y-16">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Designed for Real Homes in Dubai</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+      <section className="px-4 py-16 border-t border-white/5">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">Designed for Real Homes in Dubai</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
             {[
               { icon: MapPin, title: "Dubai-wide coverage", desc: "Apartments & villas in all areas" },
               { icon: UserCheck, title: "Single point of contact", desc: "No chasing multiple technicians" },
@@ -220,18 +223,15 @@ export default function ResidentsPage() {
               { icon: ShieldCheck, title: "Relocation specialists", desc: "Move-In & Move-Out experts" },
               { icon: ShieldCheck, title: "Responsible removal", desc: "E-waste handled correctly" }
             ].map((item, i) => (
-              <div key={i} className="flex gap-4 p-6 bg-white/5 rounded-2xl border border-white/5">
-                <item.icon className="w-6 h-6 text-emerald-500 shrink-0" />
+              <div key={i} className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5">
+                <item.icon className="w-5 h-5 text-emerald-500 shrink-0" />
                 <div>
-                  <h4 className="font-black uppercase text-sm text-white mb-1">{item.title}</h4>
-                  <p className="text-gray-400 text-xs font-medium">{item.desc}</p>
+                  <h4 className="font-black uppercase text-xs text-white mb-1">{item.title}</h4>
+                  <p className="text-gray-400 text-[10px] font-medium uppercase tracking-tight">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-gray-500 text-sm font-black uppercase tracking-widest pt-8 border-t border-white/5">
-            Supporting residents, landlords, and relocating families across Dubai.
-          </p>
         </div>
       </section>
 
@@ -240,7 +240,7 @@ export default function ResidentsPage() {
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <div className="space-y-4">
             <h3 className="text-3xl font-black uppercase text-white tracking-tight">Need international relocation or visa support?</h3>
-            <p className="text-gray-400 font-medium">Our premium relocation hub handles global moves and Dubai business setup.</p>
+            <p className="text-gray-400 font-medium max-w-xl mx-auto">Our premium relocation hub handles global moves and Dubai business setup for investors and families.</p>
           </div>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Link href="/relocate">
