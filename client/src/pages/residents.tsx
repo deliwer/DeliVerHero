@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { Wrench, Droplets, Zap, Recycle, ArrowRight, MessageCircle, Shield, DollarSign, Users, CheckCircle, Smartphone } from "lucide-react";
+import { Wrench, Recycle, ArrowRight, MessageCircle, DollarSign, Users, CheckCircle, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
-import residentsHero from "@/assets/images/residents-hero.jpg";
+import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
 import { SEOMeta } from "@/components/seo-meta";
 
 const WHATSAPP_NUMBER = "+971523946311";
@@ -15,33 +15,34 @@ const getWhatsAppLink = (service: string) => {
 
 const actionTiles = [
   {
-    id: "move-in",
-    title: "I’m Moving In / Just Moved In",
-    description: "Everything your home needs from day one: AC check, deep cleaning, water setup, and home readiness.",
-    icon: CheckCircle,
-    color: "emerald",
-    href: "/relocate#move-in-packs",
-    cta: "View Move-In Package",
-    featured: true
-  },
-  {
     id: "maintenance",
     title: "Something Needs Fixing",
-    description: "AC, plumbing, electrical, or urgent repairs handled by professional teams.",
+    description: "AC, plumbing, electrical, or urgent repairs handled by professional teams. Fixed starting prices and guaranteed quality.",
     icon: Wrench,
-    color: "blue",
+    color: "emerald",
     href: getWhatsAppLink("Home Maintenance / Fixing"),
-    cta: "Book Maintenance"
+    cta: "Book Maintenance",
+    featured: true,
+    price: "From AED 150"
+  },
+  {
+    id: "move-in",
+    title: "I’m Moving In",
+    description: "Everything your home needs from day one: AC check, deep cleaning, and home readiness.",
+    icon: CheckCircle,
+    color: "blue",
+    href: "/relocate#move-in-packs",
+    cta: "View Move-In Package"
   },
   {
     id: "move-out",
-    title: "I’m Moving Out / Replacing Items",
-    description: "Removal and compliance handled end-to-end. Appliance and furniture removal included.",
+    title: "I’m Moving Out",
+    description: "Removal and compliance handled end-to-end. Appliance removal included.",
     icon: Recycle,
     color: "amber",
     href: "/relocate#move-out-pack",
     cta: "View Move-Out Package",
-    trustLine: "Old items are removed and handled compliantly as part of the move-out."
+    trustLine: "Compliant disposal included in move-out services."
   }
 ];
 
@@ -74,8 +75,8 @@ export default function ResidentsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
       <SEOMeta 
-        title="Home Readiness & Maintenance Dubai | DeliWer Residents"
-        description="Living in Dubai starts with a ready home. Move-in setup, ongoing fixes, and smooth move-out services for apartments and villas."
+        title="Home Maintenance & Repair Services Dubai | DeliWer"
+        description="Professional home maintenance for Dubai residents. AC repair, plumbing, electrical, and urgent fixes. Fixed starting prices and WhatsApp support."
       />
 
       {/* Micro Trust Strip */}
@@ -89,7 +90,7 @@ export default function ResidentsPage() {
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
-          style={{ backgroundImage: `url(${residentsHero})` }}
+          style={{ backgroundImage: `url(${maintenanceHero})` }}
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950" />
         
@@ -100,11 +101,11 @@ export default function ResidentsPage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9] text-white drop-shadow-2xl">
-              Living in Dubai Starts With a <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Ready Home</span>
+              Professional Home <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Maintenance</span> Made Simple
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-bold drop-shadow-lg">
-              Move-in setup • Ongoing fixes • Smooth move-out <br />
-              <span className="text-sm uppercase tracking-[0.2em] text-emerald-400/80">Apartments & Villas • WhatsApp support</span>
+              AC Repair • Plumbing • Electrical • Emergency Fixes <br />
+              <span className="text-sm uppercase tracking-[0.2em] text-emerald-400/80">Expert Technicians • Fixed Starting Prices • WhatsApp Booking</span>
             </p>
           </motion.div>
 
@@ -118,7 +119,7 @@ export default function ResidentsPage() {
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider rounded-xl h-16 px-12 text-lg shadow-2xl shadow-emerald-900/40"
               onClick={scrollToTiles}
             >
-              Get My Home Ready
+              Book Maintenance Now
             </Button>
           </motion.div>
         </div>
@@ -127,6 +128,10 @@ export default function ResidentsPage() {
       {/* 3 Situation-Based Decision Tiles */}
       <section id="action-tiles" className="px-4 py-24 bg-slate-950">
         <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Reliable Ongoing Care for Your Dubai Home</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-medium">From minor repairs to major upgrades, we ensure your living space stays in perfect condition throughout your stay.</p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {actionTiles.map((tile, index) => {
               const colors = colorClasses[tile.color as keyof typeof colorClasses];
@@ -147,6 +152,7 @@ export default function ResidentsPage() {
                       <div className="flex-1 space-y-2">
                         <h3 className="text-2xl font-black uppercase tracking-tight text-white">{tile.title}</h3>
                         <p className="text-gray-400 leading-relaxed font-medium">{tile.description}</p>
+                        {tile.price && <p className="text-emerald-500 text-sm font-black uppercase tracking-widest">{tile.price}</p>}
                       </div>
                       <div className="space-y-4">
                         <Link href={tile.href}>
@@ -156,10 +162,6 @@ export default function ResidentsPage() {
                               if (tile.href.startsWith('http')) {
                                 e.preventDefault();
                                 window.open(tile.href, '_blank');
-                              } else if (tile.href.includes('#')) {
-                                // For hash links, we want to ensure they trigger the scroll on the target page
-                                // wouter's Link handles the navigation, but we might need a slight delay
-                                // or reliance on the browser's default hash behavior if the component is already mounted.
                               }
                             }}
                           >
@@ -221,7 +223,6 @@ export default function ResidentsPage() {
   );
 }
 
-// Fixed missing icons from lucide-react in previous iteration
 const BuildingSign = ({ className }: { className?: string }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
