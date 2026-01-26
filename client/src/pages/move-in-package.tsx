@@ -46,6 +46,7 @@ export default function MoveInPackagePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
+            className="flex flex-col sm:flex-row justify-center items-center gap-4"
           >
             <Button 
               size="lg"
@@ -54,8 +55,26 @@ export default function MoveInPackagePage() {
             >
               Book Move-In Assessment <ArrowRight className="w-6 h-6" />
             </Button>
-            <p className="mt-4 text-emerald-500/60 text-xs font-black uppercase tracking-widest italic">Assessment within 24 hours</p>
+            <Button 
+              variant="outline"
+              size="lg"
+              className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto"
+              onClick={() => {
+                const element = document.getElementById('move-in-packs');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              View Package Details
+            </Button>
           </motion.div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="mt-4 text-emerald-500/60 text-xs font-black uppercase tracking-widest italic"
+          >
+            Assessment within 24 hours
+          </motion.p>
         </div>
       </section>
 
