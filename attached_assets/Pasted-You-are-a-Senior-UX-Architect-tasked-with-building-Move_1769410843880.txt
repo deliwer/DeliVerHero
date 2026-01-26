@@ -1,0 +1,109 @@
+You are a Senior UX Architect tasked with building **Move-In** and **Move-Out package pages** for DeliWer.com. These pages are part of the survival-grade funnel for Dubai residents, following the `/residents` page UX. 
+
+GOAL: Maximize **clarity, urgency, operational proof, and conversion**, reduce cognitive load, and drive bookings. Do not include aspirational or marketplace language. Focus purely on **life-stage triggers**.
+
+---
+
+## 1️⃣ COMMON REQUIREMENTS
+- Mobile-first, fully responsive
+- Clean, scrollable layout
+- Strong hierarchy with headline, outcome description, and CTA above the fold
+- Include trust/proof microcopy
+- Use semantic HTML, accessible components, hover/active states for buttons
+- Packages > individual services
+- Operational proof included (timeframe, apartment/villa applicability)
+- Include **WhatsApp booking integration** for immediate conversion
+
+---
+
+## 2️⃣ MOVE-IN PACKAGE PAGE
+
+### Hero / Headline
+**Your Home Fully Ready — Before You Unpack**
+
+### Subheadline
+Move-In setup, AC, water, essentials, and minor fixes coordinated end-to-end.
+
+### Package Features (bullets)
+- AC inspection & basic servicing
+- Water setup / filter installation
+- Home essentials starter pack
+- Minor fixes & coordination
+- One point of contact — no chasing multiple vendors
+
+### Operational Proof
+- Assessment within 24 hours
+- Setup completed in 1–2 days
+- Apartments & villas across Dubai
+
+### CTA
+🟢 **Book Move-In Assessment →**  
+Link to WhatsApp or internal booking form
+
+---
+
+## 3️⃣ MOVE-OUT PACKAGE PAGE
+
+### Hero / Headline
+**Leave Clean. Disconnect Right. Avoid Penalties**
+
+### Subheadline
+Move-Out removal, e-waste, utility disconnections, and landlord handover — fully coordinated.
+
+### Package Features (bullets)
+- Furniture removal or resale
+- Appliance disposal / e-waste
+- AC, water, and utility disconnections
+- Landlord handover coordination
+
+### Operational Proof
+- Fast clearance timelines
+- DM-compliant disposal
+- Apartments & villas supported across Dubai
+
+### CTA
+🔴 **Plan My Move-Out →**  
+Link to WhatsApp or internal booking form
+
+---
+
+## 4️⃣ TRUST / PROOF MODULE (Use on Both Pages)
+- Headline: "Designed for Real Homes in Dubai"
+- Bullet Points / Icons:
+    - Dubai-wide coverage — apartments & villas
+    - Single point of contact — no chasing multiple technicians
+    - Fast assessments — same-day or next-day scheduling
+    - Move-In & Move-Out specialists
+    - Responsible removal — e-waste handled correctly
+- Footer Line: "Supporting residents, landlords, and relocating families across Dubai."
+
+---
+
+## 5️⃣ OPTIONAL FLOW SECTION (Scrollable)
+- Steps for clarity (horizontal on desktop, stacked on mobile)
+1. Pick your need
+2. We schedule & coordinate
+3. We execute & confirm completion
+
+---
+
+## 6️⃣ FOOTER / NEXT STEP
+- Link to **/relocate** for international relocation & visa support
+- WhatsApp contact: +971523946311
+
+---
+
+## 7️⃣ DEVELOPMENT NOTES
+- Build in HTML/CSS/JS
+- Include semantic headings (H1, H2, H3)
+- Responsive design for desktop, tablet, and mobile
+- Buttons fully clickable
+- Include hover and active states
+- Include apartment/villa tags on package bullets
+- Include microcopy for timeframes
+- Ensure accessibility and screen reader compatibility
+- Optionally, include icons for package features and operational proof
+
+---
+
+OUTPUT: **Two fully production-ready pages (Move-In & Move-Out)**, integrated with `/residents` tiles, ready for deployment.

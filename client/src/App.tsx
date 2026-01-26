@@ -19,6 +19,8 @@ import Home from "@/pages/home";
 import Landing from "@/pages/landing";
 import MoveInServices from "@/pages/move-in-services";
 import MoveInPackages from "@/pages/move-in-packages";
+import MoveInPackagePage from "@/pages/move-in-package";
+import MoveOutPackagePage from "@/pages/move-out-package";
 import Relocate from "@/pages/relocate";
 import Residents from "@/pages/residents";
 import BusinessSetup from "@/pages/business-setup";
@@ -141,12 +143,8 @@ function Router() {
 
         {/* Residents Page */}
         <Route path="/residents" component={Residents} />
-        <Route path="/move-in-package">
-          <Redirect to="/relocate#move-in-packs" />
-        </Route>
-        <Route path="/move-out-package">
-          <Redirect to="/relocate#move-out-pack" />
-        </Route>
+        <Route path="/move-in-package" component={MoveInPackagePage} />
+        <Route path="/move-out-package" component={MoveOutPackagePage} />
         <Route path="/residents/support" component={ContactPage} />
         <Route path="/residence">
           <Redirect to="/residents" />
