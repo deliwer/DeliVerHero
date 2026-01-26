@@ -141,6 +141,13 @@ function Router() {
 
         {/* Residents Page */}
         <Route path="/residents" component={Residents} />
+        <Route path="/move-in-package">
+          <Redirect to="/relocate#move-in-packs" />
+        </Route>
+        <Route path="/move-out-package">
+          <Redirect to="/relocate#move-out-pack" />
+        </Route>
+        <Route path="/residents/support" component={ContactPage} />
         <Route path="/residence">
           <Redirect to="/residents" />
         </Route>

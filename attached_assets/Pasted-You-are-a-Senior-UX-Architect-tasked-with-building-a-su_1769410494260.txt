@@ -1,0 +1,80 @@
+You are a Senior UX Architect tasked with building a survival-grade `/residents` page for DeliWer.com. 
+
+The goal is to maximize **clarity, conversion, and operational trust** for Dubai residents. Avoid aspirational or marketplace language. Focus on **life-stage triggers**: Move-In, Stay, Move-Out.
+
+---
+
+## REQUIREMENTS
+
+### 1️⃣ Hero Section (Above the Fold)
+- Headline: "Your Home in Dubai. Ready, Fixed, or Closed — Without the Stress."
+- Subheadline: "Move-In setup • Ongoing fixes • Smooth Move-Out • Apartments & Villas"
+- Primary CTA Buttons:
+    - 🟢 "I’m Moving In" → link to `/move-in-package`
+    - 🔴 "I’m Moving Out" → link to `/move-out-package`
+- Secondary micro-link (small): "I already live here → Resident Services" → `/residents/support`
+
+### 2️⃣ 3-Tile Decision Flow (Scroll Section)
+- Tile 1 (Primary / Highlighted):
+    - Title: "I’m Moving In"
+    - Description: Prepare home fully before unpacking
+    - CTA: "View Move-In Package" → `/move-in-package`
+    - Micro-trust: "Assessment & setup within 24–48h"
+
+- Tile 2:
+    - Title: "Something Needs Fixing"
+    - Description: AC, plumbing, electrical
+    - CTA: "Book Maintenance"
+    - Micro-trust: "Apartment & villa coverage"
+
+- Tile 3:
+    - Title: "I’m Moving Out"
+    - Description: Removal, e-waste, handover
+    - CTA: "View Move-Out Package" → `/move-out-package`
+    - Micro-trust: "Old items handled compliantly"
+
+### 3️⃣ Trust / Proof Module
+- Headline: "Designed for Real Homes in Dubai"
+- Bullet / Icon Proof:
+    - Dubai-wide coverage — apartments & villas
+    - Single point of contact — no chasing multiple technicians
+    - Fast assessments — same-day or next-day scheduling
+    - Move-In & Move-Out specialists
+    - Responsible removal — e-waste handled correctly
+- Footer Line: "Supporting residents, landlords, and relocating families across Dubai."
+
+### 4️⃣ Optional Micro-Flow
+- Steps with icons (horizontal desktop / stacked mobile):
+    1. Pick your need
+    2. We schedule & coordinate
+    3. We execute & confirm completion
+
+### 5️⃣ Footer / Next Step
+- Relocation & Visa Support CTA → `/relocate`
+- WhatsApp contact +971523946311
+
+---
+
+## UX / DESIGN PRINCIPLES
+- Mobile-first, scrollable layout
+- Clear hierarchy with primary CTA above the fold
+- Cognitive load minimized — 3 main tiles only
+- Packages > individual services
+- Trust microcopy above the fold
+- Strong operational proof for survival-focused UX
+- Avoid aspirational, lifestyle, marketplace language
+
+---
+
+### DEVELOPMENT INSTRUCTIONS
+- Build in HTML/CSS/JS
+- Tiles must be fully clickable (linking to packages or WhatsApp)
+- Icons optional but recommended for trust and microflow
+- Responsive: desktop, tablet, mobile
+- Include hover and active states for CTAs
+- Include microcopy for timeframes, apartment/villa applicability
+- Ensure semantic HTML and accessibility
+
+---
+
+OUTPUT: Full `/residents` page HTML/CSS/JS ready for production.
