@@ -15,45 +15,33 @@ const getWhatsAppLink = (service: string) => {
 
 const actionTiles = [
   {
+    id: "move-in",
+    title: "I’m Moving In / Just Moved In",
+    description: "Everything your home needs from day one: AC check, deep cleaning, water setup, and home readiness.",
+    icon: CheckCircle,
+    color: "emerald",
+    href: "/move-in-landing",
+    cta: "View Move-In Package",
+    featured: true
+  },
+  {
     id: "maintenance",
     title: "Something Needs Fixing",
-    description: "AC, plumbing, electrical, or emergency repairs",
+    description: "AC, plumbing, electrical, or urgent repairs handled by professional teams.",
     icon: Wrench,
-    color: "emerald",
-    href: getWhatsAppLink("Home Maintenance / Fixing"),
-    cta: "Book Maintenance",
-    price: "From AED 150"
-  },
-  {
-    id: "water",
-    title: "I Need Water or Essentials",
-    description: "Water delivery, household supplies, and everyday needs",
-    icon: Droplets,
     color: "blue",
-    href: getWhatsAppLink("Water & Essentials Delivery"),
-    cta: "Order Essentials",
-    price: "Fixed Delivery Rates"
+    href: getWhatsAppLink("Home Maintenance / Fixing"),
+    cta: "Book Maintenance"
   },
   {
-    id: "upgrade",
-    title: "I Want to Improve or Reduce Bills",
-    description: "Interior fitouts, smart home systems, or energy saving",
-    icon: Zap,
-    color: "amber",
-    href: getWhatsAppLink("Home Improvements / Bill Reduction"),
-    cta: "Upgrade My Home",
-    price: "Custom Assessment"
-  },
-  {
-    id: "replace",
-    title: "I’m Replacing Something at Home",
-    description: "Upgrade appliances or furniture with responsible removal",
+    id: "move-out",
+    title: "I’m Moving Out / Replacing Items",
+    description: "Removal and compliance handled end-to-end. Appliance and furniture removal included.",
     icon: Recycle,
-    color: "green",
-    href: "/ewaste",
-    cta: "Replace & Upgrade",
-    price: "Includes E-Waste Handling",
-    trustLine: "Old items are removed and handled compliantly as part of the service."
+    color: "amber",
+    href: "/residence/move-out",
+    cta: "View Move-Out Package",
+    trustLine: "Old items are removed and handled compliantly as part of the move-out."
   }
 ];
 
@@ -75,12 +63,6 @@ const colorClasses = {
     text: "text-amber-400",
     border: "border-amber-500/30",
     button: "bg-amber-600 hover:bg-amber-500"
-  },
-  green: {
-    bg: "bg-green-500/20",
-    text: "text-green-400",
-    border: "border-green-500/30",
-    button: "bg-green-600 hover:bg-green-500"
   }
 };
 
@@ -92,8 +74,8 @@ export default function ResidentsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
       <SEOMeta 
-        title="Home Services for Dubai Residents | DeliWer"
-        description="Everything your Dubai home needs. Maintenance, water delivery, upgrades, and responsible removal. Fixed pricing and WhatsApp support."
+        title="Home Readiness & Maintenance Dubai | DeliWer Residents"
+        description="Living in Dubai starts with a ready home. Move-in setup, ongoing fixes, and smooth move-out services for apartments and villas."
       />
 
       {/* Micro Trust Strip */}
@@ -118,10 +100,11 @@ export default function ResidentsPage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9] text-white drop-shadow-2xl">
-              Everything Your Dubai Home Needs — <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Without the Hassle</span>
+              Living in Dubai Starts With a <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Ready Home</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-bold drop-shadow-lg">
-              Fixed starting prices • WhatsApp support • Apartments & Villas
+              Move-in setup • Ongoing fixes • Smooth move-out <br />
+              <span className="text-sm uppercase tracking-[0.2em] text-emerald-400/80">Apartments & Villas • WhatsApp support</span>
             </p>
           </motion.div>
 
@@ -135,16 +118,16 @@ export default function ResidentsPage() {
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider rounded-xl h-16 px-12 text-lg shadow-2xl shadow-emerald-900/40"
               onClick={scrollToTiles}
             >
-              Get Help With My Home
+              Get My Home Ready
             </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* Situation-Based Decision Tiles */}
+      {/* 3 Situation-Based Decision Tiles */}
       <section id="action-tiles" className="px-4 py-24 bg-slate-950">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {actionTiles.map((tile, index) => {
               const colors = colorClasses[tile.color as keyof typeof colorClasses];
               return (
@@ -154,8 +137,9 @@ export default function ResidentsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
+                  className={tile.featured ? "md:col-span-2 lg:col-span-1" : ""}
                 >
-                  <Card className={`bg-white/5 border-white/10 hover-elevate transition-all duration-300 group overflow-hidden relative h-full rounded-[2rem]`}>
+                  <Card className={`bg-white/5 border-white/10 hover-elevate transition-all duration-300 group overflow-hidden relative h-full rounded-[2rem] ${tile.featured ? 'border-emerald-500/50 shadow-2xl shadow-emerald-500/10' : ''}`}>
                     <CardContent className="p-8 flex flex-col space-y-6 h-full relative">
                       <div className={`w-16 h-16 rounded-2xl ${colors.bg} flex items-center justify-center ${colors.text} shrink-0`}>
                         <tile.icon className="w-8 h-8" />
@@ -163,15 +147,21 @@ export default function ResidentsPage() {
                       <div className="flex-1 space-y-2">
                         <h3 className="text-2xl font-black uppercase tracking-tight text-white">{tile.title}</h3>
                         <p className="text-gray-400 leading-relaxed font-medium">{tile.description}</p>
-                        <p className="text-emerald-500 text-sm font-black uppercase tracking-widest">{tile.price}</p>
                       </div>
                       <div className="space-y-4">
-                        <Button 
-                          className={`w-full ${colors.button} text-white font-black uppercase tracking-widest h-14 rounded-xl gap-2`}
-                          onClick={() => window.open(tile.href, tile.href.startsWith('http') ? '_blank' : '_self')}
-                        >
-                          {tile.cta} <ArrowRight className="w-5 h-5" />
-                        </Button>
+                        <Link href={tile.href}>
+                          <Button 
+                            className={`w-full ${colors.button} text-white font-black uppercase tracking-widest h-14 rounded-xl gap-2`}
+                            onClick={(e) => {
+                              if (tile.href.startsWith('http')) {
+                                e.preventDefault();
+                                window.open(tile.href, '_blank');
+                              }
+                            }}
+                          >
+                            {tile.cta} <ArrowRight className="w-5 h-5" />
+                          </Button>
+                        </Link>
                         {tile.trustLine && (
                           <p className="text-[10px] text-gray-500 uppercase font-black text-center tracking-widest leading-tight px-4">
                             {tile.trustLine}
@@ -187,48 +177,24 @@ export default function ResidentsPage() {
         </div>
       </section>
 
-      {/* Resident-Specific Proof Section */}
+      {/* Trust Section */}
       <section className="px-4 py-24 border-t border-white/5 bg-slate-900/30">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white text-center mb-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white mb-16">
             Why Residents Choose DeliWer
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Sarah J.", loc: "Dubai Marina", text: "Finally a service that just works. No endless back and forth, fixed price, and they handled everything." },
-              { name: "Ahmed K.", loc: "Downtown Dubai", text: "The trade-in service is a game changer. Replaced my old fridge and they took it away same day." },
-              { name: "Jessica M.", loc: "JVC Resident", text: "Super responsive via WhatsApp. Had my AC fixed within 2 hours of booking. Highly recommend." }
-            ].map((t, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 p-8 rounded-2xl space-y-4">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => <CheckCircle key={i} className="w-4 h-4 text-emerald-500 fill-emerald-500" />)}
-                </div>
-                <p className="text-gray-300 italic text-sm leading-relaxed">"{t.text}"</p>
-                <div>
-                  <div className="text-white font-black uppercase text-xs">{t.name}</div>
-                  <div className="text-emerald-500 text-[10px] uppercase font-bold tracking-widest">{t.loc}</div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Micro-Flow Section */}
-      <section className="px-4 py-24 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12">
             {[
-              { icon: Smartphone, label: "Pick", desc: "Select the service you need" },
-              { icon: MessageCircle, label: "Confirm", desc: "Quick verification via WhatsApp" },
-              { icon: CheckCircle, label: "Resolve", desc: "Service completed as promised" }
-            ].map((step, i) => (
-              <div key={i} className="text-center space-y-4">
-                <div className="w-20 h-20 bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mx-auto border border-emerald-500/20">
-                  <step.icon className="w-10 h-10 text-emerald-500" />
+              { icon: BuildingSign, label: "Rental-Ready", desc: "Designed for Dubai rentals" },
+              { icon: DollarSign, label: "Fixed Packages", desc: "No surprises, clear pricing" },
+              { icon: Users, label: "One Team", desc: "From move-in to move-out" }
+            ].map((item, i) => (
+              <div key={i} className="space-y-4">
+                <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto border border-emerald-500/20">
+                  <item.icon className="w-8 h-8 text-emerald-500" />
                 </div>
-                <h3 className="text-xl font-black uppercase text-white">{step.label}</h3>
-                <p className="text-gray-500 text-sm font-bold uppercase tracking-tight">{step.desc}</p>
+                <h3 className="text-xl font-black uppercase text-white">{item.label}</h3>
+                <p className="text-gray-500 text-sm font-bold uppercase tracking-tight">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -238,11 +204,10 @@ export default function ResidentsPage() {
       {/* Footer CTA */}
       <section className="px-4 py-16 text-center border-t border-white/5 bg-emerald-950/10">
         <div className="max-w-2xl mx-auto space-y-6">
-          <h3 className="text-2xl font-black uppercase text-white tracking-tight">Need Relocation or Move-Out Help?</h3>
-          <p className="text-gray-400 font-medium">We offer end-to-end exit management and international moves.</p>
+          <h3 className="text-2xl font-black uppercase text-white tracking-tight">Need international relocation or visa support?</h3>
           <Link href="/relocate">
             <Button size="lg" variant="outline" className="border-emerald-500 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest h-14 px-12 rounded-xl group transition-all">
-              Switch to Relocation Services
+              Explore Relocation Services
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
@@ -251,3 +216,26 @@ export default function ResidentsPage() {
     </div>
   );
 }
+
+// Fixed missing icons from lucide-react in previous iteration
+const BuildingSign = ({ className }: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
+    <path d="M9 22v-4h6v4" />
+    <path d="M8 6h.01" />
+    <path d="M16 6h.01" />
+    <path d="M8 10h.01" />
+    <path d="M16 10h.01" />
+    <path d="M8 14h.01" />
+    <path d="M16 14h.01" />
+  </svg>
+);
