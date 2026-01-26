@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
@@ -20,6 +20,7 @@ import { TrustStrip, PartnerStrip, TestimonialCarousel } from "@/components/trus
 import relocateHero from "@/assets/images/relocate-hero.jpg";
 
 export default function Relocate() {
+  const [location] = useLocation();
   const moveInRef = useRef<HTMLDivElement>(null);
   const moveOutRef = useRef<HTMLDivElement>(null);
 
@@ -30,6 +31,16 @@ export default function Relocate() {
   const scrollToMoveOut = () => {
     moveOutRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    // Check for hash in URL and scroll to relevant section
+    const hash = window.location.hash;
+    if (hash === '#move-in-packs') {
+      setTimeout(scrollToMoveIn, 100);
+    } else if (hash === '#move-out-pack') {
+      setTimeout(scrollToMoveOut, 100);
+    }
+  }, [location]);
 
   const moveInPacks = [
     {

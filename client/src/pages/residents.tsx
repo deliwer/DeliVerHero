@@ -156,6 +156,10 @@ export default function ResidentsPage() {
                               if (tile.href.startsWith('http')) {
                                 e.preventDefault();
                                 window.open(tile.href, '_blank');
+                              } else if (tile.href.includes('#')) {
+                                // For hash links, we want to ensure they trigger the scroll on the target page
+                                // wouter's Link handles the navigation, but we might need a slight delay
+                                // or reliance on the browser's default hash behavior if the component is already mounted.
                               }
                             }}
                           >
