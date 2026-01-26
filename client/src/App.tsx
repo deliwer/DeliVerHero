@@ -128,6 +128,17 @@ function Router() {
           </Route>
           <Route path="/move-in-landing" component={MoveInLanding} />
 
+        {/* Relocation Services */}
+        <Route path="/relocate" component={Relocate} />
+        <Route path="/relocate/business-setup" component={BusinessSetupPage} />
+        <Route path="/relocate/planning" component={RelocatePlanning} />
+        <Route path="/relocate/arrival" component={RelocateArrival} />
+        <Route path="/relocate/concierge" component={RelocateConcierge} />
+        <Route path="/relocate/exit" component={RelocateExitSubpage} />
+        <Route path="/relocate-exit" component={RelocateExit} />
+        <Route path="/relocate-community" component={RelocateCommunity} />
+        <Route path="/relocate-pricing" component={InternationalRelocationPricing} />
+
         {/* Residents Page */}
         <Route path="/residents" component={Residents} />
         <Route path="/residence">
