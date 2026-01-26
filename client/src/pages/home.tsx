@@ -3,7 +3,7 @@ import { SEOMeta } from "@/components/seo-meta";
 import { 
   Zap, MessageSquare, CheckCircle2, Thermometer, Droplets, 
   AlertTriangle, Coins, ShieldCheck, Check, Home as HomeIcon,
-  Wrench, Cpu, Layout, ArrowRight
+  Wrench, Cpu, Layout, ArrowRight, LogOut
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -34,26 +34,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hero Section - Radical Focus on Utility */}
+      {/* Hero Section - Elite Concierge & Risk Mitigation Focus */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-40"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"
           style={{ backgroundImage: `url(${maintenanceHero})` }}
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
         
         <div className="relative z-10 text-center max-w-5xl mx-auto space-y-8 py-24">
-          <div className="inline-block px-4 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-black text-sm uppercase tracking-[0.3em] rounded-full mb-4">
-            Dubai Home Services & Relocation
-          </div>
-          <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.9] drop-shadow-2xl">
-            Your Dubai Home<br />
-            <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Simplified.</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">
-            Professional maintenance, smart upgrades, and secure relocation packages. <br />
-            <span className="text-emerald-400 font-bold">Fixed Prices • Expert Teams • WhatsApp Support</span>
-          </p>
+          <motion_div_placeholder>
+            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.9] drop-shadow-2xl">
+              Your Home in Dubai.<br />
+              Ready, Fixed, or Closed — <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Without the Stress.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-200 mb-12 font-medium max-w-3xl mx-auto leading-relaxed">
+              Move-In setup • Ongoing fixes • Smooth Move-Out • Apartments & Villas
+            </p>
+          </motion_div_placeholder>
           
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <Link href="/residents">
@@ -61,17 +59,29 @@ export default function Home() {
                 size="lg" 
                 className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3"
               >
-                <Wrench className="w-6 h-6" /> I Live in Dubai
+                <HomeIcon className="w-6 h-6" /> I’m Moving In
               </Button>
             </Link>
-            <Link href="/relocate">
+            <Link href="/residents">
               <Button 
                 size="lg" 
                 className="bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl px-12 h-20 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3"
               >
-                <HomeIcon className="w-6 h-6" /> I'm Relocating
+                <LogOut className="w-6 h-6" /> I’m Moving Out
               </Button>
             </Link>
+          </div>
+
+          <div className="pt-4">
+            <Link href="/residents/support">
+              <button className="text-gray-400 hover:text-emerald-400 text-sm font-bold uppercase tracking-widest transition-colors">
+                I already live here → Resident Services
+              </button>
+            </Link>
+          </div>
+
+          <div className="pt-8 text-emerald-500/60 text-xs font-black uppercase tracking-widest">
+            Assessment within 24–48 hours • Apartments & Villas • Fast, coordinated setup
           </div>
         </div>
       </section>
@@ -171,3 +181,10 @@ export default function Home() {
     </div>
   );
 }
+
+// Fixed motion div placeholder for build speed
+const motion_div_placeholder = ({ children }: { children: React.ReactNode }) => (
+  <div className="space-y-6">
+    {children}
+  </div>
+);

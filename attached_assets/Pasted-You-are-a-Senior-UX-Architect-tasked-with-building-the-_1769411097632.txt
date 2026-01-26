@@ -1,0 +1,142 @@
+You are a Senior UX Architect tasked with building the **end-to-end survival funnel** for DeliWer.com. The goal is to **maximize conversion, reduce cognitive load, and establish operational trust** for Dubai residents and expats.  
+
+The funnel includes: **Homepage → /residents → Move-In & Move-Out Package Pages**.
+
+---
+
+## 1️⃣ HOMEPAGE — DECISION-FIRST HERO
+
+### Hero / Above the Fold
+- Headline: "Your Home in Dubai. Ready, Fixed, or Closed — Without the Stress."
+- Subheadline: "Move-In setup • Ongoing fixes • Smooth Move-Out • Apartments & Villas"
+- Primary CTA Buttons:
+    - 🟢 "I’m Moving In" → `/residents#move-in-tile`
+    - 🔴 "I’m Moving Out" → `/residents#move-out-tile`
+- Secondary micro-link (small): "I already live here → Resident Services" → `/residents/support`
+
+### Trust / Proof Mini-Bar
+- "Assessment within 24–48 hours • Apartments & Villas • Fast, coordinated setup"
+
+---
+
+## 2️⃣ /RESIDENTS PAGE
+
+### Hero / Above the Fold
+- Headline: "Your Home in Dubai. Ready, Fixed, or Closed — Without the Stress."
+- Subheadline: "Move-In setup • Ongoing fixes • Smooth Move-Out • Apartments & Villas"
+- Primary CTA Buttons:
+    - 🟢 "I’m Moving In" → `/move-in-package`
+    - 🔴 "I’m Moving Out" → `/move-out-package`
+- Secondary micro-link: "I already live here → Resident Services" → `/residents/support`
+
+### 3-Tile Decision Flow
+1. **I’m Moving In**
+   - Description: Prepare home fully before unpacking
+   - CTA: "View Move-In Package" → `/move-in-package`
+   - Micro-trust: "Assessment & setup within 24–48h"
+
+2. **Something Needs Fixing**
+   - Description: AC, plumbing, electrical
+   - CTA: "Book Maintenance"
+   - Micro-trust: "Apartment & villa coverage"
+
+3. **I’m Moving Out**
+   - Description: Removal, e-waste, handover
+   - CTA: "View Move-Out Package" → `/move-out-package`
+   - Micro-trust: "Old items handled compliantly"
+
+### Trust / Proof Module
+- Headline: "Designed for Real Homes in Dubai"
+- Bullets:
+    - Dubai-wide coverage — apartments & villas
+    - Single point of contact — no chasing multiple technicians
+    - Fast assessments — same-day or next-day scheduling
+    - Move-In & Move-Out specialists
+    - Responsible removal — e-waste handled correctly
+- Footer: "Supporting residents, landlords, and relocating families across Dubai."
+
+### Optional Micro-Flow
+1. Pick your need
+2. We schedule & coordinate
+3. We execute & confirm completion
+
+### Footer / Next Step
+- Link to `/relocate` → international relocation & visa support
+- WhatsApp: +971523946311
+
+---
+
+## 3️⃣ MOVE-IN PACKAGE PAGE
+
+### Hero / Headline
+"Your Home Fully Ready — Before You Unpack"
+
+### Subheadline
+Move-In setup, AC, water, essentials, and minor fixes coordinated end-to-end.
+
+### Features / Bullets
+- AC inspection & basic servicing
+- Water setup / filter installation
+- Home essentials starter pack
+- Minor fixes & coordination
+- One point of contact — no chasing multiple vendors
+
+### Operational Proof
+- Assessment within 24 hours
+- Setup completed in 1–2 days
+- Apartments & villas across Dubai
+
+### CTA
+🟢 "Book Move-In Assessment →" (link to WhatsApp or booking form)
+
+---
+
+## 4️⃣ MOVE-OUT PACKAGE PAGE
+
+### Hero / Headline
+"Leave Clean. Disconnect Right. Avoid Penalties"
+
+### Subheadline
+Move-Out removal, e-waste, utility disconnections, and landlord handover — fully coordinated.
+
+### Features / Bullets
+- Furniture removal or resale
+- Appliance disposal / e-waste
+- AC, water, and utility disconnections
+- Landlord handover coordination
+
+### Operational Proof
+- Fast clearance timelines
+- DM-compliant disposal
+- Apartments & villas supported across Dubai
+
+### CTA
+🔴 "Plan My Move-Out →" (link to WhatsApp or booking form)
+
+---
+
+## 5️⃣ TRUST / PROOF MODULE (All Pages)
+- Headline: "Designed for Real Homes in Dubai"
+- Bullets / Icons:
+    - Dubai-wide coverage — apartments & villas
+    - Single point of contact — no chasing multiple technicians
+    - Fast assessments — same-day or next-day scheduling
+    - Move-In & Move-Out specialists
+    - Responsible removal — e-waste handled correctly
+- Footer Line: "Supporting residents, landlords, and relocating families across Dubai."
+
+---
+
+## 6️⃣ DEVELOPMENT INSTRUCTIONS
+- Build in HTML/CSS/JS
+- Fully responsive for desktop, tablet, and mobile
+- Semantic headings (H1, H2, H3)
+- Buttons fully clickable with hover & active states
+- Apartment/villa tags visible on features
+- Include microcopy for timeframes
+- Accessibility-ready (ARIA roles, alt text)
+- Optional icons for package features and operational proof
+
+---
+
+OUTPUT: **Three interconnected pages** (Homepage, `/residents`, Move-In & Move-Out Packages) fully ready for deployment and end-to-end conversion flow.
