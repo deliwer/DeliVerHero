@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
       <SEOMeta 
-        title="DeliWer | Dubai Home Services & Relocation Experts"
+        title="DeliWer | Home Life in Dubai, Simplified."
         description="Professional home maintenance, smart home upgrades, and relocation packages in Dubai. Fixed pricing, expert technicians, and WhatsApp support."
       />
 

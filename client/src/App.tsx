@@ -132,6 +132,12 @@ function Router() {
 
         {/* Relocation Services */}
         <Route path="/relocate" component={Relocate} />
+        <Route path="/relocate#move-in-packs">
+          <Redirect to="/move-in-package" />
+        </Route>
+        <Route path="/relocate#move-out-packs">
+          <Redirect to="/move-out-package" />
+        </Route>
         <Route path="/relocate/business-setup" component={BusinessSetupPage} />
         <Route path="/relocate/planning" component={RelocatePlanning} />
         <Route path="/relocate/arrival" component={RelocateArrival} />
