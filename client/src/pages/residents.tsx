@@ -20,7 +20,7 @@ const actionTiles = [
     description: "Everything your home needs from day one: AC check, deep cleaning, water setup, and home readiness.",
     icon: CheckCircle,
     color: "emerald",
-    href: "/move-in-landing",
+    href: "/relocate#move-in-packs",
     cta: "View Move-In Package",
     featured: true
   },
@@ -39,7 +39,7 @@ const actionTiles = [
     description: "Removal and compliance handled end-to-end. Appliance and furniture removal included.",
     icon: Recycle,
     color: "amber",
-    href: "/residence/move-out",
+    href: "/relocate#move-out-pack",
     cta: "View Move-Out Package",
     trustLine: "Old items are removed and handled compliantly as part of the move-out."
   }

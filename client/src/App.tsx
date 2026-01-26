@@ -130,27 +130,12 @@ function Router() {
 
         {/* Residents Page */}
         <Route path="/residents" component={Residents} />
-
-        {/* Relocation Services */}
-        <Route path="/relocate" component={Relocate} />
-        <Route path="/relocate/business-setup" component={BusinessSetupPage} />
-        <Route path="/relocate/planning" component={RelocatePlanning} />
-        <Route path="/relocate/arrival" component={RelocateArrival} />
-        <Route path="/relocate/concierge" component={RelocateConcierge} />
-        <Route path="/relocate/exit" component={RelocateExitSubpage} />
-        <Route path="/relocate-exit" component={RelocateExit} />
-        <Route path="/relocate-community" component={RelocateCommunity} />
-        <Route path="/relocate-pricing" component={InternationalRelocationPricing} />
-
-        {/* Errand Runner Service */}
-        <Route path="/errand" component={ErrandPage} />
-
-
-        {/* Housing - Rent, Buy, Invest */}
-        <Route path="/residence" component={Residence} />
-        <Route path="/residence/find-a-place" component={FindAPlace} />
-        <Route path="/residence/move-in" component={MoveInSubpage} />
-        <Route path="/residence/move-out" component={MoveOutSubpage} />
+        <Route path="/residence">
+          <Redirect to="/residents" />
+        </Route>
+        <Route path="/residence/:rest*">
+          {(params: { rest?: string }) => <Redirect to={`/residents${params.rest ? '/' + params.rest : ''}`} />}
+        </Route>
 
         {/* Core Site Pages */}
         <Route path="/privacy" component={Privacy} />
