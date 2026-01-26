@@ -1,0 +1,124 @@
+You are a Senior UX Architect building a **high-intent Business Setup gateway page** for DeliWer.com.
+
+This page is NOT a branding page and NOT a long explainer.
+Its sole purpose is to **capture serious business setup enquiries** (Free Zone, Trading, DAFZA, etc.) and route them to WhatsApp efficiently.
+
+Target audience:
+- Overseas entrepreneurs (India, Pakistan, Africa, CIS)
+- Traders, import/export, electronics, refurbished goods
+- Users already aware of Free Zones (DAFZA, DMCC, IFZA)
+
+Tone:
+Clear, confident, operational. No aspirational language. No ecosystem or platform talk.
+
+---
+
+## PAGE STRUCTURE (ONE-SCROLL, MOBILE-FIRST)
+
+### 1️⃣ HERO — INTENT CONFIRMATION (ABOVE THE FOLD)
+
+Headline:
+"Business Setup in Dubai — Done Right, Without Guesswork"
+
+Subheadline:
+"Free Zone company formation, trading licenses & setup support — including DAFZA."
+
+Primary CTA (large, high-contrast):
+🟢 "Talk to a Setup Advisor (WhatsApp)"
+
+CTA behavior:
+- Opens WhatsApp
+- Prefilled message: "Business Setup enquiry – Free Zone / Trading"
+
+Micro-proof line (small text under CTA):
+"Free Zone • Trading • Fast timelines"
+
+---
+
+### 2️⃣ WHO THIS IS FOR (INTENT FILTER)
+
+Section title:
+"This is for you if you are:"
+
+Bullet points:
+- A trader, importer, or exporter
+- In electronics, phones, or refurbished goods
+- Planning to set up in a Dubai Free Zone
+- Looking for DAFZA, DMCC, IFZA, or similar zones
+
+Design note:
+This section should intentionally **filter out low-quality leads**.
+
+---
+
+### 3️⃣ WHAT WE HELP WITH (NO FLUFF)
+
+Section title:
+"What we help with"
+
+Bullets:
+- Free Zone selection (DAFZA, DMCC, IFZA, etc.)
+- Trading & commercial license guidance
+- Setup timelines and cost clarity
+- Basic relocation coordination (if required)
+
+Important:
+Use the word **coordination**, not “full relocation”.
+
+---
+
+### 4️⃣ HOW IT WORKS (DE-RISKING)
+
+Section title:
+"How it works"
+
+Steps (icons optional):
+1. Share your business activity on WhatsApp
+2. We confirm the right Free Zone & license
+3. We guide setup and next steps
+
+Keep this section concise and believable.
+
+---
+
+### 5️⃣ SECONDARY CTA (REPEAT ACTION)
+
+Button:
+🟢 "Start Business Setup Discussion"
+
+Same WhatsApp link and prefilled message as the primary CTA.
+
+---
+
+### 6️⃣ SOFT CROSS-LINK (OPTIONAL, BELOW THE FOLD)
+
+Small text block:
+"Relocating as part of your setup?
+We can coordinate visa & housing support → /relocate"
+
+Design rule:
+- This must NOT compete with the main CTA
+- Keep it visually secondary
+
+---
+
+## DESIGN & DEVELOPMENT INSTRUCTIONS
+
+- Build in HTML / CSS / JS
+- Mobile-first layout
+- One primary action only (WhatsApp)
+- No navigation clutter
+- Clear visual hierarchy
+- Semantic HTML (H1, H2, lists)
+- Accessibility-friendly
+- Fast load, minimal assets
+
+---
+
+## OUTPUT
+
+A **single production-ready `/business-setup` page** that:
+- Captures high-intent business setup leads
+- Routes them cleanly to WhatsApp
+- Does NOT dilute relocation or residents funnels
+- Is suitable for a 14–30 day validation test
