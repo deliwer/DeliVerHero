@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { MessageCircle, CheckCircle, ShieldCheck, Zap, ArrowRight, Plane, Recycle, Users2 } from "lucide-react";
 import { Link } from "wouter";
 
+import moveOutHero from "@/assets/images/move-out-hero.jpg";
+
 export default function MoveOutSubpage() {
   const WHATSAPP_NUMBER = "+971523946311";
   
@@ -20,16 +22,22 @@ export default function MoveOutSubpage() {
         description="Dubai move-out services. Deposit recovery, utility closure, and professional cleaning. Leave Dubai without the stress."
       />
       
-      <section className="relative py-20 px-4 overflow-hidden border-b border-white/5">
+      <section className="relative py-20 px-4 overflow-hidden border-b border-white/5 min-h-[70vh] flex items-center justify-center">
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
+          style={{ backgroundImage: `url(${moveOutHero})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/70 to-slate-950" />
+        
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <Badge className="mb-6 bg-emerald-500 text-white border-none py-2 px-6 rounded-full text-sm font-black uppercase tracking-widest">
             Smooth Exit Pack
           </Badge>
-          <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none">
+          <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none text-white drop-shadow-2xl">
             Leaving Dubai? <br />
             <span className="text-emerald-500 italic font-serif lowercase tracking-normal">We Handle Your Home Exit — End to End.</span>
           </h1>
-          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed font-bold">
             From assessment to handover, including trade-in and compliant disposal.
           </p>
           <Button 
