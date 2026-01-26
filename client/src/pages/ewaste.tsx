@@ -24,17 +24,17 @@ export default function EWastePage() {
       {/* Hero Section - STRICT COMPLIANCE LAYER */}
       <div className="relative pt-32 pb-20 px-4 text-center border-b border-white/5 bg-slate-900 overflow-hidden min-h-[50vh] flex items-center justify-center">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 scale-105"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-50 scale-105"
           style={{ backgroundImage: `url(${ewasteHero})` }}
         />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/60 to-slate-950" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950" />
         
         <div className="relative z-10 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight text-white drop-shadow-2xl">
             Responsible Removal & <br />
             <span className="text-emerald-500 italic font-serif lowercase tracking-normal">E-Waste Handling — Managed for You</span>
           </h1>
-          <p className="text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-bold">
+          <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed font-bold drop-shadow-lg">
             Included as part of DeliWer move-out, trade-in, and replacement services.
           </p>
         </div>

@@ -109,7 +109,7 @@ export default function ResidentsPage() {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105"
           style={{ backgroundImage: `url(${residentsHero})` }}
         />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/70 to-slate-950" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/80 to-slate-950" />
         
         <div className="relative z-10 text-center px-4 max-w-4xl py-24 space-y-8">
           <motion.div
@@ -117,10 +117,10 @@ export default function ResidentsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9] text-white">
+            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9] text-white drop-shadow-2xl">
               Everything Your Dubai Home Needs — <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Without the Hassle</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto leading-relaxed font-bold">
+            <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-bold drop-shadow-lg">
               Fixed starting prices • WhatsApp support • Apartments & Villas
             </p>
           </motion.div>
