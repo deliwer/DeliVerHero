@@ -59,11 +59,16 @@ export default function ResidentsPage() {
             transition={{ delay: 0.5 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <Link href="/contact">
-              <Button variant="outline" className="border-white/10 hover:bg-white/5 text-gray-400 font-bold uppercase tracking-widest text-xs h-12 rounded-xl">
-                I already live here → Resident Services
-              </Button>
-            </Link>
+            <Button 
+              variant="outline" 
+              className="border-white/10 hover:bg-white/5 text-gray-400 font-bold uppercase tracking-widest text-xs h-12 rounded-xl"
+              onClick={() => {
+                const element = document.getElementById('maintenance-card');
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              I already live here → Resident Services
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -80,7 +85,10 @@ export default function ResidentsPage() {
               viewport={{ once: true }}
               className="lg:col-span-8 h-full"
             >
-              <Card className="relative group min-h-[500px] border-emerald-500/30 overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl shadow-emerald-500/10">
+              <Card 
+              id="maintenance-card"
+              className="relative group min-h-[500px] border-emerald-500/30 overflow-hidden rounded-[2.5rem] bg-slate-900 shadow-2xl shadow-emerald-500/10"
+            >
                 <div 
                   className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40"
                   style={{ backgroundImage: `url(${acMaintenanceHero})` }}
