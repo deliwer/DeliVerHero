@@ -55,17 +55,15 @@ export default function MoveInPackagePage() {
             >
               Book Move-In Assessment <ArrowRight className="w-6 h-6" />
             </Button>
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto"
-              onClick={() => {
-                const element = document.getElementById('move-in-packs');
-                if (element) element.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              View Package Details
-            </Button>
+            <Link href="/relocate#move-in-packs">
+              <Button 
+                variant="outline"
+                size="lg"
+                className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto"
+              >
+                View Package Details
+              </Button>
+            </Link>
           </motion.div>
           <motion.p
             initial={{ opacity: 0 }}
