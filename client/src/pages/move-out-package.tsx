@@ -59,7 +59,7 @@ export default function MoveOutPackagePage() {
         </div>
       </section>
 
-      <section className="py-24 px-4">
+      <section id="move-out-packs" className="py-24 px-4">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <h2 className="text-3xl font-black uppercase tracking-tight text-white">Package Features</h2>
