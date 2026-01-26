@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { 
   ArrowRight,
   MessageCircle,
@@ -10,13 +10,15 @@ import {
   Home,
   Check,
   Star,
-  Users,
   Shield,
-  DollarSign,
+  AlertTriangle,
+  Zap,
+  Clock,
   LogOut,
+  ChevronRight
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { TrustStrip, PartnerStrip, TestimonialCarousel } from "@/components/trust-strip";
+import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
 import relocateHero from "@/assets/images/relocate-hero.jpg";
 
 export default function Relocate() {
@@ -33,7 +35,6 @@ export default function Relocate() {
   };
 
   useEffect(() => {
-    // Check for hash in URL and scroll to relevant section
     const hash = window.location.hash;
     if (hash === '#move-in-packs') {
       setTimeout(scrollToMoveIn, 100);
@@ -42,321 +43,236 @@ export default function Relocate() {
     }
   }, [location]);
 
-  const moveInPacks = [
+  const moveInOptions = [
     {
-      name: "Essential Move-In",
+      name: "Essential",
+      tagline: "Just the Basics",
       price: "299",
-      description: "Basic home readiness and coordination.",
-      features: [
-        "Move-in coordination",
-        "Basic home readiness check",
-        "Utility checklist",
-        "Issue reporting & follow-up"
-      ]
+      description: "Ideal if you're on a budget but need a professional check.",
+      features: ["Move-in coordination", "Safety readiness check", "Utility activation list"],
+      color: "slate"
     },
     {
-      name: "Summer Ready Home",
+      name: "Summer Survival",
+      tagline: "Most Popular",
       price: "599",
       recommended: true,
-      description: "Complete cooling and water setup for Dubai's heat.",
-      features: [
-        "Everything in Essential",
-        "AC inspection & basic service",
-        "Cooling efficiency check",
-        "Drinking water starter delivery",
-        "Leak & water pressure check",
-        "Minor fix coordination",
-        "Priority support"
-      ]
+      description: "Crucial for Dubai. We ensure your AC actually cools and water is ready.",
+      features: ["Everything in Essential", "Full AC service & deep coil clean", "Water pressure & leak audit", "Drinking water starter kit"],
+      color: "emerald"
     },
     {
-      name: "Full Relocation Comfort",
+      name: "White Glove",
+      tagline: "Zero Stress",
       price: "1,199",
-      description: "The ultimate white-glove relocation experience.",
-      features: [
-        "Everything in Summer Ready",
-        "Deep cleaning",
-        "AC AMC (initial visit)",
-        "Water subscription setup",
-        "Trade-in / recycle coordination",
-        "Dedicated relocation manager"
-      ]
+      description: "Arrive at a perfect home. We handle the deep clean and all setups.",
+      features: ["Everything in Summer", "Professional deep cleaning", "Dedicated account manager", "Smart home/WiFi setup assistance"],
+      color: "blue"
     }
   ];
 
-  const moveOutPack = {
-    name: "Smooth Exit Pack",
-    price: "499",
-    description: "Leave Dubai stress-free with everything handled.",
-    features: [
-      "Move-out coordination",
-      "Final cleaning & inspection prep",
-      "Utility closure coordination",
-      "Trade-in / recycling service",
-      "Landlord handover support",
-      "Deposit protection checklist"
-    ]
-  };
-
   return (
-    <div className="min-h-screen bg-dubai-gradient">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500/30 font-sans">
       <Helmet>
-        <title>Dubai Relocation Services | Move-In & Move-Out Packs | DeliWer</title>
-        <meta name="description" content="Moving to or from Dubai? Get fixed-price relocation packs. Move-in readiness, summer survival, and smooth exit — managed by one accountable team." />
+        <title>Dubai Relocation: Move-In & Secure Exit Packs | DeliWer</title>
+        <meta name="description" content="Moving to or from Dubai? Secure your home readiness or protect your deposit with our fixed-price relocation and exit packages." />
       </Helmet>
 
-      {/* Micro Trust Line - Always Above Fold */}
-      <section className="px-4 py-3 border-b border-white/10">
+      {/* Trust Strip */}
+      <section className="px-4 py-3 border-b border-white/10 bg-black/40">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>
       </section>
 
       {/* Hero Section */}
-      <section className="relative px-4 py-16 md:py-24 overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4">
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-40 scale-105"
           style={{ backgroundImage: `url(${relocateHero})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
-        <div className="relative max-w-4xl mx-auto text-center space-y-6">
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
-              Relocating To or From Dubai? <br />
-              <span className="text-blue-400">We Handle Your Home Before and After You Move.</span>
+            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
+              Moving in Dubai <br />
+              <span className="text-blue-500 italic font-serif lowercase tracking-normal">Simplified.</span>
             </h1>
-            <p className="text-lg md:text-xl text-blue-100/80 max-w-2xl mx-auto">
-              Move-in readiness, summer survival, and smooth move-out — managed by one accountable team
+            <p className="text-xl md:text-2xl text-blue-100/80 max-w-2xl mx-auto font-medium">
+              One accountable team to handle your home readiness or ensure a penalty-free exit.
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
-          >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               onClick={scrollToMoveIn}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2 h-14 text-lg px-8"
-              data-testid="button-moving-in"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
             >
-              <Home className="w-5 h-5" />
-              I'm Moving Into Dubai
+              <Home className="mr-2 h-6 w-6" /> I'm Moving In
             </Button>
             <Button 
               onClick={scrollToMoveOut}
-              className="bg-blue-600 hover:bg-blue-500 text-white gap-2 h-14 text-lg px-8"
-              data-testid="button-moving-out"
+              className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-900/40"
             >
-              <Plane className="w-5 h-5" />
-              I'm Moving Out of Dubai
+              <Plane className="mr-2 h-6 w-6" /> I'm Moving Out
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Partner Strip */}
-      <section className="px-4">
-        <div className="max-w-4xl mx-auto">
-          <PartnerStrip />
-        </div>
-      </section>
+      <PartnerStrip />
 
-      {/* Move-In Packs Section */}
-      <section ref={moveInRef} id="move-in-packs" className="px-4 py-16 md:py-20">
+      {/* Move-In Section: Comparable Options */}
+      <section ref={moveInRef} id="move-in-packs" className="px-4 py-24 bg-slate-950">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Move-In Packs</h2>
-            <p className="text-lg text-emerald-100/70 max-w-2xl mx-auto">
-              Fixed-price packages to get your new Dubai home ready from day one
-            </p>
-            <p className="text-sm text-emerald-400 mt-2">No hidden fees • Apartments & Townhouses: Fixed Price • Villas: Custom Quote</p>
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Your New Home, <span className="text-emerald-500">Ready.</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-medium text-lg">Don't move into a hot, dusty apartment. Choose your readiness level below.</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6">
-            {moveInPacks.map((pack, i) => (
+          <div className="grid lg:grid-cols-3 gap-4">
+            {moveInOptions.map((opt, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * i }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="relative"
               >
-                <Card 
-                  className={`relative p-6 md:p-8 flex flex-col h-full transition-all ${
-                    pack.recommended 
-                      ? "border-2 border-emerald-500 shadow-xl shadow-emerald-500/20 bg-emerald-950/30" 
-                      : "border border-slate-700 bg-black/40"
-                  }`}
-                >
-                  {pack.recommended && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-white px-4 py-1 rounded-full text-sm font-bold flex items-center gap-1">
-                      <Star className="w-3 h-3 fill-current" />
-                      Recommended
+                <Card className={`h-full bg-white/5 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden ${opt.recommended ? 'ring-2 ring-emerald-500 shadow-2xl shadow-emerald-500/20' : ''}`}>
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className="mb-8">
+                      <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full ${opt.recommended ? 'bg-emerald-500 text-white' : 'bg-white/10 text-gray-400'}`}>
+                        {opt.tagline}
+                      </span>
+                      <h3 className="text-3xl font-black uppercase mt-4">{opt.name}</h3>
+                      <p className="text-gray-400 text-sm mt-2 font-medium">{opt.description}</p>
                     </div>
-                  )}
-                  
-                  <div className="mb-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{pack.name}</h3>
-                    <p className="text-gray-400 text-sm">{pack.description}</p>
-                  </div>
 
-                  <div className="mb-6">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-sm font-medium text-gray-400">From</span>
-                      <span className="text-3xl font-bold text-emerald-400">AED {pack.price}</span>
+                    <div className="mb-8 bg-white/5 rounded-2xl p-4 border border-white/5">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-sm font-bold text-gray-500 uppercase">AED</span>
+                        <span className="text-4xl font-black text-white">{opt.price}</span>
+                        <span className="text-xs font-bold text-gray-500 ml-2">Fixed Price</span>
+                      </div>
                     </div>
-                  </div>
 
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {pack.features.map((feature, index) => (
-                      <li key={index} className="flex gap-3 text-sm text-gray-300">
-                        <div className="mt-0.5 bg-emerald-500/20 rounded-full p-0.5 shrink-0 h-5 w-5 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-emerald-400" />
-                        </div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                    <ul className="space-y-4 mb-10 flex-1">
+                      {opt.features.map((f, idx) => (
+                        <li key={idx} className="flex gap-3 text-sm font-bold text-gray-300 items-start">
+                          <Check className="w-5 h-5 text-emerald-500 shrink-0" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
 
-                  <Button 
-                    onClick={() => window.open(`https://wa.me/971523946311?text=Hi, I am interested in the ${pack.name} pack (AED ${pack.price}). Please let me know the next steps.`, '_blank')}
-                    className={`w-full h-12 font-bold ${
-                      pack.recommended 
-                        ? "bg-emerald-600 hover:bg-emerald-500" 
-                        : "bg-slate-700 hover:bg-slate-600"
-                    }`}
-                    data-testid={`button-pack-${pack.name.toLowerCase().replace(/\s+/g, '-')}`}
-                  >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Select Pack
-                  </Button>
+                    <Button 
+                      className={`w-full h-14 rounded-xl font-black uppercase tracking-widest ${opt.recommended ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-white/10 hover:bg-white/20'}`}
+                      onClick={() => window.open(`https://wa.me/971523946311?text=Hi, I want the ${opt.name} Move-In Pack for AED ${opt.price}.`, '_blank')}
+                    >
+                      Choose {opt.name}
+                    </Button>
+                  </CardContent>
                 </Card>
               </motion.div>
             ))}
           </div>
-
-          {/* Testimonial for Summer Ready */}
-          <div className="mt-8 max-w-xl mx-auto">
-            <div className="bg-emerald-950/30 border border-emerald-500/30 rounded-xl p-4 text-center">
-              <div className="flex justify-center gap-1 mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-sm text-white italic">"AC serviced and water delivered in hours — DeliWer saved our move-in week."</p>
-              <p className="text-xs text-emerald-100/60 mt-2">— Ahmed, JVC</p>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Move-Out Pack Section */}
-      <section ref={moveOutRef} id="move-out-pack" className="px-4 py-16 md:py-20 border-t border-white/10">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Move-Out Pack</h2>
-            <p className="text-lg text-blue-100/70 max-w-2xl mx-auto">
-              Leave Dubai stress-free with your deposit secured
-            </p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="p-6 md:p-8 border-2 border-blue-500/50 bg-blue-950/20">
-              <div className="flex flex-col md:flex-row gap-8">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
-                      <LogOut className="w-6 h-6 text-blue-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white">{moveOutPack.name}</h3>
-                      <p className="text-gray-400 text-sm">{moveOutPack.description}</p>
-                    </div>
+      {/* Secure Exit: Risk Mitigation Messaging */}
+      <section ref={moveOutRef} id="move-out-pack" className="px-4 py-24 bg-slate-900/50 border-y border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest">
+                <Shield className="w-4 h-4" /> Deposit Protection
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9]">
+                The Secure <br />
+                <span className="text-blue-500">Exit Package.</span>
+              </h2>
+              <p className="text-xl text-gray-400 font-medium leading-relaxed">
+                Leaving Dubai? Landlords often claim deposits for minor maintenance or improper closing of accounts. We remove the risk.
+              </p>
+              
+              <div className="grid gap-4">
+                {[
+                  { icon: AlertTriangle, text: "Eliminate unfair deposit deductions", color: "amber" },
+                  { icon: Zap, text: "Mandatory E-Waste & compliance handling", color: "blue" },
+                  { icon: Clock, text: "Same-day apartment handover prep", color: "emerald" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
+                    <item.icon className={`w-6 h-6 text-${item.color}-500`} />
+                    <span className="font-bold text-gray-200">{item.text}</span>
                   </div>
+                ))}
+              </div>
+            </div>
 
-                  <ul className="space-y-3 mb-6">
-                    {moveOutPack.features.map((feature, index) => (
-                      <li key={index} className="flex gap-3 text-sm text-gray-300">
-                        <div className="mt-0.5 bg-blue-500/20 rounded-full p-0.5 shrink-0 h-5 w-5 flex items-center justify-center">
-                          <Check className="w-3 h-3 text-blue-400" />
-                        </div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+            <Card className="bg-slate-950 border-blue-500/30 rounded-[3rem] p-1 shadow-2xl shadow-blue-500/10">
+              <CardContent className="p-10 space-y-8">
+                <div className="space-y-2">
+                  <h3 className="text-3xl font-black uppercase tracking-tight">One-Call Exit</h3>
+                  <p className="text-blue-400 font-black uppercase tracking-widest text-xs">Total Compliance & Handover</p>
                 </div>
 
-                <div className="flex flex-col justify-center items-center md:items-end gap-4 md:min-w-[200px]">
-                  <div className="text-center md:text-right">
-                    <div className="text-sm font-medium text-gray-400">From</div>
-                    <div className="text-3xl font-bold text-blue-400">AED {moveOutPack.price}</div>
+                <div className="space-y-4">
+                  {[
+                    "Utility closure coordination",
+                    "Final painting & snagging fixes",
+                    "Mandatory appliance removal",
+                    "Landlord inspection attendance",
+                    "Compliance certificate assistance"
+                  ].map((f, i) => (
+                    <div key={i} className="flex gap-3 text-sm font-bold text-gray-300">
+                      <Check className="w-5 h-5 text-blue-500 shrink-0" />
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-6 border-t border-white/10">
+                  <div className="flex justify-between items-end mb-6">
+                    <div>
+                      <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Starting From</p>
+                      <p className="text-4xl font-black tracking-tighter">AED 499</p>
+                    </div>
+                    <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1 underline">Apartments & Villas</p>
                   </div>
                   <Button 
-                    onClick={() => window.open(`https://wa.me/971523946311?text=Hi, I am interested in the Smooth Exit Pack. I'm leaving Dubai and need help with move-out coordination.`, '_blank')}
-                    className="bg-blue-600 hover:bg-blue-500 h-12 px-8 font-bold"
-                    data-testid="button-exit-pack"
+                    className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-blue-900/40"
+                    onClick={() => window.open(`https://wa.me/971523946311?text=I am moving out and need the Secure Exit Pack. Please help me secure my deposit.`, '_blank')}
                   >
-                    <MessageCircle className="w-4 h-4 mr-2" />
-                    Select Exit Pack
+                    Protect My Deposit <ArrowRight className="ml-2 h-6 w-6" />
                   </Button>
                 </div>
-              </div>
+              </CardContent>
             </Card>
-          </motion.div>
-
-          {/* Exit testimonial */}
-          <div className="mt-8 max-w-xl mx-auto">
-            <div className="bg-blue-950/30 border border-blue-500/30 rounded-xl p-4 text-center">
-              <div className="flex justify-center gap-1 mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-sm text-white italic">"Exit handover was smooth. Got our full deposit back without any issues."</p>
-              <p className="text-xs text-blue-100/60 mt-2">— Michael, Downtown Dubai</p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Strip */}
-      <section className="px-4 py-8 border-t border-white/10">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-blue-100/70 text-sm">
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-blue-400" />
-              <span>Rental-friendly</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <DollarSign className="w-4 h-4 text-blue-400" />
-              <span>Fixed pricing</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-blue-400" />
-              <span>One accountable team</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MessageCircle className="w-4 h-4 text-blue-400" />
-              <span>WhatsApp available</span>
-            </div>
+      {/* Social Proof / FAQ Micro-Section */}
+      <section className="px-4 py-24 bg-slate-950">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          <h3 className="text-2xl font-black uppercase tracking-tight">Trusted by Expats in JLT, Marina & Downtown</h3>
+          <div className="flex flex-wrap justify-center gap-12 grayscale opacity-50">
+            <span className="font-black italic text-2xl uppercase">Handover Pro</span>
+            <span className="font-black italic text-2xl uppercase">Relo-Expert</span>
+            <span className="font-black italic text-2xl uppercase">Dubai-Safe</span>
           </div>
+          <Link href="/residents">
+            <Button variant="link" className="text-gray-500 hover:text-emerald-400 font-black uppercase tracking-[0.2em] text-[10px]">
+              Already settled? View Maintenance Services <ChevronRight className="w-3 h-3 ml-1" />
+            </Button>
+          </Link>
         </div>
-      </section>
-
-      {/* Residents Link */}
-      <section className="px-4 py-8 text-center">
-        <Link href="/residents" className="text-emerald-400 hover:text-emerald-300 transition-colors">
-          Already living in Dubai? See resident services <ArrowRight className="w-4 h-4 inline ml-1" />
-        </Link>
       </section>
     </div>
   );
