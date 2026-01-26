@@ -78,14 +78,12 @@ export default function ResidentsPage() {
         title="Home Maintenance & Repair Services Dubai | DeliWer"
         description="Professional home maintenance for Dubai residents. AC repair, plumbing, electrical, and urgent fixes. Fixed starting prices and WhatsApp support."
       />
-
       {/* Micro Trust Strip */}
       <section className="px-4 py-3 border-b border-white/10 bg-black/40">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>
       </section>
-
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <div 
@@ -118,13 +116,10 @@ export default function ResidentsPage() {
               size="lg"
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider rounded-xl h-16 px-12 text-lg shadow-2xl shadow-emerald-900/40"
               onClick={scrollToTiles}
-            >
-              Book Maintenance Now
-            </Button>
+            >Book Maintenance & Upgrades Now</Button>
           </motion.div>
         </div>
       </section>
-
       {/* 3 Situation-Based Decision Tiles */}
       <section id="action-tiles" className="px-4 py-24 bg-slate-950">
         <div className="max-w-6xl mx-auto">
@@ -182,7 +177,6 @@ export default function ResidentsPage() {
           </div>
         </div>
       </section>
-
       {/* Trust Section */}
       <section className="px-4 py-24 border-t border-white/5 bg-slate-900/30">
         <div className="max-w-4xl mx-auto text-center">
@@ -206,7 +200,6 @@ export default function ResidentsPage() {
           </div>
         </div>
       </section>
-
       {/* Footer CTA */}
       <section className="px-4 py-16 text-center border-t border-white/5 bg-emerald-950/10">
         <div className="max-w-2xl mx-auto space-y-6">
