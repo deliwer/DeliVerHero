@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { Wrench, Recycle, ArrowRight, CheckCircle, Smartphone, Layout, Cpu, DollarSign, Users } from "lucide-react";
+import { Wrench, ArrowRight, Smartphone, Layout, Cpu, DollarSign, Users, ChevronRight, Home, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
@@ -13,7 +13,7 @@ const getWhatsAppLink = (service: string) => {
   return `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(text)}`;
 };
 
-const actionTiles = [
+const serviceTiles = [
   {
     id: "maintenance",
     title: "Something Needs Fixing",
@@ -44,25 +44,6 @@ const actionTiles = [
     href: getWhatsAppLink("Interior Fitouts"),
     cta: "Request a Quote",
     price: "Free Assessment"
-  },
-  {
-    id: "move-in",
-    title: "I’m Moving In",
-    description: "Everything your home needs from day one: AC check, deep cleaning, and home readiness.",
-    icon: CheckCircle,
-    color: "slate",
-    href: "/relocate#move-in-packs",
-    cta: "View Move-In Package"
-  },
-  {
-    id: "move-out",
-    title: "I’m Moving Out",
-    description: "Removal and compliance handled end-to-end. Appliance removal included.",
-    icon: Recycle,
-    color: "amber",
-    href: "/relocate#move-out-pack",
-    cta: "View Move-Out Package",
-    trustLine: "Compliant disposal included in move-out services."
   }
 ];
 
@@ -101,8 +82,8 @@ export default function ResidentsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
       <SEOMeta 
-        title="Home Maintenance & Repair Services Dubai | DeliWer"
-        description="Professional home maintenance for Dubai residents. AC repair, plumbing, electrical, and urgent fixes. Fixed starting prices and WhatsApp support."
+        title="Home Maintenance & Smart Upgrades Dubai | DeliWer"
+        description="Professional home maintenance for Dubai residents. AC repair, plumbing, smart home upgrades, and interior fitouts with fixed pricing."
       />
 
       {/* Micro Trust Strip */}
@@ -127,10 +108,10 @@ export default function ResidentsPage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9] text-white drop-shadow-2xl">
-              Professional Home <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Maintenance</span> Made Simple
+              Professional Home <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Services</span> Made Simple
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed font-bold drop-shadow-lg">
-              AC Repair • Plumbing • Electrical • Emergency Fixes <br />
+              Maintenance • Smart Home • Interior Fitouts <br />
               <span className="text-sm uppercase tracking-[0.2em] text-emerald-400/80">Expert Technicians • Fixed Starting Prices • WhatsApp Booking</span>
             </p>
           </motion.div>
@@ -145,21 +126,21 @@ export default function ResidentsPage() {
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-wider rounded-xl h-16 px-12 text-lg shadow-2xl shadow-emerald-900/40"
               onClick={scrollToTiles}
             >
-              Book Maintenance Now
+              Explore Home Services
             </Button>
           </motion.div>
         </div>
       </section>
 
-      {/* 3 Situation-Based Decision Tiles */}
+      {/* Main Service Tiles */}
       <section id="action-tiles" className="px-4 py-24 bg-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Reliable Ongoing Care for Your Dubai Home</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-medium">From minor repairs to major upgrades, we ensure your living space stays in perfect condition throughout your stay.</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Reliable Care for Your Dubai Home</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-medium">From minor repairs to major smart home upgrades, we ensure your living space stays in perfect condition.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {actionTiles.map((tile, index) => {
+            {serviceTiles.map((tile, index) => {
               const colors = colorClasses[tile.color as keyof typeof colorClasses];
               return (
                 <motion.div
@@ -194,17 +175,36 @@ export default function ResidentsPage() {
                             {tile.cta} <ArrowRight className="w-5 h-5" />
                           </Button>
                         </Link>
-                        {tile.trustLine && (
-                          <p className="text-[10px] text-gray-500 uppercase font-black text-center tracking-widest leading-tight px-4">
-                            {tile.trustLine}
-                          </p>
-                        )}
                       </div>
                     </CardContent>
                   </Card>
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Demoted Relocation Footer */}
+      <section className="px-4 py-12 bg-slate-900/50 border-y border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="text-center md:text-left">
+              <h3 className="text-xl font-black uppercase text-white tracking-tight mb-2">Are you Moving soon?</h3>
+              <p className="text-gray-400 text-sm font-medium">Professional Move-In and Secure Exit packages for a stress-free transition.</p>
+            </div>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/relocate#move-in-packs">
+                <Button variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 h-12 px-6 rounded-xl font-black uppercase tracking-widest text-xs flex gap-2">
+                  <Home className="w-4 h-4" /> Move-In Packs
+                </Button>
+              </Link>
+              <Link href="/relocate#move-out-pack">
+                <Button variant="outline" className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10 h-12 px-6 rounded-xl font-black uppercase tracking-widest text-xs flex gap-2">
+                  <LogOut className="w-4 h-4" /> Secure Exit
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
