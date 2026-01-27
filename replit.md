@@ -3,18 +3,11 @@
 ## Overview
 DeliWer is a full-stack JavaScript application designed for sustainable living, e-commerce, AI integration, and rewards. It serves as a comprehensive platform including a climate activism initiative ("Pakistan Planet Hero Mission"), a B2B wholesale platform ("ChainTrack"), and a Dubai-based relocation and investment gateway ("DeliWer Relocate"). The project focuses on responsive design, gamification, and a user-friendly experience, targeting markets in Dubai and Pakistan, with a strong emphasis on lead generation and conversion optimization for production launch.
 
-## Recent Updates (Jan 24, 2026)
-- **Survival-Grade UX Refactor + Trust & Credibility**:
-  - Refactored homepage hero with simplified two-gateway approach: "I Live in Dubai" and "I'm Relocating"
-  - Created new `/residents` page with 4 action tiles: Maintenance, Water/Essentials, Home Upgrades, Trade-In/Recycle
-  - Redesigned `/relocate` page with clear move-in packs (Essential, Summer Ready, Full Comfort) and move-out pack
-  - Simplified navigation to three items: Residents | Relocation | Contact
-  - Added micro-trust strip with WhatsApp (+971 52 394 6311), email (info@deliwer.com), Dubai UAE location, Verified Services badge
-  - Partner/endorsement strip: GLG (Global Living Group), SGM (Smart Global Movers)
-  - Mini-testimonial carousel with real client quotes and 5-star ratings
-  - 3-step process microflow: Book → Inspect → Move-In Ready
-  - Operational badges: 1000+ homes serviced, Same-day assessment, Trusted by expat communities
-  - All CTAs lead to WhatsApp with pre-filled messages or focused action flows
+## Recent Updates (Jan 27, 2026)
+- **Homepage Optimization**:
+  - Added a discreet Business Setup micro-link in the hero section to capture high-intent users without disrupting the primary consumer flow.
+- **Relocation Flow Sync**:
+  - Synchronized anchor IDs (`#move-out-packs`) between the Residents and Relocation pages for seamless deep-linking and scrolling.
 
 ## Previous Updates (Jan 21, 2026)
 - **Residence & Relocate Integration**:
