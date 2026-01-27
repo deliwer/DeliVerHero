@@ -156,7 +156,7 @@ export default function ResidentsPage() {
                       <h4 className="text-xl font-black uppercase tracking-tight text-white">I’m Moving In</h4>
                     </div>
                     <p className="text-gray-400 text-sm font-medium leading-relaxed">Prepare home fully before unpacking. Assessment & setup within 24–48h.</p>
-                    <Link href="/relocate#move-in-packs">
+                    <Link href="/move-in-package">
                       <Button variant="link" className="p-0 h-auto text-emerald-500 font-black uppercase tracking-widest text-xs flex gap-2 group">
                         View Move-In Package <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </Button>
@@ -181,7 +181,7 @@ export default function ResidentsPage() {
                       <h4 className="text-xl font-black uppercase tracking-tight text-white">I’m Moving Out</h4>
                     </div>
                     <p className="text-gray-400 text-sm font-medium leading-relaxed">Removal, e-waste, and handover. Handle your exit compliantly.</p>
-                    <Link href="/relocate#move-out-packs">
+                    <Link href="/move-out-package">
                       <Button variant="link" className="p-0 h-auto text-blue-500 font-black uppercase tracking-widest text-xs flex gap-2 group">
                         View Move-Out Package <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </Button>
