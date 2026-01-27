@@ -109,20 +109,18 @@ export default function Relocate() {
           </motion.div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/move-in-package">
-              <Button 
-                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
-              >
-                <Home className="mr-2 h-6 w-6" /> I'm Moving In
-              </Button>
-            </Link>
-            <Link href="/move-out-package">
-              <Button 
-                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-900/40"
-              >
-                <Plane className="mr-2 h-6 w-6" /> I'm Moving Out
-              </Button>
-            </Link>
+            <Button 
+              onClick={scrollToMoveIn}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
+            >
+              <Home className="mr-2 h-6 w-6" /> I'm Moving In
+            </Button>
+            <Button 
+              onClick={scrollToMoveOut}
+              className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-900/40"
+            >
+              <Plane className="mr-2 h-6 w-6" /> I'm Moving Out
+            </Button>
           </div>
         </div>
       </section>
@@ -247,13 +245,12 @@ export default function Relocate() {
                     </div>
                     <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1 underline">Apartments & Villas</p>
                   </div>
-                  <Link href="/move-out-package">
-                    <Button 
-                      className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-blue-900/40"
-                    >
-                      View Move-Out Package <ArrowRight className="ml-2 h-6 w-6" />
-                    </Button>
-                  </Link>
+                  <Button 
+                    className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-blue-900/40"
+                    onClick={() => window.open(`https://wa.me/971523946311?text=I am moving out and need the Secure Exit Pack. Please help me secure my deposit.`, '_blank')}
+                  >
+                    Protect My Deposit <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
                 </div>
               </CardContent>
             </Card>
