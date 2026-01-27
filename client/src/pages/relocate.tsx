@@ -38,7 +38,7 @@ export default function Relocate() {
     const hash = window.location.hash;
     if (hash === '#move-in-packs') {
       setTimeout(scrollToMoveIn, 100);
-    } else if (hash === '#move-out-pack') {
+    } else if (hash === '#move-out-packs') {
       setTimeout(scrollToMoveOut, 100);
     }
   }, [location]);
@@ -185,8 +185,8 @@ export default function Relocate() {
         </div>
       </section>
 
-      {/* Secure Exit: Risk Mitigation Messaging */}
-      <section ref={moveOutRef} id="move-out-pack" className="px-4 py-24 bg-slate-900/50 border-y border-white/5">
+      {/* Move-Out Section: Risk Mitigation Messaging */}
+      <section ref={moveOutRef} id="move-out-packs" className="px-4 py-24 bg-slate-900/50 border-y border-white/5">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
