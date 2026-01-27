@@ -38,7 +38,7 @@ export default function MoveOutPackagePage() {
               Leave Clean. Disconnect Right. <span className="text-blue-500">Avoid Penalties</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto">
-              Move-Out removal, e-waste, utility disconnections, and landlord handover — fully coordinated.
+              Furniture removal, old electronics handling, utility disconnections, and handover support — coordinated end-to-end.
             </p>
           </motion.div>
 
@@ -55,15 +55,17 @@ export default function MoveOutPackagePage() {
             >
               Plan My Move-Out <ArrowRight className="w-6 h-6" />
             </Button>
-            <Link href="/relocate#move-out-packs">
-              <Button 
-                variant="outline"
-                size="lg"
-                className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto"
-              >
-                View Package Details
-              </Button>
-            </Link>
+            <Button 
+              variant="outline"
+              size="lg"
+              className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto"
+              onClick={() => {
+                const element = document.getElementById('move-out-packs');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              View Package Details
+            </Button>
           </motion.div>
           <motion.p
             initial={{ opacity: 0 }}
@@ -71,28 +73,48 @@ export default function MoveOutPackagePage() {
             transition={{ delay: 0.4 }}
             className="mt-4 text-blue-500/60 text-xs font-black uppercase tracking-widest italic"
           >
-            Fast clearance timelines
+            Fast assessment • Apartments & villas
           </motion.p>
+        </div>
+      </section>
+
+      <section className="py-24 px-4 bg-slate-900/50 border-y border-white/5">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Moving out in Dubai isn't just about packing.</h2>
+            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Miss any of these, and it costs time, money, or deposit.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {[
+              "Furniture no longer needed",
+              "Old appliances or electronics left behind",
+              "Utilities that must be disconnected correctly",
+              "Landlord handover timelines and penalties"
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 p-6 bg-white/5 rounded-2xl border border-white/5 items-center">
+                <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                <span className="font-bold text-white uppercase text-sm">{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <section id="move-out-packs" className="py-24 px-4">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <h2 className="text-3xl font-black uppercase tracking-tight text-white">Package Features</h2>
+            <h2 className="text-3xl font-black uppercase tracking-tight text-white">What's Included</h2>
             <div className="space-y-4">
               {[
-                "Furniture removal or resale",
-                "Appliance disposal / e-waste",
+                "Furniture removal or trade-off",
+                "Old appliances & electronics handled responsibly",
                 "AC, water, and utility disconnections",
-                "Landlord handover coordination"
+                "Clearance coordination for landlord handover",
+                "One point of contact — no chasing vendors"
               ].map((feature, i) => (
                 <div key={i} className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5 items-center group hover:border-blue-500/30 transition-colors">
                   <CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0" />
                   <span className="font-bold text-gray-200">{feature}</span>
-                  <div className="ml-auto px-2 py-1 bg-white/5 rounded text-[8px] font-black uppercase text-gray-500 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                    DM-Compliant
-                  </div>
                 </div>
               ))}
             </div>
@@ -104,22 +126,29 @@ export default function MoveOutPackagePage() {
                 <div className="flex items-center gap-4">
                   <Clock className="w-6 h-6 text-blue-500" />
                   <div>
-                    <p className="font-black text-white uppercase text-sm">Clearance Speed</p>
-                    <p className="text-gray-400 text-xs font-medium">Fast clearance timelines</p>
+                    <p className="font-black text-white uppercase text-sm">Fast assessment timelines</p>
+                    <p className="text-gray-400 text-xs font-medium">Same-day or next-day scheduling</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <Trash2 className="w-6 h-6 text-blue-500" />
                   <div>
-                    <p className="font-black text-white uppercase text-sm">Disposal Standards</p>
-                    <p className="text-gray-400 text-xs font-medium">DM-compliant disposal</p>
+                    <p className="font-black text-white uppercase text-sm">Responsible handling</p>
+                    <p className="text-gray-400 text-xs font-medium">Safe disposal of old items</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <MapPin className="w-6 h-6 text-blue-500" />
                   <div>
-                    <p className="font-black text-white uppercase text-sm">Service Area</p>
-                    <p className="text-gray-400 text-xs font-medium">Apartments & villas across Dubai</p>
+                    <p className="font-black text-white uppercase text-sm">Dubai-wide coverage</p>
+                    <p className="text-gray-400 text-xs font-medium">Apartments & villas in all areas</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <ShieldCheck className="w-6 h-6 text-blue-500" />
+                  <div>
+                    <p className="font-black text-white uppercase text-sm">Compliance Aware</p>
+                    <p className="text-gray-400 text-xs font-medium">Landlord & building requirements</p>
                   </div>
                 </div>
               </div>
@@ -130,40 +159,47 @@ export default function MoveOutPackagePage() {
 
       <section className="px-4 py-24 border-t border-white/5 bg-slate-900/30">
         <div className="max-w-4xl mx-auto text-center space-y-16">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Designed for Real Homes in Dubai</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-8 text-left">
             {[
-              { icon: MapPin, title: "Dubai-wide coverage", desc: "Apartments & villas in all areas" },
-              { icon: UserCheck, title: "Single point of contact", desc: "No chasing multiple technicians" },
-              { icon: Clock, title: "Fast assessments", desc: "Same-day or next-day scheduling" },
-              { icon: ShieldCheck, title: "Relocation specialists", desc: "Move-In & Move-Out experts" },
-              { icon: ShieldCheck, title: "Responsible removal", desc: "E-waste handled correctly" }
+              { title: "1. Tell us your date", desc: "Share your move-out timeline" },
+              { title: "2. We Assess", desc: "We identify what needs clearing or disconnecting" },
+              { title: "3. We Coordinate", desc: "Removal, disconnections, and handover handled" }
             ].map((item, i) => (
-              <div key={i} className="flex gap-4 p-6 bg-white/5 rounded-2xl border border-white/5">
-                <item.icon className="w-6 h-6 text-blue-500 shrink-0" />
-                <div>
-                  <h4 className="font-black uppercase text-sm text-white mb-1">{item.title}</h4>
-                  <p className="text-gray-400 text-xs font-medium">{item.desc}</p>
-                </div>
+              <div key={i} className="p-6 bg-white/5 rounded-2xl border border-white/5 space-y-2">
+                <h4 className="font-black uppercase text-lg text-white">{item.title}</h4>
+                <p className="text-gray-400 text-sm font-medium">{item.desc}</p>
               </div>
             ))}
           </div>
           <p className="text-gray-500 text-sm font-black uppercase tracking-widest pt-8 border-t border-white/5">
-            Supporting residents, landlords, and relocating families across Dubai.
+            No fragmented bookings. No compliance confusion.
           </p>
         </div>
       </section>
 
       <section className="px-4 py-24 bg-blue-950/20 border-t border-white/5 text-center">
-        <div className="max-w-2xl mx-auto space-y-8">
-          <h3 className="text-2xl font-black uppercase tracking-tight">Need international relocation or visa support?</h3>
-          <Link href="/relocate">
-            <Button size="lg" variant="outline" className="border-blue-500 text-blue-400 font-black uppercase h-14 px-10 rounded-xl">
-              Relocation & Visa Support →
-            </Button>
-          </Link>
-          <div className="pt-8 text-gray-500 text-xs font-bold uppercase tracking-widest">
-            WhatsApp Contact: +971 52 394 6311
+        <div className="max-w-2xl mx-auto space-y-12">
+          <div className="space-y-4">
+            <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Plan My Move-Out</h3>
+            <p className="text-blue-500/60 text-sm font-black uppercase tracking-widest">We'll confirm scope and next steps quickly.</p>
+          </div>
+          
+          <Button 
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-wider rounded-xl h-20 px-12 text-xl shadow-2xl shadow-blue-900/40 w-full md:w-auto"
+            onClick={() => window.open(getWhatsAppLink("Plan My Move-Out"), '_blank')}
+          >
+            Get Started Now
+          </Button>
+
+          <div className="space-y-4 pt-12 border-t border-white/5">
+            <p className="text-gray-400 text-xs font-bold uppercase tracking-widest">
+              Closing a flat, villa, or office? Items that can't be taken can be cleared as part of the move-out process.
+            </p>
+            <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest">
+              WhatsApp Contact: +971 52 394 6311
+            </div>
           </div>
         </div>
       </section>
