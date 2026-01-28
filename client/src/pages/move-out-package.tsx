@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
-import { CheckCircle2, MessageSquare, ArrowRight, ShieldCheck, Clock, MapPin, UserCheck, Trash2 } from "lucide-react";
+import { CheckCircle2, MessageSquare, ArrowRight, ShieldCheck, Clock, MapPin, UserCheck, Trash2, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
 import { SEOMeta } from "@/components/seo-meta";
@@ -52,6 +52,7 @@ export default function MoveOutPackagePage() {
               size="lg"
               className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-wider rounded-xl h-20 px-12 text-xl shadow-2xl shadow-blue-900/40 w-full md:w-auto flex gap-3"
               onClick={() => window.open(getWhatsAppLink("Plan My Move-Out Assessment"), '_blank')}
+              data-testid="button-plan-move-out"
             >
               Plan My Move-Out <ArrowRight className="w-6 h-6" />
             </Button>
@@ -59,9 +60,10 @@ export default function MoveOutPackagePage() {
               variant="outline"
               size="lg"
               className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto flex gap-3"
-              onClick={() => window.open(getWhatsAppLink("General Inquiry"), '_blank')}
+              onClick={() => window.open(getWhatsAppLink("Ask a Question"), '_blank')}
+              data-testid="button-ask-question"
             >
-              Have Questions? <MessageSquare className="w-6 h-6 text-blue-400" />
+              Ask a Question <MessageCircle className="w-6 h-6 text-blue-400" />
             </Button>
           </motion.div>
           <motion.p
@@ -119,16 +121,16 @@ export default function MoveOutPackagePage() {
                <div className="bg-blue-500/10 border border-blue-500/20 p-8 rounded-3xl space-y-4">
                   <div className="flex justify-between items-end">
                     <div>
-                      <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Assessment Fee</p>
+                      <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Initial Assessment</p>
                       <p className="text-4xl font-black text-white">AED 499</p>
                     </div>
                     <div className="text-right">
-                       <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1">Fixed Rate</p>
-                       <p className="text-white font-black uppercase tracking-widest text-xs">Protect Your Deposit</p>
+                       <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1">Coordinated Exit</p>
+                       <p className="text-white font-black uppercase tracking-widest text-xs">Deposit Protection</p>
                     </div>
                   </div>
                   <p className="text-gray-400 text-xs font-bold leading-relaxed">
-                    This assessment covers the full coordination plan, vendor scheduling, and compliance review to ensure a penalty-free handover.
+                    A precise on-site assessment covering furniture clearing, utility disconnection planning, and handover readiness to ensure your full deposit is protected.
                   </p>
                </div>
             </div>
