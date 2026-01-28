@@ -34,11 +34,14 @@ export default function MoveOutPackagePage() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
-              Leave Clean. Disconnect Right. <span className="text-blue-500">Avoid Penalties</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest mx-auto">
+              <ShieldCheck className="w-4 h-4" /> 100% Handover Compliance
+            </div>
+            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85]">
+              Get Your <br /> <span className="text-blue-500">Deposit Back.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
-              Furniture removal, utility disconnections, and handover support — coordinated end-to-end to protect your deposit.
+            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-tight">
+              Don't let furniture clearing or utility disconnections cost you thousands. We handle the exit, you keep your refund.
             </p>
           </motion.div>
 
@@ -140,31 +143,31 @@ export default function MoveOutPackagePage() {
               <h3 className="text-xl font-black uppercase tracking-tight text-white border-b border-white/5 pb-4 text-center">Operational Proof</h3>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
+                  <UserCheck className="w-6 h-6 text-blue-500" />
+                  <div>
+                    <p className="font-black text-white uppercase text-sm">Certified Field Assessors</p>
+                    <p className="text-gray-400 text-xs font-medium">Expert eyes on your property exit</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
                   <Clock className="w-6 h-6 text-blue-500" />
                   <div>
-                    <p className="font-black text-white uppercase text-sm">Fast assessment timelines</p>
+                    <p className="font-black text-white uppercase text-sm">Rapid Assessment</p>
                     <p className="text-gray-400 text-xs font-medium">Same-day or next-day scheduling</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <Trash2 className="w-6 h-6 text-blue-500" />
                   <div>
-                    <p className="font-black text-white uppercase text-sm">Responsible handling</p>
-                    <p className="text-gray-400 text-xs font-medium">Safe disposal of old items</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <MapPin className="w-6 h-6 text-blue-500" />
-                  <div>
-                    <p className="font-black text-white uppercase text-sm">Dubai-wide coverage</p>
-                    <p className="text-gray-400 text-xs font-medium">Apartments & villas in all areas</p>
+                    <p className="font-black text-white uppercase text-sm">Responsible Handling</p>
+                    <p className="text-gray-400 text-xs font-medium">Safe clearing of all unwanted items</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <ShieldCheck className="w-6 h-6 text-blue-500" />
                   <div>
-                    <p className="font-black text-white uppercase text-sm">Compliance Aware</p>
-                    <p className="text-gray-400 text-xs font-medium">Landlord & building requirements</p>
+                    <p className="font-black text-white uppercase text-sm">Handover Mastery</p>
+                    <p className="text-gray-400 text-xs font-medium">Full compliance with building rules</p>
                   </div>
                 </div>
               </div>

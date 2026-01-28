@@ -15,7 +15,8 @@ import {
   Zap,
   Clock,
   LogOut,
-  ChevronRight
+  ChevronRight,
+  ShieldCheck
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
@@ -224,31 +225,47 @@ export default function Relocate() {
               </div>
             </div>
 
-            <Card className="bg-slate-950 border-blue-500/30 rounded-[3rem] p-1 shadow-2xl shadow-blue-900/40 hover-elevate transition-all duration-500">
-              <CardContent className="p-10 space-y-8">
-                <div className="space-y-2 text-center">
-                  <h3 className="text-3xl font-black uppercase tracking-tight">One-Call Exit</h3>
-                  <p className="text-blue-400 font-black uppercase tracking-widest text-[10px]">Total Compliance & Handover</p>
+            <Card className="bg-slate-950 border-blue-500/30 rounded-[3rem] p-1 shadow-2xl shadow-blue-900/60 hover-elevate transition-all duration-500 group relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-transparent opacity-50 pointer-events-none" />
+              <CardContent className="p-10 space-y-8 relative z-10">
+                <div className="space-y-3 text-center">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-400 text-[10px] font-black uppercase tracking-widest mb-2">
+                    <ShieldCheck className="w-3 h-3" /> Zero Penalty Guarantee
+                  </div>
+                  <h3 className="text-4xl font-black uppercase tracking-tighter leading-none">The Smart Exit</h3>
+                  <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Handover & Deposit Protection</p>
                 </div>
 
-                <div className="flex justify-center items-end py-6 border-y border-white/5">
+                <div className="py-8 border-y border-white/5 space-y-4">
                   <div className="text-center">
-                    <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest mb-1">Assessment Fee</p>
-                    <p className="text-5xl font-black tracking-tighter text-white">AED 499</p>
+                    <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest mb-2">Move-Out Assessment</p>
+                    <div className="flex items-center justify-center gap-2">
+                      <span className="text-5xl font-black tracking-tighter text-white">AED 499</span>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 pt-4">
+                    <div className="text-center p-3 bg-white/5 rounded-2xl border border-white/5">
+                      <p className="text-blue-400 text-[10px] font-black uppercase mb-1">Furniture</p>
+                      <p className="text-white text-[10px] font-bold">Resolved</p>
+                    </div>
+                    <div className="text-center p-3 bg-white/5 rounded-2xl border border-white/5">
+                      <p className="text-blue-400 text-[10px] font-black uppercase mb-1">Utilities</p>
+                      <p className="text-white text-[10px] font-bold">Disconnected</p>
+                    </div>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <Link href="/move-out-package">
                     <Button 
-                      className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-xl shadow-blue-900/40 flex gap-3"
+                      className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-xl shadow-blue-900/40 flex gap-3 group-hover:scale-[1.02] transition-transform"
                       data-testid="link-move-out-package"
                     >
-                      Plan My Move-Out <ArrowRight className="h-6 w-6" />
+                      Secure My Deposit <ArrowRight className="h-6 w-6" />
                     </Button>
                   </Link>
-                  <p className="text-[10px] text-center text-gray-500 font-black uppercase tracking-widest">
-                    Fast assessment • Apartments & villas
+                  <p className="text-[10px] text-center text-gray-400 font-black uppercase tracking-widest">
+                    Protect your record • Secure your refund
                   </p>
                 </div>
               </CardContent>
