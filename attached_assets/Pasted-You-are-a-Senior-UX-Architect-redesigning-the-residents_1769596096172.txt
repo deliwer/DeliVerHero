@@ -1,0 +1,123 @@
+You are a Senior UX Architect redesigning the /residents page for deliwer.com.
+
+Objective:
+Remove confusion between “moving services” and “coordination & planning services”.
+Position DeliWer clearly as a CONCIERGE & ORCHESTRATION LAYER — not a packing or trucking company.
+
+Key UX Principles:
+- Reduce choices to 3 clear mental models
+- Separate “fixing”, “planning & coordination”, and “execution partners”
+- Make it obvious that DeliWer manages vendors, timelines, and compliance — not the moving truck
+
+PAGE STRUCTURE (REQUIRED)
+
+1. Page Hero (Simple & Clear)
+
+Headline:
+“Home Life in Dubai, Coordinated.”
+
+Subheadline:
+“We plan, coordinate, and manage everything around your move or daily home needs — so you don’t deal with multiple vendors.”
+
+Supporting line (small):
+“Not movers. Not contractors. Your home concierge.”
+
+Primary CTA:
+“Get Started on WhatsApp”
+
+---
+
+2. Service Cards (ONLY THREE CARDS)
+
+CARD 1 — HOME MAINTENANCE (Keep as-is, clarify scope)
+
+Title:
+Fix Something at Home
+
+Description:
+“For everyday home issues that need fixing or servicing.”
+
+Examples (icons or bullets):
+- AC, plumbing, electrical
+- Small repairs & servicing
+
+CTA:
+“Book Maintenance”
+
+---
+
+CARD 2 — MOVE-IN / MOVE-OUT CONCIERGE (NEW, REPLACEMENT CARD)
+
+Title:
+Move-In / Move-Out Concierge
+
+Tag (small):
+Planning & Coordination Layer
+
+Description:
+“We coordinate everything around your move — before and after moving day.
+No trucks. No packing. Just orchestration.”
+
+What this includes (bullet points):
+- Utility connections & disconnections
+- Home setup or clearance planning
+- Furniture or appliance coordination
+- Vendor scheduling & compliance support
+- Single point of contact
+
+Clarifying microcopy (important):
+“This is not a movers service. We manage the process, not the truck.”
+
+CTA (primary):
+“Plan My Move”
+
+Secondary text link:
+“Already have movers? We coordinate around them.”
+
+---
+
+CARD 3 — RESIDENT SERVICES (Optional / Secondary)
+
+Title:
+Resident Support Services
+
+Description:
+“For residents already living in Dubai who need help managing their home.”
+
+Examples:
+- Setup changes
+- Home upgrades coordination
+- Exit or replacement support
+
+CTA:
+“See Resident Services”
+
+---
+
+3. Remove or Avoid the Following
+
+- Do NOT show any packing, boxes, trucks, or movers imagery
+- Do NOT use words like “shifting”, “relocation trucks”, or “transport”
+- Do NOT list individual vendors as services
+- Do NOT add pricing tables on this page
+
+---
+
+4. Visual & UX Notes
+
+- Use a different icon style for the Concierge card (calendar / checklist / orchestration)
+- Visually separate Concierge from Maintenance (different background or border)
+- Keep copy calm, authoritative, and minimal
+- Emphasize “single point of contact” repeatedly
+
+---
+
+5. Outcome of This Page
+
+After reading this page, the user should clearly understand:
+- Maintenance = fixing things
+- Concierge = planning & coordination
+- Movers = external, optional, already chosen or handled elsewhere
+
+End result:
+Lower confusion, higher trust, better-qualified WhatsApp leads.
