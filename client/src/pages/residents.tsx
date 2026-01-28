@@ -22,6 +22,8 @@ import {
 import { motion } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
 import homeConciergeBg from "@/assets/images/home-concierge-bg.jpg";
+import maintenanceCardBg from "@/assets/images/maintenance-card-bg.jpg";
+import conciergeCardBg from "@/assets/images/concierge-card-bg.jpg";
 
 const WHATSAPP_NUMBER = "+971523946311";
 
@@ -92,10 +94,10 @@ export default function Residents() {
         </div>
       </section>
 
-      {/* 2. Service Cards: The 3 Mental Models */}
+      {/* 2. Service Cards: The 2 Mental Models */}
       <section ref={conciergeRef} className="px-4 py-24 bg-slate-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8">
             
             {/* CARD 1 — HOME MAINTENANCE */}
             <motion.div
@@ -103,35 +105,44 @@ export default function Residents() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-white/5 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
-                <CardContent className="p-10 space-y-8">
+              <Card className="h-full relative bg-slate-900 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
+                {/* Background Image with wash */}
+                <div 
+                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${maintenanceCardBg})` }}
+                />
+                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/90 to-slate-950" />
+
+                <CardContent className="relative z-10 p-10 md:p-14 space-y-8 h-full flex flex-col">
                   <div className="space-y-4">
                     <div className="w-16 h-16 rounded-3xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20">
                       <Hammer className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Fix Something <br />at Home</h3>
-                      <p className="text-gray-400 font-bold text-sm mt-2">For everyday home issues that need fixing or servicing.</p>
+                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Fix Something <br />at Home</h3>
+                      <p className="text-gray-300 font-bold text-lg mt-2">For everyday home issues that need fixing or servicing.</p>
                     </div>
                   </div>
 
                   <div className="space-y-4 pt-6 border-t border-white/5">
-                    <div className="flex gap-3 text-sm text-gray-300 font-bold items-center">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                       <span>AC, plumbing, electrical</span>
                     </div>
-                    <div className="flex gap-3 text-sm text-gray-300 font-bold items-center">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                       <span>Small repairs & servicing</span>
                     </div>
                   </div>
 
-                  <Button 
-                    className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-emerald-900/20"
-                    onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need help fixing something at home.`, '_blank')}
-                  >
-                    Book Maintenance <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  <div className="mt-auto pt-8">
+                    <Button 
+                      className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40 text-xl"
+                      onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need help fixing something at home.`, '_blank')}
+                    >
+                      Book Maintenance <ArrowRight className="ml-2 h-6 w-6" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
@@ -143,21 +154,28 @@ export default function Residents() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="h-full bg-slate-900 border-emerald-500/50 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden ring-4 ring-emerald-500/20 relative shadow-2xl shadow-emerald-500/10">
-                <CardContent className="p-10 space-y-8">
+              <Card className="h-full relative bg-slate-900 border-emerald-500/30 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group shadow-2xl shadow-emerald-500/5">
+                {/* Background Image with wash */}
+                <div 
+                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${conciergeCardBg})` }}
+                />
+                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/90 to-slate-950" />
+
+                <CardContent className="relative z-10 p-10 md:p-14 space-y-8 h-full flex flex-col">
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <div className="w-16 h-16 rounded-3xl bg-emerald-500 text-slate-950 flex items-center justify-center">
                         <ClipboardList className="w-8 h-8" />
                       </div>
-                      <span className="bg-emerald-500/10 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-emerald-500/20">
+                      <span className="bg-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full border border-emerald-500/30 backdrop-blur-md">
                         Planning Layer
                       </span>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move Concierge <br />(In / Out)</h3>
-                      <p className="text-gray-400 font-bold text-sm mt-2 leading-relaxed">
-                        We coordinate everything around your move — before and after moving day. No trucks. No packing. Just orchestration.
+                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Move Concierge <br />(In / Out)</h3>
+                      <p className="text-gray-300 font-bold text-lg mt-2 leading-tight">
+                        We coordinate everything around your move. No trucks. No packing. Just orchestration.
                       </p>
                     </div>
                   </div>
@@ -166,76 +184,31 @@ export default function Residents() {
                     {[
                       "Utility connections & disconnections",
                       "Home setup or clearance planning",
-                      "Furniture or appliance coordination",
                       "Vendor scheduling & compliance",
                       "Single point of contact"
                     ].map((f, i) => (
-                      <div key={i} className="flex gap-3 text-[11px] text-gray-200 font-black uppercase tracking-tight items-center">
+                      <div key={i} className="flex gap-3 text-[12px] text-gray-100 font-black uppercase tracking-tight items-center">
                         <CalendarCheck className="w-4 h-4 text-emerald-500 shrink-0" />
                         <span>{f}</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="mt-auto space-y-4 pt-8">
                     <Button 
-                      className="w-full h-20 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
+                      className="w-full h-20 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-xl"
                       onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I want to plan my move-in/out concierge.`, '_blank')}
                     >
                       Plan My Move <ArrowRight className="ml-2 h-6 w-6" />
                     </Button>
                     <div className="text-center">
                       <Link href="/relocate">
-                        <Button variant="link" className="text-emerald-500 text-[10px] font-black uppercase tracking-widest p-0 h-auto underline decoration-emerald-500/30 underline-offset-4">
+                        <Button variant="link" className="text-emerald-500 text-[10px] font-black uppercase tracking-widest p-0 h-auto underline decoration-emerald-500/30 underline-offset-8">
                           Already have movers? We coordinate around them
                         </Button>
                       </Link>
                     </div>
                   </div>
-                  
-                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest text-center">
-                    This is not a movers service. We manage the process.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* CARD 3 — RESIDENT SERVICES */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <Card className="h-full bg-white/5 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
-                <CardContent className="p-10 space-y-8">
-                  <div className="space-y-4">
-                    <div className="w-16 h-16 rounded-3xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
-                      <UserCheck className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Resident Support <br />Services</h3>
-                      <p className="text-gray-400 font-bold text-sm mt-2">For residents already living in Dubai who need help managing their home.</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 pt-6 border-t border-white/5">
-                    <div className="flex gap-3 text-sm text-gray-300 font-bold items-center">
-                      <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                      <span>Setup changes & home upgrades</span>
-                    </div>
-                    <div className="flex gap-3 text-sm text-gray-300 font-bold items-center">
-                      <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                      <span>Exit or replacement support</span>
-                    </div>
-                  </div>
-
-                  <Button 
-                    className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-blue-900/20"
-                    onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I'm a resident and need support.`, '_blank')}
-                  >
-                    See Resident Services <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
