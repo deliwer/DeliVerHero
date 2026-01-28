@@ -37,8 +37,8 @@ export default function MoveOutPackagePage() {
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
               Leave Clean. Disconnect Right. <span className="text-blue-500">Avoid Penalties</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto">
-              Furniture removal, old electronics handling, utility disconnections, and handover support — coordinated end-to-end.
+            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-2xl mx-auto leading-relaxed">
+              Furniture removal, utility disconnections, and handover support — coordinated end-to-end to protect your deposit.
             </p>
           </motion.div>
 
@@ -51,20 +51,17 @@ export default function MoveOutPackagePage() {
             <Button 
               size="lg"
               className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-wider rounded-xl h-20 px-12 text-xl shadow-2xl shadow-blue-900/40 w-full md:w-auto flex gap-3"
-              onClick={() => window.open(getWhatsAppLink("Plan My Move-Out"), '_blank')}
+              onClick={() => window.open(getWhatsAppLink("Plan My Move-Out Assessment"), '_blank')}
             >
               Plan My Move-Out <ArrowRight className="w-6 h-6" />
             </Button>
             <Button 
               variant="outline"
               size="lg"
-              className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto"
-              onClick={() => {
-                const element = document.getElementById('move-out-packs');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              className="border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest h-20 px-12 rounded-xl w-full md:w-auto flex gap-3"
+              onClick={() => window.open(getWhatsAppLink("General Inquiry"), '_blank')}
             >
-              View Package Details
+              Have Questions? <MessageSquare className="w-6 h-6 text-blue-400" />
             </Button>
           </motion.div>
           <motion.p
@@ -86,10 +83,10 @@ export default function MoveOutPackagePage() {
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
             {[
-              "Furniture no longer needed",
-              "Old appliances or electronics left behind",
-              "Utilities that must be disconnected correctly",
-              "Landlord handover timelines and penalties"
+              "Furniture & Items no longer needed",
+              "Old appliances or electronics disposal",
+              "DEWA, Chiller & Utility disconnections",
+              "Landlord handover inspection & penalties"
             ].map((item, i) => (
               <div key={i} className="flex gap-4 p-6 bg-white/5 rounded-2xl border border-white/5 items-center">
                 <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
@@ -103,20 +100,37 @@ export default function MoveOutPackagePage() {
       <section id="move-out-packs" className="py-24 px-4">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <h2 className="text-3xl font-black uppercase tracking-tight text-white">What's Included</h2>
+            <h2 className="text-3xl font-black uppercase tracking-tight text-white">The Move-Out Solution</h2>
             <div className="space-y-4">
               {[
-                "Furniture removal or trade-off",
-                "Old appliances & electronics handled responsibly",
-                "AC, water, and utility disconnections",
-                "Clearance coordination for landlord handover",
-                "One point of contact — no chasing vendors"
+                "Furniture removal or trade-off coordination",
+                "Electronics & E-waste handled responsibly",
+                "Full utility disconnection coordination",
+                "Clearance certificate & handover support",
+                "Single accountable team for the entire exit"
               ].map((feature, i) => (
                 <div key={i} className="flex gap-4 p-5 bg-white/5 rounded-2xl border border-white/5 items-center group hover:border-blue-500/30 transition-colors">
                   <CheckCircle2 className="w-6 h-6 text-blue-500 shrink-0" />
                   <span className="font-bold text-gray-200">{feature}</span>
                 </div>
               ))}
+            </div>
+            <div className="pt-8">
+               <div className="bg-blue-500/10 border border-blue-500/20 p-8 rounded-3xl space-y-4">
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Assessment Fee</p>
+                      <p className="text-4xl font-black text-white">AED 499</p>
+                    </div>
+                    <div className="text-right">
+                       <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1">Fixed Rate</p>
+                       <p className="text-white font-black uppercase tracking-widest text-xs">Protect Your Deposit</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-400 text-xs font-bold leading-relaxed">
+                    This assessment covers the full coordination plan, vendor scheduling, and compliance review to ensure a penalty-free handover.
+                  </p>
+               </div>
             </div>
           </div>
           <Card className="bg-slate-900 border-blue-500/20 rounded-[2.5rem] overflow-hidden">

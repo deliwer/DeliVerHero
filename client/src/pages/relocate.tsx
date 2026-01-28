@@ -20,6 +20,7 @@ import {
 import { motion } from "framer-motion";
 import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
 import relocateHero from "@/assets/images/relocate-hero.jpg";
+import moveOutBg from "@/assets/images/move-out-bg.jpg";
 
 export default function Relocate() {
   const [location] = useLocation();
@@ -186,8 +187,15 @@ export default function Relocate() {
       </section>
 
       {/* Move-Out Section: Risk Mitigation Messaging */}
-      <section ref={moveOutRef} id="move-out-packs" className="px-4 py-24 bg-slate-900/50 border-y border-white/5">
-        <div className="max-w-5xl mx-auto">
+      <section ref={moveOutRef} id="move-out-packs" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
+        {/* Background Image with wash */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{ backgroundImage: `url(${moveOutBg})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/80 via-slate-950/90 to-slate-950" />
+        
+        <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest">
