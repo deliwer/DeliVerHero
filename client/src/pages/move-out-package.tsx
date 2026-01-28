@@ -125,7 +125,7 @@ export default function MoveOutPackagePage() {
                   <div className="flex justify-between items-end">
                     <div>
                       <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Initial Assessment</p>
-                      <p className="text-4xl font-black text-white">.د.إ 499</p>
+                      <p className="text-4xl font-black text-white">د.إ 499</p>
                     </div>
                     <div className="text-right">
                        <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1">Coordinated Exit</p>

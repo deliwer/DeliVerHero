@@ -23,7 +23,7 @@ export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
 
   const handleWhatsApp = () => {
     const type = isMoveIn ? "Move-In" : "Exit";
-    const text = `Hello DeliWer, I used the ${type} Calculator for my ${apartmentSize} apartment. Quote: .د.إ ${totalPrice}. I'd like to proceed.`;
+    const text = `Hello DeliWer, I used the ${type} Calculator for my ${apartmentSize} apartment. Quote: د.إ ${totalPrice}. I'd like to proceed.`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -55,7 +55,7 @@ export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
 
         <div className="p-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-center">
           <p className="text-gray-400 text-sm uppercase font-black mb-1">Estimated Base Package</p>
-          <p className="text-4xl font-black text-emerald-400">.د.إ {totalPrice.toLocaleString()}</p>
+          <p className="text-4xl font-black text-emerald-400">د.إ {totalPrice.toLocaleString()}</p>
         </div>
 
         <Button 

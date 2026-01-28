@@ -162,7 +162,7 @@ export default function Relocate() {
                     
                     <div className="py-6 border-y border-white/5">
                       <div className="flex items-baseline gap-1 justify-center">
-                        <span className="text-gray-500 text-sm font-bold">.د.إ</span>
+                        <span className="text-gray-500 text-sm font-bold">د.إ</span>
                         <span className="text-5xl font-black tracking-tighter text-white">{opt.price}</span>
                         <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest ml-2">Fixed Rate</span>
                       </div>
@@ -233,7 +233,7 @@ export default function Relocate() {
             <CardContent className="p-10 space-y-8">
               <div className="text-center space-y-2">
                 <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Initial Assessment Fee</p>
-                <p className="text-6xl font-black tracking-tighter text-white">.د.إ 499</p>
+                <p className="text-6xl font-black tracking-tighter text-white">د.إ 499</p>
               </div>
 
               <div className="space-y-4">
