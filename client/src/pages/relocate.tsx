@@ -22,6 +22,7 @@ import { motion } from "framer-motion";
 import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
 import relocateHero from "@/assets/images/relocate-hero.jpg";
 import moveOutBg from "@/assets/images/move-out-bg.jpg";
+import moveInBg from "@/assets/images/move-in-bg.jpg";
 
 export default function Relocate() {
   const [location] = useLocation();
@@ -129,14 +130,21 @@ export default function Relocate() {
       <PartnerStrip />
 
       {/* Move-In Section: Comparable Options */}
-      <section ref={moveInRef} id="move-in-packs" className="px-4 py-24 bg-slate-950">
-        <div className="max-w-6xl mx-auto">
+      <section ref={moveInRef} id="move-in-packs" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
+        {/* Background Image with wash */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{ backgroundImage: `url(${moveInBg})` }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/80 via-slate-950/90 to-slate-950" />
+        
+        <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Your New Home, <span className="text-emerald-500">Ready.</span></h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-medium text-lg">Don't move into a hot, dusty apartment. Choose your readiness level below.</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Your New Home, <span className="text-emerald-500">Ready.</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight">Don't move into a hot, dusty apartment. Choose your readiness level below.</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-4">
+          <div className="grid lg:grid-cols-3 gap-6">
             {moveInOptions.map((opt, i) => (
               <motion.div
                 key={i}
@@ -145,32 +153,34 @@ export default function Relocate() {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <Card className={`h-full bg-white/5 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden ${opt.recommended ? 'ring-2 ring-emerald-500 shadow-2xl shadow-emerald-500/20' : ''}`}>
+                <Card className={`h-full bg-slate-900/40 backdrop-blur-sm border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden ${opt.recommended ? 'ring-2 ring-emerald-500 shadow-2xl shadow-emerald-500/20' : ''}`}>
                   <CardContent className="p-8 space-y-6">
                     <div className="space-y-1">
-                      <p className={`text-[10px] font-black uppercase tracking-[0.2em] text-${opt.color}-500`}>{opt.tagline}</p>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter">{opt.name}</h3>
+                      <p className={`text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500`}>{opt.tagline}</p>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">{opt.name}</h3>
                     </div>
                     
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-gray-500 text-sm font-bold">AED</span>
-                      <span className="text-4xl font-black tracking-tighter">{opt.price}</span>
-                      <span className="text-gray-500 text-xs font-bold uppercase tracking-widest ml-2">Total</span>
+                    <div className="py-6 border-y border-white/5">
+                      <div className="flex items-baseline gap-1 justify-center">
+                        <span className="text-gray-500 text-sm font-bold">AED</span>
+                        <span className="text-5xl font-black tracking-tighter text-white">{opt.price}</span>
+                        <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest ml-2">Fixed Rate</span>
+                      </div>
                     </div>
 
-                    <p className="text-gray-400 text-sm font-medium leading-relaxed">{opt.description}</p>
+                    <p className="text-gray-400 text-sm font-bold leading-relaxed h-12 overflow-hidden">{opt.description}</p>
 
-                    <div className="space-y-3 pt-4">
-                      {opt.features.map((f, i) => (
-                        <div key={i} className="flex gap-2 text-sm text-gray-300 font-bold items-center">
-                          <Check className={`w-4 h-4 text-${opt.color}-500 shrink-0`} />
-                          <span>{f}</span>
+                    <div className="space-y-3 pt-4 border-t border-white/5">
+                      {opt.features.slice(0, 3).map((f, i) => (
+                        <div key={i} className="flex gap-2 text-xs text-gray-300 font-bold items-center">
+                          <Check className={`w-4 h-4 text-emerald-500 shrink-0`} />
+                          <span className="uppercase tracking-tight">{f}</span>
                         </div>
                       ))}
                     </div>
 
                     <Button 
-                      className={`w-full h-14 mt-6 bg-${opt.color}-600 hover:bg-${opt.color}-500 text-white font-black uppercase tracking-widest rounded-xl`}
+                      className={`w-full h-16 mt-6 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-emerald-900/20`}
                       onClick={() => window.open(`https://wa.me/971523946311?text=Hi, I'm interested in the ${opt.name} Move-In Package.`, '_blank')}
                     >
                       Book Pack <ArrowRight className="ml-2 h-5 w-5" />
