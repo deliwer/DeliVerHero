@@ -194,18 +194,19 @@ export default function Relocate() {
                 <Shield className="w-4 h-4" /> Deposit Protection
               </div>
               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9]">
-                The Secure <br />
-                <span className="text-blue-500">Exit Package.</span>
+                Leave Clean. Disconnect Right. <br />
+                <span className="text-blue-500">Avoid Penalties.</span>
               </h2>
               <p className="text-xl text-gray-400 font-medium leading-relaxed">
-                Leaving Dubai? Landlords often claim deposits for minor maintenance or improper closing of accounts. We remove the risk.
+                Furniture removal, old electronics handling, utility disconnections, and handover support — coordinated end-to-end.
               </p>
               
-              <div className="grid gap-4">
+              <div className="grid gap-3">
                 {[
-                  { icon: AlertTriangle, text: "Eliminate unfair deposit deductions", color: "amber" },
-                  { icon: Zap, text: "Mandatory E-Waste & compliance handling", color: "blue" },
-                  { icon: Clock, text: "Same-day apartment handover prep", color: "emerald" }
+                  { icon: AlertTriangle, text: "Landlord handover timelines & penalties", color: "amber" },
+                  { icon: Home, text: "Furniture no longer needed", color: "blue" },
+                  { icon: Zap, text: "Old appliances or electronics handling", color: "blue" },
+                  { icon: Clock, text: "Utilities that must be disconnected correctly", color: "emerald" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
                     <item.icon className={`w-6 h-6 text-${item.color}-500`} />
@@ -224,11 +225,11 @@ export default function Relocate() {
 
                 <div className="space-y-4">
                   {[
-                    "Utility closure coordination",
-                    "Final painting & snagging fixes",
-                    "Mandatory appliance removal",
-                    "Landlord inspection attendance",
-                    "Compliance certificate assistance"
+                    "Furniture removal or trade-off",
+                    "Old appliances & electronics handled responsibly",
+                    "AC, water, and utility disconnections",
+                    "Clearance coordination for landlord handover",
+                    "One point of contact — no chasing vendors"
                   ].map((f, i) => (
                     <div key={i} className="flex gap-3 text-sm font-bold text-gray-300">
                       <Check className="w-5 h-5 text-blue-500 shrink-0" />
@@ -245,15 +246,27 @@ export default function Relocate() {
                     </div>
                     <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1 underline">Apartments & Villas</p>
                   </div>
-                  <Button 
-                    className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-blue-900/40"
-                    onClick={() => window.open(`https://wa.me/971523946311?text=I am moving out and need the Secure Exit Pack. Please help me secure my deposit.`, '_blank')}
-                  >
-                    Protect My Deposit <ArrowRight className="ml-2 h-6 w-6" />
-                  </Button>
+                  <div className="space-y-4">
+                    <Button 
+                      className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-blue-900/40"
+                      onClick={() => window.open(`https://wa.me/971523946311?text=Hi, I am moving out and need to plan my move-out assessment.`, '_blank')}
+                    >
+                      Plan My Move-Out <ArrowRight className="ml-2 h-6 w-6" />
+                    </Button>
+                    <p className="text-[10px] text-center text-gray-500 font-black uppercase tracking-widest">
+                      Fast assessment • Apartments & villas
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
+          </div>
+          
+          <div className="mt-16 pt-12 border-t border-white/5 text-center">
+            <p className="text-gray-500 text-sm font-medium max-w-2xl mx-auto leading-relaxed">
+              Closing a flat, villa, or office? <br />
+              <span className="text-gray-400">Items that can’t be taken can be cleared as part of the move-out process.</span>
+            </p>
           </div>
         </div>
       </section>
