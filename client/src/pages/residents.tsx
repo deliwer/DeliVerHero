@@ -1,11 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   MessageSquare, 
-  Home, 
   ArrowRight, 
   CheckCircle2, 
   Clock, 
@@ -16,11 +15,11 @@ import {
   Hammer,
   ClipboardList,
   CalendarCheck,
-  LogOut,
-  ChevronRight
+  X
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
+import { DirhamSymbol } from "@/components/dirham-symbol";
 import homeConciergeBg from "@/assets/images/home-concierge-bg.jpg";
 import maintenanceCardBg from "@/assets/images/maintenance-card-bg.jpg";
 import conciergeCardBg from "@/assets/images/concierge-card-bg.jpg";
@@ -29,6 +28,7 @@ const WHATSAPP_NUMBER = "+971523946311";
 
 export default function Residents() {
   const conciergeRef = useRef<HTMLDivElement>(null);
+  const [showHandoff, setShowHandoff] = useState(false);
 
   const scrollToConcierge = () => {
     conciergeRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -48,7 +48,7 @@ export default function Residents() {
         </div>
       </section>
 
-      {/* 1. Hero Section */}
+      {/* 1. HERO SECTION */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-30 scale-105"
@@ -63,11 +63,11 @@ export default function Residents() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
-              Home Life in Dubai, <br />
+              Your Home, <br />
               <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Coordinated.</span>
             </h1>
             <p className="text-xl md:text-2xl text-emerald-100/80 max-w-2xl mx-auto font-medium">
-              We plan, coordinate, and manage everything around your move or daily home needs — so you don’t deal with multiple vendors.
+              We plan and manage everything around your move or home needs — without you dealing with multiple vendors.
             </p>
             <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mt-4">
               Not movers. Not contractors. Your home concierge.
@@ -80,7 +80,7 @@ export default function Residents() {
               className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
               onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}`, '_blank')}
             >
-              <MessageSquare className="mr-2 h-6 w-6" /> Get Started on WhatsApp
+              <MessageSquare className="mr-2 h-6 w-6" /> Start on WhatsApp
             </Button>
             <Button 
               variant="outline"
@@ -94,120 +94,161 @@ export default function Residents() {
         </div>
       </section>
 
-      {/* 2. Service Cards: The 2 Mental Models */}
+      {/* 2. SERVICE CARDS (3 ONLY) */}
       <section ref={conciergeRef} className="px-4 py-24 bg-slate-950">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-8">
             
-            {/* CARD 1 — HOME MAINTENANCE */}
+            {/* CARD 1 — MAINTENANCE */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
               <Card className="h-full relative bg-slate-900 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
-                {/* Background Image with wash */}
                 <div 
                   className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url(${maintenanceCardBg})` }}
                 />
                 <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/90 to-slate-950" />
 
-                <CardContent className="relative z-10 p-10 md:p-14 space-y-8 h-full flex flex-col">
+                <CardContent className="relative z-10 p-10 space-y-8 h-full flex flex-col text-center sm:text-left">
                   <div className="space-y-4">
-                    <div className="w-16 h-16 rounded-3xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20">
+                    <div className="w-16 h-16 rounded-3xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 mx-auto sm:mx-0">
                       <Hammer className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Fix Something <br />at Home</h3>
-                      <p className="text-gray-300 font-bold text-lg mt-2">For everyday home issues that need fixing or servicing.</p>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Fix Something <br />at Home</h3>
+                      <p className="text-gray-300 font-bold text-base mt-2">When something breaks or needs servicing.</p>
                     </div>
                   </div>
 
                   <div className="space-y-4 pt-6 border-t border-white/5">
-                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center">
+                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
                       <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                       <span>AC, plumbing, electrical</span>
                     </div>
-                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center">
+                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
                       <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                      <span>Small repairs & servicing</span>
+                      <span>Small home repairs</span>
                     </div>
                   </div>
 
                   <div className="mt-auto pt-8">
                     <Button 
-                      className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40 text-xl"
+                      className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40"
                       onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need help fixing something at home.`, '_blank')}
                     >
-                      Book Maintenance <ArrowRight className="ml-2 h-6 w-6" />
+                      Book Maintenance
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* CARD 2 — MOVE-IN / MOVE-OUT CONCIERGE */}
+            {/* CARD 2 — MOVE CONCIERGE (CORE CHANGE) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="h-full relative bg-slate-900 border-emerald-500/30 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group shadow-2xl shadow-emerald-500/5">
-                {/* Background Image with wash */}
+              <Card className="h-full relative bg-slate-900 border-emerald-500/40 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group shadow-2xl shadow-emerald-500/10 scale-105 z-20 border-2">
                 <div 
-                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-25 transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url(${conciergeCardBg})` }}
                 />
-                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/90 to-slate-950" />
+                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/90 to-slate-950" />
 
-                <CardContent className="relative z-10 p-10 md:p-14 space-y-8 h-full flex flex-col">
+                <CardContent className="relative z-10 p-10 space-y-8 h-full flex flex-col">
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <div className="w-16 h-16 rounded-3xl bg-emerald-500 text-slate-950 flex items-center justify-center">
                         <ClipboardList className="w-8 h-8" />
                       </div>
-                      <span className="bg-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full border border-emerald-500/30 backdrop-blur-md">
-                        Planning Layer
+                      <span className="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
+                        Planning & Coordination
                       </span>
                     </div>
                     <div>
-                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Move Concierge <br />(In / Out)</h3>
-                      <p className="text-gray-300 font-bold text-lg mt-2 leading-tight">
-                        We coordinate everything around your move. No trucks. No packing. Just orchestration.
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move-In / Move-Out <br />Concierge</h3>
+                      <p className="text-gray-100 font-bold text-lg mt-2 leading-tight">
+                        We coordinate everything around your move — before and after moving day.
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-3 pt-6 border-t border-white/5">
+                  <div className="space-y-3 pt-6 border-t border-white/10">
                     {[
                       "Utility connections & disconnections",
                       "Home setup or clearance planning",
-                      "Vendor scheduling & compliance",
-                      "Single point of contact"
+                      "Vendor scheduling & timelines",
+                      "One point of contact"
                     ].map((f, i) => (
-                      <div key={i} className="flex gap-3 text-[12px] text-gray-100 font-black uppercase tracking-tight items-center">
-                        <CalendarCheck className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <div key={i} className="flex gap-3 text-[12px] text-emerald-50 font-black uppercase tracking-tight items-center">
+                        <CalendarCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>{f}</span>
                       </div>
                     ))}
+                    <p className="text-[10px] text-emerald-400/60 font-black uppercase tracking-widest mt-4 italic">
+                      "No packing. No trucks. No movers."
+                    </p>
                   </div>
 
                   <div className="mt-auto space-y-4 pt-8">
                     <Button 
-                      className="w-full h-20 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-xl"
-                      onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I want to plan my move-in/out concierge.`, '_blank')}
+                      className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
+                      onClick={() => setShowHandoff(true)}
                     >
-                      Plan My Move <ArrowRight className="ml-2 h-6 w-6" />
+                      Plan My Move
                     </Button>
                     <div className="text-center">
-                      <Link href="/relocate">
-                        <Button variant="link" className="text-emerald-500 text-[10px] font-black uppercase tracking-widest p-0 h-auto underline decoration-emerald-500/30 underline-offset-8">
-                          Already have movers? We coordinate around them
-                        </Button>
-                      </Link>
+                      <p className="text-emerald-400/80 text-[10px] font-black uppercase tracking-widest leading-tight">
+                        Already have movers? <br />We coordinate around them.
+                      </p>
                     </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* CARD 3 — RESIDENT SUPPORT */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <Card className="h-full relative bg-slate-900 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
+                <CardContent className="relative z-10 p-10 space-y-8 h-full flex flex-col text-center sm:text-left">
+                  <div className="space-y-4">
+                    <div className="w-16 h-16 rounded-3xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20 mx-auto sm:mx-0">
+                      <UserCheck className="w-8 h-8" />
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Resident <br />Support</h3>
+                      <p className="text-gray-300 font-bold text-base mt-2">For changes, upgrades, or transitions while living in your home.</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 pt-6 border-t border-white/5">
+                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
+                      <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                      <span>Home setup changes</span>
+                    </div>
+                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
+                      <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                      <span>Exit or replacement coordination</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-auto pt-8">
+                    <Button 
+                      className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40"
+                      onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need resident support.`, '_blank')}
+                    >
+                      View Support Services
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -217,42 +258,8 @@ export default function Residents() {
         </div>
       </section>
 
-      {/* 3. Orchestration Value Prop */}
-      <section className="px-4 py-24 border-y border-white/5 bg-slate-900/30">
-        <div className="max-w-5xl mx-auto text-center space-y-16">
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-[0.9]">
-              Not movers. <br />
-              <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Orchestrators.</span>
-            </h2>
-            <p className="text-gray-400 font-bold text-lg max-w-2xl mx-auto">
-              We are the coordination layer between you and the complexity of Dubai home services.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-12">
-            {[
-              { step: "01", title: "Pick your need", desc: "Select Maintenance, Concierge or Support", icon: MessageSquare },
-              { step: "02", title: "We coordinate", desc: "We schedule & coordinate all teams", icon: Clock },
-              { step: "03", title: "We execute", desc: "We confirm completion & quality", icon: CheckCircle2 }
-            ].map((item, i) => (
-              <div key={i} className="relative space-y-6">
-                <div className="w-24 h-24 bg-emerald-500/10 rounded-[2rem] flex items-center justify-center mx-auto border border-emerald-500/20 relative">
-                  <item.icon className="w-10 h-10 text-emerald-500" />
-                  <span className="absolute -top-3 -right-3 bg-emerald-500 text-slate-950 font-black text-xs px-3 py-1.5 rounded-xl">{item.step}</span>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-black uppercase text-white tracking-tight">{item.title}</h3>
-                  <p className="text-gray-500 text-sm font-bold leading-tight">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 4. Detailed Trust Points */}
-      <section className="px-4 py-24">
+      <section className="px-4 py-24 bg-slate-950">
         <div className="max-w-6xl mx-auto space-y-16">
           <div className="text-center">
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Designed for Real Homes in Dubai</h2>
@@ -291,7 +298,7 @@ export default function Residents() {
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest h-20 px-12 rounded-2xl group transition-all text-xl shadow-2xl shadow-emerald-900/40"
               onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}`, '_blank')}
             >
-              <MessageSquare className="mr-2 w-6 h-6" /> WhatsApp Concierge
+              <MessageSquare className="mr-2 h-6 w-6" /> Start on WhatsApp
             </Button>
             <Link href="/relocate">
               <Button variant="outline" size="lg" className="border-white/10 text-white hover:bg-white/5 h-20 px-12 rounded-2xl font-black uppercase tracking-widest flex gap-3 text-lg">
@@ -301,6 +308,70 @@ export default function Residents() {
           </div>
         </div>
       </section>
+
+      {/* 3. HANDOFF LOGIC (CRITICAL UX) */}
+      <AnimatePresence>
+        {showHandoff && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="max-w-xl w-full bg-slate-900 border border-emerald-500/30 rounded-[3rem] p-10 md:p-14 relative shadow-2xl overflow-hidden"
+            >
+              <button 
+                onClick={() => setShowHandoff(false)}
+                className="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors"
+              >
+                <X className="w-8 h-8" />
+              </button>
+
+              <div className="space-y-12">
+                <div className="space-y-6">
+                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">What We Handle</h3>
+                  <div className="space-y-4">
+                    {[
+                      "Planning & coordination",
+                      "Utilities & setup",
+                      "Clearance & handover prep"
+                    ].map((item, i) => (
+                      <div key={i} className="flex gap-4 items-center text-lg font-bold text-gray-200 uppercase tracking-tight">
+                        <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="h-px bg-white/10 w-full" />
+
+                <div className="space-y-8 text-center">
+                  <div className="space-y-2">
+                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">What Happens Next</h3>
+                    <p className="text-gray-400 font-bold leading-tight">Based on your situation, we’ll guide you to the right package.</p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link href="/relocate#move-in-packs" className="flex-1">
+                      <Button className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
+                        I'm Moving In
+                      </Button>
+                    </Link>
+                    <Link href="/relocate#move-out-packs" className="flex-1">
+                      <Button className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
+                        I'm Moving Out
+                      </Button>
+                    </Link>
+                  </div>
+                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">
+                    "We manage the process — not the moving truck."
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
