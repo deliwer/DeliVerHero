@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
 import { SEOMeta } from "@/components/seo-meta";
 
+import { DirhamSymbol } from "@/components/dirham-symbol";
+
 const WHATSAPP_NUMBER = "+971523946311";
 const getWhatsAppLink = (service: string) => {
   const text = `Hi, I'm interested in the Move-Out Package regarding: ${service}`;
@@ -125,7 +127,10 @@ export default function MoveOutPackagePage() {
                   <div className="flex justify-between items-end">
                     <div>
                       <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Initial Assessment</p>
-                      <p className="text-4xl font-black text-white">DH 499</p>
+                      <div className="flex items-center gap-2">
+                        <DirhamSymbol className="w-6 h-6" />
+                        <p className="text-4xl font-black text-white">499</p>
+                      </div>
                     </div>
                     <div className="text-right">
                        <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1">Coordinated Exit</p>

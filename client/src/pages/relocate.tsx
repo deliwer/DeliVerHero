@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { DirhamSymbol } from "@/components/dirham-symbol";
 import { 
   ArrowRight,
   MessageCircle,
@@ -162,7 +163,7 @@ export default function Relocate() {
                     
                     <div className="py-6 border-y border-white/5">
                       <div className="flex items-baseline gap-1 justify-center">
-                        <span className="text-gray-500 text-sm font-bold">DH</span>
+                        <span className="text-gray-500 text-sm font-bold"><DirhamSymbol className="w-4 h-4" /></span>
                         <span className="text-5xl font-black tracking-tighter text-white">{opt.price}</span>
                         <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest ml-2">Fixed Rate</span>
                       </div>
@@ -233,7 +234,10 @@ export default function Relocate() {
             <CardContent className="p-10 space-y-8">
               <div className="text-center space-y-2">
                 <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Initial Assessment Fee</p>
-                <p className="text-6xl font-black tracking-tighter text-white">DH 499</p>
+                <div className="flex items-center justify-center gap-2">
+                  <DirhamSymbol className="w-8 h-8" />
+                  <p className="text-6xl font-black tracking-tighter text-white">499</p>
+                </div>
               </div>
 
               <div className="space-y-4">

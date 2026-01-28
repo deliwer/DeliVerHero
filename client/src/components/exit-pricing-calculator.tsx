@@ -5,6 +5,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { MessageCircle, Calculator } from "lucide-react";
 
+import { DirhamSymbol } from "@/components/dirham-symbol";
+
 export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
   const [apartmentSize, setApartmentSize] = useState("studio");
   const [totalPrice, setTotalPrice] = useState(0);
@@ -23,7 +25,7 @@ export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
 
   const handleWhatsApp = () => {
     const type = isMoveIn ? "Move-In" : "Exit";
-    const text = `Hello DeliWer, I used the ${type} Calculator for my ${apartmentSize} apartment. Quote: DH ${totalPrice}. I'd like to proceed.`;
+    const text = `Hello DeliWer, I used the ${type} Calculator for my ${apartmentSize} apartment. Quote: Dirham ${totalPrice}. I'd like to proceed.`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -55,7 +57,10 @@ export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
 
         <div className="p-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-center">
           <p className="text-gray-400 text-sm uppercase font-black mb-1">Estimated Base Package</p>
-          <p className="text-4xl font-black text-emerald-400">DH {totalPrice.toLocaleString()}</p>
+          <div className="flex items-center justify-center gap-2">
+            <DirhamSymbol className="w-6 h-6" />
+            <p className="text-4xl font-black text-emerald-400">{totalPrice.toLocaleString()}</p>
+          </div>
         </div>
 
         <Button 
