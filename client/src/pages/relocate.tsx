@@ -232,7 +232,7 @@ export default function Relocate() {
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full text-blue-400 text-[10px] font-black uppercase tracking-widest mb-2">
                     <ShieldCheck className="w-3 h-3" /> Zero Penalty Guarantee
                   </div>
-                  <h3 className="text-4xl font-black uppercase tracking-tighter leading-none">The Smart Exit</h3>
+                  <h3 className="text-5xl font-black uppercase tracking-tighter leading-none text-white drop-shadow-sm">The Smart Exit</h3>
                   <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Handover & Deposit Protection</p>
                 </div>
 
