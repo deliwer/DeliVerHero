@@ -224,47 +224,32 @@ export default function Relocate() {
               </div>
             </div>
 
-            <Card className="bg-slate-950 border-blue-500/30 rounded-[3rem] p-1 shadow-2xl shadow-blue-500/10">
+            <Card className="bg-slate-950 border-blue-500/30 rounded-[3rem] p-1 shadow-2xl shadow-blue-900/40 hover-elevate transition-all duration-500">
               <CardContent className="p-10 space-y-8">
-                <div className="space-y-2">
+                <div className="space-y-2 text-center">
                   <h3 className="text-3xl font-black uppercase tracking-tight">One-Call Exit</h3>
-                  <p className="text-blue-400 font-black uppercase tracking-widest text-xs">Total Compliance & Handover</p>
+                  <p className="text-blue-400 font-black uppercase tracking-widest text-[10px]">Total Compliance & Handover</p>
+                </div>
+
+                <div className="flex justify-center items-end py-6 border-y border-white/5">
+                  <div className="text-center">
+                    <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest mb-1">Assessment Fee</p>
+                    <p className="text-5xl font-black tracking-tighter text-white">AED 499</p>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
-                  {[
-                    "Furniture removal or trade-off",
-                    "Old appliances & electronics handled responsibly",
-                    "AC, water, and utility disconnections",
-                    "Clearance coordination for landlord handover",
-                    "One point of contact — no chasing vendors"
-                  ].map((f, i) => (
-                    <div key={i} className="flex gap-3 text-sm font-bold text-gray-300">
-                      <Check className="w-5 h-5 text-blue-500 shrink-0" />
-                      <span>{f}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-6 border-t border-white/10">
-                  <div className="flex justify-between items-end mb-6">
-                    <div>
-                      <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Starting From</p>
-                      <p className="text-4xl font-black tracking-tighter">AED 499</p>
-                    </div>
-                    <p className="text-blue-400 text-[10px] font-black uppercase tracking-widest mb-1 underline">Apartments & Villas</p>
-                  </div>
-                  <div className="space-y-4">
+                  <Link href="/move-out-package">
                     <Button 
-                      className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-blue-900/40"
-                      onClick={() => window.open(`https://wa.me/971523946311?text=Hi, I am moving out and need to plan my move-out assessment.`, '_blank')}
+                      className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-xl shadow-blue-900/40 flex gap-3"
+                      data-testid="link-move-out-package"
                     >
-                      Plan My Move-Out <ArrowRight className="ml-2 h-6 w-6" />
+                      Plan My Move-Out <ArrowRight className="h-6 w-6" />
                     </Button>
-                    <p className="text-[10px] text-center text-gray-500 font-black uppercase tracking-widest">
-                      Fast assessment • Apartments & villas
-                    </p>
-                  </div>
+                  </Link>
+                  <p className="text-[10px] text-center text-gray-500 font-black uppercase tracking-widest">
+                    Fast assessment • Apartments & villas
+                  </p>
                 </div>
               </CardContent>
             </Card>
