@@ -1,0 +1,157 @@
+You are a Senior UX Architect redesigning the /residents page for deliwer.com.
+
+Primary Goal:
+Introduce DeliWer as a CONCIERGE & COORDINATION LAYER (not movers, not contractors),
+and create a clear handoff into Move-In and Move-Out packages.
+
+Audience:
+Residents already living in Dubai who are:
+- fixing things at home
+- planning a move (before or after moving day)
+- overwhelmed by coordinating multiple vendors
+
+DESIGN RULES (NON-NEGOTIABLE):
+- Mobile-first copy (short, scannable)
+- Only 3 primary cards
+- Explicitly say what Concierge is NOT
+- No pricing, no trucks, no packing language
+- Concierge must feel higher-level than maintenance
+
+--------------------------------
+PAGE STRUCTURE
+--------------------------------
+
+1. HERO SECTION
+
+Headline:
+“Your Home, Coordinated.”
+
+Subheadline:
+“We plan and manage everything around your move or home needs — without you dealing with multiple vendors.”
+
+Trust line (small):
+“Not movers. Not contractors. Your home concierge.”
+
+Primary CTA:
+“Start on WhatsApp”
+
+--------------------------------
+2. SERVICE CARDS (3 ONLY)
+--------------------------------
+
+CARD 1 — MAINTENANCE
+
+Title:
+Fix Something at Home
+
+Description (2 lines max):
+“When something breaks or needs servicing.”
+
+Examples (icons or micro-bullets):
+• AC, plumbing, electrical  
+• Small home repairs  
+
+CTA:
+“Book Maintenance”
+
+--------------------------------
+
+CARD 2 — MOVE CONCIERGE (CORE CHANGE)
+
+Title:
+Move-In / Move-Out Concierge
+
+Tag (small, above title):
+Planning & Coordination
+
+Description (very clear):
+“We coordinate everything around your move — before and after moving day.”
+
+What this IS (micro-bullets):
+• Utility connections & disconnections  
+• Home setup or clearance planning  
+• Vendor scheduling & timelines  
+• One point of contact  
+
+What this is NOT (important microcopy):
+“No packing. No trucks. No movers.”
+
+Primary CTA:
+“Plan My Move”
+
+Secondary helper text (below CTA):
+“Already have movers? We coordinate around them.”
+
+--------------------------------
+
+CARD 3 — RESIDENT SUPPORT
+
+Title:
+Resident Support
+
+Description:
+“For changes, upgrades, or transitions while living in your home.”
+
+Examples:
+• Home setup changes  
+• Exit or replacement coordination  
+
+CTA:
+“View Support Services”
+
+--------------------------------
+3. HANDOFF LOGIC (CRITICAL UX)
+--------------------------------
+
+When user clicks “Plan My Move”:
+
+Show an intermediate clarification screen or section with:
+
+Title:
+“What We Handle”
+
+Bullets:
+• Planning & coordination  
+• Utilities & setup  
+• Clearance & handover prep  
+
+Divider line
+
+Title:
+“What Happens Next”
+
+Copy:
+“Based on your situation, we’ll guide you to the right package.”
+
+Two buttons:
+
+Button 1:
+“I’m Moving In”
+→ Route to /move-in package page
+
+Button 2:
+“I’m Moving Out”
+→ Route to /move-out package page
+
+Small reassurance text:
+“We manage the process — not the moving truck.”
+
+--------------------------------
+4. VISUAL & CONTENT GUIDELINES
+--------------------------------
+
+- Concierge card must look more premium than Maintenance
+- Use planning / checklist / calendar style icons
+- Avoid images of boxes, trucks, or labor
+- Keep tone calm, authoritative, non-salesy
+- Emphasize “coordination” and “single point of contact”
+
+--------------------------------
+EXPECTED OUTCOME
+--------------------------------
+
+After this page:
+- Users clearly understand DeliWer’s role
+- Concierge is not mistaken for movers
+- Move-In and Move-Out packages feel like the next logical step
+- WhatsApp leads arrive pre-qualified and less price-sensitive
