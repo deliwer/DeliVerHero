@@ -66,7 +66,8 @@ export default function Home() {
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3"
               onClick={() => {
-                document.getElementById('service-cards')?.scrollIntoView({ behavior: 'smooth' });
+                const text = "Hi DeliWer, I'm interested in starting a concierge service. Please let me know how to proceed!";
+                window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
               }}
             >
               Start Your Concierge

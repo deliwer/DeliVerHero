@@ -371,7 +371,9 @@ export default function Residents() {
                   <div className="pt-6">
                     <Button 
                       className="w-full h-16 bg-white text-slate-950 hover:bg-gray-200 font-black uppercase tracking-widest rounded-2xl"
-                      onClick={scrollToConcierge}
+                      onClick={() => {
+                        conciergeRef.current?.scrollIntoView({ behavior: 'smooth' });
+                      }}
                     >
                       Browse Services
                     </Button>
