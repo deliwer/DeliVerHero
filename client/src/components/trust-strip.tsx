@@ -1,4 +1,5 @@
 import { MessageCircle, Mail, MapPin, CheckCircle, Phone, Star, Home, Users, Clock } from "lucide-react";
+import { Link } from "wouter";
 
 interface TrustStripProps {
   variant?: "light" | "dark";
@@ -31,6 +32,19 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
             <Mail className={`w-4 h-4 ${iconClass}`} />
             <span>info@deliwer.com</span>
           </a>
+          <div className="h-4 w-px bg-white/10 hidden md:block mx-2" />
+          <Link href="/residents">
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Residents</span>
+          </Link>
+          <Link href="/relocate">
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Relocation</span>
+          </Link>
+          <Link href="/relocate">
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Business Setup</span>
+          </Link>
+          <Link href="/relocate">
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Contact</span>
+          </Link>
         </>
       )}
       <div className={`flex items-center gap-2 ${textClass}`}>
