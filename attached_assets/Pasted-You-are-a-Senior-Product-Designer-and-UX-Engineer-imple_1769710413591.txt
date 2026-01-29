@@ -1,0 +1,135 @@
+You are a Senior Product Designer and UX Engineer implementing
+Concierge Pricing Packages for DeliWer.com.
+
+GOAL:
+Design and implement a unified pricing system for all Concierge services
+(Move Concierge, Maintenance Concierge, Resident Support Concierge)
+that maximizes conversion, reduces price comparison, and supports
+WhatsApp-first lead closure.
+
+CORE PRINCIPLES (MANDATORY):
+- Price coordination, not execution
+- Never list technical services or vendor SKUs
+- Limit choices to 3 packages only
+- Emphasize time-saving, risk reduction, and accountability
+- Design for mobile-first and WhatsApp handoff
+
+--------------------------------------------------
+1. PRICING STRUCTURE (UNIVERSAL)
+
+For EACH concierge category, implement exactly 3 tiers:
+
+A. ENTRY PACKAGE — “Assessment”
+- Fixed starting price: AED 149–249
+- Purpose: Reduce hesitation and trigger engagement
+- Includes:
+  • Needs assessment
+  • Planning & coordination outline
+  • Clear next steps
+- UI badge: “Best First Step”
+- CTA: “Book Assessment”
+  → Opens WhatsApp with service tag and context
+
+B. CORE PACKAGE — “Concierge Pack”
+- Fixed price range: AED 599–1,299
+- Purpose: Primary revenue and highest conversion
+- Includes:
+  • End-to-end coordination
+  • Scheduling & follow-ups
+  • Single accountable manager
+- UI badge: “Most Chosen”
+- CTA: “Activate Concierge”
+  → Opens WhatsApp with service tag
+
+C. PREMIUM PACKAGE — “Priority / Protection”
+- Fixed price range: AED 1,999–3,999
+- Purpose: Monetize urgency and risk aversion
+- Includes:
+  • Priority handling
+  • Escalation management
+  • Time or outcome protection
+- UI badge: “For Zero-Risk Needs”
+- CTA: “Get Priority Support”
+  → Opens WhatsApp with priority tag
+
+--------------------------------------------------
+2. APPLY TO EACH CONCIERGE TYPE
+
+Implement the above structure separately for:
+
+A. Move Concierge
+- Labels:
+  • Move Planning Assessment
+  • Move Coordination Pack
+  • Deposit Protection Concierge
+- Copy focus:
+  “We manage timelines, vendors, and handovers —
+   not the trucks themselves.”
+
+B. Maintenance Concierge
+- Labels:
+  • Issue Assessment
+  • Maintenance Coordination
+  • Priority Resolution
+- Copy focus:
+  “We ensure the right fix happens the first time.”
+
+C. Resident Support Concierge
+- Labels:
+  • One-Time Coordination
+  • Monthly Resident Support
+  • Priority Resident Care
+- Copy focus:
+  “For busy residents who don’t want to manage follow-ups.”
+
+--------------------------------------------------
+3. UI DESIGN RULES
+
+- Display packages in horizontal cards (mobile: stacked)
+- Highlight CORE package visually
+- No feature comparison tables
+- No checklists longer than 3 bullets
+- Avoid technical or operational language
+
+--------------------------------------------------
+4. WHATSAPP INTEGRATION
+
+All CTAs must:
+- Open WhatsApp
+- Pass service tag:
+  (move_concierge / maintenance_concierge / resident_support)
+- Pass selected package tier
+- Pass optional context (issue type, urgency)
+
+Example tag:
+“Maintenance Concierge – Core Package – AC Issue”
+
+--------------------------------------------------
+5. COPY & PSYCHOLOGY RULES
+
+- Do NOT mention:
+  • labor
+  • materials
+  • vendor pricing
+- DO emphasize:
+  • one point of accountability
+  • time saved
+  • reduced risk
+  • clarity before execution
+
+--------------------------------------------------
+6. REUSABILITY
+
+Build pricing components as reusable sections
+so they can be embedded in:
+- /relocate
+- /maintenance-concierge
+- /resident-support-concierge
+- Popup modals from /residents
+
+--------------------------------------------------
+SUCCESS CRITERIA:
+- User can choose a package in under 10 seconds
+- WhatsApp click rate increases
+- Price objections reduce during calls
+- Core package becomes default selection
