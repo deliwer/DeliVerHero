@@ -29,6 +29,7 @@ const WHATSAPP_NUMBER = "+971523946311";
 export default function Residents() {
   const conciergeRef = useRef<HTMLDivElement>(null);
   const [showHandoff, setShowHandoff] = useState(false);
+  const [handoffType, setHandoffType] = useState<"move" | "support">("move");
 
   const scrollToConcierge = () => {
     conciergeRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -198,7 +199,10 @@ export default function Residents() {
                   <div className="mt-auto space-y-4 pt-8">
                     <Button 
                       className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
-                      onClick={() => setShowHandoff(true)}
+                      onClick={() => {
+                        setHandoffType("move");
+                        setShowHandoff(true);
+                      }}
                     >
                       Plan My Move
                     </Button>
@@ -245,7 +249,10 @@ export default function Residents() {
                   <div className="mt-auto pt-8">
                     <Button 
                       className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40"
-                      onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need resident support.`, '_blank')}
+                      onClick={() => {
+                        setHandoffType("support");
+                        setShowHandoff(true);
+                      }}
                     >
                       View Support Services
                     </Button>
@@ -458,18 +465,33 @@ export default function Residents() {
 
               <div className="space-y-12">
                 <div className="space-y-6">
-                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">What We Handle</h3>
+                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+                    {handoffType === "move" ? "Move Coordination" : "Resident Support"}
+                  </h3>
                   <div className="space-y-4">
-                    {[
-                      "Planning & coordination",
-                      "Utilities & setup",
-                      "Clearance & handover prep"
-                    ].map((item, i) => (
-                      <div key={i} className="flex gap-4 items-center text-lg font-bold text-gray-200 uppercase tracking-tight">
-                        <CheckCircle2 className="w-6 h-6 text-emerald-500" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
+                    {handoffType === "move" ? (
+                      [
+                        "Planning & coordination",
+                        "Utilities & setup",
+                        "Clearance & handover prep"
+                      ].map((item, i) => (
+                        <div key={i} className="flex gap-4 items-center text-lg font-bold text-gray-200 uppercase tracking-tight">
+                          <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                          <span>{item}</span>
+                        </div>
+                      ))
+                    ) : (
+                      [
+                        "Home setup changes",
+                        "Transition management",
+                        "Upgrade coordination"
+                      ].map((item, i) => (
+                        <div key={i} className="flex gap-4 items-center text-lg font-bold text-gray-200 uppercase tracking-tight">
+                          <CheckCircle2 className="w-6 h-6 text-blue-400" />
+                          <span>{item}</span>
+                        </div>
+                      ))
+                    )}
                   </div>
                 </div>
 
@@ -478,23 +500,39 @@ export default function Residents() {
                 <div className="space-y-8 text-center">
                   <div className="space-y-2">
                     <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">What Happens Next</h3>
-                    <p className="text-gray-400 font-bold leading-tight">Based on your situation, we’ll guide you to the right package.</p>
+                    <p className="text-gray-400 font-bold leading-tight">
+                      {handoffType === "move" 
+                        ? "Based on your situation, we’ll guide you to the right package."
+                        : "Our support concierge will help manage your home requirements."
+                      }
+                    </p>
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link href="/relocate#move-in-packs" className="flex-1">
-                      <Button className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
-                        I'm Moving In
+                    {handoffType === "move" ? (
+                      <>
+                        <Link href="/relocate#move-in-packs" className="flex-1">
+                          <Button className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
+                            I'm Moving In
+                          </Button>
+                        </Link>
+                        <Link href="/relocate#move-out-packs" className="flex-1">
+                          <Button className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
+                            I'm Moving Out
+                          </Button>
+                        </Link>
+                      </>
+                    ) : (
+                      <Button 
+                        className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
+                        onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need resident support coordination.`, '_blank')}
+                      >
+                        Start Coordination
                       </Button>
-                    </Link>
-                    <Link href="/relocate#move-out-packs" className="flex-1">
-                      <Button className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
-                        I'm Moving Out
-                      </Button>
-                    </Link>
+                    )}
                   </div>
                   <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">
-                    "We manage the process — not the moving truck."
+                    "We manage the process — not the contractors."
                   </p>
                 </div>
               </div>
