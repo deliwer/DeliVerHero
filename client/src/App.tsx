@@ -23,6 +23,8 @@ import MoveInPackagePage from "@/pages/move-in-package";
 import MoveOutPackagePage from "@/pages/move-out-package";
 import Relocate from "@/pages/relocate";
 import Residents from "@/pages/residents";
+import MaintenanceConcierge from "@/pages/maintenance-concierge";
+import ResidentSupportConcierge from "@/pages/resident-support-concierge";
 import BusinessSetup from "@/pages/BusinessSetup";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import Residence from "@/pages/residence";
@@ -150,6 +152,8 @@ function Router() {
 
         {/* Residents Page */}
         <Route path="/residents" component={Residents} />
+        <Route path="/maintenance-concierge" component={MaintenanceConcierge} />
+        <Route path="/resident-support-concierge" component={ResidentSupportConcierge} />
         <Route path="/move-in-package" component={MoveInPackagePage} />
         <Route path="/move-out-package" component={MoveOutPackagePage} />
         <Route path="/residents/support" component={ContactPage} />

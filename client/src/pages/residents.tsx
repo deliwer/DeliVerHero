@@ -29,7 +29,7 @@ const WHATSAPP_NUMBER = "+971523946311";
 export default function Residents() {
   const conciergeRef = useRef<HTMLDivElement>(null);
   const [showHandoff, setShowHandoff] = useState(false);
-  const [handoffType, setHandoffType] = useState<"move" | "support">("move");
+  const [handoffType, setHandoffType] = useState<"move" | "support" | "maintenance">("move");
 
   const scrollToConcierge = () => {
     conciergeRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -119,26 +119,18 @@ export default function Residents() {
                       <Hammer className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Fix Something <br />at Home</h3>
-                      <p className="text-gray-300 font-bold text-base mt-2">When something breaks or needs servicing.</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 pt-6 border-t border-white/5">
-                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                      <span>AC, plumbing, electrical</span>
-                    </div>
-                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                      <span>Small home repairs</span>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Maintenance <br />Concierge</h3>
+                      <p className="text-gray-300 font-bold text-base mt-2">One point of contact to assess, schedule, and manage trusted technicians.</p>
                     </div>
                   </div>
 
                   <div className="mt-auto pt-8">
                     <Button 
                       className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40"
-                      onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need help fixing something at home.`, '_blank')}
+                      onClick={() => {
+                        setHandoffType("maintenance");
+                        setShowHandoff(true);
+                      }}
                     >
                       Book Maintenance
                     </Button>
@@ -231,23 +223,8 @@ export default function Residents() {
                       <UserCheck className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Resident Support</h3>
-                      <p className="text-gray-300 font-bold text-base mt-2">For residents already living in Dubai who need help managing home setup, upgrades, or transitions.</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 pt-6 border-t border-white/5">
-                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
-                      <CheckCircle2 className="w-5 h-5 text-blue-400" />
-                      <span>Home setup changes</span>
-                    </div>
-                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
-                      <CheckCircle2 className="w-5 h-5 text-blue-400" />
-                      <span>Coordination of ongoing home improvements</span>
-                    </div>
-                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
-                      <CheckCircle2 className="w-5 h-5 text-blue-400" />
-                      <span>Exit or replacement support</span>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Resident Support <br />Concierge</h3>
+                      <p className="text-gray-300 font-bold text-base mt-2">For professionals who want proactive home management and coordination.</p>
                     </div>
                   </div>
 
@@ -405,7 +382,12 @@ export default function Residents() {
               <div className="space-y-12">
                 <div className="space-y-6">
                   <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
-                    {handoffType === "move" ? "Move Coordination" : "Resident Support"}
+                    {handoffType === "move" 
+                      ? "Move Coordination" 
+                      : handoffType === "maintenance" 
+                        ? "Maintenance Concierge" 
+                        : "Resident Support"
+                    }
                   </h3>
                   <div className="space-y-4">
                     {handoffType === "move" ? (
@@ -419,11 +401,22 @@ export default function Residents() {
                           <span>{item}</span>
                         </div>
                       ))
+                    ) : handoffType === "maintenance" ? (
+                      [
+                        "AC, electrical & plumbing audit",
+                        "Coordination of vetted specialists",
+                        "Single-visit accountability"
+                      ].map((item, i) => (
+                        <div key={i} className="flex gap-4 items-center text-lg font-bold text-gray-200 uppercase tracking-tight">
+                          <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                          <span>{item}</span>
+                        </div>
+                      ))
                     ) : (
                       [
-                        "Home setup changes",
-                        "Transition management",
-                        "Upgrade coordination"
+                        "Ongoing home life coordination",
+                        "Vendor management & follow-ups",
+                        "Upgrade & transition support"
                       ].map((item, i) => (
                         <div key={i} className="flex gap-4 items-center text-lg font-bold text-gray-200 uppercase tracking-tight">
                           <CheckCircle2 className="w-6 h-6 text-blue-400" />
@@ -442,7 +435,9 @@ export default function Residents() {
                     <p className="text-gray-400 font-bold leading-tight">
                       {handoffType === "move" 
                         ? "Based on your situation, we’ll guide you to the right package."
-                        : "Our support concierge will help manage your home requirements."
+                        : handoffType === "maintenance"
+                          ? "We'll coordinate a technician to assess and resolve your maintenance needs."
+                          : "Our support concierge will handle your household coordination."
                       }
                     </p>
                   </div>
@@ -467,17 +462,24 @@ export default function Residents() {
                           </Button>
                         </Link>
                       </>
+                    ) : handoffType === "maintenance" ? (
+                      <Link href="/maintenance-concierge" className="w-full">
+                        <Button 
+                          className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
+                          onClick={() => setShowHandoff(false)}
+                        >
+                          Continue to Concierge
+                        </Button>
+                      </Link>
                     ) : (
-                      <Button 
-                        className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
-                        onClick={() => {
-                          const text = "Hi, I need resident support coordination.";
-                          window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(text)}`, '_blank');
-                          setShowHandoff(false);
-                        }}
-                      >
-                        Start Coordination
-                      </Button>
+                      <Link href="/resident-support-concierge" className="w-full">
+                        <Button 
+                          className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
+                          onClick={() => setShowHandoff(false)}
+                        >
+                          Continue to Support
+                        </Button>
+                      </Link>
                     )}
                   </div>
                   <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">

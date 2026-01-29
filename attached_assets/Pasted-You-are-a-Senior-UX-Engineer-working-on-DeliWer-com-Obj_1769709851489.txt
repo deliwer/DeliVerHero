@@ -1,0 +1,103 @@
+You are a Senior UX Engineer working on DeliWer.com.
+
+Objective:
+Implement Concierge-style entry gateways for Maintenance and Resident Support,
+mirroring the Move Concierge pattern, reducing cognitive load and improving conversion.
+
+TASKS:
+
+1. CREATE TWO NEW LANDING PAGES
+
+A. /maintenance-concierge
+Purpose:
+Explain that DeliWer coordinates home maintenance before problems escalate.
+
+Content structure:
+- Hero:
+  "Home Maintenance, Coordinated — Not Chased"
+  Subtext:
+  "One point of contact to assess, schedule, and manage trusted technicians."
+
+- Situational Options (NOT services):
+  • Something stopped working
+  • AC / Electrical issue
+  • Plumbing concern
+  • Preventive check
+
+Each option:
+→ Scrolls to package section or opens WhatsApp with prefilled tag:
+"Maintenance Concierge – [Issue Type]"
+
+- Packages:
+  • Assessment Visit (fixed starting price)
+  • Preventive Maintenance Pack
+  • Emergency Coordination
+
+- Primary CTA:
+  "Book Maintenance Concierge"
+  → WhatsApp with tag = maintenance_concierge
+
+
+B. /resident-support-concierge
+Purpose:
+Position Resident Support as proactive home life coordination.
+
+Content structure:
+- Hero:
+  "Resident Support, Handled for You"
+  Subtext:
+  "For busy professionals who don’t want to manage vendors or follow-ups."
+
+- Situational Options:
+  • New home settling
+  • Ongoing household help
+  • Installations & upgrades
+  • Regular coordination needs
+
+Each option:
+→ Scrolls to packages or opens WhatsApp with tag:
+"Resident Support Concierge – [Context]"
+
+- Packages:
+  • Monthly Support
+  • One-time Coordination
+  • Priority Resident Care
+
+- Primary CTA:
+  "Activate Resident Support"
+  → WhatsApp with tag = resident_support_concierge
+
+
+2. UPDATE /RESIDENTS PAGE
+
+- Replace existing Maintenance and Resident Support cards with:
+  • Maintenance Concierge
+  • Resident Support Concierge
+
+- Each card:
+  • One-line value proposition
+  • “How it works” tooltip (coordination, not execution)
+  • CTA opens popup (same UX as Move Concierge)
+
+Popup content:
+- What this concierge does
+- Who it is for
+- Next step CTA:
+  "Continue" → respective landing page
+
+
+3. WHATSAPP FLOW
+
+- All CTAs must:
+  • Pass service tag (maintenance_concierge / resident_support_concierge)
+  • Pass situation context
+  • Trigger callback workflow
+
+No service lists.
+No vendor names.
+No technical jargon.
+
+Focus on:
+- Coordination
+- Time-saving
+- Single point of accountability
