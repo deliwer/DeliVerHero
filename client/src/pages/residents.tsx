@@ -168,13 +168,13 @@ export default function Residents() {
                         <ClipboardList className="w-8 h-8" />
                       </div>
                       <span className="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
-                        Planning & Coordination
+                        Planning & Coordination Layer
                       </span>
                     </div>
                     <div>
                       <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move-In / Move-Out <br />Concierge</h3>
                       <p className="text-gray-100 font-bold text-lg mt-2 leading-tight">
-                        We coordinate everything around your move — before and after moving day.
+                        We manage the planning and vendor coordination around your move — before, during, and after moving day. No trucks, no packing, just orchestration.
                       </p>
                     </div>
                   </div>
@@ -184,7 +184,8 @@ export default function Residents() {
                       "Utility connections & disconnections",
                       "Home setup or clearance planning",
                       "Vendor scheduling & timelines",
-                      "One point of contact"
+                      "Furniture / appliance coordination",
+                      "Single point of contact"
                     ].map((f, i) => (
                       <div key={i} className="flex gap-3 text-[12px] text-emerald-50 font-black uppercase tracking-tight items-center">
                         <CalendarCheck className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -192,7 +193,7 @@ export default function Residents() {
                       </div>
                     ))}
                     <p className="text-[10px] text-emerald-400/60 font-black uppercase tracking-widest mt-4 italic">
-                      "No packing. No trucks. No movers."
+                      "This is not a movers service. We manage the process, not the truck."
                     </p>
                   </div>
 
@@ -230,8 +231,8 @@ export default function Residents() {
                       <UserCheck className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Resident <br />Support</h3>
-                      <p className="text-gray-300 font-bold text-base mt-2">For changes, upgrades, or transitions while living in your home.</p>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Resident Support</h3>
+                      <p className="text-gray-300 font-bold text-base mt-2">For residents already living in Dubai who need help managing home setup, upgrades, or transitions.</p>
                     </div>
                   </div>
 
@@ -242,7 +243,11 @@ export default function Residents() {
                     </div>
                     <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
                       <CheckCircle2 className="w-5 h-5 text-blue-400" />
-                      <span>Exit or replacement coordination</span>
+                      <span>Coordination of ongoing home improvements</span>
+                    </div>
+                    <div className="flex gap-3 text-sm text-gray-200 font-bold items-center justify-center sm:justify-start">
+                      <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                      <span>Exit or replacement support</span>
                     </div>
                   </div>
 
@@ -316,7 +321,7 @@ export default function Residents() {
         </div>
       </section>
 
-      {/* 6. Loyalty Section (NEW — Resident Privileges) */}
+      {/* 5. Loyalty Section (NEW — Resident Privileges) */}
       <section className="px-4 py-24 bg-slate-900/50 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -336,9 +341,9 @@ export default function Residents() {
 
               <div className="grid sm:grid-cols-2 gap-6">
                 {[
-                  { title: "Priority Scheduling", desc: "First-in-line access to our concierge team." },
                   { title: "Free Shower Filter", desc: "Professional installation included on first upgrade." },
-                  { title: "F&B Vouchers", desc: "Exclusive rewards at Dubai's top venues." },
+                  { title: "Partner F&B Vouchers", desc: "Exclusive rewards at Dubai's top venues." },
+                  { title: "Priority Scheduling", desc: "First-in-line access to our concierge team." },
                   { title: "Dedicated Contact", desc: "Direct access to your personal home coordinator." }
                 ].map((perk, i) => (
                   <div key={i} className="p-6 bg-white/5 rounded-2xl border border-white/5 space-y-2">
@@ -352,91 +357,23 @@ export default function Residents() {
             <div className="relative">
               <div className="absolute -inset-4 bg-emerald-500/10 blur-3xl rounded-full" />
               <Card className="relative bg-slate-950 border-white/10 p-8 rounded-[3rem] shadow-2xl overflow-hidden">
-                <div className="space-y-6 relative z-10">
+                <div className="space-y-6 relative z-10 text-center">
                   <div className="flex justify-between items-center border-b border-white/5 pb-6">
                     <h3 className="text-xl font-black uppercase tracking-widest text-white">Privilege Pass</h3>
                     <div className="w-12 h-12 bg-emerald-500/20 rounded-2xl flex items-center justify-center">
                       <Zap className="w-6 h-6 text-emerald-500" />
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">Available status:</p>
-                    <div className="flex gap-2">
-                      <div className="bg-white/5 text-gray-500 border-none font-black px-4 py-2 rounded-xl text-[10px] uppercase tracking-widest">Standard</div>
-                      <div className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-black px-4 py-2 rounded-xl text-[10px] uppercase tracking-widest animate-pulse">Silver Resident</div>
-                    </div>
+                  <div className="py-8">
+                    <h4 className="text-2xl font-black uppercase text-white mb-2 tracking-tighter">Unlock with Your Next Service</h4>
+                    <p className="text-gray-400 font-bold text-sm uppercase tracking-widest">Available after your first DeliWer service.</p>
                   </div>
                   <div className="pt-6">
                     <Button 
                       className="w-full h-16 bg-white text-slate-950 hover:bg-gray-200 font-black uppercase tracking-widest rounded-2xl"
-                      onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I want to learn more about Resident Privileges.`, '_blank')}
+                      onClick={scrollToConcierge}
                     >
-                      Join The Network
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Loyalty Section (NEW — Resident Privileges) */}
-      <section className="px-4 py-24 bg-slate-900/50 border-t border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <div className="bg-emerald-500 text-slate-950 font-black px-4 py-1 rounded-full uppercase tracking-widest text-[10px] inline-block">
-                  Resident Privileges
-                </div>
-                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-tight">
-                  Loyalty Unlocked <br />
-                  <span className="text-emerald-500 italic font-serif lowercase tracking-normal">after first booking.</span>
-                </h2>
-                <p className="text-gray-400 font-bold text-lg max-w-xl">
-                  Being a DeliWer resident means more than just a well-coordinated home. It means exclusive access to the best of Dubai.
-                </p>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                {[
-                  { title: "Priority Scheduling", desc: "First-in-line access to our concierge team." },
-                  { title: "Free Shower Filter", desc: "Professional installation included on first upgrade." },
-                  { title: "F&B Vouchers", desc: "Exclusive rewards at Dubai's top venues." },
-                  { title: "Dedicated Contact", desc: "Direct access to your personal home coordinator." }
-                ].map((perk, i) => (
-                  <div key={i} className="p-6 bg-white/5 rounded-2xl border border-white/5 space-y-2">
-                    <h4 className="text-emerald-400 font-black uppercase text-xs tracking-widest">{perk.title}</h4>
-                    <p className="text-gray-500 text-[11px] font-bold uppercase tracking-tight leading-relaxed">{perk.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -inset-4 bg-emerald-500/10 blur-3xl rounded-full" />
-              <Card className="relative bg-slate-950 border-white/10 p-8 rounded-[3rem] shadow-2xl overflow-hidden">
-                <div className="space-y-6 relative z-10">
-                  <div className="flex justify-between items-center border-b border-white/5 pb-6">
-                    <h3 className="text-xl font-black uppercase tracking-widest text-white">Privilege Pass</h3>
-                    <div className="w-12 h-12 bg-emerald-500/20 rounded-2xl flex items-center justify-center">
-                      <Zap className="w-6 h-6 text-emerald-500" />
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">Available status:</p>
-                    <div className="flex gap-2">
-                      <div className="bg-white/5 text-gray-500 border-none font-black px-4 py-2 rounded-xl text-[10px] uppercase tracking-widest">Standard</div>
-                      <div className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-black px-4 py-2 rounded-xl text-[10px] uppercase tracking-widest animate-pulse">Silver Resident</div>
-                    </div>
-                  </div>
-                  <div className="pt-6">
-                    <Button 
-                      className="w-full h-16 bg-white text-slate-950 hover:bg-gray-200 font-black uppercase tracking-widest rounded-2xl"
-                      onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I want to learn more about Resident Privileges.`, '_blank')}
-                    >
-                      Join The Network
+                      Browse Services
                     </Button>
                   </div>
                 </div>
@@ -512,12 +449,18 @@ export default function Residents() {
                     {handoffType === "move" ? (
                       <>
                         <Link href="/relocate#move-in-packs" className="flex-1">
-                          <Button className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
+                          <Button 
+                            className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
+                            onClick={() => setShowHandoff(false)}
+                          >
                             I'm Moving In
                           </Button>
                         </Link>
                         <Link href="/relocate#move-out-packs" className="flex-1">
-                          <Button className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl">
+                          <Button 
+                            className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
+                            onClick={() => setShowHandoff(false)}
+                          >
                             I'm Moving Out
                           </Button>
                         </Link>
@@ -525,14 +468,18 @@ export default function Residents() {
                     ) : (
                       <Button 
                         className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
-                        onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=Hi, I need resident support coordination.`, '_blank')}
+                        onClick={() => {
+                          const text = "Hi, I need resident support coordination.";
+                          window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(text)}`, '_blank');
+                          setShowHandoff(false);
+                        }}
                       >
                         Start Coordination
                       </Button>
                     )}
                   </div>
                   <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">
-                    "We manage the process — not the contractors."
+                    "We plan, coordinate, and manage the process — not the truck."
                   </p>
                 </div>
               </div>

@@ -107,7 +107,10 @@ export default function Relocate() {
               <span className="text-blue-500 italic font-serif lowercase tracking-normal">Simplified.</span>
             </h1>
             <p className="text-xl md:text-2xl text-blue-100/80 max-w-2xl mx-auto font-medium">
-              One accountable team to handle your home readiness or ensure a penalty-free exit.
+              We manage the planning and coordination around your move. No trucks, no packing, just orchestration.
+            </p>
+            <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mt-4">
+              Not movers. Not contractors. Your home concierge.
             </p>
           </motion.div>
 
@@ -122,7 +125,7 @@ export default function Relocate() {
               onClick={scrollToMoveOut}
               className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-900/40"
             >
-              <LogOut className="mr-2 h-6 w-6" /> The Smart Exit
+              <LogOut className="mr-2 h-6 w-6" /> I'm Moving Out
             </Button>
           </div>
         </div>
@@ -206,13 +209,13 @@ export default function Relocate() {
         <div className="relative z-10 max-w-4xl mx-auto text-center space-y-12">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-black uppercase tracking-widest mx-auto">
-              <ShieldCheck className="w-4 h-4" /> Zero Penalty Guarantee
+              <ShieldCheck className="w-4 h-4" /> Deposit Protection
             </div>
             <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] text-white">
               The Smart <span className="text-blue-500">Exit.</span>
             </h2>
             <p className="text-xl md:text-2xl text-gray-400 font-bold max-w-2xl mx-auto leading-tight">
-              One unified solution to protect your deposit. We handle furniture, utilities, and landlord handover — so you don't have to.
+              One unified solution to protect your deposit. We handle furniture, utilities, and landlord handover prep — so you don't have to.
             </p>
           </div>
 

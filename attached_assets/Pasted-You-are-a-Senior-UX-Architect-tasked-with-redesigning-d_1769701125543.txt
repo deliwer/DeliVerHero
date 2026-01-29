@@ -1,0 +1,173 @@
+You are a Senior UX Architect tasked with redesigning deliwer.com to implement a **generalized concierge-first model** for all high-friction home and relocation services.
+
+Objectives:
+- Position DeliWer as a **planning & coordination layer** (Concierge) rather than a marketplace or movers service.
+- Canonicalize Move-In / Move-Out packages and avoid repetition across pages.
+- Differentiate Maintenance Concierge and Resident Support Concierge.
+- Integrate concierge methodology into all relevant services.
+- Optimize the funnel for WhatsApp-first high-intent lead capture.
+- Reduce cognitive load and improve survival-grade conversion.
+
+---
+
+1️⃣ HOMEPAGE HERO
+
+Headline:
+“Your Home, Coordinated.”
+
+Subheadline:
+“Planning, scheduling, and managing everything around your home and move — without you juggling vendors.”
+
+Trust line (small):
+“Not movers. Not contractors. Just a single point of contact for your home.”
+
+Primary CTA:
+“Start Your Concierge” → opens WhatsApp or scrolls to /residents section.
+
+Visual:
+- Abstract planning / checklist / calendar icons
+- Avoid moving trucks, boxes, labor imagery
+
+---
+
+2️⃣ SERVICE CARDS (Homepage + /residents page)
+
+Only 3 primary cards for simplicity:
+
+CARD 1 — HOME MAINTENANCE
+
+Title:
+Fix Something at Home
+
+Description:
+“For issues or repairs around your home. We coordinate trusted service partners on your behalf.”
+
+Examples (bullets):
+• AC, plumbing, electrical  
+• Minor home repairs  
+
+CTA:
+“Book Maintenance”
+
+---
+
+CARD 2 — RESIDENT CONCIERGE (Move-In / Move-Out / Coordination Layer)
+
+Title:
+Move-In / Move-Out Concierge
+
+Tag (small):
+Planning & Coordination Layer
+
+Description:
+“We manage the planning and vendor coordination around your move — before, during, and after moving day. No trucks, no packing, just orchestration.”
+
+Includes (micro-bullets):
+• Utility connections & disconnections  
+• Home setup or clearance planning  
+• Vendor scheduling & timelines  
+• Furniture / appliance coordination  
+• Single point of contact  
+
+Microcopy (important):
+“This is not a movers service. We manage the process, not the truck.”
+
+Primary CTA:
+“Plan My Move” → opens popup → scrolls to canonical `/relocate` package section
+
+Secondary helper text:
+“Already have movers? We coordinate around them.”
+
+---
+
+CARD 3 — RESIDENT SUPPORT CONCIERGE
+
+Title:
+Resident Support
+
+Description:
+“For residents already living in Dubai who need help managing home setup, upgrades, or transitions.”
+
+Examples:
+• Home setup changes  
+• Coordination of ongoing home improvements  
+• Exit or replacement support  
+
+CTA:
+“View Support Services”
+
+---
+
+3️⃣ POPUP / SCROLL LOGIC
+
+When user clicks any concierge card:
+
+- Trigger popup that prequalifies intent
+- Buttons scroll automatically to canonical package sections on /relocate or /residents
+- Example buttons:
+   - “I’m Moving In” → /relocate/move-in  
+   - “I’m Moving Out” → /relocate/move-out  
+   - “I need Resident Support” → /residents#support  
+
+Microcopy:
+“We plan, coordinate, and manage the process — not the truck.”
+
+---
+
+4️⃣ SEGMENT & PACKAGE CLARIFICATION
+
+- **Move-In Concierge** → Relocating residents  
+- **Move-Out Concierge** → Exiting / relocation  
+- **Maintenance Concierge** → Existing residents (reactive issues)  
+- **Resident Support Concierge** → Existing residents (proactive coordination, upgrades)
+
+**Key UX Differentiation:**
+- Maintenance: “We fix it for you”  
+- Resident Support: “We coordinate it for you”  
+- Move-In / Move-Out: “We plan & orchestrate your move”  
+
+**Visual differentiation:**  
+- Distinct icons, card colors, and headings  
+- Avoid repeating Move-In/Out in multiple cards
+
+---
+
+5️⃣ LOYALTY / RESIDENT PRIVILEGES
+
+- Section at bottom of /residents
+- Microcopy: “Available after your first DeliWer service.”
+- Perks examples:
+   • Free Shower Filter installation  
+   • Partner F&B vouchers  
+   • Priority scheduling  
+- CTA: “Unlock with Your Next Service” → scrolls back to concierge cards
+
+---
+
+6️⃣ CONVERSION & WHATSAPP LEAD FLOW
+
+- Homepage + /residents → concierge card click → popup → scroll to canonical package → WhatsApp lead capture  
+- WhatsApp tag identifies segment (Maintenance / Move-In / Move-Out / Resident Support)  
+- Response within same day → assessment → optional premium upsell → closure  
+- Loyalty / Resident Privileges activated **after first completed service**
+
+---
+
+7️⃣ VISUAL & UX GUIDELINES
+
+- Mobile-first, scannable microcopy
+- Minimalist design, subtle backgrounds  
+- Concierge card: premium / planning-focused icons  
+- Maintenance card: practical icons  
+- Resident Support card: supportive icons  
+- Emphasize **“single point of contact”** and **time-saving**  
+
+---
+
+8️⃣ SUCCESS METRICS
+
+- Reduction of repeated Move-In/Out mentions  
+- Clear differentiation between Maintenance vs Resident Support vs Move Concierge  
+- High-intent, WhatsApp-initiated leads captured  
+- Post-service loyalty adoption  
+- Lower cognitive load and higher conversion across all segments
