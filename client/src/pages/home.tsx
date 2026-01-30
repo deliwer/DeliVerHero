@@ -64,31 +64,32 @@ export default function Home() {
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
               onClick={() => handleWhatsApp()}
+              data-testid="button-whatsapp-chat"
             >
               <MessageSquare className="w-8 h-8 fill-current" />
               Chat on WhatsApp
             </Button>
             
-            <p className="text-sm text-gray-400 font-medium">
+            <p className="text-sm text-gray-400 font-medium" data-testid="text-consultation-subtext">
               Free 10-minute living support consult
             </p>
           </div>
 
           {/* Reassurance points */}
           <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
-            <div className="flex items-center gap-3 text-gray-300">
+            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-home-setup">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
                 <HomeIcon className="w-5 h-5" />
               </div>
               <span className="font-bold text-sm">Home setup & move-in support</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-300">
+            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-maintenance">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
                 <Wrench className="w-5 h-5" />
               </div>
               <span className="font-bold text-sm">Fixes, maintenance & disposal</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-300">
+            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-relocation">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
                 <MoveHorizontal className="w-5 h-5" />
               </div>
