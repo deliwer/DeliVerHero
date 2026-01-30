@@ -27,8 +27,7 @@ export function Navigation() {
   const navItems = [
     { path: "/residents", label: "Residents", id: "residents", icon: Home },
     { path: "/relocate", label: "Relocation", id: "relocation", icon: Plane },
-    { path: "/business-setup", label: "Business Setup", id: "business-setup", icon: Briefcase },
-    { path: "/contact", label: "Contact", id: "contact", icon: MessageSquare },
+    { path: "/partners", label: "Partners", id: "partners", icon: Briefcase },
   ];
 
   return (
