@@ -550,23 +550,23 @@ Sitemap: ${req.protocol}://${req.get("host")}/sitemap.xml
     const input = text?.trim();
 
     // STEP 1 — INSTANT AUTO-REPLY (TRIGGER)
-    if (!input || input.toLowerCase() === "hi" || input.toLowerCase() === "hello") {
+    if (!input || input.toLowerCase() === "hi" || input.toLowerCase() === "hello" || input.toLowerCase() === "start") {
       response.messages.push("Welcome to DeliWer 👋\nWe help people moving into Dubai or fixing life at home.\n\nPlease reply with a number so we can help fast:\n\n1️⃣ Moving into Dubai\n2️⃣ Already living here & need help\n3️⃣ Moving out / furniture disposal\n4️⃣ Something else");
       return res.json(response);
     }
 
     // STEP 2 & 3 — ROUTING & QUALIFICATION
     switch (input) {
-      case "1": // Moving into Dubai
+      case "1": // MESSAGE A (Moving into Dubai)
         response.messages.push("Got it 👍\nAre you:\n1️⃣ Moving within the next 30 days\n2️⃣ Already arrived\n3️⃣ Just planning right now");
         break;
-      case "2": // Already living here
+      case "2": // MESSAGE B (Already living here)
         response.messages.push("Understood 👍\nWhat do you need help with today?\n\nYou can reply in one line, for example:\n• Fix something at home\n• Furniture removal\n• Cleaning or maintenance\n• General living support");
         break;
-      case "3": // Moving out / disposal
+      case "3": // MESSAGE C (Moving out / disposal)
         response.messages.push("Thanks 👍\nIs this for:\n1️⃣ Furniture & appliance disposal\n2️⃣ Move-out cleaning\n3️⃣ Full move-out support?");
         break;
-      case "4": // Something else
+      case "4": // MESSAGE D (Something else)
         response.messages.push("No problem 👍\nPlease describe what you need help with in one or two lines.");
         break;
       default:
