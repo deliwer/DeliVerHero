@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TrustStrip, PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
 import { useState, useEffect } from "react";
 
-import heroBg from "@/assets/hero-bg.png";
+import heroBg from "@/assets/hero-bg-concierge.png";
 
 export default function LandingPage() {
   const [, setLocation] = useLocation();
@@ -128,10 +128,10 @@ export default function LandingPage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
-              Life in Dubai, Simplified
+              Your Personal Dubai <span className="text-emerald-400">Life Concierge.</span>
             </h1>
-            <p className="text-xl text-emerald-100/80 max-w-2xl mx-auto">
-              Planning, coordination, and support — before things become a problem.
+            <p className="text-xl text-emerald-100/90 max-w-2xl mx-auto font-medium">
+              We orchestrate your home, your move, and your life in the city — so you can focus on living, while we handle the complexity.
             </p>
           </motion.div>
 

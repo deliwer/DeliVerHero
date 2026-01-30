@@ -5,7 +5,7 @@ export function DirhamSymbol({ className = "w-4 h-4" }: { className?: string }) 
     <img 
       src={dirhamSvg} 
       alt="Official Dirham Symbol" 
-      className={className} 
+      className={`${className} brightness-0 invert`} 
       style={{ display: 'inline-block', verticalAlign: 'middle' }}
     />
   );

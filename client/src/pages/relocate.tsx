@@ -169,10 +169,10 @@ export default function Relocate() {
           <div className="bg-slate-950 border-blue-500/30 rounded-[3rem] p-1 shadow-2xl shadow-blue-900/40 max-w-xl mx-auto group overflow-hidden">
             <CardContent className="p-10 space-y-8">
               <div className="text-center space-y-2">
-                <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Initial Assessment Fee</p>
+                <p className="text-gray-300 text-[10px] font-black uppercase tracking-widest">Initial Assessment Fee</p>
                 <div className="flex items-center justify-center gap-2">
                   <DirhamSymbol className="w-8 h-8" />
-                  <p className="text-6xl font-black tracking-tighter text-white">499</p>
+                  <p className="text-6xl font-black tracking-tighter text-white">249</p>
                 </div>
               </div>
 

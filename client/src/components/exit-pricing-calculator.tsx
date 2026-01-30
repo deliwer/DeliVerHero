@@ -56,9 +56,9 @@ export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
         </div>
 
         <div className="p-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-center">
-          <p className="text-gray-400 text-sm uppercase font-black mb-1">Estimated Base Package</p>
+          <p className="text-gray-300 text-sm uppercase font-black mb-1">Estimated Base Package</p>
           <div className="flex items-center justify-center gap-2">
-            <DirhamSymbol className="w-6 h-6" />
+            <DirhamSymbol className="w-6 h-6 brightness-0 invert" />
             <p className="text-4xl font-black text-emerald-400">{totalPrice.toLocaleString()}</p>
           </div>
         </div>

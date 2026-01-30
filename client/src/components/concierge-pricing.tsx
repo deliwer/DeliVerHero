@@ -40,32 +40,32 @@ type ConciergePricingProps = {
 const pricingData: Record<ConciergePricingProps["category"], PricingTier[]> = {
   move: [
     {
-      id: "move_assessment",
-      name: "Move Planning Assessment",
-      price: "249",
-      description: "Ideal first step to map out your timeline and identify high-risk coordination points.",
-      features: ["Needs assessment", "Timeline mapping", "Vendor coordination outline"],
-      badge: "Best First Step",
-      ctaText: "Book Assessment"
+      id: "move_essential",
+      name: "Essential Move-In",
+      price: "199",
+      description: "Critical utility setup and basic coordination for a stress-free first night.",
+      features: ["DEWA & Chiller setup", "Internet coordination", "Entry permit assistance"],
+      badge: "Market Entry",
+      ctaText: "Get Started"
     },
     {
       id: "move_core",
-      name: "Move Coordination Pack",
-      price: "1299",
-      description: "End-to-end orchestration of your entire move journey, from planning to handover.",
-      features: ["Scheduling & follow-ups", "Utility management", "Single accountable manager"],
-      badge: "Most Chosen",
+      name: "Standard Move Coordination",
+      price: "899",
+      description: "Full end-to-end orchestration of your move, managing timelines and vendors.",
+      features: ["Vendor scheduling", "Timeline management", "Single point of contact", "Post-move checklist"],
+      badge: "Most Popular",
       ctaText: "Activate Concierge",
       isMain: true
     },
     {
       id: "move_premium",
-      name: "Deposit Protection Concierge",
-      price: "3999",
-      description: "Maximum oversight to protect your security deposit and ensure zero-friction handover.",
-      features: ["Priority handling", "Escalation management", "Outcome protection"],
-      badge: "For Zero-Risk Needs",
-      ctaText: "Get Priority Support"
+      name: "Executive Exit & Protection",
+      price: "2499",
+      description: "Complete deposit protection and relocation management for a guaranteed smooth exit.",
+      features: ["Security deposit recovery", "Furniture removal prep", "Deep cleaning coordination", "Landlord handover"],
+      badge: "Total Peace of Mind",
+      ctaText: "Secure My Exit"
     }
   ],
   maintenance: [
