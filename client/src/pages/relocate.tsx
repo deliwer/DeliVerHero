@@ -6,24 +6,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { DirhamSymbol } from "@/components/dirham-symbol";
 import { 
   ArrowRight,
-  MessageCircle,
-  Plane,
   Home,
-  Check,
-  Star,
-  Shield,
-  AlertTriangle,
-  Zap,
-  Clock,
   LogOut,
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Zap,
+  AlertTriangle
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
 import relocateHero from "@/assets/images/relocate-hero.jpg";
 import moveOutBg from "@/assets/images/move-out-bg.jpg";
 import moveInBg from "@/assets/images/move-in-bg.jpg";
+
+import { ConciergePricing } from "@/components/concierge-pricing";
 
 export default function Relocate() {
   const [location] = useLocation();
@@ -45,34 +41,6 @@ export default function Relocate() {
       scrollToMoveIn();
     }
   }, [location]);
-
-  const moveInOptions = [
-    {
-      name: "Essential",
-      tagline: "Just the Basics",
-      price: "299",
-      description: "Ideal if you're on a budget but need a professional check.",
-      features: ["Move-in coordination", "Safety readiness check", "Utility activation list"],
-      color: "slate"
-    },
-    {
-      name: "Summer Survival",
-      tagline: "Most Popular",
-      price: "599",
-      recommended: true,
-      description: "Crucial for Dubai. We ensure your AC actually cools and water is ready.",
-      features: ["Everything in Essential", "Full AC service & deep coil clean", "Water pressure & leak audit", "Drinking water starter kit"],
-      color: "emerald"
-    },
-    {
-      name: "White Glove",
-      tagline: "Zero Stress",
-      price: "1,199",
-      description: "Arrive at a perfect home. We handle the deep clean and all setups.",
-      features: ["Everything in Summer", "Professional deep cleaning", "Dedicated account manager", "Smart home/WiFi setup assistance"],
-      color: "blue"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500/30 font-sans">
@@ -133,7 +101,7 @@ export default function Relocate() {
 
       <PartnerStrip />
 
-      {/* Move-In Section: Comparable Options */}
+      {/* Move Concierge Pricing Section */}
       <section ref={moveInRef} id="move-in-packs" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
         {/* Background Image with wash */}
         <div 
@@ -144,56 +112,11 @@ export default function Relocate() {
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Your New Home, <span className="text-emerald-500">Ready.</span></h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight">Don't move into a hot, dusty apartment. Choose your readiness level below.</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Move Concierge <span className="text-emerald-500">Packages.</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“We manage timelines, vendors, and handovers — not the trucks themselves.”</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-6">
-            {moveInOptions.map((opt, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <Card className={`h-full bg-slate-900/40 backdrop-blur-sm border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden ${opt.recommended ? 'ring-2 ring-emerald-500 shadow-2xl shadow-emerald-500/20' : ''}`}>
-                  <CardContent className="p-8 space-y-6">
-                    <div className="space-y-1">
-                      <p className={`text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500`}>{opt.tagline}</p>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">{opt.name}</h3>
-                    </div>
-                    
-                    <div className="py-6 border-y border-white/5">
-                      <div className="flex items-baseline gap-1 justify-center">
-                        <span className="text-gray-500 text-sm font-bold"><DirhamSymbol className="w-4 h-4" /></span>
-                        <span className="text-5xl font-black tracking-tighter text-white">{opt.price}</span>
-                        <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest ml-2">Fixed Rate</span>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-400 text-sm font-bold leading-relaxed h-12 overflow-hidden">{opt.description}</p>
-
-                    <div className="space-y-3 pt-4 border-t border-white/5">
-                      {opt.features.slice(0, 3).map((f, i) => (
-                        <div key={i} className="flex gap-2 text-xs text-gray-300 font-bold items-center">
-                          <Check className={`w-4 h-4 text-emerald-500 shrink-0`} />
-                          <span className="uppercase tracking-tight">{f}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <Button 
-                      className={`w-full h-16 mt-6 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-emerald-900/20`}
-                      onClick={() => window.open(`https://wa.me/971523946311?text=Hi, I'm interested in the ${opt.name} Move-In Package.`, '_blank')}
-                    >
-                      Book Pack <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <ConciergePricing category="move" />
         </div>
       </section>
 

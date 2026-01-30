@@ -1,0 +1,98 @@
+You are a Senior UX Designer enhancing the /residents page on DeliWer.com.
+
+OBJECTIVE:
+Redesign the third Residents card to represent a premium,
+catch-all Concierge layer for resident needs that do not fall under
+Moving or Maintenance.
+
+This card must feel like:
+- A magical problem solver
+- A lifestyle assistant
+- A managed helpdesk for everyday resident needs
+
+--------------------------------------------------
+CARD NAME:
+Resident Support+
+
+(Optional subtitle)
+“Your Everyday Concierge”
+
+--------------------------------------------------
+CARD COPY (MANDATORY)
+
+Headline:
+“When Life Doesn’t Fit a Category — We Handle It”
+
+Subtext:
+“From urgent pick-ups to unexpected errands, replacements,
+or coordination needs — message us and we’ll manage it.”
+
+Support line (smaller text):
+“Think of this as your Aladdin’s Lamp for everyday life in Dubai.”
+
+--------------------------------------------------
+WHAT THIS IS (SHOW AS CONTEXT, NOT LIST)
+
+Use situational examples (icons + short labels):
+• Something urgent came up
+• I need help today
+• I don’t know who to call
+• I need something handled outside my home
+
+Avoid listing services, vendors, or logistics tasks.
+
+--------------------------------------------------
+CTA
+
+Primary CTA:
+“Activate Resident Support+”
+
+CTA behavior:
+- Opens a popup (same UX as Move Concierge)
+- Popup explains:
+  • This is a managed concierge service
+  • Requests are assessed first
+  • Execution is coordinated, not DIY
+
+Secondary CTA inside popup:
+“Continue on WhatsApp”
+
+--------------------------------------------------
+POPUP CONTENT (BRIEF)
+
+Title:
+“Your Everyday Concierge”
+
+Copy:
+“Resident Support+ is for everything that doesn’t fit neatly
+into moving or maintenance. Tell us what you need —
+we’ll figure out the best way to handle it.”
+
+Disclaimer:
+“Not a task marketplace. Managed support only.”
+
+--------------------------------------------------
+WHATSAPP HANDOFF
+
+WhatsApp tag:
+resident_support_plus
+
+Prefilled message:
+“Hi, I need Resident Support+. Something urgent came up
+and I need help coordinating it.”
+
+--------------------------------------------------
+DESIGN RULES
+
+- Card should visually feel different from Maintenance and Move cards
+- Use softer, magical or supportive tone
+- Avoid technical language
+- Emphasize calm, relief, and trust
+
+--------------------------------------------------
+SUCCESS CRITERIA
+
+- User understands this is the ‘everything else’ option
+- No confusion with movers or maintenance
+- High click-through due to emotional appeal
+- Requests are high-intent, not random questions

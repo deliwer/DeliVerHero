@@ -3,18 +3,13 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Wrench, 
-  MessageSquare, 
   CheckCircle2, 
-  ShieldCheck, 
-  Clock, 
-  Hammer,
   Zap,
   Droplets,
   AlertTriangle
 } from "lucide-react";
 import { TrustStrip } from "@/components/trust-strip";
-import { DirhamSymbol } from "@/components/dirham-symbol";
+import { ConciergePricing } from "@/components/concierge-pricing";
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
 
 const WHATSAPP_NUMBER = "971523946311";
@@ -30,27 +25,6 @@ export default function MaintenanceConcierge() {
     { title: "AC / Electrical issue", icon: Zap, tag: "Essential" },
     { title: "Plumbing concern", icon: Droplets, tag: "Immediate" },
     { title: "Preventive check", icon: CheckCircle2, tag: "Proactive" }
-  ];
-
-  const packages = [
-    {
-      name: "Assessment Visit",
-      price: "199",
-      desc: "On-site expert assessment to identify root causes and provide a fixed coordination quote.",
-      features: ["Professional inspection", "Fault diagnosis", "Repair timeline & quote"]
-    },
-    {
-      name: "Preventive Maintenance",
-      price: "499",
-      desc: "Seasonal checkup for AC, electrical, and plumbing to avoid emergency failures.",
-      features: ["Full AC filter clean", "Electrical panel audit", "Leak & pressure check"]
-    },
-    {
-      name: "Emergency Coordination",
-      price: "Assessment-led",
-      desc: "Priority management for critical home failures that need immediate orchestration.",
-      features: ["Priority response", "Vetted emergency team", "Manager oversight"]
-    }
   ];
 
   return (
@@ -117,32 +91,13 @@ export default function MaintenanceConcierge() {
       <section className="py-24 px-4 border-t border-white/5">
         <div className="max-w-6xl mx-auto space-y-16">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Concierge Packs</h2>
-            <p className="text-gray-400 font-bold uppercase tracking-widest text-xs italic">Fixed pricing for coordination & assessment</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Concierge Packs</h2>
+            <p className="text-gray-400 font-bold text-lg uppercase tracking-tight">
+              “We ensure the right fix happens the first time.”
+            </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {packages.map((pkg, i) => (
-              <Card key={i} className="bg-slate-900 border-white/10 rounded-[2.5rem] p-8 space-y-6">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-black uppercase text-white">{pkg.name}</h3>
-                  <div className="flex items-center gap-1">
-                    {pkg.price !== "Assessment-led" && <DirhamSymbol className="w-5 h-5 text-emerald-500" />}
-                    <span className="text-4xl font-black text-white tracking-tighter">{pkg.price}</span>
-                  </div>
-                </div>
-                <p className="text-gray-400 text-sm font-bold leading-tight">{pkg.desc}</p>
-                <div className="space-y-3">
-                  {pkg.features.map((f, j) => (
-                    <div key={j} className="flex gap-2 items-center text-xs font-black uppercase text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                      {f}
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            ))}
-          </div>
+          <ConciergePricing category="maintenance" />
         </div>
       </section>
     </div>

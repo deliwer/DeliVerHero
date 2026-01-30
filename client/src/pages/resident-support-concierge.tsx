@@ -13,6 +13,7 @@ import {
   ArrowUpRight
 } from "lucide-react";
 import { TrustStrip } from "@/components/trust-strip";
+import { ConciergePricing } from "@/components/concierge-pricing";
 import homeConciergeBg from "@/assets/images/home-concierge-bg.jpg";
 
 const WHATSAPP_NUMBER = "971523946311";
@@ -90,30 +91,17 @@ export default function ResidentSupportConcierge() {
         </div>
       </section>
 
-      {/* Tiers/Packs */}
+      {/* Pricing Section */}
       <section className="py-24 px-4 border-t border-white/5">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="text-center">
-            <h2 className="text-3xl font-black uppercase tracking-tighter">Support Tiers</h2>
+        <div className="max-w-6xl mx-auto space-y-16">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Support Tiers</h2>
+            <p className="text-gray-400 font-bold text-lg uppercase tracking-tight">
+              “For busy residents who don’t want to manage follow-ups.”
+            </p>
           </div>
           
-          <div className="space-y-4">
-            {[
-              { name: "Monthly Support", desc: "Ongoing orchestration of all home maintenance and lifestyle vendors." },
-              { name: "One-time Coordination", desc: "Project-based management for specific upgrades or transitions." },
-              { name: "Priority Resident Care", desc: "Dedicated home manager for premium, zero-friction living." }
-            ].map((pkg, i) => (
-              <div key={i} className="flex flex-col md:flex-row items-center justify-between p-8 bg-white/5 border border-white/5 rounded-3xl gap-6">
-                <div className="text-center md:text-left">
-                  <h4 className="text-xl font-black uppercase text-white">{pkg.name}</h4>
-                  <p className="text-gray-400 text-sm font-bold">{pkg.desc}</p>
-                </div>
-                <Button variant="outline" className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10 rounded-xl uppercase font-black tracking-widest px-8" onClick={() => handleWhatsApp(pkg.name)}>
-                  Inquire
-                </Button>
-              </div>
-            ))}
-          </div>
+          <ConciergePricing category="support" />
         </div>
       </section>
     </div>

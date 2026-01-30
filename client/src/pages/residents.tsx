@@ -15,7 +15,8 @@ import {
   Hammer,
   ClipboardList,
   CalendarCheck,
-  X
+  X,
+  AlertTriangle
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
@@ -209,7 +210,7 @@ export default function Residents() {
               </Card>
             </motion.div>
 
-            {/* CARD 3 — RESIDENT SUPPORT */}
+            {/* CARD 3 — RESIDENT SUPPORT+ */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -219,13 +220,29 @@ export default function Residents() {
               <Card className="h-full relative bg-slate-900 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
                 <CardContent className="relative z-10 p-10 space-y-8 h-full flex flex-col text-center sm:text-left">
                   <div className="space-y-4">
-                    <div className="w-16 h-16 rounded-3xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20 mx-auto sm:mx-0">
-                      <UserCheck className="w-8 h-8" />
+                    <div className="w-16 h-16 rounded-3xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20 mx-auto sm:mx-0 shadow-lg shadow-blue-500/20">
+                      <Zap className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Resident Support <br />Concierge</h3>
-                      <p className="text-gray-300 font-bold text-base mt-2">For professionals who want proactive home management and coordination.</p>
+                      <h3 className="text-xl font-black uppercase tracking-widest text-blue-400 mb-2">Resident Support+</h3>
+                      <h4 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">When Life Doesn't Fit <br />a Category — We Handle It</h4>
+                      <p className="text-gray-300 font-bold text-base mt-4">From urgent pick-ups to unexpected errands, replacements, or coordination needs — message us and we’ll manage it.</p>
+                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest mt-4 italic">"Think of this as your Aladdin’s Lamp for everyday life in Dubai."</p>
                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/5">
+                    {[
+                      { icon: AlertTriangle, label: "Something urgent" },
+                      { icon: Clock, label: "Help today" },
+                      { icon: MessageSquare, label: "Who to call?" },
+                      { icon: MapPin, label: "Outside home" }
+                    ].map((item, i) => (
+                      <div key={i} className="flex flex-col items-center sm:items-start gap-2">
+                        <item.icon className="w-5 h-5 text-blue-400" />
+                        <span className="text-[10px] font-black uppercase tracking-tight text-gray-400">{item.label}</span>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="mt-auto pt-8">
@@ -236,7 +253,7 @@ export default function Residents() {
                         setShowHandoff(true);
                       }}
                     >
-                      View Support Services
+                      Activate Resident Support+
                     </Button>
                   </div>
                 </CardContent>
@@ -414,9 +431,9 @@ export default function Residents() {
                       ))
                     ) : (
                       [
-                        "Ongoing home life coordination",
-                        "Vendor management & follow-ups",
-                        "Upgrade & transition support"
+                        "Managed concierge service",
+                        "Requests assessed first",
+                        "Coordinated execution"
                       ].map((item, i) => (
                         <div key={i} className="flex gap-4 items-center text-lg font-bold text-gray-200 uppercase tracking-tight">
                           <CheckCircle2 className="w-6 h-6 text-blue-400" />
@@ -431,13 +448,15 @@ export default function Residents() {
 
                 <div className="space-y-8 text-center">
                   <div className="space-y-2">
-                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">What Happens Next</h3>
+                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">
+                      {handoffType === "support" ? "Your Everyday Concierge" : "What Happens Next"}
+                    </h3>
                     <p className="text-gray-400 font-bold leading-tight">
                       {handoffType === "move" 
                         ? "Based on your situation, we’ll guide you to the right package."
                         : handoffType === "maintenance"
                           ? "We'll coordinate a technician to assess and resolve your maintenance needs."
-                          : "Our support concierge will handle your household coordination."
+                          : "Resident Support+ is for everything that doesn’t fit neatly into moving or maintenance. Tell us what you need — we’ll figure out the best way to handle it."
                       }
                     </p>
                   </div>
@@ -472,18 +491,20 @@ export default function Residents() {
                         </Button>
                       </Link>
                     ) : (
-                      <Link href="/resident-support-concierge" className="w-full">
-                        <Button 
-                          className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
-                          onClick={() => setShowHandoff(false)}
-                        >
-                          Continue to Support
-                        </Button>
-                      </Link>
+                      <Button 
+                        className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl"
+                        onClick={() => {
+                          const text = "Hi, I need Resident Support+. Something urgent came up and I need help coordinating it.";
+                          window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(text)}`, '_blank');
+                          setShowHandoff(false);
+                        }}
+                      >
+                        Continue on WhatsApp
+                      </Button>
                     )}
                   </div>
                   <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">
-                    "We plan, coordinate, and manage the process — not the truck."
+                    {handoffType === "support" ? "Not a task marketplace. Managed support only." : "\"We plan, coordinate, and manage the process — not the truck.\""}
                   </p>
                 </div>
               </div>
