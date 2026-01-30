@@ -2,12 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, MessageSquare, ArrowRight } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
+import { TrustStrip } from "@/components/trust-strip";
 
 export default function BusinessSetup() {
   const whatsappUrl = "https://wa.me/yournumber?text=Business%20Setup%20enquiry%20%E2%80%93%20Free%20Zone%20%2F%20Trading";
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center">
+      <section className="w-full px-4 py-3 border-b border-border/10 bg-slate-950">
+        <div className="max-w-4xl mx-auto">
+          <TrustStrip variant="dark" showContact={true} />
+        </div>
+      </section>
       {/* 1️⃣ HERO — INTENT CONFIRMATION */}
       <section className="w-full max-w-4xl px-4 py-16 md:py-24 text-center">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">

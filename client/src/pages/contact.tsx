@@ -7,11 +7,17 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { contactInfo } from "@/lib/contact-info";
 import { Button } from "@/components/ui/button";
+import { TrustStrip } from "@/components/trust-strip";
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12" data-testid="contact-page">
-      <div className="container mx-auto px-4 max-w-7xl">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" data-testid="contact-page">
+      <section className="px-4 py-3 border-b border-white/10 bg-slate-950">
+        <div className="max-w-4xl mx-auto">
+          <TrustStrip variant="dark" showContact={true} />
+        </div>
+      </section>
+      <div className="container mx-auto px-4 max-w-7xl py-12">
         {/* Hero Section with Introduction */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-white mb-6 flex items-center justify-center gap-4">
