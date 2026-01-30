@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link, useLocation } from "wouter";
-import { Home, Plane, ArrowRight, MessageCircle, DollarSign, Shield, CheckCircle, MapPin, Mail, X, CheckCircle2 } from "lucide-react";
+import { Home, Plane, ArrowRight, MessageCircle, DollarSign, Shield, CheckCircle, MapPin, Mail, X, CheckCircle2, Wrench, MoveHorizontal } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrustStrip, PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
 import { useState, useEffect } from "react";
@@ -110,7 +110,7 @@ export default function LandingPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="min-h-[80vh] flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
+      <section className="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
         {/* Background Image with Wash */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -121,119 +121,62 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
         </div>
 
-        <div className="max-w-4xl w-full text-center space-y-8 relative z-10">
+        <div className="max-w-4xl w-full text-center space-y-10 relative z-10 py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            className="space-y-6"
           >
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
-              Your Personal Dubai <span className="text-emerald-400">Life Concierge.</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl text-white">
+              Moving into Dubai?<br />
+              <span className="text-emerald-500">We handle everything after the keys.</span>
             </h1>
-            <p className="text-xl text-emerald-100/90 max-w-2xl mx-auto font-medium">
-              We orchestrate your home, your move, and your life in the city — so you can focus on living, while we handle the complexity.
+            
+            <h2 className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
+              Home setup, relocation support, fixes, furniture, disposal & daily living — handled by one team on WhatsApp.
+            </h2>
+            
+            <p className="text-sm text-gray-400 font-medium">
+              For new arrivals, residents & families who don’t want chaos.
             </p>
           </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 mt-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+          
+          <div className="flex flex-col items-center gap-4">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
+              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
             >
-              <div onClick={handleResidentsClick} data-testid="card-residents" className="cursor-pointer">
-                <Card className="bg-black/40 border-emerald-500/30 hover:border-emerald-500/60 transition-all duration-300 group overflow-hidden relative h-full">
-                  <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <CardContent className="p-8 flex flex-col items-center text-center space-y-6 h-full">
-                    <div className="w-16 h-16 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                      <Home className="w-8 h-8" />
-                    </div>
-                    <div className="flex-1">
-                      <h2 className="text-2xl font-bold text-white mb-2">I’m Living in Dubai</h2>
-                      <p className="text-emerald-100/60 leading-relaxed">
-                        Access home services, water delivery, maintenance, and lifestyle perks designed for expat rentals.
-                      </p>
-                    </div>
-                    <div className="w-full">
-                      <Button 
-                        className="w-full bg-emerald-600 hover:bg-emerald-500 text-white gap-2 h-12 text-lg"
-                        data-testid="button-residents"
-                      >
-                        Explore Services <ArrowRight className="w-5 h-5" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Link href="/relocate" data-testid="card-relocate">
-                <Card className="bg-black/40 border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 group overflow-hidden relative h-full cursor-pointer">
-                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <CardContent className="p-8 flex flex-col items-center text-center space-y-6 h-full">
-                    <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-                      <Plane className="w-8 h-8" />
-                    </div>
-                    <div className="flex-1">
-                      <h2 className="text-2xl font-bold text-white mb-2">I’m Relocating</h2>
-                      <p className="text-blue-100/60 leading-relaxed">
-                        Moving to or from Dubai? Get move-in packs, exit support, and concierge services.
-                      </p>
-                    </div>
-                    <div className="w-full">
-                      <Button 
-                        className="w-full bg-blue-600 hover:bg-blue-500 text-white gap-2 h-12 text-lg"
-                        data-testid="button-relocate"
-                      >
-                        View Packages <ArrowRight className="w-5 h-5" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            </motion.div>
+              <MessageCircle className="w-8 h-8 fill-current" />
+              Chat on WhatsApp
+            </Button>
+            
+            <p className="text-sm text-gray-400 font-medium">
+              Free 10-minute living support consult
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="mt-6"
-          >
-            <Link href="/business-setup">
-              <span className="text-emerald-100/40 text-sm font-medium hover:text-emerald-400 transition-colors cursor-pointer">
-                Setting up a company in Dubai? → <span className="underline decoration-emerald-500/30 underline-offset-4">Business Setup</span>
-              </span>
-            </Link>
-          </motion.div>
-
-          {/* Quick Trust Signals */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-8"
-          >
-            <div className="flex flex-wrap justify-center gap-6 text-emerald-100/60 text-sm">
-              <div className="flex items-center gap-2">
-                <MessageCircle className="w-4 h-4 text-emerald-400" />
-                <span>WhatsApp support</span>
+          {/* Reassurance points */}
+          <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 text-gray-300">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <Home className="w-5 h-5" />
               </div>
-              <div className="flex items-center gap-2">
-                <DollarSign className="w-4 h-4 text-emerald-400" />
-                <span>Fixed pricing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-emerald-400" />
-                <span>Rental-friendly services</span>
-              </div>
+              <span className="font-bold text-sm">Home setup & move-in support</span>
             </div>
-          </motion.div>
+            <div className="flex items-center gap-3 text-gray-300">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <Wrench className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Fixes, maintenance & disposal</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <MoveHorizontal className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Relocation & move-out help</span>
+            </div>
+          </div>
         </div>
       </section>
 
