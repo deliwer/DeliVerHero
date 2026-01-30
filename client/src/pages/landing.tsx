@@ -157,26 +157,18 @@ export default function LandingPage() {
           </div>
 
           {/* Reassurance points */}
-          <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
-            <div className="flex items-center gap-3 text-gray-300">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <Home className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Home setup & move-in support</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-300">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <Wrench className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Fixes, maintenance & disposal</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-300">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <MoveHorizontal className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Relocation & move-out help</span>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-6 text-center"
+          >
+            <Link href="/business-setup">
+              <span className="text-emerald-100/40 text-sm font-medium hover:text-emerald-400 transition-colors cursor-pointer">
+                Setting up a company in Dubai? → <span className="underline decoration-emerald-500/30 underline-offset-4">Business Setup</span>
+              </span>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
