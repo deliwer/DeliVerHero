@@ -1,0 +1,139 @@
+You are a senior product engineer designing a WhatsApp-first conversion flow
+for a survival-stage service business (DeliWer).
+
+GOAL:
+Convert first-time WhatsApp messages into qualified leads in under 5 messages.
+Reduce manual back-and-forth. Route users correctly.
+
+CHANNEL:
+WhatsApp Business (preferred), WhatsApp API, or no-code webhook fallback.
+Phone number: +971523946311
+
+------------------------------------
+STEP 1 — INSTANT AUTO-REPLY (TRIGGER)
+------------------------------------
+
+Trigger this message immediately when a new user sends their first message.
+
+AUTO-REPLY MESSAGE (EXACT TEXT):
+
+"Welcome to DeliWer 👋  
+We help people moving into Dubai or fixing life at home.
+
+Please reply with a number so we can help fast:
+
+1️⃣ Moving into Dubai  
+2️⃣ Already living here & need help  
+3️⃣ Moving out / furniture disposal  
+4️⃣ Something else"
+
+------------------------------------
+STEP 2 — ROUTING LOGIC
+------------------------------------
+
+Based on the user's reply:
+
+IF reply = 1
+Send MESSAGE A
+
+IF reply = 2
+Send MESSAGE B
+
+IF reply = 3
+Send MESSAGE C
+
+IF reply = 4 or anything else
+Send MESSAGE D
+
+------------------------------------
+STEP 3 — QUALIFICATION MESSAGES
+------------------------------------
+
+MESSAGE A (Moving into Dubai):
+
+"Got it 👍  
+Are you:
+1️⃣ Moving within the next 30 days  
+2️⃣ Already arrived  
+3️⃣ Just planning right now"
+
+Then wait for reply.
+
+------------------------------------
+
+MESSAGE B (Already living here):
+
+"Understood 👍  
+What do you need help with today?
+
+You can reply in one line, for example:
+• Fix something at home  
+• Furniture removal  
+• Cleaning or maintenance  
+• General living support"
+
+------------------------------------
+
+MESSAGE C (Moving out / disposal):
+
+"Thanks 👍  
+Is this for:
+1️⃣ Furniture & appliance disposal  
+2️⃣ Move-out cleaning  
+3️⃣ Full move-out support?"
+
+------------------------------------
+
+MESSAGE D (Something else):
+
+"No problem 👍  
+Please describe what you need help with in one or two lines."
+
+------------------------------------
+STEP 4 — HANDOFF TO HUMAN
+------------------------------------
+
+After the user responds to the qualification question:
+
+Send this message:
+
+"Thanks. A DeliWer living support manager will reply shortly.
+
+If urgent, please mention:
+• Location  
+• Timeline  
+• Budget range (if known)"
+
+------------------------------------
+STEP 5 — INTERNAL TAGGING (IF SUPPORTED)
+------------------------------------
+
+Tag conversations as:
+- Relocation Lead
+- Resident Support
+- Move-Out / Disposal
+- General Inquiry
+
+------------------------------------
+RULES (STRICT):
+------------------------------------
+
+- Keep messages short and human
+- No emojis beyond 👍 and 👋
+- No sales language
+- No pricing discussion in auto messages
+- Human must respond within 10 minutes where possible
+- Do NOT loop users back to menus
+
+------------------------------------
+OUTPUT:
+------------------------------------
+
+Provide:
+1. Auto-reply message templates
+2. Routing logic (pseudo-code or webhook logic)
+3. Any WhatsApp Business configuration notes
+
+Do NOT explain strategy.
+Do NOT add extra steps.
+Deliver production-ready setup.

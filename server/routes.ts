@@ -535,6 +535,36 @@ Sitemap: ${req.protocol}://${req.get("host")}/sitemap.xml
     }
   });
 
+  // WhatsApp Automation Webhook (Production Ready Setup)
+  app.post("/api/webhooks/whatsapp", async (req, res) => {
+    const { from, text } = req.body;
+    
+    // Simple mock logic for demonstration
+    // In production, this would integrate with WhatsApp Business API
+    const response = {
+      to: from,
+      messages: [] as string[]
+    };
+
+    const input = text?.trim();
+
+    if (!input) {
+      response.messages.push("Welcome to DeliWer 👋\nWe help people moving into Dubai or fixing life at home.\n\nPlease reply with a number so we can help fast:\n\n1️⃣ Moving into Dubai\n2️⃣ Already living here & need help\n3️⃣ Moving out / furniture disposal\n4️⃣ Something else");
+    } else if (input === "1") {
+      response.messages.push("Got it 👍\nAre you:\n1️⃣ Moving within the next 30 days\n2️⃣ Already arrived\n3️⃣ Just planning right now");
+    } else if (input === "2") {
+      response.messages.push("Understood 👍\nWhat do you need help with today?\n\nYou can reply in one line, for example:\n• Fix something at home\n• Furniture removal\n• Cleaning or maintenance\n• General living support");
+    } else if (input === "3") {
+      response.messages.push("Thanks 👍\nIs this for:\n1️⃣ Furniture & appliance disposal\n2️⃣ Move-out cleaning\n3️⃣ Full move-out support?");
+    } else if (input === "4") {
+      response.messages.push("No problem 👍\nPlease describe what you need help with in one or two lines.");
+    } else {
+      response.messages.push("Thanks. A DeliWer living support manager will reply shortly.\n\nIf urgent, please mention:\n• Location\n• Timeline\n• Budget range (if known)");
+    }
+
+    res.json(response);
+  });
+
   // Shopify checkout endpoint
   app.post("/api/shopify/checkout", async (req, res) => {
     try {
