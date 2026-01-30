@@ -99,6 +99,14 @@ export default function Residents() {
       {/* 2. SERVICE CARDS (3 ONLY) */}
       <section ref={conciergeRef} className="px-4 py-24 bg-slate-950">
         <div className="max-w-7xl mx-auto">
+          {/* How DeliWer Works Explainer Block (Part 3) */}
+          <div className="max-w-4xl mx-auto mb-20 text-center space-y-4">
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">How DeliWer Works</h2>
+            <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">
+              DeliWer exists to coordinate and plan — before problems turn into stress. We work with movers, technicians, and service providers, but you only deal with us.
+            </p>
+          </div>
+
           <div className="grid lg:grid-cols-3 gap-8">
             
             {/* CARD 1 — MAINTENANCE */}
@@ -120,7 +128,7 @@ export default function Residents() {
                       <Hammer className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Maintenance <br />Concierge</h3>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Maintenance</h3>
                       <p className="text-gray-300 font-bold text-base mt-2">One point of contact to assess, schedule, and manage trusted technicians.</p>
                     </div>
                   </div>
@@ -129,8 +137,7 @@ export default function Residents() {
                     <Button 
                       className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40"
                       onClick={() => {
-                        setHandoffType("maintenance");
-                        setShowHandoff(true);
+                        window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent("Hi, I need help with maintenance (maintenance_flow)")}`, '_blank');
                       }}
                     >
                       Book Maintenance
@@ -140,7 +147,7 @@ export default function Residents() {
               </Card>
             </motion.div>
 
-            {/* CARD 2 — MOVE CONCIERGE (CORE CHANGE) */}
+            {/* CARD 2 — MOVE CONCIERGE */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -165,7 +172,7 @@ export default function Residents() {
                       </span>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move-In / Move-Out <br />Concierge</h3>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move-In / Move-Out</h3>
                       <p className="text-gray-100 font-bold text-lg mt-2 leading-tight">
                         We manage the planning and vendor coordination around your move — before, during, and after moving day. No trucks, no packing, just orchestration.
                       </p>
@@ -194,8 +201,7 @@ export default function Residents() {
                     <Button 
                       className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
                       onClick={() => {
-                        setHandoffType("move");
-                        setShowHandoff(true);
+                        window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent("Hi, I'm planning a move (move_flow)")}`, '_blank');
                       }}
                     >
                       Plan My Move
@@ -210,7 +216,7 @@ export default function Residents() {
               </Card>
             </motion.div>
 
-            {/* CARD 3 — RESIDENT SUPPORT+ */}
+            {/* CARD 3 — LIFE CONCIERGE (Part 1 Update) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -224,36 +230,22 @@ export default function Residents() {
                       <Zap className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-black uppercase tracking-widest text-blue-400 mb-2">Resident Support+</h3>
-                      <h4 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">When Life Doesn't Fit <br />a Category — We Handle It</h4>
-                      <p className="text-gray-300 font-bold text-base mt-4">From urgent pick-ups to unexpected errands, replacements, or coordination needs — message us and we’ll manage it.</p>
-                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest mt-4 italic">"Think of this as your Aladdin’s Lamp for everyday life in Dubai."</p>
+                      <h3 className="text-xl font-black uppercase tracking-widest text-blue-400 mb-2">Life Concierge</h3>
+                      <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 italic">“Your everyday problem-solver in Dubai”</h4>
+                      <h4 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">When Something Comes Up — You Have One Place to Go</h4>
+                      <p className="text-gray-300 font-bold text-base mt-4">Life Concierge handles the things that don’t clearly fall under moving or maintenance. If it needs outside help, coordination, or fast action — we manage it for you.</p>
+                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest mt-4 italic">“Planning, coordination, and execution through trusted partners.”</p>
                     </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/5">
-                    {[
-                      { icon: AlertTriangle, label: "Something urgent" },
-                      { icon: Clock, label: "Help today" },
-                      { icon: MessageSquare, label: "Who to call?" },
-                      { icon: MapPin, label: "Outside home" }
-                    ].map((item, i) => (
-                      <div key={i} className="flex flex-col items-center sm:items-start gap-2">
-                        <item.icon className="w-5 h-5 text-blue-400" />
-                        <span className="text-[10px] font-black uppercase tracking-tight text-gray-400">{item.label}</span>
-                      </div>
-                    ))}
                   </div>
 
                   <div className="mt-auto pt-8">
                     <Button 
                       className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40"
                       onClick={() => {
-                        setHandoffType("support");
-                        setShowHandoff(true);
+                        window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent("Hi, I’m living in Dubai and need help with something that doesn’t fit moving or maintenance. I’d like Life Concierge support. (life_concierge)")}`, '_blank');
                       }}
                     >
-                      Activate Resident Support+
+                      Get Help Now
                     </Button>
                   </div>
                 </CardContent>

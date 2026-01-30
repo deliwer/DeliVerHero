@@ -1,0 +1,171 @@
+You are a Senior UX Architect and Frontend Engineer finalizing
+DeliWer.com for production launch.
+
+OBJECTIVE:
+Clarify DeliWer’s unique value as a coordination & planning layer
+(on top of movers, contractors, and vendors),
+reduce confusion on /residents,
+and implement a clear concierge definition without repeating the word
+“concierge” excessively.
+
+--------------------------------------------------
+PART 1 — UPDATE /RESIDENTS THIRD CARD
+
+ACTION:
+Rename the third card currently labeled “Resident Support+”
+to:
+
+CARD TITLE:
+Life Concierge
+
+CARD SUBTITLE (optional):
+“Your everyday problem-solver in Dubai”
+
+CARD COPY:
+Headline:
+“When Something Comes Up — You Have One Place to Go”
+
+Description:
+“Life Concierge handles the things that don’t clearly fall under
+moving or maintenance. If it needs outside help, coordination,
+or fast action — we manage it for you.”
+
+Context line (small text):
+“Planning, coordination, and execution through trusted partners.”
+
+DO NOT list services.
+DO NOT mention errands, delivery boys, or tasks explicitly.
+
+CTA:
+“Get Help Now”
+
+CTA behavior:
+→ Opens WhatsApp
+→ Tag: life_concierge
+→ Prefilled message:
+“Hi, I’m living in Dubai and need help with something that doesn’t fit
+moving or maintenance. I’d like Life Concierge support.”
+
+--------------------------------------------------
+PART 2 — ADD DISMISSIBLE POPUP FOR “I’M LIVING IN DUBAI” BUTTON
+
+ACTION:
+When user clicks “I’m Living in Dubai” (on homepage or entry CTA),
+show a dismissible modal BEFORE navigating to /residents.
+
+POPUP PURPOSE:
+Explain what DeliWer actually is, in one glance,
+before users see individual service cards.
+
+POPUP TITLE:
+“How DeliWer Helps Residents”
+
+POPUP COPY (VERY IMPORTANT):
+“DeliWer is not a mover or a contractor.
+
+We sit on top of them — planning, coordinating,
+and managing everything so you don’t have to.”
+
+Supporting line:
+“One point of contact. One WhatsApp. Fewer mistakes.”
+
+--------------------------------------------------
+POPUP OPTIONS (3 SHORT BUTTONS)
+
+Button 1:
+“I need something fixed at home”
+→ Routes to /residents (Maintenance card section)
+→ WhatsApp tag later: maintenance_flow
+
+Button 2:
+“I’m moving in or moving out”
+→ Routes to /relocate
+→ WhatsApp tag later: move_flow
+
+Button 3:
+“Something else came up”
+→ Routes to /residents (Life Concierge card)
+→ WhatsApp tag later: life_concierge_flow
+
+Popup behavior:
+- Dismissible
+- Shown once per session
+- Mobile-friendly
+
+--------------------------------------------------
+PART 3 — DEFINE CONCIERGE ONCE (NOT REPEATED)
+
+ACTION:
+Do NOT repeat the word “concierge” in every card title.
+
+Instead:
+- Add a short “How DeliWer Works” explainer block
+near the top of /residents (below hero)
+
+EXPLAINER COPY:
+“DeliWer exists to coordinate and plan —
+before problems turn into stress.
+
+We work with movers, technicians, and service providers,
+but you only deal with us.”
+
+This block should appear:
+- Once on /residents
+- Once on /relocate
+- NOT repeated inside every card
+
+--------------------------------------------------
+PART 4 — HERO IMAGE & POSITIONING UPDATE
+
+ACTION:
+Update the Home Page hero image and overlay copy.
+
+HERO VISUAL DIRECTION:
+- Calm resident or family
+- Urban Dubai setting
+- Feeling of relief and control
+- No tools, trucks, or technicians
+
+HERO HEADLINE:
+“Life in Dubai, Simplified”
+
+HERO SUBTEXT:
+“Planning, coordination, and support —
+before things become a problem.”
+
+Primary CTA:
+“I’m Living in Dubai”
+→ Triggers popup (Part 2)
+
+Secondary CTA:
+“I’m Relocating”
+→ Goes to /relocate directly
+
+--------------------------------------------------
+PART 5 — WHATSAPP TAGGING (MANDATORY)
+
+IMPLEMENT consistent WhatsApp tags:
+
+- maintenance_flow
+- move_flow
+- life_concierge
+- life_concierge_flow
+- assessment
+- priority_support
+
+All WhatsApp CTAs must:
+- Pass page source
+- Pass card name
+- Pass user intent where possible
+
+This enables funnel tracking and lead qualification.
+
+--------------------------------------------------
+SUCCESS CRITERIA (LAUNCH READINESS)
+
+- User understands DeliWer in under 10 seconds
+- No confusion with movers, Justlife, or Urban Company
+- Clear differentiation: coordination vs execution
+- WhatsApp leads are tagged and intentional
+- /residents page feels calm, not crowded
+- Life Concierge feels like a “safety net”, not a service list

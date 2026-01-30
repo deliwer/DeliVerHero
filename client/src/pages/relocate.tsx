@@ -101,6 +101,16 @@ export default function Relocate() {
 
       <PartnerStrip />
 
+      {/* How DeliWer Works Explainer Block (Part 3) */}
+      <section className="px-4 py-12 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">How DeliWer Works</h2>
+          <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">
+            DeliWer exists to coordinate and plan — before problems turn into stress. We work with movers, technicians, and service providers, but you only deal with us.
+          </p>
+        </div>
+      </section>
+
       {/* Move Concierge Pricing Section */}
       <section ref={moveInRef} id="move-in-packs" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
         {/* Background Image with wash */}
