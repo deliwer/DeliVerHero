@@ -122,7 +122,7 @@ function Router() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
-          <Route path="/" component={Landing} />
+          <Route path="/" component={Home} />
           <Route path="/home" component={Home} />
           <Route path="/home-service">
             <Redirect to="/home" />
