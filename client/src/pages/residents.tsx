@@ -65,34 +65,19 @@ export default function Residents() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
-              Your Home, <br />
-              <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Coordinated.</span>
+              Already living in Dubai? <br />
+              <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Fix anything in one WhatsApp.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-emerald-100/80 max-w-2xl mx-auto font-medium">
-              We plan and manage everything around your move or home needs — without you dealing with multiple vendors.
-            </p>
-            <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mt-4">
-              Not movers. Not contractors. Your home concierge.
-            </p>
+            <div className="flex flex-col items-center gap-4 mt-8">
+              <Button 
+                size="lg"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
+                onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}`, '_blank')}
+              >
+                <MessageSquare className="mr-2 h-6 w-6" /> Chat on WhatsApp
+              </Button>
+            </div>
           </motion.div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
-              onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}`, '_blank')}
-            >
-              <MessageSquare className="mr-2 h-6 w-6" /> Start on WhatsApp
-            </Button>
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-white/10 text-white hover:bg-white/5 h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl"
-              onClick={scrollToConcierge}
-            >
-              Explore Services
-            </Button>
-          </div>
         </div>
       </section>
 

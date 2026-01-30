@@ -133,12 +133,8 @@ export default function LandingPage() {
             </h1>
             
             <h2 className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
-              Home setup, relocation support, fixes, furniture, disposal & daily living — handled by one team on WhatsApp.
+              Home setup, relocation support, fixes, disposal & daily living — handled by one team on WhatsApp.
             </h2>
-            
-            <p className="text-sm text-gray-400 font-medium">
-              For new arrivals, residents & families who don’t want chaos.
-            </p>
           </motion.div>
           
           <div className="flex flex-col items-center gap-4">
@@ -148,10 +144,10 @@ export default function LandingPage() {
               onClick={() => window.open('https://wa.me/971523946311', '_blank')}
             >
               <MessageCircle className="w-8 h-8 fill-current" />
-              Chat on WhatsApp
+              💬 Chat on WhatsApp +971523946311
             </Button>
             
-            <p className="text-sm text-gray-400 font-medium">
+            <p className="text-sm text-gray-400 font-black uppercase tracking-widest">
               Free 10-minute living support consult
             </p>
           </div>

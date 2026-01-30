@@ -71,15 +71,20 @@ export default function Relocate() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
-              Moving in Dubai <br />
-              <span className="text-blue-500 italic font-serif lowercase tracking-normal">Simplified.</span>
+              Moving into Dubai? <br />
+              <span className="text-blue-500 italic font-serif lowercase tracking-normal">Don’t arrive confused or overpay.</span>
             </h1>
             <p className="text-xl md:text-2xl text-blue-100/80 max-w-2xl mx-auto font-medium">
-              We manage the planning and coordination around your move. No trucks, no packing, just orchestration.
+              We manage the move-in support, home setup, utilities, and furniture orchestration.
             </p>
-            <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mt-4">
-              Not movers. Not contractors. Your home concierge.
-            </p>
+            <div className="mt-8">
+              <Button 
+                onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+                className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
+              >
+                Chat on WhatsApp
+              </Button>
+            </div>
           </motion.div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

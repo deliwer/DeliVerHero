@@ -1,0 +1,172 @@
+Below is a **brutally practical, production-ready LIVE SITE TASK LIST** you can hand **directly to your developer** (or execute yourself).
+This is **not theory**. These are **check-boxes**. When all are done, DeliWer is finally *production-ready for survival*.
+
+---
+
+# ✅ DELIWER.COM — LIVE PRODUCTION READINESS CHECKLIST
+
+**Objective:** Turn website into a **WhatsApp lead machine** with zero ad spend
+
+---
+
+## A. ENTRY GATEWAY (HOMEPAGE) — CRITICAL (DO FIRST)
+
+### ⛔ Must-Fix
+
+* [ ] Replace current hero headline with:
+  **“Moving into Dubai? We handle everything after the keys.”**
+* [ ] Replace sub-headline with:
+  **“Home setup, relocation support, fixes, disposal & daily living — handled by one team on WhatsApp.”**
+* [ ] Remove **ALL** secondary CTAs above the fold
+* [ ] Add **ONE** primary CTA button only:
+  **💬 Chat on WhatsApp +971523946311**
+* [ ] Add sub-text under CTA:
+  **Free 10-minute living support consult**
+* [ ] CTA visible **without scroll on mobile**
+
+### ❌ Remove from hero
+
+* [ ] “All-in-one platform” language
+* [ ] Sustainability / water / ecosystem messaging
+* [ ] Package comparisons
+* [ ] Sliders or carousels
+
+---
+
+## B. WHATSAPP INFRASTRUCTURE — NON-NEGOTIABLE
+
+### Setup
+
+* [ ] WhatsApp link uses **wa.me/971523946311**
+* [ ] Works on mobile + desktop
+* [ ] Sticky WhatsApp button on all pages
+
+### Auto-Reply (Business App or API)
+
+* [ ] Greeting message enabled
+* [ ] Qualification flow live (1-2-3 routing)
+* [ ] Labels enabled:
+
+  * Relocation Lead
+  * Resident Support
+  * Move-Out / Disposal
+* [ ] Human response SLA ≤ **10 minutes**
+
+---
+
+## C. /RELOCATE PAGE — MONEY PAGE
+
+### Content
+
+* [ ] Headline rewritten to:
+  **“Moving into Dubai? Don’t arrive confused or overpay.”**
+* [ ] First CTA within first 300px:
+  **Chat on WhatsApp**
+* [ ] Focus only on:
+
+  * Move-in support
+  * Home setup
+  * Utilities
+  * Furniture
+* [ ] Visa / sustainability content **removed or pushed to subpages**
+
+### Conversion
+
+* [ ] WhatsApp CTA repeated every 1.5 screen lengths
+* [ ] No “Learn more” links
+
+---
+
+## D. /RESIDENTS PAGE — HIGH-INTENT USERS
+
+### Entry Section
+
+* [ ] New opening line:
+  **“Already living in Dubai? Fix anything at home in one WhatsApp.”**
+* [ ] WhatsApp CTA immediately below headline
+
+### Service Cards
+
+Each card must:
+
+* [ ] Show ONE problem
+* [ ] End with **Chat on WhatsApp**
+* [ ] No outbound navigation
+
+---
+
+## E. NAVIGATION — SIMPLIFY OR DIE
+
+* [ ] Max 5 top-level menu items
+* [ ] Remove “Business / Platform / Ecosystem”
+* [ ] Keep only:
+
+  * Home
+  * Relocate
+  * Residents
+  * Partners (optional)
+  * WhatsApp CTA (button style)
+
+---
+
+## F. SEO & DISCOVERABILITY (FREE WINS)
+
+* [ ] Page titles rewritten to include:
+
+  * “Move-in services Dubai”
+  * “Furniture disposal Dubai”
+  * “Home setup Dubai”
+* [ ] H1 used once per page only
+* [ ] Meta descriptions written (human, not AI-ish)
+* [ ] Sitemap submitted to Google Search Console
+
+---
+
+## G. TRUST & LEGITIMACY (LIGHT, NOT HEAVY)
+
+* [ ] Footer includes:
+
+  * DeliWer.com
+  * WhatsApp +971523946311
+  * Email [info@deliwer.com](mailto:info@deliwer.com)
+* [ ] Remove exaggerated claims
+* [ ] No fake testimonials
+
+---
+
+## H. PERFORMANCE CHECK
+
+* [ ] Mobile load < 3 seconds
+* [ ] Images compressed
+* [ ] No autoplay video
+* [ ] Core CTA clickable within 1 second
+
+---
+
+# 🚨 BIGGEST BLUNDER STILL TO WATCH
+
+If **ANY page** allows the user to browse without seeing a WhatsApp CTA within **5 seconds**, you are bleeding leads.
+
+---
+
+# 🎯 FINAL PRODUCTION READINESS SCORE (IF DONE)
+
+If checklist complete:
+
+**Survival Score jumps from ~4.5 → 7.5**
+
+That’s the difference between:
+
+* ❌ “Nice idea, no leads”
+* ✅ “Conversations every day”
+
+---
+
+## NEXT (OPTIONAL BUT POWERFUL)
+
+If you say **“4”**, I’ll give you:
+
+* a **30-day zero-budget organic content engine** (LinkedIn + WhatsApp Status)
+* written like a **daily ops checklist**, not marketing theory
+
+You’re very close now.
