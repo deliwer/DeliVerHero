@@ -11,7 +11,7 @@ import { TrustStrip } from "@/components/trust-strip";
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" data-testid="contact-page">
+    <div className="min-h-screen bg-slate-950 text-white" data-testid="contact-page">
       <section className="px-4 py-3 border-b border-white/10 bg-slate-950">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />

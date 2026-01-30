@@ -8,8 +8,8 @@ export default function BusinessSetup() {
   const whatsappUrl = "https://wa.me/yournumber?text=Business%20Setup%20enquiry%20%E2%80%93%20Free%20Zone%20%2F%20Trading";
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col items-center">
-      <section className="w-full px-4 py-3 border-b border-border/10 bg-slate-950">
+    <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center">
+      <section className="w-full px-4 py-3 border-b border-white/10 bg-slate-950">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>
