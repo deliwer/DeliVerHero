@@ -1,0 +1,76 @@
+You are a senior frontend engineer and conversion-focused UX designer.
+
+TASK:
+Update the HOMEPAGE HERO section of www.deliwer.com to prioritize WhatsApp conversion and entry clarity.
+This is a survival-stage business. Optimize for speed, clarity, and one primary action only.
+
+REQUIREMENTS (STRICT):
+
+1. HERO CONTENT (ABOVE THE FOLD ONLY)
+
+Headline (H1):
+"Moving into Dubai?
+We handle everything after the keys."
+
+Sub-headline (H2):
+"Home setup, relocation support, fixes, furniture, disposal & daily living —
+handled by one team on WhatsApp."
+
+Trust line (small text, muted):
+"For new arrivals, residents & families who don’t want chaos."
+
+2. PRIMARY CTA (ONLY ONE CTA)
+
+Button text:
+"💬 Chat on WhatsApp"
+
+Button action:
+Open WhatsApp chat to +971523946311
+(use wa.me or whatsapp:// link for mobile)
+
+Subtext below button (smaller font):
+"Free 10-minute living support consult"
+
+❌ DO NOT add secondary CTAs
+❌ DO NOT add links inside the hero other than WhatsApp
+
+3. SUPPORTING VISUAL CUES (NON-CLICKABLE)
+
+Below the CTA, add 3 short reassurance points with icons or bullets (NOT links):
+
+- Home setup & move-in support
+- Fixes, maintenance & disposal
+- Relocation & move-out help
+
+These are for reassurance only. They must not navigate anywhere.
+
+4. DESIGN & UX RULES
+
+- Clean, modern, minimal layout
+- High contrast for headline and CTA
+- CTA button must be visually dominant
+- Mobile-first (CTA visible without scroll)
+- Fast loading (no heavy animations, no videos)
+- No sliders, no carousels
+
+5. REMOVE / AVOID
+
+- No platform language
+- No feature grids
+- No multi-service navigation in hero
+- No testimonials in hero
+- No menu expansion from hero
+
+6. TECHNICAL NOTES
+
+- Keep existing site structure intact
+- Modify only the homepage hero section
+- Ensure accessibility (proper H1/H2 usage)
+- Ensure WhatsApp link works on desktop & mobile
+
+OUTPUT:
+Provide the updated HTML / JSX / Liquid (depending on current stack) for the homepage hero section, ready to paste into production.
+
+Do NOT explain decisions.
+Do NOT add extra content.
+Just deliver the implementation.

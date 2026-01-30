@@ -3,7 +3,8 @@ import { SEOMeta } from "@/components/seo-meta";
 import { 
   Zap, MessageSquare, CheckCircle2, Thermometer, Droplets, 
   AlertTriangle, Coins, ShieldCheck, Check, Home as HomeIcon,
-  Wrench, Cpu, Layout, ArrowRight, LogOut, ClipboardList, CalendarCheck, UserCheck
+  Wrench, Cpu, Layout, ArrowRight, LogOut, ClipboardList, CalendarCheck, UserCheck,
+  Package, Settings, MoveHorizontal
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -16,70 +17,83 @@ import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
 import waterLifestyleImg from "@/assets/images/water-lifestyle.jpg";
 
 export default function Home() {
-  const handleWhatsApp = (serviceName: string) => {
-    const text = `Hi DeliWer, I'm interested in ${serviceName}. Please let me know how to proceed!`;
+  const handleWhatsApp = (serviceName?: string) => {
+    const text = serviceName 
+      ? `Hi DeliWer, I'm interested in ${serviceName}. Please let me know how to proceed!`
+      : "Hi DeliWer, I'm moving into Dubai and need help with home setup.";
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
       <SEOMeta 
-        title="DeliWer | Your Home, Coordinated."
-        description="Planning, scheduling, and managing everything around your home and move in Dubai without you juggling vendors."
+        title="Moving into Dubai? We handle everything after the keys | DeliWer"
+        description="Home setup, relocation support, fixes, furniture, disposal & daily living handled by one team on WhatsApp."
       />
 
-      {/* Micro Trust Strip */}
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40">
-        <div className="max-w-4xl mx-auto">
-          <TrustStrip variant="dark" showContact={true} />
-        </div>
-      </section>
-
-      {/* 1. Homepage Hero */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4 text-center">
+      {/* 1. Updated Homepage Hero (Conversion Optimized) */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 text-center">
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-20"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"
           style={{ backgroundImage: `url(${maintenanceHero})` }}
         />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950" />
         
-        <div className="relative z-10 max-w-5xl mx-auto space-y-12 py-24">
+        <div className="relative z-10 max-w-4xl mx-auto space-y-10 py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] drop-shadow-2xl">
-              Your Home, <br />
-              <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Coordinated.</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl">
+              Moving into Dubai?<br />
+              <span className="text-emerald-500">We handle everything after the keys.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
-              Planning, scheduling, and managing everything around your home and move — without you juggling vendors.
-            </p>
-            <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">
-              Not movers. Not contractors. Just a single point of contact for your home.
+            
+            <h2 className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
+              Home setup, relocation support, fixes, furniture, disposal & daily living — handled by one team on WhatsApp.
+            </h2>
+            
+            <p className="text-sm text-gray-400 font-medium">
+              For new arrivals, residents & families who don’t want chaos.
             </p>
           </motion.div>
           
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+          <div className="flex flex-col items-center gap-4">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3"
-              onClick={() => {
-                const text = "Hi DeliWer, I'm interested in starting a concierge service. Please let me know how to proceed!";
-                window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
-              }}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
+              onClick={() => handleWhatsApp()}
             >
-              Start Your Concierge
+              <MessageSquare className="w-8 h-8 fill-current" />
+              Chat on WhatsApp
             </Button>
-            <Button 
-              variant="outline"
-              size="lg" 
-              className="border-white/10 text-white hover:bg-white/5 font-black rounded-2xl px-12 h-20 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3"
-              onClick={() => handleWhatsApp("General Inquiry")}
-            >
-              <MessageSquare className="w-6 h-6" /> WhatsApp Support
-            </Button>
+            
+            <p className="text-sm text-gray-400 font-medium">
+              Free 10-minute living support consult
+            </p>
+          </div>
+
+          {/* Reassurance points */}
+          <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 text-gray-300">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <HomeIcon className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Home setup & move-in support</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <Wrench className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Fixes, maintenance & disposal</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <MoveHorizontal className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Relocation & move-out help</span>
+            </div>
           </div>
         </div>
       </section>
