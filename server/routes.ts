@@ -48,7 +48,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Lead Applications & Partner Applications
   app.post("/api/leads", async (req, res) => {
     try {
-      const validatedData = insertLeadSchema.parse(req.body);
+      const validatedData = insertLeadApplicationSchema.parse(req.body);
       const lead = await storage.createLeadApplication(validatedData);
       res.json(lead);
     } catch (error: any) {
