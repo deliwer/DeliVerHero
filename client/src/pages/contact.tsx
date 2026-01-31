@@ -112,7 +112,7 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5 text-emerald-400 mt-0.5" />
                     <div>
                       <p className="text-white font-medium">WhatsApp & Call</p>
-                      <a href="tel:+971567148381" className="text-gray-400 hover:text-emerald-400 transition-colors">+971 56 714 8381</a>
+                      <a href="tel:+971523946311" className="text-gray-400 hover:text-emerald-400 transition-colors">+971 52 394 6311</a>
                       <p className="text-xs text-gray-500 mt-1">Direct: +971 52 390 6019</p>
                     </div>
                   </div>

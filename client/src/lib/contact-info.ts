@@ -2,8 +2,8 @@ export const contactInfo = {
   company: {
     email: "info@deliwer.com",
     service: "support@deliwer.com",
-    phone: "+971 52 390 6019",
-    whatsapp: "971523906019",
+    phone: "+971 52 394 6311",
+    whatsapp: "971523946311",
     address: {
       name: "DeliWer Shopping FZCO",
       street: "50 9WC 523 Block C",
@@ -20,16 +20,16 @@ export const contactInfo = {
     {
       name: "Hassan Jawad",
       title: "Founder",
-      email: "hassan@deliwer.com",
-      phone: "+971 52 390 6019",
-      whatsapp: "+971 52 390 6019",
-      whatsappLink: "971523906019",
+      email: "formatix@deliwer.com",
+      phone: "+971 52 394 6311",
+      whatsapp: "+971 52 394 6311",
+      whatsappLink: "971523946311",
       linkedin: "https://linkedin.com/in/formatix"
     },
     {
       name: "Rubab Hassan",
       title: "Co-Founder & MD",
-      email: "rubab@deliwer.com",
+      email: "sales@deliwer.com",
       phone: "+971 56 714 8381",
       whatsapp: "+971 56 714 8381",
       whatsappLink: "971567148381",
