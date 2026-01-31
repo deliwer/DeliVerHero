@@ -174,16 +174,16 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Reassurance points */}
+          {/* Partner with us link */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
             className="mt-6 text-center"
           >
-            <Link href="/business-setup">
+            <Link href="/partners">
               <span className="text-emerald-100/40 text-sm font-medium hover:text-emerald-400 transition-colors cursor-pointer">
-                Setting up a company in Dubai? → <span className="underline decoration-emerald-500/30 underline-offset-4">Business Setup</span>
+                Partner with us in Dubai? → <span className="underline decoration-emerald-500/30 underline-offset-4">Partnership</span>
               </span>
             </Link>
           </motion.div>
