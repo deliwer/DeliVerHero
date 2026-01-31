@@ -70,17 +70,24 @@ export default function PartnersPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-600/10 to-transparent pointer-events-none" />
+      <section className="relative py-20 px-4 overflow-hidden border-b border-white/5 min-h-[500px] flex items-center">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070" 
+            alt="Dubai Skyline" 
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950" />
+        </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <Badge className="mb-6 bg-blue-500/10 text-blue-400 border-blue-500/20 px-4 py-1">
+          <Badge className="mb-6 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
             PARTNERSHIP
           </Badge>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
             Partner With DeliWer
           </h1>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Support your community members with discreet, concierge-grade Dubai exit services. We handle the friction; you provide the trust.
+          <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            Support your community with discreet, concierge-grade services. Whether it's <strong>Relocation, Resident Support, Maintenance, or Business Setup</strong> — we handle the friction; you provide the trust.
           </p>
           <div className="flex flex-col items-center gap-4">
             <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl" onClick={handleWhatsApp} data-testid="button-partner-whatsapp">
@@ -98,7 +105,7 @@ export default function PartnersPage() {
             Trusted Referral <span className="text-emerald-500">Nodes</span>
           </h2>
           <p className="text-lg text-gray-300 leading-relaxed">
-            DeliWer collaborates with <strong>curated networks</strong> whose members value speed and confidentiality. You refer; we execute. No operational drag for your team.
+            DeliWer collaborates with curated networks whose members value speed and confidentiality. You refer members for <strong>Relocation, Property Handover, Utility Setup, or Business Licensing</strong>; we execute.
           </p>
         </div>
       </section>
@@ -115,7 +122,7 @@ export default function PartnersPage() {
               { title: "HR/Mobility", icon: Target }
             ].map((item, i) => (
               <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover-elevate transition-all" data-testid={`card-ideal-partner-${i}`}>
-                <item.icon className="w-8 h-8 text-blue-500 mx-auto mb-3" />
+                <item.icon className="w-8 h-8 text-emerald-500 mx-auto mb-3" />
                 <span className="text-xs font-bold uppercase text-gray-300 block">{item.title}</span>
               </div>
             ))}

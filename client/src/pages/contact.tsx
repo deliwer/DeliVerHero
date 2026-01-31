@@ -1,13 +1,15 @@
-
 import { ContactForm } from "@/components/contact-form";
 import { 
   Mail, Phone, MapPin, Clock, MessageCircle, Globe, Instagram, 
-  Twitter, Linkedin, Youtube, Facebook, TrendingUp, Briefcase
+  Twitter, Linkedin, Youtube, Facebook, TrendingUp, Briefcase,
+  Gamepad2, Leaf
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { contactInfo } from "@/lib/contact-info";
 import { Button } from "@/components/ui/button";
 import { TrustStrip } from "@/components/trust-strip";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 export default function ContactPage() {
   return (
@@ -18,27 +20,82 @@ export default function ContactPage() {
         </div>
       </section>
       <div className="container mx-auto px-4 max-w-7xl py-12">
-        {/* Hero Section with Introduction */}
+        {/* Hero Section with Concept */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-6 flex items-center justify-center gap-4">
-            <Globe className="w-12 h-12 text-emerald-400" />
-            Welcome to DeliWer
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20">GLOBAL CONVERSATIONAL COMMERCE</Badge>
+          </div>
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
+            Play to Protect. <span className="text-emerald-500">Trade to Save.</span>
           </h1>
-          <div className="max-w-4xl mx-auto space-y-4">
-            <h2 className="text-2xl font-semibold text-emerald-400">
-              The World's First Shopping Metaverse & Sustainability Game
-            </h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Join the revolution in sustainable living! DeliWer Shopping Metaverse is pioneering the future of 
-              environmental conservation through gamified rewards. Earn Planet Points for your water conservation 
-              efforts and eco-friendly practices while reducing carbon emissions through our innovative circular 
-              exchange system.
-            </p>
-            <p className="text-lg text-gray-400">
-              Transform your old iPhones into clean water solutions, save the planet, and get rewarded for it! 
-              Together, we're building a sustainable future, one exchange at a time.
+          <div className="max-w-4xl mx-auto space-y-6">
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
+                <Gamepad2 className="w-10 h-10 text-emerald-400 mx-auto mb-4" />
+                <h3 className="font-bold text-white uppercase text-sm mb-2">The Game</h3>
+                <p className="text-xs text-gray-400">Transforming lifestyle choices into environmental impact through play.</p>
+              </div>
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
+                <Leaf className="w-10 h-10 text-emerald-400 mx-auto mb-4" />
+                <h3 className="font-bold text-white uppercase text-sm mb-2">Sustainability</h3>
+                <p className="text-xs text-gray-400">Reducing carbon through circular trade and water conservation.</p>
+              </div>
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
+                <Globe className="w-10 h-10 text-emerald-400 mx-auto mb-4" />
+                <h3 className="font-bold text-white uppercase text-sm mb-2">Expansion</h3>
+                <p className="text-xs text-gray-400">Starting in Dubai. Scaling global community impact by 2027.</p>
+              </div>
+            </div>
+            
+            <p className="text-xl text-gray-300 leading-relaxed font-medium italic">
+              "DeliWer is not just a platform; it's a <strong>Conversational Sustainability Game</strong>. We use the power of WhatsApp commerce to gamify the circular economy — starting with Dubai's high-intent communities."
             </p>
           </div>
+        </div>
+
+        {/* Founder Profiles */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <Card className="bg-slate-900 border-white/10 hover-elevate transition-all overflow-hidden">
+            <CardContent className="p-8 flex items-center gap-6">
+              <Avatar className="h-24 w-24 border-2 border-emerald-500/30">
+                <AvatarImage src="/assets/hassan-jawad.jpg" alt="Hassan Jawad" />
+                <AvatarFallback className="bg-emerald-500/10 text-emerald-500 font-bold uppercase">HJ</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <h3 className="text-2xl font-black text-white uppercase tracking-tighter">Hassan Jawad</h3>
+                <p className="text-emerald-500 font-bold text-sm uppercase mb-3">Founder</p>
+                <div className="flex gap-4">
+                  <a href="https://linkedin.com/in/hassanjawad" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="mailto:hassan@deliwer.com" className="text-gray-400 hover:text-emerald-400 transition-colors">
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-900 border-white/10 hover-elevate transition-all overflow-hidden">
+            <CardContent className="p-8 flex items-center gap-6">
+              <Avatar className="h-24 w-24 border-2 border-blue-500/30">
+                <AvatarImage src="/assets/rubab-hassan.jpg" alt="Rubab Hassan" />
+                <AvatarFallback className="bg-blue-500/10 text-blue-500 font-bold uppercase">RH</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <h3 className="text-2xl font-black text-white uppercase tracking-tighter">Rubab Hassan</h3>
+                <p className="text-blue-500 font-bold text-sm uppercase mb-3">Co-Founder & MD</p>
+                <div className="flex gap-4">
+                  <a href="https://linkedin.com/in/rubabhassan" target="_blank" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="mailto:rubab@deliwer.com" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8">
@@ -59,10 +116,6 @@ export default function ContactPage() {
                       <a href={`${contactInfo.ctas.emailBase}${contactInfo.company.email}`} className="text-gray-400 hover:text-emerald-400 transition-colors">
                         {contactInfo.company.email}
                       </a>
-                      <br />
-                      <a href={`${contactInfo.ctas.emailBase}${contactInfo.company.service}`} className="text-gray-400 hover:text-emerald-400 transition-colors text-sm">
-                        {contactInfo.company.service}
-                      </a>
                     </div>
                   </div>
                   
@@ -81,20 +134,7 @@ export default function ContactPage() {
                       <p className="text-gray-400">
                         {contactInfo.company.address.name}<br />
                         {contactInfo.company.address.street}<br />
-                        {contactInfo.company.address.zone}<br />
                         {contactInfo.company.address.city}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-emerald-400 mt-0.5" />
-                    <div>
-                      <p className="text-white font-medium">Business Hours</p>
-                      <p className="text-gray-400">
-                        {contactInfo.company.hours.weekdays}<br />
-                        {contactInfo.company.hours.weekend}<br />
-                        <span className="text-emerald-400 text-sm">{contactInfo.company.hours.support}</span>
                       </p>
                     </div>
                   </div>
@@ -102,168 +142,29 @@ export default function ContactPage() {
               </CardContent>
             </Card>
 
-            {/* Social Media & Quick Links */}
             <Card className="bg-slate-800 border-slate-700">
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-white mb-4">Connect With Us</h3>
-                <div className="space-y-4">
-                  <p className="text-gray-400 text-sm">
-                    Follow our sustainability journey and get instant updates:
-                  </p>
-                  <div className="grid grid-cols-2 gap-3">
-                    <a 
-                      href="https://facebook.com/deliwer" 
-                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Facebook className="w-4 h-4" />
-                      Facebook
-                    </a>
-                    <a 
-                      href="https://instagram.com/vdeliwer" 
-                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Instagram className="w-4 h-4" />
-                      Instagram
-                    </a>
-                    <a 
-                      href="https://twitter.com/vdeliwer" 
-                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Twitter className="w-4 h-4" />
-                      Twitter
-                    </a>
-                    <a 
-                      href="https://youtube.com/@vdeliWer" 
-                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Youtube className="w-4 h-4" />
-                      YouTube
-                    </a>
-                    <a 
-                      href="https://tiktok.com/@vdeliwer" 
-                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Globe className="w-4 h-4" />
-                      TikTok
-                    </a>
-                    <a 
-                      href="https://linkedin.com/company/deliwer" 
-                      className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                      LinkedIn
-                    </a>
-                  </div>
-                  <div className="pt-4 border-t border-slate-700 space-y-3">
-                    <p className="text-sm text-gray-300 font-semibold">Discover More About Us:</p>
-                    <div className="grid grid-cols-2 gap-3">
-                      <a 
-                        href={contactInfo.ctas.crunchbase}
-                        className="flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <TrendingUp className="w-4 h-4" />
-                        Crunchbase
-                      </a>
-                      <a 
-                        href={contactInfo.ctas.gust}
-                        className="flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-medium transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Briefcase className="w-4 h-4" />
-                        Gust
-                      </a>
-                    </div>
-                  </div>
-                  <div className="pt-4 border-t border-slate-700 space-y-3">
-                    <p className="text-sm text-gray-300 font-semibold">Founder Contacts:</p>
-                    {contactInfo.founders.map((founder) => (
-                      <div key={founder.name} className="text-sm">
-                        <p className="text-white font-medium">{founder.name} - {founder.title}</p>
-                        <div className="flex gap-2 mt-1">
-                          <a 
-                            href={`mailto:${founder.email}`} 
-                            className="text-emerald-400 hover:text-emerald-300 text-xs"
-                          >
-                            Email
-                          </a>
-                          <span className="text-gray-600">•</span>
-                          <a 
-                            href={`${contactInfo.ctas.whatsappBase}${founder.whatsappLink}`}
-                            className="text-emerald-400 hover:text-emerald-300 text-xs"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            WhatsApp
-                          </a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                <h3 className="text-lg font-semibold text-white mb-4">Social Ecosystem</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <a href="https://instagram.com/vdeliwer" className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors" target="_blank">
+                    <Instagram className="w-4 h-4" /> Instagram
+                  </a>
+                  <a href="https://linkedin.com/company/deliwer" className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors" target="_blank">
+                    <Linkedin className="w-4 h-4" /> LinkedIn
+                  </a>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3">
             <Card className="bg-slate-800 border-slate-700">
               <CardHeader>
-                <CardTitle className="text-white text-xl">Send us a Message</CardTitle>
-                <p className="text-gray-400">
-                  Have questions about our sustainability game or need help with your trade-in? 
-                  We'd love to hear from you! Our team responds within 24 hours.
-                </p>
+                <CardTitle className="text-white text-xl">Direct Message</CardTitle>
+                <p className="text-gray-400">Start your sustainability journey. Our team responds via WhatsApp or Email within 24 hours.</p>
               </CardHeader>
               <CardContent>
                 <ContactForm />
-              </CardContent>
-            </Card>
-
-            {/* Google Maps Embed */}
-            <Card className="bg-slate-800 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white text-xl flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-emerald-400" />
-                  Visit Our Office
-                </CardTitle>
-                <p className="text-gray-400">
-                  Located in the heart of Dubai's business district
-                </p>
-              </CardHeader>
-              <CardContent>
-                <div className="rounded-lg overflow-hidden">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d619.689590867552!2d55.37004855431323!3d25.26343187419722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5dfd9c7ff531%3A0x523c98190a9a6d1a!2sDeliWer%20Shopping%20FZCO!5e0!3m2!1sen!2sae!4v1756616088732!5m2!1sen!2sae" 
-                    width="100%" 
-                    height="400" 
-                    style={{border: 0}} 
-                    allowFullScreen={true}
-                    loading="lazy" 
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full"
-                  />
-                </div>
-                <div className="mt-4 p-4 bg-slate-700 rounded-lg">
-                  <p className="text-sm text-gray-300">
-                    <strong className="text-white">Address:</strong> DeliWer Shopping FZCO is located in Dubai Airport Freezone. 
-                    We're easily accessible with dedicated parking and close proximity to major transportation hubs.
-                  </p>
-                </div>
               </CardContent>
             </Card>
           </div>
