@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TrustStrip, PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
 import { useState, useEffect } from "react";
 
-import heroBg from "@assets/Dubai_Creek_Apartment.jpg";
+import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
 export default function LandingPage() {
   const [, setLocation] = useLocation();
@@ -150,6 +150,28 @@ export default function LandingPage() {
             <p className="text-sm text-gray-400 font-black uppercase tracking-widest">
               Free 10-minute living support consult
             </p>
+          </div>
+
+          {/* Reassurance points */}
+          <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-home-setup">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <Home className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Home setup & move-in support</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-maintenance">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <Wrench className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Fixes, maintenance & disposal</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-relocation">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                <MoveHorizontal className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-sm">Relocation & move-out help</span>
+            </div>
           </div>
 
           {/* Reassurance points */}
