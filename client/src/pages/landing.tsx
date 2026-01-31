@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TrustStrip, PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
 import { useState, useEffect } from "react";
 
-import heroBg from "@/assets/hero-bg-concierge.png";
+import heroBg from "@assets/Pasted-Below-is-a-brutally-practical-production-ready-LIVE-SIT_1769816746119.txt";
 
 export default function LandingPage() {
   const [, setLocation] = useLocation();
