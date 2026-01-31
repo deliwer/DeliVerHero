@@ -28,6 +28,7 @@ export function Navigation() {
     { path: "/residents", label: "Residents", id: "residents", icon: Home },
     { path: "/relocate", label: "Relocation", id: "relocation", icon: Plane },
     { path: "/partners", label: "Partners", id: "partners", icon: Briefcase },
+    { path: "/contact", label: "Contact", id: "contact", icon: MessageSquare },
   ];
 
   return (
