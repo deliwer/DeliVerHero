@@ -86,7 +86,11 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Hero Section */}
+      <div className="container mx-auto px-4 max-w-7xl py-12">
+        <div className="mb-8">
+          <TrustStrip variant="dark" showContact={false} />
+        </div>
+        {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden border-b border-white/5 min-h-[500px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img 
@@ -319,17 +323,6 @@ export default function PartnersPage() {
           DeliWer is a UAE-based coordination platform focused on relocation, exit, and settlement journeys.
         </p>
       </footer>
-
-      {/* Sticky WhatsApp */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <Button 
-          className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-full h-16 w-16 p-0 shadow-2xl animate-bounce"
-          onClick={handleWhatsApp}
-          data-testid="button-sticky-whatsapp"
-        >
-          <MessageSquare className="w-8 h-8" />
-        </Button>
-      </div>
     </div>
   );
 }
