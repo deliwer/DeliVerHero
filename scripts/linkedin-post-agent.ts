@@ -6,65 +6,87 @@ dotenv.config();
  * DeliWer LinkedIn Agent
  * Handles automated posting to the DeliWer LinkedIn Showcase page.
  */
-async function postToLinkedIn(content: string) {
+export async function postToLinkedIn(content: string) {
   const email = process.env.LINKEDIN_EMAIL;
   const password = process.env.LINKEDIN_PASSWORD;
   const showcasePageUrl = "https://www.linkedin.com/showcase/deliwer/";
 
   if (!email || !password) {
     console.error("Missing LINKEDIN_EMAIL or LINKEDIN_PASSWORD environment variables.");
-    return;
+    return { success: false, error: "Missing credentials" };
   }
 
-  const browser = await chromium.launch({ headless: true });
-  const context = await browser.newContext();
+  console.log("Launching browser...");
+  const browser = await chromium.launch({ 
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+  });
+  
+  const context = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+  });
   const page = await context.newPage();
 
   try {
     console.log("Logging into LinkedIn...");
-    await page.goto('https://www.linkedin.com/login');
+    await page.goto('https://www.linkedin.com/login', { waitUntil: 'networkidle' });
     await page.fill('#username', email);
     await page.fill('#password', password);
     await page.click('button[type="submit"]');
 
-    // Wait for navigation to complete
-    await page.waitForURL('**/feed/**');
-    console.log("Login successful.");
+    // Wait for feed or challenge
+    try {
+      await page.waitForURL('**/feed/**', { timeout: 15000 });
+      console.log("Login successful.");
+    } catch (e) {
+      console.log("Login may require manual intervention (CAPTCHA/2FA) or different navigation.");
+      if (page.url().includes('checkpoint')) {
+        throw new Error("LinkedIn security checkpoint encountered. Manual login required once to trust this device.");
+      }
+    }
 
     console.log(`Navigating to Showcase Page: ${showcasePageUrl}`);
-    await page.goto(showcasePageUrl);
+    await page.goto(showcasePageUrl, { waitUntil: 'networkidle' });
 
     // Click "Start a post"
-    // Note: Selectors might need adjustment based on LinkedIn's actual DOM
     console.log("Opening post modal...");
-    await page.click('button:has-text("Start a post")');
+    const startPostButton = page.locator('button:has-text("Start a post"), .share-box-feed-entry__trigger');
+    await startPostButton.first().click();
     
     console.log("Typing content...");
-    await page.waitForSelector('div[role="textbox"]');
-    await page.fill('div[role="textbox"]', content);
+    const editor = page.locator('div[role="textbox"], .ql-editor');
+    await editor.waitFor({ state: 'visible' });
+    await editor.fill(content);
 
     console.log("Clicking Post...");
-    await page.click('button:has-text("Post")');
+    const postButton = page.locator('button:has-text("Post"), .share-actions__primary-action');
+    await postButton.click();
 
-    // Wait for the post to be processed
-    await page.waitForTimeout(3000);
+    // Wait for success indicator or small delay
+    await page.waitForTimeout(5000);
     console.log("Post submitted successfully!");
+    return { success: true };
 
-  } catch (error) {
-    console.error("Error during LinkedIn posting:", error);
-    // Capture screenshot for debugging if it fails
+  } catch (error: any) {
+    console.error("Error during LinkedIn posting:", error.message);
     await page.screenshot({ path: 'linkedin-error.png' });
+    return { success: false, error: error.message };
   } finally {
     await browser.close();
   }
 }
 
-// Example usage
-const postContent = `Relocating to Dubai? 🏙️ 
+// Simple CLI runner
+if (require.main === module) {
+  const content = process.argv[2] || `Relocating to Dubai? 🏙️ 
 
 DeliWer handles the friction after the keys. Home setup, relocation support, fixes, disposal & daily living — handled by one team on WhatsApp.
 
 Visit us: https://deliwer.com
 #DubaiRelocation #DeliWer #SustainableLiving #DubaiRealEstate`;
 
-// postToLinkedIn(postContent);
+  postToLinkedIn(content).then(res => {
+    if (res.success) console.log("Done!");
+    else process.exit(1);
+  });
+}
