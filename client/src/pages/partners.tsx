@@ -86,11 +86,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 max-w-7xl py-12">
-        <div className="mb-8">
-          <TrustStrip variant="dark" showContact={false} />
-        </div>
-        {/* Hero Section */}
+      {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden border-b border-white/5 min-h-[500px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img 

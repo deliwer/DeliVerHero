@@ -20,9 +20,6 @@ export default function ContactPage() {
         </div>
       </section>
       <div className="container mx-auto px-4 max-w-7xl py-12">
-        <div className="mb-8">
-          <TrustStrip variant="dark" showContact={false} />
-        </div>
         {/* Hero Section with Concept */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
