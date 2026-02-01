@@ -46,11 +46,11 @@ export async function postToLinkedIn(content: string) {
     }
 
     console.log(`Navigating to Showcase Page: ${showcasePageUrl}`);
-    await page.goto(showcasePageUrl, { waitUntil: 'networkidle' });
+    await page.goto("https://www.linkedin.com/showcase/13178455/admin/page-posts/published/?share=true", { waitUntil: 'networkidle' });
 
     // Click "Start a post"
     console.log("Opening post modal...");
-    const startPostButton = page.locator('button:has-text("Start a post"), .share-box-feed-entry__trigger');
+    const startPostButton = page.locator('button:has-text("Start a post"), .share-box-feed-entry__trigger, button[aria-label*="Start a post"]');
     await startPostButton.first().click();
     
     console.log("Typing content...");
