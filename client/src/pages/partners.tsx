@@ -149,34 +149,61 @@ export default function PartnersPage() {
 
       {/* Responsibilities - Side by Side Condensed */}
       <section className="py-16 px-4 border-y border-white/5">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <h3 className="text-xl font-black uppercase text-emerald-500 border-l-4 border-emerald-500 pl-4">Your Role</h3>
-            <ul className="space-y-3 text-gray-300 font-medium">
-              <li className="flex items-center gap-3">
-                <CheckCircle className="w-4 h-4 text-emerald-500" /> Share exit concierge link
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle className="w-4 h-4 text-emerald-500" /> Refer exiting members
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle className="w-4 h-4 text-emerald-500" /> Zero operational liability
-              </li>
-            </ul>
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 mb-16">
+            <div className="space-y-6">
+              <h3 className="text-xl font-black uppercase text-emerald-500 border-l-4 border-emerald-500 pl-4">Your Role</h3>
+              <ul className="space-y-3 text-gray-300 font-medium">
+                <li className="flex items-center gap-3">
+                  <CheckCircle className="w-4 h-4 text-emerald-500" /> Share co-branded referral links
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckCircle className="w-4 h-4 text-emerald-500" /> Display unique Partner QR codes
+                </li>
+                <li className="flex items-center gap-3">
+                  <CheckCircle className="w-4 h-4 text-emerald-500" /> Refer via tagged WhatsApp flow
+                </li>
+              </ul>
+            </div>
+            <div className="space-y-6">
+              <h3 className="text-xl font-black uppercase text-blue-500 border-l-4 border-blue-500 pl-4">DeliWer Handles</h3>
+              <ul className="space-y-3 text-gray-300 font-medium">
+                <li className="flex items-center gap-3">
+                  <Zap className="w-4 h-4 text-blue-500" /> End-to-end service execution
+                </li>
+                <li className="flex items-center gap-3">
+                  <Zap className="w-4 h-4 text-blue-500" /> Tracking via tagged entry nodes
+                </li>
+                <li className="flex items-center gap-3">
+                  <Zap className="w-4 h-4 text-blue-500" /> Full client & partner coordination
+                </li>
+              </ul>
+            </div>
           </div>
-          <div className="space-y-6">
-            <h3 className="text-xl font-black uppercase text-blue-500 border-l-4 border-blue-500 pl-4">DeliWer Handles</h3>
-            <ul className="space-y-3 text-gray-300 font-medium">
-              <li className="flex items-center gap-3">
-                <Zap className="w-4 h-4 text-blue-500" /> Utility & bill settlements
-              </li>
-              <li className="flex items-center gap-3">
-                <Zap className="w-4 h-4 text-blue-500" /> Deposit recovery & handover
-              </li>
-              <li className="flex items-center gap-3">
-                <Zap className="w-4 h-4 text-blue-500" /> Full client coordination
-              </li>
-            </ul>
+
+          {/* Community Examples - New Section */}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+              <h4 className="text-emerald-400 font-bold uppercase text-sm mb-4">Resident Groups</h4>
+              <p className="text-xs text-gray-400 leading-relaxed mb-4">
+                Share QR codes in community lounges. Residents get instant support for <strong>Maintenance, Move-Out Clearance, or DEWA settlement</strong>.
+              </p>
+              <Badge variant="outline" className="text-[10px] border-emerald-500/20 text-emerald-500">TAGGED FLOW</Badge>
+            </div>
+            <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+              <h4 className="text-blue-400 font-bold uppercase text-sm mb-4">Corporate Offices</h4>
+              <p className="text-xs text-gray-400 leading-relaxed mb-4">
+                Include co-branded links in onboarding/offboarding packs for <strong>Relocation, Visa Support, or Business Licensing</strong>.
+              </p>
+              <Badge variant="outline" className="text-[10px] border-blue-500/20 text-blue-500">CO-BRANDED</Badge>
+            </div>
+            <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+              <h4 className="text-purple-400 font-bold uppercase text-sm mb-4">Founder Networks</h4>
+              <p className="text-xs text-gray-400 leading-relaxed mb-4">
+                Share referral links in private channels for <strong>Business Setup, Legal Compliance, or Executive Relocation</strong>.
+              </p>
+              <Badge variant="outline" className="text-[10px] border-purple-500/20 text-purple-500">REFERRAL LINK</Badge>
+            </div>
           </div>
         </div>
       </section>
