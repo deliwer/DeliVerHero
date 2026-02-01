@@ -22,6 +22,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { contactInfo } from "@/lib/contact-info";
+import { TrustStrip } from "@/components/trust-strip";
 
 export default function PartnersPage() {
   const { toast } = useToast();
@@ -41,17 +43,26 @@ export default function PartnersPage() {
   async function onSubmit(data: InsertLead) {
     setIsSubmitting(true);
     try {
+      // Create WhatsApp message
+      const message = `Hello DeliWer Team,\n\nI'm interested in becoming a partner.\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nCommunity Type: ${data.service}\nDetails: ${data.requirements || 'N/A'}`;
+      const whatsappUrl = `${contactInfo.ctas.whatsappBase}${contactInfo.company.whatsapp}?text=${encodeURIComponent(message)}`;
+      
+      // Still log to DB for lead tracking
       await apiRequest("POST", "/api/leads", data);
+      
+      // Redirect to WhatsApp
+      window.open(whatsappUrl, '_blank');
+      
       toast({
-        title: "Partnership Request Received",
-        description: "A partnership coordinator will reach out to you privately via WhatsApp.",
+        title: "Partnership Request Initiated",
+        description: "Opening WhatsApp for message submission...",
       });
       form.reset();
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Request Failed",
-        description: "Please try again or contact us via WhatsApp.",
+        description: "Please try again or contact us via WhatsApp directly.",
       });
     } finally {
       setIsSubmitting(false);
@@ -59,7 +70,7 @@ export default function PartnersPage() {
   }
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/971523946311?text=I%20am%20interested%20in%20becoming%20a%20Community%20Referral%20Partner', '_blank');
+    window.open(`${contactInfo.ctas.whatsappBase}${contactInfo.company.whatsapp}?text=I%20am%20interested%20in%20becoming%20a%20Community%20Referral%20Partner`, '_blank');
   };
 
   return (
@@ -68,6 +79,12 @@ export default function PartnersPage() {
         title="Community-Led Partnerships | DeliWer Dubai"
         description="Partner with DeliWer to support your community members with discreet, concierge-grade exit services."
       />
+
+      <section className="px-4 py-3 border-b border-white/10 bg-slate-950">
+        <div className="max-w-4xl mx-auto">
+          <TrustStrip variant="dark" showContact={true} />
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden border-b border-white/5 min-h-[500px] flex items-center">

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Send, Mail, Phone, MessageCircle, Building, User, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { contactInfo } from "@/lib/contact-info";
 
 interface ContactFormProps {
   type?: "general" | "support" | "sales" | "partnership";
@@ -33,11 +33,19 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
     setIsSubmitting(true);
 
     try {
-      await apiRequest("/api/contact", "POST", formData);
+      // Create WhatsApp message
+      const messageText = `Hello DeliWer Team,\n\nNew Inquiry from Website:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company || 'N/A'}\nSubject: ${formData.subject}\nCategory: ${formData.category}\nUrgency: ${formData.urgency}\n\nMessage: ${formData.message}`;
+      const whatsappUrl = `${contactInfo.ctas.whatsappBase}${contactInfo.company.whatsapp}?text=${encodeURIComponent(messageText)}`;
+
+      // Still log to DB for backup/tracking
+      await apiRequest("POST", "/api/contact", formData);
+      
+      // Redirect to WhatsApp
+      window.open(whatsappUrl, '_blank');
 
       toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
+        title: "Inquiry Initiated",
+        description: "Opening WhatsApp to send your message...",
       });
 
       // Reset form
@@ -53,8 +61,8 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
       });
     } catch (error) {
       toast({
-        title: "Failed to send message",
-        description: "Please try again or contact us directly.",
+        title: "Failed to process inquiry",
+        description: "Please try contacting us directly via WhatsApp.",
         variant: "destructive",
       });
     } finally {
@@ -259,12 +267,12 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
             {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Sending Message...
+                Processing...
               </>
             ) : (
               <>
-                <Send className="mr-2 h-4 w-4" />
-                Send Message
+                <MessageCircle className="mr-2 h-4 w-4" />
+                Continue to WhatsApp
               </>
             )}
           </Button>
@@ -274,7 +282,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
               Need immediate assistance?
             </p>
             <div className="flex justify-center gap-4 text-sm">
-              <a href="tel:+971-4-123-4567" className="text-emerald-400 hover:text-emerald-300">📞 +971 56 714 8381</a>
+              <a href="tel:+971523946311" className="text-emerald-400 hover:text-emerald-300">📞 +971 52 394 6311</a>
               <a href="mailto:support@deliwer.com" className="text-blue-400 hover:text-blue-300">
                 ✉️ support@deliwer.com
               </a>
