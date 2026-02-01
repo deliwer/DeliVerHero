@@ -77,7 +77,17 @@ export async function postToLinkedIn(content: string) {
 }
 
 // Simple CLI runner
-if (require.main === module) {
+import { fileURLToPath } from 'url';
+
+const isMainModule = () => {
+  if (typeof process !== 'undefined' && process.argv[1]) {
+    const scriptPath = fileURLToPath(import.meta.url);
+    return process.argv[1] === scriptPath || process.argv[1].endsWith('linkedin-post-agent.ts');
+  }
+  return false;
+};
+
+if (isMainModule()) {
   const content = process.argv[2] || `Relocating to Dubai? 🏙️ 
 
 DeliWer handles the friction after the keys. Home setup, relocation support, fixes, disposal & daily living — handled by one team on WhatsApp.
