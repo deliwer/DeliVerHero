@@ -317,7 +317,6 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Footer Note */}
       <footer className="py-12 px-4 border-t border-white/5 text-center bg-slate-950">
         <p className="text-gray-500 max-w-2xl mx-auto italic" data-testid="text-footer-note">
           DeliWer is a UAE-based coordination platform focused on relocation, exit, and settlement journeys.
