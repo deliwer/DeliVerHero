@@ -10,7 +10,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { contactInfo } from "@/lib/contact-info";
 
 interface ContactFormProps {
-  type?: "general" | "support" | "sales" | "partnership";
+  type?: "general" | "support" | "sales" | "partnership" | "feedback" | "complaint";
   prefilledSubject?: string;
 }
 
@@ -21,7 +21,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
     phone: "",
     company: "",
     subject: prefilledSubject || "",
-    category: type,
+    category: type as "general" | "support" | "sales" | "partnership" | "feedback" | "complaint",
     message: "",
     urgency: "normal",
   });
