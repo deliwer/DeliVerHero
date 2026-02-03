@@ -45,3 +45,8 @@ waitForPort = 5000
 [agent]
 integrations = ["javascript_database:1.0.0", "javascript_log_in_with_replit:1.0.0", "javascript_openai:1.0.0", "javascript_stripe:1.0.0", "javascript_paypal:1.0.0"]
 expertMode = true
+
+[userenv]
+
+[userenv.shared]
+LINKEDIN_ORGANIZATION_ID = "93495273"

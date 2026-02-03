@@ -15,12 +15,8 @@ export async function postToLinkedInAPI(content: string) {
   }
 
   const url = 'https://api.linkedin.com/v2/ugcPosts';
-  // Attempt to use member URN if it's an email or username
-  const author = organizationId.startsWith('urn:li:') 
-    ? organizationId 
-    : !isNaN(Number(organizationId))
-      ? `urn:li:organization:${organizationId}`
-      : `urn:li:member:${organizationId}`; // Use member instead of person for version 2.0.0
+  // Check if organizationId is a numeric ID and construct the correct URN
+  const author = `urn:li:organization:${organizationId}`;
 
   console.log(`Using Author URN: ${author}`);
 
