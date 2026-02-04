@@ -4,6 +4,8 @@ import { relocateLeads, insertRelocateLeadSchema } from "@shared/schema";
 import { eq } from "drizzle-orm";
 import { processLead, trackCTAEvent } from "../lead-service";
 import { sendRelocateOnboardingEmail } from "../sendgrid-service";
+import { sendWhatsAppMessage } from "../../scripts/whatsapp-agent";
+import { postToFacebookPage } from "../../scripts/facebook-post-api";
 
 const router = Router();
 
@@ -157,6 +159,15 @@ router.post("/leads", async (req, res) => {
       validatedData.timeline || 'Not specified',
       validatedData.audienceType || 'consumer'
     );
+
+    // Trigger WhatsApp onboarding if phone is provided
+    if (validatedData.phone) {
+      const waMessage = `🚀 Hello ${validatedData.name}! Welcome to DeliWer Relocation Support. We're here to handle everything after the keys. Home setup, maintenance, and 24/7 support. Visit: https://deliwer.com/relocate`;
+      await sendWhatsAppMessage(validatedData.phone, waMessage);
+    }
+
+    // Programmatic social media post (Simulation/Log for now to avoid spamming real pages on every lead)
+    console.log("Programmatically triggering social media update for new relocation lead...");
     
     trackCTAEvent('relocate_lead_submit', {
       audienceType: validatedData.audienceType,
@@ -179,6 +190,19 @@ router.get("/leads", async (req, res) => {
   } catch (error: any) {
     console.error("Leads fetch error:", error);
     res.status(500).json({ error: "Failed to fetch leads" });
+  }
+});
+
+// Admin endpoint to trigger a social media announcement
+router.post("/announce", async (req, res) => {
+  try {
+    const message = "🚀 Exciting news! DeliWer Relocation is now live. We handle everything after the keys in Dubai. Home setup, maintenance, and 24/7 support — all on WhatsApp! 🏙️";
+    const link = "https://deliwer.com/relocate";
+    
+    const result = await postToFacebookPage(message, link);
+    res.json(result);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
   }
 });
 

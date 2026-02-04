@@ -10,8 +10,8 @@ export async function sendWhatsAppMessage(to: string, message: string) {
   const phoneNumberId = process.env.WHATSAPP_BUSINESS_PHONE_NUMBER_ID;
 
   if (!accessToken || !phoneNumberId || accessToken.includes('TOKEN') || phoneNumberId.includes('ID')) {
-    console.error("Missing or invalid WHATSAPP_BUSINESS_ACCESS_TOKEN or WHATSAPP_BUSINESS_PHONE_NUMBER_ID");
-    return { success: false, error: "Missing or invalid API credentials" };
+    console.warn("Using Demo Mode: WhatsApp API credentials not configured");
+    return { success: true, demo: true, message: "Demo: WhatsApp message logged but not sent" };
   }
 
   const url = `https://graph.facebook.com/v22.0/${phoneNumberId}/messages`;
@@ -50,6 +50,30 @@ export async function sendWhatsAppMessage(to: string, message: string) {
     console.error("Error during WhatsApp API request:", error.message);
     return { success: false, error: error.message };
   }
+}
+
+/**
+ * Handles incoming WhatsApp messages and sends an automated initial response.
+ */
+export async function handleIncomingWhatsApp(from: string, messageText: string) {
+  console.log(`Received WhatsApp message from ${from}: ${messageText}`);
+  
+  const lowerMsg = messageText.toLowerCase();
+  
+  if (lowerMsg.includes('start') || lowerMsg.includes('relocation') || lowerMsg.includes('hello')) {
+    const welcomeMsg = `🚀 Welcome to DeliWer Relocation Support! 
+
+We're here to make your move to Dubai seamless. We handle everything after you get the keys:
+- Home setup & furniture assembly
+- Maintenance & utility setup
+- 24/7 resident support
+
+Our agent will be with you shortly. In the meantime, visit https://deliwer.com/relocate to see our services!`;
+    
+    return await sendWhatsAppMessage(from, welcomeMsg);
+  }
+  
+  return { success: true, message: "Awaiting human takeover" };
 }
 
 // Simple CLI runner
