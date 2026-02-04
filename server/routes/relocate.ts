@@ -6,6 +6,7 @@ import { processLead, trackCTAEvent } from "../lead-service";
 import { sendRelocateOnboardingEmail } from "../sendgrid-service";
 import { sendWhatsAppMessage } from "../../scripts/whatsapp-agent";
 import { postToFacebookPage } from "../../scripts/facebook-post-api";
+import { postToLinkedInPersonal } from "../../scripts/linkedin-personal-agent";
 
 const router = Router();
 
@@ -196,8 +197,14 @@ router.get("/leads", async (req, res) => {
 // Admin endpoint to trigger a social media announcement
 router.post("/announce", async (req, res) => {
   try {
+    const { channel } = req.body;
     const message = "🚀 Exciting news! DeliWer Relocation is now live. We handle everything after the keys in Dubai. Home setup, maintenance, and 24/7 support — all on WhatsApp! 🏙️";
     const link = "https://deliwer.com/relocate";
+    
+    if (channel === 'linkedin-personal') {
+      const result = await postToLinkedInPersonal(message + "\n\n" + link);
+      return res.json(result);
+    }
     
     const result = await postToFacebookPage(message, link);
     res.json(result);
