@@ -33,7 +33,11 @@ export async function postToInstagram(imageUrl: string, caption: string) {
 
     const creationId = containerData.id;
 
-    // 2. Publish Media
+    // 2. Wait for media to be ready (Instagram processing can take a few seconds)
+    console.log("Waiting for media to be ready...");
+    await new Promise(resolve => setTimeout(resolve, 10000));
+
+    // 3. Publish Media
     console.log("Publishing Instagram post...");
     const publishUrl = `https://graph.facebook.com/v22.0/${instagramId}/media_publish`;
     const publishRes = await fetch(publishUrl, {
