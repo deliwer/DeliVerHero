@@ -45,7 +45,38 @@ const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: bo
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
-  // Lead Applications & Partner Applications
+  app.get("/api/marketing/assets", (req, res) => {
+    res.json({
+      checklist: {
+        title: "Dubai Newcomer Essentials Checklist",
+        sections: [
+          {
+            title: "Immediate Essentials (Day 1)",
+            items: ["Local SIM Card", "Nol Card", "Water & Basic Snacks", "Essential Toiletries", "Power Adapter"]
+          },
+          {
+            title: "Apartment Setup",
+            items: ["DEWA Activation", "Home Internet", "Kitchenware", "Bedding", "Cleaning Supplies"]
+          }
+        ]
+      },
+      dmTemplates: [
+        "Welcome to Dubai! We help new expats stock a full starter basket in 1 day. Want a free checklist on WhatsApp?",
+        "Hey! Saw you're new in Dubai. Want our newcomer checklist on WhatsApp?"
+      ],
+      whatsappScripts: {
+        openers: ["Hey, I'm from Deliwer. Want the 10-min starter basket or a custom list?"],
+        followUps: ["We can deliver essentials tonight. Want me to prefill a basket?"],
+        referral: ["Glad it helped! Do you know one other expat who just moved?"]
+      },
+      starterBasket: [
+        { category: "Water", price: "30-50 AED" },
+        { category: "Breakfast", price: "40-60 AED" }
+      ]
+    });
+  });
+
+  // Lead Applications & Instagram Marketing Leads
   app.post("/api/leads", async (req, res) => {
     try {
       const validatedData = insertLeadApplicationSchema.parse(req.body);
