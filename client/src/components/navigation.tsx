@@ -25,6 +25,7 @@ export function Navigation() {
   }, []);
 
   const navItems = [
+    { path: "/marketing", label: "Marketing", id: "marketing", icon: MessageSquare },
     { path: "/residents", label: "Residents", id: "residents", icon: Home },
     { path: "/relocate", label: "Relocation", id: "relocation", icon: Plane },
     { path: "/partners", label: "Partners", id: "partners", icon: Briefcase },

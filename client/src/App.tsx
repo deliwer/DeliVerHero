@@ -104,6 +104,8 @@ const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
 const RelocateExit = lazy(() => import("@/pages/relocate-exit"));
 const CampaignDeBacci = lazy(() => import("@/pages/campaign-debacci"));
 
+import MarketingDashboard from "@/pages/MarketingDashboard";
+
 function Router() {
   const [location, setLocation] = useLocation();
 
@@ -122,6 +124,7 @@ function Router() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
+          <Route path="/marketing" component={MarketingDashboard} />
           <Route path="/" component={Landing} />
           <Route path="/home" component={Home} />
           <Route path="/home-service">
