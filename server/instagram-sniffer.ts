@@ -3,20 +3,40 @@ import { db } from "./db";
 import { desc } from "drizzle-orm";
 
 // Simulated "sniffing" logic for Instagram intent
-const INTENT_KEYWORDS = ["relocate", "moving to dubai", "apartment", "dubai marina", "new indubai", "shifting"];
+const INTENT_KEYWORDS = [
+  "relocate", 
+  "moving to dubai", 
+  "apartment", 
+  "dubai marina", 
+  "new in dubai", 
+  "shifting",
+  "just landed",
+  "relocating",
+  "looking for apartment"
+];
+
+const MOCK_COMMENTS = [
+  "Planning to relocate soon! Any tips?",
+  "Just landed in Dubai, looking for essentials.",
+  "New in Dubai and need an apartment setup.",
+  "Moving to Dubai Marina next week!",
+  "Is it easy to get groceries delivered in Downtown?",
+  "Looking for an apartment in JLT, any help?",
+  "Just arrived! Where can I get basic home stuff fast?"
+];
 
 export async function sniffInstagramIntent() {
   // In a real scenario, this would use Instagram Graph API Webhooks
   // Simulation: Generate a "found" intent every few minutes for demo
   const mockIGUser = `expat_user_${Math.floor(Math.random() * 1000)}`;
-  const mockComment = `Planning to ${INTENT_KEYWORDS[Math.floor(Math.random() * INTENT_KEYWORDS.length)]} soon! Any tips?`;
+  const mockComment = MOCK_COMMENTS[Math.floor(Math.random() * MOCK_COMMENTS.length)];
   
   // Create an "intercepted" lead
   try {
     const [newLead] = await db.insert(leadApplications).values({
       instagramHandle: mockIGUser,
       marketingStage: "intercepted",
-      notes: `Automated Sniff: "${mockComment}"`,
+      notes: `Live Intent: "${mockComment}"`,
       source: "instagram_sniff",
       whatsappStatus: "pending",
       nextAction: "Send relocation checklist via DM"
