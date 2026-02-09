@@ -12,7 +12,10 @@ const INTENT_KEYWORDS = [
   "shifting",
   "just landed",
   "relocating",
-  "looking for apartment"
+  "looking for apartment",
+  "ejari",
+  "renting",
+  "tenancy contract"
 ];
 
 const MOCK_COMMENTS = [
@@ -22,7 +25,11 @@ const MOCK_COMMENTS = [
   "Moving to Dubai Marina next week!",
   "Is it easy to get groceries delivered in Downtown?",
   "Looking for an apartment in JLT, any help?",
-  "Just arrived! Where can I get basic home stuff fast?"
+  "Just arrived! Where can I get basic home stuff fast?",
+  "Finally got my Ejari sorted for the new place!",
+  "Anyone know a good mover? Just signed my Ejari today.",
+  "Ejari registration was a breeze, now for the furniture.",
+  "Moved into a new studio in Business Bay, Ejari done."
 ];
 
 export async function sniffInstagramIntent() {

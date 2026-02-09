@@ -119,29 +119,32 @@ export default function MarketingDashboard() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {leads?.filter(l => l.source === "instagram_sniff").slice(0, 10).map((lead) => (
-              <div key={lead.id} className="flex items-center justify-between p-4 border border-white/5 rounded-xl bg-slate-950/50 hover:bg-slate-800/50 transition-all group">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-pink-400">@{lead.instagramHandle}</span>
-                    <Badge variant="outline" className="text-[10px] uppercase border-pink-500/30 text-pink-400">
-                      Intent Detected
-                    </Badge>
+            {leads?.filter(l => l.source === "instagram_sniff").slice(0, 15).map((lead) => {
+              const isEjari = lead.notes?.toLowerCase().includes("ejari");
+              return (
+                <div key={lead.id} className={`flex items-center justify-between p-4 border rounded-xl bg-slate-950/50 hover:bg-slate-800/50 transition-all group ${isEjari ? 'border-emerald-500/30' : 'border-white/5'}`}>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-pink-400">@{lead.instagramHandle}</span>
+                      <Badge variant="outline" className={`text-[10px] uppercase ${isEjari ? 'border-emerald-500/50 text-emerald-500' : 'border-pink-500/30 text-pink-400'}`}>
+                        {isEjari ? 'New Ejari Prospect' : 'Intent Detected'}
+                      </Badge>
+                    </div>
+                    <p className="text-sm italic text-muted-foreground">{lead.notes}</p>
                   </div>
-                  <p className="text-sm italic text-muted-foreground">{lead.notes}</p>
+                  <div className="flex items-center gap-3">
+                    <button 
+                      onClick={() => handleWhatsAppRedirect(lead)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${isEjari ? 'bg-emerald-500 hover:bg-emerald-400' : 'bg-emerald-600 hover:bg-emerald-500'}`}
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      {isEjari ? 'Book Move-in Pack' : 'Channelise to WhatsApp'}
+                      <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </button>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <button 
-                    onClick={() => handleWhatsAppRedirect(lead)}
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 rounded-lg text-xs font-bold transition-all"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    Channelise to WhatsApp
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
             {leads?.filter(l => l.source === "instagram_sniff").length === 0 && (
               <div className="text-center py-12 text-muted-foreground">
                 <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2 opacity-20" />

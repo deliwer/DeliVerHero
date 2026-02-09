@@ -27,6 +27,7 @@ export const CHECKLIST_CONTENT = {
 export const INSTAGRAM_DM_TEMPLATES = [
   "Welcome to Dubai! We help new expats stock a full starter basket in 1 day—no local store knowledge needed. Want a free ‘Dubai essentials checklist’ on WhatsApp?",
   "Saw your comment—happy to help you settle in fast. Want the Dubai essentials checklist on WhatsApp? If yes, share your number or tap our click-to-chat link.",
+  "Saw you just got your Ejari! Congrats on the new place. We help new tenants stock their apartments in 24 hours. Want our 'First Night Essentials' list on WhatsApp?",
   "Hey! Saw you're new in Dubai. Welcome! We help expats get their apartments stocked fast. Want me to send over our newcomer checklist to your WhatsApp?",
   "Hi! If you're settling into your new place in Dubai, we can help with the essentials. Would you like a free 'Dubai Newcomer Checklist' via WhatsApp?"
 ];
