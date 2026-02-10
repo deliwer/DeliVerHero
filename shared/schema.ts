@@ -446,6 +446,41 @@ export const leadApplications = pgTable("lead_applications", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   email: text("email").notNull(),
+  phone: text("phone"),
+  requirements: text("requirements"),
+  whatsappResponses: jsonb("whatsapp_responses").default([]),
+  status: text("status").notNull().default("new"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const ejariConversations = pgTable("ejari_conversations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  phone: text("phone").notNull(),
+  platform: text("platform").notNull().default("whatsapp"), // whatsapp, instagram
+  moveInTiming: text("move_in_timing"),
+  area: text("area"),
+  propertyType: text("property_type"), // apartment, villa
+  waterChecked: boolean("water_checked"),
+  cleaningNeeded: boolean("cleaning_needed"),
+  fixesNeeded: boolean("fixes_needed"),
+  status: text("status").notNull().default("QUALIFYING"), // QUALIFYING, PROBLEM_ID, OFFERING, READY_FOR_HUMAN
+  lastMessageSentAt: timestamp("last_message_sent_at").default(sql`now()`),
+  reminderSent: boolean("reminder_sent").default(false),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const insertEjariConversationSchema = createInsertSchema(ejariConversations).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type EjariConversation = typeof ejariConversations.$inferSelect;
+export type InsertEjariConversation = z.infer<typeof insertEjariConversationSchema>;
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
   phone: text("phone").notNull(),
   service: text("service").notNull(), // exit_concierge, relocation, business_setup, etc.
   requirements: text("requirements"), // Specific needs
