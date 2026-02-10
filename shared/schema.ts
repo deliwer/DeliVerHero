@@ -478,18 +478,6 @@ export const insertEjariConversationSchema = createInsertSchema(ejariConversatio
 
 export type EjariConversation = typeof ejariConversations.$inferSelect;
 export type InsertEjariConversation = z.infer<typeof insertEjariConversationSchema>;
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  service: text("service").notNull(), // exit_concierge, relocation, business_setup, etc.
-  requirements: text("requirements"), // Specific needs
-  whatsappResponses: jsonb("whatsapp_responses").default([]), // Store key requirement extraction from WA
-  status: text("status").notNull().default("pending"), // pending, contact_initiated, requirements_gathered, quote_sent, completed
-  trackingCode: text("tracking_code").unique(), // Commission tracking
-  manualVerificationNotes: text("manual_verification_notes"),
-  createdAt: timestamp("created_at").notNull().default(sql`now()`),
-});
 
 export const commissionClaims = pgTable("commission_claims", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
