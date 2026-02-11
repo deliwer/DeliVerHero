@@ -444,6 +444,42 @@ export const sponsorshipTiers = pgTable("sponsorship_tiers", {
 // Relocation & Partner Leads
 export const leadApplications = pgTable("lead_applications", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  heroId: varchar("hero_id").references(() => heroes.id),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  relocationStatus: text("relocation_status").notNull(), // planned, in_progress, completed
+  interestArea: text("interest_area"), // investment, residency, business, lifestyle
+  notes: text("notes"),
+  marketingStage: text("marketing_stage").notNull().default("intercepted"), // intercepted, handshake, redirected, closed
+  conciergeStatus: text("concierge_status").notNull().default("new"), // new, intent_qualified, problem_identified, bundle_offered, ready_for_human
+  moveInTiming: text("move_in_timing"), // within_7_days, 7_14_days, later
+  area: text("area"),
+  propertyType: text("property_type"), // apartment, villa
+  conciergeData: jsonb("concierge_data").default({}), // { water: boolean, cleaning: boolean, fixes: boolean }
+  lastReminderSentAt: timestamp("last_reminder_sent_at"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const leadInteractions = pgTable("lead_interactions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  leadId: varchar("lead_id").notNull().references(() => leadApplications.id),
+  role: text("role").notNull(), // bot, user, human
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertLeadApplicationSchema = createInsertSchema(leadApplications).omit({ 
+  id: true, 
+  createdAt: true, 
+  updatedAt: true 
+});
+
+export type LeadApplication = typeof leadApplications.$inferSelect;
+export type InsertLeadApplication = z.infer<typeof insertLeadApplicationSchema>;
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   email: text("email").notNull(),
   phone: text("phone"),

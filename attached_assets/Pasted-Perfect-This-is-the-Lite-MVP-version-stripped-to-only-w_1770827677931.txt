@@ -1,0 +1,194 @@
+Perfect. This is the **Lite MVP version** — stripped to *only what keeps DeliWer alive*.
+One file, minimal infra, fast to ship, no approvals needed to start.
+
+You can **copy–paste this directly into Replit AI**.
+
+---
+
+## ⚡ REPLIT LITE MVP PROMPT
+
+**Project: DeliWer Ejari Move-In Concierge (Survival MVP)**
+
+---
+
+### SYSTEM ROLE
+
+You are a **pragmatic full-stack engineer** building a **lightweight, agentic WhatsApp + Instagram DM concierge** for a Dubai relocation startup (DeliWer).
+
+Goal:
+👉 Convert **post-Ejari intent** into a **first paid service within 48 hours**.
+
+Ignore dashboards, analytics, approvals, and perfection.
+Optimize for **speed, clarity, and conversation flow**.
+
+---
+
+## 🧠 AGENT SETUP (SIMPLIFIED)
+
+Build **3 lightweight agents** (Agent 4 is manual for MVP).
+
+---
+
+## 🧠 AGENT 1 — EJARI INTENT QUALIFIER
+
+### Trigger
+
+* Incoming WhatsApp message
+* Instagram DM
+* Manual test input
+
+### First Message (exact)
+
+```
+Congrats on your Ejari 🎉  
+When are you moving in?
+1️⃣ Within 7 days  
+2️⃣ 7–14 days  
+3️⃣ Later
+```
+
+### Capture
+
+* Move-in timing
+* Area (free text)
+* Apartment or villa
+
+### Rule
+
+* If no reply in 6 hours → send 1 reminder
+* On reply → pass data to Agent 2
+
+---
+
+## 🧠 AGENT 2 — MOVE-IN CHECK BOT
+
+### Purpose
+
+Identify **only urgent, sellable problems**.
+
+### Ask max 3 questions, one at a time:
+
+1. “Have you checked the water taste or shower yet?”
+2. “Do you need deep cleaning before furniture arrives?”
+3. “Any small fixes needed before move-in (lights, curtains, hooks)?”
+
+### Output
+
+Create a simple object:
+
+```json
+{
+  "water": true,
+  "cleaning": false,
+  "fixes": true
+}
+```
+
+Pass this to Agent 3.
+
+---
+
+## 🧠 AGENT 3 — QUICK BUNDLE OFFER
+
+### Rule
+
+Offer **ONE bundle only**.
+
+### Example Logic
+
+* If water OR cleaning = true → offer Ejari Starter Pack
+* Otherwise → offer Basic Move-In Help
+
+### Message Template
+
+```
+Most tenants with a fresh Ejari do this before moving in:
+
+✅ Ejari Starter Pack
+• Water setup + shower filter
+• Pre-move deep cleaning
+
+This avoids issues in your first week.
+
+Want me to book this before your move-in?
+```
+
+### Outcomes
+
+* “Yes” → mark as READY_FOR_HUMAN
+* Question / hesitation → READY_FOR_HUMAN
+* No reply → one follow-up only
+
+---
+
+## 👤 HUMAN HANDOFF (MANUAL MVP)
+
+When status = READY_FOR_HUMAN:
+
+* Print conversation summary
+* Display user details clearly
+* Pause automation
+
+Human takes over on WhatsApp.
+
+---
+
+## 🔌 TECH REQUIREMENTS (MINIMAL)
+
+* Single backend file (Node.js or Python)
+* In-memory storage or simple JSON
+* Console logs for state tracking
+* Simulated WhatsApp / DM input acceptable
+
+---
+
+## 🧪 MUST SUPPORT
+
+* User types “Just got Ejari”
+* User selects move-in option
+* User goes silent
+* User says “how much?”
+* User wants something custom
+
+---
+
+## 🚫 DO NOT BUILD
+
+* Dashboards
+* CRMs
+* Payments
+* Meta approvals
+* Multi-language
+* Ads or analytics
+
+---
+
+## 🎯 MVP SUCCESS = ALIVE
+
+The MVP succeeds if:
+
+* A human can close a booking from the conversation
+* Flow feels natural, not robotic
+* Setup time < 1 day
+
+---
+
+### OUTPUT
+
+Return:
+
+* Working conversation logic
+* Clear agent functions
+* Easy-to-modify message templates
+* Comments explaining each step
+
+---
+
+If you want next, I can:
+
+* Reduce this to a **single Replit file**
+* Write **copy-paste WhatsApp scripts for humans**
+* Add **Instagram comment → DM trigger logic**
+* Design the **agent pitch WhatsApp message**
+
+Say which one and we keep moving.
