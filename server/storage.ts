@@ -1,62 +1,72 @@
-import { users, heroes, tradeIns, impactStats, referrals, contacts, quotes, 
-  socialChallenges, challengeParticipants, socialShares, 
-  wellnessPassports, wellnessJourneys, wellnessJourneySteps, 
-  aquaShowPerks, luxuryHotelPartners, restaurantPartners, 
-  wellnessJourneyParticipants, dubaiChallenges, dubaiRewards, 
-  sponsors, corporateAccounts, corporateUsers, bulkQuotes, 
-  purchaseOrders, sponsorshipTiers, leadApplications,
-  ejariConversations 
-} from "@shared/schema";
-import { 
-  type Hero, type InsertHero, type TradeIn, type InsertTradeIn, 
-  type ImpactStats, type Referral, type UpdateHero, type DubaiChallenge, 
-  type DubaiReward, type Sponsor, type InsertSponsor, type SponsorshipTier, 
-  type User, type InsertUser, type Contact, type InsertContact, 
-  type Quote, type InsertQuote, type Order, type InsertOrder, 
-  type Customer, type InsertCustomer, type LoyaltyMembership, 
-  type InsertLoyaltyMembership, type DigitalVoucher, type InsertDigitalVoucher, 
-  type TombolaPrize, type InsertTombolaPrize, type TombolaSpin, 
-  type InsertTombolaSpin, type TombolaConfig, type CouponTemplate, 
-  type InsertCouponTemplate, type IssuedCoupon, type InsertIssuedCoupon, 
-  type HeroSpinCount, type RedeemCoupon, type PlanetMission, 
-  type InsertPlanetMission, type HeroMissionProgress, 
-  type InsertHeroMissionProgress, type PlanetPointsTransaction, 
-  type MetaverseAvatar, type InsertMetaverseAvatar, type AchievementBadge, 
-  type InsertAchievementBadge, type HeroBadge, type InsertHeroBadge, 
-  type MetaverseReward, type InsertMetaverseReward, type RewardRedemption, 
-  type InsertRewardRedemption, type DailyQuest, type InsertDailyQuest, 
-  type WellnessPassport, type InsertWellnessPassport, type WellnessJourney, 
-  type InsertWellnessJourney, type WellnessJourneyStep, 
-  type InsertWellnessJourneyStep, type AquaShowPerk, type InsertAquaShowPerk, 
-  type LuxuryHotelPartner, type InsertLuxuryHotelPartner, 
-  type RestaurantPartner, type InsertRestaurantPartner, 
-  type WellnessJourneyParticipant, type InsertWellnessJourneyParticipant, 
-  type City, type InsertCity, type Season, type InsertSeason,
-  type LeadApplication, type InsertLeadApplication,
-  type EjariConversation, type InsertEjariConversation
-} from "@shared/schema";
+import pg from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { users, heroes, tradeIns, impactStats, referrals, contacts, ejariConversations, conciergeConversations } from "@shared/schema";
+import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type EjariConversation, type InsertEjariConversation, type LeadApplication, type InsertLeadApplication } from "@shared/schema";
 
 export interface IStorage {
-  // Ejari Concierge
+  getUser(id: string): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+
+  getConciergeConversation(phoneNumber: string): Promise<ConciergeConversation | undefined>;
+  createConciergeConversation(conv: InsertConciergeConversation): Promise<ConciergeConversation>;
+  updateConciergeConversation(id: string, updates: Partial<ConciergeConversation>): Promise<ConciergeConversation>;
+
   getEjariConversation(phone: string): Promise<EjariConversation | undefined>;
   createEjariConversation(conv: InsertEjariConversation): Promise<EjariConversation>;
   updateEjariConversation(id: string, updates: Partial<EjariConversation>): Promise<EjariConversation | undefined>;
-  
-  // Lead Applications
+
   createLeadApplication(lead: InsertLeadApplication): Promise<LeadApplication>;
   getLeadApplications(): Promise<LeadApplication[]>;
   updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<LeadApplication | undefined>;
-
-  // ... rest of the interface ...
 }
 
 export class MemStorage implements IStorage {
+  private users: Map<string, User>;
+  private conciergeConversations: Map<string, ConciergeConversation>;
   private ejariConversations: Map<string, EjariConversation>;
-  // ... other maps ...
+  private leadApplications: Map<string, LeadApplication>;
+  sessionStore: any;
 
   constructor() {
+    this.users = new Map();
+    this.conciergeConversations = new Map();
     this.ejariConversations = new Map();
-    // ...
+    this.leadApplications = new Map();
+  }
+
+  async getUser(id: string): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(u => u.username === username);
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const id = Math.random().toString(36).substring(7);
+    const user: User = { ...insertUser, id, createdAt: new Date(), updatedAt: new Date(), email: insertUser.email || null, firstName: insertUser.firstName || null, lastName: insertUser.lastName || null, phone: insertUser.phone || null, address: insertUser.address || null, city: insertUser.city || "Dubai", userType: insertUser.userType || "consumer", companyName: insertUser.companyName || null, businessLicense: insertUser.businessLicense || null, tradeLicense: insertUser.tradeLicense || null, isB2BVerified: insertUser.isB2BVerified || false, b2bVerifiedAt: insertUser.b2bVerifiedAt || null, membershipTierId: insertUser.membershipTierId || null, stripeCustomerId: insertUser.stripeCustomerId || null };
+    this.users.set(id, user);
+    return user;
+  }
+
+  async getConciergeConversation(phoneNumber: string): Promise<ConciergeConversation | undefined> {
+    return Array.from(this.conciergeConversations.values()).find(c => c.phoneNumber === phoneNumber);
+  }
+
+  async createConciergeConversation(conv: InsertConciergeConversation): Promise<ConciergeConversation> {
+    const id = Math.random().toString(36).substring(7);
+    const newConv: ConciergeConversation = { ...conv, id, moveInTiming: conv.moveInTiming || null, area: conv.area || null, propertyType: conv.propertyType || null, waterCheck: conv.waterCheck || null, cleaningCheck: conv.cleaningCheck || null, fixesCheck: conv.fixesCheck || null, lastMessageAt: new Date(), createdAt: new Date() };
+    this.conciergeConversations.set(id, newConv);
+    return newConv;
+  }
+
+  async updateConciergeConversation(id: string, updates: Partial<ConciergeConversation>): Promise<ConciergeConversation> {
+    const conv = this.conciergeConversations.get(id);
+    if (!conv) throw new Error("Not found");
+    const updated = { ...conv, ...updates, lastMessageAt: new Date() };
+    this.conciergeConversations.set(id, updated);
+    return updated;
   }
 
   async getEjariConversation(phone: string): Promise<EjariConversation | undefined> {
@@ -64,23 +74,8 @@ export class MemStorage implements IStorage {
   }
 
   async createEjariConversation(conv: InsertEjariConversation): Promise<EjariConversation> {
-    const id = Math.random().toString(36).substr(2, 9);
-    const newConv: EjariConversation = { 
-      ...conv, 
-      id, 
-      platform: conv.platform || "whatsapp",
-      moveInTiming: conv.moveInTiming || null,
-      area: conv.area || null,
-      propertyType: conv.propertyType || null,
-      waterChecked: conv.waterChecked || null,
-      cleaningNeeded: conv.cleaningNeeded || null,
-      fixesNeeded: conv.fixesNeeded || null,
-      status: conv.status || "QUALIFYING",
-      lastMessageSentAt: new Date(),
-      reminderSent: false,
-      createdAt: new Date(), 
-      updatedAt: new Date() 
-    };
+    const id = Math.random().toString(36).substring(7);
+    const newConv: EjariConversation = { ...conv, id, platform: conv.platform || "whatsapp", moveInTiming: conv.moveInTiming || null, area: conv.area || null, propertyType: conv.propertyType || null, waterChecked: conv.waterChecked || null, cleaningNeeded: conv.cleaningNeeded || null, fixesNeeded: conv.fixesNeeded || null, status: conv.status || "QUALIFYING", lastMessageSentAt: new Date(), reminderSent: false, createdAt: new Date(), updatedAt: new Date() };
     this.ejariConversations.set(id, newConv);
     return newConv;
   }
@@ -93,7 +88,24 @@ export class MemStorage implements IStorage {
     return updated;
   }
 
-  // ... implementation of other methods ...
+  async createLeadApplication(lead: InsertLeadApplication): Promise<LeadApplication> {
+    const id = Math.random().toString(36).substring(7);
+    const newLead: LeadApplication = { ...lead, id, status: lead.status || "pending", createdAt: new Date() };
+    this.leadApplications.set(id, newLead);
+    return newLead;
+  }
+
+  async getLeadApplications(): Promise<LeadApplication[]> {
+    return Array.from(this.leadApplications.values());
+  }
+
+  async updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<LeadApplication | undefined> {
+    const lead = this.leadApplications.get(id);
+    if (!lead) return undefined;
+    const updated = { ...lead, requirements, whatsappResponses };
+    this.leadApplications.set(id, updated);
+    return updated;
+  }
 }
 
 export const storage = new MemStorage();

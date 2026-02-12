@@ -43,8 +43,23 @@ if (process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY) {
 // Temporary token storage for QR codes (use Redis in production)
 const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: boolean }>();
 
+import { handleConciergeInput } from "./concierge";
+
 export async function registerRoutes(app: Express): Promise<Server> {
-  
+  // Ejari Concierge Webhook Simulator / Endpoint
+  app.post("/api/concierge/webhook", async (req, res) => {
+    try {
+      const { phone, message } = req.body;
+      if (!phone || !message) {
+        return res.status(400).json({ error: "Phone and message are required" });
+      }
+      const reply = await handleConciergeInput(phone, message);
+      res.json({ reply });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
   app.get("/api/marketing/assets", (req, res) => {
     res.json({
       checklist: {

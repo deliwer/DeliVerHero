@@ -97,6 +97,31 @@ export const referrals = pgTable("referrals", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+export const conciergeConversations = pgTable("concierge_conversations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  phoneNumber: text("phone_number").notNull(),
+  platform: text("platform").notNull().default("whatsapp"), // 'whatsapp' or 'instagram'
+  moveInTiming: text("move_in_timing"), // 'within_7_days', '7_14_days', 'later'
+  area: text("area"),
+  propertyType: text("property_type"), // 'apartment', 'villa'
+  waterCheck: boolean("water_check"),
+  cleaningCheck: boolean("cleaning_check"),
+  fixesCheck: boolean("fixes_check"),
+  status: text("status").notNull().default("qualifying"), // 'qualifying', 'checking', 'offering', 'ready_for_human'
+  lastAgent: text("last_agent").notNull().default("agent_1"),
+  lastMessageAt: timestamp("last_message_at").notNull().default(sql`now()`),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertConciergeConversationSchema = createInsertSchema(conciergeConversations).omit({
+  id: true,
+  createdAt: true,
+  lastMessageAt: true,
+});
+
+export type InsertConciergeConversation = z.infer<typeof insertConciergeConversationSchema>;
+export type ConciergeConversation = typeof conciergeConversations.$inferSelect;
+
 export const contacts = pgTable("contacts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
