@@ -60,6 +60,96 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/concierge", async (req, res) => {
+    try {
+      const { name, phone, area, moveDate, unitType, category } = req.body;
+
+      if (!phone) {
+        return res.status(400).json({
+          success: false,
+          message: "Phone number is required",
+        });
+      }
+
+      const leadMessage = `
+NEW CONCIERGE LEAD 🚀
+
+Name: ${name || "Not provided"}
+Phone: ${phone}
+Area: ${area || "Not provided"}
+Move Date: ${moveDate || "Not provided"}
+Unit Type: ${unitType || "Not provided"}
+Category: ${category || "General"}
+
+Source: Website Concierge Page
+`;
+
+      console.log("📩 NEW LEAD RECEIVED:");
+      console.log(leadMessage);
+
+      if (process.env.WHATSAPP_TOKEN && process.env.PHONE_NUMBER_ID) {
+        try {
+          const response = await fetch(
+            `https://graph.facebook.com/v18.0/${process.env.PHONE_NUMBER_ID}/messages`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                messaging_product: "whatsapp",
+                to: process.env.ALERT_PHONE || "971523946311",
+                type: "text",
+                text: { body: leadMessage },
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("⚠️ WhatsApp API error:", errorData);
+          } else {
+            console.log("✅ WhatsApp notification sent");
+          }
+        } catch (waError: any) {
+          console.error("⚠️ WhatsApp failed:", waError.message);
+        }
+      } else {
+        console.log("ℹ️ WhatsApp not configured - skipping notification");
+      }
+
+      // Store in database/memory via storage
+      try {
+        await storage.createConciergeConversation({
+          phoneNumber: phone,
+          platform: "website",
+          area: area || null,
+          propertyType: unitType || null,
+          status: "ready_for_human",
+          moveInTiming: moveDate || null,
+          waterCheck: null,
+          cleaningCheck: null,
+          fixesCheck: null,
+          lastAgent: "agent_1"
+        });
+      } catch (dbError) {
+        console.error("⚠️ Failed to store lead in DB:", dbError);
+      }
+
+      return res.json({
+        success: true,
+        message: "Concierge request received successfully",
+      });
+    } catch (error) {
+      console.error("🔥 CRITICAL ERROR:", error);
+      return res.status(500).json({
+        success: false,
+        message: "Server error. Please try again.",
+      });
+    }
+  });
+
   app.get("/api/marketing/assets", (req, res) => {
     res.json({
       checklist: {
