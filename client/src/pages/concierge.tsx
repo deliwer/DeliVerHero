@@ -21,14 +21,20 @@ export default function ConciergePage() {
 
   const mutation = useMutation({
     mutationFn: async (message: string) => {
-      const res = await apiRequest("POST", "/api/concierge/webhook", {
+      const res = await apiRequest("POST", "/api/concierge", {
         phone,
-        message,
+        name: "Test User", // Adding name for validation/logging
+        area: "Dubai",      // Default area
+        moveDate: "Next week",
+        unitType: "Apartment",
+        category: "General",
+        message, // The actual message
       });
       return res.json();
     },
     onSuccess: (data) => {
-      setMessages((prev) => [...prev, { role: "bot", content: data.reply }]);
+      const reply = data.reply || data.message || "Request received!";
+      setMessages((prev) => [...prev, { role: "bot", content: reply }]);
     },
     onError: () => {
       toast({

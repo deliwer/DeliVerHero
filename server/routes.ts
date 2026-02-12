@@ -62,7 +62,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/concierge", async (req, res) => {
     try {
-      const { name, phone, area, moveDate, unitType, category } = req.body;
+      const { phone, message } = req.body;
+      const { name, area, moveDate, unitType, category } = req.body;
 
       if (!phone) {
         return res.status(400).json({
@@ -71,6 +72,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
+      // If it's a message from the chatbot UI
+      if (message) {
+        const reply = await handleConciergeInput(phone, message);
+        return res.json({
+          success: true,
+          reply,
+          message: "Concierge response generated"
+        });
+      }
+
+      // If it's a lead form submission
       const leadMessage = `
 NEW CONCIERGE LEAD 🚀
 
