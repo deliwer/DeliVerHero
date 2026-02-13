@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,73 +11,38 @@ import {
   Building,
   Target,
   Briefcase,
-  Globe
+  Globe,
+  ShieldCheck,
+  TrendingUp,
+  Clock,
+  ArrowRight
 } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { insertLeadSchema, type InsertLead } from "@shared/schema";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
+import { useLocation } from "wouter";
 import { contactInfo } from "@/lib/contact-info";
 import { TrustStrip } from "@/components/trust-strip";
 
 export default function PartnersPage() {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [location] = useLocation();
+  const [refName, setRefName] = useState<string | null>(null);
 
-  const form = useForm<InsertLead>({
-    resolver: zodResolver(insertLeadSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      service: "community",
-      requirements: "",
-    },
-  });
-
-  async function onSubmit(data: InsertLead) {
-    setIsSubmitting(true);
-    try {
-      // Create WhatsApp message
-      const message = `Hello DeliWer Team,\n\nI'm interested in becoming a partner.\n\nName: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone}\nCommunity Type: ${data.service}\nDetails: ${data.requirements || 'N/A'}`;
-      const whatsappUrl = `${contactInfo.ctas.whatsappBase}${contactInfo.company.whatsapp}?text=${encodeURIComponent(message)}`;
-      
-      // Still log to DB for lead tracking
-      await apiRequest("POST", "/api/leads", data);
-      
-      // Redirect to WhatsApp
-      window.open(whatsappUrl, '_blank');
-      
-      toast({
-        title: "Partnership Request Initiated",
-        description: "Opening WhatsApp for message submission...",
-      });
-      form.reset();
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Request Failed",
-        description: "Please try again or contact us via WhatsApp directly.",
-      });
-    } finally {
-      setIsSubmitting(false);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      setRefName(ref);
     }
-  }
+  }, [location]);
 
   const handleWhatsApp = () => {
-    window.open(`${contactInfo.ctas.whatsappBase}${contactInfo.company.whatsapp}?text=I%20am%20interested%20in%20becoming%20a%20Community%20Referral%20Partner`, '_blank');
+    const refText = refName ? ` (Referred by ${refName})` : "";
+    window.open(`${contactInfo.ctas.whatsappBase}${contactInfo.company.whatsapp}?text=I%20am%20interested%20in%20the%20Broker%20Growth%20Alliance${refText}`, '_blank');
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta 
-        title="Community-Led Partnerships | DeliWer Dubai"
-        description="Partner with DeliWer to support your community members with discreet, concierge-grade exit services."
+        title="Broker Growth Alliance | DeliWer Dubai"
+        description="Close the Rental. We Handle the Move. You Earn. Join the leading post-closing alliance for Dubai real estate brokers."
       />
 
       <section className="px-4 py-3 border-b border-white/10 bg-slate-950">
@@ -87,236 +52,193 @@ export default function PartnersPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden border-b border-white/5 min-h-[500px] flex items-center">
+      <section className="relative py-24 px-4 overflow-hidden border-b border-white/5 flex items-center">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070" 
-            alt="Dubai Skyline" 
-            className="w-full h-full object-cover opacity-20"
+            src="https://images.unsplash.com/photo-1582653280603-eb5ad4972820?q=80&w=2070" 
+            alt="Dubai Real Estate" 
+            className="w-full h-full object-cover opacity-20 grayscale"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/60 to-slate-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950" />
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
+          {refName && (
+            <Badge className="mb-6 bg-blue-500/20 text-blue-400 border-blue-500/30 px-6 py-2 text-sm font-bold animate-pulse">
+              WELCOME PARTNER: {refName.toUpperCase()}
+            </Badge>
+          )}
           <Badge className="mb-6 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
-            PARTNERSHIP
+            BROKER GROWTH ALLIANCE
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
-            Partner With DeliWer
+          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
+            Close the Rental.<br />
+            <span className="text-emerald-500">We Handle the Rest.</span><br />
+            You Earn.
           </h1>
-          <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            Support your community with discreet, concierge-grade services. Whether it's <strong>Relocation, Resident Support, Maintenance, or Business Setup</strong> — we handle the friction; you provide the trust.
+          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            After you secure the deal, DeliWer completes Ejari, DEWA, move-in setup, and relocation support — while you earn referral commissions.
           </p>
-          <div className="flex flex-col items-center gap-4">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl" onClick={handleWhatsApp} data-testid="button-partner-whatsapp">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl w-full sm:w-auto" onClick={handleWhatsApp} data-testid="button-partner-whatsapp">
               <MessageSquare className="w-6 h-6 mr-2" />
-              WhatsApp Partnership Query
+              WhatsApp to Join Alliance
+            </Button>
+            <Button variant="outline" size="lg" className="border-white/20 hover:bg-white/10 text-white font-black rounded-full px-12 h-16 text-lg w-full sm:w-auto" onClick={() => window.open('https://instagram.com/vdeliwer', '_blank')}>
+              Follow @vdeliwer
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Philosophy - Condensed */}
-      <section className="py-16 px-4 border-b border-white/5 bg-slate-900/50">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter mb-6">
-            Trusted Referral <span className="text-emerald-500">Nodes</span>
-          </h2>
-          <p className="text-lg text-gray-300 leading-relaxed">
-            DeliWer collaborates with curated networks whose members value speed and confidentiality. You refer members for <strong>Relocation, Property Handover, Utility Setup, or Business Licensing</strong>; we execute.
-          </p>
+      {/* Pain Points Section */}
+      <section className="py-20 px-4 bg-slate-900/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Post-Closing Chaos?</h2>
+            <p className="text-gray-400 text-lg">Brokers lose hours on operational friction. We reclaim them for you.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: Clock, title: "Ejari Deadlines", desc: "No more chasing appointments or document follow-ups." },
+              { icon: Zap, title: "Utility Delays", desc: "We ensure DEWA and home internet are live before move-in." },
+              { icon: Users, title: "Tenant Stress", desc: "We handle the 100+ questions new expats ask after the deal." }
+            ].map((item, i) => (
+              <Card key={i} className="bg-white/5 border-white/10 p-8 rounded-[2rem] hover:bg-white/[0.07] transition-all">
+                <item.icon className="w-10 h-10 text-emerald-500 mb-6" />
+                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{item.desc}</p>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Ideal Partner Communities - Simplified Grid */}
-      <section className="py-16 px-4 bg-white/[0.02]">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      {/* Services Section */}
+      <section className="py-20 px-4 border-y border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-12 text-center">After You Close, We Handle:</h2>
+          <div className="grid md:grid-cols-2 gap-6">
             {[
-              { title: "Founders", icon: Users },
-              { title: "Offices", icon: Building },
-              { title: "Executives", icon: Briefcase },
-              { title: "Leadership", icon: Globe },
-              { title: "HR/Mobility", icon: Target }
+              "Ejari Registration & Documentation",
+              "DEWA & Chiller Activation Assistance",
+              "Move-in Coordination & Inspection",
+              "Maintenance & Handover Coordination",
+              "Relocation Concierge (SIM, Nol, Banking)",
+              "Corporate Tenant Onboarding Support"
+            ].map((service, i) => (
+              <div key={i} className="flex items-center gap-4 bg-white/5 p-6 rounded-2xl border border-white/10">
+                <CheckCircle className="w-6 h-6 text-emerald-500 shrink-0" />
+                <span className="text-lg font-bold text-gray-200">{service}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-2xl font-black text-emerald-500 uppercase italic">You stay focused on closing the next deal.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Commission Section */}
+      <section className="py-20 px-4 bg-emerald-600/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Earn Per Successful Referral</h2>
+            <p className="text-gray-400 text-lg">Clear margins. No hidden fees. Paid on execution.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { label: "Ejari Referral", value: "AED 100+" },
+              { label: "Relocation Pkg", value: "10-15% Share" },
+              { label: "Move-in Concierge", value: "Flat Fee" },
+              { label: "Corporate Move", value: "Premium Share" }
             ].map((item, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover-elevate transition-all" data-testid={`card-ideal-partner-${i}`}>
-                <item.icon className="w-8 h-8 text-emerald-500 mx-auto mb-3" />
-                <span className="text-xs font-bold uppercase text-gray-300 block">{item.title}</span>
+              <div key={i} className="bg-slate-900 border border-emerald-500/20 p-6 rounded-2xl text-center">
+                <TrendingUp className="w-6 h-6 text-emerald-500 mx-auto mb-4" />
+                <h4 className="text-gray-400 text-xs font-bold uppercase mb-2">{item.label}</h4>
+                <div className="text-2xl font-black text-emerald-400">{item.value}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Responsibilities - Side by Side Condensed */}
-      <section className="py-16 px-4 border-y border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div className="space-y-6">
-              <h3 className="text-xl font-black uppercase text-emerald-500 border-l-4 border-emerald-500 pl-4">Your Role</h3>
-              <ul className="space-y-3 text-gray-300 font-medium">
-                <li className="flex items-center gap-3">
-                  <CheckCircle className="w-4 h-4 text-emerald-500" /> Share co-branded referral links
+      {/* Client Protection Promise */}
+      <section className="py-20 px-4 bg-slate-900/50 border-y border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <Card className="bg-slate-950 border-blue-500/30 p-10 rounded-[3rem] relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+              <ShieldCheck className="w-32 h-32 text-blue-500" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 flex items-center gap-4">
+              <ShieldCheck className="w-10 h-10 text-blue-500" />
+              Client Protection Promise
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8 relative z-10">
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
+                  <span className="text-gray-300 font-bold">We never market real estate to your client.</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle className="w-4 h-4 text-emerald-500" /> Display unique Partner QR codes
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
+                  <span className="text-gray-300 font-bold">We never interfere with your primary deal.</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle className="w-4 h-4 text-emerald-500" /> Refer via tagged WhatsApp flow
+              </ul>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
+                  <span className="text-gray-300 font-bold">We serve only post-closing operations.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
+                  <span className="text-gray-300 font-bold">All communication remains transparent.</span>
                 </li>
               </ul>
             </div>
-            <div className="space-y-6">
-              <h3 className="text-xl font-black uppercase text-blue-500 border-l-4 border-blue-500 pl-4">DeliWer Handles</h3>
-              <ul className="space-y-3 text-gray-300 font-medium">
-                <li className="flex items-center gap-3">
-                  <Zap className="w-4 h-4 text-blue-500" /> End-to-end service execution
-                </li>
-                <li className="flex items-center gap-3">
-                  <Zap className="w-4 h-4 text-blue-500" /> Tracking via tagged entry nodes
-                </li>
-                <li className="flex items-center gap-3">
-                  <Zap className="w-4 h-4 text-blue-500" /> Full client & partner coordination
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Community Examples - New Section */}
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-              <h4 className="text-emerald-400 font-bold uppercase text-sm mb-4">Resident Groups</h4>
-              <p className="text-xs text-gray-400 leading-relaxed mb-4">
-                Share QR codes in community lounges. Residents get instant support for <strong>Maintenance, Move-Out Clearance, or DEWA settlement</strong>.
-              </p>
-              <Badge variant="outline" className="text-[10px] border-emerald-500/20 text-emerald-500">TAGGED FLOW</Badge>
-            </div>
-            <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-              <h4 className="text-blue-400 font-bold uppercase text-sm mb-4">Corporate Offices</h4>
-              <p className="text-xs text-gray-400 leading-relaxed mb-4">
-                Include co-branded links in onboarding/offboarding packs for <strong>Relocation, Visa Support, or Business Licensing</strong>.
-              </p>
-              <Badge variant="outline" className="text-[10px] border-blue-500/20 text-blue-500">CO-BRANDED</Badge>
-            </div>
-            <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-              <h4 className="text-purple-400 font-bold uppercase text-sm mb-4">Founder Networks</h4>
-              <p className="text-xs text-gray-400 leading-relaxed mb-4">
-                Share referral links in private channels for <strong>Business Setup, Legal Compliance, or Executive Relocation</strong>.
-              </p>
-              <Badge variant="outline" className="text-[10px] border-purple-500/20 text-purple-500">REFERRAL LINK</Badge>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Form Section - Cleaned up */}
-      <section id="apply-section" className="py-20 px-4 bg-blue-600/5">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Request Access</h2>
-            <p className="text-lg text-blue-400">Join our private referral network.</p>
-          </div>
-
-          <Card className="bg-slate-900 border-white/10 p-6 md:p-10 rounded-[2rem]" data-testid="card-partnership-form">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input {...field} className="bg-white/5 border-white/10 h-12 text-white rounded-lg" placeholder="Full Name" data-testid="input-name" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input {...field} className="bg-white/5 border-white/10 h-12 text-white rounded-lg" placeholder="Email Address" data-testid="input-email" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Input {...field} className="bg-white/5 border-white/10 h-12 text-white rounded-lg" placeholder="WhatsApp Number" data-testid="input-phone" />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="service"
-                    render={({ field }) => (
-                      <FormItem>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className="bg-white/5 border-white/10 h-12 text-white rounded-lg" data-testid="select-service">
-                              <SelectValue placeholder="Community Type" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent className="bg-slate-900 border-white/10 text-white">
-                            <SelectItem value="community">Founder Network</SelectItem>
-                            <SelectItem value="professional_group">Professional Group</SelectItem>
-                            <SelectItem value="family_office">Family Office</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="requirements"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Textarea {...field} value={field.value ?? ""} className="bg-white/5 border-white/10 min-h-[100px] text-white rounded-lg" placeholder="Briefly describe your network..." data-testid="textarea-requirements" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button 
-                  type="submit" 
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 rounded-lg text-lg uppercase tracking-widest transition-all"
-                  disabled={isSubmitting}
-                  data-testid="button-submit-partnership"
-                >
-                  {isSubmitting ? "Sending..." : "Submit Access Request"}
-                </Button>
-                <p className="text-center text-sm text-gray-500 mt-4 italic">
-                  Partnerships are reviewed for alignment and service standards.
-                </p>
-              </form>
-            </Form>
           </Card>
         </div>
       </section>
 
-      <footer className="py-12 px-4 border-t border-white/5 text-center bg-slate-950">
-        <p className="text-gray-500 max-w-2xl mx-auto italic" data-testid="text-footer-note">
-          DeliWer is a UAE-based coordination platform focused on relocation, exit, and settlement journeys.
-        </p>
+      {/* Onboarding Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16 text-center">How to Join</h2>
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { step: "01", title: "WhatsApp Us", desc: "Message +971523946311 to express interest." },
+              { step: "02", title: "Get Your Link", desc: "We issue your unique trackable referral link instantly." },
+              { step: "03", title: "Earn On Autopilot", desc: "Refer clients after closing. We serve, you get paid." }
+            ].map((item, i) => (
+              <div key={i} className="relative">
+                <div className="text-6xl font-black text-white/5 absolute -top-10 -left-4 z-0">{item.step}</div>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-black mb-4 uppercase">{item.title}</h3>
+                  <p className="text-gray-400 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-20 flex flex-col items-center">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-xl shadow-2xl group" onClick={handleWhatsApp}>
+              Join the Alliance
+              <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+            </Button>
+            <p className="mt-6 text-gray-500 font-bold uppercase tracking-widest text-sm">No portal. No forms. Just Speed.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer className="py-16 px-4 border-t border-white/5 text-center bg-slate-950">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Operational Back Office for Post-Deal Chaos</p>
+          <div className="flex justify-center gap-8">
+            <a href="https://wa.me/971523946311" className="text-gray-500 hover:text-emerald-500 font-bold">WHATSAPP</a>
+            <a href="https://instagram.com/vdeliwer" className="text-gray-500 hover:text-emerald-500 font-bold">INSTAGRAM</a>
+          </div>
+          <p className="text-gray-600 text-xs italic">
+            DeliWer is a UAE-based coordination platform focused on relocation, exit, and settlement journeys.
+          </p>
+        </div>
       </footer>
     </div>
   );
