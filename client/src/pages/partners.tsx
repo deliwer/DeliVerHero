@@ -52,14 +52,10 @@ export default function PartnersPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden border-b border-white/5 flex items-center">
+      <section className="relative py-20 px-4 overflow-hidden border-b border-white/5 flex items-center">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1582653280603-eb5ad4972820?q=80&w=2070" 
-            alt="Dubai Real Estate" 
-            className="w-full h-full object-cover opacity-20 grayscale"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/70 to-slate-950" />
+          <div className="absolute inset-0 bg-slate-950" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent opacity-50" />
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           {refName && (
@@ -67,164 +63,108 @@ export default function PartnersPage() {
               WELCOME PARTNER: {refName.toUpperCase()}
             </Badge>
           )}
-          <Badge className="mb-6 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
+          <Badge className="mb-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
             BROKER GROWTH ALLIANCE
           </Badge>
-          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
+          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-[0.95]">
             Close the Rental.<br />
-            <span className="text-emerald-500">We Handle the Rest.</span><br />
+            <span className="text-emerald-500 font-extrabold">We Handle the Move.</span><br />
             You Earn.
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            After you secure the deal, DeliWer completes Ejari, DEWA, move-in setup, and relocation support — while you earn referral commissions.
+          <p className="text-lg md:text-xl text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed font-medium">
+            Join Dubai's leading post-closing alliance. We execute Ejari, utilities, and relocation while you focus on the next deal.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-12 h-16 text-lg shadow-xl w-full sm:w-auto" onClick={handleWhatsApp} data-testid="button-partner-whatsapp">
               <MessageSquare className="w-6 h-6 mr-2" />
-              WhatsApp to Join Alliance
+              WhatsApp to Join
             </Button>
-            <Button variant="outline" size="lg" className="border-white/20 hover:bg-white/10 text-white font-black rounded-full px-12 h-16 text-lg w-full sm:w-auto" onClick={() => window.open('https://instagram.com/vdeliwer', '_blank')}>
+            <Button variant="ghost" size="lg" className="text-gray-400 hover:text-white font-bold px-8 h-16 text-base w-full sm:w-auto" onClick={() => window.open('https://instagram.com/vdeliwer', '_blank')}>
               Follow @vdeliwer
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Pain Points Section */}
-      <section className="py-20 px-4 bg-slate-900/30">
+      {/* Simplified Services & Earnings */}
+      <section className="py-20 px-4 bg-slate-900/20">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Post-Closing Chaos?</h2>
-            <p className="text-gray-400 text-lg">Brokers lose hours on operational friction. We reclaim them for you.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: Clock, title: "Ejari Deadlines", desc: "No more chasing appointments or document follow-ups." },
-              { icon: Zap, title: "Utility Delays", desc: "We ensure DEWA and home internet are live before move-in." },
-              { icon: Users, title: "Tenant Stress", desc: "We handle the 100+ questions new expats ask after the deal." }
-            ].map((item, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 p-8 rounded-[2rem] hover:bg-white/[0.07] transition-all">
-                <item.icon className="w-10 h-10 text-emerald-500 mb-6" />
-                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{item.desc}</p>
-              </Card>
-            ))}
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-2xl font-black uppercase mb-8 border-l-4 border-emerald-500 pl-4">Operational Support</h2>
+              <div className="space-y-4">
+                {[
+                  "Ejari Registration & Documentation",
+                  "DEWA & Chiller Activation Assistance",
+                  "Move-in Coordination & Inspection",
+                  "Relocation Concierge Support"
+                ].map((service, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <span className="font-bold text-gray-300">{service}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-2xl font-black uppercase mb-8 border-l-4 border-blue-500 pl-4">Earning Potential</h2>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Ejari", value: "AED 100+" },
+                  { label: "Relocation", value: "15% Share" },
+                  { label: "Concierge", value: "Flat Fee" },
+                  { label: "Corporate", value: "Premium" }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white/5 p-4 rounded-xl border border-white/5">
+                    <div className="text-xs text-gray-500 font-bold uppercase mb-1">{item.label}</div>
+                    <div className="text-lg font-black text-emerald-400">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Trust & Protection */}
       <section className="py-20 px-4 border-y border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-12 text-center">After You Close, We Handle:</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              "Ejari Registration & Documentation",
-              "DEWA & Chiller Activation Assistance",
-              "Move-in Coordination & Inspection",
-              "Maintenance & Handover Coordination",
-              "Relocation Concierge (SIM, Nol, Banking)",
-              "Corporate Tenant Onboarding Support"
-            ].map((service, i) => (
-              <div key={i} className="flex items-center gap-4 bg-white/5 p-6 rounded-2xl border border-white/10">
-                <CheckCircle className="w-6 h-6 text-emerald-500 shrink-0" />
-                <span className="text-lg font-bold text-gray-200">{service}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <p className="text-2xl font-black text-emerald-500 uppercase italic">You stay focused on closing the next deal.</p>
+        <div className="max-w-4xl mx-auto text-center">
+          <ShieldCheck className="w-12 h-12 text-blue-500 mx-auto mb-6" />
+          <h2 className="text-3xl font-black uppercase mb-6 tracking-tight">Client Protection Promise</h2>
+          <p className="text-gray-400 mb-10 max-w-2xl mx-auto font-medium">
+            We are your operational back-office. We never market real estate to your clients or interfere with your primary deal.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm font-bold uppercase tracking-wider text-gray-500">
+            <div>Transparency First</div>
+            <div>Zero Poaching</div>
+            <div>Post-Closing Only</div>
           </div>
         </div>
       </section>
 
-      {/* Commission Section */}
+      {/* Simple Onboarding */}
       <section className="py-20 px-4 bg-emerald-600/5">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Earn Per Successful Referral</h2>
-            <p className="text-gray-400 text-lg">Clear margins. No hidden fees. Paid on execution.</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { label: "Ejari Referral", value: "AED 100+" },
-              { label: "Relocation Pkg", value: "10-15% Share" },
-              { label: "Move-in Concierge", value: "Flat Fee" },
-              { label: "Corporate Move", value: "Premium Share" }
-            ].map((item, i) => (
-              <div key={i} className="bg-slate-900 border border-emerald-500/20 p-6 rounded-2xl text-center">
-                <TrendingUp className="w-6 h-6 text-emerald-500 mx-auto mb-4" />
-                <h4 className="text-gray-400 text-xs font-bold uppercase mb-2">{item.label}</h4>
-                <div className="text-2xl font-black text-emerald-400">{item.value}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Client Protection Promise */}
-      <section className="py-20 px-4 bg-slate-900/50 border-y border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <Card className="bg-slate-950 border-blue-500/30 p-10 rounded-[3rem] relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-8 opacity-10">
-              <ShieldCheck className="w-32 h-32 text-blue-500" />
+        <div className="max-w-xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8">Join the Alliance</h2>
+          <div className="space-y-6 mb-12">
+            <div className="flex items-center gap-4 text-left">
+              <div className="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-black">1</div>
+              <p className="text-gray-300 font-bold">Message us on WhatsApp</p>
             </div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter mb-8 flex items-center gap-4">
-              <ShieldCheck className="w-10 h-10 text-blue-500" />
-              Client Protection Promise
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8 relative z-10">
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
-                  <span className="text-gray-300 font-bold">We never market real estate to your client.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
-                  <span className="text-gray-300 font-bold">We never interfere with your primary deal.</span>
-                </li>
-              </ul>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
-                  <span className="text-gray-300 font-bold">We serve only post-closing operations.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-1" />
-                  <span className="text-gray-300 font-bold">All communication remains transparent.</span>
-                </li>
-              </ul>
+            <div className="flex items-center gap-4 text-left">
+              <div className="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-black">2</div>
+              <p className="text-gray-300 font-bold">Get your unique referral link</p>
             </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Onboarding Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16 text-center">How to Join</h2>
-          <div className="grid md:grid-cols-3 gap-12">
-            {[
-              { step: "01", title: "WhatsApp Us", desc: "Message +971523946311 to express interest." },
-              { step: "02", title: "Get Your Link", desc: "We issue your unique trackable referral link instantly." },
-              { step: "03", title: "Earn On Autopilot", desc: "Refer clients after closing. We serve, you get paid." }
-            ].map((item, i) => (
-              <div key={i} className="relative">
-                <div className="text-6xl font-black text-white/5 absolute -top-10 -left-4 z-0">{item.step}</div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-black mb-4 uppercase">{item.title}</h3>
-                  <p className="text-gray-400 leading-relaxed font-medium">{item.desc}</p>
-                </div>
-              </div>
-            ))}
+            <div className="flex items-center gap-4 text-left">
+              <div className="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-black">3</div>
+              <p className="text-gray-300 font-bold">Start earning per referral</p>
+            </div>
           </div>
-          <div className="mt-20 flex flex-col items-center">
-            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-xl shadow-2xl group" onClick={handleWhatsApp}>
-              Join the Alliance
-              <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform" />
-            </Button>
-            <p className="mt-6 text-gray-500 font-bold uppercase tracking-widest text-sm">No portal. No forms. Just Speed.</p>
-          </div>
+          <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-xl shadow-2xl group w-full" onClick={handleWhatsApp}>
+            Join Now
+            <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+          </Button>
+          <p className="mt-6 text-gray-500 font-bold uppercase tracking-widest text-xs">No forms. No portals. Just speed.</p>
         </div>
       </section>
 
