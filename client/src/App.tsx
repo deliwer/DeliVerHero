@@ -103,6 +103,7 @@ const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
 const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
 const RelocateExit = lazy(() => import("@/pages/relocate-exit"));
 const CampaignDeBacci = lazy(() => import("@/pages/campaign-debacci"));
+const BrokerIntel = lazy(() => import("@/pages/broker-intel"));
 
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
@@ -249,6 +250,7 @@ function Router() {
 
         {/* Membership Plans */}
         <Route path="/membership-plans" component={MembershipPlansPage} />
+        <Route path="/broker-intel" component={BrokerIntel} />
 
         <Route component={NotFound} />
         </Switch>
