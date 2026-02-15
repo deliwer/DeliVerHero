@@ -107,6 +107,8 @@ const BrokerIntel = lazy(() => import("@/pages/broker-intel"));
 const RelocationForFounders = lazy(() => import("@/pages/relocation-for-founders"));
 const RelocationChecklist = lazy(() => import("@/pages/relocation-checklist"));
 const MoveInServicesDubai = lazy(() => import("@/pages/move-in-services-dubai"));
+const SettlingInDubaiGuide = lazy(() => import("@/pages/settling-in-dubai-guide"));
+const BrokerMoveInSupportDubai = lazy(() => import("@/pages/broker-move-in-support-dubai"));
 
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
@@ -257,6 +259,8 @@ function Router() {
         <Route path="/relocation-to-dubai-for-founders" component={RelocationForFounders} />
         <Route path="/dubai-relocation-checklist" component={RelocationChecklist} />
         <Route path="/move-in-services-dubai" component={MoveInServicesDubai} />
+        <Route path="/settling-in-dubai-guide" component={SettlingInDubaiGuide} />
+        <Route path="/broker-move-in-support-dubai" component={BrokerMoveInSupportDubai} />
 
         <Route component={NotFound} />
         </Switch>
