@@ -128,28 +128,32 @@ export default function LandingPage() {
             className="space-y-6"
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl text-white">
-              Moving into Dubai?<br />
-              <span className="text-emerald-500">We handle everything after the keys.</span>
+              Dubai Move-In & Relocation Concierge<br />
+              <span className="text-emerald-500">for Founders & Brokers</span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
-              Home setup, relocation support, fixes, disposal & daily living — handled by one team on WhatsApp.
-            </h2>
+            <div className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed space-y-2">
+              <p>• We handle everything after the keys: Ejari, DEWA, Move-In Packs</p>
+              <p>• One point of contact on WhatsApp for all home setup chaos</p>
+              <p>• Zero stress relocation coordination for busy professionals</p>
+            </div>
           </motion.div>
           
           <div className="flex flex-col items-center gap-4">
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
-              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+              onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20need%20help%20with%20my%20Dubai%20move-in.', '_blank')}
             >
               <MessageCircle className="w-8 h-8 fill-current" />
-              💬 Chat on WhatsApp +971523946311
+              💬 WhatsApp Concierge
             </Button>
             
-            <p className="text-sm text-gray-400 font-black uppercase tracking-widest">
-              Free 10-minute living support consult
-            </p>
+            <Link href="/partners">
+              <Button variant="outline" className="h-12 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest px-8 rounded-xl">
+                Earn 10% Commission (Brokers)
+              </Button>
+            </Link>
           </div>
 
           {/* Reassurance points */}

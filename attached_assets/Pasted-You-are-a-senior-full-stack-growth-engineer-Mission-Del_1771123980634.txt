@@ -1,0 +1,146 @@
+You are a senior full-stack growth engineer.
+
+Mission:
+DeliWer.com must launch in survival mode within 48 hours.
+Goal is not perfection. Goal is BOOKINGS + BROKER SIGNUPS.
+
+Do NOT redesign everything.
+Optimize what exists for:
+1) Search discoverability
+2) Conversion clarity
+3) Mobile speed
+4) WhatsApp-driven funnel
+
+====================================
+PHASE 1 – TECHNICAL SURVIVAL CHECK
+====================================
+
+1. Audit and fix:
+- Title tags (unique per page)
+- Meta descriptions (conversion-driven)
+- H1 only once per page
+- Structured schema markup for:
+  - Local Business
+  - Service
+  - FAQ
+
+2. Create /sitemap.xml auto generated
+3. Create /robots.txt
+4. Ensure:
+   - Mobile lighthouse score > 85
+   - Compress images
+   - Lazy load non-critical images
+   - Remove unused JS/CSS
+
+Output report:
+- Current issues
+- Fixed issues
+- Remaining risks
+
+====================================
+PHASE 2 – LANDING PAGE SURVIVAL REWRITE
+====================================
+
+Rewrite homepage hero with:
+
+Clear positioning:
+“Dubai Move-In & Relocation Concierge for Founders & Brokers”
+
+Add:
+- 3 bullet outcome promises
+- WhatsApp primary CTA (sticky button)
+- Secondary CTA: deliwer.com/partners
+
+Above the fold must:
+- Explain who it’s for
+- Explain what happens next
+- Show instant action (Book / WhatsApp)
+
+====================================
+PHASE 3 – BROKER ACQUISITION FUNNEL
+====================================
+
+Optimize deliwer.com/partners:
+
+Add:
+- Headline: “Earn 10% Commission on Every Move-In”
+- 3-step simple explanation
+- Real estate broker specific language
+- WhatsApp join button
+- Micro FAQ
+
+Create:
+Auto WhatsApp message pre-filled:
+"Hi DeliWer, I’m a broker in Dubai and want to join the partner program."
+
+====================================
+PHASE 4 – ZERO CAPITAL DISCOVERABILITY
+====================================
+
+Create 5 SEO pages:
+
+/relocation-to-dubai-for-founders
+/move-in-services-dubai
+/dubai-relocation-checklist
+/settling-in-dubai-guide
+/broker-move-in-support-dubai
+
+Each page must include:
+- 800+ words
+- FAQ schema
+- Internal linking
+- WhatsApp CTA every 3 sections
+
+====================================
+PHASE 5 – SURVIVAL TRACKING
+====================================
+
+Install:
+- Google Search Console verification
+- GA4
+- Basic event tracking:
+  - WhatsApp clicks
+  - Partner page visits
+  - Form submissions
+
+Create dashboard summary:
+Traffic
+Conversion
+Top page
+Drop-off
+
+====================================
+PHASE 6 – 30 DAY SURVIVAL PLAN
+====================================
+
+Generate:
+
+Week 1:
+Fix tech + publish pages
+
+Week 2:
+LinkedIn founder outreach (manual)
+
+Week 3:
+Broker WhatsApp outreach
+
+Week 4:
+Content repurposing into short-form
+
+====================================
+
+IMPORTANT:
+Do not over-engineer.
+Speed over perfection.
+Clarity over beauty.
+Conversion over complexity.
+
+Return:
+- Code changes
+- File structure
+- Updated homepage copy
+- Updated partner page copy
+- SEO pages content
+- Checklist summary
+
+Execution starts immediately.

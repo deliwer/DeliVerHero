@@ -104,6 +104,9 @@ const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
 const RelocateExit = lazy(() => import("@/pages/relocate-exit"));
 const CampaignDeBacci = lazy(() => import("@/pages/campaign-debacci"));
 const BrokerIntel = lazy(() => import("@/pages/broker-intel"));
+const RelocationForFounders = lazy(() => import("@/pages/relocation-for-founders"));
+const RelocationChecklist = lazy(() => import("@/pages/relocation-checklist"));
+const MoveInServicesDubai = lazy(() => import("@/pages/move-in-services-dubai"));
 
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
@@ -251,6 +254,9 @@ function Router() {
         {/* Membership Plans */}
         <Route path="/membership-plans" component={MembershipPlansPage} />
         <Route path="/broker-intel" component={BrokerIntel} />
+        <Route path="/relocation-to-dubai-for-founders" component={RelocationForFounders} />
+        <Route path="/dubai-relocation-checklist" component={RelocationChecklist} />
+        <Route path="/move-in-services-dubai" component={MoveInServicesDubai} />
 
         <Route component={NotFound} />
         </Switch>

@@ -77,20 +77,19 @@ export default function PartnersPage() {
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight drop-shadow-2xl">
-            Close the Rental.<br />
-            <span className="text-emerald-500 underline decoration-emerald-500/20">We Handle the Move.</span><br />
-            You Earn.
+            Earn 10% Commission<br />
+            <span className="text-emerald-500 underline decoration-emerald-500/20">on Every Move-In</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            After you secure the deal, DeliWer handles Ejari, move-in coordination, and relocation services — while you earn referral commission.
+            After you secure the deal, DeliWer handles the post-closing chaos. You focus on the next listing — we focus on your client's move and your payout.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-16 text-lg shadow-xl w-full sm:w-auto active-elevate-2 flex gap-3"
-              onClick={handleWhatsApp}
+              onClick={() => window.open(`${whatsappLink}?text=Hi%20DeliWer,%20I’m%20a%20broker%20in%20Dubai%20and%20want%20to%20join%20the%20partner%20program.`, '_blank')}
               data-testid="button-partner-whatsapp"
             >
               <SiWhatsapp className="w-6 h-6" />
