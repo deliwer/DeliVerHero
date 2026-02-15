@@ -1,0 +1,113 @@
+You are a senior digital marketing + web engineer for DeliWer.com. 
+Your task: launch the website for survival mode within 48 hours using zero capital. 
+Focus on high-conversion, WhatsApp-first funnels and mobile-friendly pages. 
+
+Primary Goal:
+- Convert website visitors into paid move-in jobs and broker referrals.
+
+Secondary Goal:
+- Improve search visibility for high-intent queries (Ejari, move-in, relocation Dubai).
+
+Constraints:
+- No backend database required initially (local storage allowed)
+- No paid ads
+- Mobile-first design
+- Stick to ONE core positioning: 
+  "Post-Lease Move-In & Relocation Concierge for Dubai Founders and Brokers"
+- WhatsApp is the main conversion channel
+- Brokers are the distribution channel
+
+---
+
+PHASE 1: TECHNICAL SURVIVAL
+1. Generate sitemap.xml
+2. Generate robots.txt
+3. Audit pages for H1, meta title, meta description, mobile speed
+4. Compress all images, lazy-load non-critical images
+5. Ensure WhatsApp click-to-chat links are working
+
+Output: list of fixed pages and issues resolved
+
+---
+
+PHASE 2: HOMEPAGE HERO (High-Conversion)
+- H1: "Complete Your Move-In in Dubai After Lease Signing"
+- 3 bullets:
+    1. Finish move-in in record time
+    2. Avoid paperwork & delays
+    3. Brokers earn referral commission
+- Primary CTA: WhatsApp sticky button (pre-filled message: "Hi DeliWer, I just signed a lease in Dubai and need move-in support")
+- Secondary CTA: Link to /partners page
+- Below hero: short clarity section for founders & brokers
+
+Output: Mobile-ready homepage code (HTML/CSS/JS) with above elements
+
+---
+
+PHASE 3: PARTNERS PAGE (Broker Acquisition)
+- H1: "Earn 10% Commission on Every Move-In You Close"
+- 3-step process:
+    1. Close the lease
+    2. Refer to DeliWer
+    3. Earn commission
+- FAQ section (3 questions minimum)
+- CTA: WhatsApp pre-filled message for broker join
+- Minimal design, mobile-first
+
+Output: Mobile-ready partners page code with CTA
+
+---
+
+PHASE 4: MICRO LANDING PAGES (SEO + Discovery)
+- /ejari-dubai
+- /move-in-services-dubai
+- /relocation-to-dubai-for-founders
+Requirements:
+- 800+ words per page
+- FAQ schema
+- WhatsApp CTA every 3 sections
+- Internal linking between pages
+
+Output: Content + HTML skeletons ready to deploy
+
+---
+
+PHASE 5: SURVIVAL TRACKING
+- Track WhatsApp clicks
+- Track /partners visits
+- Track form submissions / lead collection
+- Generate dashboard summary (local storage or Google Sheets link)
+- Optional: Google Analytics + Search Console integration
+
+Output: Dashboard + instructions
+
+---
+
+PHASE 6: ZERO-CAPITAL DISTRIBUTION PLAN
+- LinkedIn manual outreach messages for founders (copy)
+- WhatsApp outreach messages for brokers (copy)
+- 5 short-form video scripts for Instagram / LinkedIn / TikTok targeting founders/brokers
+- CTA in every content piece: WhatsApp / deliwer.com/partners
+
+Output: Ready-to-use copy + scripts
+
+---
+
+IMPORTANT:
+- Focus on speed, clarity, conversion
+- Mobile-first, WhatsApp-first
+- ONE positioning only
+- Avoid anything unrelated to post-lease move-in & relocation
+- Deliver all outputs as ready-to-deploy HTML, CSS, JS + content text
+
+---
+
+Return:
+1. Complete homepage code + copy
+2. Complete partners page code + copy
+3. 3 micro landing page code + content
+4. Sitemap + robots.txt
+5. Tracking implementation snippet
+6. WhatsApp + broker outreach copy
+7. 5 short-form video scripts
+8. Deployment checklist
