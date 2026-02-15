@@ -19,8 +19,8 @@ import waterLifestyleImg from "@/assets/images/water-lifestyle.jpg";
 export default function Home() {
   const handleWhatsApp = (serviceName?: string) => {
     const text = serviceName 
-      ? `Hi DeliWer, I'm interested in ${serviceName}. Please let me know how to proceed!`
-      : "Hi DeliWer, I'm moving into Dubai and need help with home setup.";
+      ? `Hi DeliWer, I just signed a lease in Dubai and need move-in support for ${serviceName}`
+      : "Hi DeliWer, I just signed a lease in Dubai and need move-in support";
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -46,12 +46,12 @@ export default function Home() {
             className="space-y-6"
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl">
-              Moving into Dubai?<br />
-              <span className="text-emerald-500">We handle everything after the keys.</span>
+              Complete Your Move-In in Dubai<br />
+              <span className="text-emerald-500">After Lease Signing</span>
             </h1>
             
             <h2 className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
-              Home setup, relocation support, fixes, furniture, disposal & daily living — handled by one team on WhatsApp.
+              Finish move-in in record time. Avoid paperwork & delays. Brokers earn referral commission.
             </h2>
             
             <p className="text-sm text-gray-400 font-medium">

@@ -214,6 +214,8 @@ function Router() {
         <Route path="/play" component={Play} />
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners" component={Partners} />
+        <Route path="/ejari-dubai" component={lazy(() => import("./pages/ejari-dubai"))} />
+        <Route path="/relocation-for-founders" component={RelocationForFounders} />
         <Route path="/campaign/debacci" component={CampaignDeBacci} />
         <Route path="/dashboard" component={HeroDashboard} />
         <Route path="/investor-dashboard" component={InvestorDashboard} />

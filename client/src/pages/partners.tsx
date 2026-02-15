@@ -69,8 +69,8 @@ export default function PartnersPage() {
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight drop-shadow-2xl">
-            Earn Commission <br />
-            <span className="text-emerald-500 underline decoration-emerald-500/20">on Every Move-In</span>
+            Earn 10% Commission <br />
+            <span className="text-emerald-500 underline decoration-emerald-500/20">on Every Move-In You Close</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
@@ -81,7 +81,7 @@ export default function PartnersPage() {
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-16 text-lg shadow-xl w-full sm:w-auto active-elevate-2 flex gap-3"
-              onClick={() => window.open(`${whatsappLink}?text=Hi%20DeliWer,%20I’m%20a%20real%20estate%20broker%20in%20Dubai%20and%20want%20to%20join%20the%20partner%20program.`, '_blank')}
+              onClick={() => window.open(`${whatsappLink}?text=Hi%20DeliWer,%20I%20just%20closed%20a%20lease%20and%20want%20to%20refer%20a%20client%20for%20move-in%20support.`, '_blank')}
             >
               <SiWhatsapp className="w-6 h-6" />
               Join via WhatsApp
