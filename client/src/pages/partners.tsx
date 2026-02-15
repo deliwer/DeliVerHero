@@ -5,14 +5,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
   CheckCircle2, 
-  MessageCircle, 
   ShieldCheck, 
   Zap, 
   ArrowRight, 
-  MessageSquare,
-  Wrench,
-  Home as HomeIcon,
-  MoveHorizontal
+  HelpCircle,
+  DollarSign
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { useLocation } from "wouter";
@@ -34,16 +31,11 @@ export default function PartnersPage() {
   const whatsappNumber = "+971523946311";
   const whatsappLink = `https://wa.me/${whatsappNumber.replace("+", "")}`;
 
-  const handleWhatsApp = () => {
-    const refText = refName ? ` (Referred by ${refName})` : "";
-    window.open(`${whatsappLink}?text=Hi,%20interested%20in%20the%20Broker%20Growth%20Alliance${encodeURIComponent(refText)}`, '_blank');
-  };
-
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">
       <SEOMeta 
-        title="Broker Growth Alliance | DeliWer Dubai"
-        description="Close the Rental. We Handle the Move. You Earn. Join the leading post-closing alliance for Dubai real estate brokers."
+        title="Broker Partner Program | Earn Commission on Every Move-In"
+        description="Turn every rental into additional revenue. DeliWer handles Ejari, DEWA, and move-in for your clients while you earn 10% commission."
       />
 
       {/* Micro Trust Line */}
@@ -54,7 +46,7 @@ export default function PartnersPage() {
       </section>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden border-b border-white/5">
+      <section className="relative py-24 px-4 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
         </div>
@@ -72,25 +64,24 @@ export default function PartnersPage() {
             </motion.div>
           )}
           
-          <Badge className="mb-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
-            BROKER GROWTH ALLIANCE
+          <Badge className="mb-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1 font-black uppercase tracking-widest">
+            BROKER DOMINATION MODE
           </Badge>
           
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-tight drop-shadow-2xl">
-            Earn 10% Commission<br />
+            Earn Commission <br />
             <span className="text-emerald-500 underline decoration-emerald-500/20">on Every Move-In</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            After you secure the deal, DeliWer handles the post-closing chaos. You focus on the next listing — we focus on your client's move and your payout.
+            Turn every rental into additional revenue — without doing extra work.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-16 text-lg shadow-xl w-full sm:w-auto active-elevate-2 flex gap-3"
-              onClick={() => window.open(`${whatsappLink}?text=Hi%20DeliWer,%20I’m%20a%20broker%20in%20Dubai%20and%20want%20to%20join%20the%20partner%20program.`, '_blank')}
-              data-testid="button-partner-whatsapp"
+              onClick={() => window.open(`${whatsappLink}?text=Hi%20DeliWer,%20I’m%20a%20real%20estate%20broker%20in%20Dubai%20and%20want%20to%20join%20the%20partner%20program.`, '_blank')}
             >
               <SiWhatsapp className="w-6 h-6" />
               Join via WhatsApp
@@ -102,59 +93,75 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Section 1 — The Broker Reality */}
-      <section className="py-20 px-4 bg-black/20 backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-black uppercase mb-12 text-center tracking-tighter">The Broker Reality</h2>
+      {/* The Opportunity Section */}
+      <section className="py-24 px-4 bg-black/20 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-black uppercase tracking-tighter">The Opportunity</h2>
+            <p className="text-xl text-emerald-400 font-bold italic">Every tenant needs:</p>
+          </div>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <p className="text-xl font-bold text-emerald-100">After closing a rental, you still deal with:</p>
               <div className="space-y-4">
-                {[
-                  "Ejari documentation chaos",
-                  "DEWA coordination confusion",
-                  "Tenant follow-ups",
-                  "Move-in scheduling stress",
-                  "Corporate relocation paperwork"
-                ].map((item, i) => (
+                {["Ejari registration", "DEWA activation", "Move-in coordination", "Documentation handling"].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 text-gray-300">
-                    <div className="h-2 w-2 rounded-full bg-red-500 shrink-0 shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
-                    <span className="font-bold">{item}</span>
+                    <div className="h-2 w-2 rounded-full bg-emerald-500 shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                    <span className="font-bold uppercase tracking-widest text-xs">{item}</span>
                   </div>
                 ))}
               </div>
+              <p className="text-gray-400 font-medium leading-relaxed">Most brokers stop at contract signing. DeliWer handles everything after — and shares the upside.</p>
             </div>
-            <Card className="bg-red-500/10 border-red-500/30 rounded-[2rem] p-8">
+            <Card className="bg-emerald-500/10 border-emerald-500/30 rounded-[2rem] p-8 text-center">
               <CardContent className="p-0 space-y-4">
-                <p className="text-2xl font-black text-red-400 uppercase tracking-tighter italic">This slows you down.</p>
-                <p className="text-lg text-red-200 font-medium">And your next deal suffers.</p>
+                <DollarSign className="w-16 h-16 text-emerald-500 mx-auto drop-shadow-[0_0_10px_rgba(16,185,129,0.3)]" />
+                <p className="text-2xl font-black text-emerald-400 uppercase tracking-tighter italic">No operational burden.</p>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Section 2 — What DeliWer Handles */}
-      <section className="py-20 px-4">
-        <div className="container px-4 mx-auto">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">We step in after deal closing only.</h2>
-            <p className="text-gray-300 font-medium text-lg uppercase tracking-widest">You stay focused on closing.</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      {/* How It Works (3 Steps) */}
+      <section className="py-24 px-4 border-y border-white/5 bg-slate-900/50">
+        <div className="max-w-5xl mx-auto text-center space-y-16">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">💰 How It Works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
-              { title: "Ejari Registration Support", icon: CheckCircle2 },
-              { title: "DEWA Assistance", icon: Zap },
-              { title: "Move-In Concierge", icon: HomeIcon },
-              { title: "Relocation & Corporate Setup", icon: MoveHorizontal },
-              { title: "Inspection & Maintenance Coordination", icon: ShieldCheck }
-            ].map((service, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 hover:border-emerald-500/50 transition-colors rounded-[1.5rem] group hover-elevate">
-                <CardContent className="pt-8 pb-8 px-6 flex flex-col items-center text-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform">
-                    <service.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-black text-lg uppercase tracking-tighter leading-tight">{service.title}</h3>
+              { step: "1", title: "You Close the Lease", desc: "You introduce DeliWer to the tenant." },
+              { step: "2", title: "We Handle Everything", desc: "We manage post-lease processes efficiently." },
+              { step: "3", title: "You Earn Commission", desc: "Simple percentage per completed service." }
+            ].map((step, i) => (
+              <div key={i} className="flex flex-col items-center gap-6 group">
+                <div className="h-20 w-20 rounded-2xl bg-emerald-500 text-black flex items-center justify-center font-black text-4xl shadow-xl group-hover:scale-110 transition-transform">
+                  {step.step}
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-black text-lg uppercase tracking-widest">{step.title}</h3>
+                  <p className="text-sm text-gray-400 font-medium">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Brokers Join */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-black uppercase tracking-tighter text-center mb-16">Why Brokers Join</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              "Increases client satisfaction",
+              "Adds post-closing value",
+              "Builds repeat referrals",
+              "Creates additional revenue stream",
+              "Zero operational overhead"
+            ].map((item, i) => (
+              <Card key={i} className="bg-white/5 border-white/10 hover:border-emerald-500/50 transition-colors rounded-[1.5rem] group">
+                <CardContent className="py-10 px-6 flex flex-col items-center text-center gap-4">
+                  <CheckCircle2 className="h-10 w-10 text-emerald-500" />
+                  <h3 className="font-black text-sm uppercase tracking-widest leading-tight">{item}</h3>
                 </CardContent>
               </Card>
             ))}
@@ -162,116 +169,59 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Section 3 — Commission Model */}
-      <section className="py-24 px-4 bg-emerald-950/50 border-y border-emerald-500/20">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Transparent Commission Model</h2>
-            <p className="text-emerald-400 font-black uppercase tracking-widest text-sm">Commission confirmation shared weekly via WhatsApp</p>
-          </div>
-          <div className="grid gap-4">
+      {/* Who It’s For */}
+      <section className="py-24 px-4 bg-black/40 border-y border-white/5">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          <h2 className="text-3xl font-black uppercase tracking-tighter">Who It’s For</h2>
+          <div className="flex flex-wrap justify-center gap-4">
             {[
-              { item: "Ejari referral", value: "Fixed commission" },
-              { item: "Move-in package", value: "Flat share" },
-              { item: "Relocation concierge", value: "Percentage share" },
-              { item: "Corporate relocation", value: "Premium commission" }
-            ].map((tier, i) => (
-              <div key={i} className="flex justify-between items-center p-6 rounded-2xl bg-black/20 border border-white/5 hover:border-emerald-500/30 transition-colors">
-                <span className="font-black uppercase tracking-tight text-lg">{tier.item}</span>
-                <span className="font-black text-emerald-400 text-lg uppercase tracking-widest">{tier.value}</span>
-              </div>
+              "Rental-focused brokers",
+              "Marina / Downtown / JVC specialists",
+              "Boutique agencies",
+              "High-volume agents",
+              "Founder relocation agents"
+            ].map((tag, i) => (
+              <Badge key={i} className="bg-white/5 text-gray-300 border-white/10 px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] rounded-full">
+                {tag}
+              </Badge>
             ))}
-          </div>
-          <p className="mt-8 text-center text-emerald-200/60 italic font-medium">First referral payout prioritized to build trust.</p>
-        </div>
-      </section>
-
-      {/* Section 4 — Client Protection */}
-      <section className="py-24 px-4 bg-black/40 backdrop-blur-sm border-b border-white/5">
-        <div className="max-w-4xl mx-auto text-center space-y-10">
-          <ShieldCheck className="w-16 h-16 text-blue-500 mx-auto drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
-          <div className="space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">Client Protection Promise</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto font-medium">
-              We operate strictly post-closing. We never market real estate to your clients.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-left">
-            {[
-              "No Property Listings",
-              "No Real Estate Marketing",
-              "No Listing Collection",
-              "No Competition with Brokers"
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5">
-                <CheckCircle2 className="w-5 h-5 text-blue-400" />
-                <span className="font-bold text-sm uppercase tracking-wider text-gray-200">{item}</span>
-              </div>
-            ))}
-          </div>
-          <div className="pt-6 font-black text-emerald-500 text-2xl uppercase tracking-tighter italic">
-            Your client remains your client.
           </div>
         </div>
       </section>
 
-      {/* Section 5 — How It Works */}
+      {/* FAQ */}
       <section className="py-24 px-4">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16">Simple. Trackable. Transparent.</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="max-w-3xl mx-auto space-y-12 text-center">
+          <HelpCircle className="w-16 h-16 text-blue-500 mx-auto drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]" />
+          <h2 className="text-3xl font-black uppercase tracking-tighter">FAQ Section</h2>
+          <div className="grid gap-6 text-left">
             {[
-              { step: "1", text: "Close rental" },
-              { step: "2", text: "Share your referral link" },
-              { step: "3", text: "Client contacts DeliWer" },
-              { step: "4", text: "We log referral transparently" },
-              { step: "5", text: "You receive commission" }
-            ].map((step, i) => (
-              <div key={i} className="flex flex-col items-center gap-4 group">
-                <div className="h-14 w-14 rounded-2xl bg-emerald-500 text-black flex items-center justify-center font-black text-2xl shadow-xl group-hover:scale-110 transition-transform">
-                  {step.step}
-                </div>
-                <p className="font-black text-xs uppercase tracking-widest text-gray-300 leading-tight h-10 flex items-center">{step.text}</p>
+              { q: "Do I need to manage paperwork?", a: "No. We handle the process end-to-end." },
+              { q: "Is there a minimum volume?", a: "No. Start with one tenant." },
+              { q: "How are commissions paid?", a: "Per completed service cycle." }
+            ].map((faq, i) => (
+              <div key={i} className="bg-white/5 p-6 rounded-2xl border border-white/5">
+                <h4 className="font-black text-emerald-400 mb-2 uppercase text-xs tracking-widest">{faq.q}</h4>
+                <p className="text-gray-400 text-sm font-medium">{faq.a}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section 6 — Get Your Link */}
-      <section className="py-24 px-4 bg-black/40 border-t border-white/5">
-        <div className="max-w-3xl mx-auto text-center space-y-12">
-          <div className="space-y-4">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">Get Your Personal Referral Link</h2>
-            <p className="text-xl text-gray-300 font-medium">Message us on WhatsApp to start earning immediately.</p>
-          </div>
-          
-          <Card className="bg-emerald-950/30 border-emerald-500/30 rounded-[3rem] p-10 md:p-16 overflow-hidden relative group">
-            <div className="absolute inset-0 bg-emerald-500/5 group-hover:bg-emerald-500/10 transition-colors" />
-            <div className="relative z-10 space-y-10">
-              <div className="text-xl md:text-3xl font-mono font-bold tracking-tighter text-emerald-400 break-all">
-                deliwer.com/welcome?ref=yourname
-              </div>
-              
-              <Button 
-                size="lg" 
-                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-20 text-xl shadow-2xl active-elevate-2 flex gap-4"
-                onClick={handleWhatsApp}
-              >
-                <SiWhatsapp className="w-8 h-8" />
-                Message +971523946311
-              </Button>
-              
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6 text-sm font-bold uppercase tracking-widest text-gray-400">
-                <a href="https://instagram.com/vdeliwer" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Follow @vdeliwer</a>
-                <span className="hidden md:block w-1.5 h-1.5 rounded-full bg-white/20" />
-                <span>Weekly Referral Updates</span>
-              </div>
-            </div>
-          </Card>
-          
-          <p className="text-xs text-gray-500 font-bold uppercase tracking-[0.2em]">Manual + Transparent + Fast Payout</p>
+      {/* Final CTA */}
+      <section className="py-24 px-4 bg-emerald-950/20 border-t border-emerald-500/20">
+        <div className="max-w-2xl mx-auto text-center space-y-10">
+          <h2 className="text-4xl font-black uppercase tracking-tighter">Ready to Add a Revenue Stream?</h2>
+          <p className="text-lg text-gray-300 font-medium tracking-wide italic">Join the DeliWer Partner Program today.</p>
+          <Button 
+            size="lg" 
+            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-20 text-xl shadow-2xl active-elevate-2 flex gap-4"
+            onClick={() => window.open(`${whatsappLink}?text=Hi%20DeliWer,%20I’m%20a%20real%20estate%20broker%20in%20Dubai%20and%20want%20to%20join%20the%20partner%20program.`, '_blank')}
+          >
+            <SiWhatsapp className="w-8 h-8" />
+            Join via WhatsApp →
+          </Button>
         </div>
       </section>
 

@@ -1,122 +1,50 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link, useLocation } from "wouter";
-import { Home, Plane, ArrowRight, MessageCircle, DollarSign, Shield, CheckCircle, MapPin, Mail, X, CheckCircle2, Wrench, MoveHorizontal } from "lucide-react";
+import { Link } from "wouter";
+import { 
+  ArrowRight, 
+  MessageCircle, 
+  Shield, 
+  CheckCircle2, 
+  Zap, 
+  Briefcase 
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrustStrip, PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
 import { useState, useEffect } from "react";
+import { SEOMeta } from "@/components/seo-meta";
 
 import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
 export default function LandingPage() {
-  const [, setLocation] = useLocation();
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    // Check if the popup has been shown in this session
     const popupShown = sessionStorage.getItem("deliwer_popup_shown");
     if (!popupShown) {
-      // We'll trigger it when they click the button, not automatically
+      // Logic for automatic popup could go here
     }
   }, []);
 
-  const handleResidentsClick = () => {
-    const popupShown = sessionStorage.getItem("deliwer_popup_shown");
-    if (!popupShown) {
-      setShowPopup(true);
-    } else {
-      setLocation("/residents");
-    }
-  };
-
-  const handlePopupChoice = (route: string, tag?: string) => {
-    sessionStorage.setItem("deliwer_popup_shown", "true");
-    setShowPopup(false);
-    if (tag) {
-      // In a real app, we'd append this to the WhatsApp URL or state
-      // For now, we just route
-    }
-    setLocation(route);
-  };
-
   return (
-    <div className="min-h-screen bg-dubai-gradient">
-      {/* Part 2: Dismissible Modal */}
-      <AnimatePresence>
-        {showPopup && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="max-w-xl w-full bg-slate-900 border border-emerald-500/30 rounded-[3rem] p-10 md:p-14 relative shadow-2xl overflow-hidden"
-            >
-              <button 
-                onClick={() => setShowPopup(false)}
-                className="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors"
-              >
-                <X className="w-8 h-8" />
-              </button>
+    <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">
+      <SEOMeta 
+        title="Dubai Move-In & Relocation Concierge | DeliWer"
+        description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
+      />
 
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">How DeliWer Helps Residents</h3>
-                  <p className="text-xl text-emerald-100 font-bold leading-tight">
-                    DeliWer is not a mover or a contractor.
-                  </p>
-                  <p className="text-lg text-gray-300">
-                    We sit on top of them — planning, coordinating, and managing everything so you don’t have to.
-                  </p>
-                  <p className="text-sm text-emerald-400 font-black uppercase tracking-widest">
-                    One point of contact. One WhatsApp. Fewer mistakes.
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  <Button 
-                    onClick={() => handlePopupChoice("/residents", "maintenance_flow")}
-                    className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl flex items-center justify-between px-8"
-                  >
-                    <span>I need something fixed at home</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                  <Button 
-                    onClick={() => handlePopupChoice("/relocate", "move_flow")}
-                    className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl flex items-center justify-between px-8"
-                  >
-                    <span>I’m moving in or moving out</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                  <Button 
-                    onClick={() => handlePopupChoice("/residents", "life_concierge_flow")}
-                    variant="outline"
-                    className="w-full h-16 border-white/10 text-white hover:bg-white/5 font-black uppercase tracking-widest rounded-2xl flex items-center justify-between px-8"
-                  >
-                    <span>Something else came up</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* Micro Trust Line - Always Above Fold */}
-      <section className="px-4 py-3 border-b border-white/10">
+      {/* Micro Trust Line */}
+      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>
       </section>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative overflow-hidden">
-        {/* Background Image with Wash */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: `url(${heroBg})`,
-          }}
+          style={{ backgroundImage: `url(${heroBg})` }}
         >
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
         </div>
@@ -127,101 +55,128 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl text-white">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl">
               Dubai Move-In & Relocation Concierge<br />
-              <span className="text-emerald-500">for Founders & Brokers</span>
+              <span className="text-emerald-500 font-extrabold">for Founders and Real Estate Brokers</span>
             </h1>
             
-            <div className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed space-y-2">
-              <p>• We handle everything after the keys: Ejari, DEWA, Move-In Packs</p>
-              <p>• One point of contact on WhatsApp for all home setup chaos</p>
-              <p>• Zero stress relocation coordination for busy professionals</p>
+            <div className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed space-y-4">
+              <p>From Ejari to DEWA to full move-in setup — DeliWer handles everything after the lease is signed.</p>
+              <p className="text-lg text-emerald-100 font-bold uppercase tracking-widest">No delays. No confusion. No running between typing centers.</p>
             </div>
           </motion.div>
           
-          <div className="flex flex-col items-center gap-4">
+          <div className="grid md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
+            <div className="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/10">
+              <Zap className="w-8 h-8 text-emerald-500 shrink-0" />
+              <span className="font-bold text-sm leading-tight">Complete Ejari & utilities setup in record time</span>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/10">
+              <Briefcase className="w-8 h-8 text-emerald-500 shrink-0" />
+              <span className="font-bold text-sm leading-tight">Dedicated support for brokers & relocation clients</span>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/10">
+              <MessageCircle className="w-8 h-8 text-emerald-500 shrink-0" />
+              <span className="font-bold text-sm leading-tight">One WhatsApp. Everything handled.</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-6">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
-              onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20need%20help%20with%20my%20Dubai%20move-in.', '_blank')}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center sticky bottom-8 z-50 md:relative md:bottom-0"
+              onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20just%20signed%20a%20lease%20in%20Dubai%20and%20need%20move-in%20support.', '_blank')}
             >
               <MessageCircle className="w-8 h-8 fill-current" />
-              💬 WhatsApp Concierge
+              Start on WhatsApp Now
             </Button>
             
             <Link href="/partners">
-              <Button variant="outline" className="h-12 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest px-8 rounded-xl">
-                Earn 10% Commission (Brokers)
-              </Button>
-            </Link>
-          </div>
-
-          {/* Reassurance points */}
-          <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
-            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-home-setup">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <Home className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Home setup & move-in support</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-maintenance">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <Wrench className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Fixes, maintenance & disposal</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-relocation">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <MoveHorizontal className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Relocation & move-out help</span>
-            </div>
-          </div>
-
-          {/* Partner with us link */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="mt-6 text-center"
-          >
-            <Link href="/partners">
-              <span className="text-emerald-100/40 text-sm font-medium hover:text-emerald-400 transition-colors cursor-pointer">
-                Partner with us in Dubai? → <span className="underline decoration-emerald-500/30 underline-offset-4">Partnership</span>
+              <span className="text-emerald-400 font-black uppercase tracking-widest text-sm hover:text-emerald-300 transition-colors cursor-pointer flex items-center gap-2">
+                For Brokers: Earn Commission <ArrowRight className="w-4 h-4" />
               </span>
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Partner/Endorsement Strip */}
-      <section className="px-4">
+      {/* Clarity Section: Who We Serve */}
+      <section className="py-24 relative z-10 px-4">
+        <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-8">
+          <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:border-emerald-500/30 transition-all">
+            <CardContent className="p-0 space-y-6">
+              <h3 className="text-3xl font-black uppercase tracking-tighter">For Founders & Professionals</h3>
+              <p className="text-lg text-emerald-100 font-bold leading-tight italic">You’ve secured the property. Now you need:</p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {["Ejari registration", "DEWA connection", "Move-in coordination", "Post-lease documentation"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-2 text-gray-300 font-bold text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-gray-400 uppercase tracking-widest font-black pt-4 border-t border-white/5">We execute fast so you can focus on business.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:border-blue-500/30 transition-all">
+            <CardContent className="p-0 space-y-6">
+              <h3 className="text-3xl font-black uppercase tracking-tighter">For Real Estate Brokers</h3>
+              <p className="text-lg text-blue-100 font-bold leading-tight italic">Close faster. Offer more value. Earn recurring commission.</p>
+              <p className="text-gray-300 font-medium leading-relaxed">DeliWer becomes your post-rental infrastructure partner. No extra work for you.</p>
+              <div className="pt-6 border-t border-white/5">
+                <Shield className="w-12 h-12 text-blue-500 mb-4" />
+                <h4 className="font-black uppercase tracking-widest text-sm mb-2">🔒 Trust Promise</h4>
+                <ul className="space-y-2 text-xs text-gray-400 font-bold uppercase tracking-wider">
+                  <li>• Local UAE process knowledge</li>
+                  <li>• Fast coordination across government & utility systems</li>
+                  <li>• Clear communication</li>
+                  <li>• Built for speed, not bureaucracy</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Partner Strip */}
+      <section className="px-4 pb-20">
         <div className="max-w-4xl mx-auto">
           <PartnerStrip />
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="px-4 py-12">
+      {/* Final Conversion Section */}
+      <section className="w-full py-24 relative z-10 text-center space-y-10 bg-black/20 backdrop-blur-sm border-y border-white/5 px-4">
+        <div className="max-w-3xl mx-auto space-y-4">
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Signed Your Lease? Don’t Waste Days.</h2>
+          <p className="text-xl text-gray-300 font-medium">Let us handle the next steps while you focus on settling in.</p>
+        </div>
+        <Button 
+          size="lg" 
+          className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-16 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2"
+          onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+        >
+          Start on WhatsApp →
+        </Button>
+      </section>
+
+      {/* Testimonials */}
+      <section className="px-4 py-24">
         <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl font-bold text-white text-center mb-8">What Our Clients Say</h2>
-            <TestimonialCarousel variant="dark" limit={3} />
-          </motion.div>
+          <h2 className="text-2xl font-bold text-white text-center mb-12">What Our Clients Say</h2>
+          <TestimonialCarousel variant="dark" limit={3} />
         </div>
       </section>
 
-      {/* Operational Badges */}
-      <section className="px-4 py-12 border-t border-white/10">
-        <div className="max-w-4xl mx-auto">
+      <footer className="py-20 px-4 border-t border-white/5 text-center bg-slate-950/50">
+        <div className="max-w-4xl mx-auto space-y-8">
           <OperationalBadges variant="dark" />
+          <p className="text-gray-500 text-xs italic max-w-xl mx-auto">
+            DeliWer is an operational back-office for Dubai residents and brokers, focused on relocation, settlement, and daily living journeys.
+          </p>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
