@@ -101,41 +101,17 @@ export default function LandingPage() {
       </section>
 
       {/* Clarity Section: Who We Serve */}
-      <section className="py-24 relative z-10 px-4">
-        <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-8">
-          <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:border-emerald-500/30 transition-all">
-            <CardContent className="p-0 space-y-6">
-              <h3 className="text-3xl font-black uppercase tracking-tighter">For Founders & Professionals</h3>
-              <p className="text-lg text-emerald-100 font-bold leading-tight italic">You’ve secured the property. Now you need:</p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {["Ejari registration", "DEWA connection", "Move-in coordination", "Post-lease documentation"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-2 text-gray-300 font-bold text-sm">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-sm text-gray-400 uppercase tracking-widest font-black pt-4 border-t border-white/5">We execute fast so you can focus on business.</p>
-            </CardContent>
-          </Card>
+      <section className="py-12 relative z-10 px-4">
+        <div className="max-w-4xl mx-auto w-full grid md:grid-cols-2 gap-4">
+          <div className="bg-slate-900/20 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:bg-slate-900/30 transition-all group">
+            <h3 className="text-xl font-black uppercase tracking-tight mb-2 group-hover:text-emerald-400 transition-colors">Founders</h3>
+            <p className="text-sm text-gray-400 font-medium leading-snug">We handle Ejari, DEWA, and move-in setup so you can focus on building.</p>
+          </div>
 
-          <Card className="bg-slate-900/50 backdrop-blur-xl border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:border-blue-500/30 transition-all">
-            <CardContent className="p-0 space-y-6">
-              <h3 className="text-3xl font-black uppercase tracking-tighter">For Real Estate Brokers</h3>
-              <p className="text-lg text-blue-100 font-bold leading-tight italic">Close faster. Offer more value. Earn recurring commission.</p>
-              <p className="text-gray-300 font-medium leading-relaxed">DeliWer becomes your post-rental infrastructure partner. No extra work for you.</p>
-              <div className="pt-6 border-t border-white/5">
-                <Shield className="w-12 h-12 text-blue-500 mb-4" />
-                <h4 className="font-black uppercase tracking-widest text-sm mb-2">🔒 Trust Promise</h4>
-                <ul className="space-y-2 text-xs text-gray-400 font-bold uppercase tracking-wider">
-                  <li>• Local UAE process knowledge</li>
-                  <li>• Fast coordination across government & utility systems</li>
-                  <li>• Clear communication</li>
-                  <li>• Built for speed, not bureaucracy</li>
-                </ul>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="bg-slate-900/20 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:bg-slate-900/30 transition-all group">
+            <h3 className="text-xl font-black uppercase tracking-tight mb-2 group-hover:text-blue-400 transition-colors">Brokers</h3>
+            <p className="text-sm text-gray-400 font-medium leading-snug">Earn 10% commission on every referral. We become your post-rental infrastructure.</p>
+          </div>
         </div>
       </section>
 
