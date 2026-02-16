@@ -2,10 +2,22 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import "./instagram-sniffer";
+import { whatsappAgent } from "./services/whatsapp-agent";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Schedule daily WhatsApp campaign (simple interval for demo, use node-cron for production)
+const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+setInterval(() => {
+  whatsappAgent.sendDailyReferralCampaign().catch(console.error);
+}, TWENTY_FOUR_HOURS);
+
+// Initial run with a slight delay to ensure server is ready
+setTimeout(() => {
+  whatsappAgent.sendDailyReferralCampaign().catch(console.error);
+}, 10000);
 
 app.use((req, res, next) => {
   const start = Date.now();
