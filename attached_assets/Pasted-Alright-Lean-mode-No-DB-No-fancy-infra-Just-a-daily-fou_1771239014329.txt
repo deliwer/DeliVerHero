@@ -1,0 +1,208 @@
+Alright. Lean mode. No DB. No fancy infra. Just a **daily founder trigger engine** running on Vercel.
+
+Below is a clean, copy-paste **Replit prompt** you can use to implement this properly inside your DeliverHero Vercel instance.
+
+---
+
+# ✅ REPLIT PROMPT
+
+*(Paste this into Replit AI / Ghostwriter and let it implement)*
+
+---
+
+You are a senior full-stack engineer.
+
+We are building a ZERO-DATABASE automation trigger system for DeliverHero running on Vercel.
+
+Objective:
+
+Create a daily automation endpoint that sends a WhatsApp reminder message to DeliWer founders (Hassan and Rubab) to manually send 25 referral outreach messages to brokers.
+
+This is NOT mass automation.
+It is a daily founder discipline trigger.
+
+System Requirements:
+
+1. Use Next.js API route compatible with Vercel.
+2. No database.
+3. Use WhatsApp Cloud API (Meta).
+4. Use environment variables.
+5. Add Vercel cron configuration.
+6. Keep implementation simple and production-safe.
+
+---
+
+# 🟢 ENV VARIABLES REQUIRED
+
+WHATSAPP_TOKEN=
+WHATSAPP_PHONE_NUMBER_ID=
+FOUNDER_NUMBERS=+971523946311,+971567148381,+971504547110
+BASE_URL=[https://deliwer.com](https://deliwer.com)
+
+---
+
+# 🟢 FILE STRUCTURE TO CREATE
+
+/api/daily-founder-trigger/route.ts
+
+/vercel.json
+
+/utils/sendWhatsApp.ts
+
+---
+
+# 🟢 IMPLEMENTATION DETAILS
+
+## 1️⃣ Create WhatsApp utility
+
+File: /utils/sendWhatsApp.ts
+
+Function:
+
+* Accept phoneNumber (string)
+* Accept message (string)
+* Call Meta WhatsApp Cloud API
+* POST to:
+  [https://graph.facebook.com/v17.0/{PHONE_NUMBER_ID}/messages](https://graph.facebook.com/v17.0/{PHONE_NUMBER_ID}/messages)
+* Use Bearer WHATSAPP_TOKEN
+* Type: text
+* Body: message
+
+Handle errors with try/catch and console log failures.
+
+---
+
+## 2️⃣ Create Daily Trigger API
+
+File: /api/daily-founder-trigger/route.ts
+
+GET handler:
+
+* Generate today’s campaign name dynamically.
+* Default campaign: movein_week
+* Create prewritten outreach message including UTM link.
+
+UTM format:
+
+${BASE_URL}/?utm_source=broker&utm_medium=whatsapp&utm_campaign=movein_week&utm_content=founder
+
+Message format to send to founders:
+
+🚀 DELIWER DAILY OUTREACH TASK
+
+Campaign: Move-In Water + Free Shower Filter
+
+Today’s Action:
+Send 25 WhatsApp messages to brokers.
+
+Copy & Send:
+
+Hi [Name] 👋
+We’re prioritising Move-In water setup this week.
+
+Please share this link with tenants moving:
+[INSERT UTM LINK]
+
+Every booking earns commission automatically.
+
+Reply DONE when completed.
+
+After building the message:
+
+* Parse FOUNDER_NUMBERS env variable (comma separated)
+* Loop and send message to each number
+* Return JSON { status: "sent" }
+
+---
+
+## 3️⃣ Add Vercel Cron
+
+Create vercel.json:
+
+{
+"crons": [
+{
+"path": "/api/daily-founder-trigger",
+"schedule": "0 5 * * *"
+}
+]
+}
+
+Note:
+5 UTC = 9AM UAE
+
+---
+
+## 4️⃣ Add Simple Safety
+
+Add header validation:
+
+If request header does not include:
+Authorization: Bearer INTERNAL_CRON_SECRET
+
+Return 401.
+
+Add INTERNAL_CRON_SECRET to environment variables.
+
+---
+
+## 5️⃣ Ensure Production Safe
+
+* No database usage.
+* No storing phone numbers.
+* No logging sensitive tokens.
+* Console log only success/failure counts.
+
+---
+
+# 🟢 FINAL EXPECTED BEHAVIOUR
+
+Every day at 9AM UAE time:
+
+* Founders receive WhatsApp message reminder.
+* Message contains ready-to-copy outreach script.
+* Founders manually send 25 messages.
+* No affiliate automation.
+* No spam.
+* No database.
+
+---
+
+# 🟢 OPTIONAL BONUS
+
+Add second endpoint:
+
+/api/manual-trigger
+
+Allows founders to manually trigger message by visiting URL with secret key.
+
+---
+
+Do not overengineer.
+Do not add database.
+Keep it minimal.
+Keep it clean.
+Keep it deployable on Vercel immediately.
+
+Return full working code for all files.
+
+---
+
+# 🎯 Why This Is Perfect For Your Situation
+
+* Zero cost
+* No DB
+* No tracking complexity
+* Forces daily action
+* Keeps WhatsApp safe
+* Builds discipline muscle
+
+This is survival-grade automation.
+
+If you want next, I can also create:
+
+* A 4-week rotating campaign script pack
+* A 30-day founder action playbook
+* Or a lightweight Google Sheet tracking template to pair with this
+
+Your move.
