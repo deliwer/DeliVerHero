@@ -85,6 +85,7 @@ const Redeem = lazy(() => import("@/pages/redeem"));
 const Play = lazy(() => import("@/pages/play"));
 const Rewards = lazy(() => import("@/pages/rewards"));
 const Partners = lazy(() => import("@/pages/partners"));
+const Welcome = lazy(() => import("@/pages/welcome"));
 const HeroDashboard = lazy(() => import("@/pages/hero-dashboard"));
 const InvestorDashboard = lazy(() => import("@/pages/investor-dashboard"));
 const CorporatePartnerPortal = lazy(() => import("@/pages/corporate-partner-portal"));
@@ -214,6 +215,7 @@ function Router() {
         <Route path="/play" component={Play} />
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners" component={Partners} />
+        <Route path="/welcome" component={Welcome} />
         <Route path="/ejari-dubai" component={lazy(() => import("./pages/ejari-dubai"))} />
         <Route path="/relocation-for-founders" component={RelocationForFounders} />
         <Route path="/campaign/debacci" component={CampaignDeBacci} />
