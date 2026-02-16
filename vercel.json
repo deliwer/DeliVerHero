@@ -45,6 +45,12 @@
       "destination": "/index.html"
     }
   ],
+  "crons": [
+    {
+      "path": "/api/daily-founder-trigger",
+      "schedule": "0 5 * * *"
+    }
+  ],
   "env": {
     "NODE_ENV": "production"
   }
