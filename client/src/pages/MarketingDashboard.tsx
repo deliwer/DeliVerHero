@@ -2,17 +2,39 @@ import { leadApplications, type LeadApplication } from "@shared/schema";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuBadge } from "@/components/ui/sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { Instagram, MessageCircle, ArrowRight, Loader2, Radio, ExternalLink } from "lucide-react";
+import { Instagram, MessageCircle, ArrowRight, Loader2, Radio, ExternalLink, Send } from "lucide-react";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 export default function MarketingDashboard() {
   const { toast } = useToast();
+  const [isTriggering, setIsTriggering] = useState(false);
   const { data: leads, isLoading } = useQuery<any[]>({
     queryKey: ["/api/leads"],
     refetchInterval: 5000, 
   });
+
+  const triggerDailyFounderReminder = async () => {
+    setIsTriggering(true);
+    try {
+      await apiRequest("GET", "/api/daily-founder-trigger");
+      toast({
+        title: "Success",
+        description: "Founder outreach reminder triggered successfully!",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        variant: "destructive",
+        description: error.message || "Failed to trigger reminder",
+      });
+    } finally {
+      setIsTriggering(false);
+    }
+  };
 
   const mutation = useMutation({
     mutationFn: async ({ id, stage }: { id: string, stage: string }) => {
@@ -64,7 +86,27 @@ export default function MarketingDashboard() {
             </p>
           </div>
         </div>
-        <Badge variant="outline" className="text-sm border-emerald-500/50 text-emerald-500">Live Feedback Enabled</Badge>
+        <div className="flex items-center gap-4">
+          <Card className="bg-emerald-500/10 border-emerald-500/30">
+            <CardContent className="p-3 flex items-center gap-4">
+              <div className="hidden sm:block">
+                <p className="text-xs font-semibold text-emerald-400">Founder Trigger</p>
+                <p className="text-[10px] text-muted-foreground">Manual WhatsApp reminder</p>
+              </div>
+              <Button 
+                size="sm"
+                variant="ghost"
+                onClick={triggerDailyFounderReminder}
+                disabled={isTriggering}
+                className="h-8 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30"
+              >
+                {isTriggering ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                <span className="ml-2">Trigger</span>
+              </Button>
+            </CardContent>
+          </Card>
+          <Badge variant="outline" className="text-sm border-emerald-500/50 text-emerald-500">Live Feedback Enabled</Badge>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
