@@ -442,7 +442,7 @@ Sitemap: ${req.protocol}://${req.get("host")}/sitemap.xml
   app.get("/api/daily-founder-trigger", async (req, res) => {
     // Header validation for security - checking both Authorization header and query param for flexibility
     const authHeader = req.headers.authorization;
-    const authQuery = req.query.secret;
+    const authQuery = req.query.secret || req.query.key;
     const INTERNAL_CRON_SECRET = process.env.INTERNAL_CRON_SECRET || "deliwer-founder-trigger-2026-secure";
 
     const isAuthorized = 
@@ -460,13 +460,50 @@ Sitemap: ${req.protocol}://${req.get("host")}/sitemap.xml
       return res.status(401).json({ error: "Unauthorized" });
     }
 
-    const BASE_URL = process.env.BASE_URL || "https://deliwer.com";
-    const FOUNDER_NUMBERS = (process.env.FOUNDER_NUMBERS || "").split(",").filter(Boolean);
+    try {
+      console.log("🔥 Running Daily Founder Trigger with Data Aggregation...");
 
-    const campaign = "movein_week";
-    const utmLink = `${BASE_URL}/?utm_source=broker&utm_medium=whatsapp&utm_campaign=${campaign}&utm_content=founder`;
+      // Use try-catch blocks for individual data fetches to ensure resilience
+      let impactStats = { totalStars: 0 };
+      try {
+        // Checking if storage method exists before calling
+        if (typeof (storage as any).getStarsStats === 'function') {
+          impactStats = await (storage as any).getStarsStats();
+        }
+      } catch (e) {
+        console.warn("Could not fetch impact stats:", e);
+      }
 
-    const message = `🚀 DELIWER DAILY OUTREACH TASK
+      let heroes = [];
+      try {
+        if (typeof (storage as any).getHeroLeaderboard === 'function') {
+          heroes = await (storage as any).getHeroLeaderboard(5);
+        } else if (typeof (storage as any).getLeadApplications === 'function') {
+           // Fallback to leads if hero leaderboard isn't ready
+           heroes = await (storage as any).getLeadApplications();
+        }
+      } catch (e) {
+        console.warn("Could not fetch heroes:", e);
+      }
+
+      let challenges = [];
+      try {
+        if (typeof (storage as any).getDailyQuests === 'function') {
+          challenges = await (storage as any).getDailyQuests();
+        }
+      } catch (e) {
+        console.warn("Could not fetch challenges:", e);
+      }
+
+      const BASE_URL = process.env.BASE_URL || "https://deliwer.com";
+      const FOUNDER_NUMBERS = (process.env.FOUNDER_NUMBERS || "").split(",").filter(Boolean);
+
+      const campaign = "movein_week";
+      const utmLink = `${BASE_URL}/?utm_source=broker&utm_medium=whatsapp&utm_campaign=${campaign}&utm_content=founder`;
+
+      const message = `🚀 DELIWER DAILY OUTREACH TASK
+
+Impact Update: ${impactStats.totalStars || 0} Stars Awarded!
 
 Campaign: Move-In Water + Free Shower Filter
 
@@ -485,20 +522,34 @@ Every booking earns commission automatically.
 
 Reply DONE when completed.`;
 
-    const results = await Promise.all(
-      FOUNDER_NUMBERS.map((number) => sendWhatsApp(number.trim(), message))
-    );
+      const results = await Promise.all(
+        FOUNDER_NUMBERS.map((number) => sendWhatsApp(number.trim(), message))
+      );
 
-    const successCount = results.filter((r) => r.success).length;
-    const failureCount = results.length - successCount;
+      const successCount = results.filter((r) => r.success).length;
+      const failureCount = results.length - successCount;
 
-    console.log(`Daily trigger completed. Success: ${successCount}, Failures: ${failureCount}`);
+      console.log(`Daily trigger completed. Success: ${successCount}, Failures: ${failureCount}`);
 
-    return res.status(200).json({
-      status: "sent",
-      successCount,
-      failureCount,
-    });
+      return res.status(200).json({
+        success: true,
+        message: "Daily Founder Trigger executed successfully",
+        data: {
+          timestamp: new Date(),
+          impactStats,
+          topHeroes: heroes,
+          challenges,
+          successCount,
+          failureCount
+        }
+      });
+    } catch (error: any) {
+      console.error("❌ Founder Trigger Error:", error);
+      res.status(500).json({
+        success: false,
+        error: error.message
+      });
+    }
   });
 
   // Stripe payment endpoints

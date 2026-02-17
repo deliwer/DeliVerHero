@@ -1,0 +1,107 @@
+Since that endpoint does NOT exist on deliwer.com, we’ll:
+
+• Create a local endpoint /api/daily-founder-trigger
+• Make it call valid DeliWer endpoints
+• Optionally schedule it daily
+• Protect it with a secret key
+
+✅ Step 1 — Install dependencies in Replit
+
+In Shell:
+
+npm install express node-fetch node-cron dotenv
+
+✅ Step 2 — Create server.js
+
+Here is a clean, working backend:
+
+require("dotenv").config();
+const express = require("express");
+const fetch = require("node-fetch");
+const cron = require("node-cron");
+
+const app = express();
+app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
+const API_BASE = "https://deliwer.com/api";
+const SECRET_KEY = process.env.FOUNDER_SECRET || "supersecret123";
+
+/* --------------------------------------------------
+   DAILY FOUNDER TRIGGER ENDPOINT
+-------------------------------------------------- */
+app.get("/api/daily-founder-trigger", async (req, res) => {
+  try {
+    // Basic security check
+    if (req.query.key !== SECRET_KEY) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    console.log("🔥 Running Daily Founder Trigger...");
+
+    // Example API calls
+    const impactStats = await fetch(`${API_BASE}/impact-stats`).then(r => r.json());
+    const heroes = await fetch(`${API_BASE}/heroes/leaderboard/5`).then(r => r.json());
+    const challenges = await fetch(`${API_BASE}/dubai/challenges`).then(r => r.json());
+
+    const result = {
+      timestamp: new Date(),
+      impactStats,
+      topHeroes: heroes,
+      challenges
+    };
+
+    console.log("✅ Founder Trigger Complete");
+
+    res.json({
+      success: true,
+      message: "Daily Founder Trigger executed successfully",
+      data: result
+    });
+
+  } catch (error) {
+    console.error("❌ Error:", error);
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
+/* --------------------------------------------------
+   OPTIONAL: AUTO RUN DAILY AT 9AM UAE TIME
+-------------------------------------------------- */
+cron.schedule("0 9 * * *", async () => {
+  console.log("⏰ Auto Daily Founder Trigger Running...");
+
+  try {
+    await fetch(`http://localhost:${PORT}/api/daily-founder-trigger?key=${SECRET_KEY}`);
+  } catch (err) {
+    console.error("Cron Error:", err.message);
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
+
+✅ Step 3 — Add .env
+
+Create a .env file:
+
+FOUNDER_SECRET=yourStrongSecretKeyHere
+
+✅ Step 4 — Test It
+
+After running the server, open:
+
+https://your-replit-url/api/daily-founder-trigger?key=yourStrongSecretKeyHere
+
+
+If everything works, you’ll get:
+
+{
+  "success": true,
+  "message": "Daily Founder Trigger executed successfully",
+  "data": { ... }
+}
