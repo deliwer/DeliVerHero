@@ -1,7 +1,7 @@
 import pg from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { users, heroes, tradeIns, impactStats, referrals, contacts, ejariConversations, conciergeConversations } from "@shared/schema";
-import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type EjariConversation, type InsertEjariConversation, type LeadApplication, type InsertLeadApplication } from "@shared/schema";
+import { users, heroes, tradeIns, impactStats, referrals, contacts, ejariConversations, conciergeConversations, founderStreaks } from "@shared/schema";
+import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type EjariConversation, type InsertEjariConversation, type LeadApplication, type InsertLeadApplication, type FounderStreak, type InsertFounderStreak } from "@shared/schema";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -19,6 +19,10 @@ export interface IStorage {
   createLeadApplication(lead: InsertLeadApplication): Promise<LeadApplication>;
   getLeadApplications(): Promise<LeadApplication[]>;
   updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<LeadApplication | undefined>;
+
+  getFounderStreaks(): Promise<FounderStreak[]>;
+  updateFounderStreak(name: string, streak: number, lastPosted: string): Promise<FounderStreak>;
+  initializeFounders(founders: { name: string; phone: string }[]): Promise<void>;
 }
 
 export class MemStorage implements IStorage {
@@ -26,6 +30,7 @@ export class MemStorage implements IStorage {
   private conciergeConversations: Map<string, ConciergeConversation>;
   private ejariConversations: Map<string, EjariConversation>;
   private leadApplications: Map<string, LeadApplication>;
+  private founderStreaks: Map<string, FounderStreak>;
   sessionStore: any;
 
   constructor() {
@@ -33,6 +38,36 @@ export class MemStorage implements IStorage {
     this.conciergeConversations = new Map();
     this.ejariConversations = new Map();
     this.leadApplications = new Map();
+    this.founderStreaks = new Map();
+  }
+
+  async getFounderStreaks(): Promise<FounderStreak[]> {
+    return Array.from(this.founderStreaks.values());
+  }
+
+  async updateFounderStreak(name: string, streak: number, lastPosted: string): Promise<FounderStreak> {
+    const existing = Array.from(this.founderStreaks.values()).find(s => s.name === name);
+    if (!existing) throw new Error(`Founder ${name} not found`);
+    const updated = { ...existing, streak, lastPosted, updatedAt: new Date() };
+    this.founderStreaks.set(existing.id, updated);
+    return updated;
+  }
+
+  async initializeFounders(founders: { name: string; phone: string }[]): Promise<void> {
+    for (const f of founders) {
+      const existing = Array.from(this.founderStreaks.values()).find(s => s.name === f.name);
+      if (!existing) {
+        const id = Math.random().toString(36).substring(7);
+        this.founderStreaks.set(id, {
+          id,
+          name: f.name,
+          phone: f.phone,
+          streak: 0,
+          lastPosted: null,
+          updatedAt: new Date()
+        });
+      }
+    }
   }
 
   async getUser(id: string): Promise<User | undefined> {

@@ -47,6 +47,30 @@ const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: bo
 import { handleConciergeInput } from "./concierge";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Initialize founders
+  await storage.initializeFounders([
+    { name: "Hassan Jawad", phone: "971523946311" },
+    { name: "Rubab Hassan", phone: "971567148381" }
+  ]);
+
+  app.get("/api/founder-streaks", async (_req, res) => {
+    const streaks = await storage.getFounderStreaks();
+    res.json(streaks);
+  });
+
+  app.post("/api/founder-streaks/post", async (_req, res) => {
+    const today = new Date().toISOString().split("T")[0];
+    const streaks = await storage.getFounderStreaks();
+    
+    for (const s of streaks) {
+      if (s.lastPosted !== today) {
+        await storage.updateFounderStreak(s.name, s.streak + 1, today);
+      }
+    }
+    
+    res.json({ message: "Streaks updated" });
+  });
+
   // Ejari Concierge Webhook Simulator / Endpoint
   app.post("/api/concierge/webhook", async (req, res) => {
     try {

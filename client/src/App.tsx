@@ -48,6 +48,7 @@ import { PurchaseOrdersPage } from "@/pages/purchase-orders";
 import { AccountManagementPage } from "@/pages/account-management";
 
 // Lazy load non-critical pages
+const FounderHQ = lazy(() => import("@/pages/founder-hq"));
 const MoveInSubpage = lazy(() => import("@/pages/residence/move-in"));
 const MoveOutSubpage = lazy(() => import("@/pages/residence/move-out"));
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
@@ -134,6 +135,7 @@ function Router() {
     <Suspense fallback={<PageLoader />}>
       <Switch>
           <Route path="/concierge" component={ConciergePage} />
+          <Route path="/founder-hq" component={FounderHQ} />
           <Route path="/marketing" component={MarketingDashboard} />
           <Route path="/" component={Landing} />
           <Route path="/home" component={Home} />
