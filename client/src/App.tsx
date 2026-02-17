@@ -114,8 +114,6 @@ const BrokerMoveInSupportDubai = lazy(() => import("@/pages/broker-move-in-suppo
 
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
-import ConciergePage from "@/pages/concierge";
-
 function Router() {
   const [location, setLocation] = useLocation();
 
@@ -134,10 +132,9 @@ function Router() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
-          <Route path="/concierge" component={ConciergePage} />
-          <Route path="/marketing" component={MarketingDashboard} />
-          <Route path="/" component={Landing} />
-          <Route path="/home" component={Home} />
+        <Route path="/marketing" component={MarketingDashboard} />
+        <Route path="/" component={Landing} />
+        <Route path="/home" component={Home} />
           <Route path="/home-service">
             <Redirect to="/home" />
           </Route>
