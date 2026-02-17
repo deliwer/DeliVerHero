@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { 
   Menu, X, ChevronDown, ShoppingCart, UserCircle, LogIn, UserPlus, 
-  Settings, HelpCircle, Home, Plane, MessageSquare, Briefcase
+  Settings, HelpCircle, Home, Plane, MessageSquare, Briefcase, Flame
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { shopifyCartService } from "@/lib/shopify-cart";
@@ -27,6 +27,7 @@ export function Navigation() {
   const navItems = [
     { path: "/residents", label: "Residents", id: "residents", icon: Home },
     { path: "/relocate", label: "Relocation", id: "relocation", icon: Plane },
+    { path: "/founder-hq", label: "Founder HQ", id: "founder-hq", icon: Flame },
     { path: "/partners", label: "Partners", id: "partners", icon: Briefcase },
     { path: "/contact", label: "Contact", id: "contact", icon: MessageSquare },
   ];
