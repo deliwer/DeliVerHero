@@ -135,7 +135,6 @@ function Router() {
     <Suspense fallback={<PageLoader />}>
       <Switch>
           <Route path="/concierge" component={ConciergePage} />
-          <Route path="/founder-hq" component={FounderHQ} />
           <Route path="/marketing" component={MarketingDashboard} />
           <Route path="/" component={Landing} />
           <Route path="/home" component={Home} />
