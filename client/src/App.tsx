@@ -48,7 +48,6 @@ import { PurchaseOrdersPage } from "@/pages/purchase-orders";
 import { AccountManagementPage } from "@/pages/account-management";
 
 // Lazy load non-critical pages
-const FounderHQ = lazy(() => import("@/pages/founder-hq"));
 const MoveInSubpage = lazy(() => import("@/pages/residence/move-in"));
 const MoveOutSubpage = lazy(() => import("@/pages/residence/move-out"));
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
@@ -104,8 +103,6 @@ const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer")
 const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
 const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
 const RelocateExit = lazy(() => import("@/pages/relocate-exit"));
-const CampaignDeBacci = lazy(() => import("@/pages/campaign-debacci"));
-const BrokerIntel = lazy(() => import("@/pages/broker-intel"));
 const RelocationForFounders = lazy(() => import("@/pages/relocation-for-founders"));
 const RelocationChecklist = lazy(() => import("@/pages/relocation-checklist"));
 const MoveInServicesDubai = lazy(() => import("@/pages/move-in-services-dubai"));
@@ -216,7 +213,6 @@ function Router() {
         <Route path="/welcome" component={Welcome} />
         <Route path="/ejari-dubai" component={lazy(() => import("./pages/ejari-dubai"))} />
         <Route path="/relocation-for-founders" component={RelocationForFounders} />
-        <Route path="/campaign/debacci" component={CampaignDeBacci} />
         <Route path="/dashboard" component={HeroDashboard} />
         <Route path="/investor-dashboard" component={InvestorDashboard} />
         <Route path="/corporate-partner-portal" component={CorporatePartnerPortal} />
@@ -257,7 +253,6 @@ function Router() {
 
         {/* Membership Plans */}
         <Route path="/membership-plans" component={MembershipPlansPage} />
-        <Route path="/broker-intel" component={BrokerIntel} />
         <Route path="/relocation-to-dubai-for-founders" component={RelocationForFounders} />
         <Route path="/dubai-relocation-checklist" component={RelocationChecklist} />
         <Route path="/move-in-services-dubai" component={MoveInServicesDubai} />
