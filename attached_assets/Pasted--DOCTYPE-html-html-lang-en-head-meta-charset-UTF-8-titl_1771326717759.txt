@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DeliWer Founder Survival HQ</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+    h1 { margin-bottom:5px; color:#1a73e8; }
+    p.subtitle { margin-top:0; margin-bottom:20px; color:#555; text-align:center; max-width:500px; }
+    button {
+      padding:12px 20px;
+      margin:8px;
+      font-size:16px;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      background:#1a73e8;
+      color:white;
+      transition:0.2s;
+    }
+    button:hover { background:#155ab6; }
+    button.morning { background:#ff6f00; animation: pulse 1s infinite; }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    #streakContainer { margin-top:30px; text-align:center; }
+    #badge { font-weight:bold; font-size:18px; color:#ff6f00; }
+    #progressBar { width:300px; height:20px; border:1px solid #ccc; border-radius:10px; overflow:hidden; margin-top:10px; }
+    #progressFill { height:100%; width:0%; background:#1a73e8; border-radius:10px; transition: width 0.3s; }
+    #leaderboard { margin-top:30px; width:340px; border:1px solid #ccc; border-radius:10px; padding:15px; }
+    #leaderboard h3 { margin-top:0; text-align:center; color:#1a73e8; }
+    .leaderRow { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #eee; }
+    .leaderRow:last-child { border-bottom:none; }
+    .alert { background:#ff6f00; color:white; padding:8px 12px; border-radius:6px; margin:10px 0; font-weight:bold; display:none; }
+  </style>
+</head>
+<body>
+
+  <h1>DeliWer Founder Survival HQ</h1>
+  <p class="subtitle">
+    🔥 Morning WhatsApp first → Meta next → Streak & leaderboard check. 
+    Don’t break the chain. This is your daily founder ritual.
+  </p>
+
+  <button id="generateBtn" onclick="openChatGPT()">Generate with ChatGPT</button>
+  <button id="whatsappBtn" onclick="pushToWhatsApp()">Push to WhatsApp</button>
+  <button id="metaBtn" onclick="openMeta()">Open Meta Business Suite</button>
+  <button onclick="markPosted()">I Posted Today ✅</button>
+
+  <div class="alert" id="alertMissedDay">⚠️ You missed a day! Don’t break the chain!</div>
+
+  <div id="streakContainer">
+    <p>🔥 Founder Streak: <span id="streak">0</span> Days</p>
+    <p>Rank: <span id="badge">Newbie</span></p>
+    <div id="progressBar"><div id="progressFill"></div></div>
+  </div>
+
+  <div id="leaderboard">
+    <h3>🏆 Founder Leaderboard</h3>
+    <div class="leaderRow"><span>Hassan Jawad</span><span id="hassanStreak">0</span> Days</div>
+    <div class="leaderRow"><span>Rubab Hassan</span><span id="rubabStreak">0</span> Days</div>
+  </div>
+
+  <script>
+    // ---------------- Founder Data ----------------
+    const founders = [
+      { name:"Hassan Jawad", number:"971523946311" },
+      { name:"Rubab Hassan", number:"971567148381" }
+    ];
+    const today = new Date().toISOString().split('T')[0];
+
+    function getFounderKey(name) { return "streak_" + name.replace(/\s+/g,''); }
+
+    function loadStreak(founder) {
+      let streak = parseInt(localStorage.getItem(getFounderKey(founder.name))) || 0;
+      let lastPosted = localStorage.getItem(getFounderKey(founder.name)+"_last") || '';
+      return { streak, lastPosted };
+    }
+
+    function saveStreak(founder, streak) {
+      localStorage.setItem(getFounderKey(founder.name), streak);
+      localStorage.setItem(getFounderKey(founder.name)+"_last", today);
+    }
+
+    function markPosted() {
+      founders.forEach(f=>{
+        let data = loadStreak(f);
+        if(data.lastPosted===today) return;
+        data.streak++;
+        saveStreak(f,data.streak);
+      });
+      updateDisplay();
+      alert("🔥 Streaks updated for all founders! Keep building!");
+    }
+
+    function getRank(days){
+      if(days>=365) return 'Relentless';
+      if(days>=90) return 'Machine';
+      if(days>=30) return 'Operator';
+      if(days>=7) return 'Builder';
+      return 'Newbie';
+    }
+
+    function getNextLevel(days){
+      if(days<7) return 7;
+      if(days<30) return 30;
+      if(days<90) return 90;
+      if(days<365) return 365;
+      return 365;
+    }
+
+    function updateDisplay(){
+      // Display main founder (Hassan) streak
+      let data = loadStreak(founders[0]);
+      document.getElementById('streak').innerText = data.streak;
+      document.getElementById('badge').innerText = getRank(data.streak);
+      let progressPercent = Math.min(100,(data.streak/getNextLevel(data.streak))*100);
+      document.getElementById('progressFill').style.width = progressPercent+'%';
+
+      // Update leaderboard
+      founders.forEach(f=>{
+        let fdata = loadStreak(f);
+        if(f.name==="Hassan Jawad") document.getElementById('hassanStreak').innerText=fdata.streak;
+        if(f.name==="Rubab Hassan") document.getElementById('rubabStreak').innerText=fdata.streak;
+
+        // Show missed day alert
+        if(fdata.lastPosted !== today){
+          document.getElementById('alertMissedDay').style.display='block';
+        } else {
+          document.getElementById('alertMissedDay').style.display='none';
+        }
+      });
+    }
+
+    // ---------------- ChatGPT ----------------
+    function openChatGPT(){
+      const prompt = encodeURIComponent(
+`Generate a short, powerful daily founder post for DeliWer in Dubai.
+Focus: sustainability, relocation, water systems, circular economy.
+Tone: visionary but grounded.
+Include website www.deliwer.com and 3 relevant hashtags.`
+      );
+      window.open(`https://chat.openai.com/?q=${prompt}`,"_blank");
+    }
+
+    // ---------------- WhatsApp ----------------
+    function pushToWhatsApp(){
+      const founder = founders[0]; // Morning must-read founder
+      const message = prompt("Paste your daily post here to push to WhatsApp:");
+      if(message){
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/${founder.number}?text=${encoded}`,"_blank");
+      }
+    }
+
+    // ---------------- Meta Business Suite ----------------
+    function openMeta(){
+      alert("Open Meta Business Suite now and post FB/IG content!");
+      window.open("https://business.facebook.com/","_blank");
+    }
+
+    // ---------------- Morning WhatsApp Trigger ----------------
+    function scheduleMorningWhatsApp(){
+      setInterval(()=>{
+        let now = new Date();
+        if(now.getHours()===10 && now.getMinutes()===0){
+          founders.forEach(f=>{
+            const msg = encodeURIComponent(
+              `🔥 Daily Founder Update - Must read: Open WhatsApp and check posts for today!`
+            );
+            window.open(`https://wa.me/${f.number}?text=${msg}`,"_blank");
+          });
+          const btn=document.getElementById('whatsappBtn');
+          btn.classList.add('morning');
+          btn.innerText="WhatsApp - Must Read!";
+        }
+      },60000);
+    }
+
+    // ---------------- Initialize ----------------
+    window.onload=()=>{
+      updateDisplay();
+      scheduleMorningWhatsApp();
+    }
+  </script>
+</body>
+</html>
