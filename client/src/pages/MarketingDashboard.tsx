@@ -165,6 +165,7 @@ export default function MarketingDashboard() {
     return <div className="flex items-center justify-center h-screen bg-slate-950"><Loader2 className="animate-spin text-emerald-500" /></div>;
   }
 
+  const displayLeads = leads || [];
   const hassan = streaks?.find(s => s.name === "Hassan Jawad");
   const today = new Date().toISOString().split("T")[0];
   const missedDay = hassan && hassan.lastPosted !== today;
@@ -192,25 +193,25 @@ export default function MarketingDashboard() {
           </div>
         </header>
 
-        <Tabs defaultValue="survival" className="space-y-6 relative">
-          <TabsList className="bg-slate-900/80 backdrop-blur-md border border-white/10 p-1 sticky top-0 z-20 shadow-xl rounded-xl">
-            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Founder Survival</TabsTrigger>
-            <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Intent Sniffer</TabsTrigger>
-            <TabsTrigger value="broker" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Broker Intel</TabsTrigger>
-            <TabsTrigger value="email" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Email Campaigns</TabsTrigger>
-            <TabsTrigger value="concierge" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Concierge MVP</TabsTrigger>
+        <Tabs defaultValue="survival" className="space-y-6 relative z-10">
+          <TabsList className="bg-slate-900/90 backdrop-blur-xl border border-white/20 p-1 sticky top-0 z-20 shadow-2xl rounded-xl">
+            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Founder Survival</TabsTrigger>
+            <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Intent Sniffer</TabsTrigger>
+            <TabsTrigger value="broker" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Broker Intel</TabsTrigger>
+            <TabsTrigger value="email" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Email Campaigns</TabsTrigger>
+            <TabsTrigger value="concierge" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Concierge MVP</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="intent" className="space-y-6 bg-slate-900/60 backdrop-blur-sm p-6 rounded-2xl border border-white/5">
-             <IntentSnifferView leads={leads} leadMutation={leadMutation} />
+          <TabsContent value="intent" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
+             <IntentSnifferView leads={displayLeads} leadMutation={leadMutation} />
           </TabsContent>
 
-          <TabsContent value="survival" className="space-y-6 bg-slate-900/40 backdrop-blur-sm p-6 rounded-2xl border border-white/5">
+          <TabsContent value="survival" className="space-y-6 bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
              <div className="grid md:grid-cols-2 gap-6">
-                <Card className="bg-slate-900 border-white/5">
+                <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 shadow-lg">
                   <CardHeader>
-                    <CardTitle>Relentless Distribution Engine</CardTitle>
-                    <CardDescription>Generate daily content and distribute to Meta Business Suite</CardDescription>
+                    <CardTitle className="text-white">Relentless Distribution Engine</CardTitle>
+                    <CardDescription className="text-gray-300">Generate daily content and distribute to Meta Business Suite</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-3">
@@ -302,26 +303,26 @@ export default function MarketingDashboard() {
              </div>
           </TabsContent>
 
-          <TabsContent value="broker" className="space-y-6 bg-slate-900/60 backdrop-blur-sm p-6 rounded-2xl border border-white/5">
+          <TabsContent value="broker" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="bg-slate-900 border-white/5 md:col-span-1">
-                <CardHeader><CardTitle>Qualify Broker</CardTitle></CardHeader>
+              <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 md:col-span-1 shadow-lg">
+                <CardHeader><CardTitle className="text-white">Qualify Broker</CardTitle></CardHeader>
                 <CardContent className="space-y-3">
-                  <Input placeholder="Name" value={newBroker.name} onChange={e => setNewBroker({...newBroker, name: e.target.value})} className="bg-white/5 border-white/10" />
-                  <Input placeholder="Agency" value={newBroker.agency} onChange={e => setNewBroker({...newBroker, agency: e.target.value})} className="bg-white/5 border-white/10" />
-                  <Input placeholder="Area" value={newBroker.area} onChange={e => setNewBroker({...newBroker, area: e.target.value})} className="bg-white/5 border-white/10" />
-                  <Button onClick={addBroker} className="w-full bg-emerald-600">Analyze Broker</Button>
+                  <Input placeholder="Name" value={newBroker.name} onChange={e => setNewBroker({...newBroker, name: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
+                  <Input placeholder="Agency" value={newBroker.agency} onChange={e => setNewBroker({...newBroker, agency: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
+                  <Input placeholder="Area" value={newBroker.area} onChange={e => setNewBroker({...newBroker, area: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
+                  <Button onClick={addBroker} className="w-full bg-emerald-600 hover:bg-emerald-500 font-bold">Analyze Broker</Button>
                 </CardContent>
               </Card>
               <div className="md:col-span-2 space-y-4">
                 {brokers.map(b => (
-                  <Card key={b.id} className="bg-slate-900 border-white/5">
+                  <Card key={b.id} className="bg-slate-900/60 backdrop-blur-sm border-white/10 hover:border-emerald-500/30 transition-all shadow-md">
                     <CardContent className="p-4 flex justify-between items-center">
                       <div>
-                        <h4 className="font-bold">{b.name}</h4>
-                        <p className="text-sm text-emerald-400">{b.agency} • {b.area}</p>
+                        <h4 className="font-bold text-white">{b.name}</h4>
+                        <p className="text-sm text-emerald-400 font-medium">{b.agency} • {b.area}</p>
                       </div>
-                      <Badge className="bg-emerald-500 text-black">Tier {b.tier}</Badge>
+                      <Badge className="bg-emerald-500 text-black font-black">Tier {b.tier}</Badge>
                     </CardContent>
                   </Card>
                 ))}
@@ -333,22 +334,26 @@ export default function MarketingDashboard() {
             <EmailCampaignManager />
           </TabsContent>
 
-          <TabsContent value="concierge">
-            <Card className="bg-slate-900 border-white/5 max-w-2xl mx-auto">
+          <TabsContent value="concierge" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
+            <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 max-w-2xl mx-auto shadow-lg">
               <CardHeader>
-                <Input placeholder="Phone context..." value={phone} onChange={e => setPhone(e.target.value)} className="bg-white/5 border-white/10" />
+                <CardTitle className="text-white flex items-center gap-2">
+                  <Bot className="w-5 h-5 text-emerald-500" />
+                  AI Concierge Terminal
+                </CardTitle>
+                <Input placeholder="Phone context..." value={phone} onChange={e => setPhone(e.target.value)} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500 mt-2" />
               </CardHeader>
               <CardContent className="h-[400px] flex flex-col">
-                <ScrollArea className="flex-1 p-4 border rounded-md mb-4 border-white/5">
+                <ScrollArea className="flex-1 p-4 border rounded-md mb-4 border-white/10 bg-black/20">
                   {conciergeMessages.map((m, i) => (
                     <div key={i} className={`mb-2 flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <span className={`p-2 rounded-lg text-sm ${m.role === 'user' ? 'bg-emerald-600' : 'bg-slate-800'}`}>{m.content}</span>
+                      <span className={`p-2 px-4 rounded-2xl text-sm shadow-sm ${m.role === 'user' ? 'bg-emerald-600 text-white rounded-tr-none' : 'bg-slate-800 text-gray-100 rounded-tl-none border border-white/5'}`}>{m.content}</span>
                     </div>
                   ))}
                 </ScrollArea>
                 <div className="flex gap-2">
-                  <Input value={conciergeInput} onChange={e => setConciergeInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleConciergeSend()} placeholder="Type message..." className="bg-white/5 border-white/10" />
-                  <Button onClick={handleConciergeSend}><Send className="h-4 w-4" /></Button>
+                  <Input value={conciergeInput} onChange={e => setConciergeInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleConciergeSend()} placeholder="Type message..." className="bg-white/10 border-white/20 text-white placeholder:text-gray-600" />
+                  <Button onClick={handleConciergeSend} className="bg-emerald-600 hover:bg-emerald-500"><Send className="h-4 w-4" /></Button>
                 </div>
               </CardContent>
             </Card>
