@@ -102,58 +102,93 @@ export default function BrokerSupportDubai() {
         </div>
 
         {/* Existing Referral Generator Section */}
-        <div className="max-w-2xl mx-auto pt-12">
-          <Card className="bg-white/5 border-white/10 hover-elevate">
-            <CardHeader>
-              <CardTitle className="text-white uppercase tracking-tight">Referral Link Generator</CardTitle>
-              <CardDescription className="text-gray-400">Instant tracking for your client referrals.</CardDescription>
+        <div className="max-w-3xl mx-auto pt-12 space-y-6">
+          <div className="text-center space-y-2">
+            <h3 className="text-2xl font-bold text-white uppercase tracking-tight">Generate Your Affiliate Link</h3>
+            <p className="text-gray-400 text-sm italic">Get tracked instantly. Share your link with clients and track your 10% commission in real-time.</p>
+          </div>
+          
+          <Card className="bg-slate-900/80 backdrop-blur-xl border-emerald-500/30 hover:border-emerald-500/60 transition-all shadow-2xl shadow-emerald-500/10">
+            <CardHeader className="border-b border-white/5 pb-4">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-white uppercase tracking-tight flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  Enhanced Referral Engine
+                </CardTitle>
+                <Badge className="bg-emerald-500 text-black font-black">10% COMMISSION</Badge>
+              </div>
+              <CardDescription className="text-gray-400">Custom tracking for freelance & agency partners.</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="agent-name" className="text-gray-300">Agent Name</Label>
-                  <Input
-                    id="agent-name"
-                    placeholder="e.g. john_doe"
-                    value={agentName}
-                    onChange={handleAgentNameChange}
-                    className="bg-black/20 border-white/10 text-white"
-                  />
+            <CardContent className="space-y-6 pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <Label htmlFor="agent-name" className="text-xs uppercase font-bold tracking-widest text-emerald-500/70">Partner Identifier (ID)</Label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                    <Input
+                      id="agent-name"
+                      placeholder="e.g. smith_realty"
+                      value={agentName}
+                      onChange={handleAgentNameChange}
+                      className="bg-black/40 border-white/10 text-white pl-10 h-12 focus:border-emerald-500/50 transition-all"
+                    />
+                  </div>
+                  <p className="text-[10px] text-gray-500">This will be used to track your unique referrals.</p>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="campaign" className="text-gray-300">Campaign</Label>
+                <div className="space-y-3">
+                  <Label htmlFor="campaign" className="text-xs uppercase font-bold tracking-widest text-emerald-500/70">Conversion Goal</Label>
                   <Select value={campaign} onValueChange={setCampaign}>
-                    <SelectTrigger id="campaign" className="bg-black/20 border-white/10 text-white">
-                      <SelectValue placeholder="Select campaign" />
+                    <SelectTrigger id="campaign" className="bg-black/40 border-white/10 text-white h-12">
+                      <SelectValue placeholder="Select goal" />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-900 border-white/10 text-white">
-                      <SelectItem value="general">General</SelectItem>
-                      <SelectItem value="ejari">Ejari</SelectItem>
-                      <SelectItem value="relocation">Relocation</SelectItem>
-                      <SelectItem value="movein">Move-In</SelectItem>
+                      <SelectItem value="general">Comprehensive Support</SelectItem>
+                      <SelectItem value="ejari">Ejari & DEWA Only</SelectItem>
+                      <SelectItem value="relocation">Full Relocation</SelectItem>
+                      <SelectItem value="movein">Home Essentials Pack</SelectItem>
                     </SelectContent>
                   </Select>
+                  <p className="text-[10px] text-gray-500">Target specific service landing pages.</p>
                 </div>
               </div>
 
-              <div className="pt-4 space-y-2">
+              <div className="pt-4 space-y-4">
+                <Label className="text-xs uppercase font-bold tracking-widest text-emerald-500/70">Your Tracking Link</Label>
                 <div className="flex gap-2">
-                  <Input
-                    readOnly
-                    value={generatedLink}
-                    placeholder="Link will appear here..."
-                    className="bg-black/40 border-white/10 text-emerald-400"
-                  />
+                  <div className="relative flex-1">
+                    <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    </div>
+                    <Input
+                      readOnly
+                      value={generatedLink}
+                      placeholder="Enter ID to generate link..."
+                      className="bg-black/60 border-white/20 text-emerald-400 h-14 pl-8 font-mono text-sm"
+                    />
+                  </div>
                   <Button 
                     onClick={copyToClipboard} 
                     disabled={!generatedLink}
-                    size="icon"
-                    variant="outline"
-                    className="border-white/10 hover:bg-emerald-500/20"
+                    size="lg"
+                    className="bg-emerald-600 hover:bg-emerald-500 text-white h-14 px-8 rounded-xl shadow-lg shadow-emerald-500/20 active-elevate-2"
                   >
-                    {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
+                    {copied ? <CheckCircle2 className="h-5 w-5 mr-2" /> : <Copy className="h-5 w-5 mr-2" />}
+                    {copied ? "Copied" : "Copy Link"}
                   </Button>
                 </div>
+                
+                {generatedLink && (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="p-4 bg-emerald-500/5 border border-emerald-500/10 rounded-xl flex items-start gap-3"
+                  >
+                    <ShieldCheck className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                    <p className="text-xs text-emerald-200/70 leading-relaxed">
+                      All traffic to this link is cookied for 30 days. Any conversion (WhatsApp, Form, or Order) will be attributed to your partner ID for commission payout.
+                    </p>
+                  </motion.div>
+                )}
               </div>
             </CardContent>
           </Card>

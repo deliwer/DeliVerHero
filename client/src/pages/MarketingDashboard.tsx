@@ -192,20 +192,20 @@ export default function MarketingDashboard() {
           </div>
         </header>
 
-        <Tabs defaultValue="survival" className="space-y-6">
-          <TabsList className="bg-slate-900 border-white/5 p-1">
-            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Founder Survival</TabsTrigger>
-            <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Intent Sniffer</TabsTrigger>
-            <TabsTrigger value="broker" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Broker Intel</TabsTrigger>
-            <TabsTrigger value="email" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Email Campaigns</TabsTrigger>
-            <TabsTrigger value="concierge" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Concierge MVP</TabsTrigger>
+        <Tabs defaultValue="survival" className="space-y-6 relative">
+          <TabsList className="bg-slate-900/80 backdrop-blur-md border border-white/10 p-1 sticky top-0 z-20 shadow-xl rounded-xl">
+            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Founder Survival</TabsTrigger>
+            <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Intent Sniffer</TabsTrigger>
+            <TabsTrigger value="broker" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Broker Intel</TabsTrigger>
+            <TabsTrigger value="email" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Email Campaigns</TabsTrigger>
+            <TabsTrigger value="concierge" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black transition-all">Concierge MVP</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="intent" className="space-y-6">
+          <TabsContent value="intent" className="space-y-6 bg-slate-900/60 backdrop-blur-sm p-6 rounded-2xl border border-white/5">
              <IntentSnifferView leads={leads} leadMutation={leadMutation} />
           </TabsContent>
 
-          <TabsContent value="survival" className="space-y-6">
+          <TabsContent value="survival" className="space-y-6 bg-slate-900/40 backdrop-blur-sm p-6 rounded-2xl border border-white/5">
              <div className="grid md:grid-cols-2 gap-6">
                 <Card className="bg-slate-900 border-white/5">
                   <CardHeader>
@@ -302,7 +302,7 @@ export default function MarketingDashboard() {
              </div>
           </TabsContent>
 
-          <TabsContent value="broker" className="space-y-6">
+          <TabsContent value="broker" className="space-y-6 bg-slate-900/60 backdrop-blur-sm p-6 rounded-2xl border border-white/5">
             <div className="grid md:grid-cols-3 gap-6">
               <Card className="bg-slate-900 border-white/5 md:col-span-1">
                 <CardHeader><CardTitle>Qualify Broker</CardTitle></CardHeader>
