@@ -25,6 +25,55 @@ const RENTAL_HEAVY_AREAS = [
   "Marina", "Downtown", "JVC", "Business Bay", "JLT", "Silicon Oasis", "DIFC", "Palm Jumeirah"
 ];
 
+function IntentSnifferView({ leads, leadMutation }: { leads: any[], leadMutation: any }) {
+  const { data: liveLeads } = useQuery<any[]>({
+    queryKey: ["/api/leads"],
+    refetchInterval: 5000,
+  });
+  
+  const displayLeads = liveLeads || leads;
+
+  return (
+    <div className="space-y-6">
+      <div className="grid gap-4 md:grid-cols-4">
+        {[
+          { label: "Intercepted", value: displayLeads?.filter(l => l.marketingStage === "intercepted").length || 0, icon: Instagram, color: "text-pink-500" },
+          { label: "Handshake", value: displayLeads?.filter(l => l.marketingStage === "handshake").length || 0, icon: MessageCircle, color: "text-blue-500" },
+          { label: "Redirected", value: displayLeads?.filter(l => l.marketingStage === "redirected").length || 0, icon: ArrowRight, color: "text-emerald-500" },
+          { label: "Closed", value: displayLeads?.filter(l => l.marketingStage === "closed").length || 0, icon: CheckCircle2, color: "text-emerald-400" },
+        ].map((stat, i) => (
+          <Card key={i} className="bg-slate-900 border-white/5">
+            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+              <CardTitle className="text-sm font-medium">{stat.label}</CardTitle>
+              <stat.icon className={`h-4 w-4 ${stat.color}`} />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stat.value}</div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      <Card className="bg-slate-900 border-white/5">
+        <CardHeader><CardTitle className="flex items-center gap-2"><Radio className="w-5 h-5 text-emerald-500 animate-pulse" /> Live Intent Stream</CardTitle></CardHeader>
+        <CardContent className="space-y-4">
+          {displayLeads?.slice(0, 10).map(lead => (
+            <div key={lead.id} className="flex items-center justify-between p-4 border border-white/5 rounded-xl bg-slate-950/50">
+              <div>
+                <p className="font-bold text-pink-400">@{lead.instagramHandle || lead.firstName}</p>
+                <p className="text-sm text-gray-400 italic">{lead.notes}</p>
+              </div>
+              <Button size="sm" onClick={() => {
+                  window.open(`https://wa.me/971523946311?text=Hi, I'm interested!`, "_blank");
+                  leadMutation.mutate({ id: lead.id, stage: "redirected" });
+              }} className="bg-emerald-600 hover:bg-emerald-500"><SiWhatsapp className="mr-2" /> WhatsApp</Button>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
 export default function MarketingDashboard() {
   const { toast } = useToast();
   const [isTriggering, setIsTriggering] = useState(false);
@@ -38,7 +87,7 @@ export default function MarketingDashboard() {
 
   const { data: leads, isLoading: leadsLoading } = useQuery<any[]>({
     queryKey: ["/api/leads"],
-    refetchInterval: 5000, 
+    // Moving interval-based refreshing to a nested component for performance
   });
 
   const { data: streaks, isLoading: streaksLoading } = useQuery<any[]>({
@@ -141,70 +190,88 @@ export default function MarketingDashboard() {
           </div>
         </header>
 
-        <Tabs defaultValue="intent" className="space-y-6">
+        <Tabs defaultValue="survival" className="space-y-6">
           <TabsList className="bg-slate-900 border-white/5 p-1">
-            <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Intent Sniffer</TabsTrigger>
             <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Founder Survival</TabsTrigger>
+            <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Intent Sniffer</TabsTrigger>
             <TabsTrigger value="broker" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Broker Intel</TabsTrigger>
             <TabsTrigger value="email" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Email Campaigns</TabsTrigger>
             <TabsTrigger value="concierge" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black">Concierge MVP</TabsTrigger>
           </TabsList>
 
           <TabsContent value="intent" className="space-y-6">
-             <div className="grid gap-4 md:grid-cols-4">
-                {[
-                  { label: "Intercepted", value: leads?.filter(l => l.marketingStage === "intercepted").length || 0, icon: Instagram, color: "text-pink-500" },
-                  { label: "Handshake", value: leads?.filter(l => l.marketingStage === "handshake").length || 0, icon: MessageCircle, color: "text-blue-500" },
-                  { label: "Redirected", value: leads?.filter(l => l.marketingStage === "redirected").length || 0, icon: ArrowRight, color: "text-emerald-500" },
-                  { label: "Closed", value: leads?.filter(l => l.marketingStage === "closed").length || 0, icon: CheckCircle2, color: "text-emerald-400" },
-                ].map((stat, i) => (
-                  <Card key={i} className="bg-slate-900 border-white/5">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                      <CardTitle className="text-sm font-medium">{stat.label}</CardTitle>
-                      <stat.icon className={`h-4 w-4 ${stat.color}`} />
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold">{stat.value}</div>
-                    </CardContent>
-                  </Card>
-                ))}
-             </div>
-             <Card className="bg-slate-900 border-white/5">
-                <CardHeader><CardTitle className="flex items-center gap-2"><Radio className="w-5 h-5 text-emerald-500 animate-pulse" /> Live Intent Stream</CardTitle></CardHeader>
-                <CardContent className="space-y-4">
-                  {leads?.slice(0, 10).map(lead => (
-                    <div key={lead.id} className="flex items-center justify-between p-4 border border-white/5 rounded-xl bg-slate-950/50">
-                      <div>
-                        <p className="font-bold text-pink-400">@{lead.instagramHandle || lead.firstName}</p>
-                        <p className="text-sm text-gray-400 italic">{lead.notes}</p>
-                      </div>
-                      <Button size="sm" onClick={() => {
-                         window.open(`https://wa.me/971523946311?text=Hi, I'm interested!`, "_blank");
-                         leadMutation.mutate({ id: lead.id, stage: "redirected" });
-                      }} className="bg-emerald-600 hover:bg-emerald-500"><SiWhatsapp className="mr-2" /> WhatsApp</Button>
-                    </div>
-                  ))}
-                </CardContent>
-             </Card>
+             <IntentSnifferView leads={leads} leadMutation={leadMutation} />
           </TabsContent>
 
           <TabsContent value="survival" className="space-y-6">
              <div className="grid md:grid-cols-2 gap-6">
                 <Card className="bg-slate-900 border-white/5">
-                  <CardHeader><CardTitle>Daily Ritual</CardTitle></CardHeader>
-                  <CardContent className="grid grid-cols-2 gap-3">
-                    <Button onClick={() => window.open('https://chat.openai.com', '_blank')} className="bg-[#10a37f]"><SiOpenai className="mr-2" /> ChatGPT</Button>
-                    <Button onClick={() => window.open('https://business.facebook.com', '_blank')} className="bg-[#1877F2]"><SiFacebook className="mr-2" /> Meta Suite</Button>
-                    <Button onClick={() => streakMutation.mutate()} disabled={!missedDay} className="col-span-2">{missedDay ? "Mark Posted Today 🔥" : "Posted ✨"}</Button>
-                  </CardContent>
-                </Card>
-                <Card className="bg-slate-900 border-white/5">
-                  <CardHeader><CardTitle className="flex items-center gap-2"><Flame className="text-orange-500" /> Current Streak: {hassan?.streak || 0}</CardTitle></CardHeader>
+                  <CardHeader>
+                    <CardTitle>Relentless Distribution Engine</CardTitle>
+                    <CardDescription>Generate daily content and distribute to Meta Business Suite</CardDescription>
+                  </CardHeader>
                   <CardContent className="space-y-4">
-                    <Progress value={((hassan?.streak || 0) % 30) * 3.33} className="h-2" />
-                    <p className="text-xs text-center text-gray-500">Relentless Builder Mode Active</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      <Button onClick={() => window.open('https://chat.openai.com', '_blank')} className="bg-[#10a37f]"><SiOpenai className="mr-2" /> ChatGPT AI</Button>
+                      <Button onClick={() => window.open('https://business.facebook.com/latest/composer', '_blank')} className="bg-[#1877F2]"><SiFacebook className="mr-2" /> Meta Suite</Button>
+                    </div>
+                    
+                    <div className="space-y-2 border-t border-white/5 pt-4">
+                      <Label className="text-xs uppercase tracking-widest text-gray-500">Agentic Outreach Partners</Label>
+                      <div className="grid grid-cols-1 gap-2">
+                        {[
+                          { name: "Allsopp & Allsopp", phone: "97144294444" },
+                          { name: "Betterhomes", phone: "971600522233" },
+                          { name: "Haus & Haus", phone: "97143025800" }
+                        ].map((partner, i) => (
+                          <div key={i} className="flex items-center justify-between p-3 bg-slate-950/50 rounded-lg border border-white/5">
+                            <span className="text-sm font-bold">{partner.name}</span>
+                            <Button size="sm" variant="ghost" onClick={() => window.open(`https://wa.me/${partner.phone}`, '_blank')} className="text-emerald-400 hover:text-emerald-300">
+                              <SiWhatsapp className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <Button onClick={() => streakMutation.mutate()} disabled={!missedDay} className="w-full bg-emerald-600 hover:bg-emerald-500">
+                      {missedDay ? "🔥 Confirm Daily Meta + IG Post" : "✨ Daily Ritual Complete"}
+                    </Button>
                   </CardContent>
                 </Card>
+                
+                <div className="space-y-6">
+                  <Card className="bg-slate-900 border-white/5">
+                    <CardHeader><CardTitle className="flex items-center gap-2"><Flame className="text-orange-500" /> Relentless Streak: {hassan?.streak || 0}</CardTitle></CardHeader>
+                    <CardContent className="space-y-4">
+                      <Progress value={((hassan?.streak || 0) % 30) * 3.33} className="h-2" />
+                      <div className="flex justify-between text-[10px] uppercase tracking-widest text-gray-500 font-black">
+                        <span>Day 0</span>
+                        <span>Level Up at 30</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-slate-900 border-white/5">
+                    <CardHeader>
+                      <CardTitle className="text-sm flex items-center gap-2">
+                        <Bot className="w-4 h-4 text-emerald-500" /> 
+                        Daily Script Generator
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="p-3 bg-slate-950 rounded-lg border border-white/5 text-sm italic text-gray-400">
+                        "Moving to Dubai this week? 🇦🇪 Don't spend your first night without water. Deliwer sets up your hydration and home essentials in 10 mins. Link in bio! @vedeliwer #DubaiRelocation"
+                      </div>
+                      <Button variant="link" className="text-emerald-500 p-0 h-auto mt-2 text-xs" onClick={() => {
+                        navigator.clipboard.writeText("Moving to Dubai this week? 🇦🇪 Don't spend your first night without water. Deliwer sets up your hydration and home essentials in 10 mins. Link in bio! @vedeliwer #DubaiRelocation");
+                        toast({ title: "Copied!", description: "Script ready for Meta Suite." });
+                      }}>
+                        <Copy className="w-3 h-3 mr-1" /> Copy to Clipboard
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </div>
              </div>
           </TabsContent>
 
