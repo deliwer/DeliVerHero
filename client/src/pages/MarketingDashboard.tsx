@@ -170,9 +170,11 @@ export default function MarketingDashboard() {
   const missedDay = hassan && hassan.lastPosted !== today;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-6 pb-24">
-      <div className="max-w-7xl mx-auto space-y-8">
-        <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6">
+    <div className="min-h-screen bg-slate-950 text-white p-6 pb-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/80 to-slate-950 pointer-events-none" />
+      <div className="max-w-7xl mx-auto space-y-8 relative z-10">
+        <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6 bg-slate-900/40 backdrop-blur-md p-4 rounded-xl">
           <div className="space-y-1">
             <h1 className="text-4xl font-black uppercase tracking-tighter text-emerald-500">Founder Command Center</h1>
             <p className="text-gray-400 font-medium tracking-wide">Unified Reachout, Marketing & Survival Engine</p>
@@ -215,18 +217,43 @@ export default function MarketingDashboard() {
                       <Button onClick={() => window.open('https://chat.openai.com', '_blank')} className="bg-[#10a37f]"><SiOpenai className="mr-2" /> ChatGPT AI</Button>
                       <Button onClick={() => window.open('https://business.facebook.com/latest/composer', '_blank')} className="bg-[#1877F2]"><SiFacebook className="mr-2" /> Meta Suite</Button>
                     </div>
+
+                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg space-y-2">
+                      <Label className="text-[10px] uppercase font-bold text-emerald-400">Image Generation Prompt</Label>
+                      <p className="text-xs text-gray-300 italic">"Cinematic high-end Dubai apartment interior, sunset view over Burj Khalifa, minimalist water delivery aesthetic, 8k resolution, professional architectural photography"</p>
+                      <Button variant="outline" size="sm" className="w-full text-[10px] h-7 border-emerald-500/30" onClick={() => {
+                        navigator.clipboard.writeText("Cinematic high-end Dubai apartment interior, sunset view over Burj Khalifa, minimalist water delivery aesthetic, 8k resolution, professional architectural photography");
+                        toast({ title: "Prompt Copied!", description: "Paste into ChatGPT for image generation." });
+                      }}>Copy Image Prompt</Button>
+                    </div>
                     
                     <div className="space-y-2 border-t border-white/5 pt-4">
-                      <Label className="text-xs uppercase tracking-widest text-gray-500">Agentic Outreach Partners</Label>
+                      <div className="flex justify-between items-center">
+                        <Label className="text-xs uppercase tracking-widest text-gray-500">Agentic Outreach Partners</Label>
+                        <Button variant="link" size="sm" className="h-auto p-0 text-[10px] text-emerald-500" onClick={() => {
+                          const postLink = prompt("Enter Post/Image Link to include:");
+                          if (postLink) {
+                            const script = `Check out our latest update: ${postLink}\n\nMoving to Dubai this week? 🇦🇪 Don't spend your first night without water. Deliwer sets up your hydration and home essentials in 10 mins. Link in bio! @vedeliwer #DubaiRelocation`;
+                            navigator.clipboard.writeText(script);
+                            toast({ title: "Message Prepared!", description: "Script with link copied to clipboard." });
+                          }
+                        }}>+ Add Post Link</Button>
+                      </div>
                       <div className="grid grid-cols-1 gap-2">
                         {[
                           { name: "Allsopp & Allsopp", phone: "97144294444" },
                           { name: "Betterhomes", phone: "971600522233" },
-                          { name: "Haus & Haus", phone: "97143025800" }
+                          { name: "Haus & Haus", phone: "97143025800" },
+                          { name: "fäm Properties", phone: "97143691700" },
+                          { name: "DRE Real Estate", phone: "97144271147" },
+                          { name: "White & Co", phone: "97145830255" }
                         ].map((partner, i) => (
-                          <div key={i} className="flex items-center justify-between p-3 bg-slate-950/50 rounded-lg border border-white/5">
+                          <div key={i} className="flex items-center justify-between p-3 bg-slate-950/50 rounded-lg border border-white/5 hover:border-emerald-500/30 transition-colors">
                             <span className="text-sm font-bold">{partner.name}</span>
-                            <Button size="sm" variant="ghost" onClick={() => window.open(`https://wa.me/${partner.phone}`, '_blank')} className="text-emerald-400 hover:text-emerald-300">
+                            <Button size="sm" variant="ghost" onClick={() => {
+                              const script = "Moving to Dubai this week? 🇦🇪 Don't spend your first night without water. Deliwer sets up your hydration and home essentials in 10 mins. Link in bio! @vedeliwer #DubaiRelocation";
+                              window.open(`https://wa.me/${partner.phone}?text=${encodeURIComponent(script)}`, '_blank');
+                            }} className="text-emerald-400 hover:text-emerald-300">
                               <SiWhatsapp className="h-4 w-4" />
                             </Button>
                           </div>
