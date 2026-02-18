@@ -39,99 +39,128 @@ export default function BrokerSupportDubai() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const partners = [
+    { name: "Hassan Jawad", role: "Founder & Lead", type: "Core" },
+    { name: "Freelance Broker Affiliate 1", role: "Relocation Scout", type: "Freelance" },
+    { name: "Freelance Broker Affiliate 2", role: "Area Specialist (Marina)", type: "Freelance" },
+    { name: "Freelance Broker Affiliate 3", role: "Area Specialist (Downtown)", type: "Freelance" },
+  ];
+
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">
       <SEOMeta 
-        title="Broker Move-In Support Dubai | Partnership Program"
-        description="Exclusive move-in support for Dubai real estate brokers. We handle Ejari, DEWA, and cleaning for your clients while you earn 10% commission."
+        title="Strategic Partners | Deliwer Dubai"
+        description="Our network of core and freelance partners driving relocation excellence in Dubai."
       />
-
-      <section className="pt-32 pb-20 px-4 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1 mb-4">
-            BROKER EXCLUSIVE
+      
+      <div className="container mx-auto pt-32 pb-20 px-4 space-y-12">
+        <div className="text-center space-y-4">
+          <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
+            PARTNERSHIP NETWORK
           </Badge>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-tight"
-          >
-            Broker Move-In <br />
-            <span className="text-emerald-500">Support Dubai</span>
-          </motion.h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto font-medium">
-            You close the deal. We handle the move-in chaos. You earn 10% commission.
+          <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">Strategic <span className="text-emerald-500">Partners</span></h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Combining core leadership with a vast network of freelance broker affiliates to dominate the relocation industry.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all"
-              onClick={() => window.open(whatsappLink, '_blank')}
-            >
-              <SiWhatsapp className="w-8 h-8 mr-4" />
-              Join via WhatsApp
-            </Button>
-          </div>
         </div>
-      </section>
 
-      {/* Embedded Referral Link Generator */}
-      <section className="py-12 px-4 max-w-2xl mx-auto">
-        <Card className="bg-white/5 border-white/10 hover-elevate">
-          <CardHeader>
-            <CardTitle className="text-white uppercase tracking-tight">Referral Link Generator</CardTitle>
-            <CardDescription className="text-gray-400">Instant tracking for your client referrals.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="agent-name" className="text-gray-300">Agent Name</Label>
-                <Input
-                  id="agent-name"
-                  placeholder="e.g. john_doe"
-                  value={agentName}
-                  onChange={handleAgentNameChange}
-                  className="bg-black/20 border-white/10 text-white"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="campaign" className="text-gray-300">Campaign</Label>
-                <Select value={campaign} onValueChange={setCampaign}>
-                  <SelectTrigger id="campaign" className="bg-black/20 border-white/10 text-white">
-                    <SelectValue placeholder="Select campaign" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-white/10 text-white">
-                    <SelectItem value="general">General</SelectItem>
-                    <SelectItem value="ejari">Ejari</SelectItem>
-                    <SelectItem value="relocation">Relocation</SelectItem>
-                    <SelectItem value="movein">Move-In</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {partners.map((partner, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Card className="bg-white/5 border-white/10 hover-elevate h-full">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <Briefcase className="text-emerald-500 w-6 h-6" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg font-bold text-white">{partner.name}</CardTitle>
+                    <CardDescription className="text-gray-400">{partner.role}</CardDescription>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <Badge variant={partner.type === 'Core' ? 'default' : 'secondary'} className={partner.type === 'Freelance' ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-emerald-500 text-black'}>
+                    {partner.type}
+                  </Badge>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    {partner.type === 'Core' 
+                      ? "Driving the vision and managing the relentless distribution engine for survival launch."
+                      : "Commission-only affiliate focused on indirect relationship building and lead generation."}
+                  </p>
+                  <div className="pt-2 flex items-center gap-2 text-xs font-bold text-emerald-500">
+                    <CheckCircle2 className="w-4 h-4" />
+                    DUBAI VERIFIED
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
 
-            <div className="pt-4 space-y-2">
-              <div className="flex gap-2">
-                <Input
-                  readOnly
-                  value={generatedLink}
-                  placeholder="Link will appear here..."
-                  className="bg-black/40 border-white/10 text-emerald-400"
-                />
-                <Button 
-                  onClick={copyToClipboard} 
-                  disabled={!generatedLink}
-                  size="icon"
-                  variant="outline"
-                  className="border-white/10 hover:bg-emerald-500/20"
-                >
-                  {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
-                </Button>
+        {/* Existing Referral Generator Section */}
+        <div className="max-w-2xl mx-auto pt-12">
+          <Card className="bg-white/5 border-white/10 hover-elevate">
+            <CardHeader>
+              <CardTitle className="text-white uppercase tracking-tight">Referral Link Generator</CardTitle>
+              <CardDescription className="text-gray-400">Instant tracking for your client referrals.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="agent-name" className="text-gray-300">Agent Name</Label>
+                  <Input
+                    id="agent-name"
+                    placeholder="e.g. john_doe"
+                    value={agentName}
+                    onChange={handleAgentNameChange}
+                    className="bg-black/20 border-white/10 text-white"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="campaign" className="text-gray-300">Campaign</Label>
+                  <Select value={campaign} onValueChange={setCampaign}>
+                    <SelectTrigger id="campaign" className="bg-black/20 border-white/10 text-white">
+                      <SelectValue placeholder="Select campaign" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-900 border-white/10 text-white">
+                      <SelectItem value="general">General</SelectItem>
+                      <SelectItem value="ejari">Ejari</SelectItem>
+                      <SelectItem value="relocation">Relocation</SelectItem>
+                      <SelectItem value="movein">Move-In</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
+
+              <div className="pt-4 space-y-2">
+                <div className="flex gap-2">
+                  <Input
+                    readOnly
+                    value={generatedLink}
+                    placeholder="Link will appear here..."
+                    className="bg-black/40 border-white/10 text-emerald-400"
+                  />
+                  <Button 
+                    onClick={copyToClipboard} 
+                    disabled={!generatedLink}
+                    size="icon"
+                    variant="outline"
+                    className="border-white/10 hover:bg-emerald-500/20"
+                  >
+                    {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
 
       <section className="py-20 px-4 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
