@@ -40,10 +40,30 @@ export default function BrokerSupportDubai() {
   };
 
   const partners = [
-    { name: "Hassan Jawad", role: "Founder & Lead", type: "Core" },
-    { name: "Freelance Broker Affiliate 1", role: "Relocation Scout", type: "Freelance" },
-    { name: "Freelance Broker Affiliate 2", role: "Area Specialist (Marina)", type: "Freelance" },
-    { name: "Freelance Broker Affiliate 3", role: "Area Specialist (Downtown)", type: "Freelance" },
+    {
+      name: "Strategic Leadership",
+      role: "Core Distribution Engine",
+      type: "Core",
+      description: "Driving the vision and managing the relentless distribution engine for survival and market dominance."
+    },
+    {
+      name: "Freelance Network",
+      role: "Market Expansion Specialist",
+      type: "Freelance",
+      description: "Commission-only affiliates focused on relationship building, localized lead generation, and market expansion."
+    },
+    {
+      name: "Agency Partners",
+      role: "B2B Integration Lead",
+      type: "Agency",
+      description: "Established firms leveraging DeliWer's operational back-office to provide seamless move-in support for their clients."
+    },
+    {
+      name: "Community Associates",
+      role: "Referral Ambassador",
+      type: "Associate",
+      description: "Individuals promoting premium relocation services within their networks to earn consistent passive rewards."
+    }
   ];
 
   return (
@@ -72,28 +92,35 @@ export default function BrokerSupportDubai() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
             >
-              <Card className="bg-white/5 border-white/10 hover-elevate h-full">
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+              <Card className="bg-slate-900/40 backdrop-blur-md border-white/10 hover-elevate h-full overflow-hidden relative group">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <CardHeader className="flex flex-row items-center gap-4 relative z-10">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
                     <Briefcase className="text-emerald-500 w-6 h-6" />
                   </div>
                   <div>
-                    <CardTitle className="text-lg font-bold text-white">{partner.name}</CardTitle>
-                    <CardDescription className="text-gray-400">{partner.role}</CardDescription>
+                    <CardTitle className="text-lg font-bold text-white tracking-tight">{partner.name}</CardTitle>
+                    <CardDescription className="text-emerald-400/70 text-xs font-bold uppercase tracking-widest">{partner.role}</CardDescription>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <Badge variant={partner.type === 'Core' ? 'default' : 'secondary'} className={partner.type === 'Freelance' ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-emerald-500 text-black'}>
+                <CardContent className="space-y-4 relative z-10">
+                  <Badge 
+                    variant={partner.type === 'Core' ? 'default' : 'secondary'} 
+                    className={
+                      partner.type === 'Freelance' ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 
+                      partner.type === 'Agency' ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' :
+                      partner.type === 'Associate' ? 'bg-orange-500/20 text-orange-400 border-orange-500/30' :
+                      'bg-emerald-500 text-black font-bold'
+                    }
+                  >
                     {partner.type}
                   </Badge>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    {partner.type === 'Core' 
-                      ? "Driving the vision and managing the relentless distribution engine for survival launch."
-                      : "Commission-only affiliate focused on indirect relationship building and lead generation."}
+                  <p className="text-sm text-gray-300 leading-relaxed min-h-[60px]">
+                    {partner.description}
                   </p>
-                  <div className="pt-2 flex items-center gap-2 text-xs font-bold text-emerald-500">
+                  <div className="pt-2 flex items-center gap-2 text-xs font-bold text-emerald-500/80">
                     <CheckCircle2 className="w-4 h-4" />
-                    DUBAI VERIFIED
+                    PARTNER VERIFIED
                   </div>
                 </CardContent>
               </Card>
