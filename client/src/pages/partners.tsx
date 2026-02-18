@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle2, ShieldCheck, Zap, Briefcase, DollarSign, Copy, Check } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Zap, Briefcase, DollarSign, Copy, Check, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { SiWhatsapp } from "react-icons/si";
 import { useToast } from "@/hooks/use-toast";
@@ -194,8 +194,6 @@ export default function BrokerSupportDubai() {
           </Card>
         </div>
       </div>
-    </div>
-  );
 
       <section className="py-20 px-4 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
