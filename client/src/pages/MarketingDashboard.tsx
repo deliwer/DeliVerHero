@@ -171,7 +171,8 @@ export default function MarketingDashboard() {
   const triggerDailyFounderReminder = async () => {
     setIsTriggering(true);
     try {
-      await apiRequest("GET", "/api/daily-founder-trigger");
+      // Added required security parameter for outreach trigger
+      await apiRequest("GET", "/api/daily-founder-trigger?deliwer-founder-trigger-2026-secure");
       toast({ title: "Success", description: "Reminder triggered!" });
     } finally {
       setIsTriggering(false);
@@ -275,17 +276,35 @@ export default function MarketingDashboard() {
 
                 <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-white flex items-center gap-2">
-                      <Shield className="text-emerald-500" />
-                      Critical Intel
+                    <CardTitle className="text-white flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <Shield className="text-emerald-500" />
+                        Critical Intel
+                      </div>
+                      <Badge variant="outline" className="text-[10px] border-emerald-500/30 text-emerald-400">LIVE</Badge>
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-3">
-                    <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                      <p className="text-sm font-bold text-red-400">MARKET SHIFT: Marina rent hike reported (12%). Update concave scripts.</p>
+                  <CardContent className="space-y-4">
+                    <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg group hover:bg-red-500/20 transition-colors">
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="text-[10px] font-bold text-red-400 uppercase tracking-tighter">Market Alert</span>
+                        <span className="text-[10px] text-red-400/60">2h ago</span>
+                      </div>
+                      <p className="text-sm font-bold text-red-100">MARINA SHIFT: 12% rent hike reported in Tiger Tower. Update relocation scripts.</p>
                     </div>
-                    <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-                      <p className="text-sm font-bold text-blue-400">OPPORTUNITY: New building handover in JVC (Plaza). Intercept movers.</p>
+                    <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg group hover:bg-blue-500/20 transition-colors">
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="text-[10px] font-bold text-blue-400 uppercase tracking-tighter">Opportunity</span>
+                        <span className="text-[10px] text-blue-400/60">5h ago</span>
+                      </div>
+                      <p className="text-sm font-bold text-blue-100">JVC HANDOVER: Plaza residences starting handovers. Prime for Move-In water kits.</p>
+                    </div>
+                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg group hover:bg-emerald-500/20 transition-colors">
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tighter">Broker Pulse</span>
+                        <span className="text-[10px] text-emerald-400/60">Just now</span>
+                      </div>
+                      <p className="text-sm font-bold text-emerald-100">PARTNER GROWTH: 3 new holiday home managers registered in Business Bay.</p>
                     </div>
                   </CardContent>
                 </Card>
