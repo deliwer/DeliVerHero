@@ -237,6 +237,7 @@ export default function MarketingDashboard() {
         <Tabs defaultValue="survival" className="space-y-6 relative z-10">
           <TabsList className="bg-slate-900/90 backdrop-blur-xl border border-white/20 p-1 sticky top-0 z-20 shadow-2xl rounded-xl">
             <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Founder Survival</TabsTrigger>
+            <TabsTrigger value="whatsapp" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">WhatsApp Marketing</TabsTrigger>
             <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Intent Sniffer</TabsTrigger>
             <TabsTrigger value="broker" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Broker Intel</TabsTrigger>
             <TabsTrigger value="email" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Email Campaigns</TabsTrigger>
@@ -245,6 +246,52 @@ export default function MarketingDashboard() {
 
           <TabsContent value="intent" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
              <IntentSnifferView leads={displayLeads} leadMutation={leadMutation} />
+          </TabsContent>
+
+          <TabsContent value="whatsapp" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-slate-950/50 border-white/10 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-white flex items-center gap-2">
+                    <MessageSquare className="text-emerald-500" />
+                    Partner Outreach
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="p-4 bg-slate-900 rounded-xl border border-white/5">
+                    <h4 className="font-bold text-white mb-2">Daily Content Generation</h4>
+                    <p className="text-sm text-gray-400 mb-4">AI-generated messaging for potential real estate partners and movers.</p>
+                    <Button className="w-full bg-emerald-600 hover:bg-emerald-500">Generate New Post</Button>
+                  </div>
+                  <div className="p-4 bg-slate-900 rounded-xl border border-white/5">
+                    <h4 className="font-bold text-white mb-2">WhatsApp Distribution</h4>
+                    <p className="text-sm text-gray-400 mb-4">Broadcast content to verified broker lists and community groups.</p>
+                    <Button variant="outline" className="w-full border-emerald-500/30 text-emerald-400">Launch Distribution</Button>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-slate-950/50 border-white/10 shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-white">Marketing Analytics</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-400">Open Rate</span>
+                      <span className="text-emerald-400 font-bold">84%</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-400">Response Rate</span>
+                      <span className="text-emerald-400 font-bold">12.5%</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-400">Partner Conversions</span>
+                      <span className="text-emerald-400 font-bold">28</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="survival" className="space-y-6 bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
