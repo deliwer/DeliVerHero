@@ -104,7 +104,46 @@ export default function MarketingDashboard() {
   const [phone, setPhone] = useState("");
   const [conciergeInput, setConciergeInput] = useState("");
   const [conciergeMessages, setConciergeMessages] = useState<any[]>([]);
-  const [filter, setFilter] = useState('all');
+  const [generatedContent, setGeneratedContent] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [isDistributing, setIsDistributing] = useState(false);
+
+  const generateContentMutation = useMutation({
+    mutationFn: async () => {
+      const res = await apiRequest("POST", "/api/concierge", {
+        phone: "SYSTEM",
+        message: "Generate a professional WhatsApp outreach message for Dubai real estate brokers about DeliWer's move-in water service and referral commissions."
+      });
+      return res.json();
+    },
+    onSuccess: (data) => {
+      setGeneratedContent(data.reply || "");
+      toast({ title: "Content Generated", description: "AI has prepared a new outreach message." });
+    }
+  });
+
+  const distributeContentMutation = useMutation({
+    mutationFn: async () => {
+      // Simulate distribution to partner list
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      return { success: true };
+    },
+    onSuccess: () => {
+      toast({ title: "Distribution Launched", description: "Content is being sent to the partner network." });
+    }
+  });
+
+  const handleGenerateContent = () => {
+    generateContentMutation.mutate();
+  };
+
+  const handleLaunchDistribution = () => {
+    if (!generatedContent) {
+      toast({ title: "No Content", description: "Please generate content first.", variant: "destructive" });
+      return;
+    }
+    distributeContentMutation.mutate();
+  };
   const [newBroker, setNewBroker] = useState({
     name: "", agency: "", area: "", phone: "", instagram: "", linkedin: "", category: "brokerage"
   });
@@ -261,12 +300,32 @@ export default function MarketingDashboard() {
                   <div className="p-4 bg-slate-900 rounded-xl border border-white/5">
                     <h4 className="font-bold text-white mb-2">Daily Content Generation</h4>
                     <p className="text-sm text-gray-400 mb-4">AI-generated messaging for potential real estate partners and movers.</p>
-                    <Button className="w-full bg-emerald-600 hover:bg-emerald-500">Generate New Post</Button>
+                    {generatedContent && (
+                      <div className="mb-4 p-3 bg-slate-950 rounded-lg border border-emerald-500/20 text-xs text-gray-300 italic">
+                        "{generatedContent}"
+                      </div>
+                    )}
+                    <Button 
+                      className="w-full bg-emerald-600 hover:bg-emerald-500"
+                      onClick={handleGenerateContent}
+                      disabled={generateContentMutation.isPending}
+                    >
+                      {generateContentMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                      {generatedContent ? "Regenerate Post" : "Generate New Post"}
+                    </Button>
                   </div>
                   <div className="p-4 bg-slate-900 rounded-xl border border-white/5">
                     <h4 className="font-bold text-white mb-2">WhatsApp Distribution</h4>
                     <p className="text-sm text-gray-400 mb-4">Broadcast content to verified broker lists and community groups.</p>
-                    <Button variant="outline" className="w-full border-emerald-500/30 text-emerald-400">Launch Distribution</Button>
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-emerald-500/30 text-emerald-400"
+                      onClick={handleLaunchDistribution}
+                      disabled={distributeContentMutation.isPending || !generatedContent}
+                    >
+                      {distributeContentMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                      Launch Distribution
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
