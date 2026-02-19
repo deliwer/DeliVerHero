@@ -261,11 +261,11 @@ export default function MarketingDashboard() {
                           { name: "White & Co", phone: "97145830255" }
                         ].map((partner, i) => (
                           <div key={i} className="flex items-center justify-between p-3 bg-slate-950/50 rounded-lg border border-white/5 hover:border-emerald-500/30 transition-colors">
-                            <span className="text-sm font-bold">{partner.name}</span>
+                            <span className="text-sm font-bold text-white">{partner.name}</span>
                             <Button size="sm" variant="ghost" onClick={() => {
                               const script = "Moving to Dubai this week? 🇦🇪 Don't spend your first night without water. Deliwer sets up your hydration and home essentials in 10 mins. Link in bio! @vedeliwer #DubaiRelocation";
                               window.open(`https://wa.me/${partner.phone}?text=${encodeURIComponent(script)}`, '_blank');
-                            }} className="text-emerald-400 hover:text-emerald-300">
+                            }} className="text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10">
                               <SiWhatsapp className="h-4 w-4" />
                             </Button>
                           </div>
@@ -281,28 +281,30 @@ export default function MarketingDashboard() {
                 
                 <div className="space-y-6">
                   <Card className="bg-slate-900 border-white/5">
-                    <CardHeader><CardTitle className="flex items-center gap-2"><Flame className="text-orange-500" /> Relentless Streak: {hassan?.streak || 0}</CardTitle></CardHeader>
-                    <CardContent className="space-y-4">
-                      <Progress value={((hassan?.streak || 0) % 30) * 3.33} className="h-2" />
-                      <div className="flex justify-between text-[10px] uppercase tracking-widest text-gray-500 font-black">
-                        <span>Day 0</span>
-                        <span>Level Up at 30</span>
-                      </div>
-                    </CardContent>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-white"><Flame className="text-orange-500" /> Relentless Streak: {hassan?.streak || 0}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Progress value={((hassan?.streak || 0) % 30) * 3.33} className="h-2 bg-white/10" />
+                    <div className="flex justify-between text-[10px] uppercase tracking-widest text-gray-400 font-black">
+                      <span>Day 0</span>
+                      <span>Level Up at 30</span>
+                    </div>
+                  </CardContent>
                   </Card>
 
                   <Card className="bg-slate-900 border-white/5">
                     <CardHeader>
-                      <CardTitle className="text-sm flex items-center gap-2">
+                      <CardTitle className="text-sm flex items-center gap-2 text-white">
                         <Bot className="w-4 h-4 text-emerald-500" /> 
                         Daily Script Generator
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <div className="p-3 bg-slate-950 rounded-lg border border-white/5 text-sm italic text-gray-400">
+                      <div className="p-3 bg-black/40 rounded-lg border border-white/10 text-sm italic text-gray-200">
                         "Moving to Dubai this week? 🇦🇪 Don't spend your first night without water. Deliwer sets up your hydration and home essentials in 10 mins. Link in bio! @vedeliwer #DubaiRelocation"
                       </div>
-                      <Button variant="link" className="text-emerald-500 p-0 h-auto mt-2 text-xs" onClick={() => {
+                      <Button variant="link" className="text-emerald-400 hover:text-emerald-300 p-0 h-auto mt-2 text-xs font-bold" onClick={() => {
                         navigator.clipboard.writeText("Moving to Dubai this week? 🇦🇪 Don't spend your first night without water. Deliwer sets up your hydration and home essentials in 10 mins. Link in bio! @vedeliwer #DubaiRelocation");
                         toast({ title: "Copied!", description: "Script ready for Meta Suite." });
                       }}>
@@ -347,18 +349,18 @@ export default function MarketingDashboard() {
 
           <TabsContent value="concierge" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
             <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 max-w-2xl mx-auto shadow-lg">
-              <CardHeader>
+              <CardHeader className="border-b border-white/10">
                 <CardTitle className="text-white flex items-center gap-2">
                   <Bot className="w-5 h-5 text-emerald-500" />
                   AI Concierge Terminal
                 </CardTitle>
-                <Input placeholder="Phone context..." value={phone} onChange={e => setPhone(e.target.value)} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500 mt-2" />
+                <Input placeholder="Phone context..." value={phone} onChange={e => setPhone(e.target.value)} className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 mt-2" />
               </CardHeader>
               <CardContent className="h-[400px] flex flex-col">
                 <ScrollArea className="flex-1 p-4 border rounded-md mb-4 border-white/10 bg-black/20">
                   {conciergeMessages.map((m, i) => (
                     <div key={i} className={`mb-2 flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <span className={`p-2 px-4 rounded-2xl text-sm shadow-sm ${m.role === 'user' ? 'bg-emerald-600 text-white rounded-tr-none' : 'bg-slate-800 text-gray-100 rounded-tl-none border border-white/5'}`}>{m.content}</span>
+                      <span className={`p-2 px-4 rounded-2xl text-sm shadow-sm ${m.role === 'user' ? 'bg-emerald-600 text-white rounded-tr-none' : 'bg-slate-800 text-white rounded-tl-none border border-white/10'}`}>{m.content}</span>
                     </div>
                   ))}
                 </ScrollArea>
