@@ -6,7 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { 
   Instagram, MessageCircle, ArrowRight, Loader2, Radio, ExternalLink, 
-  Send, Flame, CheckCircle2, Trophy, AlertCircle, Search, UserPlus,
+  Send, Flame, CheckCircle2, Trophy, AlertCircle, Search, UserPlus, AlertTriangle,
   TrendingUp, Zap, Trash2, Mail, MessageSquare, Bot, User, Copy,
   Linkedin
 } from "lucide-react";
