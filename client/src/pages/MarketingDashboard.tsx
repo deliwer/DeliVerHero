@@ -80,29 +80,35 @@ export default function MarketingDashboard() {
   const [phone, setPhone] = useState("");
   const [conciergeInput, setConciergeInput] = useState("");
   const [conciergeMessages, setConciergeMessages] = useState<any[]>([]);
-  const [brokers, setBrokers] = useState<any[]>([]);
-  const [newBroker, setNewBroker] = useState({
-    name: "", agency: "", area: "", phone: "", instagram: "", linkedin: ""
-  });
-
   const { data: leads, isLoading: leadsLoading } = useQuery<any[]>({
     queryKey: ["/api/leads"],
-    // Moving interval-based refreshing to a nested component for performance
   });
 
   const { data: streaks, isLoading: streaksLoading } = useQuery<any[]>({
     queryKey: ["/api/founder-streaks"],
   });
 
-  useEffect(() => {
-    const saved = localStorage.getItem("deliwer_broker_intel");
-    if (saved) setBrokers(JSON.parse(saved));
-  }, []);
+  const { data: brokersData, isLoading: brokersLoading } = useQuery<any[]>({
+    queryKey: ["/api/brokers"],
+  });
 
-  const saveBrokers = (data: any[]) => {
-    localStorage.setItem("deliwer_broker_intel", JSON.stringify(data));
-    setBrokers(data);
-  };
+  const brokers = brokersData || [];
+
+  const [newBroker, setNewBroker] = useState({
+    name: "", agency: "", area: "", phone: "", instagram: "", linkedin: "", category: "brokerage"
+  });
+
+  const addBrokerMutation = useMutation({
+    mutationFn: async (broker: any) => {
+      const res = await apiRequest("POST", "/api/brokers", broker);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/brokers"] });
+      toast({ title: "Intelligence Added", description: `${newBroker.name} saved to market intel.` });
+      setNewBroker({ name: "", agency: "", area: "", phone: "", instagram: "", linkedin: "", category: "brokerage" });
+    },
+  });
 
   const streakMutation = useMutation({
     mutationFn: async () => await apiRequest("POST", "/api/founder-streaks/post"),
@@ -154,21 +160,9 @@ export default function MarketingDashboard() {
   };
 
   const addBroker = () => {
-    if (!newBroker.name || !newBroker.agency) return;
-    const score = RENTAL_HEAVY_AREAS.some(a => newBroker.area.toLowerCase().includes(a.toLowerCase())) ? 80 : 50;
-    const broker = { ...newBroker, id: Date.now().toString(), score, tier: score >= 80 ? "A" : "B" };
-    saveBrokers([broker, ...brokers]);
-    setNewBroker({ name: "", agency: "", area: "", phone: "", instagram: "", linkedin: "" });
+    if (!newBroker.name) return;
+    addBrokerMutation.mutate(newBroker);
   };
-
-  if (leadsLoading || streaksLoading) {
-    return <div className="flex items-center justify-center h-screen bg-slate-950"><Loader2 className="animate-spin text-emerald-500" /></div>;
-  }
-
-  const displayLeads = leads || [];
-  const hassan = streaks?.find(s => s.name === "Hassan Jawad");
-  const today = new Date().toISOString().split("T")[0];
-  const missedDay = hassan && hassan.lastPosted !== today;
 
   return (
     <div className="min-h-screen bg-slate-950 text-white p-6 pb-24 relative overflow-hidden">
@@ -322,24 +316,73 @@ export default function MarketingDashboard() {
                 <CardHeader><CardTitle className="text-white">Qualify Broker</CardTitle></CardHeader>
                 <CardContent className="space-y-3">
                   <Input placeholder="Name" value={newBroker.name} onChange={e => setNewBroker({...newBroker, name: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
-                  <Input placeholder="Agency" value={newBroker.agency} onChange={e => setNewBroker({...newBroker, agency: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
-                  <Input placeholder="Area" value={newBroker.area} onChange={e => setNewBroker({...newBroker, area: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
-                  <Button onClick={addBroker} className="w-full bg-emerald-600 hover:bg-emerald-500 font-bold">Analyze Broker</Button>
+                  <Input placeholder="Agency / Developer" value={newBroker.agency} onChange={e => setNewBroker({...newBroker, agency: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
+                  <Input placeholder="Area / Reach" value={newBroker.area} onChange={e => setNewBroker({...newBroker, area: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
+                  <div className="flex gap-2 mb-2">
+                    <select 
+                      value={newBroker.category} 
+                      onChange={e => setNewBroker({...newBroker, category: e.target.value})}
+                      className="w-full bg-slate-900 border border-white/20 text-white rounded-md p-2 text-sm"
+                    >
+                      <option value="brokerage">Brokerage</option>
+                      <option value="developer">Developer</option>
+                      <option value="holiday_home">Holiday Home</option>
+                      <option value="discovered_online">Online Discovery</option>
+                    </select>
+                  </div>
+                  <Button onClick={addBroker} className="w-full bg-emerald-600 hover:bg-emerald-500 font-bold" disabled={addBrokerMutation.isPending}>
+                    {addBrokerMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save Intelligence"}
+                  </Button>
                 </CardContent>
               </Card>
-              <div className="md:col-span-2 space-y-4">
-                {brokers.map(b => (
-                  <Card key={b.id} className="bg-slate-900/60 backdrop-blur-sm border-white/10 hover:border-emerald-500/30 transition-all shadow-md">
-                    <CardContent className="p-4 flex justify-between items-center">
-                      <div>
-                        <h4 className="font-bold text-white">{b.name}</h4>
-                        <p className="text-sm text-emerald-400 font-medium">{b.agency} • {b.area}</p>
-                      </div>
-                      <Badge className="bg-emerald-500 text-black font-black">Tier {b.tier}</Badge>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                  <div className="md:col-span-2 space-y-4">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-white">Market Intelligence</h3>
+  const [filter, setFilter] = useState('all');
+
+  const filteredBrokers = brokers.filter(b => filter === 'all' || b.category === filter);
+
+  // ... rest of the component logic ...
+
+  // In the render section:
+  <div className="flex gap-2">
+    {['all', 'brokerage', 'developer', 'holiday_home', 'discovered_online'].map(cat => (
+      <Badge 
+        key={cat} 
+        className={`cursor-pointer transition-colors ${filter === cat ? 'bg-emerald-500 text-black' : 'bg-slate-800 text-gray-300 hover:bg-emerald-500/50'}`}
+        onClick={() => setFilter(cat)}
+      >
+        {cat.replace('_', ' ')}
+      </Badge>
+    ))}
+  </div>
+                    </div>
+                    {filteredBrokers.map(b => (
+                      <Card key={b.id} className="bg-slate-900/60 backdrop-blur-sm border-white/10 hover:border-emerald-500/30 transition-all shadow-md">
+                        <CardContent className="p-4 flex justify-between items-center">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-bold text-white">{b.name}</h4>
+                              {b.isVerified && <CheckCircle2 className="w-3 h-3 text-emerald-500" />}
+                            </div>
+                            <p className="text-sm text-emerald-400 font-medium">{b.agency || 'Independent'} • {b.area || 'Dubai Wide'}</p>
+                            <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">{b.category?.replace('_', ' ')}</p>
+                          </div>
+                          <div className="text-right">
+                            <Badge className="bg-emerald-500 text-black font-black mb-1">Tier {b.tier}</Badge>
+                            <div className="flex gap-1 justify-end">
+                              <Button size="icon" variant="ghost" className="h-6 w-6 text-gray-400 hover:text-white">
+                                <Search className="h-3 w-3" />
+                              </Button>
+                              <Button size="icon" variant="ghost" className="h-6 w-6 text-gray-400 hover:text-emerald-500">
+                                <Copy className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
             </div>
           </TabsContent>
 

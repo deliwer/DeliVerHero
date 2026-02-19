@@ -47,6 +47,26 @@ const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: bo
 import { handleConciergeInput } from "./concierge";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Broker Intel Routes
+  app.get("/api/brokers", async (_req, res) => {
+    try {
+      const brokers = await storage.getBrokers();
+      res.json(brokers);
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch brokers" });
+    }
+  });
+
+  app.post("/api/brokers", async (req, res) => {
+    try {
+      const validatedData = insertBrokerSchema.parse(req.body);
+      const broker = await storage.addBroker(validatedData);
+      res.json(broker);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to add broker" });
+    }
+  });
+
   // Initialize founders
   await storage.initializeFounders([
     { name: "Hassan Jawad", phone: "971523946311" },

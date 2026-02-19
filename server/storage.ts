@@ -1,44 +1,61 @@
 import pg from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { users, heroes, tradeIns, impactStats, referrals, contacts, ejariConversations, conciergeConversations, founderStreaks } from "@shared/schema";
-import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type EjariConversation, type InsertEjariConversation, type LeadApplication, type InsertLeadApplication, type FounderStreak, type InsertFounderStreak } from "@shared/schema";
+import { brokers, type Broker, type InsertBroker, users, heroes, tradeIns, impactStats, referrals, contacts, conciergeConversations, founderStreaks } from "@shared/schema";
+import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type FounderStreak, type InsertFounderStreak } from "@shared/schema";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-
   getConciergeConversation(phoneNumber: string): Promise<ConciergeConversation | undefined>;
   createConciergeConversation(conv: InsertConciergeConversation): Promise<ConciergeConversation>;
   updateConciergeConversation(id: string, updates: Partial<ConciergeConversation>): Promise<ConciergeConversation>;
-
-  getEjariConversation(phone: string): Promise<EjariConversation | undefined>;
-  createEjariConversation(conv: InsertEjariConversation): Promise<EjariConversation>;
-  updateEjariConversation(id: string, updates: Partial<EjariConversation>): Promise<EjariConversation | undefined>;
-
-  createLeadApplication(lead: InsertLeadApplication): Promise<LeadApplication>;
-  getLeadApplications(): Promise<LeadApplication[]>;
-  updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<LeadApplication | undefined>;
-
   getFounderStreaks(): Promise<FounderStreak[]>;
   updateFounderStreak(name: string, streak: number, lastPosted: string): Promise<FounderStreak>;
   initializeFounders(founders: { name: string; phone: string }[]): Promise<void>;
+  getBrokers(): Promise<Broker[]>;
+  addBroker(broker: InsertBroker): Promise<Broker>;
+  createLeadApplication(lead: any): Promise<any>;
+  getLeadApplications(): Promise<any[]>;
+  updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<any>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private conciergeConversations: Map<string, ConciergeConversation>;
-  private ejariConversations: Map<string, EjariConversation>;
-  private leadApplications: Map<string, LeadApplication>;
+  private leadApplications: Map<string, any>;
   private founderStreaks: Map<string, FounderStreak>;
+  private brokers: Map<string, Broker>;
   sessionStore: any;
 
   constructor() {
     this.users = new Map();
     this.conciergeConversations = new Map();
-    this.ejariConversations = new Map();
     this.leadApplications = new Map();
     this.founderStreaks = new Map();
+    this.brokers = new Map();
+  }
+
+  async getBrokers(): Promise<Broker[]> {
+    return Array.from(this.brokers.values()).sort((a, b) => b.tier - a.tier);
+  }
+
+  async addBroker(insertBroker: InsertBroker): Promise<Broker> {
+    const id = Math.random().toString(36).substring(7);
+    const broker: Broker = { 
+      ...insertBroker, 
+      id, 
+      createdAt: new Date(),
+      isVerified: insertBroker.isVerified ?? false,
+      tier: insertBroker.tier ?? 3,
+      agency: insertBroker.agency ?? null,
+      area: insertBroker.area ?? null,
+      category: insertBroker.category ?? "brokerage",
+      contactInfo: insertBroker.contactInfo ?? {},
+      notes: insertBroker.notes ?? null
+    };
+    this.brokers.set(id, broker);
+    return broker;
   }
 
   async getFounderStreaks(): Promise<FounderStreak[]> {
@@ -104,37 +121,18 @@ export class MemStorage implements IStorage {
     return updated;
   }
 
-  async getEjariConversation(phone: string): Promise<EjariConversation | undefined> {
-    return Array.from(this.ejariConversations.values()).find(c => c.phone === phone);
-  }
-
-  async createEjariConversation(conv: InsertEjariConversation): Promise<EjariConversation> {
+  async createLeadApplication(lead: any): Promise<any> {
     const id = Math.random().toString(36).substring(7);
-    const newConv: EjariConversation = { ...conv, id, platform: conv.platform || "whatsapp", moveInTiming: conv.moveInTiming || null, area: conv.area || null, propertyType: conv.propertyType || null, waterChecked: conv.waterChecked || null, cleaningNeeded: conv.cleaningNeeded || null, fixesNeeded: conv.fixesNeeded || null, status: conv.status || "QUALIFYING", lastMessageSentAt: new Date(), reminderSent: false, createdAt: new Date(), updatedAt: new Date() };
-    this.ejariConversations.set(id, newConv);
-    return newConv;
-  }
-
-  async updateEjariConversation(id: string, updates: Partial<EjariConversation>): Promise<EjariConversation | undefined> {
-    const conv = this.ejariConversations.get(id);
-    if (!conv) return undefined;
-    const updated = { ...conv, ...updates, updatedAt: new Date() };
-    this.ejariConversations.set(id, updated);
-    return updated;
-  }
-
-  async createLeadApplication(lead: InsertLeadApplication): Promise<LeadApplication> {
-    const id = Math.random().toString(36).substring(7);
-    const newLead: LeadApplication = { ...lead, id, status: lead.status || "pending", createdAt: new Date() };
+    const newLead = { ...lead, id, createdAt: new Date() };
     this.leadApplications.set(id, newLead);
     return newLead;
   }
 
-  async getLeadApplications(): Promise<LeadApplication[]> {
+  async getLeadApplications(): Promise<any[]> {
     return Array.from(this.leadApplications.values());
   }
 
-  async updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<LeadApplication | undefined> {
+  async updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<any> {
     const lead = this.leadApplications.get(id);
     if (!lead) return undefined;
     const updated = { ...lead, requirements, whatsappResponses };
