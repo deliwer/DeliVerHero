@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "postgresql-16"]
+modules = ["nodejs-20", "web"]
 run = "npm run dev"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
@@ -8,7 +8,7 @@ packages = ["imagemagick"]
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["node", "./dist/index.js"]
+run = ["node", "./dist/index.cjs"]
 build = ["npm", "run", "build"]
 
 [[ports]]
