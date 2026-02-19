@@ -100,6 +100,12 @@ export default function Relocate() {
             >
               <LogOut className="mr-2 h-6 w-6" /> I'm Moving Out
             </Button>
+            <Button 
+              onClick={() => window.open('https://wa.me/971523946311?text=URGENT:%20I%20need%20express%20relocation%20support.', '_blank')}
+              className="bg-red-600 hover:bg-red-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-red-900/40"
+            >
+              <AlertTriangle className="mr-2 h-6 w-6" /> Express Exit
+            </Button>
           </div>
         </div>
       </section>

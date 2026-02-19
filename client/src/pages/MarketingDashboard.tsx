@@ -182,6 +182,17 @@ export default function MarketingDashboard() {
           </div>
           <div className="flex gap-4">
              <Button 
+                onClick={() => {
+                  const riskLevel = prompt("Enter Risk Level (Low/Medium/High):", "Medium");
+                  toast({ title: `Risk Mode: ${riskLevel}`, description: "Adjusting lead priorities and outreach velocity." });
+                }}
+                variant="outline"
+                className="border-red-500/30 text-red-400 bg-red-500/5 hover:bg-red-500/10"
+              >
+                <AlertTriangle className="h-4 w-4 mr-2" />
+                Preempt Risk
+              </Button>
+             <Button 
                 onClick={triggerDailyFounderReminder}
                 disabled={isTriggering}
                 variant="outline"

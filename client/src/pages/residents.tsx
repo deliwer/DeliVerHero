@@ -254,7 +254,8 @@ export default function Residents() {
               { icon: Clock, title: "Fast assessments", desc: "Same-day or next-day scheduling for urgent home fixing." },
               { icon: ShieldCheck, title: "Relocation specialists", desc: "Move-In & Move-Out experts protecting your deposit and sanity." },
               { icon: ShieldCheck, title: "Responsible removal", desc: "Furniture and e-waste handled compliantly and ethically." },
-              { icon: Zap, title: "Zero Lead Loss", desc: "Every request is logged and actioned within minutes." }
+              { icon: Zap, title: "Zero Lead Loss", desc: "Every request is logged and actioned within minutes." },
+              { icon: AlertTriangle, title: "Disruption Support", desc: "Express coordination for unforeseen relocation needs." }
             ].map((item, i) => (
               <div key={i} className="flex gap-6 p-8 bg-white/5 rounded-3xl border border-white/5 hover:border-emerald-500/20 transition-colors group">
                 <item.icon className="w-8 h-8 text-emerald-500 shrink-0 group-hover:scale-110 transition-transform" />
