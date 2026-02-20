@@ -487,11 +487,11 @@ export const sponsorshipTiers = pgTable("sponsorship_tiers", {
 export const leadApplications = pgTable("lead_applications", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   heroId: varchar("hero_id").references(() => heroes.id),
-  firstName: text("first_name").notNull(),
-  lastName: text("last_name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  relocationStatus: text("relocation_status").notNull(), // planned, in_progress, completed
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  email: text("email"),
+  phone: text("phone"),
+  relocationStatus: text("relocation_status").notNull().default("planned"), // planned, in_progress, completed
   interestArea: text("interest_area"), // investment, residency, business, lifestyle
   notes: text("notes"),
   marketingStage: text("marketing_stage").notNull().default("intercepted"), // intercepted, handshake, redirected, closed
@@ -500,6 +500,10 @@ export const leadApplications = pgTable("lead_applications", {
   area: text("area"),
   propertyType: text("property_type"), // apartment, villa
   conciergeData: jsonb("concierge_data").default({}), // { water: boolean, cleaning: boolean, fixes: boolean }
+  source: text("source"),
+  whatsappStatus: text("whatsapp_status"),
+  nextAction: text("next_action"),
+  instagramHandle: text("instagram_handle"),
   lastReminderSentAt: timestamp("last_reminder_sent_at"),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
