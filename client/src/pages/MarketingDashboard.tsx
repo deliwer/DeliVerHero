@@ -160,6 +160,7 @@ export default function MarketingDashboard() {
     queryKey: ["/api/brokers"],
   });
 
+  const [filter, setFilter] = useState("all");
   const brokers = brokersData || [];
   const filteredBrokers = brokers.filter(b => filter === 'all' || b.category === filter);
 
