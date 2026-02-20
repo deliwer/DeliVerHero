@@ -391,6 +391,13 @@ export default function MarketingDashboard() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
+                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg group hover:bg-emerald-500/20 transition-colors">
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tighter">Market Alert</span>
+                        <span className="text-[10px] text-emerald-400/60">Just now</span>
+                      </div>
+                      <p className="text-sm font-bold text-emerald-100">PRELAUNCH.AE: New handover list available. 450+ units in JVC & Business Bay ready for interception.</p>
+                    </div>
                     <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg group hover:bg-red-500/20 transition-colors">
                       <div className="flex justify-between items-start mb-1">
                         <span className="text-[10px] font-bold text-red-400 uppercase tracking-tighter">Market Alert</span>
