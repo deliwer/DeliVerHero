@@ -12,12 +12,14 @@ export const CONCIERGE_MESSAGES = {
 };
 
 export async function handleConciergeInput(phone: string, input: string) {
-  let conversation = await storage.getEjariConversation(phone);
+  let conversation = await storage.getConciergeConversation(phone);
 
   if (!conversation) {
-    conversation = await storage.createEjariConversation({
-      phone,
-      status: "QUALIFYING"
+    conversation = await storage.createConciergeConversation({
+      phoneNumber: phone,
+      status: "QUALIFYING",
+      platform: "website",
+      lastAgent: "agent_1"
     });
     return CONCIERGE_MESSAGES.AGENT_1_INTRO;
   }
@@ -29,27 +31,27 @@ export async function handleConciergeInput(phone: string, input: string) {
     else conversation.moveInTiming = "LATER";
     
     conversation.status = "PROBLEM_ID";
-    await storage.updateEjariConversation(conversation.id, conversation);
+    await storage.updateConciergeConversation(conversation.id, conversation);
     return CONCIERGE_MESSAGES.AGENT_2_WATER;
   }
 
   if (conversation.status === "PROBLEM_ID") {
-    if (conversation.waterChecked === null) {
-      conversation.waterChecked = input.toLowerCase().includes("yes") || input.toLowerCase().includes("no");
-      await storage.updateEjariConversation(conversation.id, conversation);
+    if (conversation.waterCheck === null) {
+      conversation.waterCheck = input.toLowerCase().includes("yes") || input.toLowerCase().includes("no");
+      await storage.updateConciergeConversation(conversation.id, conversation);
       return CONCIERGE_MESSAGES.AGENT_2_CLEANING;
     }
-    if (conversation.cleaningNeeded === null) {
-      conversation.cleaningNeeded = input.toLowerCase().includes("yes");
-      await storage.updateEjariConversation(conversation.id, conversation);
+    if (conversation.cleaningCheck === null) {
+      conversation.cleaningCheck = input.toLowerCase().includes("yes");
+      await storage.updateConciergeConversation(conversation.id, conversation);
       return CONCIERGE_MESSAGES.AGENT_2_FIXES;
     }
-    if (conversation.fixesNeeded === null) {
-      conversation.fixesNeeded = input.toLowerCase().includes("yes");
+    if (conversation.fixesCheck === null) {
+      conversation.fixesCheck = input.toLowerCase().includes("yes");
       conversation.status = "OFFERING";
-      await storage.updateEjariConversation(conversation.id, conversation);
+      await storage.updateConciergeConversation(conversation.id, conversation);
       
-      if (conversation.waterChecked || conversation.cleaningNeeded) {
+      if (conversation.waterCheck || conversation.cleaningCheck) {
         return CONCIERGE_MESSAGES.AGENT_3_STARTER_PACK;
       }
       return CONCIERGE_MESSAGES.AGENT_3_BASIC_HELP;
@@ -58,7 +60,7 @@ export async function handleConciergeInput(phone: string, input: string) {
 
   if (conversation.status === "OFFERING") {
     conversation.status = "READY_FOR_HUMAN";
-    await storage.updateEjariConversation(conversation.id, conversation);
+    await storage.updateConciergeConversation(conversation.id, conversation);
     return CONCIERGE_MESSAGES.HUMAN_HANDOFF;
   }
 

@@ -133,11 +133,11 @@ export default function MarketingDashboard() {
     }
   });
 
-  const handleGenerateContent = () => {
+  const handleGenerateContent = async () => {
     generateContentMutation.mutate();
   };
 
-  const handleLaunchDistribution = () => {
+  const handleLaunchDistribution = async () => {
     if (!generatedContent) {
       toast({ title: "No Content", description: "Please generate content first.", variant: "destructive" });
       return;
