@@ -67,13 +67,24 @@ export default function BrokerSupportDubai() {
   ];
 
   return (
-    <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
         title="Strategic Partners | Deliwer Dubai"
         description="Our network of core and freelance partners driving relocation excellence in Dubai."
       />
       
-      <div className="container mx-auto pt-32 pb-20 px-4 space-y-12">
+      {/* Micro Trust Line - Added for uniformity */}
+      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
+        <div className="max-w-4xl mx-auto">
+          {/* Note: TrustStrip is likely available as it's used in landing.tsx */}
+          <div className="flex justify-between items-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50">
+             <span>Verified Partner Network</span>
+             <span>Dubai, UAE</span>
+          </div>
+        </div>
+      </section>
+
+      <div className="container mx-auto pt-20 pb-20 px-4 space-y-12">
         <div className="text-center space-y-4">
           <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
             PARTNERSHIP NETWORK

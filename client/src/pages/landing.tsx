@@ -27,13 +27,13 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
         title="Dubai Move-In & Relocation Concierge | DeliWer"
         description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
       />
       {/* Micro Trust Line */}
-      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm">
+      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>
@@ -54,7 +54,7 @@ export default function LandingPage() {
             className="space-y-6"
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl">
-              Dubai Move-In & Relocation Concierge<br />
+              Dubai Move-In & Relocation<br />
               <span className="text-emerald-500 font-extrabold">Concierge</span>
             </h1>
             
