@@ -25,13 +25,18 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <SEOMeta 
         title="Moving into Dubai? We handle everything after the keys | DeliWer"
         description="Home setup, relocation support, fixes, furniture, disposal & daily living handled by one team on WhatsApp."
       />
 
-      {/* 1. Updated Homepage Hero (Conversion Optimized) */}
+      {/* Micro Trust Line - Added for uniformity */}
+      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
+        <div className="max-w-4xl mx-auto">
+          <TrustStrip variant="dark" showContact={true} />
+        </div>
+      </section>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 text-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"

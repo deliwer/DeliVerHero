@@ -76,7 +76,6 @@ export default function BrokerSupportDubai() {
       {/* Micro Trust Line - Added for uniformity */}
       <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
         <div className="max-w-4xl mx-auto">
-          {/* Note: TrustStrip is likely available as it's used in landing.tsx */}
           <div className="flex justify-between items-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50">
              <span>Verified Partner Network</span>
              <span>Dubai, UAE</span>

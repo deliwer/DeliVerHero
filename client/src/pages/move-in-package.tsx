@@ -14,13 +14,13 @@ const getWhatsAppLink = (service: string) => {
 
 export default function MoveInPackagePage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <SEOMeta 
         title="Move-In Package | Your Home Fully Ready Dubai"
         description="Prepare your Dubai home fully before you unpack. AC servicing, water setup, and essentials coordinated end-to-end."
       />
 
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40">
+      <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>

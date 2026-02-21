@@ -43,14 +43,14 @@ export default function Relocate() {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500/30 font-sans">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
         <title>Dubai Relocation: Move-In & Secure Exit Packs | DeliWer</title>
         <meta name="description" content="Moving to or from Dubai? Secure your home readiness or protect your deposit with our fixed-price relocation and exit packages." />
       </Helmet>
 
       {/* Trust Strip */}
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40">
+      <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>

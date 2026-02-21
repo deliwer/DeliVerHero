@@ -61,11 +61,21 @@ export default function InternationalRelocationPricing() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background selection:bg-emerald-500/40">
       <Helmet>
         <title>International Relocation Pricing | Dubai Move Plans | DeliWer</title>
         <meta name="description" content="Transparent pricing for your international move to Dubai. Compare relocation packages for families, individuals, and corporate executives." />
       </Helmet>
+
+      {/* Micro Trust Line - Added for uniformity */}
+      <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-between items-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50">
+             <span>Transparent Pricing</span>
+             <span>Dubai, UAE</span>
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">

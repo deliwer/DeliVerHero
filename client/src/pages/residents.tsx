@@ -37,14 +37,14 @@ export default function Residents() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
         <title>Dubai Home Concierge: Maintenance & Coordination | DeliWer</title>
         <meta name="description" content="Not movers. Your home concierge. We plan, coordinate, and manage everything around your move or daily home needs in Dubai." />
       </Helmet>
 
       {/* Trust Strip */}
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40">
+      <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>
