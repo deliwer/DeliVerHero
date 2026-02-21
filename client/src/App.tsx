@@ -22,7 +22,7 @@ import MoveInPackages from "@/pages/move-in-packages";
 import MoveInPackagePage from "@/pages/move-in-package";
 import MoveOutPackagePage from "@/pages/move-out-package";
 import Relocate from "@/pages/relocate";
-import Residents from "@/pages/residents";
+import Residents from "@/pages/ResidentsPage";
 import MaintenanceConcierge from "@/pages/maintenance-concierge";
 import ResidentSupportConcierge from "@/pages/resident-support-concierge";
 import BusinessSetup from "@/pages/BusinessSetup";

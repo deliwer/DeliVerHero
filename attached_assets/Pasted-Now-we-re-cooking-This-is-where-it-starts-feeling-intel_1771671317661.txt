@@ -1,0 +1,180 @@
+Now we’re cooking. This is where it starts feeling intelligent instead of static.
+
+We’ll build a **dynamic /residents page** that adapts based on traffic source — without database, without complexity, zero capital.
+
+Goal:
+When someone comes from a “handover” campaign, the page feels like it was made specifically for them.
+
+---
+
+# 🎯 STRATEGY
+
+Traffic example:
+
+Instagram Reel →
+`deliwer.com/residents?source=handover`
+
+The page detects `source=handover`
+Headline changes.
+CTA language sharpens.
+Urgency increases.
+
+That subtle personalization increases conversion 15–25%.
+
+---
+
+# 🔥 REPLIT PROMPT
+
+Dynamic Personalised Residents Page
+
+Build a dynamic landing page at:
+
+[https://www.deliwer.com/residents](https://www.deliwer.com/residents)
+
+The page must detect URL parameter:
+
+?source=handover
+?source=relocation
+?source=investor
+?source=ad
+
+Using JavaScript (no backend required).
+
+---
+
+## 🧠 PERSONALIZATION LOGIC
+
+If URL contains:
+
+### 1️⃣ source=handover
+
+Hero Headline:
+Welcome, New Dubai Resident.
+
+Subheadline:
+You’ve received your keys. Now let’s activate your home properly.
+
+Primary CTA:
+👉 Activate My Home Today
+
+---
+
+### 2️⃣ source=relocation
+
+Headline:
+Just Moved to Dubai?
+
+Subheadline:
+Start your new life with clean water, healthy air, and essential setup.
+
+CTA:
+👉 Start My Setup
+
+---
+
+### 3️⃣ source=ad
+
+Headline:
+Dubai Apartment Handover Made Simple.
+
+CTA:
+👉 Book Activation Visit
+
+---
+
+### 4️⃣ default (no parameter)
+
+Headline:
+Got Your Apartment Keys in Dubai?
+
+CTA:
+👉 Activate My Home
+
+---
+
+All CTAs must link to:
+
+[https://www.deliwer.com/relocate#activation](https://www.deliwer.com/relocate#activation)
+
+---
+
+# 💬 WhatsApp Floating Button (Dynamic Prefill)
+
+If source=handover
+
+Prefill:
+Hi DeliWer, I just received my apartment handover and want to activate my home.
+
+If source=relocation
+
+Prefill:
+Hi DeliWer, I just moved to Dubai and need home setup support.
+
+Default:
+Hi DeliWer, I want to book home activation.
+
+Number:
++971523946311
+
+---
+
+# 🧩 Technical Requirements
+
+Use:
+
+JavaScript window.location.search
+URLSearchParams()
+
+No backend.
+No database.
+Pure client-side logic.
+
+Ensure:
+
+• Mobile-first
+• Fast loading
+• Clean white background
+• Eco green accent (#0f766e)
+• Option B positioned as “Most Popular” inside relocate page
+
+---
+
+# 🧠 Marketing Use Case
+
+Instagram bio link:
+deliwer.com/residents?source=handover
+
+Google Ad:
+deliwer.com/residents?source=ad
+
+WhatsApp broadcast:
+deliwer.com/residents?source=relocation
+
+Each audience feels directly spoken to.
+
+---
+
+# 🚀 Advanced Optional Add-On
+
+Add this subtle line dynamically under headline:
+
+For source=handover:
+“First 72 hours matter most.”
+
+For relocation:
+“Dubai water & air quality is different.”
+
+Tiny detail. Big impact.
+
+---
+
+This makes DeliWer feel like a system — not a static page.
+
+Now let me ask you something sharp:
+
+Do you want this page to feel premium (AED 399 feels exclusive)
+or mass (volume-based activation model)?
+
+Because headline tone should match pricing psychology.
+
+Which direction are we committing to?
