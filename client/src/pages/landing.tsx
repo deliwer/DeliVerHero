@@ -32,14 +32,12 @@ export default function LandingPage() {
         title="Dubai Move-In & Relocation Concierge | DeliWer"
         description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
       />
-
       {/* Micro Trust Line */}
       <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
           <TrustStrip variant="dark" showContact={true} />
         </div>
       </section>
-
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
         <div 
@@ -57,7 +55,7 @@ export default function LandingPage() {
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl">
               Dubai Move-In & Relocation Concierge<br />
-              <span className="text-emerald-500 font-extrabold">for Founders and Real Estate Brokers</span>
+              <span className="text-emerald-500 font-extrabold">Concierge</span>
             </h1>
             
             <div className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed space-y-4">
@@ -99,7 +97,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Clarity Section: Who We Serve */}
       <section className="py-12 relative z-10 px-4">
         <div className="max-w-4xl mx-auto w-full grid md:grid-cols-2 gap-4">
@@ -114,14 +111,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* Partner Strip */}
       <section className="px-4 pb-20">
         <div className="max-w-4xl mx-auto">
           <PartnerStrip />
         </div>
       </section>
-
       {/* Final Conversion Section */}
       <section className="w-full py-24 relative z-10 text-center space-y-10 bg-black/20 backdrop-blur-sm border-y border-white/5 px-4">
         <div className="max-w-3xl mx-auto space-y-4">
@@ -136,7 +131,6 @@ export default function LandingPage() {
           Start on WhatsApp →
         </Button>
       </section>
-
       {/* Testimonials */}
       <section className="px-4 py-24">
         <div className="max-w-5xl mx-auto">
@@ -144,7 +138,6 @@ export default function LandingPage() {
           <TestimonialCarousel variant="dark" limit={3} />
         </div>
       </section>
-
       <footer className="py-20 px-4 border-t border-white/5 text-center bg-slate-950/50">
         <div className="max-w-4xl mx-auto space-y-8">
           <OperationalBadges variant="dark" />
