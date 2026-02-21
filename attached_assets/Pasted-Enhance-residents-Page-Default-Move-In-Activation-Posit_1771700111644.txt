@@ -1,0 +1,150 @@
+Enhance /residents Page – Default Move-In Activation Positioning
+
+Enhance the existing page:
+
+https://www.deliwer.com/residents
+
+Goal:
+Position DeliWer as the default move-in partner for tenants in Dubai by leveraging the Ejari moment and linking clearly to /relocate packages (especially the AED 399 Activation bundle).
+
+Do NOT duplicate full pricing from /relocate.
+Drive traffic to:
+https://www.deliwer.com/relocate#activation
+
+Mobile-first. Fast loading. No database. No checkout.
+
+🧠 POSITIONING SHIFT
+
+The page must now:
+
+• Capture users at Ejari stage
+• Capture users at handover stage
+• Normalize the AED 399 bundle as standard move-in step
+• Introduce DeliWer as long-term move-in partner
+• Link to all relocation packages via /relocate
+
+🏠 PAGE STRUCTURE
+1️⃣ HERO SECTION (Dynamic Headline Support)
+
+If URL contains ?stage=ejari
+
+Headline:
+Ejari Completed? Here’s What Every Dubai Tenant Does Next.
+
+Subtext:
+Before DEWA activation and unpacking chaos, activate your apartment properly.
+
+If URL contains ?stage=handover
+
+Headline:
+Got Your Keys? Activate Your Home the Right Way.
+
+Default headline:
+Moving Into a New Apartment in Dubai?
+
+Primary CTA:
+👉 Start Move-In Activation (AED 399)
+
+Link:
+https://www.deliwer.com/relocate#activation
+
+Secondary CTA:
+👉 View All Relocation Packages
+
+Link:
+https://www.deliwer.com/relocate
+
+2️⃣ NORMALIZATION SECTION
+
+Title:
+The First 72 Hours Decide Everything.
+
+Bullet Points:
+
+• Water quality differences in Dubai
+• AC systems rarely cleaned before move-in
+• Shower filtration overlooked
+• Vendor overload
+• No single trusted contact
+
+Closing line:
+
+Most tenants now begin with a Move-In Activation visit.
+
+3️⃣ THE 399 MOVE-IN ACTIVATION SECTION
+
+Title:
+Dubai Move-In Activation — AED 399
+
+Short Explanation:
+
+This is the standard preparation visit before you settle into your new apartment.
+
+Includes:
+
+• Water readiness check
+• Shower filter installation
+• Basic AC filter clean
+• Essentials setup guidance
+• Direct WhatsApp support
+
+Small trust line:
+
+Cash or transfer on visit. No online payment required.
+
+CTA Button:
+👉 Book Activation Now
+
+Link:
+https://www.deliwer.com/relocate#activation
+
+4️⃣ JOURNEY FLOW SECTION
+
+Title:
+Your Journey With DeliWer
+
+Simple horizontal timeline:
+
+Ejari → Activation → Water Service → Ongoing Support → Sustainable Living
+
+Under timeline:
+
+DeliWer stays with you beyond move-in.
+
+Button:
+Explore Resident & Relocation Plans
+Link:
+https://www.deliwer.com/relocate
+
+5️⃣ TRUST + AUTHORITY SECTION
+
+Add:
+
+• Dubai-focused service
+• WhatsApp-first support
+• Founder-led team
+• Sustainable water expertise
+
+Optional subtle line:
+
+Designed for tenants who want to move in the right way.
+
+6️⃣ FLOATING WHATSAPP BUTTON (Dynamic Prefill)
+
+If ?stage=ejari
+
+Prefill message:
+Hi DeliWer, I just completed Ejari and want to prepare my apartment before moving in.
+
+If ?stage=handover
+
+Prefill message:
+Hi DeliWer, I just received my keys and want to activate my home.
+
+Default:
+Hi DeliWer, I want to book a move-in activation visit.
+
+Number:
++971523946311
+
+🎨 DESIGN REQUIREMENTS
