@@ -103,52 +103,114 @@ export default function ResidentsPage() {
           </div>
         </div>
 
-        {/* Value Props */}
-        <div className="grid md:grid-cols-3 gap-6 pt-12">
-          <Card className="border-none bg-slate-50 shadow-none rounded-3xl p-2">
-            <CardContent className="p-6 space-y-4">
-              <div className="h-12 w-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-[#0f766e]">
-                <Droplets size={24} />
-              </div>
-              <h3 className="font-bold text-lg">Water Purity</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                Pre-move water testing and high-performance filtration to ensure your family's safety from Day 1.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="border-none bg-slate-50 shadow-none rounded-3xl p-2">
-            <CardContent className="p-6 space-y-4">
-              <div className="h-12 w-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-[#0f766e]">
-                <Wind size={24} />
-              </div>
-              <h3 className="font-bold text-lg">Air Quality</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                AC sanitization and air quality monitoring to eliminate Dubai dust and allergens before you settle.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="border-none bg-slate-50 shadow-none rounded-3xl p-2">
-            <CardContent className="p-6 space-y-4">
-              <div className="h-12 w-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-[#0f766e]">
-                <Home size={24} />
-              </div>
-              <h3 className="font-bold text-lg">Essential Setup</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                From DEWA guidance to essential starter kits. We handle the friction so you can enjoy the keys.
-              </p>
-            </CardContent>
-          </Card>
+        {/* How DeliWer Works */}
+        <div className="py-12 border-t border-slate-100">
+          <div className="max-w-2xl mx-auto text-center space-y-4">
+            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">How DeliWer Works</h2>
+            <p className="text-slate-600 leading-relaxed">
+              DeliWer exists to coordinate and plan — before problems turn into stress. 
+              We work with movers, technicians, and service providers, but you only deal with us.
+            </p>
+          </div>
         </div>
 
-        {/* Social Proof */}
-        <div className="text-center py-12 border-y border-slate-100">
-          <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Trusted by residents in</p>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-12 opacity-40 grayscale">
-            <span className="font-black text-xl italic">MARINA</span>
-            <span className="font-black text-xl italic">DOWNTOWN</span>
-            <span className="font-black text-xl italic">JVC</span>
-            <span className="font-black text-xl italic">BUSINESS BAY</span>
-            <span className="font-black text-xl italic">PALM</span>
+        {/* Stage by Stage Breakdown */}
+        <div className="space-y-24 pt-12">
+          {/* 1. Home Setup */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-[#0f766e] text-xs font-bold uppercase tracking-wider">
+                Stage 1
+              </div>
+              <h2 className="text-3xl font-black text-slate-950 tracking-tight">Home Setup</h2>
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                    <Droplets className="text-[#0f766e]" size={18} />
+                    Water Purity
+                  </h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    Pre-move water testing and high-performance filtration to ensure your family's safety from Day 1.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                    <Wind className="text-[#0f766e]" size={18} />
+                    Air Quality
+                  </h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    AC sanitization and air quality monitoring to eliminate Dubai dust and allergens before you settle.
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                    <Home className="text-[#0f766e]" size={18} />
+                    Essential Setup
+                  </h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    From DEWA guidance to essential starter kits. We handle the friction so you can enjoy the keys.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-slate-50 rounded-[2rem] aspect-square flex items-center justify-center p-12">
+              <ShieldCheck size={120} className="text-emerald-200" />
+            </div>
+          </div>
+
+          {/* 2. Move-in / Move-out */}
+          <div className="grid md:grid-cols-2 gap-12 items-center md:flex-row-reverse">
+            <div className="md:order-2 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-[#0f766e] text-xs font-bold uppercase tracking-wider">
+                Stage 2
+              </div>
+              <h2 className="text-3xl font-black text-slate-950 tracking-tight">Move-in / Move-out</h2>
+              <p className="text-slate-600 leading-relaxed">
+                We manage the planning and vendor coordination around your move — before, during, and after moving day. 
+                No trucks, no packing, just orchestration.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Utility connections & disconnections",
+                  "Home setup or clearance planning",
+                  "Vendor scheduling & timelines",
+                  "Furniture / appliance coordination",
+                  "Single point of contact"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm font-medium text-slate-700">
+                    <CheckCircle2 size={18} className="text-emerald-500" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="md:order-1 bg-slate-50 rounded-[2rem] aspect-square flex items-center justify-center p-12">
+              <Home size={120} className="text-emerald-200" />
+            </div>
+          </div>
+
+          {/* 3. Life Concierge */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-[#0f766e] text-xs font-bold uppercase tracking-wider">
+                Stage 3
+              </div>
+              <h2 className="text-3xl font-black text-slate-950 tracking-tight">Life Concierge</h2>
+              <p className="text-slate-600 leading-relaxed">
+                Life Concierge handles the things that don’t clearly fall under moving or maintenance. 
+                If it needs outside help, coordination, or fast action — we manage it for you.
+              </p>
+              <Button 
+                variant="outline" 
+                className="border-[#0f766e] text-[#0f766e] hover:bg-emerald-50 rounded-xl"
+                onClick={() => window.open(whatsappUrl, '_blank')}
+              >
+                Talk to Life Concierge
+              </Button>
+            </div>
+            <div className="bg-slate-50 rounded-[2rem] aspect-square flex items-center justify-center p-12">
+              <SiWhatsapp size={120} className="text-emerald-200" />
+            </div>
           </div>
         </div>
 
