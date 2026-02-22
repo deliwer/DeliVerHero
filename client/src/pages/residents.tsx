@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -19,11 +19,11 @@ import {
   AlertTriangle
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrustStrip } from "@/components/trust-strip";
 import { DirhamSymbol } from "@/components/dirham-symbol";
 import homeConciergeBg from "@/assets/images/home-concierge-bg.jpg";
 import maintenanceCardBg from "@/assets/images/maintenance-card-bg.jpg";
 import conciergeCardBg from "@/assets/images/concierge-card-bg.jpg";
+import { Navigation } from "@/components/navigation";
 
 const WHATSAPP_NUMBER = "+971523946311";
 
@@ -59,11 +59,7 @@ export default function Residents() {
       </Helmet>
 
       {/* Trust Strip */}
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto">
-          <TrustStrip variant="dark" showContact={true} />
-        </div>
-      </section>
+      <Navigation />
 
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden px-4">

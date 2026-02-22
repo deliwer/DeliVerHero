@@ -2,19 +2,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Globe, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Navigation } from "@/components/navigation";
 
 export default function ConciergePage() {
   return (
     <div className="min-h-screen bg-slate-950 selection:bg-emerald-500/40">
       {/* Micro Trust Line - Added for uniformity */}
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-between items-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50">
-             <span>Living & Concierge</span>
-             <span>Dubai, UAE</span>
-          </div>
-        </div>
-      </section>
+      <Navigation />
 
       <div className="pt-20 pb-12 px-4">
         <div className="max-w-4xl mx-auto">

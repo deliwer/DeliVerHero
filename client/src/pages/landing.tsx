@@ -10,9 +10,10 @@ import {
   Briefcase 
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrustStrip, PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
+import { PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
 import { useState, useEffect } from "react";
 import { SEOMeta } from "@/components/seo-meta";
+import { Navigation } from "@/components/navigation";
 
 import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
@@ -33,11 +34,7 @@ export default function LandingPage() {
         description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
       />
       {/* Micro Trust Line */}
-      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
-        <div className="max-w-4xl mx-auto">
-          <TrustStrip variant="dark" showContact={true} />
-        </div>
-      </section>
+      <Navigation />
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
         <div 

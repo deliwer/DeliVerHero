@@ -11,15 +11,17 @@ import {
   ChevronRight,
   ShieldCheck,
   Zap,
-  AlertTriangle
+  AlertTriangle,
+  CheckCircle2
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
+import { PartnerStrip } from "@/components/trust-strip";
 import relocateHero from "@/assets/images/relocate-hero.jpg";
 import moveOutBg from "@/assets/images/move-out-bg.jpg";
 import moveInBg from "@/assets/images/move-in-bg.jpg";
 
 import { ConciergePricing } from "@/components/concierge-pricing";
+import { Navigation } from "@/components/navigation";
 
 export default function Relocate() {
   const [location] = useLocation();
@@ -60,11 +62,7 @@ export default function Relocate() {
       </Helmet>
 
       {/* Trust Strip */}
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto">
-          <TrustStrip variant="dark" showContact={true} />
-        </div>
-      </section>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4">

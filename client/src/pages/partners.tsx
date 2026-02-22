@@ -10,6 +10,7 @@ import { CheckCircle2, ShieldCheck, Zap, Briefcase, DollarSign, Copy, Check, Use
 import { motion } from "framer-motion";
 import { SiWhatsapp } from "react-icons/si";
 import { useToast } from "@/hooks/use-toast";
+import { Navigation } from "@/components/navigation";
 
 export default function BrokerSupportDubai() {
   const [agentName, setAgentName] = useState("");
@@ -74,14 +75,7 @@ export default function BrokerSupportDubai() {
       />
       
       {/* Micro Trust Line - Added for uniformity */}
-      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-between items-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50">
-             <span>Verified Partner Network</span>
-             <span>Dubai, UAE</span>
-          </div>
-        </div>
-      </section>
+      <Navigation />
 
       <div className="container mx-auto pt-20 pb-20 px-4 space-y-12">
         <div className="text-center space-y-4">

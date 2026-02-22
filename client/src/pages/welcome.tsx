@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { SiWhatsapp } from "react-icons/si";
 import { SEOMeta } from "@/components/seo-meta";
+import { Navigation } from "@/components/navigation";
 
 export default function Welcome() {
   const [search] = useState(window.location.search);
@@ -35,14 +36,7 @@ export default function Welcome() {
       />
 
       {/* Micro Trust Line - Added for uniformity */}
-      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-between items-center text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/50">
-             <span>Move-In Concierge</span>
-             <span>Dubai, UAE</span>
-          </div>
-        </div>
-      </section>
+      <Navigation />
 
       <div className="container mx-auto px-4 pt-20 pb-12 max-w-2xl text-center">
         <div className="space-y-8">
