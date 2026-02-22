@@ -31,6 +31,21 @@ export default function Residents() {
   const conciergeRef = useRef<HTMLDivElement>(null);
   const [showHandoff, setShowHandoff] = useState(false);
   const [handoffType, setHandoffType] = useState<"move" | "support" | "maintenance">("move");
+  const [location] = useLocation();
+  const searchParams = new URLSearchParams(window.location.search);
+  const stage = searchParams.get("stage");
+
+  const getHeadline = () => {
+    if (stage === "ejari") return "Ejari Completed? Here’s What Every Dubai Tenant Does Next.";
+    if (stage === "handover") return "Got Your Keys? Activate Your Home the Right Way.";
+    return "Moving Into a New Apartment in Dubai?";
+  };
+
+  const getWhatsAppPrefill = () => {
+    if (stage === "ejari") return "Hi DeliWer, I just completed Ejari and want to prepare my apartment before moving in.";
+    if (stage === "handover") return "Hi DeliWer, I just received my keys and want to activate my home.";
+    return "Hi DeliWer, I want to book a Move-In Activation visit.";
+  };
 
   const scrollToConcierge = () => {
     conciergeRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -65,19 +80,33 @@ export default function Residents() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
-              Already living in Dubai? <br />
-              <span className="text-emerald-500 italic font-serif lowercase tracking-normal">Fix anything in one WhatsApp.</span>
+              {getHeadline()}
             </h1>
             <div className="flex flex-col items-center gap-4 mt-8">
               <Button 
                 size="lg"
                 className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
-                onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}`, '_blank')}
+                onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(getWhatsAppPrefill())}`, '_blank')}
               >
                 <MessageSquare className="mr-2 h-6 w-6" /> Chat on WhatsApp
               </Button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Dubai Move-In Activation Section */}
+      <section className="py-12 px-4 bg-slate-900/30 border-y border-white/5">
+        <div className="max-w-4xl mx-auto text-center space-y-4">
+          <h2 className="text-3xl font-black uppercase tracking-tighter text-emerald-500">Dubai Move-In Activation (AED 399)</h2>
+          <p className="text-xl text-gray-300 font-medium">
+            The standard preparation visit most tenants choose before settling into their apartment.
+          </p>
+          <Link href="/relocate?type=activation">
+            <Button className="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-6 rounded-xl">
+              Learn More About Activation
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -153,55 +182,46 @@ export default function Residents() {
                         <ClipboardList className="w-8 h-8" />
                       </div>
                       <span className="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
-                        Planning & Coordination Layer
+                        Activation & Setup Layer
                       </span>
                     </div>
                     <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move-In / Move-Out</h3>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move-In Activation</h3>
                       <p className="text-gray-100 font-bold text-lg mt-2 leading-tight">
-                        We manage the planning and vendor coordination around your move — before, during, and after moving day. No trucks, no packing, just orchestration.
+                        Activate your home correctly. From shower filters to AC prep, we handle the technical first-step.
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-3 pt-6 border-t border-white/10">
                     {[
-                      "Utility connections & disconnections",
-                      "Home setup or clearance planning",
-                      "Vendor scheduling & timelines",
-                      "Furniture / appliance coordination",
-                      "Single point of contact"
+                      "Technical move-in prep visit",
+                      "Shower filter supply + install",
+                      "AC filter technical check",
+                      "Water readiness audit",
+                      "Essentials setup guidance"
                     ].map((f, i) => (
                       <div key={i} className="flex gap-3 text-[12px] text-emerald-50 font-black uppercase tracking-tight items-center">
                         <CalendarCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>{f}</span>
                       </div>
                     ))}
-                    <p className="text-[10px] text-emerald-400/60 font-black uppercase tracking-widest mt-4 italic">
-                      "This is not a movers service. We manage the process, not the truck."
-                    </p>
                   </div>
 
                   <div className="mt-auto space-y-4 pt-8">
-                    <Button 
-                      className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
-                      onClick={() => {
-                        window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent("Hi, I'm planning a move (move_flow)")}`, '_blank');
-                      }}
-                    >
-                      Plan My Move
-                    </Button>
-                    <div className="text-center">
-                      <p className="text-emerald-400/80 text-[10px] font-black uppercase tracking-widest leading-tight">
-                        Already have movers? <br />We coordinate around them.
-                      </p>
-                    </div>
+                    <Link href="/relocate?type=activation">
+                      <Button 
+                        className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
+                      >
+                        Book Activation (AED 399)
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* CARD 3 — LIFE CONCIERGE (Part 1 Update) */}
+            {/* CARD 3 — RELOCATION SUPPORT */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -215,23 +235,20 @@ export default function Residents() {
                       <Zap className="w-8 h-8" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-black uppercase tracking-widest text-blue-400 mb-2">Life Concierge</h3>
-                      <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2 italic">“Your everyday problem-solver in Dubai”</h4>
-                      <h4 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">When Something Comes Up — You Have One Place to Go</h4>
-                      <p className="text-gray-300 font-bold text-base mt-4">Life Concierge handles the things that don’t clearly fall under moving or maintenance. If it needs outside help, coordination, or fast action — we manage it for you.</p>
-                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest mt-4 italic">“Planning, coordination, and execution through trusted partners.”</p>
+                      <h3 className="text-xl font-black uppercase tracking-widest text-blue-400 mb-2">Relocation Support</h3>
+                      <h4 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">Full Coordination & Logistics</h4>
+                      <p className="text-gray-300 font-bold text-base mt-4">Ideal for families or tenants needing multi-visit coordination and full-scale relocation management.</p>
                     </div>
                   </div>
 
                   <div className="mt-auto pt-8">
-                    <Button 
-                      className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40"
-                      onClick={() => {
-                        window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent("Hi, I’m living in Dubai and need help with something that doesn’t fit moving or maintenance. I’d like Life Concierge support. (life_concierge)")}`, '_blank');
-                      }}
-                    >
-                      Get Help Now
-                    </Button>
+                    <Link href="/relocate?type=relocation">
+                      <Button 
+                        className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40"
+                      >
+                        Explore Relocation
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>

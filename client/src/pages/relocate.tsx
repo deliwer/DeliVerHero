@@ -23,11 +23,16 @@ import { ConciergePricing } from "@/components/concierge-pricing";
 
 export default function Relocate() {
   const [location] = useLocation();
-  const moveInRef = useRef<HTMLDivElement>(null);
+  const activationRef = useRef<HTMLDivElement>(null);
+  const relocationRef = useRef<HTMLDivElement>(null);
   const moveOutRef = useRef<HTMLDivElement>(null);
 
-  const scrollToMoveIn = () => {
-    moveInRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToActivation = () => {
+    activationRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToRelocation = () => {
+    relocationRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToMoveOut = () => {
@@ -35,18 +40,23 @@ export default function Relocate() {
   };
 
   useEffect(() => {
-    if (location.includes("#move-out-packs")) {
+    const searchParams = new URLSearchParams(window.location.search);
+    const type = searchParams.get("type");
+    
+    if (type === "activation") {
+      setTimeout(scrollToActivation, 500);
+    } else if (type === "relocation") {
+      setTimeout(scrollToRelocation, 500);
+    } else if (location.includes("#move-out-packs")) {
       scrollToMoveOut();
-    } else if (location.includes("#move-in-packs")) {
-      scrollToMoveIn();
     }
   }, [location]);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
-        <title>Dubai Relocation: Move-In & Secure Exit Packs | DeliWer</title>
-        <meta name="description" content="Moving to or from Dubai? Secure your home readiness or protect your deposit with our fixed-price relocation and exit packages." />
+        <title>Move-In Activation & Relocation Support in Dubai | DeliWer</title>
+        <meta name="description" content="Book Dubai Move-In Activation (AED 399) or full relocation support. Clear inclusions, no hidden costs, WhatsApp booking." />
       </Helmet>
 
       {/* Trust Strip */}
@@ -89,16 +99,16 @@ export default function Relocate() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-              onClick={scrollToMoveIn}
+              onClick={scrollToActivation}
               className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
             >
-              <Home className="mr-2 h-6 w-6" /> I'm Moving In
+              <Home className="mr-2 h-6 w-6" /> Move-In Activation
             </Button>
             <Button 
-              onClick={scrollToMoveOut}
+              onClick={scrollToRelocation}
               className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-900/40"
             >
-              <LogOut className="mr-2 h-6 w-6" /> I'm Moving Out
+              <LogOut className="mr-2 h-6 w-6" /> Relocation Support
             </Button>
             <Button 
               onClick={() => window.open('https://wa.me/971523946311?text=URGENT:%20I%20need%20express%20relocation%20support.', '_blank')}
@@ -122,8 +132,8 @@ export default function Relocate() {
         </div>
       </section>
 
-      {/* Move Concierge Pricing Section */}
-      <section ref={moveInRef} id="move-in-packs" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
+      {/* Move-In Activation Section */}
+      <section ref={activationRef} id="activation" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
         {/* Background Image with wash */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -133,11 +143,50 @@ export default function Relocate() {
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Move Concierge <span className="text-emerald-500">Packages.</span></h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“We manage timelines, vendors, and handovers — not the trucks themselves.”</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Move-In <span className="text-emerald-500">Activation.</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“Standard technical preparation before you move your furniture in.”</p>
           </div>
 
           <ConciergePricing category="move" />
+
+          {/* Scope Clarity for 399 Package */}
+          <div className="mt-20 max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
+            <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
+              <h3 className="text-xl font-black uppercase text-emerald-500 mb-4">What’s Included (AED 399)</h3>
+              <ul className="space-y-3 text-sm font-bold text-gray-300">
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> 60–90 minute activation visit</li>
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Shower filter supply + installation</li>
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> 1 AC filter clean (removable filter only)</li>
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Water readiness check</li>
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Essentials setup guidance</li>
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> WhatsApp follow-up support</li>
+              </ul>
+            </div>
+            <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
+              <h3 className="text-xl font-black uppercase text-red-500 mb-4">Not Included</h3>
+              <ul className="space-y-3 text-sm font-bold text-gray-400">
+                <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Deep AC servicing</li>
+                <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Gas refill</li>
+                <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Full duct cleaning</li>
+                <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Additional hardware beyond listed scope</li>
+              </ul>
+              <div className="mt-6 pt-6 border-t border-white/5">
+                <h4 className="text-xs font-black uppercase text-gray-500 tracking-widest mb-3">Add-ons Available</h4>
+                <p className="text-[10px] font-bold text-gray-500 uppercase">Additional AC Cleaning • Additional Filters • Smart Home Setup</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Full Relocation Support Section */}
+      <section ref={relocationRef} id="relocation" className="relative px-4 py-24 border-y border-white/5 bg-slate-900/20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Full Relocation <span className="text-blue-500">Support.</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“End-to-end management for families and complex moves.”</p>
+          </div>
+          <ConciergePricing category="support" />
         </div>
       </section>
 

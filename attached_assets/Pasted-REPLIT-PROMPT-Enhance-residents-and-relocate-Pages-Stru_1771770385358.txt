@@ -1,0 +1,234 @@
+REPLIT PROMPT
+
+Enhance /residents and /relocate Pages
+(Structure + Flow Optimization Only — No Visual Redesign)
+
+Goal:
+Improve clarity, package understanding, and click flow while keeping the current layout, design, and styling unchanged.
+
+Do NOT redesign UI.
+Do NOT change color scheme.
+Do NOT modify overall structure or layout blocks.
+Only enhance content structure, labeling, and navigation logic.
+
+🎯 OVERALL OBJECTIVE
+
+Position AED 399 as permanent Move-In Activation gateway.
+
+Use Ejari + Handover as entry triggers.
+
+Maintain recommended click flow:
+/residents → /relocate?type=activation → WhatsApp.
+
+Clearly separate Activation packages from Relocation packages.
+
+Add inclusion/exclusion clarity to avoid misunderstandings.
+
+🔹 PART 1 — /residents PAGE ENHANCEMENT
+
+Keep structure and design intact.
+
+1️⃣ Add Stage-Based Dynamic Messaging
+
+Add JavaScript to detect:
+
+?stage=ejari
+?stage=handover
+
+If ?stage=ejari:
+
+Headline:
+Ejari Completed? Here’s What Every Dubai Tenant Does Next.
+
+If ?stage=handover:
+
+Headline:
+Got Your Keys? Activate Your Home the Right Way.
+
+Default:
+Moving Into a New Apartment in Dubai?
+
+Do NOT change styling. Only text replacement.
+
+2️⃣ Primary CTA Update
+
+All primary buttons should link to:
+
+/relocate?type=activation
+
+Secondary buttons (relocation support) link to:
+
+/relocate?type=relocation
+
+Do not duplicate pricing here.
+
+3️⃣ Clarify Gateway Positioning Text
+
+Add one short section:
+
+Dubai Move-In Activation (AED 399)
+
+Text:
+The standard preparation visit most tenants choose before settling into their apartment.
+
+Keep formatting consistent with current page.
+
+4️⃣ Floating WhatsApp Button Logic
+
+If ?stage=ejari:
+
+Prefill:
+Hi DeliWer, I just completed Ejari and want to prepare my apartment before moving in.
+
+If ?stage=handover:
+
+Prefill:
+Hi DeliWer, I just received my keys and want to activate my home.
+
+Default:
+Hi DeliWer, I want to book a Move-In Activation visit.
+
+Number:
++971523946311
+
+🔹 PART 2 — /relocate PAGE STRUCTURAL CLARITY
+
+Do NOT redesign page.
+
+Enhance structure and clarity only.
+
+1️⃣ Add Section Anchors + Auto Scroll
+
+At top of page detect URL parameter:
+
+?type=activation
+?type=relocation
+
+If type=activation:
+Auto-scroll to Activation section.
+
+If type=relocation:
+Auto-scroll to Relocation section.
+
+Use JavaScript scrollIntoView().
+No backend required.
+
+2️⃣ Clearly Separate Sections
+
+Add clear headings:
+
+Move-In Activation
+Full Relocation Support
+
+Do NOT visually redesign.
+Just add stronger headings and spacing.
+
+3️⃣ Clarify 399 Package Scope
+
+Under AED 399 package add structured clarity:
+
+What’s Included
+
+• 60–90 minute activation visit
+• Shower filter supply + installation
+• 1 AC filter clean (removable filter only)
+• Water readiness check
+• Essentials setup guidance
+• WhatsApp follow-up support
+
+Not Included
+
+• Deep AC servicing
+• Gas refill
+• Full duct cleaning
+• Additional hardware beyond listed scope
+
+Add-ons (If Required)
+
+• Additional AC unit cleaning – AED X
+• Additional shower filter – AED X
+
+Keep styling consistent with existing package format.
+
+4️⃣ Add “Who It’s For” Line Under Each Package
+
+Example under 399:
+
+Ideal for studio and 1–2 bedroom apartments within 7 days of move-in.
+
+Under relocation packages:
+
+Ideal for families or tenants needing multi-visit coordination.
+
+This prevents confusion and protects margins.
+
+5️⃣ Separate Comparison Logic
+
+If comparison table exists:
+
+Keep Activation packages compared together only.
+
+Do NOT mix relocation packages in same comparison table.
+
+If no comparison table exists:
+
+Add a simple feature list comparison under Activation section only.
+
+6️⃣ WhatsApp Buttons Per Package
+
+Ensure each package has its own:
+
+“Book This Package” button
+
+Each must have prefilled text mentioning the exact package name.
+
+Example for 399:
+
+Hi DeliWer, I want to book the Move-In Activation (AED 399) package.
+
+🔹 SEO Update
+
+Update meta title for /relocate:
+
+Move-In Activation & Relocation Support in Dubai | DeliWer
+
+Meta description:
+
+Book Dubai Move-In Activation (AED 399) or full relocation support. Clear inclusions, no hidden costs, WhatsApp booking.
+
+🔥 CONVERSION PRINCIPLE
+
+The website must feel:
+
+Clear
+Structured
+Standardized
+Expected
+
+Not promotional.
+Not experimental.
+Not complex.
+
+✅ FINAL CHECKLIST BEFORE DEPLOY
+
+URL parameters working
+
+Auto-scroll functioning
+
+WhatsApp prefills correct
+
+Scope clearly defined
+
+No visual redesign
+
+No broken links
+
+Mobile responsiveness maintained
+
+This keeps:
+
+Structure intact
+Cosmetics unchanged
+Click flow optimized
+Pricing clarity improved
+Survival protected

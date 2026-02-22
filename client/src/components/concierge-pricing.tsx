@@ -40,32 +40,39 @@ type ConciergePricingProps = {
 const pricingData: Record<ConciergePricingProps["category"], PricingTier[]> = {
   move: [
     {
-      id: "move_essential",
-      name: "Essential Move-In",
-      price: "199",
-      description: "Critical utility setup and basic coordination for a stress-free first night.",
-      features: ["DEWA & Chiller setup", "Internet coordination", "Entry permit assistance"],
-      badge: "Market Entry",
-      ctaText: "Get Started"
+      id: "move_activation",
+      name: "Move-In Activation",
+      price: "399",
+      description: "Ideal for studio and 1–2 bedroom apartments within 7 days of move-in.",
+      features: [
+        "60–90 minute activation visit",
+        "Shower filter supply + installation",
+        "1 AC filter clean (removable only)",
+        "Water readiness check",
+        "Essentials setup guidance",
+        "WhatsApp follow-up support"
+      ],
+      badge: "Standard Preparation",
+      ctaText: "Book This Package"
     },
     {
       id: "move_core",
       name: "Standard Move Coordination",
       price: "899",
-      description: "Full end-to-end orchestration of your move, managing timelines and vendors.",
+      description: "Ideal for families or tenants needing multi-visit coordination.",
       features: ["Vendor scheduling", "Timeline management", "Single point of contact", "Post-move checklist"],
-      badge: "Most Popular",
-      ctaText: "Activate Concierge",
+      badge: "Full Coordination",
+      ctaText: "Book This Package",
       isMain: true
     },
     {
       id: "move_premium",
       name: "Executive Exit & Protection",
       price: "2499",
-      description: "Complete deposit protection and relocation management for a guaranteed smooth exit.",
+      description: "Ideal for HNWIs or families requiring guaranteed deposit recovery.",
       features: ["Security deposit recovery", "Furniture removal prep", "Deep cleaning coordination", "Landlord handover"],
       badge: "Total Peace of Mind",
-      ctaText: "Secure My Exit"
+      ctaText: "Book This Package"
     }
   ],
   maintenance: [
@@ -143,7 +150,7 @@ export function ConciergePricing({ category }: ConciergePricingProps) {
   const serviceTag = categoryTags[category];
 
   const handleWhatsApp = (tier: PricingTier) => {
-    const text = `${serviceTag.replace('_', ' ').toUpperCase()} – ${tier.name} – Inquiry`;
+    const text = `Hi DeliWer, I want to book the ${tier.name} (${tier.price === 'Custom' ? 'Custom' : 'AED ' + tier.price}) package.`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
