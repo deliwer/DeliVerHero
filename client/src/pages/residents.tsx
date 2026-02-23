@@ -54,8 +54,8 @@ export default function Residents() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
-        <title>Dubai Home Concierge: Maintenance & Coordination | DeliWer</title>
-        <meta name="description" content="Not movers. Your home concierge. We plan, coordinate, and manage everything around your move or daily home needs in Dubai." />
+        <title>Move-In Activation in Dubai After Ejari or Handover | DeliWer</title>
+        <meta name="description" content="Complete your Ejari or receive your keys? Start with Dubai Move-In Activation (AED 399) and settle in with DeliWer’s guided home preparation. WhatsApp booking available." />
       </Helmet>
 
       {/* Trust Strip */}

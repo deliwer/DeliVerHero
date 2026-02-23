@@ -51,19 +51,7 @@ export default function BrokerSupportDubai() {
       name: "Freelance Network",
       role: "Market Expansion Specialist",
       type: "Freelance",
-      description: "Commission-only affiliates focused on relationship building, localized lead generation, and market expansion."
-    },
-    {
-      name: "Agency Partners",
-      role: "B2B Integration Lead",
-      type: "Agency",
-      description: "Established firms leveraging DeliWer's operational back-office to provide seamless move-in support for their clients."
-    },
-    {
-      name: "Community Associates",
-      role: "Referral Ambassador",
-      type: "Associate",
-      description: "Individuals promoting premium relocation services within their networks to earn consistent passive rewards."
+      description: "Commission-only affiliates focused on relationship building and localized lead generation."
     }
   ];
 
@@ -84,7 +72,7 @@ export default function BrokerSupportDubai() {
           </Badge>
           <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">Strategic <span className="text-emerald-500">Partners</span></h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Combining core leadership with a vast network of freelance broker affiliates to dominate the relocation industry.
+            Combining core leadership with a vast network of freelance broker affiliates.
           </p>
         </div>
 

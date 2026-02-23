@@ -58,8 +58,8 @@ export default function Relocate() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
-        <title>Move-In Activation & Relocation Support in Dubai | DeliWer</title>
-        <meta name="description" content="Book Dubai Move-In Activation (AED 399) or full relocation support. Clear inclusions, no hidden costs, WhatsApp booking." />
+        <title>Move-In Activation & Relocation Support | DeliWer Dubai</title>
+        <meta name="description" content="Book Dubai Move-In Activation (AED 399) or full relocation support. Clear inclusions, no hidden costs. WhatsApp booking for guided home setup and move-in." />
       </Helmet>
 
       {/* Trust Strip */}
