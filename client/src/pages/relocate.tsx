@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DirhamSymbol } from "@/components/dirham-symbol";
 import { 
   ArrowRight,
@@ -101,19 +101,19 @@ export default function Relocate() {
               onClick={scrollToActivation}
               className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
             >
-              <Home className="mr-2 h-6 w-6" /> Move-In Activation
+              Move-In Activation
             </Button>
             <Button 
               onClick={scrollToRelocation}
               className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-900/40"
             >
-              <LogOut className="mr-2 h-6 w-6" /> Relocation Support
+              Relocation Support
             </Button>
             <Button 
               onClick={() => window.open('https://wa.me/971523946311?text=URGENT:%20I%20need%20express%20relocation%20support.', '_blank')}
               className="bg-red-600 hover:bg-red-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-red-900/40"
             >
-              <AlertTriangle className="mr-2 h-6 w-6" /> Express Exit
+              Express Exit
             </Button>
           </div>
         </div>
@@ -146,7 +146,50 @@ export default function Relocate() {
             <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“Standard technical preparation before you move your furniture in.”</p>
           </div>
 
-          <ConciergePricing category="move" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto mb-20">
+            <Card className="relative flex flex-col rounded-[2.5rem] border-emerald-500/50 bg-slate-900 scale-105 shadow-2xl shadow-emerald-500/10 z-10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg bg-emerald-500 text-slate-950">
+                Standard Preparation
+              </div>
+              <CardHeader className="pt-10 pb-6 text-center">
+                <CardTitle className="text-2xl font-black uppercase tracking-tighter text-white">
+                  Move-In Activation
+                </CardTitle>
+                <div className="mt-4 flex items-center justify-center gap-1">
+                  <DirhamSymbol className="w-6 h-6 text-emerald-500" />
+                  <span className="text-5xl font-black text-white tracking-tighter">399</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 space-y-8 px-8">
+                <p className="text-center text-gray-400 text-sm font-bold leading-tight">
+                  Ideal for studio and 1–2 bedroom apartments within 7 days of move-in.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    "60–90 minute activation visit",
+                    "Shower filter supply + installation",
+                    "AC filter clean (1 unit)",
+                    "Water readiness check",
+                    "Essentials setup guidance",
+                    "WhatsApp follow-up support"
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-200 uppercase tracking-tight">
+                      <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-500" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-4 mt-auto">
+                  <Button 
+                    onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
+                    className="w-full h-16 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-emerald-500/20"
+                  >
+                    Book Activation
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Scope Clarity for 399 Package */}
           <div className="mt-20 max-w-4xl mx-auto grid md:grid-cols-2 gap-8 text-left">
@@ -181,16 +224,6 @@ export default function Relocate() {
               </div>
             </div>
           </div>
-          
-          <div className="mt-12 text-center">
-            <Button 
-              size="lg"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40"
-              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
-            >
-              <MessageSquare className="mr-2 h-6 w-6" /> Book Activation on WhatsApp
-            </Button>
-          </div>
         </div>
       </section>
 
@@ -204,23 +237,89 @@ export default function Relocate() {
               Ideal for families or tenants requiring multi-phase coordination and extended support.
             </p>
           </div>
-          <ConciergePricing category="support" />
           
-          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6">
-            <Button 
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40 w-full md:w-auto"
-              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Essential Relocation package.")}`, '_blank')}
-            >
-              Book Essential (WhatsApp)
-            </Button>
-            <Button 
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40 w-full md:w-auto"
-              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Premium Relocation package.")}`, '_blank')}
-            >
-              Book Premium (WhatsApp)
-            </Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 max-w-4xl mx-auto">
+            <Card className="relative flex flex-col rounded-[2.5rem] border-emerald-500/50 bg-slate-900 scale-105 shadow-2xl shadow-emerald-500/10 z-10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg bg-emerald-500 text-slate-950">
+                Full Coordination
+              </div>
+              <CardHeader className="pt-10 pb-6 text-center">
+                <CardTitle className="text-2xl font-black uppercase tracking-tighter text-white">
+                  Essential Relocation
+                </CardTitle>
+                <div className="mt-4 flex items-center justify-center gap-1">
+                  <DirhamSymbol className="w-6 h-6 text-emerald-500" />
+                  <span className="text-5xl font-black text-white tracking-tighter">899</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 space-y-8 px-8">
+                <p className="text-center text-gray-400 text-sm font-bold leading-tight">
+                  Ideal for families or tenants needing multi-visit coordination.
+                </p>
+                <div className="space-y-4 text-left">
+                  {[
+                    "Vendor scheduling",
+                    "Timeline management",
+                    "Single point of contact",
+                    "Post-move checklist"
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-200 uppercase tracking-tight">
+                      <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-500" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-4 mt-auto">
+                  <Button 
+                    onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Essential Relocation (AED 899) package.")}`, '_blank')}
+                    className="w-full h-16 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-emerald-500/20"
+                  >
+                    Book Essential (WhatsApp)
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="relative flex flex-col rounded-[2.5rem] border-white/10 bg-slate-900/50 hover:bg-slate-900">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg bg-white/10 text-white">
+                Total Peace of Mind
+              </div>
+              <CardHeader className="pt-10 pb-6 text-center">
+                <CardTitle className="text-2xl font-black uppercase tracking-tighter text-white">
+                  Premium Relocation
+                </CardTitle>
+                <div className="mt-4 flex items-center justify-center gap-1">
+                  <DirhamSymbol className="w-6 h-6 text-gray-400" />
+                  <span className="text-5xl font-black text-white tracking-tighter">2499</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 space-y-8 px-8">
+                <p className="text-center text-gray-400 text-sm font-bold leading-tight">
+                  Ideal for HNWIs or families requiring guaranteed deposit recovery.
+                </p>
+                <div className="space-y-4 text-left">
+                  {[
+                    "Security deposit recovery",
+                    "Furniture removal prep",
+                    "Deep cleaning coordination",
+                    "Landlord handover"
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-200 uppercase tracking-tight">
+                      <CheckCircle2 className="w-5 h-5 shrink-0 text-gray-400" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-4 mt-auto">
+                  <Button 
+                    onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Premium Relocation (AED 2499) package.")}`, '_blank')}
+                    className="w-full h-16 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl transition-all"
+                  >
+                    Book Premium (WhatsApp)
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

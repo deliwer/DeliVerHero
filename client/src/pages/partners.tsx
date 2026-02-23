@@ -126,7 +126,7 @@ export default function BrokerSupportDubai() {
               <div className="flex items-center justify-between">
                 <CardTitle className="text-white uppercase tracking-tight flex items-center gap-2">
                   <Zap className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                  Enhanced Referral Engine
+                  Referral Engine
                 </CardTitle>
                 <Badge className="bg-emerald-500 text-black font-black">10% COMMISSION</Badge>
               </div>

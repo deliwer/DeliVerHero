@@ -140,7 +140,7 @@ export default function Residents() {
                     <Button 
                       className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40"
                       onClick={() => {
-                        window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent("Hi, I need help with maintenance (maintenance_flow)")}`, '_blank');
+                        window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need help with maintenance.")}`, '_blank');
                       }}
                     >
                       Book Maintenance
@@ -198,13 +198,12 @@ export default function Residents() {
                   </div>
 
                   <div className="mt-auto space-y-4 pt-8">
-                    <Link href="/relocate?type=activation">
-                      <Button 
-                        className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
-                      >
-                        Book Activation (AED 399)
-                      </Button>
-                    </Link>
+                    <Button 
+                      className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
+                      onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
+                    >
+                      Book Activation (AED 399)
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -286,9 +285,9 @@ export default function Residents() {
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest h-20 px-12 rounded-2xl group transition-all text-xl shadow-2xl shadow-emerald-900/40"
-              onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}`, '_blank')}
+              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book a Move-In Activation visit.")}`, '_blank')}
             >
-              <MessageSquare className="mr-2 h-6 w-6" /> Start on WhatsApp
+              Start on WhatsApp
             </Button>
             <Link href="/relocate">
               <Button variant="outline" size="lg" className="border-white/10 text-white hover:bg-white/5 h-20 px-12 rounded-2xl font-black uppercase tracking-widest flex gap-3 text-lg">
