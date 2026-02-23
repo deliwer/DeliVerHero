@@ -194,7 +194,7 @@ export default function Relocate() {
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Step 2 — Move-In <span className="text-emerald-500">Activation.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Move-In <span className="text-emerald-500">Activation.</span></h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“Standard technical preparation before you move your furniture in.”</p>
           </div>
 
@@ -337,7 +337,7 @@ export default function Relocate() {
       <section ref={relocationRef} id="relocation-section" className="relative px-4 py-24 border-y border-white/5 bg-slate-900/20">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Step 3 — Full Relocation <span className="text-blue-500">Support.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Full Relocation <span className="text-blue-500">Support.</span></h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“End-to-end management for families and complex moves.”</p>
             <p className="text-blue-400/60 font-black uppercase text-xs tracking-[0.2em] mt-4">
               Ideal for families or tenants requiring multi-phase coordination and extended support.

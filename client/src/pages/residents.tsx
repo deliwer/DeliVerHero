@@ -244,13 +244,7 @@ export default function Residents() {
             <p className="text-gray-400 font-bold max-w-xl mx-auto">Let our concierge handle the complexity. One message starts the orchestration.</p>
           </div>
           <div className="flex flex-col md:flex-row justify-center items-center gap-6">
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest h-20 px-12 rounded-2xl group transition-all text-xl shadow-2xl shadow-emerald-900/40"
-              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book a Move-In Activation visit.")}`, '_blank')}
-            >
-              Start on WhatsApp
-            </Button>
+            <p className="text-emerald-500 font-black uppercase tracking-widest text-sm">Contact us to get started</p>
           </div>
         </div>
       </section>

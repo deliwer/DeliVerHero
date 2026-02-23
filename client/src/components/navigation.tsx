@@ -38,9 +38,6 @@ export function Navigation() {
           {/* LEFT: Logo - Home Button */}
           <Link href="/" className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
             <img src="/deliwer-logo.png" alt="DeliWer Logo" className="h-8 md:h-10 w-auto brightness-110 group-hover:scale-105 transition-transform" />
-            <div className="w-8 h-8 md:w-10 md:h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:rotate-12 transition-transform">
-              <Flame className="w-5 h-5 md:w-6 md:h-6 text-slate-950" />
-            </div>
           </Link>
 
           {/* CENTER: Nav Links (Desktop) */}
