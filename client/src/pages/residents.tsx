@@ -82,12 +82,12 @@ export default function Residents() {
             <div className="flex items-center justify-center gap-4">
               <div className="h-px w-12 bg-emerald-500" />
               <p className="text-xl text-emerald-400 font-bold uppercase tracking-[0.2em]">
-                Move-In Activation • AED 399
+                Ejari & DEWA Support • AED 399
               </p>
               <div className="h-px w-12 bg-emerald-500" />
             </div>
             <p className="text-gray-300 max-w-2xl mx-auto font-medium text-lg leading-relaxed uppercase tracking-tight">
-              The essential first-step visit for every Dubai tenant. AC check, shower filters, and water readiness in one coordinated visit.
+              The essential first-step visit for every Dubai tenant. 100% Home Service — we handle the foundations at your place so you don't have to leave.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
               <Button 

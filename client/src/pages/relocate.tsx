@@ -80,13 +80,16 @@ export default function Relocate() {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest mx-auto mb-4">
+              <ShieldCheck className="w-4 h-4" /> 100% Home Service USP
+            </div>
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] text-white">
               Arrive in Dubai. <br />
               <span className="text-emerald-500">Ready to Live.</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-bold uppercase tracking-tight">
               One unified orchestration layer for your relocation. <br />
-              <span className="text-blue-400 italic font-serif lowercase tracking-normal">We manage the mess, you enjoy the city.</span>
+              <span className="text-blue-400 italic font-serif lowercase tracking-normal">Ejari, DEWA & Home Setup handled without you leaving your place.</span>
             </p>
           </motion.div>
 
