@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { DirhamSymbol } from "@/components/dirham-symbol";
 import { 
   ArrowRight,
@@ -47,11 +48,13 @@ export default function Relocate() {
     const type = searchParams.get("type");
     
     if (type === 'activation') {
-      activationRef.current?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('activation-section')?.scrollIntoView({ behavior: 'smooth' });
     } else if (type === 'relocation') {
-      relocationRef.current?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('relocation-section')?.scrollIntoView({ behavior: 'smooth' });
+    } else if (type === 'planning-only') {
+      document.getElementById('planning-section')?.scrollIntoView({ behavior: 'smooth' });
     } else if (location.includes("#move-out-packs")) {
-      moveOutRef.current?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById('move-out-packs')?.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 
@@ -59,7 +62,7 @@ export default function Relocate() {
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
         <title>Move-In Activation & Relocation Support | DeliWer Dubai</title>
-        <meta name="description" content="Book Dubai Move-In Activation (AED 399) or full relocation support. Clear inclusions, no hidden costs. WhatsApp booking for guided home setup and move-in." />
+        <meta name="description" content="Book Dubai Move-In Activation (AED 399) including water check and upgrade suggestions. Planning Session available standalone (AED 99). Clear inclusions, no hidden costs." />
       </Helmet>
 
       {/* Navigation */}
@@ -191,14 +194,56 @@ export default function Relocate() {
         
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Move-In <span className="text-emerald-500">Activation.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Step 2 — Move-In <span className="text-emerald-500">Activation.</span></h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“Standard technical preparation before you move your furniture in.”</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 max-w-7xl mx-auto mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 max-w-5xl mx-auto mb-20">
+            {/* PLANNING ONLY - ADDED SECTION */}
+            <Card id="planning-section" className="relative flex flex-col rounded-[2.5rem] border-white/10 bg-slate-900">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg bg-white/20 text-white">
+                Step 1: Planning
+              </div>
+              <CardHeader className="pt-10 pb-6 text-center">
+                <CardTitle className="text-2xl font-black uppercase tracking-tighter text-white">
+                  Move-In Planning
+                </CardTitle>
+                <div className="mt-4 flex items-center justify-center gap-1">
+                  <DirhamSymbol className="w-6 h-6 text-gray-400" />
+                  <span className="text-5xl font-black text-white tracking-tighter">99</span>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 space-y-8 px-8">
+                <p className="text-center text-gray-400 text-sm font-bold leading-tight">
+                  Standalone planning session for your Dubai move-in.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    "Ejari checklist review",
+                    "Utility timing plan",
+                    "Trustee booking guidance",
+                    "WhatsApp coordination"
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-sm font-bold text-gray-200 uppercase tracking-tight">
+                      <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-500" />
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-4 mt-auto">
+                  <Button 
+                    onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Planning Session.")}`, '_blank')}
+                    className="w-full h-16 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl"
+                  >
+                    Book Planning Only
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
             <Card className="relative flex flex-col rounded-[2.5rem] border-emerald-500/50 bg-slate-900 scale-105 shadow-2xl shadow-emerald-500/10 z-10">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg bg-emerald-500 text-slate-950">
-                Standard Preparation
+                Step 2: Activation
               </div>
               <CardHeader className="pt-10 pb-6 text-center">
                 <CardTitle className="text-2xl font-black uppercase tracking-tighter text-white">
@@ -210,8 +255,8 @@ export default function Relocate() {
                 </div>
               </CardHeader>
               <CardContent className="flex-1 space-y-8 px-8">
-                <p className="text-center text-gray-400 text-sm font-bold leading-tight">
-                  Ideal for studio and 1–2 bedroom apartments within 7 days of move-in.
+                <p className="text-center text-gray-400 text-sm font-bold leading-tight uppercase tracking-widest text-[10px] bg-emerald-500/10 py-2 rounded-lg text-emerald-400">
+                  Includes FREE Planning Session
                 </p>
                 <div className="space-y-4">
                   {[
@@ -230,9 +275,8 @@ export default function Relocate() {
                 </div>
                 <div className="pt-4 mt-auto">
                   <Button 
-                    onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
+                    onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) and water setup.")}`, '_blank')}
                     className="w-full h-16 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-emerald-500/20"
-                    data-testid="button-book-activation"
                   >
                     Book Activation
                   </Button>
@@ -249,7 +293,7 @@ export default function Relocate() {
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> 60–90 minute activation visit</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Shower filter supply + installation</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> AC filter clean (1 unit)</li>
-                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Water readiness check</li>
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Water readiness check + upgrade suggestion</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Essentials setup guidance</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> WhatsApp follow-up support</li>
               </ul>
@@ -266,16 +310,21 @@ export default function Relocate() {
                 <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Hardware beyond listed scope</li>
               </ul>
               <div className="mt-6 pt-6 border-t border-white/5">
-                <h4 className="text-xs font-black uppercase text-gray-500 tracking-widest mb-3">Add-Ons Available</h4>
+                <h4 className="text-xs font-black uppercase text-gray-500 tracking-widest mb-3">Add-Ons / Upsells</h4>
                 <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I'm interested in your premium water plan for my apartment.")}`, '_blank')}>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border-emerald-500/30 text-[10px] font-black uppercase tracking-widest px-3 py-1">
+                      Premium Water Filter Subscription
+                    </Badge>
+                  </div>
                   <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need a document pick & drop errand (AED 99).")}`, '_blank')}>
                     <Badge className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border-emerald-500/30 text-[10px] font-black uppercase tracking-widest px-3 py-1">
                       AED 99 — Document Pick & Drop
                     </Badge>
                   </div>
                   <div className="flex flex-wrap gap-x-4 gap-y-2 opacity-50">
-                    <span className="text-[10px] font-bold text-gray-500 uppercase">Additional AC unit cleaning – AED X</span>
-                    <span className="text-[10px] font-bold text-gray-500 uppercase">Extra shower filter – AED X</span>
+                    <span className="text-[10px] font-bold text-gray-500 uppercase">Starter bottled water pack</span>
+                    <span className="text-[10px] font-bold text-gray-500 uppercase">Extra shower filter</span>
                   </div>
                 </div>
               </div>
@@ -288,7 +337,7 @@ export default function Relocate() {
       <section ref={relocationRef} id="relocation-section" className="relative px-4 py-24 border-y border-white/5 bg-slate-900/20">
         <div className="max-w-6xl mx-auto text-center">
           <div className="mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Full Relocation <span className="text-blue-500">Support.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Step 3 — Full Relocation <span className="text-blue-500">Support.</span></h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“End-to-end management for families and complex moves.”</p>
             <p className="text-blue-400/60 font-black uppercase text-xs tracking-[0.2em] mt-4">
               Ideal for families or tenants requiring multi-phase coordination and extended support.

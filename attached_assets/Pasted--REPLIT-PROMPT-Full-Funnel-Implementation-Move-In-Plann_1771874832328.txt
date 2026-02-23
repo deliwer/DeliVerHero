@@ -1,0 +1,234 @@
+---
+
+# ✅ REPLIT PROMPT
+
+**Full Funnel Implementation — Move-In Planning → Activation → Water Upsell**
+
+---
+
+# 🎯 OBJECTIVE
+
+1. **Step 1:** Move-In Planning Session (AED 99 standalone, FREE with 399 Activation)
+2. **Step 2:** Move-In Activation (AED 399) — refined scope including water check
+3. **Step 3:** Water Service Upsell / Relocation Support
+
+Constraints:
+
+* Keep layout and design intact
+* No color or cosmetic changes
+* Only modify headings, copy, section IDs, URL parameters, and WhatsApp links
+* Maintain click flow: Home → `/residents` → `/relocate`
+
+---
+
+# 🟢 1️⃣ HOMEPAGE CHANGES
+
+### Hero Section
+
+```text
+Headline:
+Moving Into a New Apartment in Dubai?
+
+Subheadline:
+Start with a structured Move-In Planning Session — from Ejari to home activation.
+
+Primary CTA:
+Start Move-In Planning → /residents?stage=ejari
+
+Secondary CTA:
+I Already Have My Keys → /residents?stage=handover
+```
+
+### Journey Indicator
+
+```
+Plan → Activate → Settle
+```
+
+---
+
+# 🟡 2️⃣ /residents PAGE
+
+## A️⃣ Stage-Based Dynamic Messaging
+
+```js
+const params = new URLSearchParams(window.location.search);
+const stage = params.get('stage');
+
+if(stage === 'ejari') {
+  document.getElementById('hero-headline').textContent =
+  "Ejari Completed? Start Your Move-In Planning Properly.";
+} else if(stage === 'handover') {
+  document.getElementById('hero-headline').textContent =
+  "Got Your Keys? Activate Your Home Before Moving In.";
+} else {
+  document.getElementById('hero-headline').textContent =
+  "Start Your Move-In the Right Way.";
+}
+```
+
+---
+
+## B️⃣ Step 1 — Move-In Planning Session
+
+```html
+<section id="planning-section">
+<h2>Step 1 — Move-In Planning Session</h2>
+
+<p>Before you move in, we structure the critical steps between lease signing and home activation.</p>
+
+<ul>
+<li>Ejari document checklist review</li>
+<li>Trustee booking guidance</li>
+<li>DEWA & utility timing plan</li>
+<li>Internet & utilities sequencing</li>
+<li>Move-in readiness roadmap</li>
+<li>WhatsApp coordination</li>
+<li>Water quality assessment included</li>
+</ul>
+
+<p><strong>Pricing:</strong> FREE when bundled with Move-In Activation (AED 399)  
+<br>Standalone: AED 99</p>
+
+<button onclick="window.location.href='/relocate?type=activation'">
+Book Planning + Activation
+</button>
+
+<button onclick="window.location.href='/relocate?type=planning-only'">
+Book Planning Only
+</button>
+</section>
+```
+
+### WhatsApp Prefill Logic for Planning Section
+
+```js
+let whatsappBtn = document.getElementById('whatsapp-float');
+let prefillMsg = "Hi DeliWer, I want to book the Move-In Planning Session.";
+
+if(stage === "ejari") {
+  prefillMsg = "Hi DeliWer, I completed Ejari and want to start move-in planning.";
+} else if(stage === "handover") {
+  prefillMsg = "Hi DeliWer, I received my keys and want to plan my move-in.";
+}
+
+whatsappBtn.href = "https://wa.me/971523946311?text=" + encodeURIComponent(prefillMsg);
+```
+
+---
+
+## C️⃣ Step 2 — Move-In Activation (AED 399)
+
+```html
+<section id="activation-section">
+<h2>Step 2 — Move-In Activation (AED 399)</h2>
+
+<p><strong>Includes complimentary Move-In Planning Session.</strong></p>
+
+<ul>
+<li>60–90 min activation visit</li>
+<li>Shower filter supply & installation</li>
+<li>1 AC filter clean (removable filter only)</li>
+<li>Water readiness check + upgrade suggestion</li>
+<li>Essentials setup guidance</li>
+<li>WhatsApp follow-up support</li>
+</ul>
+
+<p><strong>Not Included:</strong> Deep AC servicing, gas refill, full duct cleaning, extra hardware beyond listed scope</p>
+
+<p><strong>Add-Ons / Upsells:</strong> Extra shower filter, starter bottled water pack, premium water filter subscription</p>
+
+<button onclick="window.location.href='https://wa.me/971523946311?text=' + encodeURIComponent('Hi DeliWer, I want to book the Move-In Activation (AED 399) and water setup.')">
+Book Move-In Activation
+</button>
+</section>
+```
+
+---
+
+# 🟣 3️⃣ /relocate PAGE
+
+## Section Separation
+
+```html
+<section id="activation-section">
+<h2>Step 2 — Move-In Activation</h2>
+<!-- Include 399 package details -->
+</section>
+
+<section id="relocation-section">
+<h2>Step 3 — Full Relocation Support</h2>
+<p>For families or tenants requiring multi-phase coordination.</p>
+<!-- Keep existing relocation packages -->
+</section>
+```
+
+### Auto Scroll Based on URL
+
+```js
+const relocateParams = new URLSearchParams(window.location.search);
+const type = relocateParams.get('type');
+
+if(type === 'activation') {
+  document.getElementById('activation-section').scrollIntoView({behavior:'smooth'});
+} else if(type === 'relocation') {
+  document.getElementById('relocation-section').scrollIntoView({behavior:'smooth'});
+} else if(type === 'planning-only') {
+  document.getElementById('planning-section').scrollIntoView({behavior:'smooth'});
+}
+```
+
+---
+
+# 🔵 4️⃣ Water Service Upsell Logic
+
+* During activation visit, perform water quality check
+* Suggest premium water service in package card and WhatsApp follow-up
+
+WhatsApp prefill example for upsell:
+
+```text
+Hi DeliWer, I’m interested in your premium water plan for my apartment.
+```
+
+---
+
+# 🟢 5️⃣ Funnel Click Flow
+
+1. Google Ads → `/residents?stage=ejari`
+2. Book Move-In Planning Session (99 standalone or FREE with 399)
+3. `/relocate?type=activation` → 399 Activation
+4. On-site water check → Soft upsell → WhatsApp follow-up
+5. Optional: full relocation packages
+
+---
+
+# ✅ 6️⃣ SEO & Meta Updates
+
+```
+/residents:
+<title>Move-In Planning & Activation in Dubai | DeliWer</title>
+<meta name="description" content="Start your move-in with a structured planning session. FREE when bundled with Move-In Activation (AED 399). WhatsApp booking for home readiness and water setup.">
+
+/relocate:
+<title>Move-In Activation & Relocation Support | DeliWer Dubai</title>
+<meta name="description" content="Book Dubai Move-In Activation (AED 399) including water check and upgrade suggestions. Planning Session available standalone (AED 99). Clear inclusions, no hidden costs.">
+```
+
+---
+
+# 🔧 Deployment Checklist
+
+* [ ] Homepage hero updated + journey indicator
+* [ ] /residents dynamic headline + planning section added
+* [ ] 99 standalone pricing correct
+* [ ] 399 Activation includes water check + upsell logic
+* [ ] WhatsApp prefill messages correct
+* [ ] Auto-scroll working for planning / activation / relocation sections
+* [ ] Funnel flow tested end-to-end
+
+---
+
+This prompt is **ready for deployment**. It positions Move-In Planning Session as **premium entry**, 399 Activation as **gateway**, and naturally primes **water service adoption** without redesigning the site.
+
+---

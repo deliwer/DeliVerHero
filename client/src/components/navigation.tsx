@@ -35,8 +35,16 @@ export function Navigation() {
       {/* 1. Main Navigation Bar */}
       <nav className="bg-slate-900/90 backdrop-blur-md border-b border-white/5 px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* LEFT: Nav Links (Desktop) */}
-          <div className="hidden md:flex items-center gap-1 order-1">
+          {/* LEFT: Logo - Home Button */}
+          <Link href="/" className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
+            <img src="/deliwer-logo.png" alt="DeliWer Logo" className="h-8 md:h-10 w-auto brightness-110 group-hover:scale-105 transition-transform" />
+            <div className="w-8 h-8 md:w-10 md:h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:rotate-12 transition-transform">
+              <Flame className="w-5 h-5 md:w-6 md:h-6 text-slate-950" />
+            </div>
+          </Link>
+
+          {/* CENTER: Nav Links (Desktop) */}
+          <div className="hidden md:flex items-center gap-1 order-2 mx-auto">
             {navItems.map((item) => (
               <Link key={item.id} href={item.path}>
                 <Button
@@ -67,27 +75,19 @@ export function Navigation() {
             </Button>
           </div>
 
-          {/* LEFT: Mobile Menu Toggle */}
+          {/* RIGHT: Mobile Menu Toggle */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-white rounded-xl order-1"
+            className="md:hidden text-white rounded-xl order-3 ml-auto"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </Button>
-
-          {/* RIGHT: Logo */}
-          <Link href="/" className="flex items-center gap-3 group ml-auto order-2">
-            <span className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white group-hover:text-emerald-400 transition-colors">DeliWer</span>
-            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:rotate-12 transition-transform">
-              <Flame className="w-6 h-6 text-slate-950" />
-            </div>
-          </Link>
         </div>
       </nav>
 
-      {/* 2. Trust Strip Bar (Below Nav) */}
+      {/* 2. Trust Strip Bar (Below Nav) - Only on Home and only once */}
       {location === "/" && (
         <div className="bg-slate-950 border-b border-white/10 py-2.5 px-4">
           <div className="max-w-7xl mx-auto flex justify-center md:justify-start overflow-x-auto no-scrollbar">

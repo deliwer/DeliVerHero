@@ -46,60 +46,54 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white">
-              Arrive in Dubai. <br />
-              <span className="text-emerald-500">Ready to Live.</span>
+            <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
+              Moving Into a New <br />
+              Apartment in <span className="text-emerald-500">Dubai?</span>
             </h1>
             
             <h2 className="text-xl md:text-2xl text-gray-300 font-bold max-w-3xl mx-auto leading-tight uppercase tracking-tight">
-              One unified orchestration layer for your home. <br />
-              <span className="text-blue-400 italic font-serif lowercase tracking-normal">We manage the mess, you enjoy the city.</span>
+              Start with a structured Move-In Planning Session — <br />
+              <span className="text-blue-400 italic font-serif lowercase tracking-normal">from Ejari to home activation.</span>
             </h2>
           </motion.div>
           
           <div className="flex flex-col items-center gap-6">
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-[2rem] px-16 h-24 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-4 items-center justify-center"
-              onClick={() => {
-                const element = document.getElementById('service-cards');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              data-testid="button-explore-services"
-            >
-              Get Started <ArrowRight className="w-8 h-8" />
-            </Button>
-            
-            <button 
-              className="text-sm text-gray-400 font-medium hover:text-emerald-400 transition-colors uppercase tracking-widest"
-              onClick={() => handleWhatsApp()}
-              data-testid="link-whatsapp-consultation"
-            >
-              Free 10-minute consult via WhatsApp
-            </button>
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+              <Link href="/residents?stage=ejari">
+                <Button 
+                  size="lg" 
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-[2rem] px-8 h-20 text-xl shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
+                >
+                  Start Move-In Planning <ArrowRight className="w-6 h-6" />
+                </Button>
+              </Link>
+              <Link href="/residents?stage=handover">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-[2rem] px-8 h-20 text-xl shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
+                >
+                  I Already Have My Keys
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          {/* Reassurance points */}
-          <div className="pt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
-            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-home-setup">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <HomeIcon className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Home setup & move-in support</span>
+          {/* Journey Indicator */}
+          <div className="pt-12 flex items-center justify-center gap-4 md:gap-8">
+            <div className="flex items-center gap-2">
+              <span className="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-black text-sm">1</span>
+              <span className="text-emerald-500 font-black uppercase tracking-widest text-sm">Plan</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-maintenance">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <Wrench className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Fixes, maintenance & disposal</span>
+            <div className="w-8 h-px bg-white/20" />
+            <div className="flex items-center gap-2 text-gray-500">
+              <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-black text-sm">2</span>
+              <span className="font-black uppercase tracking-widest text-sm">Activate</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-300" data-testid="reassurance-relocation">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
-                <MoveHorizontal className="w-5 h-5" />
-              </div>
-              <span className="font-bold text-sm">Relocation & move-out help</span>
+            <div className="w-8 h-px bg-white/20" />
+            <div className="flex items-center gap-2 text-gray-500">
+              <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-black text-sm">3</span>
+              <span className="font-black uppercase tracking-widest text-sm">Settle</span>
             </div>
           </div>
         </div>

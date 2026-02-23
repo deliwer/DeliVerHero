@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { 
   MessageSquare, 
   ArrowRight, 
@@ -16,7 +17,8 @@ import {
   ClipboardList,
   CalendarCheck,
   X,
-  AlertTriangle
+  AlertTriangle,
+  Package
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DirhamSymbol } from "@/components/dirham-symbol";
@@ -36,15 +38,15 @@ export default function Residents() {
   const stage = searchParams.get("stage");
 
   const getHeadline = () => {
-    if (stage === "ejari") return "Ejari Completed? Here’s What Every Dubai Tenant Does Next.";
-    if (stage === "handover") return "Got Your Keys? Activate Your Home the Right Way.";
-    return "Moving Into a New Apartment in Dubai?";
+    if (stage === "ejari") return "Ejari Completed? Start Your Move-In Planning Properly.";
+    if (stage === "handover") return "Got Your Keys? Activate Your Home Before Moving In.";
+    return "Start Your Move-In the Right Way.";
   };
 
   const getWhatsAppPrefill = () => {
-    if (stage === "ejari") return "Hi DeliWer, I just completed Ejari and need move-in activation.";
-    if (stage === "handover") return "Hi DeliWer, I just received my keys and want to activate my home.";
-    return "Hi DeliWer, I want to book a Move-In Activation visit.";
+    if (stage === "ejari") return "Hi DeliWer, I completed Ejari and want to start move-in planning.";
+    if (stage === "handover") return "Hi DeliWer, I received my keys and want to plan my move-in.";
+    return "Hi DeliWer, I want to book the Move-In Planning Session.";
   };
 
   const scrollToConcierge = () => {
@@ -54,8 +56,8 @@ export default function Residents() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
-        <title>Move-In Activation in Dubai After Ejari or Handover | DeliWer</title>
-        <meta name="description" content="Complete your Ejari or receive your keys? Start with Dubai Move-In Activation (AED 399) and settle in with DeliWer’s guided home preparation. WhatsApp booking available." />
+        <title>Move-In Planning & Activation in Dubai | DeliWer</title>
+        <meta name="description" content="Start your move-in with a structured planning session. FREE when bundled with Move-In Activation (AED 399). WhatsApp booking for home readiness and water setup." />
       </Helmet>
 
       {/* Navigation */}
@@ -102,141 +104,107 @@ export default function Residents() {
         </div>
       </section>
 
-      {/* 2. SERVICE CARDS (3 ONLY) */}
+      {/* 2. SERVICE SECTIONS */}
       <section ref={conciergeRef} className="px-4 py-24 bg-slate-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8">
-            
-            {/* CARD 1 — MAINTENANCE */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full relative bg-slate-900 border-white/5 hover:border-emerald-500/30 hover-elevate transition-all duration-500 rounded-[3rem] overflow-hidden group">
-                <div 
-                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-10 transition-transform duration-1000 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${maintenanceCardBg})` }}
-                />
-                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
-
-                <CardContent className="relative z-10 p-12 space-y-8 h-full flex flex-col">
-                  <div className="space-y-6">
-                    <div className="w-20 h-20 rounded-[2rem] bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 transition-transform group-hover:rotate-6">
-                      <Hammer className="w-10 h-10" />
-                    </div>
-                    <div className="space-y-3">
-                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Maintenance</h3>
-                      <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">One point of contact to assess, schedule, and manage trusted technicians.</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-auto pt-10">
-                    <Button 
-                      className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-emerald-900/40 text-xl"
-                      onClick={() => {
-                        window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need help with maintenance.")}`, '_blank');
-                      }}
-                    >
-                      Book Visit
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* CARD 2 — MOVE CONCIERGE */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <Card className="h-full relative bg-slate-900 border-emerald-500/50 hover-elevate transition-all duration-500 rounded-[3rem] overflow-hidden group shadow-[0_0_50px_-12px_rgba(16,185,129,0.2)] scale-105 z-20 border-2">
-                <div 
-                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 transition-transform duration-1000 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${conciergeCardBg})` }}
-                />
-                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
-
-                <CardContent className="relative z-10 p-12 space-y-8 h-full flex flex-col">
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-start">
-                      <div className="w-20 h-20 rounded-[2rem] bg-emerald-500 text-slate-950 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                        <ClipboardList className="w-10 h-10" />
-                      </div>
-                      <Badge className="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full">
-                        Popular Choice
-                      </Badge>
-                    </div>
-                    <div className="space-y-3">
-                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Move-In Activation</h3>
-                      <p className="text-gray-100 font-bold text-xl leading-[1.1] uppercase tracking-tight">
-                        Activate your home correctly. From shower filters to AC prep, we handle the technical foundations.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4 pt-8 border-t border-white/10">
-                    {[
-                      "Technical move-in prep visit",
-                      "Shower filter supply + install",
-                      "AC filter technical check",
-                      "Water readiness audit",
-                      "Essentials setup guidance"
-                    ].map((f, i) => (
-                      <div key={i} className="flex gap-4 text-[13px] text-emerald-50 font-black uppercase tracking-widest items-center">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                        <span>{f}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-auto pt-10">
-                    <Button 
-                      className="w-full h-20 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-emerald-500/20 text-xl"
-                      onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
-                    >
-                      Book AED 399
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* CARD 3 — RELOCATION SUPPORT */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <Card className="h-full relative bg-slate-900 border-white/5 hover:border-blue-500/30 hover-elevate transition-all duration-500 rounded-[3rem] overflow-hidden group">
-                <CardContent className="relative z-10 p-12 space-y-8 h-full flex flex-col">
-                  <div className="space-y-6">
-                    <div className="w-20 h-20 rounded-[2rem] bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20 shadow-lg shadow-blue-500/10">
-                      <Zap className="w-10 h-10" />
-                    </div>
-                    <div className="space-y-3">
-                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Relocation</h3>
-                      <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">Full Coordination & Logistics management for families and complex moves.</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-auto pt-10">
-                    <Link href="/relocate?type=relocation">
-                      <Button 
-                        className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-blue-900/40 text-xl"
-                      >
-                        Explore Relocation
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
+        <div className="max-w-7xl mx-auto space-y-24">
+          
+          {/* STEP 1 - PLANNING SESSION */}
+          <div id="planning-section" className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <Badge className="bg-emerald-500 text-slate-950 px-4 py-1 uppercase font-black tracking-widest">Step 1</Badge>
+                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none">Move-In <br /><span className="text-emerald-500">Planning Session</span></h2>
+                <p className="text-gray-400 font-bold text-xl leading-tight">Before you move in, we structure the critical steps between lease signing and home activation.</p>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "Ejari document checklist review",
+                  "Trustee booking guidance",
+                  "DEWA & utility timing plan",
+                  "Internet & utilities sequencing",
+                  "Move-in readiness roadmap",
+                  "WhatsApp coordination",
+                  "Water quality assessment included"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-4 items-center text-gray-200 font-bold uppercase tracking-tight text-sm">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="p-6 bg-white/5 rounded-3xl border border-white/10 space-y-4">
+                <p className="text-lg font-black uppercase text-white">Pricing:</p>
+                <p className="text-emerald-400 font-black text-2xl">FREE <span className="text-white/60 text-sm font-bold lowercase tracking-normal">when bundled with Activation (AED 399)</span></p>
+                <p className="text-white/60 font-bold text-sm">Standalone: AED 99</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  onClick={() => window.location.href='/relocate?type=activation'}
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-8 font-black uppercase tracking-widest rounded-2xl flex-1"
+                >
+                  Book Planning + Activation
+                </Button>
+                <Button 
+                  onClick={() => window.location.href='/relocate?type=planning-only'}
+                  variant="outline"
+                  className="border-white/20 text-white hover:bg-white/5 h-16 px-8 font-black uppercase tracking-widest rounded-2xl flex-1"
+                >
+                  Book Planning Only
+                </Button>
+              </div>
+            </div>
+            <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10">
+              <div className="absolute inset-0 bg-emerald-500/20 mix-blend-overlay" />
+              <img src={maintenanceCardBg} alt="Planning" className="w-full h-full object-cover opacity-40" />
+            </div>
           </div>
+
+          <div className="h-px bg-white/10 w-full" />
+
+          {/* STEP 2 - ACTIVATION */}
+          <div id="activation-section" className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1 relative aspect-square rounded-[3rem] overflow-hidden border border-white/10">
+              <div className="absolute inset-0 bg-blue-500/20 mix-blend-overlay" />
+              <img src={conciergeCardBg} alt="Activation" className="w-full h-full object-cover opacity-40" />
+            </div>
+            <div className="order-1 lg:order-2 space-y-8">
+              <div className="space-y-4">
+                <Badge className="bg-blue-500 text-white px-4 py-1 uppercase font-black tracking-widest">Step 2</Badge>
+                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none">Move-In <br /><span className="text-blue-500">Activation</span></h2>
+                <p className="text-emerald-400 font-black uppercase tracking-widest text-sm italic">Includes complimentary Move-In Planning Session.</p>
+                <div className="flex items-center gap-2">
+                  <DirhamSymbol className="w-6 h-6 text-blue-500" />
+                  <span className="text-5xl font-black text-white tracking-tighter">399</span>
+                </div>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  "60–90 min activation visit",
+                  "Shower filter supply & installation",
+                  "1 AC filter clean (removable only)",
+                  "Water readiness check + upgrade suggestion",
+                  "Essentials setup guidance",
+                  "WhatsApp follow-up support"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-4 items-center text-gray-200 font-bold uppercase tracking-tight text-sm">
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="p-6 bg-white/5 rounded-3xl border border-white/10 space-y-2">
+                <p className="text-xs font-black uppercase text-red-500 tracking-widest">Not Included:</p>
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight">Deep AC servicing, gas refill, full duct cleaning, extra hardware beyond listed scope</p>
+              </div>
+              <Button 
+                onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) and water setup.")}`, '_blank')}
+                className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-blue-900/40 text-xl"
+              >
+                Book Move-In Activation
+              </Button>
+            </div>
+          </div>
+
         </div>
       </section>
 
