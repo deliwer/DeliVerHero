@@ -243,18 +243,18 @@ export default function Residents() {
       {/* 4. Detailed Trust Points */}
       <section className="px-4 py-24 bg-slate-950">
         <div className="max-w-6xl mx-auto space-y-16">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Designed for Real Homes in Dubai</h2>
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">100% Home Service Solution</h2>
+            <p className="text-emerald-500 font-black uppercase tracking-widest text-sm italic">The Feather in our Cap: We come to you, so you don't have to leave.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: MapPin, title: "Dubai-wide coverage", desc: "Apartments & villas in all major residential areas." },
+              { icon: ShieldCheck, title: "Zero Travel Required", desc: "Process your Ejari, DEWA, and home setup from your office or existing home." },
+              { icon: Package, title: "Document Errands", desc: "Document pick & drop-off for AED 99. We handle the physical logistics." },
               { icon: UserCheck, title: "Single point of contact", desc: "No chasing multiple technicians or vendors. We handle them all." },
               { icon: Clock, title: "Fast assessments", desc: "Same-day or next-day scheduling for urgent home fixing." },
-              { icon: ShieldCheck, title: "Relocation specialists", desc: "Move-In & Move-Out experts protecting your deposit and sanity." },
-              { icon: ShieldCheck, title: "Responsible removal", desc: "Furniture and e-waste handled compliantly and ethically." },
-              { icon: Zap, title: "Zero Lead Loss", desc: "Every request is logged and actioned within minutes." },
-              { icon: AlertTriangle, title: "Disruption Support", desc: "Express coordination for unforeseen relocation needs." }
+              { icon: MapPin, title: "Dubai-wide coverage", desc: "Apartments & villas in all major residential areas." },
+              { icon: ShieldCheck, title: "Relocation specialists", desc: "Move-In & Move-Out experts protecting your deposit and sanity." }
             ].map((item, i) => (
               <div key={i} className="flex gap-6 p-8 bg-white/5 rounded-3xl border border-white/5 hover:border-emerald-500/20 transition-colors group">
                 <item.icon className="w-8 h-8 text-emerald-500 shrink-0 group-hover:scale-110 transition-transform" />

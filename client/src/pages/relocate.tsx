@@ -267,9 +267,16 @@ export default function Relocate() {
               </ul>
               <div className="mt-6 pt-6 border-t border-white/5">
                 <h4 className="text-xs font-black uppercase text-gray-500 tracking-widest mb-3">Add-Ons Available</h4>
-                <div className="flex flex-wrap gap-x-4 gap-y-2">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase">Additional AC unit cleaning – AED X</span>
-                  <span className="text-[10px] font-bold text-gray-500 uppercase">Extra shower filter – AED X</span>
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need a document pick & drop errand (AED 99).")}`, '_blank')}>
+                    <Badge className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border-emerald-500/30 text-[10px] font-black uppercase tracking-widest px-3 py-1">
+                      AED 99 — Document Pick & Drop
+                    </Badge>
+                  </div>
+                  <div className="flex flex-wrap gap-x-4 gap-y-2 opacity-50">
+                    <span className="text-[10px] font-bold text-gray-500 uppercase">Additional AC unit cleaning – AED X</span>
+                    <span className="text-[10px] font-bold text-gray-500 uppercase">Extra shower filter – AED X</span>
+                  </div>
                 </div>
               </div>
             </div>
