@@ -1,0 +1,154 @@
+REPLIT PROMPT — Essential Remaining Enhancements
+
+Build enhancements for /residents and /relocate such that the recommended click flow is fully implemented and all necessary clarifications exist.
+
+1️⃣ GENERAL CONSTRAINTS
+
+Do not visually redesign the site
+
+Do not change color scheme or CSS
+
+Do not add new pages
+
+Only enhance HTML content, section IDs, JavaScript logic, and navigation
+
+Target user flows:
+• /residents?stage=ejari
+• /residents?stage=handover
+• /relocate?type=activation
+• /relocate?type=relocation
+
+2️⃣ /residents ENHANCEMENTS
+TEXT LOGIC
+
+Add JavaScript detection for URL parameters:
+
+const params = new URLSearchParams(window.location.search);
+const stage = params.get('stage');
+
+if (stage === 'ejari') {
+  document.getElementById('hero-headline').textContent = "Ejari Completed? Here’s What Every Dubai Tenant Does Next.";
+} else if (stage === 'handover') {
+  document.getElementById('hero-headline').textContent = "Got Your Keys? Activate Your Home the Right Way.";
+} else {
+  document.getElementById('hero-headline').textContent = "Moving Into a New Apartment in Dubai?";
+}
+
+Primary CTA must link to:
+
+/relocate?type=activation
+
+Secondary CTA must link to:
+
+/relocate?type=relocation
+
+Add a short text block under hero:
+
+Dubai Move-In Activation — AED 399
+The standard preparation visit most tenants choose before settling into their apartment.
+3️⃣ /relocate ENHANCEMENTS
+AUTO-SCROLL ON PARAMETER
+
+Add JavaScript on page load:
+
+const params = new URLSearchParams(window.location.search);
+const type = params.get('type');
+
+if (type === 'activation') {
+  document.getElementById('activation-section').scrollIntoView({ behavior: 'smooth' });
+} else if (type === 'relocation') {
+  document.getElementById('relocation-section').scrollIntoView({ behavior: 'smooth' });
+}
+4️⃣ SECTION STRUCTURE
+Activation Section
+
+Ensure this block has ID:
+
+<section id="activation-section">
+
+Add structured clarity under AED 399 package:
+
+What’s Included:
+
+• 60–90 minute activation visit
+• Shower filter supply + installation
+• AC filter clean (1 unit)
+• Water readiness check
+• Essentials setup guidance
+• WhatsApp follow-up support
+
+What’s Not Included:
+
+• Deep AC servicing
+• Gas refill
+• Full duct cleaning
+• Hardware beyond listed scope
+
+Add-Ons:
+
+• Additional AC unit cleaning – AED X
+• Extra shower filter – AED X
+
+Add a line:
+
+Ideal for studio & 1–2 bedroom apartments within 7 days of move-in.
+
+Add a per-package WhatsApp button with prefill text:
+
+Hi DeliWer, I want to book the Move-In Activation (AED 399) package.
+5️⃣ Relocation Support Section
+
+Ensure this block has ID:
+
+<section id="relocation-section">
+
+Under relocation packages add:
+
+Ideal for families or tenants requiring multi-phase coordination and extended support.
+
+Add WhatsApp buttons for each with clear package name in the prefill.
+
+6️⃣ COMPARISON CLARITY
+
+If comparison table exists, ensure it only compares:
+
+Activation packages with each other
+
+Relocation packages with each other
+
+Do not mix categories.
+
+7️⃣ SEO META
+
+Add/update meta titles & descriptions:
+
+/residents:
+<title>Move-In Activation in Dubai After Ejari or Handover | DeliWer</title>
+<meta name="description" content="Complete your Ejari or receive your keys? Start with Dubai Move-In Activation (AED 399) and settle in with DeliWer’s guided home preparation. WhatsApp booking available.">
+/relocate:
+<title>Move-In Activation & Relocation Support | DeliWer Dubai</title>
+<meta name="description" content="Book Dubai Move-In Activation (AED 399) or full relocation support. Clear inclusions, no hidden costs. WhatsApp booking for guided home setup and move-in.">
+8️⃣ WHATSAPP FLOATING BUTTON UPDATE
+
+Include JavaScript logic to prefill based on parameters:
+
+const whatsappBtn = document.getElementById('whatsapp-float');
+let prefillMsg = "Hi DeliWer, I want to book a Move-In Activation visit.";
+
+if (stage === 'ejari') {
+  prefillMsg = "Hi DeliWer, I just completed Ejari and need move-in activation.";
+} else if (stage === 'handover') {
+  prefillMsg = "Hi DeliWer, I just received my keys and want to activate my home.";
+}
+
+whatsappBtn.href = "https://wa.me/971523946311?text=" + encodeURIComponent(prefillMsg);
+📌 WHY THESE CHANGES ARE ESSENTIAL
+
+They ensure the site:
+✔ Supports the optimized click funnel we designed
+✔ Guides tenants clearly from intent → decision → booking
+✔ Clarifies permanent AED 399 entry gateway
+✔ Reduces confusion and mismatched expectations
+✔ Improves conversions through contextual navigation
+
+With those enhancements, www.deliwer.com will fully comply with the recommended flow and make your entry gateway strategy operationally clear without redesigning the visual elements.

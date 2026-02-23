@@ -12,7 +12,8 @@ import {
   ShieldCheck,
   Zap,
   AlertTriangle,
-  CheckCircle2
+  CheckCircle2,
+  MessageSquare
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip } from "@/components/trust-strip";
@@ -45,12 +46,12 @@ export default function Relocate() {
     const searchParams = new URLSearchParams(window.location.search);
     const type = searchParams.get("type");
     
-    if (type === "activation") {
-      setTimeout(scrollToActivation, 500);
-    } else if (type === "relocation") {
-      setTimeout(scrollToRelocation, 500);
+    if (type === 'activation') {
+      activationRef.current?.scrollIntoView({ behavior: 'smooth' });
+    } else if (type === 'relocation') {
+      relocationRef.current?.scrollIntoView({ behavior: 'smooth' });
     } else if (location.includes("#move-out-packs")) {
-      scrollToMoveOut();
+      moveOutRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
 
@@ -131,7 +132,7 @@ export default function Relocate() {
       </section>
 
       {/* Move-In Activation Section */}
-      <section ref={activationRef} id="activation" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
+      <section ref={activationRef} id="activation-section" className="relative px-4 py-24 border-y border-white/5 overflow-hidden">
         {/* Background Image with wash */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -154,37 +155,73 @@ export default function Relocate() {
               <ul className="space-y-3 text-sm font-bold text-gray-300">
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> 60–90 minute activation visit</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Shower filter supply + installation</li>
-                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> 1 AC filter clean (removable filter only)</li>
+                <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> AC filter clean (1 unit)</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Water readiness check</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> Essentials setup guidance</li>
                 <li className="flex gap-2 items-start"><CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> WhatsApp follow-up support</li>
               </ul>
+              <p className="mt-6 text-[11px] font-bold text-emerald-500/60 uppercase tracking-widest border-t border-white/5 pt-4">
+                Ideal for studio & 1–2 bedroom apartments within 7 days of move-in.
+              </p>
             </div>
             <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
-              <h3 className="text-xl font-black uppercase text-red-500 mb-4">Not Included</h3>
+              <h3 className="text-xl font-black uppercase text-red-500 mb-4">What’s Not Included</h3>
               <ul className="space-y-3 text-sm font-bold text-gray-400">
                 <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Deep AC servicing</li>
                 <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Gas refill</li>
                 <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Full duct cleaning</li>
-                <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Additional hardware beyond listed scope</li>
+                <li className="flex gap-2 items-start"><AlertTriangle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" /> Hardware beyond listed scope</li>
               </ul>
               <div className="mt-6 pt-6 border-t border-white/5">
-                <h4 className="text-xs font-black uppercase text-gray-500 tracking-widest mb-3">Add-ons Available</h4>
-                <p className="text-[10px] font-bold text-gray-500 uppercase">Additional AC Cleaning • Additional Filters • Smart Home Setup</p>
+                <h4 className="text-xs font-black uppercase text-gray-500 tracking-widest mb-3">Add-Ons Available</h4>
+                <div className="flex flex-wrap gap-x-4 gap-y-2">
+                  <span className="text-[10px] font-bold text-gray-500 uppercase">Additional AC unit cleaning – AED X</span>
+                  <span className="text-[10px] font-bold text-gray-500 uppercase">Extra shower filter – AED X</span>
+                </div>
               </div>
             </div>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Button 
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40"
+              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
+            >
+              <MessageSquare className="mr-2 h-6 w-6" /> Book Activation on WhatsApp
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Full Relocation Support Section */}
-      <section ref={relocationRef} id="relocation" className="relative px-4 py-24 border-y border-white/5 bg-slate-900/20">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 space-y-4">
+      <section ref={relocationRef} id="relocation-section" className="relative px-4 py-24 border-y border-white/5 bg-slate-900/20">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="mb-16 space-y-4">
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Full Relocation <span className="text-blue-500">Support.</span></h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">“End-to-end management for families and complex moves.”</p>
+            <p className="text-blue-400/60 font-black uppercase text-xs tracking-[0.2em] mt-4">
+              Ideal for families or tenants requiring multi-phase coordination and extended support.
+            </p>
           </div>
           <ConciergePricing category="support" />
+          
+          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6">
+            <Button 
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40 w-full md:w-auto"
+              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Essential Relocation package.")}`, '_blank')}
+            >
+              Book Essential (WhatsApp)
+            </Button>
+            <Button 
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40 w-full md:w-auto"
+              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Premium Relocation package.")}`, '_blank')}
+            >
+              Book Premium (WhatsApp)
+            </Button>
+          </div>
         </div>
       </section>
 

@@ -42,7 +42,7 @@ export default function Residents() {
   };
 
   const getWhatsAppPrefill = () => {
-    if (stage === "ejari") return "Hi DeliWer, I just completed Ejari and want to prepare my apartment before moving in.";
+    if (stage === "ejari") return "Hi DeliWer, I just completed Ejari and need move-in activation.";
     if (stage === "handover") return "Hi DeliWer, I just received my keys and want to activate my home.";
     return "Hi DeliWer, I want to book a Move-In Activation visit.";
   };
@@ -75,48 +75,41 @@ export default function Residents() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
+            <h1 id="hero-headline" className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
               {getHeadline()}
             </h1>
-            <div className="flex flex-col items-center gap-4 mt-8">
-              <Button 
-                size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
-                onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(getWhatsAppPrefill())}`, '_blank')}
-              >
-                <MessageSquare className="mr-2 h-6 w-6" /> Chat on WhatsApp
-              </Button>
+            <p className="text-xl text-emerald-400 font-bold uppercase tracking-widest mb-8">
+              Dubai Move-In Activation — AED 399
+            </p>
+            <p className="text-gray-300 max-w-2xl mx-auto font-medium text-lg leading-relaxed mb-8">
+              The standard preparation visit most tenants choose before settling into their apartment.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+              <Link href="/relocate?type=activation">
+                <Button 
+                  size="lg"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40 w-full sm:w-auto"
+                >
+                  Book Activation
+                </Button>
+              </Link>
+              <Link href="/relocate?type=relocation">
+                <Button 
+                  variant="outline"
+                  size="lg"
+                  className="border-white/10 text-white hover:bg-white/5 h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl w-full sm:w-auto"
+                >
+                  Full Relocation
+                </Button>
+              </Link>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Dubai Move-In Activation Section */}
-      <section className="py-12 px-4 bg-slate-900/30 border-y border-white/5">
-        <div className="max-w-4xl mx-auto text-center space-y-4">
-          <h2 className="text-3xl font-black uppercase tracking-tighter text-emerald-500">Dubai Move-In Activation (AED 399)</h2>
-          <p className="text-xl text-gray-300 font-medium">
-            The standard preparation visit most tenants choose before settling into their apartment.
-          </p>
-          <Link href="/relocate?type=activation">
-            <Button className="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-6 rounded-xl">
-              Learn More About Activation
-            </Button>
-          </Link>
         </div>
       </section>
 
       {/* 2. SERVICE CARDS (3 ONLY) */}
       <section ref={conciergeRef} className="px-4 py-24 bg-slate-950">
         <div className="max-w-7xl mx-auto">
-          {/* How DeliWer Works Explainer Block (Part 3) */}
-          <div className="max-w-4xl mx-auto mb-20 text-center space-y-4">
-            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">How DeliWer Works</h2>
-            <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">
-              DeliWer exists to coordinate and plan — before problems turn into stress. We work with movers, technicians, and service providers, but you only deal with us.
-            </p>
-          </div>
-
           <div className="grid lg:grid-cols-3 gap-8">
             
             {/* CARD 1 — MAINTENANCE */}

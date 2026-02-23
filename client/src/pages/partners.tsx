@@ -88,8 +88,8 @@ export default function BrokerSupportDubai() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {partners.map((partner, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {partners.slice(0, 2).map((partner, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -112,8 +112,6 @@ export default function BrokerSupportDubai() {
                     variant={partner.type === 'Core' ? 'default' : 'secondary'} 
                     className={
                       partner.type === 'Freelance' ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 
-                      partner.type === 'Agency' ? 'bg-purple-500/20 text-purple-400 border-purple-500/30' :
-                      partner.type === 'Associate' ? 'bg-orange-500/20 text-orange-400 border-orange-500/30' :
                       'bg-emerald-500 text-black font-bold'
                     }
                   >
@@ -122,10 +120,6 @@ export default function BrokerSupportDubai() {
                   <p className="text-sm text-gray-300 leading-relaxed min-h-[60px]">
                     {partner.description}
                   </p>
-                  <div className="pt-2 flex items-center gap-2 text-xs font-bold text-emerald-500/80">
-                    <CheckCircle2 className="w-4 h-4" />
-                    PARTNER VERIFIED
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
