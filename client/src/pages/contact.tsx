@@ -14,11 +14,7 @@ import { Badge } from "@/components/ui/badge";
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white" data-testid="contact-page">
-      <section className="px-4 py-3 border-b border-white/10 bg-slate-950">
-        <div className="max-w-4xl mx-auto">
-          <TrustStrip variant="dark" showContact={true} />
-        </div>
-      </section>
+      <Navigation />
       <div className="container mx-auto px-4 max-w-7xl py-12">
         {/* Hero Section with Concept */}
         <div className="text-center mb-16">

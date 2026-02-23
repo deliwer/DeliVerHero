@@ -62,11 +62,11 @@ export default function Relocate() {
         <meta name="description" content="Book Dubai Move-In Activation (AED 399) or full relocation support. Clear inclusions, no hidden costs. WhatsApp booking for guided home setup and move-in." />
       </Helmet>
 
-      {/* Trust Strip */}
+      {/* Navigation */}
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4">
+      <section className="relative min-h-[70vh] flex flex-col items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40 scale-105"
           style={{ backgroundImage: `url(${relocateHero})` }}
@@ -86,14 +86,6 @@ export default function Relocate() {
             <p className="text-xl md:text-2xl text-blue-100/80 max-w-2xl mx-auto font-medium">
               We manage the move-in support, home setup, utilities, and furniture orchestration.
             </p>
-            <div className="mt-8">
-              <Button 
-                onClick={() => window.open('https://wa.me/971523946311', '_blank')}
-                className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
-              >
-                Chat on WhatsApp
-              </Button>
-            </div>
           </motion.div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -110,10 +102,10 @@ export default function Relocate() {
               Relocation Support
             </Button>
             <Button 
-              onClick={() => window.open('https://wa.me/971523946311?text=URGENT:%20I%20need%20express%20relocation%20support.', '_blank')}
-              className="bg-red-600 hover:bg-red-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-red-900/40"
+              onClick={scrollToMoveOut}
+              className="bg-slate-800 hover:bg-slate-700 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl border border-white/10"
             >
-              Express Exit
+              Move-Out Exit
             </Button>
           </div>
         </div>
@@ -121,13 +113,46 @@ export default function Relocate() {
 
       <PartnerStrip />
 
-      {/* How DeliWer Works Explainer Block (Part 3) */}
-      <section className="px-4 py-12 bg-slate-950 border-b border-white/5">
-        <div className="max-w-4xl mx-auto text-center space-y-4">
-          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">How DeliWer Works</h2>
-          <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">
-            DeliWer exists to coordinate and plan — before problems turn into stress. We work with movers, technicians, and service providers, but you only deal with us.
-          </p>
+      {/* 3 Step Journey Explainer */}
+      <section className="px-4 py-24 bg-slate-950 border-b border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Your Dubai Journey</h2>
+            <p className="text-gray-400 font-bold mt-4 uppercase tracking-widest text-xs">Choose where you are today</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { 
+                step: "01", 
+                title: "Arriving", 
+                desc: "Technical setup before your furniture arrives.", 
+                ref: activationRef,
+                color: "text-emerald-500" 
+              },
+              { 
+                step: "02", 
+                title: "Settling", 
+                desc: "Full relocation management for families.", 
+                ref: relocationRef,
+                color: "text-blue-500" 
+              },
+              { 
+                step: "03", 
+                title: "Departing", 
+                desc: "Secure your deposit and manage your exit.", 
+                ref: moveOutRef,
+                color: "text-red-500" 
+              }
+            ].map((s, i) => (
+              <div key={i} className="space-y-6 group cursor-pointer" onClick={() => s.ref.current?.scrollIntoView({ behavior: 'smooth' })}>
+                <div className={`text-6xl font-black ${s.color} opacity-20 group-hover:opacity-100 transition-opacity`}>{s.step}</div>
+                <h3 className="text-2xl font-black uppercase tracking-tighter text-white">{s.title}</h3>
+                <p className="text-gray-400 font-medium leading-relaxed uppercase text-xs tracking-widest">{s.desc}</p>
+                <div className={`w-12 h-1 ${s.color.replace('text', 'bg')} group-hover:w-full transition-all duration-500`} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

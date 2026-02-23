@@ -31,12 +31,7 @@ export default function Home() {
         description="Home setup, relocation support, fixes, furniture, disposal & daily living handled by one team on WhatsApp."
       />
 
-      {/* Micro Trust Line - Added for uniformity */}
-      <section className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
-        <div className="max-w-4xl mx-auto">
-          <TrustStrip variant="dark" showContact={true} />
-        </div>
-      </section>
+      <Navigation />
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 text-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"
@@ -68,16 +63,19 @@ export default function Home() {
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
-              onClick={() => handleWhatsApp()}
-              data-testid="button-whatsapp-chat"
+              onClick={() => document.getElementById('service-cards')?.scrollIntoView({ behavior: 'smooth' })}
+              data-testid="button-explore-services"
             >
-              <MessageSquare className="w-8 h-8 fill-current" />
-              Chat on WhatsApp
+              Explore Services
             </Button>
             
-            <p className="text-sm text-gray-400 font-medium" data-testid="text-consultation-subtext">
-              Free 10-minute living support consult
-            </p>
+            <button 
+              className="text-sm text-gray-400 font-medium hover:text-emerald-400 transition-colors"
+              onClick={() => handleWhatsApp()}
+              data-testid="link-whatsapp-consultation"
+            >
+              Or chat on WhatsApp for a free consult
+            </button>
           </div>
 
           {/* Reassurance points */}

@@ -58,11 +58,11 @@ export default function Residents() {
         <meta name="description" content="Complete your Ejari or receive your keys? Start with Dubai Move-In Activation (AED 399) and settle in with DeliWer’s guided home preparation. WhatsApp booking available." />
       </Helmet>
 
-      {/* Trust Strip */}
+      {/* Navigation */}
       <Navigation />
 
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden px-4">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-30 scale-105"
           style={{ backgroundImage: `url(${homeConciergeBg})` }}
@@ -81,27 +81,22 @@ export default function Residents() {
             <p className="text-xl text-emerald-400 font-bold uppercase tracking-widest mb-8">
               Dubai Move-In Activation — AED 399
             </p>
-            <p className="text-gray-300 max-w-2xl mx-auto font-medium text-lg leading-relaxed mb-8">
-              The standard preparation visit most tenants choose before settling into their apartment.
-            </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-              <Link href="/relocate?type=activation">
-                <Button 
-                  size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40 w-full sm:w-auto"
-                >
-                  Book Activation
-                </Button>
-              </Link>
-              <Link href="/relocate?type=relocation">
-                <Button 
-                  variant="outline"
-                  size="lg"
-                  className="border-white/10 text-white hover:bg-white/5 h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl w-full sm:w-auto"
-                >
-                  Full Relocation
-                </Button>
-              </Link>
+              <Button 
+                onClick={scrollToConcierge}
+                size="lg"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40 w-full sm:w-auto"
+              >
+                Explore Services
+              </Button>
+              <Button 
+                onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent(getWhatsAppPrefill())}`, '_blank')}
+                variant="outline"
+                size="lg"
+                className="border-white/10 text-white hover:bg-white/5 h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl w-full sm:w-auto"
+              >
+                Chat on WhatsApp
+              </Button>
             </div>
           </motion.div>
         </div>
@@ -289,11 +284,6 @@ export default function Residents() {
             >
               Start on WhatsApp
             </Button>
-            <Link href="/relocate">
-              <Button variant="outline" size="lg" className="border-white/10 text-white hover:bg-white/5 h-20 px-12 rounded-2xl font-black uppercase tracking-widest flex gap-3 text-lg">
-                Explore Relocation <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
           </div>
         </div>
       </section>

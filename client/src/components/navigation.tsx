@@ -31,22 +31,17 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="px-4 py-3 border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-            <Flame className="w-6 h-6 text-slate-950" />
-          </div>
-          <span className="text-2xl font-black uppercase tracking-tighter text-white group-hover:text-emerald-400 transition-colors">DeliWer</span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1">
+    <nav className="border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
+      <div className="max-w-4xl mx-auto px-4 py-3">
+        <TrustStrip variant="dark" showContact={true} />
+      </div>
+      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between border-t border-white/5">
+        <div className="flex items-center gap-1 order-2 md:order-1">
           {navItems.map((item) => (
             <Link key={item.id} href={item.path}>
               <Button
                 variant="ghost"
-                className={`text-xs font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
+                className={`text-[10px] md:text-xs font-black uppercase tracking-widest px-2 md:px-4 py-2 rounded-xl transition-all ${
                   location === item.path 
                     ? "bg-white/10 text-emerald-400" 
                     : "text-gray-400 hover:text-white hover:bg-white/5"
@@ -56,7 +51,7 @@ export function Navigation() {
               </Button>
             </Link>
           ))}
-          <div className="w-px h-4 bg-white/10 mx-2" />
+          <div className="w-px h-4 bg-white/10 mx-2 hidden md:block" />
           <Button 
             variant="ghost" 
             size="icon" 
@@ -72,11 +67,18 @@ export function Navigation() {
           </Button>
         </div>
 
+        <Link href="/" className="flex items-center gap-2 group order-1 md:order-2">
+          <span className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white group-hover:text-emerald-400 transition-colors">DeliWer</span>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+            <Flame className="w-5 h-5 md:w-6 md:h-6 text-slate-950" />
+          </div>
+        </Link>
+
         {/* Mobile Menu Toggle */}
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden text-white rounded-xl"
+          className="md:hidden text-white rounded-xl order-3"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
