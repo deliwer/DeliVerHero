@@ -3,13 +3,17 @@
 ## Overview
 DeliWer is a full-stack JavaScript application designed for sustainable living, e-commerce, AI integration, and rewards. It serves as a comprehensive platform including a climate activism initiative ("Pakistan Planet Hero Mission"), a B2B wholesale platform ("ChainTrack"), and a Dubai-based relocation and investment gateway ("DeliWer Relocate").
 
-## Recent Updates (Feb 16, 2026)
-- **Project Import to Replit**: Successfully migrated and configured the application in the Replit environment.
-  - Set up PostgreSQL database and pushed schema with Drizzle ORM.
-  - Workflow configured to use `npx tsx server/index.ts` for development.
-  - Configured workflow for development server on port 5000 with webview output.
-  - Application running successfully with Express backend and Vite frontend.
-  - Deployment configured for autoscale with `npm run build` and `node dist/index.js`.
+## Recent Updates (Feb 23, 2026)
+- **Navigation & UX Refinement**: 
+  - Centralized navigation with logo on the right and sticky behavior.
+  - Integrated "Trust Strip" directly below the main navigation for consistent social proof.
+- **Service Page Redesign**:
+  - Overhauled `/relocate` and `/residents` pages with high-impact, cognitive layouts.
+  - Simplified service cards on `/residents` to a focused 3-card layout (Maintenance, Move-In Activation, Relocation).
+  - Added a "3 Step Journey" explainer to `/relocate` for better user orientation.
+- **Homepage Optimization**:
+  - Updated hero section with bold typography and clear "Arrive in Dubai. Ready to Live." messaging.
+  - Improved auto-scroll logic for service exploration.
 
 ## Previous Updates (Feb 8, 2026)
 - **Instagram -> WhatsApp Lead Engine**:

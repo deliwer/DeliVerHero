@@ -113,32 +113,32 @@ export default function Residents() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full relative bg-slate-900 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
+              <Card className="h-full relative bg-slate-900 border-white/5 hover:border-emerald-500/30 hover-elevate transition-all duration-500 rounded-[3rem] overflow-hidden group">
                 <div 
-                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-10 transition-transform duration-1000 group-hover:scale-110"
                   style={{ backgroundImage: `url(${maintenanceCardBg})` }}
                 />
-                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/90 to-slate-950" />
+                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
 
-                <CardContent className="relative z-10 p-10 space-y-8 h-full flex flex-col text-center sm:text-left">
-                  <div className="space-y-4">
-                    <div className="w-16 h-16 rounded-3xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 mx-auto sm:mx-0">
-                      <Hammer className="w-8 h-8" />
+                <CardContent className="relative z-10 p-12 space-y-8 h-full flex flex-col">
+                  <div className="space-y-6">
+                    <div className="w-20 h-20 rounded-[2rem] bg-emerald-500/10 flex items-center justify-center text-emerald-500 border border-emerald-500/20 transition-transform group-hover:rotate-6">
+                      <Hammer className="w-10 h-10" />
                     </div>
-                    <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Maintenance</h3>
-                      <p className="text-gray-300 font-bold text-base mt-2">One point of contact to assess, schedule, and manage trusted technicians.</p>
+                    <div className="space-y-3">
+                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Maintenance</h3>
+                      <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">One point of contact to assess, schedule, and manage trusted technicians.</p>
                     </div>
                   </div>
 
-                  <div className="mt-auto pt-8">
+                  <div className="mt-auto pt-10">
                     <Button 
-                      className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-900/40"
+                      className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-emerald-900/40 text-xl"
                       onClick={() => {
                         window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need help with maintenance.")}`, '_blank');
                       }}
                     >
-                      Book Maintenance
+                      Book Visit
                     </Button>
                   </div>
                 </CardContent>
@@ -152,32 +152,32 @@ export default function Residents() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="h-full relative bg-slate-900 border-emerald-500/40 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group shadow-2xl shadow-emerald-500/10 scale-105 z-20 border-2">
+              <Card className="h-full relative bg-slate-900 border-emerald-500/50 hover-elevate transition-all duration-500 rounded-[3rem] overflow-hidden group shadow-[0_0_50px_-12px_rgba(16,185,129,0.2)] scale-105 z-20 border-2">
                 <div 
-                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-25 transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 transition-transform duration-1000 group-hover:scale-110"
                   style={{ backgroundImage: `url(${conciergeCardBg})` }}
                 />
-                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/90 to-slate-950" />
+                <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
 
-                <CardContent className="relative z-10 p-10 space-y-8 h-full flex flex-col">
-                  <div className="space-y-4">
+                <CardContent className="relative z-10 p-12 space-y-8 h-full flex flex-col">
+                  <div className="space-y-6">
                     <div className="flex justify-between items-start">
-                      <div className="w-16 h-16 rounded-3xl bg-emerald-500 text-slate-950 flex items-center justify-center">
-                        <ClipboardList className="w-8 h-8" />
+                      <div className="w-20 h-20 rounded-[2rem] bg-emerald-500 text-slate-950 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                        <ClipboardList className="w-10 h-10" />
                       </div>
-                      <span className="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
-                        Activation & Setup Layer
-                      </span>
+                      <Badge className="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full">
+                        Popular Choice
+                      </Badge>
                     </div>
-                    <div>
-                      <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Move-In Activation</h3>
-                      <p className="text-gray-100 font-bold text-lg mt-2 leading-tight">
-                        Activate your home correctly. From shower filters to AC prep, we handle the technical first-step.
+                    <div className="space-y-3">
+                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Move-In Activation</h3>
+                      <p className="text-gray-100 font-bold text-xl leading-[1.1] uppercase tracking-tight">
+                        Activate your home correctly. From shower filters to AC prep, we handle the technical foundations.
                       </p>
                     </div>
                   </div>
 
-                  <div className="space-y-3 pt-6 border-t border-white/10">
+                  <div className="space-y-4 pt-8 border-t border-white/10">
                     {[
                       "Technical move-in prep visit",
                       "Shower filter supply + install",
@@ -185,19 +185,19 @@ export default function Residents() {
                       "Water readiness audit",
                       "Essentials setup guidance"
                     ].map((f, i) => (
-                      <div key={i} className="flex gap-3 text-[12px] text-emerald-50 font-black uppercase tracking-tight items-center">
-                        <CalendarCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                      <div key={i} className="flex gap-4 text-[13px] text-emerald-50 font-black uppercase tracking-widest items-center">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
                         <span>{f}</span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-auto space-y-4 pt-8">
+                  <div className="mt-auto pt-10">
                     <Button 
-                      className="w-full h-18 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-emerald-500/20 text-lg"
+                      className="w-full h-20 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-emerald-500/20 text-xl"
                       onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
                     >
-                      Book Activation (AED 399)
+                      Book AED 399
                     </Button>
                   </div>
                 </CardContent>
@@ -211,23 +211,22 @@ export default function Residents() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="h-full relative bg-slate-900 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden group">
-                <CardContent className="relative z-10 p-10 space-y-8 h-full flex flex-col text-center sm:text-left">
-                  <div className="space-y-4">
-                    <div className="w-16 h-16 rounded-3xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20 mx-auto sm:mx-0 shadow-lg shadow-blue-500/20">
-                      <Zap className="w-8 h-8" />
+              <Card className="h-full relative bg-slate-900 border-white/5 hover:border-blue-500/30 hover-elevate transition-all duration-500 rounded-[3rem] overflow-hidden group">
+                <CardContent className="relative z-10 p-12 space-y-8 h-full flex flex-col">
+                  <div className="space-y-6">
+                    <div className="w-20 h-20 rounded-[2rem] bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20 shadow-lg shadow-blue-500/10">
+                      <Zap className="w-10 h-10" />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-black uppercase tracking-widest text-blue-400 mb-2">Relocation Support</h3>
-                      <h4 className="text-3xl font-black uppercase tracking-tighter text-white leading-tight">Full Coordination & Logistics</h4>
-                      <p className="text-gray-300 font-bold text-base mt-4">Ideal for families or tenants needing multi-visit coordination and full-scale relocation management.</p>
+                    <div className="space-y-3">
+                      <h3 className="text-4xl font-black uppercase tracking-tighter text-white">Relocation</h3>
+                      <p className="text-gray-400 font-bold text-lg leading-tight uppercase tracking-tight">Full Coordination & Logistics management for families and complex moves.</p>
                     </div>
                   </div>
 
-                  <div className="mt-auto pt-8">
+                  <div className="mt-auto pt-10">
                     <Link href="/relocate?type=relocation">
                       <Button 
-                        className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-900/40"
+                        className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-blue-900/40 text-xl"
                       >
                         Explore Relocation
                       </Button>

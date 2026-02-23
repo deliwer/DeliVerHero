@@ -125,43 +125,53 @@ export default function Relocate() {
       <PartnerStrip />
 
       {/* 3 Step Journey Explainer */}
-      <section className="px-4 py-24 bg-slate-950 border-b border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Your Dubai Journey</h2>
-            <p className="text-gray-400 font-bold mt-4 uppercase tracking-widest text-xs">Choose where you are today</p>
+      <section className="px-4 py-32 bg-slate-950 border-b border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24 space-y-4">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">Your Dubai Journey</h2>
+            <div className="h-1 w-24 bg-emerald-500 mx-auto" />
           </div>
           
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-16">
             {[
               { 
                 step: "01", 
                 title: "Arriving", 
-                desc: "Technical setup before your furniture arrives.", 
+                desc: "Technical setup before your furniture arrives. We handle the foundations.", 
                 ref: activationRef,
-                color: "text-emerald-500" 
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-500"
               },
               { 
                 step: "02", 
                 title: "Settling", 
-                desc: "Full relocation management for families.", 
+                desc: "Full relocation management for families and complex moves.", 
                 ref: relocationRef,
-                color: "text-blue-500" 
+                color: "text-blue-500",
+                bgColor: "bg-blue-500"
               },
               { 
                 step: "03", 
                 title: "Departing", 
-                desc: "Secure your deposit and manage your exit.", 
+                desc: "Secure your deposit and manage your exit with total compliance.", 
                 ref: moveOutRef,
-                color: "text-red-500" 
+                color: "text-red-500",
+                bgColor: "bg-red-500"
               }
             ].map((s, i) => (
-              <div key={i} className="space-y-6 group cursor-pointer" onClick={() => s.ref.current?.scrollIntoView({ behavior: 'smooth' })}>
-                <div className={`text-6xl font-black ${s.color} opacity-20 group-hover:opacity-100 transition-opacity`}>{s.step}</div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter text-white">{s.title}</h3>
-                <p className="text-gray-400 font-medium leading-relaxed uppercase text-xs tracking-widest">{s.desc}</p>
-                <div className={`w-12 h-1 ${s.color.replace('text', 'bg')} group-hover:w-full transition-all duration-500`} />
-              </div>
+              <motion.div 
+                key={i} 
+                whileHover={{ y: -10 }}
+                className="space-y-8 group cursor-pointer p-8 rounded-[2.5rem] bg-white/5 border border-white/5 hover:border-white/10 transition-all"
+                onClick={() => s.ref.current?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <div className={`text-7xl font-black ${s.color} opacity-20 group-hover:opacity-100 transition-all duration-500 leading-none`}>{s.step}</div>
+                <div className="space-y-4">
+                  <h3 className="text-3xl font-black uppercase tracking-tighter text-white">{s.title}</h3>
+                  <p className="text-gray-400 font-bold leading-relaxed uppercase text-xs tracking-[0.2em]">{s.desc}</p>
+                </div>
+                <div className={`w-12 h-1 ${s.bgColor} group-hover:w-full transition-all duration-700`} />
+              </motion.div>
             ))}
           </div>
         </div>

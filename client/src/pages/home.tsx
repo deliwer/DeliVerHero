@@ -46,39 +46,30 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] drop-shadow-2xl">
-              Complete Your Move-In in Dubai<br />
-              <span className="text-emerald-500">After Lease Signing</span>
+            <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white">
+              Arrive in Dubai. <br />
+              <span className="text-emerald-500">Ready to Live.</span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-gray-200 font-medium max-w-3xl mx-auto leading-relaxed">
-              Finish move-in in record time. Avoid paperwork & delays. Brokers earn referral commission.
+            <h2 className="text-xl md:text-2xl text-gray-300 font-bold max-w-3xl mx-auto leading-tight uppercase tracking-tight">
+              One unified orchestration layer for your home. <br />
+              <span className="text-blue-400 italic font-serif lowercase tracking-normal">We manage the mess, you enjoy the city.</span>
             </h2>
-            
-            <p className="text-sm text-gray-400 font-medium">
-              For new arrivals, residents & families who don’t want chaos.
-            </p>
           </motion.div>
           
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-6">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-[2rem] px-16 h-24 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-4 items-center justify-center"
               onClick={() => {
                 const element = document.getElementById('service-cards');
                 if (element) {
-                  const headerOffset = 120;
-                  const elementPosition = element.getBoundingClientRect().top;
-                  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                  window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                  });
+                  element.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
               data-testid="button-explore-services"
             >
-              Explore Services
+              Get Started <ArrowRight className="w-8 h-8" />
             </Button>
             
             <button 
@@ -156,7 +147,7 @@ export default function Home() {
             </Link>
 
             {/* CARD 2 — RESIDENT CONCIERGE */}
-            <Link href="/residents">
+            <Link href="/relocate">
               <Card className="bg-slate-900 border-emerald-500/30 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden h-full cursor-pointer flex flex-col scale-105 shadow-2xl shadow-emerald-500/5 z-10 border-2">
                 <CardContent className="p-10 space-y-6 flex-1 flex flex-col">
                   <div className="flex justify-between items-start">
@@ -164,31 +155,28 @@ export default function Home() {
                       <ClipboardList className="w-8 h-8" />
                     </div>
                     <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase px-3 py-1">
-                      Planning Layer
+                      Journey Layer
                     </Badge>
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Move Concierge</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight">Relocation Support</h3>
                   <p className="text-emerald-50 font-bold leading-relaxed">
-                    We manage the planning and vendor coordination around your move — before, during, and after moving day.
+                    We manage the foundations of your move. From technical activation to family relocation support.
                   </p>
                   <div className="space-y-2 pt-4 border-t border-white/10">
                     {[
-                      "Utility setup & timelines",
-                      "Furniture coordination",
-                      "Single point of contact"
+                      "Move-In Activation (AED 399)",
+                      "Full Relocation Coordination",
+                      "Move-Out Deposit Protection"
                     ].map((f, i) => (
                       <div key={i} className="flex gap-2 text-xs font-black uppercase tracking-widest text-emerald-100 items-center">
                         <CalendarCheck className="w-4 h-4 text-emerald-400" />
                         {f}
                       </div>
                     ))}
-                    <p className="text-[10px] text-emerald-400/60 font-black uppercase tracking-widest mt-4 italic">
-                      "Not a movers service. We manage the process, not the truck."
-                    </p>
                   </div>
                   <div className="mt-auto pt-8">
                     <Button className="w-full h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-xl shadow-xl shadow-emerald-500/20">
-                      Plan My Move
+                      Explore Relocation
                     </Button>
                   </div>
                 </CardContent>
@@ -202,23 +190,23 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
                     <UserCheck className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Resident Support</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight">Resident Privileges</h3>
                   <p className="text-slate-400 font-bold leading-relaxed">
-                    For residents already living in Dubai who need help managing home setup, upgrades, or transitions.
+                    Exclusive access to Dubai's top venues and priority concierge scheduling for our long-term residents.
                   </p>
                   <div className="space-y-2 pt-4 border-t border-white/5">
                     <div className="flex gap-2 text-xs font-black uppercase tracking-widest text-gray-300 items-center">
                       <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                      Home setup changes
+                      Partner F&B Vouchers
                     </div>
                     <div className="flex gap-2 text-xs font-black uppercase tracking-widest text-gray-300 items-center">
                       <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                      Exit or replacement support
+                      Priority Maintenance
                     </div>
                   </div>
                   <div className="mt-auto pt-8">
                     <Button className="w-full h-14 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-xl">
-                      View Support Services
+                      View Privileges
                     </Button>
                   </div>
                 </CardContent>
