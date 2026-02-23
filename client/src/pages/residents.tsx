@@ -62,40 +62,40 @@ export default function Residents() {
       <Navigation />
 
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden px-4">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-30 scale-105"
           style={{ backgroundImage: `url(${homeConciergeBg})` }}
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950" />
         
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="space-y-6"
           >
-            <h1 id="hero-headline" className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
+            <h1 id="hero-headline" className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85]">
               {getHeadline()}
             </h1>
-            <p className="text-xl text-emerald-400 font-bold uppercase tracking-widest mb-8">
-              Dubai Move-In Activation — AED 399
+            <div className="flex items-center justify-center gap-4">
+              <div className="h-px w-12 bg-emerald-500" />
+              <p className="text-xl text-emerald-400 font-bold uppercase tracking-[0.2em]">
+                Move-In Activation • AED 399
+              </p>
+              <div className="h-px w-12 bg-emerald-500" />
+            </div>
+            <p className="text-gray-300 max-w-2xl mx-auto font-medium text-lg leading-relaxed uppercase tracking-tight">
+              The essential first-step visit for every Dubai tenant. AC check, shower filters, and water readiness in one coordinated visit.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12">
               <Button 
                 onClick={scrollToConcierge}
                 size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40 w-full sm:w-auto"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white h-24 px-16 text-2xl font-black uppercase tracking-widest rounded-[2rem] shadow-2xl shadow-emerald-900/40 w-full sm:w-auto active-elevate-2 transition-all"
               >
-                Explore Services
-              </Button>
-              <Button 
-                onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent(getWhatsAppPrefill())}`, '_blank')}
-                variant="outline"
-                size="lg"
-                className="border-white/10 text-white hover:bg-white/5 h-20 px-12 text-xl font-black uppercase tracking-widest rounded-2xl w-full sm:w-auto"
-              >
-                Chat on WhatsApp
+                Browse All Services
               </Button>
             </div>
           </motion.div>

@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/navigation";
 import { ContactForm } from "@/components/contact-form";
 import { 
   Mail, Phone, MapPin, Clock, MessageCircle, Globe, Instagram, 

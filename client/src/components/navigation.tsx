@@ -31,61 +31,70 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="border-b border-white/10 bg-slate-950/20 backdrop-blur-sm sticky top-0 z-[60]">
-      <div className="max-w-4xl mx-auto px-4 py-3">
-        <TrustStrip variant="dark" showContact={true} />
-      </div>
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between border-t border-white/5">
-        <div className="flex items-center gap-1 order-2 md:order-1">
-          {navItems.map((item) => (
-            <Link key={item.id} href={item.path}>
-              <Button
-                variant="ghost"
-                className={`text-[10px] md:text-xs font-black uppercase tracking-widest px-2 md:px-4 py-2 rounded-xl transition-all ${
-                  location === item.path 
-                    ? "bg-white/10 text-emerald-400" 
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                {item.label}
-              </Button>
-            </Link>
-          ))}
-          <div className="w-px h-4 bg-white/10 mx-2 hidden md:block" />
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="relative text-gray-400 hover:text-white hover:bg-white/5 rounded-xl"
-            onClick={() => window.location.href = '/cart'}
-          >
-            <ShoppingCart className="w-5 h-5" />
-            {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 text-slate-950 text-[10px] font-black rounded-full flex items-center justify-center">
-                {cartCount}
-              </span>
-            )}
-          </Button>
-        </div>
-
-        <Link href="/" className="flex items-center gap-2 group order-1 md:order-2">
-          <span className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white group-hover:text-emerald-400 transition-colors">DeliWer</span>
-          <div className="w-8 h-8 md:w-10 md:h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-            <Flame className="w-5 h-5 md:w-6 md:h-6 text-slate-950" />
+    <div className="sticky top-0 z-[60] w-full">
+      {/* 1. Main Navigation Bar */}
+      <nav className="bg-slate-900/90 backdrop-blur-md border-b border-white/5 px-4 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* LEFT: Nav Links (Desktop) */}
+          <div className="hidden md:flex items-center gap-1 order-1">
+            {navItems.map((item) => (
+              <Link key={item.id} href={item.path}>
+                <Button
+                  variant="ghost"
+                  className={`text-xs font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
+                    location === item.path 
+                      ? "bg-emerald-500/10 text-emerald-400" 
+                      : "text-gray-400 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </Button>
+              </Link>
+            ))}
+            <div className="w-px h-4 bg-white/10 mx-2" />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative text-gray-400 hover:text-white rounded-xl"
+              onClick={() => window.location.href = '/cart'}
+            >
+              <ShoppingCart className="w-5 h-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 text-slate-950 text-[10px] font-black rounded-full flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </Button>
           </div>
-        </Link>
 
-        {/* Mobile Menu Toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden text-white rounded-xl order-3"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </Button>
+          {/* LEFT: Mobile Menu Toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden text-white rounded-xl order-1"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </Button>
+
+          {/* RIGHT: Logo */}
+          <Link href="/" className="flex items-center gap-3 group ml-auto order-2">
+            <span className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white group-hover:text-emerald-400 transition-colors">DeliWer</span>
+            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:rotate-12 transition-transform">
+              <Flame className="w-6 h-6 text-slate-950" />
+            </div>
+          </Link>
+        </div>
+      </nav>
+
+      {/* 2. Trust Strip Bar (Below Nav) */}
+      <div className="bg-slate-950 border-b border-white/10 py-2.5 px-4">
+        <div className="max-w-7xl mx-auto flex justify-center md:justify-start overflow-x-auto no-scrollbar">
+          <TrustStrip variant="dark" showContact={true} />
+        </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* 3. Mobile Nav Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-slate-900 border-b border-white/10 p-4 space-y-2 z-[70] shadow-2xl">
           {navItems.map((item) => (
@@ -106,6 +115,6 @@ export function Navigation() {
           ))}
         </div>
       )}
-    </nav>
+    </div>
   );
 }

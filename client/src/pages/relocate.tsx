@@ -66,46 +66,57 @@ export default function Relocate() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex flex-col items-center justify-center overflow-hidden px-4">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40 scale-105"
           style={{ backgroundImage: `url(${relocateHero})` }}
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/20 via-slate-950/80 to-slate-950" />
         
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="space-y-6"
           >
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 leading-[0.9]">
-              Moving into Dubai? <br />
-              <span className="text-blue-500 italic font-serif lowercase tracking-normal">Don’t arrive confused or overpay.</span>
+            <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] text-white">
+              Arrive in Dubai. <br />
+              <span className="text-emerald-500">Ready to Live.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100/80 max-w-2xl mx-auto font-medium">
-              We manage the move-in support, home setup, utilities, and furniture orchestration.
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-bold uppercase tracking-tight">
+              One unified orchestration layer for your relocation. <br />
+              <span className="text-blue-400 italic font-serif lowercase tracking-normal">We manage the mess, you enjoy the city.</span>
             </p>
           </motion.div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
             <Button 
               onClick={scrollToActivation}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-900/40"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-emerald-900/40 group"
             >
-              Move-In Activation
+              <div className="flex flex-col items-center gap-1">
+                <span>01. Activation</span>
+                <span className="text-[10px] opacity-60">Technical Move-In</span>
+              </div>
             </Button>
             <Button 
               onClick={scrollToRelocation}
-              className="bg-blue-600 hover:bg-blue-500 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-blue-900/40"
+              className="bg-blue-600 hover:bg-blue-500 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-blue-900/40 group"
             >
-              Relocation Support
+              <div className="flex flex-col items-center gap-1">
+                <span>02. Relocation</span>
+                <span className="text-[10px] opacity-60">Full Support</span>
+              </div>
             </Button>
             <Button 
               onClick={scrollToMoveOut}
-              className="bg-slate-800 hover:bg-slate-700 text-white h-16 px-10 text-lg font-black uppercase tracking-widest rounded-2xl border border-white/10"
+              className="bg-slate-800 hover:bg-slate-700 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl border border-white/10 group"
             >
-              Move-Out Exit
+              <div className="flex flex-col items-center gap-1">
+                <span>03. Move-Out</span>
+                <span className="text-[10px] opacity-60">Deposit Protection</span>
+              </div>
             </Button>
           </div>
         </div>
@@ -208,6 +219,7 @@ export default function Relocate() {
                   <Button 
                     onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) package.")}`, '_blank')}
                     className="w-full h-16 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl text-lg shadow-xl shadow-emerald-500/20"
+                    data-testid="button-book-activation"
                   >
                     Book Activation
                   </Button>

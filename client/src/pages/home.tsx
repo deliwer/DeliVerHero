@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/navigation";
 import { useState, useEffect } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { 
@@ -63,18 +64,29 @@ export default function Home() {
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
-              onClick={() => document.getElementById('service-cards')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                const element = document.getElementById('service-cards');
+                if (element) {
+                  const headerOffset = 120;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                  });
+                }
+              }}
               data-testid="button-explore-services"
             >
               Explore Services
             </Button>
             
             <button 
-              className="text-sm text-gray-400 font-medium hover:text-emerald-400 transition-colors"
+              className="text-sm text-gray-400 font-medium hover:text-emerald-400 transition-colors uppercase tracking-widest"
               onClick={() => handleWhatsApp()}
               data-testid="link-whatsapp-consultation"
             >
-              Or chat on WhatsApp for a free consult
+              Free 10-minute consult via WhatsApp
             </button>
           </div>
 
