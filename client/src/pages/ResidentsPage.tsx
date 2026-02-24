@@ -237,20 +237,6 @@ export default function ResidentsPage() {
         </div>
       </main>
 
-      {/* Floating WhatsApp */}
-      <a 
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 h-16 w-16 md:h-20 md:w-20 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 transition-transform hover:scale-110 active:scale-95 z-50 group border-4 border-white/10 backdrop-blur-md"
-        data-testid="button-whatsapp-floating"
-      >
-        <SiWhatsapp size={36} />
-        <span className="absolute right-full mr-6 bg-slate-900 text-white px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest shadow-2xl border border-white/5 opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap translate-x-4 group-hover:translate-x-0">
-          Chat with us
-        </span>
-      </a>
-
       <footer className="py-16 px-6 text-center text-gray-500 text-xs font-black uppercase tracking-[0.2em] border-t border-white/5 bg-slate-950">
         <p>© 2026 DeliWer. Built for sustainable Dubai living.</p>
       </footer>

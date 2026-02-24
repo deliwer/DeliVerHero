@@ -31,9 +31,9 @@ export function Navigation() {
   ];
 
   return (
-    <div className="sticky top-0 z-[60] w-full">
-      {/* 1. Main Navigation Bar */}
-      <nav className="bg-slate-900/90 backdrop-blur-md border-b border-white/5 px-4 py-3">
+    <div className="w-full">
+      {/* 1. Main Navigation Bar - Fixed */}
+      <nav className="sticky top-0 z-[60] bg-slate-900/90 backdrop-blur-md border-b border-white/5 px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* LEFT: Logo - Home Button */}
           <Link href="/" className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
@@ -84,14 +84,12 @@ export function Navigation() {
         </div>
       </nav>
 
-      {/* 2. Trust Strip Bar (Below Nav) - Only on Home and Landing and only once */}
-      {(location === "/" || location === "/home") && (
-        <div className="bg-slate-950 border-b border-white/10 py-2.5 px-4">
-          <div className="max-w-7xl mx-auto flex justify-center md:justify-start overflow-x-auto no-scrollbar">
-            <TrustStrip variant="dark" showContact={true} />
-          </div>
+      {/* 2. Trust Strip Bar (Below Nav) - Scrollable, Website Wide */}
+      <div className="bg-slate-950 border-b border-white/10 py-2.5 px-4 overflow-x-auto no-scrollbar">
+        <div className="max-w-7xl mx-auto flex justify-center md:justify-start min-w-max">
+          <TrustStrip variant="dark" showContact={true} />
         </div>
-      )}
+      </div>
 
       {/* 3. Mobile Nav Dropdown */}
       {isMobileMenuOpen && (

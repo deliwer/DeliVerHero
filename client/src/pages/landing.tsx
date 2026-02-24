@@ -38,19 +38,19 @@ export default function LandingPage() {
         description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroBg})` }}
         >
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
         </div>
 
-        <div className="max-w-4xl w-full text-center space-y-10 relative z-10 py-20">
+        <div className="max-w-4xl w-full text-center space-y-8 relative z-10 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
               Ejari Home<br />
@@ -103,110 +103,41 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="the-journey" className="py-24 px-6 bg-slate-900 border-y border-white/5">
-        <div className="container mx-auto max-w-7xl text-center">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-16">The Complete Dubai Move-In Journey</h2>
-          <div className="flex flex-col md:flex-row justify-between items-start gap-8 relative">
-            {/* Step 1: Ejari */}
-            <div className="flex-1 space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20 mx-auto group-hover:scale-110 transition-transform">
-                <ClipboardList className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-black uppercase tracking-tight">1. Ejari Setup</h3>
-              <p className="text-sm text-gray-400 font-bold leading-relaxed uppercase tracking-widest">Lease registration & planning</p>
-            </div>
 
-            {/* Step 2: Handover */}
-            <div className="flex-1 space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20 mx-auto group-hover:scale-110 transition-transform">
-                <UserCheck className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-black uppercase tracking-tight">2. Handover</h3>
-              <p className="text-sm text-gray-400 font-bold leading-relaxed uppercase tracking-widest">Key collection & utility sequence</p>
-            </div>
-
-            {/* Step 3: Move-In */}
-            <div className="flex-1 space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20 mx-auto group-hover:scale-110 transition-transform">
-                <Package className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-black uppercase tracking-tight">3. Move-In</h3>
-              <p className="text-sm text-gray-400 font-bold leading-relaxed uppercase tracking-widest">Logistics & settling essentials</p>
-            </div>
-
-            {/* Step 4: Activation */}
-            <div className="flex-1 space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500 flex items-center justify-center text-slate-950 mx-auto group-hover:scale-110 transition-transform shadow-2xl shadow-emerald-500/20">
-                <Zap className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-black uppercase tracking-tight text-emerald-400 underline decoration-2 underline-offset-8">4. Activation</h3>
-              <p className="text-sm text-gray-100 font-black leading-relaxed uppercase tracking-widest">The critical home readiness visit</p>
-            </div>
-
-            {/* Step 5: Water Upsell */}
-            <div className="flex-1 space-y-6 group">
-              <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20 mx-auto group-hover:scale-110 transition-transform">
-                <Droplets className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-black uppercase tracking-tight">5. Water Setup</h3>
-              <p className="text-sm text-gray-400 font-bold leading-relaxed uppercase tracking-widest">Premium filtration & purity</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hero-like Action Section */}
-      <section className="py-24 bg-slate-950 border-b border-white/5">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-tight">
+      {/* Second Fold: Simplified & Essential */}
+      <section className="py-20 px-6 bg-slate-900 border-y border-white/5">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight">
                 One Gateway. <br />
                 <span className="text-emerald-500">Zero Hassle.</span>
               </h2>
-              <p className="text-xl text-gray-300 font-bold leading-relaxed uppercase tracking-wide">
+              <p className="text-lg text-gray-300 font-bold leading-relaxed uppercase tracking-wide">
                 DeliWer transforms the fragmented Dubai move-in process into a single, structured journey. From Ejari registration to the moment you drink purified water from your tap.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest transition-all shadow-xl shadow-emerald-900/20"
-                  onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20just%20signed%20a%20lease%20in%20Dubai%20and%20need%20move-in%20support.', '_blank')}
-                >
-                  Book My Move-In
-                </Button>
-                <Link href="/residents">
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest"
-                  >
-                    View All Stages
-                  </Button>
-                </Link>
-              </div>
+              <Button 
+                size="lg"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest"
+                onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+              >
+                Book My Move-In
+              </Button>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-white/5 border-white/10 p-6 space-y-4">
-                <CheckCircle2 className="w-8 h-8 text-emerald-500" />
-                <h4 className="font-black uppercase tracking-tight">Legally Secure</h4>
-                <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">All Ejari & DEWA requirements handled correctly.</p>
-              </Card>
-              <Card className="bg-white/5 border-white/10 p-6 space-y-4">
-                <Zap className="w-8 h-8 text-emerald-500" />
-                <h4 className="font-black uppercase tracking-tight">Fast Activation</h4>
-                <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Home readiness visit scheduled within 48 hours.</p>
-              </Card>
-              <Card className="bg-white/5 border-white/10 p-6 space-y-4">
-                <MessageCircle className="w-8 h-8 text-emerald-500" />
-                <h4 className="font-black uppercase tracking-tight">WhatsApp Managed</h4>
-                <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">One contact for your entire relocation.</p>
-              </Card>
-              <Card className="bg-white/5 border-white/10 p-6 space-y-4">
-                <Shield className="w-8 h-8 text-emerald-500" />
-                <h4 className="font-black uppercase tracking-tight">100% Guaranteed</h4>
-                <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Your apartment ready before you arrive.</p>
-              </Card>
+            <div className="space-y-4">
+              {[
+                { title: "Legally Secure", desc: "All Ejari & DEWA requirements handled correctly.", icon: CheckCircle2 },
+                { title: "Fast Activation", desc: "Home readiness visit scheduled within 48 hours.", icon: Zap },
+                { title: "WhatsApp Managed", desc: "One contact for your entire relocation.", icon: MessageCircle },
+              ].map((benefit, i) => (
+                <div key={i} className="flex gap-4 items-start p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-emerald-500/30 transition-all group">
+                  <benefit.icon className="w-6 h-6 text-emerald-500 shrink-0 mt-1 group-hover:scale-110 transition-transform" />
+                  <div>
+                    <h4 className="font-black uppercase tracking-tight text-white">{benefit.title}</h4>
+                    <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">{benefit.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

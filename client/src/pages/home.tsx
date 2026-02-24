@@ -172,75 +172,59 @@ export default function Home() {
         </script>
       </Helmet>
 
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 text-center">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4 text-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"
           style={{ backgroundImage: `url(${maintenanceHero})` }}
         />
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950" />
         
-        <div className="relative z-10 max-w-4xl mx-auto space-y-10 py-20">
+        <div className="relative z-10 max-w-4xl mx-auto space-y-10 py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
-              Moving Into a New <br />
-              Apartment in <span className="text-emerald-500">Dubai?</span>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
+              Moving Into <br />
+              Dubai? <span className="text-emerald-500 text-4xl md:text-6xl align-middle">Start Here</span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-gray-300 font-bold max-w-3xl mx-auto leading-tight uppercase tracking-tight">
-              Start with a structured Move-In Planning Session — from Ejari to full home activation and water setup.
+            <h2 className="text-lg md:text-xl text-gray-300 font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight opacity-90">
+              A structured Move-In Planning Session — from Ejari to full home activation and water setup.
             </h2>
           </motion.div>
           
-          <div className="flex flex-col items-center gap-6">
-            <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-              <Link href="/residents?stage=ejari">
-                <Button 
-                  size="lg" 
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-[2rem] px-8 h-20 text-xl shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
-                >
-                  Start Move-In Planning <ArrowRight className="w-6 h-6" />
-                </Button>
-              </Link>
-              <Link href="/residents?stage=handover">
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-[2rem] px-8 h-20 text-xl shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
-                >
-                  I Already Have My Keys
-                </Button>
-              </Link>
-            </div>
+          <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto justify-center">
+            <Link href="/residents?stage=ejari">
+              <Button 
+                size="lg" 
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-16 text-lg shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
+              >
+                Start Move-In Planning <ArrowRight className="w-5 h-5" />
+              </Button>
+            </Link>
+            <Link href="/residents?stage=handover">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-2xl px-8 h-16 text-lg shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
+              >
+                I Already Have My Keys
+              </Button>
+            </Link>
           </div>
-
-          {/* Journey Indicator Strip */}
-          <section id="move-in-journey" className="pt-12 text-center">
-            <p className="text-emerald-400 font-black uppercase tracking-[0.3em] mb-4">Plan → Activate → Settle</p>
-            <div className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest space-y-1">
-              <p>Step 1: Move-In Planning (AED 99 or FREE with Activation)</p>
-              <p>Step 2: Move-In Activation (AED 399)</p>
-              <p>Step 3: Water & Home Setup</p>
-            </div>
-          </section>
         </div>
       </section>
 
-      <PartnerStrip />
-
-      {/* 2. Service Entry Cards */}
-      <section id="service-cards" className="py-24 px-6 bg-slate-950">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-20 space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest mx-auto">
-              <ShieldCheck className="w-4 h-4" /> 100% Home Service Solution
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Your Move-In Steps</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto font-medium text-xl italic font-serif">A structured path to your new Dubai home.</p>
-          </div>
+      <div className="py-12 border-y border-white/5 bg-slate-900/50">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-4">
+          <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-xs">Plan → Activate → Settle</p>
+          <p className="text-gray-400 font-bold leading-relaxed uppercase text-[10px] tracking-widest max-w-2xl mx-auto">
+            DeliWer provides move-in and relocation concierge services in Dubai, helping expatriates transition from Ejari to home activation.
+          </p>
+        </div>
+      </div>
           
           <div className="grid lg:grid-cols-3 gap-8">
             {/* STEP 1 — MOVE-IN PLANNING */}
