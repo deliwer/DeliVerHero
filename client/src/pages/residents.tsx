@@ -108,55 +108,84 @@ export default function Residents() {
       <section ref={conciergeRef} className="px-4 py-24 bg-slate-950">
         <div className="max-w-7xl mx-auto space-y-24">
           
-          {/* STEP 1 - PLANNING SESSION */}
-          <div id="planning-section" className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge className="bg-emerald-500 text-slate-950 px-4 py-1 uppercase font-black tracking-widest">Step 1</Badge>
-                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-none">Move-In <br /><span className="text-emerald-500">Planning Session</span></h2>
-                <p className="text-gray-400 font-bold text-xl leading-tight">Before you move in, we structure the critical steps between lease signing and home activation.</p>
-              </div>
-              <ul className="space-y-4">
-                {[
-                  "Ejari document checklist review",
-                  "Trustee booking guidance",
-                  "DEWA & utility timing plan",
-                  "Internet & utilities sequencing",
-                  "Move-in readiness roadmap",
-                  "WhatsApp coordination",
-                  "Water quality assessment included"
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-4 items-center text-gray-200 font-bold uppercase tracking-tight text-sm">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="p-6 bg-white/5 rounded-3xl border border-white/10 space-y-4">
-                <p className="text-lg font-black uppercase text-white">Pricing:</p>
-                <p className="text-emerald-400 font-black text-2xl">FREE <span className="text-white/60 text-sm font-bold lowercase tracking-normal">when bundled with Activation (AED 399)</span></p>
-                <p className="text-white/60 font-bold text-sm">Standalone: AED 99</p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-white/5 border-white/10 hover:border-emerald-500/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-emerald-500/20" />
+              <CardContent className="p-8 space-y-6">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                  <ClipboardList className="w-7 h-7" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black uppercase tracking-tight mb-2">1. Ejari Home Service</h3>
+                  <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-4">The Entry Gateway</p>
+                  <p className="text-gray-400 leading-relaxed">
+                    Complete lease registration and utility sequencing. We handle the bureaucracy so your move starts on solid ground.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-sm font-black text-emerald-400 uppercase tracking-widest">100% Home Service</p>
+                </div>
                 <Button 
-                  onClick={() => window.location.href='/relocate?type=activation'}
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white h-16 px-8 font-black uppercase tracking-widest rounded-2xl flex-1"
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest py-6"
+                  onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20need%20help%20with%20my%20Ejari%20and%20move-in%20planning.', '_blank')}
                 >
-                  Book Planning + Activation
+                  Start Ejari Setup
                 </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 hover:border-emerald-500/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-emerald-500/20" />
+              <CardContent className="p-8 space-y-6">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                  <UserCheck className="w-7 h-7" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black uppercase tracking-tight mb-2">2. Handover & Move-In</h3>
+                  <p className="text-gray-400 font-bold uppercase tracking-widest text-xs mb-4">Key Collection & Logistics</p>
+                  <p className="text-gray-400 leading-relaxed">
+                    Physical key collection, DEWA activation confirmation, and move-in logistics coordination at your new location.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/5">
+                  <p className="text-sm font-black text-emerald-400 uppercase tracking-widest">AED 99 / FREE WITH ACTIVATION</p>
+                </div>
                 <Button 
-                  onClick={() => window.location.href='/relocate?type=planning-only'}
                   variant="outline"
-                  className="border-white/20 text-white hover:bg-white/5 h-16 px-8 font-black uppercase tracking-widest rounded-2xl flex-1"
+                  className="w-full border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black uppercase tracking-widest py-6"
+                  onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20need%20support%20with%20my%20apartment%20handover.', '_blank')}
                 >
-                  Book Planning Only
+                  Book Handover
                 </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-emerald-500 border-none group relative overflow-hidden shadow-2xl shadow-emerald-500/20">
+              <div className="absolute top-0 right-0 p-4">
+                <Zap className="w-8 h-8 text-slate-950/20" />
               </div>
-            </div>
-            <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10">
-              <div className="absolute inset-0 bg-emerald-500/20 mix-blend-overlay" />
-              <img src={maintenanceCardBg} alt="Planning" className="w-full h-full object-cover opacity-40" />
-            </div>
+              <CardContent className="p-8 space-y-6 text-slate-950">
+                <div className="w-14 h-14 rounded-2xl bg-slate-950/10 flex items-center justify-center text-slate-950 border border-slate-950/20 group-hover:scale-110 transition-transform">
+                  <Zap className="w-7 h-7" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black uppercase tracking-tight mb-2">3. Home Activation</h3>
+                  <p className="font-black uppercase tracking-widest text-xs mb-4 text-slate-950/70">The Critical Step</p>
+                  <p className="font-bold leading-relaxed">
+                    Structured 60-90 min visit: AC filter deep clean, shower filter installation, and water quality testing.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-slate-950/10">
+                  <p className="text-sm font-black uppercase tracking-widest">AED 399 — ESSENTIAL</p>
+                </div>
+                <Button 
+                  className="w-full bg-slate-950 hover:bg-slate-900 text-white font-black uppercase tracking-widest py-6"
+                  onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20want%20to%20book%20a%20Home%20Activation%20visit.', '_blank')}
+                >
+                  Activate My Home
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="h-px bg-white/10 w-full" />
