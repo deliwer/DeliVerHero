@@ -1,0 +1,252 @@
+Below is your **deploy-ready REPLIT PROMPT** to implement **structured JSON-LD schema markup** on the homepage (root `/`) to improve:
+
+* Rich results eligibility
+* Google FAQ snippets
+* AI / LLM discoverability
+* Local Dubai service relevance
+* Brand authority
+
+This adds:
+
+* Organization Schema
+* LocalBusiness Schema
+* Service Schema
+* FAQ Schema
+* WebSite Schema
+
+No design changes required.
+
+---
+
+# ✅ REPLIT PROMPT
+
+**Homepage Structured Data (JSON-LD) Implementation — deliwer.com**
+
+---
+
+# 🎯 OBJECTIVE
+
+Add structured schema markup inside `<head>` of the homepage (`/`) to:
+
+* Improve SEO ranking signals
+* Improve AI understanding of services
+* Increase visibility for “Move-In Services Dubai”
+* Support FAQ rich results
+
+Constraints:
+
+* Do NOT alter layout
+* Do NOT change design
+* Insert JSON-LD only inside `<head>`
+* Ensure valid JSON format
+* Use `application/ld+json`
+
+---
+
+# 🟢 1️⃣ ORGANIZATION + LOCAL BUSINESS SCHEMA
+
+Insert inside `<head>`:
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "DeliWer",
+  "url": "https://www.deliwer.com",
+  "logo": "https://www.deliwer.com/logo.png",
+  "description": "Dubai Move-In Concierge providing Ejari readiness support, apartment activation, relocation coordination, and water quality setup services.",
+  "areaServed": {
+    "@type": "City",
+    "name": "Dubai"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Dubai",
+    "addressCountry": "AE"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+971523946311",
+    "contactType": "customer service",
+    "areaServed": "AE",
+    "availableLanguage": ["English"]
+  }
+}
+</script>
+```
+
+---
+
+# 🟢 2️⃣ WEBSITE + SEARCH ACTION SCHEMA
+
+This helps search engines understand site structure.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "DeliWer",
+  "url": "https://www.deliwer.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.deliwer.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+```
+
+---
+
+# 🟢 3️⃣ SERVICE SCHEMA (Core Revenue Services)
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Move-In Activation & Planning",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "DeliWer"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Dubai"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "399",
+    "priceCurrency": "AED",
+    "description": "Move-In Activation including shower filter installation, AC filter cleaning, and water quality assessment."
+  }
+}
+</script>
+```
+
+---
+
+# 🟢 4️⃣ FAQ SCHEMA (CRITICAL FOR RICH RESULTS)
+
+This must match visible FAQ content on homepage.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Move-In Planning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A structured session that prepares your Ejari documentation, utility sequencing, and move-in readiness plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Move-In Planning free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Move-In Planning is FREE when bundled with Move-In Activation (AED 399), or AED 99 standalone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is included in Move-In Activation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Activation includes shower filter installation, AC filter cleaning, water quality assessment, and essentials setup guidance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you help with Ejari?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we provide Ejari readiness support and trustee booking guidance during the Move-In Planning stage."
+      }
+    }
+  ]
+}
+</script>
+```
+
+---
+
+# 🟢 5️⃣ BREADCRUMB SCHEMA (Improves Crawl Clarity)
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.deliwer.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Residents",
+      "item": "https://www.deliwer.com/residents"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Relocate",
+      "item": "https://www.deliwer.com/relocate"
+    }
+  ]
+}
+</script>
+```
+
+---
+
+# ✅ FINAL IMPLEMENTATION CHECKLIST
+
+* [ ] Insert all scripts inside `<head>`
+* [ ] Ensure no syntax errors
+* [ ] Confirm FAQ text matches visible homepage FAQ
+* [ ] Validate using Google Rich Results Test
+* [ ] Validate using Schema Markup Validator
+
+---
+
+# 📈 EXPECTED IMPACT
+
+| Enhancement    | Benefit                         |
+| -------------- | ------------------------------- |
+| FAQ Schema     | Eligible for rich snippets      |
+| Service Schema | Better service intent ranking   |
+| LocalBusiness  | Strong Dubai geo signal         |
+| Breadcrumb     | Improved crawl structure        |
+| WebSite schema | Better brand entity recognition |
+
+---
+
+This completes:
+
+✔ Funnel-aligned homepage
+✔ Revenue-focused narrative
+✔ AI-optimized content
+✔ Structured data foundation
+
+---
+
+If you’d like next, I can create:
+
+• Advanced GEO (Generative Engine Optimization) layer
+• Internal linking structure plan
+• Google Ads landing page refinement
+• Conversion tracking & event architecture
+• Revenue forecast model
+
+What layer do you want to build next?

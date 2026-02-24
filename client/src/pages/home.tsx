@@ -29,11 +29,147 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <SEOMeta 
-        title="Move-In Planning & Activation Services in Dubai | DeliWer"
-        description="Structured move-in planning, Ejari readiness support, and apartment activation in Dubai. FREE planning when bundled with Move-In Activation (AED 399). Water quality assessment included."
+        title="Dubai Move-In Concierge & Home Activation Services | DeliWer"
+        description="DeliWer helps expatriates and tenants in Dubai plan and activate their new homes after Ejari, with structured move-in planning, home activation (AED 399), and water quality setup. WhatsApp booking available."
       />
       <Helmet>
-        <meta name="keywords" content="Move in services Dubai, Ejari support Dubai, Apartment activation Dubai, DEWA activation help, Water filter installation Dubai, New apartment setup Dubai" />
+        <meta name="keywords" content="Dubai move in services, Move-In Activation Dubai, Ejari support, tenant home activation, water setup Dubai, relocation concierge" />
+        <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "DeliWer",
+          "url": "https://www.deliwer.com",
+          "logo": "https://www.deliwer.com/logo.png",
+          "description": "Dubai Move-In Concierge providing Ejari readiness support, apartment activation, relocation coordination, and water quality setup services.",
+          "areaServed": {
+            "@type": "City",
+            "name": "Dubai"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Dubai",
+            "addressCountry": "AE"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+971523946311",
+            "contactType": "customer service",
+            "areaServed": "AE",
+            "availableLanguage": ["English"]
+          }
+        }
+        `}
+        </script>
+        <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "DeliWer",
+          "url": "https://www.deliwer.com",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.deliwer.com/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+        `}
+        </script>
+        <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Move-In Activation & Planning",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "DeliWer"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Dubai"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "399",
+            "priceCurrency": "AED",
+            "description": "Move-In Activation including shower filter installation, AC filter cleaning, and water quality assessment."
+          }
+        }
+        `}
+        </script>
+        <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is Move-In Planning?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A structured session that prepares your Ejari documentation, utility sequencing, and move-in readiness plan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Move-In Planning free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Move-In Planning is FREE when bundled with Move-In Activation (AED 399), or AED 99 standalone."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is included in Move-In Activation?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Activation includes shower filter installation, AC filter cleaning, water quality assessment, and essentials setup guidance."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you help with Ejari?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, we provide Ejari readiness support and trustee booking guidance during the Move-In Planning stage."
+              }
+            }
+          ]
+        }
+        `}
+        </script>
+        <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.deliwer.com"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Residents",
+              "item": "https://www.deliwer.com/residents"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Relocate",
+              "item": "https://www.deliwer.com/relocate"
+            }
+          ]
+        }
+        `}
+        </script>
       </Helmet>
 
       <Navigation />
@@ -235,7 +371,7 @@ export default function Home() {
             Dubai Living, <span className="text-emerald-400">Organized.</span>
           </h2>
           <p className="text-xl text-slate-200 font-medium mb-12 italic font-serif">
-            One team, one point of contact, zero stress. We coordinate the foundations of your home so you can focus on living.
+            DeliWer is your Dubai Everyday Living Concierge — the team that turns tenancy into a settled home. We help tenants and expatriates plan their move, activate utilities and services, and set up clean water and living essentials with one WhatsApp-managed experience.
           </p>
           <Button 
             size="lg"
@@ -247,14 +383,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEO Focused Paragraph */}
+      <section className="py-12 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-gray-400 font-bold leading-relaxed uppercase text-xs tracking-widest">
+            DeliWer provides move-in and relocation concierge services in Dubai, helping expatriates and tenants transition from tenancy paperwork (Ejari) to home activation and sustainable living. Our WhatsApp-managed approach simplifies planning, utilities, and water setup so you can settle in with confidence.
+          </p>
+        </div>
+      </section>
+
       {/* Water Discovery Section */}
       <section id="water-setup-dubai" className="py-24 px-6 bg-slate-900 border-y border-white/5">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Water Quality & Filtration Setup in Dubai Apartments</h2>
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Water Quality & Filtration — A Key Move-In Step</h2>
           <div className="space-y-4 text-gray-400 font-bold text-lg leading-relaxed">
             <p>
-              Many new tenants in Dubai install shower and drinking water filters during their first week.
-              Our Move-In Activation includes a water quality assessment and personalized upgrade recommendations.
+              Many tenants discover water quality issues after move-in. Our activation includes a water quality check and upgrade recommendations so you start with clean water from day one.
             </p>
             <p>
               This ensures your apartment is fully ready from day one — clean air, clean water, and properly activated utilities.
@@ -269,11 +413,10 @@ export default function Home() {
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white text-center">Frequently Asked Questions</h2>
           <div className="grid gap-8">
             {[
-              { q: "Can you help with Ejari registration?", a: "We provide Ejari readiness support and trustee booking guidance as part of our Move-In Planning Session." },
-              { q: "What is included in Move-In Activation?", a: "Activation includes shower filter installation, AC filter cleaning, water quality assessment, and setup guidance." },
-              { q: "Is the planning session free?", a: "It is FREE when bundled with Move-In Activation (AED 399) or AED 99 standalone." },
-              { q: "Do you provide water filter upgrades?", a: "Yes. After water quality assessment, we recommend suitable filtration solutions for your apartment." },
-              { q: "Do you help with DEWA timing?", a: "Yes. Planning includes guidance on proper sequencing of DEWA activation and move-in timing." }
+              { q: "What is Move-In Planning?", a: "A structured session that prepares your documentation, utilities, and timeline for settling in." },
+              { q: "Is Planning free?", a: "It’s FREE when you book Move-In Activation (AED 399), or AED 99 standalone." },
+              { q: "What is included in Activation?", a: "Home readiness checks — AC, shower filter, water quality, and essentials." },
+              { q: "Do you help with Ejari?", a: "Yes — through guidance and trustee coordination." }
             ].map((faq, i) => (
               <div key={i} className="p-8 bg-white/5 rounded-3xl border border-white/10 space-y-4">
                 <h3 className="text-xl font-black uppercase text-emerald-400">{faq.q}</h3>

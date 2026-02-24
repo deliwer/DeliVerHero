@@ -1,0 +1,287 @@
+Here’s a **deploy-ready homepage rewrite prompt** for **[www.deliwer.com](http://www.deliwer.com)** that replaces the current out-of-sync homepage with a **conversion-optimized, click-funnel aligned page** — funneling visitors into the move-in journey and revenue steps we defined. This version assumes the site presently has generic or unrelated content (as visible in the redirect and inconsistent commerce messaging) and needs a **clear relocation + home-activation narrative** that drives leads, improves SEO, and enhances LLM/AI discovery. ([deliwer.com][1])
+
+---
+
+# ✅ REPLIT PROMPT
+
+**Optimized Homepage Copy — DeliWer.com**
+
+---
+
+# 🎯 OBJECTIVE
+
+Rewrite the root homepage to:
+
+✔ Align with the move-in concierge funnel
+✔ Clearly guide users to `/residents` or `/relocate`
+✔ Improve discovery in search engines and LLMs
+✔ Increase 399 Activation & planning session conversions
+✔ Prime water service upsells
+
+Constraints:
+
+* Do **not** change visual layout or design
+* Only update the **text content**, CTAs, meta tags, and information hierarchy
+* Preserve the existing structure — replace copy only
+
+---
+
+# 🟢 1️⃣ META INFORMATION (HEAD SECTION)
+
+Replace existing `<title>` and `<meta>` with:
+
+```html
+<title>Dubai Move-In Concierge & Home Activation Services | DeliWer</title>
+
+<meta name="description" content="DeliWer helps expatriates and tenants in Dubai plan and activate their new homes after Ejari, with structured move-in planning, home activation (AED 399), and water quality setup. WhatsApp booking available." />
+
+<meta name="keywords" content="Dubai move in services, Move-In Activation Dubai, Ejari support, tenant home activation, water setup Dubai, relocation concierge" />
+```
+
+*This improves search visibility for move-in related queries.*
+
+---
+
+# 🟢 2️⃣ HERO SECTION (Above the Fold)
+
+Replace existing hero text with:
+
+### Headline
+
+```text
+Moving Into a New Apartment in Dubai?
+```
+
+### Subheadline
+
+```text
+Start with structured move-in planning — from Ejari readiness to full home activation and water setup.
+```
+
+### Primary CTA (Button 1)
+
+```text
+Start Move-In Planning
+```
+
+Link:
+
+```
+/residents?stage=ejari
+```
+
+### Secondary CTA (Button 2)
+
+```text
+Got Your Keys Already?
+```
+
+Link:
+
+```
+/residents?stage=handover
+```
+
+This hero clearly **frames the problem and solution** for renters arriving in Dubai — a key audience for relocation and home services. ([deliwer.com][1])
+
+---
+
+# 🟡 3️⃣ MICRO JOURNEY INDICATOR (Below Hero)
+
+Add small text (no design change):
+
+```
+Plan → Activate → Settle
+```
+
+Short subtext:
+
+```
+Step 1: Move-In Planning (AED 99 or FREE with Activation) • Step 2: Move-In Activation (AED 399) • Step 3: Water & Home Setup
+```
+
+This provides user psychology of “next steps” without redesigning UI.
+
+---
+
+# 🟡 4️⃣ VALUE PROPOSITION BLOCK
+
+Replace any generic content with:
+
+```
+DeliWer is your Dubai Everyday Living Concierge — the team that turns tenancy into a settled home. We help tenants and expatriates plan their move, activate utilities and services, and set up clean water and living essentials with one WhatsApp-managed experience.
+```
+
+Builds clarity and immediate relevance.
+
+---
+
+# 🟡 5️⃣ STEP-BASED SERVICES BLOCK
+
+### Step 1 — Move-In Planning Session
+
+```
+Plan your move with clarity — from Ejari paperwork guidance to utility sequencing and water setup preview.
+
+Includes:
+• Ejari checklist & trustee guidance
+• DEWA & utility sequence planning
+• Internet timing coordination
+• WhatsApp support
+• Water quality preview
+
+FREE when bundled with Move-In Activation (AED 399) or AED 99 standalone.
+```
+
+CTA:
+
+```
+Start Planning → /residents?stage=ejari
+```
+
+---
+
+### Step 2 — Move-In Activation (AED 399)
+
+```
+The most popular step tenants take before settling in. A 60–90 minute visit to prepare your home.
+
+Includes:
+• Shower filter installation
+• AC filter clean
+• Water quality check + personalized upgrade suggestion
+• Essentials setup guidance
+• WhatsApp follow-up support
+
+Most customers bundle Planning + Activation and save AED 99.
+```
+
+CTA:
+
+```
+Activate My Home → /relocate?type=activation
+```
+
+---
+
+### Step 3 — Full Relocation Support
+
+```
+For tenants and families needing deeper coordination — utilities, documentation, timelines, and on-ground solutions.
+```
+
+CTA:
+
+```
+Explore Relocation Support → /relocate?type=relocation
+```
+
+This converts rather than just describes services. ([deliwer.com][2])
+
+---
+
+# 🟣 6️⃣ TRUST & SOCIAL PROOF BLOCK
+
+Add short trust lines or icons under services:
+
+```
+✔ Transparent scope, no hidden fees
+✔ WhatsApp coordination — simple and fast
+✔ Designed for Dubai tenants & expats
+```
+
+This increases psychological trust without cosmetic change.
+
+---
+
+# 🔵 7️⃣ WATER SERVICE PRIMING BLOCK (Pre-Footer)
+
+Add a short section titled:
+
+```
+Water Quality & Filtration — A Key Move-In Step
+```
+
+Copy:
+
+```
+Many tenants discover water quality issues after move-in. Our activation includes a water quality check and upgrade recommendations so you start with clean water from day one.
+```
+
+This increases organic search relevance for water-related terms and primes upsell conversions.
+
+---
+
+# 🟡 8️⃣ FAQ BLOCK (Boosts SEO + LLM Signals)
+
+Insert a compact FAQ near the bottom:
+
+```
+Q: What is Move-In Planning?
+A: A structured session that prepares your documentation, utilities, and timeline for settling in.
+
+Q: Is Planning free?
+A: It’s FREE when you book Move-In Activation (AED 399), or AED 99 standalone.
+
+Q: What is included in Activation?
+A: Home readiness checks — AC, shower filter, water quality, and essentials.
+
+Q: Do you help with Ejari?
+A: Yes — through guidance and trustee coordination.
+```
+
+Search engines and LLMs rely on Q&A blocks for rich snippets.
+
+---
+
+# 🟢 9️⃣ PRIMARY CTA RULES
+
+Ensure all primary buttons on the homepage point to:
+
+```
+/residents?stage=ejari
+```
+
+Avoid sending users into ambiguous pages from the homepage.
+
+This preserves the funnel — **Plan → Activate → Upsell**.
+
+---
+
+# 🟠 10️⃣ SECONDARY SEO-FOCUSED PARAGRAPH
+
+Add this (mid-page):
+
+```
+DeliWer provides move-in and relocation concierge services in Dubai, helping expatriates and tenants transition from tenancy paperwork (Ejari) to home activation and sustainable living. Our WhatsApp-managed approach simplifies planning, utilities, and water setup so you can settle in with confidence.
+```
+
+Search engines will index more relevant keywords for relocation and move-in services.
+
+---
+
+## 📈 EXPECTED IMPACT
+
+| Outcome                  | Why It Improves                 |
+| ------------------------ | ------------------------------- |
+| Bounce Rate ↓            | Clear intent & funnel flow      |
+| Activation Conversions ↑ | Logical step-based narrative    |
+| SEO Visibility ↑         | Keyword + FAQ + structured copy |
+| AI/LLM Discovery ↑       | Strategic phrasing & FAQs       |
+| Water Upsell Relevance ↑ | Primed early in narrative       |
+
+---
+
+## 🧠 WHY THIS VERSION WORKS
+
+* Homepage becomes a **move-in journey start**
+* Not a generic corporate intro
+* Enables search engines to rank for “move in Dubai” + “Ejari help” + “apartment activation”
+* Aligns with user intent before they reach `/residents` and `/relocate`
+
+---
+
+If you’d like, I can also generate **structured JSON-LD markup** (FAQ schema, breadcrumb schema) that helps search engines and AI tools display richer results for this homepage.
+
+[1]: https://www.deliwer.com/?srsltid=AfmBOoqRNYuz9qsvmKG_2FSV8oGJfpkh8DqhuWJokJDxDCB-JCjZ1ZNL&utm_source=chatgpt.com "Dubai Move-In & Relocation Concierge | DeliWer | DeliWer ..."
+[2]: https://deliwer.com/relocate?srsltid=AfmBOoouBALxgtSO4E3XoZSlYzNmdrDlIt3DIYqfrGv4LhWFVaawDAuc&utm_source=chatgpt.com "Move-In Activation & Relocation Support in Dubai - DeliWer"
