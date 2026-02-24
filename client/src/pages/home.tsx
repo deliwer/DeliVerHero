@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/navigation";
 import { useState, useEffect } from "react";
 import { SEOMeta } from "@/components/seo-meta";
+import { Helmet } from "react-helmet";
 import { 
   Zap, MessageSquare, CheckCircle2, Thermometer, Droplets, 
   AlertTriangle, Coins, ShieldCheck, Check, Home as HomeIcon,
@@ -28,9 +29,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <SEOMeta 
-        title="Moving into Dubai? We handle everything after the keys | DeliWer"
-        description="Home setup, relocation support, fixes, furniture, disposal & daily living handled by one team on WhatsApp."
+        title="Move-In Planning & Activation Services in Dubai | DeliWer"
+        description="Structured move-in planning, Ejari readiness support, and apartment activation in Dubai. FREE planning when bundled with Move-In Activation (AED 399). Water quality assessment included."
       />
+      <Helmet>
+        <meta name="keywords" content="Move in services Dubai, Ejari support Dubai, Apartment activation Dubai, DEWA activation help, Water filter installation Dubai, New apartment setup Dubai" />
+      </Helmet>
 
       <Navigation />
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 text-center">
@@ -52,8 +56,7 @@ export default function Home() {
             </h1>
             
             <h2 className="text-xl md:text-2xl text-gray-300 font-bold max-w-3xl mx-auto leading-tight uppercase tracking-tight">
-              Start with a structured Move-In Planning Session — <br />
-              <span className="text-blue-400 italic font-serif lowercase tracking-normal">from Ejari to home activation.</span>
+              Start with a structured Move-In Planning Session — from Ejari to full home activation and water setup.
             </h2>
           </motion.div>
           
@@ -79,23 +82,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Journey Indicator */}
-          <div className="pt-12 flex items-center justify-center gap-4 md:gap-8">
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-black text-sm">1</span>
-              <span className="text-emerald-500 font-black uppercase tracking-widest text-sm">Plan</span>
+          {/* Journey Indicator Strip */}
+          <section id="move-in-journey" className="pt-12 text-center">
+            <p className="text-emerald-400 font-black uppercase tracking-[0.3em] mb-4">Plan → Activate → Settle</p>
+            <div className="text-xs md:text-sm text-gray-400 font-bold uppercase tracking-widest space-y-1">
+              <p>Step 1: Move-In Planning (AED 99 or FREE with Activation)</p>
+              <p>Step 2: Move-In Activation (AED 399)</p>
+              <p>Step 3: Water & Home Setup</p>
             </div>
-            <div className="w-8 h-px bg-white/20" />
-            <div className="flex items-center gap-2 text-gray-500">
-              <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-black text-sm">2</span>
-              <span className="font-black uppercase tracking-widest text-sm">Activate</span>
-            </div>
-            <div className="w-8 h-px bg-white/20" />
-            <div className="flex items-center gap-2 text-gray-500">
-              <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center font-black text-sm">3</span>
-              <span className="font-black uppercase tracking-widest text-sm">Settle</span>
-            </div>
-          </div>
+          </section>
         </div>
       </section>
 
@@ -108,102 +103,116 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest mx-auto">
               <ShieldCheck className="w-4 h-4" /> 100% Home Service Solution
             </div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">The Concierge Model</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto font-medium text-xl italic font-serif">Process your Ejari, DEWA & Move-In without ever leaving your home or office.</p>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Your Move-In Steps</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto font-medium text-xl italic font-serif">A structured path to your new Dubai home.</p>
           </div>
           
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* CARD 1 — HOME MAINTENANCE */}
-            <Link href="/residents">
+            {/* STEP 1 — MOVE-IN PLANNING */}
+            <Link href="/residents?stage=ejari">
               <Card className="bg-white/5 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden h-full cursor-pointer flex flex-col">
                 <CardContent className="p-10 space-y-6 flex-1 flex flex-col">
                   <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
-                    <Wrench className="w-8 h-8" />
+                    <ClipboardList className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Fix Something at Home</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight">Step 1 — Move-In Planning Session</h3>
                   <p className="text-slate-400 font-bold leading-relaxed">
-                    For issues or repairs around your home. We coordinate trusted service partners on your behalf.
+                    We structure everything between lease signing and home readiness.
                   </p>
                   <div className="space-y-2 pt-4 border-t border-white/5">
-                    <div className="flex gap-2 text-xs font-black uppercase tracking-widest text-gray-300 items-center">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                      AC, plumbing, electrical
-                    </div>
-                    <div className="flex gap-2 text-xs font-black uppercase tracking-widest text-gray-300 items-center">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                      Minor repairs & servicing
-                    </div>
-                  </div>
-                  <div className="mt-auto pt-8">
-                    <Button className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-xl">
-                      Book Maintenance
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* CARD 2 — RESIDENT CONCIERGE */}
-            <Link href="/relocate">
-              <Card className="bg-slate-900 border-emerald-500/30 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden h-full cursor-pointer flex flex-col scale-105 shadow-2xl shadow-emerald-500/5 z-10 border-2">
-                <CardContent className="p-10 space-y-6 flex-1 flex flex-col">
-                  <div className="flex justify-between items-start">
-                    <div className="w-16 h-16 rounded-2xl bg-emerald-500 text-slate-950 flex items-center justify-center">
-                      <ClipboardList className="w-8 h-8" />
-                    </div>
-                    <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase px-3 py-1">
-                      Journey Layer
-                    </Badge>
-                  </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Relocation Support</h3>
-                  <p className="text-emerald-50 font-bold leading-relaxed">
-                    We manage the foundations of your move. From technical activation to family relocation support.
-                  </p>
-                  <div className="space-y-2 pt-4 border-t border-white/10">
                     {[
-                      "Move-In Activation (AED 399)",
-                      "Full Relocation Coordination",
-                      "Move-Out Deposit Protection"
+                      "Ejari document checklist review",
+                      "Trustee booking guidance",
+                      "DEWA & utility timing plan",
+                      "Internet & utilities sequencing",
+                      "Move-in readiness roadmap",
+                      "Water setup preview",
+                      "WhatsApp coordination"
                     ].map((f, i) => (
-                      <div key={i} className="flex gap-2 text-xs font-black uppercase tracking-widest text-emerald-100 items-center">
-                        <CalendarCheck className="w-4 h-4 text-emerald-400" />
+                      <div key={i} className="flex gap-2 text-[10px] font-black uppercase tracking-widest text-gray-300 items-center">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                         {f}
                       </div>
                     ))}
                   </div>
+                  <div className="p-4 bg-white/5 rounded-2xl border border-white/5 mt-4">
+                    <p className="text-[10px] font-black uppercase text-emerald-400">FREE when bundled with Activation (AED 399)</p>
+                    <p className="text-[10px] font-bold text-gray-500 uppercase">Standalone: AED 99</p>
+                  </div>
                   <div className="mt-auto pt-8">
-                    <Button className="w-full h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-xl shadow-xl shadow-emerald-500/20">
-                      Explore Relocation
+                    <Button className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-xl">
+                      Book Move-In Planning
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             </Link>
 
-            {/* CARD 3 — RESIDENT SUPPORT SERVICES */}
-            <Link href="/residents">
+            {/* STEP 2 — MOVE-IN ACTIVATION */}
+            <Link href="/relocate?type=activation">
+              <Card className="bg-slate-900 border-emerald-500/30 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden h-full cursor-pointer flex flex-col scale-105 shadow-2xl shadow-emerald-500/5 z-10 border-2">
+                <CardContent className="p-10 space-y-6 flex-1 flex flex-col">
+                  <div className="flex justify-between items-start">
+                    <div className="w-16 h-16 rounded-2xl bg-emerald-500 text-slate-950 flex items-center justify-center">
+                      <Zap className="w-8 h-8" />
+                    </div>
+                    <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase px-3 py-1">
+                      Most Popular
+                    </Badge>
+                  </div>
+                  <h3 className="text-2xl font-black uppercase tracking-tight">Step 2 — Move-In Activation (AED 399)</h3>
+                  <p className="text-emerald-50 font-bold leading-relaxed">
+                    A structured 60–90 minute visit to activate and prepare your apartment before move-in.
+                  </p>
+                  <div className="space-y-2 pt-4 border-t border-white/10">
+                    {[
+                      "Shower filter supply & installation",
+                      "1 AC filter clean (removable filter only)",
+                      "Water quality assessment",
+                      "Personalized filtration recommendation",
+                      "Essentials setup guidance",
+                      "WhatsApp follow-up support"
+                    ].map((f, i) => (
+                      <div key={i} className="flex gap-2 text-[10px] font-black uppercase tracking-widest text-emerald-100 items-center">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                        {f}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mt-4">Most customers bundle Planning + Activation and save AED 99.</p>
+                  <div className="mt-auto pt-8">
+                    <Button className="w-full h-14 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-xl shadow-xl shadow-emerald-500/20">
+                      Book Move-In Activation
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* STEP 3 — RELOCATION SUPPORT */}
+            <Link href="/relocate?type=relocation">
               <Card className="bg-white/5 border-white/10 hover-elevate transition-all duration-300 rounded-[2.5rem] overflow-hidden h-full cursor-pointer flex flex-col">
                 <CardContent className="p-10 space-y-6 flex-1 flex flex-col">
                   <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
-                    <UserCheck className="w-8 h-8" />
+                    <Package className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Resident Privileges</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight">Step 3 — Relocation & Family Support</h3>
                   <p className="text-slate-400 font-bold leading-relaxed">
-                    Exclusive access to Dubai's top venues and priority concierge scheduling for our long-term residents.
+                    For families and tenants requiring full coordination across utilities, scheduling, and phased move-in.
                   </p>
                   <div className="space-y-2 pt-4 border-t border-white/5">
                     <div className="flex gap-2 text-xs font-black uppercase tracking-widest text-gray-300 items-center">
                       <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                      Partner F&B Vouchers
+                      Essential Relocation (AED 899)
                     </div>
                     <div className="flex gap-2 text-xs font-black uppercase tracking-widest text-gray-300 items-center">
                       <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                      Priority Maintenance
+                      Premium Relocation (AED 2499)
                     </div>
                   </div>
                   <div className="mt-auto pt-8">
                     <Button className="w-full h-14 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-xl">
-                      View Privileges
+                      Explore Relocation Support
                     </Button>
                   </div>
                 </CardContent>
@@ -235,6 +244,57 @@ export default function Home() {
           >
             WhatsApp Support
           </Button>
+        </div>
+      </section>
+
+      {/* Water Discovery Section */}
+      <section id="water-setup-dubai" className="py-24 px-6 bg-slate-900 border-y border-white/5">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Water Quality & Filtration Setup in Dubai Apartments</h2>
+          <div className="space-y-4 text-gray-400 font-bold text-lg leading-relaxed">
+            <p>
+              Many new tenants in Dubai install shower and drinking water filters during their first week.
+              Our Move-In Activation includes a water quality assessment and personalized upgrade recommendations.
+            </p>
+            <p>
+              This ensures your apartment is fully ready from day one — clean air, clean water, and properly activated utilities.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="move-in-faq" className="py-24 px-6 bg-slate-950">
+        <div className="max-w-4xl mx-auto space-y-16">
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white text-center">Frequently Asked Questions</h2>
+          <div className="grid gap-8">
+            {[
+              { q: "Can you help with Ejari registration?", a: "We provide Ejari readiness support and trustee booking guidance as part of our Move-In Planning Session." },
+              { q: "What is included in Move-In Activation?", a: "Activation includes shower filter installation, AC filter cleaning, water quality assessment, and setup guidance." },
+              { q: "Is the planning session free?", a: "It is FREE when bundled with Move-In Activation (AED 399) or AED 99 standalone." },
+              { q: "Do you provide water filter upgrades?", a: "Yes. After water quality assessment, we recommend suitable filtration solutions for your apartment." },
+              { q: "Do you help with DEWA timing?", a: "Yes. Planning includes guidance on proper sequencing of DEWA activation and move-in timing." }
+            ].map((faq, i) => (
+              <div key={i} className="p-8 bg-white/5 rounded-3xl border border-white/10 space-y-4">
+                <h3 className="text-xl font-black uppercase text-emerald-400">{faq.q}</h3>
+                <p className="text-gray-400 font-bold leading-relaxed uppercase text-xs tracking-widest">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Signal Strip */}
+      <section id="trust-strip" className="py-12 bg-emerald-950/20 border-y border-white/5">
+        <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 text-center">
+          {[
+            "✔ Transparent scope",
+            "✔ No hidden activation fees",
+            "✔ WhatsApp coordination",
+            "✔ Designed for Dubai tenants"
+          ].map((trust, i) => (
+            <span key={i} className="text-emerald-400 font-black uppercase tracking-widest text-xs">{trust}</span>
+          ))}
         </div>
       </section>
 

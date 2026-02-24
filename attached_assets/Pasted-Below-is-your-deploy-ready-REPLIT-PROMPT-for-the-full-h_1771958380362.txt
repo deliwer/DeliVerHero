@@ -1,0 +1,353 @@
+Below is your **deploy-ready REPLIT PROMPT** for the full homepage rewrite.
+
+This:
+
+* Keeps layout unchanged
+* Keeps design & colors unchanged
+* Only updates copy, headings, CTA links, meta, and adds structured SEO blocks
+* Aligns with funnel: **Plan → Activate → Settle → Water Upsell**
+
+---
+
+# ✅ REPLIT PROMPT
+
+**Homepage Funnel Optimization — Deploy-Ready Copy Replacement**
+
+---
+
+# 🎯 OBJECTIVE
+
+Optimize homepage for:
+
+* Higher Move-In Activation (AED 399) conversions
+* Increased water upsell attachment
+* Better SEO ranking for Dubai move-in keywords
+* Improved AI / LLM discoverability
+* Clear click flow into `/residents`
+
+Constraints:
+
+* DO NOT change layout or design
+* DO NOT modify colors or visual structure
+* ONLY replace copy, update meta, adjust CTA links
+* Maintain responsiveness
+
+---
+
+# 🟢 1️⃣ META DATA UPDATE (HEAD SECTION)
+
+Replace existing title + meta description with:
+
+```html
+<title>Move-In Planning & Activation Services in Dubai | DeliWer</title>
+
+<meta name="description" content="Structured move-in planning, Ejari readiness support, and apartment activation in Dubai. FREE planning when bundled with Move-In Activation (AED 399). Water quality assessment included." />
+```
+
+Add SEO keywords meta:
+
+```html
+<meta name="keywords" content="Move in services Dubai, Ejari support Dubai, Apartment activation Dubai, DEWA activation help, Water filter installation Dubai, New apartment setup Dubai" />
+```
+
+---
+
+# 🟢 2️⃣ HERO SECTION COPY REPLACEMENT
+
+Replace existing hero text with:
+
+### Headline:
+
+```
+Moving Into a New Apartment in Dubai?
+```
+
+### Subheadline:
+
+```
+Start with a structured Move-In Planning Session — from Ejari to full home activation and water setup.
+```
+
+### Primary CTA Button:
+
+Text:
+
+```
+Start Move-In Planning
+```
+
+Link:
+
+```
+/residents?stage=ejari
+```
+
+### Secondary CTA Button:
+
+Text:
+
+```
+I Already Have My Keys
+```
+
+Link:
+
+```
+/residents?stage=handover
+```
+
+---
+
+# 🟢 3️⃣ ADD JOURNEY INDICATOR STRIP (Below Hero)
+
+Insert small section directly below hero:
+
+```html
+<section id="move-in-journey">
+  <p><strong>Plan → Activate → Settle</strong></p>
+  <p>
+  Step 1: Move-In Planning (AED 99 or FREE with Activation)<br>
+  Step 2: Move-In Activation (AED 399)<br>
+  Step 3: Water & Home Setup
+  </p>
+</section>
+```
+
+Keep styling minimal and consistent.
+
+---
+
+# 🟡 4️⃣ SERVICES SECTION — RESTRUCTURE INTO STEPS
+
+Replace current services copy with:
+
+---
+
+## Step 1 — Move-In Planning Session
+
+```
+We structure everything between lease signing and home readiness.
+```
+
+Bullet points:
+
+* Ejari document checklist review
+* Trustee booking guidance
+* DEWA & utility timing plan
+* Internet & utilities sequencing
+* Move-in readiness roadmap
+* Water setup preview
+* WhatsApp coordination
+
+Pricing line:
+
+```
+FREE when bundled with Move-In Activation (AED 399)
+Standalone: AED 99
+```
+
+CTA:
+
+```
+Book Move-In Planning
+```
+
+Link:
+
+```
+/residents?stage=ejari
+```
+
+---
+
+## Step 2 — Move-In Activation (AED 399)
+
+Add small label above heading:
+
+```
+Most Popular for New Tenants
+```
+
+Description:
+
+```
+A structured 60–90 minute visit to activate and prepare your apartment before move-in.
+```
+
+Inclusions:
+
+* Shower filter supply & installation
+* 1 AC filter clean (removable filter only)
+* Water quality assessment
+* Personalized filtration recommendation
+* Essentials setup guidance
+* WhatsApp follow-up support
+
+Add reinforcement line:
+
+```
+Most customers bundle Planning + Activation and save AED 99.
+```
+
+CTA:
+
+```
+Book Move-In Activation
+```
+
+Link:
+
+```
+/relocate?type=activation
+```
+
+---
+
+## Step 3 — Relocation & Family Support
+
+Keep existing relocation packages.
+
+Add short intro:
+
+```
+For families and tenants requiring full coordination across utilities, scheduling, and phased move-in.
+```
+
+CTA:
+
+```
+Explore Relocation Support
+```
+
+Link:
+
+```
+/relocate?type=relocation
+```
+
+---
+
+# 🟣 5️⃣ ADD WATER DISCOVERY SECTION (SEO + Upsell Priming)
+
+Insert before footer:
+
+```html
+<section id="water-setup-dubai">
+  <h2>Water Quality & Filtration Setup in Dubai Apartments</h2>
+  <p>
+  Many new tenants in Dubai install shower and drinking water filters during their first week.
+  Our Move-In Activation includes a water quality assessment and personalized upgrade recommendations.
+  </p>
+  <p>
+  This ensures your apartment is fully ready from day one — clean air, clean water, and properly activated utilities.
+  </p>
+</section>
+```
+
+---
+
+# 🟠 6️⃣ ADD FAQ SECTION (CRITICAL FOR SEO + AI DISCOVERY)
+
+Insert above footer:
+
+```html
+<section id="move-in-faq">
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>Can you help with Ejari registration?</h3>
+  <p>We provide Ejari readiness support and trustee booking guidance as part of our Move-In Planning Session.</p>
+
+  <h3>What is included in Move-In Activation?</h3>
+  <p>Activation includes shower filter installation, AC filter cleaning, water quality assessment, and setup guidance.</p>
+
+  <h3>Is the planning session free?</h3>
+  <p>It is FREE when bundled with Move-In Activation (AED 399) or AED 99 standalone.</p>
+
+  <h3>Do you provide water filter upgrades?</h3>
+  <p>Yes. After water quality assessment, we recommend suitable filtration solutions for your apartment.</p>
+
+  <h3>Do you help with DEWA timing?</h3>
+  <p>Yes. Planning includes guidance on proper sequencing of DEWA activation and move-in timing.</p>
+</section>
+```
+
+---
+
+# 🔵 7️⃣ TRUST SIGNAL STRIP (Before Footer)
+
+Insert small visual separator:
+
+```html
+<section id="trust-strip">
+  <p>
+  ✔ Transparent scope<br>
+  ✔ No hidden activation fees<br>
+  ✔ WhatsApp coordination<br>
+  ✔ Designed for Dubai tenants
+  </p>
+</section>
+```
+
+---
+
+# 🟢 8️⃣ PRIMARY CTA CONSISTENCY RULE
+
+Ensure ALL primary homepage buttons route to:
+
+```
+/residents?stage=ejari
+```
+
+Do NOT link to random services from homepage.
+
+Homepage must always:
+
+Qualify → Direct → Funnel
+
+---
+
+# 🧠 Funnel Logic After Deployment
+
+Traffic → Homepage
+↓
+Stage Selection (Ejari / Keys)
+↓
+/residents
+↓
+399 Activation
+↓
+Water Upsell
+
+---
+
+# ✅ FINAL DEPLOYMENT CHECKLIST
+
+* [ ] Hero text replaced
+* [ ] CTAs updated
+* [ ] Journey strip inserted
+* [ ] Services reordered into steps
+* [ ] Water SEO section added
+* [ ] FAQ block added
+* [ ] Meta title + description updated
+* [ ] All primary buttons point to /residents
+
+---
+
+This homepage now:
+
+* Clearly shows steps to revenue
+* Filters low-intent users
+* Primes water upsell naturally
+* Improves long-tail SEO
+* Improves AI discoverability
+* Maintains design integrity
+
+---
+
+If you want next, I can write:
+
+* The optimized `/residents` page copy in same deploy-ready format
+* Or a conversion psychology enhancement layer to increase 399 bookings further
+* Or structured JSON-LD schema markup for rich results
+
+Tell me the next layer you want to optimize.
