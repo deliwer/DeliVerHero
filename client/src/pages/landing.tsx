@@ -37,8 +37,6 @@ export default function LandingPage() {
         title="Dubai Move-In & Relocation Concierge | DeliWer"
         description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
       />
-      {/* Micro Trust Line */}
-      <Navigation />
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
         <div 
@@ -54,52 +52,47 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
               Ejari Home<br />
               <span className="text-emerald-500">Service</span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl text-gray-300 font-bold max-w-3xl mx-auto leading-tight uppercase tracking-tight">
-              The prominent entry gateway to your new Dubai home. From Ejari to Handover, Move-In, and Activation.
+            <h2 className="text-lg md:text-xl text-gray-300 font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight opacity-90">
+              The premium entry gateway to your new Dubai home. From Ejari to Handover, Move-In, and Activation.
             </h2>
           </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-left max-w-5xl mx-auto">
-            <div className="flex flex-col gap-2 bg-white/5 p-4 rounded-2xl border border-white/10 hover:border-emerald-500/50 transition-colors group">
-              <ClipboardList className="w-6 h-6 text-emerald-500 group-hover:scale-110 transition-transform" />
-              <span className="font-bold text-[10px] uppercase tracking-widest text-emerald-400">Step 1</span>
-              <span className="font-bold text-sm leading-tight">Ejari Setup</span>
-            </div>
-            <div className="flex flex-col gap-2 bg-white/5 p-4 rounded-2xl border border-white/10 hover:border-emerald-500/50 transition-colors group">
-              <UserCheck className="w-6 h-6 text-emerald-500 group-hover:scale-110 transition-transform" />
-              <span className="font-bold text-[10px] uppercase tracking-widest text-emerald-400">Step 2</span>
-              <span className="font-bold text-sm leading-tight">Handover</span>
-            </div>
-            <div className="flex flex-col gap-2 bg-white/5 p-4 rounded-2xl border border-white/10 hover:border-emerald-500/50 transition-colors group">
-              <Package className="w-6 h-6 text-emerald-500 group-hover:scale-110 transition-transform" />
-              <span className="font-bold text-[10px] uppercase tracking-widest text-emerald-400">Step 3</span>
-              <span className="font-bold text-sm leading-tight">Move-In</span>
-            </div>
-            <div className="flex flex-col gap-2 bg-emerald-500/10 p-4 rounded-2xl border border-emerald-500/50 hover:bg-emerald-500/20 transition-all group scale-105 shadow-2xl shadow-emerald-500/10">
-              <Zap className="w-6 h-6 text-emerald-500 group-hover:scale-110 transition-transform" />
-              <span className="font-bold text-[10px] uppercase tracking-widest text-emerald-400">Step 4</span>
-              <span className="font-bold text-sm leading-tight text-emerald-400">Activation</span>
-            </div>
-            <div className="flex flex-col gap-2 bg-white/5 p-4 rounded-2xl border border-white/10 hover:border-emerald-500/50 transition-colors group">
-              <Droplets className="w-6 h-6 text-emerald-500 group-hover:scale-110 transition-transform" />
-              <span className="font-bold text-[10px] uppercase tracking-widest text-emerald-400">Step 5</span>
-              <span className="font-bold text-sm leading-tight">Water Setup</span>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-left max-w-4xl mx-auto">
+            {[
+              { step: 1, label: "Ejari Setup", icon: ClipboardList },
+              { step: 2, label: "Handover", icon: UserCheck },
+              { step: 3, label: "Move-In", icon: Package },
+              { step: 4, label: "Activation", icon: Zap, highlight: true },
+              { step: 5, label: "Water Setup", icon: Droplets },
+            ].map((item) => (
+              <div 
+                key={item.step}
+                className={`flex flex-col gap-2 p-4 rounded-2xl border transition-all group ${
+                  item.highlight 
+                    ? "bg-emerald-500/10 border-emerald-500/50 scale-105 shadow-lg shadow-emerald-500/10" 
+                    : "bg-white/5 border-white/10 hover:border-emerald-500/30"
+                }`}
+              >
+                <item.icon className={`w-5 h-5 ${item.highlight ? "text-emerald-400" : "text-emerald-500"} group-hover:scale-110 transition-transform`} />
+                <span className="font-bold text-[9px] uppercase tracking-widest text-emerald-400/80">Step {item.step}</span>
+                <span className="font-bold text-xs leading-tight">{item.label}</span>
+              </div>
+            ))}
           </div>
 
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-6 pt-4">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center sticky bottom-8 z-50 md:relative md:bottom-0"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
               onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20just%20signed%20a%20lease%20in%20Dubai%20and%20need%20move-in%20support.', '_blank')}
             >
-              <MessageCircle className="w-8 h-8 fill-current" />
-              Start on WhatsApp Now
+              <MessageCircle className="w-6 h-6 fill-current" />
+              Start on WhatsApp
             </Button>
             
             <Link href="/partners">

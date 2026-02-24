@@ -84,8 +84,8 @@ export function Navigation() {
         </div>
       </nav>
 
-      {/* 2. Trust Strip Bar (Below Nav) - Only on Home and only once */}
-      {location === "/" && (
+      {/* 2. Trust Strip Bar (Below Nav) - Only on Home and Landing and only once */}
+      {(location === "/" || location === "/home") && (
         <div className="bg-slate-950 border-b border-white/10 py-2.5 px-4">
           <div className="max-w-7xl mx-auto flex justify-center md:justify-start overflow-x-auto no-scrollbar">
             <TrustStrip variant="dark" showContact={true} />

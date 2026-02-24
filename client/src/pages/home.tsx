@@ -172,7 +172,6 @@ export default function Home() {
         </script>
       </Helmet>
 
-      <Navigation />
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 text-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"
