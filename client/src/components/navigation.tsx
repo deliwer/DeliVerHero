@@ -86,7 +86,7 @@ export function Navigation() {
 
       {/* 2. Trust Strip Bar (Below Nav) - Scrollable, Website Wide */}
       <div className="bg-slate-950 border-b border-white/10 py-2.5 px-4 overflow-x-auto no-scrollbar">
-        <div className="max-w-7xl mx-auto flex justify-center md:justify-start min-w-max">
+        <div className="max-w-7xl mx-auto flex justify-start min-w-max">
           <TrustStrip variant="dark" showContact={true} />
         </div>
       </div>

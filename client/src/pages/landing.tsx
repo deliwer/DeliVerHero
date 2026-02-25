@@ -114,10 +114,10 @@ export default function LandingPage() {
               <p className="text-lg text-gray-300 font-bold leading-relaxed uppercase tracking-wide">
                 DeliWer transforms the fragmented Dubai move-in process into a single, structured journey. From Ejari registration to the moment you drink purified water from your tap.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button 
                   size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest w-full sm:w-auto"
                   onClick={() => window.open('https://wa.me/971523946311', '_blank')}
                 >
                   Book My Move-In
@@ -126,7 +126,7 @@ export default function LandingPage() {
                   <Button 
                     size="lg"
                     variant="outline"
-                    className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest"
+                    className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest w-full sm:w-auto"
                   >
                     View All Stages
                   </Button>
@@ -154,8 +154,18 @@ export default function LandingPage() {
 
       {/* Partner Strip */}
       <section className="px-4 py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-8">
           <PartnerStrip />
+          <div className="text-center">
+            <Link href="/partners">
+              <Button 
+                variant="outline"
+                className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest text-xs px-8 py-6 rounded-xl"
+              >
+                Become a Partner →
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       {/* Final Conversion Section */}
