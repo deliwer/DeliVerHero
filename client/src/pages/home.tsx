@@ -225,6 +225,16 @@ export default function Home() {
           </p>
         </div>
       </div>
+
+      <section id="service-cards" className="py-24 px-6 bg-slate-950">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-20 space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest mx-auto">
+              <ShieldCheck className="w-4 h-4" /> 100% Home Service Solution
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Your Move-In Steps</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto font-medium text-xl italic font-serif">A structured path to your new Dubai home.</p>
+          </div>
           
           <div className="grid lg:grid-cols-3 gap-8">
             {/* STEP 1 — MOVE-IN PLANNING */}
