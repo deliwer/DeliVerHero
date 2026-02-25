@@ -32,7 +32,7 @@ export function Navigation() {
 
   return (
     <div className="w-full">
-      {/* 1. Main Navigation Bar - Fixed */}
+      {/* 1. Main Navigation Bar - Always Available (Fixed) */}
       <nav className="sticky top-0 z-[60] bg-slate-900/90 backdrop-blur-md border-b border-white/5 px-4 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* LEFT: Logo - Home Button */}

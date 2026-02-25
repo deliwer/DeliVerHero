@@ -58,29 +58,27 @@ export default function LandingPage() {
             </h1>
             
             <h2 className="text-lg md:text-xl text-gray-300 font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight opacity-90">
-              The premium entry gateway to your new Dubai home. From Ejari to Handover, Move-In, and Activation.
+              The premium entry gateway to your new Dubai home. We handle the coordination from Ejari to Move-In.
             </h2>
           </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-left max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-left max-w-3xl mx-auto">
             {[
-              { step: 1, label: "Ejari Setup", icon: ClipboardList },
-              { step: 2, label: "Handover", icon: UserCheck },
-              { step: 3, label: "Move-In", icon: Package },
-              { step: 4, label: "Activation", icon: Zap, highlight: true },
-              { step: 5, label: "Water Setup", icon: Droplets },
-            ].map((item) => (
+              { label: "Ejari & Handover", icon: ClipboardList, desc: "Registration & key collection" },
+              { label: "Move-In Planning", icon: Package, desc: "Utility sequencing & logistics" },
+              { label: "Home Activation", icon: Zap, highlight: true, desc: "Ready to live in 48 hours" },
+            ].map((item, idx) => (
               <div 
-                key={item.step}
-                className={`flex flex-col gap-2 p-4 rounded-2xl border transition-all group ${
+                key={idx}
+                className={`flex flex-col gap-2 p-5 rounded-2xl border transition-all group ${
                   item.highlight 
                     ? "bg-emerald-500/10 border-emerald-500/50 scale-105 shadow-lg shadow-emerald-500/10" 
                     : "bg-white/5 border-white/10 hover:border-emerald-500/30"
                 }`}
               >
                 <item.icon className={`w-5 h-5 ${item.highlight ? "text-emerald-400" : "text-emerald-500"} group-hover:scale-110 transition-transform`} />
-                <span className="font-bold text-[9px] uppercase tracking-widest text-emerald-400/80">Step {item.step}</span>
-                <span className="font-bold text-xs leading-tight">{item.label}</span>
+                <span className="font-bold text-xs leading-tight text-white">{item.label}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 group-hover:text-gray-300 transition-colors">{item.desc}</span>
               </div>
             ))}
           </div>
@@ -95,9 +93,9 @@ export default function LandingPage() {
               Start on WhatsApp
             </Button>
             
-            <Link href="/partners">
+            <Link href="/residents">
               <span className="text-emerald-400 font-black uppercase tracking-widest text-sm hover:text-emerald-300 transition-colors cursor-pointer flex items-center gap-2">
-                For Brokers: Earn Commission <ArrowRight className="w-4 h-4" />
+                View Resident Services <ArrowRight className="w-4 h-4" />
               </span>
             </Link>
           </div>
@@ -116,13 +114,24 @@ export default function LandingPage() {
               <p className="text-lg text-gray-300 font-bold leading-relaxed uppercase tracking-wide">
                 DeliWer transforms the fragmented Dubai move-in process into a single, structured journey. From Ejari registration to the moment you drink purified water from your tap.
               </p>
-              <Button 
-                size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest"
-                onClick={() => window.open('https://wa.me/971523946311', '_blank')}
-              >
-                Book My Move-In
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  size="lg"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest"
+                  onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+                >
+                  Book My Move-In
+                </Button>
+                <Link href="/residents">
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest"
+                  >
+                    View All Stages
+                  </Button>
+                </Link>
+              </div>
             </div>
             <div className="space-y-4">
               {[
@@ -142,21 +151,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section className="py-12 relative z-10 px-4">
-        <div className="max-w-4xl mx-auto w-full grid md:grid-cols-2 gap-4">
-          <div className="bg-slate-900/20 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:bg-slate-900/30 transition-all group">
-            <h3 className="text-xl font-black uppercase tracking-tight mb-2 group-hover:text-emerald-400 transition-colors">Founders</h3>
-            <p className="text-sm text-gray-400 font-medium leading-snug">We handle Ejari, DEWA, and move-in setup so you can focus on building.</p>
-          </div>
 
-          <div className="bg-slate-900/20 backdrop-blur-sm border border-white/5 rounded-2xl p-6 hover:bg-slate-900/30 transition-all group">
-            <h3 className="text-xl font-black uppercase tracking-tight mb-2 group-hover:text-blue-400 transition-colors">Brokers</h3>
-            <p className="text-sm text-gray-400 font-medium leading-snug">Earn 10% commission on every referral. We become your post-rental infrastructure.</p>
-          </div>
-        </div>
-      </section>
       {/* Partner Strip */}
-      <section className="px-4 pb-20">
+      <section className="px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <PartnerStrip />
         </div>
