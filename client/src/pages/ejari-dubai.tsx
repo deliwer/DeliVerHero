@@ -62,11 +62,21 @@ export default function EjariDubai() {
 
             {/* Video Explanation Section */}
             <div className="max-w-4xl mx-auto mb-12 rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
-              <div className="aspect-video relative">
+              <div className="aspect-video relative group cursor-pointer">
                 <video 
+                  id="ejari-video"
                   className="w-full h-full object-cover"
                   controls
+                  preload="metadata"
                   poster="/deliwer-logo.png"
+                  onClick={(e) => {
+                    const video = e.currentTarget;
+                    if (video.paused) {
+                      video.play();
+                    } else {
+                      video.pause();
+                    }
+                  }}
                 >
                   <source src="/attached_assets/Ejari-Service-Final_injaz_1772144918784.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
