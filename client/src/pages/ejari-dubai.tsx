@@ -59,6 +59,26 @@ export default function EjariDubai() {
             <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
               Tenants & Landlords: Complete your Ejari registration instantly with biometric verification. No queues, no hassle.
             </p>
+
+            {/* Video Explanation Section */}
+            <div className="max-w-4xl mx-auto mb-12 rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
+              <div className="aspect-video relative">
+                <video 
+                  className="w-full h-full object-cover"
+                  controls
+                  poster="/deliwer-logo.png"
+                >
+                  <source src="/attached_assets/Ejari-Service-Final_injaz_1772144918784.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div className="p-4 bg-slate-900/50 backdrop-blur-sm border-t border-white/5">
+                <p className="text-sm text-gray-400 font-medium">
+                  Watch: How DeliWer & AQARI (Injaz) facilitate your Ejari Trustee Center journey.
+                </p>
+              </div>
+            </div>
+
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-10 rounded-2xl text-lg shadow-lg shadow-emerald-900/20" onClick={handleWhatsApp}>
                 <MessageSquare className="w-6 h-6 mr-2" />
@@ -106,9 +126,21 @@ export default function EjariDubai() {
       <section className="py-24 px-4 bg-emerald-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-black uppercase mb-8 text-slate-950">Secure Biometric Verification</h2>
-          <p className="text-xl text-emerald-100 mb-12">
+          <p className="text-xl text-emerald-100 mb-8">
             We utilize UAE Pass biometrics to ensure the highest level of security for both landlords and tenants. Our trustee center status allows us to issue Ejari certificates directly to your email.
           </p>
+          
+          {/* Full Disclaimer */}
+          <div className="bg-slate-950/20 rounded-2xl p-6 mb-12 border border-slate-950/10 text-left">
+            <h3 className="text-slate-950 font-black uppercase text-sm mb-3 flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4" />
+              Full Service Disclaimer
+            </h3>
+            <p className="text-slate-900 text-sm leading-relaxed font-medium">
+              DeliWer operates as a digital facilitation platform in partnership with <span className="font-bold">AQARI (Injaz)</span>, an authorized RERA Appointed Trustee Center. All Ejari services, including contract registration, verification, and biometric processing, are carried out through our partner's official Trustee Center status. We facilitate the secure collection of documentation and coordinate the UAE Pass biometric authentication process to ensure compliance with Dubai Land Department (DLD) regulations.
+            </p>
+          </div>
+
           <div className="flex justify-center gap-8 items-center flex-wrap">
             <div className="flex items-center gap-2 text-slate-950 font-black uppercase tracking-wider">
               <CheckCircle2 className="w-6 h-6" />
