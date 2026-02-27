@@ -1,244 +1,204 @@
-import { useLocation } from "wouter";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle2, ArrowRight, Droplets, Wind, Home, ShieldCheck, Clock, MessageSquare, Zap } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { useLocation, Link } from "wouter";
+import { 
+  CheckCircle2, 
+  ArrowRight, 
+  MessageSquare, 
+  Zap, 
+  Flame, 
+  Shield,
+  ShieldCheck
+} from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Helmet } from "react-helmet";
-import homeSetupImg from "@/assets/images/home-setup.jpg";
-import moveInImg from "@/assets/images/move-in.jpg";
-import conciergeImg from "@/assets/images/concierge.jpg";
+import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
+import { Button } from "@/components/ui/button";
+
+// Card components local to avoid import complexity
+function Card({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={`rounded-[3rem] border border-white/10 bg-white/5 text-card-foreground shadow-xl ${className}`}>{children}</div>;
+}
+
+function CardHeader({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={`flex flex-col space-y-1.5 p-6 ${className}`}>{children}</div>;
+}
+
+function CardTitle({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <h3 className={`font-black uppercase tracking-tighter italic ${className}`}>{children}</h3>;
+}
+
+function CardContent({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={`p-6 pt-0 ${className}`}>{children}</div>;
+}
 
 export default function ResidentsPage() {
   const [location] = useLocation();
-  const [params, setParams] = useState<URLSearchParams>(new URLSearchParams());
-
-  useEffect(() => {
-    setParams(new URLSearchParams(window.location.search));
-  }, [location]);
-
-  const stage = params.get("stage");
-
-  const getContent = () => {
-    if (stage === "ejari") {
-      return {
-        headline: "Ejari Completed? Here’s What Every Dubai Tenant Does Next.",
-        subheadline: "Before DEWA activation and unpacking chaos, activate your apartment properly.",
-        cta: "Start Move-In Activation (AED 399)",
-        whatsapp: "Hi DeliWer, I just completed Ejari and want to prepare my apartment before moving in."
-      };
-    } else if (stage === "handover") {
-      return {
-        headline: "Got Your Keys? Activate Your Home the Right Way.",
-        subheadline: "The standard preparation visit before you settle into your new apartment.",
-        cta: "Start Move-In Activation (AED 399)",
-        whatsapp: "Hi DeliWer, I just received my keys and want to activate my home."
-      };
-    }
-    return {
-      headline: "Moving Into a New Apartment in Dubai?",
-      subheadline: "The standard preparation visit before you settle into your new apartment.",
-      cta: "Start Move-In Activation (AED 399)",
-      whatsapp: "Hi DeliWer, I want to book a move-in activation visit."
-    };
-  };
-
-  const content = getContent();
-  const whatsappUrl = `https://wa.me/971523946311?text=${encodeURIComponent(content.whatsapp)}`;
 
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-emerald-500/30">
       <Helmet>
-        <title>Move-In Activation After Ejari in Dubai | DeliWer</title>
-        <meta name="description" content="Completed Ejari in Dubai? Book DeliWer’s Move-In Activation visit before settling in. Water, air, essentials setup. Cash on visit." />
+        <title>Resident Support & Home Optimization | DeliWer Dubai</title>
+        <meta name="description" content="Already settled in Dubai? DeliWer provides Ejari renewals, home optimization, and ongoing support for long-term residents." />
       </Helmet>
 
       <Navigation />
 
-      <main className="max-w-7xl mx-auto px-6 py-12 md:py-24 space-y-24 relative z-10">
+      <main className="pt-48 pb-24">
         {/* Hero Section */}
-        <div className="text-center space-y-8 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-widest">
-            <ShieldCheck size={14} />
-            Standard Dubai Procedure
+        <section className="max-w-7xl mx-auto px-6 mb-24 text-center space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest mx-auto">
+            <Shield size={12} />
+            Your Home Operating System
           </div>
-          <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] uppercase italic">
-            {content.headline}
+          <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.85] uppercase italic text-white">
+            Settled in Dubai?<br />
+            <span className="text-emerald-500">Live Optimized.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto leading-tight font-medium">
-            {content.subheadline}
+          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto font-bold uppercase tracking-tight">
+            We are the operator, not just a service. From Ejari renewals to technical home readiness, we handle the friction of Dubai living.
           </p>
-          <div className="pt-4 flex flex-col items-center gap-6">
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-8 text-xl font-black uppercase tracking-widest rounded-2xl shadow-2xl shadow-emerald-500/20 transition-all hover:scale-[1.05] active:scale-[0.95] w-full md:w-auto"
-              onClick={() => window.location.href = "/relocate#activation"}
-              data-testid="button-hero-activation"
-            >
-              {content.cta}
-              <ArrowRight className="ml-3 h-6 w-6" />
-            </Button>
-            <Button 
-              variant="link"
-              className="text-emerald-400 font-black uppercase tracking-widest hover:text-emerald-300"
-              onClick={() => window.location.href = "/relocate"}
-              data-testid="link-all-packages"
-            >
-              👉 View All Relocation Packages
-            </Button>
-          </div>
-        </div>
+        </section>
 
-        {/* Normalization Section */}
-        <div className="py-20 border-y border-white/5 bg-white/5 backdrop-blur-sm rounded-[3rem] px-8">
-          <div className="max-w-4xl mx-auto space-y-12">
+        {/* Core Funnel - 2 Main Columns */}
+        <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 mb-32">
+          {/* Flagship: Move-In / Activation */}
+          <Card className="relative border-emerald-500/30 overflow-hidden group hover:border-emerald-500 transition-all shadow-2xl shadow-emerald-900/10">
+            <div className="absolute top-0 inset-x-0 h-2 bg-emerald-500" />
+            <CardHeader className="p-12 text-center space-y-4">
+              <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Zap className="w-8 h-8 text-emerald-500" />
+              </div>
+              <CardTitle className="text-4xl text-white">Move-In Concierge</CardTitle>
+              <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Standard Technical Activation</p>
+              <div className="text-5xl font-black text-white tracking-tighter mt-4">AED 399</div>
+            </CardHeader>
+            <CardContent className="p-12 pt-0 space-y-10">
+              <ul className="space-y-4">
+                {[
+                  "Water readiness check",
+                  "Shower filter installation",
+                  "Basic AC filter clean",
+                  "Essentials setup guidance",
+                  "Direct WhatsApp support"
+                ].map((f, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm font-bold text-gray-200 uppercase tracking-tight">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/relocate">
+                <Button className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-xl transition-all">
+                  Activate My Home <ArrowRight className="ml-2 w-6 h-6" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+
+          {/* Ejari Support */}
+          <Card className="relative border-white/10 overflow-hidden group hover:border-white/20 transition-all">
+            <CardHeader className="p-12 text-center space-y-4">
+              <div className="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Flame className="w-8 h-8 text-blue-500" />
+              </div>
+              <CardTitle className="text-4xl text-white">Ejari Renewal</CardTitle>
+              <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Compliance & Documentation</p>
+              <div className="text-5xl font-black text-white tracking-tighter mt-4">AED 199</div>
+            </CardHeader>
+            <CardContent className="p-12 pt-0 space-y-10">
+              <ul className="space-y-4">
+                {[
+                  "Trustee Center coordination",
+                  "Documentation audit",
+                  "UAE Pass biometric support",
+                  "Fast-track processing",
+                  "Digital certificate delivery"
+                ].map((f, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm font-bold text-gray-200 uppercase tracking-tight">
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/ejari-dubai">
+                <Button variant="outline" className="w-full h-20 border-white/10 hover:bg-white/5 text-white font-black uppercase tracking-widest rounded-2xl text-xl transition-all">
+                  Register Ejari <ArrowRight className="ml-2 w-6 h-6" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* The Differentiator Section */}
+        <section className="bg-white/5 border-y border-white/5 py-32 px-6">
+          <div className="max-w-4xl mx-auto space-y-16">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter italic">
-                The First 72 Hours Decide Everything.
-              </h2>
-              <p className="text-emerald-400 font-bold uppercase tracking-widest">
-                Don't settle in until you activate.
-              </p>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter italic text-white">We Are Not Brokers.</h2>
+              <p className="text-emerald-400 font-black uppercase tracking-[0.2em] text-sm">We are your Home's Operational Partner.</p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                { icon: <Droplets className="text-emerald-500" />, text: "Water quality differences in Dubai" },
-                { icon: <Wind className="text-emerald-500" />, text: "AC systems rarely cleaned before move-in" },
-                { icon: <ShieldCheck className="text-emerald-500" />, text: "Shower filtration overlooked" },
-                { icon: <Zap className="text-emerald-500" />, text: "Vendor overload" },
-                { icon: <MessageSquare className="text-emerald-500" />, text: "No single trusted contact" }
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                  {item.icon}
-                  <span className="font-bold text-gray-200">{item.text}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center pt-8">
-              <p className="text-xl md:text-2xl font-black text-white uppercase italic underline decoration-emerald-500 underline-offset-8">
-                Most tenants now begin with a Move-In Activation visit.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-black uppercase text-white flex items-center gap-3">
+                  <ShieldCheck className="text-emerald-500 w-8 h-8" /> Operator Status
+                </h3>
+                <p className="text-gray-400 font-bold leading-relaxed">
+                  Brokers exit once the lease is signed. Contractors only fix what's broken. DeliWer stays as your operator, ensuring your living experience is technicality-free.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-2xl font-black uppercase text-white flex items-center gap-3">
+                  <Flame className="text-emerald-500 w-8 h-8" /> Ejari First
+                </h3>
+                <p className="text-gray-400 font-bold leading-relaxed">
+                  Ejari is the foundation of everything in Dubai. By managing this core compliance through authorized Trustee Centers, we unlock your home's potential.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Activation Detail Section */}
-        <div id="activation" className="grid md:grid-cols-2 gap-16 items-center bg-emerald-950/20 border border-emerald-500/20 rounded-[3rem] p-8 md:p-16">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-widest">
-              Standard Move-In
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic">
-              Dubai Move-In Activation — AED 399
-            </h2>
-            <p className="text-gray-300 text-lg md:text-xl leading-snug font-medium italic">
-              "This is the standard preparation visit before you settle into your new apartment."
-            </p>
-            <ul className="space-y-4">
-              {[
-                "Water readiness check",
-                "Shower filter installation",
-                "Basic AC filter clean",
-                "Essentials setup guidance",
-                "Direct WhatsApp support"
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-4 text-lg font-black uppercase tracking-tight text-white">
-                  <CheckCircle2 size={24} className="text-emerald-500" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="space-y-6 pt-4">
-              <p className="text-sm font-black text-emerald-400 uppercase tracking-widest flex items-center gap-2">
-                <Clock size={16} /> Cash or transfer on visit. No online payment required.
-              </p>
-              <Button 
-                size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-8 text-xl font-black uppercase tracking-widest rounded-2xl shadow-xl transition-all w-full"
-                onClick={() => window.location.href = "/relocate#activation"}
-                data-testid="button-book-activation"
-              >
-                👉 Book Activation Now
-              </Button>
-            </div>
+        <section className="py-20 bg-slate-950">
+          <div className="max-w-4xl mx-auto">
+            <PartnerStrip />
           </div>
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-emerald-500/20 rounded-[3rem] blur-3xl opacity-50 transition-opacity"></div>
-            <div className="relative rounded-[3rem] overflow-hidden border border-white/10 aspect-square shadow-2xl">
-              <img src={homeSetupImg} alt="Activation Visit" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent"></div>
-            </div>
-          </div>
-        </div>
+        </section>
 
-        {/* Journey Flow */}
-        <div className="space-y-16 py-12">
-          <h2 className="text-center text-3xl md:text-5xl font-black text-white uppercase tracking-tighter italic">
-            Your Journey With DeliWer
-          </h2>
-          
-          <div className="relative max-w-5xl mx-auto px-4 overflow-x-auto pb-8 scrollbar-hide">
-            <div className="flex items-center justify-between min-w-[800px] relative">
-              <div className="absolute top-1/2 left-0 w-full h-1 bg-white/10 -translate-y-1/2 z-0"></div>
-              
-              {[
-                "Ejari", "Activation", "Water Service", "Ongoing Support", "Sustainable Living"
-              ].map((step, i) => (
-                <div key={i} className="relative z-10 flex flex-col items-center gap-4 bg-slate-950 px-4">
-                  <div className="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center font-black text-white shadow-lg shadow-emerald-500/20">
-                    {i + 1}
-                  </div>
-                  <span className="font-black uppercase tracking-widest text-xs text-white whitespace-nowrap">
-                    {step}
-                  </span>
-                </div>
-              ))}
-            </div>
+        {/* Ongoing Support Section */}
+        <section className="max-w-7xl mx-auto px-6 py-32 space-y-16">
+          <div className="text-center">
+            <h2 className="text-3xl font-black uppercase tracking-widest text-gray-500">Ongoing Home Support</h2>
           </div>
-          
-          <div className="text-center space-y-8">
-            <p className="text-gray-400 font-bold uppercase tracking-widest italic">
-              DeliWer stays with you beyond move-in.
-            </p>
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg font-black uppercase tracking-widest rounded-2xl"
-              onClick={() => window.location.href = "/relocate"}
-              data-testid="link-explore-plans"
-            >
-              Explore Resident & Relocation Plans
-            </Button>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Home Optimization", desc: "Energy and water efficiency audits for long-term savings." },
+              { title: "Document Vault", desc: "Digital management of your Ejari, DEWA, and lease history." },
+              { title: "Renewal Planning", desc: "Automated alerts and coordination for your next lease cycle." }
+            ].map((item, i) => (
+              <div key={i} className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all space-y-4">
+                <h3 className="text-2xl font-black uppercase text-white">{item.title}</h3>
+                <p className="text-gray-400 font-medium leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
 
-        {/* Trust Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center pt-12 border-t border-white/10">
-          {[
-            { label: "Dubai Focused", sub: "Local Expertise" },
-            { label: "WhatsApp First", sub: "Instant Support" },
-            { label: "Founder Led", sub: "Direct Accountability" },
-            { label: "Sustainable", sub: "Water Expertise" }
-          ].map((item, i) => (
-            <div key={i} className="space-y-2">
-              <div className="text-xl font-black text-white uppercase tracking-tighter italic">{item.label}</div>
-              <div className="text-xs font-black text-emerald-500 uppercase tracking-widest">{item.sub}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center pb-12">
-          <p className="text-gray-500 text-sm font-black uppercase tracking-widest italic">
-            Designed for tenants who want to move in the right way.
-          </p>
-        </div>
+        <section className="text-center pb-24 px-6">
+          <Button 
+            size="lg"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white px-16 h-24 text-2xl font-black uppercase tracking-widest rounded-3xl shadow-2xl active:scale-95 transition-all w-full md:w-auto"
+            onClick={() => window.open('https://wa.me/971523946311?text=Hi,%20I%20am%20a%20current%20resident%20and%20need%20home%20optimization%20support.', '_blank')}
+          >
+            <MessageSquare className="w-8 h-8 mr-4 fill-current" />
+            WhatsApp Resident Desk
+          </Button>
+        </section>
       </main>
 
-      <footer className="py-16 px-6 text-center text-gray-500 text-xs font-black uppercase tracking-[0.2em] border-t border-white/5 bg-slate-950">
-        <p>© 2026 DeliWer. Built for sustainable Dubai living.</p>
+      <footer className="py-20 px-6 text-center border-t border-white/5 bg-slate-950">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <OperationalBadges variant="dark" />
+          <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 DeliWer. Built for the Dubai Living Journey.</p>
+        </div>
       </footer>
     </div>
   );

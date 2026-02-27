@@ -11,7 +11,9 @@ import {
   ClipboardList,
   UserCheck,
   Package,
-  Droplets
+  Droplets,
+  Flame,
+  Home as HomeIcon
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
@@ -37,6 +39,8 @@ export default function LandingPage() {
         title="Dubai Move-In & Relocation Concierge | DeliWer"
         description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
       />
+      <Navigation />
+      
       {/* SECTION 1 — HERO */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center">
         <div 
@@ -87,20 +91,40 @@ export default function LandingPage() {
       {/* SECTION 2 — ROUTER BLOCK (CRITICAL UX) */}
       <section className="py-20 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-7xl mx-auto space-y-12">
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-center text-white">What Stage Are You In?</h2>
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">The Dubai Home Operating System</h2>
+            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Ejari-first coordination for every stage of your residency.</p>
+          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500/50 transition-all group">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <Card className="bg-white/5 border-emerald-500/30 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
+              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Pivotal</div>
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
+                  <Flame className="w-6 h-6 text-emerald-500" />
+                </div>
+                <h3 className="text-2xl font-black uppercase text-white leading-tight text-emerald-500">Ejari Support</h3>
+                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">The foundation of your legal residency.</p>
+              </div>
+              <Link href="/ejari-dubai">
+                <Button className="w-full mt-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12 shadow-lg shadow-emerald-900/40">
+                  Secure My Ejari
+                </Button>
+              </Link>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500/50 transition-all group relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Flagship</div>
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
                   <Zap className="w-6 h-6 text-emerald-500" />
                 </div>
-                <h3 className="text-2xl font-black uppercase text-white">Just Signed a Lease</h3>
-                <p className="text-gray-400 font-medium uppercase tracking-wide text-sm">Activate your home in 24 hours.</p>
+                <h3 className="text-2xl font-black uppercase text-white leading-tight">Move-In 399</h3>
+                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Complete Technical Home Activation.</p>
               </div>
               <Link href="/relocate">
-                <Button className="w-full mt-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl uppercase tracking-widest text-xs h-12">
-                  View Move-In Concierge 399
+                <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12" variant="outline">
+                  Activate Home
                 </Button>
               </Link>
             </Card>
@@ -110,32 +134,61 @@ export default function LandingPage() {
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center">
                   <ArrowRight className="w-6 h-6 text-blue-500 rotate-45" />
                 </div>
-                <h3 className="text-2xl font-black uppercase text-white">Moving Out Soon</h3>
-                <p className="text-gray-400 font-medium uppercase tracking-wide text-sm">Close utilities and exit smoothly.</p>
+                <h3 className="text-2xl font-black uppercase text-white leading-tight">Moving Out</h3>
+                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Utility closure & Deposit protection.</p>
               </div>
               <Button 
-                className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-xs h-12"
+                className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12"
                 variant="outline"
                 onClick={() => window.open('https://wa.me/971523946311?text=Hi,%20I%20need%20move-out%20coordination.', '_blank')}
               >
-                View Move-Out Support
+                Plan Exit
               </Button>
             </Card>
 
             <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500/50 transition-all group">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center">
-                  <Briefcase className="w-6 h-6 text-purple-500" />
+                  <HomeIcon className="w-6 h-6 text-purple-500" />
                 </div>
-                <h3 className="text-2xl font-black uppercase text-white">Relocating to Dubai</h3>
-                <p className="text-gray-400 font-medium uppercase tracking-wide text-sm">End-to-end guidance for new residents.</p>
+                <h3 className="text-2xl font-black uppercase text-white leading-tight">Residents</h3>
+                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Ongoing support & Optimization.</p>
               </div>
-              <Link href="/relocate">
-                <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-xs h-12" variant="outline">
-                  Explore Relocation Help
+              <Link href="/residents">
+                <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12" variant="outline">
+                  Open Desk
                 </Button>
               </Link>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPARISON SECTION — THE OPERATOR DIFFERENCE */}
+      <section className="py-24 px-6 bg-slate-900/50">
+        <div className="max-w-5xl mx-auto space-y-16">
+          <div className="text-center space-y-4">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Why DeliWer is <span className="text-emerald-500">The Operator</span></h2>
+            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">We don't just facilitate; we operate your home.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl space-y-6">
+              <h3 className="text-xl font-black uppercase text-white border-b border-white/10 pb-4">Real Estate Brokers</h3>
+              <p className="text-gray-500 font-medium text-sm">Focus ends when the lease is signed. No technical support or utility coordination.</p>
+              <div className="text-red-500/50 font-black uppercase text-[10px]">Relationship ends at signature</div>
+            </div>
+            <div className="p-8 bg-emerald-500/10 border border-emerald-500/30 rounded-3xl space-y-6 relative overflow-hidden">
+              <div className="absolute -right-4 -top-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-2xl" />
+              <h3 className="text-xl font-black uppercase text-emerald-500 border-b border-emerald-500/20 pb-4">DeliWer (Operator)</h3>
+              <p className="text-gray-300 font-medium text-sm">Continuous technical and legal coordination. Ejari, DEWA, Water, and optimization handled in one place.</p>
+              <div className="text-emerald-500 font-black uppercase text-[10px]">Your permanent home partner</div>
+            </div>
+            <div className="p-8 bg-white/5 border border-white/10 rounded-3xl space-y-6">
+              <h3 className="text-xl font-black uppercase text-white border-b border-white/10 pb-4">Contractors</h3>
+              <p className="text-gray-500 font-medium text-sm">Transactional visits. High markup on parts. No understanding of Dubai's legal compliance (Ejari).</p>
+              <div className="text-red-500/50 font-black uppercase text-[10px]">One-off job focus</div>
+            </div>
           </div>
         </div>
       </section>

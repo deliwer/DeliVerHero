@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquare, CheckCircle2, ShieldCheck, Fingerprint, Building2, ClipboardCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
+import { Navigation } from "@/components/navigation";
 
 export default function EjariDubai() {
   const handleWhatsApp = () => {
@@ -39,6 +41,7 @@ export default function EjariDubai() {
         title="Ejari Verification Dubai | Trustee Center & Biometrics | DeliWer"
         description="Official Ejari verification for tenants and landlords. Secure biometric authentication via UAE Pass. Fast, digital, and reliable."
       />
+      <Navigation />
 
       {/* Hero Section */}
       <section className="relative py-24 px-4 overflow-hidden">
@@ -129,6 +132,31 @@ export default function EjariDubai() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Standard Funnel Section */}
+      <section className="max-w-4xl mx-auto py-20 px-6 mb-24 bg-emerald-950/20 border border-emerald-500/20 rounded-[3rem] text-center space-y-8">
+        <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-widest">
+          The DeliWer Standard
+        </div>
+        <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic">
+          Ejari Done. Now What?
+        </h2>
+        <p className="text-gray-300 text-lg font-medium italic max-w-2xl mx-auto">
+          Ejari is just the foundation. Most residents now follow up with our standard Move-In Activation to ensure the home is technically ready.
+        </p>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 pt-4">
+          <Link href="/relocate">
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-16 text-xl shadow-xl transition-all w-full md:w-auto">
+              Start Move-In Activation (AED 399)
+            </Button>
+          </Link>
+          <Link href="/residents">
+            <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 text-white font-black rounded-2xl px-10 h-16 text-xl w-full md:w-auto">
+              Explore Resident Services
+            </Button>
+          </Link>
         </div>
       </section>
 
