@@ -1,0 +1,229 @@
+Ahhh okay. Good correction.
+
+We’re not becoming a boring compliance factory.
+We’re staying **Move-In & Relocation Activation**.
+
+But we’re using Ejari as the **first step of the journey**, not the identity.
+
+That’s a smarter GTM.
+
+So the homepage should feel like:
+
+> “We coordinate your entire move-in.”
+> Not
+> “We process paperwork.”
+
+Here’s your revised **deploy-ready Replit prompt** — aligned with Move-In Coordination as the main positioning, with Ejari as Step 1.
+
+---
+
+# REPLIT PROMPT — DeliWer Move-In Activation Homepage (Ejari-Led Journey)
+
+**Objective:**
+Rebuild [www.deliwer.com](http://www.deliwer.com) root homepage positioning DeliWer as a Move-In & Relocation Coordination company in Dubai. Ejari is the starting step of the journey, not the core identity. Focus on stress-free activation, fast coordination, and WhatsApp conversion. No checkout. WhatsApp booking only.
+
+---
+
+## CORE POSITIONING
+
+DeliWer = Move-In Activation Partner
+
+Primary promise:
+“We coordinate your move-in from lease to living-ready.”
+
+Ejari = Step 1
+DEWA = Step 2
+Water readiness = Step 3
+Move coordination = Step 4
+
+---
+
+## SECTION 1 — HERO
+
+Headline:
+Moving to Dubai? We Activate Your Home in 24 Hours.
+
+Subheadline:
+From Ejari registration to DEWA activation and water setup — DeliWer coordinates your entire move-in so you don’t run around trustee centers.
+
+Primary CTA:
+Start My Move-In on WhatsApp
+
+Secondary CTA:
+See Move-In Packages
+
+Micro-copy under CTA:
+Dubai-wide | Fast response | Cash on visit
+
+---
+
+## SECTION 2 — THE MOVE-IN JOURNEY
+
+Title:
+Your Move-In, Coordinated Step by Step
+
+Visual 4-step horizontal journey:
+
+Step 1
+Ejari Registration
+We register your tenancy and handle documentation.
+
+Step 2
+DEWA Activation
+Electricity and water connection activated.
+
+Step 3
+Water & Readiness Check
+Hydration setup and essential checks before your first night.
+
+Step 4
+Move Coordination Support
+Packing, timing, and activation guidance.
+
+Short paragraph below:
+Most residents handle these steps separately. DeliWer coordinates them together.
+
+---
+
+## SECTION 3 — MOVE-IN PACKAGES
+
+Title:
+Choose Your Move-In Level
+
+Package 1 — Basic Activation
+Includes:
+
+* Ejari registration coordination
+* Documentation support
+  Price: AED XXX
+
+Package 2 — Essentials Move-In
+Includes:
+
+* Ejari registration
+* DEWA activation
+* Move-in checklist coordination
+  Price: AED XXX
+
+Package 3 — Complete Move Concierge
+Price: AED 399
+Includes:
+
+* Ejari registration
+* DEWA activation
+* Water readiness check
+* Shower filter with installation
+* Move coordination assistance
+
+Under pricing:
+Book via WhatsApp. Cash on visit or bank transfer.
+
+Each package must have:
+WhatsApp CTA button with prefilled message:
+“Hi, I want to activate my new home in Dubai.”
+
+---
+
+## SECTION 4 — WHY DELIWER
+
+Title:
+Why Residents Choose DeliWer
+
+Bullet points:
+
+* One WhatsApp, full coordination
+* No trustee center runs
+* Faster activation timeline
+* Transparent pricing
+* Designed for new Dubai residents
+
+Keep tone reassuring and action-focused.
+
+---
+
+## SECTION 5 — WHO THIS IS FOR
+
+Title:
+Built for Dubai Relocations
+
+Short copy blocks:
+
+New Residents
+First time renting in Dubai? We guide you step by step.
+
+Busy Professionals
+No time to coordinate paperwork? We handle it.
+
+Families Moving Areas
+Upgrade your home without the stress.
+
+---
+
+## SECTION 6 — FAQ
+
+Include:
+
+What documents are needed for Ejari?
+How long does move-in activation take?
+Can DEWA be activated same day?
+Do I need to visit a trustee center?
+How do I pay?
+
+Short and operational answers.
+
+---
+
+## SECTION 7 — FINAL CTA
+
+Headline:
+Got Your Lease? Let’s Activate Your Home.
+
+Button:
+WhatsApp DeliWer Now
+
+Phone:
++971523946311
+
+---
+
+## TECHNICAL REQUIREMENTS
+
+* Sticky WhatsApp floating button
+* Prefilled message:
+  “Hi, I just signed my lease and need move-in activation support.”
+* Mobile-first layout
+* Fast load speed
+* Clear H1: Move-In Activation in Dubai
+* SEO keywords integrated naturally:
+
+  * Ejari registration Dubai
+  * DEWA activation
+  * Move-in coordination Dubai
+  * Relocation services Dubai
+* FAQ schema markup
+* No checkout
+* No subscription messaging on hero
+
+---
+
+## TONE
+
+Confident
+Coordinated
+Stress-reducing
+Relocation-focused
+
+Not a government processing website.
+Not just water delivery.
+Not compliance-only.
+
+---
+
+This way:
+
+Traffic enters through Ejari search.
+But emotionally they convert because you solve the *entire move-in chaos*.
+
+That’s the difference.
+
+If you want next, I can map the exact click funnel logic from Google search → landing → WhatsApp → upsell ladder so you maximize conversion without overwhelming the homepage.

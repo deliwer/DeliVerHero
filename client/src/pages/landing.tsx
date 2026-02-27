@@ -43,112 +43,240 @@ export default function LandingPage() {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroBg})` }}
         >
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
         </div>
 
         <div className="max-w-4xl w-full text-center space-y-8 relative z-10 py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-4"
+            className="space-y-6"
           >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-widest mb-4">
+              <Shield className="w-4 h-4" />
+              Dubai Move-In Activation Partner
+            </div>
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
-              Ejari Home<br />
-              <span className="text-emerald-500">Service</span>
+              Moving to Dubai?<br />
+              <span className="text-emerald-500">We Activate Your Home</span><br />
+              in 24 Hours.
             </h1>
             
             <h2 className="text-lg md:text-xl text-gray-300 font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight opacity-90">
-              The premium entry gateway to your new Dubai home. We handle the coordination from Ejari to Move-In.
+              From Ejari registration to DEWA activation and water setup — DeliWer coordinates your entire move-in so you don’t run around trustee centers.
             </h2>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-left max-w-3xl mx-auto">
-            {[
-              { label: "Ejari & Handover", icon: ClipboardList, desc: "Registration & key collection" },
-              { label: "Move-In Planning", icon: Package, desc: "Utility sequencing & logistics" },
-              { label: "Home Activation", icon: Zap, highlight: true, desc: "Ready to live in 48 hours" },
-            ].map((item, idx) => (
-              <div 
-                key={idx}
-                className={`flex flex-col gap-2 p-5 rounded-2xl border transition-all group ${
-                  item.highlight 
-                    ? "bg-emerald-500/10 border-emerald-500/50 scale-105 shadow-lg shadow-emerald-500/10" 
-                    : "bg-white/5 border-white/10 hover:border-emerald-500/30"
-                }`}
-              >
-                <item.icon className={`w-5 h-5 ${item.highlight ? "text-emerald-400" : "text-emerald-500"} group-hover:scale-110 transition-transform`} />
-                <span className="font-bold text-xs leading-tight text-white">{item.label}</span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 group-hover:text-gray-300 transition-colors">{item.desc}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col items-center gap-6 pt-4">
+          <div className="flex flex-col items-center gap-4 pt-4">
             <Button 
               size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center"
-              onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20just%20signed%20a%20lease%20in%20Dubai%20and%20need%20move-in%20support.', '_blank')}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 flex gap-3 items-center justify-center group"
+              onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20just%20signed%20my%20lease%20and%20need%20move-in%20activation%20support.', '_blank')}
             >
-              <MessageCircle className="w-6 h-6 fill-current" />
-              Start on WhatsApp
+              <MessageCircle className="w-8 h-8 fill-current group-hover:scale-110 transition-transform" />
+              Start My Move-In on WhatsApp
             </Button>
             
-            <Link href="/residents">
-              <span className="text-emerald-400 font-black uppercase tracking-widest text-sm hover:text-emerald-300 transition-colors cursor-pointer flex items-center gap-2">
-                View Resident Services <ArrowRight className="w-4 h-4" />
-              </span>
+            <Link href="/move-in-packages">
+              <Button variant="ghost" className="text-emerald-400 font-black uppercase tracking-widest text-sm hover:text-emerald-300 transition-colors flex items-center gap-2 h-12">
+                See Move-In Packages <ArrowRight className="w-4 h-4" />
+              </Button>
             </Link>
+            
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
+              Dubai-wide | Fast response | Cash on visit
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Second Fold: Simplified & Essential */}
-      <section className="py-20 px-6 bg-slate-900 border-y border-white/5">
-        <div className="container mx-auto max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight">
-                One Gateway. <br />
-                <span className="text-emerald-500">Zero Hassle.</span>
-              </h2>
-              <p className="text-lg text-gray-300 font-bold leading-relaxed uppercase tracking-wide">
-                DeliWer transforms the fragmented Dubai move-in process into a single, structured journey. From Ejari registration to the moment you drink purified water from your tap.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 items-start">
-                <Button 
-                  size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest w-full sm:w-auto"
-                  onClick={() => window.open('https://wa.me/971523946311', '_blank')}
-                >
-                  Book My Move-In
-                </Button>
-                <Link href="/residents">
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-xl px-10 h-16 text-lg uppercase tracking-widest w-full sm:w-auto"
-                  >
-                    View All Stages
-                  </Button>
-                </Link>
+      {/* Section 2 — THE MOVE-IN JOURNEY */}
+      <section className="py-24 px-6 bg-slate-950 border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Your Move-In, Coordinated Step by Step</h2>
+            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Most residents handle these steps separately. DeliWer coordinates them together.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+            <div className="hidden md:block absolute top-12 left-0 right-0 h-px bg-white/10 z-0" />
+            {[
+              { step: "Step 1", title: "Ejari Registration", desc: "We register your tenancy and handle documentation.", icon: ClipboardList },
+              { step: "Step 2", title: "DEWA Activation", desc: "Electricity and water connection activated.", icon: Zap },
+              { step: "Step 3", title: "Water & Readiness", desc: "Hydration setup and essential checks before your first night.", icon: Droplets },
+              { step: "Step 4", title: "Move Coordination", desc: "Packing, timing, and activation guidance.", icon: Package },
+            ].map((item, idx) => (
+              <div key={idx} className="relative z-10 flex flex-col items-center text-center space-y-4 group">
+                <div className="w-24 h-24 rounded-3xl bg-slate-900 border border-white/10 flex items-center justify-center group-hover:border-emerald-500/50 transition-all shadow-xl">
+                  <item.icon className="w-10 h-10 text-emerald-500 group-hover:scale-110 transition-transform" />
+                </div>
+                <div className="space-y-2">
+                  <span className="text-emerald-500 font-black text-xs uppercase tracking-[0.3em]">{item.step}</span>
+                  <h3 className="text-xl font-black uppercase text-white">{item.title}</h3>
+                  <p className="text-sm text-gray-400 font-medium leading-relaxed">{item.desc}</p>
+                </div>
               </div>
-            </div>
-            <div className="space-y-4">
-              {[
-                { title: "Legally Secure", desc: "All Ejari & DEWA requirements handled correctly.", icon: CheckCircle2 },
-                { title: "Fast Activation", desc: "Home readiness visit scheduled within 48 hours.", icon: Zap },
-                { title: "WhatsApp Managed", desc: "One contact for your entire relocation.", icon: MessageCircle },
-              ].map((benefit, i) => (
-                <div key={i} className="flex gap-4 items-start p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-emerald-500/30 transition-all group">
-                  <benefit.icon className="w-6 h-6 text-emerald-500 shrink-0 mt-1 group-hover:scale-110 transition-transform" />
-                  <div>
-                    <h4 className="font-black uppercase tracking-tight text-white">{benefit.title}</h4>
-                    <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">{benefit.desc}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3 — MOVE-IN PACKAGES */}
+      <section className="py-24 px-6 bg-dubai-gradient">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Choose Your Move-In Level</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Basic Activation",
+                price: "AED 199",
+                features: ["Ejari registration coordination", "Documentation support"],
+                msg: "Hi, I want the Basic Activation package for my new home."
+              },
+              {
+                name: "Essentials Move-In",
+                price: "AED 299",
+                features: ["Ejari registration", "DEWA activation", "Move-in checklist coordination"],
+                msg: "Hi, I want the Essentials Move-In package for my new home.",
+                popular: true
+              },
+              {
+                name: "Complete Move Concierge",
+                price: "AED 399",
+                features: ["Ejari registration", "DEWA activation", "Water readiness check", "Shower filter with installation", "Move coordination assistance"],
+                msg: "Hi, I want the Complete Move Concierge package for my new home."
+              }
+            ].map((pkg, idx) => (
+              <Card key={idx} className={`bg-slate-900/50 border-white/10 backdrop-blur-md rounded-3xl overflow-hidden flex flex-col transition-all hover:scale-[1.02] ${pkg.popular ? 'border-emerald-500/50 shadow-2xl shadow-emerald-500/10' : ''}`}>
+                {pkg.popular && <div className="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-widest py-2 text-center">Most Popular</div>}
+                <div className="p-8 flex-grow space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-black uppercase text-white">{pkg.name}</h3>
+                    <div className="text-4xl font-black text-emerald-500">{pkg.price}</div>
                   </div>
+                  <ul className="space-y-4">
+                    {pkg.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-gray-300 font-medium">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="p-8 pt-0 mt-auto">
+                  <Button 
+                    className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl uppercase tracking-widest text-sm"
+                    onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent(pkg.msg)}`, '_blank')}
+                  >
+                    Book on WhatsApp
+                  </Button>
+                  <p className="text-center text-[10px] text-gray-500 mt-4 font-bold uppercase tracking-widest">Cash on visit or bank transfer</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4 — WHY DELIWER */}
+      <section className="py-24 px-6 bg-slate-900">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Why Residents<br /><span className="text-emerald-500">Choose DeliWer</span></h2>
+            <div className="grid grid-cols-1 gap-6">
+              {[
+                "One WhatsApp, full coordination",
+                "No trustee center runs",
+                "Faster activation timeline",
+                "Transparent pricing",
+                "Designed for new Dubai residents"
+              ].map((point, i) => (
+                <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                  </div>
+                  <span className="font-bold text-gray-200">{point}</span>
                 </div>
               ))}
             </div>
           </div>
+          <div className="bg-emerald-500/10 rounded-[3rem] p-12 border border-emerald-500/20 relative overflow-hidden group">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-emerald-500/20 transition-all" />
+             <div className="relative z-10 space-y-6">
+               <Shield className="w-16 h-16 text-emerald-500" />
+               <h3 className="text-3xl font-black uppercase text-white leading-tight">Stress-Free<br />Home Activation</h3>
+               <p className="text-gray-400 font-medium leading-relaxed uppercase tracking-wide text-sm">
+                 We take the chaos out of relocating. One partner. One point of contact. Everything handled properly.
+               </p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5 — WHO THIS IS FOR */}
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Built for Dubai Relocations</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "New Residents", icon: UserCheck, desc: "First time renting in Dubai? We guide you step by step." },
+              { title: "Busy Professionals", icon: Briefcase, desc: "No time to coordinate paperwork? We handle it." },
+              { title: "Families Moving", icon: ArrowRight, desc: "Upgrade your home without the stress of transition." },
+            ].map((item, idx) => (
+              <div key={idx} className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all space-y-6 group">
+                <item.icon className="w-12 h-12 text-emerald-500 group-hover:scale-110 transition-transform" />
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-black uppercase text-white">{item.title}</h3>
+                  <p className="text-gray-400 font-medium leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6 — FAQ */}
+      <section className="py-24 px-6 bg-slate-900">
+        <div className="max-w-3xl mx-auto space-y-12">
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-center">Frequently Asked</h2>
+          <div className="space-y-6">
+            {[
+              { q: "What documents are needed for Ejari?", a: "Typically your Tenancy Contract (signed by both parties), Emirates ID (both sides), and Title Deed or Affection Plan." },
+              { q: "How long does move-in activation take?", a: "We aim to coordinate all core activations within 24-48 hours of document submission." },
+              { q: "Can DEWA be activated same day?", a: "Yes, once Ejari is registered, we can expedite the DEWA connection process." },
+              { q: "Do I need to visit a trustee center?", a: "No. DeliWer coordinates everything digitally and handles any physical runs required." },
+              { q: "How do I pay?", a: "We accept cash on visit or bank transfer for your convenience." },
+            ].map((faq, idx) => (
+              <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+                <h4 className="font-black uppercase text-emerald-400 text-sm">{faq.q}</h4>
+                <p className="text-gray-300 text-sm font-medium leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 7 — FINAL CTA */}
+      <section className="py-24 px-6 text-center space-y-12 bg-emerald-600">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-slate-950 leading-none">Got Your Lease?<br />Let’s Activate Your Home.</h2>
+          <p className="text-xl text-emerald-950 font-bold uppercase tracking-wide">Stop the paperwork stress. Start your living journey today.</p>
+        </div>
+        <div className="flex flex-col items-center gap-6">
+          <Button 
+            size="lg" 
+            className="bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-16 h-24 text-3xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 group"
+            onClick={() => window.open('https://wa.me/971523946311?text=Hi,%20I%20just%20signed%20my%20lease%20and%20need%20move-in%20activation%20support.', '_blank')}
+          >
+            <MessageCircle className="w-10 h-10 fill-current mr-4 group-hover:scale-110 transition-transform" />
+            WhatsApp DeliWer Now
+          </Button>
+          <div className="text-slate-950 font-black text-2xl tracking-tighter">+971 52 394 6311</div>
         </div>
       </section>
 
