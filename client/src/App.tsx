@@ -131,16 +131,14 @@ function Router() {
       <Switch>
         <Route path="/marketing" component={MarketingDashboard} />
         <Route path="/" component={Landing} />
+        <Route path="/relocate" component={Relocate} />
+        <Route path="/move-in-packages">
+          <Redirect to="/relocate" />
+        </Route>
+        <Route path="/move-in-services">
+          <Redirect to="/relocate" />
+        </Route>
         <Route path="/home" component={Home} />
-          <Route path="/home-service">
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/move-in-guide">
-            <Redirect to="/move-in-landing" />
-          </Route>
-          <Route path="/move-in-packages" component={MoveInPackages} />
-        <Route path="/relocate" component={MoveInPackages} />
-        <Route path="/move-in-services" component={MoveInPackages} />
         <Route path="/relocate/business-setup" component={BusinessSetupPage} />
         <Route path="/business-setup" component={BusinessSetup} />
         <Route path="/relocate/planning" component={RelocatePlanning} />

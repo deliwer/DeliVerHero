@@ -1,0 +1,151 @@
+DeliWer Move-In / Move-Out Router Homepage
+
+Objective:
+Redesign deliwer.com homepage as a decision-routing experience separating Move-In Concierge, Move-Out Coordination, and Relocation Support. Optimize for conversion to Move-In Concierge 399 package located at /relocate.
+
+Do not position DeliWer as compliance-only. Keep relocation coordination as core identity.
+
+SECTION 1 — HERO
+
+Headline:
+Move-In. Move-Out. Relocate. Done Right in Dubai.
+
+Subheadline:
+DeliWer coordinates your apartment transition — from Ejari registration and DEWA activation to move-in readiness or clean move-out.
+
+Primary CTA:
+Start Move-In Concierge
+
+Secondary CTA:
+I’m Moving Out
+
+Add sticky WhatsApp button sitewide.
+
+SECTION 2 — ROUTER BLOCK (CRITICAL UX)
+
+Title:
+What Stage Are You In?
+
+Three cards:
+
+Card 1:
+Just Signed a Lease
+Description:
+Activate your home in 24 hours.
+Button:
+View Move-In Concierge 399
+
+Card 2:
+Moving Out Soon
+Description:
+Close utilities and exit smoothly.
+Button:
+View Move-Out Support
+
+Card 3:
+Relocating to Dubai
+Description:
+End-to-end guidance for new residents.
+Button:
+Explore Relocation Help
+
+Cards must be equal weight visually.
+
+SECTION 3 — MOVE-IN CONCIERGE PREVIEW
+
+Title:
+Move-In Concierge — AED 399
+
+Bullet list:
+
+Ejari registration coordination
+
+DEWA activation
+
+Water readiness check
+
+Shower filter with installation
+
+Move coordination support
+
+CTA:
+Activate My Home
+
+Link to:
+deliwer.com/relocate
+
+SECTION 4 — MOVE-OUT SUPPORT
+
+Brief section:
+
+Utility closure coordination
+
+Handover checklist
+
+Exit guidance
+
+CTA:
+Plan My Move-Out
+
+SECTION 5 — WHY DELIWER
+
+One WhatsApp for everything
+
+No trustee center stress
+
+Clear pricing
+
+Dubai-wide coordination
+
+Fast response
+
+SECTION 6 — SEO OPTIMIZATION
+
+Integrate keywords naturally:
+
+Ejari registration Dubai
+
+DEWA activation
+
+Move-in coordination Dubai
+
+Apartment relocation Dubai
+
+H1:
+Move-In & Relocation Coordination in Dubai
+
+Add FAQ schema:
+Include Ejari, DEWA, move-out, pricing questions.
+
+TECH REQUIREMENTS
+
+Mobile-first
+
+Fast load
+
+No checkout
+
+WhatsApp prefilled messages per pathway:
+Move-In:
+“Hi, I want Move-In Concierge 399.”
+Move-Out:
+“Hi, I need move-out coordination.”
+Relocation:
+“Hi, I’m relocating to Dubai and need support.”
+
+Strong internal link to /relocate
+
+Make 399 package visually dominant
+
+🎯 Final Funnel Outcome
+
+Home = Router
+/relocate = Revenue Page
+WhatsApp = Conversion Engine
+
+You don’t need more services.
+
+You need:
+Clear routing
+Clear package
+Clear next action
