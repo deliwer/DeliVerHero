@@ -84,7 +84,7 @@ export default function EjariDubai() {
               </div>
               <div className="p-4 bg-slate-900/50 backdrop-blur-sm border-t border-white/5">
                 <p className="text-sm text-gray-400 font-medium">
-                  Watch: How DeliWer & AQARI (Injaz) facilitate your Ejari Trustee Center journey.
+                  Watch: How DeliWer facilitates your Ejari Trustee Center journey.
                 </p>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function EjariDubai() {
               Full Service Disclaimer
             </h3>
             <p className="text-slate-900 text-sm leading-relaxed font-medium">
-              DeliWer operates as a digital facilitation platform in partnership with <span className="font-bold">AQARI (Injaz)</span>, an authorized RERA Appointed Trustee Center. All Ejari services, including contract registration, verification, and biometric processing, are carried out through our partner's official Trustee Center status. We facilitate the secure collection of documentation and coordinate the UAE Pass biometric authentication process to ensure compliance with Dubai Land Department (DLD) regulations.
+              DeliWer operates as a digital facilitation platform in partnership with authorized RERA Appointed Trustee Centers. All Ejari services, including contract registration, verification, and biometric processing, are carried out through official Trustee Center channels. We facilitate the secure collection of documentation and coordinate the UAE Pass biometric authentication process to ensure compliance with Dubai Land Department (DLD) regulations.
             </p>
           </div>
 

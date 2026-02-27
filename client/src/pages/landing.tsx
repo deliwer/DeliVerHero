@@ -38,7 +38,7 @@ export default function LandingPage() {
         description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
       />
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroBg})` }}
@@ -57,13 +57,12 @@ export default function LandingPage() {
               Dubai Move-In Activation Partner
             </div>
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
-              Moving to Dubai?<br />
-              <span className="text-emerald-500">We Activate Your Home</span><br />
-              in 24 Hours.
+              Move to Dubai<br />
+              <span className="text-emerald-500 text-5xl md:text-7xl">Simplified.</span>
             </h1>
             
             <h2 className="text-lg md:text-xl text-gray-300 font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight opacity-90">
-              From Ejari registration to DEWA activation and water setup — DeliWer coordinates your entire move-in so you don’t run around trustee centers.
+              From Ejari to DEWA and water setup — DeliWer coordinates your entire move-in so you don’t have to.
             </h2>
           </motion.div>
           
@@ -74,46 +73,34 @@ export default function LandingPage() {
               onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20just%20signed%20my%20lease%20and%20need%20move-in%20activation%20support.', '_blank')}
             >
               <MessageCircle className="w-8 h-8 fill-current group-hover:scale-110 transition-transform" />
-              Start My Move-In on WhatsApp
+              Start My Move-In
             </Button>
             
-            <Link href="/move-in-packages">
-              <Button variant="ghost" className="text-emerald-400 font-black uppercase tracking-widest text-sm hover:text-emerald-300 transition-colors flex items-center gap-2 h-12">
-                See Move-In Packages <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-            
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
-              Dubai-wide | Fast response | Cash on visit
+              Dubai-wide | Fast response | 24-Hour Activation
             </p>
           </div>
         </div>
       </section>
 
       {/* Section 2 — THE MOVE-IN JOURNEY */}
-      <section className="py-24 px-6 bg-slate-950 border-y border-white/5">
+      <section className="py-20 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Your Move-In, Coordinated Step by Step</h2>
-            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Most residents handle these steps separately. DeliWer coordinates them together.</p>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-12 left-0 right-0 h-px bg-white/10 z-0" />
             {[
-              { step: "Step 1", title: "Ejari Registration", desc: "We register your tenancy and handle documentation.", icon: ClipboardList },
-              { step: "Step 2", title: "DEWA Activation", desc: "Electricity and water connection activated.", icon: Zap },
-              { step: "Step 3", title: "Water & Readiness", desc: "Hydration setup and essential checks before your first night.", icon: Droplets },
-              { step: "Step 4", title: "Move Coordination", desc: "Packing, timing, and activation guidance.", icon: Package },
+              { step: "Step 1", title: "Ejari", desc: "Tenancy registration and documentation.", icon: ClipboardList },
+              { step: "Step 2", title: "DEWA", desc: "Electricity and water connection setup.", icon: Zap },
+              { step: "Step 3", title: "Ready", desc: "Hydration and essential checks.", icon: Droplets },
+              { step: "Step 4", title: "Move", desc: "Final coordination and support.", icon: Package },
             ].map((item, idx) => (
               <div key={idx} className="relative z-10 flex flex-col items-center text-center space-y-4 group">
-                <div className="w-24 h-24 rounded-3xl bg-slate-900 border border-white/10 flex items-center justify-center group-hover:border-emerald-500/50 transition-all shadow-xl">
-                  <item.icon className="w-10 h-10 text-emerald-500 group-hover:scale-110 transition-transform" />
+                <div className="w-20 h-20 rounded-3xl bg-slate-900 border border-white/10 flex items-center justify-center group-hover:border-emerald-500/50 transition-all shadow-xl">
+                  <item.icon className="w-8 h-8 text-emerald-500 group-hover:scale-110 transition-transform" />
                 </div>
-                <div className="space-y-2">
-                  <span className="text-emerald-500 font-black text-xs uppercase tracking-[0.3em]">{item.step}</span>
-                  <h3 className="text-xl font-black uppercase text-white">{item.title}</h3>
-                  <p className="text-sm text-gray-400 font-medium leading-relaxed">{item.desc}</p>
+                <div className="space-y-1">
+                  <span className="text-emerald-500 font-black text-[10px] uppercase tracking-[0.3em]">{item.step}</span>
+                  <h3 className="text-lg font-black uppercase text-white">{item.title}</h3>
+                  <p className="text-xs text-gray-400 font-medium leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -122,12 +109,8 @@ export default function LandingPage() {
       </section>
 
       {/* Section 3 — MOVE-IN PACKAGES */}
-      <section className="py-24 px-6 bg-dubai-gradient">
+      <section id="packages" className="py-24 px-6 bg-dubai-gradient">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Choose Your Move-In Level</h2>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
