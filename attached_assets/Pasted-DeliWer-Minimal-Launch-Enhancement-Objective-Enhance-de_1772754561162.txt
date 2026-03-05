@@ -1,0 +1,187 @@
+DeliWer Minimal Launch Enhancement
+
+Objective:
+Enhance deliwer.com for launch with minimal website changes, emphasizing:
+
+Move-In Concierge 399 (main revenue driver)
+
+Exit / Move-Out support for urgent relocation scenarios (e.g., wartime / evacuation)
+
+Broker-driven micro-audience capture (just-signed-lease tenants)
+
+Keys handover coordination layer
+
+WhatsApp-based low-friction conversion funnel
+
+No checkout, no subscriptions, minimal dev cost
+
+1️⃣ HOMEPAGE ENHANCEMENT
+
+Keep existing homepage structure and branding.
+
+Add a “Choose Your Situation” decision router immediately below the hero.
+
+Section Title:
+
+What Stage Are You In?
+
+Cards:
+
+Card 1 — Move-In Concierge
+Description: Coordinate apartment activation: tenancy registration, utility activation, and move-in readiness.
+CTA: Start Move-In Concierge
+Link: /relocate
+
+Card 2 — Move-Out / Exit Support
+Description: Close utilities, tenancy record cancellation, handover coordination, and relocation logistics.
+CTA: Plan Move-Out Support
+Link: /exit
+
+Card 3 — Just Signed Your Lease?
+Description: Activate your apartment immediately. Ideal for tenants brokered into a new lease.
+CTA: Activate Apartment
+Link: /activate
+
+Keep Move-In Concierge visually highlighted, but all three options visible.
+
+2️⃣ MOVE-IN CONCIERGE PAGE (/relocate)
+
+Headline: Activate Your New Home in Dubai — AED 399
+
+Includes:
+
+Tenancy registration coordination (Ejari)
+
+Utility activation (Dubai Electricity and Water Authority)
+
+Water readiness check
+
+Shower filter installation
+
+Move coordination support
+
+Add note: If you are leaving an apartment instead, see Move-Out Support → /exit
+
+CTA: WhatsApp prefilled message:
+
+Hi, I just signed my lease and want the Move-In Concierge package.
+
+Sticky WhatsApp button present
+
+3️⃣ EXIT / MOVE-OUT PAGE (/exit)
+
+Headline: Leaving Your Dubai Apartment?
+
+Description: Coordinate utilities, tenancy closure, landlord handover, and relocation logistics.
+
+Includes:
+
+DEWA / utility final bill coordination
+
+Ejari tenancy record cancellation
+
+Handover guidance
+
+Keys handover coordination layer (critical service for brokers, property managers, and logistics partners)
+
+CTA: WhatsApp prefilled message:
+
+Hi, I am moving out of my Dubai apartment and need exit coordination support.
+
+Highlight urgency for current security/evacuation scenarios without alarming language
+
+4️⃣ JUST-SIGNED-LEASE BROKER LANDING PAGE (/activate)
+
+Headline: Just Signed Your Lease in Dubai? Activate Your Apartment Now
+
+Subheadline: One service to handle tenancy registration, utilities, and move-in readiness.
+
+Steps:
+
+Tenancy registration (Ejari)
+
+Utility activation
+
+Move-in readiness
+
+Package: Move-In Concierge AED 399
+
+CTA: WhatsApp prefilled message:
+
+Hi, I just signed a lease and want my apartment activated.
+
+Include keys handover guidance note as value-add for broker relationships
+
+5️⃣ WHATSAPP INTEGRATION
+
+Contextual prefilled messages per page: /relocate, /exit, /activate
+
+Add micro-copy under buttons:
+
+Response within 10 minutes
+
+Sticky WhatsApp button visible on all pages
+
+6️⃣ NAVIGATION
+
+Add menu item: Move-Out / Exit Support → /exit
+
+Keep existing navigation intact
+
+7️⃣ SEO ENHANCEMENTS
+
+Meta Titles / Descriptions:
+
+/relocate → “Move-In Concierge Dubai | Activate Apartment | DeliWer”
+
+/exit → “Move-Out Coordination Dubai | Exit Support | DeliWer”
+
+/activate → “Apartment Activation Dubai | Just Signed Lease | DeliWer”
+
+Keywords naturally in copy:
+
+Move-in coordination Dubai
+
+Move-out apartment Dubai
+
+Tenancy registration Dubai
+
+Ejari cancellation
+
+Keys handover coordination
+
+8️⃣ PERFORMANCE MARKETING / LAUNCH
+
+Focus on broker referral micro-audience: tenants just signing a lease
+
+Offer brokers a referral incentive per lead / booking
+
+Use landing page /activate for broker distribution
+
+Campaigns feed directly into WhatsApp conversion workflow
+
+No ad spend required, revenue share model possible
+
+9️⃣ MINIMAL CHANGE OBJECTIVE
+
+Homepage mostly intact
+
+Add decision router + contextual WhatsApp messages
+
+Add /exit page
+
+Add /activate broker page
+
+Keep Move-In Concierge 399 page
+
+Keep branding, hero, and water delivery messaging
+
+10️⃣ EXPECTED OUTCOMES
+
+Homepage becomes conversion router
+
+Three clear click paths: Move-In / Move-Out / Broker activation
+
+WhatsApp conversion increases due to prefilled messages and guided workflow
+
+Pilot can launch without capital expenditure, relying on brokers and low-cost lead capture
