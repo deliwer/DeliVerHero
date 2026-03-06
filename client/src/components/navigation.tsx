@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { TrustStrip } from "@/components/trust-strip";
 import { motion, AnimatePresence } from "framer-motion";
 
+import logoPng from "@assets/deliwer logo_1755631850889.png";
+
 export function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,8 +30,8 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* LEFT: Logo */}
           <Link href="/" className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
-            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center group-hover:rotate-6 transition-transform shadow-lg shadow-emerald-500/20">
-              <span className="text-slate-950 font-black text-xl">D</span>
+            <div className="h-10 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
             <span className="text-white font-black text-2xl tracking-tighter uppercase">DeliWer</span>
           </Link>

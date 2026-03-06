@@ -70,7 +70,10 @@ export default function EjariDubai() {
                   id="ejari-video"
                   className="w-full h-full object-cover"
                   controls
-                  preload="metadata"
+                  playsInline
+                  muted
+                  autoPlay
+                  preload="auto"
                   poster="/deliwer-logo.png"
                   onClick={(e) => {
                     const video = e.currentTarget;

@@ -13,7 +13,8 @@ import {
   Package,
   Droplets,
   Flame,
-  Home as HomeIcon
+  Home as HomeIcon,
+  Key
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PartnerStrip, TestimonialCarousel, OperationalBadges } from "@/components/trust-strip";
