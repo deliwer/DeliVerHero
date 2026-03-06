@@ -20,9 +20,10 @@ import Landing from "@/pages/landing";
 import MoveInServices from "@/pages/move-in-services";
 import MoveInPackages from "@/pages/move-in-packages";
 import MoveInPackagePage from "@/pages/move-in-package";
-import MoveOutPackagePage from "@/pages/move-out-package";
-import Relocate from "@/pages/relocate";
-import Residents from "@/pages/ResidentsPage";
+const MoveOutPackagePage = lazy(() => import("@/pages/move-out-package"));
+const ActivatePage = lazy(() => import("@/pages/activate"));
+const Relocate = lazy(() => import("@/pages/relocate"));
+const Residents = lazy(() => import("@/pages/ResidentsPage"));
 import MaintenanceConcierge from "@/pages/maintenance-concierge";
 import ResidentSupportConcierge from "@/pages/resident-support-concierge";
 import BusinessSetup from "@/pages/BusinessSetup";
@@ -132,6 +133,8 @@ function Router() {
         <Route path="/marketing" component={MarketingDashboard} />
         <Route path="/" component={Landing} />
         <Route path="/relocate" component={Relocate} />
+        <Route path="/exit" component={RelocateExit} />
+        <Route path="/activate" component={ActivatePage} />
         <Route path="/move-in-packages">
           <Redirect to="/relocate" />
         </Route>

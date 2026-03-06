@@ -18,59 +18,62 @@ export default function RelocateExitPage() {
     return `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodedMessage}`;
   };
 
-  const defaultMessage = refCode 
-    ? `Hello DeliWer, I am interested in the Exit Concierge service. Referral Code: ${refCode}`
-    : "Hello DeliWer, I am interested in the Exit Concierge service.";
+  const defaultMessage = "Hi, I am moving out of my Dubai apartment and need exit coordination support.";
 
   const WHATSAPP_LINK = getWhatsAppLink(defaultMessage);
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
       <SEOMeta 
-        title="Exit Concierge Dubai | Close DEWA, Recover Deposit | DeliWer"
-        description="Stress-free Dubai exit concierge. Deposit recovery, utility closure & relocation support. Chat on WhatsApp now."
+        title="Move-Out Coordination Dubai | Exit Support | DeliWer"
+        description="Coordinate utilities, tenancy closure, landlord handover, and relocation logistics. Stress-free Dubai exit concierge."
       />
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')] opacity-20 bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-900" />
+      <section className="relative py-24 px-4 bg-slate-950 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 to-slate-950 z-0" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          {refCode === "DEBACCI20" && (
-            <Badge className="mb-6 bg-emerald-500 text-white border-none py-2 px-4 rounded-full text-sm font-bold animate-pulse">
-              DEBACCI GROUP EXCLUSIVE PARTNER OFFER
-            </Badge>
-          )}
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-6">
-            Leaving Dubai? Don’t lose your deposit or waste weeks on admin.
+          <Badge className="mb-6 bg-blue-500/10 text-blue-400 border-blue-500/20 py-2 px-4 rounded-full text-xs font-black tracking-widest uppercase">
+            Exit & Relocation Logistics
+          </Badge>
+          <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-8 uppercase">
+            Leaving Your <br />
+            <span className="text-blue-500">Dubai Apartment?</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-300 mb-10">
-            DeliWer Exit Concierge guarantees a seamless, stress-free departure from the UAE.
+          <p className="text-xl md:text-2xl text-slate-400 mb-12 font-bold max-w-2xl mx-auto uppercase tracking-tight">
+            Coordinate utilities, tenancy closure, landlord handover, and relocation logistics.
           </p>
           <div className="flex flex-col items-center gap-4">
-            <div className="w-full md:w-auto space-y-3">
-              <Button 
-                size="lg" 
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full px-8 h-16 text-lg w-full shadow-xl"
-                onClick={() => window.open(WHATSAPP_LINK, '_blank')}
-              >
-                <MessageSquare className="mr-2 h-6 w-6" />
-                Get Free Exit Consultation on WhatsApp
-              </Button>
-              {refCode && (
-                <div className="p-4 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
-                  <p className="text-emerald-400 font-bold mb-1">
-                    Partner Tracking Active: {refCode}
-                  </p>
-                  <p className="text-xs text-slate-400">
-                    Your referral is recorded. We track client names manually via WhatsApp for 5% commission calculation.
-                  </p>
-                </div>
-              )}
-            </div>
-            <p className="text-slate-400 font-medium">
-              Fastest response on WhatsApp: <span className="text-white">{WHATSAPP_NUMBER}</span>
+            <Button 
+              size="lg" 
+              className="bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl w-full md:w-auto uppercase tracking-widest active:scale-95 transition-all"
+              onClick={() => window.open(WHATSAPP_LINK, '_blank')}
+            >
+              <MessageSquare className="mr-4 h-8 w-8" />
+              Plan Move-Out Support
+            </Button>
+            <p className="text-slate-500 font-black uppercase tracking-[0.2em] text-[10px] mt-4">
+              Response within 10 minutes
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Includes Section */}
+      <section className="py-24 px-4 bg-slate-900/50 border-y border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "DEWA Final Bill", desc: "Coordination of final utility settlement." },
+              { title: "Ejari Cancellation", desc: "Official termination of tenancy record." },
+              { title: "Handover Guidance", desc: "Guidance for a clean landlord walkthrough." },
+              { title: "Keys Coordination", desc: "Seamless keys handover layer for brokers." }
+            ].map((item, i) => (
+              <Card key={i} className="bg-white/5 border-white/10 p-6 rounded-3xl hover:border-blue-500/50 transition-all">
+                <h3 className="text-lg font-black uppercase text-white mb-2">{item.title}</h3>
+                <p className="text-slate-400 text-xs font-medium">{item.desc}</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

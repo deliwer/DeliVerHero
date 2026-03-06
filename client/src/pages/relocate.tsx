@@ -52,8 +52,8 @@ export default function Relocate() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
-        <title>Move-In & Move-Out Support | DeliWer Dubai</title>
-        <meta name="description" content="Dubai's premium move-in/out concierge. From Ejari and DEWA to deep cleaning and deposit protection. AED 399 complete concierge." />
+        <title>Move-In Concierge Dubai | Activate Apartment | DeliWer</title>
+        <meta name="description" content="Activate your new home in Dubai. One service to handle tenancy registration, utilities, and move-in readiness. AED 399 complete concierge." />
       </Helmet>
 
       <Navigation />
@@ -108,7 +108,7 @@ export default function Relocate() {
       <section ref={activationRef} id="activation-section" className="relative px-4 py-32 border-y border-white/5 overflow-hidden bg-slate-900/40">
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-24 space-y-4">
-            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">Move-In <span className="text-emerald-500">Concierge</span></h2>
+            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">Activate Your New Home <span className="text-emerald-500">Dubai — AED 399</span></h2>
             <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">Technical Home Activation & Setup</p>
           </div>
 
@@ -165,11 +165,11 @@ export default function Relocate() {
               <CardContent className="flex-1 space-y-8 p-10">
                 <div className="space-y-5">
                   {[
-                    "Ejari & DEWA activation",
+                    "Tenancy registration coordination (Ejari)",
+                    "Utility activation (DEWA)",
                     "Water readiness check",
-                    "Shower filter + installation",
-                    "AC filter clean (1 unit)",
-                    "Move coordination assistance"
+                    "Shower filter installation",
+                    "Move coordination support"
                   ].map((feature, i) => (
                     <div key={i} className="flex items-center gap-4 text-sm font-bold text-gray-200 uppercase tracking-tight">
                       <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-500" />
@@ -178,13 +178,25 @@ export default function Relocate() {
                   ))}
                 </div>
                 <Button 
-                  onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi, I want the Complete Move Concierge 399 package.")}`, '_blank')}
+                  onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi, I just signed my lease and want the Move-In Concierge package.")}`, '_blank')}
                   className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-2xl transition-all active:scale-95"
                 >
                   Activate My Home
                 </Button>
               </CardContent>
             </Card>
+          </div>
+
+          <div className="mt-32 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between bg-emerald-500/10 p-8 rounded-3xl border border-emerald-500/20">
+            <div className="text-center md:text-left mb-6 md:mb-0">
+              <h3 className="text-xl font-black uppercase text-white">Leaving an apartment instead?</h3>
+              <p className="text-gray-400 font-medium text-sm">Coordinate utilities closure, cancellation & logistics.</p>
+            </div>
+            <Link href="/exit">
+              <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest px-8">
+                See Move-Out Support →
+              </Button>
+            </Link>
           </div>
 
           <div className="mt-32 max-w-5xl mx-auto grid md:grid-cols-2 gap-12">

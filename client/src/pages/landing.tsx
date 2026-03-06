@@ -92,71 +92,53 @@ export default function LandingPage() {
       <section className="py-20 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">The Dubai Home Operating System</h2>
-            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Ejari-first coordination for every stage of your residency.</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">What Stage Are You In?</h2>
+            <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">Choose your situation to get started immediately.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="bg-white/5 border-emerald-500/30 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
-              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Pivotal</div>
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
-                  <Flame className="w-6 h-6 text-emerald-500" />
-                </div>
-                <h3 className="text-2xl font-black uppercase text-white leading-tight text-emerald-500">Ejari Support</h3>
-                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">The foundation of your legal residency.</p>
-              </div>
-              <Link href="/ejari-dubai">
-                <Button className="w-full mt-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12 shadow-lg shadow-emerald-900/40">
-                  Secure My Ejari
-                </Button>
-              </Link>
-            </Card>
-
-            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500/50 transition-all group relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Flagship</div>
+              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Recommended</div>
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
                   <Zap className="w-6 h-6 text-emerald-500" />
                 </div>
-                <h3 className="text-2xl font-black uppercase text-white leading-tight">Move-In 399</h3>
-                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Complete Technical Home Activation.</p>
+                <h3 className="text-2xl font-black uppercase text-white leading-tight text-emerald-500">Move-In Concierge</h3>
+                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Coordinate apartment activation: tenancy registration, utility activation, and move-in readiness.</p>
               </div>
               <Link href="/relocate">
-                <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12" variant="outline">
-                  Activate Home
+                <Button className="w-full mt-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12 shadow-lg shadow-emerald-900/40">
+                  Start Move-In Concierge
                 </Button>
               </Link>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500/50 transition-all group">
+            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-blue-500/50 transition-all group relative overflow-hidden">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center">
                   <ArrowRight className="w-6 h-6 text-blue-500 rotate-45" />
                 </div>
-                <h3 className="text-2xl font-black uppercase text-white leading-tight">Moving Out</h3>
-                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Utility closure & Deposit protection.</p>
+                <h3 className="text-2xl font-black uppercase text-white leading-tight">Move-Out Support</h3>
+                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Close utilities, tenancy record cancellation, handover coordination, and relocation logistics.</p>
               </div>
-              <Button 
-                className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12"
-                variant="outline"
-                onClick={() => window.open('https://wa.me/971523946311?text=Hi,%20I%20need%20move-out%20coordination.', '_blank')}
-              >
-                Plan Exit
-              </Button>
+              <Link href="/exit">
+                <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12" variant="outline">
+                  Plan Move-Out Support
+                </Button>
+              </Link>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500/50 transition-all group">
+            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-purple-500/50 transition-all group">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center">
-                  <HomeIcon className="w-6 h-6 text-purple-500" />
+                  <Key className="w-6 h-6 text-purple-500" />
                 </div>
-                <h3 className="text-2xl font-black uppercase text-white leading-tight">Residents</h3>
-                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Ongoing support & Optimization.</p>
+                <h3 className="text-2xl font-black uppercase text-white leading-tight">Just Signed Your Lease?</h3>
+                <p className="text-gray-400 font-medium uppercase tracking-wide text-xs">Activate your apartment immediately. Ideal for tenants brokered into a new lease.</p>
               </div>
-              <Link href="/residents">
+              <Link href="/activate">
                 <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl uppercase tracking-widest text-[10px] h-12" variant="outline">
-                  Open Desk
+                  Activate Apartment
                 </Button>
               </Link>
             </Card>

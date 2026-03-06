@@ -13,15 +13,11 @@ export function Navigation() {
   
   const navItems = [
     { path: "/residents", label: "Residents", id: "residents", icon: Home },
-    { path: "/ejari-dubai", label: "Ejari", id: "ejari", icon: Flame },
     { path: "/relocate", label: "Move-In", id: "relocation", icon: Plane },
-    { path: "/relocate?type=move-out", label: "Move-Out", id: "move-out", icon: LogOut },
+    { path: "/exit", label: "Move-Out", id: "move-out", icon: LogOut },
   ];
 
   const isActive = (itemPath: string) => {
-    if (itemPath.includes('?')) {
-      return window.location.search.includes('type=move-out') && itemPath.includes('type=move-out');
-    }
     return location === itemPath;
   };
 
