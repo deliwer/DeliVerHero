@@ -33,7 +33,7 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
             <span>info@deliwer.com</span>
           </a>
           <div className="h-4 w-px bg-white/10 hidden md:block mx-2" />
-          <Link href="/residents">
+          <Link href="/ejari-dubai">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Residents</span>
           </Link>
           <Link href="/relocate">
