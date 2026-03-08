@@ -21,8 +21,8 @@ export default function ActivatePage() {
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
-        title="Apartment Activation Dubai | Just Signed Lease | DeliWer"
-        description="Just signed your lease in Dubai? Activate your apartment now. One service to handle Ejari, DEWA, and move-in readiness."
+        title="Just Signed Lease Dubai? Activate Apartment Fast | DeliWer"
+        description="Just signed your Dubai lease? Activate your apartment without running between offices. Ejari registration, DEWA activation, and move-in readiness - AED 399."
       />
       <Navigation />
       
@@ -34,11 +34,11 @@ export default function ActivatePage() {
             className="space-y-6"
           >
             <h1 className="text-4xl md:text-6xl font-black tracking-tight uppercase leading-tight">
-              Just Signed Your Lease in Dubai? <br />
-              <span className="text-emerald-500 text-5xl md:text-7xl">Activate Your Apartment Now</span>
+              Just Signed a Lease in Dubai? <br />
+              <span className="text-emerald-500 text-5xl md:text-7xl">Activate Without Running Around</span>
             </h1>
             <p className="text-xl text-gray-300 font-bold max-w-2xl mx-auto uppercase">
-              One service to handle tenancy registration, utilities, and move-in readiness.
+              Tenancy registration (Ejari), utilities activation (DEWA), and move-in readiness — all without leaving your apartment.
             </p>
           </motion.div>
 
@@ -83,9 +83,9 @@ export default function ActivatePage() {
           <div className="bg-slate-950/50 p-6 rounded-2xl border border-white/5 inline-block text-left">
             <div className="flex items-center gap-3 text-emerald-400 font-black uppercase text-sm mb-2">
               <Key className="w-5 h-5" />
-              Broker Value-Add
+              Perfect for Brokers & Property Managers
             </div>
-            <p className="text-gray-400 text-xs font-medium max-w-xs">Includes keys handover guidance to ensure a smooth transition from your agent to your new home.</p>
+            <p className="text-gray-400 text-xs font-medium max-w-xs">Recommend this to your tenants after they sign. DeliWer handles all technical activation while you focus on the next client.</p>
           </div>
           <Button 
             size="lg" 

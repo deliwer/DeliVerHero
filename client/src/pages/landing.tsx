@@ -7,7 +7,8 @@ import {
   Key,
   MessageCircle,
   CheckCircle2,
-  Shield
+  Shield,
+  FileText
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
@@ -25,8 +26,8 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
-        title="Dubai Move-In & Relocation Concierge | DeliWer"
-        description="DeliWer handles everything after the lease is signed. Ejari, DEWA, and full move-in setup for founders and brokers."
+        title="Move-In Services Dubai | Water, Ejari & Home Setup | DeliWer"
+        description="Move into your Dubai home stress-free. DeliWer handles water setup, Ejari registration, DEWA activation, and move-in readiness. AED 399 complete concierge."
       />
       <Navigation />
       
@@ -137,8 +138,71 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* JUST GOT KEYS - HIGH-INTENT TRIGGER */}
+      <section className="py-20 px-6 bg-slate-900/50 border-y border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 md:p-12 space-y-6 relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-xs font-black px-4 py-2 rounded-bl-2xl uppercase tracking-widest">High Priority</div>
+            <div className="space-y-4">
+              <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Just Received Your Apartment Keys?</h3>
+              <p className="text-gray-300 font-bold text-lg">Most new residents discover the same problems on day one:</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                {[
+                  "No drinking water ready",
+                  "No shower filter installed",
+                  "Utilities not activated"
+                ].map((issue, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-1">
+                      <span className="text-red-400 text-xs font-black">!</span>
+                    </div>
+                    <span className="text-gray-200 font-medium">{issue}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="border-t border-emerald-500/20 pt-6">
+              <p className="text-gray-300 font-bold mb-4">Let DeliWer prepare your home so your first night is stress-free.</p>
+              <Button 
+                size="lg" 
+                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-16 text-lg shadow-2xl transition-all group"
+                onClick={() => window.open('https://wa.me/971523946311?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
+              >
+                <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+                WhatsApp: I Just Got My Keys
+              </Button>
+              <p className="text-xs text-gray-500 font-bold uppercase tracking-widest text-center mt-3">Response within 10 minutes</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS VISUALIZATION */}
+      <section className="py-20 px-6 bg-white/5">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How DeliWer Coordinates Your Apartment Transition</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {[
+              { step: "1", title: "Lease Signed", icon: Key },
+              { step: "2", title: "Tenancy Registration", icon: FileText },
+              { step: "3", title: "Utilities Activation", icon: Zap },
+              { step: "4", title: "Apartment Ready", icon: CheckCircle2 }
+            ].map((item, i) => (
+              <div key={i} className="text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mx-auto">
+                  <span className="text-emerald-400 font-black text-xl">{item.step}</span>
+                </div>
+                <h3 className="font-black uppercase text-white text-sm">{item.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BRIEF BENEFITS */}
-      <section className="py-16 px-6 bg-white/5">
+      <section className="py-16 px-6 bg-slate-950">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             {[
