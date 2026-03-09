@@ -8,7 +8,7 @@ import { Navigation } from "@/components/navigation";
 
 export default function EjariDubai() {
   const handleWhatsApp = () => {
-    const text = "Hi DeliWer, I need Ejari verification and biometrics support.";
+    const text = "Hi DeliWer, I need help with Ejari coordination.";
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -19,18 +19,18 @@ export default function EjariDubai() {
       icon: ClipboardCheck
     },
     {
-      title: "Trustee Verification",
-      description: "As an appointed trustee center, we verify your documents instantly.",
+      title: "Coordination Review",
+      description: "We review and organize your documents for trustee center submission.",
       icon: Building2
     },
     {
-      title: "Biometric Authentication",
-      description: "Secure verification via UAE Pass biometrics integration.",
+      title: "Trustee Processing",
+      description: "Official RERA trustee center processes and verifies your documents.",
       icon: Fingerprint
     },
     {
-      title: "Instant Ejari",
-      description: "Receive your official Ejari certificate within minutes.",
+      title: "Ejari Registration",
+      description: "Official Ejari certificate issued by authorized trustee center.",
       icon: CheckCircle2
     }
   ];
@@ -38,8 +38,8 @@ export default function EjariDubai() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta 
-        title="Ejari Verification Dubai | Trustee Center & Biometrics | DeliWer"
-        description="Official Ejari verification for tenants and landlords. Secure biometric authentication via UAE Pass. Fast, digital, and reliable."
+        title="Ejari Coordination Dubai | Easy Registration | DeliWer"
+        description="DeliWer coordinates your Ejari registration through official RERA trustee centers. Digital facilitation. Simple. Compliant. Fast."
       />
       <Navigation />
 

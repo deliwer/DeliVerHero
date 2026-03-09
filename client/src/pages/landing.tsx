@@ -18,6 +18,18 @@ import { Navigation } from "@/components/navigation";
 
 import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
+// Lifestyle images for cards and sections
+const lifestyleImages = {
+  moveIn: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop",
+  moveOut: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=400&fit=crop",
+  brokers: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop",
+  tenants: "https://images.unsplash.com/photo-1554995207-c18fa93d128d?w=600&h=400&fit=crop",
+  landlords: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
+  process: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop",
+  justGotKeys: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop",
+  finalCTA: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=400&fit=crop"
+};
+
 export default function LandingPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -87,49 +99,61 @@ export default function LandingPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Move-In Card */}
-            <Card className="bg-white/5 border-emerald-500/30 p-8 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
+            <Card className="bg-white/5 border-emerald-500/30 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
               <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Recommended</div>
-              <div className="space-y-4">
+              <div className="relative h-48 overflow-hidden rounded-t-3xl">
+                <img src={lifestyleImages.moveIn} alt="Move-in preparation" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+              </div>
+              <div className="p-8 space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
                   <Zap className="w-6 h-6 text-emerald-500" />
                 </div>
                 <h3 className="text-xl font-black uppercase text-emerald-500">Move-In Concierge</h3>
                 <p className="text-gray-400 font-medium text-sm">Activate your new apartment with tenancy registration, utilities setup, and move-in readiness.</p>
               </div>
-              <Link href="/relocate">
-                <Button className="w-full mt-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-12 shadow-lg shadow-emerald-900/40">
+              <Link href="/relocate" className="px-8 pb-8">
+                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-12 shadow-lg shadow-emerald-900/40">
                   Start Move-In
                 </Button>
               </Link>
             </Card>
 
             {/* Move-Out Card */}
-            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-blue-500/50 transition-all group relative overflow-hidden">
-              <div className="space-y-4">
+            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-blue-500/50 transition-all group relative overflow-hidden">
+              <div className="relative h-48 overflow-hidden rounded-t-3xl">
+                <img src={lifestyleImages.moveOut} alt="Move-out preparation" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+              </div>
+              <div className="p-8 space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center">
                   <LogOut className="w-6 h-6 text-blue-500" />
                 </div>
                 <h3 className="text-xl font-black uppercase text-white">Move-Out Support</h3>
                 <p className="text-gray-400 font-medium text-sm">Coordinate utilities closure, tenancy cancellation, and apartment handover.</p>
               </div>
-              <Link href="/exit">
-                <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
+              <Link href="/exit" className="px-8 pb-8">
+                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
                   Plan Move-Out
                 </Button>
               </Link>
             </Card>
 
             {/* Just Signed Lease Card */}
-            <Card className="bg-white/5 border-white/10 p-8 rounded-3xl flex flex-col justify-between hover:border-purple-500/50 transition-all group">
-              <div className="space-y-4">
+            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-purple-500/50 transition-all group relative overflow-hidden">
+              <div className="relative h-48 overflow-hidden rounded-t-3xl">
+                <img src={lifestyleImages.brokers} alt="Broker partnership" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+              </div>
+              <div className="p-8 space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center">
                   <Key className="w-6 h-6 text-purple-500" />
                 </div>
                 <h3 className="text-xl font-black uppercase text-white">Just Signed a Lease?</h3>
                 <p className="text-gray-400 font-medium text-sm">For brokers and tenants: activate your apartment immediately after signing.</p>
               </div>
-              <Link href="/activate">
-                <Button className="w-full mt-8 border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
+              <Link href="/activate" className="px-8 pb-8">
+                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
                   Activate Now
                 </Button>
               </Link>
@@ -140,13 +164,18 @@ export default function LandingPage() {
 
       {/* JUST GOT KEYS - HIGH-INTENT TRIGGER */}
       <section className="py-20 px-6 bg-slate-900/50 border-y border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 md:p-12 space-y-6 relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-xs font-black px-4 py-2 rounded-bl-2xl uppercase tracking-widest">High Priority</div>
-            <div className="space-y-4">
-              <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Just Received Your Apartment Keys?</h3>
-              <p className="text-gray-300 font-bold text-lg">Most new residents discover the same problems on day one:</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="relative h-64 md:h-96 rounded-3xl overflow-hidden">
+              <img src={lifestyleImages.justGotKeys} alt="New apartment keys" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/20 to-transparent" />
+            </div>
+            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 md:p-12 space-y-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-xs font-black px-4 py-2 rounded-bl-2xl uppercase tracking-widest">High Priority</div>
+              <div className="space-y-4">
+                <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">Just Received Your Apartment Keys?</h3>
+                <p className="text-gray-300 font-bold text-lg">Most new residents discover the same problems on day one:</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                 {[
                   "No drinking water ready",
                   "No shower filter installed",
@@ -172,6 +201,7 @@ export default function LandingPage() {
                 WhatsApp: I Just Got My Keys
               </Button>
               <p className="text-xs text-gray-500 font-bold uppercase tracking-widest text-center mt-3">Response within 10 minutes</p>
+            </div>
             </div>
           </div>
         </div>
@@ -223,14 +253,18 @@ export default function LandingPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-20 px-6 text-center space-y-8 bg-emerald-600">
-        <div className="max-w-3xl mx-auto space-y-4">
+      <section className="relative py-20 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src={lifestyleImages.finalCTA} alt="Happy resident in home" className="w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-600/80 to-emerald-600" />
+        </div>
+        <div className="max-w-3xl mx-auto space-y-4 relative z-10">
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to Activate Your Home?</h2>
           <p className="text-lg text-emerald-950 font-bold">Let DeliWer handle the rest while you settle in.</p>
         </div>
         <Button 
           size="lg" 
-          className="bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all active-elevate-2 group"
+          className="relative z-10 bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all active-elevate-2 group"
           onClick={() => window.open('https://wa.me/971523946311?text=Hi,%20I%20need%20help%20with%20my%20apartment%20activation.', '_blank')}
         >
           <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
