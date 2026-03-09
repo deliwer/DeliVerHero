@@ -54,13 +54,13 @@ export default function EjariDubai() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold mb-6">
               <ShieldCheck className="w-4 h-4" />
-              APPOINTED TRUSTEE CENTER
+              EJARI COORDINATION SERVICE
             </div>
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none">
               Digital Ejari <span className="text-emerald-500">Verification</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-              Tenants & Landlords: Complete your Ejari registration instantly with biometric verification. No queues, no hassle.
+              Tenants & Landlords: We coordinate and facilitate your Ejari registration through official RERA channels. Simplified. Streamlined. Compliant.
             </p>
 
             {/* Video Explanation Section */}
@@ -71,9 +71,9 @@ export default function EjariDubai() {
                   className="w-full h-full object-cover"
                   controls
                   playsInline
-                  muted
-                  autoPlay
-                  preload="auto"
+                  muted={false}
+                  autoPlay={false}
+                  preload="metadata"
                   poster="/deliwer-logo.png"
                   onClick={(e) => {
                     const video = e.currentTarget;
@@ -84,7 +84,7 @@ export default function EjariDubai() {
                     }
                   }}
                 >
-                  <source src="/attached_assets/Ejari-Service-Final_injaz_1772144918784.mp4" type="video/mp4" />
+                  <source src="https://deliwer.com/attached_assets/Ejari-Service-Final_injaz_1772144918784.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -100,9 +100,9 @@ export default function EjariDubai() {
                 <MessageSquare className="w-6 h-6 mr-2" />
                 Start via WhatsApp
               </Button>
-              <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 font-black h-16 px-10 rounded-2xl text-lg">
+              <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 font-black h-16 px-10 rounded-2xl text-lg" disabled title="Biometric integration coming soon">
                 <Fingerprint className="w-6 h-6 mr-2" />
-                UAE Pass Biometrics
+                Biometrics (Coming Soon)
               </Button>
             </div>
           </motion.div>
@@ -163,37 +163,37 @@ export default function EjariDubai() {
         </div>
       </section>
 
-      {/* Trust Section */}
+      {/* Service Clarification Section */}
       <section className="py-24 px-4 bg-emerald-600">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-black uppercase mb-8 text-slate-950">Secure Biometric Verification</h2>
+          <h2 className="text-3xl md:text-5xl font-black uppercase mb-8 text-slate-950">Coordination Through Official Channels</h2>
           <p className="text-xl text-emerald-100 mb-8">
-            We utilize UAE Pass biometrics to ensure the highest level of security for both landlords and tenants. Our trustee center status allows us to issue Ejari certificates directly to your email.
+            DeliWer coordinates and facilitates your Ejari registration through authorized RERA Appointed Trustee Centers. We streamline the process, but all registrations are completed by official channels.
           </p>
           
-          {/* Full Disclaimer */}
+          {/* Service Scope Clarification */}
           <div className="bg-slate-950/20 rounded-2xl p-6 mb-12 border border-slate-950/10 text-left">
             <h3 className="text-slate-950 font-black uppercase text-sm mb-3 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4" />
-              Full Service Disclaimer
+              Our Role
             </h3>
             <p className="text-slate-900 text-sm leading-relaxed font-medium">
-              DeliWer operates as a digital facilitation platform in partnership with authorized RERA Appointed Trustee Centers. All Ejari services, including contract registration, verification, and biometric processing, are carried out through official Trustee Center channels. We facilitate the secure collection of documentation and coordinate the UAE Pass biometric authentication process to ensure compliance with Dubai Land Department (DLD) regulations.
+              DeliWer is a service provider for coordination and facilitation. We guide tenants and landlords through the Ejari process via WhatsApp, help organize required documentation, and coordinate submissions with official RERA-appointed trustee centers. All Ejari registrations, verifications, and official certificates are issued by authorized trustee centers in compliance with Dubai Land Department (DLD) regulations. System integrations with trustee center backends and RERA records are under development. Biometric authentication features will be available through future DLD REST app integration.
             </p>
           </div>
 
           <div className="flex justify-center gap-8 items-center flex-wrap">
             <div className="flex items-center gap-2 text-slate-950 font-black uppercase tracking-wider">
               <CheckCircle2 className="w-6 h-6" />
-              Real-time Validation
+              Official Channel Coordination
             </div>
             <div className="flex items-center gap-2 text-slate-950 font-black uppercase tracking-wider">
               <CheckCircle2 className="w-6 h-6" />
-              Official RERA Approved
+              DLD Compliant Process
             </div>
             <div className="flex items-center gap-2 text-slate-950 font-black uppercase tracking-wider">
               <CheckCircle2 className="w-6 h-6" />
-              Instant Certificate
+              Trusted Facilitation
             </div>
           </div>
         </div>
@@ -202,17 +202,21 @@ export default function EjariDubai() {
       {/* SEO Content Section */}
       <section className="py-24 px-4 bg-white/5">
         <div className="max-w-4xl mx-auto prose prose-invert">
-          <h2 className="text-3xl font-black uppercase mb-6">Why Choose DeliWer for Ejari?</h2>
+          <h2 className="text-3xl font-black uppercase mb-6">Why Choose DeliWer for Ejari Coordination?</h2>
           <p>
             Ejari is the foundation of your life in Dubai. It is mandatory for DEWA activation, internet installation, and residency visa applications. Traditional Ejari registration can take days, involving physical visits to typing centers.
           </p>
-          <h3>Digital-First Approach</h3>
+          <h3>WhatsApp-First Coordination</h3>
           <p>
-            DeliWer transforms this process into a seamless digital experience. By integrating WhatsApp with our trustee center backend, we allow you to upload documents from your phone. Our system automatically validates the tenancy contract against RERA records.
+            DeliWer transforms the Ejari process into a seamless WhatsApp experience. We guide you through documentation requirements, coordinate with official trustee centers, and ensure your registration is submitted correctly. No physical visits needed—we handle the coordination.
           </p>
-          <h3>Biometrics & UAE Pass</h3>
+          <h3>Official Channel Compliance</h3>
           <p>
-            Security is paramount. We use biometric authentication (similar to UAE Pass) to verify the identity of the signer. This prevents fraud and ensures that the Ejari is issued correctly the first time.
+            All Ejari registrations are processed through authorized RERA-appointed trustee centers in full compliance with Dubai Land Department regulations. DeliWer's role is to facilitate and coordinate, ensuring a smooth experience while maintaining all official requirements.
+          </p>
+          <h3>Future Enhancements</h3>
+          <p>
+            We are developing advanced features including direct trustee center backend integrations and biometric authentication through the DLD REST app. These will further streamline the process in the coming months.
           </p>
         </div>
       </section>
