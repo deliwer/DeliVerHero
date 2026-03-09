@@ -164,6 +164,37 @@ export default function RelocateExitPage() {
         </div>
       </section>
 
+      {/* FOR PROPERTY MANAGERS & BROKERS */}
+      <section className="py-20 px-4 bg-slate-900 text-white border-t border-slate-700">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">For Property Managers & Brokers</h2>
+            <p className="text-xl text-gray-300">Coordinate tenant exits without the admin headache.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Reduce Admin", desc: "DeliWer manages exit coordination while you focus on next clients." },
+              { title: "Happy Tenants", desc: "Professional handover process = better references for future clients." },
+              { title: "Faster Turnaround", desc: "Get apartments ready for next tenant faster with DeliWer's coordination." }
+            ].map((item, i) => (
+              <div key={i} className="p-6 bg-white/5 border border-white/10 rounded-2xl space-y-3">
+                <h3 className="font-black uppercase text-emerald-400 text-sm">{item.title}</h3>
+                <p className="text-gray-300 text-sm font-medium">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Button 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-16 text-lg shadow-2xl"
+              onClick={() => window.open(WHATSAPP_LINK, '_blank')}
+            >
+              Partner With DeliWer
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Corporate Section */}
       <section className="py-20 px-4 border-t border-slate-100">
         <div className="max-w-4xl mx-auto text-center">

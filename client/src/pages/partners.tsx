@@ -58,21 +58,48 @@ export default function BrokerSupportDubai() {
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
-        title="Strategic Partners | Deliwer Dubai"
-        description="Our network of core and freelance partners driving relocation excellence in Dubai."
+        title="Broker & Property Manager Partnerships | DeliWer Dubai"
+        description="Partner with DeliWer for tenant move-in, move-out, and apartment activation coordination. Refer tenants and earn commissions."
       />
       
       {/* Micro Trust Line - Added for uniformity */}
       <Navigation />
 
       <div className="container mx-auto pt-20 pb-20 px-4 space-y-12">
+        {/* FOR PROPERTY MANAGERS & BROKERS */}
+        <section className="bg-slate-900/50 border border-emerald-500/30 rounded-3xl p-8 md:p-12 space-y-6">
+          <div className="space-y-4">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">For Property Managers & Brokers</h2>
+            <p className="text-lg text-gray-300 font-bold">Reduce tenant friction. Increase satisfaction. Get paid for referrals.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Tenant Move-Ins", desc: "Send tenants to DeliWer for apartment activation after lease signing." },
+              { title: "Tenant Move-Outs", desc: "Coordinate exit logistics while you focus on new clients." },
+              { title: "Keys Handover", desc: "DeliWer guides your tenants from keys receipt through first-night readiness." }
+            ].map((item, i) => (
+              <div key={i} className="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl space-y-3">
+                <h3 className="font-black uppercase text-emerald-400 text-sm">{item.title}</h3>
+                <p className="text-gray-300 text-sm font-medium">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <Button 
+            size="lg" 
+            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-16 text-lg shadow-2xl"
+            onClick={() => window.open(whatsappLink, '_blank')}
+          >
+            Start a Partnership
+          </Button>
+        </section>
+
         <div className="text-center space-y-4">
           <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1">
             PARTNERSHIP NETWORK
           </Badge>
-          <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">Strategic <span className="text-emerald-500">Partners</span></h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Combining core leadership with a vast network of freelance broker affiliates.
+          <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Affiliate <span className="text-emerald-500">Opportunities</span></h1>
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            Brokers, property managers, and affiliates earn 10% commission on every referral.
           </p>
         </div>
 
