@@ -42,7 +42,6 @@ export default function LandingPage() {
         description="Move into your Dubai home stress-free. DeliWer handles water setup, Ejari registration, DEWA activation, and move-in readiness. AED 399 complete concierge."
       />
       <Navigation />
-      
       {/* HERO */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center">
         <div 
@@ -84,7 +83,6 @@ export default function LandingPage() {
           <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-sm text-center mt-6 drop-shadow-md bg-black/20 py-2 rounded-full inline-block px-8 mx-auto">The first step toward a move-in ready home.</p>
         </div>
       </section>
-
       {/* ROUTER BLOCK */}
       <section className="py-20 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-7xl mx-auto space-y-12">
@@ -124,7 +122,7 @@ export default function LandingPage() {
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center">
                   <LogOut className="w-6 h-6 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-black uppercase text-white">For Landlords</h3>
+                <h3 className="text-xl font-black uppercase text-white">For Landlords/tenants</h3>
                 <p className="text-gray-400 font-medium text-sm">Streamline tenant transitions, handle Ejari cancellations, and manage property handovers efficiently.</p>
               </div>
               <Link href="/exit" className="px-8 pb-8">
@@ -156,7 +154,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* JUST GOT KEYS - HIGH-INTENT TRIGGER */}
       <section className="py-20 px-6 bg-slate-900/50 border-y border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -201,7 +198,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* PROBLEM SECTION */}
       <section className="py-24 px-6 bg-slate-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 pointer-events-none" />
@@ -218,7 +214,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* SOLUTION SECTION */}
       <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -252,7 +247,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* PROCESS VISUALIZATION */}
       <section className="py-20 px-6 bg-slate-950">
         <div className="max-w-5xl mx-auto space-y-12">
@@ -280,7 +274,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* BRIEF BENEFITS */}
       <section className="py-16 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto">
@@ -302,7 +295,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* FINAL CTA */}
       <section className="relative py-20 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -323,7 +315,6 @@ export default function LandingPage() {
           </Button>
         </Link>
       </section>
-
       {/* Partner Strip */}
       <section className="px-4 py-16 bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-6">
@@ -340,7 +331,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       <footer className="py-20 px-4 border-t border-white/5 text-center bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-8">
           <OperationalBadges variant="dark" />
