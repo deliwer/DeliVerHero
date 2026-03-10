@@ -62,78 +62,65 @@ export default function EjariDubai() {
             <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-4 font-bold uppercase italic">
               Complete your Ejari registration in a few simple steps with guidance from our team.
             </p>
-            <div className="flex justify-center gap-6 mb-10">
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">✓ Simple document guidance</div>
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">✓ No need to visit service centers</div>
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">✓ Assistance from home</div>
-            </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
-            <div className="space-y-6 text-left">
-              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Why Register Ejari From Home?</h2>
-              <p className="text-gray-400 font-medium text-lg">
-                Traditional Ejari registration can be time-consuming. DeliWer provides professional guidance to help you complete the process without leaving your home.
-              </p>
-              <div className="space-y-4">
-                {[
-                  { q: "What documents are required?", a: "Typically your Tenancy Contract, Emirates ID, and Title Deed copy." },
-                  { q: "How long does it take?", a: "With our guidance, the process is streamlined for the fastest possible turnaround." },
-                  { q: "Do I need to visit a trustee center?", a: "No, our service is designed to help you complete everything online from home." },
-                  { q: "Can the process be done online?", a: "Yes, we specialize in digital coordination for Ejari registration." }
-                ].map((faq, i) => (
-                  <div key={i} className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                    <h4 className="text-emerald-500 font-black uppercase text-xs mb-1">{faq.q}</h4>
-                    <p className="text-gray-300 text-sm">{faq.a}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Video Explanation Section */}
-            <div className="rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
-              <div className="aspect-video relative group cursor-pointer">
-                <video 
-                  id="ejari-video"
+            {/* Video & Certificate Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
+              <div className="relative h-64 md:h-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80" 
+                  alt="Official Ejari Certificate" 
                   className="w-full h-full object-cover"
-                  controls
-                  playsInline
-                  muted={false}
-                  autoPlay={false}
-                  preload="metadata"
-                  poster="/deliwer-logo.png"
-                  onClick={(e) => {
-                    const video = e.currentTarget;
-                    if (video.paused) {
-                      video.play();
-                    } else {
-                      video.pause();
-                    }
-                  }}
-                >
-                  <source src="https://deliwer.com/attached_assets/Ejari-Service-Final_injaz_1772144918784.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent flex items-end p-6">
+                  <p className="text-white font-black uppercase text-sm tracking-widest">Official Ejari Coordination</p>
+                </div>
               </div>
-              <div className="p-4 bg-slate-900/50 backdrop-blur-sm border-t border-white/5">
-                <p className="text-sm text-gray-400 font-medium">
-                  Watch: How DeliWer coordinates your Ejari registration from home.
-                </p>
+              <div className="rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
+                <div className="aspect-video relative group cursor-pointer">
+                  <video 
+                    id="ejari-video"
+                    className="w-full h-full object-cover"
+                    controls
+                    playsInline
+                    muted={false}
+                    autoPlay={false}
+                    preload="metadata"
+                    poster="/deliwer-logo.png"
+                    onClick={(e) => {
+                      const video = e.currentTarget;
+                      if (video.paused) {
+                        video.play();
+                      } else {
+                        video.pause();
+                      }
+                    }}
+                  >
+                    <source src="https://deliwer.com/attached_assets/Ejari-Service-Final_injaz_1772144918784.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div className="p-4 bg-slate-900/50 backdrop-blur-sm border-t border-white/5 text-left">
+                  <p className="text-sm text-gray-400 font-medium">
+                    Watch: How DeliWer coordinates your Ejari registration from home.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <div className="flex flex-col gap-2 w-full md:w-auto">
-                <p className="text-xs text-emerald-500 font-black uppercase tracking-widest mb-1">Fill in your details below and our team will assist you with your Ejari registration</p>
+                <p className="text-xs text-emerald-500 font-black uppercase tracking-widest mb-1 text-center">Fill in your details below and our team will assist you with your Ejari registration</p>
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-10 rounded-2xl text-lg shadow-lg shadow-emerald-900/20" onClick={handleWhatsApp}>
                   <MessageSquare className="w-6 h-6 mr-2" />
                   Start My Ejari Registration
                 </Button>
-                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1 italic">Our team will review your details and guide you through the Ejari registration process.</p>
+                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1 italic text-center">Our team will review your details and guide you through the Ejari registration process.</p>
               </div>
-              <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 font-black h-16 px-10 rounded-2xl text-lg mt-auto md:mt-6" disabled title="Biometric integration coming soon">
-                <Fingerprint className="w-6 h-6 mr-2" />
-                Biometrics (Coming Soon)
-              </Button>
+              <Link href="/relocate">
+                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 font-black h-16 px-10 rounded-2xl text-lg mt-auto md:mt-6">
+                  <Zap className="w-6 h-6 mr-2" />
+                  Explore Move-In Concierge
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

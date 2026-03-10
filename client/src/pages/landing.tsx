@@ -20,9 +20,9 @@ import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with
 
 // Lifestyle images for cards and sections
 const lifestyleImages = {
-  moveIn: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
-  moveOut: "https://images.unsplash.com/photo-1581578731548-c64695cc6958?w=800&q=80",
-  brokers: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&q=80",
+  moveIn: "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=800&q=80", // Tenant focused
+  moveOut: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", // Landlord focused
+  brokers: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80", // Broker focused
   tenants: "https://images.unsplash.com/photo-1554995207-c18fa93d128d?w=800&q=80",
   landlords: "https://images.unsplash.com/photo-1512918766671-ed6a99be0211?w=800&q=80",
   process: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
@@ -97,15 +97,15 @@ export default function LandingPage() {
             <Card className="bg-white/5 border-emerald-500/30 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
               <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Recommended</div>
               <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.moveIn} alt="Move-in preparation" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={lifestyleImages.moveIn} alt="Tenant move-in" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
               </div>
               <div className="p-8 space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
                   <Zap className="w-6 h-6 text-emerald-500" />
                 </div>
-                <h3 className="text-xl font-black uppercase text-emerald-500">Move-In Concierge</h3>
-                <p className="text-gray-400 font-medium text-sm">Activate your new apartment with tenancy registration, utilities setup, and move-in readiness.</p>
+                <h3 className="text-xl font-black uppercase text-emerald-500">For Tenants</h3>
+                <p className="text-gray-400 font-medium text-sm">Complete your Ejari registration and activate utilities from home. Get move-in ready fast.</p>
               </div>
               <Link href="/relocate" className="px-8 pb-8">
                 <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-12 shadow-lg shadow-emerald-900/40">
@@ -117,19 +117,19 @@ export default function LandingPage() {
             {/* Move-Out Card */}
             <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-blue-500/50 transition-all group relative overflow-hidden">
               <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.moveOut} alt="Move-out preparation" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={lifestyleImages.moveOut} alt="Landlord support" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
               </div>
               <div className="p-8 space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center">
                   <LogOut className="w-6 h-6 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-black uppercase text-white">Move-Out Support</h3>
-                <p className="text-gray-400 font-medium text-sm">Coordinate utilities closure, tenancy cancellation, and apartment handover.</p>
+                <h3 className="text-xl font-black uppercase text-white">For Landlords</h3>
+                <p className="text-gray-400 font-medium text-sm">Streamline tenant transitions, handle Ejari cancellations, and manage property handovers efficiently.</p>
               </div>
               <Link href="/exit" className="px-8 pb-8">
                 <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
-                  Plan Move-Out
+                  Manage Property
                 </Button>
               </Link>
             </Card>
@@ -144,12 +144,12 @@ export default function LandingPage() {
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center">
                   <Key className="w-6 h-6 text-purple-500" />
                 </div>
-                <h3 className="text-xl font-black uppercase text-white">Just Signed a Lease?</h3>
-                <p className="text-gray-400 font-medium text-sm">For brokers and tenants: activate your apartment immediately after signing.</p>
+                <h3 className="text-xl font-black uppercase text-white">For Brokers</h3>
+                <p className="text-gray-400 font-medium text-sm">Close deals faster by offering your clients a seamless Ejari and utilities activation service.</p>
               </div>
-              <Link href="/activate" className="px-8 pb-8">
+              <Link href="/partners" className="px-8 pb-8">
                 <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
-                  Activate Now
+                  Partner with Us
                 </Button>
               </Link>
             </Card>
