@@ -1,0 +1,252 @@
+PROMPT FOR REPLIT AI
+
+Objective
+Improve the clarity and conversion of www.deliwer.com by positioning Ejari Home Service as the starting point of the tenant journey.
+
+The homepage should clearly communicate the pain tenants experience during Ejari registration and present DeliWer as the easiest way to complete Ejari from home.
+
+The optimization must also strengthen the /ejari-dubai landing page to increase booking conversions.
+
+CRITICAL RULES
+
+Do NOT modify:
+
+• page layout
+• CSS
+• section order
+• page structure
+• navigation
+• forms
+• button placement
+• click funnel logic
+
+Do NOT remove or add sections.
+
+Only update:
+
+• headlines
+• supporting text
+• explanatory copy
+• CTA wording
+• benefit descriptions
+
+The homepage must guide users naturally to:
+
+/ejari-dubai
+
+HOMEPAGE STRATEGY
+
+Use a process-oriented UX approach so visitors immediately recognize their relocation stage.
+
+The journey should be reflected as:
+
+Lease signed
+→ Ejari registration
+→ utilities activation
+→ home preparation
+→ move-in
+
+Position DeliWer as the easiest way to complete Step 1.
+
+HERO SECTION (COPY UPDATE ONLY)
+
+Headline:
+
+Start Your Move-In Journey With Ejari Registration
+
+Subheadline:
+
+Before you can activate utilities or move into your new home in Dubai, you must first obtain your Ejari certificate.
+
+DeliWer helps tenants complete Ejari registration easily with online and home service support.
+
+Primary CTA button:
+
+Start Ejari Home Service
+
+Link:
+
+/ejari-dubai
+
+Supporting line:
+
+The first step toward a move-in ready home.
+
+PROCESS ORIENTATION (WITHIN EXISTING TEXT AREAS)
+
+Add a simple relocation journey explanation:
+
+Your Move-In Journey
+
+Step 1
+Register Ejari
+
+Step 2
+Activate utilities
+
+Step 3
+Prepare your home
+
+Step 4
+Move in comfortably
+
+Highlight that DeliWer simplifies Step 1.
+
+PROBLEM SECTION
+
+Rewrite text to explain the real frustration tenants face.
+
+Ejari registration often requires:
+
+• understanding required documents
+• coordinating with landlords or agents
+• navigating online registration portals
+• visiting trustee centers
+
+These steps often delay move-in readiness.
+
+Explain clearly:
+
+Without an Ejari certificate, tenants cannot activate utilities or complete their move-in process.
+
+SOLUTION SECTION
+
+Title:
+
+Ejari Registration Assistance From Home
+
+Explain that DeliWer simplifies the process by helping tenants complete Ejari registration easily.
+
+Benefits:
+
+• guidance on required documents
+• support completing the online Ejari process
+• convenient assistance from home
+• faster move-in progress
+
+Add CTA:
+
+Start Your Ejari Registration
+
+Link:
+
+/ejari-dubai
+
+BENEFITS SECTION
+
+Adjust benefits to emphasize:
+
+Convenience from home
+Reduced paperwork confusion
+Faster Ejari completion
+A smoother relocation experience
+
+CALL TO ACTION SECTION
+
+Rewrite the CTA text:
+
+Need your Ejari certificate before moving in?
+
+Start your Ejari Home Service with DeliWer today.
+
+Button text:
+
+Start Ejari Home Service
+
+Link:
+
+/ejari-dubai
+
+SECONDARY SERVICES
+
+Keep all existing services (home preparation, water systems, sustainability services, etc.)
+
+Position them clearly as services that follow Ejari completion.
+
+They must appear after the Ejari narrative.
+
+SEO TEXT ADJUSTMENT
+
+Naturally include phrases such as:
+
+Ejari registration Dubai
+Ejari home service Dubai
+online Ejari registration assistance
+help with Ejari registration
+
+Avoid keyword stuffing.
+
+----------------------------------------------------------------
+
+/EJARI-DUBAI PAGE OPTIMIZATION
+
+Goal:
+Increase WhatsApp bookings without changing layout or form structure.
+
+Only improve the messaging around the form and CTA.
+
+CONVERSION UX TRICK
+
+Add a short reassurance line directly above the booking form.
+
+Example:
+
+"Complete your Ejari registration in a few simple steps with guidance from our team."
+
+Below this add three quick reassurance bullets:
+
+✓ Simple document guidance  
+✓ No need to visit service centers  
+✓ Assistance from home
+
+This reduces hesitation before form submission.
+
+FORM SECTION TEXT IMPROVEMENT
+
+Add a short introductory line above the form:
+
+"Fill in your details below and our team will assist you with your Ejari registration."
+
+CALL TO ACTION BUTTON TEXT
+
+Change button wording to be more action-oriented:
+
+Start My Ejari Registration
+
+or
+
+Get Ejari Assistance
+
+POST-FORM TRUST MESSAGE
+
+Below the form add reassurance text:
+
+"Our team will review your details and guide you through the Ejari registration process."
+
+FAQ SECTION
+
+Ensure FAQs answer common fears:
+
+• What documents are required?
+• How long does Ejari registration take?
+• Do I need to visit a trustee center?
+• Can the process be done online?
+
+TONE
+
+Clear
+Trustworthy
+Supportive
+Focused on simplifying relocation stress.
+
+FINAL RESULT
+
+Visitors should immediately understand:
+
+They must obtain Ejari before moving in.
+The process can be confusing.
+DeliWer helps complete Ejari from home.
+They can start immediately through the Ejari service page.
+
+Do not change the funnel or structure.
+Only strengthen clarity, guidance, and conversion messaging.

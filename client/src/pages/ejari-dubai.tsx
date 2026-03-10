@@ -57,14 +57,39 @@ export default function EjariDubai() {
               EJARI COORDINATION SERVICE
             </div>
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none">
-              Digital Ejari <span className="text-emerald-500">Verification</span>
+              Digital Ejari <span className="text-emerald-500">Registration Assistance</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-              Tenants & Landlords: We coordinate and facilitate your Ejari registration through official RERA channels. Simplified. Streamlined. Compliant.
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-4 font-bold uppercase italic">
+              Complete your Ejari registration in a few simple steps with guidance from our team.
             </p>
+            <div className="flex justify-center gap-6 mb-10">
+              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">✓ Simple document guidance</div>
+              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">✓ No need to visit service centers</div>
+              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest">✓ Assistance from home</div>
+            </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
+            <div className="space-y-6 text-left">
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Why Register Ejari From Home?</h2>
+              <p className="text-gray-400 font-medium text-lg">
+                Traditional Ejari registration can be time-consuming. DeliWer provides professional guidance to help you complete the process without leaving your home.
+              </p>
+              <div className="space-y-4">
+                {[
+                  { q: "What documents are required?", a: "Typically your Tenancy Contract, Emirates ID, and Title Deed copy." },
+                  { q: "How long does it take?", a: "With our guidance, the process is streamlined for the fastest possible turnaround." },
+                  { q: "Do I need to visit a trustee center?", a: "No, our service is designed to help you complete everything online from home." },
+                  { q: "Can the process be done online?", a: "Yes, we specialize in digital coordination for Ejari registration." }
+                ].map((faq, i) => (
+                  <div key={i} className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <h4 className="text-emerald-500 font-black uppercase text-xs mb-1">{faq.q}</h4>
+                    <p className="text-gray-300 text-sm">{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
             {/* Video Explanation Section */}
-            <div className="max-w-4xl mx-auto mb-12 rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
+            <div className="rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
               <div className="aspect-video relative group cursor-pointer">
                 <video 
                   id="ejari-video"
@@ -90,17 +115,22 @@ export default function EjariDubai() {
               </div>
               <div className="p-4 bg-slate-900/50 backdrop-blur-sm border-t border-white/5">
                 <p className="text-sm text-gray-400 font-medium">
-                  Watch: How DeliWer facilitates your Ejari Trustee Center journey.
+                  Watch: How DeliWer coordinates your Ejari registration from home.
                 </p>
               </div>
             </div>
+          </div>
 
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-10 rounded-2xl text-lg shadow-lg shadow-emerald-900/20" onClick={handleWhatsApp}>
-                <MessageSquare className="w-6 h-6 mr-2" />
-                Start via WhatsApp
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 font-black h-16 px-10 rounded-2xl text-lg" disabled title="Biometric integration coming soon">
+              <div className="flex flex-col gap-2 w-full md:w-auto">
+                <p className="text-xs text-emerald-500 font-black uppercase tracking-widest mb-1">Fill in your details below and our team will assist you with your Ejari registration</p>
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-10 rounded-2xl text-lg shadow-lg shadow-emerald-900/20" onClick={handleWhatsApp}>
+                  <MessageSquare className="w-6 h-6 mr-2" />
+                  Start My Ejari Registration
+                </Button>
+                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1 italic">Our team will review your details and guide you through the Ejari registration process.</p>
+              </div>
+              <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 font-black h-16 px-10 rounded-2xl text-lg mt-auto md:mt-6" disabled title="Biometric integration coming soon">
                 <Fingerprint className="w-6 h-6 mr-2" />
                 Biometrics (Coming Soon)
               </Button>
@@ -178,7 +208,7 @@ export default function EjariDubai() {
               Our Role
             </h3>
             <p className="text-slate-900 text-sm leading-relaxed font-medium">
-              DeliWer is a service provider for coordination and facilitation. We guide tenants and landlords through the Ejari process via WhatsApp, help organize required documentation, and coordinate submissions with official RERA-appointed trustee centers. All Ejari registrations, verifications, and official certificates are issued by authorized trustee centers in compliance with Dubai Land Department (DLD) regulations. System integrations with trustee center backends and RERA records are under development. Biometric authentication features will be available through future DLD REST app integration.
+              DeliWer is a service provider for coordination and facilitation. We guide tenants and landlords through the Ejari process via WhatsApp, help organize required documentation, and coordinate submissions with official RERA-appointed trustee centers. All Ejari registrations, verifications, and official certificates are issued by authorized trustee centers in compliance with Dubai Land Department (DLD) regulations. <span className="text-slate-950 font-black">System integrations with trustee center backends and RERA records are under development. Biometric authentication features will be available through future DLD REST app integration.</span>
             </p>
           </div>
 
