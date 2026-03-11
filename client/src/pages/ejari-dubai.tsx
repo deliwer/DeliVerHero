@@ -1,15 +1,38 @@
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquare, CheckCircle2, ShieldCheck, Fingerprint, Building2, ClipboardCheck } from "lucide-react";
+import { MessageSquare, CheckCircle2, ShieldCheck, Fingerprint, Building2, ClipboardCheck, Zap, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Navigation } from "@/components/navigation";
+import { useEffect } from "react";
 
 export default function EjariDubai() {
+  const [location] = useLocation();
+
+  // Referral tracking from URL parameters
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const referral = {
+      partner: params.get("ref"),
+      agent: params.get("agent"),
+      campaign: params.get("campaign"),
+      timestamp: new Date().toISOString()
+    };
+
+    if(referral.partner){
+      if(!localStorage.getItem("deliwer_ref")){
+        localStorage.setItem("deliwer_ref", JSON.stringify(referral));
+      }
+    }
+  }, [location]);
+
   const handleWhatsApp = () => {
-    const text = "Hi DeliWer, I need help with Ejari coordination.";
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
+    const referralData = localStorage.getItem("deliwer_ref");
+    const referral = referralData ? JSON.parse(referralData) : {};
+    
+    const message = `Hello DeliWer,\n\nI need Ejari Registration in Dubai.\n\nReferral Partner: ${referral.partner || 'Direct'}\nAgent: ${referral.agent || ''}\n\nPlease send me more information.`;
+    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const steps = [
@@ -56,12 +79,36 @@ export default function EjariDubai() {
               <ShieldCheck className="w-4 h-4" />
               EJARI COORDINATION SERVICE
             </div>
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none">
-              Digital Ejari <span className="text-emerald-500">Registration Assistance</span>
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none">
+              Need Ejari <span className="text-emerald-500">Registration in Dubai?</span>
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-4 font-bold uppercase italic">
-              Complete your Ejari registration in a few simple steps with guidance from our team.
-            </p>
+            
+            {/* Problem Section */}
+            <div className="max-w-3xl mx-auto mb-12 space-y-4">
+              <div className="flex items-start gap-4 bg-red-500/10 border border-red-500/30 rounded-2xl p-6">
+                <AlertCircle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                <div className="text-left">
+                  <p className="text-xl font-bold text-white mb-2">Here's the problem:</p>
+                  <p className="text-lg text-gray-300 font-medium">
+                    <span className="text-red-400 font-black">Without Ejari you cannot activate DEWA.</span><br/>
+                    <span className="text-red-400 font-black">Without DEWA you cannot move in.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Solution Section */}
+            <div className="max-w-3xl mx-auto mb-12 space-y-4">
+              <div className="flex items-start gap-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6">
+                <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-1" />
+                <div className="text-left">
+                  <p className="text-xl font-bold text-white mb-2">Our solution:</p>
+                  <p className="text-lg text-gray-300 font-medium">
+                    <span className="text-emerald-400 font-black">DeliWer Move-In Concierge handles the entire activation process.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
             {/* Video & Certificate Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
               <div className="relative h-64 md:h-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
@@ -106,22 +153,13 @@ export default function EjariDubai() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <div className="flex flex-col gap-2 w-full md:w-auto">
-                <p className="text-xs text-emerald-500 font-black uppercase tracking-widest mb-1 text-center">Fill in your details below and our team will assist you with your Ejari registration</p>
-                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-10 rounded-2xl text-lg shadow-lg shadow-emerald-900/20" onClick={handleWhatsApp}>
-                  <MessageSquare className="w-6 h-6 mr-2" />
-                  Start My Ejari Registration
-                </Button>
-                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter mt-1 italic text-center">Our team will review your details and guide you through the Ejari registration process.</p>
-              </div>
-              <Link href="/relocate">
-                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 font-black h-16 px-10 rounded-2xl text-lg mt-auto md:mt-6">
-                  <Zap className="w-6 h-6 mr-2" />
-                  Explore Move-In Concierge
-                </Button>
-              </Link>
-            </div>
+            {/* CTA Button */}
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-12 rounded-2xl text-lg shadow-xl shadow-emerald-900/30 mb-6" onClick={handleWhatsApp}>
+              <MessageSquare className="w-6 h-6 mr-3" />
+              Activate My Home
+            </Button>
+            
+            <p className="text-sm text-gray-400 font-medium mb-12">Response within 10 minutes • WhatsApp chat</p>
           </motion.div>
         </div>
       </section>

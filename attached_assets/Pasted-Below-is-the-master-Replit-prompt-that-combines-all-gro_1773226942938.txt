@@ -1,0 +1,663 @@
+Below is the **master Replit prompt** that combines **all growth and tracking strategies into one unified system** for **deliwer.com**.
+
+This prompt instructs Replit to build a **complete zero-cost growth engine** using:
+
+* **Vercel static pages**
+* **URL attribution tracking**
+* **Local storage referral persistence**
+* **WhatsApp booking conversion**
+* **Google Sheets revenue ledger**
+* **Partner ecosystem**
+* **Ejari search funnel**
+* **Building-level SEO pages**
+* **Community distribution toolkit**
+
+The result is a **self-expanding growth system** designed specifically for **Dubai relocation and move-in services**.
+
+---
+
+# MASTER REPLIT PROMPT
+
+## Project
+
+**DeliWer Growth Engine + Referral Attribution + Hyperlocal SEO System**
+
+## Objective
+
+Build a **static marketing and referral tracking platform for deliwer.com** that enables communities, influencers, property networks, and building-level partners to promote DeliWer services and earn commissions through trackable referral links.
+
+The platform must operate with **zero infrastructure cost** and **no database**.
+
+---
+
+# SYSTEM CONSTRAINTS
+
+Must use:
+
+* **Static pages**
+* **Vercel hosting**
+* **URL parameters**
+* **LocalStorage cookies**
+* **WhatsApp conversion**
+* **Google Sheets revenue ledger**
+* **Serverless endpoint**
+
+Must NOT require:
+
+* database
+* payment gateway
+* external SaaS marketing tools
+
+---
+
+# CORE SERVICES PROMOTED
+
+Primary offer:
+
+**Move-In Concierge – 399 AED**
+
+Includes:
+
+* Ejari guidance
+* DEWA activation guidance
+* water readiness check
+* air readiness check
+* move-in coordination
+* welcome shower filter installation
+
+---
+
+# 1. GROWTH ENGINE ARCHITECTURE
+
+The system must support **five distribution layers**.
+
+---
+
+## Layer 1 — Community Influencers
+
+Examples:
+
+* WhatsApp communities
+* Telegram groups
+* LinkedIn influencers
+* expat communities
+
+Examples of reachable partners:
+
+* DeBacci Capital
+* ECLG
+* MyTablon
+
+Each partner receives a **unique referral link**.
+
+---
+
+## Layer 2 — Property Network
+
+Partners include:
+
+* real estate agents
+* relocation consultants
+* Airbnb hosts
+* property managers
+* corporate relocation HR teams
+
+These partners interact with people **moving into homes**.
+
+---
+
+## Layer 3 — Building Referral Loop
+
+Partners include:
+
+* building security guards
+* building maintenance teams
+* concierge desks
+* tenant WhatsApp groups
+* movers
+
+These partners see **every new tenant moving in**.
+
+---
+
+## Layer 4 — Ejari Gateway Growth Loop
+
+People searching for:
+
+* Ejari registration
+* Ejari renewal
+* DEWA activation
+* move-in checklist
+
+arrive on DeliWer landing pages.
+
+These pages convert them into **Move-In Concierge customers**.
+
+---
+
+## Layer 5 — Dubai Move-In Map (Hyperlocal SEO)
+
+Create **building-specific landing pages**.
+
+Example:
+
+```
+/marina-gate-move-in
+/jlt-move-in
+/downtown-dubai-move-in
+/business-bay-move-in
+```
+
+Each page captures people **searching for moving into that building or area**.
+
+---
+
+# 2. REFERRAL LINK STRUCTURE
+
+Partners receive unique links.
+
+Example:
+
+```
+https://deliwer.com/start?ref=debacci
+https://deliwer.com/start?ref=eclg
+https://deliwer.com/start?ref=mytablon
+```
+
+Sub-tracking:
+
+```
+?ref=debacci&agent=john
+?ref=eclg&campaign=whatsapp
+?ref=mytablon&post=group1
+```
+
+Optional UTM support:
+
+```
+utm_source
+utm_medium
+utm_campaign
+```
+
+Example:
+
+```
+https://deliwer.com/start?ref=debacci&agent=john&utm_source=whatsapp
+```
+
+---
+
+# 3. REFERRAL CAPTURE SCRIPT
+
+Capture parameters and store for **30 days**.
+
+Example:
+
+```javascript
+const params = new URLSearchParams(window.location.search);
+
+const referral = {
+ partner: params.get("ref"),
+ agent: params.get("agent"),
+ campaign: params.get("campaign"),
+ timestamp: new Date().toISOString()
+};
+
+if(referral.partner){
+ if(!localStorage.getItem("deliwer_ref")){
+   localStorage.setItem("deliwer_ref", JSON.stringify(referral));
+ }
+}
+```
+
+Rules:
+
+* first referral wins
+* referral cannot be overwritten
+* persists across pages
+
+---
+
+# 4. CORE CONVERSION FUNNEL
+
+Create funnel:
+
+```
+Landing Page
+↓
+Problem awareness
+↓
+Move-In Concierge offer
+↓
+WhatsApp booking
+```
+
+Main landing page:
+
+```
+/start
+```
+
+Headline:
+
+```
+Moving to Dubai this week?
+
+Don’t spend your first night without water.
+DeliWer activates your home in minutes.
+```
+
+Offer:
+
+```
+Move-In Concierge – 399 AED
+```
+
+CTA:
+
+```
+Book via WhatsApp
+```
+
+---
+
+# 5. WHATSAPP CONVERSION
+
+When user presses **Book Now**:
+
+1. read referral cookie
+2. log lead
+3. open WhatsApp
+
+WhatsApp message template:
+
+```
+Hello DeliWer,
+
+I want the Move-In Concierge Service.
+
+Referral Partner:
+Agent:
+
+Name:
+Building:
+Move-in date:
+```
+
+WhatsApp link:
+
+```
+https://wa.me/971523946311?text=encoded_message
+```
+
+Use DeliWer WhatsApp:
+
+**+971523946311**
+
+---
+
+# 6. SERVERLESS LEAD LOGGER
+
+Create Vercel endpoint:
+
+```
+/api/log-lead
+```
+
+POST payload:
+
+```
+{
+ partner: "debacci",
+ agent: "john",
+ campaign: "whatsapp",
+ service: "move_in_concierge",
+ page: "/start",
+ timestamp: "ISO date"
+}
+```
+
+Endpoint writes data into **Google Sheets**.
+
+---
+
+# 7. GOOGLE SHEETS REFERRAL LEDGER
+
+Spreadsheet name:
+
+```
+DeliWer Partner Leads
+```
+
+Columns:
+
+```
+Date
+Partner
+Agent
+Campaign
+Service
+Page
+Customer Name
+Building
+Sale Value
+Status
+Commission
+```
+
+Example row:
+
+```
+2026-03-11 | DeBacci | John | WhatsApp | Move Concierge | /start | Ahmed | Marina Gate | 399 | Closed | 79.8
+```
+
+Commission formula:
+
+```
+=SaleValue * 0.20
+```
+
+---
+
+# 8. PARTNER CAMPAIGN LANDING PAGES
+
+Create pages:
+
+```
+/debacci
+/eclg
+/mytablon
+```
+
+Example headline:
+
+```
+Welcome DeBacci Community Members
+```
+
+Text:
+
+```
+DeliWer helps new Dubai residents activate their homes in minutes.
+
+✓ Ejari guidance
+✓ DEWA setup
+✓ water readiness
+✓ air readiness
+✓ welcome shower filter
+```
+
+CTA:
+
+```
+Book Move-In Concierge
+```
+
+---
+
+# 9. EJARI SEO LANDING PAGES
+
+Create pages:
+
+```
+/ejari-dubai
+/ejari-registration
+/ejari-renewal
+/dewa-activation
+/move-to-dubai
+```
+
+Example headline:
+
+```
+Need Ejari Registration in Dubai?
+```
+
+Problem copy:
+
+```
+Without Ejari you cannot activate DEWA.
+Without DEWA you cannot move in.
+```
+
+Solution:
+
+```
+DeliWer Move-In Concierge handles the entire activation process.
+```
+
+CTA:
+
+```
+Activate My Home
+```
+
+---
+
+# 10. BUILDING MOVE-IN LANDING PAGES
+
+Create building pages.
+
+Examples:
+
+```
+/marina-gate-move-in
+/jlt-move-in
+/downtown-dubai-move-in
+/business-bay-move-in
+```
+
+Headline example:
+
+```
+Moving into Marina Gate?
+```
+
+Offer:
+
+```
+Activate your apartment before your first night.
+```
+
+Referral parameters:
+
+```
+?ref=marinagate&agent=security
+?ref=marinagate&agent=tenantgroup
+```
+
+---
+
+# 11. PARTNER LINK GENERATOR
+
+Create page:
+
+```
+/partners
+```
+
+Fields:
+
+```
+Partner name
+Agent name
+Campaign
+```
+
+Generate link:
+
+```
+https://deliwer.com/start?ref=debacci&agent=john
+```
+
+Include **copy button**.
+
+---
+
+# 12. COMMUNITY DISTRIBUTION TOOLKIT
+
+Create page:
+
+```
+/community-toolkit
+```
+
+Provide ready messages.
+
+Example WhatsApp message:
+
+```
+Moving to Dubai soon?
+
+Our community partner DeliWer activates your home before you arrive.
+
+✓ Ejari guidance
+✓ DEWA setup
+✓ water readiness
+✓ air readiness
+✓ welcome shower filter
+
+Book here:
+https://deliwer.com/start?ref=debacci
+```
+
+---
+
+# 13. PARTNER PROGRAM PAGE
+
+Create page:
+
+```
+/partner-program
+```
+
+Explain economics.
+
+Example:
+
+```
+Move-In Concierge price: 399 AED
+Partner commission: 20%
+```
+
+Example payout:
+
+```
+50 referrals
+10 conversions
+Revenue: 3,990 AED
+Partner share: 798 AED
+```
+
+---
+
+# 14. FRAUD PROTECTION
+
+Implement protections.
+
+Rules:
+
+```
+first referral wins
+ignore new referral if cookie exists
+log timestamp
+log IP
+```
+
+Prevent self-referrals.
+
+---
+
+# 15. FILE STRUCTURE
+
+```
+/pages
+ start.html
+ ejari-dubai.html
+ ejari-registration.html
+ move-to-dubai.html
+ partners.html
+ partner-program.html
+ community-toolkit.html
+ debacci.html
+ eclg.html
+ mytablon.html
+ marina-gate-move-in.html
+ jlt-move-in.html
+ downtown-dubai-move-in.html
+
+/js
+ referral.js
+ whatsapp-builder.js
+ lead-logger.js
+
+/api
+ log-lead.js
+
+/utils
+ cookie.js
+```
+
+---
+
+# 16. UI INDICATORS
+
+If referral detected show banner.
+
+Example:
+
+```
+Referred by DeBacci Community
+```
+
+or
+
+```
+Welcome Marina Gate Residents
+```
+
+---
+
+# 17. ANALYTICS
+
+Add:
+
+* Google Analytics
+* campaign tracking
+* referral performance
+
+---
+
+# 18. MONTHLY REVENUE REPORTING
+
+Filter spreadsheet by partner.
+
+Example:
+
+```
+Partner: DeBacci
+
+Leads: 120
+Conversions: 25
+Revenue: 9,975 AED
+Commission: 1,995 AED
+```
+
+Partners paid monthly.
+
+---
+
+# 19. STRATEGIC RESULT
+
+This system turns **Ejari searches + communities + buildings into a self-growing referral ecosystem**.
+
+Benefits:
+
+* zero marketing spend
+* scalable partner network
+* transparent commissions
+* high-intent relocation traffic
+* simple operations
+
+The result positions **DeliWer as the first service people encounter when activating a home in Dubai**.
