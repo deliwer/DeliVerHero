@@ -52,6 +52,7 @@ import { AccountManagementPage } from "@/pages/account-management";
 const MoveInSubpage = lazy(() => import("@/pages/residence/move-in"));
 const MoveOutSubpage = lazy(() => import("@/pages/residence/move-out"));
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
+const StartPage = lazy(() => import("@/pages/start"));
 const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
 const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
 const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
@@ -132,6 +133,7 @@ function Router() {
       <Switch>
         <Route path="/marketing" component={MarketingDashboard} />
         <Route path="/" component={Landing} />
+        <Route path="/start" component={StartPage} />
         <Route path="/relocate" component={Relocate} />
         <Route path="/exit" component={RelocateExit} />
         <Route path="/activate" component={ActivatePage} />
