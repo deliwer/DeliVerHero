@@ -105,9 +105,9 @@ export default function LandingPage() {
                 <h3 className="text-xl font-black uppercase text-emerald-500">For Tenants</h3>
                 <p className="text-gray-400 font-medium text-sm">Complete your Ejari registration and activate utilities from home. Get move-in ready fast.</p>
               </div>
-              <Link href="/relocate" className="px-8 pb-8">
+              <Link href="/start" className="px-8 pb-8">
                 <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-12 shadow-lg shadow-emerald-900/40">
-                  Start Move-In
+                  Get Started
                 </Button>
               </Link>
             </Card>

@@ -58,6 +58,7 @@ const DewaActivation = lazy(() => import("@/pages/dewa-activation"));
 const EjariRenewal = lazy(() => import("@/pages/ejari-renewal"));
 const MoveToDubai = lazy(() => import("@/pages/move-to-dubai"));
 const MarinaGateMoveIn = lazy(() => import("@/pages/marina-gate-move-in"));
+const AffiliateManagement = lazy(() => import("@/pages/affiliate-management"));
 const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
 const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
 const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
@@ -136,7 +137,8 @@ function Router() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
-        <Route path="/marketing" component={MarketingDashboard} />
+        <Route path="/marketing" component={AffiliateManagement} />
+        <Route path="/marketing/dashboard" component={MarketingDashboard} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
         <Route path="/ejari-registration" component={EjariRegistration} />
