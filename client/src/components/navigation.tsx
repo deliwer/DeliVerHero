@@ -14,7 +14,7 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navItems = [
-    { path: "/residents", label: "Residents", id: "residents", icon: Home },
+    { path: "/ejari-dubai", label: "Ejari", id: "ejari", icon: Home },
     { path: "/relocate", label: "Move-In", id: "relocation", icon: Plane },
     { path: "/exit", label: "Move-Out", id: "move-out", icon: LogOut },
   ];
