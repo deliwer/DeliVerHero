@@ -53,6 +53,11 @@ const MoveInSubpage = lazy(() => import("@/pages/residence/move-in"));
 const MoveOutSubpage = lazy(() => import("@/pages/residence/move-out"));
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
 const StartPage = lazy(() => import("@/pages/start"));
+const EjariRegistration = lazy(() => import("@/pages/ejari-registration"));
+const DewaActivation = lazy(() => import("@/pages/dewa-activation"));
+const EjariRenewal = lazy(() => import("@/pages/ejari-renewal"));
+const MoveToDubai = lazy(() => import("@/pages/move-to-dubai"));
+const MarinaGateMoveIn = lazy(() => import("@/pages/marina-gate-move-in"));
 const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
 const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
 const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
@@ -134,6 +139,11 @@ function Router() {
         <Route path="/marketing" component={MarketingDashboard} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
+        <Route path="/ejari-registration" component={EjariRegistration} />
+        <Route path="/ejari-renewal" component={EjariRenewal} />
+        <Route path="/dewa-activation" component={DewaActivation} />
+        <Route path="/move-to-dubai" component={MoveToDubai} />
+        <Route path="/marina-gate-move-in" component={MarinaGateMoveIn} />
         <Route path="/relocate" component={Relocate} />
         <Route path="/exit" component={RelocateExit} />
         <Route path="/activate" component={ActivatePage} />
