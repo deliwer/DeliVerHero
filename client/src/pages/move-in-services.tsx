@@ -28,6 +28,8 @@ import jvcBoxes from "@assets/generated_images/jvc_dubai_apartment_move-in_boxes
 import cleaningImage from "@assets/generated_images/jvc_dubai_apartment_cleaning_service.png";
 import maintenanceImage from "@assets/generated_images/jvc_dubai_ac_maintenance_service.png";
 import { SiWhatsapp } from "react-icons/si";
+import { BuildingSEOBlock } from "@/components/building-seo-block";
+import { dubaiBuildings } from "@/data/dubai-buildings";
 
 const PRICING_OPTIONS = [
   { id: "coordination-in", title: "Move-in coordination", price: 499, icon: Zap },
@@ -505,6 +507,36 @@ export default function MoveInServices() {
           </div>
         </div>
       </section>
+
+      {/* Hyperlocal Building-Level SEO Section */}
+      <section className="py-20 px-4 bg-gradient-to-b from-slate-900 to-slate-950 border-t border-white/10">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black uppercase mb-4">Move-In Services Across Dubai Communities</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto">
+              Whether you're settling into Dubai Marina, Downtown, Business Bay, or JVC—DeliWer's concierge services ensure your new home is ready on day one.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {dubaiBuildings.map((building, idx) => (
+              <BuildingSEOBlock 
+                key={idx}
+                building={building.name}
+                community={building.community}
+                ref={building.ref}
+              />
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-gray-400 text-sm">
+              Don't see your building? Contact us via WhatsApp and we'll customize a solution for your community.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Footer Reliability */}
       <section className="py-16 bg-slate-950 border-t border-white/5 text-slate-500 text-center text-xs uppercase tracking-[0.3em] font-black">
         DeliWer JVC Community Focus • Vetted Local Partners • No Commissions
