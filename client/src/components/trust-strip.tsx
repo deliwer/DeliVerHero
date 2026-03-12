@@ -36,9 +36,6 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
           <Link href="/residents">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Residents</span>
           </Link>
-          <Link href="/ejari-dubai">
-            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Ejari</span>
-          </Link>
           <Link href="/relocate">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Relocation</span>
           </Link>
