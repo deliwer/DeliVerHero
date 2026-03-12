@@ -371,6 +371,79 @@ export default function PartnersPage() {
         </div>
       </section>
 
+      {/* Ecosystem Partners Section */}
+      <section className="py-32 px-4 bg-gradient-to-b from-slate-900/50 to-slate-950 border-t border-purple-500/20">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-5xl font-black uppercase mb-4">Ecosystem Partnerships</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">Collaborate with DeliWer as part of your relocation, logistics, or brokerage services.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {[
+              { name: "Global Logistics Group", service: "Logistics & Relocation", color: "border-orange-500/30" },
+              { name: "Alreza Group", service: "Cargo & Shipping", color: "border-blue-500/30" },
+              { name: "ARO Overseas", service: "International Relocation", color: "border-green-500/30" },
+              { name: "DeBacci Capital", service: "Referral Network", color: "border-yellow-500/30" },
+              { name: "MyTablon", service: "Community Management", color: "border-red-500/30" },
+              { name: "Your Company", service: "Partner with us today", color: "border-emerald-500/30" }
+            ].map((partner, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className={`bg-slate-900/50 border ${partner.color} rounded-xl p-6 text-center hover:border-opacity-100 transition-all`}
+              >
+                <h3 className="text-xl font-black text-white mb-2">{partner.name}</h3>
+                <p className="text-gray-400 text-sm">{partner.service}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <Card className="bg-slate-900/70 border-purple-500/30 p-8 mb-12">
+            <h3 className="text-2xl font-black text-white mb-6">Partnership Opportunities</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <h4 className="font-black text-purple-300 mb-3">Relocation Referrals</h4>
+                <p className="text-gray-300 text-sm">
+                  Refer your clients moving to Dubai apartments and earn commission per move-in activation.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-black text-purple-300 mb-3">Logistics Integration</h4>
+                <p className="text-gray-300 text-sm">
+                  Coordinate home-ready timelines with shipping/cargo to ensure apartments are activated on arrival.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-black text-purple-300 mb-3">White-Label Services</h4>
+                <p className="text-gray-300 text-sm">
+                  Offer DeliWer's move-in concierge under your brand as part of your service ecosystem.
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          <div className="text-center">
+            <p className="text-gray-400 mb-6">
+              Interested in partnership? Contact us via WhatsApp or email to explore collaboration.
+            </p>
+            <Link href="/relocation-alliance">
+              <Button size="lg" className="bg-purple-600 hover:bg-purple-500 font-black h-14 px-12 text-lg">
+                Explore Alliance Program →
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Partner Examples Section */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-900 to-slate-950 border-t border-emerald-500/20">
         <div className="max-w-5xl mx-auto">

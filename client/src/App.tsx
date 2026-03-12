@@ -64,6 +64,8 @@ const CommunityToolkit = lazy(() => import("@/pages/community-toolkit"));
 const DeBacciWelcome = lazy(() => import("@/pages/partners/debacci-welcome"));
 const EGLCWelcome = lazy(() => import("@/pages/partners/eglc-welcome"));
 const MytablonWelcome = lazy(() => import("@/pages/partners/mytablon-welcome"));
+const TenantMoveInChecklist = lazy(() => import("@/pages/tenant-move-in-checklist"));
+const RelocationAlliance = lazy(() => import("@/pages/relocation-alliance"));
 const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
 const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
 const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
@@ -151,6 +153,8 @@ function Router() {
         <Route path="/debacci" component={DeBacciWelcome} />
         <Route path="/eglc" component={EGLCWelcome} />
         <Route path="/mytablon" component={MytablonWelcome} />
+        <Route path="/tenant-move-in-checklist" component={TenantMoveInChecklist} />
+        <Route path="/relocation-alliance" component={RelocationAlliance} />
         <Route path="/ejari-registration" component={EjariRegistration} />
         <Route path="/ejari-renewal" component={EjariRenewal} />
         <Route path="/dewa-activation" component={DewaActivation} />
