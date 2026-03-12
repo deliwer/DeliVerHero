@@ -1,6 +1,6 @@
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, AlertCircle, CheckCircle2, Droplet, Zap, Home } from "lucide-react";
+import { MessageSquare, AlertCircle, CheckCircle2, Droplet, Zap, Home, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { Navigation } from "@/components/navigation";
@@ -208,14 +208,29 @@ export default function StartPage() {
               Join hundreds of tenants who activated their homes with DeliWer.
             </p>
             
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-12 rounded-2xl text-lg shadow-xl shadow-emerald-900/30"
-              onClick={handleWhatsApp}
-            >
-              <MessageSquare className="w-6 h-6 mr-3" />
-              Book Move-In Concierge (AED 399)
-            </Button>
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-12 rounded-2xl text-lg shadow-xl shadow-emerald-900/30"
+                onClick={handleWhatsApp}
+                data-testid="button-whatsapp-book"
+              >
+                <MessageSquare className="w-6 h-6 mr-3" />
+                Book Move-In Concierge (AED 399)
+              </Button>
+
+              <Link href="/relocate">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-emerald-500/50 text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 font-black h-16 px-12 rounded-2xl text-lg"
+                  data-testid="button-relocate-explore"
+                >
+                  Explore Full Relocation
+                  <ArrowRight className="w-6 h-6 ml-3" />
+                </Button>
+              </Link>
+            </div>
 
             <p className="text-sm text-gray-400 font-medium mt-6">
               WhatsApp chat • Response within 10 minutes

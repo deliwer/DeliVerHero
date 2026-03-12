@@ -259,7 +259,15 @@ export default function MarketingDashboard() {
             <h1 className="text-4xl font-black uppercase tracking-tighter text-emerald-500">Founder Command Center</h1>
             <p className="text-gray-300 font-medium tracking-wide">Unified Marketing, Growth Engine & Affiliate Management</p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-2 md:gap-4 flex-wrap">
+             <a href="/marketing/dashboard" data-testid="link-dashboard">
+               <Button 
+                variant="outline"
+                className="border-purple-500/30 text-purple-300 bg-purple-500/10 hover:bg-purple-500/20 font-bold"
+              >
+                Legacy Dashboard
+              </Button>
+            </a>
              <Button 
                 onClick={() => {
                   const riskLevel = prompt("Enter Risk Level (Low/Medium/High):", "Medium");
