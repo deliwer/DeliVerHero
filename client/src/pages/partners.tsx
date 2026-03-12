@@ -387,7 +387,7 @@ export default function PartnersPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {[
               { name: "Global Logistics Group", service: "Logistics & Relocation", color: "border-orange-500/30" },
-              { name: "Alreza Group", service: "Cargo & Shipping", color: "border-blue-500/30" },
+              { name: "Alreza Group", service: "Business Setup", color: "border-blue-500/30" },
               { name: "ARO Overseas", service: "International Relocation", color: "border-green-500/30" },
               { name: "DeBacci Capital", service: "Referral Network", color: "border-yellow-500/30" },
               { name: "MyTablon", service: "Community Management", color: "border-red-500/30" },
