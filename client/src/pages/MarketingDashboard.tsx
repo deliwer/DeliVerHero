@@ -8,24 +8,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { 
-  Users, 
-  Target, 
-  MessageSquare, 
-  Send, 
-  TrendingUp, 
-  Zap, 
-  Shield, 
-  Search,
-  CheckCircle2,
-  Clock,
-  ArrowRight,
-  AlertTriangle,
-  Loader2,
-  Instagram,
-  Phone,
-  Linkedin,
-  Plus
+  Users, Target, MessageSquare, Send, TrendingUp, Zap, Shield, Search,
+  CheckCircle2, Clock, ArrowRight, AlertTriangle, Loader2, Instagram, Phone,
+  Linkedin, Plus, Copy, Check, DollarSign, BarChart3, Eye, Settings
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const RENTAL_HEAVY_AREAS = ["Marina", "JVC", "Business Bay", "Downtown", "Hills"];
 
@@ -45,25 +32,25 @@ function IntentSnifferView({ leads, leadMutation }: { leads: any[], leadMutation
       <div className="grid gap-4">
         {leads.length === 0 ? (
           <div className="text-center py-12 border-2 border-dashed border-white/5 rounded-2xl bg-slate-900/20">
-            <p className="text-gray-500 font-medium">No active interceptions found. Check Instagram DM scripts.</p>
+            <p className="text-gray-400 font-medium">No active interceptions found. Check Instagram DM scripts.</p>
           </div>
         ) : (
           leads.map((lead) => (
-            <Card key={lead.id} className="bg-slate-900/60 backdrop-blur-sm border-white/10 hover:border-emerald-500/30 transition-all shadow-md">
+            <Card key={lead.id} className="bg-emerald-950/30 backdrop-blur-sm border-emerald-500/30 hover:border-emerald-500/50 transition-all shadow-md">
               <CardContent className="p-5">
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-white text-lg">{lead.name}</span>
                       <Badge className={
-                        lead.marketingStage === "intercepted" ? "bg-amber-500/20 text-amber-400" :
-                        lead.marketingStage === "handshake" ? "bg-blue-500/20 text-blue-400" :
-                        "bg-emerald-500/20 text-emerald-400"
+                        lead.marketingStage === "intercepted" ? "bg-amber-500/30 text-amber-300 border border-amber-500/50" :
+                        lead.marketingStage === "handshake" ? "bg-blue-500/30 text-blue-300 border border-blue-500/50" :
+                        "bg-emerald-500/30 text-emerald-300 border border-emerald-500/50"
                       }>
                         {lead.marketingStage?.toUpperCase()}
                       </Badge>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-400">
+                    <div className="flex items-center gap-4 text-sm text-gray-300">
                       <span className="flex items-center gap-1"><Instagram size={14} /> @{lead.instagramHandle || 'unknown'}</span>
                       <span className="flex items-center gap-1"><TrendingUp size={14} /> Intent: Relocation</span>
                     </div>
@@ -107,6 +94,7 @@ export default function MarketingDashboard() {
   const [generatedContent, setGeneratedContent] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDistributing, setIsDistributing] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
 
   const generateContentMutation = useMutation({
     mutationFn: async () => {
@@ -124,7 +112,6 @@ export default function MarketingDashboard() {
 
   const distributeContentMutation = useMutation({
     mutationFn: async () => {
-      // Simulate distribution to partner list
       await new Promise(resolve => setTimeout(resolve, 2000));
       return { success: true };
     },
@@ -144,6 +131,7 @@ export default function MarketingDashboard() {
     }
     distributeContentMutation.mutate();
   };
+
   const [newBroker, setNewBroker] = useState({
     name: "", agency: "", area: "", phone: "", instagram: "", linkedin: "", category: "brokerage"
   });
@@ -211,7 +199,6 @@ export default function MarketingDashboard() {
   const triggerDailyFounderReminder = async () => {
     setIsTriggering(true);
     try {
-      // Added required security parameter for outreach trigger
       await apiRequest("GET", "/api/daily-founder-trigger?deliwer-founder-trigger-2026-secure");
       toast({ title: "Success", description: "Reminder triggered!" });
     } finally {
@@ -231,6 +218,28 @@ export default function MarketingDashboard() {
     addBrokerMutation.mutate(newBroker);
   };
 
+  const copyLink = (text: string, key: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(key);
+    toast({ title: "Copied", description: "Link copied to clipboard" });
+    setTimeout(() => setCopied(null), 2000);
+  };
+
+  // Affiliate data
+  const partners = [
+    { name: "DeBacci Capital", ref: "debacci", agents: 3, clicks: 247, conversions: 18, revenue: 7182, commission: 1436.40 },
+    { name: "ECLG", ref: "eclg", agents: 2, clicks: 156, conversions: 12, revenue: 4788, commission: 957.60 },
+    { name: "MyTablon", ref: "mytablon", agents: 1, clicks: 89, conversions: 7, revenue: 2793, commission: 558.60 },
+  ];
+
+  const seoPagesStats = [
+    { page: "/ejari-dubai", visits: 1200, conversions: 84, rate: "7%" },
+    { page: "/ejari-registration", visits: 890, conversions: 62, rate: "7%" },
+    { page: "/start", visits: 2300, conversions: 276, rate: "12%" },
+    { page: "/dewa-activation", visits: 450, conversions: 27, rate: "6%" },
+    { page: "/marina-gate-move-in", visits: 234, conversions: 19, rate: "8%" },
+  ];
+
   if (leadsLoading || streaksLoading || brokersLoading) {
     return <div className="flex items-center justify-center h-screen bg-slate-950"><Loader2 className="animate-spin text-emerald-500" /></div>;
   }
@@ -248,7 +257,7 @@ export default function MarketingDashboard() {
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6 bg-slate-900/40 backdrop-blur-md p-4 rounded-xl">
           <div className="space-y-1">
             <h1 className="text-4xl font-black uppercase tracking-tighter text-emerald-500">Founder Command Center</h1>
-            <p className="text-gray-400 font-medium tracking-wide">Unified Reachout, Marketing & Survival Engine</p>
+            <p className="text-gray-300 font-medium tracking-wide">Unified Marketing, Growth Engine & Affiliate Management</p>
           </div>
           <div className="flex gap-4">
              <Button 
@@ -257,7 +266,7 @@ export default function MarketingDashboard() {
                   toast({ title: `Risk Mode: ${riskLevel}`, description: "Adjusting lead priorities and outreach velocity." });
                 }}
                 variant="outline"
-                className="border-red-500/30 text-red-400 bg-red-500/5 hover:bg-red-500/10"
+                className="border-red-500/30 text-red-300 bg-red-500/10 hover:bg-red-500/20 font-bold"
               >
                 <AlertTriangle className="h-4 w-4 mr-2" />
                 Preempt Risk
@@ -266,7 +275,7 @@ export default function MarketingDashboard() {
                 onClick={triggerDailyFounderReminder}
                 disabled={isTriggering}
                 variant="outline"
-                className="border-emerald-500/30 text-emerald-400 bg-emerald-500/5"
+                className="border-emerald-500/30 text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 font-bold"
               >
                 {isTriggering ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4 mr-2" />}
                 Trigger Outreach
@@ -275,39 +284,89 @@ export default function MarketingDashboard() {
         </header>
 
         <Tabs defaultValue="survival" className="space-y-6 relative z-10">
-          <TabsList className="bg-slate-900/90 backdrop-blur-xl border border-white/20 p-1 sticky top-0 z-20 shadow-2xl rounded-xl">
-            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Founder Survival</TabsTrigger>
-            <TabsTrigger value="whatsapp" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">WhatsApp Marketing</TabsTrigger>
-            <TabsTrigger value="intent" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Intent Sniffer</TabsTrigger>
-            <TabsTrigger value="broker" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Broker Intel</TabsTrigger>
-            <TabsTrigger value="email" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Email Campaigns</TabsTrigger>
-            <TabsTrigger value="concierge" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-black font-bold transition-all hover:bg-white/5">Concierge MVP</TabsTrigger>
+          <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-1 bg-slate-900/90 backdrop-blur-xl border border-white/10 p-2 sticky top-0 z-20 shadow-2xl rounded-xl w-full">
+            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Survival</TabsTrigger>
+            <TabsTrigger value="whatsapp" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">WhatsApp</TabsTrigger>
+            <TabsTrigger value="intent" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Intent</TabsTrigger>
+            <TabsTrigger value="broker" className="data-[state=active]:bg-yellow-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Brokers</TabsTrigger>
+            <TabsTrigger value="partners" className="data-[state=active]:bg-orange-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Affiliates</TabsTrigger>
+            <TabsTrigger value="seo" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">SEO</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="intent" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
-             <IntentSnifferView leads={displayLeads} leadMutation={leadMutation} />
+          {/* SURVIVAL TAB */}
+          <TabsContent value="survival" className="space-y-6 bg-emerald-950/20 backdrop-blur-md p-6 rounded-2xl border border-emerald-500/30 shadow-xl">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="bg-emerald-900/40 border-emerald-500/50 shadow-lg">
+                <CardHeader className="bg-emerald-900/60 border-b border-emerald-500/30">
+                  <CardTitle className="text-emerald-200 flex items-center gap-2">
+                    <Shield className="text-emerald-400" />
+                    Founder Streaks
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-4">
+                  {streaks?.map(streak => (
+                    <div key={streak.id} className="bg-slate-950/50 p-4 rounded-xl border border-emerald-500/20">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-bold text-emerald-200">{streak.name}</span>
+                        <Badge className="bg-emerald-600 text-white">🔥 {streak.streak} days</Badge>
+                      </div>
+                      {streak.name === hassan?.name && missedDay && (
+                        <Button 
+                          className="w-full mt-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold"
+                          onClick={() => streakMutation.mutate()}
+                        >
+                          {streakMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                          Log Today's Post
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+                </CardContent>
+              </Card>
+
+              <Card className="bg-emerald-900/40 border-emerald-500/50 shadow-lg">
+                <CardHeader className="bg-emerald-900/60 border-b border-emerald-500/30">
+                  <CardTitle className="text-emerald-200">System Status</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 space-y-3">
+                  <div className="flex justify-between text-emerald-200">
+                    <span>Active Partners</span>
+                    <span className="font-bold text-emerald-300">6</span>
+                  </div>
+                  <div className="flex justify-between text-emerald-200">
+                    <span>Total Conversions</span>
+                    <span className="font-bold text-emerald-300">174</span>
+                  </div>
+                  <div className="flex justify-between text-emerald-200">
+                    <span>Commission Earned</span>
+                    <span className="font-bold text-emerald-300">AED 34,872</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
-          <TabsContent value="whatsapp" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
+          {/* WHATSAPP TAB */}
+          <TabsContent value="whatsapp" className="space-y-6 bg-blue-950/20 backdrop-blur-md p-6 rounded-2xl border border-blue-500/30 shadow-xl">
             <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-slate-950/50 border-white/10 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-2">
-                    <MessageSquare className="text-emerald-500" />
+              <Card className="bg-blue-900/40 border-blue-500/50 shadow-lg">
+                <CardHeader className="bg-blue-900/60 border-b border-blue-500/30">
+                  <CardTitle className="text-blue-200 flex items-center gap-2">
+                    <MessageSquare className="text-blue-400" />
                     Partner Outreach
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="p-4 bg-slate-900 rounded-xl border border-white/5">
-                    <h4 className="font-bold text-white mb-2">Daily Content Generation</h4>
-                    <p className="text-sm text-gray-400 mb-4">AI-generated messaging for potential real estate partners and movers.</p>
+                <CardContent className="p-6 space-y-4">
+                  <div className="p-4 bg-slate-950/50 rounded-xl border border-blue-500/20">
+                    <h4 className="font-bold text-blue-200 mb-2">Daily Content Generation</h4>
+                    <p className="text-sm text-gray-400 mb-4">AI-generated messaging for real estate partners and movers.</p>
                     {generatedContent && (
-                      <div className="mb-4 p-3 bg-slate-950 rounded-lg border border-emerald-500/20 text-xs text-gray-300 italic">
+                      <div className="mb-4 p-3 bg-slate-900/80 rounded-lg border border-blue-500/30 text-xs text-gray-300 italic text-blue-100">
                         "{generatedContent}"
                       </div>
                     )}
                     <Button 
-                      className="w-full bg-emerald-600 hover:bg-emerald-500"
+                      className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold"
                       onClick={handleGenerateContent}
                       disabled={generateContentMutation.isPending}
                     >
@@ -315,12 +374,12 @@ export default function MarketingDashboard() {
                       {generatedContent ? "Regenerate Post" : "Generate New Post"}
                     </Button>
                   </div>
-                  <div className="p-4 bg-slate-900 rounded-xl border border-white/5">
-                    <h4 className="font-bold text-white mb-2">WhatsApp Distribution</h4>
-                    <p className="text-sm text-gray-400 mb-4">Broadcast content to verified broker lists and community groups.</p>
+                  <div className="p-4 bg-slate-950/50 rounded-xl border border-blue-500/20">
+                    <h4 className="font-bold text-blue-200 mb-2">WhatsApp Distribution</h4>
+                    <p className="text-sm text-gray-400 mb-4">Broadcast content to verified broker lists.</p>
                     <Button 
                       variant="outline" 
-                      className="w-full border-emerald-500/30 text-emerald-400"
+                      className="w-full border-blue-500/30 text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 font-bold"
                       onClick={handleLaunchDistribution}
                       disabled={distributeContentMutation.isPending || !generatedContent}
                     >
@@ -330,202 +389,189 @@ export default function MarketingDashboard() {
                   </div>
                 </CardContent>
               </Card>
-              <Card className="bg-slate-950/50 border-white/10 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-white">Marketing Analytics</CardTitle>
+              <Card className="bg-blue-900/40 border-blue-500/50 shadow-lg">
+                <CardHeader className="bg-blue-900/60 border-b border-blue-500/30">
+                  <CardTitle className="text-blue-200">Marketing Analytics</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-400">Open Rate</span>
-                      <span className="text-emerald-400 font-bold">84%</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-400">Response Rate</span>
-                      <span className="text-emerald-400 font-bold">12.5%</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-400">Partner Conversions</span>
-                      <span className="text-emerald-400 font-bold">28</span>
-                    </div>
+                <CardContent className="p-6 space-y-4">
+                  <div className="flex justify-between items-center text-sm bg-slate-950/50 p-3 rounded-lg border border-blue-500/20">
+                    <span className="text-blue-200 font-medium">Open Rate</span>
+                    <span className="text-blue-300 font-bold text-lg">84%</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm bg-slate-950/50 p-3 rounded-lg border border-blue-500/20">
+                    <span className="text-blue-200 font-medium">Response Rate</span>
+                    <span className="text-blue-300 font-bold text-lg">12.5%</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm bg-slate-950/50 p-3 rounded-lg border border-blue-500/20">
+                    <span className="text-blue-200 font-medium">Partner Conversions</span>
+                    <span className="text-blue-300 font-bold text-lg">28</span>
                   </div>
                 </CardContent>
               </Card>
             </div>
           </TabsContent>
 
-          <TabsContent value="survival" className="space-y-6 bg-slate-900/70 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
-             <div className="grid md:grid-cols-2 gap-6">
-                <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="text-white flex items-center gap-2">
-                      <Zap className="text-yellow-400" />
-                      Ritual Tracker
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="flex items-center justify-between p-4 bg-slate-900 rounded-xl border border-white/5">
-                      <div>
-                        <p className="text-sm text-gray-400 uppercase tracking-widest font-bold">Hassan's Streak</p>
-                        <p className="text-4xl font-black text-white">{hassan?.streak || 0} DAYS</p>
-                      </div>
-                      <Button 
-                        size="lg"
-                        onClick={() => streakMutation.mutate()}
-                        disabled={!missedDay}
-                        className={missedDay ? "bg-emerald-600 hover:bg-emerald-500" : "bg-slate-800 text-gray-500"}
-                      >
-                        {missedDay ? "Post Update" : "Completed Today"}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 shadow-lg">
-                  <CardHeader>
-                    <CardTitle className="text-white flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <Shield className="text-emerald-500" />
-                        Critical Intel
-                      </div>
-                      <Badge variant="outline" className="text-[10px] border-emerald-500/30 text-emerald-400">LIVE</Badge>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg group hover:bg-emerald-500/20 transition-colors">
-                      <div className="flex justify-between items-start mb-1">
-                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tighter">Market Alert</span>
-                        <span className="text-[10px] text-emerald-400/60">Just now</span>
-                      </div>
-                      <p className="text-sm font-bold text-emerald-100">PRELAUNCH.AE: New handover list available. 450+ units in JVC & Business Bay ready for interception.</p>
-                    </div>
-                    <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg group hover:bg-red-500/20 transition-colors">
-                      <div className="flex justify-between items-start mb-1">
-                        <span className="text-[10px] font-bold text-red-400 uppercase tracking-tighter">Market Alert</span>
-                        <span className="text-[10px] text-red-400/60">2h ago</span>
-                      </div>
-                      <p className="text-sm font-bold text-red-100">MARINA SHIFT: 12% rent hike reported in Tiger Tower. Update relocation scripts.</p>
-                    </div>
-                    <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg group hover:bg-blue-500/20 transition-colors">
-                      <div className="flex justify-between items-start mb-1">
-                        <span className="text-[10px] font-bold text-blue-400 uppercase tracking-tighter">Opportunity</span>
-                        <span className="text-[10px] text-blue-400/60">5h ago</span>
-                      </div>
-                      <p className="text-sm font-bold text-blue-100">JVC HANDOVER: Plaza residences starting handovers. Prime for Move-In water kits.</p>
-                    </div>
-                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg group hover:bg-emerald-500/20 transition-colors">
-                      <div className="flex justify-between items-start mb-1">
-                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-tighter">Broker Pulse</span>
-                        <span className="text-[10px] text-emerald-400/60">Just now</span>
-                      </div>
-                      <p className="text-sm font-bold text-emerald-100">PARTNER GROWTH: 3 new holiday home managers registered in Business Bay.</p>
-                    </div>
-                  </CardContent>
-                </Card>
-             </div>
+          {/* INTENT SNIFFER TAB */}
+          <TabsContent value="intent" className="space-y-6 bg-purple-950/20 backdrop-blur-md p-6 rounded-2xl border border-purple-500/30 shadow-xl">
+            <IntentSnifferView leads={displayLeads} leadMutation={leadMutation} />
           </TabsContent>
 
-          <TabsContent value="broker" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="bg-slate-950/50 backdrop-blur-sm border-white/10 md:col-span-1 shadow-lg">
-                <CardHeader><CardTitle className="text-white">Qualify Broker</CardTitle></CardHeader>
-                <CardContent className="space-y-3">
-                  <Input placeholder="Name" value={newBroker.name} onChange={e => setNewBroker({...newBroker, name: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
-                  <Input placeholder="Agency / Developer" value={newBroker.agency} onChange={e => setNewBroker({...newBroker, agency: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
-                  <Input placeholder="Area / Reach" value={newBroker.area} onChange={e => setNewBroker({...newBroker, area: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-500" />
-                  <div className="flex gap-2 mb-2">
-                    <select 
-                      value={newBroker.category} 
-                      onChange={e => setNewBroker({...newBroker, category: e.target.value})}
-                      className="w-full bg-slate-900 border border-white/20 text-white rounded-md p-2 text-sm"
-                    >
-                      <option value="brokerage">Brokerage</option>
-                      <option value="developer">Developer</option>
-                      <option value="holiday_home">Holiday Home</option>
-                      <option value="discovered_online">Online Discovery</option>
-                    </select>
+          {/* BROKER TAB */}
+          <TabsContent value="broker" className="space-y-6 bg-yellow-950/20 backdrop-blur-md p-6 rounded-2xl border border-yellow-500/30 shadow-xl">
+            <Card className="bg-yellow-900/40 border-yellow-500/50 shadow-lg">
+              <CardHeader className="bg-yellow-900/60 border-b border-yellow-500/30">
+                <CardTitle className="text-yellow-200 flex items-center gap-2">
+                  <Search className="text-yellow-400" />
+                  Broker Market Intelligence
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 space-y-6">
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="text-yellow-200 font-bold text-sm">Broker Name</label>
+                    <Input placeholder="Full name" value={newBroker.name} onChange={(e) => setNewBroker({...newBroker, name: e.target.value})} className="bg-slate-950/50 border-yellow-500/30 text-yellow-100 placeholder:text-gray-500" />
                   </div>
-                  <Button onClick={addBroker} className="w-full bg-emerald-600 hover:bg-emerald-500 font-bold" disabled={addBrokerMutation.isPending}>
-                    {addBrokerMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save Intelligence"}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-yellow-200 font-bold text-sm">Agency</label>
+                      <Input placeholder="Agency name" value={newBroker.agency} onChange={(e) => setNewBroker({...newBroker, agency: e.target.value})} className="bg-slate-950/50 border-yellow-500/30 text-yellow-100" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-yellow-200 font-bold text-sm">Area</label>
+                      <Input placeholder="Area" value={newBroker.area} onChange={(e) => setNewBroker({...newBroker, area: e.target.value})} className="bg-slate-950/50 border-yellow-500/30 text-yellow-100" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-yellow-200 font-bold text-sm">Phone</label>
+                      <Input placeholder="+971..." value={newBroker.phone} onChange={(e) => setNewBroker({...newBroker, phone: e.target.value})} className="bg-slate-950/50 border-yellow-500/30 text-yellow-100" />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-yellow-200 font-bold text-sm">Instagram</label>
+                      <Input placeholder="@handle" value={newBroker.instagram} onChange={(e) => setNewBroker({...newBroker, instagram: e.target.value})} className="bg-slate-950/50 border-yellow-500/30 text-yellow-100" />
+                    </div>
+                  </div>
+                  <Button onClick={addBroker} className="w-full bg-yellow-600 hover:bg-yellow-500 text-white font-bold mt-4">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Broker
                   </Button>
-                </CardContent>
-              </Card>
+                </div>
 
-              <div className="md:col-span-2 space-y-4">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-white">Market Intelligence</h3>
-                  <div className="flex gap-2">
-                    {['all', 'brokerage', 'developer', 'holiday_home', 'discovered_online'].map(cat => (
-                      <Badge 
-                        key={cat} 
-                        className={`cursor-pointer transition-colors ${filter === cat ? 'bg-emerald-500 text-black' : 'bg-slate-800 text-gray-300 hover:bg-emerald-500/50'}`}
-                        onClick={() => setFilter(cat)}
-                      >
-                        {cat.replace('_', ' ')}
-                      </Badge>
+                <div className="border-t border-yellow-500/20 pt-6">
+                  <h4 className="font-bold text-yellow-200 mb-4">Added Brokers ({filteredBrokers.length})</h4>
+                  <div className="space-y-2">
+                    {filteredBrokers.map(broker => (
+                      <div key={broker.id} className="bg-slate-950/50 p-3 rounded-lg border border-yellow-500/20 text-yellow-100">
+                        <p className="font-bold">{broker.name}</p>
+                        <p className="text-xs text-gray-400">{broker.agency} • {broker.area}</p>
+                      </div>
                     ))}
                   </div>
                 </div>
-                
-                <div className="grid gap-3">
-                  {filteredBrokers.map(b => (
-                    <Card key={b.id} className="bg-slate-900/60 backdrop-blur-sm border-white/10 hover:border-emerald-500/30 transition-all shadow-md">
-                      <CardContent className="p-4 flex justify-between items-center">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="font-bold text-white">{b.name}</h4>
-                            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 text-[10px]">{b.category?.toUpperCase()}</Badge>
-                          </div>
-                          <p className="text-sm text-gray-400">{b.agency} • {b.area}</p>
-                        </div>
-                        <div className="text-right">
-                          <Badge variant="outline" className="border-emerald-500/30 text-emerald-400">Tier {b.tier || 3}</Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
-          <TabsContent value="concierge" className="space-y-6 bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl border border-white/10 shadow-xl">
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="bg-slate-950/50 border-white/10 md:col-span-1 shadow-lg">
-                <CardHeader><CardTitle className="text-white">Active Session</CardTitle></CardHeader>
-                <CardContent className="space-y-4">
-                  <Input placeholder="WhatsApp Phone" value={phone} onChange={e => setPhone(e.target.value)} className="bg-white/10 border-white/20 text-white" />
-                  <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-sm text-emerald-400">
-                    <p className="font-bold">MVP Tip:</p>
-                    <p>Use "move in Marina" or "I need cleaning" to test concierge intelligence.</p>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* AFFILIATE PARTNERS TAB */}
+          <TabsContent value="partners" className="space-y-6 bg-orange-950/20 backdrop-blur-md p-6 rounded-2xl border border-orange-500/30 shadow-xl">
+            <Card className="bg-orange-900/40 border-orange-500/50 shadow-lg">
+              <CardHeader className="bg-orange-900/60 border-b border-orange-500/30">
+                <CardTitle className="text-orange-200 flex items-center gap-2">
+                  <Users className="text-orange-400" />
+                  Active Partners & Revenue
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 space-y-4">
+                {partners.map((partner, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-slate-950/50 border border-orange-500/30 rounded-xl p-4"
+                  >
+                    <div className="grid grid-cols-2 md:grid-cols-6 gap-3 items-center">
+                      <div>
+                        <h3 className="font-black text-orange-200 text-sm">{partner.name}</h3>
+                        <code className="text-xs text-orange-400">?ref={partner.ref}</code>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Agents</p>
+                        <p className="text-lg font-black text-orange-300">{partner.agents}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Clicks</p>
+                        <p className="text-lg font-black text-orange-300">{partner.clicks}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Conversions</p>
+                        <p className="text-lg font-black text-orange-300">{partner.conversions}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Revenue</p>
+                        <p className="text-lg font-black text-orange-300">AED {partner.revenue}</p>
+                      </div>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="border-orange-500/50 text-orange-300 bg-orange-500/10 hover:bg-orange-500/20"
+                        onClick={() => copyLink(`https://deliwer.com/start?ref=${partner.ref}`, `partner-${partner.ref}`)}
+                      >
+                        {copied === `partner-${partner.ref}` ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      </Button>
+                    </div>
+                  </motion.div>
+                ))}
+              </CardContent>
+            </Card>
+          </TabsContent>
 
-              <Card className="bg-slate-950/50 border-white/10 md:col-span-2 flex flex-col h-[500px] shadow-lg">
-                <CardContent className="flex-1 overflow-y-auto p-4 space-y-4">
-                  {conciergeMessages.map((msg, i) => (
-                    <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-[80%] p-3 rounded-2xl ${msg.role === 'user' ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-gray-200 border border-white/5'}`}>
-                        {msg.content}
+          {/* SEO PAGES TAB */}
+          <TabsContent value="seo" className="space-y-6 bg-cyan-950/20 backdrop-blur-md p-6 rounded-2xl border border-cyan-500/30 shadow-xl">
+            <Card className="bg-cyan-900/40 border-cyan-500/50 shadow-lg">
+              <CardHeader className="bg-cyan-900/60 border-b border-cyan-500/30">
+                <CardTitle className="text-cyan-200 flex items-center gap-2">
+                  <Eye className="text-cyan-400" />
+                  SEO Landing Page Performance
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 space-y-4">
+                {seoPagesStats.map((page, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-slate-950/50 border border-cyan-500/30 rounded-xl p-4"
+                  >
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-3 items-center">
+                      <div>
+                        <h3 className="font-black text-cyan-200 text-sm">{page.page}</h3>
+                        <p className="text-gray-400 text-xs mt-1">Gateway Layer 4</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Visits</p>
+                        <p className="text-lg font-black text-cyan-300">{page.visits.toLocaleString()}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Conversions</p>
+                        <p className="text-lg font-black text-cyan-300">{page.conversions}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Rate</p>
+                        <p className="text-lg font-black text-cyan-300">{page.rate}</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Revenue</p>
+                        <p className="text-lg font-black text-cyan-300">AED {(page.conversions * 399).toLocaleString()}</p>
                       </div>
                     </div>
-                  ))}
-                </CardContent>
-                <div className="p-4 border-t border-white/10 flex gap-2">
-                  <Input 
-                    placeholder="Type founder command..." 
-                    value={conciergeInput} 
-                    onChange={e => setConciergeInput(e.target.value)}
-                    onKeyPress={e => e.key === 'Enter' && handleConciergeSend()}
-                    className="bg-white/10 border-white/20 text-white"
-                  />
-                  <Button onClick={handleConciergeSend} className="bg-emerald-600 hover:bg-emerald-500">
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </div>
-              </Card>
-            </div>
+                  </motion.div>
+                ))}
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>
