@@ -226,7 +226,7 @@ export function Footer() {
                 <a href="tel:+971556573114" className="flex items-center text-gray-400 hover:text-white transition-colors group">
                   <Phone className="w-4 h-4 mr-3 text-dubai-blue-500" />
                   <div>
-                    <div className="text-sm font-medium">Kalbe-Hussain</div>
+                    <div className="text-sm font-medium">Contact Center</div>
                     <div className="text-xs text-gray-500">Customer Service | +971 55 657 3114</div>
                   </div>
                 </a>
