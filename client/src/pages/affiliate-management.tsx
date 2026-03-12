@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Copy, Check, TrendingUp, Users, DollarSign, BarChart3, Eye, MessageSquare, Settings } from "lucide-react";
+import { Copy, Check, TrendingUp, Users, DollarSign, BarChart3, Eye, MessageSquare, Settings, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "@/components/navigation";
@@ -44,14 +44,25 @@ export default function AffiliateManagement() {
 
       <section className="py-16 px-4 pt-32">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-12"
-          >
-            <h1 className="text-5xl font-black uppercase mb-4">Affiliate Management Center</h1>
-            <p className="text-xl text-gray-300 font-medium">Real-time partner tracking, revenue analytics, and commission management.</p>
-          </motion.div>
+          <div className="flex justify-between items-start md:items-center gap-4 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex-1"
+            >
+              <h1 className="text-5xl font-black uppercase mb-4">Affiliate Management Center</h1>
+              <p className="text-xl text-gray-300 font-medium">Real-time partner tracking, revenue analytics, and commission management.</p>
+            </motion.div>
+            <a href="/marketing/dashboard" data-testid="link-legacy-dashboard" className="flex-shrink-0">
+              <Button 
+                variant="outline"
+                className="border-cyan-500/50 text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 font-bold whitespace-nowrap"
+              >
+                Marketing Dashboard
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </a>
+          </div>
 
           {/* Key Metrics */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
