@@ -2,7 +2,7 @@ import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/navigation";
-import { TrendingUp, DollarSign, Users, CheckCircle2, MessageSquare } from "lucide-react";
+import { TrendingUp, DollarSign, Users, CheckCircle2, MessageSquare, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 
@@ -242,15 +242,15 @@ export default function PartnerProgram() {
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <Link href="/partners">
                 <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-14 px-12 text-lg">
-                  Generate Your Link →
+                  <ArrowRight className="w-5 h-5 mr-2" />
+                  Generate Your Link
                 </Button>
               </Link>
-              <a href="https://wa.me/971523946311">
-                <Button size="lg" variant="outline" className="border-emerald-500/50 text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 font-black h-14 px-12 text-lg">
-                  <MessageSquare className="w-5 h-5 mr-2" />
-                  Questions? Chat Us
+              <Link href="/community-toolkit">
+                <Button size="lg" variant="outline" className="border-blue-500/50 text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 font-black h-14 px-12 text-lg">
+                  View Marketing Templates
                 </Button>
-              </a>
+              </Link>
             </div>
 
             <p className="text-sm text-gray-400 mt-6">

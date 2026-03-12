@@ -2,10 +2,11 @@ import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/navigation";
-import { Copy, Check, MessageSquare, Mail, Share2 } from "lucide-react";
+import { Copy, Check, MessageSquare, Mail, Share2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
 
 export default function CommunityToolkit() {
   const [copied, setCopied] = useState<string | null>(null);
@@ -233,6 +234,38 @@ Questions? Chat us on WhatsApp!`
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-4 bg-gradient-to-r from-blue-950/30 to-slate-950 border-t border-blue-500/20">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-black uppercase mb-4">Ready to Start Earning?</h2>
+            <p className="text-xl text-gray-300 mb-8">Copy these templates, generate your unique link, and start promoting to your community.</p>
+            
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <Link href="/partners">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-14 px-12 text-lg">
+                  <ArrowRight className="w-5 h-5 mr-2" />
+                  Generate Your Link
+                </Button>
+              </Link>
+              <Link href="/partner-program">
+                <Button size="lg" variant="outline" className="border-blue-500/50 text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 font-black h-14 px-12 text-lg">
+                  View Commission Details
+                </Button>
+              </Link>
+            </div>
+
+            <p className="text-sm text-gray-400 mt-6">
+              Earn 20% commission on every successful booking. No limits. Monthly payouts.
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>
