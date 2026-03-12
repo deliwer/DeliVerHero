@@ -250,7 +250,7 @@ export default function MarketingDashboard() {
   const missedDay = hassan && hassan.lastPosted !== today;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-6 pb-24 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-950 text-white p-6 pb-24 pt-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/80 to-slate-950 pointer-events-none" />
       <div className="max-w-7xl mx-auto space-y-8 relative z-10">
@@ -260,12 +260,12 @@ export default function MarketingDashboard() {
             <p className="text-gray-300 font-medium tracking-wide">Unified Marketing, Growth Engine & Affiliate Management</p>
           </div>
           <div className="flex gap-2 md:gap-4 flex-wrap">
-             <a href="/marketing/dashboard" data-testid="link-dashboard">
+             <a href="/marketing" data-testid="link-affiliate-management">
                <Button 
                 variant="outline"
-                className="border-purple-500/30 text-purple-300 bg-purple-500/10 hover:bg-purple-500/20 font-bold"
+                className="border-cyan-500/30 text-cyan-300 bg-cyan-500/10 hover:bg-cyan-500/20 font-bold"
               >
-                Legacy Dashboard
+                ← Back to Affiliates
               </Button>
             </a>
              <Button 
