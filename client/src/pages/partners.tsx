@@ -52,31 +52,71 @@ export default function PartnersPage() {
       />
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/10 to-transparent pointer-events-none" />
-        <div className="max-w-5xl mx-auto text-center relative z-10">
+      {/* Hero Section with Lifestyle Image */}
+      <section className="relative min-h-screen flex items-center overflow-hidden pt-32">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop" 
+            alt="Professional networking and lifestyle"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/40 to-slate-950" />
+        </div>
+
+        {/* Content */}
+        <div className="max-w-5xl mx-auto text-center relative z-10 px-4 py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter">
-              Partner with <span className="text-emerald-500">DeliWer</span>
+            <div className="inline-block">
+              <div className="bg-emerald-500/20 border border-emerald-500/50 rounded-full px-6 py-3 backdrop-blur-sm">
+                <p className="text-emerald-300 font-black text-sm uppercase tracking-wider">Partner Network</p>
+              </div>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-tight">
+              Earn 20% on Every <br/><span className="text-emerald-400">Move-In Booking</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto font-medium">
-              Earn 20% commission on every Move-In Concierge booking you refer. Generate your unique link, share it with your network, and watch your earnings grow.
+            
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto font-medium leading-relaxed">
+              Share your unique referral link with your community. Every successful booking earns you AED 79.80. No limits. No hidden fees. Real-time tracking.
             </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex flex-col md:flex-row gap-4 justify-center pt-4"
+            >
+              <div className="flex items-center justify-center gap-3 text-emerald-300">
+                <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="font-bold">Real-time tracking</span>
+              </div>
+              <div className="flex items-center justify-center gap-3 text-emerald-300">
+                <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="font-bold">Monthly payouts</span>
+              </div>
+              <div className="flex items-center justify-center gap-3 text-emerald-300">
+                <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span className="font-bold">Zero commission fees</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Link Generator Section */}
-      <section className="py-24 px-4 bg-white/5 border-y border-white/10">
+      <section className="py-24 px-4 bg-gradient-to-b from-slate-950/50 to-slate-900/30 border-t border-emerald-500/20">
         <div className="max-w-2xl mx-auto">
-          <Card className="bg-slate-900 border-emerald-500/30 p-8">
-            <h2 className="text-3xl font-black uppercase mb-8 text-white">Generate Your Referral Link</h2>
+          <Card className="bg-slate-900/60 border-emerald-500/50 p-8 backdrop-blur-sm shadow-2xl">
+            <h2 className="text-3xl font-black uppercase mb-2 text-white">Generate Your Referral Link</h2>
+            <p className="text-gray-300 text-sm mb-8">Create a unique link tailored to your network. One link, unlimited earnings.</p>
             
             <div className="space-y-6">
               {/* Partner Name */}
@@ -112,13 +152,13 @@ export default function PartnersPage() {
                   <SelectTrigger className="bg-slate-950 border-white/20 text-white h-12" data-testid="select-campaign">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-white/20">
-                    <SelectItem value="whatsapp">WhatsApp Community</SelectItem>
-                    <SelectItem value="telegram">Telegram Group</SelectItem>
-                    <SelectItem value="linkedin">LinkedIn</SelectItem>
-                    <SelectItem value="email">Email</SelectItem>
-                    <SelectItem value="personal">Personal Network</SelectItem>
-                    <SelectItem value="building">Building Network</SelectItem>
+                  <SelectContent className="bg-slate-900 border-white/20 text-white">
+                    <SelectItem value="whatsapp" className="text-white bg-slate-900">WhatsApp Community</SelectItem>
+                    <SelectItem value="telegram" className="text-white bg-slate-900">Telegram Group</SelectItem>
+                    <SelectItem value="linkedin" className="text-white bg-slate-900">LinkedIn</SelectItem>
+                    <SelectItem value="email" className="text-white bg-slate-900">Email</SelectItem>
+                    <SelectItem value="personal" className="text-white bg-slate-900">Personal Network</SelectItem>
+                    <SelectItem value="building" className="text-white bg-slate-900">Building Network</SelectItem>
                   </SelectContent>
                 </Select>
                 <p className="text-xs text-gray-500 mt-2">How you'll be sharing this link</p>
@@ -191,9 +231,17 @@ export default function PartnersPage() {
       </section>
 
       {/* Commission & Benefits Section */}
-      <section className="py-24 px-4">
+      <section className="py-32 px-4 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-black uppercase mb-12 text-center">Why Partner with DeliWer</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-5xl font-black uppercase mb-4">Why Partner with DeliWer</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">Competitive commissions, real-time transparency, and tools to succeed</p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
@@ -324,9 +372,17 @@ export default function PartnersPage() {
       </section>
 
       {/* Partner Examples Section */}
-      <section className="py-24 px-4 bg-white/5 border-t border-white/10">
+      <section className="py-32 px-4 bg-gradient-to-b from-slate-900 to-slate-950 border-t border-emerald-500/20">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-black uppercase mb-12 text-center">Partner Categories</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-5xl font-black uppercase mb-4">Perfect for Every Network</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">Whether you're an influencer, broker, or community leader—earn with DeliWer</p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -361,12 +417,39 @@ export default function PartnersPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 px-4 bg-gradient-to-r from-emerald-950/30 to-slate-950 border-t border-emerald-500/20">
+      <section className="py-32 px-4 bg-gradient-to-b from-slate-950 to-black border-t border-emerald-500/20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-4xl font-black uppercase">Ready to Start Earning?</h2>
-          <p className="text-xl text-gray-300 font-medium">
-            Generate your referral link above, share it with your network, and earn 20% commission on every successful booking.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-block mb-4">
+              <div className="bg-emerald-500/20 border border-emerald-500/50 rounded-full px-6 py-2">
+                <p className="text-emerald-300 font-black text-xs uppercase tracking-wider">Limited Slots</p>
+              </div>
+            </div>
+            
+            <h2 className="text-5xl font-black uppercase mb-6">Start Earning Today</h2>
+            <p className="text-xl text-gray-300 font-medium mb-8 max-w-2xl mx-auto">
+              Generate your unique referral link, share it with your network, and earn AED 79.80 per successful booking. Track everything in real-time.
+            </p>
+
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-12 text-lg">
+                ↑ Scroll to Generate Link
+              </Button>
+              <a href="https://wa.me/971523946311">
+                <Button size="lg" variant="outline" className="border-emerald-500/50 text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 font-black h-14 px-12 text-lg">
+                  Have Questions?
+                </Button>
+              </a>
+            </div>
+
+            <p className="text-sm text-gray-500 mt-8">
+              Join DeBacci Capital, EGLC, MyTablon, and other leading networks earning thousands monthly.
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>
