@@ -219,7 +219,7 @@ export default function PartnerProgram() {
 
               <div className="bg-slate-950/50 border border-cyan-500/20 rounded-lg p-6">
                 <p className="text-gray-300 mb-4">
-                  <strong className="text-white">Every metric is visible in real-time</strong> on the partner dashboard at <code className="text-cyan-400">/marketing</code>. 
+                  <strong className="text-white">Every metric is visible in real-time</strong> on the dashboard. 
                   Monitor your referrals, conversions, and earnings 24/7.
                 </p>
               </div>
