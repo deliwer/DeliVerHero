@@ -5,10 +5,11 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Copy, Check, Zap, Users, TrendingUp, Award } from "lucide-react";
+import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "@/components/navigation";
+import { Link } from "wouter";
 
 export default function PartnersPage() {
   const [partnerName, setPartnerName] = useState("");
@@ -220,6 +221,104 @@ export default function PartnersPage() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Commission Tracking & Tools Section */}
+      <section className="py-24 px-4 bg-gradient-to-b from-emerald-500/10 to-transparent border-t border-emerald-500/20">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-black uppercase mb-4 text-center">Transparency & Tools for Success</h2>
+          <p className="text-center text-gray-300 mb-12 max-w-3xl mx-auto">
+            Real-time commission tracking and ready-to-use marketing templates to maximize your earning potential and confidence.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Commission Tracking Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="h-full">
+                <Link href="/partner-program">
+                  <Card className="bg-emerald-900/40 border-emerald-500/50 p-8 hover:border-emerald-500 transition-all h-full cursor-pointer block">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-emerald-500/30">
+                        <BarChart3 className="h-6 w-6 text-emerald-300" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-black text-emerald-300">Commission Tracking</h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 mb-6">
+                      See real-time earnings, conversion rates, and detailed partner economics. Track every referral and watch your commission grow.
+                    </p>
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center gap-2 text-emerald-200 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                        <span>Real-time referral tracking</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                        <span>AED 79.80 per successful booking</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-emerald-200 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                        <span>Monthly payouts, zero hidden fees</span>
+                      </div>
+                    </div>
+                    <Button className="w-full bg-emerald-600 hover:bg-emerald-500 font-black">
+                      Explore Commission Program →
+                    </Button>
+                  </Card>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Community Toolkit Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="h-full">
+                <Link href="/community-toolkit">
+                  <Card className="bg-blue-900/40 border-blue-500/50 p-8 hover:border-blue-500 transition-all h-full cursor-pointer block">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-blue-500/30">
+                        <BookOpen className="h-6 w-6 text-blue-300" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-black text-blue-300">Marketing Toolkit</h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 mb-6">
+                      Copy-paste templates for WhatsApp, email, LinkedIn, and building groups. Start promoting immediately with tested messaging.
+                    </p>
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center gap-2 text-blue-200 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                        <span>WhatsApp & Telegram templates</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                        <span>LinkedIn & email messages</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-200 text-sm">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                        <span>Pro tips for maximum conversions</span>
+                      </div>
+                    </div>
+                    <Button className="w-full bg-blue-600 hover:bg-blue-500 font-black">
+                      View Templates & Tips →
+                    </Button>
+                  </Card>
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
