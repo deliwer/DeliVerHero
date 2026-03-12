@@ -59,6 +59,11 @@ const EjariRenewal = lazy(() => import("@/pages/ejari-renewal"));
 const MoveToDubai = lazy(() => import("@/pages/move-to-dubai"));
 const MarinaGateMoveIn = lazy(() => import("@/pages/marina-gate-move-in"));
 const AffiliateManagement = lazy(() => import("@/pages/affiliate-management"));
+const PartnerProgram = lazy(() => import("@/pages/partner-program"));
+const CommunityToolkit = lazy(() => import("@/pages/community-toolkit"));
+const DeBacciWelcome = lazy(() => import("@/pages/partners/debacci-welcome"));
+const EGLCWelcome = lazy(() => import("@/pages/partners/eglc-welcome"));
+const MytablonWelcome = lazy(() => import("@/pages/partners/mytablon-welcome"));
 const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
 const RelocatePlanning = lazy(() => import("@/pages/relocate/planning"));
 const RelocateArrival = lazy(() => import("@/pages/relocate/arrival"));
@@ -141,6 +146,11 @@ function Router() {
         <Route path="/marketing/dashboard" component={MarketingDashboard} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
+        <Route path="/partner-program" component={PartnerProgram} />
+        <Route path="/community-toolkit" component={CommunityToolkit} />
+        <Route path="/debacci" component={DeBacciWelcome} />
+        <Route path="/eglc" component={EGLCWelcome} />
+        <Route path="/mytablon" component={MytablonWelcome} />
         <Route path="/ejari-registration" component={EjariRegistration} />
         <Route path="/ejari-renewal" component={EjariRenewal} />
         <Route path="/dewa-activation" component={DewaActivation} />

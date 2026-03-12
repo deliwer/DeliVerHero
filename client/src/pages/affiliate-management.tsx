@@ -15,7 +15,7 @@ export default function AffiliateManagement() {
 
   const partners = [
     { name: "DeBacci Capital", ref: "debacci", agents: 3, clicks: 247, conversions: 18, revenue: 7182, commission: 1436.40 },
-    { name: "ECLG", ref: "eclg", agents: 2, clicks: 156, conversions: 12, revenue: 4788, commission: 957.60 },
+    { name: "EGLC", ref: "eglc", agents: 2, clicks: 156, conversions: 12, revenue: 4788, commission: 957.60 },
     { name: "MyTablon", ref: "mytablon", agents: 1, clicks: 89, conversions: 7, revenue: 2793, commission: 558.60 },
   ];
 

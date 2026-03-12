@@ -1,5 +1,38 @@
 import { Express } from "express";
 import { createServer, type Server } from "http";
+
+// Log lead to Google Sheets (serverless endpoint for referral tracking)
+async function handleLogLead(req: any, res: any) {
+  try {
+    const { partner, agent, campaign, service, page, customerName, building, saleValue, status } = req.body;
+
+    if (!partner || !saleValue) {
+      return res.status(400).json({ error: 'Missing required fields: partner, saleValue' });
+    }
+
+    const commission = saleValue * 0.20;
+    const leadData = {
+      date: new Date().toISOString().split('T')[0],
+      partner: partner || 'Direct',
+      agent: agent || '',
+      campaign: campaign || 'Direct',
+      service: service || 'move_in_concierge',
+      page: page || '/start',
+      customerName: customerName || 'Unknown',
+      building: building || 'Unknown',
+      saleValue: saleValue,
+      status: status || 'Pending',
+      commission: commission,
+      timestamp: new Date().toISOString()
+    };
+
+    console.log('Lead logged:', leadData);
+    res.json({ success: true, message: 'Lead logged', commission, data: leadData });
+  } catch (error) {
+    console.error('Error logging lead:', error);
+    res.status(500).json({ error: 'Failed to log lead' });
+  }
+}
 import { storage } from "./storage";
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertLeadApplicationSchema, insertCommissionClaimSchema } from "@shared/schema";
 import { processLead, trackCTAEvent } from "./lead-service";
@@ -47,6 +80,9 @@ const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: bo
 import { handleConciergeInput } from "./concierge";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Log lead endpoint for referral tracking
+  app.post("/api/log-lead", handleLogLead);
+
   // Broker Intel Routes
   app.get("/api/brokers", async (_req, res) => {
     try {
