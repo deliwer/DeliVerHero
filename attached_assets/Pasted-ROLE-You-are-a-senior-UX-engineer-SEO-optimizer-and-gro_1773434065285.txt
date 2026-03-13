@@ -1,0 +1,328 @@
+ROLE
+
+You are a senior UX engineer, SEO optimizer, and growth architect responsible for improving the production website **[www.deliwer.com](http://www.deliwer.com)**.
+
+Your task is to implement a **conversion optimization and positioning enhancement** while preserving the current structure, flows, and SEO footprint.
+
+This update introduces the **AquaCafe Move-In Welcome Service positioning**, strengthens the **Ejari acquisition funnel**, and reframes DeliWer as a **trusted relocation coordination partner**.
+
+---
+
+CRITICAL RULES
+
+Do NOT:
+
+• change page URLs or slugs
+• restructure the website architecture
+• remove existing content
+• break forms or booking flows
+• modify backend logic
+• change WhatsApp integrations
+• change navigation structure
+
+Only perform **content framing updates, branding updates, and conversion improvements**.
+
+---
+
+PRIMARY STRATEGY
+
+Position DeliWer as a **trusted partner during the relocation phase** of a resident.
+
+Use **Ejari registration search traffic** as the primary acquisition channel.
+
+Rebrand the existing Move-In Concierge concept as:
+
+AQUACAFE MOVE-IN WELCOME SERVICE
+
+This should feel like a **welcome support service**, not a product being sold.
+
+---
+
+GLOBAL BRANDING UPDATE
+
+Across the website replace occurrences of:
+
+Move-In Concierge
+Move In Concierge
+Movein Concierge
+
+with:
+
+AquaCafe Move-In Welcome Service
+
+or shorter:
+
+AquaCafe Move-In Welcome
+
+Do NOT change URLs or page paths.
+
+Example:
+
+/move-in-concierge must remain unchanged.
+
+---
+
+CORE POSITIONING MESSAGE
+
+Add the following message near the main description of the service:
+
+"Moving into a new home involves many steps.
+
+Through the AquaCafe Move-In Welcome Service, DeliWer helps residents coordinate essential move-in tasks so their transition into a new home is smoother."
+
+Do not remove the existing text that follows.
+
+---
+
+PRICE FRAMING UPDATE
+
+Where the figure **399** appears, keep the number but change the framing.
+
+Replace direct pricing language with:
+
+Move-In Coordination Indicator: 399
+
+Add supporting explanation:
+
+"This figure represents the typical coordination scope involved in move-in planning.
+Residents usually only pay for the services they choose, such as movers or relocation logistics."
+
+This removes the perception of a mandatory upfront fee.
+
+---
+
+NO UPFRONT COST POSITIONING
+
+Add a short section titled:
+
+No Upfront Planning Cost
+
+Content:
+
+"DeliWer first helps residents plan their move-in coordination.
+
+Once planning is complete, residents only pay for the services they select such as movers, storage, or relocation logistics.
+
+The coordination support is integrated within the relocation ecosystem rather than requiring a planning fee."
+
+---
+
+RELOCATION COORDINATION NETWORK
+
+Add a section describing the relocation partner model.
+
+Title:
+
+Relocation Coordination Network
+
+Content:
+
+"DeliWer works with trusted relocation and logistics partners to support different moving requirements.
+
+Depending on the needs of the resident, coordination may include:
+
+• home movers
+• packing services
+• temporary storage
+• relocation logistics
+• international moving support
+• move-in readiness coordination"
+
+---
+
+RELOCATION PARTNER EXAMPLES
+
+Mention coordination with partners such as:
+
+SGM
+GLG
+Al Reza Group
+ARO Overseas
+
+Clarify that partners may vary depending on move requirements.
+
+---
+
+MOVE-IN SUPPORT SERVICES
+
+Ensure the following services appear clearly within the Move-In Welcome page.
+
+Move-In Welcome Coordination Includes:
+
+• Ejari Registration Support or Home Service Coordination
+• DEWA Activation Guidance
+• Water Setup Readiness
+• Air and Ventilation Readiness Check
+• Movers and Packing Coordination
+• Storage Coordination
+• Relocation Logistics Support
+• Move-In Day Coordination
+• Shower Filter Welcome Bonus where applicable
+
+These services are coordination services unless directly provided.
+
+---
+
+EJARI PAGE OPTIMIZATION
+
+The Ejari page should remain the **primary SEO entry point**.
+
+Ensure the page still targets keywords:
+
+Ejari Dubai
+Ejari Registration
+Ejari Home Service
+Ejari Process Dubai
+
+Add a transition section:
+
+Title:
+
+Planning Your Move-In
+
+Content:
+
+"Many residents registering Ejari are also preparing their home for move-in.
+
+Through the AquaCafe Move-In Welcome Service, DeliWer can help coordinate additional tasks such as movers, water readiness, and home setup."
+
+---
+
+EJARI PAGE CTA
+
+Add a soft CTA below the Ejari explanation:
+
+Buttons:
+
+Book Ejari Assistance
+Plan Your Move-In
+
+These must link to existing forms.
+
+---
+
+HOMEPAGE CONVERSION IMPROVEMENT
+
+Without changing layout, introduce a **conversion clarity block above the fold**.
+
+Add a short section under the hero area:
+
+Title:
+
+Moving Into a New Home?
+
+Body:
+
+"DeliWer helps coordinate your move-in process including Ejari registration, movers, water readiness, and home setup."
+
+Buttons:
+
+Start Ejari Registration
+Plan Your Move-In
+
+Keep the existing hero section intact.
+
+---
+
+TRUST POSITIONING
+
+Add a trust-oriented section.
+
+Title:
+
+A Trusted Partner During Your Move
+
+Content:
+
+"Relocating can involve multiple providers and unexpected tasks.
+
+DeliWer helps residents coordinate these services so the transition into their new home is more organized and less stressful."
+
+Avoid sales-heavy language.
+
+---
+
+UX MICROCOPY UPDATE
+
+Replace aggressive sales language with coordination language.
+
+Examples:
+
+Replace:
+
+Book Concierge
+
+With:
+
+Plan Your Move-In
+
+Replace:
+
+Buy Package
+
+With:
+
+Request Move-In Coordination
+
+---
+
+FUNNEL CLARITY MESSAGE
+
+Add a small explanatory block where appropriate:
+
+How the process works:
+
+1. Tell us about your move-in
+2. We coordinate planning for Ejari and relocation services
+3. You confirm the services you need
+4. Payment happens through the selected service providers
+
+---
+
+SEO PRESERVATION
+
+Ensure the following keywords remain present:
+
+Ejari Dubai
+Ejari Registration Dubai
+Move-In Services Dubai
+Moving Coordination Dubai
+DEWA Activation Dubai
+
+Do not reduce keyword density.
+
+---
+
+FAQ ADDITION
+
+Add FAQ entries such as:
+
+What documents are required for Ejari registration in Dubai?
+Can Ejari registration be done at home?
+Do I need Ejari before DEWA activation?
+Can movers be coordinated together with Ejari registration?
+
+Add FAQ schema markup.
+
+---
+
+QUALITY CHECK BEFORE DEPLOYMENT
+
+Verify:
+
+• all pages load normally
+• all forms function correctly
+• WhatsApp links remain operational
+• SEO content preserved
+• Move-In Concierge branding replaced
+• new positioning added without removing content
+
+---
+
+FINAL RESULT
+
+The website should now present DeliWer as:
+
+A trusted relocation coordination partner helping residents plan their move-in while connecting them to movers, logistics providers, and home readiness services.
+
+The **AquaCafe Move-In Welcome Service** becomes the emotional entry point while **Ejari registration becomes the primary traffic acquisition channel**.

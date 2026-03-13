@@ -217,11 +217,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Conversion Clarity Block — Moving Into a New Home? */}
+      <div className="py-16 px-4 bg-emerald-950/30 border-y border-emerald-500/20">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">
+            Moving Into a New Home?
+          </h2>
+          <p className="text-gray-300 leading-relaxed max-w-xl mx-auto">
+            DeliWer helps coordinate your move-in process including Ejari registration, movers, water readiness, and home setup.
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <Link href="/ejari-dubai">
+              <Button
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-12 text-sm uppercase tracking-widest w-full md:w-auto"
+                data-testid="button-start-ejari"
+              >
+                Start Ejari Registration
+              </Button>
+            </Link>
+            <Link href="/relocate">
+              <Button
+                variant="outline"
+                className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-2xl px-8 h-12 text-sm uppercase tracking-widest w-full md:w-auto"
+                data-testid="button-plan-home-movein"
+              >
+                Plan Your Move-In
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       <div className="py-12 border-y border-white/5 bg-slate-900/50">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-4">
           <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-xs">Plan → Activate → Settle</p>
           <p className="text-gray-400 font-bold leading-relaxed uppercase text-[10px] tracking-widest max-w-2xl mx-auto">
-            DeliWer provides move-in and relocation concierge services in Dubai, helping expatriates transition from Ejari to home activation.
+            DeliWer provides move-in coordination services in Dubai, helping expatriates transition from Ejari to home activation.
           </p>
         </div>
       </div>
@@ -351,6 +382,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How the Process Works */}
+      <section className="py-20 px-6 bg-slate-900/30 border-y border-white/5">
+        <div className="max-w-3xl mx-auto text-center space-y-10">
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">How the Process Works</h2>
+          <div className="space-y-4 text-left">
+            {[
+              { step: "1", text: "Tell us about your move-in" },
+              { step: "2", text: "We coordinate planning for Ejari and relocation services" },
+              { step: "3", text: "You confirm the services you need" },
+              { step: "4", text: "Payment happens through the selected service providers" }
+            ].map(({ step, text }) => (
+              <div key={step} className="flex items-center gap-5 bg-white/5 border border-white/10 rounded-2xl px-6 py-4">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-slate-950 font-black text-lg flex items-center justify-center flex-shrink-0">{step}</div>
+                <span className="text-gray-200 font-medium">{text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* A Trusted Partner During Your Move */}
+      <section className="py-20 px-6 bg-emerald-950/20 border-y border-emerald-500/10">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <ShieldCheck className="w-12 h-12 text-emerald-400 mx-auto" />
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+            A Trusted Partner During Your Move
+          </h2>
+          <p className="text-gray-300 text-lg leading-relaxed italic">
+            Relocating can involve multiple providers and unexpected tasks.
+          </p>
+          <p className="text-gray-400 leading-relaxed max-w-xl mx-auto">
+            DeliWer helps residents coordinate these services so the transition into their new home is more organized and less stressful.
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 justify-center pt-2">
+            <Link href="/ejari-dubai">
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-12 text-sm uppercase tracking-widest w-full md:w-auto" data-testid="button-ejari-trust">
+                Start Ejari Registration
+              </Button>
+            </Link>
+            <Link href="/relocate">
+              <Button variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-2xl px-8 h-12 text-sm uppercase tracking-widest w-full md:w-auto" data-testid="button-movein-trust">
+                Plan Your Move-In
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Trust / Living Image Section */}
       <section className="relative py-24 md:py-32 overflow-hidden text-white">
         <div 
@@ -364,7 +443,7 @@ export default function Home() {
             Dubai Living, <span className="text-emerald-400">Organized.</span>
           </h2>
           <p className="text-xl text-slate-200 font-medium mb-12 italic font-serif">
-            DeliWer is your Dubai Everyday Living Concierge — the team that turns tenancy into a settled home. We help tenants and expatriates plan their move, activate utilities and services, and set up clean water and living essentials with one WhatsApp-managed experience.
+            DeliWer is your Dubai move-in coordination partner — the team that turns tenancy into a settled home. We help tenants and expatriates plan their move, activate utilities and services, and set up clean water and living essentials with one WhatsApp-managed experience.
           </p>
           <Button 
             size="lg"
@@ -380,7 +459,7 @@ export default function Home() {
       <section className="py-12 bg-slate-950 border-b border-white/5">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-gray-400 font-bold leading-relaxed uppercase text-xs tracking-widest">
-            DeliWer provides move-in and relocation concierge services in Dubai, helping expatriates and tenants transition from tenancy paperwork (Ejari) to home activation and sustainable living. Our WhatsApp-managed approach simplifies planning, utilities, and water setup so you can settle in with confidence.
+            DeliWer provides move-in coordination services in Dubai, helping expatriates and tenants transition from tenancy paperwork (Ejari) to home activation and sustainable living. Our WhatsApp-managed approach simplifies planning, utilities, and water setup so you can settle in with confidence.
           </p>
         </div>
       </section>

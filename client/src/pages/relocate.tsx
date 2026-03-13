@@ -73,7 +73,7 @@ export default function Relocate() {
             className="space-y-6"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest mx-auto mb-4">
-              <ShieldCheck className="w-4 h-4" /> Dubai's Premium Concierge
+              <ShieldCheck className="w-4 h-4" /> Dubai's Trusted Relocation Partner
             </div>
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.85] text-white">
               Arrive. Settle. <br />
@@ -82,6 +82,9 @@ export default function Relocate() {
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-bold uppercase tracking-tight">
               One unified orchestration layer for your Dubai transition. <br />
               <span className="text-blue-400 italic font-serif lowercase tracking-normal">Ejari, DEWA & Home Setup handled without you leaving your place.</span>
+            </p>
+            <p className="text-base text-gray-400 max-w-2xl mx-auto font-medium normal-case tracking-normal mt-2 italic">
+              Moving into a new home involves many steps. Through the AquaCafe Move-In Welcome Service, DeliWer helps residents coordinate essential move-in tasks so their transition into a new home is smoother.
             </p>
           </motion.div>
 
@@ -108,8 +111,12 @@ export default function Relocate() {
       <section ref={activationRef} id="activation-section" className="relative px-4 py-32 border-y border-white/5 overflow-hidden bg-slate-900/40">
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-24 space-y-4">
-            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">Activate Your New Home <span className="text-emerald-500">Dubai — AED 399</span></h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">Technical Home Activation & Setup</p>
+            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">Activate Your New Home <span className="text-emerald-500">Dubai</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">AquaCafe Move-In Welcome Service — Move-In Coordination Support</p>
+            <div className="max-w-xl mx-auto bg-emerald-500/10 border border-emerald-500/20 rounded-2xl px-6 py-4 text-left mt-4">
+              <p className="text-emerald-400 font-black uppercase text-xs tracking-widest mb-1">Move-In Coordination Indicator: AED 399</p>
+              <p className="text-gray-400 text-sm font-medium leading-relaxed">This figure represents the typical coordination scope involved in move-in planning. Residents usually only pay for the services they choose, such as movers or relocation logistics.</p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 max-w-5xl mx-auto">
@@ -147,7 +154,7 @@ export default function Relocate() {
               </CardContent>
             </Card>
 
-            {/* Complete Concierge Package */}
+            {/* Complete Move-In Welcome Package */}
             <Card className="relative flex flex-col rounded-[2.5rem] border-emerald-500/50 bg-slate-900 scale-105 shadow-2xl shadow-emerald-500/20 z-10 overflow-hidden">
               <div className="absolute top-0 inset-x-0 h-2 bg-emerald-500" />
               <div className="absolute top-4 right-4 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-slate-950 shadow-lg">
@@ -219,6 +226,99 @@ export default function Relocate() {
                 <li className="flex gap-3 items-center"><AlertTriangle className="w-5 h-5 text-red-500 shrink-0" /> Major hardware</li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* No Upfront Planning Cost */}
+      <section className="py-20 px-4 bg-slate-900/40 border-y border-white/5">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-black uppercase tracking-widest">
+            Transparent Coordination
+          </div>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+            No Upfront Planning Cost
+          </h2>
+          <div className="text-gray-300 text-base leading-relaxed space-y-3 text-left bg-white/5 rounded-3xl p-8 border border-white/10">
+            <p>DeliWer first helps residents plan their move-in coordination.</p>
+            <p>Once planning is complete, residents only pay for the services they select — such as movers, storage, or relocation logistics.</p>
+            <p>The coordination support is integrated within the relocation ecosystem rather than requiring a planning fee.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 text-sm font-bold uppercase tracking-widest text-emerald-400">
+            {["1. Tell us about your move", "2. We plan & coordinate", "3. You choose & confirm"].map((s, i) => (
+              <div key={i} className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl py-3 px-4">{s}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Relocation Coordination Network */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-black uppercase tracking-widest">
+              Partner Network
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+              Relocation Coordination Network
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
+              DeliWer works with trusted relocation and logistics partners to support different moving requirements. Depending on the needs of the resident, coordination may include:
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              "Home movers",
+              "Packing services",
+              "Temporary storage",
+              "Relocation logistics",
+              "International moving support",
+              "Move-in readiness coordination"
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-5 py-4">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                <span className="text-gray-200 font-semibold text-sm uppercase tracking-wide">{item}</span>
+              </div>
+            ))}
+          </div>
+          <div className="bg-slate-900/60 border border-white/10 rounded-3xl p-8 space-y-3">
+            <p className="text-white font-black uppercase text-xs tracking-widest mb-3">Partner Examples</p>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              DeliWer coordinates with established relocation partners including <span className="text-gray-200 font-semibold">SGM</span>, <span className="text-gray-200 font-semibold">GLG</span>, <span className="text-gray-200 font-semibold">Al Reza Group</span>, and <span className="text-gray-200 font-semibold">ARO Overseas</span> depending on move requirements. Partners may vary based on the specific needs of each resident.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* A Trusted Partner During Your Move */}
+      <section className="py-20 px-4 bg-emerald-950/20 border-y border-emerald-500/10">
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <ShieldCheck className="w-12 h-12 text-emerald-400 mx-auto" />
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+            A Trusted Partner During Your Move
+          </h2>
+          <p className="text-gray-300 text-lg leading-relaxed italic">
+            Relocating can involve multiple providers and unexpected tasks.
+          </p>
+          <p className="text-gray-400 leading-relaxed">
+            DeliWer helps residents coordinate these services so the transition into their new home is more organized and less stressful.
+          </p>
+          <div className="flex flex-col md:flex-row gap-4 justify-center pt-4">
+            <Button
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-14 text-base uppercase tracking-widest"
+              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need help planning my move-in coordination.")}`, '_blank')}
+              data-testid="button-plan-movein"
+            >
+              <MessageSquare className="w-4 h-4 mr-2" /> Plan Your Move-In
+            </Button>
+            <Button
+              variant="outline"
+              className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-2xl px-8 h-14 text-base uppercase tracking-widest"
+              onClick={scrollToActivation}
+              data-testid="button-request-coordination"
+            >
+              Request Move-In Coordination
+            </Button>
           </div>
         </div>
       </section>
