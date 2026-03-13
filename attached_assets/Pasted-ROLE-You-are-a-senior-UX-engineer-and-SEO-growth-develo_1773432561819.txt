@@ -1,0 +1,237 @@
+ROLE
+
+You are a senior UX engineer and SEO growth developer working on the production website **[www.deliwer.com](http://www.deliwer.com)**.
+
+Your task is to optimize the existing **Ejari service page** to become the primary **customer acquisition funnel** for DeliWer.
+
+IMPORTANT RULES
+
+• Do NOT change the page URL
+• Do NOT remove existing content
+• Do NOT break forms or booking flows
+• Do NOT restructure the site architecture
+• Do NOT modify backend logic
+
+Only add **conversion framing, SEO enhancements, and contextual content**.
+
+---
+
+OBJECTIVE
+
+Transform the Ejari service page into a **dual-purpose page**:
+
+1. Rank for **Ejari registration searches**
+2. Introduce the **AquaCafe Move-In Welcome Service**
+
+This must feel natural and helpful to the user.
+
+---
+
+PRIMARY PAGE INTENT
+
+When users land on this page they are searching for:
+
+Ejari Registration
+Ejari Dubai
+Ejari Online
+Ejari Home Service
+
+The page must **first satisfy the Ejari intent**, then introduce the move-in welcome concept.
+
+---
+
+HERO SECTION UPDATE
+
+Keep the main Ejari heading but refine it slightly.
+
+Example:
+
+H1
+
+Ejari Registration in Dubai – Easy Home Service Support
+
+Subheading
+
+Register your Ejari with guided support and move-in coordination.
+
+Add supporting line:
+
+"Moving into a new home? Our AquaCafe Move-In Welcome Service can also help coordinate essential move-in tasks."
+
+Add a secondary CTA below the primary Ejari CTA:
+
+Button text:
+
+Explore Move-In Welcome
+
+Do not remove existing CTA buttons.
+
+---
+
+SECTION: WHAT IS EJARI
+
+Keep the existing educational content intact.
+
+Ensure keywords remain present:
+
+Ejari registration Dubai
+Ejari tenancy contract registration
+Ejari Dubai Land Department
+
+Do not shorten the section.
+
+---
+
+SECTION: EJARI HOME SERVICE
+
+Enhance this section with a small paragraph:
+
+"Many residents registering Ejari are also preparing their homes for move-in. DeliWer helps coordinate essential move-in readiness through the AquaCafe Move-In Welcome Service."
+
+Do not present it as a hard sell.
+
+---
+
+NEW SECTION
+
+Insert after Ejari home service description.
+
+Title:
+
+Moving In? Start With a Welcome
+
+Body:
+
+"When residents move into a new home there are several tasks that must be completed before the home is fully ready.
+
+The AquaCafe Move-In Welcome Service coordinates important move-in tasks so residents can settle in more comfortably."
+
+---
+
+MOVE-IN TASK LIST
+
+Display simple bullet list:
+
+Move-In Welcome Coordination Includes:
+
+• Ejari Registration Support
+• DEWA Activation Guidance
+• Water Setup Readiness
+• Air and Ventilation Check
+• Movers and Packing Coordination
+• Move-In Day Service Support
+• Shower Filter Welcome Bonus
+
+Clarify that services are coordinated where applicable.
+
+---
+
+TRANSITION SECTION
+
+Add a soft transition:
+
+"Many residents choose to combine Ejari registration with move-in coordination so everything is ready when they receive the keys."
+
+---
+
+CTA SECTION
+
+Add a new call-to-action block.
+
+Title:
+
+Plan Your Move-In Smoothly
+
+Buttons:
+
+Book Ejari Assistance
+Schedule Move-In Welcome
+
+Ensure buttons link to existing booking flows.
+
+---
+
+LOCAL SEO ENHANCEMENT
+
+Add a small FAQ section.
+
+FAQ examples:
+
+What documents are required for Ejari registration in Dubai?
+Can Ejari registration be done at home?
+How long does Ejari registration take?
+Do I need Ejari before activating DEWA?
+
+Add one additional FAQ:
+
+Can I coordinate move-in services with Ejari registration?
+
+Answer:
+
+"Yes. Many residents choose to coordinate their move-in preparation while registering Ejari. DeliWer's AquaCafe Move-In Welcome Service helps coordinate essential setup tasks."
+
+---
+
+SCHEMA MARKUP
+
+Add FAQ schema for the FAQ section.
+
+Add local service schema for:
+
+Ejari Registration Assistance
+Move-In Coordination Services
+
+Ensure schema is JSON-LD format.
+
+---
+
+SEO TARGET KEYWORDS
+
+Ensure the page maintains strong presence of:
+
+Ejari Dubai
+Ejari registration Dubai
+Ejari home service
+Ejari registration process
+Ejari online Dubai
+
+Avoid keyword stuffing.
+
+---
+
+USER EXPERIENCE
+
+Maintain:
+
+• existing forms
+• WhatsApp buttons
+• page layout
+• mobile responsiveness
+
+Only insert content sections where they naturally fit.
+
+---
+
+QUALITY CHECK
+
+Before deployment verify:
+
+• Page still ranks for Ejari search terms
+• No links broken
+• All CTAs functional
+• Move-In Welcome referenced but not forced
+• Booking flows intact
+
+---
+
+FINAL RESULT
+
+The Ejari page should:
+
+• capture organic search traffic for Ejari
+• introduce the AquaCafe Move-In Welcome concept
+• guide users into the move-in coordination funnel
+
+without disrupting the existing service flow.
+
+Deploy after validation.
