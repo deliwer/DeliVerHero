@@ -33,7 +33,7 @@ export default function DewaActivation() {
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta 
         title="DEWA Activation Dubai | Electricity Setup | DeliWer"
-        description="Get DEWA electricity activated quickly. DeliWer coordinates meter registration and setup. AED 399 included in Move-In Concierge."
+        description="Get DEWA electricity activated quickly. DeliWer coordinates meter registration and setup. AED 399 included in AquaCafe Move-In Welcome Service."
       />
       <Navigation />
 
@@ -87,7 +87,7 @@ export default function DewaActivation() {
               Activate DEWA Now
             </Button>
 
-            <p className="text-sm text-gray-400">Part of Move-In Concierge (AED 399)</p>
+            <p className="text-sm text-gray-400">Part of AquaCafe Move-In Welcome Service (AED 399)</p>
           </motion.div>
         </div>
       </section>

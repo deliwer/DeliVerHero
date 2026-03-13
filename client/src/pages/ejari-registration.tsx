@@ -68,7 +68,7 @@ export default function EjariRegistration() {
               <div className="flex items-center justify-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-8">
                 <CheckCircle2 className="w-7 h-7 text-emerald-500 flex-shrink-0" />
                 <p className="text-2xl font-black text-white">
-                  DeliWer Move-In Concierge handles the <span className="text-emerald-400">entire activation process.</span>
+                  DeliWer AquaCafe Move-In Welcome Service handles the <span className="text-emerald-400">entire activation process.</span>
                 </p>
               </div>
             </div>

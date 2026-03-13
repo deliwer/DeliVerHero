@@ -12,7 +12,7 @@ export default function RelocationAlliance() {
       icon: Users,
       description: "Close the property deal. We activate the home.",
       benefits: [
-        "White-label move-in concierge for your clients",
+        "White-label AquaCafe Move-In Welcome Service for your clients",
         "Referral commission on every booking",
         "Dedicated support for your portfolio",
         "Seamless handover process"
@@ -57,7 +57,7 @@ export default function RelocationAlliance() {
     <div className="min-h-screen bg-slate-950 text-white">
       <SEOMeta 
         title="DeliWer Relocation Alliance | Partner Program for Moving Companies | Dubai"
-        description="Partner with DeliWer's move-in concierge. Relocation companies, movers, and brokers can refer clients and earn commissions. Let's grow together."
+        description="Partner with DeliWer's AquaCafe Move-In Welcome Service. Relocation companies, movers, and brokers can refer clients and earn commissions. Let's grow together."
       />
       <Navigation />
 

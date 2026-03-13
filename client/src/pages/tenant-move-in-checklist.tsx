@@ -175,7 +175,7 @@ export default function TenantMoveInChecklist() {
               </Card>
               <Card className="bg-slate-900/50 border-emerald-500/30 p-6">
                 <h3 className="text-2xl font-black text-emerald-400 mb-2">1 Price</h3>
-                <p className="text-gray-300 text-sm">AED 399 move-in concierge. Transparent. No surprises.</p>
+                <p className="text-gray-300 text-sm">AED 399 AquaCafe Move-In Welcome Service. Transparent. No surprises.</p>
               </Card>
             </div>
 

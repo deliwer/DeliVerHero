@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function RelocationForFounders() {
   const handleWhatsApp = () => {
-    const text = "Hi DeliWer, I'm a founder relocating to Dubai and need move-in concierge support.";
+    const text = "Hi DeliWer, I'm a founder relocating to Dubai and need AquaCafe Move-In Welcome support.";
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -13,7 +13,7 @@ export default function RelocationForFounders() {
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30 font-sans">
       <SEOMeta 
         title="Relocation to Dubai for Founders | Post-Lease Concierge | DeliWer"
-        description="The ultimate move-in concierge for tech founders relocating to Dubai. We handle Ejari, DEWA, and home setup while you build your startup."
+        description="The ultimate AquaCafe Move-In Welcome Service for tech founders relocating to Dubai. We handle Ejari, DEWA, and home setup while you build your startup."
       />
       
       {/* Hero Section */}

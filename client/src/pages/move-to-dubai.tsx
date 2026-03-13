@@ -77,7 +77,7 @@ export default function MoveToDubai() {
               Start Move-In Planning
             </Button>
 
-            <p className="text-sm text-gray-400">WhatsApp consultation • AED 399 Move-In Concierge</p>
+            <p className="text-sm text-gray-400">WhatsApp consultation • AED 399 AquaCafe Move-In Welcome Service</p>
           </motion.div>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function MoveToDubai() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               "Secure Tenancy Contract",
-              "Book Move-In Concierge",
+              "Book AquaCafe Move-In Welcome",
               "Register with Ejari",
               "Activate DEWA electricity",
               "Connect water supply",

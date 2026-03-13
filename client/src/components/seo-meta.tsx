@@ -15,7 +15,7 @@ export function SEOMeta({
   canonical,
   ogType = "website",
   ogImage = "/deliwer-og-image.png",
-  keywords = "Dubai Move-In Concierge, Relocation Services Dubai, Ejari Support, DEWA Assistance, Dubai Expats, DeliWer Partners"
+  keywords = "AquaCafe Move-In Welcome Service, Ejari Dubai, Ejari Registration, Move-In Services Dubai, DEWA Activation, Moving Coordination Dubai, Relocation Services Dubai, Dubai Expats, DeliWer Partners"
 }: SEOMetaProps) {
   const url = canonical || typeof window !== 'undefined' ? window.location.href : '';
 

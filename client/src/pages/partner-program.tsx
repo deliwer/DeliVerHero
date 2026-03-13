@@ -90,7 +90,7 @@ export default function PartnerProgram() {
     <div className="min-h-screen bg-slate-950 text-white">
       <SEOMeta
         title="Partner Program | Earn 20% Commission | DeliWer Dubai"
-        description="Join DeliWer's partner program and earn AED 79.80 per Move-In Concierge booking you refer. Zero minimums. Real-time tracking. Monthly payouts."
+        description="Join DeliWer's partner program and earn AED 79.80 per AquaCafe Move-In Welcome Service booking you refer. Zero minimums. Real-time tracking. Monthly payouts."
       />
       <Navigation />
 
@@ -163,7 +163,7 @@ export default function PartnerProgram() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {[
-              { label: "Move-In Concierge Price", value: "AED 399", sub: "per booking", color: "border-emerald-500/50 bg-emerald-900/20", valueColor: "text-emerald-300", icon: DollarSign },
+              { label: "AquaCafe Move-In Welcome Service", value: "AED 399", sub: "per booking", color: "border-emerald-500/50 bg-emerald-900/20", valueColor: "text-emerald-300", icon: DollarSign },
               { label: "Your Commission Rate", value: "20%", sub: "on every booking", color: "border-blue-500/50 bg-blue-900/20", valueColor: "text-blue-300", icon: TrendingUp },
               { label: "You Earn Per Referral", value: "AED 79.80", sub: "paid monthly", color: "border-yellow-500/50 bg-yellow-900/20", valueColor: "text-yellow-300", icon: DollarSign },
             ].map(({ label, value, sub, color, valueColor, icon: Icon }, i) => (

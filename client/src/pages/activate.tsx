@@ -78,7 +78,8 @@ export default function ActivatePage() {
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto bg-emerald-500/10 border border-emerald-500/30 rounded-[3rem] p-12 text-center space-y-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-xs font-black px-6 py-2 rounded-bl-3xl uppercase tracking-widest">Fixed Price</div>
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">Move-In Concierge — <span className="text-emerald-500">AED 399</span></h2>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">AquaCafe Move-In Welcome Service</h2>
+          <p className="text-emerald-400 font-black text-2xl">Move-In Coordination Package – <span className="text-emerald-500">AED 399</span></p>
           <p className="text-gray-300 font-bold uppercase tracking-wide">Complete technical home activation for new tenants.</p>
           <div className="bg-slate-950/50 p-6 rounded-2xl border border-white/5 inline-block text-left">
             <div className="flex items-center gap-3 text-emerald-400 font-black uppercase text-sm mb-2">

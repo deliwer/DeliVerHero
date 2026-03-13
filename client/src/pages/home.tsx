@@ -29,8 +29,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <SEOMeta 
-        title="Dubai Move-In Concierge & Home Activation Services | DeliWer"
-        description="DeliWer helps expatriates and tenants in Dubai plan and activate their new homes after Ejari, with structured move-in planning, home activation (AED 399), and water quality setup. WhatsApp booking available."
+        title="AquaCafe Move-In Welcome Service Dubai | Home Activation Services | DeliWer"
+        description="DeliWer helps expatriates and tenants in Dubai plan and activate their new homes after Ejari, with the AquaCafe Move-In Welcome Service, home activation (AED 399), and water quality setup. WhatsApp booking available."
       />
       <Helmet>
         <meta name="keywords" content="Dubai move in services, Move-In Activation Dubai, Ejari support, tenant home activation, water setup Dubai, relocation concierge" />
@@ -42,7 +42,7 @@ export default function Home() {
           "name": "DeliWer",
           "url": "https://www.deliwer.com",
           "logo": "https://www.deliwer.com/logo.png",
-          "description": "Dubai Move-In Concierge providing Ejari readiness support, apartment activation, relocation coordination, and water quality setup services.",
+          "description": "AquaCafe Move-In Welcome Service providing Ejari readiness support, apartment activation, relocation coordination, and water quality setup services.",
           "areaServed": {
             "@type": "City",
             "name": "Dubai"

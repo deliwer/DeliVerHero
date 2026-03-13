@@ -52,8 +52,8 @@ export default function Relocate() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
-        <title>Move-In Concierge Dubai | Activate Apartment | DeliWer</title>
-        <meta name="description" content="Activate your new home in Dubai. One service to handle tenancy registration, utilities, and move-in readiness. AED 399 complete concierge." />
+        <title>AquaCafe Move-In Welcome Service Dubai | Activate Apartment | DeliWer</title>
+        <meta name="description" content="Activate your new home in Dubai. One service to handle tenancy registration, utilities, and move-in readiness. AED 399 AquaCafe Move-In Welcome Service." />
       </Helmet>
 
       <Navigation />
@@ -90,7 +90,7 @@ export default function Relocate() {
               onClick={scrollToActivation}
               className="bg-emerald-600 hover:bg-emerald-500 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-emerald-900/40 group"
             >
-              Move-In Concierge
+              AquaCafe Move-In Welcome
             </Button>
             <Button 
               onClick={scrollToMoveOut}
@@ -178,7 +178,7 @@ export default function Relocate() {
                   ))}
                 </div>
                 <Button 
-                  onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi, I just signed my lease and want the Move-In Concierge package.")}`, '_blank')}
+                  onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi, I just signed my lease and want the AquaCafe Move-In Welcome Service.")}`, '_blank')}
                   className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-2xl transition-all active:scale-95"
                 >
                   Activate My Home

@@ -21,11 +21,11 @@ export function BuildingSEOBlock({ building, community, ref: refCode }: Building
     <div className="py-8 px-4 md:px-6 bg-slate-900/50 border border-white/10 rounded-xl hover:border-emerald-500/30 transition-all">
       <div className="max-w-4xl mx-auto">
         <h3 className="text-lg font-black text-white mb-2">
-          Move-In Concierge for {building}, {community}
+          AquaCafe Move-In Welcome Service for {building}, {community}
         </h3>
         
         <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-          Tenants moving into {building} can now use DeliWer's move-in concierge services. From Ejari support to DEWA activation and home readiness inspection, we ensure your apartment is ready before you arrive. Book directly via WhatsApp.
+          Tenants moving into {building} can now use DeliWer's AquaCafe Move-In Welcome Service. From Ejari support to DEWA activation and home readiness inspection, we ensure your apartment is ready before you arrive. Book directly via WhatsApp.
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4">

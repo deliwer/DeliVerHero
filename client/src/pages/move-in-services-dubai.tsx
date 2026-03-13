@@ -73,7 +73,7 @@ export default function MoveInServices() {
         <div className="max-w-3xl mx-auto space-y-8">
           <h2 className="text-4xl font-black uppercase tracking-tighter">One Point of Contact</h2>
           <p className="text-lg text-gray-300 leading-relaxed">
-            Stop juggling ten different contractors. Our move-in concierge manages all vendors via a single WhatsApp group, ensuring your home is ready when you arrive.
+            Stop juggling ten different contractors. Our AquaCafe Move-In Welcome Service manages all vendors via a single WhatsApp group, ensuring your home is ready when you arrive.
           </p>
           <Button 
             size="lg" 

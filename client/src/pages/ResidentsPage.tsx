@@ -67,7 +67,7 @@ export default function ResidentsPage() {
               <div className="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Zap className="w-8 h-8 text-emerald-500" />
               </div>
-              <CardTitle className="text-4xl text-white">Move-In Concierge</CardTitle>
+              <CardTitle className="text-4xl text-white">AquaCafe Move-In Welcome Service</CardTitle>
               <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Standard Technical Activation</p>
               <div className="text-5xl font-black text-white tracking-tighter mt-4">AED 399</div>
             </CardHeader>

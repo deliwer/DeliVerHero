@@ -34,7 +34,7 @@ Our community partner DeliWer activates your home before you arrive.
 ✓ Air readiness
 ✓ Move-in coordination
 
-Book your Move-In Concierge (AED 399):
+Book your AquaCafe Move-In Welcome Service (AED 399):
 https://deliwer.com/start?ref=YOUR_PARTNER_NAME
 
 Response within 10 minutes via WhatsApp.`
@@ -49,7 +49,7 @@ Hi there,
 
 Planning a move to Dubai? Don't spend your first night without water.
 
-DeliWer's Move-In Concierge handles everything:
+DeliWer's AquaCafe Move-In Welcome Service handles everything:
 - Ejari registration coordination
 - DEWA electricity activation
 - Water connection verification
@@ -72,7 +72,7 @@ One thing nobody tells you about settling into a new apartment in Dubai:
 
 "It takes 3-5 days to get water connected if you navigate the system yourself."
 
-But not with DeliWer's Move-In Concierge. We handle:
+But not with DeliWer's AquaCafe Move-In Welcome. We handle:
 ✓ Ejari guidance through RERA-appointed centers
 ✓ DEWA electricity activation
 ✓ Water connection coordination
@@ -83,7 +83,7 @@ Price: AED 399
 Time: Hours (not days)
 Support: 24/7 via WhatsApp
 
-Book your concierge: https://deliwer.com/start?ref=YOUR_PARTNER_NAME
+Book Move-In Welcome Service: https://deliwer.com/start?ref=YOUR_PARTNER_NAME
 
 #Dubai #Expat #MoveIn #Settlement`
     },
@@ -115,7 +115,7 @@ Questions? Chat us on WhatsApp!`
     <div className="min-h-screen bg-slate-950 text-white">
       <SEOMeta 
         title="Community Toolkit | Ready-to-Share Messages | DeliWer"
-        description="Copy-paste templates for promoting DeliWer Move-In Concierge across WhatsApp, email, LinkedIn, and community groups."
+        description="Copy-paste templates for promoting DeliWer AquaCafe Move-In Welcome Service across WhatsApp, email, LinkedIn, and community groups."
       />
       <Navigation />
 

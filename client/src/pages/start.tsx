@@ -30,15 +30,15 @@ export default function StartPage() {
     const referralData = localStorage.getItem("deliwer_ref");
     const referral = referralData ? JSON.parse(referralData) : {};
     
-    const message = `Hello DeliWer,\n\nI want the Move-In Concierge Service.\n\nReferral Partner: ${referral.partner || 'Direct'}\nAgent: ${referral.agent || ''}\n\nName:\nBuilding:\nMove-in date:`;
+    const message = `Hello DeliWer,\n\nI want the AquaCafe Move-In Welcome Service.\n\nReferral Partner: ${referral.partner || 'Direct'}\nAgent: ${referral.agent || ''}\n\nName:\nBuilding:\nMove-in date:`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta 
-        title="Move-In Concierge Dubai | Ejari, Water & DEWA Setup | DeliWer"
-        description="Moving to Dubai this week? Don't spend your first night without water. DeliWer activates your home in minutes. AED 399. Book now via WhatsApp."
+        title="AquaCafe Move-In Welcome Service Dubai | Ejari, Water & DEWA Setup | DeliWer"
+        description="Moving to Dubai this week? Don't spend your first night without water. DeliWer's AquaCafe Move-In Welcome Service activates your home in minutes. AED 399. Book now via WhatsApp."
       />
       <Navigation />
 
@@ -83,6 +83,19 @@ export default function StartPage() {
               </div>
             </div>
 
+            {/* Positioning Statement */}
+            <div className="max-w-4xl mx-auto space-y-4">
+              <div className="bg-slate-800/60 border border-emerald-500/20 rounded-2xl p-6 text-left">
+                <p className="text-emerald-300 font-medium text-base leading-relaxed">
+                  Moving into a new home should feel welcoming.<br />
+                  The AquaCafe Move-In Welcome Service helps residents settle in smoothly by coordinating essential move-in services.
+                </p>
+                <p className="text-gray-400 text-sm mt-3 font-medium">
+                  AquaCafe represents DeliWer's home hospitality concept — ensuring water, comfort, and readiness when residents move into a new home.
+                </p>
+              </div>
+            </div>
+
             {/* Solution Section */}
             <div className="max-w-4xl mx-auto space-y-4">
               <div className="flex items-center justify-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-8">
@@ -91,7 +104,7 @@ export default function StartPage() {
                     DeliWer activates your home <span className="text-emerald-400">in minutes.</span>
                   </p>
                   <p className="text-emerald-100 font-medium text-lg">
-                    Complete Move-In Concierge: Ejari coordination, DEWA activation, water setup, and home readiness check.
+                    AquaCafe Move-In Welcome Service: Ejari coordination, DEWA activation, water setup, and home readiness check.
                   </p>
                 </div>
               </div>
@@ -100,7 +113,8 @@ export default function StartPage() {
             {/* Offer & CTA */}
             <div className="space-y-6">
               <div className="bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-3xl p-8 text-center">
-                <p className="text-sm font-bold uppercase tracking-widest text-emerald-100 mb-2">Complete Package</p>
+                <p className="text-sm font-bold uppercase tracking-widest text-emerald-100 mb-1">AquaCafe Move-In Welcome Service</p>
+                <p className="text-lg font-black text-emerald-100 mb-3">Move-In Coordination Package – 399</p>
                 <p className="text-5xl md:text-6xl font-black text-white mb-4">AED 399</p>
                 <p className="text-emerald-100 font-medium text-lg">
                   Ejari guidance · DEWA coordination · Water & AC checks · Move-in readiness
@@ -125,7 +139,37 @@ export default function StartPage() {
       {/* What's Included Section */}
       <section className="py-24 px-4 bg-white/5 border-t border-white/10">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black uppercase mb-12 text-center">What's Included</h2>
+          {/* A Welcome When You Move In */}
+          <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-2xl p-8 mb-12 text-center">
+            <h2 className="text-2xl font-black uppercase tracking-tight text-emerald-400 mb-3">A Welcome When You Move In</h2>
+            <p className="text-gray-300 font-medium leading-relaxed max-w-2xl mx-auto">
+              When moving into a new home, small things make a big difference.<br />
+              The AquaCafe Move-In Welcome Service coordinates essential setup tasks and helps residents start their new home experience smoothly.
+            </p>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-black uppercase mb-6 text-center">What's Included</h2>
+
+          {/* Move-In Welcome Coordination Includes */}
+          <div className="bg-slate-900/50 border border-white/10 rounded-2xl p-8 mb-10">
+            <h3 className="text-xl font-black uppercase tracking-tight text-white mb-5">Move-In Welcome Coordination Includes</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {[
+                "Ejari Registration Assistance or Home Service Coordination",
+                "DEWA Activation Guidance",
+                "Water Readiness Setup",
+                "Air and Ventilation Readiness Check",
+                "Packing and Movers Coordination",
+                "Move-In Day Service Coordination",
+                "Home Water Filter Welcome Bonus (where applicable)"
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 text-sm text-gray-200">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
@@ -216,7 +260,7 @@ export default function StartPage() {
                 data-testid="button-whatsapp-book"
               >
                 <MessageSquare className="w-6 h-6 mr-3" />
-                Book Move-In Concierge (AED 399)
+                Book Move-In Welcome (AED 399)
               </Button>
 
               <Link href="/relocate">

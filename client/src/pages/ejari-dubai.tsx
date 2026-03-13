@@ -104,7 +104,7 @@ export default function EjariDubai() {
                 <div className="text-left">
                   <p className="text-xl font-bold text-white mb-2">Our solution:</p>
                   <p className="text-lg text-gray-300 font-medium">
-                    <span className="text-emerald-400 font-black">DeliWer Move-In Concierge handles the entire activation process.</span>
+                    <span className="text-emerald-400 font-black">DeliWer AquaCafe Move-In Welcome Service handles the entire activation process.</span>
                   </p>
                 </div>
               </div>

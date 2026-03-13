@@ -1,0 +1,218 @@
+ROLE
+You are a senior UX engineer and growth optimization developer working on the production website **[www.deliwer.com](http://www.deliwer.com)**.
+
+Your task is to implement a **branding update and growth optimization** across the website.
+
+IMPORTANT RULES
+• Do NOT restructure the website architecture.
+• Do NOT remove existing content.
+• Do NOT break forms or coordination flows.
+• Do NOT change URLs.
+• Do NOT alter backend logic.
+• Do NOT modify booking workflows.
+
+Only perform **branding updates and contextual content enhancements**.
+
+---
+
+OBJECTIVE
+
+Rebrand the existing **Move-In Concierge Service** across the website as:
+
+**AquaCafe Move-In Welcome Service**
+
+This positioning reframes the service as a **welcome benefit for new residents** rather than a paid concierge service.
+
+The operational process and coordination flow remain identical.
+
+---
+
+GLOBAL BRANDING UPDATE
+
+Replace occurrences of the phrase:
+
+Move-In Concierge
+Move In Concierge
+Movein Concierge
+
+with:
+
+**AquaCafe Move-In Welcome Service**
+
+Where appropriate use:
+
+**AquaCafe Move-In Welcome**
+
+Do NOT change page slugs or URLs.
+
+Example:
+
+/move-in-concierge
+remains unchanged.
+
+---
+
+POSITIONING UPDATE
+
+Where the service description currently appears, add a short positioning line before the existing text:
+
+"Moving into a new home should feel welcoming.
+The AquaCafe Move-In Welcome Service helps residents settle in smoothly by coordinating essential move-in services."
+
+Do NOT remove existing copy after this addition.
+
+---
+
+SERVICE BENEFITS SECTION
+
+Where the benefits of the concierge service are listed, update the package description to include the following **coordinated services**.
+
+Keep the wording simple and supportive of the existing content.
+
+Add a section titled:
+
+**Move-In Welcome Coordination Includes**
+
+• Ejari Registration Assistance or Home Service Coordination
+• DEWA Activation Guidance
+• Water Readiness Setup
+• Air and Ventilation Readiness Check
+• Packing and Movers Coordination
+• Move-In Day Service Coordination
+• Home Water Filter Welcome Bonus (where applicable)
+
+These are coordination services unless already provided directly.
+
+---
+
+WELCOME NARRATIVE
+
+Add the following short section where the package description appears:
+
+Title:
+
+**A Welcome When You Move In**
+
+Body:
+
+"When moving into a new home, small things make a big difference.
+The AquaCafe Move-In Welcome Service coordinates essential setup tasks and helps residents start their new home experience smoothly."
+
+Do not remove existing text.
+
+---
+
+AQUACAFE BRAND CONTEXT
+
+Where the concierge brand appears, introduce the AquaCafe concept once:
+
+"AquaCafe represents DeliWer’s home hospitality concept — ensuring water, comfort, and readiness when residents move into a new home."
+
+Do not repeat excessively.
+
+---
+
+PRICE PRESENTATION
+
+Keep the existing **399 AED service price unchanged**.
+
+However adjust the framing:
+
+Instead of emphasizing price first, show:
+
+"AquaCafe Move-In Welcome Service"
+
+Then show:
+
+"Move-In Coordination Package – 399"
+
+Do not remove price references.
+
+---
+
+SEO PRESERVATION
+
+Ensure the following keywords remain present in the page content:
+
+Ejari Dubai
+Ejari Registration
+Move-In Services Dubai
+DEWA Activation
+Moving Coordination Dubai
+
+Do not reduce keyword density.
+
+---
+
+UX CONSISTENCY
+
+Maintain:
+
+• existing buttons
+• booking forms
+• WhatsApp actions
+• service request flows
+• lead capture forms
+
+Button labels should remain unchanged unless they contain the phrase "Move-In Concierge".
+
+If so change to:
+
+**Book Move-In Welcome**
+
+---
+
+MICROCOPY UPDATE
+
+Where applicable update microcopy from:
+
+"Book Concierge"
+
+to:
+
+"Book Move-In Welcome Service"
+
+or
+
+"Schedule Move-In Welcome"
+
+---
+
+DESIGN CONSISTENCY
+
+No layout changes required.
+
+Do not change:
+
+• fonts
+• spacing
+• layout grid
+• mobile responsiveness
+
+Only update text labels and headings.
+
+---
+
+QUALITY CHECK
+
+Before deployment verify:
+
+• No broken links
+• No form changes
+• No page slug changes
+• All occurrences of Move-In Concierge updated appropriately
+• SEO content preserved
+
+---
+
+FINAL RESULT
+
+The website should now present the service as:
+
+**AquaCafe Move-In Welcome Service**
+
+while maintaining the same coordination infrastructure and operational process already implemented.
+
+This change should improve emotional resonance, perceived hospitality, and conversion without disrupting existing functionality.
+
+Deploy changes after validation.

@@ -425,7 +425,7 @@ export default function PartnersPage() {
               <div>
                 <h4 className="font-black text-purple-300 mb-3">White-Label Services</h4>
                 <p className="text-gray-300 text-sm">
-                  Offer DeliWer's move-in concierge under your brand as part of your service ecosystem.
+                  Offer DeliWer's AquaCafe Move-In Welcome Service under your brand as part of your service ecosystem.
                 </p>
               </div>
             </div>
