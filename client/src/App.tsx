@@ -123,6 +123,7 @@ const RelocationChecklist = lazy(() => import("@/pages/relocation-checklist"));
 const MoveInServicesDubai = lazy(() => import("@/pages/move-in-services-dubai"));
 const SettlingInDubaiGuide = lazy(() => import("@/pages/settling-in-dubai-guide"));
 const BrokerMoveInSupportDubai = lazy(() => import("@/pages/broker-move-in-support-dubai"));
+const AffiliateDashboardPage = lazy(() => import("@/pages/affiliate-dashboard"));
 
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
@@ -146,6 +147,7 @@ function Router() {
       <Switch>
         <Route path="/marketing" component={AffiliateManagement} />
         <Route path="/marketing/dashboard" component={MarketingDashboard} />
+        <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
         <Route path="/partner-program" component={PartnerProgram} />

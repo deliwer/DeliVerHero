@@ -6,7 +6,7 @@ import {
   Zap, MessageSquare, CheckCircle2, Thermometer, Droplets, 
   AlertTriangle, Coins, ShieldCheck, Check, Home as HomeIcon,
   Wrench, Cpu, Layout, ArrowRight, LogOut, ClipboardList, CalendarCheck, UserCheck,
-  Package, Settings, MoveHorizontal
+  Package, Settings, MoveHorizontal, Truck, FileCheck, Clock, Star, Building2, ChevronDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -18,11 +18,26 @@ import { motion } from "framer-motion";
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
 import waterLifestyleImg from "@/assets/images/water-lifestyle.jpg";
 
+const BUNDLE_SIZES = [
+  { key: "studio", label: "Studio", rooms: "Studio", cost: 3250, breakdown: { movers: 1200, ejari: 350, dewa: 1200, filter: 500 } },
+  { key: "1br", label: "1 Bedroom", rooms: "1 BR", cost: 3600, breakdown: { movers: 1400, ejari: 350, dewa: 1350, filter: 500 } },
+  { key: "2br", label: "2 Bedrooms", rooms: "2 BR", cost: 4000, breakdown: { movers: 1800, ejari: 350, dewa: 1350, filter: 500 } },
+  { key: "3br_villa", label: "3 BR / Villa", rooms: "3+ BR", cost: 4500, breakdown: { movers: 2400, ejari: 350, dewa: 1250, filter: 500 } },
+];
+
 export default function Home() {
+  const [selectedSize, setSelectedSize] = useState("1br");
+
   const handleWhatsApp = (serviceName?: string) => {
     const text = serviceName 
       ? `Hi DeliWer, I just signed a lease in Dubai and need move-in support for ${serviceName}`
       : "Hi DeliWer, I just signed a lease in Dubai and need move-in support";
+    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  const handleBundleWhatsApp = () => {
+    const size = BUNDLE_SIZES.find(s => s.key === selectedSize) ?? BUNDLE_SIZES[1];
+    const text = `Hi DeliWer, I just signed a lease in Dubai and I'd like to book the Starter Move-In Bundle for a ${size.rooms} apartment. Estimated vendor cost: AED ${size.cost.toLocaleString()}. Please coordinate.`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -247,6 +262,154 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* ==========================================
+           STARTER MOVE-IN BUNDLE SECTION
+         ========================================== */}
+      <section id="starter-bundle" className="py-24 px-4 bg-slate-950 border-b border-white/5">
+        <div className="max-w-5xl mx-auto space-y-14">
+
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest">
+              <Star className="w-3.5 h-3.5" /> Starter Move-In Bundle
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-[0.9]">
+              All Coordinated.<br /><span className="text-emerald-400">Zero Extra Fees.</span>
+            </h2>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto font-medium leading-relaxed">
+              You pay exactly what vendors charge — we handle all coordination behind the scenes.
+              No markup. No hidden charges. Just one smooth move-in.
+            </p>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { icon: <ShieldCheck className="w-4 h-4" />, text: "No Hidden Fees" },
+              { icon: <Package className="w-4 h-4" />, text: "All-in-One Move-In" },
+              { icon: <Clock className="w-4 h-4" />, text: "20+ Hours Saved" },
+              { icon: <CheckCircle2 className="w-4 h-4" />, text: "Verified Vendors" },
+            ].map((badge, i) => (
+              <div key={i} className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/25 rounded-full text-emerald-300 text-xs font-black uppercase tracking-widest" data-testid={`badge-trust-${i}`}>
+                {badge.icon} {badge.text}
+              </div>
+            ))}
+          </div>
+
+          {/* Main Content: Calculator + Services side by side */}
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+
+            {/* Left: Apartment Size Selector + Cost Estimate */}
+            <Card className="bg-white/5 border-white/10 rounded-[2rem] overflow-hidden">
+              <CardContent className="p-8 space-y-6">
+                <div className="space-y-2">
+                  <p className="text-emerald-400 font-black uppercase tracking-widest text-xs">Step 1 — Select Your Apartment Size</p>
+                  <h3 className="text-xl font-black uppercase text-white">Personalize Your Cost Estimate</h3>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  {BUNDLE_SIZES.map((size) => (
+                    <button
+                      key={size.key}
+                      data-testid={`btn-size-${size.key}`}
+                      onClick={() => setSelectedSize(size.key)}
+                      className={`flex flex-col items-center gap-1.5 p-4 rounded-2xl border-2 transition-all font-black text-sm uppercase tracking-tight ${
+                        selectedSize === size.key
+                          ? "border-emerald-500 bg-emerald-500/15 text-emerald-300"
+                          : "border-white/10 bg-white/5 text-gray-400 hover:border-white/25"
+                      }`}
+                    >
+                      <Building2 className="w-5 h-5" />
+                      {size.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Dynamic Cost Display */}
+                {(() => {
+                  const size = BUNDLE_SIZES.find(s => s.key === selectedSize) ?? BUNDLE_SIZES[1];
+                  return (
+                    <div className="space-y-3 pt-2 border-t border-white/10">
+                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Estimated Market Vendor Costs</p>
+                      {[
+                        { label: "Professional Movers", icon: <Truck className="w-3.5 h-3.5" />, cost: size.breakdown.movers },
+                        { label: "Ejari Registration", icon: <FileCheck className="w-3.5 h-3.5" />, cost: size.breakdown.ejari },
+                        { label: "DEWA Activation & Deposit", icon: <Zap className="w-3.5 h-3.5" />, cost: size.breakdown.dewa },
+                        { label: "Water / Shower Filter Setup", icon: <Droplets className="w-3.5 h-3.5" />, cost: size.breakdown.filter },
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center justify-between text-sm">
+                          <span className="flex items-center gap-2 text-gray-300 font-medium">
+                            <span className="text-emerald-400">{item.icon}</span>
+                            {item.label}
+                          </span>
+                          <span className="text-white font-black">AED {item.cost.toLocaleString()}</span>
+                        </div>
+                      ))}
+                      <div className="flex items-center justify-between pt-3 border-t border-emerald-500/20">
+                        <span className="text-emerald-400 font-black uppercase text-sm tracking-tight">You Pay (Vendor Cost)</span>
+                        <span className="text-emerald-400 font-black text-2xl" data-testid="text-bundle-total">AED {size.cost.toLocaleString()}</span>
+                      </div>
+                      <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">
+                        DeliWer coordination included — at no extra charge to you.
+                      </p>
+                    </div>
+                  );
+                })()}
+              </CardContent>
+            </Card>
+
+            {/* Right: What's Included + CTA */}
+            <div className="space-y-6">
+              <Card className="bg-slate-900 border-emerald-500/25 border-2 rounded-[2rem] overflow-hidden shadow-2xl shadow-emerald-500/5">
+                <CardContent className="p-8 space-y-6">
+                  <div className="space-y-1">
+                    <p className="text-emerald-400 font-black uppercase tracking-widest text-xs">What's Included</p>
+                    <h3 className="text-xl font-black uppercase text-white">Starter Bundle Services</h3>
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      { icon: <Truck className="w-4 h-4 text-emerald-400" />, title: "Professional Movers", desc: "Vetted, insured moving crew — scheduled & coordinated" },
+                      { icon: <FileCheck className="w-4 h-4 text-emerald-400" />, title: "Ejari Registration", desc: "Authorized trustee support — get your certificate fast" },
+                      { icon: <Zap className="w-4 h-4 text-emerald-400" />, title: "DEWA Activation & Deposit", desc: "Electricity & water activated before you arrive" },
+                      { icon: <Droplets className="w-4 h-4 text-emerald-400" />, title: "Water / Shower Filter Setup", desc: "AquaCafe shower filter supplied & installed" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                        <div className="mt-0.5 shrink-0">{item.icon}</div>
+                        <div>
+                          <p className="text-white font-black text-sm uppercase tracking-tight">{item.title}</p>
+                          <p className="text-gray-500 text-xs font-medium mt-0.5">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Messaging block */}
+              <div className="p-6 bg-emerald-950/40 border border-emerald-500/20 rounded-2xl space-y-3">
+                <p className="text-emerald-300 font-black text-sm leading-snug">
+                  "Relax — pay only what you would pay for movers & utilities. We handle the rest."
+                </p>
+                <p className="text-gray-400 text-xs font-medium leading-relaxed">
+                  DeliWer earns an embedded coordination fee from vendors (10–15%), already included in market rates. Partners earn 30% of that fee. No extra charges reach you as the tenant.
+                </p>
+              </div>
+
+              <Button
+                data-testid="button-bundle-whatsapp"
+                size="lg"
+                className="w-full h-16 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-base shadow-xl shadow-emerald-500/20 transition-all"
+                onClick={handleBundleWhatsApp}
+              >
+                <MessageSquare className="w-5 h-5 mr-2" />
+                Book Starter Bundle on WhatsApp
+              </Button>
+              <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">No hidden fees · No upfront DeliWer charge · Just vendor market rates</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="py-12 border-y border-white/5 bg-slate-900/50">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-4">

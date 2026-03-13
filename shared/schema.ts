@@ -1551,3 +1551,39 @@ export type ChaintrackSupplier = typeof chaintrackSuppliers.$inferSelect;
 export type StarsPurchase = typeof starsPurchases.$inferSelect;
 
 export type InsertLead = z.infer<typeof insertLeadSchema>;
+
+// Affiliates / Partner Payout System
+export const affiliates = pgTable("affiliates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  code: text("code").notNull().unique(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  commissionPercent: real("commission_percent").notNull().default(30), // % of DeliWer fee paid to affiliate
+  totalEarnings: real("total_earnings").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertAffiliateSchema = createInsertSchema(affiliates).omit({ id: true, createdAt: true, totalEarnings: true });
+export type Affiliate = typeof affiliates.$inferSelect;
+export type InsertAffiliate = z.infer<typeof insertAffiliateSchema>;
+
+export const affiliateLeads = pgTable("affiliate_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  affiliateId: varchar("affiliate_id").references(() => affiliates.id),
+  affiliateCode: text("affiliate_code"),
+  tenantName: text("tenant_name"),
+  tenantPhone: text("tenant_phone"),
+  unitSize: text("unit_size"), // 'studio', '1br', '2br', '3br_villa'
+  serviceValue: real("service_value"), // total vendor cost paid by tenant
+  deliwerFee: real("deliwer_fee"), // 10-15% embedded in vendor price
+  affiliateCommission: real("affiliate_commission"), // 30% of deliwer_fee
+  status: text("status").notNull().default("pending"), // pending | confirmed | paid
+  notes: text("notes"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertAffiliateleadSchema = createInsertSchema(affiliateLeads).omit({ id: true, createdAt: true });
+export type AffiliateLead = typeof affiliateLeads.$inferSelect;
+export type InsertAffiliateLead = z.infer<typeof insertAffiliateleadSchema>;

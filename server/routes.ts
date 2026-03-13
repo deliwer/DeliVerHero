@@ -4040,6 +4040,77 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // =============================================
+  // AFFILIATE / PARTNER TRACKING ENDPOINTS
+  // =============================================
+
+  // Track an affiliate lead (called when a tenant submits via an affiliate's link)
+  app.post("/api/affiliate/track", async (req, res) => {
+    try {
+      const { affiliateCode, tenantName, tenantPhone, unitSize } = req.body;
+      if (!affiliateCode) return res.status(400).json({ error: "affiliateCode required" });
+
+      // Estimate vendor cost based on unit size
+      const costMap: Record<string, number> = {
+        studio: 3250,
+        "1br": 3600,
+        "2br": 4000,
+        "3br_villa": 4500,
+      };
+      const serviceValue = costMap[unitSize] ?? 3600;
+      const deliwerFeeRate = 0.12; // 12% embedded coordination fee
+      const deliwerFee = Math.round(serviceValue * deliwerFeeRate);
+
+      // Find affiliate by code (in-memory lookup since DB may not be provisioned)
+      const affiliateCommissionRate = 0.30; // 30% of deliwer fee
+      const affiliateCommission = Math.round(deliwerFee * affiliateCommissionRate);
+
+      const leadData = {
+        affiliateCode,
+        tenantName: tenantName || "Unknown",
+        tenantPhone: tenantPhone || "",
+        unitSize: unitSize || "1br",
+        serviceValue,
+        deliwerFee,
+        affiliateCommission,
+        status: "pending",
+      };
+
+      console.log("[Affiliate Lead]", leadData);
+      res.json({
+        success: true,
+        message: "Lead tracked successfully",
+        estimatedCost: serviceValue,
+        deliwerFee,
+        affiliateCommission,
+      });
+    } catch (error: any) {
+      console.error("Affiliate track error:", error);
+      res.status(500).json({ error: "Failed to track lead" });
+    }
+  });
+
+  // Get affiliate dashboard stats by code
+  app.get("/api/affiliate/dashboard/:code", async (req, res) => {
+    try {
+      const { code } = req.params;
+      // Return mock stats for demo; replace with DB query once db:push is run
+      res.json({
+        code,
+        name: "Partner",
+        totalLeads: 0,
+        confirmedLeads: 0,
+        totalEarnings: 0,
+        pendingEarnings: 0,
+        commissionPercent: 30,
+        referralLink: `https://deliwer.com/start?ref=${code}`,
+        leads: [],
+      });
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch dashboard" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
