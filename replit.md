@@ -6,9 +6,27 @@ Ejari registration (via authorized RERA Trustee Centers) is the pivotal differen
 
 ## Key Services
 - **Ejari Support**: Foundational service (Pivotal).
-- **Move-In Concierge**: Flagship package (AED 399).
-- **Move-Out Support**: Utility closure & deposit protection (AED 249).
+- **Starter Move-In Bundle**: Movers + Ejari + DEWA + Water filter, AED 3,250–4,500 by unit size.
+- **Move-Out Support**: Utility closure & deposit protection.
 - **Resident Services**: Ongoing home optimization & Ejari renewals.
+
+## Business Model (Revenue)
+- Tenants always pay only vendor market rates — DeliWer's 12% coordination fee is embedded in vendor contracts.
+- Affiliates/partners earn 30% of DeliWer's embedded coordination fee (shown only in affiliate/partner dashboards, never tenant-facing).
+- Bundle cost by unit: Studio AED 3,250 · 1BR AED 3,600 · 2BR AED 4,000 · 3BR/Villa AED 4,500.
+
+## Affiliate & Partner System
+- Schema: `affiliates` + `affiliateLeads` tables in `shared/schema.ts`.
+- Backend routes: `/api/affiliate/track` (POST), `/api/affiliate/dashboard/:code` (GET) in `server/routes.ts`.
+- Frontend pages:
+  - `/affiliate-dashboard` — affiliate earnings view.
+  - `/partners` — main partner overview page (headline: "Partner With DeliWer").
+  - `/partners/join` — signup form with auto-generated referral link.
+  - `/partners/how-it-works` — 4-step process page.
+  - `/partners/earnings` — earnings table with commission tiers by partner type.
+  - `/partners/resources` — copy-paste WhatsApp/email/social templates.
+- Shared component: `client/src/components/partner-subnav.tsx` — sticky tab nav for all partner sub-pages.
+- Referral tracking: `?ref=code` → `sessionStorage.deliwer_ref` → fires POST to `/api/affiliate/track`.
 
 ## Tech Stack
 - Frontend: React (Vite), Tailwind CSS, Framer Motion, Lucide Icons, Shadcn UI components.

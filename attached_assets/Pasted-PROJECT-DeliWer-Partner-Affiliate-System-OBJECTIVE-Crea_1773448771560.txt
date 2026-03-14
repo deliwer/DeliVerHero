@@ -1,0 +1,168 @@
+PROJECT: DeliWer Partner & Affiliate System
+
+OBJECTIVE
+
+Create a complete partner referral section for deliwer.com that allows real estate agents, influencers, relocation companies, and other partners to refer tenants to DeliWer and earn commissions.
+
+The system must be lightweight and work without a complex database while keeping the existing website structure and service funnel unchanged.
+
+--------------------------------------------------
+
+PARTNER SECTION STRUCTURE
+
+Create the following pages:
+
+/partners
+/partners/join
+/partners/how-it-works
+/partners/earnings
+/partners/resources
+
+These pages should follow the existing deliwer.com design style and mobile-first layout.
+
+--------------------------------------------------
+
+/PARTNERS PAGE
+
+Headline:
+Partner With DeliWer
+
+Subheadline:
+Help tenants move in stress-free and earn from every successful referral.
+
+Explain that partners can refer tenants to DeliWer and receive a percentage of coordination revenue generated from vendor services.
+
+Sections to include:
+
+Who Can Partner
+
+• Real estate agents
+• relocation companies
+• property managers
+• influencers
+• corporate HR teams
+
+How It Works
+
+1 Refer a tenant
+2 DeliWer coordinates the move
+3 Vendors complete services
+4 You earn commission
+
+CTA button:
+
+Become a Partner
+
+Link to:
+/partners/join
+
+--------------------------------------------------
+
+/PARTNERS/JOIN PAGE
+
+Create a partner signup form.
+
+Fields:
+
+Full Name
+Company Name
+Partner Type
+Email
+Phone
+Website or Social Media link
+
+After submission show confirmation page explaining referral links.
+
+Example referral link format:
+
+https://deliwer.com/?ref=partnername
+
+Explain partners can share this link with clients.
+
+--------------------------------------------------
+
+REFERRAL TRACKING SYSTEM
+
+Implement simple tracking using URL parameters.
+
+Example:
+
+deliwer.com/?ref=agent123
+
+When a user lands on the site with a ref parameter:
+
+Store referral value in localStorage.
+
+Attach this referral value to any service form submission.
+
+Send referral data with the move request.
+
+Example fields submitted:
+
+customer name
+move request details
+referral code
+
+--------------------------------------------------
+
+/PARTNERS/HOW-IT-WORKS PAGE
+
+Explain the process clearly:
+
+Step 1
+Share your referral link
+
+Step 2
+Tenant books move-in coordination
+
+Step 3
+DeliWer manages vendors and services
+
+Step 4
+Partner earns commission from vendor coordination fees
+
+--------------------------------------------------
+
+/PARTNERS/EARNINGS PAGE
+
+Display example earnings.
+
+Example table:
+
+Tenant Move Cost | Partner Earnings
+AED 3000 | AED 75–120
+AED 4000 | AED 100–150
+AED 5000 | AED 130–180
+
+Explain commissions come from vendor coordination revenue and do not increase tenant cost.
+
+--------------------------------------------------
+
+/PARTNERS/RESOURCES PAGE
+
+Provide marketing resources for partners.
+
+Include:
+
+Example referral messages
+WhatsApp share links
+Simple graphics explaining the move-in service
+Partner explanation copy they can send tenants
+
+Example message partners can send:
+
+"Moving into a new place? DeliWer coordinates movers, Ejari, DEWA setup and more. It doesn't cost extra — they simply organize everything for you."
+
+--------------------------------------------------
+
+USER EXPERIENCE RULES
+
+Do not modify the existing homepage layout or move-in funnel.
+
+All partner pages must simply connect to the current service request flow.
+
+Ensure mobile optimization and fast loading.
+
+--------------------------------------------------
+
+END PROMPT

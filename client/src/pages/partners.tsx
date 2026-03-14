@@ -9,6 +9,7 @@ import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen } from 
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "@/components/navigation";
+import { PartnerSubNav } from "@/components/partner-subnav";
 import { Link } from "wouter";
 
 export default function PartnersPage() {
@@ -51,9 +52,10 @@ export default function PartnersPage() {
         description="Join DeliWer's partner network and earn 20% commission. Generate your unique referral link and start earning today."
       />
       <Navigation />
+      <PartnerSubNav />
 
       {/* Hero Section with Lifestyle Image */}
-      <section className="relative min-h-screen flex items-center overflow-hidden pt-32">
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -61,7 +63,6 @@ export default function PartnersPage() {
             alt="Professional networking and lifestyle"
             className="w-full h-full object-cover"
           />
-          {/* Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/50" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/40 to-slate-950" />
         </div>
@@ -81,11 +82,12 @@ export default function PartnersPage() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-tight">
-              Earn 20% on Every <br/><span className="text-emerald-400">Move-In Booking</span>
+              Partner With <span className="text-emerald-400">DeliWer</span>
             </h1>
             
             <p className="text-xl text-gray-200 max-w-3xl mx-auto font-medium leading-relaxed">
-              Share your unique referral link with your community. Every successful booking earns you AED 79.80. No limits. No hidden fees. Real-time tracking.
+              Help tenants move in stress-free and earn from every successful referral.
+              Partners receive a percentage of coordination revenue generated from vendor services.
             </p>
 
             <motion.div
@@ -96,7 +98,7 @@ export default function PartnersPage() {
             >
               <div className="flex items-center justify-center gap-3 text-emerald-300">
                 <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span className="font-bold">Real-time tracking</span>
+                <span className="font-bold">No tenant markup</span>
               </div>
               <div className="flex items-center justify-center gap-3 text-emerald-300">
                 <div className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -104,10 +106,78 @@ export default function PartnersPage() {
               </div>
               <div className="flex items-center justify-center gap-3 text-emerald-300">
                 <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span className="font-bold">Zero commission fees</span>
+                <span className="font-bold">Instant referral link</span>
               </div>
             </motion.div>
+
+            <div className="pt-4 flex flex-col md:flex-row gap-4 justify-center">
+              <Link href="/partners/join">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-12 text-lg shadow-2xl" data-testid="button-hero-become-partner">
+                  Become a Partner
+                </Button>
+              </Link>
+              <Link href="/partners/how-it-works">
+                <Button size="lg" variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black h-14 px-10 text-lg">
+                  How It Works
+                </Button>
+              </Link>
+            </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Who Can Partner */}
+      <section className="py-16 px-4 bg-slate-900 border-y border-white/5">
+        <div className="max-w-5xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <p className="text-emerald-400 font-black uppercase tracking-widest text-xs">Partner Types</p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">Who Can Partner</h2>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              "Real estate agents",
+              "Relocation companies",
+              "Property managers",
+              "Influencers",
+              "Corporate HR teams",
+              "Building concierges",
+              "Dubai bloggers",
+              "Community leaders",
+            ].map((type, i) => (
+              <div key={i} className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-300 text-xs font-black uppercase tracking-widest">
+                <Users className="w-3 h-3" /> {type}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works (compact) */}
+      <section className="py-16 px-4 bg-slate-950">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center">
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">How It Works</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { num: "1", label: "Refer a tenant" },
+              { num: "2", label: "DeliWer coordinates the move" },
+              { num: "3", label: "Vendors complete services" },
+              { num: "4", label: "You earn commission" },
+            ].map((step, i) => (
+              <div key={i} className="text-center space-y-3 p-5 rounded-2xl bg-white/5 border border-white/10">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500 text-slate-950 font-black text-lg flex items-center justify-center mx-auto">{step.num}</div>
+                <p className="text-gray-300 font-bold text-xs uppercase tracking-tight leading-snug">{step.label}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center pt-2">
+            <Link href="/partners/how-it-works">
+              <Button variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 rounded-xl font-black uppercase text-xs tracking-widest">
+                See Full Process →
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -509,10 +579,12 @@ export default function PartnersPage() {
             </p>
 
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-12 text-lg">
-                ↑ Scroll to Generate Link
-              </Button>
-              <a href="https://wa.me/971523946311">
+              <Link href="/partners/join">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-12 text-lg" data-testid="button-final-become-partner">
+                  Become a Partner
+                </Button>
+              </Link>
+              <a href="https://wa.me/971523946311?text=Hi+DeliWer%2C+I%27d+like+to+learn+about+the+partner+program">
                 <Button size="lg" variant="outline" className="border-emerald-500/50 text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 font-black h-14 px-12 text-lg">
                   Have Questions?
                 </Button>

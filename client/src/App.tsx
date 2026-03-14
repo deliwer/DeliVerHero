@@ -64,6 +64,10 @@ const CommunityToolkit = lazy(() => import("@/pages/community-toolkit"));
 const DeBacciWelcome = lazy(() => import("@/pages/partners/debacci-welcome"));
 const EGLCWelcome = lazy(() => import("@/pages/partners/eglc-welcome"));
 const MytablonWelcome = lazy(() => import("@/pages/partners/mytablon-welcome"));
+const PartnersJoin = lazy(() => import("@/pages/partners/join"));
+const PartnersHowItWorks = lazy(() => import("@/pages/partners/how-it-works"));
+const PartnersEarnings = lazy(() => import("@/pages/partners/earnings"));
+const PartnersResources = lazy(() => import("@/pages/partners/resources"));
 const TenantMoveInChecklist = lazy(() => import("@/pages/tenant-move-in-checklist"));
 const RelocationAlliance = lazy(() => import("@/pages/relocation-alliance"));
 const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
@@ -233,6 +237,10 @@ function Router() {
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
         <Route path="/rewards" component={Rewards} />
+        <Route path="/partners/join" component={PartnersJoin} />
+        <Route path="/partners/how-it-works" component={PartnersHowItWorks} />
+        <Route path="/partners/earnings" component={PartnersEarnings} />
+        <Route path="/partners/resources" component={PartnersResources} />
         <Route path="/partners" component={Partners} />
         <Route path="/welcome" component={Welcome} />
         <Route path="/ejari-dubai" component={lazy(() => import("./pages/ejari-dubai"))} />
