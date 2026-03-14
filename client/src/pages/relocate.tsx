@@ -52,8 +52,8 @@ export default function Relocate() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
       <Helmet>
-        <title>AquaCafe Move-In Welcome Service Dubai | Activate Apartment | DeliWer</title>
-        <meta name="description" content="Activate your new home in Dubai. One service to handle tenancy registration, utilities, and move-in readiness. AED 399 AquaCafe Move-In Welcome Service." />
+        <title>Move-In Coordination Dubai | Ejari, DEWA & Movers Bundled | DeliWer</title>
+        <meta name="description" content="DeliWer coordinates your full Dubai move-in — Ejari, DEWA, movers, and water filter — at normal vendor market rates. WhatsApp to start in 60 seconds." />
       </Helmet>
 
       <Navigation />
@@ -84,7 +84,7 @@ export default function Relocate() {
               <span className="text-blue-400 italic font-serif lowercase tracking-normal">Ejari, DEWA & Home Setup handled without you leaving your place.</span>
             </p>
             <p className="text-base text-gray-400 max-w-2xl mx-auto font-medium normal-case tracking-normal mt-2 italic">
-              Moving into a new home involves many steps. Through the AquaCafe Move-In Welcome Service, DeliWer helps residents coordinate essential move-in tasks so their transition into a new home is smoother.
+              Moving into a new home involves many steps. DeliWer coordinates Ejari, DEWA, movers, and home readiness in one request — so your transition is smooth without the admin headache.
             </p>
           </motion.div>
 
@@ -92,12 +92,14 @@ export default function Relocate() {
             <Button 
               onClick={scrollToActivation}
               className="bg-emerald-600 hover:bg-emerald-500 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-emerald-900/40 group"
+              data-testid="button-hero-movein"
             >
-              AquaCafe Move-In Welcome
+              Plan My Move-In
             </Button>
             <Button 
               onClick={scrollToMoveOut}
               className="bg-slate-800 hover:bg-slate-700 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl border border-white/10 group"
+              data-testid="button-hero-moveout"
             >
               Move-Out Support
             </Button>
@@ -110,88 +112,100 @@ export default function Relocate() {
       {/* Move-In Packages Section */}
       <section ref={activationRef} id="activation-section" className="relative px-4 py-32 border-y border-white/5 overflow-hidden bg-slate-900/40">
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="text-center mb-24 space-y-4">
-            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">Activate Your New Home <span className="text-emerald-500">Dubai</span></h2>
-            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">AquaCafe Move-In Welcome Service — Move-In Coordination Support</p>
-            <div className="max-w-xl mx-auto bg-emerald-500/10 border border-emerald-500/20 rounded-2xl px-6 py-4 text-left mt-4">
-              <p className="text-emerald-400 font-black uppercase text-xs tracking-widest mb-1">Move-In Coordination Indicator: AED 399</p>
-              <p className="text-gray-400 text-sm font-medium leading-relaxed">This figure represents the typical coordination scope involved in move-in planning. Residents usually only pay for the services they choose, such as movers or relocation logistics.</p>
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">Move-In <span className="text-emerald-500">Coordination</span></h2>
+            <p className="text-gray-400 max-w-2xl mx-auto font-bold text-lg leading-tight uppercase tracking-tight">Ejari · DEWA · Movers · Water Filter — handled in one WhatsApp</p>
+          </div>
+
+          {/* DIY vs DeliWer Comparison */}
+          <div className="max-w-5xl mx-auto mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* DIY column */}
+              <Card className="bg-slate-900/60 border-white/10 p-8 rounded-[2rem]">
+                <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-6">The DIY Route</p>
+                <div className="space-y-4">
+                  {[
+                    { label: "Book Ejari appointment", note: "Queue at typing center, 1–2 hrs" },
+                    { label: "Activate DEWA separately", note: "App + docs + follow-up calls" },
+                    { label: "Find & book movers", note: "Compare quotes, chase vendors" },
+                    { label: "Water filter research & install", note: "Extra errand + technician" },
+                    { label: "Coordinate everything yourself", note: "While still working full-time" },
+                  ].map(({ label, note }, i) => (
+                    <div key={i} className="flex gap-3">
+                      <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-gray-200 font-bold text-sm">{label}</p>
+                        <p className="text-gray-500 text-xs">{note}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <p className="text-gray-400 text-sm font-bold uppercase tracking-wide">Same vendor prices. Far more time &amp; stress.</p>
+                </div>
+              </Card>
+
+              {/* DeliWer column */}
+              <Card className="bg-emerald-900/20 border-emerald-500/40 p-8 rounded-[2rem] shadow-xl shadow-emerald-900/20">
+                <div className="flex items-center justify-between mb-6">
+                  <p className="text-xs font-black uppercase tracking-widest text-emerald-400">The DeliWer Way</p>
+                  <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-slate-950 rounded-full px-3 py-1">Recommended</span>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    { label: "One WhatsApp message", note: "Tell us your move-in date + apartment type" },
+                    { label: "We coordinate Ejari", note: "Handled by our team, tracked to completion" },
+                    { label: "We activate DEWA", note: "Paperwork and follow-up done for you" },
+                    { label: "We book vetted movers", note: "From our trusted partner network" },
+                    { label: "Water filter installed on move-in day", note: "Shower-ready from Day 1" },
+                  ].map(({ label, note }, i) => (
+                    <div key={i} className="flex gap-3">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-white font-bold text-sm">{label}</p>
+                        <p className="text-emerald-300/60 text-xs">{note}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 pt-6 border-t border-emerald-500/20 space-y-3">
+                  <p className="text-emerald-300 text-sm font-black uppercase tracking-wide">You pay only normal vendor market rates.</p>
+                  <p className="text-gray-400 text-xs leading-relaxed">DeliWer earns a coordination fee from vendors — not added to your bill. Your total is the same or less than booking each vendor yourself.</p>
+                </div>
+              </Card>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 max-w-5xl mx-auto">
-            {/* Essentials Package */}
-            <Card className="relative flex flex-col rounded-[2.5rem] border-white/10 bg-slate-900 overflow-hidden group hover:border-emerald-500/30 transition-all">
-              <CardHeader className="pt-12 pb-8 text-center bg-white/5">
-                <CardTitle className="text-3xl font-black uppercase tracking-tighter text-white">
-                  Essentials
-                </CardTitle>
-                <div className="mt-4 flex items-center justify-center gap-1">
-                  <DirhamSymbol className="w-6 h-6 text-emerald-500" />
-                  <span className="text-6xl font-black text-white tracking-tighter">299</span>
+          {/* Cost ranges by apartment type */}
+          <div className="max-w-5xl mx-auto mb-10">
+            <p className="text-center text-xs font-black uppercase tracking-widest text-gray-500 mb-6">Typical Vendor Cost Ranges (Movers + Ejari + DEWA + Water Filter)</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { size: "Studio", range: "AED 2,800–3,600" },
+                { size: "1 BR", range: "AED 3,200–4,200" },
+                { size: "2 BR", range: "AED 3,800–5,200" },
+                { size: "3 BR", range: "AED 4,500–6,000" },
+              ].map(({ size, range }, i) => (
+                <div key={i} className="bg-slate-900/60 border border-white/10 rounded-2xl p-5 text-center" data-testid={`card-cost-${i}`}>
+                  <p className="text-gray-400 text-xs font-black uppercase tracking-widest mb-2">{size}</p>
+                  <p className="text-emerald-400 font-black text-lg leading-tight">{range}</p>
+                  <p className="text-gray-600 text-[10px] mt-1 uppercase tracking-wide">vendor market rate</p>
                 </div>
-              </CardHeader>
-              <CardContent className="flex-1 space-y-8 p-10">
-                <div className="space-y-5">
-                  {[
-                    "Ejari registration coordination",
-                    "DEWA activation support",
-                    "Move-in checklist coordination",
-                    "WhatsApp support"
-                  ].map((feature, i) => (
-                    <div key={i} className="flex items-center gap-4 text-sm font-bold text-gray-200 uppercase tracking-tight">
-                      <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-500" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button 
-                  onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi, I want the Essentials Move-In package.")}`, '_blank')}
-                  className="w-full h-20 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-black uppercase tracking-widest rounded-2xl text-xl shadow-xl transition-all"
-                >
-                  Book Essentials
-                </Button>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
+            <p className="text-center text-gray-600 text-xs mt-4 font-medium">Prices vary by location and providers. DeliWer adds no markup — you pay the vendor directly or through DeliWer at the same rate.</p>
+          </div>
 
-            {/* Complete Move-In Welcome Package */}
-            <Card className="relative flex flex-col rounded-[2.5rem] border-emerald-500/50 bg-slate-900 scale-105 shadow-2xl shadow-emerald-500/20 z-10 overflow-hidden">
-              <div className="absolute top-0 inset-x-0 h-2 bg-emerald-500" />
-              <div className="absolute top-4 right-4 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-emerald-500 text-slate-950 shadow-lg">
-                Most Popular
-              </div>
-              <CardHeader className="pt-12 pb-8 text-center bg-emerald-500/5">
-                <CardTitle className="text-3xl font-black uppercase tracking-tighter text-white">
-                  Complete
-                </CardTitle>
-                <div className="mt-4 flex items-center justify-center gap-1">
-                  <DirhamSymbol className="w-6 h-6 text-emerald-500" />
-                  <span className="text-6xl font-black text-white tracking-tighter">399</span>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-1 space-y-8 p-10">
-                <div className="space-y-5">
-                  {[
-                    "Tenancy registration coordination (Ejari)",
-                    "Utility activation (DEWA)",
-                    "Water readiness check",
-                    "Shower filter installation",
-                    "Move coordination support"
-                  ].map((feature, i) => (
-                    <div key={i} className="flex items-center gap-4 text-sm font-bold text-gray-200 uppercase tracking-tight">
-                      <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-500" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button 
-                  onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi, I just signed my lease and want the AquaCafe Move-In Welcome Service.")}`, '_blank')}
-                  className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-2xl transition-all active:scale-95"
-                >
-                  Activate My Home
-                </Button>
-              </CardContent>
-            </Card>
+          {/* Main CTA */}
+          <div className="max-w-xl mx-auto text-center">
+            <Button
+              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I just signed my lease and want help coordinating my move-in (Ejari, DEWA, movers, and water filter).")}`, '_blank')}
+              className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-2xl transition-all active:scale-95"
+              data-testid="button-activate-home"
+            >
+              Start My Move-In Coordination
+            </Button>
+            <p className="text-gray-500 text-xs mt-3 font-medium">Reply within 10 minutes · No deposit required to start</p>
           </div>
 
           <div className="mt-32 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between bg-emerald-500/10 p-8 rounded-3xl border border-emerald-500/20">
