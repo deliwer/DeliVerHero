@@ -8,11 +8,21 @@ import {
   MessageCircle,
   CheckCircle2,
   Shield,
-  FileText
+  FileText,
+  Truck,
+  Droplets,
+  ShieldCheck,
+  Package,
+  Clock,
+  Star,
+  Building2,
+  PhoneCall,
+  Users,
+  ChevronDown
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
 
@@ -20,9 +30,9 @@ import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with
 
 // Lifestyle images for cards and sections
 const lifestyleImages = {
-  moveIn: "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=800&q=80", // Tenant focused
-  moveOut: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80", // Landlord focused
-  brokers: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80", // Broker focused
+  moveIn: "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=800&q=80",
+  moveOut: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+  brokers: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
   tenants: "https://images.unsplash.com/photo-1554995207-c18fa93d128d?w=800&q=80",
   landlords: "https://images.unsplash.com/photo-1512918766671-ed6a99be0211?w=800&q=80",
   process: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
@@ -30,18 +40,87 @@ const lifestyleImages = {
   finalCTA: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&q=80"
 };
 
+const SIZE_OPTIONS = [
+  { key: "studio", label: "Studio", range: "AED 2,800 – 3,600" },
+  { key: "1br", label: "1 Bedroom", range: "AED 3,200 – 4,200" },
+  { key: "2br", label: "2 Bedrooms", range: "AED 3,800 – 5,200" },
+  { key: "3br", label: "3 Bedrooms", range: "AED 4,500 – 6,500" },
+];
+
+const BUNDLE_SERVICES = [
+  { icon: <Truck className="w-4 h-4" />, label: "Movers coordination" },
+  { icon: <FileText className="w-4 h-4" />, label: "Ejari registration" },
+  { icon: <Zap className="w-4 h-4" />, label: "DEWA activation support" },
+  { icon: <Shield className="w-4 h-4" />, label: "Water / air readiness check" },
+  { icon: <Droplets className="w-4 h-4" />, label: "Welcome shower filter & installation" },
+  { icon: <Clock className="w-4 h-4" />, label: "Move-in vendor scheduling" },
+];
+
+const TRUST_BADGES = [
+  { icon: <ShieldCheck className="w-4 h-4" />, label: "No Hidden Fees" },
+  { icon: <Package className="w-4 h-4" />, label: "No Vendor Hassle" },
+  { icon: <PhoneCall className="w-4 h-4" />, label: "One Contact For Everything" },
+];
+
+// Vendor fee splits — never shown to tenants
+const VENDOR_SPLITS = {
+  movers: { min: 10, max: 15 },
+  ejari: { min: 10, max: 20 },
+  waterFilter: { min: 15, max: 20 },
+  dewa: { min: 10, max: 10 },
+};
+
+// Affiliate commission tiers — never shown to tenants
+const AFFILIATE_TIERS: Record<string, number> = {
+  influencer: 20,
+  agent: 25,
+  corporate: 30,
+  strategic: 35,
+};
+
 export default function LandingPage() {
+  const [selectedSize, setSelectedSize] = useState("1br");
+  const [refCode, setRefCode] = useState<string | null>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Referral tracking: read ?ref= param and persist to sessionStorage
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      setRefCode(ref);
+      sessionStorage.setItem("deliwer_ref", ref);
+      sessionStorage.setItem("deliwer_ref_ts", Date.now().toString());
+      // Fire a lightweight tracking event
+      fetch("/api/affiliate/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ affiliateCode: ref, event: "page_visit" }),
+      }).catch(() => {});
+    } else {
+      const stored = sessionStorage.getItem("deliwer_ref");
+      if (stored) setRefCode(stored);
+    }
   }, []);
+
+  const handleBundleWhatsApp = () => {
+    const size = SIZE_OPTIONS.find(s => s.key === selectedSize) ?? SIZE_OPTIONS[1];
+    const ref = refCode ? ` (ref: ${refCode})` : "";
+    const text = `Hi DeliWer, I'd like to book the Starter Move-In Bundle for a ${size.label} apartment. Estimated cost: ${size.range}.${ref} Please coordinate everything for me.`;
+    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, "_blank");
+  };
+
+  const currentSize = SIZE_OPTIONS.find(s => s.key === selectedSize) ?? SIZE_OPTIONS[1];
 
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
         title="Move-In Services Dubai | Water, Ejari & Home Setup | DeliWer"
-        description="Move into your Dubai home stress-free. DeliWer handles water setup, Ejari registration, DEWA activation, and move-in readiness. AED 399 complete concierge."
+        description="Move into your Dubai home stress-free. DeliWer handles water setup, Ejari registration, DEWA activation, and move-in readiness. Pay only normal vendor rates — no extra charges."
       />
       <Navigation />
+
       {/* HERO */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center">
         <div 
@@ -58,31 +137,200 @@ export default function LandingPage() {
             className="space-y-6"
           >
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white uppercase text-center drop-shadow-2xl">
-              Start Your Move-In Journey<br />
-              <span className="text-emerald-500">With Ejari Registration</span>
+              Move Into Your New Home<br />
+              <span className="text-emerald-500">Without the Setup Stress</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-white font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight text-center drop-shadow-lg">
-              Before you can activate utilities or move into your new home in Dubai, you must first obtain your Ejari certificate.
-              <br /><br />
-              <span className="text-emerald-400">DeliWer helps tenants complete Ejari registration easily with online and home service support.</span>
+              Pay only what movers and utilities normally cost.<br />
+              <span className="text-emerald-400">DeliWer coordinates everything for you.</span>
             </p>
+
+            {/* Price anchor */}
+            <div className="inline-block bg-black/40 border border-emerald-500/30 rounded-2xl px-8 py-4 mx-auto">
+              <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em] mb-1">Typical Dubai Move-In Cost</p>
+              <p className="text-3xl font-black text-white" data-testid="text-hero-price-anchor">AED 3,250 – 4,500</p>
+              <p className="text-emerald-400 font-black uppercase text-xs tracking-widest mt-1">Your cost with DeliWer is exactly the same.</p>
+            </div>
           </motion.div>
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 pt-4">
-            <Link href="/ejari-dubai">
+            <Link href="/start">
               <Button 
                 size="lg" 
                 className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 group border-2 border-emerald-400/20"
+                data-testid="button-hero-start-plan"
               >
-                <Zap className="w-8 h-8 mr-3 group-hover:scale-110 transition-transform" />
-                Start Ejari Home Service
+                Start Your Move-In Plan
               </Button>
             </Link>
           </div>
-          <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-sm text-center mt-6 drop-shadow-md bg-black/20 py-2 rounded-full inline-block px-8 mx-auto">The first step toward a move-in ready home.</p>
+          <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-sm text-center mt-6 drop-shadow-md bg-black/20 py-2 rounded-full inline-block px-8 mx-auto">
+            We handle everything — you pay only vendor market rates.
+          </p>
         </div>
       </section>
+
+      {/* ============================================
+          STARTER BUNDLE CARD
+         ============================================ */}
+      <section id="starter-bundle" className="py-20 px-4 bg-slate-950">
+        <div className="max-w-5xl mx-auto space-y-10">
+
+          {/* Section label */}
+          <div className="text-center space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest">
+              <Star className="w-3.5 h-3.5" /> DeliWer Move-In Starter
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-[0.92]">
+              One Bundle. <span className="text-emerald-400">Everything Handled.</span>
+            </h2>
+          </div>
+
+          {/* Main bundle card */}
+          <div className="grid md:grid-cols-2 gap-6 items-stretch">
+
+            {/* Left — What's included + trust */}
+            <div className="bg-slate-900 border-2 border-emerald-500/30 rounded-[2rem] overflow-hidden flex flex-col shadow-2xl shadow-emerald-500/5">
+              <div className="p-8 space-y-6 flex-1">
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-white">
+                    Move Into Your New Home — Without the Setup Stress
+                  </h3>
+                  <p className="text-gray-400 font-medium leading-relaxed">
+                    Pay only what movers and utilities normally cost. DeliWer coordinates everything for you.
+                  </p>
+                </div>
+
+                {/* Price anchor block */}
+                <div className="bg-emerald-950/50 border border-emerald-500/20 rounded-2xl p-5 space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div>
+                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Typical Dubai Move-In Cost</p>
+                      <p className="text-2xl font-black text-white" data-testid="text-bundle-price-anchor">AED 3,250 – 4,500</p>
+                    </div>
+                    <div className="sm:text-right">
+                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Your Cost with DeliWer</p>
+                      <p className="text-emerald-400 font-black text-sm uppercase tracking-tight">Exactly the same —<br />we handle everything.</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Services list */}
+                <div className="space-y-2.5">
+                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">What's included</p>
+                  {BUNDLE_SERVICES.map((service, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <span className="text-emerald-400 shrink-0">{service.icon}</span>
+                      <span className="text-gray-200 font-medium text-sm">{service.label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Trust badges */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {TRUST_BADGES.map((badge, i) => (
+                    <div key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-300 text-[10px] font-black uppercase tracking-wider" data-testid={`badge-bundle-${i}`}>
+                      {badge.icon} {badge.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Card CTA */}
+              <div className="px-8 pb-8">
+                <Link href="/start">
+                  <Button
+                    data-testid="button-bundle-start"
+                    size="lg"
+                    className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-xl text-sm shadow-xl shadow-emerald-500/20 transition-all"
+                  >
+                    Start Your Move-In Plan
+                  </Button>
+                </Link>
+                <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest mt-3">No hidden fees · No DeliWer markup · Just vendor market rates</p>
+              </div>
+            </div>
+
+            {/* Right — Cost estimator */}
+            <div className="bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden flex flex-col">
+              <div className="p-8 space-y-6 flex-1">
+                <div className="space-y-1">
+                  <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Optional Cost Guide</p>
+                  <h3 className="text-xl font-black uppercase text-white tracking-tight">Estimate by Apartment Size</h3>
+                  <p className="text-gray-500 text-xs font-medium">Estimates only — based on typical Dubai market rates. Not final vendor quotes.</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  {SIZE_OPTIONS.map((size) => (
+                    <button
+                      key={size.key}
+                      data-testid={`btn-size-${size.key}`}
+                      onClick={() => setSelectedSize(size.key)}
+                      className={`flex flex-col items-center gap-1.5 p-4 rounded-2xl border-2 transition-all font-black text-sm uppercase tracking-tight text-center ${
+                        selectedSize === size.key
+                          ? "border-emerald-500 bg-emerald-500/15 text-emerald-300"
+                          : "border-white/10 bg-white/5 text-gray-400 hover:border-white/25"
+                      }`}
+                    >
+                      <Building2 className="w-5 h-5" />
+                      {size.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Dynamic estimate */}
+                <div className="bg-slate-900 border border-white/10 rounded-2xl p-5 space-y-3">
+                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Estimated Market Cost Range</p>
+                  <p className="text-3xl font-black text-emerald-400" data-testid="text-estimate-range">{currentSize.range}</p>
+                  <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+                    Your cost with DeliWer: the same. We coordinate — vendors quote directly.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  {[
+                    "Movers: market rate from vetted suppliers",
+                    "Ejari: standard government + trustee fee",
+                    "DEWA: official activation + security deposit",
+                    "Water filter: AquaCafe standard supply price",
+                  ].map((note, i) => (
+                    <div key={i} className="flex items-start gap-2 text-xs text-gray-500 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0" />
+                      {note}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="px-8 pb-8">
+                <Button
+                  data-testid="button-bundle-whatsapp"
+                  size="lg"
+                  className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-xl text-sm transition-all"
+                  onClick={handleBundleWhatsApp}
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  WhatsApp for a Quote
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom strip */}
+          <div className="flex flex-wrap justify-center gap-6 text-center">
+            {[
+              "✔ Pay only normal vendor rates",
+              "✔ DeliWer coordination at no extra charge",
+              "✔ One WhatsApp contact manages everything",
+              "✔ Verified & insured vendors",
+            ].map((item, i) => (
+              <span key={i} className="text-emerald-400 font-black uppercase tracking-widest text-[10px]">{item}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ROUTER BLOCK */}
       <section className="py-20 px-6 bg-slate-950 border-y border-white/5">
         <div className="max-w-7xl mx-auto space-y-12">
@@ -106,7 +354,7 @@ export default function LandingPage() {
                 <p className="text-gray-400 font-medium text-sm">Complete your Ejari registration and activate utilities from home. Get move-in ready fast.</p>
               </div>
               <Link href="/start" className="px-8 pb-8">
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-12 shadow-lg shadow-emerald-900/40">
+                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-12 shadow-lg shadow-emerald-900/40" data-testid="button-router-tenants">
                   Get Started
                 </Button>
               </Link>
@@ -126,13 +374,13 @@ export default function LandingPage() {
                 <p className="text-gray-400 font-medium text-sm">Streamline tenant transitions, handle Ejari cancellations, and manage property handovers efficiently.</p>
               </div>
               <Link href="/exit" className="px-8 pb-8">
-                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
+                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline" data-testid="button-router-landlords">
                   Manage Property
                 </Button>
               </Link>
             </Card>
 
-            {/* Just Signed Lease Card */}
+            {/* Brokers Card */}
             <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-purple-500/50 transition-all group relative overflow-hidden">
               <div className="relative h-48 overflow-hidden rounded-t-3xl">
                 <img src={lifestyleImages.brokers} alt="Broker partnership" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -146,7 +394,7 @@ export default function LandingPage() {
                 <p className="text-gray-400 font-medium text-sm">Close deals faster by offering your clients a seamless Ejari and utilities activation service.</p>
               </div>
               <Link href="/partners" className="px-8 pb-8">
-                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline">
+                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline" data-testid="button-router-brokers">
                   Partner with Us
                 </Button>
               </Link>
@@ -154,6 +402,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       {/* JUST GOT KEYS - HIGH-INTENT TRIGGER */}
       <section className="py-20 px-6 bg-slate-900/50 border-y border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -168,36 +417,38 @@ export default function LandingPage() {
                 <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">Just Received Your Apartment Keys?</h3>
                 <p className="text-gray-300 font-bold text-lg">Most new residents discover the same problems on day one:</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                {[
-                  "No drinking water ready",
-                  "No shower filter installed",
-                  "Utilities not activated"
-                ].map((issue, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-1">
-                      <span className="text-red-400 text-xs font-black">!</span>
+                  {[
+                    "No drinking water ready",
+                    "No shower filter installed",
+                    "Utilities not activated"
+                  ].map((issue, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-1">
+                        <span className="text-red-400 text-xs font-black">!</span>
+                      </div>
+                      <span className="text-gray-200 font-medium">{issue}</span>
                     </div>
-                    <span className="text-gray-200 font-medium">{issue}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-            <div className="border-t border-emerald-500/20 pt-6">
-              <p className="text-gray-300 font-bold mb-4">Let DeliWer prepare your home so your first night is stress-free.</p>
-              <Button 
-                size="lg" 
-                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-16 text-lg shadow-2xl transition-all group"
-                onClick={() => window.open('https://wa.me/971523946311?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
-              >
-                <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-                WhatsApp: I Just Got My Keys
-              </Button>
-              <p className="text-xs text-gray-500 font-bold uppercase tracking-widest text-center mt-3">Response within 10 minutes</p>
-            </div>
+              <div className="border-t border-emerald-500/20 pt-6">
+                <p className="text-gray-300 font-bold mb-4">Let DeliWer prepare your home so your first night is stress-free.</p>
+                <Button 
+                  size="lg" 
+                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-16 text-lg shadow-2xl transition-all group"
+                  onClick={() => window.open('https://wa.me/971523946311?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
+                  data-testid="button-just-got-keys"
+                >
+                  <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+                  WhatsApp: I Just Got My Keys
+                </Button>
+                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest text-center mt-3">Response within 10 minutes</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
       {/* PROBLEM SECTION */}
       <section className="py-24 px-6 bg-slate-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-emerald-500/5 pointer-events-none" />
@@ -214,6 +465,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       {/* SOLUTION SECTION */}
       <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -236,7 +488,7 @@ export default function LandingPage() {
               ))}
             </div>
             <Link href="/ejari-dubai">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-16 text-xl shadow-2xl transition-all w-full md:w-auto mt-4">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-16 text-xl shadow-2xl transition-all w-full md:w-auto mt-4" data-testid="button-ejari-solution">
                 Start Your Ejari Registration
               </Button>
             </Link>
@@ -247,6 +499,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       {/* PROCESS VISUALIZATION */}
       <section className="py-20 px-6 bg-slate-950">
         <div className="max-w-5xl mx-auto space-y-12">
@@ -274,6 +527,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       {/* BRIEF BENEFITS */}
       <section className="py-16 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto">
@@ -295,6 +549,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       {/* FINAL CTA */}
       <section className="relative py-20 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -302,19 +557,21 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-600/80 to-emerald-600" />
         </div>
         <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Need your Ejari certificate before moving in?</h2>
-          <p className="text-lg text-emerald-950 font-bold uppercase italic">Start your Ejari Home Service with DeliWer today.</p>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move in stress-free?</h2>
+          <p className="text-lg text-emerald-950 font-bold uppercase italic">Pay only vendor rates. DeliWer handles everything else.</p>
         </div>
-        <Link href="/ejari-dubai">
+        <Link href="/start">
           <Button 
             size="lg" 
             className="relative z-10 bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all active-elevate-2 group"
+            data-testid="button-final-cta"
           >
             <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-            Start Ejari Home Service
+            Start Your Move-In Plan
           </Button>
         </Link>
       </section>
+
       {/* Partner Strip */}
       <section className="px-4 py-16 bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-6">
@@ -331,6 +588,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
       <footer className="py-20 px-4 border-t border-white/5 text-center bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-8">
           <OperationalBadges variant="dark" />

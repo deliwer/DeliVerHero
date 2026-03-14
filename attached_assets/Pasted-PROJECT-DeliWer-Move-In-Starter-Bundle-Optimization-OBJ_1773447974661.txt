@@ -1,0 +1,220 @@
+PROJECT: DeliWer Move-In Starter Bundle Optimization
+
+OBJECTIVE
+Enhance the existing deliwer.com homepage and move-in funnel to implement a psychologically optimized single “Starter Move-In Bundle” while keeping the current website structure, navigation, and click funnel unchanged.
+
+Do NOT restructure pages. Only enhance messaging, pricing display, and backend partner logic.
+
+--------------------------------------------------
+
+STARTER BUNDLE POSITIONING
+
+Create a single bundle offering called:
+
+“DeliWer Move-In Starter”
+
+This bundle must communicate that tenants pay ONLY normal vendor costs while DeliWer handles coordination.
+
+Tenant-visible pricing anchor:
+
+Typical Dubai Move-In Cost
+AED 3,250 – 4,500
+
+Message:
+
+“Your cost with DeliWer is exactly the same. We just handle everything.”
+
+Do not display any DeliWer service fee to tenants.
+
+--------------------------------------------------
+
+HOMEPAGE BUNDLE CARD
+
+Replace existing bundle graphic with a structured card containing:
+
+Headline:
+Move Into Your New Home — Without the Setup Stress
+
+Subheadline:
+Pay only what movers and utilities normally cost.
+DeliWer coordinates everything for you.
+
+Price anchor section:
+
+Typical Dubai Move-In Cost
+AED 3,250 – 4,500
+
+Your cost with DeliWer
+Exactly the same — we handle everything.
+
+Included services list:
+
+• Movers coordination
+• Ejari registration
+• DEWA activation support
+• Water / air readiness check
+• Welcome shower filter with installation
+• Move-in vendor scheduling
+
+Trust indicators:
+
+No Hidden Fees
+No Vendor Hassle
+One Contact For Everything
+
+Primary CTA:
+Start Your Move-In Plan
+
+Do not change the current funnel destination for the CTA.
+
+--------------------------------------------------
+
+FUNNEL FLOW
+
+Keep the existing click flow:
+
+Homepage
+→ Move-In bundle section
+→ Service details
+→ Request / planning form
+→ Vendor coordination
+→ Vendor payment
+
+Tenants should never see DeliWer coordination fees.
+
+--------------------------------------------------
+
+VENDOR PAYMENT MODEL
+
+Implement backend logic where vendors pay DeliWer a coordination fee.
+
+Typical vendor splits:
+
+Movers
+10–15%
+
+Ejari partner
+10–20%
+
+Water / shower filter supplier
+15–20%
+
+DEWA assistance partner
+10%
+
+These percentages are NOT visible to tenants.
+
+--------------------------------------------------
+
+AFFILIATE / PARTNER REFERRALS
+
+Allow referral tracking via URL parameters.
+
+Example:
+
+deliwer.com/?ref=partnername
+
+When a referral exists:
+
+Affiliate receives a percentage of the DeliWer coordination fee only.
+
+Suggested default splits:
+
+Influencers
+20%
+
+Real estate agents
+25%
+
+Corporate housing partners
+30%
+
+Strategic partners
+35%
+
+Example logic:
+
+Mover job = AED 1500
+Mover pays DeliWer 10% = 150
+
+If referral exists (30%)
+
+Affiliate earns
+45 AED
+
+DeliWer keeps
+105 AED
+
+Tenant cost unchanged.
+
+--------------------------------------------------
+
+TRACKING SYSTEM
+
+Implement lightweight referral tracking without database complexity.
+
+Use:
+
+URL parameters
+Local storage session tracking
+Webhook notifications
+
+Track:
+
+Referral source
+Move request submission
+Vendor job confirmation
+
+Store events for internal reporting.
+
+--------------------------------------------------
+
+OPTIONAL COST ESTIMATOR
+
+Add simple calculator:
+
+Apartment size selector
+
+Studio
+1 Bedroom
+2 Bedroom
+3 Bedroom
+
+Display estimated market cost ranges for each.
+
+Example:
+
+Studio
+AED 2800 – 3600
+
+1 Bedroom
+AED 3200 – 4200
+
+2 Bedroom
+AED 3800 – 5200
+
+This is only a guide and not final vendor quotes.
+
+--------------------------------------------------
+
+UX PRINCIPLES
+
+Do not modify the existing layout hierarchy.
+
+Enhance clarity and trust through:
+
+simple icons
+clean bundle card
+clear pricing anchors
+mobile-first responsiveness
+
+Focus messaging on:
+
+convenience
+trust
+no extra cost
+stress-free move-in.
+
+--------------------------------------------------
+
+END OF PROMPT
