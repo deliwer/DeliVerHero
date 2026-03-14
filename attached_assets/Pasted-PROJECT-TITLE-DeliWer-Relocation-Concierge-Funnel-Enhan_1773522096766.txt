@@ -1,0 +1,288 @@
+PROJECT TITLE
+DeliWer Relocation Concierge Funnel Enhancement
+
+OBJECTIVE
+Enhance deliwer.com to position DeliWer as a UAE Relocation Concierge Platform while preserving the existing structure, pages, and navigation. The goal is to capture high-intent relocation traffic, coordinate partners, and generate relocation leads without requiring database infrastructure.
+
+The update must NOT restructure the website or remove existing content. Instead it should enhance conversion, create relocation funnels, and add lead capture flows.
+
+PRIMARY VALUE PROPOSITION
+“Move, arrive, or exit Dubai without the chaos. DeliWer coordinates everything.”
+
+TARGET CUSTOMER MOMENTS
+The website must capture three relocation scenarios:
+
+1. Moving into a new home
+2. Moving within Dubai/UAE to reduce rent or upgrade
+3. Leaving Dubai or the UAE quickly
+
+NEW POSITIONING
+DeliWer becomes a Relocation Concierge Platform coordinating:
+
+• Movers
+• Ejari registration
+• DEWA activation or closure
+• Cleaning services
+• Storage providers
+• Maintenance teams
+• Water readiness and air filter setup
+
+No services are directly operated by DeliWer. The platform coordinates trusted partners and collects referral margins.
+
+HOMEPAGE ENHANCEMENTS
+
+Add a relocation decision funnel above the fold without removing existing content.
+
+Headline:
+“Moving Home in Dubai? Relax. We Handle It.”
+
+Subheadline:
+“From Ejari to movers, cleaning, utilities and water readiness — everything coordinated in one place.”
+
+Add three primary action buttons:
+
+1. Moving Into a New Home
+2. Moving to a Cheaper Rent
+3. Leaving Dubai / Exit Service
+
+Each button opens a guided relocation flow.
+
+RELOCATION FUNNEL FLOW
+
+Step 1 – Identify Scenario
+User selects:
+
+• Moving In
+• Moving Within UAE
+• Leaving UAE
+
+Step 2 – Quick Discovery Form (no database required)
+
+Fields:
+
+Name
+WhatsApp Number
+Move Date
+Current Area
+New Area
+Apartment Size
+Services Needed
+
+Step 3 – Service Selection
+
+Options:
+
+Movers
+Ejari Registration
+DEWA Activation or Closure
+Cleaning
+Storage
+Water / Air Readiness Check
+Packing Assistance
+
+Step 4 – Confirmation
+
+Message displayed:
+
+“Your relocation coordinator will confirm everything on WhatsApp shortly.”
+
+WhatsApp button opens:
+
+wa.me/971523946311
+
+Pre-filled message format:
+
+“I need relocation coordination. Scenario: [selected option]. Moving from [area] to [area] on [date].”
+
+EXIT CONCIERGE PAGE
+
+Create a new page:
+
+/exit-dubai
+
+Headline:
+
+“Leaving Dubai Quickly? We Handle the Exit.”
+
+Service description:
+
+Coordination for:
+
+• Movers
+• Storage
+• Apartment clearance
+• Ejari cancellation
+• DEWA closure
+• Key handover support
+
+Pricing concept:
+
+“Exit Concierge from 900 AED depending on complexity.”
+
+CTA:
+
+Start Exit Coordination
+
+MOVE TO CHEAPER RENT PAGE
+
+Create page:
+
+/move-cheaper-rent
+
+Headline:
+
+“Paying Too Much Rent? Move Without the Stress.”
+
+Content:
+
+Explain that falling rents allow tenants to relocate to better homes.
+
+Offer coordination:
+
+• movers
+• Ejari setup
+• utility transfer
+• cleaning
+
+CTA:
+
+Check My Move Plan
+
+LANDLORD TURNOVER PAGE
+
+Create page:
+
+/landlord-turnover
+
+Headline:
+
+“Vacant Apartment? Prepare it for the Next Tenant.”
+
+Services coordinated:
+
+• move-out clearance
+• cleaning
+• maintenance fixes
+• utility readiness
+• move-in preparation
+
+Target audience:
+
+Property investors
+Property managers
+Airbnb operators
+
+PARTNER REFERRAL SYSTEM (NO DATABASE)
+
+Each partner receives a unique referral link.
+
+Example:
+
+/move?ref=partnername
+
+JavaScript reads the referral code and attaches it to the WhatsApp message:
+
+“Referral source: partnername”
+
+Partner types:
+
+Real estate brokers
+Moving companies
+Influencers
+Building concierges
+Corporate HR relocation teams
+
+Add page:
+
+/partners
+
+Explain revenue share opportunities and include a form to request a referral code.
+
+AFFILIATE COMMISSION STRUCTURE
+
+Display simple structure:
+
+Relocation referral
+15% – 30%
+
+Partner services booked
+10% – 20%
+
+Corporate relocation
+Custom agreements
+
+SEO LANDING PAGES
+
+Create optimized pages targeting relocation searches:
+
+/move-in-dubai
+/exit-dubai-apartment
+/move-to-cheaper-rent-dubai
+/dubai-relocation-concierge
+/move-apartment-dubai
+
+Each page should include:
+
+Problem statement
+Solution explanation
+Partner coordination explanation
+WhatsApp CTA
+
+PSYCHOLOGICAL PRICING
+
+Instead of selling fixed services, position DeliWer as coordination.
+
+Messaging examples:
+
+“Movers from 800 AED depending on apartment size.”
+
+“Coordination from 399 AED.”
+
+Avoid rigid package pricing.
+
+TRACKING SYSTEM
+
+Use simple client-side tracking:
+
+Capture:
+
+referral code
+page source
+timestamp
+
+Append it to WhatsApp message automatically.
+
+No database required.
+
+TRUST SIGNALS
+
+Add trust section:
+
+“Trusted relocation partners across Dubai, Sharjah and Ajman.”
+
+Display categories:
+
+Movers
+Cleaning companies
+Maintenance teams
+Storage providers
+
+CONTENT STRATEGY
+
+Add blog style sections explaining:
+
+Why rents are dropping in some areas
+How to exit a Dubai tenancy contract correctly
+How to move apartments without losing your deposit
+Steps for Ejari cancellation
+
+These pages drive SEO traffic.
+
+FINAL GOAL
+
+Transform deliwer.com into a Relocation Concierge Platform that:
+
+captures relocation demand
+routes it to partners
+generates revenue through coordination and referral margins
+scales without inventory or operational complexity
