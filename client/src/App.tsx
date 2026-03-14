@@ -138,6 +138,18 @@ const SeoMoveToCheaperRentDubai = lazy(() => import("@/pages/seo-move-to-cheaper
 const SeoDubaiRelocationConcierge = lazy(() => import("@/pages/seo-dubai-relocation-concierge"));
 const SeoMoveApartmentDubai = lazy(() => import("@/pages/seo-move-apartment-dubai"));
 
+// Ejari Lead Engine Pages
+const EjariCancellationDubai = lazy(() => import("@/pages/ejari-cancellation-dubai"));
+const BrokerPartnerPage = lazy(() => import("@/pages/broker-partner"));
+const HowToRegisterEjari = lazy(() => import("@/pages/how-to-register-ejari"));
+const EjariDocumentsRequired = lazy(() => import("@/pages/ejari-documents-required"));
+const HowToCancelEjari = lazy(() => import("@/pages/how-to-cancel-ejari"));
+const EjariTransferDubai = lazy(() => import("@/pages/ejari-transfer-dubai"));
+const MovingApartmentDubaiGuide = lazy(() => import("@/pages/moving-apartment-dubai-guide"));
+const MovingDubaiChecklist = lazy(() => import("@/pages/moving-dubai-checklist"));
+const DubaiTenancyChecklist = lazy(() => import("@/pages/dubai-tenancy-checklist"));
+const NewApartmentDubaiGuide = lazy(() => import("@/pages/new-apartment-dubai-guide"));
+
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
 function Router() {
@@ -312,6 +324,18 @@ function Router() {
         <Route path="/move-to-cheaper-rent-dubai" component={SeoMoveToCheaperRentDubai} />
         <Route path="/dubai-relocation-concierge" component={SeoDubaiRelocationConcierge} />
         <Route path="/move-apartment-dubai" component={SeoMoveApartmentDubai} />
+
+        {/* Ejari Lead Engine */}
+        <Route path="/ejari-cancellation-dubai" component={EjariCancellationDubai} />
+        <Route path="/broker-partner" component={BrokerPartnerPage} />
+        <Route path="/how-to-register-ejari" component={HowToRegisterEjari} />
+        <Route path="/ejari-documents-required" component={EjariDocumentsRequired} />
+        <Route path="/how-to-cancel-ejari" component={HowToCancelEjari} />
+        <Route path="/ejari-transfer-dubai" component={EjariTransferDubai} />
+        <Route path="/moving-apartment-dubai-guide" component={MovingApartmentDubaiGuide} />
+        <Route path="/moving-dubai-checklist" component={MovingDubaiChecklist} />
+        <Route path="/dubai-tenancy-checklist" component={DubaiTenancyChecklist} />
+        <Route path="/new-apartment-dubai-guide" component={NewApartmentDubaiGuide} />
 
         <Route component={NotFound} />
         </Switch>

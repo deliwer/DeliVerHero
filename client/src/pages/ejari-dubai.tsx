@@ -20,6 +20,7 @@ import { AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { Navigation } from "@/components/navigation";
+import { EjariFunnel } from "@/components/ejari-funnel";
 import { useEffect, useState } from "react";
 
 const faqItems = [
@@ -76,6 +77,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export default function EjariDubai() {
   const [location] = useLocation();
+  const [funnelOpen, setFunnelOpen] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -342,11 +344,11 @@ export default function EjariDubai() {
             <Button
               size="lg"
               className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-12 rounded-2xl text-lg shadow-xl shadow-emerald-900/30 mb-4"
-              onClick={handleWhatsApp}
-              data-testid="button-activate-home"
+              onClick={() => setFunnelOpen(true)}
+              data-testid="button-ejari-start-setup"
             >
               <MessageSquare className="w-6 h-6 mr-3" />
-              Activate My Home
+              Start Ejari Setup
             </Button>
 
             {/* Secondary CTA */}
@@ -726,6 +728,8 @@ export default function EjariDubai() {
           </div>
         </div>
       </section>
+
+      <EjariFunnel open={funnelOpen} onClose={() => setFunnelOpen(false)} initialScenario="register" />
     </div>
   );
 }
