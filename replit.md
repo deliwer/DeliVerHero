@@ -43,6 +43,8 @@ Ejari registration (via authorized RERA Trustee Centers) is the pivotal differen
 - **Funnel Optimization**: Residents page updated to prioritize Move-In 399 and Ejari 199 cards.
 - **Home Router**: Landing page updated with a 4-card "Dubai Home Operating System" block.
 - **Operator Differentiator**: Emphasized DeliWer as an "Operator" vs brokers or contractors.
+- **`/start` page rewrite**: Removed AED 399 / AquaCafe pricing. Now shows new uniform pricing model (AED 3,250–4,500 vendor costs), psychological comparison block (DIY vs DeliWer), apartment-type cost estimator (Studio–3BR), "What DeliWer Coordinates" service grid, and updated WhatsApp CTAs with pre-filled messages including apartment type and referral code.
+- **`/move-in-plan` page (new)**: Move-in planning form — date, apartment type, area, service toggles (movers/Ejari/DEWA). On submit shows a personalised step-by-step plan and cost range with WhatsApp "Start Coordination" CTA.
 
 ## Maintenance Notes
 - Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.

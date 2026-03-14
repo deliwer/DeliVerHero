@@ -1,0 +1,235 @@
+PROJECT: DeliWer Move-In Platform Optimization
+
+OBJECTIVE
+
+Enhance deliwer.com to position DeliWer as the default move-in coordination platform for tenants in Dubai.
+
+All enhancements must maintain the current homepage structure and service funnel while improving conversion, partner referrals, and vendor coordination.
+
+--------------------------------------------------
+
+CORE SERVICE POSITIONING
+
+DeliWer provides a single service:
+
+Move-In Coordination
+
+This includes:
+
+• movers coordination
+• Ejari registration
+• DEWA activation guidance
+• water readiness check
+• shower filter installation
+• vendor scheduling
+
+Tenants pay only normal vendor costs.
+
+DeliWer coordination fees are embedded in vendor payouts and are not displayed to tenants.
+
+--------------------------------------------------
+
+PSYCHOLOGICAL PRICE FRAME
+
+In the Move-In bundle section show a comparison block:
+
+Typical Move-In (DIY)
+
+• Contact movers
+• Visit Ejari center
+• Activate utilities
+• Coordinate vendors
+
+Time required
+6–12 hours
+
+Typical cost
+AED 3,250 – 4,500
+
+With DeliWer
+
+• One request
+• All vendors coordinated
+
+Time required
+10 minutes
+
+Your cost
+Exactly the same
+
+CTA button:
+Start Your Move-In Plan
+
+--------------------------------------------------
+
+MOVE-IN PLANNING PAGE
+
+Create new page:
+
+/move-in-plan
+
+Purpose:
+
+Capture tenant move-in details and generate a simple coordination plan.
+
+Form fields:
+
+Move-in date  
+Apartment type  
+Area or building  
+Do you need movers?  
+Do you need Ejari?  
+Do you need DEWA activation help?
+
+After submission show:
+
+Your Move-In Plan
+
+Step 1
+Ejari registration
+
+Step 2
+DEWA activation
+
+Step 3
+Schedule movers
+
+Step 4
+Home readiness check
+
+Display estimated cost range:
+
+AED 3,250 – 4,500
+
+Message:
+
+You pay only vendor costs.
+DeliWer coordinates everything.
+
+CTA:
+
+Start Coordination
+
+Link this to the existing service request form.
+
+--------------------------------------------------
+
+PARTNER NETWORK SECTION
+
+Create partner pages:
+
+/partners
+/partners/join
+/partners/how-it-works
+/partners/earnings
+/partners/resources
+
+Explain that partners can refer tenants and earn commissions.
+
+Partner types include:
+
+• real estate agents
+• relocation companies
+• influencers
+• property managers
+• corporate HR teams
+
+--------------------------------------------------
+
+REFERRAL SYSTEM
+
+Partners receive referral links.
+
+Example:
+
+deliwer.com/?ref=partnername
+
+When a visitor lands with a ref parameter:
+
+Store referral code in browser localStorage.
+
+Attach referral code to service form submissions.
+
+Send referral code with move request data.
+
+--------------------------------------------------
+
+COMMISSION MODEL
+
+Vendors pay DeliWer coordination fees.
+
+Typical vendor fee range:
+
+Movers
+10–15%
+
+Ejari partners
+10–20%
+
+Utility assistance
+10%
+
+Water / filter installation
+15–20%
+
+Partners receive a percentage of the DeliWer coordination fee.
+
+Typical partner commissions:
+
+Influencers
+20%
+
+Real estate agents
+25%
+
+Relocation partners
+30%
+
+Strategic partners
+35%
+
+Tenant cost must remain unchanged.
+
+--------------------------------------------------
+
+OPTIONAL COST ESTIMATOR
+
+Add apartment type estimator.
+
+Studio
+AED 2800 – 3600
+
+1 Bedroom
+AED 3200 – 4200
+
+2 Bedroom
+AED 3800 – 5200
+
+3 Bedroom
+AED 4500 – 6000
+
+This provides estimated market cost only.
+
+--------------------------------------------------
+
+UX RULES
+
+Maintain existing page hierarchy.
+
+Enhance clarity with:
+
+simple icons
+clear pricing anchors
+trust indicators
+
+Key trust messages:
+
+No hidden fees
+Pay normal vendor prices
+One request handles everything
+
+Ensure mobile-first responsiveness.
+
+--------------------------------------------------
+
+END PROMPT

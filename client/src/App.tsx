@@ -53,6 +53,7 @@ const MoveInSubpage = lazy(() => import("@/pages/residence/move-in"));
 const MoveOutSubpage = lazy(() => import("@/pages/residence/move-out"));
 const MoveInLanding = lazy(() => import("@/pages/move-in-landing"));
 const StartPage = lazy(() => import("@/pages/start"));
+const MoveInPlan = lazy(() => import("@/pages/move-in-plan"));
 const EjariRegistration = lazy(() => import("@/pages/ejari-registration"));
 const DewaActivation = lazy(() => import("@/pages/dewa-activation"));
 const EjariRenewal = lazy(() => import("@/pages/ejari-renewal"));
@@ -154,6 +155,7 @@ function Router() {
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
+        <Route path="/move-in-plan" component={MoveInPlan} />
         <Route path="/partner-program" component={PartnerProgram} />
         <Route path="/community-toolkit" component={CommunityToolkit} />
         <Route path="/debacci" component={DeBacciWelcome} />
