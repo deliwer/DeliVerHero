@@ -18,13 +18,17 @@ import {
   Building2,
   PhoneCall,
   Users,
-  ChevronDown
+  ChevronDown,
+  Home,
+  ArrowLeftRight,
+  ArrowRight
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
 import { useEffect, useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
+import { RelocationFunnel, FunnelScenario } from "@/components/relocation-funnel";
 
 import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
@@ -81,6 +85,13 @@ const AFFILIATE_TIERS: Record<string, number> = {
 export default function LandingPage() {
   const [selectedSize, setSelectedSize] = useState("1br");
   const [refCode, setRefCode] = useState<string | null>(null);
+  const [funnelOpen, setFunnelOpen] = useState(false);
+  const [funnelScenario, setFunnelScenario] = useState<FunnelScenario | undefined>(undefined);
+
+  const openFunnel = (scenario?: FunnelScenario) => {
+    setFunnelScenario(scenario);
+    setFunnelOpen(true);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -120,6 +131,87 @@ export default function LandingPage() {
         description="Move into your Dubai home stress-free. DeliWer handles water setup, Ejari registration, DEWA activation, and move-in readiness. Pay only normal vendor rates — no extra charges."
       />
       <Navigation />
+
+      {/* ============================================
+          RELOCATION DECISION FUNNEL — Above the Fold
+         ============================================ */}
+      <section className="py-16 px-4 bg-slate-950 border-b border-white/5">
+        <div className="max-w-5xl mx-auto text-center space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest">
+              <Star className="w-3.5 h-3.5" /> UAE Relocation Concierge
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.9] text-white uppercase">
+              Moving Home in Dubai?<br />
+              <span className="text-emerald-400">Relax. We Handle It.</span>
+            </h2>
+            <p className="text-lg text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
+              From Ejari to movers, cleaning, utilities and water readiness — everything coordinated in one place.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto"
+          >
+            <button
+              data-testid="funnel-btn-moving-in"
+              onClick={() => openFunnel("moving-in")}
+              className="group flex flex-col items-center gap-3 p-6 bg-slate-900 border-2 border-emerald-500/30 hover:border-emerald-500 rounded-2xl transition-all text-left"
+            >
+              <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center group-hover:bg-emerald-500/20 transition-all">
+                <Home className="w-6 h-6 text-emerald-400" />
+              </div>
+              <div className="space-y-1">
+                <div className="font-black text-white uppercase text-sm tracking-tight">Moving Into a New Home</div>
+                <div className="text-[11px] text-gray-500 font-medium">Ejari, DEWA, movers & setup</div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-emerald-400 ml-auto" />
+            </button>
+
+            <button
+              data-testid="funnel-btn-moving-within"
+              onClick={() => openFunnel("moving-within")}
+              className="group flex flex-col items-center gap-3 p-6 bg-slate-900 border-2 border-blue-500/30 hover:border-blue-500 rounded-2xl transition-all text-left"
+            >
+              <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-all">
+                <ArrowLeftRight className="w-6 h-6 text-blue-400" />
+              </div>
+              <div className="space-y-1">
+                <div className="font-black text-white uppercase text-sm tracking-tight">Moving to a Cheaper Rent</div>
+                <div className="text-[11px] text-gray-500 font-medium">Full relocation coordination</div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-blue-400 ml-auto" />
+            </button>
+
+            <button
+              data-testid="funnel-btn-leaving"
+              onClick={() => openFunnel("leaving")}
+              className="group flex flex-col items-center gap-3 p-6 bg-slate-900 border-2 border-amber-500/30 hover:border-amber-500 rounded-2xl transition-all text-left"
+            >
+              <div className="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-all">
+                <LogOut className="w-6 h-6 text-amber-400" />
+              </div>
+              <div className="space-y-1">
+                <div className="font-black text-white uppercase text-sm tracking-tight">Leaving Dubai / Exit Service</div>
+                <div className="text-[11px] text-gray-500 font-medium">Exit concierge from 900 AED</div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-amber-400 ml-auto" />
+            </button>
+          </motion.div>
+
+          <p className="text-[10px] text-gray-600 font-black uppercase tracking-widest">
+            Trusted relocation partners across Dubai, Sharjah & Ajman · Coordinator confirms within 10 minutes
+          </p>
+        </div>
+      </section>
 
       {/* HERO */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center">
@@ -597,6 +689,12 @@ export default function LandingPage() {
           </p>
         </div>
       </footer>
+
+      <RelocationFunnel
+        open={funnelOpen}
+        onClose={() => setFunnelOpen(false)}
+        initialScenario={funnelScenario}
+      />
     </div>
   );
 }

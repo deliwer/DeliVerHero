@@ -129,6 +129,14 @@ const MoveInServicesDubai = lazy(() => import("@/pages/move-in-services-dubai"))
 const SettlingInDubaiGuide = lazy(() => import("@/pages/settling-in-dubai-guide"));
 const BrokerMoveInSupportDubai = lazy(() => import("@/pages/broker-move-in-support-dubai"));
 const AffiliateDashboardPage = lazy(() => import("@/pages/affiliate-dashboard"));
+const ExitDubaiPage = lazy(() => import("@/pages/exit-dubai"));
+const MoveCheaperRentPage = lazy(() => import("@/pages/move-cheaper-rent"));
+const LandlordTurnoverPage = lazy(() => import("@/pages/landlord-turnover"));
+const SeoMoveInDubai = lazy(() => import("@/pages/seo-move-in-dubai"));
+const SeoExitDubaiApartment = lazy(() => import("@/pages/seo-exit-dubai-apartment"));
+const SeoMoveToCheaperRentDubai = lazy(() => import("@/pages/seo-move-to-cheaper-rent-dubai"));
+const SeoDubaiRelocationConcierge = lazy(() => import("@/pages/seo-dubai-relocation-concierge"));
+const SeoMoveApartmentDubai = lazy(() => import("@/pages/seo-move-apartment-dubai"));
 
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
@@ -292,6 +300,18 @@ function Router() {
         <Route path="/move-in-services-dubai" component={MoveInServicesDubai} />
         <Route path="/settling-in-dubai-guide" component={SettlingInDubaiGuide} />
         <Route path="/broker-move-in-support-dubai" component={BrokerMoveInSupportDubai} />
+
+        {/* Relocation Concierge Funnel Pages */}
+        <Route path="/exit-dubai" component={ExitDubaiPage} />
+        <Route path="/move-cheaper-rent" component={MoveCheaperRentPage} />
+        <Route path="/landlord-turnover" component={LandlordTurnoverPage} />
+
+        {/* SEO Landing Pages */}
+        <Route path="/move-in-dubai" component={SeoMoveInDubai} />
+        <Route path="/exit-dubai-apartment" component={SeoExitDubaiApartment} />
+        <Route path="/move-to-cheaper-rent-dubai" component={SeoMoveToCheaperRentDubai} />
+        <Route path="/dubai-relocation-concierge" component={SeoDubaiRelocationConcierge} />
+        <Route path="/move-apartment-dubai" component={SeoMoveApartmentDubai} />
 
         <Route component={NotFound} />
         </Switch>
