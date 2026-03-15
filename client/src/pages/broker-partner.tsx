@@ -184,8 +184,30 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* Commission Table */}
+      {/* Earnings Example */}
       <section className="py-20 px-4">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <h2 className="text-3xl font-black uppercase tracking-tighter text-white text-center">Broker Earnings Example</h2>
+          <div className="bg-purple-950/30 border border-purple-500/20 rounded-3xl p-8 space-y-5">
+            {[
+              { label: "Tenants referred per month", value: "5 moves" },
+              { label: "Average referral commission", value: "150 AED" },
+              { label: "Monthly earning potential", value: "750 AED", highlight: true },
+            ].map((row, i) => (
+              <div key={i} className={`flex items-center justify-between py-3 ${i < 2 ? "border-b border-white/5" : ""}`} data-testid={`broker-earning-${i}`}>
+                <span className={`font-medium ${row.highlight ? "font-black text-white" : "text-gray-400"}`}>{row.label}</span>
+                <span className={`font-black text-lg ${row.highlight ? "text-purple-400 text-2xl" : "text-white"}`}>{row.value}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-gray-600 text-center font-medium">
+            Based on 5 completed relocation coordinations at 150 AED average commission. Actual results may vary.
+          </p>
+        </div>
+      </section>
+
+      {/* Commission Table */}
+      <section className="py-20 px-4 bg-slate-900/50 border-y border-white/5">
         <div className="max-w-3xl mx-auto space-y-8">
           <h2 className="text-3xl font-black uppercase tracking-tighter text-white text-center">Commission Structure</h2>
           <div className="space-y-3">

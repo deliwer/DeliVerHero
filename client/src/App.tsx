@@ -138,6 +138,10 @@ const SeoMoveToCheaperRentDubai = lazy(() => import("@/pages/seo-move-to-cheaper
 const SeoDubaiRelocationConcierge = lazy(() => import("@/pages/seo-dubai-relocation-concierge"));
 const SeoMoveApartmentDubai = lazy(() => import("@/pages/seo-move-apartment-dubai"));
 
+// Partner Distribution Pages
+const TypingCenterPartner = lazy(() => import("@/pages/typing-center-partner"));
+const BuildingPartner = lazy(() => import("@/pages/building-partner"));
+
 // Ejari Lead Engine Pages
 const EjariCancellationDubai = lazy(() => import("@/pages/ejari-cancellation-dubai"));
 const BrokerPartnerPage = lazy(() => import("@/pages/broker-partner"));
@@ -324,6 +328,10 @@ function Router() {
         <Route path="/move-to-cheaper-rent-dubai" component={SeoMoveToCheaperRentDubai} />
         <Route path="/dubai-relocation-concierge" component={SeoDubaiRelocationConcierge} />
         <Route path="/move-apartment-dubai" component={SeoMoveApartmentDubai} />
+
+        {/* Partner Distribution Network */}
+        <Route path="/typing-center-partner" component={TypingCenterPartner} />
+        <Route path="/building-partner" component={BuildingPartner} />
 
         {/* Ejari Lead Engine */}
         <Route path="/ejari-cancellation-dubai" component={EjariCancellationDubai} />

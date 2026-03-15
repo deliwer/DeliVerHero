@@ -5,12 +5,128 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen } from "lucide-react";
+import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "@/components/navigation";
 import { PartnerSubNav } from "@/components/partner-subnav";
 import { Link } from "wouter";
+
+const PARTNER_TYPES_LIST = [
+  "Real Estate Broker",
+  "Ejari Typing Center",
+  "Building Security / Concierge",
+  "Moving Company",
+  "Influencer / Content Creator",
+  "Corporate Relocation Team",
+  "Other",
+];
+
+function PartnerRegisterForm() {
+  const [form, setForm] = useState({ name: "", company: "", type: "", whatsapp: "", city: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = () => {
+    const msg = [
+      "Hello DeliWer, I'd like to join the partner referral network.",
+      form.name ? `Name: ${form.name}.` : "",
+      form.company ? `Company: ${form.company}.` : "",
+      form.type ? `Partner type: ${form.type}.` : "",
+      form.whatsapp ? `WhatsApp: ${form.whatsapp}.` : "",
+      form.city ? `City: ${form.city}.` : "",
+      "Source: /partners.",
+    ].filter(Boolean).join(" ");
+    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-10 text-center space-y-4">
+        <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
+        <h3 className="text-2xl font-black text-white uppercase">Application Received!</h3>
+        <p className="text-gray-300 font-medium leading-relaxed">
+          Our team will activate your referral code and contact you on WhatsApp within the day.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-slate-900 border border-slate-700 rounded-3xl p-8 space-y-5">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label className="text-[11px] font-black uppercase tracking-widest text-gray-400">Name</Label>
+          <Input
+            data-testid="input-partners-name"
+            value={form.name}
+            onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+            placeholder="Your full name"
+            className="bg-slate-800 border-slate-600 text-white placeholder:text-gray-600 rounded-xl h-11"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-[11px] font-black uppercase tracking-widest text-gray-400">Company</Label>
+          <Input
+            data-testid="input-partners-company"
+            value={form.company}
+            onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
+            placeholder="Company / agency name"
+            className="bg-slate-800 border-slate-600 text-white placeholder:text-gray-600 rounded-xl h-11"
+          />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label className="text-[11px] font-black uppercase tracking-widest text-gray-400">Partner Type</Label>
+        <Select value={form.type} onValueChange={v => setForm(f => ({ ...f, type: v }))}>
+          <SelectTrigger data-testid="select-partners-type" className="bg-slate-800 border-slate-600 text-white rounded-xl h-11">
+            <SelectValue placeholder="Select partner type..." />
+          </SelectTrigger>
+          <SelectContent className="bg-slate-800 border-slate-600 text-white">
+            {PARTNER_TYPES_LIST.map(t => (
+              <SelectItem key={t} value={t} className="hover:bg-slate-700 focus:bg-slate-700">{t}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label className="text-[11px] font-black uppercase tracking-widest text-gray-400">WhatsApp</Label>
+          <Input
+            data-testid="input-partners-whatsapp"
+            value={form.whatsapp}
+            onChange={e => setForm(f => ({ ...f, whatsapp: e.target.value }))}
+            placeholder="+971 50 000 0000"
+            className="bg-slate-800 border-slate-600 text-white placeholder:text-gray-600 rounded-xl h-11"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label className="text-[11px] font-black uppercase tracking-widest text-gray-400">City</Label>
+          <Input
+            data-testid="input-partners-city"
+            value={form.city}
+            onChange={e => setForm(f => ({ ...f, city: e.target.value }))}
+            placeholder="e.g. Dubai, Sharjah"
+            className="bg-slate-800 border-slate-600 text-white placeholder:text-gray-600 rounded-xl h-11"
+          />
+        </div>
+      </div>
+      <Button
+        data-testid="button-partners-register-submit"
+        size="lg"
+        className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-14 text-lg"
+        onClick={handleSubmit}
+        disabled={!form.name && !form.company}
+      >
+        <MessageCircle className="w-5 h-5 mr-2" />
+        Join the Partner Network
+      </Button>
+      <p className="text-[11px] text-gray-600 text-center font-medium">
+        Clicking above opens WhatsApp to send your registration details to DeliWer.
+      </p>
+    </div>
+  );
+}
 
 export default function PartnersPage() {
   const [partnerName, setPartnerName] = useState("");
@@ -556,6 +672,23 @@ export default function PartnersPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Partner Registration Form */}
+      <section id="partners-register-form" className="py-24 px-4 bg-slate-900/60 border-y border-white/5">
+        <div className="max-w-2xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Join the Network</p>
+            <h2 className="text-4xl font-black uppercase tracking-tighter text-white">
+              Earn Commission Referring Tenants Who Are Moving
+            </h2>
+            <p className="text-gray-400 font-medium leading-relaxed">
+              Fill in your details and we'll activate your referral code and contact you on WhatsApp.
+            </p>
+          </div>
+
+          <PartnerRegisterForm />
         </div>
       </section>
 
