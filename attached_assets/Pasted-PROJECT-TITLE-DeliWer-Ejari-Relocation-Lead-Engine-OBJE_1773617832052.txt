@@ -1,0 +1,266 @@
+PROJECT TITLE
+DeliWer Ejari Relocation Lead Engine
+
+OBJECTIVE
+Build a high-intent relocation lead funnel around Ejari registration and Ejari cancellation processes in Dubai. The system should attract tenants who are:
+
+• signing a new tenancy contract
+• moving apartments
+• cancelling Ejari before leaving UAE
+
+The funnel captures these users and converts them into relocation coordination leads for DeliWer.
+
+This must integrate into the existing deliwer.com structure without redesigning the entire website.
+
+KEY STRATEGY
+
+Ejari is mandatory for every tenancy contract in Dubai.
+
+Every tenant must do one of these:
+
+• Register Ejari for a new apartment
+• Transfer utilities after Ejari
+• Cancel Ejari when leaving
+
+This makes Ejari the highest-intent moment for relocation services.
+
+The website must position DeliWer as the easiest way to handle the process.
+
+PRIMARY LANDING PAGE
+
+Create a main SEO page:
+
+/ejari-dubai
+
+Headline:
+
+“Register Ejari Online Without Visiting Government Offices”
+
+Subheadline:
+
+“Get Ejari registration, DEWA activation, and move-in coordination handled in one place.”
+
+Explain the pain points:
+
+• long queues
+• confusing paperwork
+• landlord coordination
+• DEWA activation delays
+
+Solution:
+
+DeliWer coordinates the process and connects tenants with approved service partners.
+
+CTA button:
+
+Start Ejari Setup
+
+EJARI FUNNEL FLOW
+
+Step 1 – Quick Question
+
+“What do you need help with?”
+
+Options:
+
+Register Ejari
+Cancel Ejari
+Move to New Apartment
+Leaving Dubai
+
+Each option routes to the appropriate service flow.
+
+STEP 2 – TENANCY DETAILS FORM
+
+Fields:
+
+Tenant name
+WhatsApp number
+Property area
+Apartment size
+Move date
+Ejari status
+
+Optional:
+
+Upload tenancy contract
+
+STEP 3 – SERVICE ADD-ONS
+
+Checkboxes:
+
+Movers coordination
+Cleaning service
+DEWA activation
+Storage service
+Water filter installation
+Maintenance inspection
+
+STEP 4 – CONFIRMATION PAGE
+
+Display message:
+
+“Your Ejari coordination request has been received.”
+
+Show WhatsApp button:
+
+Contact DeliWer Concierge
+
+Pre-filled WhatsApp message:
+
+“Hello, I need help with Ejari and relocation. I submitted the form on deliwer.com.”
+
+WhatsApp link:
+
+wa.me/971523946311
+
+EJARI CANCELLATION PAGE
+
+Create page:
+
+/ejari-cancellation-dubai
+
+Headline:
+
+“Cancel Ejari Before Leaving Dubai”
+
+Explain common tenant problems:
+
+• landlord not responding
+• deposit recovery issues
+• DEWA closure confusion
+• apartment clearance
+
+Offer solution:
+
+DeliWer Exit Concierge coordinates the entire exit process.
+
+CTA:
+
+Start Exit Coordination
+
+MOVE-IN RELATIONSHIP FUNNEL
+
+After Ejari registration is completed, present:
+
+“Prepare Your New Home”
+
+Services offered:
+
+• movers coordination
+• water filter installation
+• air filter replacement
+• cleaning
+• maintenance inspection
+
+This upsell increases revenue per relocation.
+
+SEO ARTICLES FOR TRAFFIC
+
+Add informational pages targeting common search queries:
+
+/how-to-register-ejari
+/ejari-documents-required
+/how-to-cancel-ejari
+/ejari-transfer-dubai
+/moving-apartment-dubai-guide
+
+Each article should contain:
+
+clear step-by-step instructions
+pain points tenants face
+CTA linking to Ejari coordination service
+
+PARTNER REFERRAL ENGINE
+
+Allow real estate brokers to refer tenants easily.
+
+Example referral link:
+
+/ejari-dubai?ref=broker123
+
+JavaScript captures the referral code and adds it to WhatsApp messages.
+
+Example message sent to DeliWer:
+
+“I came from referral broker123 and need Ejari setup.”
+
+This allows manual commission tracking without a database.
+
+REAL ESTATE BROKER DISTRIBUTION
+
+Add page:
+
+/broker-partner
+
+Headline:
+
+“Earn Commission Referring Tenants for Ejari Setup”
+
+Benefits:
+
+No extra work
+DeliWer handles coordination
+Brokers earn referral commission
+
+Commission example:
+
+20% referral fee.
+
+This encourages brokers to send every tenant to DeliWer after contract signing.
+
+INFLUENCER TRAFFIC STRATEGY
+
+Create shareable landing pages for social media.
+
+Example pages:
+
+/moving-dubai-checklist
+/dubai-tenancy-checklist
+/new-apartment-dubai-guide
+
+Each includes relocation tips and a strong CTA for Ejari coordination.
+
+TRUST BUILDING
+
+Add a credibility section:
+
+“Supporting tenants across Dubai, Sharjah and Ajman.”
+
+Highlight categories of partners:
+
+Ejari typing centers
+Moving companies
+Cleaning services
+Maintenance providers
+
+This reassures users that DeliWer is a coordination platform.
+
+TRACKING SYSTEM
+
+Implement simple client-side tracking.
+
+Capture:
+
+referral code
+source page
+timestamp
+
+Append this information to the WhatsApp message sent to DeliWer.
+
+Example message:
+
+“Ejari lead – source: ejari-dubai – referral: broker123 – move date: 10 May.”
+
+No database required.
+
+FINAL GOAL
+
+Turn deliwer.com into the easiest way for tenants to handle Ejari and relocation tasks.
+
+This funnel should:
+
+capture high-intent tenancy traffic
+route requests to partners
+generate relocation coordination revenue
+scale using SEO and partner referrals without paid advertising
