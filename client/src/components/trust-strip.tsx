@@ -14,25 +14,6 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
     <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm">
       {showContact && (
         <>
-          <a 
-            href="https://wa.me/971523946311" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={`flex items-center gap-2 ${textClass} hover:text-white transition-colors`}
-            data-testid="link-whatsapp"
-          >
-            <MessageCircle className={`w-4 h-4 ${iconClass}`} />
-            <span>+971 52 394 6311</span>
-          </a>
-          <a 
-            href="mailto:info@deliwer.com"
-            className={`flex items-center gap-2 ${textClass} hover:text-white transition-colors`}
-            data-testid="link-email"
-          >
-            <Mail className={`w-4 h-4 ${iconClass}`} />
-            <span>info@deliwer.com</span>
-          </a>
-          <div className="h-4 w-px bg-white/10 hidden md:block mx-2" />
           <Link href="/residents">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Residents</span>
           </Link>
@@ -45,6 +26,23 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
           <Link href="/contact">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Contact</span>
           </Link>
+          <div className="h-4 w-px bg-white/10 hidden md:block mx-2" />
+          <a 
+            href="tel:+971523946311"
+            className={`flex items-center gap-2 ${textClass} hover:text-white transition-colors`}
+            data-testid="link-phone"
+          >
+            <Phone className={`w-4 h-4 ${iconClass}`} />
+            <span>+971 52 394 6311</span>
+          </a>
+          <a 
+            href="mailto:info@deliwer.com"
+            className={`flex items-center gap-2 ${textClass} hover:text-white transition-colors`}
+            data-testid="link-email"
+          >
+            <Mail className={`w-4 h-4 ${iconClass}`} />
+            <span>info@deliwer.com</span>
+          </a>
         </>
       )}
       <div className={`flex items-center gap-2 ${textClass}`}>

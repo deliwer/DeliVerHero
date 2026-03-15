@@ -15,12 +15,16 @@ import {
   Star,
   ChevronDown,
   ChevronUp,
+  FileText,
+  LogOut,
+  ArrowLeftRight,
+  X as XIcon,
 } from "lucide-react";
 import { AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { Navigation } from "@/components/navigation";
-import { EjariFunnel } from "@/components/ejari-funnel";
+import { EjariFunnel, EjariScenario } from "@/components/ejari-funnel";
 import { useEffect, useState } from "react";
 
 const faqItems = [
@@ -75,9 +79,24 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   );
 }
 
+const HERO_SCENARIOS = [
+  { key: "register" as EjariScenario, icon: FileText, label: "Register Ejari", desc: "New tenancy contract registration", color: "emerald" },
+  { key: "cancel" as EjariScenario, icon: LogOut, label: "Cancel Ejari", desc: "Terminating my tenancy contract", color: "amber" },
+  { key: "move" as EjariScenario, icon: ArrowLeftRight, label: "Move to New Apartment", desc: "Cancel old, register new Ejari", color: "blue" },
+  { key: "leaving" as EjariScenario, icon: XIcon, label: "Leaving Dubai", desc: "Full exit & closure coordination", color: "red" },
+];
+
+const SCENARIO_COLORS: Record<string, string> = {
+  emerald: "border-emerald-500/40 hover:border-emerald-500 text-emerald-400",
+  amber: "border-amber-500/40 hover:border-amber-500 text-amber-400",
+  blue: "border-blue-500/40 hover:border-blue-500 text-blue-400",
+  red: "border-red-500/40 hover:border-red-500 text-red-400",
+};
+
 export default function EjariDubai() {
   const [location] = useLocation();
   const [funnelOpen, setFunnelOpen] = useState(false);
+  const [selectedScenario, setSelectedScenario] = useState<EjariScenario | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -223,7 +242,7 @@ export default function EjariDubai() {
       {/* ───── HERO SECTION ───── */}
       <section className="relative py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/10 to-transparent pointer-events-none" />
-        <div className="max-w-7xl mx-auto text-center relative z-10">
+        <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -231,69 +250,100 @@ export default function EjariDubai() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold mb-6">
               <ShieldCheck className="w-4 h-4" />
-              EJARI COORDINATION SERVICE
+              EJARI COORDINATION SERVICE · DUBAI
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4 leading-none">
-              Ejari Registration in Dubai –{" "}
-              <span className="text-emerald-500">Easy Home Service Support</span>
+              Register Ejari Online{" "}
+              <span className="text-emerald-500">Without Visiting Government Offices</span>
             </h1>
 
-            <p className="text-xl text-gray-300 font-medium max-w-2xl mx-auto mb-4">
-              Register your Ejari with guided support and move-in coordination.
+            <p className="text-xl text-gray-300 font-medium max-w-2xl mx-auto mb-3">
+              Get Ejari registration, DEWA activation, and move-in coordination handled in one place.
             </p>
 
-            <p className="text-base text-gray-400 max-w-2xl mx-auto mb-10">
-              Moving into a new home? Our{" "}
-              <span className="text-emerald-400 font-semibold">
-                AquaCafe Move-In Welcome Service
-              </span>{" "}
-              can also help coordinate essential move-in tasks.
+            {/* Pain points inline */}
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
+              {["Long queues", "Confusing paperwork", "Landlord coordination", "DEWA activation delays"].map(p => (
+                <span key={p} className="flex items-center gap-1.5 bg-red-500/10 border border-red-500/20 rounded-full px-3 py-1 text-red-300 text-xs font-bold">
+                  <AlertCircle className="w-3 h-3" />{p}
+                </span>
+              ))}
+            </div>
+
+            {/* ── SCENARIO SELECTOR ── */}
+            <div className="max-w-3xl mx-auto mb-8">
+              <p className="text-[11px] text-gray-500 font-black uppercase tracking-widest mb-4">What do you need help with?</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {HERO_SCENARIOS.map(s => {
+                  const Icon = s.icon;
+                  const isSelected = selectedScenario === s.key;
+                  return (
+                    <button
+                      key={s.key}
+                      data-testid={`hero-scenario-${s.key}`}
+                      onClick={() => {
+                        setSelectedScenario(s.key);
+                        setFunnelOpen(true);
+                      }}
+                      className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 bg-slate-900 transition-all text-center cursor-pointer ${
+                        isSelected ? `border-${s.color}-500 bg-${s.color}-500/10` : `${SCENARIO_COLORS[s.color]} hover:bg-slate-800`
+                      }`}
+                    >
+                      <div className={`w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center`}>
+                        <Icon className={`w-5 h-5 ${SCENARIO_COLORS[s.color].split(" ")[2]}`} />
+                      </div>
+                      <div>
+                        <div className="font-black text-xs uppercase tracking-tight text-white leading-tight">{s.label}</div>
+                        <div className="text-[10px] text-gray-500 font-medium mt-0.5">{s.desc}</div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Primary CTA */}
+            <Button
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-12 rounded-2xl text-lg shadow-xl shadow-emerald-900/30 mb-3"
+              onClick={() => { setSelectedScenario(null); setFunnelOpen(true); }}
+              data-testid="button-ejari-start-setup"
+            >
+              <MessageSquare className="w-6 h-6 mr-3" />
+              Start Ejari Setup
+            </Button>
+
+            <p className="text-sm text-gray-500 font-medium mb-10">
+              Select a situation above or click to start · Response within 10 minutes
             </p>
 
-            {/* Problem Section */}
-            <div className="max-w-3xl mx-auto mb-8 space-y-4">
-              <div className="flex items-start gap-4 bg-red-500/10 border border-red-500/30 rounded-2xl p-6">
-                <AlertCircle className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-                <div className="text-left">
-                  <p className="text-xl font-bold text-white mb-2">
-                    Here's the problem:
+            {/* Problem → Solution */}
+            <div className="max-w-3xl mx-auto mb-10 grid md:grid-cols-2 gap-4">
+              <div className="flex items-start gap-4 bg-red-500/10 border border-red-500/30 rounded-2xl p-5 text-left">
+                <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-black text-white mb-1">The problem:</p>
+                  <p className="text-sm text-gray-300 font-medium leading-relaxed">
+                    Without Ejari you <span className="text-red-400 font-black">cannot activate DEWA</span> — and without DEWA you <span className="text-red-400 font-black">cannot move in legally</span>.
                   </p>
-                  <p className="text-lg text-gray-300 font-medium">
-                    <span className="text-red-400 font-black">
-                      Without Ejari you cannot activate DEWA.
-                    </span>
-                    <br />
-                    <span className="text-red-400 font-black">
-                      Without DEWA you cannot move in.
-                    </span>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-5 text-left">
+                <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-black text-white mb-1">Our solution:</p>
+                  <p className="text-sm text-gray-300 font-medium leading-relaxed">
+                    DeliWer <span className="text-emerald-400 font-black">handles the entire process via WhatsApp</span> — Ejari, DEWA, movers, and move-in coordination in one place.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Solution Section */}
-            <div className="max-w-3xl mx-auto mb-10 space-y-4">
-              <div className="flex items-start gap-4 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6">
-                <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-1" />
-                <div className="text-left">
-                  <p className="text-xl font-bold text-white mb-2">
-                    Our solution:
-                  </p>
-                  <p className="text-lg text-gray-300 font-medium">
-                    <span className="text-emerald-400 font-black">
-                      DeliWer AquaCafe Move-In Welcome Service handles the
-                      entire activation process.
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Video & Certificate Section */}
-            <div className="mb-12 max-w-2xl mx-auto w-full">
+            {/* Video Section */}
+            <div className="mb-6 max-w-2xl mx-auto w-full">
               <div className="rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
-                <div className="aspect-video relative group cursor-pointer">
+                <div className="aspect-video relative cursor-pointer">
                   <video
                     id="ejari-video"
                     className="w-full h-full object-cover"
@@ -305,11 +355,7 @@ export default function EjariDubai() {
                     poster="/deliwer-logo.png"
                     onClick={(e) => {
                       const video = e.currentTarget;
-                      if (video.paused) {
-                        video.play();
-                      } else {
-                        video.pause();
-                      }
+                      if (video.paused) { video.play(); } else { video.pause(); }
                     }}
                   >
                     <source
@@ -321,41 +367,11 @@ export default function EjariDubai() {
                 </div>
                 <div className="p-4 bg-slate-900/50 backdrop-blur-sm border-t border-white/5 text-left">
                   <p className="text-sm text-gray-400 font-medium">
-                    Watch: How DeliWer coordinates your Ejari registration from
-                    home.
+                    Watch: How DeliWer coordinates your Ejari registration from home.
                   </p>
                 </div>
               </div>
             </div>
-
-            {/* Primary CTA */}
-            <Button
-              size="lg"
-              className="bg-emerald-600 hover:bg-emerald-500 font-black h-16 px-12 rounded-2xl text-lg shadow-xl shadow-emerald-900/30 mb-4"
-              onClick={() => setFunnelOpen(true)}
-              data-testid="button-ejari-start-setup"
-            >
-              <MessageSquare className="w-6 h-6 mr-3" />
-              Start Ejari Setup
-            </Button>
-
-            {/* Secondary CTA */}
-            <div className="mb-6">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-emerald-500/40 hover:bg-emerald-500/10 text-emerald-400 font-black h-12 px-8 rounded-2xl text-base"
-                onClick={handleMoveInWhatsApp}
-                data-testid="button-explore-movein"
-              >
-                <Home className="w-5 h-5 mr-2" />
-                Explore Move-In Welcome
-              </Button>
-            </div>
-
-            <p className="text-sm text-gray-400 font-medium mb-4">
-              Response within 10 minutes • WhatsApp chat
-            </p>
           </motion.div>
         </div>
       </section>
@@ -717,7 +733,7 @@ export default function EjariDubai() {
         </div>
       </section>
 
-      <EjariFunnel open={funnelOpen} onClose={() => setFunnelOpen(false)} initialScenario="register" />
+      <EjariFunnel open={funnelOpen} onClose={() => { setFunnelOpen(false); setSelectedScenario(null); }} initialScenario={selectedScenario ?? "register"} />
     </div>
   );
 }
