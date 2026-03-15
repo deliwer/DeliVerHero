@@ -298,11 +298,6 @@ export default function EjariDubai() {
                   alt="Official Ejari Certificate"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent flex items-end p-6">
-                  <p className="text-white font-black uppercase text-sm tracking-widest">
-                    Official Ejari Coordination
-                  </p>
-                </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
                 <div className="aspect-video relative group cursor-pointer">
