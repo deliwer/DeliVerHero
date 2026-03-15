@@ -291,14 +291,7 @@ export default function EjariDubai() {
             </div>
 
             {/* Video & Certificate Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
-              <div className="relative h-64 md:h-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80"
-                  alt="Official Ejari Certificate"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="mb-12 max-w-2xl mx-auto w-full">
               <div className="rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
                 <div className="aspect-video relative group cursor-pointer">
                   <video
