@@ -338,32 +338,23 @@ export default function LandingPage() {
         </Link>
       </section>
 
-      {/* FOR PROPERTY MANAGERS & BROKERS */}
-      <section className="py-20 px-4 bg-slate-900 text-white border-t border-white/5">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="text-center space-y-4">
-            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Partner Programme</p>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">For Property Managers & Brokers</h2>
-            <p className="text-xl text-gray-300">Coordinate tenant exits without the admin headache.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Reduce Admin", desc: "DeliWer manages exit coordination while you focus on next clients." },
-              { title: "Happy Tenants", desc: "Professional handover process = better references for future clients." },
-              { title: "Faster Turnaround", desc: "Get apartments ready for next tenant faster with DeliWer's coordination." }
-            ].map((item, i) => (
-              <div key={i} className="p-6 bg-white/5 border border-white/10 rounded-2xl space-y-3">
-                <h3 className="font-black uppercase text-emerald-400 text-sm">{item.title}</h3>
-                <p className="text-gray-300 text-sm font-medium">{item.desc}</p>
+      {/* DISTRIBUTION PARTNERS */}
+      <section className="py-14 px-4 bg-slate-900 text-white border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="space-y-2">
+              <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Distribution Partners</p>
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter">Property Managers & Brokers</h2>
+              <div className="flex flex-wrap gap-x-6 gap-y-1 pt-1">
+                {["Reduce admin overhead", "Happier tenants", "Faster apartment turnaround"].map((item, i) => (
+                  <span key={i} className="text-gray-400 text-sm font-medium flex items-center gap-2">
+                    <span className="w-1 h-1 rounded-full bg-emerald-500 shrink-0" />{item}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link href="/partners">
-              <Button 
-                size="lg" 
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-14 text-base shadow-2xl"
-              >
+            </div>
+            <Link href="/partners" className="shrink-0">
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-12 text-sm shadow-xl">
                 Partner With DeliWer
               </Button>
             </Link>
@@ -371,19 +362,24 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Partner Strip */}
-      <section className="px-4 py-16 bg-slate-950">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <PartnerStrip />
-          <div className="text-center">
-            <Link href="/partners">
-              <Button 
-                variant="outline"
-                className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase text-xs px-6 py-3 rounded-xl"
-              >
-                Become a Partner →
-              </Button>
-            </Link>
+      {/* ECOSYSTEM PARTNERS */}
+      <section className="py-10 px-4 bg-slate-950 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-center gap-6">
+            <div className="shrink-0 space-y-1">
+              <p className="text-[10px] text-blue-400 font-black uppercase tracking-widest">Ecosystem Partners</p>
+              <p className="text-[10px] text-white/30 font-bold uppercase tracking-wider">Service delivery network</p>
+            </div>
+            <div className="flex-1 border-l border-white/10 pl-6 flex items-center gap-8">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-blue-400 text-sm">TC</div>
+                <span className="text-[11px] font-black uppercase tracking-widest text-white/50">Trustee Centers</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-blue-400 text-sm">SGM</div>
+                <span className="text-[11px] font-black uppercase tracking-widest text-white/50">Smart Global Movers</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
