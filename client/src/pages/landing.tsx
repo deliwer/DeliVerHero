@@ -87,7 +87,6 @@ const AFFILIATE_TIERS: Record<string, number> = {
 
 export default function LandingPage() {
   const [selectedSize, setSelectedSize] = useState("1br");
-  const [refCode, setRefCode] = useState<string | null>(null);
   const [funnelOpen, setFunnelOpen] = useState(false);
   const [funnelScenario, setFunnelScenario] = useState<FunnelScenario | undefined>(undefined);
 
@@ -99,23 +98,7 @@ export default function LandingPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Referral tracking: read ?ref= param and persist to sessionStorage
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get("ref");
-    if (ref) {
-      setRefCode(ref);
-      sessionStorage.setItem("deliwer_ref", ref);
-      sessionStorage.setItem("deliwer_ref_ts", Date.now().toString());
-      // Fire a lightweight tracking event
-      fetch("/api/affiliate/track", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ affiliateCode: ref, event: "page_visit" }),
-      }).catch(() => {});
-    } else {
-      const stored = sessionStorage.getItem("deliwer_ref");
-      if (stored) setRefCode(stored);
-    }
+    // Referral tracking: handled globally by App.tsx captureReferral
   }, []);
 
   const handleBundleWhatsApp = () => {
@@ -218,51 +201,6 @@ export default function LandingPage() {
 
           <p className="text-[10px] text-gray-600 font-black uppercase tracking-widest">
             Trusted relocation partners across Dubai, Sharjah & Ajman · Coordinator confirms within 10 minutes
-          </p>
-        </div>
-      </section>
-
-      {/* HERO */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center bg-slate-950">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent pointer-events-none" />
-
-        <div className="max-w-4xl w-full space-y-8 relative z-10 py-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-6"
-          >
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white uppercase text-center drop-shadow-2xl">
-              Move Into Your New Home<br />
-              <span className="text-emerald-500">Without the Setup Stress</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-white font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight text-center drop-shadow-lg">
-              Pay only what movers and utilities normally cost.<br />
-              <span className="text-emerald-400">DeliWer coordinates everything for you.</span>
-            </p>
-
-            {/* Price anchor */}
-            <div className="inline-block bg-black/40 border border-emerald-500/30 rounded-2xl px-8 py-4 mx-auto">
-              <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em] mb-1">Typical Dubai Move-In Cost</p>
-              <p className="text-3xl font-black text-white" data-testid="text-hero-price-anchor">AED 3,250 – 4,500</p>
-              <p className="text-emerald-400 font-black uppercase text-xs tracking-widest mt-1">Your cost with DeliWer is exactly the same.</p>
-            </div>
-          </motion.div>
-          
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 pt-4">
-            <Link href="/start">
-              <Button 
-                size="lg" 
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-20 text-2xl shadow-2xl transition-all w-full md:w-auto active-elevate-2 group border-2 border-emerald-400/20"
-                data-testid="button-hero-start-plan"
-              >
-                Start Your Move-In Plan
-              </Button>
-            </Link>
-          </div>
-          <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-sm text-center mt-6 drop-shadow-md bg-black/20 py-2 rounded-full inline-block px-8 mx-auto">
-            We handle everything — you pay only vendor market rates.
           </p>
         </div>
       </section>
