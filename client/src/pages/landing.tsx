@@ -205,234 +205,38 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* AUDIENCE CARDS — immediately below fold */}
-      <section className="py-16 px-6 bg-slate-950 border-b border-white/5">
-        <div className="max-w-5xl mx-auto space-y-8">
+      {/* WHAT'S INCLUDED — concise services strip */}
+      <section className="py-14 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">What Do You Need Help With?</h2>
+            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">One coordinator. Everything sorted.</p>
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">What DeliWer handles for you</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <Card className="bg-white/5 border-emerald-500/30 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
-              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Recommended</div>
-              <div className="relative h-44 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.tenants} alt="Tenant move-in" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {BUNDLE_SERVICES.map((service, i) => (
+              <div key={i} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 hover:border-emerald-500/40 transition-colors">
+                <span className="text-emerald-400 shrink-0">{service.icon}</span>
+                <span className="text-gray-300 font-medium text-sm">{service.label}</span>
               </div>
-              <div className="p-6 space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-emerald-500" />
-                </div>
-                <h3 className="text-lg font-black uppercase text-emerald-400">For Tenants</h3>
-                <p className="text-gray-400 font-medium text-sm">Ejari, DEWA, movers, cleaning — all coordinated from one WhatsApp message.</p>
-              </div>
-              <Link href="/start" className="px-6 pb-6">
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-11 shadow-lg shadow-emerald-900/40" data-testid="button-router-tenants">
-                  Get Started →
-                </Button>
-              </Link>
-            </Card>
-
-            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-blue-500/50 transition-all group relative overflow-hidden">
-              <div className="relative h-44 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.landlords} alt="Landlord support" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
-              </div>
-              <div className="p-6 space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-blue-500/10 flex items-center justify-center">
-                  <LogOut className="w-5 h-5 text-blue-500" />
-                </div>
-                <h3 className="text-lg font-black uppercase text-white">For Landlords</h3>
-                <p className="text-gray-400 font-medium text-sm">Streamline tenant transitions, Ejari cancellations, and property handovers.</p>
-              </div>
-              <Link href="/exit" className="px-6 pb-6">
-                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-11" variant="outline" data-testid="button-router-landlords">
-                  Manage Property →
-                </Button>
-              </Link>
-            </Card>
-
-            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-purple-500/50 transition-all group relative overflow-hidden">
-              <div className="relative h-44 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.brokers} alt="Broker partnership" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
-              </div>
-              <div className="p-6 space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-purple-500/10 flex items-center justify-center">
-                  <Key className="w-5 h-5 text-purple-500" />
-                </div>
-                <h3 className="text-lg font-black uppercase text-white">For Brokers</h3>
-                <p className="text-gray-400 font-medium text-sm">Earn commission referring tenants. DeliWer handles everything — you get paid.</p>
-              </div>
-              <Link href="/partners" className="px-6 pb-6">
-                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-11" variant="outline" data-testid="button-router-brokers">
-                  Partner With Us →
-                </Button>
-              </Link>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          STARTER BUNDLE CARD
-         ============================================ */}
-      <section id="starter-bundle" className="py-20 px-4 bg-slate-950">
-        <div className="max-w-5xl mx-auto space-y-10">
-
-          {/* Section label */}
-          <div className="text-center space-y-3">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest">
-              <Star className="w-3.5 h-3.5" /> DeliWer Move-In Starter
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-[0.92]">
-              One Bundle. <span className="text-emerald-400">Everything Handled.</span>
-            </h2>
-          </div>
-
-          {/* Main bundle card */}
-          <div className="grid md:grid-cols-2 gap-6 items-stretch">
-
-            {/* Left — What's included + trust */}
-            <div className="bg-slate-900 border-2 border-emerald-500/30 rounded-[2rem] overflow-hidden flex flex-col shadow-2xl shadow-emerald-500/5">
-              <div className="p-8 space-y-6 flex-1">
-                <div className="space-y-2">
-                  <h3 className="text-2xl font-black uppercase tracking-tight text-white">
-                    Move Into Your New Home — Without the Setup Stress
-                  </h3>
-                  <p className="text-gray-400 font-medium leading-relaxed">
-                    Pay only what movers and utilities normally cost. DeliWer coordinates everything for you.
-                  </p>
-                </div>
-
-                {/* Price anchor block */}
-                <div className="bg-emerald-950/50 border border-emerald-500/20 rounded-2xl p-5 space-y-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <div>
-                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Typical Dubai Move-In Cost</p>
-                      <p className="text-2xl font-black text-white" data-testid="text-bundle-price-anchor">AED 3,250 – 4,500</p>
-                    </div>
-                    <div className="sm:text-right">
-                      <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Your Cost with DeliWer</p>
-                      <p className="text-emerald-400 font-black text-sm uppercase tracking-tight">Exactly the same —<br />we handle everything.</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Services list */}
-                <div className="space-y-2.5">
-                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">What's included</p>
-                  {BUNDLE_SERVICES.map((service, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <span className="text-emerald-400 shrink-0">{service.icon}</span>
-                      <span className="text-gray-200 font-medium text-sm">{service.label}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Trust badges */}
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {TRUST_BADGES.map((badge, i) => (
-                    <div key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-300 text-[10px] font-black uppercase tracking-wider" data-testid={`badge-bundle-${i}`}>
-                      {badge.icon} {badge.label}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Card CTA */}
-              <div className="px-8 pb-8">
-                <Link href="/start">
-                  <Button
-                    data-testid="button-bundle-start"
-                    size="lg"
-                    className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-xl text-sm shadow-xl shadow-emerald-500/20 transition-all"
-                  >
-                    Start Your Move-In Plan
-                  </Button>
-                </Link>
-                <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest mt-3">No hidden fees · No DeliWer markup · Just vendor market rates</p>
-                <Link href="/concierge-pricing" className="block text-center mt-3">
-                  <span className="text-[10px] text-emerald-600 hover:text-emerald-400 font-black uppercase tracking-widest transition-colors">View concierge plan options →</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right — Cost estimator */}
-            <div className="bg-white/5 border border-white/10 rounded-[2rem] overflow-hidden flex flex-col">
-              <div className="p-8 space-y-6 flex-1">
-                <div className="space-y-1">
-                  <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Optional Cost Guide</p>
-                  <h3 className="text-xl font-black uppercase text-white tracking-tight">Estimate by Apartment Size</h3>
-                  <p className="text-gray-500 text-xs font-medium">Estimates only — based on typical Dubai market rates. Not final vendor quotes.</p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3">
-                  {SIZE_OPTIONS.map((size) => (
-                    <button
-                      key={size.key}
-                      data-testid={`btn-size-${size.key}`}
-                      onClick={() => setSelectedSize(size.key)}
-                      className={`flex flex-col items-center gap-1.5 p-4 rounded-2xl border-2 transition-all font-black text-sm uppercase tracking-tight text-center ${
-                        selectedSize === size.key
-                          ? "border-emerald-500 bg-emerald-500/15 text-emerald-300"
-                          : "border-white/10 bg-white/5 text-gray-400 hover:border-white/25"
-                      }`}
-                    >
-                      <Building2 className="w-5 h-5" />
-                      {size.label}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Dynamic estimate */}
-                <div className="bg-slate-900 border border-white/10 rounded-2xl p-5 space-y-3">
-                  <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">Estimated Market Cost Range</p>
-                  <p className="text-3xl font-black text-emerald-400" data-testid="text-estimate-range">{currentSize.range}</p>
-                  <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">
-                    Your cost with DeliWer: the same. We coordinate — vendors quote directly.
-                  </p>
-                </div>
-
-                <div className="space-y-3">
-                  {[
-                    "Movers: market rate from vetted suppliers",
-                    "Ejari: standard government + trustee fee",
-                    "DEWA: official activation + security deposit",
-                    "Water filter: AquaCafe standard supply price",
-                  ].map((note, i) => (
-                    <div key={i} className="flex items-start gap-2 text-xs text-gray-500 font-medium">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0" />
-                      {note}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="px-8 pb-8">
-                <Button
-                  data-testid="button-bundle-whatsapp"
-                  size="lg"
-                  className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-xl text-sm transition-all"
-                  onClick={handleBundleWhatsApp}
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  WhatsApp for a Quote
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom strip */}
-          <div className="flex flex-wrap justify-center gap-6 text-center">
-            {[
-              "✔ Pay only normal vendor rates",
-              "✔ DeliWer coordination at no extra charge",
-              "✔ One WhatsApp contact manages everything",
-              "✔ Verified & insured vendors",
-            ].map((item, i) => (
-              <span key={i} className="text-emerald-400 font-black uppercase tracking-widest text-[10px]">{item}</span>
             ))}
           </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <Link href="/start">
+              <Button
+                data-testid="button-bundle-start"
+                size="lg"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-xl shadow-emerald-900/30 transition-all"
+              >
+                Start My Move-In Plan
+              </Button>
+            </Link>
+            <Link href="/concierge-pricing">
+              <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-2xl px-8 h-14 text-sm transition-all">
+                View Pricing →
+              </Button>
+            </Link>
+          </div>
+          <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">No hidden fees · You pay vendors directly at market rates</p>
         </div>
       </section>
 

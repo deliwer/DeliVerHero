@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { 
-  Menu, X, Home, Plane, Flame, LogOut
+  Menu, X, Home, Plane, LogOut, Star
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ export function Navigation() {
     { path: "/ejari-dubai", label: "Ejari", id: "ejari", icon: Home },
     { path: "/relocate", label: "Move-In", id: "relocation", icon: Plane },
     { path: "/exit", label: "Move-Out", id: "move-out", icon: LogOut },
+    { path: "/concierge-pricing", label: "Concierge", id: "concierge", icon: Star },
   ];
 
   const isActive = (itemPath: string) => {
