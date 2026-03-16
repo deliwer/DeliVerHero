@@ -85,27 +85,41 @@ export function OperationalBadges({ variant = "dark" }: { variant?: "light" | "d
 
 export function PartnerStrip() {
   return (
-    <div className="text-center py-8 border-t border-b border-white/10">
-      <p className="text-sm text-emerald-100/60 mb-6 uppercase tracking-widest font-black">Trusted By Leading Partners</p>
-      <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-        <div className="flex flex-col items-center gap-2 group">
-          <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-emerald-400 group-hover:border-emerald-500/50 transition-all">RE</div>
-          <span className="text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Real Estate Agencies</span>
+    <div className="py-8 border-t border-b border-white/10 space-y-8">
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Ecosystem Partners — service delivery */}
+        <div className="space-y-4">
+          <p className="text-[10px] text-blue-400 font-black uppercase tracking-widest text-center">Ecosystem Partners</p>
+          <p className="text-[10px] text-white/30 font-bold uppercase tracking-wider text-center -mt-2">Service delivery network</p>
+          <div className="flex justify-center items-center gap-8">
+            <div className="flex flex-col items-center gap-2 group">
+              <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-blue-400 group-hover:border-blue-500/60 transition-all">TC</div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">Trustee Centers</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 group">
+              <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-blue-400 group-hover:border-blue-500/60 transition-all">SGM</div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">Smart Global Movers</span>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col items-center gap-2 group">
-          <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-blue-400 group-hover:border-blue-500/50 transition-all">TC</div>
-          <span className="text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Trustee Centers</span>
-        </div>
-        <div className="flex flex-col items-center gap-2 group">
-          <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-emerald-400 group-hover:border-emerald-500/50 transition-all">GLG</div>
-          <span className="text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Global Living Group</span>
-        </div>
-        <div className="flex flex-col items-center gap-2 group">
-          <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-bold text-blue-400 group-hover:border-blue-500/50 transition-all">SGM</div>
-          <span className="text-[10px] font-black uppercase tracking-widest text-white/60 group-hover:text-white transition-colors">Smart Global Movers</span>
+
+        {/* Distribution Partners — referral network */}
+        <div className="space-y-4 md:border-l md:border-white/10 md:pl-8">
+          <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest text-center">Distribution Partners</p>
+          <p className="text-[10px] text-white/30 font-bold uppercase tracking-wider text-center -mt-2">Referral & broker network</p>
+          <div className="flex justify-center items-center gap-8">
+            <div className="flex flex-col items-center gap-2 group">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center font-bold text-emerald-400 group-hover:border-emerald-500/60 transition-all">RE</div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">Real Estate Agencies</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 group">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center font-bold text-emerald-400 group-hover:border-emerald-500/60 transition-all">GLG</div>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">Global Living Group</span>
+            </div>
+          </div>
         </div>
       </div>
-      <p className="text-[10px] text-emerald-100/40 mt-8 uppercase tracking-widest font-bold">Coordinating smooth moves in Dubai each year</p>
+      <p className="text-[10px] text-white/20 text-center uppercase tracking-widest font-bold">Coordinating smooth moves across Dubai each year</p>
     </div>
   );
 }

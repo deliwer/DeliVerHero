@@ -1,26 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
 import { 
   Zap, 
   LogOut,
-  Key,
   MessageCircle,
   CheckCircle2,
   Shield,
   FileText,
   Truck,
   Droplets,
-  ShieldCheck,
-  Package,
   Clock,
   Star,
-  Building2,
-  PhoneCall,
-  Users,
-  ChevronDown,
   Home,
-  ArrowLeftRight,
   ArrowRight,
   Calculator,
   TrendingDown,
@@ -32,13 +23,9 @@ import { useEffect, useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
 import { RelocationFunnel, FunnelScenario } from "@/components/relocation-funnel";
-import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
 const HERO_LIFESTYLE_IMG = "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600&q=80";
 
-// Unused local import removed; heroBg replaced by HERO_LIFESTYLE_IMG above
-
-// Lifestyle images for cards and sections
 const lifestyleImages = {
   moveIn: "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=800&q=80",
   moveOut: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
@@ -50,13 +37,6 @@ const lifestyleImages = {
   finalCTA: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&q=80"
 };
 
-const SIZE_OPTIONS = [
-  { key: "studio", label: "Studio", range: "AED 2,800 – 3,600" },
-  { key: "1br", label: "1 Bedroom", range: "AED 3,200 – 4,200" },
-  { key: "2br", label: "2 Bedrooms", range: "AED 3,800 – 5,200" },
-  { key: "3br", label: "3 Bedrooms", range: "AED 4,500 – 6,500" },
-];
-
 const BUNDLE_SERVICES = [
   { icon: <Truck className="w-4 h-4" />, label: "Movers coordination" },
   { icon: <FileText className="w-4 h-4" />, label: "Ejari registration" },
@@ -66,30 +46,7 @@ const BUNDLE_SERVICES = [
   { icon: <Clock className="w-4 h-4" />, label: "Move-in vendor scheduling" },
 ];
 
-const TRUST_BADGES = [
-  { icon: <ShieldCheck className="w-4 h-4" />, label: "No Hidden Fees" },
-  { icon: <Package className="w-4 h-4" />, label: "No Vendor Hassle" },
-  { icon: <PhoneCall className="w-4 h-4" />, label: "One Contact For Everything" },
-];
-
-// Vendor fee splits — never shown to tenants
-const VENDOR_SPLITS = {
-  movers: { min: 10, max: 15 },
-  ejari: { min: 10, max: 20 },
-  waterFilter: { min: 15, max: 20 },
-  dewa: { min: 10, max: 10 },
-};
-
-// Affiliate commission tiers — never shown to tenants
-const AFFILIATE_TIERS: Record<string, number> = {
-  influencer: 20,
-  agent: 25,
-  corporate: 30,
-  strategic: 35,
-};
-
 export default function LandingPage() {
-  const [selectedSize, setSelectedSize] = useState("1br");
   const [funnelOpen, setFunnelOpen] = useState(false);
   const [funnelScenario, setFunnelScenario] = useState<FunnelScenario | undefined>(undefined);
 
@@ -100,18 +57,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Referral tracking: handled globally by App.tsx captureReferral
   }, []);
-
-  const handleBundleWhatsApp = () => {
-    const size = SIZE_OPTIONS.find(s => s.key === selectedSize) ?? SIZE_OPTIONS[1];
-    openWhatsApp(buildWhatsAppMessage({
-      intro: `Hi DeliWer, I'd like to book the Starter Move-In Bundle for a ${size.label} apartment. Estimated cost: ${size.range}. Please coordinate everything for me.`,
-    }));
-  };
-
-  const currentSize = SIZE_OPTIONS.find(s => s.key === selectedSize) ?? SIZE_OPTIONS[1];
 
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
@@ -336,23 +282,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* PROBLEM SECTION */}
-      <section className="py-24 px-6 bg-slate-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-emerald-500/5 pointer-events-none" />
-        <div className="max-w-4xl mx-auto space-y-12 relative z-10">
-          <div className="text-center space-y-6">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white italic">The Real Frustration of Ejari</h2>
-            <div className="h-1 w-24 bg-emerald-500 mx-auto" />
-            <p className="text-gray-300 font-bold text-xl max-w-3xl mx-auto leading-relaxed">
-              Ejari registration often requires understanding complex documentation, coordinating with landlords or busy agents, navigating confusing online portals, or spending hours visiting trustee centers.
-            </p>
-            <div className="bg-emerald-500/10 border-2 border-emerald-500/20 p-8 rounded-[2rem] transform hover:scale-[1.02] transition-transform">
-              <p className="text-emerald-400 font-black uppercase text-2xl tracking-tighter">Without an Ejari certificate, you cannot activate utilities or move into your new home.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SOLUTION SECTION */}
       <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -383,56 +312,6 @@ export default function LandingPage() {
           <div className="relative h-96 rounded-3xl overflow-hidden border border-white/10">
             <img src={lifestyleImages.process} alt="Ejari process assistance" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
-          </div>
-        </div>
-      </section>
-
-      {/* PROCESS VISUALIZATION */}
-      <section className="py-20 px-6 bg-slate-950">
-        <div className="max-w-5xl mx-auto space-y-12">
-          <div className="text-center space-y-2">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Your Move-In Journey</h2>
-            <p className="text-emerald-500 font-black uppercase tracking-widest text-sm">DeliWer simplifies Step 1 for a faster move-in</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              { step: "Step 1", title: "Register Ejari", icon: FileText, highlight: true },
-              { step: "Step 2", title: "Activate Utilities", icon: Zap },
-              { step: "Step 3", title: "Prepare Your Home", icon: Key },
-              { step: "Step 4", title: "Move In Comfortably", icon: CheckCircle2 }
-            ].map((item, i) => (
-              <div key={i} className={`text-center space-y-4 p-6 rounded-3xl transition-all ${item.highlight ? 'bg-emerald-500/10 border border-emerald-500/30 ring-1 ring-emerald-500/20' : 'bg-white/5 border border-white/10'}`}>
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-2 ${item.highlight ? 'bg-emerald-500 text-slate-950' : 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-400'}`}>
-                  <item.icon className="w-7 h-7" />
-                </div>
-                <div className="space-y-1">
-                  <span className={`font-black uppercase text-xs tracking-widest ${item.highlight ? 'text-emerald-500' : 'text-gray-500'}`}>{item.step}</span>
-                  <h3 className="font-black uppercase text-white text-sm">{item.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* BRIEF BENEFITS */}
-      <section className="py-16 px-6 bg-white/5">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[
-              { icon: MessageCircle, title: "Convenience from Home", desc: "No need to visit service centers" },
-              { icon: FileText, title: "Reduced Paperwork", desc: "Clear guidance on requirements" },
-              { icon: Zap, title: "Faster Completion", desc: "Skip the move-in delays" },
-              { icon: Shield, title: "Smoother Transition", desc: "Professional coordination" }
-            ].map((benefit, i) => (
-              <div key={i} className="space-y-3 bg-white/5 p-6 rounded-3xl border border-white/10 hover:border-emerald-500/50 transition-colors">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mx-auto">
-                  <benefit.icon className="w-6 h-6 text-emerald-500" />
-                </div>
-                <h3 className="font-black uppercase text-white text-sm tracking-tight">{benefit.title}</h3>
-                <p className="text-gray-400 text-xs font-bold uppercase tracking-tighter">{benefit.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
