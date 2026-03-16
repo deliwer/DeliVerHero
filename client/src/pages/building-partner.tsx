@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Copy, Check, CheckCircle2, MessageCircle, ArrowRight, Truck, Sparkles, Zap, Droplets } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
 const DAILY_QUESTIONS = [
   { q: "Can you recommend movers?", a: "Share your DeliWer referral link. Tenants get fully coordinated movers — you earn commission." },
@@ -31,7 +32,7 @@ export default function BuildingPartnerPage() {
   const generateLink = () => {
     if (!buildingName.trim()) return "";
     const ref = buildingName.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "");
-    return `${window.location.origin}/move?ref=${ref}`;
+    return `${window.location.origin}/ejari-dubai?ref=${ref}`;
   };
 
   const generatedLink = generateLink();
@@ -46,15 +47,15 @@ export default function BuildingPartnerPage() {
 
   const handleJoin = () => {
     if (!form.name && !form.building) return;
-    const msg = [
-      "Hello DeliWer, I'm a building security / concierge team interested in the partner referral program.",
-      form.name ? `Name: ${form.name}.` : "",
-      form.building ? `Building: ${form.building}.` : "",
-      form.whatsapp ? `WhatsApp: ${form.whatsapp}.` : "",
-      form.area ? `Area: ${form.area}.` : "",
-      "Source: /building-partner.",
-    ].filter(Boolean).join(" ");
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(buildWhatsAppMessage({
+      intro: "Hello DeliWer, I'm a building security / concierge team interested in the partner referral program.",
+      fields: {
+        Name: form.name || undefined,
+        Building: form.building || undefined,
+        WhatsApp: form.whatsapp || undefined,
+        Area: form.area || undefined,
+      },
+    }));
     setSubmitted(true);
   };
 

@@ -8,6 +8,7 @@ import {
   ChevronRight, Truck, Sparkles, Zap, Package, Droplets, Wrench,
   ClipboardList, LogOut, Home, ArrowLeftRight
 } from "lucide-react";
+import { getReferral, openWhatsApp } from "@/lib/referral";
 
 export type EjariScenario = "register" | "cancel" | "move" | "leaving";
 
@@ -54,13 +55,6 @@ export function EjariFunnel({ open, onClose, initialScenario }: Props) {
   const [scenario, setScenario] = useState<EjariScenario | null>(initialScenario ?? null);
   const [form, setForm] = useState({ name: "", whatsapp: "", area: "", apartmentSize: "", moveDate: "", ejariStatus: "" });
   const [addons, setAddons] = useState<string[]>([]);
-  const [refCode, setRefCode] = useState<string | null>(null);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get("ref") || sessionStorage.getItem("deliwer_ref") || localStorage.getItem("deliwer_ejari_ref");
-    if (ref) setRefCode(ref);
-  }, []);
 
   useEffect(() => {
     if (open) {
@@ -80,22 +74,22 @@ export function EjariFunnel({ open, onClose, initialScenario }: Props) {
 
   const sendWhatsApp = () => {
     const addonLabels = addons.map(k => ADDONS.find(a => a.key === k)?.label).filter(Boolean).join(", ");
-    const ref = refCode ? `\nReferral: ${refCode}` : "";
-    const source = `\nSource: ${window.location.pathname}`;
-    const ts = `\nTimestamp: ${new Date().toLocaleString("en-GB", { timeZone: "Asia/Dubai" })}`;
-    const msg = [
+    const refData = getReferral();
+    const parts: string[] = [
       `Hello, I need help with Ejari and relocation. I submitted the form on deliwer.com.`,
       `Service: ${sc?.label ?? "Ejari enquiry"}.`,
-      form.name ? `Name: ${form.name}.` : "",
-      form.whatsapp ? `WhatsApp: ${form.whatsapp}.` : "",
-      form.area ? `Area: ${form.area}.` : "",
-      form.apartmentSize ? `Apt size: ${form.apartmentSize}.` : "",
-      form.moveDate ? `Move date: ${form.moveDate}.` : "",
-      form.ejariStatus ? `Ejari status: ${form.ejariStatus}.` : "",
-      addonLabels ? `Add-ons: ${addonLabels}.` : "",
-      ref, source, ts,
-    ].filter(Boolean).join(" ");
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    ];
+    if (form.name) parts.push(`Name: ${form.name}.`);
+    if (form.whatsapp) parts.push(`WhatsApp: ${form.whatsapp}.`);
+    if (form.area) parts.push(`Area: ${form.area}.`);
+    if (form.apartmentSize) parts.push(`Apt size: ${form.apartmentSize}.`);
+    if (form.moveDate) parts.push(`Move date: ${form.moveDate}.`);
+    if (form.ejariStatus) parts.push(`Ejari status: ${form.ejariStatus}.`);
+    if (addonLabels) parts.push(`Add-ons: ${addonLabels}.`);
+    if (refData?.code) parts.push(`Referral: ${refData.code}.`);
+    parts.push(`Source: ${window.location.pathname}.`);
+    parts.push(`Time: ${new Date().toLocaleString("en-GB", { timeZone: "Asia/Dubai" })}.`);
+    openWhatsApp(parts.join("\n"));
     setStep(4);
   };
 

@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 import { Navigation } from "@/components/navigation";
 import { PartnerSubNav } from "@/components/partner-subnav";
 import { Link } from "wouter";
@@ -27,16 +28,16 @@ function PartnerRegisterForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
-    const msg = [
-      "Hello DeliWer, I'd like to join the partner referral network.",
-      form.name ? `Name: ${form.name}.` : "",
-      form.company ? `Company: ${form.company}.` : "",
-      form.type ? `Partner type: ${form.type}.` : "",
-      form.whatsapp ? `WhatsApp: ${form.whatsapp}.` : "",
-      form.city ? `City: ${form.city}.` : "",
-      "Source: /partners.",
-    ].filter(Boolean).join(" ");
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(buildWhatsAppMessage({
+      intro: "Hello DeliWer, I'd like to join the partner referral network.",
+      fields: {
+        Name: form.name || undefined,
+        Company: form.company || undefined,
+        "Partner type": form.type || undefined,
+        WhatsApp: form.whatsapp || undefined,
+        City: form.city || undefined,
+      },
+    }));
     setSubmitted(true);
   };
 

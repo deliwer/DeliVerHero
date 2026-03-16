@@ -1,0 +1,170 @@
+PROJECT TITLE
+DeliWer Partner Distribution Network
+
+OBJECTIVE
+Build a partner distribution system for deliwer.com that allows real estate brokers, typing centers, building concierges, and influencers to refer relocation customers using simple referral links.
+
+The system must work on a static site without requiring a database.
+
+Partners will share referral URLs that automatically attach their code to relocation inquiries.
+
+PARTNER TYPES
+
+The system should support these partner categories:
+
+Real estate brokers
+Ejari typing centers
+Building security desks
+Moving companies
+Influencers
+Corporate relocation teams
+
+Each partner receives a unique referral code.
+
+Example referral link:
+
+/move?ref=partnercode
+
+REFERRAL CAPTURE SYSTEM
+
+Implement JavaScript that detects the referral parameter in the URL.
+
+Example:
+
+deliwer.com/move?ref=broker123
+
+When detected, the referral code should be stored in local storage for the user session.
+
+When the user submits any relocation form or clicks WhatsApp contact, the referral code must automatically be appended to the message.
+
+Example WhatsApp message sent to DeliWer:
+
+“Relocation request
+Referral source: broker123
+Moving from: Dubai Marina
+Moving to: JVC
+Move date: 10 May”
+
+PARTNER LANDING PAGE
+
+Create page:
+
+/partners
+
+Headline:
+
+“Earn Commission Referring Tenants Who Are Moving”
+
+Explain how the system works:
+
+1. Share your referral link
+2. Tenants request relocation coordination
+3. DeliWer handles the move
+4. You receive commission
+
+Add a form:
+
+Name
+Company
+Partner type
+WhatsApp
+City
+
+After submission, show confirmation message:
+
+“Our team will activate your referral code and contact you on WhatsApp.”
+
+BROKER LANDING PAGE
+
+Create page:
+
+/broker-partner
+
+Headline:
+
+“Real Estate Brokers: Earn Commission on Every Tenant Move”
+
+Explain the opportunity:
+
+Brokers often receive relocation questions after tenancy contracts are signed.
+
+DeliWer can handle the relocation coordination while brokers earn a referral commission.
+
+Provide example earnings:
+
+5 tenants per month
+average referral commission 150 AED
+monthly earning potential 750 AED
+
+CTA:
+
+Join the Partner Network
+
+TYPING CENTER PARTNERS
+
+Create page:
+
+/typing-center-partner
+
+Headline:
+
+“Ejari Typing Centers Can Earn from Relocation Referrals”
+
+Explain that tenants often ask about movers, cleaning, and utilities during Ejari registration.
+
+Typing centers can simply share their referral link.
+
+BUILDING CONCIERGE PARTNERS
+
+Create page:
+
+/building-partner
+
+Headline:
+
+“Building Security and Concierges Can Earn from Tenant Moves”
+
+Explain that tenants frequently ask security desks for mover recommendations.
+
+DeliWer provides a simple referral system that rewards the concierge for sending tenants.
+
+TRACKING SYSTEM
+
+Implement simple client-side tracking:
+
+Capture:
+
+referral code
+source page
+timestamp
+
+Attach this information to:
+
+form submissions
+WhatsApp messages
+
+No database is required.
+
+WHATSAPP MESSAGE FORMAT
+
+When a user clicks WhatsApp contact, automatically generate message:
+
+“Relocation request via deliwer.com
+Referral: [partner code]
+Moving from: [area]
+Moving to: [area]
+Move date: [date]”
+
+SEO BENEFITS
+
+Each partner page should be optimized for search keywords such as:
+
+real estate broker relocation service Dubai
+Ejari relocation help Dubai
+apartment moving help Dubai
+
+FINAL GOAL
+
+Build a large partner distribution network that allows DeliWer to capture relocation leads from across the Dubai rental ecosystem.
+
+The system should scale to thousands of partners without requiring a complex backend or database.

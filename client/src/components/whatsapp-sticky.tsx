@@ -1,18 +1,17 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
 export function WhatsAppSticky() {
-  const phoneNumber = "+971523946311";
   const handleWhatsAppClick = () => {
     const currentClicks = parseInt(localStorage.getItem("wa_clicks") || "0");
     localStorage.setItem("wa_clicks", (currentClicks + 1).toString());
     const searchParams = new URLSearchParams(window.location.search);
     const source = searchParams.get("source") || "";
-    const message = source === "broker" 
+    const intro = source === "broker"
       ? "Hi DeliWer, I'm a broker and need move-in/move-out support for my clients."
-      : "Hi DeliWer, I need help with my apartment activation.";
-    const whatsappUrl = `https://wa.me/${phoneNumber.replace("+", "")}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+      : "Hi DeliWer, I need help with my apartment.";
+    openWhatsApp(buildWhatsAppMessage({ intro }));
   };
 
   return (

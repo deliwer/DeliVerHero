@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Copy, Check, CheckCircle2, MessageCircle, ArrowRight, FileText, Zap, Truck, Sparkles } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
 const TENANT_QUESTIONS = [
   { q: "Do you know any movers?", a: "Share your DeliWer referral link — tenants get vetted movers coordinated for them." },
@@ -46,15 +47,15 @@ export default function TypingCenterPartnerPage() {
 
   const handleJoin = () => {
     if (!form.name && !form.company) return;
-    const msg = [
-      "Hello DeliWer, I'm an Ejari typing center interested in the partner referral program.",
-      form.name ? `Name: ${form.name}.` : "",
-      form.company ? `Center: ${form.company}.` : "",
-      form.whatsapp ? `WhatsApp: ${form.whatsapp}.` : "",
-      form.area ? `Area: ${form.area}.` : "",
-      `Source: /typing-center-partner.`,
-    ].filter(Boolean).join(" ");
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(buildWhatsAppMessage({
+      intro: "Hello DeliWer, I'm an Ejari typing center interested in the partner referral program.",
+      fields: {
+        Name: form.name || undefined,
+        Center: form.company || undefined,
+        WhatsApp: form.whatsapp || undefined,
+        Area: form.area || undefined,
+      },
+    }));
     setSubmitted(true);
   };
 

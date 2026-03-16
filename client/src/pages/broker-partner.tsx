@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle2, MessageCircle, Copy, Check, Users, TrendingUp, DollarSign, Building2, Star, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
 const PARTNER_TYPES = [
   { icon: Building2, title: "Real Estate Brokers", desc: "Refer every tenant after contract signing. Zero extra work for you." },
@@ -43,9 +44,11 @@ export default function BrokerPartnerPage() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleWhatsApp = (msg?: string) => {
-    const text = msg ?? `Hi DeliWer, I'm a broker/partner interested in the referral program. My name is ${partnerName || "a broker"}. Please send me more details.`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, "_blank");
+  const handleWhatsApp = () => {
+    openWhatsApp(buildWhatsAppMessage({
+      intro: "Hi DeliWer, I'm a real estate broker interested in the partner referral program.",
+      fields: { Name: partnerName || undefined },
+    }));
   };
 
   return (

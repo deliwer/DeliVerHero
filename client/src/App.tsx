@@ -167,6 +167,9 @@ function Router() {
       return;
     }
     
+    // Global referral capture — store ?ref= param from any page visit
+    import("@/lib/referral").then(({ captureReferral }) => captureReferral());
+
     // Immediately scroll to top when route changes
     window.scrollTo(0, 0);
   }, [location, setLocation]);
@@ -332,6 +335,17 @@ function Router() {
         {/* Partner Distribution Network */}
         <Route path="/typing-center-partner" component={TypingCenterPartner} />
         <Route path="/building-partner" component={BuildingPartner} />
+
+        {/* /move catch-all — partner referral links use /move?ref=code */}
+        <Route path="/move">
+          {() => {
+            const params = new URLSearchParams(window.location.search);
+            const ref = params.get("ref");
+            const dest = ref ? `/ejari-dubai?ref=${ref}` : "/ejari-dubai";
+            window.location.replace(dest);
+            return null;
+          }}
+        </Route>
 
         {/* Ejari Lead Engine */}
         <Route path="/ejari-cancellation-dubai" component={EjariCancellationDubai} />
