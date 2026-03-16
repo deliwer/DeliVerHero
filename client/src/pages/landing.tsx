@@ -40,8 +40,8 @@ const lifestyleImages = {
   moveIn: "https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?w=800&q=80",
   moveOut: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
   brokers: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
-  tenants: "https://images.unsplash.com/photo-1554995207-c18fa93d128d?w=800&q=80",
-  landlords: "https://images.unsplash.com/photo-1512918766671-ed6a99be0211?w=800&q=80",
+  tenants: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+  landlords: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
   process: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
   justGotKeys: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80",
   finalCTA: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&q=80"
@@ -138,8 +138,14 @@ export default function LandingPage() {
       {/* ============================================
           RELOCATION DECISION FUNNEL — Above the Fold
          ============================================ */}
-      <section className="py-16 px-4 bg-slate-950 border-b border-white/5">
-        <div className="max-w-5xl mx-auto text-center space-y-8">
+      <section className="relative py-16 px-4 border-b border-white/5 overflow-hidden">
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
+        >
+          <div className="absolute inset-0 bg-black/78 backdrop-blur-[1px]" />
+        </div>
+        <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -217,13 +223,8 @@ export default function LandingPage() {
       </section>
 
       {/* HERO */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center">
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
-        >
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
-        </div>
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center bg-slate-950">
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent pointer-events-none" />
 
         <div className="max-w-4xl w-full space-y-8 relative z-10 py-12">
           <motion.div

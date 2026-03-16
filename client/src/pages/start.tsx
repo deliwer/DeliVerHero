@@ -12,6 +12,8 @@ import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { buildWhatsAppMessage, openWhatsApp, getReferral } from "@/lib/referral";
 
+const HERO_LIFESTYLE_IMG = "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600&q=80";
+
 const BUNDLE_SIZES = [
   { label: "Studio", range: "AED 2,800 – 3,600", icon: "🏢" },
   { label: "1 Bedroom", range: "AED 3,200 – 4,200", icon: "🛏" },
@@ -54,7 +56,12 @@ export default function StartPage() {
 
       {/* ─── Hero ─── */}
       <section className="relative pt-36 pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/8 via-transparent to-transparent pointer-events-none" />
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
+        >
+          <div className="absolute inset-0 bg-black/72 backdrop-blur-[2px]" />
+        </div>
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-7">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
             <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest mb-5">
