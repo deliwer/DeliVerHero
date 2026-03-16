@@ -124,12 +124,12 @@ export default function LandingPage() {
       {/* ============================================
           RELOCATION DECISION FUNNEL — Above the Fold
          ============================================ */}
-      <section className="relative py-16 px-4 border-b border-white/5 overflow-hidden">
+      <section className="relative pt-32 pb-16 px-4 border-b border-white/5 overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
         >
-          <div className="absolute inset-0 bg-black/78 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black/90" />
         </div>
         <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
           <motion.div
@@ -457,6 +457,39 @@ export default function LandingPage() {
             Start Your Move-In Plan
           </Button>
         </Link>
+      </section>
+
+      {/* FOR PROPERTY MANAGERS & BROKERS */}
+      <section className="py-20 px-4 bg-slate-900 text-white border-t border-white/5">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-4">
+            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Partner Programme</p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">For Property Managers & Brokers</h2>
+            <p className="text-xl text-gray-300">Coordinate tenant exits without the admin headache.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Reduce Admin", desc: "DeliWer manages exit coordination while you focus on next clients." },
+              { title: "Happy Tenants", desc: "Professional handover process = better references for future clients." },
+              { title: "Faster Turnaround", desc: "Get apartments ready for next tenant faster with DeliWer's coordination." }
+            ].map((item, i) => (
+              <div key={i} className="p-6 bg-white/5 border border-white/10 rounded-2xl space-y-3">
+                <h3 className="font-black uppercase text-emerald-400 text-sm">{item.title}</h3>
+                <p className="text-gray-300 text-sm font-medium">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link href="/partners">
+              <Button 
+                size="lg" 
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-14 text-base shadow-2xl"
+              >
+                Partner With DeliWer
+              </Button>
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* Partner Strip */}

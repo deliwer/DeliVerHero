@@ -60,7 +60,7 @@ export default function StartPage() {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
         >
-          <div className="absolute inset-0 bg-black/72 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black/90" />
         </div>
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-7">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
