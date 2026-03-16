@@ -1,0 +1,412 @@
+PROJECT TITLE
+DeliWer Relocation Intelligence Platform – FINAL MASTER PROMPT (Extended)
+
+OBJECTIVE
+Enhance deliwer.com to become Dubai’s leading relocation coordination and relocation intelligence platform capturing tenant demand during the key relocation moments:
+
+• registering Ejari
+• renewing tenancy
+• receiving rent increase notices
+• discovering they are overpaying rent
+• moving apartments
+• leaving Dubai
+
+The platform must guide tenants through these situations and convert them into relocation coordination leads for DeliWer and its partner ecosystem.
+
+CRITICAL RULES
+
+Do NOT restructure the existing website or remove existing content.
+
+Enhance the current structure with new pages, tools, and relocation funnels.
+
+The system must function as a static website without requiring a database.
+
+All coordination requests must route through WhatsApp.
+
+Referral tracking must use URL parameters and client-side JavaScript.
+
+CORE POSITIONING
+
+Homepage headline:
+
+Everything After Ejari — Handled.
+
+Subheadline:
+
+Moving into a new home, relocating to cheaper rent, or leaving Dubai?
+DeliWer coordinates movers, utilities, cleaning, and home readiness.
+
+Primary homepage CTA buttons:
+
+Plan My Move
+Register Ejari
+Compare Move vs Renew
+Check If I'm Overpaying Rent
+Leaving Dubai
+
+RELOCATION DECISION HUB
+
+Create central page:
+
+/move-dubai
+
+Headline:
+
+Planning a Move in Dubai?
+
+Display four relocation scenarios:
+
+Move Into New Apartment
+Move to Cheaper Rent
+Compare Move vs Renew
+Leaving Dubai
+
+Each scenario opens a guided relocation coordination flow.
+
+EJARI LEAD ENGINE
+
+Create or enhance page:
+
+/ejari-dubai
+
+Headline:
+
+Register Ejari Without Visiting Government Offices
+
+Explain the process:
+
+Tenancy contract
+Ejari registration
+DEWA activation
+Move preparation
+
+Offer coordination services:
+
+Movers
+Cleaning
+Utility activation
+Water readiness checks
+
+CTA:
+
+Start Ejari Coordination
+
+EXIT CONCIERGE PAGE
+
+Create page:
+
+/leave-dubai
+
+Headline:
+
+Leaving Dubai? Close Your Apartment Properly.
+
+Explain typical exit challenges:
+
+Ejari cancellation
+DEWA closure
+Furniture removal
+Cleaning before landlord inspection
+
+Offer Exit Concierge coordination.
+
+Display pricing example:
+
+Exit coordination from 900 AED depending on requirements.
+
+CTA:
+
+Start Exit Coordination
+
+MOVE TO CHEAPER RENT PAGE
+
+Create page:
+
+/move-cheaper-rent-dubai
+
+Headline:
+
+Paying Too Much Rent? Consider Moving.
+
+Explain how Dubai rent index rules and market shifts may make relocation smarter than renewing a lease.
+
+CTA:
+
+Plan My Move
+
+MOVE VS RENEW CALCULATOR
+
+Create page:
+
+/move-vs-renew-dubai
+
+User inputs:
+
+Current rent
+Renewal rent
+Estimated moving cost
+
+Output example:
+
+Moving could save you 18,000 AED over the next year.
+
+CTA:
+
+Coordinate My Move
+
+RENT INCREASE CALCULATOR
+
+Create page:
+
+/rent-increase-calculator-dubai
+
+Inputs:
+
+Current rent
+Apartment type
+Area
+
+Display estimated legal rent increase range based on Dubai regulations.
+
+CTA:
+
+Compare Moving Instead
+
+RENTAL OVERPAYMENT DETECTOR
+
+Create page:
+
+/are-you-overpaying-rent-dubai
+
+Headline:
+
+Are You Overpaying Rent in Dubai?
+
+User inputs:
+
+Current rent
+Area
+Apartment type
+Building type
+
+Display estimated market comparison range.
+
+Example output:
+
+Average rent in your area: 95,000 AED
+Your rent: 120,000 AED
+
+Estimated overpayment: 25,000 AED
+
+Follow with CTA:
+
+Consider Moving to a Better Apartment
+
+Button:
+
+Plan My Move With DeliWer
+
+LIVE RENT COMPARISON ENGINE
+
+Create page:
+
+/dubai-rent-comparison
+
+Purpose:
+
+Help tenants understand rental differences across Dubai areas.
+
+Example comparison content:
+
+Dubai Marina vs JVC rent differences
+Downtown vs Business Bay rent comparisons
+Dubai vs Sharjah rent comparisons
+
+Include simple charts or visual comparisons.
+
+Embed relocation CTA throughout.
+
+DUBAI TENANCY CHECKLIST
+
+Create page:
+
+/dubai-tenancy-checklist
+
+Sections:
+
+Before signing tenancy
+After Ejari registration
+Preparing for move-in
+Preparing for move-out
+
+Embed relocation coordination CTAs throughout.
+
+DUBAI MOVING HEATMAP
+
+Create page:
+
+/dubai-moving-trends
+
+Purpose:
+
+Show relocation trends and areas with high tenant mobility.
+
+Example insights:
+
+Areas where tenants are relocating due to rent increases
+Areas attracting tenants due to lower rent
+Common relocation routes such as:
+
+Dubai Marina → JVC
+Downtown → Business Bay
+Dubai → Sharjah
+
+Display simple charts or maps.
+
+Optimize page for SEO and media sharing.
+
+DUBAI MOVE SCORE TOOL
+
+Create page:
+
+/dubai-move-score
+
+Purpose:
+
+Estimate how likely a tenant should consider moving.
+
+User inputs:
+
+Current rent
+Renewal rent
+Area
+Apartment size
+Lease renewal date
+
+Algorithm produces score:
+
+Example:
+
+Move Score 78/100
+
+Explanation:
+
+Your rent is 18 percent above nearby listings.
+Renewal increase may make relocation financially beneficial.
+
+CTA:
+
+Plan My Move With DeliWer
+
+PARTNER DISTRIBUTION NETWORK
+
+Create pages:
+
+/partners
+/broker-partner
+/typing-center-partner
+/building-partner
+
+Explain referral opportunities.
+
+Partner categories:
+
+Real estate brokers
+Ejari typing centers
+Building security desks
+Moving companies
+Corporate relocation teams
+
+REFERRAL SYSTEM
+
+Partners receive links such as:
+
+deliwer.com/move?ref=broker123
+
+JavaScript must detect referral codes from URL parameters and store them in local storage.
+
+Append referral code automatically to WhatsApp messages.
+
+WHATSAPP LEAD ROUTING
+
+All coordination requests open WhatsApp with prefilled message.
+
+Example:
+
+Relocation request via deliwer.com
+Referral: [partner code]
+Scenario: [move in / move cheaper / exit]
+Moving from: [area]
+Moving to: [area]
+Move date: [date]
+
+Send to:
+
++971523946311
+
+TRUST SIGNALS
+
+Add homepage trust section:
+
+Trusted relocation partners across Dubai, Sharjah and Ajman.
+
+Display categories:
+
+Movers
+Cleaning companies
+Maintenance teams
+Storage providers
+
+SEO CONTENT ENGINE
+
+Create guides targeting relocation searches:
+
+/how-to-register-ejari
+/how-to-cancel-ejari
+/dubai-rent-increase-rules
+/moving-apartment-dubai
+/tenancy-renewal-dubai-guide
+
+Each article should include:
+
+clear explanation
+step-by-step guidance
+relocation coordination CTA
+
+CONTENT PHILOSOPHY
+
+The website must answer tenant problems rather than list services.
+
+Focus on questions such as:
+
+How do I register Ejari?
+How do I move apartments in Dubai?
+Should I renew my tenancy or move?
+How do I cancel Ejari before leaving Dubai?
+
+Every answer should guide the user to relocation coordination.
+
+USER EXPERIENCE GOAL
+
+Visitors should feel that deliwer.com helps them:
+
+understand Dubai tenancy processes
+avoid relocation stress
+coordinate services easily
+
+Every page must contain a clear CTA to request relocation coordination.
+
+FINAL PLATFORM VISION
+
+DeliWer becomes the coordination and intelligence layer of the Dubai rental ecosystem.
+
+The platform captures relocation demand and routes it to trusted partners.
+
+Revenue comes from coordination fees and partner referrals.
+
+The system scales using:
+
+SEO traffic
+broker partnerships
+typing center referrals
+building concierge recommendations
