@@ -155,6 +155,17 @@ const MovingDubaiChecklist = lazy(() => import("@/pages/moving-dubai-checklist")
 const DubaiTenancyChecklist = lazy(() => import("@/pages/dubai-tenancy-checklist"));
 const NewApartmentDubaiGuide = lazy(() => import("@/pages/new-apartment-dubai-guide"));
 
+// Relocation Intelligence Platform Pages
+const MoveDubai = lazy(() => import("@/pages/move-dubai"));
+const MoveVsRenewDubai = lazy(() => import("@/pages/move-vs-renew-dubai"));
+const RentIncreaseCalculatorDubai = lazy(() => import("@/pages/rent-increase-calculator-dubai"));
+const AreYouOverpayingRentDubai = lazy(() => import("@/pages/are-you-overpaying-rent-dubai"));
+const DubaiRentComparison = lazy(() => import("@/pages/dubai-rent-comparison"));
+const DubaiMovingTrends = lazy(() => import("@/pages/dubai-moving-trends"));
+const DubaiMoveScore = lazy(() => import("@/pages/dubai-move-score"));
+const DubaiRentIncreaseRules = lazy(() => import("@/pages/dubai-rent-increase-rules"));
+const TenancyRenewalDubaiGuide = lazy(() => import("@/pages/tenancy-renewal-dubai-guide"));
+
 import MarketingDashboard from "@/pages/MarketingDashboard";
 
 function Router() {
@@ -360,6 +371,28 @@ function Router() {
         <Route path="/moving-dubai-checklist" component={MovingDubaiChecklist} />
         <Route path="/dubai-tenancy-checklist" component={DubaiTenancyChecklist} />
         <Route path="/new-apartment-dubai-guide" component={NewApartmentDubaiGuide} />
+
+        {/* Relocation Intelligence Platform */}
+        <Route path="/move-dubai" component={MoveDubai} />
+        <Route path="/move-vs-renew-dubai" component={MoveVsRenewDubai} />
+        <Route path="/rent-increase-calculator-dubai" component={RentIncreaseCalculatorDubai} />
+        <Route path="/are-you-overpaying-rent-dubai" component={AreYouOverpayingRentDubai} />
+        <Route path="/dubai-rent-comparison" component={DubaiRentComparison} />
+        <Route path="/dubai-moving-trends" component={DubaiMovingTrends} />
+        <Route path="/dubai-move-score" component={DubaiMoveScore} />
+        <Route path="/dubai-rent-increase-rules" component={DubaiRentIncreaseRules} />
+        <Route path="/tenancy-renewal-dubai-guide" component={TenancyRenewalDubaiGuide} />
+
+        {/* Convenience URL aliases */}
+        <Route path="/leave-dubai">
+          {() => { window.location.replace("/exit-dubai"); return null; }}
+        </Route>
+        <Route path="/move-cheaper-rent-dubai">
+          {() => { window.location.replace("/move-cheaper-rent"); return null; }}
+        </Route>
+        <Route path="/moving-apartment-dubai">
+          {() => { window.location.replace("/moving-apartment-dubai-guide"); return null; }}
+        </Route>
 
         <Route component={NotFound} />
         </Switch>

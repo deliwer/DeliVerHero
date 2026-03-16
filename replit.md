@@ -46,6 +46,27 @@ Ejari registration (via authorized RERA Trustee Centers) is the pivotal differen
 - **`/start` page rewrite**: Removed AED 399 / AquaCafe pricing. Now shows new uniform pricing model (AED 3,250–4,500 vendor costs), psychological comparison block (DIY vs DeliWer), apartment-type cost estimator (Studio–3BR), "What DeliWer Coordinates" service grid, and updated WhatsApp CTAs with pre-filled messages including apartment type and referral code.
 - **`/move-in-plan` page (new)**: Move-in planning form — date, apartment type, area, service toggles (movers/Ejari/DEWA). On submit shows a personalised step-by-step plan and cost range with WhatsApp "Start Coordination" CTA.
 
+## Relocation Intelligence Platform (Added March 2026)
+Homepage headline updated to "Everything After Ejari — Handled." with 5 primary CTA buttons and 4 scenario cards.
+
+New pages added:
+- `/move-dubai` — Relocation Decision Hub with 4 scenarios + intelligence tool links
+- `/move-vs-renew-dubai` — Move vs Renew Calculator (no DB, pure JS)
+- `/rent-increase-calculator-dubai` — RERA rent increase cap calculator
+- `/are-you-overpaying-rent-dubai` — Rental overpayment detector (market rate comparison)
+- `/dubai-rent-comparison` — Visual rent comparison across 14 Dubai areas
+- `/dubai-moving-trends` — Moving trend insights and migration routes
+- `/dubai-move-score` — 5-factor personalised move score tool
+- `/dubai-rent-increase-rules` — SEO guide: RERA rent increase rules + FAQ
+- `/tenancy-renewal-dubai-guide` — SEO guide: tenancy renewal process + checklist + FAQ
+
+URL aliases (redirects):
+- `/leave-dubai` → `/exit-dubai`
+- `/move-cheaper-rent-dubai` → `/move-cheaper-rent`
+- `/moving-apartment-dubai` → `/moving-apartment-dubai-guide`
+
+All pages are static (no DB required), WhatsApp-first, referral-aware.
+
 ## Maintenance Notes
 - Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.
 - Navigation component is `fixed top-0 z-[100]`. Pages need appropriate top padding (`pt-48` or `pt-32`).

@@ -21,7 +21,10 @@ import {
   ChevronDown,
   Home,
   ArrowLeftRight,
-  ArrowRight
+  ArrowRight,
+  Calculator,
+  TrendingDown,
+  Search
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
@@ -138,64 +141,111 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest">
               <Star className="w-3.5 h-3.5" /> UAE Relocation Concierge
             </div>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.9] text-white uppercase">
-              Moving Home in Dubai?<br />
-              <span className="text-emerald-400">Relax. We Handle It.</span>
-            </h2>
+            <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.9] text-white uppercase">
+              Everything After Ejari —<br />
+              <span className="text-emerald-400">Handled.</span>
+            </h1>
             <p className="text-lg text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
-              From Ejari to movers, cleaning, utilities and water readiness — everything coordinated in one place.
+              Moving into a new home, relocating to cheaper rent, or leaving Dubai?<br />
+              DeliWer coordinates movers, utilities, cleaning, and home readiness.
             </p>
           </motion.div>
 
+          {/* Primary CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            <Link href="/move-dubai">
+              <Button data-testid="cta-plan-my-move" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-6 h-12 text-sm shadow-lg transition-all">
+                <Home className="w-4 h-4 mr-2" /> Plan My Move
+              </Button>
+            </Link>
+            <Link href="/ejari-dubai">
+              <Button data-testid="cta-register-ejari" variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
+                <FileText className="w-4 h-4 mr-2" /> Register Ejari
+              </Button>
+            </Link>
+            <Link href="/move-vs-renew-dubai">
+              <Button data-testid="cta-compare" variant="outline" className="border-violet-500/40 text-violet-400 hover:bg-violet-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
+                <Calculator className="w-4 h-4 mr-2" /> Compare Move vs Renew
+              </Button>
+            </Link>
+            <Link href="/are-you-overpaying-rent-dubai">
+              <Button data-testid="cta-overpaying" variant="outline" className="border-red-500/40 text-red-400 hover:bg-red-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
+                <Search className="w-4 h-4 mr-2" /> Check If I'm Overpaying Rent
+              </Button>
+            </Link>
+            <Link href="/exit-dubai">
+              <Button data-testid="cta-leaving-dubai" variant="outline" className="border-amber-500/40 text-amber-400 hover:bg-amber-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
+                <LogOut className="w-4 h-4 mr-2" /> Leaving Dubai
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Four Scenario Cards */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto"
           >
             <button
               data-testid="funnel-btn-moving-in"
               onClick={() => openFunnel("moving-in")}
-              className="group flex flex-col items-center gap-3 p-6 bg-slate-900 border-2 border-emerald-500/30 hover:border-emerald-500 rounded-2xl transition-all text-left"
+              className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-emerald-500/30 hover:border-emerald-500 rounded-2xl transition-all text-left"
             >
-              <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center group-hover:bg-emerald-500/20 transition-all">
-                <Home className="w-6 h-6 text-emerald-400" />
+              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center group-hover:bg-emerald-500/20 transition-all">
+                <Home className="w-5 h-5 text-emerald-400" />
               </div>
-              <div className="space-y-1">
-                <div className="font-black text-white uppercase text-sm tracking-tight">Moving Into a New Home</div>
-                <div className="text-[11px] text-gray-500 font-medium">Ejari, DEWA, movers & setup</div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Moving Into a New Home</div>
+                <div className="text-[10px] text-gray-500 font-medium">Ejari, DEWA, movers & setup</div>
               </div>
-              <ArrowRight className="w-4 h-4 text-emerald-400 ml-auto" />
+              <ArrowRight className="w-3 h-3 text-emerald-400 ml-auto" />
             </button>
 
             <button
               data-testid="funnel-btn-moving-within"
               onClick={() => openFunnel("moving-within")}
-              className="group flex flex-col items-center gap-3 p-6 bg-slate-900 border-2 border-blue-500/30 hover:border-blue-500 rounded-2xl transition-all text-left"
+              className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-blue-500/30 hover:border-blue-500 rounded-2xl transition-all text-left"
             >
-              <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-all">
-                <ArrowLeftRight className="w-6 h-6 text-blue-400" />
+              <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-all">
+                <TrendingDown className="w-5 h-5 text-blue-400" />
               </div>
-              <div className="space-y-1">
-                <div className="font-black text-white uppercase text-sm tracking-tight">Moving to a Cheaper Rent</div>
-                <div className="text-[11px] text-gray-500 font-medium">Full relocation coordination</div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Move to Cheaper Rent</div>
+                <div className="text-[10px] text-gray-500 font-medium">Full relocation coordination</div>
               </div>
-              <ArrowRight className="w-4 h-4 text-blue-400 ml-auto" />
+              <ArrowRight className="w-3 h-3 text-blue-400 ml-auto" />
             </button>
+
+            <Link href="/move-vs-renew-dubai" className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-violet-500/30 hover:border-violet-500 rounded-2xl transition-all text-left" data-testid="funnel-btn-compare">
+              <div className="w-10 h-10 bg-violet-500/10 rounded-xl flex items-center justify-center group-hover:bg-violet-500/20 transition-all">
+                <Calculator className="w-5 h-5 text-violet-400" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Compare Move vs Renew</div>
+                <div className="text-[10px] text-gray-500 font-medium">See which saves you more</div>
+              </div>
+              <ArrowRight className="w-3 h-3 text-violet-400 ml-auto" />
+            </Link>
 
             <button
               data-testid="funnel-btn-leaving"
               onClick={() => openFunnel("leaving")}
-              className="group flex flex-col items-center gap-3 p-6 bg-slate-900 border-2 border-amber-500/30 hover:border-amber-500 rounded-2xl transition-all text-left"
+              className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-amber-500/30 hover:border-amber-500 rounded-2xl transition-all text-left"
             >
-              <div className="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-all">
-                <LogOut className="w-6 h-6 text-amber-400" />
+              <div className="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-all">
+                <LogOut className="w-5 h-5 text-amber-400" />
               </div>
-              <div className="space-y-1">
-                <div className="font-black text-white uppercase text-sm tracking-tight">Leaving Dubai / Exit Service</div>
-                <div className="text-[11px] text-gray-500 font-medium">Exit concierge from 900 AED</div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Leaving Dubai</div>
+                <div className="text-[10px] text-gray-500 font-medium">Exit concierge from 900 AED</div>
               </div>
-              <ArrowRight className="w-4 h-4 text-amber-400 ml-auto" />
+              <ArrowRight className="w-3 h-3 text-amber-400 ml-auto" />
             </button>
           </motion.div>
 
