@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   MessageSquare, CheckCircle2, Droplet, Zap, Home, ArrowRight,
-  Clock, DollarSign, ShieldCheck, Users, Truck, ClipboardList, Star
+  Clock, DollarSign, ShieldCheck, Users, Truck, ClipboardList, Star,
+  Building2
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "wouter";
+import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
+import { buildWhatsAppMessage, openWhatsApp, getReferral } from "@/lib/referral";
 
 const BUNDLE_SIZES = [
   { label: "Studio", range: "AED 2,800 – 3,600", icon: "🏢" },
@@ -27,48 +29,19 @@ const SERVICES = [
 ];
 
 export default function StartPage() {
-  const [location] = useLocation();
   const [selectedSize, setSelectedSize] = useState(0);
 
-  // Referral tracking from URL parameters — stored to localStorage
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get("ref");
-    if (ref && !localStorage.getItem("deliwer_ref")) {
-      localStorage.setItem(
-        "deliwer_ref",
-        JSON.stringify({
-          partner: ref,
-          agent: params.get("agent") || "",
-          campaign: params.get("campaign") || "",
-          timestamp: new Date().toISOString(),
-        })
-      );
-    }
-  }, [location]);
-
   const buildWhatsApp = (context = "") => {
-    const raw = localStorage.getItem("deliwer_ref");
-    const ref = raw ? JSON.parse(raw) : {};
     const aptLabel = BUNDLE_SIZES[selectedSize].label;
     const aptRange = BUNDLE_SIZES[selectedSize].range;
-    const msg = [
-      `Hi DeliWer, I want to start my move-in coordination.`,
-      ``,
-      `Apartment type: ${aptLabel}`,
-      `Estimated vendor cost: ${aptRange}`,
-      context ? `Request: ${context}` : "",
-      ``,
-      `Name:`,
-      `Building / Area:`,
-      `Move-in date:`,
-      ref.partner ? `Referred by: ${ref.partner}` : "",
-    ]
-      .filter((l) => l !== undefined)
-      .join("\n")
-      .trim();
-
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    openWhatsApp(buildWhatsAppMessage({
+      intro: `Hi DeliWer, I want to start my move-in coordination.`,
+      fields: {
+        "Apartment type": aptLabel,
+        "Estimated vendor cost": aptRange,
+        ...(context ? { Request: context } : {}),
+      },
+    }));
   };
 
   return (
@@ -431,14 +404,14 @@ export default function StartPage() {
               Start Coordination Now
             </Button>
 
-            <Link href="/move-in-plan">
+            <Link href="/ejari-dubai">
               <Button
                 size="lg"
                 variant="outline"
-                data-testid="button-move-in-plan"
+                data-testid="button-ejari-link"
                 className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black h-16 px-10 rounded-2xl text-lg"
               >
-                Plan My Move-In
+                Register Ejari Online
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
@@ -447,6 +420,45 @@ export default function StartPage() {
           <p className="text-xs text-gray-600 font-bold uppercase tracking-widest">
             WhatsApp support · Response within 10 minutes · Dubai-based service
           </p>
+        </div>
+      </section>
+
+      {/* ─── Quick Links ─── */}
+      <section className="py-12 px-4 border-t border-white/5 bg-slate-900/30">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Link href="/ejari-dubai">
+            <div className="flex items-center gap-3 p-4 bg-slate-900 border border-slate-700 rounded-2xl hover:border-emerald-500/40 transition-all cursor-pointer group">
+              <div className="w-9 h-9 bg-emerald-500/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-all">
+                <ClipboardList className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div>
+                <p className="font-black text-white text-xs uppercase tracking-tight">Register Ejari Online</p>
+                <p className="text-gray-500 text-[11px] font-medium">Without visiting government offices</p>
+              </div>
+            </div>
+          </Link>
+          <Link href="/concierge-pricing">
+            <div className="flex items-center gap-3 p-4 bg-slate-900 border border-slate-700 rounded-2xl hover:border-emerald-500/40 transition-all cursor-pointer group">
+              <div className="w-9 h-9 bg-emerald-500/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-all">
+                <DollarSign className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div>
+                <p className="font-black text-white text-xs uppercase tracking-tight">Concierge Pricing</p>
+                <p className="text-gray-500 text-[11px] font-medium">Transparent plans & what's included</p>
+              </div>
+            </div>
+          </Link>
+          <Link href="/partners">
+            <div className="flex items-center gap-3 p-4 bg-slate-900 border border-slate-700 rounded-2xl hover:border-purple-500/40 transition-all cursor-pointer group">
+              <div className="w-9 h-9 bg-purple-500/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-purple-500/20 transition-all">
+                <Building2 className="w-4 h-4 text-purple-400" />
+              </div>
+              <div>
+                <p className="font-black text-white text-xs uppercase tracking-tight">Partner Program</p>
+                <p className="text-gray-500 text-[11px] font-medium">Brokers, concierges & typing centers</p>
+              </div>
+            </div>
+          </Link>
         </div>
       </section>
     </div>

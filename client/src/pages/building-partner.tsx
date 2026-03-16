@@ -16,7 +16,7 @@ const DAILY_QUESTIONS = [
 ];
 
 const HOW_IT_WORKS = [
-  { step: "01", title: "Register as a Building Partner", desc: "WhatsApp DeliWer and receive a referral link for your building (e.g. /move?ref=marinagatesecurity)." },
+  { step: "01", title: "Register as a Building Partner", desc: "WhatsApp DeliWer and receive a referral link for your building (e.g. /ejari-dubai?ref=marinagatesecurity)." },
   { step: "02", title: "Share with New Residents", desc: "When tenants move in or ask for help, hand them your referral card or send your link via WhatsApp." },
   { step: "03", title: "DeliWer Coordinates Everything", desc: "Tenants submit a request — DeliWer handles movers, cleaning, utilities, and more." },
   { step: "04", title: "You Receive Commission", desc: "20% referral fee per completed coordination. Paid out monthly to your WhatsApp-registered account." },

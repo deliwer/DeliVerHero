@@ -29,8 +29,11 @@ import { useEffect, useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
 import { RelocationFunnel, FunnelScenario } from "@/components/relocation-funnel";
+import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
-import heroBg from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
+const HERO_LIFESTYLE_IMG = "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600&q=80";
+
+// Unused local import removed; heroBg replaced by HERO_LIFESTYLE_IMG above
 
 // Lifestyle images for cards and sections
 const lifestyleImages = {
@@ -117,9 +120,9 @@ export default function LandingPage() {
 
   const handleBundleWhatsApp = () => {
     const size = SIZE_OPTIONS.find(s => s.key === selectedSize) ?? SIZE_OPTIONS[1];
-    const ref = refCode ? ` (ref: ${refCode})` : "";
-    const text = `Hi DeliWer, I'd like to book the Starter Move-In Bundle for a ${size.label} apartment. Estimated cost: ${size.range}.${ref} Please coordinate everything for me.`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, "_blank");
+    openWhatsApp(buildWhatsAppMessage({
+      intro: `Hi DeliWer, I'd like to book the Starter Move-In Bundle for a ${size.label} apartment. Estimated cost: ${size.range}. Please coordinate everything for me.`,
+    }));
   };
 
   const currentSize = SIZE_OPTIONS.find(s => s.key === selectedSize) ?? SIZE_OPTIONS[1];
@@ -217,7 +220,7 @@ export default function LandingPage() {
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-12 overflow-hidden text-center">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBg})` }}
+          style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
         >
           <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px]" />
         </div>
@@ -260,6 +263,74 @@ export default function LandingPage() {
           <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-sm text-center mt-6 drop-shadow-md bg-black/20 py-2 rounded-full inline-block px-8 mx-auto">
             We handle everything — you pay only vendor market rates.
           </p>
+        </div>
+      </section>
+
+      {/* AUDIENCE CARDS — immediately below fold */}
+      <section className="py-16 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-5xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">What Do You Need Help With?</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <Card className="bg-white/5 border-emerald-500/30 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
+              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Recommended</div>
+              <div className="relative h-44 overflow-hidden rounded-t-3xl">
+                <img src={lifestyleImages.tenants} alt="Tenant move-in" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+              </div>
+              <div className="p-6 space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-emerald-500" />
+                </div>
+                <h3 className="text-lg font-black uppercase text-emerald-400">For Tenants</h3>
+                <p className="text-gray-400 font-medium text-sm">Ejari, DEWA, movers, cleaning — all coordinated from one WhatsApp message.</p>
+              </div>
+              <Link href="/start" className="px-6 pb-6">
+                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-11 shadow-lg shadow-emerald-900/40" data-testid="button-router-tenants">
+                  Get Started →
+                </Button>
+              </Link>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-blue-500/50 transition-all group relative overflow-hidden">
+              <div className="relative h-44 overflow-hidden rounded-t-3xl">
+                <img src={lifestyleImages.landlords} alt="Landlord support" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+              </div>
+              <div className="p-6 space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-blue-500/10 flex items-center justify-center">
+                  <LogOut className="w-5 h-5 text-blue-500" />
+                </div>
+                <h3 className="text-lg font-black uppercase text-white">For Landlords</h3>
+                <p className="text-gray-400 font-medium text-sm">Streamline tenant transitions, Ejari cancellations, and property handovers.</p>
+              </div>
+              <Link href="/exit" className="px-6 pb-6">
+                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-11" variant="outline" data-testid="button-router-landlords">
+                  Manage Property →
+                </Button>
+              </Link>
+            </Card>
+
+            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-purple-500/50 transition-all group relative overflow-hidden">
+              <div className="relative h-44 overflow-hidden rounded-t-3xl">
+                <img src={lifestyleImages.brokers} alt="Broker partnership" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
+              </div>
+              <div className="p-6 space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-purple-500/10 flex items-center justify-center">
+                  <Key className="w-5 h-5 text-purple-500" />
+                </div>
+                <h3 className="text-lg font-black uppercase text-white">For Brokers</h3>
+                <p className="text-gray-400 font-medium text-sm">Earn commission referring tenants. DeliWer handles everything — you get paid.</p>
+              </div>
+              <Link href="/partners" className="px-6 pb-6">
+                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-11" variant="outline" data-testid="button-router-brokers">
+                  Partner With Us →
+                </Button>
+              </Link>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -341,6 +412,9 @@ export default function LandingPage() {
                   </Button>
                 </Link>
                 <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest mt-3">No hidden fees · No DeliWer markup · Just vendor market rates</p>
+                <Link href="/concierge-pricing" className="block text-center mt-3">
+                  <span className="text-[10px] text-emerald-600 hover:text-emerald-400 font-black uppercase tracking-widest transition-colors">View concierge plan options →</span>
+                </Link>
               </div>
             </div>
 
@@ -419,78 +493,6 @@ export default function LandingPage() {
             ].map((item, i) => (
               <span key={i} className="text-emerald-400 font-black uppercase tracking-widest text-[10px]">{item}</span>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ROUTER BLOCK */}
-      <section className="py-20 px-6 bg-slate-950 border-y border-white/5">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">What Do You Need Help With?</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Move-In Card */}
-            <Card className="bg-white/5 border-emerald-500/30 rounded-3xl flex flex-col justify-between hover:border-emerald-500 transition-all group relative overflow-hidden ring-1 ring-emerald-500/20">
-              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-3 py-1 rounded-bl-xl uppercase tracking-widest">Recommended</div>
-              <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.moveIn} alt="Tenant move-in" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
-              </div>
-              <div className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-emerald-500" />
-                </div>
-                <h3 className="text-xl font-black uppercase text-emerald-500">For Tenants</h3>
-                <p className="text-gray-400 font-medium text-sm">Complete your Ejari registration and activate utilities from home. Get move-in ready fast.</p>
-              </div>
-              <Link href="/start" className="px-8 pb-8">
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl text-sm h-12 shadow-lg shadow-emerald-900/40" data-testid="button-router-tenants">
-                  Get Started
-                </Button>
-              </Link>
-            </Card>
-
-            {/* Move-Out Card */}
-            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-blue-500/50 transition-all group relative overflow-hidden">
-              <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.moveOut} alt="Landlord support" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
-              </div>
-              <div className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center">
-                  <LogOut className="w-6 h-6 text-blue-500" />
-                </div>
-                <h3 className="text-xl font-black uppercase text-white">For Landlords/tenants</h3>
-                <p className="text-gray-400 font-medium text-sm">Streamline tenant transitions, handle Ejari cancellations, and manage property handovers efficiently.</p>
-              </div>
-              <Link href="/exit" className="px-8 pb-8">
-                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline" data-testid="button-router-landlords">
-                  Manage Property
-                </Button>
-              </Link>
-            </Card>
-
-            {/* Brokers Card */}
-            <Card className="bg-white/5 border-white/10 rounded-3xl flex flex-col justify-between hover:border-purple-500/50 transition-all group relative overflow-hidden">
-              <div className="relative h-48 overflow-hidden rounded-t-3xl">
-                <img src={lifestyleImages.brokers} alt="Broker partnership" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950" />
-              </div>
-              <div className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center">
-                  <Key className="w-6 h-6 text-purple-500" />
-                </div>
-                <h3 className="text-xl font-black uppercase text-white">For Brokers</h3>
-                <p className="text-gray-400 font-medium text-sm">Close deals faster by offering your clients a seamless Ejari and utilities activation service.</p>
-              </div>
-              <Link href="/partners" className="px-8 pb-8">
-                <Button className="w-full border-white/10 hover:bg-white/5 text-white font-black rounded-xl text-sm h-12" variant="outline" data-testid="button-router-brokers">
-                  Partner with Us
-                </Button>
-              </Link>
-            </Card>
           </div>
         </div>
       </section>

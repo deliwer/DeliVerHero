@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getReferral, openWhatsApp } from "@/lib/referral";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -65,13 +66,6 @@ export function RelocationFunnel({ open, onClose, initialScenario }: RelocationF
     apartmentSize: "",
   });
   const [services, setServices] = useState<string[]>([]);
-  const [refCode, setRefCode] = useState<string | null>(null);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const ref = params.get("ref") || sessionStorage.getItem("deliwer_ref");
-    if (ref) setRefCode(ref);
-  }, []);
 
   useEffect(() => {
     if (open) {
@@ -95,25 +89,18 @@ export function RelocationFunnel({ open, onClose, initialScenario }: RelocationF
 
   const handleWhatsApp = () => {
     const serviceLabels = services.map(k => SERVICES.find(s => s.key === k)?.label).filter(Boolean).join(", ");
-    const ref = refCode ? `\nReferral source: ${refCode}` : "";
-    const source = `\nPage source: ${window.location.pathname}`;
-    const timestamp = `\nTimestamp: ${new Date().toLocaleString("en-GB", { timeZone: "Asia/Dubai" })}`;
-
-    const msg = [
-      `I need relocation coordination.`,
-      `Scenario: ${scenarioLabel}.`,
-      form.currentArea && form.newArea ? `Moving from ${form.currentArea} to ${form.newArea}.` : "",
-      form.moveDate ? `Move date: ${form.moveDate}.` : "",
-      form.apartmentSize ? `Apartment size: ${form.apartmentSize}.` : "",
-      form.name ? `Name: ${form.name}.` : "",
-      form.whatsapp ? `WhatsApp: ${form.whatsapp}.` : "",
-      serviceLabels ? `Services needed: ${serviceLabels}.` : "",
-      ref,
-      source,
-      timestamp,
-    ].filter(Boolean).join(" ").trim();
-
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    const refData = getReferral();
+    const parts: string[] = [`I need relocation coordination.`, `Scenario: ${scenarioLabel}.`];
+    if (form.currentArea && form.newArea) parts.push(`Moving from ${form.currentArea} to ${form.newArea}.`);
+    if (form.moveDate) parts.push(`Move date: ${form.moveDate}.`);
+    if (form.apartmentSize) parts.push(`Apartment size: ${form.apartmentSize}.`);
+    if (form.name) parts.push(`Name: ${form.name}.`);
+    if (form.whatsapp) parts.push(`WhatsApp: ${form.whatsapp}.`);
+    if (serviceLabels) parts.push(`Services needed: ${serviceLabels}.`);
+    if (refData?.code) parts.push(`Referral: ${refData.code}.`);
+    parts.push(`Source: ${window.location.pathname}.`);
+    parts.push(`Time: ${new Date().toLocaleString("en-GB", { timeZone: "Asia/Dubai" })}.`);
+    openWhatsApp(parts.join("\n"));
     setStep(4);
   };
 
