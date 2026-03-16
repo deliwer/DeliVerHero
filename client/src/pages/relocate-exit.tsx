@@ -259,15 +259,6 @@ export default function RelocateExitPage() {
         </Button>
       </div>
       
-      {/* Desktop Sticky WhatsApp */}
-      <div className="hidden md:block fixed bottom-8 right-8 z-50">
-        <Button 
-          className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-full h-16 w-16 p-0 shadow-2xl animate-bounce hover:animate-none"
-          onClick={() => window.open(WHATSAPP_LINK, '_blank')}
-        >
-          <MessageSquare className="h-8 w-8" />
-        </Button>
-      </div>
     </div>
   );
 }
