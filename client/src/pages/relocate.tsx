@@ -4,7 +4,6 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { DirhamSymbol } from "@/components/dirham-symbol";
 import { 
   ArrowRight,
   Home,
@@ -32,10 +31,6 @@ export default function Relocate() {
 
   const scrollToActivation = () => {
     activationRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToMoveOut = () => {
-    moveOutRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -96,13 +91,14 @@ export default function Relocate() {
             >
               Plan My Move-In
             </Button>
-            <Button 
-              onClick={scrollToMoveOut}
-              className="bg-slate-800 hover:bg-slate-700 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl border border-white/10 group"
-              data-testid="button-hero-moveout"
-            >
-              Move-Out Support
-            </Button>
+            <Link href="/exit-dubai">
+              <Button 
+                className="bg-slate-800 hover:bg-slate-700 text-white h-24 px-8 text-xl font-black uppercase tracking-widest rounded-3xl border border-white/10 group w-full"
+                data-testid="button-hero-moveout"
+              >
+                Move-Out Support
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -213,7 +209,7 @@ export default function Relocate() {
               <h3 className="text-xl font-black uppercase text-white">Leaving an apartment instead?</h3>
               <p className="text-gray-400 font-medium text-sm">Coordinate utilities closure, cancellation & logistics.</p>
             </div>
-            <Link href="/exit">
+            <Link href="/exit-dubai">
               <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest px-8">
                 See Move-Out Support →
               </Button>
@@ -359,36 +355,27 @@ export default function Relocate() {
           </div>
 
           <Card className="bg-slate-950 border-blue-500/30 rounded-[3rem] p-1 shadow-2xl shadow-blue-900/40 max-w-xl mx-auto group overflow-hidden">
-            <CardContent className="p-12 space-y-10">
-              <div className="text-center space-y-2">
-                <p className="text-gray-300 text-[10px] font-black uppercase tracking-widest">Initial Coordination Fee</p>
-                <div className="flex items-center justify-center gap-2">
-                  <DirhamSymbol className="w-8 h-8" />
-                  <p className="text-7xl font-black tracking-tighter text-white">249</p>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <ul className="space-y-4 text-left">
-                  {[
-                    "Utility closure coordination",
-                    "Move-out documentation check",
-                    "Handover readiness audit",
-                    "Landlord exit coordination"
-                  ].map((f, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-bold text-gray-300 uppercase tracking-tight">
-                      <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+            <CardContent className="p-12 space-y-8">
+              <ul className="space-y-4 text-left">
+                {[
+                  "Utility closure coordination",
+                  "Move-out documentation check",
+                  "Handover readiness audit",
+                  "Landlord exit coordination"
+                ].map((f, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm font-bold text-gray-300 uppercase tracking-tight">
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/exit-dubai" className="block">
                 <Button 
                   className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-xl shadow-blue-900/40 flex gap-3 group-hover:scale-[1.02] transition-transform"
-                  onClick={() => window.open('https://wa.me/971523946311?text=Hi,%20I%20need%20move-out%20coordination.', '_blank')}
                 >
-                  Secure My Deposit <ArrowRight className="h-6 w-6" />
+                  See Exit Options <ArrowRight className="h-6 w-6" />
                 </Button>
-              </div>
+              </Link>
             </CardContent>
           </Card>
         </div>
