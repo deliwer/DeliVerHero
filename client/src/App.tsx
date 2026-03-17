@@ -208,7 +208,9 @@ function Router() {
         <Route path="/move-to-dubai" component={MoveToDubai} />
         <Route path="/marina-gate-move-in" component={MarinaGateMoveIn} />
         <Route path="/relocate" component={Relocate} />
-        <Route path="/exit" component={RelocateExit} />
+        <Route path="/exit">
+          {() => { window.location.replace("/exit-dubai"); return null; }}
+        </Route>
         <Route path="/activate" component={ActivatePage} />
         <Route path="/move-in-packages">
           <Redirect to="/relocate" />

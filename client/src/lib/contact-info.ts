@@ -36,7 +36,7 @@ export const contactInfo = {
       linkedin: "https://linkedin.com/in/rubabhassan"
     },
     {
-      name: "Kalbe-Hussain Sheikh",
+      name: "K H Sheikh",
       title: "Customer Service Consultant",
       email: "service@deliwer.com",
       phone: "+971 55 657 3114",

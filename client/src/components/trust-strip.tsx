@@ -14,8 +14,8 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
     <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm">
       {showContact && (
         <>
-          <Link href="/relocate">
-            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Relocation</span>
+          <Link href="/start">
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Start</span>
           </Link>
           <Link href="/partners">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Partners</span>

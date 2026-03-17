@@ -16,7 +16,7 @@ export function Navigation() {
   const navItems = [
     { path: "/ejari-dubai", label: "Ejari", id: "ejari", icon: Home },
     { path: "/relocate", label: "Move-In", id: "relocation", icon: Plane },
-    { path: "/exit", label: "Move-Out", id: "move-out", icon: LogOut },
+    { path: "/exit-dubai", label: "Move-Out", id: "move-out", icon: LogOut },
     { path: "/concierge-pricing", label: "Concierge", id: "concierge", icon: Star },
   ];
 
