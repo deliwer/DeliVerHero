@@ -13,6 +13,7 @@ import {
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "@/components/navigation";
+import { openTrackedWhatsApp } from "@/lib/lead-tracker";
 
 // Simulated live market signals — pulse every 8 seconds
 const BASE_SIGNALS = {
@@ -291,11 +292,13 @@ export default function AffiliateManagement() {
                   ))}
                 </ul>
                 <p className="text-xs text-white/50 italic">{tier.why}</p>
-                <a href={tier.href} target="_blank">
-                  <Button className={`w-full h-12 font-black uppercase tracking-widest text-white rounded-xl ${btnMap[tier.color]}`}>
-                    {tier.cta} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </a>
+                <Button
+                  className={`w-full h-12 font-black uppercase tracking-widest text-white rounded-xl ${btnMap[tier.color]}`}
+                  onClick={() => openTrackedWhatsApp(`Partner inquiry: ${tier.label}`)}
+                  data-testid={`tier-cta-${tier.color}`}
+                >
+                  {tier.cta} <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </motion.div>
             ))}
           </div>
@@ -519,6 +522,201 @@ export default function AffiliateManagement() {
         </div>
       </section>
 
+      {/* WHATSAPP CLOSING SCRIPTS */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">High Conversion</p>
+            <h2 className="text-4xl font-black uppercase tracking-tighter">WhatsApp Sales Scripts</h2>
+            <p className="text-gray-400 max-w-xl mx-auto text-sm">
+              Use these exact scripts in sequence. Copy, paste, and close. Each one moves the lead one step forward.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                step: "01",
+                label: "First Response",
+                timing: "Within 2 minutes",
+                color: "emerald",
+                script: `Hi 👋 thanks for reaching out to DeliWer.\n\nI see you're planning a [move / Ejari / exit].\n\nJust to understand better so we can coordinate everything smoothly:\n\n• When is your move date?\n• From which area to which area?\n• Any furniture or special requirements?\n\nWe'll handle everything end-to-end for you.`,
+              },
+              {
+                step: "02",
+                label: "Qualification",
+                timing: "After first reply",
+                color: "blue",
+                script: `Got it — based on your requirement, we can coordinate:\n\n• Movers\n• Cleaning\n• Utility setup / closure\n• Full relocation support\n\nYou won't need to deal with multiple vendors — we handle it all.`,
+              },
+              {
+                step: "03",
+                label: "Price Framing",
+                timing: "Before quoting",
+                color: "violet",
+                script: `Our coordination is structured so you don't pay upfront.\n\nWe align everything with the service providers and include our coordination within the overall move cost.\n\nThis way you get full support without additional stress.`,
+              },
+              {
+                step: "04",
+                label: "Close",
+                timing: "Standard close",
+                color: "amber",
+                script: `I'll proceed to line up the best options for your move.\n\nCan you confirm:\n\n• Exact move date\n• Building access timing\n• Contact number\n\nOnce confirmed, we'll take it forward immediately.`,
+              },
+              {
+                step: "05",
+                label: "Urgency Close",
+                timing: "For tight timelines",
+                color: "rose",
+                script: `Since timelines are tight, it's best we secure availability today.\n\nI'll prioritize your request and lock the best options now.`,
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="grid md:grid-cols-[140px_1fr] gap-6 p-6 bg-slate-800/60 border border-white/10 rounded-2xl"
+                data-testid={`closing-script-${i}`}
+              >
+                <div className="space-y-1">
+                  <p className={`text-3xl font-black text-${item.color}-500/40`}>{item.step}</p>
+                  <p className="font-black uppercase text-xs tracking-widest text-white">{item.label}</p>
+                  <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">{item.timing}</p>
+                </div>
+                <div className="space-y-3">
+                  <pre className="text-sm text-gray-300 whitespace-pre-wrap font-sans leading-relaxed">{item.script}</pre>
+                  <Button
+                    variant="outline"
+                    className="border-white/10 text-gray-400 hover:text-white font-black uppercase tracking-widest text-xs h-9 gap-2"
+                    onClick={() => {
+                      navigator.clipboard.writeText(item.script);
+                      toast({ title: `Script ${item.step} copied` });
+                    }}
+                    data-testid={`copy-closing-${i}`}
+                  >
+                    <Copy className="w-3 h-3" /> Copy Script
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GOOGLE SHEETS SETUP */}
+      <section className="py-20 px-4 bg-slate-900/40 border-y border-white/5">
+        <div className="max-w-5xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-blue-400">One-Time Setup</p>
+            <h2 className="text-4xl font-black uppercase tracking-tighter">Connect Google Sheets</h2>
+            <p className="text-gray-400 max-w-xl mx-auto text-sm">
+              All leads, traffic, and partner stats flow automatically into your Command Center spreadsheet.
+              Set this up once — the system runs itself.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Step 1 — Create Sheet */}
+            <div className="space-y-4 p-6 bg-blue-950/20 border border-blue-500/20 rounded-2xl">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl font-black text-blue-500/40">01</span>
+                <h3 className="font-black uppercase tracking-tight text-white">Create the Spreadsheet</h3>
+              </div>
+              <p className="text-gray-400 text-sm">Create a Google Sheet named <strong className="text-white">DeliWer Command Center</strong> with these 4 sheets:</p>
+              <div className="space-y-2">
+                {[
+                  { name: "LEADS", cols: "Timestamp | Name | Phone | Scenario | From Area | To Area | Move Date | Referral Code | Source Page | Estimated Value | Status" },
+                  { name: "PARTNERS", cols: "Partner Name | Type | Referral Code | WhatsApp | Commission % | Total Leads | Total Revenue" },
+                  { name: "TRAFFIC", cols: "Timestamp | Page | Referral Code | UTM Source | UTM Campaign | Device | City" },
+                  { name: "DASHBOARD", cols: "Formulas auto-populate from LEADS and TRAFFIC sheets" },
+                ].map((sheet, i) => (
+                  <div key={i} className="p-3 bg-slate-900/60 rounded-xl border border-white/5">
+                    <p className="text-xs font-black text-blue-400 uppercase tracking-widest mb-1">{sheet.name}</p>
+                    <p className="text-[10px] text-gray-500 font-mono leading-relaxed">{sheet.cols}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Step 2 — Apps Script */}
+            <div className="space-y-4 p-6 bg-blue-950/20 border border-blue-500/20 rounded-2xl">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl font-black text-blue-500/40">02</span>
+                <h3 className="font-black uppercase tracking-tight text-white">Deploy the Webhook</h3>
+              </div>
+              <p className="text-gray-400 text-sm">Go to <strong className="text-white">Extensions → Apps Script</strong> and paste this code:</p>
+              <div className="relative">
+                <pre className="text-[10px] text-emerald-300 bg-slate-950 rounded-xl p-4 overflow-x-auto leading-relaxed font-mono border border-white/5">{`function doPost(e) {
+  var sheet = SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getSheetByName("LEADS");
+  var data = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    new Date(),
+    data.name || "",
+    data.phone || "",
+    data.scenario || "",
+    data.from || "",
+    data.to || "",
+    data.date || "",
+    data.ref || "",
+    data.page || "",
+    data.value || "",
+    "New"
+  ]);
+  return ContentService
+    .createTextOutput("Success");
+}`}</pre>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="absolute top-2 right-2 text-gray-500 hover:text-white h-7 px-2"
+                  onClick={() => {
+                    navigator.clipboard.writeText(`function doPost(e) {\n  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("LEADS");\n  var data = JSON.parse(e.postData.contents);\n  sheet.appendRow([new Date(), data.name || "", data.phone || "", data.scenario || "", data.from || "", data.to || "", data.date || "", data.ref || "", data.page || "", data.value || "", "New"]);\n  return ContentService.createTextOutput("Success");\n}`);
+                    toast({ title: "Script copied" });
+                  }}
+                  data-testid="copy-apps-script"
+                >
+                  <Copy className="w-3 h-3" />
+                </Button>
+              </div>
+              <ol className="space-y-2 text-xs text-gray-400 list-decimal list-inside">
+                <li>Click <strong className="text-white">Deploy → New Deployment → Web App</strong></li>
+                <li>Set access to <strong className="text-white">Anyone</strong></li>
+                <li>Copy the webhook URL</li>
+                <li>Add it to your environment as <code className="text-emerald-400">VITE_SHEETS_WEBHOOK_URL</code></li>
+              </ol>
+            </div>
+
+            {/* DASHBOARD Formulas */}
+            <div className="md:col-span-2 p-6 bg-slate-800/60 border border-white/10 rounded-2xl space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl font-black text-blue-500/40">03</span>
+                <h3 className="font-black uppercase tracking-tight text-white">DASHBOARD Sheet Formulas</h3>
+              </div>
+              <div className="grid md:grid-cols-3 gap-3">
+                {[
+                  { label: "Total Leads Today", formula: `=COUNTIF(LEADS!A:A, TODAY())` },
+                  { label: "Top Scenario", formula: `=QUERY(LEADS!D:D, "select D, count(D) group by D order by count(D) desc limit 1")` },
+                  { label: "Top Partner", formula: `=QUERY(LEADS!H:H, "select H, count(H) group by H order by count(H) desc limit 1")` },
+                ].map((f, i) => (
+                  <div key={i} className="p-4 bg-slate-900/60 rounded-xl border border-white/5 space-y-2">
+                    <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest">{f.label}</p>
+                    <pre className="text-[10px] text-emerald-300 font-mono whitespace-pre-wrap">{f.formula}</pre>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-6 px-2 text-gray-600 hover:text-white text-[10px]"
+                      onClick={() => { navigator.clipboard.writeText(f.formula); toast({ title: "Formula copied" }); }}
+                    >
+                      <Copy className="w-2.5 h-2.5 mr-1" /> Copy
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* EMOTIONAL POSITIONING + FINAL MESSAGE */}
       <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto text-center space-y-12">
@@ -547,11 +745,13 @@ export default function AffiliateManagement() {
             and better opportunities. DeliWer connects all three."
           </blockquote>
           <div className="flex flex-wrap justify-center gap-4 pt-4">
-            <a href="https://wa.me/971523946311?text=Hi,%20I%20want%20to%20activate%20my%20network%20with%20DeliWer." target="_blank">
-              <Button className="h-14 px-8 bg-emerald-600 hover:bg-emerald-500 font-black uppercase tracking-widest rounded-2xl">
-                Activate My Network <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </a>
+            <Button
+              className="h-14 px-8 bg-emerald-600 hover:bg-emerald-500 font-black uppercase tracking-widest rounded-2xl"
+              onClick={() => openTrackedWhatsApp("Activate network - final CTA")}
+              data-testid="button-final-cta"
+            >
+              Activate My Network <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
             <Link href="/relocate">
               <Button variant="outline" className="h-14 px-8 border-white/10 text-gray-300 hover:bg-white/5 font-black uppercase tracking-widest rounded-2xl">
                 See What We Coordinate
