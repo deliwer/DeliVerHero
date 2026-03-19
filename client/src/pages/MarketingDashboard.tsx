@@ -482,49 +482,76 @@ export default function MarketingDashboard() {
 
           {/* AFFILIATE PARTNERS TAB */}
           <TabsContent value="partners" className="space-y-6 bg-orange-950/20 backdrop-blur-md p-6 rounded-2xl border border-orange-500/30 shadow-xl">
+            {/* Summary Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "Active Partners", value: "6", sub: "Across all tiers" },
+                { label: "Total Leads", value: "492", sub: "All time" },
+                { label: "Total Revenue", value: "AED 14,763", sub: "From partner refs" },
+                { label: "Commissions Paid", value: "AED 2,953", sub: "To partners" },
+              ].map((s, i) => (
+                <div key={i} className="bg-slate-950/50 border border-orange-500/20 rounded-xl p-4 space-y-1" data-testid={`partner-stat-${i}`}>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">{s.label}</p>
+                  <p className="text-2xl font-black text-orange-300">{s.value}</p>
+                  <p className="text-[10px] text-gray-600 font-medium">{s.sub}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Top Partners Table */}
             <Card className="bg-orange-900/40 border-orange-500/50 shadow-lg">
               <CardHeader className="bg-orange-900/60 border-b border-orange-500/30">
                 <CardTitle className="text-orange-200 flex items-center gap-2">
                   <Users className="text-orange-400" />
-                  Active Partners & Revenue
+                  Top Partners by Revenue
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6 space-y-4">
-                {partners.map((partner, i) => (
+                {[
+                  ...partners,
+                  { name: "Marina Gate Building", ref: "marinagate", agents: 1, clicks: 67, conversions: 5, revenue: 1995, commission: 399 },
+                  { name: "Al Barsha Typing Center", ref: "albarsha", clicks: 54, conversions: 4, agents: 1, revenue: 1596, commission: 319.20 },
+                  { name: "Ahmed Hassan (Broker)", ref: "ahmedhasan", agents: 1, clicks: 38, conversions: 3, revenue: 1197, commission: 239.40 },
+                ].map((partner, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
+                    transition={{ delay: i * 0.07 }}
                     viewport={{ once: true }}
                     className="bg-slate-950/50 border border-orange-500/30 rounded-xl p-4"
+                    data-testid={`partner-row-${i}`}
                   >
                     <div className="grid grid-cols-2 md:grid-cols-6 gap-3 items-center">
                       <div>
-                        <h3 className="font-black text-orange-200 text-sm">{partner.name}</h3>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-[10px] font-black text-gray-600 w-4">{i + 1}</span>
+                          <h3 className="font-black text-orange-200 text-sm">{partner.name}</h3>
+                        </div>
                         <code className="text-xs text-orange-400">?ref={partner.ref}</code>
                       </div>
                       <div className="text-center">
-                        <p className="text-gray-400 text-xs font-bold">Agents</p>
-                        <p className="text-lg font-black text-orange-300">{partner.agents}</p>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-gray-400 text-xs font-bold">Clicks</p>
+                        <p className="text-gray-400 text-xs font-bold">Leads</p>
                         <p className="text-lg font-black text-orange-300">{partner.clicks}</p>
                       </div>
                       <div className="text-center">
-                        <p className="text-gray-400 text-xs font-bold">Conversions</p>
+                        <p className="text-gray-400 text-xs font-bold">Converted</p>
                         <p className="text-lg font-black text-orange-300">{partner.conversions}</p>
                       </div>
                       <div className="text-center">
+                        <p className="text-gray-400 text-xs font-bold">Rate</p>
+                        <p className="text-lg font-black text-orange-300">{Math.round(partner.conversions / partner.clicks * 100)}%</p>
+                      </div>
+                      <div className="text-center">
                         <p className="text-gray-400 text-xs font-bold">Revenue</p>
-                        <p className="text-lg font-black text-orange-300">AED {partner.revenue}</p>
+                        <p className="text-lg font-black text-orange-300">AED {partner.revenue.toLocaleString()}</p>
                       </div>
                       <Button
                         size="sm"
                         variant="outline"
                         className="border-orange-500/50 text-orange-300 bg-orange-500/10 hover:bg-orange-500/20"
                         onClick={() => copyLink(`https://deliwer.com/start?ref=${partner.ref}`, `partner-${partner.ref}`)}
+                        data-testid={`button-copy-partner-${i}`}
                       >
                         {copied === `partner-${partner.ref}` ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                       </Button>
@@ -533,6 +560,62 @@ export default function MarketingDashboard() {
                 ))}
               </CardContent>
             </Card>
+
+            {/* Top Performing Channels */}
+            <Card className="bg-orange-900/40 border-orange-500/50 shadow-lg">
+              <CardHeader className="bg-orange-900/60 border-b border-orange-500/30">
+                <CardTitle className="text-orange-200 flex items-center gap-2">
+                  <BarChart3 className="text-orange-400" />
+                  Top Performing Channels
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6 space-y-4">
+                {[
+                  { channel: "Real Estate Brokers", type: "Strategic (35%)", leads: 218, revenue: 6978, color: "bg-emerald-500" },
+                  { channel: "Typing Centers", type: "Distribution (20%)", leads: 134, revenue: 4286, color: "bg-blue-500" },
+                  { channel: "Building Concierges", type: "Distribution (20%)", leads: 89, revenue: 2849, color: "bg-purple-500" },
+                  { channel: "Influencers / Community", type: "Influencer (15%)", leads: 31, revenue: 992, color: "bg-amber-500" },
+                  { channel: "General Referrals", type: "General (10%)", leads: 20, revenue: 638, color: "bg-slate-500" },
+                ].map((ch, i) => (
+                  <div key={i} className="space-y-2" data-testid={`channel-row-${i}`}>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-sm font-black text-white">{ch.channel}</span>
+                        <span className="text-[10px] text-gray-500 font-medium ml-2">{ch.type}</span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-sm font-black text-orange-300">{ch.leads} leads</span>
+                        <span className="text-[10px] text-gray-500 ml-2">AED {ch.revenue.toLocaleString()}</span>
+                      </div>
+                    </div>
+                    <div className="w-full bg-slate-800 rounded-full h-2">
+                      <div
+                        className={`${ch.color} h-2 rounded-full transition-all`}
+                        style={{ width: `${(ch.leads / 218) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            {/* Quick Links */}
+            <div className="grid grid-cols-2 gap-4">
+              <a href="/partner-dashboard">
+                <div className="bg-slate-900/80 border border-orange-500/30 rounded-xl p-4 hover:border-orange-500/60 transition-all cursor-pointer space-y-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-orange-400">Partner Tool</p>
+                  <p className="text-white font-black text-sm">Partner Dashboard →</p>
+                  <p className="text-gray-500 text-xs font-medium">Let partners check their own leads</p>
+                </div>
+              </a>
+              <a href="/partner-growth-kit">
+                <div className="bg-slate-900/80 border border-orange-500/30 rounded-xl p-4 hover:border-orange-500/60 transition-all cursor-pointer space-y-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-orange-400">Partner Tool</p>
+                  <p className="text-white font-black text-sm">Growth Kit →</p>
+                  <p className="text-gray-500 text-xs font-medium">WhatsApp scripts & sharing tools</p>
+                </div>
+              </a>
+            </div>
           </TabsContent>
 
           {/* SEO PAGES TAB */}

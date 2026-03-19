@@ -417,7 +417,7 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Commission & Benefits Section */}
+      {/* 4-Tier Commission Structure */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -426,16 +426,109 @@ export default function PartnersPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-5xl font-black uppercase mb-4">Why Partner with DeliWer</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto text-lg">Competitive commissions, real-time transparency, and tools to succeed</p>
+            <p className="text-emerald-400 font-black uppercase tracking-widest text-xs mb-3">Revenue Share Structure</p>
+            <h2 className="text-5xl font-black uppercase mb-4">Commission Tiers</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg">Revenue share reflects the value you bring. The closer you are to the tenant, the more you earn.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: Award, title: "20% Commission", desc: "Earn AED 79.80 per AED 399 booking" },
-              { icon: TrendingUp, title: "Unlimited Earnings", desc: "No cap on referrals or commissions" },
-              { icon: Users, title: "High Conversion", desc: "WhatsApp-native funnel converts at 30%+" },
-              { icon: Zap, title: "Instant Tracking", desc: "Real-time referral attribution via URL params" }
+              {
+                tier: "Strategic Partners",
+                share: "35%",
+                color: "border-emerald-500/50 bg-emerald-950/30",
+                accentColor: "text-emerald-400",
+                badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+                who: ["Real estate brokerages", "Ejari typing centers", "Corporate relocation companies", "Building management"],
+                why: "They replace marketing cost entirely and bring high-intent tenants directly.",
+                cta: "Enquire as Strategic Partner",
+                ctaHref: "/partners/join",
+              },
+              {
+                tier: "Distribution Partners",
+                share: "20–25%",
+                color: "border-blue-500/40 bg-blue-950/20",
+                accentColor: "text-blue-400",
+                badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+                who: ["Individual brokers", "Leasing agents", "Building staff", "Small relocation agents"],
+                why: "They contribute localized lead generation through direct conversations with tenants.",
+                cta: "Join as Distribution Partner",
+                ctaHref: "/broker-partner",
+              },
+              {
+                tier: "Influencers & Community",
+                share: "10–15%",
+                color: "border-purple-500/30 bg-purple-950/20",
+                accentColor: "text-purple-400",
+                badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+                who: ["Social media influencers", "WhatsApp group admins", "Community leaders", "Dubai bloggers"],
+                why: "They provide reach and trust. Lower conversion intent but high volume.",
+                cta: "Join as Community Partner",
+                ctaHref: "/partners/join",
+              },
+              {
+                tier: "General Referrals",
+                share: "5–10%",
+                color: "border-slate-600/50 bg-slate-900/30",
+                accentColor: "text-gray-400",
+                badgeColor: "bg-slate-700/50 text-gray-300 border-slate-600/50",
+                who: ["Any registered user", "Existing customers", "Personal network"],
+                why: "Anyone can refer and earn. Simple, no commitment required.",
+                cta: "Generate Your Link",
+                ctaHref: "/partners",
+              },
+            ].map((tier, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+                viewport={{ once: true }}
+                className={`border rounded-2xl p-7 space-y-5 ${tier.color}`}
+                data-testid={`commission-tier-${i}`}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className={`text-[11px] font-black uppercase tracking-widest mb-1 ${tier.accentColor}`}>Tier {i + 1}</p>
+                    <h3 className="text-xl font-black text-white uppercase leading-tight">{tier.tier}</h3>
+                  </div>
+                  <div className={`border rounded-xl px-4 py-2 text-center shrink-0 ${tier.badgeColor}`}>
+                    <p className="text-2xl font-black">{tier.share}</p>
+                    <p className="text-[10px] font-black uppercase tracking-wider opacity-70">Revenue Share</p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {tier.who.map((w, j) => (
+                    <div key={j} className="flex items-center gap-2 text-gray-400 text-sm font-medium">
+                      <div className={`w-1.5 h-1.5 rounded-full ${tier.accentColor.replace("text-", "bg-")}`} />
+                      {w}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="border-t border-white/5 pt-4">
+                  <p className="text-gray-500 text-xs font-medium italic leading-relaxed">{tier.why}</p>
+                </div>
+
+                <Link href={tier.ctaHref}>
+                  <button
+                    className={`w-full text-center py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all border ${tier.badgeColor} hover:opacity-80`}
+                    data-testid={`button-tier-cta-${i}`}
+                  >
+                    {tier.cta} →
+                  </button>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Benefits strip */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            {[
+              { icon: TrendingUp, title: "Unlimited Earnings", desc: "No cap on referrals or commissions. The more you refer, the more you earn." },
+              { icon: Users, title: "High Conversion", desc: "WhatsApp-native funnel converts at 30%+. Built for the way people actually communicate in Dubai." },
+              { icon: Zap, title: "Instant Tracking", desc: "Real-time referral attribution via URL params stored in your browser. Every lead is traced back to you." }
             ].map((benefit, i) => (
               <motion.div
                 key={i}

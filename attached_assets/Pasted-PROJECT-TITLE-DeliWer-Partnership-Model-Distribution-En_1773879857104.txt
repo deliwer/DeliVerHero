@@ -1,0 +1,349 @@
+PROJECT TITLE
+DeliWer Partnership Model & Distribution Engine – Master Prompt
+
+OBJECTIVE
+Transform deliwer.com into a **partner-first growth platform** where all customer acquisition is driven by:
+
+• strategic partners
+• distribution partners
+• affiliate referrals
+
+The system must enable DeliWer to scale **without marketing spend**, by turning existing partner networks into revenue-generating channels.
+
+---
+
+CORE STRATEGIC PRINCIPLE
+
+DeliWer does NOT acquire customers directly.
+
+DeliWer acquires **partners who already own customer relationships**.
+
+---
+
+PARTNERSHIP POSITIONING
+
+DeliWer must be positioned as:
+
+A **monetization layer on top of existing tenant interactions**
+
+Partners are NOT selling DeliWer.
+
+Partners are:
+
+Enhancing their existing conversations and earning additional income.
+
+---
+
+PRIMARY PARTNER CATEGORIES
+
+1. STRATEGIC PARTNERS (35% Revenue Share)
+
+Who:
+
+• Real estate brokerages
+• Ejari typing centers
+• Corporate relocation companies
+• Building management companies
+
+Value they bring:
+
+• direct tenant access
+• high-intent demand
+• recurring volume
+
+Messaging:
+
+“Unlock a new income stream from your existing tenant pipeline.”
+
+---
+
+2. DISTRIBUTION PARTNERS (20–25%)
+
+Who:
+
+• individual brokers
+• leasing agents
+• building staff
+• small relocation agents
+
+Value:
+
+• direct conversations with tenants
+• localized influence
+
+Messaging:
+
+“Earn from every tenant interaction without extra effort.”
+
+---
+
+3. INFLUENCERS / COMMUNITY PARTNERS (10–15%)
+
+Who:
+
+• social media influencers
+• WhatsApp group admins
+• community leaders
+
+Value:
+
+• reach and trust
+
+Messaging:
+
+“Help your audience save money and earn per referral.”
+
+---
+
+4. GENERAL REFERRAL TIER (5–10%)
+
+Who:
+
+• any user
+
+---
+
+PARTNER JOURNEY FLOW
+
+Partner onboarding must follow this flow:
+
+Discover DeliWer
+→ Understand earning potential
+→ Get referral link
+→ Share with network
+→ Generate leads
+→ Track performance
+→ Receive earnings
+→ Increase activity
+
+---
+
+PARTNER ACTIVATION SYSTEM
+
+Create pages:
+
+/partners
+/broker-partner
+/typing-center-partner
+/building-partner
+
+Each page must include:
+
+• clear earning explanation
+• referral link generator
+• WhatsApp sharing scripts
+• example use cases
+
+---
+
+REFERRAL LINK SYSTEM
+
+Each partner receives:
+
+deliwer.com?ref=partnercode
+
+System must:
+
+• detect referral code
+• store in localStorage
+• attach to all leads
+
+---
+
+PARTNER DASHBOARD
+
+Create page:
+
+/partner-dashboard
+
+Features:
+
+• enter referral code
+• view total leads generated
+• view conversion status
+• view estimated earnings
+• view top-performing pages
+
+Data pulled from Google Sheets.
+
+---
+
+PARTNER GROWTH KIT
+
+Create page:
+
+/partner-growth-kit
+
+Provide:
+
+• ready-to-send WhatsApp scripts
+• pre-built landing page links
+• messaging for different scenarios
+
+Examples:
+
+“Check if your tenant is overpaying rent”
+“Before renewing rent, compare your options”
+“Leaving Dubai? We can coordinate everything”
+
+---
+
+DISTRIBUTION STRATEGY
+
+Partners must NOT be required to generate new leads.
+
+They must use:
+
+• existing tenant conversations
+• CRM databases
+• WhatsApp contacts
+• in-person interactions
+
+---
+
+REVENUE ALIGNMENT LOGIC
+
+Revenue share must reflect value contribution.
+
+STRATEGIC PARTNERS (35%)
+
+Justification:
+
+They replace marketing cost and bring high-intent demand.
+
+DISTRIBUTION PARTNERS (20–25%)
+
+Justification:
+
+They contribute localized lead generation.
+
+INFLUENCERS (10–15%)
+
+Justification:
+
+They provide reach but lower intent.
+
+GENERAL REFERRALS (5–10%)
+
+---
+
+COMMISSION TRANSPARENCY
+
+Partners must clearly see:
+
+• how much they earn per lead
+• how leads convert
+• how payouts are calculated
+
+---
+
+LEAD ATTRIBUTION SYSTEM
+
+All leads must include:
+
+• referral code
+• source page
+• scenario type
+
+Stored in Google Sheets.
+
+---
+
+PARTNER MOTIVATION LOOP
+
+System must reinforce:
+
+Partner generates lead
+→ Lead converts
+→ Partner earns
+→ Partner sees earnings
+→ Partner shares more
+
+---
+
+COMMAND CENTER INTEGRATION
+
+All partner activity must be visible in:
+
+/marketing
+
+Display:
+
+• top partners
+• total leads per partner
+• total revenue per partner
+• top performing channels
+
+---
+
+STRATEGIC PARTNER ACTIVATION
+
+Provide dedicated messaging:
+
+“Monetize your existing tenant pipeline without operational overhead.”
+
+Encourage:
+
+• brokerages to activate agents
+• typing centers to offer value-added services
+• building managers to support tenants
+
+---
+
+NETWORK EFFECT DESIGN
+
+As more partners join:
+
+• more leads are generated
+• more data is collected
+• better insights are produced
+• higher conversion rates achieved
+
+---
+
+NO CAPITAL GROWTH PRINCIPLE
+
+Growth must come from:
+
+• partner distribution
+• organic sharing
+• referral incentives
+
+NOT paid ads.
+
+---
+
+USER EXPERIENCE GOAL
+
+For partners:
+
+Simple
+Clear
+Immediate earning potential
+
+For tenants:
+
+Helpful
+Trustworthy
+Solution-oriented
+
+---
+
+FINAL VISION
+
+DeliWer becomes:
+
+• a partner-driven distribution network
+• a relocation intelligence layer
+• a monetization engine for tenant interactions
+
+Partners bring demand.
+DeliWer coordinates execution.
+Revenue is shared transparently.
+
+---
+
+FINAL MESSAGE (FOR PARTNER PAGES)
+
+“You already have the relationships.
+DeliWer helps you unlock their value.”

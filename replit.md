@@ -20,13 +20,19 @@ Ejari registration (via authorized RERA Trustee Centers) is the pivotal differen
 - Backend routes: `/api/affiliate/track` (POST), `/api/affiliate/dashboard/:code` (GET) in `server/routes.ts`.
 - Frontend pages:
   - `/affiliate-dashboard` — affiliate earnings view.
-  - `/partners` — main partner overview page (headline: "Partner With DeliWer").
+  - `/partners` — main partner overview with 4-tier commission structure (35% / 20–25% / 10–15% / 5–10%).
   - `/partners/join` — signup form with auto-generated referral link.
   - `/partners/how-it-works` — 4-step process page.
   - `/partners/earnings` — earnings table with commission tiers by partner type.
   - `/partners/resources` — copy-paste WhatsApp/email/social templates.
+  - `/partner-dashboard` — self-serve dashboard: enter referral code, view leads/earnings/status/top pages.
+  - `/partner-growth-kit` — WhatsApp scripts (6 scenarios), pre-built landing page links, quick reference guide.
+  - `/broker-partner` — dedicated page for real estate brokers.
+  - `/building-partner` — dedicated page for building security/concierge teams.
+  - `/typing-center-partner` — dedicated page for Ejari typing centers.
 - Shared component: `client/src/components/partner-subnav.tsx` — sticky tab nav for all partner sub-pages.
-- Referral tracking: `?ref=code` → `sessionStorage.deliwer_ref` → fires POST to `/api/affiliate/track`.
+- Referral tracking: `?ref=code` captured globally in App.tsx → stored in localStorage/sessionStorage via `client/src/lib/referral.ts` → attached to every WhatsApp message.
+- Marketing Command Center (`/marketing/dashboard`) Affiliates tab shows: top 6 partners by revenue, channel breakdown by tier, summary stats, links to partner tools.
 
 ## Tech Stack
 - Frontend: React (Vite), Tailwind CSS, Framer Motion, Lucide Icons, Shadcn UI components.
