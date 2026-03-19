@@ -4,9 +4,27 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Copy, Check, CheckCircle2, MessageCircle, ArrowRight, FileText, Zap, Truck, Sparkles } from "lucide-react";
+import { Copy, Check, CheckCircle2, MessageCircle, ArrowRight, FileText, Zap, Truck, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
+
+const TYPING_SCRIPTS = [
+  {
+    title: "Right After Ejari — Tenant Still at Your Counter",
+    scenario: "Say this or WhatsApp the tenant immediately after completing Ejari",
+    script: `Your Ejari is registered! 🎉\n\nNow for the next steps — DEWA activation, movers, cleaning — everything can be coordinated in one WhatsApp with DeliWer.\n\nI've partnered with them so you get priority service. Here's the link:\n\n[YOUR REFERRAL LINK]\n\nJust message them and they'll take it from there. No hidden costs, no tenant markup.`,
+  },
+  {
+    title: "Print Card / QR on Your Counter",
+    scenario: "Static message to display or send when tenants ask for help",
+    script: `Moving into a new apartment? DeliWer coordinates everything:\n\n✅ Ejari (already done!)\n✅ DEWA activation\n✅ Vetted movers\n✅ Apartment cleaning\n✅ Water filter setup\n\nAll in one WhatsApp conversation.\n\n👉 [YOUR REFERRAL LINK]\n\nNo markup on tenant — they pay standard market rates.`,
+  },
+  {
+    title: "WhatsApp to New Tenant When They Ask About Moving",
+    scenario: "When a tenant asks 'what do I do next after Ejari?'",
+    script: `Great question! After Ejari, most tenants need:\n\n1. DEWA activation\n2. Movers coordination\n3. Apartment cleaning\n4. Water filter (required in many buildings)\n\nI personally recommend DeliWer — they handle all of this. Many of our clients use them.\n\nHere's the link to get started: [YOUR REFERRAL LINK]`,
+  },
+];
 
 const TENANT_QUESTIONS = [
   { q: "Do you know any movers?", a: "Share your DeliWer referral link — tenants get vetted movers coordinated for them." },
@@ -25,6 +43,8 @@ const HOW_IT_WORKS = [
 export default function TypingCenterPartnerPage() {
   const [centerName, setCenterName] = useState("");
   const [copied, setCopied] = useState(false);
+  const [copiedScript, setCopiedScript] = useState<number | null>(null);
+  const [expandedScript, setExpandedScript] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", company: "", whatsapp: "", area: "" });
   const { toast } = useToast();
@@ -43,6 +63,15 @@ export default function TypingCenterPartnerPage() {
     setCopied(true);
     toast({ title: "Link Copied!", description: "Share this with tenants after every Ejari registration." });
     setTimeout(() => setCopied(false), 2500);
+  };
+
+  const copyScript = async (idx: number, text: string) => {
+    const linkPlaceholder = generatedLink || "deliwer.com?ref=YOURCODE";
+    const filled = text.replace(/\[YOUR REFERRAL LINK\]/g, linkPlaceholder);
+    await navigator.clipboard.writeText(filled);
+    setCopiedScript(idx);
+    toast({ title: "Script Copied!", description: "Paste directly into WhatsApp." });
+    setTimeout(() => setCopiedScript(null), 2500);
   };
 
   const handleJoin = () => {
@@ -188,6 +217,50 @@ export default function TypingCenterPartnerPage() {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* WhatsApp Scripts */}
+      <section className="py-20 px-4 bg-slate-900/30 border-y border-white/5">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-full">Ready-to-Send Scripts</Badge>
+            <h2 className="text-3xl font-black uppercase tracking-tighter text-white">WhatsApp Scripts for Typing Centers</h2>
+            <p className="text-gray-400 font-medium text-sm max-w-xl mx-auto">Use these at your counter or send via WhatsApp after every Ejari. Your link auto-fills when generated above.</p>
+          </div>
+          <div className="space-y-3">
+            {TYPING_SCRIPTS.map((s, i) => (
+              <div key={i} className="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all">
+                <button
+                  data-testid={`button-typing-script-toggle-${i}`}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                  onClick={() => setExpandedScript(expandedScript === i ? null : i)}
+                >
+                  <div>
+                    <div className="font-black text-white text-sm uppercase tracking-tight">{s.title}</div>
+                    <div className="text-[11px] text-gray-500 font-medium mt-0.5">{s.scenario}</div>
+                  </div>
+                  {expandedScript === i ? <ChevronUp className="w-4 h-4 text-emerald-400 shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-500 shrink-0" />}
+                </button>
+                {expandedScript === i && (
+                  <div className="px-5 pb-5 space-y-4">
+                    <div className="bg-slate-800 rounded-xl p-4 border border-white/5">
+                      <pre className="text-gray-300 text-xs font-medium leading-relaxed whitespace-pre-wrap">{s.script.replace(/\[YOUR REFERRAL LINK\]/g, generatedLink || "deliwer.com?ref=YOURCODE")}</pre>
+                    </div>
+                    <Button
+                      data-testid={`button-typing-copy-script-${i}`}
+                      size="sm"
+                      className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-5 h-9 text-xs"
+                      onClick={() => copyScript(i, s.script)}
+                    >
+                      {copiedScript === i ? <><Check className="w-3.5 h-3.5 mr-1.5" />Copied!</> : <><Copy className="w-3.5 h-3.5 mr-1.5" />Copy Script</>}
+                    </Button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-gray-600 text-center font-medium">Generate your referral link above to auto-fill it in every script before copying.</p>
         </div>
       </section>
 

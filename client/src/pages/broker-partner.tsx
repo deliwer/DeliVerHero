@@ -5,9 +5,33 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle2, MessageCircle, Copy, Check, Users, TrendingUp, DollarSign, Building2, Star, ArrowRight } from "lucide-react";
+import { CheckCircle2, MessageCircle, Copy, Check, Users, TrendingUp, DollarSign, Building2, Star, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
+
+const BROKER_SCRIPTS = [
+  {
+    title: "After Signing the Lease",
+    scenario: "Send immediately after tenant signs the tenancy contract",
+    script: `Hi [Tenant Name], congratulations on your new home! 🎉\n\nOne thing I always recommend to all my tenants — DeliWer handles everything you need after getting your keys: Ejari registration, DEWA setup, movers, and cleaning.\n\nI've arranged for you to get their service through my referral. Just click this link and they'll contact you directly:\n\n[YOUR REFERRAL LINK]\n\nThey respond fast on WhatsApp. Makes the whole move-in stress-free.`,
+  },
+  {
+    title: "Pre-Move-In Follow-Up",
+    scenario: "Send 1–2 weeks before tenant's move-in date",
+    script: `Hi [Tenant Name], just checking in — your move-in is coming up soon!\n\nHave you sorted Ejari, DEWA activation, movers, and cleaning yet?\n\nIf not, I have a trusted partner that coordinates everything in one go — no need to chase multiple vendors.\n\nHere's the link to get started: [YOUR REFERRAL LINK]\n\nThey work fast and tenants love them. Let me know if you need anything else!`,
+  },
+  {
+    title: "For Your Existing Client Database",
+    scenario: "Send to your full WhatsApp contact list or CRM",
+    script: `Hi everyone — if you or anyone you know is moving into a new apartment in Dubai, I'd love to share something useful.\n\nDeliWer coordinates the full move-in process: Ejari, DEWA, movers, cleaning, and more — all in one WhatsApp message.\n\nNo hidden fees, no tenant markup.\n\nHere's the link: [YOUR REFERRAL LINK]\n\nFeel free to share it with anyone who might be moving soon. Happy to answer any questions!`,
+  },
+  {
+    title: "After Ejari Registration",
+    scenario: "For clients who just completed Ejari and need next steps",
+    script: `[Tenant Name], great news — Ejari is done! Now for the next steps:\n\nDEWA activation, keys collection, movers, and cleaning all need to happen in the right order.\n\nI recommend DeliWer — they coordinate all of this from one WhatsApp conversation. I've referred dozens of my clients and the feedback has been excellent.\n\nHere's the link: [YOUR REFERRAL LINK]\n\nThey'll reach out and guide you through everything.`,
+  },
+];
+
 
 const PARTNER_TYPES = [
   { icon: Building2, title: "Real Estate Brokers", desc: "Refer every tenant after contract signing. Zero extra work for you." },
@@ -26,6 +50,8 @@ const COMMISSION = [
 export default function BrokerPartnerPage() {
   const [partnerName, setPartnerName] = useState("");
   const [copied, setCopied] = useState(false);
+  const [copiedScript, setCopiedScript] = useState<number | null>(null);
+  const [expandedScript, setExpandedScript] = useState<number | null>(0);
   const { toast } = useToast();
 
   const generateLink = () => {
@@ -49,6 +75,15 @@ export default function BrokerPartnerPage() {
       intro: "Hi DeliWer, I'm a real estate broker interested in the partner referral program.",
       fields: { Name: partnerName || undefined },
     }));
+  };
+
+  const copyScript = async (idx: number, text: string) => {
+    const linkPlaceholder = generatedLink || "deliwer.com?ref=YOURCODE";
+    const filled = text.replace(/\[YOUR REFERRAL LINK\]/g, linkPlaceholder);
+    await navigator.clipboard.writeText(filled);
+    setCopiedScript(idx);
+    toast({ title: "Script Copied!", description: "Replace [Tenant Name] and paste into WhatsApp." });
+    setTimeout(() => setCopiedScript(null), 2500);
   };
 
   return (
@@ -184,6 +219,50 @@ export default function BrokerPartnerPage() {
             <MessageCircle className="w-5 h-5 mr-2" />
             Request Your Referral Code via WhatsApp
           </Button>
+        </div>
+      </section>
+
+      {/* WhatsApp Scripts */}
+      <section className="py-20 px-4 bg-slate-900/30 border-y border-white/5">
+        <div className="max-w-3xl mx-auto space-y-8">
+          <div className="text-center space-y-3">
+            <Badge className="bg-purple-500/10 text-purple-400 border-purple-500/20 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-full">Ready-to-Send Scripts</Badge>
+            <h2 className="text-3xl font-black uppercase tracking-tighter text-white">WhatsApp Scripts for Brokers</h2>
+            <p className="text-gray-400 font-medium text-sm max-w-xl mx-auto">You already have these conversations. Here's exactly what to send — and when to send it.</p>
+          </div>
+          <div className="space-y-3">
+            {BROKER_SCRIPTS.map((s, i) => (
+              <div key={i} className="bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all">
+                <button
+                  data-testid={`button-broker-script-toggle-${i}`}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                  onClick={() => setExpandedScript(expandedScript === i ? null : i)}
+                >
+                  <div>
+                    <div className="font-black text-white text-sm uppercase tracking-tight">{s.title}</div>
+                    <div className="text-[11px] text-gray-500 font-medium mt-0.5">{s.scenario}</div>
+                  </div>
+                  {expandedScript === i ? <ChevronUp className="w-4 h-4 text-purple-400 shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-500 shrink-0" />}
+                </button>
+                {expandedScript === i && (
+                  <div className="px-5 pb-5 space-y-4">
+                    <div className="bg-slate-800 rounded-xl p-4 border border-white/5">
+                      <pre className="text-gray-300 text-xs font-medium leading-relaxed whitespace-pre-wrap">{s.script.replace(/\[YOUR REFERRAL LINK\]/g, generatedLink || "deliwer.com?ref=YOURCODE")}</pre>
+                    </div>
+                    <Button
+                      data-testid={`button-broker-copy-script-${i}`}
+                      size="sm"
+                      className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl px-5 h-9 text-xs"
+                      onClick={() => copyScript(i, s.script)}
+                    >
+                      {copiedScript === i ? <><Check className="w-3.5 h-3.5 mr-1.5" />Copied!</> : <><Copy className="w-3.5 h-3.5 mr-1.5" />Copy Script</>}
+                    </Button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="text-[11px] text-gray-600 text-center font-medium">Your referral link is auto-inserted when you generate it above. Replace [Tenant Name] before sending.</p>
         </div>
       </section>
 

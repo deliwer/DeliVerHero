@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2 } from "lucide-react";
+import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2, ArrowRight, Link2, Share2, BarChart2, Wallet, RefreshCw, Network } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
@@ -240,6 +240,58 @@ export default function PartnersPage() {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Partner Journey Flow */}
+      <section className="py-20 px-4 bg-slate-900/40 border-y border-white/5">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <div className="text-center space-y-3">
+            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">The Partner Journey</p>
+            <h2 className="text-4xl font-black uppercase tracking-tighter text-white">From First Share to Monthly Earnings</h2>
+            <p className="text-gray-400 font-medium max-w-2xl mx-auto">Eight steps. All of them powered by relationships you already have.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { num: "01", icon: Users, label: "Discover DeliWer", desc: "Understand the platform and which partner tier fits your network." },
+              { num: "02", icon: BarChart2, label: "Understand Earnings", desc: "See exactly how much you earn per lead, per conversion, and per tier." },
+              { num: "03", icon: Link2, label: "Get Your Referral Link", desc: "Receive your unique deliwer.com?ref=yourcode in minutes via WhatsApp." },
+              { num: "04", icon: Share2, label: "Share with Your Network", desc: "Use your existing conversations — tenants, CRM, WhatsApp groups, in-person." },
+              { num: "05", icon: MessageCircle, label: "Generate Leads", desc: "Every click on your link that converts to a WhatsApp inquiry is tracked to you." },
+              { num: "06", icon: BarChart3, label: "Track Performance", desc: "Check your partner dashboard anytime — leads, conversions, status." },
+              { num: "07", icon: Wallet, label: "Receive Earnings", desc: "Monthly payouts. Transparent ledger. No hidden deductions." },
+              { num: "08", icon: RefreshCw, label: "Scale Your Activity", desc: "More referrals = more earnings. Your network is your greatest asset." },
+            ].map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.07 }}
+                  viewport={{ once: true }}
+                  className="relative bg-slate-900 border border-slate-700 rounded-2xl p-5 space-y-3 hover:border-emerald-500/30 transition-all"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-black text-emerald-400/20">{step.num}</span>
+                    <div className="w-8 h-8 bg-emerald-500/10 rounded-xl flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-emerald-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-black text-white text-xs uppercase tracking-tight mb-1">{step.label}</div>
+                    <p className="text-gray-500 text-[11px] font-medium leading-relaxed">{step.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+          <div className="text-center">
+            <div className="inline-flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl px-8 py-4">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+              <span className="text-emerald-300 font-black uppercase tracking-wide text-sm">You already have the relationships. DeliWer helps you unlock their value.</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -783,6 +835,106 @@ export default function PartnersPage() {
           </div>
 
           <PartnerRegisterForm />
+        </div>
+      </section>
+
+      {/* No Capital Growth + Network Effect */}
+      <section className="py-24 px-4 bg-gradient-to-b from-slate-950 via-emerald-950/10 to-slate-950 border-y border-emerald-500/10">
+        <div className="max-w-5xl mx-auto space-y-16">
+          {/* Strategic Positioning */}
+          <div className="text-center space-y-6 max-w-3xl mx-auto">
+            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Strategic Principle</p>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
+              DeliWer Does Not<br /><span className="text-emerald-400">Acquire Customers Directly</span>
+            </h2>
+            <p className="text-gray-300 font-medium text-lg leading-relaxed">
+              DeliWer acquires <strong className="text-white">partners who already own customer relationships.</strong><br />
+              Partners are not selling DeliWer. Partners are enhancing their existing conversations and earning additional income.
+            </p>
+          </div>
+
+          {/* Three Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Partners Bring Demand",
+                desc: "Every strategic partner is a distribution channel. Brokerages, typing centers, building staff — they all interact with tenants before DeliWer ever does.",
+                accent: "border-emerald-500/30 bg-emerald-950/20",
+                textColor: "text-emerald-300",
+              },
+              {
+                title: "DeliWer Coordinates Execution",
+                desc: "Once a lead is received, DeliWer handles everything: Ejari, DEWA, movers, cleaning, water filter. Partners do zero operational work.",
+                accent: "border-blue-500/30 bg-blue-950/20",
+                textColor: "text-blue-300",
+              },
+              {
+                title: "Revenue Is Shared Transparently",
+                desc: "Partners see exactly what they earn per lead, how leads convert, and when payouts are processed. No black boxes. No hidden deductions.",
+                accent: "border-purple-500/30 bg-purple-950/20",
+                textColor: "text-purple-300",
+              },
+            ].map((pillar, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className={`border ${pillar.accent} rounded-2xl p-7 space-y-3`}
+              >
+                <h3 className={`font-black uppercase tracking-tight text-lg ${pillar.textColor}`}>{pillar.title}</h3>
+                <p className="text-gray-400 text-sm font-medium leading-relaxed">{pillar.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Network Effect */}
+          <div className="bg-slate-900/60 border border-white/5 rounded-3xl p-10 space-y-8">
+            <div className="text-center space-y-3">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5">
+                <Network className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-emerald-400 font-black text-[10px] uppercase tracking-widest">Network Effect</span>
+              </div>
+              <h3 className="text-3xl font-black uppercase tracking-tighter text-white">Growth That Compounds</h3>
+              <p className="text-gray-400 font-medium text-sm max-w-xl mx-auto">As more partners join, the system doesn't just grow — it accelerates.</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "More partners join", color: "bg-emerald-500/20 border-emerald-500/20", text: "text-emerald-300" },
+                { label: "More leads are generated", color: "bg-blue-500/20 border-blue-500/20", text: "text-blue-300" },
+                { label: "Better data is collected", color: "bg-purple-500/20 border-purple-500/20", text: "text-purple-300" },
+                { label: "Higher conversions achieved", color: "bg-orange-500/20 border-orange-500/20", text: "text-orange-300" },
+              ].map((effect, i) => (
+                <div key={i} className={`border ${effect.color} rounded-xl p-4 text-center space-y-2`}>
+                  <div className={`text-2xl font-black ${effect.text}`}>0{i + 1}</div>
+                  <p className={`text-xs font-black uppercase tracking-tight ${effect.text}`}>{effect.label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <p className="text-gray-500 text-xs font-medium">Growth comes from partner distribution, organic sharing, and referral incentives. Not paid ads.</p>
+            </div>
+          </div>
+
+          {/* Motivation Loop */}
+          <div className="text-center space-y-6">
+            <h3 className="text-2xl font-black uppercase tracking-tighter text-white">The Partner Motivation Loop</h3>
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              {[
+                "Generate a Lead",
+                "Lead Converts",
+                "You Earn",
+                "You See Earnings",
+                "You Share More",
+              ].map((step, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-4 py-2 text-emerald-300 font-black text-xs uppercase tracking-wide">{step}</div>
+                  {i < 4 && <ArrowRight className="w-4 h-4 text-emerald-500/40 shrink-0" />}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
