@@ -187,81 +187,104 @@ export default function Home() {
         </script>
       </Helmet>
 
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4 text-center">
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 opacity-30"
+      {/* ── HERO ── */}
+      <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden px-4 text-center">
+        <div
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-15"
           style={{ backgroundImage: `url(${maintenanceHero})` }}
         />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/40 via-slate-950/80 to-slate-950" />
-        
-        <div className="relative z-10 max-w-4xl mx-auto space-y-10 py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-6"
-          >
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] drop-shadow-2xl text-white uppercase">
-              Moving Into <br />
-              Dubai? <span className="text-emerald-500 text-4xl md:text-6xl align-middle">Start Here</span>
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/90 to-slate-950" />
+
+        <div className="relative z-10 max-w-4xl mx-auto space-y-10 py-20">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="space-y-4">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-5 py-2 text-emerald-400 text-xs font-black uppercase tracking-widest">
+              <CheckCircle2 className="w-3.5 h-3.5" /> Dubai's Default Move-In Platform
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.88] drop-shadow-2xl text-white uppercase">
+              Your Entire<br />Move-In.<br /><span className="text-emerald-400">One Message.</span>
             </h1>
-            
-            <h2 className="text-lg md:text-xl text-gray-300 font-bold max-w-2xl mx-auto leading-tight uppercase tracking-tight opacity-90">
-              A structured Move-In Planning Session — from Ejari to full home activation and water setup.
-            </h2>
+            <p className="text-xl md:text-2xl text-gray-300 font-medium max-w-2xl mx-auto leading-relaxed">
+              Ejari. DEWA. Movers. Cleaning. Water filter. All coordinated by DeliWer — without you chasing a single vendor.
+            </p>
           </motion.div>
-          
-          <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto justify-center">
-            <Link href="/residents?stage=ejari">
-              <Button 
-                size="lg" 
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-16 text-lg shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
-              >
-                Start Move-In Planning <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-            <Link href="/residents?stage=handover">
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black rounded-2xl px-8 h-16 text-lg shadow-2xl transition-all w-full active-elevate-2 flex gap-4 items-center justify-center"
-              >
-                I Already Have My Keys
-              </Button>
-            </Link>
-          </div>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              data-testid="button-hero-whatsapp"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-16 text-lg shadow-2xl shadow-emerald-500/20"
+              onClick={() => handleWhatsApp()}
+            >
+              <MessageSquare className="w-5 h-5 mr-2" /> Start on WhatsApp
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              data-testid="button-hero-bundle"
+              className="border-white/20 text-white hover:bg-white/5 font-black rounded-2xl px-10 h-16 text-lg"
+              onClick={() => document.getElementById("starter-bundle")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              See What's Included <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 pt-4 border-t border-white/10">
+            {[
+              { icon: <ShieldCheck className="w-4 h-4 text-emerald-400" />, text: "No hidden fees" },
+              { icon: <CheckCircle2 className="w-4 h-4 text-emerald-400" />, text: "Verified vendors only" },
+              { icon: <Clock className="w-4 h-4 text-emerald-400" />, text: "20+ hours saved" },
+              { icon: <Star className="w-4 h-4 text-emerald-400" />, text: "WhatsApp-first" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2 font-medium">{item.icon} {item.text}</div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Conversion Clarity Block — Moving Into a New Home? */}
-      <div className="py-16 px-4 bg-emerald-950/30 border-y border-emerald-500/20">
-        <div className="max-w-3xl mx-auto text-center space-y-6">
-          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">
-            Moving Into a New Home?
-          </h2>
-          <p className="text-gray-300 leading-relaxed max-w-xl mx-auto">
-            DeliWer helps coordinate your move-in process including Ejari registration, movers, water readiness, and home setup.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Link href="/ejari-dubai">
+      {/* ── THE PAIN ── */}
+      <section className="py-20 px-4 bg-slate-900/60 border-y border-white/5">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <div className="text-center space-y-3">
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+              The moment you sign a lease in Dubai,<br className="hidden md:block" /><span className="text-gray-400"> all of this lands on your plate.</span>
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { icon: <FileCheck className="w-5 h-5" />, label: "Ejari Registration", pain: "Requires specific documents, trustee center booking" },
+              { icon: <Zap className="w-5 h-5" />, label: "DEWA Activation", pain: "Electricity & water on requires its own process" },
+              { icon: <Truck className="w-5 h-5" />, label: "Find Vetted Movers", pain: "Quoting, scheduling, trusting the right crew" },
+              { icon: <Sparkles className="w-5 h-5" />, label: "Apartment Cleaning", pain: "Before furniture arrives, deep clean is essential" },
+              { icon: <Droplets className="w-5 h-5" />, label: "Water Filter Setup", pain: "Dubai tap water is treated but filtration is standard" },
+              { icon: <Package className="w-5 h-5" />, label: "Coordinate Timing", pain: "Everything must happen in the right order" },
+              { icon: <Settings className="w-5 h-5" />, label: "Internet & Utilities", pain: "Multiple providers, multiple timeslots to manage" },
+              { icon: <Wrench className="w-5 h-5" />, label: "AC & Home Check", pain: "Filters, appliances, handover snagging" },
+            ].map((item, i) => (
+              <div key={i} className="bg-slate-900 border border-slate-700/60 rounded-2xl p-4 space-y-2 hover:border-red-500/20 transition-all">
+                <div className="text-red-400/70">{item.icon}</div>
+                <div className="font-black text-white text-xs uppercase tracking-tight">{item.label}</div>
+                <div className="text-gray-600 text-[10px] font-medium leading-relaxed">{item.pain}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center space-y-4">
+            <div className="inline-block bg-emerald-500/10 border border-emerald-500/20 rounded-2xl px-8 py-5">
+              <p className="text-emerald-300 font-black text-lg md:text-xl">DeliWer handles all of it — from one WhatsApp message.</p>
+              <p className="text-gray-400 text-sm font-medium mt-1">You pay only normal vendor market rates. We coordinate everything behind the scenes.</p>
+            </div>
+            <div>
               <Button
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-12 text-sm uppercase tracking-widest w-full md:w-auto"
-                data-testid="button-start-ejari"
+                data-testid="button-pain-cta"
+                size="lg"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base"
+                onClick={() => handleWhatsApp()}
               >
-                Start Ejari Registration
+                <MessageSquare className="w-4 h-4 mr-2" /> Start on WhatsApp — It's Free to Ask
               </Button>
-            </Link>
-            <Link href="/relocate">
-              <Button
-                variant="outline"
-                className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-2xl px-8 h-12 text-sm uppercase tracking-widest w-full md:w-auto"
-                data-testid="button-plan-home-movein"
-              >
-                Plan Your Move-In
-              </Button>
-            </Link>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ==========================================
            STARTER MOVE-IN BUNDLE SECTION
