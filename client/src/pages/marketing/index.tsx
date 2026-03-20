@@ -50,27 +50,6 @@ export default function MarketingHub() {
       </div>
 
       <section className="max-w-4xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-          {[
-            { icon: "🏠", label: "Move In", intent: "move", href: "/" },
-            { icon: "📄", label: "Ejari", intent: "ejari", href: "/ejari-registration" },
-            { icon: "⚡", label: "DEWA", intent: "dewa", href: "/dewa-activation" },
-            { icon: "🚪", label: "Move Out", intent: "exit", href: "/move-out-package" },
-          ].map((item) => (
-            <a
-              key={item.label}
-              href={buildWhatsAppURL(item.intent, tracking.ref)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-emerald-500/40 transition-all group cursor-pointer"
-              data-testid={`quick-action-${item.intent}`}
-            >
-              <span className="text-2xl group-hover:scale-110 transition-transform">{item.icon}</span>
-              <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{item.label}</span>
-            </a>
-          ))}
-        </div>
-
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold mb-1">Submit a Lead</h2>
