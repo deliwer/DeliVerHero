@@ -201,6 +201,64 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* MARKETING HERO — Overpaying + Quick-Action Tiles */}
+      <section className="py-14 px-4 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-10"
+          >
+            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest mb-3">Dubai Relocation · One WhatsApp Away</p>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white mb-3 leading-[0.9]">
+              Are You <span className="text-emerald-400">Overpaying</span><br />Rent in Dubai?
+            </h2>
+            <p className="text-gray-400 text-base max-w-xl mx-auto mb-7">
+              Moving soon? We handle everything — Ejari, DEWA, movers, cleaning. One message away.
+            </p>
+            <a
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20help%20with%20my%20move."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="cta-whatsapp-landing"
+            >
+              <Button className="h-14 px-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-sm rounded-2xl shadow-xl shadow-emerald-900/30 transition-all">
+                <MessageCircle className="w-5 h-5 mr-2" /> Start Your Move
+              </Button>
+            </a>
+            <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mt-3">No signup · No account · 24h WhatsApp response</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+          >
+            {[
+              { icon: "🏠", label: "Move In", href: "/move-in-package", testid: "tile-move-in" },
+              { icon: "📄", label: "Ejari", href: "/ejari-registration", testid: "tile-ejari" },
+              { icon: "⚡", label: "DEWA", href: "/dewa-activation", testid: "tile-dewa" },
+              { icon: "🚪", label: "Move Out", href: "/move-out-package", testid: "tile-move-out" },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-white/10 hover:border-emerald-500/60 rounded-2xl transition-all"
+                data-testid={item.testid}
+              >
+                <span className="text-3xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                <span className="text-xs font-black uppercase tracking-tight text-gray-300 group-hover:text-emerald-400 transition-colors">{item.label}</span>
+                <ArrowRight className="w-3 h-3 text-gray-600 group-hover:text-emerald-400 transition-colors" />
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* WHAT'S INCLUDED — concise services strip */}
       <section className="py-14 px-6 bg-slate-950 border-b border-white/5">
         <div className="max-w-4xl mx-auto space-y-8">

@@ -202,6 +202,7 @@ function Router() {
         <Route path="/marketing/leaderboard" component={MarketingLeaderboard} />
         <Route path="/marketing/partners" component={MarketingPartners} />
         <Route path="/marketing/control" component={MarketingControl} />
+        <Route path="/errand" component={ErrandPage} />
         <Route path="/marketing/legacy" component={MarketingLegacy} />
         <Route path="/marketing/legacy/affiliate-management" component={AffiliateManagement} />
         <Route path="/marketing/legacy/founder-dashboard" component={LegacyFounderDashboard} />
