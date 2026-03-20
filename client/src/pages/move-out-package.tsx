@@ -22,12 +22,6 @@ export default function MoveOutPackagePage() {
         description="Leave clean, disconnect right, and avoid penalties. Furniture removal, e-waste, and utility disconnections fully coordinated."
       />
 
-      <section className="px-4 py-3 border-b border-white/10 bg-black/40">
-        <div className="max-w-4xl mx-auto">
-          <TrustStrip variant="dark" showContact={true} />
-        </div>
-      </section>
-
       <section className="relative py-24 px-4 overflow-hidden border-b border-white/5">
         <div className="absolute inset-0 bg-blue-500/5 pointer-events-none" />
         <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
