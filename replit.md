@@ -24,6 +24,10 @@ Static marketing hub with no backend/database dependency. Uses localStorage + UR
 - `/marketing/control` — Founder command center: KPIs, revenue breakdown, lead table, partner analytics
 - Tracking lib: `client/src/lib/marketing-tracker.ts` — `initTracker()`, `getTracking()`, `submitLead()`, `fetchSheetData()`
 - To connect Google Sheets: replace `GOOGLE_SHEET_WEBHOOK_URL` and `GOOGLE_SHEET_JSON_URL` in `marketing-tracker.ts`
+- `/marketing/legacy` — Legacy reference index (all previous marketing pages, fully intact, no modifications)
+- `/marketing/legacy/affiliate-management` → `affiliate-management.tsx` (original affiliate command center)
+- `/marketing/legacy/founder-dashboard` → `MarketingDashboard.tsx` (original founder dashboard)
+- `/affiliate-dashboard` and `/planet-hero-affiliates` retain their existing routes (linked from legacy index)
 
 ## Affiliate & Partner System
 - Schema: `affiliates` + `affiliateLeads` tables in `shared/schema.ts`.
