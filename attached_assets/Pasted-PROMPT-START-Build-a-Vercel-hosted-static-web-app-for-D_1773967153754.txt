@@ -1,0 +1,283 @@
+PROMPT START
+
+Build a Vercel-hosted static web app for DeliWer Marketing Command Center located at:
+
+👉 /marketing
+
+This is the central operating system for founders, partners, and affiliates.
+
+No backend. No database. Use:
+
+Vanilla JS (or Next.js static export)
+
+Google Sheets (as database)
+
+URL parameters for tracking
+
+LocalStorage for session tracking
+
+🎯 CORE OBJECTIVE
+
+Create a system that:
+
+Captures leads
+
+Tracks partner referrals
+
+Assigns attribution
+
+Displays live performance
+
+Motivates partners to send more leads
+
+🧩 SYSTEM ARCHITECTURE
+1. GLOBAL TRACKING ENGINE
+
+Capture URL parameters:
+
+?ref=partner_name
+?utm_source=broker
+?utm_campaign=movein
+
+Store in:
+
+localStorage.setItem("ref", ref);
+
+Persist across pages.
+
+2. LEAD CAPTURE FLOW (WHATSAPP FIRST)
+
+Primary CTA everywhere:
+
+👉 “Start Your Move”
+
+On click:
+
+Capture:
+
+name
+
+phone
+
+intent (move / renew / exit)
+
+Send to Google Sheets via webhook (Apps Script)
+
+Redirect to WhatsApp:
+
+https://wa.me/971523946311?text=Hi%20DeliWer%20I%20came%20from%20[ref]
+3. GOOGLE SHEETS STRUCTURE
+
+Sheet Name: Leads
+
+Columns:
+
+Timestamp
+Name
+Phone
+Intent
+Source (ref)
+UTM Source
+UTM Campaign
+Status (New / Contacted / Closed)
+Revenue
+Partner Share
+4. GOOGLE APPS SCRIPT WEBHOOK
+
+Create webhook:
+
+function doPost(e) {
+  var sheet = SpreadsheetApp.openById("SHEET_ID").getSheetByName("Leads");
+  var data = JSON.parse(e.postData.contents);
+
+  sheet.appendRow([
+    new Date(),
+    data.name,
+    data.phone,
+    data.intent,
+    data.ref,
+    data.utm_source,
+    data.utm_campaign,
+    "New",
+    "",
+    ""
+  ]);
+
+  return ContentService.createTextOutput("Success");
+}
+5. PARTNER DASHBOARD (STATIC SIMULATION)
+
+Route:
+
+👉 /marketing/dashboard
+
+Features:
+
+Enter partner name
+
+Fetch filtered data (via public Google Sheet JSON)
+
+Display:
+
+Leads generated
+
+Estimated earnings
+
+Conversion status
+
+6. LEADERBOARD (GAMIFICATION)
+
+Route:
+
+👉 /marketing/leaderboard
+
+Show:
+
+Top Partners This Week
+1. Ali Real Estate — 18 Leads
+2. Marina Brokers — 12 Leads
+3. JVC Agents — 9 Leads
+
+Static or pulled from sheet JSON.
+
+7. PARTNER ONBOARDING PAGE
+
+Route:
+
+👉 /marketing/partners
+
+Content:
+
+Explain earning model (up to 35%)
+
+Show how it works in 3 steps:
+
+Share link
+
+We handle
+
+You earn
+
+Generate referral link dynamically:
+
+const link = `https://deliwer.com/?ref=${partnerName}`;
+8. VIRAL LOOP ENGINE
+
+After lead submission:
+
+Show:
+
+👉 “Earn with DeliWer”
+
+CTA:
+
+“Become a Partner”
+
+“Share your link”
+
+9. FOUNDER COMMAND CENTER
+
+Route:
+
+👉 /marketing/control
+
+Display:
+
+Total leads today
+
+Active partners
+
+Conversion rate
+
+Revenue estimate
+
+Pull from Google Sheets JSON.
+
+10. ZERO FRICTION UX RULES
+
+No login required
+
+No signup required
+
+Everything instant
+
+WhatsApp-first flow
+
+⚡ DESIGN SYSTEM
+
+Clean, minimal
+
+Urgency-driven copy
+
+Mobile-first
+
+Sticky CTA: “Start Your Move”
+
+🔥 COPY ELEMENTS
+Headlines:
+
+“Are You Overpaying Rent in Dubai?”
+
+“Moving Soon? We Handle Everything.”
+
+“Earn From Every Tenant You Know”
+
+🔁 AUTOMATION LOGIC
+Referral Attribution:
+
+Priority:
+
+URL param
+
+LocalStorage
+
+Default = organic
+
+📲 WHATSAPP MESSAGE FORMAT
+
+Auto-fill:
+
+Hi DeliWer,
+I want help with my move.
+
+Source: [ref]
+Intent: [intent]
+🧠 PERFORMANCE OPTIMIZATION
+
+Lazy load scripts
+
+Cache sheet JSON
+
+Use static rendering
+
+🚀 DEPLOYMENT
+
+Deploy on Vercel
+
+Use /marketing as hub
+
+Connect domain: deliwer.com
+
+🔥 SUCCESS METRICS
+
+Leads per day
+
+Leads per partner
+
+Conversion rate
+
+Revenue per lead
+
+💡 FINAL OBJECTIVE
+
+This system should:
+
+Replace paid marketing
+
+Turn partners into growth engine
+
+Create daily visible traction
+
+Motivate action through data
+
+🚀 PROMPT END

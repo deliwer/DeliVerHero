@@ -15,6 +15,16 @@ Ejari registration (via authorized RERA Trustee Centers) is the pivotal differen
 - Affiliates/partners earn 30% of DeliWer's embedded coordination fee (shown only in affiliate/partner dashboards, never tenant-facing).
 - Bundle cost by unit: Studio AED 3,250 · 1BR AED 3,600 · 2BR AED 4,000 · 3BR/Villa AED 4,500.
 
+## Marketing Command Center (`/marketing`)
+Static marketing hub with no backend/database dependency. Uses localStorage + URL params for tracking, Google Sheets (via Apps Script webhook) for lead storage, and demo data fallback when sheet is unconfigured.
+- `/marketing` — Hub: lead capture form, WhatsApp CTA, quick-action tiles
+- `/marketing/dashboard` — Partner dashboard: enter partner name, view filtered leads/earnings, copy referral link
+- `/marketing/leaderboard` — Weekly/monthly/all-time partner rankings with podium
+- `/marketing/partners` — Partner onboarding: generate unique referral link, commission tiers (15/25/35%)
+- `/marketing/control` — Founder command center: KPIs, revenue breakdown, lead table, partner analytics
+- Tracking lib: `client/src/lib/marketing-tracker.ts` — `initTracker()`, `getTracking()`, `submitLead()`, `fetchSheetData()`
+- To connect Google Sheets: replace `GOOGLE_SHEET_WEBHOOK_URL` and `GOOGLE_SHEET_JSON_URL` in `marketing-tracker.ts`
+
 ## Affiliate & Partner System
 - Schema: `affiliates` + `affiliateLeads` tables in `shared/schema.ts`.
 - Backend routes: `/api/affiliate/track` (POST), `/api/affiliate/dashboard/:code` (GET) in `server/routes.ts`.

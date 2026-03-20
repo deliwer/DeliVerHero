@@ -168,7 +168,11 @@ const DubaiMoveScore = lazy(() => import("@/pages/dubai-move-score"));
 const DubaiRentIncreaseRules = lazy(() => import("@/pages/dubai-rent-increase-rules"));
 const TenancyRenewalDubaiGuide = lazy(() => import("@/pages/tenancy-renewal-dubai-guide"));
 
-import MarketingDashboard from "@/pages/MarketingDashboard";
+import MarketingHub from "@/pages/marketing/index";
+import MarketingDashboardPage from "@/pages/marketing/dashboard";
+import MarketingLeaderboard from "@/pages/marketing/leaderboard";
+import MarketingPartners from "@/pages/marketing/partners";
+import MarketingControl from "@/pages/marketing/control";
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -191,8 +195,11 @@ function Router() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
-        <Route path="/marketing" component={AffiliateManagement} />
-        <Route path="/marketing/dashboard" component={MarketingDashboard} />
+        <Route path="/marketing" component={MarketingHub} />
+        <Route path="/marketing/dashboard" component={MarketingDashboardPage} />
+        <Route path="/marketing/leaderboard" component={MarketingLeaderboard} />
+        <Route path="/marketing/partners" component={MarketingPartners} />
+        <Route path="/marketing/control" component={MarketingControl} />
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
