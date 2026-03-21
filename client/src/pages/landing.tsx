@@ -15,7 +15,10 @@ import {
   ArrowRight,
   Calculator,
   TrendingDown,
-  Search
+  TrendingUp,
+  Search,
+  BarChart3,
+  MapPin
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
@@ -174,52 +177,170 @@ export default function LandingPage() {
       </section>
 
       {/* ============================================
-          RELOCATION DECISION FUNNEL — Secondary Hero
+          DUBAI RENTAL INTELLIGENCE — Comparison Hub
          ============================================ */}
-      <section className="relative pt-16 pb-16 px-4 border-b border-white/5 overflow-hidden">
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black/90" />
-        </div>
-        <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
-          {/* Primary CTA Buttons */}
+      <section className="relative py-20 px-4 border-b border-white/5 overflow-hidden bg-slate-950">
+        <div className="absolute inset-0 z-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-violet-600 via-transparent to-transparent" />
+        <div className="max-w-5xl mx-auto space-y-14 relative z-10">
+
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-3"
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3"
           >
-            <Link href="/move-dubai">
-              <Button data-testid="cta-plan-my-move" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-6 h-12 text-sm shadow-lg transition-all">
-                <Home className="w-4 h-4 mr-2" /> Plan My Move
-              </Button>
-            </Link>
-            <Link href="/ejari-dubai">
-              <Button data-testid="cta-register-ejari" variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
-                <FileText className="w-4 h-4 mr-2" /> Register Ejari
-              </Button>
-            </Link>
-            <Link href="/move-vs-renew-dubai">
-              <Button data-testid="cta-compare" variant="outline" className="border-violet-500/40 text-violet-400 hover:bg-violet-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
-                <Calculator className="w-4 h-4 mr-2" /> Compare Move vs Renew
-              </Button>
-            </Link>
-            <Link href="/are-you-overpaying-rent-dubai">
-              <Button data-testid="cta-overpaying" variant="outline" className="border-red-500/40 text-red-400 hover:bg-red-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
-                <Search className="w-4 h-4 mr-2" /> Check If I'm Overpaying Rent
-              </Button>
-            </Link>
-            <Link href="/exit-dubai">
-              <Button data-testid="cta-leaving-dubai" variant="outline" className="border-amber-500/40 text-amber-400 hover:bg-amber-500/10 font-black rounded-2xl px-6 h-12 text-sm transition-all">
-                <LogOut className="w-4 h-4 mr-2" /> Leaving Dubai
-              </Button>
-            </Link>
+            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              <BarChart3 className="w-3 h-3" /> Dubai Rental Intelligence
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">
+              Is Your Rent Still<br className="hidden sm:block" /> <span className="text-violet-400">Competitive?</span>
+            </h2>
+            <p className="text-gray-400 text-base max-w-2xl mx-auto font-medium">
+              Dubai's rental market shifted 18–35% in 2024. Most tenants renewing blindly are overpaying. DeliWer analyses your contract, benchmarks your district, and coordinates your next move — at zero markup.
+            </p>
           </motion.div>
 
-          <p className="text-[10px] text-gray-600 font-black uppercase tracking-widest">
-            Trusted relocation partners across Dubai, Sharjah & Ajman · Coordinator confirms within 10 minutes
+          {/* Market Trend Strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { label: "Avg rent increase 2024", value: "+26%", sub: "Dubai-wide RERA data", icon: <TrendingUp className="w-4 h-4" />, color: "text-red-400", bg: "bg-red-500/10 border-red-500/20" },
+              { label: "Tenants who moved saved", value: "18 K AED", sub: "avg annual saving vs renewing", icon: <TrendingDown className="w-4 h-4" />, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
+              { label: "Cheaper districts available", value: "14+", sub: "within 15 min of Downtown", icon: <MapPin className="w-4 h-4" />, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+              { label: "DeliWer coordination fee", value: "0 AED", sub: "you pay vendors directly", icon: <Calculator className="w-4 h-4" />, color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
+            ].map((s) => (
+              <div key={s.label} className={`rounded-2xl border p-4 space-y-2 ${s.bg}`} data-testid={`stat-${s.label.toLowerCase().replace(/\s/g, "-").slice(0, 20)}`}>
+                <div className={s.color}>{s.icon}</div>
+                <div className={`text-2xl font-black ${s.color}`}>{s.value}</div>
+                <div className="text-xs font-bold text-white/80 leading-tight">{s.label}</div>
+                <div className="text-[10px] text-gray-600">{s.sub}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Move vs Renew Comparison */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-red-500/20 flex items-center justify-center">
+                  <TrendingUp className="w-4 h-4 text-red-400" />
+                </div>
+                <div>
+                  <div className="text-xs font-black uppercase tracking-wider text-red-400">If You Renew Blind</div>
+                  <div className="text-white font-bold text-sm">Staying in same unit</div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { label: "Landlord can raise rent", value: "Up to 20%", bad: true },
+                  { label: "RERA index check skipped", value: "Most tenants never check", bad: true },
+                  { label: "Moving costs avoided", value: "Saved ~3,500 AED", bad: false },
+                  { label: "Opportunity cost", value: "6–22K AED/year overpaid", bad: true },
+                ].map((row) => (
+                  <div key={row.label} className="flex items-center justify-between border-b border-white/5 pb-2">
+                    <span className="text-gray-400 text-sm">{row.label}</span>
+                    <span className={`text-xs font-bold ${row.bad ? "text-red-400" : "text-emerald-400"}`}>{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-violet-500/10 border border-violet-500/30 rounded-2xl p-6 space-y-5">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-violet-500/20 flex items-center justify-center">
+                  <TrendingDown className="w-4 h-4 text-violet-400" />
+                </div>
+                <div>
+                  <div className="text-xs font-black uppercase tracking-wider text-violet-400">If You Move Smart</div>
+                  <div className="text-white font-bold text-sm">With DeliWer coordination</div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { label: "RERA benchmark check", value: "Free with DeliWer", good: true },
+                  { label: "District opportunity scan", value: "14+ cheaper areas", good: true },
+                  { label: "Full move coordinated", value: "One WhatsApp message", good: true },
+                  { label: "Typical net annual saving", value: "12,000–22,000 AED", good: true },
+                ].map((row) => (
+                  <div key={row.label} className="flex items-center justify-between border-b border-violet-500/10 pb-2">
+                    <span className="text-gray-400 text-sm">{row.label}</span>
+                    <span className="text-xs font-bold text-violet-300">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* District Comparison Table */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+              <div>
+                <p className="text-[10px] text-blue-400 font-black uppercase tracking-widest">2025 Avg Annual Rents</p>
+                <h3 className="font-black text-white text-sm">Popular Districts — 1BR Comparison</h3>
+              </div>
+              <span className="text-[10px] text-gray-600 font-bold uppercase">Source: RERA / DLD</span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-white/5">
+                    <th className="text-left px-5 py-3 text-xs text-gray-500 font-medium">District</th>
+                    <th className="text-left px-5 py-3 text-xs text-gray-500 font-medium">Avg Rent / yr</th>
+                    <th className="text-left px-5 py-3 text-xs text-gray-500 font-medium">YoY Change</th>
+                    <th className="text-left px-5 py-3 text-xs text-gray-500 font-medium">Opportunity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { area: "Downtown Dubai", rent: "115,000 AED", change: "+28%", badge: "Overpriced", badgeColor: "bg-red-500/15 text-red-400 border-red-500/25" },
+                    { area: "Dubai Marina", rent: "98,000 AED", change: "+22%", badge: "High Demand", badgeColor: "bg-amber-500/15 text-amber-400 border-amber-500/25" },
+                    { area: "JVC", rent: "58,000 AED", change: "+9%", badge: "Best Value", badgeColor: "bg-emerald-500/15 text-emerald-400 border-emerald-500/25" },
+                    { area: "Al Furjan", rent: "65,000 AED", change: "+11%", badge: "Growing", badgeColor: "bg-blue-500/15 text-blue-400 border-blue-500/25" },
+                    { area: "Mirdif", rent: "52,000 AED", change: "+7%", badge: "Stable", badgeColor: "bg-violet-500/15 text-violet-400 border-violet-500/25" },
+                    { area: "Business Bay", rent: "88,000 AED", change: "+19%", badge: "Watch", badgeColor: "bg-amber-500/15 text-amber-400 border-amber-500/25" },
+                  ].map((row, i) => (
+                    <tr key={row.area} className="border-b border-white/5 hover:bg-white/3 transition-colors" data-testid={`district-row-${i}`}>
+                      <td className="px-5 py-3 font-semibold text-white flex items-center gap-2">
+                        <MapPin className="w-3 h-3 text-gray-600 shrink-0" />{row.area}
+                      </td>
+                      <td className="px-5 py-3 font-bold text-white">{row.rent}</td>
+                      <td className="px-5 py-3 text-red-400 font-semibold">{row.change}</td>
+                      <td className="px-5 py-3">
+                        <span className={`text-[10px] font-bold px-2 py-1 rounded-full border ${row.badgeColor}`}>{row.badge}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="bg-gradient-to-r from-violet-600/20 via-violet-500/10 to-transparent border border-violet-500/30 rounded-3xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 text-center sm:text-left">
+              <h3 className="text-xl font-black text-white uppercase tracking-tight">Get Your Free Rental Analysis</h3>
+              <p className="text-gray-400 text-sm max-w-sm">Tell us your current rent and district — DeliWer's coordinator benchmarks it against RERA and finds your cheapest legal move in 24h.</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <a
+                href="https://wa.me/971523946311?text=Hello%20DeliWer,%20I%20want%20a%20free%20rental%20analysis%20for%20my%20apartment"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-black px-6 py-3 rounded-2xl text-sm transition-all shadow-lg shadow-violet-900/30"
+                data-testid="cta-rental-analysis"
+              >
+                <MessageCircle className="w-4 h-4" /> Analyse My Rent
+              </a>
+              <Link href="/move-vs-renew-dubai">
+                <Button variant="outline" className="border-violet-500/40 text-violet-400 hover:bg-violet-500/10 font-black rounded-2xl px-6 h-11 text-sm transition-all w-full" data-testid="cta-move-vs-renew">
+                  <Calculator className="w-4 h-4 mr-2" /> Move vs Renew Calculator
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          <p className="text-center text-[10px] text-gray-600 font-black uppercase tracking-widest">
+            Trusted by tenants across Dubai, Sharjah & Ajman · RERA-informed benchmarking · Coordinator confirms within 10 minutes
           </p>
         </div>
       </section>
