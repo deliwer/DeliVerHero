@@ -120,27 +120,66 @@ export default function LandingPage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto w-full"
           >
-            {[
-              { icon: "🏠", label: "Move In", href: "/move-in-package", testid: "tile-move-in" },
-              { icon: "📄", label: "Ejari", href: "/ejari-registration", testid: "tile-ejari" },
-              { icon: "⚡", label: "DEWA", href: "/dewa-activation", testid: "tile-dewa" },
-              { icon: "🚪", label: "Move Out", href: "/move-out-package", testid: "tile-move-out" },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="group flex flex-col items-center gap-2 py-4 px-3 bg-white/10 backdrop-blur-sm border border-white/20 hover:border-emerald-500/60 hover:bg-white/15 rounded-2xl transition-all"
-                data-testid={item.testid}
-              >
-                <span className="text-2xl group-hover:scale-110 transition-transform">{item.icon}</span>
-                <span className="text-[10px] font-black uppercase tracking-tight text-gray-300 group-hover:text-emerald-400 transition-colors">{item.label}</span>
-              </Link>
-            ))}
+            <button
+              data-testid="funnel-btn-moving-in"
+              onClick={() => openFunnel("moving-in")}
+              className="group flex flex-col items-center gap-3 p-5 bg-white/10 backdrop-blur-sm border-2 border-emerald-500/30 hover:border-emerald-500 rounded-2xl transition-all text-left"
+            >
+              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center group-hover:bg-emerald-500/20 transition-all">
+                <Home className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Moving Into a New Home</div>
+                <div className="text-[10px] text-gray-400 font-medium">Ejari, DEWA, movers & setup</div>
+              </div>
+              <ArrowRight className="w-3 h-3 text-emerald-400 ml-auto" />
+            </button>
+
+            <button
+              data-testid="funnel-btn-moving-within"
+              onClick={() => openFunnel("moving-within")}
+              className="group flex flex-col items-center gap-3 p-5 bg-white/10 backdrop-blur-sm border-2 border-blue-500/30 hover:border-blue-500 rounded-2xl transition-all text-left"
+            >
+              <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-all">
+                <TrendingDown className="w-5 h-5 text-blue-400" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Move to Cheaper Rent</div>
+                <div className="text-[10px] text-gray-400 font-medium">Full relocation coordination</div>
+              </div>
+              <ArrowRight className="w-3 h-3 text-blue-400 ml-auto" />
+            </button>
+
+            <Link href="/move-vs-renew-dubai" className="group flex flex-col items-center gap-3 p-5 bg-white/10 backdrop-blur-sm border-2 border-violet-500/30 hover:border-violet-500 rounded-2xl transition-all text-left" data-testid="funnel-btn-compare">
+              <div className="w-10 h-10 bg-violet-500/10 rounded-xl flex items-center justify-center group-hover:bg-violet-500/20 transition-all">
+                <Calculator className="w-5 h-5 text-violet-400" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Compare Move vs Renew</div>
+                <div className="text-[10px] text-gray-400 font-medium">See which saves you more</div>
+              </div>
+              <ArrowRight className="w-3 h-3 text-violet-400 ml-auto" />
+            </Link>
+
+            <button
+              data-testid="funnel-btn-leaving"
+              onClick={() => openFunnel("leaving")}
+              className="group flex flex-col items-center gap-3 p-5 bg-white/10 backdrop-blur-sm border-2 border-amber-500/30 hover:border-amber-500 rounded-2xl transition-all text-left"
+            >
+              <div className="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-all">
+                <LogOut className="w-5 h-5 text-amber-400" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="font-black text-white uppercase text-xs tracking-tight">Leaving Dubai</div>
+                <div className="text-[10px] text-gray-400 font-medium">Exit concierge from 900 AED</div>
+              </div>
+              <ArrowRight className="w-3 h-3 text-amber-400 ml-auto" />
+            </button>
           </motion.div>
         </div>
       </section>
@@ -156,25 +195,6 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black/90" />
         </div>
         <div className="max-w-5xl mx-auto text-center space-y-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-4"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest">
-              <Star className="w-3.5 h-3.5" /> UAE Relocation Concierge
-            </div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.9] text-white uppercase">
-              Everything After Ejari —<br />
-              <span className="text-emerald-400">Handled.</span>
-            </h1>
-            <p className="text-lg text-gray-400 font-medium max-w-2xl mx-auto leading-relaxed">
-              Moving into a new home, relocating to cheaper rent, or leaving Dubai?<br />
-              DeliWer coordinates movers, utilities, cleaning, and home readiness.
-            </p>
-          </motion.div>
-
           {/* Primary CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -209,70 +229,6 @@ export default function LandingPage() {
             </Link>
           </motion.div>
 
-          {/* Four Scenario Cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto"
-          >
-            <button
-              data-testid="funnel-btn-moving-in"
-              onClick={() => openFunnel("moving-in")}
-              className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-emerald-500/30 hover:border-emerald-500 rounded-2xl transition-all text-left"
-            >
-              <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center group-hover:bg-emerald-500/20 transition-all">
-                <Home className="w-5 h-5 text-emerald-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-xs tracking-tight">Moving Into a New Home</div>
-                <div className="text-[10px] text-gray-500 font-medium">Ejari, DEWA, movers & setup</div>
-              </div>
-              <ArrowRight className="w-3 h-3 text-emerald-400 ml-auto" />
-            </button>
-
-            <button
-              data-testid="funnel-btn-moving-within"
-              onClick={() => openFunnel("moving-within")}
-              className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-blue-500/30 hover:border-blue-500 rounded-2xl transition-all text-left"
-            >
-              <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center group-hover:bg-blue-500/20 transition-all">
-                <TrendingDown className="w-5 h-5 text-blue-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-xs tracking-tight">Move to Cheaper Rent</div>
-                <div className="text-[10px] text-gray-500 font-medium">Full relocation coordination</div>
-              </div>
-              <ArrowRight className="w-3 h-3 text-blue-400 ml-auto" />
-            </button>
-
-            <Link href="/move-vs-renew-dubai" className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-violet-500/30 hover:border-violet-500 rounded-2xl transition-all text-left" data-testid="funnel-btn-compare">
-              <div className="w-10 h-10 bg-violet-500/10 rounded-xl flex items-center justify-center group-hover:bg-violet-500/20 transition-all">
-                <Calculator className="w-5 h-5 text-violet-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-xs tracking-tight">Compare Move vs Renew</div>
-                <div className="text-[10px] text-gray-500 font-medium">See which saves you more</div>
-              </div>
-              <ArrowRight className="w-3 h-3 text-violet-400 ml-auto" />
-            </Link>
-
-            <button
-              data-testid="funnel-btn-leaving"
-              onClick={() => openFunnel("leaving")}
-              className="group flex flex-col items-center gap-3 p-5 bg-slate-900 border-2 border-amber-500/30 hover:border-amber-500 rounded-2xl transition-all text-left"
-            >
-              <div className="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-all">
-                <LogOut className="w-5 h-5 text-amber-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-xs tracking-tight">Leaving Dubai</div>
-                <div className="text-[10px] text-gray-500 font-medium">Exit concierge from 900 AED</div>
-              </div>
-              <ArrowRight className="w-3 h-3 text-amber-400 ml-auto" />
-            </button>
-          </motion.div>
-
           <p className="text-[10px] text-gray-600 font-black uppercase tracking-widest">
             Trusted relocation partners across Dubai, Sharjah & Ajman · Coordinator confirms within 10 minutes
           </p>
@@ -286,6 +242,27 @@ export default function LandingPage() {
             <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">One coordinator. Everything sorted.</p>
             <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">What DeliWer handles for you</h2>
           </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { icon: "🏠", label: "Move In", href: "/move-in-package", testid: "tile-move-in" },
+              { icon: "📄", label: "Ejari", href: "/ejari-registration", testid: "tile-ejari" },
+              { icon: "⚡", label: "DEWA", href: "/dewa-activation", testid: "tile-dewa" },
+              { icon: "🚪", label: "Move Out", href: "/move-out-package", testid: "tile-move-out" },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="group flex flex-col items-center gap-2 py-4 px-3 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-2xl transition-all"
+                data-testid={item.testid}
+              >
+                <span className="text-2xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                <span className="text-[10px] font-black uppercase tracking-tight text-gray-400 group-hover:text-emerald-400 transition-colors">{item.label}</span>
+                <ArrowRight className="w-3 h-3 text-gray-600 group-hover:text-emerald-400 transition-colors" />
+              </Link>
+            ))}
+          </div>
+
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {BUNDLE_SERVICES.map((service, i) => (
               <div key={i} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 hover:border-emerald-500/40 transition-colors">
