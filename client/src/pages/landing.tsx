@@ -155,17 +155,6 @@ export default function LandingPage() {
               <ArrowRight className="w-3 h-3 text-blue-400 ml-auto" />
             </button>
 
-            <Link href="/move-vs-renew-dubai" className="group flex flex-col items-center gap-3 p-5 bg-white/10 backdrop-blur-sm border-2 border-violet-500/30 hover:border-violet-500 rounded-2xl transition-all text-left" data-testid="funnel-btn-compare">
-              <div className="w-10 h-10 bg-violet-500/10 rounded-xl flex items-center justify-center group-hover:bg-violet-500/20 transition-all">
-                <Calculator className="w-5 h-5 text-violet-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-xs tracking-tight">Compare Move vs Renew</div>
-                <div className="text-[10px] text-gray-400 font-medium">See which saves you more</div>
-              </div>
-              <ArrowRight className="w-3 h-3 text-violet-400 ml-auto" />
-            </Link>
-
             <button
               data-testid="funnel-btn-leaving"
               onClick={() => openFunnel("leaving")}
