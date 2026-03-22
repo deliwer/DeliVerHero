@@ -2,5 +2,67 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api
+Disallow: /marketing
+Disallow: /affiliate-dashboard
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# AI / LLM Crawlers — allow full indexing for AI knowledge bases
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Common SEO bots
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
 
 Sitemap: https://www.deliwer.com/sitemap.xml

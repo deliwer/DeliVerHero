@@ -65,7 +65,7 @@ export default function LandingPage() {
       {/* ============================================
           MAIN HERO — Are You Overpaying Rent?
          ============================================ */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-28 pb-20 px-4 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center pt-40 pb-20 px-4 overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
@@ -438,49 +438,10 @@ export default function LandingPage() {
         </Link>
       </section>
 
-      {/* DISTRIBUTION PARTNERS */}
-      <section className="py-14 px-4 bg-slate-900 text-white border-t border-white/5">
+      {/* PARTNER NETWORK */}
+      <section className="bg-slate-950 border-t border-white/5 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div className="space-y-2">
-              <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Distribution Partners</p>
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter">Property Managers & Brokers</h2>
-              <div className="flex flex-wrap gap-x-6 gap-y-1 pt-1">
-                {["Reduce admin overhead", "Happier tenants", "Faster apartment turnaround"].map((item, i) => (
-                  <span key={i} className="text-gray-400 text-sm font-medium flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-emerald-500 shrink-0" />{item}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <Link href="/partners" className="shrink-0">
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-12 text-sm shadow-xl">
-                Partner With DeliWer
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ECOSYSTEM PARTNERS */}
-      <section className="py-10 px-4 bg-slate-950 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-center gap-6">
-            <div className="shrink-0 space-y-1">
-              <p className="text-[10px] text-blue-400 font-black uppercase tracking-widest">Ecosystem Partners</p>
-              <p className="text-[10px] text-white/30 font-bold uppercase tracking-wider">Service delivery network</p>
-            </div>
-            <div className="flex-1 border-l border-white/10 pl-6 flex items-center gap-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-blue-400 text-sm">TC</div>
-                <span className="text-[11px] font-black uppercase tracking-widest text-white/50">Trustee Centers</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-blue-400 text-sm">SGM</div>
-                <span className="text-[11px] font-black uppercase tracking-widest text-white/50">Smart Global Movers</span>
-              </div>
-            </div>
-          </div>
+          <PartnerStrip />
         </div>
       </section>
 
