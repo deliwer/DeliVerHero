@@ -280,7 +280,7 @@ export default function LandingPage() {
             alt="Home setup"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/97 via-slate-950/95 to-slate-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/45 to-slate-950/55" />
         </div>
         <div className="max-w-4xl mx-auto space-y-6 relative z-10">
           <div className="text-center space-y-2">
