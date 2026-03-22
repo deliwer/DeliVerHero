@@ -54,7 +54,7 @@ export default function Relocate() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-4">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-4 pt-24">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40 scale-105"
           style={{ backgroundImage: `url(${relocateHero})` }}
@@ -102,8 +102,6 @@ export default function Relocate() {
           </div>
         </div>
       </section>
-
-      <PartnerStrip />
 
       {/* Move-In Packages Section */}
       <section ref={activationRef} id="activation-section" className="relative px-4 py-32 border-y border-white/5 overflow-hidden bg-slate-900/40">
@@ -398,6 +396,13 @@ export default function Relocate() {
           </Link>
         </div>
       </section>
+
+      {/* Partner Network */}
+      <div className="bg-slate-950 border-t border-white/5 px-4">
+        <div className="max-w-4xl mx-auto">
+          <PartnerStrip />
+        </div>
+      </div>
     </div>
   );
 }
