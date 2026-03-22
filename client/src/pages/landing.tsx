@@ -41,12 +41,12 @@ const lifestyleImages = {
 };
 
 const BUNDLE_SERVICES = [
-  { icon: <Truck className="w-4 h-4" />, label: "Movers coordination" },
-  { icon: <FileText className="w-4 h-4" />, label: "Ejari registration" },
-  { icon: <Zap className="w-4 h-4" />, label: "DEWA activation support" },
-  { icon: <Shield className="w-4 h-4" />, label: "Water / air readiness check" },
-  { icon: <Droplets className="w-4 h-4" />, label: "Welcome shower filter & installation" },
-  { icon: <Clock className="w-4 h-4" />, label: "Move-in vendor scheduling" },
+  { icon: <Truck className="w-4 h-4" />, label: "Movers" },
+  { icon: <FileText className="w-4 h-4" />, label: "Ejari" },
+  { icon: <Zap className="w-4 h-4" />, label: "DEWA" },
+  { icon: <Shield className="w-4 h-4" />, label: "Water Check" },
+  { icon: <Droplets className="w-4 h-4" />, label: "Shower Filter" },
+  { icon: <Clock className="w-4 h-4" />, label: "Scheduling" },
 ];
 
 export default function LandingPage() {
@@ -308,26 +308,25 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {BUNDLE_SERVICES.map((service, i) => (
-              <div key={i} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 hover:border-emerald-500/40 transition-colors">
-                <span className="text-emerald-400 shrink-0">{service.icon}</span>
-                <span className="text-gray-300 font-medium text-sm">{service.label}</span>
+              <div key={i} className="group flex flex-col items-center gap-2 py-3 px-2 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-xl transition-all text-center">
+                <span className="text-emerald-400 group-hover:scale-110 transition-transform">{service.icon}</span>
+                <span className="text-[9px] font-black uppercase tracking-tight text-gray-400 group-hover:text-emerald-400 transition-colors leading-tight">{service.label}</span>
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          <div className="flex items-center justify-center gap-3">
             <Link href="/start">
               <Button
                 data-testid="button-bundle-start"
-                size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-xl shadow-emerald-900/30 transition-all"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all"
               >
                 Start My Move-In Plan
               </Button>
             </Link>
             <Link href="/concierge-pricing">
-              <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-2xl px-8 h-14 text-sm transition-all">
+              <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-xl px-6 h-11 text-sm transition-all">
                 View Pricing →
               </Button>
             </Link>
