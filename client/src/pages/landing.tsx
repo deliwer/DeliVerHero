@@ -1,22 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { 
-  Zap, 
   LogOut,
   MessageCircle,
   CheckCircle2,
-  Shield,
-  FileText,
-  Truck,
-  Droplets,
-  Clock,
-  Star,
   Home,
   ArrowRight,
   Calculator,
   TrendingDown,
   TrendingUp,
-  Search,
   BarChart3,
   MapPin
 } from "lucide-react";
@@ -41,12 +33,12 @@ const lifestyleImages = {
 };
 
 const BUNDLE_SERVICES = [
-  { icon: <Truck className="w-4 h-4" />, label: "Movers" },
-  { icon: <FileText className="w-4 h-4" />, label: "Ejari" },
-  { icon: <Zap className="w-4 h-4" />, label: "DEWA" },
-  { icon: <Shield className="w-4 h-4" />, label: "Water Check" },
-  { icon: <Droplets className="w-4 h-4" />, label: "Shower Filter" },
-  { icon: <Clock className="w-4 h-4" />, label: "Scheduling" },
+  { icon: "🚛", label: "Movers" },
+  { icon: "📄", label: "Ejari" },
+  { icon: "⚡", label: "DEWA" },
+  { icon: "💧", label: "Water Check" },
+  { icon: "🚿", label: "Shower Filter" },
+  { icon: "🗓️", label: "Scheduling" },
 ];
 
 export default function LandingPage() {
@@ -281,14 +273,31 @@ export default function LandingPage() {
       </section>
 
       {/* WHAT'S INCLUDED — concise services strip */}
-      <section className="py-14 px-6 bg-slate-950 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-8">
+      <section className="relative py-14 px-6 border-b border-white/5 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80"
+            alt="Home setup"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/92 via-slate-950/88 to-slate-950/95" />
+        </div>
+        <div className="max-w-4xl mx-auto space-y-6 relative z-10">
           <div className="text-center space-y-2">
             <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">One coordinator. Everything sorted.</p>
             <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">What DeliWer handles for you</h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+            {BUNDLE_SERVICES.map((service, i) => (
+              <div key={i} className="group flex flex-col items-center gap-2 py-3 px-2 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-xl transition-all text-center">
+                <span className="text-xl group-hover:scale-110 transition-transform">{service.icon}</span>
+                <span className="text-[9px] font-black uppercase tracking-tight text-gray-400 group-hover:text-emerald-400 transition-colors leading-tight">{service.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {[
               { icon: "🏠", label: "Move In", href: "/move-in-package", testid: "tile-move-in" },
               { icon: "📄", label: "Ejari", href: "/ejari-registration", testid: "tile-ejari" },
@@ -298,24 +307,16 @@ export default function LandingPage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group flex flex-col items-center gap-2 py-4 px-3 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-2xl transition-all"
+                className="group flex flex-col items-center gap-2 py-3 px-3 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-xl transition-all"
                 data-testid={item.testid}
               >
-                <span className="text-2xl group-hover:scale-110 transition-transform">{item.icon}</span>
+                <span className="text-xl group-hover:scale-110 transition-transform">{item.icon}</span>
                 <span className="text-[10px] font-black uppercase tracking-tight text-gray-400 group-hover:text-emerald-400 transition-colors">{item.label}</span>
                 <ArrowRight className="w-3 h-3 text-gray-600 group-hover:text-emerald-400 transition-colors" />
               </Link>
             ))}
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-            {BUNDLE_SERVICES.map((service, i) => (
-              <div key={i} className="group flex flex-col items-center gap-2 py-3 px-2 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-xl transition-all text-center">
-                <span className="text-emerald-400 group-hover:scale-110 transition-transform">{service.icon}</span>
-                <span className="text-[9px] font-black uppercase tracking-tight text-gray-400 group-hover:text-emerald-400 transition-colors leading-tight">{service.label}</span>
-              </div>
-            ))}
-          </div>
           <div className="flex items-center justify-center gap-3">
             <Link href="/start">
               <Button
