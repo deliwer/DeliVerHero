@@ -290,9 +290,9 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {BUNDLE_SERVICES.map((service, i) => (
-              <div key={i} className="group flex flex-col items-center gap-2 py-3 px-2 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-xl transition-all text-center">
+              <div key={i} className="group flex flex-col items-center gap-2 py-3 px-2 bg-slate-800 border border-slate-600/60 hover:border-emerald-500/70 hover:bg-slate-700 rounded-xl transition-all text-center">
                 <span className="text-xl group-hover:scale-110 transition-transform">{service.icon}</span>
-                <span className="text-[9px] font-black uppercase tracking-tight text-gray-400 group-hover:text-emerald-400 transition-colors leading-tight">{service.label}</span>
+                <span className="text-[9px] font-black uppercase tracking-tight text-gray-200 group-hover:text-emerald-400 transition-colors leading-tight">{service.label}</span>
               </div>
             ))}
           </div>
@@ -307,12 +307,12 @@ export default function LandingPage() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="group flex flex-col items-center gap-2 py-3 px-3 bg-white/5 border border-white/10 hover:border-emerald-500/50 hover:bg-white/10 rounded-xl transition-all"
+                className="group flex flex-col items-center gap-2 py-3 px-3 bg-slate-800 border border-slate-600/60 hover:border-emerald-500/70 hover:bg-slate-700 rounded-xl transition-all"
                 data-testid={item.testid}
               >
                 <span className="text-xl group-hover:scale-110 transition-transform">{item.icon}</span>
-                <span className="text-[10px] font-black uppercase tracking-tight text-gray-400 group-hover:text-emerald-400 transition-colors">{item.label}</span>
-                <ArrowRight className="w-3 h-3 text-gray-600 group-hover:text-emerald-400 transition-colors" />
+                <span className="text-[10px] font-black uppercase tracking-tight text-gray-200 group-hover:text-emerald-400 transition-colors">{item.label}</span>
+                <ArrowRight className="w-3 h-3 text-gray-500 group-hover:text-emerald-400 transition-colors" />
               </Link>
             ))}
           </div>
