@@ -17,7 +17,7 @@ export function Navigation() {
     { path: "/ejari-dubai", label: "Ejari", id: "ejari", icon: Home },
     { path: "/relocate", label: "Move-In", id: "relocation", icon: Plane },
     { path: "/exit-dubai", label: "Move-Out", id: "move-out", icon: LogOut },
-    { path: "/concierge-pricing", label: "Concierge", id: "concierge", icon: Star },
+    { path: "/aquacafe", label: "AquaCafe", id: "aquacafe", icon: Star },
     { path: "/errand", label: "Errand", id: "errand", icon: ClipboardList },
   ];
 
