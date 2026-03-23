@@ -363,6 +363,7 @@ function Router() {
         <Route path="/dubai-relocation-concierge" component={SeoDubaiRelocationConcierge} />
         <Route path="/move-apartment-dubai" component={SeoMoveApartmentDubai} />
         <Route path="/setup" component={SetupPage} />
+        <Route path="/consult" component={lazy(() => import("@/pages/consult"))} />
 
         {/* Partner Distribution Network */}
         <Route path="/typing-center-partner" component={TypingCenterPartner} />

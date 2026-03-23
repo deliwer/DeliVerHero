@@ -1042,6 +1042,30 @@ Reply DONE when completed.`;
     }
   });
 
+  // Consultation booking endpoint
+  app.post("/api/consult", async (req, res) => {
+    try {
+      const { name, email, phone, situation, message } = req.body;
+      if (!name || !email || !phone) {
+        return res.status(400).json({ error: "Name, email, and phone are required" });
+      }
+      const leadResult = await processLead({
+        name,
+        email,
+        phone,
+        source: '/consult',
+        serviceType: 'relocation-consultation',
+        intent: situation || 'Relocation Consultation',
+        message: message || '',
+        metadata: { situation, bookingType: 'consultation' }
+      });
+      trackCTAEvent('consult_booking_submit', { situation, emailSent: leadResult.emailSent, page: '/consult' });
+      res.json({ success: true, leadProcessed: leadResult.success });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to submit consultation request" });
+    }
+  });
+
   app.get("/api/contacts", async (req, res) => {
     try {
       const contacts = await storage.getAllContacts();
