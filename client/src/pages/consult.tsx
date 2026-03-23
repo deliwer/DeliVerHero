@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -157,6 +158,12 @@ export default function ConsultPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
+      <SEOMeta
+        title="Dubai Relocation Consultation — Stay, Move, or Set Up?"
+        description="Book a 1-on-1 session with a DeliWer relocation consultant. We help expats and entrepreneurs decide: stay in Dubai, move cheaper, or set up elsewhere. Actionable, personalised advice."
+        canonical="https://www.deliwer.com/consult"
+        keywords="Dubai relocation consultant, Dubai vs Singapore, Dubai vs London, leave Dubai, stay in Dubai, expat financial planning Dubai, Dubai cost of living, relocate from Dubai, Dubai digital nomad visa, where to move from Dubai, relocation consultation UAE"
+      />
 
       {/* ── HERO ── */}
       <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">

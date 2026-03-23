@@ -1,3 +1,4 @@
+import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -158,6 +159,12 @@ const steps = [
 export default function SetupPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
+      <SEOMeta
+        title="Dubai Business Setup & Free Zone Company Formation"
+        description="Set up your company in a Dubai Free Zone in as little as 7 days. DAFZA, Dubai South, and Commercity licences — zero tax, 100% ownership, visa sponsorship. DeliWer handles everything."
+        canonical="https://www.deliwer.com/setup"
+        keywords="Dubai business setup, free zone Dubai, DAFZA setup, Dubai South free zone, Commercity Dubai, company formation UAE, 100% foreign ownership UAE, zero tax Dubai, Dubai trade licence, Dubai investor visa, Golden Visa UAE, LLC mainland Dubai, UAE business registration"
+      />
 
       {/* ── HERO with image background ── */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">

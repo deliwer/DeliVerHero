@@ -1054,9 +1054,10 @@ Reply DONE when completed.`;
         email,
         phone,
         source: '/consult',
-        serviceType: 'relocation-consultation',
+        serviceType: 'consultation',
         intent: situation || 'Relocation Consultation',
         message: message || '',
+        adminEmail: 'admin@deliwer.com',
         metadata: { situation, bookingType: 'consultation' }
       });
       trackCTAEvent('consult_booking_submit', { situation, emailSent: leadResult.emailSent, page: '/consult' });

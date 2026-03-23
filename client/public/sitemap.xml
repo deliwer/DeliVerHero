@@ -1,9 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://deliwer.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://deliwer.com/relocate</loc><priority>0.9</priority></url>
-  <url><loc>https://deliwer.com/residence</loc><priority>0.8</priority></url>
-  <url><loc>https://deliwer.com/ewaste</loc><priority>0.7</priority></url>
-  <url><loc>https://deliwer.com/home-service</loc><priority>0.8</priority></url>
-  <url><loc>https://deliwer.com/contact</loc><priority>0.5</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- ═══ CORE / HIGHEST PRIORITY ═══ -->
+  <url><loc>https://www.deliwer.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.deliwer.com/ejari-dubai</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.deliwer.com/relocate</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.deliwer.com/exit-dubai</loc><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://www.deliwer.com/setup</loc><changefreq>weekly</changefreq><priority>0.92</priority></url>
+  <url><loc>https://www.deliwer.com/consult</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://www.deliwer.com/aquacafe</loc><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://www.deliwer.com/errand</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+
+  <!-- ═══ MOVE-IN & EJARI SERVICES ═══ -->
+  <url><loc>https://www.deliwer.com/ejari-registration</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/ejari-renewal</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/dewa-activation</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in-plan</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/concierge-pricing</loc><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/residents</loc><changefreq>weekly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/maintenance-concierge</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/resident-support-concierge</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+
+  <!-- ═══ BUSINESS SETUP & RELOCATION ═══ -->
+  <url><loc>https://www.deliwer.com/business-setup</loc><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://www.deliwer.com/relocate/business-setup</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/relocate/planning</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/relocate/arrival</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/relocate/concierge</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/relocate-pricing</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/relocation-for-founders</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/dubai-relocation-checklist</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/move-to-dubai</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/relocate-community</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://www.deliwer.com/relocation-alliance</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+
+  <!-- ═══ EXIT / MOVE-OUT ═══ -->
+  <url><loc>https://www.deliwer.com/relocate-exit</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/move-cheaper-rent</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/landlord-turnover</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+
+  <!-- ═══ EJARI LEAD ENGINE ═══ -->
+  <url><loc>https://www.deliwer.com/ejari-cancellation-dubai</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/how-to-register-ejari</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/ejari-documents-required</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/how-to-cancel-ejari</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/ejari-transfer-dubai</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+
+  <!-- ═══ RELOCATION INTELLIGENCE PLATFORM ═══ -->
+  <url><loc>https://www.deliwer.com/move-dubai</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-vs-renew-dubai</loc><changefreq>weekly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/rent-increase-calculator-dubai</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/are-you-overpaying-rent-dubai</loc><changefreq>weekly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/dubai-rent-comparison</loc><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/dubai-moving-trends</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/dubai-move-score</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/dubai-rent-increase-rules</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/tenancy-renewal-dubai-guide</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+
+  <!-- ═══ SEO LANDING PAGES ═══ -->
+  <url><loc>https://www.deliwer.com/move-in-dubai</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/exit-dubai-apartment</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/move-to-cheaper-rent-dubai</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/dubai-relocation-concierge</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/move-apartment-dubai</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/moving-apartment-dubai-guide</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/moving-dubai-checklist</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/dubai-tenancy-checklist</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://www.deliwer.com/new-apartment-dubai-guide</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://www.deliwer.com/settling-in-dubai-guide</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://www.deliwer.com/move-in-services-dubai</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/tenant-move-in-checklist</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+
+  <!-- ═══ PARTNERS & DISTRIBUTION ═══ -->
+  <url><loc>https://www.deliwer.com/partners</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/partners/join</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/partners/how-it-works</loc><changefreq>monthly</changefreq><priority>0.68</priority></url>
+  <url><loc>https://www.deliwer.com/partners/earnings</loc><changefreq>monthly</changefreq><priority>0.68</priority></url>
+  <url><loc>https://www.deliwer.com/partner-program</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/broker-partner</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://www.deliwer.com/broker-move-in-support-dubai</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://www.deliwer.com/building-partner</loc><changefreq>monthly</changefreq><priority>0.68</priority></url>
+  <url><loc>https://www.deliwer.com/typing-center-partner</loc><changefreq>monthly</changefreq><priority>0.65</priority></url>
+
+  <!-- ═══ AQUACAFE & PRODUCTS ═══ -->
+  <url><loc>https://www.deliwer.com/aquacafe</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/aquacafe-alliance</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/products</loc><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/products/icelandic-glacial</loc><changefreq>weekly</changefreq><priority>0.72</priority></url>
+
+  <!-- ═══ CORPORATE & B2B ═══ -->
+  <url><loc>https://www.deliwer.com/corporate</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://www.deliwer.com/fulfillment</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+  <url><loc>https://www.deliwer.com/membership-plans</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
+
+  <!-- ═══ CORE SITE PAGES ═══ -->
+  <url><loc>https://www.deliwer.com/start</loc><changefreq>monthly</changefreq><priority>0.78</priority></url>
+  <url><loc>https://www.deliwer.com/contact</loc><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.deliwer.com/about</loc><changefreq>monthly</changefreq><priority>0.60</priority></url>
+  <url><loc>https://www.deliwer.com/invest</loc><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://www.deliwer.com/privacy</loc><changefreq>yearly</changefreq><priority>0.30</priority></url>
+  <url><loc>https://www.deliwer.com/terms</loc><changefreq>yearly</changefreq><priority>0.30</priority></url>
+  <url><loc>https://www.deliwer.com/environmental</loc><changefreq>monthly</changefreq><priority>0.50</priority></url>
+
 </urlset>

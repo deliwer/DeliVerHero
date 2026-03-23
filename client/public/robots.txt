@@ -1,4 +1,33 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://deliwer.com/sitemap.xml
+# Block private / admin routes
+Disallow: /dashboard
+Disallow: /investor-dashboard
+Disallow: /affiliate-dashboard
+Disallow: /corporate-dashboard
+Disallow: /corporate-quotes
+Disallow: /purchase-orders
+Disallow: /account-management
+Disallow: /account
+Disallow: /profile
+Disallow: /admin
+Disallow: /marketing/control
+Disallow: /marketing/legacy
+Disallow: /partner-dashboard
+Disallow: /hero-dashboard
+Disallow: /mission-control-saqi-kawthar
+Disallow: /checkout
+Disallow: /cart
+Disallow: /login
+Disallow: /signup
+Disallow: /email-campaigns
+
+# Block API endpoints
+Disallow: /api/
+
+# Crawl-delay for bots that respect it
+Crawl-delay: 2
+
+# Sitemap
+Sitemap: https://www.deliwer.com/sitemap.xml

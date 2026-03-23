@@ -6,10 +6,11 @@ interface LeadData {
   email: string;
   phone?: string;
   source: string;
-  serviceType: 'home-service' | 'housing' | 'relocate' | 'consultation' | 'enquiry';
+  serviceType: 'home-service' | 'housing' | 'relocate' | 'consultation' | 'business-setup' | 'enquiry';
   intent?: string;
   message?: string;
   metadata?: Record<string, any>;
+  adminEmail?: string;
   utmSource?: string;
   utmMedium?: string;
   utmCampaign?: string;
@@ -51,7 +52,7 @@ export async function processLead(data: LeadData): Promise<LeadResult> {
       await logLeadToConsole(leadId, data, 'USER_EMAIL_FAILED');
     }
 
-    const adminEmailSent = await sendAdminNotificationEmail(leadId, data);
+    const adminEmailSent = await sendAdminNotificationEmail(leadId, data, data.adminEmail);
     result.notificationSent = adminEmailSent;
 
     if (!adminEmailSent) {
@@ -78,7 +79,8 @@ async function sendUserConfirmationEmail(data: LeadData): Promise<boolean> {
     'home-service': 'Home Service',
     'housing': 'Housing',
     'relocate': 'Relocation',
-    'consultation': 'Consultation',
+    'consultation': 'Relocation Consultation',
+    'business-setup': 'Business Setup',
     'enquiry': 'General Enquiry'
   };
 
@@ -108,7 +110,7 @@ async function sendUserConfirmationEmail(data: LeadData): Promise<boolean> {
         <div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 15px; margin: 30px 0;">
           <p style="color: #065f46; margin: 0; font-weight: bold;">Need immediate assistance?</p>
           <p style="color: #047857; margin: 5px 0 0 0;">
-            WhatsApp: <a href="https://wa.me/971501234567" style="color: #047857;">+971 50 123 4567</a>
+            WhatsApp: <a href="https://wa.me/971523946311" style="color: #047857;">+971 52 394 6311</a>
           </p>
         </div>
 
@@ -137,10 +139,12 @@ async function sendUserConfirmationEmail(data: LeadData): Promise<boolean> {
   });
 }
 
-async function sendAdminNotificationEmail(leadId: string, data: LeadData): Promise<boolean> {
-  const urgencyBadge = data.serviceType === 'housing' || data.serviceType === 'relocate' 
-    ? '🔥 HIGH PRIORITY' 
-    : '📋 STANDARD';
+async function sendAdminNotificationEmail(leadId: string, data: LeadData, overrideAdminEmail?: string): Promise<boolean> {
+  const urgencyBadge =
+    data.serviceType === 'housing' || data.serviceType === 'relocate' || data.serviceType === 'consultation' || data.serviceType === 'business-setup'
+      ? '🔥 HIGH PRIORITY'
+      : '📋 STANDARD';
+  const recipientEmail = overrideAdminEmail || ADMIN_EMAIL;
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -221,7 +225,7 @@ async function sendAdminNotificationEmail(leadId: string, data: LeadData): Promi
   `;
 
   const primarySent = await sendEmail({
-    to: ADMIN_EMAIL,
+    to: recipientEmail,
     from: 'leads@deliwer.com',
     subject: `[NEW LEAD] ${data.serviceType.toUpperCase()} - ${data.name}`,
     html
