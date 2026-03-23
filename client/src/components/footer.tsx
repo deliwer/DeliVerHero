@@ -18,7 +18,8 @@ import {
   Award,
   Sparkles,
   Globe,
-  TrendingUp
+  TrendingUp,
+  CalendarCheck
 } from "lucide-react";
 import { SiFacebook, SiTiktok } from "react-icons/si";
 import { EmailSubscriptionForm } from "./email-subscription-form";
@@ -199,7 +200,7 @@ export function Footer() {
 
         {/* Contact Information */}
         <div className="mt-12 pt-8 border-t border-slate-800">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Management & Strategy</h4>
               <div className="space-y-4">
@@ -237,6 +238,25 @@ export function Footer() {
                     <div className="text-xs text-gray-500">50 9WC 523 Block C, Dubai UAE</div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Relocation Consultant</h4>
+              <div className="space-y-4">
+                <a href="mailto:admin@deliwer.com" className="flex items-center text-gray-400 hover:text-white transition-colors group">
+                  <Mail className="w-4 h-4 mr-3 text-emerald-500" />
+                  <div>
+                    <div className="text-sm font-medium">Book a Session</div>
+                    <div className="text-xs text-gray-500">admin@deliwer.com</div>
+                  </div>
+                </a>
+                <Link href="/consult">
+                  <div className="inline-flex items-center justify-center w-full bg-emerald-500/10 border border-emerald-500/30 hover:bg-emerald-500/20 text-emerald-400 px-4 py-2.5 rounded-lg font-bold transition-colors text-sm cursor-pointer">
+                    <CalendarCheck className="w-4 h-4 mr-2" />
+                    Book Consultation
+                  </div>
+                </Link>
               </div>
             </div>
 

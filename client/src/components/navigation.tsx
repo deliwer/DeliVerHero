@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { 
-  Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2
+  Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ export function Navigation() {
     { path: "/relocate", label: "Move-In", id: "relocation", icon: Plane },
     { path: "/exit-dubai", label: "Move-Out", id: "move-out", icon: LogOut },
     { path: "/setup", label: "Setup", id: "setup", icon: Building2 },
+    { path: "/consult", label: "Consult", id: "consult", icon: CalendarCheck },
     { path: "/aquacafe", label: "AquaCafe", id: "aquacafe", icon: Star },
     { path: "/errand", label: "Errand", id: "errand", icon: ClipboardList },
   ];
