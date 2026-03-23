@@ -1,355 +1,536 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  CheckCircle2, 
-  MessageSquare, 
-  Clock, 
+import {
+  CheckCircle2,
+  MessageSquare,
+  Clock,
   ShieldCheck,
   TrendingDown,
   AlertTriangle,
   Users,
-  Zap
+  Zap,
+  ArrowRight,
+  Info,
+  BadgePercent,
 } from "lucide-react";
-import { DirhamSymbol } from "@/components/dirham-symbol";
+import { Link } from "wouter";
 
 const WHATSAPP_NUMBER = "971523946311";
 
-type PricingTier = {
-  id: string;
-  name: string;
-  price: string;
-  priceSuffix?: string;
-  description: string;
-  features: string[];
-  badge?: string;
-  ctaText: string;
-  isMain?: boolean;
-  diyRisk?: string;
-  saving?: string;
-  urgency?: string;
+const wa = (msg: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+/* ─────────────────────────────────────────────
+   PRICING TIERS — single source of truth
+───────────────────────────────────────────── */
+const TIERS = [
+  {
+    id: "loyalty",
+    name: "AquaCafe Loyalty",
+    price: 99,
+    color: "blue",
+    badge: "Entry",
+    route: "/aquacafe",
+    routeLabel: "Learn more →",
+    tagline: "Filtered water, delivered lifestyle.",
+    forWho: "Residents who want healthier water without a big commitment.",
+    deliwerFee: 99,
+    vendorEstimate: null,
+    features: [
+      "Shower / tap filter subscription",
+      "AquaCafe loyalty points",
+      "Priority filter replacement",
+      "WhatsApp support",
+    ],
+    whatsappMsg:
+      "Hi DeliWer, I want to start the AquaCafe Loyalty plan at AED 99.",
+    justification:
+      "The lowest-friction way to experience DeliWer. Proves value before committing to larger coordination.",
+  },
+  {
+    id: "ejari",
+    name: "Ejari Renewal",
+    price: 199,
+    color: "purple",
+    badge: "Compliance",
+    route: "/ejari-dubai",
+    routeLabel: "Learn more →",
+    tagline: "Stay legal. Stay in your home.",
+    forWho: "Settled residents whose Ejari is expiring — or first-time registrations.",
+    deliwerFee: 199,
+    vendorEstimate: null,
+    features: [
+      "Trustee Center coordination",
+      "Document audit & checklist",
+      "UAE Pass biometric support",
+      "Fast-track processing",
+      "Digital certificate delivery",
+    ],
+    whatsappMsg:
+      "Hi DeliWer, I need Ejari renewal coordination at AED 199.",
+    justification:
+      "Without Ejari, tenants risk fines, lease void, and access issues. Paying AED 199 vs losing a day at a government center is the obvious choice.",
+  },
+  {
+    id: "movein",
+    name: "Move-In Welcome",
+    price: 399,
+    color: "emerald",
+    badge: "Most Popular — Home Setup",
+    route: "/relocate",
+    routeLabel: "Plan my move →",
+    tagline: "Move in ready. From day one.",
+    forWho: "New tenants within the first 7 days of receiving apartment keys.",
+    deliwerFee: 399,
+    vendorEstimate: null,
+    features: [
+      "60–90 min activation visit",
+      "Shower filter supply + install",
+      "AC filter clean (1 unit)",
+      "Water readiness check",
+      "Essentials setup guidance",
+      "WhatsApp follow-up support",
+    ],
+    whatsappMsg:
+      "Hi DeliWer, I just received my keys and want the Move-In Welcome service at AED 399.",
+    isMain: true,
+    justification:
+      "Most tenants discover water quality issues, missing filters, and unactivated utilities on Day 1. DeliWer handles it in one visit.",
+  },
+  {
+    id: "deposit",
+    name: "Deposit Protection",
+    price: 499,
+    color: "amber",
+    badge: "Exit — Protect Your Money",
+    route: "/exit-dubai",
+    routeLabel: "Exit planning →",
+    tagline: "Leave without losing your deposit.",
+    forWho: "Tenants preparing to move out who want their security deposit returned in full.",
+    deliwerFee: 499,
+    vendorEstimate: null,
+    features: [
+      "Pre-exit property condition audit",
+      "Cleaning coordination checklist",
+      "Landlord handover prep guidance",
+      "Ejari cancellation instructions",
+      "DEWA closure coordination",
+      "Key handover documentation",
+    ],
+    whatsappMsg:
+      "Hi DeliWer, I want the Deposit Protection package at AED 499.",
+    justification:
+      "Dubai tenants lose an average of AED 3,500 in disputed deposits. AED 499 to protect a deposit worth AED 5,000–20,000 is an obvious financial decision.",
+  },
+  {
+    id: "standard",
+    name: "Standard Move Coordination",
+    price: 899,
+    color: "emerald",
+    badge: "★ Best Value — Full Coordination",
+    route: "/relocate",
+    routeLabel: "Start coordination →",
+    tagline: "One coordinator. Everything handled.",
+    forWho: "Families or professionals who need full multi-vendor move-in management.",
+    deliwerFee: 899,
+    vendorEstimate: { label: "Typical vendor costs*", range: "AED 3,200–5,000" },
+    features: [
+      "Dedicated move coordinator",
+      "Full move-in timeline management",
+      "Vendor scheduling & follow-up",
+      "Ejari & DEWA activation guidance",
+      "Post-move quality checklist",
+      "Priority response 7am–10pm",
+    ],
+    whatsappMsg:
+      "Hi DeliWer, I want Standard Move Coordination at AED 899.",
+    isMain: true,
+    diyRisk:
+      "Without coordination, 60% of Dubai move-ins experience a critical delay — costing tenants money and time.",
+    saving: "Save AED 1,200+ vs. managing vendors yourself in time and error cost",
+    justification:
+      "AED 899 buys you a dedicated human who manages Ejari, DEWA, movers, and vendors — while you focus on your job and family.",
+  },
+  {
+    id: "executive",
+    name: "Executive Exit",
+    price: 2499,
+    color: "slate",
+    badge: "Premium — Full Concierge Exit",
+    route: "/exit-dubai",
+    routeLabel: "See exit options →",
+    tagline: "Exit Dubai without a single phone call.",
+    forWho: "HNWIs, families, or professionals with complex exits needing guaranteed outcomes.",
+    deliwerFee: 2499,
+    vendorEstimate: { label: "Typical vendor costs*", range: "AED 2,000–6,000" },
+    features: [
+      "Dedicated account manager",
+      "Full security deposit recovery strategy",
+      "Furniture removal & disposal coordination",
+      "Deep cleaning coordination",
+      "Landlord handover negotiation",
+      "Legal documentation support",
+      "Ejari cancellation + DEWA closure",
+    ],
+    whatsappMsg:
+      "Hi DeliWer, I want the Executive Exit package at AED 2,499.",
+    diyRisk:
+      "Average Dubai tenant loses AED 3,500+ in deposit disputes and unexpected exit costs.",
+    saving: "Protect up to AED 20,000 in security deposit",
+    justification:
+      "For complex exits, the coordination risk is high. A dedicated manager eliminates every loose end and maximises deposit recovery.",
+  },
+];
+
+const COLOR_MAP: Record<string, { accent: string; badge: string; check: string; ring: string }> = {
+  blue:    { accent: "text-blue-400",    badge: "bg-blue-500/10 text-blue-400 border-blue-500/20",    check: "text-blue-400",    ring: "border-blue-500/40" },
+  purple:  { accent: "text-purple-400",  badge: "bg-purple-500/10 text-purple-400 border-purple-500/20", check: "text-purple-400", ring: "border-purple-500/40" },
+  emerald: { accent: "text-emerald-400", badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20", check: "text-emerald-400", ring: "border-emerald-500/50 shadow-emerald-500/10 shadow-xl" },
+  amber:   { accent: "text-amber-400",   badge: "bg-amber-500/10 text-amber-400 border-amber-500/20",   check: "text-amber-400",   ring: "border-amber-500/40" },
+  slate:   { accent: "text-gray-300",    badge: "bg-white/10 text-gray-300 border-white/20",            check: "text-gray-400",    ring: "border-white/20" },
 };
 
-type ConciergePricingProps = {
-  category: "move" | "maintenance" | "support";
-  onSelect?: (tier: PricingTier) => void;
-};
-
-const pricingData: Record<ConciergePricingProps["category"], PricingTier[]> = {
-  move: [
-    {
-      id: "move_activation",
-      name: "Move-In Activation",
-      price: "399",
-      description: "Studio & 1–2 bed apartments within 7 days of move-in.",
-      features: [
-        "60–90 minute activation visit",
-        "Shower filter supply + installation",
-        "1 AC filter clean (removable only)",
-        "Water readiness check",
-        "Essentials setup guidance",
-        "WhatsApp follow-up support"
-      ],
-      badge: "Standard Preparation",
-      ctaText: "Book This Package",
-      diyRisk: "Most tenants waste 8–12 hrs chasing vendors separately",
-      saving: "Save ~AED 600 vs. booking each service individually"
-    },
-    {
-      id: "move_core",
-      name: "Standard Move Coordination",
-      price: "899",
-      description: "Families or tenants needing multi-vendor coordination.",
-      features: [
-        "Vendor scheduling & follow-up",
-        "Full move-in timeline management",
-        "Single point of contact",
-        "Post-move quality checklist",
-        "DEWA activation guidance",
-        "Priority response 7am–10pm"
-      ],
-      badge: "Most Popular",
-      ctaText: "Book This Package",
-      isMain: true,
-      diyRisk: "Without coordination, 60% of Dubai move-ins have a critical delay",
-      saving: "Save AED 1,200+ vs. managing vendors yourself",
-      urgency: "Only 4 coordinator slots available this week"
-    },
-    {
-      id: "move_premium",
-      name: "Executive Exit & Protection",
-      price: "2,499",
-      description: "HNWIs or families requiring guaranteed deposit recovery.",
-      features: [
-        "Full security deposit recovery strategy",
-        "Furniture removal & disposal",
-        "Deep cleaning coordination",
-        "Landlord handover negotiation",
-        "Legal documentation support",
-        "Dedicated account manager"
-      ],
-      badge: "Total Peace of Mind",
-      ctaText: "Book This Package",
-      diyRisk: "Average Dubai tenant loses AED 3,500+ in deposit disputes",
-      saving: "Protect up to AED 20,000 in deposit"
-    }
-  ],
-  maintenance: [
-    {
-      id: "maint_assessment",
-      name: "Issue Assessment",
-      price: "149",
-      description: "Professional diagnostic before coordinating repairs.",
-      features: [
-        "On-site inspection visit",
-        "Root-cause fault diagnosis",
-        "Written report & next steps",
-        "No surprise costs"
-      ],
-      badge: "Best First Step",
-      ctaText: "Book Assessment",
-      diyRisk: "Guessing without diagnosis = wrong fix, double the cost",
-      saving: "Avoid AED 500–2,000 in unnecessary repair attempts"
-    },
-    {
-      id: "maint_core",
-      name: "Maintenance Coordination",
-      price: "599",
-      description: "End-to-end managed resolution of your home issue.",
-      features: [
-        "End-to-end issue coordination",
-        "Vetted specialist assignment",
-        "Quality oversight & sign-off",
-        "Single point of contact",
-        "Before & after documentation",
-        "Follow-up guarantee"
-      ],
-      badge: "Most Chosen",
-      ctaText: "Activate Concierge",
-      isMain: true,
-      diyRisk: "Unmanaged contractors miss 40% of maintenance deadlines in Dubai",
-      saving: "Save 10–15 hrs of your time managing trades",
-      urgency: "Limited coordinator availability — book to secure your slot"
-    },
-    {
-      id: "maint_premium",
-      name: "Priority Resolution",
-      price: "1,999",
-      description: "Urgent management for critical home failures.",
-      features: [
-        "Same-day priority response",
-        "Outcome protection guarantee",
-        "Escalation oversight",
-        "Emergency vendor network",
-        "Full resolution accountability"
-      ],
-      badge: "Zero-Risk Response",
-      ctaText: "Get Priority Support",
-      diyRisk: "Every hour without AC or water in Dubai costs comfort & health",
-      saving: "Fastest path to resolution — no waiting, no runaround"
-    }
-  ],
-  support: [
-    {
-      id: "support_one_time",
-      name: "One-Time Coordination",
-      price: "199",
-      description: "Help with a specific household task or unexpected issue.",
-      features: [
-        "Managed coordination layer",
-        "Urgent assessment",
-        "Quick resolution mapping",
-        "WhatsApp communication"
-      ],
-      badge: "Best First Step",
-      ctaText: "Book Now",
-      diyRisk: "One wrong vendor can cost you 3x the service fee",
-      saving: "One call handles what takes you 5 calls to organise"
-    },
-    {
-      id: "support_monthly",
-      name: "Monthly Resident Support",
-      price: "999",
-      priceSuffix: "/mo",
-      description: "Proactive management of your home's ongoing needs.",
-      features: [
-        "Dedicated accountable manager",
-        "Unlimited issue coordination",
-        "Routine vendor scheduling",
-        "Monthly home health report",
-        "Priority 7-day response",
-        "Cancellable anytime"
-      ],
-      badge: "Most Chosen",
-      ctaText: "Activate Support",
-      isMain: true,
-      diyRisk: "Most Dubai expats spend 4+ hrs/month managing home issues",
-      saving: "Your time is worth more than AED 999 a month",
-      urgency: "Sign up now — monthly slots limited by area"
-    },
-    {
-      id: "support_premium",
-      name: "Priority Resident Care",
-      price: "2,999",
-      priceSuffix: "/mo",
-      description: "Executive-level coordination for zero-friction living.",
-      features: [
-        "Priority handling & escalation",
-        "Lifestyle assistance included",
-        "Managed helpdesk 7am–midnight",
-        "Proactive home monitoring",
-        "Concierge errand coordination"
-      ],
-      badge: "Elite Service",
-      ctaText: "Get Priority Support",
-      diyRisk: "Executive time is too valuable to spend on home management",
-      saving: "The equivalent of a part-time home manager at a fraction of the cost"
-    }
-  ]
-};
-
-const categoryTags: Record<ConciergePricingProps["category"], string> = {
-  move: "move_concierge",
-  maintenance: "maintenance_concierge",
-  support: "resident_support"
-};
-
-export function ConciergePricing({ category }: ConciergePricingProps) {
-  const tiers = pricingData[category];
-
-  const handleWhatsApp = (tier: PricingTier) => {
-    const text = `Hi DeliWer, I want to book the ${tier.name} (AED ${tier.price}${tier.priceSuffix ?? ""}) package.`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
-  };
-
+/* ─────────────────────────────────────────────
+   COST TRANSPARENCY EXPLAINER
+───────────────────────────────────────────── */
+function TransparencyBanner() {
   return (
-    <div className="max-w-7xl mx-auto px-4">
-      {/* Anchoring header */}
-      <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2 mb-4">
-          <AlertTriangle className="w-4 h-4 text-amber-400" />
-          <span className="text-amber-300 text-xs font-black uppercase tracking-widest">
-            Most Dubai tenants lose AED 3,000–8,000 by handling this alone
-          </span>
+    <div className="max-w-4xl mx-auto mb-16 px-4">
+      <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-6 md:p-8 space-y-6">
+        <div className="flex items-start gap-3">
+          <Info className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <p className="text-emerald-400 font-black uppercase text-xs tracking-widest">
+              How DeliWer pricing works
+            </p>
+            <h3 className="text-white font-black text-xl md:text-2xl leading-tight">
+              You pay DeliWer for coordination only.
+            </h3>
+            <p className="text-gray-400 font-medium text-sm leading-relaxed max-w-2xl">
+              All vendor costs — movers, cleaning, Ejari government fees, DEWA deposits — are paid
+              separately, directly to vendors, at <span className="text-white font-bold">transparent market rates</span>.
+              DeliWer adds no markup on vendor services. Our partner network often delivers
+              lower vendor quotes than going direct, because of volume relationships.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { label: "DeliWer fee", desc: "Coordination only — what we charge", color: "emerald" },
+            { label: "Vendor costs", desc: "Movers, cleaning, fees — market rate, paid direct", color: "blue" },
+            { label: "Total expected spend", desc: "DeliWer fee + vendor estimate — shown clearly", color: "amber" },
+          ].map((item, i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-1">
+              <p className="text-white font-black text-sm uppercase tracking-wide">{item.label}</p>
+              <p className="text-gray-400 text-xs font-medium">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
+    </div>
+  );
+}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
-        {tiers.map((tier, idx) => (
-          <motion.div
-            key={tier.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 }}
-            viewport={{ once: true }}
-          >
-            <Card 
-              className={`relative flex flex-col rounded-[2.5rem] border-white/10 transition-all duration-300 overflow-visible ${
-                tier.isMain 
-                  ? "bg-slate-900 border-emerald-500/60 scale-105 shadow-2xl shadow-emerald-500/20 z-10" 
-                  : "bg-slate-900/50 hover:bg-slate-900 hover:border-white/20"
-              }`}
+/* ─────────────────────────────────────────────
+   DIY vs DELIWER COMPARISON
+───────────────────────────────────────────── */
+function DIYComparison() {
+  return (
+    <div className="max-w-4xl mx-auto my-20 px-4">
+      <div className="text-center mb-10 space-y-2">
+        <p className="text-amber-400 font-black text-xs uppercase tracking-widest">The real cost of going alone</p>
+        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+          DIY always costs more than you think
+        </h2>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* DIY */}
+        <div className="bg-red-500/5 border border-red-500/20 rounded-3xl p-6 md:p-8 space-y-4">
+          <p className="text-red-400 font-black uppercase text-xs tracking-widest mb-4">The DIY route</p>
+          {[
+            { issue: "Movers quote variance", detail: "Without a network, tenants pay 20–40% above market. Add AED 400–900." },
+            { issue: "Ejari queue time", detail: "Half a day lost at a typing center. Lost wages: AED 200–500." },
+            { issue: "DEWA mistakes & reactivation", detail: "Wrong submission delays connection by 3–5 days. Re-activation fee: AED 130–300." },
+            { issue: "Cleaning disputes", detail: "No documentation = landlord wins. Deposit loss: AED 1,500–5,000." },
+            { issue: "Vendor no-shows", detail: "No accountability. Average: 1–2 reschedules per service." },
+          ].map((row, i) => (
+            <div key={i} className="flex gap-3">
+              <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+              <div>
+                <p className="text-gray-200 font-bold text-sm">{row.issue}</p>
+                <p className="text-gray-500 text-xs">{row.detail}</p>
+              </div>
+            </div>
+          ))}
+          <div className="border-t border-red-500/20 pt-4">
+            <p className="text-red-300 font-black text-sm uppercase">
+              Hidden cost: AED 2,200–7,700 extra on average
+            </p>
+          </div>
+        </div>
+
+        {/* DeliWer */}
+        <div className="bg-emerald-500/5 border border-emerald-500/30 rounded-3xl p-6 md:p-8 space-y-4">
+          <p className="text-emerald-400 font-black uppercase text-xs tracking-widest mb-4">The DeliWer way</p>
+          {[
+            { benefit: "Network pricing on movers", detail: "Volume rates through SGM & partners. Same or lower than market." },
+            { benefit: "Ejari handled remotely", detail: "No queues. We coordinate with Trustee Centers. Done in 1–2 business days." },
+            { benefit: "DEWA activation guaranteed", detail: "Our team follows up until active. Zero reactivation fees." },
+            { benefit: "Cleaning with documentation", detail: "Pre and post photos for every job. Full deposit protection." },
+            { benefit: "Vendors are accountable to us", detail: "We manage them. No no-shows, no chasing, no surprises." },
+          ].map((row, i) => (
+            <div key={i} className="flex gap-3">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <p className="text-white font-bold text-sm">{row.benefit}</p>
+                <p className="text-gray-400 text-xs">{row.detail}</p>
+              </div>
+            </div>
+          ))}
+          <div className="border-t border-emerald-500/20 pt-4">
+            <p className="text-emerald-300 font-black text-sm uppercase">
+              You pay only DeliWer's coordination fee + vendor market rate
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   AFFILIATE CLARITY SECTION
+───────────────────────────────────────────── */
+function AffiliateNote() {
+  return (
+    <div className="max-w-4xl mx-auto my-16 px-4">
+      <div className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-8">
+        <div className="flex items-start gap-4">
+          <BadgePercent className="w-8 h-8 text-emerald-400 shrink-0 mt-1" />
+          <div className="space-y-4">
+            <div>
+              <p className="text-emerald-400 font-black text-xs uppercase tracking-widest mb-1">
+                For Affiliates & Distribution Partners
+              </p>
+              <h3 className="text-white font-black text-lg md:text-xl">
+                Commission is earned on the DeliWer fee only — never on vendor costs.
+              </h3>
+            </div>
+            <p className="text-gray-400 font-medium text-sm leading-relaxed">
+              When you refer a client, your commission is calculated exclusively on DeliWer's
+              coordination fee — the price shown on each package. Vendor costs (movers, cleaning,
+              Ejari government fees, DEWA) flow directly from the client to the vendor. These are
+              never part of the commissionable amount.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              {[
+                { label: "AED 899 package", commissionBase: "AED 899", example: "10% = AED 89.90" },
+                { label: "AED 399 package", commissionBase: "AED 399", example: "10% = AED 39.90" },
+                { label: "AED 2,499 package", commissionBase: "AED 2,499", example: "10% = AED 249.90" },
+              ].map((ex, i) => (
+                <div key={i} className="bg-white/5 rounded-2xl p-4 space-y-1">
+                  <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest">{ex.label}</p>
+                  <p className="text-white font-black text-sm">Commission base: {ex.commissionBase}</p>
+                  <p className="text-emerald-400 text-xs font-bold">{ex.example}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-gray-500 text-xs font-medium">
+              Actual commission rates are agreed separately per affiliate agreement.
+              These examples use 10% for illustration only.
+            </p>
+            <a
+              href={wa("Hi DeliWer, I am interested in joining the affiliate / distribution partner programme.")}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {tier.badge && (
-                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap ${
-                  tier.isMain ? "bg-emerald-500 text-slate-950" : "bg-white/10 text-white"
-                }`}>
-                  {tier.isMain && <span className="mr-1">★</span>}{tier.badge}
-                </div>
-              )}
+              <Button variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl px-6 h-10 text-xs uppercase tracking-widest mt-2">
+                Apply to Partner Programme <ArrowRight className="w-3 h-3 ml-2" />
+              </Button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-              <CardHeader className="pt-10 pb-4 text-center">
-                <CardTitle className="text-xl font-black uppercase tracking-tighter text-white mb-4">
-                  {tier.name}
-                </CardTitle>
+/* ─────────────────────────────────────────────
+   SINGLE TIER CARD
+───────────────────────────────────────────── */
+function TierCard({ tier, index }: { tier: typeof TIERS[0]; index: number }) {
+  const c = COLOR_MAP[tier.color];
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      viewport={{ once: true }}
+      className={`relative flex flex-col bg-slate-900 border rounded-3xl overflow-hidden transition-all duration-300 ${
+        tier.isMain ? `${c.ring} scale-[1.02]` : "border-white/10 hover:border-white/20"
+      }`}
+    >
+      {/* top accent bar */}
+      {tier.isMain && <div className="absolute top-0 inset-x-0 h-1 bg-emerald-500" />}
 
-                {/* Price display with psychological anchoring */}
-                <div className="mt-2">
-                  <div className="flex items-center justify-center gap-1">
-                    <span className={`text-xs font-black uppercase tracking-widest mr-1 ${tier.isMain ? "text-emerald-400" : "text-gray-500"}`}>AED</span>
-                    <span className={`text-5xl font-black tracking-tighter ${tier.isMain ? "text-white" : "text-gray-200"}`}>{tier.price}</span>
-                    {tier.priceSuffix && (
-                      <span className="text-gray-400 font-bold ml-1 text-sm self-end mb-2">{tier.priceSuffix}</span>
-                    )}
-                  </div>
-                  {tier.saving && (
-                    <div className="flex items-center justify-center gap-1.5 mt-2">
-                      <TrendingDown className="w-3 h-3 text-emerald-400" />
-                      <span className="text-[10px] text-emerald-400 font-black uppercase tracking-wider">{tier.saving}</span>
-                    </div>
-                  )}
-                </div>
-              </CardHeader>
+      {/* badge */}
+      <div className="px-6 pt-6 flex items-center justify-between gap-2 flex-wrap">
+        <span className={`text-[10px] font-black uppercase tracking-widest border rounded-full px-3 py-1 ${c.badge}`}>
+          {tier.badge}
+        </span>
+        {tier.route && (
+          <Link href={tier.route} className={`text-[10px] font-bold underline underline-offset-2 ${c.accent} hover:opacity-70 transition-opacity`}>
+            {tier.routeLabel}
+          </Link>
+        )}
+      </div>
 
-              <CardContent className="flex-1 flex flex-col space-y-5 px-6 pb-8">
-                <p className="text-center text-gray-400 text-sm font-medium leading-relaxed border-b border-white/5 pb-4">
-                  {tier.description}
-                </p>
+      {/* name + price */}
+      <div className="px-6 pt-4 pb-2 space-y-1">
+        <h3 className="text-white font-black text-xl uppercase tracking-tighter">{tier.name}</h3>
+        <p className={`text-xs font-bold italic ${c.accent}`}>{tier.tagline}</p>
+        <div className="flex items-baseline gap-2 pt-2">
+          <span className="text-gray-500 text-xs font-black uppercase">AED</span>
+          <span className={`text-5xl font-black tracking-tighter ${tier.isMain ? "text-white" : "text-gray-200"}`}>
+            {tier.price.toLocaleString()}
+          </span>
+          <span className="text-gray-500 text-xs font-medium self-end pb-1">DeliWer fee only</span>
+        </div>
+        {tier.vendorEstimate && (
+          <div className="flex items-center gap-2 pt-1">
+            <span className="text-gray-500 text-xs">+</span>
+            <span className="text-blue-400 text-xs font-bold">{tier.vendorEstimate.label}: {tier.vendorEstimate.range}</span>
+            <span className="text-gray-600 text-[10px]">(paid to vendors)</span>
+          </div>
+        )}
+        {tier.saving && (
+          <div className="flex items-center gap-1.5 pt-1">
+            <TrendingDown className="w-3 h-3 text-emerald-400" />
+            <span className="text-[10px] text-emerald-400 font-black uppercase tracking-wide">{tier.saving}</span>
+          </div>
+        )}
+      </div>
 
-                {/* Features */}
-                <div className="space-y-3 flex-1">
-                  {tier.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-3 text-sm font-medium text-gray-200">
-                      <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${tier.isMain ? "text-emerald-500" : "text-gray-500"}`} />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
+      {/* who it's for */}
+      <div className="px-6 pb-4">
+        <p className="text-gray-500 text-xs font-medium border-t border-white/5 pt-3 leading-relaxed">
+          <span className="text-gray-400 font-bold">For: </span>{tier.forWho}
+        </p>
+      </div>
 
-                {/* DIY Risk warning — loss aversion trigger */}
-                {tier.diyRisk && (
-                  <div className="bg-red-500/5 border border-red-500/15 rounded-2xl px-4 py-3">
-                    <div className="flex items-start gap-2">
-                      <AlertTriangle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" />
-                      <p className="text-[10px] text-red-300/80 font-medium leading-relaxed">{tier.diyRisk}</p>
-                    </div>
-                  </div>
-                )}
+      {/* features */}
+      <div className="px-6 pb-4 flex-1 space-y-2">
+        {tier.features.map((f, i) => (
+          <div key={i} className="flex items-start gap-2 text-sm font-medium text-gray-300">
+            <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${c.check}`} />
+            <span>{f}</span>
+          </div>
+        ))}
+      </div>
 
-                {/* Urgency — scarcity cue */}
-                {tier.urgency && (
-                  <div className="flex items-center gap-2 bg-amber-500/5 border border-amber-500/20 rounded-xl px-3 py-2">
-                    <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                    <span className="text-[10px] text-amber-300 font-black uppercase tracking-wide">{tier.urgency}</span>
-                  </div>
-                )}
+      {/* justification */}
+      <div className="mx-6 mb-4 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+        <p className="text-[10px] text-gray-400 font-medium leading-relaxed italic">
+          {tier.justification}
+        </p>
+      </div>
 
-                {/* Social proof for main tier */}
-                {tier.isMain && (
-                  <div className="flex items-center justify-center gap-2">
-                    <Users className="w-3.5 h-3.5 text-gray-500" />
-                    <span className="text-[10px] text-gray-500 font-medium">Chosen by most Dubai residents</span>
-                  </div>
-                )}
+      {/* DIY risk warning */}
+      {tier.diyRisk && (
+        <div className="mx-6 mb-4 bg-red-500/5 border border-red-500/15 rounded-2xl px-4 py-3">
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="w-3 h-3 text-red-400 shrink-0 mt-0.5" />
+            <p className="text-[10px] text-red-300/80 font-medium leading-relaxed">{tier.diyRisk}</p>
+          </div>
+        </div>
+      )}
 
-                <Button 
-                  onClick={() => handleWhatsApp(tier)}
-                  data-testid={`button-pricing-${tier.id}`}
-                  className={`w-full h-14 font-black uppercase tracking-widest rounded-2xl text-base shadow-xl transition-all ${
-                    tier.isMain 
-                      ? "bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/30" 
-                      : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
-                  }`}
-                >
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  {tier.ctaText}
-                </Button>
-                <p className="text-center text-[10px] text-gray-600 font-medium">
-                  Response within 10 min · WhatsApp only
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+      {/* CTA */}
+      <div className="px-6 pb-6">
+        <a
+          href={wa(tier.whatsappMsg)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid={`button-pricing-${tier.id}`}
+        >
+          <Button
+            className={`w-full h-12 font-black uppercase tracking-widest rounded-2xl text-sm shadow-xl transition-all ${
+              tier.isMain
+                ? "bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-emerald-500/30"
+                : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
+            }`}
+          >
+            <MessageSquare className="w-4 h-4 mr-2" />
+            Book via WhatsApp
+          </Button>
+        </a>
+        <p className="text-center text-[10px] text-gray-600 font-medium mt-2">
+          Response within 10 min · No deposit required to start
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   MAIN EXPORT
+───────────────────────────────────────────── */
+export function ConciergePricing({ category }: { category?: string }) {
+  const [activeGroup, setActiveGroup] = useState<"all" | "movein" | "exit" | "ongoing">("all");
+
+  const groups = [
+    { key: "all",     label: "All Services" },
+    { key: "movein",  label: "Moving In" },
+    { key: "exit",    label: "Moving Out" },
+    { key: "ongoing", label: "Ongoing" },
+  ] as const;
+
+  const groupFilter: Record<string, string[]> = {
+    all:     ["loyalty", "ejari", "movein", "deposit", "standard", "executive"],
+    movein:  ["ejari", "movein", "standard"],
+    exit:    ["deposit", "executive"],
+    ongoing: ["loyalty", "ejari"],
+  };
+
+  const visible = TIERS.filter(t => groupFilter[activeGroup].includes(t.id));
+
+  return (
+    <div className="py-8">
+      <TransparencyBanner />
+
+      {/* Group filter tabs */}
+      <div className="flex justify-center gap-2 flex-wrap px-4 mb-12">
+        {groups.map(g => (
+          <button
+            key={g.key}
+            onClick={() => setActiveGroup(g.key)}
+            className={`px-5 py-2 rounded-xl text-xs font-black uppercase tracking-widest border transition-all ${
+              activeGroup === g.key
+                ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
+                : "border-white/10 text-gray-500 hover:text-white hover:border-white/20"
+            }`}
+          >
+            {g.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Cards grid */}
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+        {visible.map((tier, i) => (
+          <TierCard key={tier.id} tier={tier} index={i} />
         ))}
       </div>
 
       {/* Trust footer */}
-      <div className="mt-12 flex flex-wrap justify-center gap-6 text-center">
+      <div className="mt-12 flex flex-wrap justify-center gap-6 text-center px-4">
         {[
           { icon: ShieldCheck, text: "No hidden fees" },
-          { icon: Zap, text: "Response in 10 min" },
-          { icon: Users, text: "Vetted partner network" },
-          { icon: Clock, text: "Cancel anytime" },
+          { icon: Zap,        text: "Response in 10 min" },
+          { icon: Users,      text: "Vetted partner network" },
+          { icon: Clock,      text: "Market-rate vendors" },
         ].map((item, i) => (
           <div key={i} className="flex items-center gap-2 text-gray-500 text-xs font-medium">
             <item.icon className="w-4 h-4 text-emerald-500/50" />
@@ -357,6 +538,16 @@ export function ConciergePricing({ category }: ConciergePricingProps) {
           </div>
         ))}
       </div>
+
+      <DIYComparison />
+      <AffiliateNote />
+
+      {/* Vendor cost footnote */}
+      <p className="text-center text-gray-600 text-[10px] font-medium max-w-xl mx-auto px-4 pb-8">
+        * Vendor cost estimates are indicative only and vary by apartment size, location, and provider.
+        DeliWer does not markup vendor services — all vendor payments are made directly at market rate.
+        Affiliates earn commission exclusively on the DeliWer coordination fee.
+      </p>
     </div>
   );
 }
