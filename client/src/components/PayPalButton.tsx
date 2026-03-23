@@ -132,7 +132,7 @@ export default function PayPalButton({
   }, []);
   const initPayPal = async () => {
     try {
-      const response = await fetch("/setup");
+      const response = await fetch("/api/paypal/setup");
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "PayPal service is not configured");

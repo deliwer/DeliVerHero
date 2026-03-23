@@ -320,7 +320,7 @@ Source: Website Concierge Page
   app.use("/api/relocate", relocateRoutes);
 
   // PayPal payment endpoints - referenced from PayPal integration blueprint
-  app.get("/setup", async (req, res) => {
+  app.get("/api/paypal/setup", async (req, res) => {
     await loadPaypalDefault(req, res);
   });
 
