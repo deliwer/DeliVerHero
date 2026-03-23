@@ -66,7 +66,6 @@ export default function ErrandPage() {
         <meta name="twitter:title" content="Errand Runner Service Dubai - Save Hours Every Week | DeliWer" />
         <meta name="twitter:description" content="Professional errand runners handle your to-do list. AED 29 first errand. Same-day delivery in Dubai." />
       </Helmet>
-
       {/* Hero Section - Full Background Image */}
       <section className="relative h-[500px] md:h-[600px] overflow-hidden">
         <img 
@@ -89,9 +88,7 @@ export default function ErrandPage() {
               <p className="text-xl text-white/95 mb-4 max-w-xl font-semibold" data-testid="text-errand-hero-description">
                 Stuck in Dubai traffic? Buried in errands? Our trusted runners handle your entire to-do list so you reclaim your time and focus on what truly matters.
               </p>
-              <p className="text-lg text-white/80 mb-8 max-w-xl">
-                2-4 hour turnaround. Professional, vetted runners. Tracking every step. Just AED 29 for your first errand.
-              </p>
+              <p className="text-lg text-white/80 mb-8 max-w-xl">2-4 hour turnaround. Professional, vetted runners. Tracking every step. Just AED 99 for your first errand.</p>
               <div className="flex flex-wrap gap-4">
                 <CalendlyButton 
                   size="lg" 
@@ -117,7 +114,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* Main Service Section */}
       <section className="py-16 px-4" id="errand">
         <div className="container mx-auto max-w-5xl">
@@ -209,7 +205,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* What We Can Do Section */}
       <section className="py-16 px-4 bg-muted/30">
         <div className="container mx-auto max-w-5xl">
@@ -305,7 +300,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* Referral & Affiliate Marketing Section - PROMINENT */}
       <section className="py-16 px-4 bg-gradient-to-br from-pink-900/10 via-rose-900/5 to-red-900/10" id="referral">
         <div className="container mx-auto max-w-4xl">
@@ -428,7 +422,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* Cross-sell to Home Services */}
       <section className="py-20 px-4 bg-gradient-to-br from-teal-900/20 via-emerald-900/10 to-blue-900/20">
         <div className="container mx-auto">
@@ -456,7 +449,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* Concierge Section - MOVED FROM HOME SERVICE */}
       <section className="py-16 px-4 bg-muted/30" id="concierge">
         <div className="container mx-auto max-w-5xl">
@@ -519,7 +511,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* Home Essentials Section - MOVED FROM HOME SERVICE */}
       <section className="py-16 px-4" id="home-essentials">
         <div className="container mx-auto max-w-5xl">
@@ -588,7 +579,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* WhatsApp Multi-Agent Viral Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-green-900/20 via-emerald-900/10 to-teal-900/20" id="whatsapp-agents">
         <div className="container mx-auto max-w-4xl">
@@ -713,7 +703,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* FAQ Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-3xl">
@@ -760,7 +749,6 @@ export default function ErrandPage() {
           </div>
         </div>
       </section>
-
       {/* CTA Footer with Context Tip */}
       <section className="py-12 px-4 border-t border-border/50 bg-muted/20">
         <div className="container mx-auto max-w-3xl text-center">
