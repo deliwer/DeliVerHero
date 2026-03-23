@@ -302,6 +302,7 @@ function Router() {
         <Route path="/partners" component={Partners} />
         <Route path="/welcome" component={Welcome} />
         <Route path="/ejari-dubai" component={lazy(() => import("./pages/ejari-dubai"))} />
+        <Route path="/ejari" component={lazy(() => import("./pages/ejari-dubai"))} />
         <Route path="/relocation-for-founders" component={RelocationForFounders} />
         <Route path="/dashboard" component={HeroDashboard} />
         <Route path="/investor-dashboard" component={InvestorDashboard} />
