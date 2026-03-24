@@ -10,6 +10,11 @@
     "api/shopify.js": {
       "memory": 1024,
       "maxDuration": 30
+    },
+    "api/rera-brokers.js": {
+      "memory": 512,
+      "maxDuration": 15,
+      "includeFiles": "server/data/rera_brokers.json"
     }
   },
   "headers": [
@@ -32,6 +37,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/api/rera-brokers",
+      "destination": "/api/rera-brokers.js"
+    },
     {
       "source": "/api/(.*)",
       "destination": "/api/index.js"
