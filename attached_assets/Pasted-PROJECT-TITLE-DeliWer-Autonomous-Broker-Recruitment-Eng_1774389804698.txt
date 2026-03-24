@@ -1,0 +1,293 @@
+PROJECT TITLE
+DeliWer Autonomous Broker Recruitment Engine (Continuous + Cron-Based)
+
+---
+
+OBJECTIVE
+
+Build a **self-updating partner recruitment system** that:
+
+1. Fetches the latest broker list periodically
+2. Detects new brokers
+3. Generates referral links
+4. Sends onboarding emails
+5. Runs automated follow-ups
+6. Logs everything in Google Sheets
+7. Displays performance in /marketing
+
+This must run as a **continuous agentic process (cron-based)**.
+
+---
+
+# 🧠 SYSTEM ARCHITECTURE
+
+FRONTEND (Vercel Static)
+
+→ /marketing
+→ /marketing/recruit (control panel)
+→ /marketing/dashboard
+
+BACKEND (Serverless + Cron)
+
+→ /api/fetch-brokers
+→ /api/process-brokers
+→ /api/send-email
+→ /api/follow-up
+
+DATABASE
+
+→ Google Sheets (single source of truth)
+
+---
+
+# 🌐 FEATURE 1: AUTO FETCH BROKER LIST
+
+Create:
+
+/api/fetch-brokers.js
+
+Function:
+
+* Fetch latest data from:
+  https://dubailand.gov.ae/en/eservices/licensed-real-estate-brokers/licensed-real-estate-brokers-list#/
+
+Logic:
+
+* Detect downloadable XLS/XLSX link OR scrape table
+* Parse into structured JSON
+
+Fields:
+
+Name
+Email
+Phone
+License
+
+---
+
+# 🔁 FEATURE 2: NEW BROKER DETECTION
+
+Compare fetched data with Google Sheet:
+
+Sheet: BrokerMaster
+
+Columns:
+
+Email
+Name
+RefCode
+Status
+
+Logic:
+
+* If email NOT in sheet → NEW broker
+* If exists → skip
+
+---
+
+# 🔗 FEATURE 3: REF CODE GENERATION
+
+Function:
+
+* Use email prefix
+* sanitize (remove symbols)
+* ensure uniqueness
+
+Example:
+
+[john.doe@gmail.com](mailto:john.doe@gmail.com) → johndoe
+
+---
+
+# 📧 FEATURE 4: INITIAL EMAIL SEND
+
+Trigger:
+
+* New broker detected
+
+Call:
+
+/api/send-email
+
+Email content:
+
+Subject:
+Earn more from every tenant you already handle
+
+Body:
+(standard onboarding email)
+
+Include:
+
+Personalized partner link:
+https://www.deliwer.com/broker-partner?ref={ref}
+
+---
+
+# 🔁 FEATURE 5: FOLLOW-UP ENGINE
+
+Create:
+
+/api/follow-up.js
+
+Logic:
+
+For each broker:
+
+If:
+
+* Status = Sent
+* No response
+* 2 days passed
+
+→ send Follow-up #1
+
+If:
+
+* 5 days passed
+
+→ send Follow-up #2
+
+---
+
+## FOLLOW-UP MESSAGES
+
+Follow-up 1:
+
+“Just checking if you saw this — brokers are already earning from tenant moves. Try with 2 tenants this week.”
+
+Follow-up 2:
+
+“Quick reminder — this works best with tenants you’re already handling. Your link: {PartnerLink}”
+
+---
+
+# 📊 FEATURE 6: GOOGLE SHEETS STRUCTURE
+
+Sheet: BrokerMaster
+
+Columns:
+
+Timestamp
+Name
+Email
+Phone
+RefCode
+Status (New / Sent / FollowedUp / Converted)
+LastContacted
+Response
+LeadsGenerated
+
+---
+
+# ⚙️ FEATURE 7: CRON JOB AUTOMATION
+
+Use Vercel cron OR external scheduler.
+
+Schedule:
+
+Daily:
+
+1. Fetch latest brokers
+2. Detect new entries
+3. Send emails (limit 100–300/day)
+
+Every 6 hours:
+
+4. Run follow-up engine
+
+---
+
+# 🧩 FEATURE 8: CAMPAIGN LIMITER
+
+Rules:
+
+* Max 300 emails/day
+* Skip already contacted brokers
+* Add delay (1–2 sec between sends)
+
+---
+
+# 📈 FEATURE 9: /MARKETING DASHBOARD
+
+Display:
+
+* New brokers added today
+* Emails sent today
+* Follow-ups sent
+* Total active partners
+* Conversion indicators
+
+---
+
+# 🧲 FEATURE 10: PARTNER LINK INTEGRATION
+
+All emails must direct to:
+
+/broker-partner?ref=XYZ
+
+Ensure:
+
+* referral tracking works
+* leads attributed properly
+
+---
+
+# 🧠 FEATURE 11: AGENTIC CONTROL LOGIC
+
+System must behave like an agent:
+
+Loop:
+
+Fetch → Compare → Send → Wait → Follow-up → Repeat
+
+No manual intervention required.
+
+---
+
+# 🔐 ENV VARIABLES
+
+SENDGRID_API_KEY=
+GOOGLE_SHEET_ID=
+BROKER_SOURCE_URL=
+
+---
+
+# 🚀 DEPLOYMENT
+
+* Vercel for frontend + API routes
+* Cron enabled
+* Google Sheets as database
+
+---
+
+# ⚡ FAILSAFE MECHANISMS
+
+* Prevent duplicate sends
+* Log all failures
+* Retry failed emails next cycle
+
+---
+
+# 💡 OPTIONAL EXTENSIONS
+
+* Add WhatsApp API integration
+* Add AI reply classification
+* Add broker scoring system
+
+---
+
+# 🎯 FINAL GOAL
+
+This system should:
+
+* continuously recruit brokers
+* automatically expand network
+* maintain engagement via follow-ups
+* convert brokers into active partners
+
+---
+
+# 🔥 FINAL SYSTEM MESSAGE (DISPLAY ON UI)
+
+“Your network is growing — even when you’re not working.”
