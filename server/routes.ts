@@ -36,6 +36,10 @@ async function handleLogLead(req: any, res: any) {
 import { storage } from "./storage";
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertLeadApplicationSchema, insertCommissionClaimSchema } from "@shared/schema";
 import { processLead, trackCTAEvent } from "./lead-service";
+import { generateRefCode, generatePartnerLink, runCampaign } from "./broker-campaign-service";
+import { brokerCampaigns, brokerCampaignEntries } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import QRCode from "qrcode";
@@ -4133,6 +4137,128 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       });
     } catch (error: any) {
       res.status(500).json({ error: "Failed to fetch dashboard" });
+    }
+  });
+
+  // ─── Broker Recruitment Campaign API ──────────────────────────────────────
+
+  // POST /api/marketing/broker-campaign — create campaign + start sending
+  app.post("/api/marketing/broker-campaign", async (req, res) => {
+    try {
+      const { name, brokers } = req.body;
+      if (!name || !Array.isArray(brokers) || brokers.length === 0) {
+        return res.status(400).json({ error: "Campaign name and broker list are required" });
+      }
+
+      // Deduplicate by email
+      const seen = new Set<string>();
+      const unique = brokers.filter((b: any) => {
+        if (!b.email || seen.has(b.email.toLowerCase())) return false;
+        seen.add(b.email.toLowerCase());
+        return true;
+      });
+
+      const [campaign] = await db.insert(brokerCampaigns).values({
+        name,
+        status: 'idle',
+        totalBrokers: unique.length,
+        sentCount: 0,
+        failedCount: 0,
+      }).returning();
+
+      // Build entries with ref codes
+      const usedCodes = new Set<string>();
+      const entries = unique.map((b: any) => {
+        let refCode = generateRefCode(b.name || '', b.email);
+        let attempt = 0;
+        while (usedCodes.has(refCode)) {
+          attempt++;
+          refCode = generateRefCode(b.name || '', b.email) + attempt;
+        }
+        usedCodes.add(refCode);
+        return {
+          campaignId: campaign.id,
+          name: b.name || 'Partner',
+          email: b.email,
+          phone: b.phone || null,
+          license: b.license || null,
+          refCode,
+          partnerLink: generatePartnerLink(refCode),
+          status: 'pending' as const,
+          errorMessage: null,
+        };
+      });
+
+      await db.insert(brokerCampaignEntries).values(entries);
+
+      // Start campaign asynchronously — don't block the response
+      setImmediate(() => {
+        runCampaign(campaign.id).catch((err) =>
+          console.error('[CAMPAIGN] Background error:', err)
+        );
+      });
+
+      res.json({ success: true, campaignId: campaign.id, total: unique.length });
+    } catch (err: any) {
+      console.error('[CAMPAIGN] Create error:', err);
+      res.status(500).json({ error: err.message || 'Failed to create campaign' });
+    }
+  });
+
+  // GET /api/marketing/broker-campaigns — list all campaigns
+  app.get("/api/marketing/broker-campaigns", async (_req, res) => {
+    try {
+      const campaigns = await db.select().from(brokerCampaigns)
+        .orderBy(brokerCampaigns.createdAt);
+      res.json(campaigns.reverse());
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to fetch campaigns' });
+    }
+  });
+
+  // GET /api/marketing/broker-campaign/:id — campaign + entry details
+  app.get("/api/marketing/broker-campaign/:id", async (req, res) => {
+    try {
+      const [campaign] = await db.select().from(brokerCampaigns)
+        .where(eq(brokerCampaigns.id, req.params.id)).limit(1);
+      if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+
+      const entries = await db.select().from(brokerCampaignEntries)
+        .where(eq(brokerCampaignEntries.campaignId, req.params.id));
+
+      res.json({ campaign, entries });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to fetch campaign' });
+    }
+  });
+
+  // POST /api/marketing/broker-campaign/:id/pause — pause running campaign
+  app.post("/api/marketing/broker-campaign/:id/pause", async (req, res) => {
+    try {
+      await db.update(brokerCampaigns)
+        .set({ status: 'paused' })
+        .where(eq(brokerCampaigns.id, req.params.id));
+      res.json({ success: true, status: 'paused' });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to pause campaign' });
+    }
+  });
+
+  // POST /api/marketing/broker-campaign/:id/resume — resume paused campaign
+  app.post("/api/marketing/broker-campaign/:id/resume", async (req, res) => {
+    try {
+      await db.update(brokerCampaigns)
+        .set({ status: 'running' })
+        .where(eq(brokerCampaigns.id, req.params.id));
+      // Restart background processor
+      setImmediate(() => {
+        runCampaign(req.params.id).catch((err) =>
+          console.error('[CAMPAIGN] Resume error:', err)
+        );
+      });
+      res.json({ success: true, status: 'running' });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to resume campaign' });
     }
   });
 

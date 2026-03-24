@@ -1,0 +1,271 @@
+PROJECT TITLE
+DeliWer Partner Recruitment Engine (Email Automation via /marketing)
+
+---
+
+OBJECTIVE
+
+Build a **Vercel-hosted static + serverless hybrid system** where:
+
+* Founders upload broker lists
+* System generates personalized partner links
+* Emails are sent one-by-one via SendGrid
+* All activity is tracked and visible in `/marketing`
+
+This is the **primary growth engine to recruit brokers as partners at scale with zero capital marketing**.
+
+---
+
+# 🧠 SYSTEM OVERVIEW
+
+FRONTEND (Vercel Static)
+
+→ /marketing (command center)
+→ /marketing/recruit (email engine UI)
+→ /marketing/dashboard (results + tracking)
+
+BACKEND (Serverless API via Vercel Functions)
+
+→ /api/send-email
+→ /api/process-brokers
+
+DATA STORAGE
+
+→ Google Sheets (campaign tracking)
+
+---
+
+# 📁 FEATURE 1: BROKER UPLOAD SYSTEM
+
+Page:
+
+/marketing/recruit
+
+UI:
+
+* Upload Excel file (.xlsx)
+* Preview first 10 rows
+* Button: “Start Campaign”
+
+Expected columns:
+
+Name
+Email
+Phone
+License
+
+---
+
+# 🔗 FEATURE 2: REFERRAL LINK GENERATOR
+
+For each broker:
+
+Generate:
+
+https://www.deliwer.com/broker-partner?ref={unique_id}&utm_source=brokerlist&utm_campaign=uae_recruit
+
+Logic:
+
+* Extract email prefix OR sanitize name
+* Remove special characters
+* Ensure uniqueness
+
+Example:
+
+[ahmed.khan@gmail.com](mailto:ahmed.khan@gmail.com) → ref=ahmedkhan
+
+---
+
+# 📧 FEATURE 3: EMAIL AUTOMATION ENGINE
+
+When “Start Campaign” is clicked:
+
+System sends emails ONE BY ONE (NOT bulk)
+
+Delay between sends:
+
+1–2 seconds (anti-spam)
+
+---
+
+## EMAIL TEMPLATE
+
+Subject:
+
+Earn more from every tenant you already handle
+
+Body:
+
+Hi {Name},
+
+You’re already working with tenants who are:
+
+• renewing
+• moving
+• negotiating rent
+
+DeliWer helps you earn from those same conversations.
+
+We handle everything after the deal:
+
+→ moving
+→ setup
+→ coordination
+
+You earn up to 35% per referral.
+
+Start here:
+{PartnerLink}
+
+Try it with just 2 tenants this week.
+
+WhatsApp: +971523946311
+
+– DeliWer
+
+---
+
+# ⚙️ FEATURE 4: SERVERLESS EMAIL FUNCTION
+
+Create:
+
+/api/send-email.js
+
+Use SendGrid:
+
+* Read API key from env
+* Accept POST request with:
+
+  * name
+  * email
+  * partnerLink
+
+Send email dynamically
+
+Return success/failure
+
+---
+
+# 🔁 FEATURE 5: CAMPAIGN PROCESSOR
+
+Create:
+
+/api/process-brokers.js
+
+Logic:
+
+* Receive uploaded broker list
+* Loop through entries
+* Generate referral link
+* Call /api/send-email for each
+* Wait 1–2 seconds between sends
+
+---
+
+# 📊 FEATURE 6: TRACKING SYSTEM (GOOGLE SHEETS)
+
+Sheet Name: BrokerCampaign
+
+Columns:
+
+Timestamp
+Name
+Email
+RefCode
+Status (Sent / Failed)
+Response (optional)
+
+Every email send logs a row.
+
+---
+
+# 📈 FEATURE 7: FOUNDER DASHBOARD
+
+Page:
+
+/marketing/dashboard
+
+Display:
+
+* Total emails sent
+* Success rate
+* Failed emails
+* Top ref codes (future leads)
+
+Pull data from Google Sheets JSON.
+
+---
+
+# 🧲 FEATURE 8: PARTNER CONVERSION LOOP
+
+Ensure:
+
+All links point to:
+
+/broker-partner?ref=XYZ
+
+That page must:
+
+* explain earnings
+* push WhatsApp CTA
+* capture leads
+
+---
+
+# ⚡ UX RULES
+
+* No login required
+* One-click campaign start
+* Clear progress feedback
+
+Show:
+
+“Sending email 23 of 500…”
+
+---
+
+# 🔐 ENV VARIABLES
+
+SENDGRID_API_KEY=
+GOOGLE_SHEET_ID=
+
+---
+
+# 🚀 DEPLOYMENT
+
+* Deploy on Vercel
+* API routes via /api
+* Static UI via /marketing
+
+---
+
+# 🔥 SAFETY & SCALE RULES
+
+* Limit initial batch to 100–300/day
+* Add pause/resume feature
+* Prevent duplicate sends (check sheet before sending)
+
+---
+
+# 💡 FUTURE EXTENSIONS
+
+* Add AI reply handler
+* Add WhatsApp follow-up automation
+* Add partner leaderboard
+
+---
+
+# 🎯 FINAL GOAL
+
+This system should:
+
+* recruit brokers daily
+* assign referral links automatically
+* track campaign performance
+* convert brokers into active partners
+
+---
+
+# 🔥 FINAL LINE (DISPLAY ON UI)
+
+“Activate the network. Let partners drive growth.”

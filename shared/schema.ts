@@ -1587,3 +1587,38 @@ export const affiliateLeads = pgTable("affiliate_leads", {
 export const insertAffiliateleadSchema = createInsertSchema(affiliateLeads).omit({ id: true, createdAt: true });
 export type AffiliateLead = typeof affiliateLeads.$inferSelect;
 export type InsertAffiliateLead = z.infer<typeof insertAffiliateleadSchema>;
+
+// ─── Broker Recruitment Campaigns ───────────────────────────────────────────
+
+export const brokerCampaigns = pgTable("broker_campaigns", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  status: text("status").notNull().default("idle"), // idle | running | paused | completed
+  totalBrokers: integer("total_brokers").notNull().default(0),
+  sentCount: integer("sent_count").notNull().default(0),
+  failedCount: integer("failed_count").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  completedAt: timestamp("completed_at"),
+});
+
+export const insertBrokerCampaignSchema = createInsertSchema(brokerCampaigns).omit({ id: true, createdAt: true, completedAt: true });
+export type BrokerCampaign = typeof brokerCampaigns.$inferSelect;
+export type InsertBrokerCampaign = z.infer<typeof insertBrokerCampaignSchema>;
+
+export const brokerCampaignEntries = pgTable("broker_campaign_entries", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  campaignId: varchar("campaign_id").notNull().references(() => brokerCampaigns.id),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  license: text("license"),
+  refCode: text("ref_code").notNull(),
+  partnerLink: text("partner_link").notNull(),
+  status: text("status").notNull().default("pending"), // pending | sent | failed | skipped
+  sentAt: timestamp("sent_at"),
+  errorMessage: text("error_message"),
+});
+
+export const insertBrokerCampaignEntrySchema = createInsertSchema(brokerCampaignEntries).omit({ id: true, sentAt: true });
+export type BrokerCampaignEntry = typeof brokerCampaignEntries.$inferSelect;
+export type InsertBrokerCampaignEntry = z.infer<typeof insertBrokerCampaignEntrySchema>;

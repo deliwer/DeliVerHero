@@ -175,6 +175,7 @@ import MarketingLeaderboard from "@/pages/marketing/leaderboard";
 import MarketingPartners from "@/pages/marketing/partners";
 import MarketingControl from "@/pages/marketing/control";
 import MarketingLegacy from "@/pages/marketing/legacy";
+import MarketingRecruit from "@/pages/marketing/recruit";
 const LegacyFounderDashboard = lazy(() => import("@/pages/MarketingDashboard"));
 
 function Router() {
@@ -203,6 +204,7 @@ function Router() {
         <Route path="/marketing/leaderboard" component={MarketingLeaderboard} />
         <Route path="/marketing/partners" component={MarketingPartners} />
         <Route path="/marketing/control" component={MarketingControl} />
+        <Route path="/marketing/recruit" component={MarketingRecruit} />
         <Route path="/errand" component={ErrandPage} />
         <Route path="/marketing/legacy" component={MarketingLegacy} />
         <Route path="/marketing/legacy/affiliate-management" component={AffiliateManagement} />

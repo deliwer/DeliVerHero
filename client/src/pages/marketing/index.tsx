@@ -82,6 +82,7 @@ export default function MarketingHub() {
             <Link href="/marketing/partners" className="text-xs px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all" data-testid="nav-partners">Partners</Link>
             <Link href="/marketing/leaderboard" className="text-xs px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all" data-testid="nav-leaderboard">Leaderboard</Link>
             <Link href="/marketing/dashboard" className="text-xs px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all" data-testid="nav-dashboard">Dashboard</Link>
+            <Link href="/marketing/recruit" className="text-xs px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all" data-testid="nav-recruit">Recruit</Link>
             <Link href="/marketing/control" className="text-xs px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all" data-testid="nav-control">Control</Link>
           </nav>
         </div>
@@ -209,6 +210,7 @@ export default function MarketingHub() {
               <h3 className="font-bold mb-4 text-sm text-gray-400 uppercase tracking-wider">Command Center</h3>
               <div className="space-y-3">
                 {[
+                  { icon: "📡", label: "Broker Recruit Engine", desc: "Upload list → auto-email → track responses", href: "/marketing/recruit", testid: "link-recruit" },
                   { icon: "📊", label: "Partner Dashboard", desc: "Track leads & earnings per partner", href: "/marketing/dashboard", testid: "link-dashboard" },
                   { icon: "🏆", label: "Leaderboard", desc: "Top partners this week", href: "/marketing/leaderboard", testid: "link-leaderboard" },
                   { icon: "🤝", label: "Partner Onboarding", desc: "Earn up to 35% per closed deal", href: "/marketing/partners", testid: "link-partners" },
