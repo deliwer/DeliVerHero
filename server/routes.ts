@@ -4262,6 +4262,91 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // GET /api/marketing/broker-campaign/:id/export — download entries as Excel
+  app.get("/api/marketing/broker-campaign/:id/export", async (req, res) => {
+    try {
+      const XLSX = await import('xlsx');
+      const [campaign] = await db.select().from(brokerCampaigns)
+        .where(eq(brokerCampaigns.id, req.params.id)).limit(1);
+      if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+
+      const entries = await db.select().from(brokerCampaignEntries)
+        .where(eq(brokerCampaignEntries.campaignId, req.params.id));
+
+      const rows = entries.map((e) => ({
+        Name: e.name,
+        Email: e.email,
+        Phone: e.phone || '',
+        License: e.license || '',
+        RefCode: e.refCode,
+        PartnerLink: e.partnerLink,
+        Status: e.status,
+        SentAt: e.sentAt ? new Date(e.sentAt).toLocaleString('en-AE', { timeZone: 'Asia/Dubai' }) : '',
+        Error: e.errorMessage || '',
+      }));
+
+      const ws = XLSX.utils.json_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Brokers');
+
+      const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+      const safeName = campaign.name.replace(/[^a-z0-9]/gi, '_').substring(0, 40);
+      res.setHeader('Content-Disposition', `attachment; filename="${safeName}_brokers.xlsx"`);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.send(buf);
+    } catch (err: any) {
+      console.error('[EXPORT] Error:', err);
+      res.status(500).json({ error: 'Export failed' });
+    }
+  });
+
+  // GET /api/marketing/broker-campaigns/latest/export — download latest campaign entries
+  app.get("/api/marketing/broker-campaigns/latest/export", async (_req, res) => {
+    try {
+      const XLSX = await import('xlsx');
+      const campaigns = await db.select().from(brokerCampaigns)
+        .orderBy(brokerCampaigns.createdAt);
+      const latest = campaigns[campaigns.length - 1];
+      if (!latest) {
+        // Return empty template if no campaigns yet
+        const ws = XLSX.utils.aoa_to_sheet([['Name', 'Email', 'Phone', 'License', 'RefCode', 'PartnerLink', 'Status']]);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Brokers');
+        const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+        res.setHeader('Content-Disposition', 'attachment; filename="broker_template.xlsx"');
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        return res.send(buf);
+      }
+
+      const entries = await db.select().from(brokerCampaignEntries)
+        .where(eq(brokerCampaignEntries.campaignId, latest.id));
+
+      const rows = entries.map((e) => ({
+        Name: e.name,
+        Email: e.email,
+        Phone: e.phone || '',
+        License: e.license || '',
+        RefCode: e.refCode,
+        PartnerLink: e.partnerLink,
+        Status: e.status,
+        SentAt: e.sentAt ? new Date(e.sentAt).toLocaleString('en-AE', { timeZone: 'Asia/Dubai' }) : '',
+        Error: e.errorMessage || '',
+      }));
+
+      const ws = XLSX.utils.json_to_sheet(rows.length ? rows : [{ Name: '', Email: '', Phone: '', License: '', RefCode: '', PartnerLink: '', Status: '' }]);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Brokers');
+      const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+      const safeName = latest.name.replace(/[^a-z0-9]/gi, '_').substring(0, 40);
+      res.setHeader('Content-Disposition', `attachment; filename="${safeName}_brokers.xlsx"`);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.send(buf);
+    } catch (err: any) {
+      console.error('[EXPORT] Latest error:', err);
+      res.status(500).json({ error: 'Export failed' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

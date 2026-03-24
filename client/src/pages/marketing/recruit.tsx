@@ -10,7 +10,7 @@ import {
   Upload, FileSpreadsheet, Play, Pause, CheckCircle2, XCircle,
   AlertCircle, Users, Send, TrendingUp, ArrowRight, Loader2,
   RefreshCw, Copy, Check, BarChart3, ChevronDown, ChevronUp,
-  Mail, Phone, Briefcase, Link2
+  Mail, Phone, Briefcase, Link2, Download
 } from "lucide-react";
 import * as XLSX from "xlsx";
 
@@ -96,6 +96,7 @@ export default function RecruitPage() {
 
   const [pastCampaigns, setPastCampaigns] = useState<Campaign[]>([]);
   const [showPast, setShowPast] = useState(false);
+  const [exporting, setExporting] = useState(false);
 
   const fetchCampaignStatus = useCallback(async (id: string) => {
     try {
@@ -134,6 +135,60 @@ export default function RecruitPage() {
   useEffect(() => {
     fetchPastCampaigns();
   }, []);
+
+  function downloadTemplate() {
+    const sampleData = [
+      { Name: "Ahmed Al Mansoori", Email: "ahmed@example.com", Phone: "+971501234567", License: "RERA-12345" },
+      { Name: "Sara Johnson", Email: "sara@brokers.ae", Phone: "+971509876543", License: "RERA-67890" },
+      { Name: "Khalid Ibrahim", Email: "khalid@realestate.ae", Phone: "+971551234567", License: "" },
+    ];
+    const ws = XLSX.utils.json_to_sheet(sampleData);
+    ws["!cols"] = [{ wch: 22 }, { wch: 30 }, { wch: 18 }, { wch: 14 }];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Brokers");
+    XLSX.writeFile(wb, "deliwer_broker_list_template.xlsx");
+  }
+
+  async function downloadCampaign(id: string, name: string) {
+    setExporting(true);
+    try {
+      const res = await fetch(`/api/marketing/broker-campaign/${id}/export`);
+      if (!res.ok) throw new Error("Export failed");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${name.replace(/[^a-z0-9]/gi, "_").substring(0, 40)}_brokers.xlsx`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      toast({ title: "Export failed", variant: "destructive" });
+    } finally {
+      setExporting(false);
+    }
+  }
+
+  async function downloadLatest() {
+    setExporting(true);
+    try {
+      const res = await fetch("/api/marketing/broker-campaigns/latest/export");
+      if (!res.ok) throw new Error("Export failed");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const disp = res.headers.get("Content-Disposition") || "";
+      const match = disp.match(/filename="(.+?)"/);
+      a.download = match ? match[1] : "latest_brokers.xlsx";
+      a.click();
+      URL.revokeObjectURL(url);
+      toast({ title: "Download started", description: "Latest broker list exported to Excel." });
+    } catch {
+      toast({ title: "Export failed", variant: "destructive" });
+    } finally {
+      setExporting(false);
+    }
+  }
 
   function handleFileDrop(e: React.DragEvent) {
     e.preventDefault();
@@ -229,7 +284,18 @@ export default function RecruitPage() {
             <span className="text-slate-600">/</span>
             <span className="text-emerald-400 font-semibold text-sm">Broker Recruit Engine</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <Button
+              onClick={downloadLatest}
+              disabled={exporting}
+              variant="outline"
+              size="sm"
+              className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 h-8"
+              data-testid="button-download-latest"
+            >
+              {exporting ? <Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5" /> : <Download className="w-3.5 h-3.5 mr-1.5" />}
+              Download Latest
+            </Button>
             <button
               onClick={() => { setShowPast(!showPast); if (!showPast) fetchPastCampaigns(); }}
               className="text-sm text-slate-400 hover:text-white flex items-center gap-1"
@@ -278,6 +344,13 @@ export default function RecruitPage() {
                 <div>
                   <p className="text-slate-300 font-medium">Drop your .xlsx or .csv file here</p>
                   <p className="text-slate-500 text-sm mt-1">Expected columns: <span className="text-slate-400">Name · Email · Phone · License</span></p>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); downloadTemplate(); }}
+                    className="mt-3 text-xs text-emerald-400 hover:text-emerald-300 flex items-center gap-1 mx-auto"
+                    data-testid="button-download-template"
+                  >
+                    <Download className="w-3 h-3" /> Download sample template
+                  </button>
                 </div>
               )}
               <input
@@ -402,6 +475,15 @@ export default function RecruitPage() {
                   >
                     {campaign.status.charAt(0).toUpperCase() + campaign.status.slice(1)}
                   </Badge>
+                  <button
+                    onClick={() => downloadCampaign(campaign.id, campaign.name)}
+                    disabled={exporting}
+                    className="text-slate-500 hover:text-emerald-400 transition-colors"
+                    title="Download as Excel"
+                    data-testid="button-download-active-campaign"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
                   <button
                     onClick={() => fetchCampaignStatus(campaign.id)}
                     className="text-slate-500 hover:text-white"
@@ -563,6 +645,14 @@ export default function RecruitPage() {
                         >
                           {c.status}
                         </Badge>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); downloadCampaign(c.id, c.name); }}
+                          className="text-slate-500 hover:text-emerald-400 transition-colors"
+                          title="Download as Excel"
+                          data-testid={`button-download-campaign-${c.id}`}
+                        >
+                          <Download className="w-4 h-4" />
+                        </button>
                         <ArrowRight className="w-4 h-4 text-slate-600" />
                       </div>
                     </div>
