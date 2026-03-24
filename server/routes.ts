@@ -37,9 +37,12 @@ import { storage } from "./storage";
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertLeadApplicationSchema, insertCommissionClaimSchema } from "@shared/schema";
 import { processLead, trackCTAEvent } from "./lead-service";
 import { generateRefCode, generatePartnerLink, runCampaign } from "./broker-campaign-service";
-import { brokerCampaigns, brokerCampaignEntries } from "@shared/schema";
+import { brokerCampaigns, brokerCampaignEntries, brokerMaster, brokerAutomationLog } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, desc, and, lt, sql as drizzleSql } from "drizzle-orm";
+import { runBrokerFetch } from "./services/broker-fetch-service";
+import { runFollowUpEngine } from "./services/broker-followup-service";
+import { getAutomationStatus, isDailyRunning, isFollowUpRunning } from "./services/broker-automation";
 import OpenAI from "openai";
 import Stripe from "stripe";
 import QRCode from "qrcode";
@@ -4344,6 +4347,123 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     } catch (err: any) {
       console.error('[EXPORT] Latest error:', err);
       res.status(500).json({ error: 'Export failed' });
+    }
+  });
+
+  // ─── Broker Master & Automation Routes ──────────────────────────────────────
+
+  // GET /api/marketing/broker-master — list all brokers in master with pagination
+  app.get("/api/marketing/broker-master", async (req, res) => {
+    try {
+      const page = parseInt(String(req.query.page || '1'));
+      const limit = parseInt(String(req.query.limit || '50'));
+      const offset = (page - 1) * limit;
+
+      const brokers = await db.select()
+        .from(brokerMaster)
+        .orderBy(desc(brokerMaster.createdAt))
+        .limit(limit)
+        .offset(offset);
+
+      const total = await db.select({ count: drizzleSql<number>`count(*)` }).from(brokerMaster);
+      const statusCounts = await db.select({
+        status: brokerMaster.status,
+        count: drizzleSql<number>`count(*)`,
+      }).from(brokerMaster).groupBy(brokerMaster.status);
+
+      res.json({
+        brokers,
+        total: Number(total[0]?.count || 0),
+        page,
+        limit,
+        statusCounts,
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to fetch broker master' });
+    }
+  });
+
+  // GET /api/marketing/automation/status — get automation engine status + stats
+  app.get("/api/marketing/automation/status", async (_req, res) => {
+    try {
+      const status = await getAutomationStatus();
+      res.json({
+        ...status,
+        isRunning: isDailyRunning() || isFollowUpRunning(),
+        isDailyRunning: isDailyRunning(),
+        isFollowUpRunning: isFollowUpRunning(),
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to get automation status' });
+    }
+  });
+
+  // POST /api/marketing/broker-fetch — manually trigger RERA broker fetch
+  app.post("/api/marketing/broker-fetch", async (_req, res) => {
+    try {
+      const result = await runBrokerFetch('manual_fetch');
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Fetch failed' });
+    }
+  });
+
+  // POST /api/marketing/broker-followup/run — manually trigger follow-up engine
+  app.post("/api/marketing/broker-followup/run", async (_req, res) => {
+    try {
+      const result = await runFollowUpEngine('manual_followup');
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Follow-up run failed' });
+    }
+  });
+
+  // GET /api/marketing/automation/logs — recent automation run logs
+  app.get("/api/marketing/automation/logs", async (req, res) => {
+    try {
+      const limit = parseInt(String(req.query.limit || '20'));
+      const logs = await db.select()
+        .from(brokerAutomationLog)
+        .orderBy(desc(brokerAutomationLog.startedAt))
+        .limit(limit);
+      res.json(logs);
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to fetch logs' });
+    }
+  });
+
+  // POST /api/marketing/broker-master/seed — seed master from existing campaign entries
+  app.post("/api/marketing/broker-master/seed", async (_req, res) => {
+    try {
+      const entries = await db.select().from(brokerCampaignEntries);
+      let added = 0;
+
+      for (const entry of entries) {
+        const existing = await db.select({ id: brokerMaster.id })
+          .from(brokerMaster)
+          .where(eq(brokerMaster.email, entry.email))
+          .limit(1);
+
+        if (existing.length === 0) {
+          await db.insert(brokerMaster).values({
+            email: entry.email,
+            name: entry.name,
+            phone: entry.phone || null,
+            license: entry.license || null,
+            refCode: entry.refCode,
+            partnerLink: entry.partnerLink,
+            status: entry.status === 'sent' ? 'sent' : 'new',
+            firstContactedAt: entry.sentAt || null,
+            lastContactedAt: entry.sentAt || null,
+            source: 'manual',
+          });
+          added++;
+        }
+      }
+
+      res.json({ success: true, added });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Seed failed' });
     }
   });
 

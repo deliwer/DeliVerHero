@@ -1588,6 +1588,48 @@ export const insertAffiliateleadSchema = createInsertSchema(affiliateLeads).omit
 export type AffiliateLead = typeof affiliateLeads.$inferSelect;
 export type InsertAffiliateLead = z.infer<typeof insertAffiliateleadSchema>;
 
+// ─── Broker Master (Central Lifecycle Table) ─────────────────────────────────
+
+export const brokerMaster = pgTable("broker_master", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  phone: text("phone"),
+  license: text("license"),
+  refCode: text("ref_code"),
+  partnerLink: text("partner_link"),
+  status: text("status").notNull().default("new"), // new | sent | followed_up | converted
+  followUpCount: integer("follow_up_count").notNull().default(0),
+  firstContactedAt: timestamp("first_contacted_at"),
+  lastContactedAt: timestamp("last_contacted_at"),
+  response: text("response"),
+  leadsGenerated: integer("leads_generated").notNull().default(0),
+  source: text("source").notNull().default("manual"), // manual | rera_auto
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const insertBrokerMasterSchema = createInsertSchema(brokerMaster).omit({ id: true, createdAt: true, updatedAt: true });
+export type BrokerMaster = typeof brokerMaster.$inferSelect;
+export type InsertBrokerMaster = z.infer<typeof insertBrokerMasterSchema>;
+
+// ─── Broker Automation Logs ───────────────────────────────────────────────────
+
+export const brokerAutomationLog = pgTable("broker_automation_log", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  runType: text("run_type").notNull(), // daily | followup | manual_fetch | manual_followup
+  status: text("status").notNull().default("running"), // running | completed | failed
+  brokersFound: integer("brokers_found").notNull().default(0),
+  newBrokers: integer("new_brokers").notNull().default(0),
+  emailsSent: integer("emails_sent").notNull().default(0),
+  followUpsSent: integer("follow_ups_sent").notNull().default(0),
+  errors: text("errors"),
+  startedAt: timestamp("started_at").notNull().default(sql`now()`),
+  completedAt: timestamp("completed_at"),
+});
+
+export type BrokerAutomationLog = typeof brokerAutomationLog.$inferSelect;
+
 // ─── Broker Recruitment Campaigns ───────────────────────────────────────────
 
 export const brokerCampaigns = pgTable("broker_campaigns", {

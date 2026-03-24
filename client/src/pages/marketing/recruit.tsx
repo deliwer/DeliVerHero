@@ -6,11 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Upload, FileSpreadsheet, Play, Pause, CheckCircle2, XCircle,
   AlertCircle, Users, Send, TrendingUp, ArrowRight, Loader2,
   RefreshCw, Copy, Check, BarChart3, ChevronDown, ChevronUp,
-  Mail, Phone, Briefcase, Link2, Download
+  Mail, Phone, Briefcase, Link2, Download, Zap, Clock, Globe,
+  Activity, Database, ChevronRight, CircleDot, Inbox
 } from "lucide-react";
 import * as XLSX from "xlsx";
 
@@ -42,6 +44,51 @@ interface Campaign {
   failedCount: number;
   createdAt: string;
   completedAt?: string;
+}
+
+interface AutomationStatus {
+  isRunning: boolean;
+  isDailyRunning: boolean;
+  isFollowUpRunning: boolean;
+  lastDailyRun?: string;
+  lastFollowUpRun?: string;
+  totalInMaster: number;
+  newToday: number;
+  sentTotal: number;
+  followedUpTotal: number;
+  convertedTotal: number;
+  pendingFollowUp1: number;
+  pendingFollowUp2: number;
+  recentLogs: AutomationLog[];
+}
+
+interface AutomationLog {
+  id: string;
+  runType: string;
+  status: string;
+  brokersFound: number;
+  newBrokers: number;
+  emailsSent: number;
+  followUpsSent: number;
+  errors?: string;
+  startedAt: string;
+  completedAt?: string;
+}
+
+interface BrokerMasterEntry {
+  id: string;
+  email: string;
+  name: string;
+  phone?: string;
+  license?: string;
+  refCode?: string;
+  partnerLink?: string;
+  status: string;
+  followUpCount: number;
+  firstContactedAt?: string;
+  lastContactedAt?: string;
+  source: string;
+  createdAt: string;
 }
 
 const COLUMN_ALIASES: Record<string, keyof BrokerRow> = {
@@ -78,25 +125,98 @@ function parseWorkbook(buffer: ArrayBuffer): BrokerRow[] {
   }).filter((r) => r.email && r.email.includes("@"));
 }
 
+function formatRelative(dateStr?: string): string {
+  if (!dateStr) return "Never";
+  const d = new Date(dateStr);
+  const diff = Date.now() - d.getTime();
+  const hours = Math.floor(diff / 3600000);
+  const mins = Math.floor(diff / 60000);
+  if (mins < 2) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  if (hours < 24) return `${hours}h ago`;
+  return `${Math.floor(hours / 24)}d ago`;
+}
+
+const STATUS_COLORS: Record<string, string> = {
+  new: "bg-slate-700 text-slate-300",
+  sent: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+  followed_up: "bg-yellow-500/15 text-yellow-400 border-yellow-500/30",
+  converted: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
+};
+
 export default function RecruitPage() {
   const { toast } = useToast();
+  const qc = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [brokers, setBrokers] = useState<BrokerRow[]>([]);
   const [fileName, setFileName] = useState("");
   const [campaignName, setCampaignName] = useState("");
   const [showPreview, setShowPreview] = useState(true);
-
   const [activeCampaignId, setActiveCampaignId] = useState<string | null>(null);
   const [campaign, setCampaign] = useState<Campaign | null>(null);
   const [entries, setEntries] = useState<CampaignEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const [polling, setPolling] = useState(false);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
-
   const [pastCampaigns, setPastCampaigns] = useState<Campaign[]>([]);
   const [showPast, setShowPast] = useState(false);
   const [exporting, setExporting] = useState(false);
+  const [showMaster, setShowMaster] = useState(false);
+  const [masterPage, setMasterPage] = useState(1);
+
+  const { data: automationStatus, refetch: refetchStatus } = useQuery<AutomationStatus>({
+    queryKey: ["/api/marketing/automation/status"],
+    refetchInterval: 10000,
+  });
+
+  const { data: masterData } = useQuery<{ brokers: BrokerMasterEntry[]; total: number }>({
+    queryKey: ["/api/marketing/broker-master", masterPage],
+    queryFn: () => fetch(`/api/marketing/broker-master?page=${masterPage}&limit=50`).then((r) => r.json()),
+    enabled: showMaster,
+  });
+
+  const fetchMutation = useMutation({
+    mutationFn: () => fetch("/api/marketing/broker-fetch", { method: "POST" }).then((r) => r.json()),
+    onSuccess: (data) => {
+      qc.invalidateQueries({ queryKey: ["/api/marketing/automation/status"] });
+      qc.invalidateQueries({ queryKey: ["/api/marketing/broker-master"] });
+      if (data.success) {
+        toast({
+          title: `Fetch complete`,
+          description: `Found ${data.brokersFound} brokers, ${data.newBrokers} new added to master.`,
+        });
+      } else {
+        toast({
+          title: "Fetch attempted",
+          description: data.errors || "RERA API returned no data. Upload manually below.",
+          variant: "destructive",
+        });
+      }
+    },
+    onError: () => toast({ title: "Fetch failed", variant: "destructive" }),
+  });
+
+  const followUpMutation = useMutation({
+    mutationFn: () => fetch("/api/marketing/broker-followup/run", { method: "POST" }).then((r) => r.json()),
+    onSuccess: (data) => {
+      qc.invalidateQueries({ queryKey: ["/api/marketing/automation/status"] });
+      toast({
+        title: "Follow-up engine complete",
+        description: `FU#1: ${data.fu1Sent} sent · FU#2: ${data.fu2Sent} sent · Failed: ${data.failed}`,
+      });
+    },
+    onError: () => toast({ title: "Follow-up run failed", variant: "destructive" }),
+  });
+
+  const seedMutation = useMutation({
+    mutationFn: () => fetch("/api/marketing/broker-master/seed", { method: "POST" }).then((r) => r.json()),
+    onSuccess: (data) => {
+      qc.invalidateQueries({ queryKey: ["/api/marketing/automation/status"] });
+      qc.invalidateQueries({ queryKey: ["/api/marketing/broker-master"] });
+      toast({ title: `Synced ${data.added} brokers from past campaigns into master` });
+    },
+  });
 
   const fetchCampaignStatus = useCallback(async (id: string) => {
     try {
@@ -116,13 +236,14 @@ export default function RecruitPage() {
       const c = await fetchCampaignStatus(activeCampaignId);
       if (c && (c.status === "completed" || c.status === "paused")) {
         setPolling(false);
+        qc.invalidateQueries({ queryKey: ["/api/marketing/automation/status"] });
         if (c.status === "completed") {
           toast({ title: "Campaign complete!", description: `Sent ${c.sentCount} of ${c.totalBrokers} emails.` });
         }
       }
     }, 2500);
     return () => clearInterval(interval);
-  }, [activeCampaignId, polling, fetchCampaignStatus, toast]);
+  }, [activeCampaignId, polling, fetchCampaignStatus, toast, qc]);
 
   const fetchPastCampaigns = async () => {
     try {
@@ -132,9 +253,7 @@ export default function RecruitPage() {
     } catch {}
   };
 
-  useEffect(() => {
-    fetchPastCampaigns();
-  }, []);
+  useEffect(() => { fetchPastCampaigns(); }, []);
 
   function downloadTemplate() {
     const sampleData = [
@@ -272,6 +391,8 @@ export default function RecruitPage() {
     ? Math.round(((campaign.sentCount + campaign.failedCount) / Math.max(campaign.totalBrokers, 1)) * 100)
     : 0;
 
+  const as = automationStatus;
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       {/* Header */}
@@ -283,8 +404,13 @@ export default function RecruitPage() {
             </Link>
             <span className="text-slate-600">/</span>
             <span className="text-emerald-400 font-semibold text-sm">Broker Recruit Engine</span>
+            {as?.isRunning && (
+              <span className="flex items-center gap-1 text-xs text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-full animate-pulse">
+                <CircleDot className="w-2.5 h-2.5" /> Running
+              </span>
+            )}
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Button
               onClick={downloadLatest}
               disabled={exporting}
@@ -294,27 +420,271 @@ export default function RecruitPage() {
               data-testid="button-download-latest"
             >
               {exporting ? <Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5" /> : <Download className="w-3.5 h-3.5 mr-1.5" />}
-              Download Latest
+              Export
             </Button>
             <button
               onClick={() => { setShowPast(!showPast); if (!showPast) fetchPastCampaigns(); }}
               className="text-sm text-slate-400 hover:text-white flex items-center gap-1"
               data-testid="button-toggle-past"
             >
-              <BarChart3 className="w-4 h-4" /> Past Campaigns
+              <BarChart3 className="w-4 h-4" /> History
             </button>
           </div>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 py-8 space-y-8">
+      <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+
+        {/* ── AUTOMATION ENGINE STATUS ─────────────────────────────── */}
+        <div>
+          <div className="flex items-center gap-2 mb-3">
+            <Activity className="w-4 h-4 text-emerald-400" />
+            <h2 className="text-sm font-semibold text-slate-300 uppercase tracking-wider">Automation Engine</h2>
+            <button onClick={() => refetchStatus()} className="text-slate-600 hover:text-white ml-auto" data-testid="button-refresh-status">
+              <RefreshCw className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+            {[
+              { label: "In Master", value: as?.totalInMaster ?? "—", color: "text-white" },
+              { label: "New Today", value: as?.newToday ?? "—", color: "text-emerald-400" },
+              { label: "Emailed", value: as?.sentTotal ?? "—", color: "text-blue-400" },
+              { label: "Followed Up", value: as?.followedUpTotal ?? "—", color: "text-yellow-400" },
+              { label: "Converted", value: as?.convertedTotal ?? "—", color: "text-emerald-400" },
+            ].map((s) => (
+              <div key={s.label} className="bg-slate-900 border border-slate-800 rounded-xl p-4 text-center" data-testid={`stat-${s.label.toLowerCase().replace(/ /g, "-")}`}>
+                <div className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
+                <div className="text-xs text-slate-500 mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Follow-up queue */}
+          {((as?.pendingFollowUp1 ?? 0) > 0 || (as?.pendingFollowUp2 ?? 0) > 0) && (
+            <div className="flex flex-wrap gap-3 mb-4">
+              {(as?.pendingFollowUp1 ?? 0) > 0 && (
+                <div className="flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/20 rounded-lg px-3 py-2 text-sm text-yellow-400">
+                  <Clock className="w-3.5 h-3.5" />
+                  {as?.pendingFollowUp1} brokers ready for Follow-up #1 (2-day)
+                </div>
+              )}
+              {(as?.pendingFollowUp2 ?? 0) > 0 && (
+                <div className="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-lg px-3 py-2 text-sm text-orange-400">
+                  <Clock className="w-3.5 h-3.5" />
+                  {as?.pendingFollowUp2} brokers ready for Follow-up #2 (5-day)
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Control buttons */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* RERA Auto-Fetch */}
+            <Card className="bg-slate-900 border-slate-800">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Globe className="w-4 h-4 text-emerald-400" />
+                  <span className="font-semibold text-sm">RERA Auto-Fetch</span>
+                </div>
+                <p className="text-xs text-slate-500 mb-3">Pull latest broker list from Dubai Land Dept and add new entries to master.</p>
+                <div className="text-xs text-slate-600 mb-3">
+                  Last run: {as?.lastDailyRun ? formatRelative(as.lastDailyRun) : "Never"}
+                </div>
+                <Button
+                  onClick={() => fetchMutation.mutate()}
+                  disabled={fetchMutation.isPending}
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white h-8 text-xs font-semibold"
+                  data-testid="button-rera-fetch"
+                >
+                  {fetchMutation.isPending ? (
+                    <><Loader2 className="w-3 h-3 animate-spin mr-1.5" /> Fetching…</>
+                  ) : (
+                    <><Download className="w-3 h-3 mr-1.5" /> Fetch from RERA</>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Follow-up Engine */}
+            <Card className="bg-slate-900 border-slate-800">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Clock className="w-4 h-4 text-yellow-400" />
+                  <span className="font-semibold text-sm">Follow-up Engine</span>
+                </div>
+                <p className="text-xs text-slate-500 mb-3">Send Day-2 and Day-5 follow-ups to unresponsive brokers automatically.</p>
+                <div className="text-xs text-slate-600 mb-3">
+                  Last run: {as?.lastFollowUpRun ? formatRelative(as.lastFollowUpRun) : "Never"}
+                </div>
+                <Button
+                  onClick={() => followUpMutation.mutate()}
+                  disabled={followUpMutation.isPending}
+                  variant="outline"
+                  className="w-full border-yellow-500/40 text-yellow-400 hover:bg-yellow-500/10 h-8 text-xs font-semibold"
+                  data-testid="button-run-followup"
+                >
+                  {followUpMutation.isPending ? (
+                    <><Loader2 className="w-3 h-3 animate-spin mr-1.5" /> Running…</>
+                  ) : (
+                    <><Zap className="w-3 h-3 mr-1.5" /> Run Follow-ups Now</>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Master DB */}
+            <Card className="bg-slate-900 border-slate-800">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Database className="w-4 h-4 text-blue-400" />
+                  <span className="font-semibold text-sm">Broker Master DB</span>
+                </div>
+                <p className="text-xs text-slate-500 mb-3">View all brokers tracked across campaigns. Sync past campaigns into master.</p>
+                <div className="text-xs text-slate-600 mb-3">
+                  {as?.totalInMaster ?? 0} total brokers tracked
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    onClick={() => setShowMaster(!showMaster)}
+                    variant="outline"
+                    className="flex-1 border-blue-500/40 text-blue-400 hover:bg-blue-500/10 h-8 text-xs"
+                    data-testid="button-toggle-master"
+                  >
+                    <Inbox className="w-3 h-3 mr-1.5" /> {showMaster ? "Hide" : "View"}
+                  </Button>
+                  <Button
+                    onClick={() => seedMutation.mutate()}
+                    disabled={seedMutation.isPending}
+                    variant="outline"
+                    className="border-slate-700 text-slate-400 hover:text-white h-8 text-xs px-2"
+                    title="Sync past campaigns into master"
+                    data-testid="button-seed-master"
+                  >
+                    {seedMutation.isPending ? <Loader2 className="w-3 h-3 animate-spin" /> : <RefreshCw className="w-3 h-3" />}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Cron schedule info */}
+          <div className="flex flex-wrap gap-3 mt-3 text-xs text-slate-600">
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-600" /> Daily: Auto-fetch + email new brokers</span>
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-600" /> Every 6h: Follow-up engine runs</span>
+            <span className="flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-emerald-600" /> Max 300 emails/day limit enforced</span>
+          </div>
+        </div>
+
+        {/* ── BROKER MASTER TABLE ──────────────────────────────────── */}
+        {showMaster && masterData && (
+          <Card className="bg-slate-900 border-slate-800">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold flex items-center gap-2">
+                  <Database className="w-5 h-5 text-blue-400" />
+                  Broker Master — {masterData.total} total
+                </h2>
+                <div className="flex items-center gap-2">
+                  <button
+                    disabled={masterPage <= 1}
+                    onClick={() => setMasterPage((p) => p - 1)}
+                    className="text-slate-400 hover:text-white disabled:opacity-30 text-sm"
+                    data-testid="button-master-prev"
+                  >← Prev</button>
+                  <span className="text-xs text-slate-500">Page {masterPage}</span>
+                  <button
+                    disabled={masterPage * 50 >= masterData.total}
+                    onClick={() => setMasterPage((p) => p + 1)}
+                    className="text-slate-400 hover:text-white disabled:opacity-30 text-sm"
+                    data-testid="button-master-next"
+                  >Next →</button>
+                </div>
+              </div>
+              <div className="rounded-lg border border-slate-800 overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-slate-800/60">
+                      <th className="px-4 py-2 text-left text-slate-400 font-medium">Name</th>
+                      <th className="px-4 py-2 text-left text-slate-400 font-medium">Email</th>
+                      <th className="px-4 py-2 text-left text-slate-400 font-medium">Status</th>
+                      <th className="px-4 py-2 text-left text-slate-400 font-medium">Follow-ups</th>
+                      <th className="px-4 py-2 text-left text-slate-400 font-medium">Last Contact</th>
+                      <th className="px-4 py-2 text-left text-slate-400 font-medium">Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {masterData.brokers.map((b) => (
+                      <tr key={b.id} className="border-t border-slate-800 hover:bg-slate-800/30" data-testid={`master-row-${b.id}`}>
+                        <td className="px-4 py-2 text-white font-medium">{b.name}</td>
+                        <td className="px-4 py-2 text-emerald-400 text-xs">{b.email}</td>
+                        <td className="px-4 py-2">
+                          <Badge className={`text-xs ${STATUS_COLORS[b.status] || "bg-slate-700 text-slate-400"}`}>
+                            {b.status}
+                          </Badge>
+                        </td>
+                        <td className="px-4 py-2 text-slate-400 text-center">{b.followUpCount}</td>
+                        <td className="px-4 py-2 text-slate-500 text-xs">{formatRelative(b.lastContactedAt)}</td>
+                        <td className="px-4 py-2">
+                          <span className={`text-xs ${b.source === 'rera_auto' ? 'text-blue-400' : 'text-slate-500'}`}>
+                            {b.source === 'rera_auto' ? '🌐 RERA' : '📁 Manual'}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                    {masterData.brokers.length === 0 && (
+                      <tr>
+                        <td colSpan={6} className="px-4 py-8 text-center text-slate-500">
+                          No brokers in master yet. Upload a list below or fetch from RERA.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* ── RECENT AUTOMATION LOGS ──────────────────────────────── */}
+        {as?.recentLogs && as.recentLogs.length > 0 && (
+          <Card className="bg-slate-900 border-slate-800">
+            <CardContent className="p-5">
+              <h3 className="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
+                <Activity className="w-4 h-4" /> Automation Log (recent 10)
+              </h3>
+              <div className="space-y-1.5">
+                {as.recentLogs.map((log) => (
+                  <div key={log.id} className="flex items-center gap-3 text-xs bg-slate-800/40 rounded-lg px-3 py-2" data-testid={`log-${log.id}`}>
+                    <span className={`shrink-0 font-mono px-1.5 py-0.5 rounded text-xs ${
+                      log.status === 'completed' ? 'bg-emerald-500/20 text-emerald-400' :
+                      log.status === 'failed' ? 'bg-red-500/20 text-red-400' :
+                      'bg-blue-500/20 text-blue-400'
+                    }`}>{log.status}</span>
+                    <span className="text-slate-400">{log.runType.replace(/_/g, " ")}</span>
+                    <span className="text-slate-600 ml-auto">{formatRelative(log.startedAt)}</span>
+                    {log.newBrokers > 0 && <span className="text-emerald-400">+{log.newBrokers} new</span>}
+                    {log.emailsSent > 0 && <span className="text-blue-400">{log.emailsSent} sent</span>}
+                    {log.followUpsSent > 0 && <span className="text-yellow-400">{log.followUpsSent} FU</span>}
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* ── DIVIDER ─────────────────────────────────────────────── */}
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-px bg-slate-800" />
+          <span className="text-xs text-slate-600 uppercase tracking-widest">Manual Campaign</span>
+          <div className="flex-1 h-px bg-slate-800" />
+        </div>
 
         {/* Hero */}
-        <div className="text-center space-y-3">
-          <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30">Partner Recruitment Engine</Badge>
-          <h1 className="text-3xl md:text-4xl font-bold">Activate the network.</h1>
-          <p className="text-slate-400 text-lg">Let partners drive growth.</p>
-          <p className="text-slate-500 text-sm max-w-xl mx-auto">
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl font-bold">Upload & Launch a Campaign</h2>
+          <p className="text-slate-400 text-sm max-w-xl mx-auto">
             Upload a broker list → System generates personalised partner links → Emails sent one-by-one with DeliWer's referral template.
           </p>
         </div>
@@ -494,7 +864,6 @@ export default function RecruitPage() {
                 </div>
               </div>
 
-              {/* Progress bar */}
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-400">
@@ -511,7 +880,6 @@ export default function RecruitPage() {
                 <Progress value={sentPct} className="h-2 bg-slate-800" />
               </div>
 
-              {/* Stats row */}
               <div className="grid grid-cols-3 gap-4">
                 <div className="bg-slate-800/50 rounded-lg p-3 text-center">
                   <div className="text-2xl font-bold text-emerald-400">{campaign.sentCount}</div>
@@ -527,7 +895,6 @@ export default function RecruitPage() {
                 </div>
               </div>
 
-              {/* Pause / Resume */}
               {(campaign.status === "running" || campaign.status === "paused") && (
                 <div className="flex gap-3">
                   {campaign.status === "running" ? (
@@ -551,7 +918,6 @@ export default function RecruitPage() {
                 </div>
               )}
 
-              {/* Entry list (sent/failed) */}
               {entries.length > 0 && (
                 <div className="space-y-2 max-h-72 overflow-y-auto">
                   <p className="text-sm text-slate-400 font-medium">Delivery Log</p>
@@ -668,7 +1034,7 @@ export default function RecruitPage() {
           {[
             { icon: Link2, title: "Personalised Links", desc: "Every broker gets a unique /broker-partner?ref=... link automatically." },
             { icon: Send, title: "1 Email at a Time", desc: "1.5s delay between sends keeps deliverability high and avoids spam filters." },
-            { icon: BarChart3, title: "Full Tracking", desc: "Every send logged — review history, pause, or resume any campaign." },
+            { icon: Zap, title: "Autonomous Loop", desc: "Fetch → Email → Follow-up → Repeat. Your network grows even when you're not working." },
           ].map((item) => (
             <div key={item.title} className="bg-slate-900 border border-slate-800 rounded-xl p-4 flex gap-3">
               <item.icon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
@@ -678,6 +1044,11 @@ export default function RecruitPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Final system message */}
+        <div className="text-center py-4">
+          <p className="text-slate-600 text-sm italic">"Your network is growing — even when you're not working."</p>
         </div>
 
       </div>

@@ -3,21 +3,41 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import "./instagram-sniffer";
 import { whatsappAgent } from "./services/whatsapp-agent";
+import { runDailyAutomation, runFollowUpAutomation } from "./services/broker-automation";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Schedule daily WhatsApp campaign (simple interval for demo, use node-cron for production)
+// Schedule daily WhatsApp campaign
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 setInterval(() => {
   whatsappAgent.sendDailyReferralCampaign().catch(console.error);
 }, TWENTY_FOUR_HOURS);
 
-// Initial run with a slight delay to ensure server is ready
+// Initial WhatsApp run with a slight delay to ensure server is ready
 setTimeout(() => {
   whatsappAgent.sendDailyReferralCampaign().catch(console.error);
 }, 10000);
+
+// ── Broker Recruitment Automation (Cron-based) ────────────────────────────────
+
+const SIX_HOURS = 6 * 60 * 60 * 1000;
+
+// Daily cycle: fetch new brokers from RERA + email all new entries
+setInterval(() => {
+  runDailyAutomation().catch((err) => console.error('[CRON] Daily automation error:', err));
+}, TWENTY_FOUR_HOURS);
+
+// Every 6 hours: run follow-up engine
+setInterval(() => {
+  runFollowUpAutomation().catch((err) => console.error('[CRON] Follow-up automation error:', err));
+}, SIX_HOURS);
+
+// Initial follow-up run after 30s (so server is fully ready)
+setTimeout(() => {
+  runFollowUpAutomation().catch((err) => console.error('[CRON] Initial follow-up error:', err));
+}, 30000);
 
 app.use((req, res, next) => {
   const start = Date.now();

@@ -87,6 +87,46 @@ URL aliases (redirects):
 
 All pages are static (no DB required), WhatsApp-first, referral-aware.
 
+## Broker Recruitment Automation Engine (Added March 2026)
+
+### Overview
+An autonomous, cron-based broker recruitment system at `/marketing/recruit` that continuously fetches UAE brokers, sends onboarding emails, and runs follow-up sequences without manual intervention.
+
+### Architecture
+- **Broker Master Table** (`broker_master`): Central lifecycle DB tracking every broker. Statuses: `new → sent → followed_up → converted`.
+- **Automation Log Table** (`broker_automation_log`): Records every run (daily, followup, manual) with stats.
+
+### Services
+- `server/services/broker-fetch-service.ts` — Attempts to pull broker list from Dubai Land Dept (RERA) API. Parses JSON or XLSX response. Falls back gracefully.
+- `server/services/broker-followup-service.ts` — Follow-up engine: FU#1 at 2-day silence, FU#2 at 5-day silence. Each with distinct email copy.
+- `server/services/broker-automation.ts` — Orchestrator: daily cycle (fetch + email new) + follow-up cycle. Also exposes `getAutomationStatus()`.
+
+### Cron Schedule (server/index.ts)
+- **Every 24h**: `runDailyAutomation()` — fetches RERA, detects new brokers, emails up to 300/day
+- **Every 6h**: `runFollowUpAutomation()` — sends FU#1 (2-day) and FU#2 (5-day) follow-ups
+- **On startup (30s delay)**: Initial follow-up pass
+
+### API Routes
+- `GET /api/marketing/automation/status` — Live stats + recent logs
+- `POST /api/marketing/broker-fetch` — Manual RERA trigger
+- `POST /api/marketing/broker-followup/run` — Manual follow-up trigger
+- `GET /api/marketing/broker-master` — Paginated broker list
+- `POST /api/marketing/broker-master/seed` — Sync past campaigns into master
+- `GET /api/marketing/automation/logs` — Recent run logs
+
+### Frontend (`/marketing/recruit`)
+- **Automation Engine panel**: Live stats (total, new today, sent, followed-up, converted)
+- **RERA Auto-Fetch card**: One-click fetch from Dubai Land Dept
+- **Follow-up Engine card**: Manual trigger + last run time
+- **Broker Master DB card**: View/paginate all tracked brokers, seed from past campaigns
+- **Manual Campaign section**: Preserved existing XLSX upload → campaign launch flow
+
+### Email Campaigns (anti-spam built in)
+- 1.5s delay between sends
+- Max 300 emails/day
+- Dedup by email address (global across all campaigns)
+- Requires `SENDGRID_API_KEY` env var (runs in demo mode without it)
+
 ## Maintenance Notes
 - Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.
 - Navigation component is `fixed top-0 z-[100]`. Pages need appropriate top padding (`pt-48` or `pt-32`).
