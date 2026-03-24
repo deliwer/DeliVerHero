@@ -40,7 +40,8 @@ import { generateRefCode, generatePartnerLink, runCampaign } from "./broker-camp
 import { brokerCampaigns, brokerCampaignEntries, brokerMaster, brokerAutomationLog } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, lt, sql as drizzleSql } from "drizzle-orm";
-import { runBrokerFetch } from "./services/broker-fetch-service";
+import { runBrokerFetch, getLocalFileStats } from "./services/broker-fetch-service";
+import * as path from "path";
 import { runFollowUpEngine } from "./services/broker-followup-service";
 import { getAutomationStatus, isDailyRunning, isFollowUpRunning } from "./services/broker-automation";
 import OpenAI from "openai";
@@ -4406,6 +4407,24 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     } catch (err: any) {
       res.status(500).json({ error: err.message || 'Fetch failed' });
     }
+  });
+
+  // GET /api/marketing/rera-file/stats — local RERA file stats
+  app.get("/api/marketing/rera-file/stats", (_req, res) => {
+    try {
+      const stats = getLocalFileStats();
+      res.json(stats);
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to get file stats' });
+    }
+  });
+
+  // GET /api/marketing/rera-file/download — download the saved RERA XLS
+  app.get("/api/marketing/rera-file/download", (_req, res) => {
+    const filePath = path.join(process.cwd(), 'server/data/RERA_Brokers.xls');
+    res.download(filePath, 'RERA_Brokers.xls', (err) => {
+      if (err) res.status(404).json({ error: 'File not found' });
+    });
   });
 
   // POST /api/marketing/broker-followup/run — manually trigger follow-up engine

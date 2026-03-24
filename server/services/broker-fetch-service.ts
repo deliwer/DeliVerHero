@@ -1,59 +1,93 @@
 import { db } from '../db';
 import { brokerMaster, brokerAutomationLog } from '@shared/schema';
-import { eq, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { generateRefCode, generatePartnerLink } from '../broker-campaign-service';
-import * as XLSX from 'xlsx';
+import * as fs from 'fs';
+import * as path from 'path';
+
+const LOCAL_JSON_PATH = path.join(process.cwd(), 'server/data/rera_brokers.json');
+const LOCAL_XLS_PATH = path.join(process.cwd(), 'server/data/RERA_Brokers.xls');
 
 export interface FetchedBroker {
   name: string;
   email: string;
   phone?: string;
   license?: string;
+  company?: string;
 }
 
-const RERA_API_ENDPOINTS = [
-  'https://publicapi.dubailand.gov.ae/broker/BrokerLicense/search?',
-  'https://services.dubailand.gov.ae/api/v1/brokers',
-];
+export interface LocalFileStats {
+  exists: boolean;
+  totalBrokers: number;
+  fileSizeKB: number;
+  lastModified?: Date;
+  xlsExists: boolean;
+  xlsSizeKB: number;
+}
+
+export function getLocalFileStats(): LocalFileStats {
+  try {
+    const jsonStat = fs.statSync(LOCAL_JSON_PATH);
+    const xlsStat = fs.existsSync(LOCAL_XLS_PATH) ? fs.statSync(LOCAL_XLS_PATH) : null;
+    const data: FetchedBroker[] = JSON.parse(fs.readFileSync(LOCAL_JSON_PATH, 'utf8'));
+    return {
+      exists: true,
+      totalBrokers: data.length,
+      fileSizeKB: Math.round(jsonStat.size / 1024),
+      lastModified: jsonStat.mtime,
+      xlsExists: xlsStat !== null,
+      xlsSizeKB: xlsStat ? Math.round(xlsStat.size / 1024) : 0,
+    };
+  } catch {
+    return { exists: false, totalBrokers: 0, fileSizeKB: 0, xlsExists: false, xlsSizeKB: 0 };
+  }
+}
+
+function loadLocalBrokerList(): FetchedBroker[] {
+  try {
+    if (!fs.existsSync(LOCAL_JSON_PATH)) return [];
+    const raw = fs.readFileSync(LOCAL_JSON_PATH, 'utf8');
+    const data = JSON.parse(raw) as FetchedBroker[];
+    console.log(`[BROKER FETCH] Loaded ${data.length} brokers from local RERA file`);
+    return data;
+  } catch (err: any) {
+    console.error('[BROKER FETCH] Failed to load local file:', err.message);
+    return [];
+  }
+}
 
 async function tryFetchFromReraApi(): Promise<FetchedBroker[]> {
-  for (const endpoint of RERA_API_ENDPOINTS) {
+  const endpoints = [
+    'https://publicapi.dubailand.gov.ae/broker/BrokerLicense/search?',
+    'https://services.dubailand.gov.ae/api/v1/brokers',
+  ];
+
+  for (const endpoint of endpoints) {
     try {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 15000);
-
+      const timeout = setTimeout(() => controller.abort(), 10000);
       const res = await fetch(endpoint, {
         signal: controller.signal,
-        headers: {
-          'Accept': 'application/json',
-          'User-Agent': 'Mozilla/5.0',
-        },
+        headers: { 'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0' },
       });
-
       clearTimeout(timeout);
-
       if (!res.ok) continue;
 
       const contentType = res.headers.get('content-type') || '';
-
       if (contentType.includes('json')) {
         const data = await res.json();
         const items: any[] = Array.isArray(data) ? data : data.data || data.result || data.brokers || [];
         if (items.length > 0) {
           return items
             .map((item: any) => ({
-              name: item.brokerName || item.name || item.Name || item.fullName || '',
-              email: item.email || item.Email || item.emailAddress || '',
-              phone: item.mobile || item.phone || item.Phone || item.mobileNo || '',
-              license: item.licenseNo || item.license || item.License || item.reraNo || '',
+              name: item.brokerName || item.name || item.Name || '',
+              email: (item.email || item.Email || item.emailAddress || '').toLowerCase().trim(),
+              phone: item.mobile || item.phone || item.Phone || '',
+              license: item.licenseNo || item.license || item.reraNo || '',
+              company: item.companyName || item.company || '',
             }))
             .filter((b) => b.email && b.email.includes('@'));
         }
-      }
-
-      if (contentType.includes('spreadsheetml') || contentType.includes('octet-stream') || contentType.includes('vnd.ms-excel')) {
-        const buffer = await res.arrayBuffer();
-        return parseXlsxBuffer(Buffer.from(buffer));
       }
     } catch {
       continue;
@@ -62,40 +96,12 @@ async function tryFetchFromReraApi(): Promise<FetchedBroker[]> {
   return [];
 }
 
-function parseXlsxBuffer(buffer: Buffer): FetchedBroker[] {
-  try {
-    const wb = XLSX.read(buffer, { type: 'buffer' });
-    const ws = wb.Sheets[wb.SheetNames[0]];
-    const rows: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
-    if (rows.length < 2) return [];
-
-    const headers = (rows[0] as string[]).map((h) => String(h || '').toLowerCase().trim());
-    const findCol = (...keys: string[]) => headers.findIndex((h) => keys.some((k) => h.includes(k)));
-
-    const nameCol = findCol('name', 'broker', 'agent');
-    const emailCol = findCol('email', 'e-mail');
-    const phoneCol = findCol('phone', 'mobile', 'tel');
-    const licenseCol = findCol('license', 'licence', 'rera', 'brnumber');
-
-    return rows
-      .slice(1)
-      .map((row) => ({
-        name: nameCol >= 0 ? String(row[nameCol] || '').trim() : '',
-        email: emailCol >= 0 ? String(row[emailCol] || '').trim() : '',
-        phone: phoneCol >= 0 ? String(row[phoneCol] || '').trim() : '',
-        license: licenseCol >= 0 ? String(row[licenseCol] || '').trim() : '',
-      }))
-      .filter((b) => b.email && b.email.includes('@'));
-  } catch {
-    return [];
-  }
-}
-
 export interface FetchResult {
   success: boolean;
-  source: 'rera_api' | 'failed';
+  source: 'local_file' | 'rera_api' | 'failed';
   brokersFound: number;
   newBrokers: number;
+  alreadyInMaster: number;
   errors?: string;
   logId: string;
 }
@@ -107,19 +113,27 @@ export async function runBrokerFetch(triggeredBy: 'daily' | 'manual_fetch' = 'ma
   }).returning();
 
   let fetched: FetchedBroker[] = [];
-  let source: 'rera_api' | 'failed' = 'failed';
+  let source: 'local_file' | 'rera_api' | 'failed' = 'failed';
   let errors: string | undefined;
 
-  try {
-    fetched = await tryFetchFromReraApi();
-    if (fetched.length > 0) {
-      source = 'rera_api';
+  // Primary: load from local RERA file (always available, most reliable)
+  fetched = loadLocalBrokerList();
+  if (fetched.length > 0) {
+    source = 'local_file';
+  } else {
+    // Fallback: try live RERA API
+    try {
+      fetched = await tryFetchFromReraApi();
+      if (fetched.length > 0) {
+        source = 'rera_api';
+      }
+    } catch (err: any) {
+      errors = err.message || 'Fetch error';
     }
-  } catch (err: any) {
-    errors = err.message || 'Fetch error';
   }
 
   let newBrokers = 0;
+  let alreadyInMaster = 0;
 
   for (const broker of fetched) {
     if (!broker.email || !broker.name) continue;
@@ -141,27 +155,30 @@ export async function runBrokerFetch(triggeredBy: 'daily' | 'manual_fetch' = 'ma
         refCode,
         partnerLink,
         status: 'new',
-        source: 'rera_auto',
+        source: source === 'local_file' ? 'rera_auto' : 'rera_auto',
       });
       newBrokers++;
+    } else {
+      alreadyInMaster++;
     }
   }
 
   await db.update(brokerAutomationLog).set({
-    status: fetched.length === 0 && source === 'failed' ? 'failed' : 'completed',
+    status: source === 'failed' ? 'failed' : 'completed',
     brokersFound: fetched.length,
     newBrokers,
     errors: errors || null,
     completedAt: new Date(),
   }).where(eq(brokerAutomationLog.id, log.id));
 
-  console.log(`[BROKER FETCH] Found: ${fetched.length}, New: ${newBrokers}, Source: ${source}`);
+  console.log(`[BROKER FETCH] Source: ${source}, Found: ${fetched.length}, New: ${newBrokers}, Already in master: ${alreadyInMaster}`);
 
   return {
-    success: source !== 'failed' || fetched.length > 0,
+    success: source !== 'failed',
     source,
     brokersFound: fetched.length,
     newBrokers,
+    alreadyInMaster,
     errors,
     logId: log.id,
   };

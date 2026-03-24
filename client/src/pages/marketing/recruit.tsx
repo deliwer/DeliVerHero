@@ -75,6 +75,15 @@ interface AutomationLog {
   completedAt?: string;
 }
 
+interface LocalFileStats {
+  exists: boolean;
+  totalBrokers: number;
+  fileSizeKB: number;
+  lastModified?: string;
+  xlsExists: boolean;
+  xlsSizeKB: number;
+}
+
 interface BrokerMasterEntry {
   id: string;
   email: string;
@@ -170,6 +179,11 @@ export default function RecruitPage() {
     refetchInterval: 10000,
   });
 
+  const { data: reraFileStats } = useQuery<LocalFileStats>({
+    queryKey: ["/api/marketing/rera-file/stats"],
+    refetchInterval: false,
+  });
+
   const { data: masterData } = useQuery<{ brokers: BrokerMasterEntry[]; total: number }>({
     queryKey: ["/api/marketing/broker-master", masterPage],
     queryFn: () => fetch(`/api/marketing/broker-master?page=${masterPage}&limit=50`).then((r) => r.json()),
@@ -182,19 +196,20 @@ export default function RecruitPage() {
       qc.invalidateQueries({ queryKey: ["/api/marketing/automation/status"] });
       qc.invalidateQueries({ queryKey: ["/api/marketing/broker-master"] });
       if (data.success) {
+        const sourceLabel = data.source === 'local_file' ? 'RERA_Brokers.xls (local)' : 'RERA API';
         toast({
-          title: `Fetch complete`,
-          description: `Found ${data.brokersFound} brokers, ${data.newBrokers} new added to master.`,
+          title: `Import complete — ${sourceLabel}`,
+          description: `${data.brokersFound.toLocaleString()} brokers in file · ${data.newBrokers.toLocaleString()} new added to master · ${data.alreadyInMaster?.toLocaleString() ?? 0} already tracked`,
         });
       } else {
         toast({
-          title: "Fetch attempted",
-          description: data.errors || "RERA API returned no data. Upload manually below.",
+          title: "Import failed",
+          description: data.errors || "Could not load broker list. Upload manually below.",
           variant: "destructive",
         });
       }
     },
-    onError: () => toast({ title: "Fetch failed", variant: "destructive" }),
+    onError: () => toast({ title: "Import failed", variant: "destructive" }),
   });
 
   const followUpMutation = useMutation({
@@ -486,11 +501,32 @@ export default function RecruitPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Globe className="w-4 h-4 text-emerald-400" />
-                  <span className="font-semibold text-sm">RERA Auto-Fetch</span>
+                  <span className="font-semibold text-sm">RERA Broker List</span>
+                  {reraFileStats?.exists && (
+                    <Badge className="bg-emerald-500/20 text-emerald-400 border-0 text-[10px] py-0 px-1.5 ml-auto">LOCAL FILE</Badge>
+                  )}
                 </div>
-                <p className="text-xs text-slate-500 mb-3">Pull latest broker list from Dubai Land Dept and add new entries to master.</p>
+                {reraFileStats?.exists ? (
+                  <div className="bg-slate-800 rounded p-2 mb-3 space-y-1">
+                    <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                      <CheckCircle2 className="w-3 h-3" /> RERA_Brokers.xls — Saved Permanently
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      <span className="text-white font-semibold">{reraFileStats.totalBrokers.toLocaleString()}</span> licensed brokers · {Math.round(reraFileStats.fileSizeKB / 1024 * 10) / 10} MB
+                    </div>
+                    <a
+                      href="/api/marketing/rera-file/download"
+                      className="inline-flex items-center gap-1 text-[10px] text-slate-500 hover:text-emerald-400 transition-colors mt-0.5"
+                      data-testid="link-download-rera"
+                    >
+                      <Download className="w-2.5 h-2.5" /> Download RERA_Brokers.xls
+                    </a>
+                  </div>
+                ) : (
+                  <p className="text-xs text-slate-500 mb-3">Load saved RERA broker list into master database.</p>
+                )}
                 <div className="text-xs text-slate-600 mb-3">
-                  Last run: {as?.lastDailyRun ? formatRelative(as.lastDailyRun) : "Never"}
+                  Last imported: {as?.lastDailyRun ? formatRelative(as.lastDailyRun) : "Never"}
                 </div>
                 <Button
                   onClick={() => fetchMutation.mutate()}
@@ -499,9 +535,9 @@ export default function RecruitPage() {
                   data-testid="button-rera-fetch"
                 >
                   {fetchMutation.isPending ? (
-                    <><Loader2 className="w-3 h-3 animate-spin mr-1.5" /> Fetching…</>
+                    <><Loader2 className="w-3 h-3 animate-spin mr-1.5" /> Importing…</>
                   ) : (
-                    <><Download className="w-3 h-3 mr-1.5" /> Fetch from RERA</>
+                    <><Download className="w-3 h-3 mr-1.5" /> Import RERA Brokers ({reraFileStats?.totalBrokers ? reraFileStats.totalBrokers.toLocaleString() : "…"})</>
                   )}
                 </Button>
               </CardContent>
