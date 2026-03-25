@@ -1,0 +1,407 @@
+Here is your **FINAL UNIFIED REPLIT PROMPT** — fully consolidated, clean, and production-ready for:
+
+* ✅ SendGrid automated emailing
+* ✅ 32,000 RERA brokers CSV
+* ✅ Broker signup → [https://www.deliwer.com/broker-partner](https://www.deliwer.com/broker-partner)
+* ✅ Unique referral link generation
+* ✅ Follow-up automation (Day 2, 5, 10)
+* ✅ No database (JSON state only)
+* ✅ Vercel cron-based agent
+
+---
+
+# 🚀 UNIFIED REPLIT PROMPT — DELIWER AGENTIC EMAIL + REFERRAL SYSTEM
+
+Paste this into Replit AI Agent:
+
+---
+
+## 🧠 SYSTEM OBJECTIVE
+
+Build a **serverless, agentic email automation system** for DeliWer that:
+
+* Sends personalized emails to a CSV of 32,000 RERA brokers
+* Invites them to join:
+  👉 [https://www.deliwer.com/broker-partner](https://www.deliwer.com/broker-partner)
+* Generates a **unique referral link per broker**
+* Encourages brokers to **earn commissions by referring clients**
+* Automatically sends **follow-ups (Day 2, Day 5, Day 10)**
+* Runs continuously using **Vercel cron jobs**
+* Uses **NO DATABASE** (only JSON state persistence)
+* Is safe to restart anytime without duplicate sending
+
+---
+
+## 🏗️ PROJECT STRUCTURE
+
+```
+/marketing-recruit-agent
+  /api
+    send.js
+    followup.js
+    upload.js
+  /lib
+    parser.js
+    mailer.js
+    referral.js
+    state.js
+  /templates
+    email1.html
+    followup1.html
+    followup2.html
+    followup3.html
+  /data
+    brokers.csv
+    state.json
+  vercel.json
+  package.json
+```
+
+---
+
+## ⚙️ DEPENDENCIES
+
+Install:
+
+```bash
+npm install @sendgrid/mail csv-parser fs
+```
+
+---
+
+## 🔐 ENVIRONMENT VARIABLES (VERCEL)
+
+```
+SENDGRID_API_KEY=your_sendgrid_api_key
+FROM_EMAIL=partners@deliwer.com
+BASE_URL=https://www.deliwer.com
+TEST_MODE=false
+BATCH_SIZE=100
+```
+
+---
+
+## 📄 CSV FORMAT
+
+```
+Name,Email,Company,Phone
+```
+
+---
+
+## 🧠 STATE MANAGEMENT (NO DATABASE)
+
+### `/data/state.json`
+
+```json
+{
+  "sent": {}
+}
+```
+
+### Structure per broker:
+
+```json
+{
+  "email@example.com": {
+    "sentAt": 1710000000000,
+    "referralId": "base64",
+    "followup1": false,
+    "followup2": false,
+    "followup3": false
+  }
+}
+```
+
+---
+
+## 🔗 REFERRAL SYSTEM
+
+### `/lib/referral.js`
+
+```js
+export function generateReferral(email) {
+  const referralId = Buffer.from(email).toString("base64");
+  return {
+    referralId,
+    referralLink: `https://www.deliwer.com/?ref=${referralId}`
+  };
+}
+```
+
+---
+
+## 📦 CSV PARSER
+
+### `/lib/parser.js`
+
+```js
+import fs from "fs";
+import csv from "csv-parser";
+
+export function loadCSV(filePath) {
+  return new Promise((resolve) => {
+    const results = [];
+    fs.createReadStream(filePath)
+      .pipe(csv())
+      .on("data", (data) => results.push(data))
+      .on("end", () => resolve(results));
+  });
+}
+```
+
+---
+
+## 💾 STATE HANDLER
+
+### `/lib/state.js`
+
+```js
+import fs from "fs";
+
+const path = "./data/state.json";
+
+export function loadState() {
+  if (!fs.existsSync(path)) return { sent: {} };
+  return JSON.parse(fs.readFileSync(path));
+}
+
+export function saveState(state) {
+  fs.writeFileSync(path, JSON.stringify(state, null, 2));
+}
+```
+
+---
+
+## ✉️ MAILER (SENDGRID)
+
+### `/lib/mailer.js`
+
+```js
+import sgMail from "@sendgrid/mail";
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+export async function sendEmail(to, subject, html) {
+  if (process.env.TEST_MODE === "true") {
+    to = process.env.FROM_EMAIL;
+  }
+
+  return sgMail.send({
+    to,
+    from: process.env.FROM_EMAIL,
+    subject,
+    html
+  });
+}
+```
+
+---
+
+## 📤 SEND AGENT
+
+### `/api/send.js`
+
+```js
+import { loadCSV } from "../lib/parser.js";
+import { loadState, saveState } from "../lib/state.js";
+import { generateReferral } from "../lib/referral.js";
+import { sendEmail } from "../lib/mailer.js";
+import fs from "fs";
+
+export default async function handler(req, res) {
+  const brokers = await loadCSV("./data/brokers.csv");
+  const state = loadState();
+
+  let count = 0;
+  const batchSize = parseInt(process.env.BATCH_SIZE || "100");
+
+  for (const broker of brokers) {
+    const email = broker.Email;
+
+    if (!email || state.sent[email]) continue;
+
+    const { referralId, referralLink } = generateReferral(email);
+
+    const template = fs.readFileSync("./templates/email1.html", "utf8")
+      .replace(/{{Name}}/g, broker.Name || "")
+      .replace(/{{referralLink}}/g, referralLink);
+
+    await sendEmail(
+      email,
+      "Earn commissions with DeliWer partner program",
+      template
+    );
+
+    state.sent[email] = {
+      sentAt: Date.now(),
+      referralId,
+      followup1: false,
+      followup2: false,
+      followup3: false
+    };
+
+    count++;
+    if (count >= batchSize) break;
+  }
+
+  saveState(state);
+
+  res.json({ sent: count });
+}
+```
+
+---
+
+## 🔁 FOLLOW-UP AGENT
+
+### `/api/followup.js`
+
+```js
+import { loadState, saveState } from "../lib/state.js";
+import { sendEmail } from "../lib/mailer.js";
+import fs from "fs";
+
+export default async function handler(req, res) {
+  const state = loadState();
+  const now = Date.now();
+
+  for (const email in state.sent) {
+    const user = state.sent[email];
+    const days = (now - user.sentAt) / (1000 * 60 * 60 * 24);
+
+    let templateFile = null;
+    let key = null;
+
+    if (days > 2 && !user.followup1) {
+      templateFile = "followup1.html";
+      key = "followup1";
+    } else if (days > 5 && !user.followup2) {
+      templateFile = "followup2.html";
+      key = "followup2";
+    } else if (days > 10 && !user.followup3) {
+      templateFile = "followup3.html";
+      key = "followup3";
+    }
+
+    if (!templateFile) continue;
+
+    const template = fs.readFileSync(`./templates/${templateFile}`, "utf8");
+
+    await sendEmail(email, "Reminder: Your DeliWer referral earnings", template);
+
+    user[key] = true;
+  }
+
+  saveState(state);
+
+  res.json({ status: "follow-ups sent" });
+}
+```
+
+---
+
+## 📥 CSV UPLOAD ENDPOINT
+
+### `/api/upload.js`
+
+```js
+import fs from "fs";
+
+export default async function handler(req, res) {
+  const data = req.body;
+  fs.writeFileSync("./data/brokers.csv", data);
+  res.json({ status: "uploaded" });
+}
+```
+
+---
+
+## ✉️ EMAIL TEMPLATE (CORE)
+
+### `/templates/email1.html`
+
+```html
+Hi {{Name}},
+
+We’re onboarding select RERA brokers into DeliWer’s partner network.
+
+👉 Join here:
+https://www.deliwer.com/broker-partner
+
+💰 Your personal referral link:
+{{referralLink}}
+
+Earn commissions when your clients use DeliWer for:
+- Ejari
+- Moving
+- Utility setup
+- Relocation services
+
+No upfront cost. Performance-based earnings.
+
+— DeliWer Partnerships
+```
+
+---
+
+## ⏱️ VERCEL CRON
+
+### `vercel.json`
+
+```json
+{
+  "cron": [
+    { "path": "/api/send", "schedule": "0 * * * *" },
+    { "path": "/api/followup", "schedule": "0 2 * * *" }
+  ]
+}
+```
+
+---
+
+## 🧠 FRONTEND REFERRAL CAPTURE (DELIWER SITE)
+
+```js
+const params = new URLSearchParams(window.location.search);
+const ref = params.get("ref");
+
+if (ref) {
+  localStorage.setItem("referral", ref);
+}
+```
+
+---
+
+## ⚠️ DELIVERABILITY STRATEGY
+
+* Start: 50–100 emails/day
+* Gradually scale to 500–1000/day
+* Enable:
+
+  * SPF
+  * DKIM
+  * Domain authentication in SendGrid
+* Rotate subject lines
+* Avoid spam trigger words
+
+---
+
+## 💡 FINAL SYSTEM OUTCOME
+
+This system becomes:
+
+* 🔁 Fully automated broker recruitment engine
+* 💰 Referral-driven revenue growth system
+* ⚡ Zero database, zero ops overhead
+* 📈 Compounding partner acquisition loop
+
+---
+
+If you want the **next upgrade**, I can build:
+
+* Broker **commission logic (tiered payouts)**
+* **Google Sheets live tracking dashboard (no DB)**
+* WhatsApp follow-up automation layer
+
+Just say 👍

@@ -20,6 +20,7 @@ export interface AutomationStatus {
   convertedTotal: number;
   pendingFollowUp1: number;
   pendingFollowUp2: number;
+  pendingFollowUp3: number;
   recentLogs: any[];
 }
 
@@ -123,8 +124,9 @@ export async function getAutomationStatus(): Promise<AutomationStatus> {
     .from(brokerMaster)
     .where(and(notDeleted, sql`${brokerMaster.createdAt} >= ${today}`));
 
-  const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000);
-  const fiveDaysAgo = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
+  const twoDaysAgo  = new Date(Date.now() - 2  * 24 * 60 * 60 * 1000);
+  const fiveDaysAgo = new Date(Date.now() - 5  * 24 * 60 * 60 * 1000);
+  const tenDaysAgo  = new Date(Date.now() - 10 * 24 * 60 * 60 * 1000);
 
   const pendingFu1Res = await db.select({ count: sql<number>`count(*)` })
     .from(brokerMaster)
@@ -142,6 +144,15 @@ export async function getAutomationStatus(): Promise<AutomationStatus> {
       eq(brokerMaster.status, 'followed_up'),
       eq(brokerMaster.followUpCount, 1),
       lt(brokerMaster.firstContactedAt, fiveDaysAgo)
+    ));
+
+  const pendingFu3Res = await db.select({ count: sql<number>`count(*)` })
+    .from(brokerMaster)
+    .where(and(
+      notDeleted,
+      eq(brokerMaster.status, 'followed_up'),
+      eq(brokerMaster.followUpCount, 2),
+      lt(brokerMaster.firstContactedAt, tenDaysAgo)
     ));
 
   const recentLogs = await db.select()
@@ -166,6 +177,7 @@ export async function getAutomationStatus(): Promise<AutomationStatus> {
     convertedTotal: get('converted'),
     pendingFollowUp1: Number(pendingFu1Res[0]?.count || 0),
     pendingFollowUp2: Number(pendingFu2Res[0]?.count || 0),
+    pendingFollowUp3: Number(pendingFu3Res[0]?.count || 0),
     recentLogs,
   };
 }

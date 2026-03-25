@@ -59,6 +59,7 @@ interface AutomationStatus {
   convertedTotal: number;
   pendingFollowUp1: number;
   pendingFollowUp2: number;
+  pendingFollowUp3: number;
   recentLogs: AutomationLog[];
 }
 
@@ -219,7 +220,7 @@ export default function RecruitPage() {
       qc.invalidateQueries({ queryKey: ["/api/marketing/automation/status"] });
       toast({
         title: "Follow-up engine complete",
-        description: `FU#1: ${data.fu1Sent} sent · FU#2: ${data.fu2Sent} sent · Failed: ${data.failed}`,
+        description: `FU#1: ${data.fu1Sent} sent · FU#2: ${data.fu2Sent} sent · FU#3: ${data.fu3Sent} sent · Failed: ${data.failed}`,
       });
     },
     onError: () => toast({ title: "Follow-up run failed", variant: "destructive" }),
@@ -505,18 +506,24 @@ export default function RecruitPage() {
           </div>
 
           {/* Follow-up queue */}
-          {((as?.pendingFollowUp1 ?? 0) > 0 || (as?.pendingFollowUp2 ?? 0) > 0) && (
+          {((as?.pendingFollowUp1 ?? 0) > 0 || (as?.pendingFollowUp2 ?? 0) > 0 || (as?.pendingFollowUp3 ?? 0) > 0) && (
             <div className="flex flex-wrap gap-3 mb-4">
               {(as?.pendingFollowUp1 ?? 0) > 0 && (
                 <div className="flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/20 rounded-lg px-3 py-2 text-sm text-yellow-400">
                   <Clock className="w-3.5 h-3.5" />
-                  {as?.pendingFollowUp1} brokers ready for Follow-up #1 (2-day)
+                  {as?.pendingFollowUp1} brokers ready for Follow-up #1 (Day 2)
                 </div>
               )}
               {(as?.pendingFollowUp2 ?? 0) > 0 && (
                 <div className="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-lg px-3 py-2 text-sm text-orange-400">
                   <Clock className="w-3.5 h-3.5" />
-                  {as?.pendingFollowUp2} brokers ready for Follow-up #2 (5-day)
+                  {as?.pendingFollowUp2} brokers ready for Follow-up #2 (Day 5)
+                </div>
+              )}
+              {(as?.pendingFollowUp3 ?? 0) > 0 && (
+                <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2 text-sm text-red-400">
+                  <Clock className="w-3.5 h-3.5" />
+                  {as?.pendingFollowUp3} brokers ready for Follow-up #3 (Day 10)
                 </div>
               )}
             </div>
