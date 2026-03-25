@@ -1605,6 +1605,8 @@ export const brokerMaster = pgTable("broker_master", {
   response: text("response"),
   leadsGenerated: integer("leads_generated").notNull().default(0),
   source: text("source").notNull().default("manual"), // manual | rera_auto
+  company: text("company"),
+  deleted: boolean("deleted").notNull().default(false),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });

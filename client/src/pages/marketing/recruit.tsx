@@ -462,7 +462,6 @@ export default function RecruitPage() {
           </div>
         </div>
       </div>
-
       {/* Auto-preload banner */}
       {fetchMutation.isPending && (automationStatus?.totalInMaster ?? 0) === 0 && (
         <div className="bg-emerald-500/10 border-b border-emerald-500/30">
@@ -477,7 +476,6 @@ export default function RecruitPage() {
           </div>
         </div>
       )}
-
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
         {/* ── AUTOMATION ENGINE STATUS ─────────────────────────────── */}
@@ -853,7 +851,7 @@ export default function RecruitPage() {
           <CardContent className="p-6 space-y-4">
             <div className="flex items-center gap-2 mb-1">
               <div className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">2</div>
-              <h2 className="text-lg font-semibold">Name & Launch Campaign</h2>
+              <h2 className="text-lg font-semibold text-[#ffffff]">Name & Launch Campaign</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
