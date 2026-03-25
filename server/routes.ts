@@ -2417,7 +2417,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const { sendEmail } = await import('./sendgrid-service.js');
       const success = await sendEmail({
         to,
-        from: 'partners@deliwer.com',
+        from: 'info@deliwer.com',
         subject: 'DeliWer ✅ SendGrid test confirmed',
         html: `
 <!DOCTYPE html><html><head><meta charset="utf-8"/></head>
