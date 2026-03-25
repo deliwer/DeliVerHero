@@ -131,6 +131,7 @@ export async function runFollowUpEngine(triggeredBy: 'followup' | 'manual_follow
     .from(brokerMaster)
     .where(
       and(
+        eq(brokerMaster.deleted, false),
         eq(brokerMaster.status, 'sent'),
         eq(brokerMaster.followUpCount, 0),
         lt(brokerMaster.firstContactedAt, twoDaysAgo)

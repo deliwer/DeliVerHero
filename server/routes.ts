@@ -4353,34 +4353,67 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
 
   // ─── Broker Master & Automation Routes ──────────────────────────────────────
 
-  // GET /api/marketing/broker-master — list all brokers in master with pagination
+  // GET /api/marketing/broker-master — list brokers in master with pagination + search
   app.get("/api/marketing/broker-master", async (req, res) => {
     try {
       const page = parseInt(String(req.query.page || '1'));
       const limit = parseInt(String(req.query.limit || '50'));
       const offset = (page - 1) * limit;
+      const search = String(req.query.search || '').trim().toLowerCase();
+
+      const baseWhere = eq(brokerMaster.deleted, false);
+      const whereClause = search
+        ? and(baseWhere, drizzleSql`(lower(${brokerMaster.name}) like ${'%' + search + '%'} or lower(${brokerMaster.email}) like ${'%' + search + '%'} or lower(coalesce(${brokerMaster.company}, '')) like ${'%' + search + '%'})`)
+        : baseWhere;
 
       const brokers = await db.select()
         .from(brokerMaster)
+        .where(whereClause)
         .orderBy(desc(brokerMaster.createdAt))
         .limit(limit)
         .offset(offset);
 
-      const total = await db.select({ count: drizzleSql<number>`count(*)` }).from(brokerMaster);
+      const [totalRow] = await db.select({ count: drizzleSql<number>`count(*)` }).from(brokerMaster).where(whereClause);
       const statusCounts = await db.select({
         status: brokerMaster.status,
         count: drizzleSql<number>`count(*)`,
-      }).from(brokerMaster).groupBy(brokerMaster.status);
+      }).from(brokerMaster).where(baseWhere).groupBy(brokerMaster.status);
 
       res.json({
         brokers,
-        total: Number(total[0]?.count || 0),
+        total: Number(totalRow?.count || 0),
         page,
         limit,
         statusCounts,
       });
     } catch (err: any) {
       res.status(500).json({ error: 'Failed to fetch broker master' });
+    }
+  });
+
+  // DELETE /api/marketing/broker-master/:id — soft-delete (remove from active list)
+  app.delete("/api/marketing/broker-master/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await db.update(brokerMaster)
+        .set({ deleted: true, updatedAt: new Date() })
+        .where(eq(brokerMaster.id, id));
+      res.json({ success: true, id });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to remove broker' });
+    }
+  });
+
+  // POST /api/marketing/broker-master/:id/restore — restore a deleted broker
+  app.post("/api/marketing/broker-master/:id/restore", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await db.update(brokerMaster)
+        .set({ deleted: false, updatedAt: new Date() })
+        .where(eq(brokerMaster.id, id));
+      res.json({ success: true, id });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to restore broker' });
     }
   });
 

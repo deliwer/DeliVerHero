@@ -44,7 +44,7 @@ export async function runDailyAutomation(): Promise<void> {
 
     const newBrokers = await db.select()
       .from(brokerMaster)
-      .where(eq(brokerMaster.status, 'new'));
+      .where(and(eq(brokerMaster.status, 'new'), eq(brokerMaster.deleted, false)));
 
     if (newBrokers.length === 0) {
       console.log('[AUTOMATION] No new brokers to email');
@@ -109,17 +109,19 @@ export async function runFollowUpAutomation(): Promise<void> {
 }
 
 export async function getAutomationStatus(): Promise<AutomationStatus> {
+  const notDeleted = eq(brokerMaster.deleted, false);
+
   const counts = await db.select({
     status: brokerMaster.status,
     count: sql<number>`count(*)`,
-  }).from(brokerMaster).groupBy(brokerMaster.status);
+  }).from(brokerMaster).where(notDeleted).groupBy(brokerMaster.status);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   const newTodayRes = await db.select({ count: sql<number>`count(*)` })
     .from(brokerMaster)
-    .where(sql`${brokerMaster.createdAt} >= ${today}`);
+    .where(and(notDeleted, sql`${brokerMaster.createdAt} >= ${today}`));
 
   const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000);
   const fiveDaysAgo = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
@@ -127,6 +129,7 @@ export async function getAutomationStatus(): Promise<AutomationStatus> {
   const pendingFu1Res = await db.select({ count: sql<number>`count(*)` })
     .from(brokerMaster)
     .where(and(
+      notDeleted,
       eq(brokerMaster.status, 'sent'),
       eq(brokerMaster.followUpCount, 0),
       lt(brokerMaster.firstContactedAt, twoDaysAgo)
@@ -135,6 +138,7 @@ export async function getAutomationStatus(): Promise<AutomationStatus> {
   const pendingFu2Res = await db.select({ count: sql<number>`count(*)` })
     .from(brokerMaster)
     .where(and(
+      notDeleted,
       eq(brokerMaster.status, 'followed_up'),
       eq(brokerMaster.followUpCount, 1),
       lt(brokerMaster.firstContactedAt, fiveDaysAgo)
