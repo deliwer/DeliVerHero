@@ -2409,6 +2409,45 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // Simple test email — uses partners@deliwer.com (the broker sender)
+  app.post("/api/email/send-test", async (req, res) => {
+    try {
+      const { to } = req.body;
+      if (!to) return res.status(400).json({ error: "to is required" });
+      const { sendEmail } = await import('./sendgrid-service.js');
+      const success = await sendEmail({
+        to,
+        from: 'partners@deliwer.com',
+        subject: 'DeliWer ✅ SendGrid test confirmed',
+        html: `
+<!DOCTYPE html><html><head><meta charset="utf-8"/></head>
+<body style="font-family:Arial,sans-serif;background:#f9fafb;margin:0;padding:0;">
+  <div style="max-width:520px;margin:40px auto;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
+    <div style="background:linear-gradient(135deg,#10b981,#0d9488);padding:28px 32px;">
+      <h1 style="color:#fff;margin:0;font-size:20px;">DeliWer — SendGrid Working ✅</h1>
+    </div>
+    <div style="padding:32px;">
+      <p style="color:#374151;font-size:15px;line-height:1.7;">Your SendGrid integration is <strong>live and confirmed</strong>.</p>
+      <p style="color:#374151;font-size:15px;line-height:1.7;">The broker recruitment engine is ready to send emails to RERA brokers.</p>
+      <p style="color:#6b7280;font-size:13px;margin-top:28px;">— DeliWer Partnerships System</p>
+    </div>
+    <div style="background:#f3f4f6;padding:16px 32px;text-align:center;">
+      <p style="color:#9ca3af;font-size:11px;margin:0;">DeliWer · Dubai Airport Freezone · <a href="https://www.deliwer.com" style="color:#10b981;">deliwer.com</a></p>
+    </div>
+  </div>
+</body></html>`,
+      });
+      if (success) {
+        res.json({ success: true, message: `Test email sent to ${to}` });
+      } else {
+        res.status(500).json({ success: false, error: 'SendGrid rejected the email — check sender identity verification' });
+      }
+    } catch (err: any) {
+      const detail = err?.response?.body?.errors?.[0]?.message || err.message || 'Unknown error';
+      res.status(500).json({ success: false, error: detail });
+    }
+  });
+
   // Test Email Campaign Endpoint
   app.post("/api/email/test-campaign", async (req, res) => {
     try {
