@@ -976,6 +976,15 @@ export default function PartnersPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Founder-only secret trigger — inconspicuous to public visitors */}
+      <div className="flex justify-end px-6 pb-4">
+        <Link href="/marketing/recruit" data-testid="link-founder-recruit-secret">
+          <span className="text-[10px] text-slate-800 hover:text-slate-600 transition-colors select-none cursor-default">
+            ·
+          </span>
+        </Link>
+      </div>
     </div>
   );
 }
