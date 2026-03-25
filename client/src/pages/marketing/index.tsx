@@ -139,6 +139,36 @@ export default function MarketingHub() {
           ))}
         </div>
 
+        {/* RECRUIT — Founder CTA */}
+        <Link href="/marketing/recruit" data-testid="section-recruit-cta">
+          <div className="group relative bg-slate-900 hover:bg-slate-800 border border-emerald-500/30 hover:border-emerald-500/60 rounded-2xl p-5 cursor-pointer transition-all duration-200 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent group-hover:from-emerald-500/10 transition-all" />
+            <div className="relative flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 text-2xl">
+                  📡
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 px-2 py-0.5 rounded-full">Founder Only</span>
+                    <span className="text-xs text-slate-500">Private</span>
+                  </div>
+                  <h3 className="font-black text-white text-lg leading-tight">Broker Recruitment Engine</h3>
+                  <p className="text-slate-400 text-sm mt-0.5">
+                    Auto-import &amp; email <strong className="text-emerald-400">32,302 licensed RERA brokers</strong> — Day-2 &amp; Day-5 follow-ups run automatically
+                  </p>
+                </div>
+              </div>
+              <div className="shrink-0 flex flex-col items-end gap-2">
+                <span className="inline-flex items-center gap-1.5 bg-emerald-500 group-hover:bg-emerald-400 text-black font-bold px-5 py-2.5 rounded-xl text-sm transition-colors whitespace-nowrap">
+                  Open Recruit Engine →
+                </span>
+                <span className="text-xs text-slate-600">deliwer.com/marketing/recruit</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
         {/* Lead Form + Hub Links */}
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">

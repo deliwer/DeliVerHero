@@ -173,6 +173,7 @@ export default function RecruitPage() {
   const [exporting, setExporting] = useState(false);
   const [showMaster, setShowMaster] = useState(false);
   const [masterPage, setMasterPage] = useState(1);
+  const hasAutoPreloaded = useRef(false);
 
   const { data: automationStatus, refetch: refetchStatus } = useQuery<AutomationStatus>({
     queryKey: ["/api/marketing/automation/status"],
@@ -269,6 +270,20 @@ export default function RecruitPage() {
   };
 
   useEffect(() => { fetchPastCampaigns(); }, []);
+
+  // Auto-preload: import RERA list as soon as the page loads and master is empty
+  useEffect(() => {
+    if (
+      hasAutoPreloaded.current ||
+      fetchMutation.isPending ||
+      !reraFileStats?.exists ||
+      automationStatus === undefined
+    ) return;
+    if (automationStatus.totalInMaster === 0) {
+      hasAutoPreloaded.current = true;
+      fetchMutation.mutate();
+    }
+  }, [automationStatus?.totalInMaster, reraFileStats?.exists]);
 
   function downloadTemplate() {
     const sampleData = [
@@ -447,6 +462,21 @@ export default function RecruitPage() {
           </div>
         </div>
       </div>
+
+      {/* Auto-preload banner */}
+      {fetchMutation.isPending && (automationStatus?.totalInMaster ?? 0) === 0 && (
+        <div className="bg-emerald-500/10 border-b border-emerald-500/30">
+          <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-3">
+            <Loader2 className="w-4 h-4 text-emerald-400 animate-spin shrink-0" />
+            <div>
+              <span className="text-emerald-300 font-semibold text-sm">
+                Preloading {reraFileStats?.totalBrokers?.toLocaleString() ?? "32,302"} RERA brokers into master database…
+              </span>
+              <span className="text-emerald-500 text-xs ml-2">This runs once automatically — do not close this tab.</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
 
