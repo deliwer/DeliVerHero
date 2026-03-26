@@ -858,7 +858,7 @@ export default function RecruitPage() {
           <CardContent className="p-6 space-y-5">
             <div className="flex items-center gap-2 mb-1">
               <div className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">1</div>
-              <h2 className="text-lg font-semibold">Upload Broker List</h2>
+              <h2 className="text-lg font-semibold text-[#ffffff]">Upload Broker List</h2>
             </div>
 
             <div
