@@ -625,7 +625,7 @@ export default function RecruitPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Clock className="w-4 h-4 text-yellow-400" />
-                  <span className="font-semibold text-sm">Follow-up Engine</span>
+                  <span className="font-semibold text-sm text-[#ffffff]">Follow-up Engine</span>
                 </div>
                 <p className="text-xs text-slate-500 mb-3">Send Day-2 and Day-5 follow-ups to unresponsive brokers automatically.</p>
                 <div className="text-xs text-slate-600 mb-3">
