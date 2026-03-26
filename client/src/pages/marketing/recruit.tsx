@@ -15,6 +15,7 @@ import {
   Activity, Database, ChevronRight, CircleDot, Inbox
 } from "lucide-react";
 import * as XLSX from "xlsx";
+import { SiWhatsapp } from "react-icons/si";
 
 interface BrokerRow {
   name: string;
@@ -721,6 +722,9 @@ export default function RecruitPage() {
                     <tr className="bg-slate-800/60">
                       <th className="px-4 py-2 text-left text-slate-400 font-medium">Name</th>
                       <th className="px-4 py-2 text-left text-slate-400 font-medium">Email</th>
+                      <th className="px-4 py-2 text-left text-slate-400 font-medium">
+                        <span className="flex items-center gap-1"><SiWhatsapp className="w-3 h-3 text-green-400" /> Phone</span>
+                      </th>
                       <th className="px-4 py-2 text-left text-slate-400 font-medium">Status</th>
                       <th className="px-4 py-2 text-left text-slate-400 font-medium">Follow-ups</th>
                       <th className="px-4 py-2 text-left text-slate-400 font-medium">Last Contact</th>
@@ -732,6 +736,31 @@ export default function RecruitPage() {
                       <tr key={b.id} className="border-t border-slate-800 hover:bg-slate-800/30" data-testid={`master-row-${b.id}`}>
                         <td className="px-4 py-2 text-white font-medium">{b.name}</td>
                         <td className="px-4 py-2 text-emerald-400 text-xs">{b.email}</td>
+                        <td className="px-4 py-2">
+                          {b.phone ? (
+                            <a
+                              href={(() => {
+                                const digits = b.phone!.replace(/[^0-9]/g, '');
+                                // Normalize to E.164 UAE format
+                                const n = digits
+                                  .replace(/^00971/, '971')  // 00971xx → 971xx
+                                  .replace(/^9710(\d)/, '971$1') // 9710[5/4/2]xx → 971[5/4/2]xx
+                                  .replace(/^0(\d)/, '971$1'); // 05x / 04x → 971-5x / 971-4x
+                                return `https://wa.me/${n}`;
+                              })()}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 text-green-400 hover:text-green-300 transition-colors text-xs group"
+                              data-testid={`whatsapp-${b.id}`}
+                              title={`WhatsApp ${b.name}`}
+                            >
+                              <SiWhatsapp className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                              {b.phone}
+                            </a>
+                          ) : (
+                            <span className="text-slate-600 text-xs">—</span>
+                          )}
+                        </td>
                         <td className="px-4 py-2">
                           <Badge className={`text-xs ${STATUS_COLORS[b.status] || "bg-slate-700 text-slate-400"}`}>
                             {b.status}
@@ -748,7 +777,7 @@ export default function RecruitPage() {
                     ))}
                     {masterData.brokers.length === 0 && (
                       <tr>
-                        <td colSpan={6} className="px-4 py-8 text-center text-slate-500">
+                        <td colSpan={7} className="px-4 py-8 text-center text-slate-500">
                           No brokers in master yet. Upload a list below or fetch from RERA.
                         </td>
                       </tr>
