@@ -174,7 +174,7 @@ export default function PartnersPage() {
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         {/* Founder-only secret trigger — absolute inside hero, above the overlay */}
         <Link href="/marketing/recruit" data-testid="link-founder-recruit-secret" className="absolute top-6 right-6 z-20">
-          <span className="text-slate-500 hover:text-emerald-400 transition-colors duration-300 text-base select-none opacity-50 hover:opacity-90">
+          <span className="hover:text-emerald-400 transition-colors duration-300 select-none opacity-50 hover:opacity-90 text-[48px] text-[#d33434] bg-[#4f0035]">
             ⬡
           </span>
         </Link>
