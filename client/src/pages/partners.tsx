@@ -170,7 +170,6 @@ export default function PartnersPage() {
       />
       <Navigation />
       <PartnerSubNav />
-
       {/* Hero Section with Lifestyle Image */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         {/* Background Image */}
@@ -242,7 +241,6 @@ export default function PartnersPage() {
           </motion.div>
         </div>
       </section>
-
       {/* Partner Journey Flow */}
       <section className="py-20 px-4 bg-slate-900/40 border-y border-white/5">
         <div className="max-w-5xl mx-auto space-y-12">
@@ -294,7 +292,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* Who Can Partner */}
       <section className="py-16 px-4 bg-slate-900 border-y border-white/5">
         <div className="max-w-5xl mx-auto space-y-8">
@@ -320,7 +317,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* How It Works (compact) */}
       <section className="py-16 px-4 bg-slate-950">
         <div className="max-w-3xl mx-auto space-y-8">
@@ -349,7 +345,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* Link Generator Section */}
       <section className="py-24 px-4 bg-gradient-to-b from-slate-950/50 to-slate-900/30 border-t border-emerald-500/20">
         <div className="max-w-2xl mx-auto">
@@ -468,7 +463,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* 4-Tier Commission Structure */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
         <div className="max-w-5xl mx-auto">
@@ -604,7 +598,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* Commission Tracking & Tools Section */}
       <section className="py-24 px-4 bg-gradient-to-b from-emerald-500/10 to-transparent border-t border-emerald-500/20">
         <div className="max-w-5xl mx-auto">
@@ -702,7 +695,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* Ecosystem Partners Section */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-900/50 to-slate-950 border-t border-purple-500/20">
         <div className="max-w-5xl mx-auto">
@@ -775,7 +767,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* Partner Examples Section */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-900 to-slate-950 border-t border-emerald-500/20">
         <div className="max-w-5xl mx-auto">
@@ -820,7 +811,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* Partner Registration Form */}
       <section id="partners-register-form" className="py-24 px-4 bg-slate-900/60 border-y border-white/5">
         <div className="max-w-2xl mx-auto space-y-10">
@@ -837,7 +827,6 @@ export default function PartnersPage() {
           <PartnerRegisterForm />
         </div>
       </section>
-
       {/* No Capital Growth + Network Effect */}
       <section className="py-24 px-4 bg-gradient-to-b from-slate-950 via-emerald-950/10 to-slate-950 border-y border-emerald-500/10">
         <div className="max-w-5xl mx-auto space-y-16">
@@ -937,7 +926,6 @@ export default function PartnersPage() {
           </div>
         </div>
       </section>
-
       {/* Final CTA */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-950 to-black border-t border-emerald-500/20">
         <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -976,11 +964,10 @@ export default function PartnersPage() {
           </motion.div>
         </div>
       </section>
-
       {/* Founder-only secret trigger — looks like a decorative footer element */}
       <div className="flex justify-end px-8 pb-6">
         <Link href="/marketing/recruit" data-testid="link-founder-recruit-secret">
-          <span className="text-slate-700 hover:text-slate-500 transition-colors duration-300 text-xs tracking-widest select-none opacity-40 hover:opacity-70">
+          <span className="hover:text-slate-500 transition-colors duration-300 text-xs tracking-widest select-none opacity-40 hover:opacity-70 text-[#ffffff] bg-[#ff0000]">
             ⬡
           </span>
         </Link>
