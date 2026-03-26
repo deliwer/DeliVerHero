@@ -226,6 +226,19 @@ export default function RecruitPage() {
     onError: () => toast({ title: "Follow-up run failed", variant: "destructive" }),
   });
 
+  const dailyCampaignMutation = useMutation({
+    mutationFn: () => fetch("/api/marketing/broker-daily/run", { method: "POST" }).then((r) => r.json()),
+    onSuccess: (data) => {
+      qc.invalidateQueries({ queryKey: ["/api/marketing/automation/status"] });
+      if (data.started) {
+        toast({ title: "Campaign launched!", description: "Sending up to 300 partner invites from partners@deliwer.com — check status in a few minutes." });
+      } else {
+        toast({ title: "Could not start", description: data.error, variant: "destructive" });
+      }
+    },
+    onError: () => toast({ title: "Campaign launch failed", variant: "destructive" }),
+  });
+
   const seedMutation = useMutation({
     mutationFn: () => fetch("/api/marketing/broker-master/seed", { method: "POST" }).then((r) => r.json()),
     onSuccess: (data) => {
@@ -528,6 +541,35 @@ export default function RecruitPage() {
               )}
             </div>
           )}
+
+          {/* Primary Campaign Launch */}
+          <Card className="bg-emerald-950/40 border-emerald-500/30">
+            <CardContent className="p-4 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <Send className="w-4 h-4 text-emerald-400" />
+                  <span className="font-bold text-sm text-emerald-300">Send Partner Invites — Daily Batch</span>
+                  <Badge className="bg-emerald-500/20 text-emerald-400 border-0 text-[10px]">partners@deliwer.com</Badge>
+                </div>
+                <p className="text-xs text-slate-400">
+                  Sends up to 300 personalised partner invite emails to new RERA brokers. Safe to run daily — never re-sends to the same broker.
+                  {(as?.sentTotal ?? 0) > 0 && <span className="text-emerald-400 font-semibold"> · {as?.sentTotal.toLocaleString()} sent so far</span>}
+                </p>
+              </div>
+              <Button
+                onClick={() => dailyCampaignMutation.mutate()}
+                disabled={dailyCampaignMutation.isPending || as?.isRunning}
+                className="shrink-0 bg-emerald-500 hover:bg-emerald-400 text-black font-bold h-9 px-5 text-sm"
+                data-testid="button-run-daily-campaign"
+              >
+                {dailyCampaignMutation.isPending || as?.isRunning ? (
+                  <><Loader2 className="w-3.5 h-3.5 animate-spin mr-1.5" /> Running…</>
+                ) : (
+                  <><Send className="w-3.5 h-3.5 mr-1.5" /> Launch Campaign</>
+                )}
+              </Button>
+            </CardContent>
+          </Card>
 
           {/* Control buttons */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">

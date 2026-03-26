@@ -2418,7 +2418,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const partnerLink = `https://www.deliwer.com/broker-partner?ref=${Buffer.from(to).toString('base64url')}&utm_source=invite&utm_campaign=partner_onboard`;
       const success = await sendEmail({
         to,
-        from: 'info@deliwer.com',
+        from: 'partners@deliwer.com',
         subject: "You're invited to join the DeliWer Partner Network",
         html: `<!DOCTYPE html>
 <html>
@@ -4570,6 +4570,20 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       });
     } catch (err: any) {
       res.status(500).json({ error: 'Failed to get automation status' });
+    }
+  });
+
+  // POST /api/marketing/broker-daily/run — manually trigger daily email send cycle
+  app.post("/api/marketing/broker-daily/run", async (_req, res) => {
+    try {
+      if (isDailyRunning()) {
+        return res.status(409).json({ error: 'Daily cycle already running' });
+      }
+      const { runDailyAutomation } = await import('./services/broker-automation.js');
+      runDailyAutomation(); // fire-and-forget so the response returns immediately
+      res.json({ started: true, message: 'Daily campaign started — up to 300 emails will be sent from partners@deliwer.com' });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Failed to start daily cycle' });
     }
   });
 
