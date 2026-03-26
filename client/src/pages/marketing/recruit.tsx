@@ -164,6 +164,9 @@ export default function RecruitPage() {
   const [fileName, setFileName] = useState("");
   const [campaignName, setCampaignName] = useState("");
   const [showPreview, setShowPreview] = useState(true);
+  const [brokerSearch, setBrokerSearch] = useState("");
+  const [brokerPage, setBrokerPage] = useState(1);
+  const BROKERS_PER_PAGE = 25;
   const [activeCampaignId, setActiveCampaignId] = useState<string | null>(null);
   const [campaign, setCampaign] = useState<Campaign | null>(null);
   const [entries, setEntries] = useState<CampaignEntry[]>([]);
@@ -176,6 +179,25 @@ export default function RecruitPage() {
   const [showMaster, setShowMaster] = useState(false);
   const [masterPage, setMasterPage] = useState(1);
   const hasAutoPreloaded = useRef(false);
+
+  const filteredBrokers = brokers.filter((b) => {
+    if (!brokerSearch.trim()) return true;
+    const q = brokerSearch.toLowerCase();
+    return (
+      b.name?.toLowerCase().includes(q) ||
+      b.email?.toLowerCase().includes(q) ||
+      b.phone?.toLowerCase().includes(q) ||
+      b.license?.toLowerCase().includes(q)
+    );
+  });
+  const brokerPageCount = Math.max(1, Math.ceil(filteredBrokers.length / BROKERS_PER_PAGE));
+  const pagedBrokers = filteredBrokers.slice(
+    (brokerPage - 1) * BROKERS_PER_PAGE,
+    brokerPage * BROKERS_PER_PAGE
+  );
+
+  useEffect(() => { setBrokerPage(1); }, [brokerSearch]);
+  useEffect(() => { setBrokerPage(1); setBrokerSearch(""); }, [brokers]);
 
   const { data: automationStatus, refetch: refetchStatus } = useQuery<AutomationStatus>({
     queryKey: ["/api/marketing/automation/status"],
@@ -884,39 +906,122 @@ export default function RecruitPage() {
                   data-testid="button-toggle-preview"
                 >
                   {showPreview ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  {showPreview ? "Hide" : "Show"} preview ({Math.min(brokers.length, 10)} of {brokers.length} rows)
+                  {showPreview ? "Hide" : "Show"} preview ({brokers.length.toLocaleString()} brokers)
                 </button>
                 {showPreview && (
-                  <div className="rounded-lg border border-slate-800 overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="bg-slate-800/60">
-                          <th className="px-4 py-2 text-left text-slate-400 font-medium">#</th>
-                          <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Users className="w-3 h-3" /> Name</span></th>
-                          <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Mail className="w-3 h-3" /> Email</span></th>
-                          <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Phone className="w-3 h-3" /> Phone</span></th>
-                          <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Briefcase className="w-3 h-3" /> License</span></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {brokers.slice(0, 10).map((b, i) => (
-                          <tr key={i} className="border-t border-slate-800 hover:bg-slate-800/30">
-                            <td className="px-4 py-2 text-slate-500">{i + 1}</td>
-                            <td className="px-4 py-2 text-white">{b.name || <span className="text-slate-600 italic">—</span>}</td>
-                            <td className="px-4 py-2 text-emerald-400">{b.email}</td>
-                            <td className="px-4 py-2 text-slate-400">{b.phone || "—"}</td>
-                            <td className="px-4 py-2 text-slate-400">{b.license || "—"}</td>
+                  <div className="space-y-3">
+                    {/* Search */}
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" /></svg>
+                      </span>
+                      <input
+                        type="text"
+                        value={brokerSearch}
+                        onChange={(e) => setBrokerSearch(e.target.value)}
+                        placeholder="Search by name, email, phone or license…"
+                        className="w-full pl-9 pr-4 py-2 text-sm bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/60"
+                        data-testid="input-broker-search"
+                      />
+                      {brokerSearch && (
+                        <button
+                          onClick={() => setBrokerSearch("")}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
+                          data-testid="button-clear-broker-search"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Results count */}
+                    <p className="text-xs text-slate-500">
+                      {brokerSearch
+                        ? `${filteredBrokers.length.toLocaleString()} match${filteredBrokers.length !== 1 ? "es" : ""} · page ${brokerPage} of ${brokerPageCount}`
+                        : `${brokers.length.toLocaleString()} brokers · page ${brokerPage} of ${brokerPageCount}`}
+                    </p>
+
+                    <div className="rounded-lg border border-slate-800 overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="bg-slate-800/60">
+                            <th className="px-4 py-2 text-left text-slate-400 font-medium">#</th>
+                            <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Users className="w-3 h-3" /> Name</span></th>
+                            <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Mail className="w-3 h-3" /> Email</span></th>
+                            <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Phone className="w-3 h-3" /> Phone</span></th>
+                            <th className="px-4 py-2 text-left text-slate-400 font-medium"><span className="flex items-center gap-1"><Briefcase className="w-3 h-3" /> License</span></th>
                           </tr>
-                        ))}
-                        {brokers.length > 10 && (
-                          <tr className="border-t border-slate-800 bg-slate-800/20">
-                            <td colSpan={5} className="px-4 py-2 text-center text-slate-500 text-xs">
-                              + {brokers.length - 10} more brokers not shown
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {pagedBrokers.length === 0 ? (
+                            <tr>
+                              <td colSpan={5} className="px-4 py-6 text-center text-slate-500 text-xs">
+                                No brokers match your search.
+                              </td>
+                            </tr>
+                          ) : (
+                            pagedBrokers.map((b, i) => {
+                              const globalIdx = (brokerPage - 1) * BROKERS_PER_PAGE + i + 1;
+                              return (
+                                <tr key={i} className="border-t border-slate-800 hover:bg-slate-800/30">
+                                  <td className="px-4 py-2 text-slate-500">{globalIdx}</td>
+                                  <td className="px-4 py-2 text-white">{b.name || <span className="text-slate-600 italic">—</span>}</td>
+                                  <td className="px-4 py-2 text-emerald-400">{b.email}</td>
+                                  <td className="px-4 py-2 text-slate-400">{b.phone || "—"}</td>
+                                  <td className="px-4 py-2 text-slate-400">{b.license || "—"}</td>
+                                </tr>
+                              );
+                            })
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Pagination */}
+                    {brokerPageCount > 1 && (
+                      <div className="flex items-center justify-between pt-1">
+                        <button
+                          disabled={brokerPage <= 1}
+                          onClick={() => setBrokerPage((p) => p - 1)}
+                          className="text-sm text-slate-400 hover:text-white disabled:opacity-30 flex items-center gap-1"
+                          data-testid="button-broker-prev"
+                        >
+                          ← Prev
+                        </button>
+                        <div className="flex items-center gap-1">
+                          {Array.from({ length: Math.min(brokerPageCount, 7) }, (_, i) => {
+                            let page: number;
+                            if (brokerPageCount <= 7) {
+                              page = i + 1;
+                            } else if (brokerPage <= 4) {
+                              page = i + 1;
+                            } else if (brokerPage >= brokerPageCount - 3) {
+                              page = brokerPageCount - 6 + i;
+                            } else {
+                              page = brokerPage - 3 + i;
+                            }
+                            return (
+                              <button
+                                key={page}
+                                onClick={() => setBrokerPage(page)}
+                                className={`w-7 h-7 text-xs rounded ${page === brokerPage ? "bg-emerald-600 text-white font-bold" : "text-slate-400 hover:text-white hover:bg-slate-800"}`}
+                                data-testid={`button-broker-page-${page}`}
+                              >
+                                {page}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        <button
+                          disabled={brokerPage >= brokerPageCount}
+                          onClick={() => setBrokerPage((p) => p + 1)}
+                          className="text-sm text-slate-400 hover:text-white disabled:opacity-30 flex items-center gap-1"
+                          data-testid="button-broker-next"
+                        >
+                          Next →
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
