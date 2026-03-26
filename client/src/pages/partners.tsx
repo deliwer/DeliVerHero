@@ -170,6 +170,14 @@ export default function PartnersPage() {
       />
       <Navigation />
       <PartnerSubNav />
+      {/* Founder-only secret trigger */}
+      <div className="flex justify-end px-8 pt-3">
+        <Link href="/marketing/recruit" data-testid="link-founder-recruit-secret">
+          <span className="text-slate-600 hover:text-slate-400 transition-colors duration-300 text-xs select-none opacity-50 hover:opacity-80">
+            ⬡
+          </span>
+        </Link>
+      </div>
       {/* Hero Section with Lifestyle Image */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden">
         {/* Background Image */}
@@ -964,14 +972,6 @@ export default function PartnersPage() {
           </motion.div>
         </div>
       </section>
-      {/* Founder-only secret trigger — looks like a decorative footer element */}
-      <div className="flex justify-end px-8 pb-6">
-        <Link href="/marketing/recruit" data-testid="link-founder-recruit-secret">
-          <span className="hover:text-slate-500 transition-colors duration-300 text-xs tracking-widest select-none opacity-40 hover:opacity-70 text-[#ffffff] bg-[#ff0000]">
-            ⬡
-          </span>
-        </Link>
-      </div>
     </div>
   );
 }
