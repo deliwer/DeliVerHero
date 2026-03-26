@@ -435,7 +435,7 @@ function App() {
           <StickyNeonHeadline />
           <TopBanner />
           <Navigation />
-          <main>
+          <main className="pt-[100px]">
             <Router />
           </main>
           <Footer />
