@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle2, MessageCircle, Copy, Check, Users, TrendingUp, DollarSign, Building2, Star, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { CheckCircle2, MessageCircle, Copy, Check, Users, TrendingUp, DollarSign, Building2, Star, ArrowRight, ChevronDown, ChevronUp, ShieldCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
@@ -95,7 +95,17 @@ export default function BrokerPartnerPage() {
 
       {/* Hero */}
       <section className="relative py-28 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-950" />
+        {/* Hero background image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&h=900&fit=crop&q=80"
+            alt="Dubai luxury real estate"
+            className="w-full h-full object-cover"
+          />
+          {/* Dark gradient overlay so text stays legible */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-purple-950/70 to-slate-950/90" />
+        </div>
+
         <div className="max-w-4xl mx-auto text-center relative z-10 space-y-8">
           <Badge className="bg-purple-500/10 text-purple-400 border-purple-500/20 px-4 py-2 text-xs font-black uppercase tracking-widest rounded-full">
             Partner Referral Program
@@ -120,6 +130,21 @@ export default function BrokerPartnerPage() {
             <MessageCircle className="w-5 h-5 mr-2" />
             Join the Partner Program
           </Button>
+
+          {/* Trust strip */}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2" data-testid="hero-trust-strip">
+            {[
+              { icon: ShieldCheck, label: "RERA-Registered Partner Network" },
+              { icon: CheckCircle2, label: "32,000+ Brokers Reached" },
+              { icon: Star, label: "Same-Day Ejari Processing" },
+              { icon: Building2, label: "DLD-Licensed Operations" },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-1.5 text-slate-300 text-xs font-semibold">
+                <Icon className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                {label}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
