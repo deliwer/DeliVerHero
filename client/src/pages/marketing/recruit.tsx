@@ -578,7 +578,7 @@ export default function RecruitPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Globe className="w-4 h-4 text-emerald-400" />
-                  <span className="font-semibold text-sm">RERA Broker List</span>
+                  <span className="font-semibold text-sm text-[#ffffff]">RERA Broker List</span>
                   {reraFileStats?.exists && (
                     <Badge className="bg-emerald-500/20 text-emerald-400 border-0 text-[10px] py-0 px-1.5 ml-auto">LOCAL FILE</Badge>
                   )}
