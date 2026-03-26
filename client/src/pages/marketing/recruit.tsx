@@ -652,7 +652,7 @@ export default function RecruitPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Database className="w-4 h-4 text-blue-400" />
-                  <span className="font-semibold text-sm">Broker Master DB</span>
+                  <span className="font-semibold text-sm text-[#ffffff]">Broker Master DB</span>
                 </div>
                 <p className="text-xs text-slate-500 mb-3">View all brokers tracked across campaigns. Sync past campaigns into master.</p>
                 <div className="text-xs text-slate-600 mb-3">
