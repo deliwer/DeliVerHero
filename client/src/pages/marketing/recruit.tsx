@@ -178,6 +178,9 @@ export default function RecruitPage() {
   const [exporting, setExporting] = useState(false);
   const [showMaster, setShowMaster] = useState(false);
   const [masterPage, setMasterPage] = useState(1);
+  const [masterSearch, setMasterSearch] = useState("");
+  const [masterSearchInput, setMasterSearchInput] = useState("");
+  const [masterGoToInput, setMasterGoToInput] = useState("");
   const hasAutoPreloaded = useRef(false);
 
   const filteredBrokers = brokers.filter((b) => {
@@ -209,11 +212,15 @@ export default function RecruitPage() {
     refetchInterval: false,
   });
 
+  useEffect(() => { setMasterPage(1); }, [masterSearch]);
+
   const { data: masterData } = useQuery<{ brokers: BrokerMasterEntry[]; total: number }>({
-    queryKey: ["/api/marketing/broker-master", masterPage],
-    queryFn: () => fetch(`/api/marketing/broker-master?page=${masterPage}&limit=50`).then((r) => r.json()),
+    queryKey: ["/api/marketing/broker-master", masterPage, masterSearch],
+    queryFn: () => fetch(`/api/marketing/broker-master?page=${masterPage}&limit=50${masterSearch ? `&search=${encodeURIComponent(masterSearch)}` : ""}`).then((r) => r.json()),
     enabled: showMaster,
   });
+
+  const masterPageCount = masterData ? Math.max(1, Math.ceil(masterData.total / 50)) : 1;
 
   const fetchMutation = useMutation({
     mutationFn: () => fetch("/api/marketing/broker-fetch", { method: "POST" }).then((r) => r.json()),
@@ -717,27 +724,53 @@ export default function RecruitPage() {
         {showMaster && masterData && (
           <Card className="bg-slate-900 border-slate-800">
             <CardContent className="p-6">
+              {/* Header row */}
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-semibold flex items-center gap-2 text-[#fcfdff]">
                   <Database className="w-5 h-5 text-blue-400" />
-                  Broker Master — {masterData.total} total
+                  Broker Master —{" "}
+                  <span className="text-blue-400">
+                    {masterSearch ? `${masterData.total.toLocaleString()} matches` : `${masterData.total.toLocaleString()} total`}
+                  </span>
                 </h2>
-                <div className="flex items-center gap-2">
-                  <button
-                    disabled={masterPage <= 1}
-                    onClick={() => setMasterPage((p) => p - 1)}
-                    className="text-slate-400 hover:text-white disabled:opacity-30 text-sm"
-                    data-testid="button-master-prev"
-                  >← Prev</button>
-                  <span className="text-xs text-slate-500">Page {masterPage}</span>
-                  <button
-                    disabled={masterPage * 50 >= masterData.total}
-                    onClick={() => setMasterPage((p) => p + 1)}
-                    className="text-slate-400 hover:text-white disabled:opacity-30 text-sm"
-                    data-testid="button-master-next"
-                  >Next →</button>
-                </div>
               </div>
+
+              {/* Search bar */}
+              <form
+                onSubmit={(e) => { e.preventDefault(); setMasterSearch(masterSearchInput.trim()); }}
+                className="flex gap-2 mb-4"
+              >
+                <div className="relative flex-1">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" /></svg>
+                  </span>
+                  <input
+                    type="text"
+                    value={masterSearchInput}
+                    onChange={(e) => setMasterSearchInput(e.target.value)}
+                    placeholder="Search by name, email or company…"
+                    className="w-full pl-9 pr-9 py-2 text-sm bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/60"
+                    data-testid="input-master-search"
+                  />
+                  {masterSearchInput && (
+                    <button
+                      type="button"
+                      onClick={() => { setMasterSearchInput(""); setMasterSearch(""); }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
+                      data-testid="button-clear-master-search"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                  )}
+                </div>
+                <button
+                  type="submit"
+                  className="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-medium transition-colors"
+                  data-testid="button-master-search-submit"
+                >
+                  Search
+                </button>
+              </form>
               <div className="rounded-lg border border-slate-800 overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -806,6 +839,82 @@ export default function RecruitPage() {
                     )}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Pagination */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mt-4 pt-4 border-t border-slate-800">
+                {/* Left: prev / page numbers / next */}
+                <div className="flex items-center gap-1">
+                  <button
+                    disabled={masterPage <= 1}
+                    onClick={() => setMasterPage((p) => p - 1)}
+                    className="px-3 py-1.5 text-sm text-slate-400 hover:text-white disabled:opacity-30 rounded hover:bg-slate-800 transition-colors"
+                    data-testid="button-master-prev"
+                  >← Prev</button>
+
+                  {Array.from({ length: Math.min(masterPageCount, 7) }, (_, i) => {
+                    let page: number;
+                    if (masterPageCount <= 7) {
+                      page = i + 1;
+                    } else if (masterPage <= 4) {
+                      page = i + 1;
+                    } else if (masterPage >= masterPageCount - 3) {
+                      page = masterPageCount - 6 + i;
+                    } else {
+                      page = masterPage - 3 + i;
+                    }
+                    return (
+                      <button
+                        key={page}
+                        onClick={() => setMasterPage(page)}
+                        className={`w-8 h-8 text-xs rounded transition-colors ${page === masterPage ? "bg-blue-600 text-white font-bold" : "text-slate-400 hover:text-white hover:bg-slate-800"}`}
+                        data-testid={`button-master-page-${page}`}
+                      >
+                        {page}
+                      </button>
+                    );
+                  })}
+
+                  <button
+                    disabled={masterPage >= masterPageCount}
+                    onClick={() => setMasterPage((p) => p + 1)}
+                    className="px-3 py-1.5 text-sm text-slate-400 hover:text-white disabled:opacity-30 rounded hover:bg-slate-800 transition-colors"
+                    data-testid="button-master-next"
+                  >Next →</button>
+                </div>
+
+                {/* Right: page info + go to page */}
+                <div className="flex items-center gap-3 text-sm text-slate-500">
+                  <span>Page {masterPage} of {masterPageCount}</span>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const n = parseInt(masterGoToInput);
+                      if (!isNaN(n) && n >= 1 && n <= masterPageCount) {
+                        setMasterPage(n);
+                        setMasterGoToInput("");
+                      }
+                    }}
+                    className="flex items-center gap-1.5"
+                  >
+                    <span className="text-slate-600 text-xs">Go to</span>
+                    <input
+                      type="number"
+                      min={1}
+                      max={masterPageCount}
+                      value={masterGoToInput}
+                      onChange={(e) => setMasterGoToInput(e.target.value)}
+                      placeholder="…"
+                      className="w-16 px-2 py-1 text-xs bg-slate-800 border border-slate-700 rounded text-white placeholder-slate-600 focus:outline-none focus:border-blue-500/60 text-center"
+                      data-testid="input-master-goto"
+                    />
+                    <button
+                      type="submit"
+                      className="px-2.5 py-1 text-xs bg-slate-700 hover:bg-slate-600 text-white rounded transition-colors"
+                      data-testid="button-master-goto-submit"
+                    >Go</button>
+                  </form>
+                </div>
               </div>
             </CardContent>
           </Card>
