@@ -718,7 +718,7 @@ export default function RecruitPage() {
           <Card className="bg-slate-900 border-slate-800">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold flex items-center gap-2">
+                <h2 className="text-lg font-semibold flex items-center gap-2 text-[#fcfdff]">
                   <Database className="w-5 h-5 text-blue-400" />
                   Broker Master — {masterData.total} total
                 </h2>
