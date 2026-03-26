@@ -977,11 +977,11 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Founder-only secret trigger — inconspicuous to public visitors */}
-      <div className="flex justify-end px-6 pb-4">
+      {/* Founder-only secret trigger — looks like a decorative footer element */}
+      <div className="flex justify-end px-8 pb-6">
         <Link href="/marketing/recruit" data-testid="link-founder-recruit-secret">
-          <span className="text-[10px] text-slate-800 hover:text-slate-600 transition-colors select-none cursor-default">
-            ·
+          <span className="text-slate-700 hover:text-slate-500 transition-colors duration-300 text-xs tracking-widest select-none opacity-40 hover:opacity-70">
+            ⬡
           </span>
         </Link>
       </div>

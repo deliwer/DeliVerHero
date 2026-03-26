@@ -2409,6 +2409,108 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // Partner onboarding invite email
+  app.post("/api/email/send-partner-invite", async (req, res) => {
+    try {
+      const { to, name = "Partner" } = req.body;
+      if (!to) return res.status(400).json({ error: "to is required" });
+      const { sendEmail } = await import('./sendgrid-service.js');
+      const partnerLink = `https://www.deliwer.com/broker-partner?ref=${Buffer.from(to).toString('base64url')}&utm_source=invite&utm_campaign=partner_onboard`;
+      const success = await sendEmail({
+        to,
+        from: 'info@deliwer.com',
+        subject: "You're invited to join the DeliWer Partner Network",
+        html: `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
+<body style="font-family:Arial,sans-serif;background:#0f172a;margin:0;padding:0;">
+  <div style="max-width:580px;margin:0 auto;background:#ffffff;">
+
+    <div style="background:linear-gradient(135deg,#10b981 0%,#0d9488 100%);padding:44px 36px 40px;">
+      <div style="margin-bottom:16px;">
+        <span style="background:rgba(255,255,255,0.15);color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;">Partner Invitation</span>
+      </div>
+      <h1 style="color:#ffffff;margin:0;font-size:26px;font-weight:800;line-height:1.3;">
+        Earn up to 35% commission<br/>on every tenant you already work with.
+      </h1>
+    </div>
+
+    <div style="padding:40px 36px;">
+      <p style="color:#374151;font-size:16px;line-height:1.7;margin:0 0 20px;">Hi ${name},</p>
+      <p style="color:#374151;font-size:15px;line-height:1.7;margin:0 0 24px;">
+        You're invited to join <strong>DeliWer's Partner Network</strong> — a referral program built specifically for real estate brokers, typing centers, and building staff across Dubai.
+      </p>
+
+      <div style="background:#f0fdf4;border-left:4px solid #10b981;border-radius:4px;padding:20px 24px;margin:0 0 28px;">
+        <p style="color:#065f46;font-weight:700;font-size:14px;margin:0 0 12px;">What you earn per referral:</p>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr>
+            <td style="color:#047857;font-size:13px;padding:4px 0;">→ Move-in / Move-out package</td>
+            <td style="color:#047857;font-size:13px;font-weight:700;text-align:right;">AED 79–150</td>
+          </tr>
+          <tr>
+            <td style="color:#047857;font-size:13px;padding:4px 0;">→ Ejari registration</td>
+            <td style="color:#047857;font-size:13px;font-weight:700;text-align:right;">AED 40–60</td>
+          </tr>
+          <tr>
+            <td style="color:#047857;font-size:13px;padding:4px 0;">→ DEWA activation</td>
+            <td style="color:#047857;font-size:13px;font-weight:700;text-align:right;">AED 30–50</td>
+          </tr>
+          <tr>
+            <td style="color:#047857;font-size:13px;padding:4px 0;">→ Full relocation bundle</td>
+            <td style="color:#047857;font-size:13px;font-weight:700;text-align:right;">up to 35%</td>
+          </tr>
+        </table>
+      </div>
+
+      <p style="color:#374151;font-size:15px;line-height:1.7;margin:0 0 24px;">
+        No upfront cost. No operations on your side. You make the intro — we handle Ejari, DEWA, movers, cleaning, and setup. You earn on every completed service.
+      </p>
+
+      <div style="text-align:center;margin:36px 0;">
+        <a href="${partnerLink}" style="display:inline-block;background:#10b981;color:#ffffff;font-weight:800;font-size:16px;padding:16px 40px;border-radius:30px;text-decoration:none;letter-spacing:0.3px;">
+          Accept Invitation &amp; Get Your Link →
+        </a>
+      </div>
+
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:20px 24px;margin:0 0 28px;">
+        <p style="color:#64748b;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px;">Your personal referral link</p>
+        <p style="color:#0d9488;font-size:13px;word-break:break-all;margin:0;font-family:monospace;">${partnerLink}</p>
+      </div>
+
+      <p style="color:#374151;font-size:15px;line-height:1.7;margin:0 0 8px;">Questions? Reach us directly:</p>
+      <p style="color:#374151;font-size:15px;margin:0;">
+        WhatsApp: <a href="https://wa.me/971523946311" style="color:#10b981;font-weight:700;">+971 52 394 6311</a>
+      </p>
+
+      <p style="color:#9ca3af;font-size:13px;margin:32px 0 0;">— DeliWer Partnerships Team</p>
+    </div>
+
+    <div style="background:#f1f5f9;padding:20px 36px;text-align:center;border-top:1px solid #e2e8f0;">
+      <p style="color:#94a3b8;font-size:11px;margin:0;">
+        DeliWer · Dubai Airport Freezone ·
+        <a href="https://www.deliwer.com" style="color:#10b981;">deliwer.com</a>
+      </p>
+      <p style="color:#94a3b8;font-size:11px;margin:6px 0 0;">
+        You received this invitation because you are a licensed professional in the UAE.
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>`,
+      });
+      if (success) {
+        res.json({ success: true, message: `Partner invite sent to ${to}` });
+      } else {
+        res.status(500).json({ success: false, error: 'Failed to send — check sender identity in SendGrid' });
+      }
+    } catch (err: any) {
+      const detail = err?.response?.body?.errors?.[0]?.message || err.message || 'Unknown error';
+      res.status(500).json({ success: false, error: detail });
+    }
+  });
+
   // Simple test email — uses partners@deliwer.com (the broker sender)
   app.post("/api/email/send-test", async (req, res) => {
     try {
