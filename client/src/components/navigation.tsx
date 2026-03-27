@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import logoPng from "@assets/deliwer logo_1755631850889.png";
 
-const CHAINTRACK_URL = "https://chaintrack.delwer.com";
+const CHAINTRACK_URL = "https://chaintrack.deliwer.com";
 
 export function Navigation() {
   const [location] = useLocation();
