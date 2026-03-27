@@ -9,6 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import logoPng from "@assets/deliwer logo_1755631850889.png";
 
+const CHAINTRACK_URL = "https://chaintrack.delwer.com";
+
 export function Navigation() {
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -56,6 +58,22 @@ export function Navigation() {
                 </Button>
               </Link>
             ))}
+            <div className="w-px h-4 bg-white/10 mx-2" />
+
+            {/* Chaintrack B2B toggle */}
+            <button
+              onClick={() => window.open(CHAINTRACK_URL, '_blank')}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-purple-500/30 hover:border-purple-500/60 bg-purple-500/5 hover:bg-purple-500/15 transition-all group"
+              title="Switch to Chaintrack B2B"
+              data-testid="button-chaintrack-toggle"
+            >
+              <span className="text-[9px] font-black uppercase tracking-widest text-purple-400 group-hover:text-purple-300">B2B</span>
+              <div className="relative w-8 h-4 rounded-full bg-slate-700 border border-slate-600 flex items-center px-0.5">
+                <div className="w-3 h-3 rounded-full bg-purple-500 shadow-sm shadow-purple-500/50 transition-transform" />
+              </div>
+              <span className="text-[9px] font-black uppercase tracking-widest text-purple-400 group-hover:text-purple-300">Chain<span className="text-purple-300">track</span></span>
+            </button>
+
             <div className="w-px h-4 bg-white/10 mx-2" />
             <Button 
               variant="outline"
@@ -109,6 +127,27 @@ export function Navigation() {
                 </Button>
               </Link>
             ))}
+            {/* Chaintrack B2B toggle — mobile */}
+            <button
+              onClick={() => {
+                window.open(CHAINTRACK_URL, '_blank');
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full flex items-center justify-between px-5 h-14 rounded-xl border border-purple-500/30 bg-purple-500/5 hover:bg-purple-500/10 transition-all"
+              data-testid="button-chaintrack-toggle-mobile"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+                <span className="text-xs font-black uppercase tracking-widest text-purple-400">ChainTrack B2B</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] text-slate-500">Switch</span>
+                <div className="relative w-10 h-5 rounded-full bg-slate-700 border border-slate-600 flex items-center px-0.5">
+                  <div className="w-4 h-4 rounded-full bg-purple-500 shadow-sm shadow-purple-500/50" />
+                </div>
+              </div>
+            </button>
+
             <Button 
               className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl uppercase tracking-widest text-xs"
               onClick={() => {
