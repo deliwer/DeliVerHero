@@ -137,8 +137,16 @@ export async function runBrokerFetch(triggeredBy: 'daily' | 'manual_fetch' | 'au
     const existingRows = await db.select({ email: brokerMaster.email }).from(brokerMaster);
     const existingEmails = new Set(existingRows.map((r) => r.email));
 
+    // Deduplicate within fetched list itself (some source files have duplicate emails)
+    const seenInFetch = new Set<string>();
+    const dedupedFetched = fetched.filter((b) => {
+      if (!b.email || seenInFetch.has(b.email)) return false;
+      seenInFetch.add(b.email);
+      return true;
+    });
+
     // Filter to only brand-new brokers
-    const toInsert = fetched.filter((b) => b.email && b.name && !existingEmails.has(b.email));
+    const toInsert = dedupedFetched.filter((b) => b.email && b.name && !existingEmails.has(b.email));
     alreadyInMaster = fetched.length - toInsert.length;
     newBrokers = toInsert.length;
 
