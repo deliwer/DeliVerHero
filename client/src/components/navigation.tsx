@@ -9,12 +9,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import logoPng from "@assets/deliwer logo_1755631850889.png";
 
-const CHAINTRACK_URL = "https://chaintrack.deliwer.com";
-
 export function Navigation() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+
+  const isChaintrack = location.startsWith("/chaintrack");
+
   const navItems = [
     { path: "/ejari-dubai", label: "Ejari", id: "ejari", icon: Home },
     { path: "/relocate", label: "Move-In", id: "relocation", icon: Plane },
@@ -25,8 +25,14 @@ export function Navigation() {
     { path: "/errand", label: "Errand", id: "errand", icon: ClipboardList },
   ];
 
-  const isActive = (itemPath: string) => {
-    return location === itemPath;
+  const isActive = (itemPath: string) => location === itemPath;
+
+  const handleChaintrackToggle = () => {
+    if (isChaintrack) {
+      setLocation("/");
+    } else {
+      setLocation("/chaintrack");
+    }
   };
 
   return (
@@ -50,7 +56,7 @@ export function Navigation() {
                   variant="ghost"
                   className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
                     isActive(item.path)
-                      ? "bg-emerald-500/10 text-emerald-400" 
+                      ? "bg-emerald-500/10 text-emerald-400"
                       : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -60,22 +66,31 @@ export function Navigation() {
             ))}
             <div className="w-px h-4 bg-white/10 mx-2" />
 
-            {/* Chaintrack B2B toggle */}
+            {/* ChainTrack B2B toggle */}
             <button
-              onClick={() => window.open(CHAINTRACK_URL, '_blank')}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-purple-500/30 hover:border-purple-500/60 bg-purple-500/5 hover:bg-purple-500/15 transition-all group"
-              title="Switch to Chaintrack B2B"
+              onClick={handleChaintrackToggle}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all group ${
+                isChaintrack
+                  ? "border-purple-500/70 bg-purple-500/20 hover:bg-purple-500/25"
+                  : "border-purple-500/30 bg-purple-500/5 hover:border-purple-500/60 hover:bg-purple-500/15"
+              }`}
+              title={isChaintrack ? "Exit ChainTrack B2B" : "Enter ChainTrack B2B Wholesale"}
               data-testid="button-chaintrack-toggle"
             >
-              <span className="text-[9px] font-black uppercase tracking-widest text-purple-400 group-hover:text-purple-300">B2B</span>
-              <div className="relative w-8 h-4 rounded-full bg-slate-700 border border-slate-600 flex items-center px-0.5">
-                <div className="w-3 h-3 rounded-full bg-purple-500 shadow-sm shadow-purple-500/50 transition-transform" />
+              <span className={`text-[9px] font-black uppercase tracking-widest transition-colors ${isChaintrack ? "text-purple-300" : "text-purple-400 group-hover:text-purple-300"}`}>
+                B2B
+              </span>
+              {/* Toggle pill */}
+              <div className={`relative w-8 h-4 rounded-full border flex items-center transition-colors ${isChaintrack ? "bg-purple-600 border-purple-400" : "bg-slate-700 border-slate-600"}`}>
+                <div className={`w-3 h-3 rounded-full bg-white shadow-sm transition-transform duration-200 ${isChaintrack ? "translate-x-[18px]" : "translate-x-0.5"}`} />
               </div>
-              <span className="text-[9px] font-black uppercase tracking-widest text-purple-400 group-hover:text-purple-300">Chain<span className="text-purple-300">track</span></span>
+              <span className={`text-[9px] font-black uppercase tracking-widest transition-colors ${isChaintrack ? "text-purple-300" : "text-purple-400 group-hover:text-purple-300"}`}>
+                Chain<span className="text-purple-300">track</span>
+              </span>
             </button>
 
             <div className="w-px h-4 bg-white/10 mx-2" />
-            <Button 
+            <Button
               variant="outline"
               className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest text-[10px] px-6 rounded-xl"
               onClick={() => window.open('https://wa.me/971523946311', '_blank')}
@@ -106,7 +121,7 @@ export function Navigation() {
       {/* 3. Mobile Nav Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -114,11 +129,11 @@ export function Navigation() {
           >
             {navItems.map((item) => (
               <Link key={item.id} href={item.path}>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className={`w-full justify-start text-xs font-black uppercase tracking-widest h-14 rounded-xl ${
                     isActive(item.path)
-                      ? "bg-emerald-500/10 text-emerald-400" 
+                      ? "bg-emerald-500/10 text-emerald-400"
                       : "text-gray-400"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -127,28 +142,35 @@ export function Navigation() {
                 </Button>
               </Link>
             ))}
-            {/* Chaintrack B2B toggle — mobile */}
+
+            {/* ChainTrack B2B toggle — mobile */}
             <button
               onClick={() => {
-                window.open(CHAINTRACK_URL, '_blank');
+                handleChaintrackToggle();
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full flex items-center justify-between px-5 h-14 rounded-xl border border-purple-500/30 bg-purple-500/5 hover:bg-purple-500/10 transition-all"
+              className={`w-full flex items-center justify-between px-5 h-14 rounded-xl border transition-all ${
+                isChaintrack
+                  ? "border-purple-500/60 bg-purple-500/15"
+                  : "border-purple-500/30 bg-purple-500/5 hover:bg-purple-500/10"
+              }`}
               data-testid="button-chaintrack-toggle-mobile"
             >
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-                <span className="text-xs font-black uppercase tracking-widest text-purple-400">ChainTrack B2B</span>
+                <div className={`w-2 h-2 rounded-full ${isChaintrack ? "bg-purple-400" : "bg-purple-500 animate-pulse"}`} />
+                <span className="text-xs font-black uppercase tracking-widest text-purple-400">
+                  {isChaintrack ? "Exit ChainTrack B2B" : "ChainTrack B2B"}
+                </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] text-slate-500">Switch</span>
-                <div className="relative w-10 h-5 rounded-full bg-slate-700 border border-slate-600 flex items-center px-0.5">
-                  <div className="w-4 h-4 rounded-full bg-purple-500 shadow-sm shadow-purple-500/50" />
+                <span className="text-[10px] text-slate-500">{isChaintrack ? "ON" : "OFF"}</span>
+                <div className={`relative w-10 h-5 rounded-full border flex items-center px-0.5 transition-colors ${isChaintrack ? "bg-purple-600 border-purple-400" : "bg-slate-700 border-slate-600"}`}>
+                  <div className={`w-4 h-4 rounded-full bg-white shadow-sm transition-transform duration-200 ${isChaintrack ? "translate-x-5" : "translate-x-0"}`} />
                 </div>
               </div>
             </button>
 
-            <Button 
+            <Button
               className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl uppercase tracking-widest text-xs"
               onClick={() => {
                 window.open('https://wa.me/971523946311', '_blank');
