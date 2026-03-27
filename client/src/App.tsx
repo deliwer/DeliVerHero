@@ -433,7 +433,6 @@ function App() {
       <TooltipProvider>
         <div className="min-h-screen bg-dubai-gradient">
           <StickyNeonHeadline />
-          <TopBanner />
           <Navigation />
           <main className="pt-[100px]">
             <Router />
