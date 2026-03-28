@@ -4674,6 +4674,121 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── SendGrid Live Stats & Campaign Control ───────────────────────────────────
+
+  // GET /api/sendgrid/stats — fetch live stats from SendGrid Stats API
+  app.get("/api/sendgrid/stats", async (req, res) => {
+    const apiKey = process.env.SENDGRID_API_KEY;
+    if (!apiKey) {
+      return res.json({
+        configured: false,
+        error: "SENDGRID_API_KEY not set",
+        stats: null,
+        dailyStats: []
+      });
+    }
+
+    try {
+      const today = new Date();
+      const startDate = new Date(today);
+      startDate.setDate(today.getDate() - 29); // last 30 days
+
+      const fmt = (d: Date) => d.toISOString().split('T')[0];
+
+      // Fetch aggregated global stats
+      const [globalResp, dailyResp] = await Promise.all([
+        fetch(`https://api.sendgrid.com/v3/stats?start_date=${fmt(startDate)}&end_date=${fmt(today)}`, {
+          headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' }
+        }),
+        fetch(`https://api.sendgrid.com/v3/stats?start_date=${fmt(startDate)}&end_date=${fmt(today)}&aggregated_by=day`, {
+          headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' }
+        })
+      ]);
+
+      const globalData = await globalResp.json() as any[];
+      const dailyData = await dailyResp.json() as any[];
+
+      // Aggregate global totals
+      const totals = {
+        requests: 0, delivered: 0, opens: 0, unique_opens: 0,
+        clicks: 0, unique_clicks: 0, bounces: 0, spam_reports: 0,
+        unsubscribes: 0, blocks: 0, deferred: 0
+      };
+
+      if (Array.isArray(globalData)) {
+        for (const day of globalData) {
+          const m = day.stats?.[0]?.metrics || {};
+          totals.requests += m.requests || 0;
+          totals.delivered += m.delivered || 0;
+          totals.opens += m.opens || 0;
+          totals.unique_opens += m.unique_opens || 0;
+          totals.clicks += m.clicks || 0;
+          totals.unique_clicks += m.unique_clicks || 0;
+          totals.bounces += m.bounces || 0;
+          totals.spam_reports += m.spam_reports || 0;
+          totals.unsubscribes += m.unsubscribes || 0;
+          totals.blocks += m.blocks || 0;
+          totals.deferred += m.deferred || 0;
+        }
+      }
+
+      const deliveredRate = totals.requests > 0 ? ((totals.delivered / totals.requests) * 100).toFixed(2) : '0.00';
+      const openRate = totals.delivered > 0 ? ((totals.unique_opens / totals.delivered) * 100).toFixed(2) : '0.00';
+      const clickRate = totals.delivered > 0 ? ((totals.unique_clicks / totals.delivered) * 100).toFixed(2) : '0.00';
+      const bounceRate = totals.requests > 0 ? ((totals.bounces / totals.requests) * 100).toFixed(2) : '0.00';
+      const spamRate = totals.delivered > 0 ? ((totals.spam_reports / totals.delivered) * 100).toFixed(2) : '0.00';
+
+      // Build daily chart data
+      const dailyChart = Array.isArray(dailyData) ? dailyData.map((d: any) => ({
+        date: d.date,
+        requests: d.stats?.[0]?.metrics?.requests || 0,
+        delivered: d.stats?.[0]?.metrics?.delivered || 0,
+        opens: d.stats?.[0]?.metrics?.opens || 0,
+        clicks: d.stats?.[0]?.metrics?.clicks || 0,
+        bounces: d.stats?.[0]?.metrics?.bounces || 0,
+      })) : [];
+
+      res.json({
+        configured: true,
+        period: { start: fmt(startDate), end: fmt(today) },
+        totals,
+        rates: { deliveredRate, openRate, clickRate, bounceRate, spamRate },
+        dailyChart,
+      });
+    } catch (error: any) {
+      console.error('[SendGrid Stats] Error:', error);
+      res.status(500).json({ configured: true, error: error.message, stats: null, dailyStats: [] });
+    }
+  });
+
+  // POST /api/sendgrid/trigger-daily — manually trigger the daily broker email campaign
+  app.post("/api/sendgrid/trigger-daily", async (_req, res) => {
+    try {
+      const { isDailyRunning, runDailyAutomation } = await import('./services/broker-automation.js');
+      if (isDailyRunning()) {
+        return res.status(409).json({ error: 'Daily campaign already running — check back shortly' });
+      }
+      runDailyAutomation();
+      res.json({ started: true, message: 'Daily broker campaign triggered — up to 300 emails queued via SendGrid' });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Failed to trigger campaign' });
+    }
+  });
+
+  // POST /api/sendgrid/trigger-followup — manually trigger follow-up email sequences
+  app.post("/api/sendgrid/trigger-followup", async (_req, res) => {
+    try {
+      const { isFollowUpRunning, runFollowUpAutomation } = await import('./services/broker-automation.js');
+      if (isFollowUpRunning()) {
+        return res.status(409).json({ error: 'Follow-up engine already running' });
+      }
+      runFollowUpAutomation();
+      res.json({ started: true, message: 'Follow-up sequences triggered for Day 2, Day 5, and Day 10 recipients' });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Failed to trigger follow-ups' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

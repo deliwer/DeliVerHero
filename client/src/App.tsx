@@ -177,6 +177,7 @@ import MarketingControl from "@/pages/marketing/control";
 import MarketingLegacy from "@/pages/marketing/legacy";
 import MarketingRecruit from "@/pages/marketing/recruit";
 const LegacyFounderDashboard = lazy(() => import("@/pages/MarketingDashboard"));
+const SendGridDashboard = lazy(() => import("@/pages/sendgrid-dashboard"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -209,6 +210,7 @@ function Router() {
         <Route path="/marketing/legacy" component={MarketingLegacy} />
         <Route path="/marketing/legacy/affiliate-management" component={AffiliateManagement} />
         <Route path="/marketing/legacy/founder-dashboard" component={LegacyFounderDashboard} />
+        <Route path="/sendgrid-dashboard" component={SendGridDashboard} />
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
