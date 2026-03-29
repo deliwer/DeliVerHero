@@ -4674,6 +4674,68 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── Emergency Evacuation Exit Strategy ───────────────────────────────────────
+
+  // POST /api/emergency-exit/register — register an evacuation profile
+  app.post("/api/emergency-exit/register", async (req, res) => {
+    try {
+      const { emergencyEvacuationProfiles } = await import('@shared/schema.js');
+      const { customAlphabet } = await import('nanoid');
+      const genCode = customAlphabet('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 8);
+      const planCode = `EVX-${genCode()}`;
+
+      const profile = {
+        planCode,
+        fullName: req.body.fullName,
+        nationality: req.body.nationality,
+        currentArea: req.body.currentArea,
+        visaType: req.body.visaType,
+        familyCount: parseInt(req.body.familyCount) || 1,
+        hasPets: !!req.body.hasPets,
+        medicalNeeds: req.body.medicalNeeds || null,
+        emergencyContactName: req.body.emergencyContactName,
+        emergencyContactPhone: req.body.emergencyContactPhone,
+        emergencyContactCountry: req.body.emergencyContactCountry,
+        preferredExitRoute: req.body.preferredExitRoute,
+        vehicleAvailable: !!req.body.vehicleAvailable,
+        whatsapp: req.body.whatsapp || null,
+        status: 'active',
+      };
+
+      const [inserted] = await db.insert(emergencyEvacuationProfiles).values(profile).returning();
+      res.json({ success: true, planCode: inserted.planCode, id: inserted.id });
+    } catch (err: any) {
+      console.error('[Emergency Exit] Register error:', err);
+      res.status(500).json({ error: err.message || 'Registration failed' });
+    }
+  });
+
+  // GET /api/emergency-exit/plan/:code — retrieve a profile by plan code
+  app.get("/api/emergency-exit/plan/:code", async (req, res) => {
+    try {
+      const { emergencyEvacuationProfiles } = await import('@shared/schema.js');
+      const { eq } = await import('drizzle-orm');
+      const [profile] = await db.select().from(emergencyEvacuationProfiles)
+        .where(eq(emergencyEvacuationProfiles.planCode, req.params.code.toUpperCase()))
+        .limit(1);
+      if (!profile) return res.status(404).json({ error: 'Plan not found' });
+      res.json(profile);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Lookup failed' });
+    }
+  });
+
+  // GET /api/emergency-exit/count — total registrations
+  app.get("/api/emergency-exit/count", async (_req, res) => {
+    try {
+      const { emergencyEvacuationProfiles } = await import('@shared/schema.js');
+      const result = await db.select({ count: drizzleSql<number>`count(*)` }).from(emergencyEvacuationProfiles);
+      res.json({ count: Number(result[0]?.count ?? 0) });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Count failed' });
+    }
+  });
+
   // ── SendGrid Live Stats & Campaign Control ───────────────────────────────────
 
   // GET /api/sendgrid/stats — fetch live stats from SendGrid Stats API

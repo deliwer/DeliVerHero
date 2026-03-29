@@ -1666,3 +1666,31 @@ export const brokerCampaignEntries = pgTable("broker_campaign_entries", {
 export const insertBrokerCampaignEntrySchema = createInsertSchema(brokerCampaignEntries).omit({ id: true, sentAt: true });
 export type BrokerCampaignEntry = typeof brokerCampaignEntries.$inferSelect;
 export type InsertBrokerCampaignEntry = z.infer<typeof insertBrokerCampaignEntrySchema>;
+
+// ── Emergency Evacuation Profiles ─────────────────────────────────────────────
+
+export const emergencyEvacuationProfiles = pgTable("emergency_evacuation_profiles", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  planCode: text("plan_code").notNull().unique(),
+  fullName: text("full_name").notNull(),
+  nationality: text("nationality").notNull(),
+  currentArea: text("current_area").notNull(),
+  visaType: text("visa_type").notNull(),
+  familyCount: integer("family_count").notNull().default(1),
+  hasPets: boolean("has_pets").notNull().default(false),
+  medicalNeeds: text("medical_needs"),
+  emergencyContactName: text("emergency_contact_name").notNull(),
+  emergencyContactPhone: text("emergency_contact_phone").notNull(),
+  emergencyContactCountry: text("emergency_contact_country").notNull(),
+  preferredExitRoute: text("preferred_exit_route").notNull(),
+  vehicleAvailable: boolean("vehicle_available").notNull().default(false),
+  whatsapp: text("whatsapp"),
+  status: text("status").notNull().default("active"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertEmergencyEvacuationSchema = createInsertSchema(emergencyEvacuationProfiles).omit({
+  id: true, createdAt: true,
+});
+export type EmergencyEvacuationProfile = typeof emergencyEvacuationProfiles.$inferSelect;
+export type InsertEmergencyEvacuation = z.infer<typeof insertEmergencyEvacuationSchema>;
