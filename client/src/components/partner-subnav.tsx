@@ -11,7 +11,7 @@ const PARTNER_SUBNAV = [
 export function PartnerSubNav() {
   const [location] = useLocation();
   return (
-    <div className="sticky top-[100px] z-40 bg-slate-900/95 backdrop-blur border-b border-white/10">
+    <div className="sticky top-[104px] z-[90] bg-slate-900/95 backdrop-blur border-b border-white/10">
       <div className="max-w-5xl mx-auto px-4 flex gap-1 overflow-x-auto scrollbar-none">
         {PARTNER_SUBNAV.map((item) => (
           <Link key={item.href} href={item.href}>
