@@ -1694,3 +1694,29 @@ export const insertEmergencyEvacuationSchema = createInsertSchema(emergencyEvacu
 });
 export type EmergencyEvacuationProfile = typeof emergencyEvacuationProfiles.$inferSelect;
 export type InsertEmergencyEvacuation = z.infer<typeof insertEmergencyEvacuationSchema>;
+
+// ── Wartime Readiness Members ─────────────────────────────────────────────────
+
+export const wartimeMembers = pgTable("wartime_members", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  memberCode: text("member_code").notNull().unique(),
+  fullName: text("full_name").notNull(),
+  phone: text("phone").notNull(),
+  whatsapp: text("whatsapp"),
+  area: text("area").notNull(),
+  skills: text("skills").array().notNull().default([]),
+  familyCount: integer("family_count").notNull().default(1),
+  hasPets: boolean("has_pets").notNull().default(false),
+  medicalNeeds: text("medical_needs"),
+  alertPreference: text("alert_preference").notNull().default("whatsapp"),
+  hasSupplyKit: boolean("has_supply_kit").notNull().default(false),
+  hasEvacPlan: boolean("has_evac_plan").notNull().default(false),
+  status: text("status").notNull().default("active"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertWartimeMemberSchema = createInsertSchema(wartimeMembers).omit({
+  id: true, createdAt: true,
+});
+export type WartimeMember = typeof wartimeMembers.$inferSelect;
+export type InsertWartimeMember = z.infer<typeof insertWartimeMemberSchema>;

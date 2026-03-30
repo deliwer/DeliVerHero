@@ -4674,6 +4674,49 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── Wartime Readiness Network ─────────────────────────────────────────────────
+
+  app.post("/api/wartime/register", async (req, res) => {
+    try {
+      const { wartimeMembers } = await import('@shared/schema.js');
+      const { customAlphabet } = await import('nanoid');
+      const genCode = customAlphabet('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 8);
+      const memberCode = `WRM-${genCode()}`;
+
+      const member = {
+        memberCode,
+        fullName: req.body.fullName,
+        phone: req.body.phone,
+        whatsapp: req.body.whatsapp || req.body.phone,
+        area: req.body.area,
+        skills: Array.isArray(req.body.skills) ? req.body.skills : [],
+        familyCount: parseInt(req.body.familyCount) || 1,
+        hasPets: !!req.body.hasPets,
+        medicalNeeds: req.body.medicalNeeds || null,
+        alertPreference: req.body.alertPreference || 'whatsapp',
+        hasSupplyKit: !!req.body.hasSupplyKit,
+        hasEvacPlan: !!req.body.hasEvacPlan,
+        status: 'active',
+      };
+
+      const [inserted] = await db.insert(wartimeMembers).values(member).returning();
+      res.json({ success: true, memberCode: inserted.memberCode, id: inserted.id });
+    } catch (err: any) {
+      console.error('[Wartime] Register error:', err);
+      res.status(500).json({ error: err.message || 'Registration failed' });
+    }
+  });
+
+  app.get("/api/wartime/count", async (_req, res) => {
+    try {
+      const { wartimeMembers } = await import('@shared/schema.js');
+      const result = await db.select({ count: drizzleSql<number>`count(*)` }).from(wartimeMembers);
+      res.json({ count: Number(result[0]?.count ?? 0) });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Count failed' });
+    }
+  });
+
   // ── Emergency Evacuation Exit Strategy ───────────────────────────────────────
 
   // POST /api/emergency-exit/register — register an evacuation profile

@@ -11,6 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SEOMeta } from "@/components/seo-meta";
+import { Navigation } from "@/components/navigation";
 import {
   AlertTriangle, ShieldCheck, Plane, Anchor, Car, Phone, Mail,
   CheckCircle2, Copy, Check, Users, Heart, FileText, Zap,
@@ -560,8 +562,16 @@ export default function EmergencyExitPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
+      <SEOMeta
+        title="UAE Emergency Exit Plan | Evacuation Strategy for Dubai Residents | DeliWer"
+        description="Register your personalized UAE emergency evacuation exit plan. Get exit routes from Dubai, embassy contacts, 72-hour checklist, and a unique plan code. Free for all UAE residents and expats."
+        canonical="https://www.deliwer.com/emergency-exit"
+        keywords="UAE emergency exit plan, Dubai evacuation plan, expat emergency UAE, emergency exit Dubai, Dubai airport evacuation, UAE embassy contacts, Dubai emergency exit strategy, expat safety UAE, emergency preparedness Dubai, evacuate Dubai"
+      />
+      <Navigation />
+
       {/* Hero */}
-      <div className="relative bg-gradient-to-br from-red-950 via-slate-950 to-slate-950 border-b border-red-900/30">
+      <div className="relative bg-gradient-to-br from-red-950 via-slate-950 to-slate-950 border-b border-red-900/30 pt-[104px]">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent pointer-events-none" />
         <div className="max-w-5xl mx-auto px-4 py-16 relative">
           <div className="flex items-center gap-3 mb-6">

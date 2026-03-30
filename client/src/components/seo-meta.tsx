@@ -20,7 +20,10 @@ const DEFAULT_KEYWORDS =
   "Dubai Business Setup, Free Zone Dubai, DAFZA, Dubai South Free Zone, Commercity Dubai, " +
   "Golden Visa Dubai, Investor Visa UAE, Dubai Company Formation, Mainland License Dubai, " +
   "Relocation Consultant Dubai, Dubai vs Singapore, Stay or Leave Dubai, " +
-  "DeliWer, Dubai Expats, Ejari Renewal, Ejari Cancellation, Dubai Rent Increase";
+  "DeliWer, Dubai Expats, Ejari Renewal, Ejari Cancellation, Dubai Rent Increase, " +
+  "UAE emergency exit plan, Dubai evacuation plan, wartime preparedness Dubai, crisis readiness UAE, " +
+  "expat safety Dubai, emergency preparedness UAE, Dubai expat emergency, war preparedness Dubai, " +
+  "UAE shelter in place, Dubai emergency contacts, expat evacuation UAE, emergency exit UAE";
 
 const SCHEMA_ORG = JSON.stringify({
   "@context": "https://schema.org",
@@ -92,6 +95,8 @@ const SCHEMA_ORG = JSON.stringify({
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "UAE Golden Visa Assistance" } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "Relocation Consultation Session" } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "AquaCafe Water Delivery Dubai" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "UAE Emergency Evacuation Exit Plan" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Dubai Crisis Readiness & Wartime Preparedness Network" } },
         ],
       },
     },

@@ -1,12 +1,13 @@
 import { Link, useLocation } from "wouter";
 import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
-  Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag
+  Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustStrip } from "@/components/trust-strip";
 import { motion, AnimatePresence } from "framer-motion";
+import { EmergencyBanner } from "@/components/emergency-banner";
 
 import logoPng from "@assets/deliwer logo_1755631850889.png";
 
@@ -56,6 +57,9 @@ export function Navigation() {
 
   return (
     <div className="w-full fixed top-0 z-[100]">
+      {/* 0. Emergency Preparedness Banner */}
+      <EmergencyBanner />
+
       {/* 1. Main Navigation Bar */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
         isChaintrack
@@ -211,6 +215,22 @@ export function Navigation() {
               </Link>
             ))}
 
+            {!isChaintrack && (
+              <div className="w-full h-px bg-white/10" />
+            )}
+            {!isChaintrack && (
+              <Link href="/wartime-readiness">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-xs font-black uppercase tracking-widest h-12 rounded-xl text-red-400 hover:text-red-300 hover:bg-red-500/10 border border-red-900/30"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid="mobile-nav-emergency"
+                >
+                  <AlertTriangle className="w-5 h-5 mr-3 text-red-500" />
+                  Emergency Preparedness
+                </Button>
+              </Link>
+            )}
             <Button
               className={`w-full h-14 font-black rounded-xl uppercase tracking-widest text-xs ${
                 isChaintrack

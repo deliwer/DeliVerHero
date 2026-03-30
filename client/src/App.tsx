@@ -179,6 +179,7 @@ import MarketingRecruit from "@/pages/marketing/recruit";
 const LegacyFounderDashboard = lazy(() => import("@/pages/MarketingDashboard"));
 const SendGridDashboard = lazy(() => import("@/pages/sendgrid-dashboard"));
 const EmergencyExitPage = lazy(() => import("@/pages/emergency-exit"));
+const WartimeReadinessPage = lazy(() => import("@/pages/wartime-readiness"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -213,6 +214,7 @@ function Router() {
         <Route path="/marketing/legacy/founder-dashboard" component={LegacyFounderDashboard} />
         <Route path="/sendgrid-dashboard" component={SendGridDashboard} />
         <Route path="/emergency-exit" component={EmergencyExitPage} />
+        <Route path="/wartime-readiness" component={WartimeReadinessPage} />
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />

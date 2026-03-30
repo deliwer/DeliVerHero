@@ -10,7 +10,10 @@ import {
   TrendingDown,
   TrendingUp,
   BarChart3,
-  MapPin
+  MapPin,
+  AlertTriangle,
+  Radio,
+  ShieldCheck
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
@@ -57,8 +60,9 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
-        title="Move-In Services Dubai | Water, Ejari & Home Setup | DeliWer"
-        description="Move into your Dubai home stress-free. DeliWer handles water setup, Ejari registration, DEWA activation, and move-in readiness. Pay only normal vendor rates — no extra charges."
+        title="Move-In Services Dubai | Ejari, DEWA & Home Setup | DeliWer"
+        description="Move into your Dubai home stress-free. DeliWer handles Ejari registration, DEWA activation, water setup, and full relocation support. Pay only normal vendor rates. Also: free emergency evacuation exit plans and UAE crisis readiness for Dubai expats."
+        keywords="move in Dubai, Ejari registration Dubai, DEWA activation Dubai, Dubai relocation services, Dubai expat services, Dubai tenant support, home setup Dubai, moving to Dubai, UAE emergency exit plan, Dubai crisis preparedness, wartime readiness UAE, expat evacuation Dubai"
       />
       <Navigation />
 
@@ -412,6 +416,49 @@ export default function LandingPage() {
           <div className="relative h-96 rounded-3xl overflow-hidden border border-white/10">
             <img src={lifestyleImages.process} alt="Ejari process assistance" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      {/* EMERGENCY PREPAREDNESS CTA */}
+      <section className="relative py-14 px-6 bg-gradient-to-r from-red-950/80 via-slate-950 to-amber-950/40 border-y border-red-900/30 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-red-900/10 via-transparent to-transparent pointer-events-none" />
+        <div className="max-w-5xl mx-auto relative">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 space-y-3">
+              <div className="flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-red-400 animate-pulse" />
+                <span className="text-red-400 text-[10px] font-black uppercase tracking-widest">Free for All UAE Residents</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
+                Are you prepared for an emergency in Dubai?
+              </h2>
+              <p className="text-slate-400 text-sm max-w-lg">
+                Register your household exit plan, join the UAE crisis readiness network, and get your
+                personalized evacuation strategy — completely free.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+              <Link href="/wartime-readiness">
+                <Button
+                  className="bg-amber-600 hover:bg-amber-700 text-black font-black uppercase tracking-wider px-6 py-3 w-full sm:w-auto md:w-full"
+                  data-testid="cta-wartime-readiness"
+                >
+                  <Radio className="w-4 h-4 mr-2" />
+                  Crisis Readiness Network
+                </Button>
+              </Link>
+              <Link href="/emergency-exit">
+                <Button
+                  variant="outline"
+                  className="border-red-500/50 text-red-300 hover:bg-red-500/10 font-black uppercase tracking-wider px-6 py-3 w-full sm:w-auto md:w-full"
+                  data-testid="cta-emergency-exit"
+                >
+                  <ShieldCheck className="w-4 h-4 mr-2" />
+                  Register Exit Plan
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
