@@ -4674,6 +4674,107 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── Daily Tips & Alerts Subscription System ──────────────────────────────────
+
+  // POST /api/subscribe — subscribe an email to tips/alerts
+  app.post("/api/subscribe", async (req, res) => {
+    try {
+      const { emailSubscribers } = await import('@shared/schema.js');
+      const { email, firstName, source } = req.body;
+      if (!email || !email.includes('@')) return res.status(400).json({ error: 'Valid email required' });
+
+      const existing = await db.select().from(emailSubscribers).where(eq(emailSubscribers.email, email.toLowerCase())).limit(1);
+      if (existing.length > 0) {
+        if (!existing[0].isActive) {
+          await db.update(emailSubscribers).set({ isActive: true, unsubscribedAt: null }).where(eq(emailSubscribers.email, email.toLowerCase()));
+          return res.json({ success: true, reactivated: true, message: 'Welcome back! You\'ve been resubscribed.' });
+        }
+        return res.json({ success: true, alreadySubscribed: true, message: 'You\'re already subscribed!' });
+      }
+
+      await db.insert(emailSubscribers).values({
+        email: email.toLowerCase(),
+        firstName: firstName || null,
+        subscriberType: 'consumer',
+        source: source || 'emergency_prep',
+        isActive: true,
+        metadata: {},
+      });
+
+      res.json({ success: true, message: `Subscribed! Daily Dubai tips will arrive in ${email}` });
+    } catch (err: any) {
+      console.error('[Subscribe] Error:', err);
+      res.status(500).json({ error: err.message || 'Subscription failed' });
+    }
+  });
+
+  // POST /api/unsubscribe — unsubscribe by email
+  app.post("/api/unsubscribe", async (req, res) => {
+    try {
+      const { emailSubscribers } = await import('@shared/schema.js');
+      const { email } = req.body;
+      await db.update(emailSubscribers).set({ isActive: false, unsubscribedAt: new Date() }).where(eq(emailSubscribers.email, email.toLowerCase()));
+      res.json({ success: true });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Unsubscribe failed' });
+    }
+  });
+
+  // GET /api/tips/stats — subscriber stats + recent send log
+  app.get("/api/tips/stats", async (_req, res) => {
+    try {
+      const { getSubscriberStats } = await import('./services/tips-alert-service.js');
+      const stats = await getSubscriberStats();
+      res.json(stats);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // GET /api/tips/library — list all tips in the library
+  app.get("/api/tips/library", async (_req, res) => {
+    try {
+      const { TIPS_LIBRARY } = await import('./services/tips-alert-service.js');
+      res.json(TIPS_LIBRARY);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // POST /api/tips/send-now — manually trigger a tip broadcast (admin)
+  app.post("/api/tips/send-now", async (req, res) => {
+    try {
+      const { runDailyTipsBroadcast } = await import('./services/tips-alert-service.js');
+      const result = await runDailyTipsBroadcast(req.body.tipId);
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // POST /api/tips/alert — send emergency alert to all subscribers (admin)
+  app.post("/api/tips/alert", async (req, res) => {
+    try {
+      const { sendEmergencyAlert } = await import('./services/tips-alert-service.js');
+      const { alertLevel, message } = req.body;
+      if (!alertLevel || !message) return res.status(400).json({ error: 'alertLevel and message required' });
+      const result = await sendEmergencyAlert(alertLevel, message);
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // GET /api/tips/next — preview the next tip
+  app.get("/api/tips/next", async (_req, res) => {
+    try {
+      const { getNextTip } = await import('./services/tips-alert-service.js');
+      res.json(getNextTip());
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // ── Wartime Readiness Network ─────────────────────────────────────────────────
 
   app.post("/api/wartime/register", async (req, res) => {

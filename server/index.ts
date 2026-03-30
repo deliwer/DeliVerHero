@@ -4,6 +4,7 @@ import { setupVite, serveStatic, log } from "./vite";
 import "./instagram-sniffer";
 import { whatsappAgent } from "./services/whatsapp-agent";
 import { runDailyAutomation, runFollowUpAutomation } from "./services/broker-automation";
+import { runDailyTipsBroadcast } from "./services/tips-alert-service";
 
 const app = express();
 app.use(express.json());
@@ -19,6 +20,25 @@ setInterval(() => {
 setTimeout(() => {
   whatsappAgent.sendDailyReferralCampaign().catch(console.error);
 }, 10000);
+
+// ── Daily Tips & Alerts Broadcast (8am UAE = 4am UTC) ─────────────────────────
+
+// Calculate milliseconds until next 4:00 AM UTC
+function msUntilNext4amUTC(): number {
+  const now = new Date();
+  const next = new Date(now);
+  next.setUTCHours(4, 0, 0, 0);
+  if (next <= now) next.setUTCDate(next.getUTCDate() + 1);
+  return next.getTime() - now.getTime();
+}
+
+setTimeout(() => {
+  runDailyTipsBroadcast().catch(err => console.error('[TIPS] Initial broadcast error:', err));
+  // Then repeat every 24 hours
+  setInterval(() => {
+    runDailyTipsBroadcast().catch(err => console.error('[TIPS] Daily broadcast error:', err));
+  }, TWENTY_FOUR_HOURS);
+}, msUntilNext4amUTC());
 
 // ── Broker Recruitment Automation (Cron-based) ────────────────────────────────
 

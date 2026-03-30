@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import SubscribeWidget from "@/components/subscribe-widget";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -725,6 +726,11 @@ export default function WartimeReadinessPage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Subscribe Widget */}
+        <div className="max-w-lg mx-auto mt-6 mb-8">
+          <SubscribeWidget source="wartime_readiness" />
+        </div>
       </div>
     </div>
   );

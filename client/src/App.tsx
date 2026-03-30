@@ -180,6 +180,7 @@ const LegacyFounderDashboard = lazy(() => import("@/pages/MarketingDashboard"));
 const SendGridDashboard = lazy(() => import("@/pages/sendgrid-dashboard"));
 const EmergencyExitPage = lazy(() => import("@/pages/emergency-exit"));
 const WartimeReadinessPage = lazy(() => import("@/pages/wartime-readiness"));
+const AdminAlertsPage = lazy(() => import("@/pages/admin-alerts"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -215,6 +216,7 @@ function Router() {
         <Route path="/sendgrid-dashboard" component={SendGridDashboard} />
         <Route path="/emergency-exit" component={EmergencyExitPage} />
         <Route path="/wartime-readiness" component={WartimeReadinessPage} />
+        <Route path="/admin/alerts" component={AdminAlertsPage} />
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />

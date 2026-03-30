@@ -1720,3 +1720,18 @@ export const insertWartimeMemberSchema = createInsertSchema(wartimeMembers).omit
 });
 export type WartimeMember = typeof wartimeMembers.$inferSelect;
 export type InsertWartimeMember = z.infer<typeof insertWartimeMemberSchema>;
+
+// ── Tips/Alerts Send Log ──────────────────────────────────────────────────────
+
+export const tipsSendLog = pgTable("tips_send_log", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tipId: text("tip_id").notNull(),
+  tipTitle: text("tip_title").notNull(),
+  tipCategory: text("tip_category").notNull().default("general"),
+  sentAt: timestamp("sent_at").notNull().default(sql`now()`),
+  recipientCount: integer("recipient_count").notNull().default(0),
+  successCount: integer("success_count").notNull().default(0),
+  failCount: integer("fail_count").notNull().default(0),
+  type: text("type").notNull().default("daily_tips"),
+  subject: text("subject").notNull().default(""),
+});
