@@ -1,0 +1,313 @@
+Build a production-ready, Vercel-deployable broker acquisition and referral engine for DeliWer.com.
+
+IMPORTANT:
+
+* DO NOT modify existing pages or structure
+* ONLY enhance and add
+* NO database allowed
+* Use static + localStorage + URL params
+* All conversions go to WhatsApp
+
+---
+
+SYSTEM NAME:
+DeliWer Broker Engine (DBE)
+
+OBJECTIVE:
+Recruit UAE real estate brokers and convert them into active referral partners who send tenants into DeliWer’s existing move-in funnels.
+
+---
+
+1. ROUTES TO CREATE
+
+---
+
+/broker-partner
+/broker-success
+/ref/[code]
+/api/log
+
+---
+
+2. BROKER ONBOARDING PAGE (/broker-partner)
+
+---
+
+SECTION 1: HERO
+
+Headline:
+"Close More Deals. Earn More Per Client."
+
+Subtext:
+Help your tenants complete their move-in (Ejari, movers, DEWA, setup) in one flow — and earn on every referral.
+
+CTA:
+"Generate My Referral Link"
+
+---
+
+SECTION 2: HOW IT WORKS
+
+Step 1:
+Share your personal link with clients
+
+Step 2:
+DeliWer handles move-in
+
+Step 3:
+You earn on every completed service
+
+---
+
+SECTION 3: EARNINGS EXAMPLES
+
+Display static examples:
+
+Studio: AED 150–300
+1BR: AED 300–600
+Villa: AED 800+
+
+---
+
+SECTION 4: INSTANT LINK GENERATOR
+
+Input:
+
+* Broker name (text field)
+
+Button:
+"Generate Link"
+
+OUTPUT:
+
+https://www.deliwer.com/move-in?ref={cleaned_name}
+
+Rules:
+
+* lowercase
+* replace spaces with underscore
+* remove special characters
+
+---
+
+SECTION 5: ACTION BLOCK (CRITICAL)
+
+After generating link:
+
+Show:
+
+1. Copy button
+2. WhatsApp share button
+3. QR code (optional)
+
+---
+
+WHATSAPP MESSAGE:
+
+"I help my clients complete their move-in (Ejari, movers, setup) in one place. Start here: {ref_link}"
+
+---
+
+SECTION 6: ACTIVATION INSTRUCTIONS
+
+Title:
+"When to send your link"
+
+Content:
+
+* After property viewing
+* After agreement
+* When client asks “what next?”
+
+Provide copy-paste scripts
+
+---
+
+---
+
+3. REFERRAL TRACKING SYSTEM
+
+---
+
+On ALL pages (especially /move-in pages):
+
+Capture URL params:
+
+* ref
+* source
+* agent
+
+Store in:
+
+* localStorage (primary)
+* cookie (fallback)
+
+Keys:
+
+* deliwer_ref
+* deliwer_source
+* deliwer_session_id
+
+Generate session ID:
+timestamp + random string
+
+---
+
+Inject into ALL WhatsApp links:
+
+"I found a property in Dubai. Ref: {deliwer_ref}. I need full move-in support."
+
+---
+
+---
+
+4. WHATSAPP CONVERSION ENGINE
+
+---
+
+Global floating button:
+
+https://wa.me/971523946311?text={dynamic_message}
+
+Dynamic message includes:
+
+* area (if exists)
+* ref code
+* intent
+
+---
+
+Sticky mobile bar:
+
+"Start Move-In Now"
+
+---
+
+---
+
+5. /ref/[code] ROUTE (TRACKING + REDIRECT)
+
+---
+
+When user visits:
+
+/ref/ahmed_jvc
+
+System:
+
+* store ref = ahmed_jvc
+* redirect to /move-in
+
+---
+
+---
+
+6. /api/log (SERVERLESS FUNCTION)
+
+---
+
+Capture events:
+
+* page_visit
+* whatsapp_click
+* link_generated
+
+Payload:
+{
+ref,
+page,
+timestamp,
+action
+}
+
+Log to:
+
+* console
+* optional Google Sheets webhook
+
+---
+
+---
+
+7. SENDGRID EMAIL AUTOMATION SETUP (INSTRUCTIONS)
+
+---
+
+Create script-ready email templates:
+
+EMAIL 1:
+Subject:
+"Close Deals Faster (Without Extra Work)"
+
+EMAIL 2:
+Subject:
+"Earn Extra Per Client (No Effort)"
+
+EMAIL 3:
+Subject:
+"Your Clients Are Already Asking ‘What Next?’"
+
+Include:
+
+* broker-partner link
+* CTA to generate referral
+
+---
+
+---
+
+8. WHATSAPP OUTREACH SCRIPT
+
+---
+
+"Hi {Name}, quick one — we help your tenants complete move-in (Ejari, movers, setup) in one flow. You close faster + earn per client. Want your referral link?"
+
+---
+
+---
+
+9. RETENTION LOOP
+
+---
+
+After conversion (manual trigger):
+
+Send broker:
+
+"Your client completed move-in. You earned AED X. Send your next client here: {ref_link}"
+
+---
+
+---
+
+10. TRUST ELEMENTS (IMPORTANT)
+
+---
+
+Add on /broker-partner:
+
+* “Serving tenants across Dubai”
+* “Partner network execution”
+* Fast response via WhatsApp
+
+---
+
+---
+
+11. DEPLOYMENT
+
+---
+
+* Deploy on Vercel
+* No database required
+* Fully functional via static + client-side logic
+
+---
+
+END RESULT:
+
+* Brokers onboard instantly
+* Referral links generated automatically
+* Tenants convert via WhatsApp
+* Attribution tracked without database
+* System scales to thousands of brokers
