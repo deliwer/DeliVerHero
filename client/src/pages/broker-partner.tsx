@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { SEOMeta } from "@/components/seo-meta";
+import { Navigation } from "@/components/navigation";
+import { PartnerSubNav } from "@/components/partner-subnav";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -197,6 +199,9 @@ export default function BrokerPartnerPage() {
         title="Broker Partner Program | Earn Per Move-In Referral | DeliWer Dubai"
         description="Real estate brokers earn AED 150–800+ per referral by sending tenants to DeliWer's move-in concierge. Ejari, DEWA, movers — handled. You earn. Generate your link now."
       />
+
+      <Navigation />
+      <PartnerSubNav />
 
       {/* ── HERO ──────────────────────────────────────────── */}
       <section className="relative py-24 md:py-32 px-4 overflow-hidden">

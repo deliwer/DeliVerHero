@@ -403,6 +403,7 @@ function Router() {
         {/* Ejari Lead Engine */}
         <Route path="/ejari-cancellation-dubai" component={EjariCancellationDubai} />
         <Route path="/broker-partner" component={BrokerPartnerPage} />
+        <Route path="/brokers" component={BrokerPartnerPage} />
         <Route path="/broker-success" component={BrokerSuccessPage} />
         <Route path="/ref/:code" component={RefRedirectPage} />
         <Route path="/how-to-register-ejari" component={HowToRegisterEjari} />
