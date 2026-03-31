@@ -1,0 +1,280 @@
+Enhance the existing DeliWer.com website and funnel system WITHOUT modifying, restructuring, or replacing any existing pages, flows, or URLs.
+
+All enhancements must be additive only.
+
+PRIMARY OBJECTIVE:
+Increase high-intent move-in customer acquisition by:
+
+1. Leveraging tenancy platform search traffic (Bayut, Property Finder, Dubizzle)
+2. Capturing users via SEO pages
+3. Routing them into existing DeliWer funnels (Ejari, movers, WhatsApp, coordination)
+
+---
+
+## CORE RULES (STRICT)
+
+* DO NOT modify existing page structure
+* DO NOT change existing URLs
+* DO NOT remove or rewrite current content
+* ONLY add new pages, components, and entry points
+* All new traffic must flow into existing funnels
+
+---
+
+1. NEW SEO PAGE SYSTEM (50 PAGES)
+
+---
+
+Create a new folder:
+
+/move-in/
+
+Generate 50 static SEO pages using predefined slugs.
+
+STRUCTURE:
+/move-in/[area]
+/move-in/[area]/[property-type]
+
+Each page must:
+
+* Be statically generated (SSG)
+* Be indexable
+* Be optimized for UAE tenancy search intent
+
+---
+
+2. LIST OF 50 SEO PAGES TO GENERATE
+
+---
+
+AREAS (Dubai high-intent zones):
+
+jvc (Jumeirah Village Circle)
+dubai-marina
+business-bay
+downtown-dubai
+al-nahda
+al-barsha
+deira
+bur-dubai
+dubai-silicon-oasis
+international-city
+discovery-gardens
+jlt (Jumeirah Lake Towers)
+dubai-hills
+arabian-ranches
+motor-city
+sports-city
+meydan
+al-furjan
+jumeirah-beach-residence (jbr)
+palm-jumeirah
+dubai-creek-harbour
+damac-hills
+damac-hills-2
+town-square
+remraam
+mudon
+al-warqa
+al-qusais
+al-satwa
+karama
+muhaisnah
+al-rigga
+al-mankhool
+al-khaleej
+umm-suqeim
+al-wasl
+al-safa
+al-quoz
+dubai-investment-park (dip)
+jebel-ali
+al-barari
+nad-al-sheba
+liwan
+the-valley
+tilal-al-ghaf
+bluewaters-island
+city-walk
+dubai-production-city (impz)
+dubai-studio-city
+
+---
+
+3. PROPERTY TYPE VARIATIONS
+
+---
+
+For top 10 areas generate additional pages:
+
+/studio
+/1br
+/2br
+
+Top areas:
+jvc
+dubai-marina
+business-bay
+downtown-dubai
+al-nahda
+jlt
+dubai-hills
+al-barsha
+international-city
+deira
+
+---
+
+4. PAGE TEMPLATE (REPEATABLE)
+
+---
+
+Each page must dynamically include:
+
+H1:
+"Moving to {Area}? Complete Your Move-In in 24 Hours"
+
+SUBTEXT:
+"Found a home on Bayut or Property Finder? DeliWer handles everything after."
+
+SECTIONS:
+
+1. PAIN POINTS
+
+* Ejari delays
+* Multiple vendors
+* Hidden moving costs
+* Deposit confusion
+
+2. SOLUTION
+   "One platform. Zero upfront coordination cost."
+
+3. SERVICES INCLUDED
+
+* Ejari registration
+* Movers
+* DEWA setup
+* Internet
+* Cleaning
+* Storage (if needed)
+
+4. MOVE-IN COST ESTIMATOR (STATIC JS)
+   Inputs:
+
+* apartment type
+* rent range
+
+Outputs:
+
+* estimated mover cost
+* ejari cost
+* setup cost
+
+5. WHATSAPP CTA (PRIMARY CONVERSION)
+
+https://wa.me/971523946311?text=
+
+Dynamic message:
+
+"I found a property in {area}. I want full move-in support. Ref: {ref_code}"
+
+6. TRUST BLOCK
+
+* "Used by tenants across Dubai"
+* "Partner network execution"
+
+---
+
+5. REFERRAL TRACKING INJECTION
+
+---
+
+ALL new pages must:
+
+* Read URL params:
+  ref
+  source
+  agent
+
+* Store in localStorage:
+  deliwer_ref
+  deliwer_source
+
+* Pass into WhatsApp message
+
+---
+
+6. EXISTING FUNNEL CONNECTION (CRITICAL)
+
+---
+
+Every SEO page must link to:
+
+* /ejari
+* /ejari-dubai
+* /moving (if exists)
+* WhatsApp
+
+DO NOT create new checkout flows.
+
+ONLY redirect traffic into:
+Existing DeliWer monetization funnels
+
+---
+
+7. INTERNAL LINKING BOOST
+
+---
+
+Add section:
+
+"Popular Move-In Areas"
+
+Link to 10 other SEO pages to create SEO network.
+
+---
+
+8. META SEO OPTIMIZATION
+
+---
+
+Each page must include:
+
+Title:
+"Move to {Area} | Ejari, Movers & Setup | DeliWer"
+
+Description:
+"Found a home in {Area}? Get Ejari, movers, and full move-in setup in one place. No upfront cost."
+
+Keywords:
+"{area} move in, ejari {area}, movers {area}, dubai relocation"
+
+---
+
+9. PERFORMANCE
+
+---
+
+* Static pages only
+* No API dependency
+* Fast load (<1s target)
+
+---
+
+10. OPTIONAL ENHANCEMENTS
+
+---
+
+* Add downloadable "Move-In Checklist PDF"
+* Add broker referral banner:
+  "Are you an agent? Earn by referring clients"
+
+---
+
+## END RESULT
+
+* 50 SEO pages targeting high-intent tenants
+* Traffic captured from Google searches related to Bayut / Property Finder usage
+* Users redirected into existing DeliWer funnels
+* No structural changes to current website
+* Increased broker + tenant acquisition
