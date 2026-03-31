@@ -87,15 +87,18 @@ export default function LandingPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/15 border border-emerald-500/30 rounded-full text-emerald-400 text-[10px] font-black uppercase tracking-widest">
               Dubai Relocation · One WhatsApp Away
             </div>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.88] text-white uppercase">
-              Are You{" "}
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white">
+              Found a Home?{" "}
               <span className="text-emerald-400" style={{ textShadow: "0 0 40px rgba(16,185,129,0.45)" }}>
-                Overpaying
+                Complete Your Move-In
               </span>
-              <br />Rent in Dubai?
+              {" "}in 24 Hours.
             </h1>
             <p className="text-lg md:text-xl text-gray-300 font-medium max-w-xl mx-auto leading-relaxed">
-              Moving soon? We handle everything — Ejari, DEWA, movers, cleaning. One message away.
+              Ejari, movers, DEWA, internet, cleaning — everything handled for you in one place.
+            </p>
+            <p className="text-sm text-emerald-400 font-black uppercase tracking-widest">
+              Move now. Pay only when services are executed. No upfront coordination fees.
             </p>
           </motion.div>
 
@@ -103,19 +106,34 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col items-center gap-4"
           >
-            <a
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20help%20with%20my%20move."
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="cta-whatsapp-main-hero"
-            >
-              <Button className="h-16 px-10 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-base rounded-2xl shadow-2xl shadow-emerald-900/50 transition-all">
-                <MessageCircle className="w-6 h-6 mr-3" /> Start Your Move
-              </Button>
-            </a>
-            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">No signup · No account · 24h WhatsApp response</p>
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <a
+                href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="cta-whatsapp-main-hero"
+              >
+                <Button className="h-16 px-10 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-base rounded-2xl shadow-2xl shadow-emerald-900/50 transition-all">
+                  <MessageCircle className="w-6 h-6 mr-3" /> Start Move-In on WhatsApp
+                </Button>
+              </a>
+              <button
+                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
+                data-testid="cta-see-how-it-works"
+                className="h-16 px-8 border border-white/20 text-white font-black uppercase tracking-widest text-sm rounded-2xl hover:bg-white/5 transition-all"
+              >
+                See How It Works
+              </button>
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 pt-1">
+              {["Serving tenants across Dubai", "Verified partner network", "Fast WhatsApp support"].map((t) => (
+                <span key={t} className="flex items-center gap-1.5 text-[11px] text-gray-300 font-bold">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> {t}
+                </span>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div
@@ -166,6 +184,174 @@ export default function LandingPage() {
               </div>
             </button>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 2 — PROBLEM / PAIN
+         ============================================ */}
+      <section className="py-20 px-6 bg-slate-900/70 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-4"
+          >
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              Moving in Dubai is <span className="text-red-400">fragmented,</span> slow, and stressful.
+            </h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            {[
+              { icon: "📄", text: "Ejari delays and unclear steps" },
+              { icon: "🚛", text: "Multiple vendors for moving, utilities, cleaning" },
+              { icon: "💸", text: "Hidden costs and last-minute surprises" },
+              { icon: "📞", text: "No single point of coordination" },
+            ].map((item) => (
+              <div key={item.text} className="flex items-start gap-3 bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+                <span className="text-xl shrink-0">{item.icon}</span>
+                <span className="text-gray-300 font-bold text-sm leading-snug">{item.text}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-gray-500 font-black uppercase tracking-widest text-sm">
+            You've found your home. Now comes the hard part.
+          </p>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 3 — SOLUTION
+         ============================================ */}
+      <section className="py-20 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              One Platform. One Conversation.
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              DeliWer handles everything<br />after you find a home.
+            </h2>
+            <p className="text-gray-400 font-medium max-w-lg mx-auto">
+              One platform. One conversation. Full move-in coordination.
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { icon: "📄", label: "Ejari Registration" },
+              { icon: "🚛", label: "Movers & Packing" },
+              { icon: "⚡", label: "DEWA & Utility Setup" },
+              { icon: "📶", label: "Internet Connection" },
+              { icon: "🧹", label: "Cleaning & Preparation" },
+              { icon: "📦", label: "Storage & Logistics" },
+            ].map((s) => (
+              <div key={s.label} className="group flex flex-col items-center gap-3 p-5 bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/5 rounded-2xl transition-all text-center">
+                <span className="text-3xl group-hover:scale-110 transition-transform">{s.icon}</span>
+                <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-emerald-400 font-black uppercase tracking-widest text-sm">
+            We coordinate everything. Our partners execute.
+          </p>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 4 — HOW IT WORKS
+         ============================================ */}
+      <section id="how-it-works" className="py-20 px-6 bg-slate-900/50 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-2"
+          >
+            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              Simple Process
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How your move-in gets done</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { step: "01", title: "Tell us your property", desc: "WhatsApp us in seconds — property details, move date, what you need.", color: "emerald" },
+              { step: "02", title: "We plan your move", desc: "Ejari, movers, DEWA, internet — we sequence everything perfectly.", color: "blue" },
+              { step: "03", title: "Pay only when confirmed", desc: "No upfront fees to us. You pay vendors directly at market rates.", color: "violet" },
+              { step: "04", title: "Move in stress-free", desc: "Walk into a ready home. Everything sorted before you arrive.", color: "emerald" },
+            ].map((s) => (
+              <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3 hover:border-white/20 transition-all">
+                <div className={`text-4xl font-black ${s.color === "emerald" ? "text-emerald-500/30" : s.color === "blue" ? "text-blue-500/30" : "text-violet-500/30"}`}>{s.step}</div>
+                <h3 className="text-white font-black text-sm uppercase tracking-tight leading-snug">{s.title}</h3>
+                <p className="text-gray-500 text-xs font-medium leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <p className="text-emerald-400 font-black uppercase tracking-widest text-sm">No coordination fees. No confusion. No back-and-forth.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 5 — COST CLARITY
+         ============================================ */}
+      <section className="py-20 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-3xl mx-auto space-y-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              Cost Transparency
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">What does a typical move-in cost?</h2>
+            <p className="text-gray-400 font-medium">Here's a simple breakdown (estimates):</p>
+          </motion.div>
+          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden divide-y divide-white/5">
+            {[
+              { service: "Ejari Registration", range: "AED 200–300", icon: "📄" },
+              { service: "Movers (depends on size)", range: "AED 800–2,500", icon: "🚛" },
+              { service: "Utility Setup (DEWA)", range: "Varies by property", icon: "⚡" },
+              { service: "Cleaning (optional)", range: "AED 250–600", icon: "🧹" },
+            ].map((row) => (
+              <div key={row.service} className="flex items-center justify-between px-6 py-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-lg">{row.icon}</span>
+                  <span className="text-gray-300 font-bold text-sm">{row.service}</span>
+                </div>
+                <span className="text-emerald-400 font-black text-sm">{row.range}</span>
+              </div>
+            ))}
+            <div className="px-6 py-4 bg-emerald-500/5">
+              <p className="text-emerald-300 font-black text-sm text-center">DeliWer coordination fee: AED 0 to you</p>
+            </div>
+          </div>
+          <div className="text-center space-y-4">
+            <p className="text-gray-400 font-medium text-sm">We help you plan everything upfront — no surprises.</p>
+            <a
+              href="https://wa.me/971523946311?text=I%20want%20to%20get%20my%20move-in%20plan%20and%20cost%20estimate."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="cta-get-move-in-plan"
+            >
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl h-14 px-10 text-sm shadow-xl shadow-emerald-900/30 transition-all">
+                <MessageCircle className="w-5 h-5 mr-2" /> Get My Move-In Plan
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -420,6 +606,80 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ============================================
+          SECTION 6 — TRUST / SOCIAL PROOF
+         ============================================ */}
+      <section className="py-20 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              Trusted by Dubai Tenants
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Built for tenants moving across Dubai</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { icon: "📍", title: "JVC, Marina, Al Nahda & more", desc: "Used by tenants in the most popular Dubai districts." },
+              { icon: "🤝", title: "Partner network for execution", desc: "Vetted moving, cleaning, and utility service partners." },
+              { icon: "⚡", title: "Fast WhatsApp response", desc: "We respond within minutes — not hours." },
+            ].map((item) => (
+              <div key={item.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-2 text-center hover:border-violet-500/30 transition-all">
+                <span className="text-3xl block">{item.icon}</span>
+                <h3 className="text-white font-black text-sm uppercase tracking-tight">{item.title}</h3>
+                <p className="text-gray-500 text-xs font-medium leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-violet-500/5 border border-violet-500/20 rounded-2xl p-8 space-y-4 max-w-2xl mx-auto text-center">
+            <p className="text-2xl">"</p>
+            <p className="text-gray-200 font-bold leading-relaxed italic">
+              "DeliWer handled everything — Ejari, movers, DEWA — I just moved in stress-free. Didn't deal with a single vendor call."
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-black text-xs">S</div>
+              <div className="text-left">
+                <p className="text-white font-black text-xs">Sarah K.</p>
+                <p className="text-gray-500 text-[10px]">Moved to JVC · Recent move-in</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 7 — BROKER HOOK
+         ============================================ */}
+      <section className="py-20 px-6 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border-b border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-10 md:p-14 text-center space-y-6">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              For Real Estate Agents
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Are you a real estate agent?</h2>
+            <p className="text-gray-300 font-medium max-w-lg mx-auto text-lg">
+              Help your clients move in faster — and earn on every referral.
+            </p>
+            <a
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I'm%20a%20real%20estate%20agent%20and%20I%20want%20to%20join%20as%20a%20broker%20partner."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="cta-broker-partner"
+            >
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl h-14 px-10 text-sm shadow-xl shadow-emerald-900/30 transition-all">
+                <MessageCircle className="w-5 h-5 mr-2" /> Join as Broker Partner
+              </Button>
+            </a>
+            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Free to join · Earn on every client referral</p>
+          </div>
+        </div>
+      </section>
+
       {/* EMERGENCY PREPAREDNESS CTA */}
       <section className="relative py-14 px-6 bg-gradient-to-r from-red-950/80 via-slate-950 to-amber-950/40 border-y border-red-900/30 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-red-900/10 via-transparent to-transparent pointer-events-none" />
@@ -463,26 +723,37 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="relative py-20 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
+      {/* FINAL CTA — SECTION 8 */}
+      <section className="relative py-24 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={lifestyleImages.finalCTA} alt="Happy resident in home" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-600/80 to-emerald-600" />
         </div>
         <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move in stress-free?</h2>
-          <p className="text-lg text-emerald-950 font-bold uppercase italic">Pay only vendor rates. DeliWer handles everything else.</p>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move into your new home?</h2>
+          <p className="text-lg text-emerald-950 font-bold">Tell us your property and we'll handle the rest.</p>
         </div>
-        <Link href="/start">
-          <Button 
-            size="lg" 
-            className="relative z-10 bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all active-elevate-2 group"
+        <div className="relative z-10 flex flex-col items-center gap-4">
+          <a
+            href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+            target="_blank"
+            rel="noopener noreferrer"
             data-testid="button-final-cta"
           >
-            <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-            Start Your Move-In Plan
-          </Button>
-        </Link>
+            <Button
+              size="lg"
+              className="bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all group"
+            >
+              <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+              Start on WhatsApp
+            </Button>
+          </a>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-emerald-950 text-sm font-bold">
+            <span>WhatsApp: +971 52 394 6311</span>
+            <span>·</span>
+            <span>info@deliwer.com</span>
+          </div>
+        </div>
       </section>
 
       {/* PARTNER NETWORK */}
@@ -506,6 +777,20 @@ export default function LandingPage() {
         onClose={() => setFunnelOpen(false)}
         initialScenario={funnelScenario}
       />
+
+      {/* MOBILE STICKY BOTTOM BAR */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10 p-4 pb-safe">
+        <a
+          href="https://wa.me/971523946311?text=I%20found%20a%20property%20and%20need%20move-in%20support"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="cta-mobile-sticky"
+        >
+          <Button className="w-full h-14 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-sm shadow-2xl shadow-emerald-900/50 flex items-center justify-center gap-2 transition-all">
+            <MessageCircle className="w-5 h-5" /> Start Move-In Now
+          </Button>
+        </a>
+      </div>
     </div>
   );
 }
