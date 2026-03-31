@@ -1,5 +1,7 @@
 import { Express } from "express";
 import { createServer, type Server } from "http";
+import fs from "fs";
+import path from "path";
 
 // Log lead to Google Sheets (serverless endpoint for referral tracking)
 async function handleLogLead(req: any, res: any) {
@@ -487,43 +489,32 @@ Source: Website Concierge Page
     }
   });
 
-  // SEO & Sitemap Routes
+  // SEO & Sitemap Routes — serve from static public/ files
   app.get("/robots.txt", (req, res) => {
-    res.type("text/plain");
-    res.send(`User-agent: *
-Allow: /
-Sitemap: ${req.protocol}://${req.get("host")}/sitemap.xml
-`);
+    const robotsPath = path.resolve(import.meta.dirname, "../public/robots.txt");
+    if (fs.existsSync(robotsPath)) {
+      res.type("text/plain").sendFile(robotsPath);
+    } else {
+      res.type("text/plain").send(`User-agent: *\nAllow: /\nSitemap: https://www.deliwer.com/sitemap.xml\n`);
+    }
   });
 
   app.get("/sitemap.xml", (req, res) => {
-    const host = `${req.protocol}://${req.get("host")}`;
-    const pages = [
-      "",
-      "/aquacafe",
-      "/relocate",
-      "/business-setup",
-      "/home-service",
-      "/errand"
-    ];
+    const sitemapPath = path.resolve(import.meta.dirname, "../public/sitemap.xml");
+    if (fs.existsSync(sitemapPath)) {
+      res.type("application/xml").sendFile(sitemapPath);
+    } else {
+      res.status(404).send("Sitemap not found");
+    }
+  });
 
-    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${pages
-    .map(
-      (page) => `
-  <url>
-    <loc>${host}${page}</loc>
-    <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${page === "" ? "1.0" : "0.8"}</priority>
-  </url>`
-    )
-    .join("")}
-</urlset>`;
-
-    res.type("application/xml");
-    res.send(sitemap);
+  app.get("/llms.txt", (req, res) => {
+    const llmsPath = path.resolve(import.meta.dirname, "../public/llms.txt");
+    if (fs.existsSync(llmsPath)) {
+      res.type("text/plain").sendFile(llmsPath);
+    } else {
+      res.status(404).send("Not found");
+    }
   });
 
   // Daily Founder Trigger Route

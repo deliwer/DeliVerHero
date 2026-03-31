@@ -146,6 +146,31 @@ export default function MoveInAreaPage() {
       <SEOMeta
         title={metaTitle}
         description={metaDescription}
+        canonical={`https://www.deliwer.com/move-in/${areaSlug}${propertyTypeSlug ? `/${propertyTypeSlug}` : ""}`}
+        keywords={`move in ${area.name}, ejari ${area.name}, movers ${area.name}, dubai relocation ${area.name}, dewa ${area.name}, move to ${area.name} dubai${propertyType ? `, ${propertyType.label} ${area.name} dubai` : ""}`}
+        serviceSchema={{
+          name: `Move-In Services — ${area.name}${propertyType ? ` (${propertyType.label})` : ""}`,
+          description: `Ejari registration, DEWA activation, movers, and full move-in coordination for tenants moving to ${area.name}, Dubai.`,
+          area: area.name,
+        }}
+        faqs={[
+          {
+            question: `How do I register Ejari when moving to ${area.name}?`,
+            answer: `After signing your tenancy contract in ${area.name}, you need to register it via Ejari — Dubai's official RERA system. DeliWer handles the full Ejari registration process for AED 320. Just send your tenancy contract and Emirates ID via WhatsApp.`,
+          },
+          {
+            question: `How much does it cost to move into an apartment in ${area.name}?`,
+            answer: `Moving into ${area.name} typically costs: Ejari registration AED 320, professional movers AED 800–2,500 depending on apartment size, DEWA connection fee AED 110, and optional cleaning AED 400–900. DeliWer can provide an exact quote.`,
+          },
+          {
+            question: `Does DeliWer serve ${area.name}?`,
+            answer: `Yes. DeliWer coordinates move-in services across all Dubai areas including ${area.name}. Contact us on WhatsApp with your property address and move-in date.`,
+          },
+          {
+            question: `How long does DEWA activation take in ${area.name}?`,
+            answer: `DEWA activation in ${area.name} takes 1–3 business days after Ejari registration is complete. DeliWer coordinates the DEWA connection as part of the move-in package.`,
+          },
+        ]}
       />
 
       {/* Hero */}

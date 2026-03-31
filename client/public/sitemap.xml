@@ -73,6 +73,100 @@
   <url><loc>https://www.deliwer.com/settling-in-dubai-guide</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
   <url><loc>https://www.deliwer.com/move-in-services-dubai</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
   <url><loc>https://www.deliwer.com/tenant-move-in-checklist</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://www.deliwer.com/broker-move-in-support-dubai</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
+
+  <!-- ═══ MOVE-IN AREA PAGES — TOP PRIORITY (/move-in/:area) ═══ -->
+  <url><loc>https://www.deliwer.com/move-in/jvc</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/business-bay</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-nahda</loc><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barsha</loc><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/deira</loc><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/bur-dubai</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-silicon-oasis</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/international-city</loc><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/discovery-gardens</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/jlt</loc><changefreq>weekly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills</loc><changefreq>weekly</changefreq><priority>0.88</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/arabian-ranches</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/motor-city</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/sports-city</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/meydan</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-furjan</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/jbr</loc><changefreq>weekly</changefreq><priority>0.87</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/palm-jumeirah</loc><changefreq>weekly</changefreq><priority>0.87</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-creek-harbour</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/damac-hills</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/damac-hills-2</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/town-square</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/remraam</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/mudon</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-warqa</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-qusais</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-satwa</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/karama</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/muhaisnah</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-rigga</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-mankhool</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-khaleej</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/umm-suqeim</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-wasl</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-safa</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-quoz</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dip</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/jebel-ali</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barari</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/nad-al-sheba</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/liwan</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/the-valley</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/tilal-al-ghaf</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/bluewaters-island</loc><changefreq>weekly</changefreq><priority>0.82</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/city-walk</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-production-city</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-studio-city</loc><changefreq>weekly</changefreq><priority>0.80</priority></url>
+
+  <!-- ═══ MOVE-IN PROPERTY TYPE VARIANTS — TOP 10 AREAS ═══ -->
+  <!-- JVC -->
+  <url><loc>https://www.deliwer.com/move-in/jvc/studio</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/jvc/1br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/jvc/2br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- Dubai Marina -->
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina/studio</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina/1br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina/2br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- Business Bay -->
+  <url><loc>https://www.deliwer.com/move-in/business-bay/studio</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/business-bay/1br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/business-bay/2br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- Downtown Dubai -->
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai/studio</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai/1br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai/2br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- Al Nahda -->
+  <url><loc>https://www.deliwer.com/move-in/al-nahda/studio</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-nahda/1br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-nahda/2br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <!-- JLT -->
+  <url><loc>https://www.deliwer.com/move-in/jlt/studio</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/jlt/1br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/jlt/2br</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- Dubai Hills -->
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills/studio</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills/1br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills/2br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <!-- Al Barsha -->
+  <url><loc>https://www.deliwer.com/move-in/al-barsha/studio</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barsha/1br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barsha/2br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <!-- International City -->
+  <url><loc>https://www.deliwer.com/move-in/international-city/studio</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/international-city/1br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/international-city/2br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <!-- Deira -->
+  <url><loc>https://www.deliwer.com/move-in/deira/studio</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/deira/1br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
+  <url><loc>https://www.deliwer.com/move-in/deira/2br</loc><changefreq>weekly</changefreq><priority>0.83</priority></url>
 
   <!-- ═══ PARTNERS & DISTRIBUTION ═══ -->
   <url><loc>https://www.deliwer.com/partners</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
@@ -81,7 +175,6 @@
   <url><loc>https://www.deliwer.com/partners/earnings</loc><changefreq>monthly</changefreq><priority>0.68</priority></url>
   <url><loc>https://www.deliwer.com/partner-program</loc><changefreq>monthly</changefreq><priority>0.72</priority></url>
   <url><loc>https://www.deliwer.com/broker-partner</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
-  <url><loc>https://www.deliwer.com/broker-move-in-support-dubai</loc><changefreq>monthly</changefreq><priority>0.70</priority></url>
   <url><loc>https://www.deliwer.com/building-partner</loc><changefreq>monthly</changefreq><priority>0.68</priority></url>
   <url><loc>https://www.deliwer.com/typing-center-partner</loc><changefreq>monthly</changefreq><priority>0.65</priority></url>
 

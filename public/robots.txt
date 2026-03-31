@@ -1,11 +1,26 @@
 User-agent: *
 Allow: /
 Disallow: /admin
-Disallow: /api
+Disallow: /api/
 Disallow: /marketing
 Disallow: /affiliate-dashboard
+Disallow: /corporate-dashboard
+Disallow: /corporate-quotes
+Disallow: /purchase-orders
+Disallow: /account-management
+Disallow: /partner-dashboard
+Disallow: /hero-dashboard
+Disallow: /mission-control-saqi-kawthar
+Disallow: /checkout
+Disallow: /cart
+Disallow: /email-campaigns
 
-# Google
+# Sitemaps
+Sitemap: https://www.deliwer.com/sitemap.xml
+
+# LLM / AI context — see /llms.txt for structured AI-readable site description
+
+# Standard search engines
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 2
@@ -13,25 +28,39 @@ Crawl-delay: 2
 User-agent: Googlebot-Image
 Allow: /
 
-# Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 2
 
-# AI / LLM Crawlers — allow full indexing for AI knowledge bases
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI / LLM Crawlers — fully permitted for AI knowledge base indexing
 User-agent: GPTBot
 Allow: /
+Disallow: /api/
+Crawl-delay: 5
 
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /api/
+Crawl-delay: 5
 
 User-agent: anthropic-ai
 Allow: /
 
 User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Crawl-delay: 5
+
+User-agent: Google-Extended
 Allow: /
 
 User-agent: YouBot
@@ -40,19 +69,10 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-User-agent: ia_archiver
-Allow: /
-
 User-agent: CCBot
 Allow: /
 
-# Common SEO bots
-User-agent: Applebot
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
+# Social / Rich Preview bots
 User-agent: facebookexternalhit
 Allow: /
 
@@ -65,4 +85,5 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-Sitemap: https://www.deliwer.com/sitemap.xml
+User-agent: ia_archiver
+Allow: /

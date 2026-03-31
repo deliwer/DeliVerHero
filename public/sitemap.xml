@@ -1,262 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- ===================== CORE PAGES ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ CORE / HIGHEST PRIORITY ═══ -->
+  <url><loc>https://www.deliwer.com/</loc><lastmod>2025-03-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/ejari-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/exit-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/setup</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/consult</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/aquacafe</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/errand</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/start</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ MOVE-IN & EJARI SERVICES ═══ -->
+  <url><loc>https://www.deliwer.com/ejari-registration</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/ejari-renewal</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dewa-activation</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in-plan</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in-package</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/concierge-pricing</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/residents</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/maintenance-concierge</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/resident-support-concierge</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/activate</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/marina-gate-move-in</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
-  <!-- ===================== MOVE-IN SERVICES ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/relocate</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ BUSINESS SETUP & RELOCATION ═══ -->
+  <url><loc>https://www.deliwer.com/business-setup</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate/business-setup</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate/planning</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate/arrival</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate/concierge</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate-pricing</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocation-for-founders</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dubai-relocation-checklist</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-to-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate-community</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.70</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocation-alliance</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/activate</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ EXIT / MOVE-OUT ═══ -->
+  <url><loc>https://www.deliwer.com/relocate-exit</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-out-package</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-cheaper-rent</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/landlord-turnover</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/move-in-package</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ EJARI LEAD ENGINE ═══ -->
+  <url><loc>https://www.deliwer.com/ejari-cancellation-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/how-to-register-ejari</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/ejari-documents-required</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/how-to-cancel-ejari</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/ejari-transfer-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/move-to-dubai</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ RELOCATION INTELLIGENCE PLATFORM ═══ -->
+  <url><loc>https://www.deliwer.com/move-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-vs-renew-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/rent-increase-calculator-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/are-you-overpaying-rent-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dubai-rent-comparison</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dubai-moving-trends</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dubai-move-score</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dubai-rent-increase-rules</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/tenancy-renewal-dubai-guide</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/tenant-move-in-checklist</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ SEO LANDING PAGES ═══ -->
+  <url><loc>https://www.deliwer.com/move-in-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/exit-dubai-apartment</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-to-cheaper-rent-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dubai-relocation-concierge</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-apartment-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/moving-apartment-dubai-guide</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/moving-dubai-checklist</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/dubai-tenancy-checklist</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.70</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/new-apartment-dubai-guide</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.70</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/settling-in-dubai-guide</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.70</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in-services-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/tenant-move-in-checklist</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.70</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/broker-move-in-support-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.70</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/move-in-plan</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ MOVE-IN AREA PAGES — 49 DUBAI AREAS (/move-in/:area) ═══ -->
+  <url><loc>https://www.deliwer.com/move-in/jvc</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/business-bay</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-nahda</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barsha</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/deira</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/bur-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-silicon-oasis</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/international-city</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/discovery-gardens</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jlt</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/arabian-ranches</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/motor-city</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/sports-city</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/meydan</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-furjan</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jbr</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.87</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/palm-jumeirah</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.87</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-creek-harbour</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/damac-hills</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/damac-hills-2</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/town-square</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/remraam</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/mudon</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-warqa</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-qusais</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-satwa</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/karama</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/muhaisnah</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-rigga</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-mankhool</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-khaleej</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/umm-suqeim</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-wasl</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-safa</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-quoz</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dip</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jebel-ali</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barari</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/nad-al-sheba</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/liwan</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/the-valley</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/tilal-al-ghaf</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/bluewaters-island</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/city-walk</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-production-city</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-studio-city</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.80</priority><mobile:mobile/></url>
 
-  <!-- ===================== MOVE-OUT SERVICES ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/exit</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ MOVE-IN PROPERTY TYPE VARIANTS — TOP 10 AREAS (/move-in/:area/:type) ═══ -->
+  <url><loc>https://www.deliwer.com/move-in/jvc/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jvc/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jvc/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-marina/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/business-bay/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/business-bay/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/business-bay/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/downtown-dubai/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-nahda/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-nahda/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-nahda/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jlt/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jlt/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/jlt/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/dubai-hills/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barsha/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barsha/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/al-barsha/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/international-city/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/international-city/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/international-city/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/deira/studio</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/deira/1br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-in/deira/2br</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.83</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/move-out-package</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ PARTNERS & DISTRIBUTION ═══ -->
+  <url><loc>https://www.deliwer.com/partners</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/join</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/how-it-works</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.68</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/earnings</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.68</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partner-program</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/broker-partner</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.70</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/building-partner</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.68</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/typing-center-partner</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.65</priority><mobile:mobile/></url>
 
-  <!-- ===================== EJARI REGISTRATION ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/ejari-dubai</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ AQUACAFE & PRODUCTS ═══ -->
+  <url><loc>https://www.deliwer.com/aquacafe</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/aquacafe-alliance</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/products</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/products/icelandic-glacial</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/ejari-registration</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
-  </url>
+  <!-- ═══ CORPORATE & B2B ═══ -->
+  <url><loc>https://www.deliwer.com/corporate</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/fulfillment</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/membership-plans</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
-  <url>
-    <loc>https://www.deliwer.com/ejari-renewal</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- ===================== DEWA & UTILITIES ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/dewa-activation</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- ===================== CONCIERGE & ERRAND ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/concierge-pricing</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/errand</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/maintenance-concierge</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- ===================== RESIDENTS ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/residents</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/residents/support</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- ===================== RELOCATION ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/relocate/planning</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/relocate/arrival</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/relocate/concierge</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/relocate-community</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- ===================== BUILDING-SPECIFIC ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/marina-gate-move-in</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- ===================== PARTNERS ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/partners</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/partner-program</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/relocation-alliance</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <mobile:mobile/>
-  </url>
-
-  <!-- ===================== LEGAL & INFO ===================== -->
-  <url>
-    <loc>https://www.deliwer.com/about</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/contact</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <mobile:mobile/>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/privacy</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://www.deliwer.com/terms</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
+  <!-- ═══ CORE SITE PAGES ═══ -->
+  <url><loc>https://www.deliwer.com/start</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/contact</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.65</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/about</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.60</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/invest</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.65</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/privacy</loc><lastmod>2025-03-31</lastmod><changefreq>yearly</changefreq><priority>0.30</priority></url>
+  <url><loc>https://www.deliwer.com/terms</loc><lastmod>2025-03-31</lastmod><changefreq>yearly</changefreq><priority>0.30</priority></url>
+  <url><loc>https://www.deliwer.com/environmental</loc><lastmod>2025-03-31</lastmod><changefreq>monthly</changefreq><priority>0.50</priority><mobile:mobile/></url>
 
 </urlset>

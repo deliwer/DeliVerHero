@@ -26,8 +26,57 @@ Disallow: /email-campaigns
 # Block API endpoints
 Disallow: /api/
 
-# Crawl-delay for bots that respect it
+# Sitemaps
+Sitemap: https://www.deliwer.com/sitemap.xml
+
+# LLM / AI crawlers — explicitly permitted with their own crawl-delay
+# See /llms.txt for structured AI-readable context about this site
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Crawl-delay: 5
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Crawl-delay: 5
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Crawl-delay: 5
+
+User-agent: Gemini
+Allow: /
+Disallow: /api/
+Crawl-delay: 5
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /api/
+Crawl-delay: 10
+
+User-agent: Googlebot
+Allow: /
 Crawl-delay: 2
 
-# Sitemap
-Sitemap: https://www.deliwer.com/sitemap.xml
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 3
+
+User-agent: Applebot
+Allow: /
+Crawl-delay: 5
