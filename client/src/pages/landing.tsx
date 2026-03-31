@@ -215,6 +215,111 @@ export default function LandingPage() {
       </section>
 
       {/* ============================================
+          SECTION 3 (UNIFIED) — WHAT DELIVERWER HANDLES
+         ============================================ */}
+      <section className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80"
+            alt="Home setup"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90" />
+        </div>
+        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              One coordinator. Everything sorted.
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              What DeliWer handles for you
+            </h2>
+            <p className="text-gray-400 font-medium max-w-lg mx-auto">
+              One conversation. Full move-in coordination. We coordinate everything — our partners execute.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { icon: "📄", label: "Ejari Registration" },
+              { icon: "🚛", label: "Movers & Packing" },
+              { icon: "⚡", label: "DEWA & Utility Setup" },
+              { icon: "📶", label: "Internet Connection" },
+              { icon: "🧹", label: "Cleaning & Preparation" },
+              { icon: "📦", label: "Storage & Logistics" },
+            ].map((s) => (
+              <div key={s.label} className="group flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-white/15 rounded-xl transition-all">
+                <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{s.icon}</span>
+                <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-bundle-start"
+            >
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all">
+                <MessageCircle className="w-4 h-4 mr-2" /> Start My Move-In on WhatsApp
+              </Button>
+            </a>
+            <Link href="/concierge-pricing">
+              <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-xl px-6 h-11 text-sm transition-all">
+                View Pricing →
+              </Button>
+            </Link>
+          </div>
+          <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">No hidden fees · You pay vendors directly at market rates</p>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 4 — HOW IT WORKS
+         ============================================ */}
+      <section id="how-it-works" className="py-20 px-6 bg-slate-900/50 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-2"
+          >
+            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              Simple Process
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How your move-in gets done</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { step: "01", title: "Tell us your property", desc: "WhatsApp us in seconds — property details, move date, what you need.", color: "emerald" },
+              { step: "02", title: "We plan your move", desc: "Ejari, movers, DEWA, internet — we sequence everything perfectly.", color: "blue" },
+              { step: "03", title: "Pay only when confirmed", desc: "No upfront fees to us. You pay vendors directly at market rates.", color: "violet" },
+              { step: "04", title: "Move in stress-free", desc: "Walk into a ready home. Everything sorted before you arrive.", color: "emerald" },
+            ].map((s) => (
+              <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3 hover:border-white/20 transition-all">
+                <div className={`text-4xl font-black ${s.color === "emerald" ? "text-emerald-500/30" : s.color === "blue" ? "text-blue-500/30" : "text-violet-500/30"}`}>{s.step}</div>
+                <h3 className="text-white font-black text-sm uppercase tracking-tight leading-snug">{s.title}</h3>
+                <p className="text-gray-500 text-xs font-medium leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <p className="text-emerald-400 font-black uppercase tracking-widest text-sm">No coordination fees. No confusion. No back-and-forth.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
           DUBAI RENTAL INTELLIGENCE + COST CLARITY
          ============================================ */}
       <section className="relative py-16 px-4 border-b border-white/5 overflow-hidden">
@@ -348,111 +453,6 @@ export default function LandingPage() {
               </Button>
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          SECTION 4 — HOW IT WORKS
-         ============================================ */}
-      <section id="how-it-works" className="py-20 px-6 bg-slate-900/50 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-2"
-          >
-            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              Simple Process
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How your move-in gets done</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { step: "01", title: "Tell us your property", desc: "WhatsApp us in seconds — property details, move date, what you need.", color: "emerald" },
-              { step: "02", title: "We plan your move", desc: "Ejari, movers, DEWA, internet — we sequence everything perfectly.", color: "blue" },
-              { step: "03", title: "Pay only when confirmed", desc: "No upfront fees to us. You pay vendors directly at market rates.", color: "violet" },
-              { step: "04", title: "Move in stress-free", desc: "Walk into a ready home. Everything sorted before you arrive.", color: "emerald" },
-            ].map((s) => (
-              <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3 hover:border-white/20 transition-all">
-                <div className={`text-4xl font-black ${s.color === "emerald" ? "text-emerald-500/30" : s.color === "blue" ? "text-blue-500/30" : "text-violet-500/30"}`}>{s.step}</div>
-                <h3 className="text-white font-black text-sm uppercase tracking-tight leading-snug">{s.title}</h3>
-                <p className="text-gray-500 text-xs font-medium leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <p className="text-emerald-400 font-black uppercase tracking-widest text-sm">No coordination fees. No confusion. No back-and-forth.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          SECTION 3 (UNIFIED) — WHAT DELIVERWER HANDLES
-         ============================================ */}
-      <section className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80"
-            alt="Home setup"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90" />
-        </div>
-        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              One coordinator. Everything sorted.
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
-              What DeliWer handles for you
-            </h2>
-            <p className="text-gray-400 font-medium max-w-lg mx-auto">
-              One conversation. Full move-in coordination. We coordinate everything — our partners execute.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {[
-              { icon: "📄", label: "Ejari Registration" },
-              { icon: "🚛", label: "Movers & Packing" },
-              { icon: "⚡", label: "DEWA & Utility Setup" },
-              { icon: "📶", label: "Internet Connection" },
-              { icon: "🧹", label: "Cleaning & Preparation" },
-              { icon: "📦", label: "Storage & Logistics" },
-            ].map((s) => (
-              <div key={s.label} className="group flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-white/15 rounded-xl transition-all">
-                <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{s.icon}</span>
-                <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="button-bundle-start"
-            >
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all">
-                <MessageCircle className="w-4 h-4 mr-2" /> Start My Move-In on WhatsApp
-              </Button>
-            </a>
-            <Link href="/concierge-pricing">
-              <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-xl px-6 h-11 text-sm transition-all">
-                View Pricing →
-              </Button>
-            </Link>
-          </div>
-          <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">No hidden fees · You pay vendors directly at market rates</p>
         </div>
       </section>
 
