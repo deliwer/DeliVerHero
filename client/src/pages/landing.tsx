@@ -215,43 +215,6 @@ export default function LandingPage() {
       </section>
 
       {/* ============================================
-          SECTION 4 — HOW IT WORKS
-         ============================================ */}
-      <section id="how-it-works" className="py-20 px-6 bg-slate-900/50 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-2"
-          >
-            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              Simple Process
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How your move-in gets done</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { step: "01", title: "Tell us your property", desc: "WhatsApp us in seconds — property details, move date, what you need.", color: "emerald" },
-              { step: "02", title: "We plan your move", desc: "Ejari, movers, DEWA, internet — we sequence everything perfectly.", color: "blue" },
-              { step: "03", title: "Pay only when confirmed", desc: "No upfront fees to us. You pay vendors directly at market rates.", color: "violet" },
-              { step: "04", title: "Move in stress-free", desc: "Walk into a ready home. Everything sorted before you arrive.", color: "emerald" },
-            ].map((s) => (
-              <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3 hover:border-white/20 transition-all">
-                <div className={`text-4xl font-black ${s.color === "emerald" ? "text-emerald-500/30" : s.color === "blue" ? "text-blue-500/30" : "text-violet-500/30"}`}>{s.step}</div>
-                <h3 className="text-white font-black text-sm uppercase tracking-tight leading-snug">{s.title}</h3>
-                <p className="text-gray-500 text-xs font-medium leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <p className="text-emerald-400 font-black uppercase tracking-widest text-sm">No coordination fees. No confusion. No back-and-forth.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
           DUBAI RENTAL INTELLIGENCE + COST CLARITY
          ============================================ */}
       <section className="relative py-16 px-4 border-b border-white/5 overflow-hidden">
@@ -270,7 +233,8 @@ export default function LandingPage() {
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="text-center space-y-3"
           >
@@ -383,6 +347,43 @@ export default function LandingPage() {
                 <Calculator className="w-4 h-4 mr-2" /> Analyse My Rent Free
               </Button>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 4 — HOW IT WORKS
+         ============================================ */}
+      <section id="how-it-works" className="py-20 px-6 bg-slate-900/50 border-b border-white/5">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-2"
+          >
+            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              Simple Process
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How your move-in gets done</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { step: "01", title: "Tell us your property", desc: "WhatsApp us in seconds — property details, move date, what you need.", color: "emerald" },
+              { step: "02", title: "We plan your move", desc: "Ejari, movers, DEWA, internet — we sequence everything perfectly.", color: "blue" },
+              { step: "03", title: "Pay only when confirmed", desc: "No upfront fees to us. You pay vendors directly at market rates.", color: "violet" },
+              { step: "04", title: "Move in stress-free", desc: "Walk into a ready home. Everything sorted before you arrive.", color: "emerald" },
+            ].map((s) => (
+              <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3 hover:border-white/20 transition-all">
+                <div className={`text-4xl font-black ${s.color === "emerald" ? "text-emerald-500/30" : s.color === "blue" ? "text-blue-500/30" : "text-violet-500/30"}`}>{s.step}</div>
+                <h3 className="text-white font-black text-sm uppercase tracking-tight leading-snug">{s.title}</h3>
+                <p className="text-gray-500 text-xs font-medium leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <p className="text-emerald-400 font-black uppercase tracking-widest text-sm">No coordination fees. No confusion. No back-and-forth.</p>
           </div>
         </div>
       </section>
