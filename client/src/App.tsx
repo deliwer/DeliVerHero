@@ -133,6 +133,7 @@ const ExitDubaiPage = lazy(() => import("@/pages/exit-dubai"));
 const MoveCheaperRentPage = lazy(() => import("@/pages/move-cheaper-rent"));
 const LandlordTurnoverPage = lazy(() => import("@/pages/landlord-turnover"));
 const SeoMoveInDubai = lazy(() => import("@/pages/seo-move-in-dubai"));
+const MoveInAreaPage = lazy(() => import("@/pages/move-in-area"));
 const SeoExitDubaiApartment = lazy(() => import("@/pages/seo-exit-dubai-apartment"));
 const SeoMoveToCheaperRentDubai = lazy(() => import("@/pages/seo-move-to-cheaper-rent-dubai"));
 const SeoDubaiRelocationConcierge = lazy(() => import("@/pages/seo-dubai-relocation-concierge"));
@@ -365,6 +366,10 @@ function Router() {
         <Route path="/exit-dubai" component={ExitDubaiPage} />
         <Route path="/move-cheaper-rent" component={MoveCheaperRentPage} />
         <Route path="/landlord-turnover" component={LandlordTurnoverPage} />
+
+        {/* Move-In Area SEO Pages — /move-in/:area and /move-in/:area/:propertyType */}
+        <Route path="/move-in/:area/:propertyType" component={MoveInAreaPage} />
+        <Route path="/move-in/:area" component={MoveInAreaPage} />
 
         {/* SEO Landing Pages */}
         <Route path="/move-in-dubai" component={SeoMoveInDubai} />
