@@ -1,4 +1,5 @@
 import { Link, useLocation } from "wouter";
+import { useEffect, useState } from "react";
 
 const PARTNER_SUBNAV = [
   { label: "Overview", href: "/partners" },
@@ -10,8 +11,25 @@ const PARTNER_SUBNAV = [
 
 export function PartnerSubNav() {
   const [location] = useLocation();
+  const [navHeight, setNavHeight] = useState(104);
+
+  useEffect(() => {
+    const nav = document.getElementById("main-nav");
+    if (!nav) return;
+
+    const update = () => setNavHeight(nav.offsetHeight);
+    update();
+
+    const observer = new ResizeObserver(update);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="sticky top-[104px] z-[90] bg-slate-900/95 backdrop-blur border-b border-white/10">
+    <div
+      className="sticky z-[90] bg-slate-900/95 backdrop-blur border-b border-white/10"
+      style={{ top: navHeight }}
+    >
       <div className="max-w-5xl mx-auto px-4 flex gap-1 overflow-x-auto scrollbar-none">
         {PARTNER_SUBNAV.map((item) => (
           <Link key={item.href} href={item.href}>

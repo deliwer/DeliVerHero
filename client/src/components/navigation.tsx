@@ -56,7 +56,7 @@ export function Navigation() {
   };
 
   return (
-    <div className="w-full fixed top-0 z-[100]">
+    <div id="main-nav" className="w-full fixed top-0 z-[100]">
       {/* 0. Emergency Preparedness Banner */}
       <EmergencyBanner />
 

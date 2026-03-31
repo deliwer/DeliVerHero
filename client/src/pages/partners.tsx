@@ -247,6 +247,60 @@ export default function PartnersPage() {
           </motion.div>
         </div>
       </section>
+      {/* ── BROKER SPOTLIGHT BANNER ─────────────────────── */}
+      <section className="py-10 px-4 bg-gradient-to-r from-purple-950/60 via-slate-950 to-purple-950/40 border-y border-purple-500/20">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-10">
+          {/* Left: label + copy */}
+          <div className="flex-1 space-y-2 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 bg-purple-500/15 border border-purple-500/25 rounded-full px-3 py-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+              <span className="text-purple-400 text-[10px] font-black uppercase tracking-widest">For Real Estate Brokers</span>
+            </div>
+            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter text-white leading-tight">
+              Close More Deals. Earn AED 150–800+ Per Client.
+            </h2>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-lg">
+              Generate your personal referral link in seconds — share it after lease signing and DeliWer handles the entire move-in. You earn on every completed service, automatically.
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-gray-500 font-semibold pt-1 justify-center md:justify-start">
+              {["Studio: AED 150–300", "1BR: AED 300–600", "Villa: AED 800+", "Free to join"].map(t => (
+                <span key={t} className="flex items-center gap-1">
+                  <span className="w-1 h-1 rounded-full bg-purple-400 shrink-0" />{t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: CTA buttons */}
+          <div className="flex flex-col gap-3 shrink-0 w-full md:w-auto">
+            <Link href="/broker-partner" data-testid="button-partners-broker-cta-primary">
+              <Button
+                size="lg"
+                className="w-full md:w-auto bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-8 h-13 text-sm shadow-xl shadow-purple-900/40 transition-all"
+              >
+                <Zap className="w-4 h-4 mr-2" />
+                Generate My Referral Link
+              </Button>
+            </Link>
+            <a
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I'm%20a%20real%20estate%20broker%20and%20want%20to%20join%20the%20partner%20program."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-partners-broker-cta-wa"
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full md:w-auto border-purple-500/30 text-purple-300 hover:bg-purple-500/10 font-black rounded-2xl px-7 h-11 text-sm"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Join via WhatsApp
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Partner Journey Flow */}
       <section className="py-20 px-4 bg-slate-900/40 border-y border-white/5">
         <div className="max-w-5xl mx-auto space-y-12">
