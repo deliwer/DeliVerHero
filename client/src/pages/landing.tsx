@@ -595,17 +595,24 @@ export default function LandingPage() {
             <p className="text-gray-300 font-medium max-w-lg mx-auto text-lg">
               Help your clients move in faster — and earn on every referral.
             </p>
-            <a
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I'm%20a%20real%20estate%20agent%20and%20I%20want%20to%20join%20as%20a%20broker%20partner."
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="cta-broker-partner"
-            >
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl h-14 px-10 text-sm shadow-xl shadow-emerald-900/30 transition-all">
-                <MessageCircle className="w-5 h-5 mr-2" /> Join as Broker Partner
-              </Button>
-            </a>
-            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Free to join · Earn on every client referral</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/broker-partner" data-testid="cta-broker-partner">
+                <Button className="bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest rounded-2xl h-14 px-10 text-sm shadow-xl shadow-purple-900/30 transition-all">
+                  <ArrowRight className="w-5 h-5 mr-2" /> Generate My Referral Link
+                </Button>
+              </Link>
+              <a
+                href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I'm%20a%20real%20estate%20agent%20and%20I%20want%20to%20join%20as%20a%20broker%20partner."
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="cta-broker-partner-wa"
+              >
+                <Button variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest rounded-2xl h-14 px-8 text-sm">
+                  <MessageCircle className="w-5 h-5 mr-2" /> Join via WhatsApp
+                </Button>
+              </a>
+            </div>
+            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Free to join · Earn AED 150–800+ per client</p>
           </div>
         </div>
       </section>

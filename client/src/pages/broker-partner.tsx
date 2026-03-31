@@ -210,16 +210,19 @@ export default function BrokerPartnerPage() {
         </div>
 
         <div className="max-w-3xl mx-auto text-center relative z-10 space-y-7">
-          <Badge className="bg-purple-500/10 text-purple-400 border-purple-500/20 px-4 py-2 text-xs font-black uppercase tracking-widest rounded-full">
+          {/* Text readability scrim */}
+          <div className="absolute inset-x-0 -inset-y-12 -z-10 bg-slate-950/70 blur-2xl rounded-3xl pointer-events-none" />
+
+          <Badge className="bg-purple-500/15 text-purple-300 border-purple-500/30 px-4 py-2 text-xs font-black uppercase tracking-widest rounded-full shadow-lg">
             Broker Partner Program
           </Badge>
 
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.88] uppercase">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.88] uppercase drop-shadow-2xl">
             Close More Deals.<br />
             <span className="text-purple-400">Earn More Per Client.</span>
           </h1>
 
-          <p className="text-lg text-gray-400 font-medium max-w-xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-200 font-medium max-w-xl mx-auto leading-relaxed drop-shadow-lg bg-slate-950/40 rounded-2xl px-5 py-3 backdrop-blur-sm border border-white/5">
             Help your tenants complete their move-in — Ejari, movers, DEWA, setup — in one flow. 
             Earn a commission on every referral.
           </p>

@@ -1,8 +1,8 @@
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
-import { MessageSquare, AlertCircle, CheckCircle2 } from "lucide-react";
+import { MessageSquare, AlertCircle, CheckCircle2, Handshake } from "lucide-react";
 import { motion } from "framer-motion";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { useEffect } from "react";
 
@@ -105,6 +105,29 @@ export default function EjariRegistration() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Broker CTA Strip */}
+      <section className="py-10 px-4 bg-purple-950/20 border-t border-purple-500/10">
+        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-500/25 flex items-center justify-center shrink-0">
+              <Handshake className="w-4 h-4 text-purple-400" />
+            </div>
+            <div>
+              <p className="text-white font-black text-sm uppercase tracking-tight">Are you a real estate broker?</p>
+              <p className="text-gray-500 text-xs">Refer clients to DeliWer and earn AED 150–800+ per move-in.</p>
+            </div>
+          </div>
+          <Link href="/broker-partner" data-testid="button-ejari-reg-broker-cta">
+            <Button
+              size="sm"
+              className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl px-6 h-10 text-xs shrink-0"
+            >
+              Get My Referral Link →
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

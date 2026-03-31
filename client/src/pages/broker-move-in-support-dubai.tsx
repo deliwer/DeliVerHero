@@ -2,9 +2,10 @@ import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, MessageCircle, Briefcase, Zap, ShieldCheck, DollarSign } from "lucide-react";
+import { CheckCircle2, MessageCircle, Briefcase, Zap, ShieldCheck, DollarSign, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SiWhatsapp } from "react-icons/si";
+import { Link } from "wouter";
 
 export default function BrokerSupportDubai() {
   const whatsappLink = "https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20am%20a%20broker%20and%20need%20move-in%20support%20for%20my%20client.";
@@ -103,6 +104,42 @@ export default function BrokerSupportDubai() {
                 <span className="text-xs font-bold uppercase tracking-widest text-gray-400">{item.text}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── REFERRAL LINK CTA ─────────────────────────────── */}
+      <section className="py-16 px-4 bg-gradient-to-b from-slate-950 to-purple-950/20 border-t border-white/5">
+        <div className="max-w-2xl mx-auto text-center space-y-5">
+          <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-1.5">
+            <ArrowRight className="w-3.5 h-3.5 text-purple-400" />
+            <span className="text-purple-400 text-[10px] font-black uppercase tracking-widest">Instant Setup</span>
+          </div>
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">
+            Generate Your Personal Referral Link
+          </h2>
+          <p className="text-gray-400 text-sm max-w-sm mx-auto">
+            Enter your name, get your unique link, and start earning AED 150–800+ per client — no setup fees, no delay.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/broker-partner" data-testid="button-broker-move-support-referral">
+              <Button
+                size="lg"
+                className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-10 h-13 text-sm shadow-xl shadow-purple-900/30"
+              >
+                <ArrowRight className="w-5 h-5 mr-2" />
+                Get My Referral Link
+              </Button>
+            </Link>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white/10 text-white hover:bg-white/5 font-black rounded-2xl px-8 h-13 text-sm"
+              onClick={() => window.open(whatsappLink, '_blank')}
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Chat on WhatsApp
+            </Button>
           </div>
         </div>
       </section>

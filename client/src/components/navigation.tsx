@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
-  Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle
+  Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -217,6 +217,19 @@ export function Navigation() {
 
             {!isChaintrack && (
               <div className="w-full h-px bg-white/10" />
+            )}
+            {!isChaintrack && (
+              <Link href="/broker-partner">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-xs font-black uppercase tracking-widest h-12 rounded-xl text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 border border-purple-900/30"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid="mobile-nav-broker-partner"
+                >
+                  <Handshake className="w-5 h-5 mr-3 text-purple-500" />
+                  Broker Partner Program
+                </Button>
+              </Link>
             )}
             {!isChaintrack && (
               <Link href="/wartime-readiness">

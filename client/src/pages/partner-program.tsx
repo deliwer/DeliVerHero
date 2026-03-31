@@ -355,6 +355,22 @@ export default function PartnerProgram() {
         </div>
       </section>
 
+      {/* ─── BROKER SPOTLIGHT ─── */}
+      <section className="py-12 px-4 bg-purple-950/20 border-y border-purple-500/10">
+        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5">
+          <div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-purple-400 block mb-1">For Real Estate Brokers</span>
+            <p className="text-white font-black text-lg uppercase tracking-tight leading-tight">Generate Your Referral Link Instantly</p>
+            <p className="text-gray-500 text-sm mt-1">Enter your name → get a personal link → earn AED 150–800+ per client.</p>
+          </div>
+          <Link href="/broker-partner" data-testid="button-partner-program-broker-cta">
+            <Button size="lg" className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-8 h-12 text-sm shrink-0">
+              Broker Referral Link →
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       {/* ─── FINAL CTA ─── */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-950 to-black border-t border-emerald-500/20">
         <div className="max-w-3xl mx-auto text-center space-y-8">
