@@ -1,0 +1,186 @@
+[HERO SECTION — ABOVE THE FOLD]
+
+CURRENT INTENT:
+General / unclear
+
+REWRITE:
+
+HEADLINE:
+"Found a Home? Complete Your Move-In in 24 Hours."
+
+SUBHEAD:
+Ejari, movers, DEWA, internet, cleaning — everything handled for you in one place.
+
+ZERO COST LINE (IMPORTANT):
+Move now. Pay only when services are executed. No upfront coordination fees.
+
+PRIMARY CTA BUTTON:
+"Start Move-In on WhatsApp"
+
+SECONDARY CTA:
+"See How It Works"
+
+TRUST STRIP (ADD BELOW CTA):
+✔ Serving tenants across Dubai
+✔ Verified partner network
+✔ Fast WhatsApp support
+
+---
+
+[SECTION 2 — PROBLEM / PAIN]
+
+HEADLINE:
+Moving in Dubai is fragmented, slow, and stressful.
+
+BULLETS:
+
+* Ejari delays and unclear steps
+* Multiple vendors for moving, utilities, cleaning
+* Hidden costs and last-minute surprises
+* No single point of coordination
+
+CLOSING LINE:
+You’ve found your home. Now comes the hard part.
+
+---
+
+[SECTION 3 — SOLUTION]
+
+HEADLINE:
+DeliWer handles everything after you find a home.
+
+SUBTEXT:
+One platform. One conversation. Full move-in coordination.
+
+SERVICE BLOCKS:
+
+* Ejari Registration
+* Movers & Packing
+* DEWA & Utility Setup
+* Internet Connection
+* Cleaning & Preparation
+* Storage & Logistics (if needed)
+
+KEY LINE:
+We coordinate everything. Our partners execute.
+
+---
+
+[SECTION 4 — HOW IT WORKS]
+
+HEADLINE:
+How your move-in gets done
+
+STEP 1:
+Tell us your property (WhatsApp in seconds)
+
+STEP 2:
+We plan your move (Ejari, movers, setup)
+
+STEP 3:
+You only pay when services are confirmed
+
+STEP 4:
+Move in stress-free
+
+IMPORTANT LINE:
+No coordination fees. No confusion. No back-and-forth.
+
+---
+
+[SECTION 5 — COST CLARITY (HIGH IMPACT)]
+
+HEADLINE:
+What does a typical move-in cost?
+
+SUBTEXT:
+Here’s a simple breakdown (estimates):
+
+* Ejari: AED 200–300
+* Movers: AED 800–2500 (depending on size)
+* Utility setup: varies
+* Cleaning: optional
+
+CLOSING LINE:
+We help you plan everything upfront — no surprises.
+
+CTA:
+"Get My Move-In Plan"
+
+---
+
+[SECTION 6 — TRUST / SOCIAL PROOF]
+
+HEADLINE:
+Built for tenants moving across Dubai
+
+ADD:
+
+* “Used by tenants in JVC, Marina, Al Nahda and more”
+* “Partner network for execution”
+* “Fast WhatsApp response”
+
+IF POSSIBLE ADD:
+
+* Real testimonial (even 1 is enough)
+* “Recent move-in completed in {area}”
+
+---
+
+[SECTION 7 — BROKER HOOK (IMPORTANT FOR GROWTH)]
+
+HEADLINE:
+Are you a real estate agent?
+
+SUBTEXT:
+Help your clients move in faster — and earn on every referral.
+
+CTA:
+"Join as Broker Partner"
+
+---
+
+[SECTION 8 — FINAL CTA (MOST IMPORTANT)]
+
+HEADLINE:
+Ready to move into your new home?
+
+SUBTEXT:
+Tell us your property and we’ll handle the rest.
+
+PRIMARY CTA:
+"Start on WhatsApp"
+
+WHATSAPP MESSAGE (DYNAMIC):
+"I found a property in Dubai. I want full move-in support (Ejari, movers, setup)."
+
+CONTACT LINE:
+WhatsApp: +971523946311
+Email: [info@deliwer.com](mailto:info@deliwer.com)
+
+---
+
+[STICKY ELEMENTS — DO NOT MISS]
+
+1. Floating WhatsApp Button (ALL PAGES)
+
+Message:
+"I found a property and need move-in support"
+
+2. Sticky Bottom Bar (Mobile):
+
+"Start Move-In Now"
+
+---
+
+PSYCHOLOGICAL PRINCIPLES APPLIED:
+
+* Moment capture (post-property decision)
+* Reduced cognitive load (one clear action)
+* Trust reinforcement (simple + repeated)
+* Cost transparency (reduces hesitation)
+* WhatsApp immediacy (local behavior match)
+
+END GOAL:
+
+User lands → instantly relates → trusts → clicks WhatsApp → converts
