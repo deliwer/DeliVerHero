@@ -252,60 +252,7 @@ export default function LandingPage() {
       </section>
 
       {/* ============================================
-          SECTION 5 — COST CLARITY
-         ============================================ */}
-      <section className="py-20 px-6 bg-slate-950 border-b border-white/5">
-        <div className="max-w-3xl mx-auto space-y-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              Cost Transparency
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">What does a typical move-in cost?</h2>
-            <p className="text-gray-400 font-medium">Here's a simple breakdown (estimates):</p>
-          </motion.div>
-          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden divide-y divide-white/5">
-            {[
-              { service: "Ejari Registration", range: "AED 200–300", icon: "📄" },
-              { service: "Movers (depends on size)", range: "AED 800–2,500", icon: "🚛" },
-              { service: "Utility Setup (DEWA)", range: "Varies by property", icon: "⚡" },
-              { service: "Cleaning (optional)", range: "AED 250–600", icon: "🧹" },
-            ].map((row) => (
-              <div key={row.service} className="flex items-center justify-between px-6 py-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-lg">{row.icon}</span>
-                  <span className="text-gray-300 font-bold text-sm">{row.service}</span>
-                </div>
-                <span className="text-emerald-400 font-black text-sm">{row.range}</span>
-              </div>
-            ))}
-            <div className="px-6 py-4 bg-emerald-500/5">
-              <p className="text-emerald-300 font-black text-sm text-center">DeliWer coordination fee: AED 0 to you</p>
-            </div>
-          </div>
-          <div className="text-center space-y-4">
-            <p className="text-gray-400 font-medium text-sm">We help you plan everything upfront — no surprises.</p>
-            <a
-              href="https://wa.me/971523946311?text=I%20want%20to%20get%20my%20move-in%20plan%20and%20cost%20estimate."
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="cta-get-move-in-plan"
-            >
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl h-14 px-10 text-sm shadow-xl shadow-emerald-900/30 transition-all">
-                <MessageCircle className="w-5 h-5 mr-2" /> Get My Move-In Plan
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================
-          DUBAI RENTAL INTELLIGENCE — Comparison Hub
+          DUBAI RENTAL INTELLIGENCE + COST CLARITY
          ============================================ */}
       <section className="relative py-16 px-4 border-b border-white/5 overflow-hidden">
         {/* Lifestyle image background */}
@@ -391,22 +338,51 @@ export default function LandingPage() {
             </div>
           </div>
 
+          {/* Cost Breakdown */}
+          <div className="space-y-3">
+            <p className="text-[10px] text-amber-400 font-black uppercase tracking-widest text-center">Typical move-in cost estimates</p>
+            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden divide-y divide-white/5">
+              {[
+                { service: "Ejari Registration", range: "AED 200–300", icon: "📄" },
+                { service: "Movers (depends on size)", range: "AED 800–2,500", icon: "🚛" },
+                { service: "Utility Setup (DEWA)", range: "Varies by property", icon: "⚡" },
+                { service: "Cleaning (optional)", range: "AED 250–600", icon: "🧹" },
+              ].map((row) => (
+                <div key={row.service} className="flex items-center justify-between px-5 py-3">
+                  <div className="flex items-center gap-2">
+                    <span>{row.icon}</span>
+                    <span className="text-gray-300 font-bold text-xs">{row.service}</span>
+                  </div>
+                  <span className="text-emerald-400 font-black text-xs">{row.range}</span>
+                </div>
+              ))}
+              <div className="px-5 py-3 bg-emerald-500/5">
+                <p className="text-emerald-300 font-black text-xs text-center">DeliWer coordination fee: AED 0 to you</p>
+              </div>
+            </div>
+          </div>
+
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="https://wa.me/971523946311?text=I%20want%20to%20get%20my%20move-in%20plan%20and%20cost%20estimate."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3 rounded-2xl text-sm transition-all shadow-lg shadow-emerald-900/30"
+              data-testid="cta-get-move-in-plan"
+            >
+              <MessageCircle className="w-4 h-4" /> Get My Move-In Plan
+            </a>
             <a
               href="https://wa.me/971523946311?text=Hello%20DeliWer,%20I%20want%20a%20free%20rental%20analysis%20for%20my%20apartment"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-black px-6 py-3 rounded-2xl text-sm transition-all shadow-lg shadow-violet-900/30"
               data-testid="cta-rental-analysis"
             >
-              <MessageCircle className="w-4 h-4" /> Analyse My Rent
-            </a>
-            <Link href="/move-vs-renew-dubai">
-              <Button variant="outline" className="border-violet-500/40 text-violet-400 hover:bg-violet-500/10 font-black rounded-2xl px-6 h-10 text-sm transition-all" data-testid="cta-move-vs-renew">
-                <Calculator className="w-4 h-4 mr-2" /> Move vs Renew Calculator
+              <Button variant="outline" className="border-violet-500/40 text-violet-400 hover:bg-violet-500/10 font-black rounded-2xl px-6 h-10 text-sm transition-all">
+                <Calculator className="w-4 h-4 mr-2" /> Analyse My Rent Free
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
