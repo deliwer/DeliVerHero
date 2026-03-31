@@ -382,7 +382,7 @@ export default function LandingPage() {
               <BarChart3 className="w-3 h-3" /> Dubai Rental Intelligence
             </div>
             <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
-              Is Your Rent Still <span className="text-violet-400">Competitive?</span>
+              Are You <span className="text-violet-400">Overpaying Rent</span> in Dubai?
             </h2>
             <p className="text-gray-400 text-sm max-w-xl mx-auto font-medium">
               Dubai rents shifted 18–35% in 2024. DeliWer benchmarks your contract against RERA and finds your cheapest legal move — at zero markup.
