@@ -35,14 +35,6 @@ const lifestyleImages = {
   finalCTA: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&q=80"
 };
 
-const BUNDLE_SERVICES = [
-  { icon: "🚛", label: "Movers" },
-  { icon: "📄", label: "Ejari" },
-  { icon: "⚡", label: "DEWA" },
-  { icon: "💧", label: "Water Check" },
-  { icon: "🚿", label: "Shower Filter" },
-  { icon: "🗓️", label: "Scheduling" },
-];
 
 export default function LandingPage() {
   const [funnelOpen, setFunnelOpen] = useState(false);
@@ -218,49 +210,6 @@ export default function LandingPage() {
           </div>
           <p className="text-center text-gray-500 font-black uppercase tracking-widest text-sm">
             You've found your home. Now comes the hard part.
-          </p>
-        </div>
-      </section>
-
-      {/* ============================================
-          SECTION 3 — SOLUTION
-         ============================================ */}
-      <section className="py-20 px-6 bg-slate-950 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              One Platform. One Conversation.
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
-              DeliWer handles everything<br />after you find a home.
-            </h2>
-            <p className="text-gray-400 font-medium max-w-lg mx-auto">
-              One platform. One conversation. Full move-in coordination.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {[
-              { icon: "📄", label: "Ejari Registration" },
-              { icon: "🚛", label: "Movers & Packing" },
-              { icon: "⚡", label: "DEWA & Utility Setup" },
-              { icon: "📶", label: "Internet Connection" },
-              { icon: "🧹", label: "Cleaning & Preparation" },
-              { icon: "📦", label: "Storage & Logistics" },
-            ].map((s) => (
-              <div key={s.label} className="group flex flex-col items-center gap-3 p-5 bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/5 rounded-2xl transition-all text-center">
-                <span className="text-3xl group-hover:scale-110 transition-transform">{s.icon}</span>
-                <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-emerald-400 font-black uppercase tracking-widest text-sm">
-            We coordinate everything. Our partners execute.
           </p>
         </div>
       </section>
@@ -462,60 +411,64 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* WHAT'S INCLUDED — concise services strip */}
-      <section className="relative py-14 px-6 border-b border-white/5 overflow-hidden">
+      {/* ============================================
+          SECTION 3 (UNIFIED) — WHAT DELIVERWER HANDLES
+         ============================================ */}
+      <section className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80"
             alt="Home setup"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/45 to-slate-950/55" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90" />
         </div>
-        <div className="max-w-4xl mx-auto space-y-6 relative z-10">
-          <div className="text-center space-y-2">
-            <p className="text-[10px] text-emerald-400 font-black uppercase tracking-widest">One coordinator. Everything sorted.</p>
-            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">What DeliWer handles for you</h2>
-          </div>
+        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              One coordinator. Everything sorted.
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              What DeliWer handles for you
+            </h2>
+            <p className="text-gray-400 font-medium max-w-lg mx-auto">
+              One conversation. Full move-in coordination. We coordinate everything — our partners execute.
+            </p>
+          </motion.div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-            {BUNDLE_SERVICES.map((service, i) => (
-              <div key={i} className="group flex flex-col items-center gap-2 py-3 px-2 bg-white/10 backdrop-blur-md border border-white/20 hover:border-emerald-400/60 hover:bg-white/15 rounded-xl transition-all text-center">
-                <span className="text-xl group-hover:scale-110 transition-transform">{service.icon}</span>
-                <span className="text-[9px] font-black uppercase tracking-tight text-white/80 group-hover:text-emerald-300 transition-colors leading-tight">{service.label}</span>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { icon: "📄", label: "Ejari Registration" },
+              { icon: "🚛", label: "Movers & Packing" },
+              { icon: "⚡", label: "DEWA & Utility Setup" },
+              { icon: "📶", label: "Internet Connection" },
+              { icon: "🧹", label: "Cleaning & Preparation" },
+              { icon: "📦", label: "Storage & Logistics" },
+            ].map((s) => (
+              <div key={s.label} className="group flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-white/15 rounded-xl transition-all">
+                <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{s.icon}</span>
+                <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
               </div>
             ))}
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {[
-              { icon: "🏠", label: "Move In", href: "/move-in-package", testid: "tile-move-in" },
-              { icon: "📄", label: "Ejari", href: "/ejari-registration", testid: "tile-ejari" },
-              { icon: "⚡", label: "DEWA", href: "/dewa-activation", testid: "tile-dewa" },
-              { icon: "🚪", label: "Move Out", href: "/move-out-package", testid: "tile-move-out" },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="group flex flex-col items-center gap-2 py-3 px-3 bg-white/10 backdrop-blur-md border border-white/20 hover:border-emerald-400/60 hover:bg-white/15 rounded-xl transition-all"
-                data-testid={item.testid}
-              >
-                <span className="text-xl group-hover:scale-110 transition-transform">{item.icon}</span>
-                <span className="text-[10px] font-black uppercase tracking-tight text-white/80 group-hover:text-emerald-300 transition-colors">{item.label}</span>
-                <ArrowRight className="w-3 h-3 text-white/30 group-hover:text-emerald-400 transition-colors" />
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-center gap-3">
-            <Link href="/start">
-              <Button
-                data-testid="button-bundle-start"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all"
-              >
-                Start My Move-In Plan
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-bundle-start"
+            >
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all">
+                <MessageCircle className="w-4 h-4 mr-2" /> Start My Move-In on WhatsApp
               </Button>
-            </Link>
+            </a>
             <Link href="/concierge-pricing">
               <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-xl px-6 h-11 text-sm transition-all">
                 View Pricing →
