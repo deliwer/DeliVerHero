@@ -93,6 +93,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Log lead endpoint for referral tracking
   app.post("/api/log-lead", handleLogLead);
 
+  // Broker Engine event logger (DBE)
+  app.post("/api/log", (req, res) => {
+    const { ref, page, timestamp, action } = req.body || {};
+    console.log("[DBE]", { ref: ref || "direct", page, timestamp, action });
+    res.json({ ok: true });
+  });
+
   // Broker Intel Routes
   app.get("/api/brokers", async (_req, res) => {
     try {

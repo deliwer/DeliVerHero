@@ -150,6 +150,8 @@ const ConciergePricingPage = lazy(() => import("@/pages/concierge-pricing-page")
 // Ejari Lead Engine Pages
 const EjariCancellationDubai = lazy(() => import("@/pages/ejari-cancellation-dubai"));
 const BrokerPartnerPage = lazy(() => import("@/pages/broker-partner"));
+const BrokerSuccessPage = lazy(() => import("@/pages/broker-success"));
+const RefRedirectPage = lazy(() => import("@/pages/ref-redirect"));
 const HowToRegisterEjari = lazy(() => import("@/pages/how-to-register-ejari"));
 const EjariDocumentsRequired = lazy(() => import("@/pages/ejari-documents-required"));
 const HowToCancelEjari = lazy(() => import("@/pages/how-to-cancel-ejari"));
@@ -401,6 +403,8 @@ function Router() {
         {/* Ejari Lead Engine */}
         <Route path="/ejari-cancellation-dubai" component={EjariCancellationDubai} />
         <Route path="/broker-partner" component={BrokerPartnerPage} />
+        <Route path="/broker-success" component={BrokerSuccessPage} />
+        <Route path="/ref/:code" component={RefRedirectPage} />
         <Route path="/how-to-register-ejari" component={HowToRegisterEjari} />
         <Route path="/ejari-documents-required" component={EjariDocumentsRequired} />
         <Route path="/how-to-cancel-ejari" component={HowToCancelEjari} />
