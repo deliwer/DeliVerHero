@@ -58,7 +58,6 @@ export default function LandingPage() {
         keywords="move in Dubai, Ejari registration Dubai, DEWA activation Dubai, Dubai relocation services, Dubai expat services, Dubai tenant support, home setup Dubai, moving to Dubai, UAE emergency exit plan, Dubai crisis preparedness, wartime readiness UAE, expat evacuation Dubai"
       />
       <Navigation />
-
       {/* ============================================
           MAIN HERO — Are You Overpaying Rent?
          ============================================ */}
@@ -179,7 +178,6 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
-
       {/* ============================================
           SECTION 2 — PROBLEM / PAIN
          ============================================ */}
@@ -214,7 +212,6 @@ export default function LandingPage() {
           </p>
         </div>
       </section>
-
       {/* ============================================
           SECTION 3 (UNIFIED) — WHAT DELIVERWER HANDLES
          ============================================ */}
@@ -282,7 +279,6 @@ export default function LandingPage() {
           <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">No hidden fees · You pay vendors directly at market rates</p>
         </div>
       </section>
-
       {/* ============================================
           SECTION 4 — HOW IT WORKS
          ============================================ */}
@@ -319,7 +315,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ============================================
           DUBAI RENTAL INTELLIGENCE + COST CLARITY
          ============================================ */}
@@ -456,7 +451,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* JUST GOT KEYS - HIGH-INTENT TRIGGER */}
       <section className="py-20 px-6 bg-slate-900/50 border-y border-white/5">
         <div className="max-w-6xl mx-auto">
@@ -502,7 +496,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* SOLUTION SECTION */}
       <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -536,7 +529,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ============================================
           SECTION 6 — TRUST / SOCIAL PROOF
          ============================================ */}
@@ -582,7 +574,7 @@ export default function LandingPage() {
               </p>
               <div className="flex items-center justify-center gap-2">
                 <div className="text-left">
-                  <p className="text-white font-black text-xs">Nicole Oliver</p>
+                  <p className="text-white font-black text-xs">Nicole & Oliver</p>
                   <p className="text-gray-500 text-[10px]">Dubai Marina · Germany 🇩🇪</p>
                 </div>
               </div>
@@ -604,7 +596,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ============================================
           SECTION 7 — BROKER HOOK
          ============================================ */}
@@ -639,7 +630,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* EMERGENCY PREPAREDNESS CTA */}
       <section className="relative py-14 px-6 bg-gradient-to-r from-red-950/80 via-slate-950 to-amber-950/40 border-y border-red-900/30 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-red-900/10 via-transparent to-transparent pointer-events-none" />
@@ -682,7 +672,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* FINAL CTA — SECTION 8 */}
       <section className="relative py-24 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -715,14 +704,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* PARTNER NETWORK */}
       <section className="bg-slate-950 border-t border-white/5 px-4">
         <div className="max-w-4xl mx-auto">
           <PartnerStrip />
         </div>
       </section>
-
       <footer className="py-20 px-4 border-t border-white/5 text-center bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-8">
           <OperationalBadges variant="dark" />
@@ -731,13 +718,11 @@ export default function LandingPage() {
           </p>
         </div>
       </footer>
-
       <RelocationFunnel
         open={funnelOpen}
         onClose={() => setFunnelOpen(false)}
         initialScenario={funnelScenario}
       />
-
       {/* MOBILE STICKY BOTTOM BAR */}
       <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10 p-4 pb-safe">
         <a

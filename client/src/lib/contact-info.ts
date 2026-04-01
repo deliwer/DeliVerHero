@@ -50,7 +50,8 @@ export const contactInfo = {
     twitter: "https://twitter.com/vdeliwer",
     youtube: "https://youtube.com/@vdeliWer",
     tiktok: "https://tiktok.com/@vdeliwer",
-    linkedin: "https://linkedin.com/company/deliwer"
+    linkedin: "https://linkedin.com/company/deliwer",
+    gmb: "https://share.google/zdF1ZBSCdyy1U3sPG"
   },
   ctas: {
     whatsappBase: "https://wa.me/",

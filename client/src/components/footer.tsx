@@ -21,7 +21,7 @@ import {
   TrendingUp,
   CalendarCheck
 } from "lucide-react";
-import { SiFacebook, SiTiktok } from "react-icons/si";
+import { SiFacebook, SiTiktok, SiGoogle } from "react-icons/si";
 import { EmailSubscriptionForm } from "./email-subscription-form";
 
 export function Footer() {
@@ -48,6 +48,7 @@ export function Footer() {
   ];
 
   const socialLinks = [
+    { icon: SiGoogle, url: "https://share.google/zdF1ZBSCdyy1U3sPG", label: "Google Reviews", highlight: true },
     { icon: SiFacebook, url: "https://facebook.com/deliwer", label: "Facebook" },
     { icon: Instagram, url: "https://instagram.com/vdeliwer", label: "Instagram" },
     { icon: Youtube, url: "https://youtube.com/@vdeliwer", label: "YouTube" },
@@ -96,18 +97,35 @@ export function Footer() {
               </div>
             </div>
 
+            {/* Review Us on Google CTA */}
+            <a
+              href="https://share.google/zdF1ZBSCdyy1U3sPG"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-google-reviews"
+              className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-amber-400/40 text-amber-400 hover:text-amber-300 px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all mb-4"
+            >
+              <Star className="w-3.5 h-3.5 fill-amber-400" />
+              Leave a Google Review
+            </a>
+
             {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map(({ icon: Icon, url, label }) => (
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map(({ icon: Icon, url, label, highlight }) => (
                 <a
                   key={label}
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors group"
+                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors group ${
+                    highlight
+                      ? "bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/30"
+                      : "bg-slate-800 hover:bg-slate-700"
+                  }`}
                   aria-label={label}
+                  data-testid={`link-social-${label.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <Icon className="w-5 h-5 text-gray-400 group-hover:text-white" />
+                  <Icon className={`w-5 h-5 ${highlight ? "text-blue-400 group-hover:text-white" : "text-gray-400 group-hover:text-white"}`} />
                 </a>
               ))}
             </div>
@@ -284,6 +302,36 @@ export function Footer() {
           </div>
         </div>
       </div>
+      {/* Social Channels & Reviews Strip */}
+      <div className="border-t border-slate-800 bg-slate-950/60 py-6 px-4">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs text-gray-500 font-black uppercase tracking-widest">
+            <Star className="w-3.5 h-3.5 text-amber-400" />
+            Follow & review us
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a href="https://share.google/zdF1ZBSCdyy1U3sPG" target="_blank" rel="noopener noreferrer" data-testid="strip-link-google" className="flex items-center gap-1.5 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/20 text-blue-400 hover:text-blue-300 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
+              <SiGoogle className="w-3.5 h-3.5" /> Google Reviews
+            </a>
+            <a href="https://instagram.com/vdeliwer" target="_blank" rel="noopener noreferrer" data-testid="strip-link-instagram" className="flex items-center gap-1.5 bg-pink-600/10 hover:bg-pink-600/20 border border-pink-500/20 text-pink-400 hover:text-pink-300 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
+              <Instagram className="w-3.5 h-3.5" /> Instagram
+            </a>
+            <a href="https://facebook.com/deliwer" target="_blank" rel="noopener noreferrer" data-testid="strip-link-facebook" className="flex items-center gap-1.5 bg-blue-800/10 hover:bg-blue-800/20 border border-blue-700/20 text-blue-300 hover:text-blue-200 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
+              <SiFacebook className="w-3.5 h-3.5" /> Facebook
+            </a>
+            <a href="https://youtube.com/@vdeliwer" target="_blank" rel="noopener noreferrer" data-testid="strip-link-youtube" className="flex items-center gap-1.5 bg-red-700/10 hover:bg-red-700/20 border border-red-600/20 text-red-400 hover:text-red-300 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
+              <Youtube className="w-3.5 h-3.5" /> YouTube
+            </a>
+            <a href="https://tiktok.com/@vdeliwer" target="_blank" rel="noopener noreferrer" data-testid="strip-link-tiktok" className="flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
+              <SiTiktok className="w-3.5 h-3.5" /> TikTok
+            </a>
+            <a href="https://linkedin.com/company/deliwer" target="_blank" rel="noopener noreferrer" data-testid="strip-link-linkedin" className="flex items-center gap-1.5 bg-blue-700/10 hover:bg-blue-700/20 border border-blue-600/20 text-blue-300 hover:text-blue-200 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
+              <Linkedin className="w-3.5 h-3.5" /> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Bottom Bar */}
       <div className="border-t border-slate-700 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 py-6">
