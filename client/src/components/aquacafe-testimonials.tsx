@@ -1,19 +1,32 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
 import { useState, useEffect } from "react";
+import NicoleImg from "@assets/Nicole_Oliver.jpeg";
 
 interface Testimonial {
   id: number;
   name: string;
   location: string;
+  nationality?: string;
   rating: number;
   text: string;
   date: string;
+  image?: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
+    name: "Nicole Oliver",
+    location: "Dubai Marina",
+    nationality: "Germany",
+    rating: 5,
+    text: "Just moved into my new place at Marina and DeliWer set up the complete water system for me — including a free hair shower filter! The difference is incredible, my hair feels so much softer. The installation team was fast and professional. Worth every dirham!",
+    date: "1 week ago",
+    image: NicoleImg
+  },
+  {
+    id: 2,
     name: "Ahmed Al-Mansoori",
     location: "Dubai Marina",
     rating: 5,
@@ -21,7 +34,7 @@ const testimonials: Testimonial[] = [
     date: "2 weeks ago"
   },
   {
-    id: 2,
+    id: 3,
     name: "Sarah Johnson",
     location: "Palm Jumeirah",
     rating: 5,
@@ -29,7 +42,7 @@ const testimonials: Testimonial[] = [
     date: "1 month ago"
   },
   {
-    id: 3,
+    id: 4,
     name: "Mohammed Hassan",
     location: "Downtown Dubai",
     rating: 5,
@@ -37,7 +50,7 @@ const testimonials: Testimonial[] = [
     date: "3 weeks ago"
   },
   {
-    id: 4,
+    id: 5,
     name: "Emily Williams",
     location: "JBR",
     rating: 5,
@@ -73,17 +86,36 @@ export function AquaCafeTestimonials() {
           <Card className="border-2 shadow-xl">
             <CardContent className="p-8">
               <Quote className="w-12 h-12 text-blue-400 mb-4 opacity-50" />
-              
+
               <p className="text-lg md:text-xl mb-6 italic text-gray-700 dark:text-gray-300">
                 "{currentTestimonial.text}"
               </p>
 
               <div className="flex items-center justify-between flex-wrap gap-4">
-                <div>
-                  <p className="font-bold text-lg">{currentTestimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{currentTestimonial.location}</p>
+                <div className="flex items-center gap-4">
+                  {currentTestimonial.image ? (
+                    <img
+                      src={currentTestimonial.image}
+                      alt={currentTestimonial.name}
+                      data-testid={`img-testimonial-${currentTestimonial.id}`}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-blue-200 shadow-md"
+                    />
+                  ) : (
+                    <div className="w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 font-bold text-lg border-2 border-blue-200">
+                      {currentTestimonial.name.split(" ").map(n => n[0]).join("")}
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-bold text-lg">{currentTestimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {currentTestimonial.location}
+                      {currentTestimonial.nationality && (
+                        <span className="ml-1 text-blue-500">· {currentTestimonial.nationality}</span>
+                      )}
+                    </p>
+                  </div>
                 </div>
-                
+
                 <div className="flex flex-col items-end gap-2">
                   <div className="flex gap-1">
                     {[...Array(currentTestimonial.rating)].map((_, i) => (
@@ -102,8 +134,8 @@ export function AquaCafeTestimonials() {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex 
-                    ? 'bg-blue-600 w-8' 
+                  index === currentIndex
+                    ? 'bg-blue-600 w-8'
                     : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
                 }`}
                 aria-label={`View testimonial ${index + 1}`}
