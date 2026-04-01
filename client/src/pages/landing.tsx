@@ -559,7 +559,7 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             {/* Nicole — Featured testimonial with photo */}
             <div className="bg-violet-500/8 border border-violet-500/30 rounded-2xl p-8 space-y-4 text-center flex flex-col items-center relative">
               <div className="absolute top-3 right-4 text-violet-400 text-[10px] font-black uppercase tracking-widest">Featured</div>
@@ -576,20 +576,6 @@ export default function LandingPage() {
                 <div className="text-left">
                   <p className="text-white font-black text-xs">Nicole & Oliver</p>
                   <p className="text-gray-500 text-[10px]">Dubai Marina · Germany 🇩🇪</p>
-                </div>
-              </div>
-            </div>
-            {/* Sarah K. */}
-            <div className="bg-violet-500/5 border border-violet-500/20 rounded-2xl p-8 space-y-4 text-center flex flex-col items-center justify-center">
-              <p className="text-2xl text-violet-400">"</p>
-              <p className="text-gray-200 font-bold leading-relaxed italic text-sm">
-                "DeliWer handled everything — Ejari, movers, DEWA — I just moved in stress-free. Didn't deal with a single vendor call."
-              </p>
-              <div className="flex items-center justify-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-black text-xs">S</div>
-                <div className="text-left">
-                  <p className="text-white font-black text-xs">Sarah K.</p>
-                  <p className="text-gray-500 text-[10px]">Moved to JVC · Recent move-in</p>
                 </div>
               </div>
             </div>
