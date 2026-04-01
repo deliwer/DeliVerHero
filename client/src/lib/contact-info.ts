@@ -51,7 +51,7 @@ export const contactInfo = {
     youtube: "https://youtube.com/@vdeliWer",
     tiktok: "https://tiktok.com/@vdeliwer",
     linkedin: "https://linkedin.com/company/deliwer",
-    gmb: "https://share.google/zdF1ZBSCdyy1U3sPG"
+    gmb: "https://g.page/r/CRptmgoZmDxSEBI/review"
   },
   ctas: {
     whatsappBase: "https://wa.me/",

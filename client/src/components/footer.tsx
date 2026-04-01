@@ -48,7 +48,7 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { icon: SiGoogle, url: "https://share.google/zdF1ZBSCdyy1U3sPG", label: "Google Reviews", highlight: true },
+    { icon: SiGoogle, url: "https://g.page/r/CRptmgoZmDxSEBI/review", label: "Google Reviews", highlight: true },
     { icon: SiFacebook, url: "https://facebook.com/deliwer", label: "Facebook" },
     { icon: Instagram, url: "https://instagram.com/vdeliwer", label: "Instagram" },
     { icon: Youtube, url: "https://youtube.com/@vdeliwer", label: "YouTube" },
@@ -99,7 +99,7 @@ export function Footer() {
 
             {/* Review Us on Google CTA */}
             <a
-              href="https://share.google/zdF1ZBSCdyy1U3sPG"
+              href="https://g.page/r/CRptmgoZmDxSEBI/review"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="link-google-reviews"
@@ -310,7 +310,7 @@ export function Footer() {
             Follow & review us
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href="https://share.google/zdF1ZBSCdyy1U3sPG" target="_blank" rel="noopener noreferrer" data-testid="strip-link-google" className="flex items-center gap-1.5 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/20 text-blue-400 hover:text-blue-300 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
+            <a href="https://g.page/r/CRptmgoZmDxSEBI/review" target="_blank" rel="noopener noreferrer" data-testid="strip-link-google" className="flex items-center gap-1.5 bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/20 text-blue-400 hover:text-blue-300 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">
               <SiGoogle className="w-3.5 h-3.5" /> Google Reviews
             </a>
             <a href="https://instagram.com/vdeliwer" target="_blank" rel="noopener noreferrer" data-testid="strip-link-instagram" className="flex items-center gap-1.5 bg-pink-600/10 hover:bg-pink-600/20 border border-pink-500/20 text-pink-400 hover:text-pink-300 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-wider transition-all">

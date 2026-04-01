@@ -601,7 +601,7 @@ export default function LandingPage() {
 
                 {/* Google review CTA */}
                 <a
-                  href="https://share.google/zdF1ZBSCdyy1U3sPG"
+                  href="https://g.page/r/CRptmgoZmDxSEBI/review"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="link-google-review-trust"
