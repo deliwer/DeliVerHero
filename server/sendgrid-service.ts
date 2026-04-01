@@ -47,6 +47,19 @@ export async function sendEmail(params: EmailParams): Promise<boolean> {
     if (error.response) {
       console.error('SendGrid error body:', error.response.body);
     }
+
+    // Re-throw rate-limit / account-limit errors so callers can pause gracefully
+    const body = error?.response?.body;
+    const isRateLimit =
+      error?.code === 403 ||
+      (Array.isArray(body?.errors) &&
+        body.errors.some((e: any) => /exceed|limit/i.test(e?.message || '')));
+    if (isRateLimit) {
+      const rateLimitError: any = new Error('SendGrid daily sending limit reached');
+      rateLimitError.isRateLimit = true;
+      throw rateLimitError;
+    }
+
     return false;
   }
 }

@@ -133,6 +133,22 @@ export async function runCampaign(campaignId: string): Promise<void> {
           failed++;
         }
       } catch (err: any) {
+        // Detect SendGrid daily sending limit — pause gracefully so entries stay pending
+        const isRateLimit =
+          err?.isRateLimit === true ||
+          err?.code === 403 ||
+          err?.response?.body?.errors?.some((e: any) =>
+            /exceed|limit|forbidden/i.test(e?.message || '')
+          );
+
+        if (isRateLimit) {
+          console.warn(`[CAMPAIGN] SendGrid daily limit reached after ${sent} sent. Pausing campaign.`);
+          await db.update(brokerCampaigns)
+            .set({ status: 'paused', sentCount: sent, failedCount: failed })
+            .where(eq(brokerCampaigns.id, campaignId));
+          return; // Exit loop — entries stay 'pending' for next run
+        }
+
         await db.update(brokerCampaignEntries)
           .set({ status: 'failed', errorMessage: err.message || 'Unknown error' })
           .where(eq(brokerCampaignEntries.id, entry.id));
