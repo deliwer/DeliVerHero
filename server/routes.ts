@@ -4375,6 +4375,21 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // POST /api/marketing/broker-campaign/:id/start — start/resume an idle campaign
+  app.post("/api/marketing/broker-campaign/:id/start", async (req, res) => {
+    try {
+      const [campaign] = await db.select().from(brokerCampaigns)
+        .where(eq(brokerCampaigns.id, req.params.id)).limit(1);
+      if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+      if (campaign.status === 'running') return res.status(409).json({ error: 'Campaign already running' });
+      await db.update(brokerCampaigns).set({ status: 'idle' }).where(eq(brokerCampaigns.id, campaign.id));
+      setImmediate(() => runCampaign(campaign.id).catch(err => console.error('[CAMPAIGN] Start error:', err)));
+      res.json({ started: true, campaignId: campaign.id, total: campaign.totalBrokers });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Failed to start campaign' });
+    }
+  });
+
   // POST /api/marketing/broker-campaign/:id/pause — pause running campaign
   app.post("/api/marketing/broker-campaign/:id/pause", async (req, res) => {
     try {
