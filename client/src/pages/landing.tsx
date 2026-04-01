@@ -559,24 +559,57 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <div className="max-w-2xl mx-auto">
-            {/* Nicole — Featured testimonial with photo */}
-            <div className="bg-violet-500/8 border border-violet-500/30 rounded-2xl p-8 space-y-4 text-center flex flex-col items-center relative">
-              <div className="absolute top-3 right-4 text-violet-400 text-[10px] font-black uppercase tracking-widest">Featured</div>
-              <img
-                src={NicoleImg}
-                alt="Nicole Oliver"
-                data-testid="img-testimonial-nicole-landing"
-                className="w-16 h-16 rounded-full object-cover border-2 border-violet-400/40 shadow-lg shadow-violet-900/30"
-              />
-              <p className="text-gray-200 font-bold leading-relaxed italic text-sm">
-                "Just moved into my new place at Marina and DeliWer set up the complete water system — including a free hair shower filter! The difference is incredible. Fast, professional, zero hassle."
-              </p>
-              <div className="flex items-center justify-center gap-2">
-                <div className="text-left">
-                  <p className="text-white font-black text-xs">Nicole & Oliver</p>
-                  <p className="text-gray-500 text-[10px]">Dubai Marina · Germany 🇩🇪</p>
+          {/* ── Trust Signals anchor — more reviews will be added here ── */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-center gap-3">
+              <div className="h-px flex-1 bg-white/5" />
+              <span className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em]">Customer Reviews</span>
+              <div className="h-px flex-1 bg-white/5" />
+            </div>
+
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-white/3 border border-violet-500/20 rounded-2xl p-8 space-y-5 text-center flex flex-col items-center relative" data-testid="trust-anchor-nicole">
+                {/* Verified badge */}
+                <div className="absolute top-3 right-4 flex items-center gap-1 text-emerald-400 text-[10px] font-black uppercase tracking-widest">
+                  <CheckCircle2 className="w-3 h-3" /> Verified
                 </div>
+
+                <img
+                  src={NicoleImg}
+                  alt="Nicole Oliver"
+                  data-testid="img-testimonial-nicole-landing"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-violet-400/30 shadow-lg shadow-violet-900/30"
+                />
+
+                {/* 5-star row */}
+                <div className="flex items-center justify-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  ))}
+                </div>
+
+                <p className="text-gray-200 font-bold leading-relaxed italic text-sm max-w-lg">
+                  "Just moved into my new place at Marina and DeliWer set up the complete water system — including a free hair shower filter! The difference is incredible. Fast, professional, zero hassle."
+                </p>
+
+                <div className="flex items-center justify-center gap-3">
+                  <div className="text-center">
+                    <p className="text-white font-black text-xs">Nicole Oliver</p>
+                    <p className="text-gray-500 text-[10px]">Dubai Marina · Germany 🇩🇪</p>
+                  </div>
+                </div>
+
+                {/* Google review CTA */}
+                <a
+                  href="https://share.google/zdF1ZBSCdyy1U3sPG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="link-google-review-trust"
+                  className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-4 w-full justify-center transition-colors"
+                >
+                  <svg className="w-3.5 h-3.5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  Leave a Google Review — Help others find us
+                </a>
               </div>
             </div>
           </div>
