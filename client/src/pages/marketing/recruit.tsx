@@ -1328,7 +1328,7 @@ export default function RecruitPage() {
           <Card className="bg-slate-900 border-slate-800">
             <CardContent className="p-6 space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold flex items-center gap-2">
+                <h2 className="text-lg font-semibold flex items-center gap-2 text-[#ffffff]">
                   <TrendingUp className="w-5 h-5 text-emerald-400" />
                   Campaign History
                 </h2>
