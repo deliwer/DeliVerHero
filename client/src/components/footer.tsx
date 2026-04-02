@@ -120,63 +120,88 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-8">
 
           {/* Brand — spans 2 cols on lg */}
-          <div className="col-span-2 lg:col-span-2">
-            <Link href="/" className="inline-flex items-center mb-3 hover:opacity-80 transition-opacity">
+          <div className="col-span-2 lg:col-span-2 flex flex-col gap-4">
+
+            {/* Logo */}
+            <Link href="/" className="inline-flex items-center hover:opacity-80 transition-opacity">
               <span className="text-xl font-black text-white tracking-tight">DeliWer</span>
-              <span className="ml-1.5 text-xs font-black uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-1.5 py-0.5 rounded">Sustainability</span>
+              <span className="ml-1.5 text-xs font-black uppercase tracking-widest text-hero-green-500 bg-hero-green-500/10 border border-hero-green-500/20 px-1.5 py-0.5 rounded">Sustainability</span>
             </Link>
 
-            <p className="text-gray-500 text-sm leading-relaxed mb-4 max-w-xs">
+            <p className="text-gray-500 text-sm leading-relaxed max-w-xs -mt-1">
               World's First Sustainability Game — trade devices for premium water systems while contributing to Dubai's green missions.
             </p>
 
-            {/* Stats row */}
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-4">
-              <span className="flex items-center text-xs text-emerald-400 font-semibold">
-                <Shield className="w-3 h-3 mr-1 text-emerald-500" />DubaiCan Initiative
-              </span>
-              <span className="flex items-center text-xs text-blue-400 font-semibold">
-                <Building className="w-3 h-3 mr-1 text-blue-500" />Circle Dubai
-              </span>
-              <span className="flex items-center text-xs text-gray-500">
-                <Zap className="w-3 h-3 mr-1 text-amber-500" />2.4M+ Bottles Saved
-              </span>
-              <span className="flex items-center text-xs text-gray-500">
-                <Users className="w-3 h-3 mr-1 text-sky-500" />12,847 Members
-              </span>
+            {/* ── Trust Signals Panel ── */}
+            <div className="rounded-xl border border-hero-green-500/20 bg-gradient-to-br from-hero-green-500/5 via-transparent to-dubai-blue-900/20 p-3.5">
+              <p className="text-[10px] font-black uppercase tracking-widest text-hero-green-500 mb-2.5 flex items-center gap-1.5">
+                <Shield className="w-3 h-3" />Verified Partnerships & Impact
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="flex items-center gap-1.5 bg-hero-green-500/10 border border-hero-green-500/20 rounded-lg px-2.5 py-1.5">
+                  <Shield className="w-3 h-3 text-hero-green-500 flex-shrink-0" />
+                  <span className="text-[11px] font-bold text-hero-green-400 leading-tight">DubaiCan Initiative</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-dubai-blue-500/10 border border-dubai-blue-500/20 rounded-lg px-2.5 py-1.5">
+                  <Building className="w-3 h-3 text-dubai-blue-500 flex-shrink-0" />
+                  <span className="text-[11px] font-bold text-dubai-blue-500 leading-tight">Circle Dubai</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 rounded-lg px-2.5 py-1.5">
+                  <Zap className="w-3 h-3 text-amber-400 flex-shrink-0" />
+                  <span className="text-[11px] font-bold text-amber-400 leading-tight">2.4M+ Bottles Saved</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-sky-500/10 border border-sky-500/20 rounded-lg px-2.5 py-1.5">
+                  <Users className="w-3 h-3 text-sky-400 flex-shrink-0" />
+                  <span className="text-[11px] font-bold text-sky-400 leading-tight">12,847 Members</span>
+                </div>
+              </div>
             </div>
 
-            {/* Google Review CTA */}
+            {/* ── Feedback / Google Review CTA ── */}
             <a
               href="https://g.page/r/CRptmgoZmDxSEBI/review"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="link-google-reviews"
-              className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-amber-400/40 text-amber-400 hover:text-amber-300 px-3 py-1.5 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all mb-4"
+              className="group relative overflow-hidden inline-flex items-center gap-2.5 rounded-xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-amber-400/5 to-transparent hover:from-amber-500/20 hover:border-amber-400/50 px-4 py-2.5 transition-all"
             >
-              <Star className="w-3 h-3 fill-amber-400" />
-              Leave a Google Review
+              <div className="flex items-center gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <div>
+                <div className="text-xs font-black text-amber-300 uppercase tracking-wider leading-none">Leave a Google Review</div>
+                <div className="text-[10px] text-amber-500/70 mt-0.5">Help us grow · Takes 30 seconds</div>
+              </div>
+              <ChevronRight className="w-4 h-4 text-amber-500/50 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all ml-auto flex-shrink-0" />
             </a>
 
-            {/* Social icons */}
-            <div className="flex flex-wrap gap-2">
-              {socialLinks.map(({ icon: Icon, url, label, highlight }) => (
-                <a
-                  key={label}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors group ${
-                    highlight
-                      ? "bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/30"
-                      : "bg-slate-800 hover:bg-slate-700"
-                  }`}
-                  aria-label={label}
-                  data-testid={`link-social-${label.toLowerCase().replace(/\s+/g, "-")}`}
-                >
-                  <Icon className={`w-4 h-4 ${highlight ? "text-blue-400 group-hover:text-white" : "text-gray-500 group-hover:text-white"}`} />
-                </a>
-              ))}
+            {/* ── Backlinking / Social Strip ── */}
+            <div className="rounded-xl border border-dubai-blue-500/20 bg-dubai-blue-900/20 p-3">
+              <p className="text-[10px] font-black uppercase tracking-widest text-dubai-blue-500 mb-2.5 flex items-center gap-1.5">
+                <Globe className="w-3 h-3" />Follow & Connect
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {socialLinks.map(({ icon: Icon, url, label, highlight }) => (
+                  <a
+                    key={label}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold transition-all ${
+                      highlight
+                        ? "bg-blue-600/25 hover:bg-blue-600/40 border border-blue-500/35 text-blue-300 hover:text-white"
+                        : "bg-white/5 hover:bg-white/10 border border-white/10 text-gray-500 hover:text-white"
+                    }`}
+                    aria-label={label}
+                    data-testid={`link-social-${label.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    <Icon className="w-3 h-3" />
+                    <span>{label.replace(" Reviews", "")}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -285,58 +310,56 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── Social + Legal Bar ── */}
-      <div className="relative z-10 border-t border-slate-800/80 bg-slate-950/70">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-3">
+      {/* ── Bottom Bar ── */}
+      <div className="relative z-10 border-t border-hero-green-500/10 bg-gradient-to-r from-dubai-blue-900/40 via-slate-950/80 to-hero-green-500/5">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
 
-          {/* Social strip */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[10px] text-gray-600 font-black uppercase tracking-widest mr-1 flex items-center gap-1">
-              <Star className="w-3 h-3 text-amber-500" />Follow
+          {/* Trust badges left */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-hero-green-500/70 bg-hero-green-500/8 border border-hero-green-500/15 px-2 py-1 rounded-full">
+              <Globe className="w-2.5 h-2.5" />1st Sustainability Game
             </span>
+            <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-dubai-blue-500/70 bg-dubai-blue-500/8 border border-dubai-blue-500/15 px-2 py-1 rounded-full">
+              <Shield className="w-2.5 h-2.5" />ISO 14001
+            </span>
+          </div>
+
+          {/* Copyright + legal */}
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-gray-600 order-last md:order-none">
+            <span className="text-gray-500 font-semibold">© {currentYear} DeliWer</span>
+            <span className="text-slate-700">·</span>
+            <Link href="/privacy" className="hover:text-hero-green-500 transition-colors">Privacy</Link>
+            <span className="text-slate-700">·</span>
+            <Link href="/terms" className="hover:text-hero-green-500 transition-colors">Terms</Link>
+            <span className="text-slate-700">·</span>
+            <Link href="/environmental" className="hover:text-hero-green-500 transition-colors">Environment</Link>
+            <span className="text-slate-700">·</span>
+            <Link href="/sponsorships" className="hover:text-hero-green-500 transition-colors">Sponsorships</Link>
+          </div>
+
+          {/* Social icon strip right */}
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            <span className="text-[9px] text-gray-700 font-black uppercase tracking-widest mr-1">Follow</span>
             {[
-              { href: "https://g.page/r/CRptmgoZmDxSEBI/review", icon: SiGoogle, label: "Google", cls: "text-blue-400", testid: "strip-link-google" },
-              { href: "https://instagram.com/vdeliwer", icon: Instagram, label: "IG", cls: "text-pink-400", testid: "strip-link-instagram" },
-              { href: "https://facebook.com/deliwer", icon: SiFacebook, label: "FB", cls: "text-blue-300", testid: "strip-link-facebook" },
-              { href: "https://youtube.com/@vdeliwer", icon: Youtube, label: "YT", cls: "text-red-400", testid: "strip-link-youtube" },
-              { href: "https://tiktok.com/@vdeliwer", icon: SiTiktok, label: "TT", cls: "text-gray-300", testid: "strip-link-tiktok" },
-              { href: "https://linkedin.com/company/deliwer", icon: Linkedin, label: "LI", cls: "text-blue-300", testid: "strip-link-linkedin" },
-            ].map(({ href, icon: Icon, label, cls, testid }) => (
+              { href: "https://g.page/r/CRptmgoZmDxSEBI/review", icon: SiGoogle, label: "Google", hoverCls: "hover:bg-blue-600/30 hover:border-blue-500/40 hover:text-blue-300", testid: "strip-link-google" },
+              { href: "https://instagram.com/vdeliwer", icon: Instagram, label: "Instagram", hoverCls: "hover:bg-pink-600/25 hover:border-pink-500/30 hover:text-pink-400", testid: "strip-link-instagram" },
+              { href: "https://facebook.com/deliwer", icon: SiFacebook, label: "Facebook", hoverCls: "hover:bg-blue-700/25 hover:border-blue-600/30 hover:text-blue-300", testid: "strip-link-facebook" },
+              { href: "https://youtube.com/@vdeliwer", icon: Youtube, label: "YouTube", hoverCls: "hover:bg-red-700/25 hover:border-red-600/30 hover:text-red-400", testid: "strip-link-youtube" },
+              { href: "https://tiktok.com/@vdeliwer", icon: SiTiktok, label: "TikTok", hoverCls: "hover:bg-white/10 hover:border-white/20 hover:text-white", testid: "strip-link-tiktok" },
+              { href: "https://linkedin.com/company/deliwer", icon: Linkedin, label: "LinkedIn", hoverCls: "hover:bg-blue-700/25 hover:border-blue-600/30 hover:text-blue-300", testid: "strip-link-linkedin" },
+            ].map(({ href, icon: Icon, label, hoverCls, testid }) => (
               <a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid={testid}
-                className={`w-7 h-7 rounded-md flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/5 ${cls} hover:text-white transition-all`}
+                className={`w-6 h-6 rounded flex items-center justify-center bg-white/5 border border-white/5 text-gray-600 transition-all ${hoverCls}`}
                 aria-label={label}
               >
-                <Icon className="w-3.5 h-3.5" />
+                <Icon className="w-3 h-3" />
               </a>
             ))}
-          </div>
-
-          {/* Copyright + legal links */}
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[11px] text-gray-600">
-            <span>© {currentYear} DeliWer</span>
-            <span className="hidden md:inline text-gray-700">·</span>
-            <Link href="/privacy" className="hover:text-gray-400 transition-colors">Privacy</Link>
-            <span className="text-gray-700">·</span>
-            <Link href="/terms" className="hover:text-gray-400 transition-colors">Terms</Link>
-            <span className="text-gray-700">·</span>
-            <Link href="/environmental" className="hover:text-gray-400 transition-colors">Environment</Link>
-            <span className="text-gray-700">·</span>
-            <Link href="/sponsorships" className="hover:text-gray-400 transition-colors">Sponsorships</Link>
-          </div>
-
-          {/* Badges */}
-          <div className="hidden xl:flex items-center gap-3 text-[10px]">
-            <span className="flex items-center gap-1 text-gray-600">
-              <Globe className="w-3 h-3 text-emerald-600" />World's First Sustainability Game
-            </span>
-            <span className="flex items-center gap-1 text-gray-600">
-              <Shield className="w-3 h-3 text-emerald-600" />ISO 14001
-            </span>
           </div>
         </div>
       </div>
