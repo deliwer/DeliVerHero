@@ -111,10 +111,8 @@ export function Footer() {
 
   return (
     <footer className="bg-slate-900 border-t border-slate-700/60 relative overflow-hidden">
-
       {/* ── Dubai Skyline Watermark ── */}
       <DubaiSkylineSVG />
-
       {/* ── Main Grid ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 pt-10 pb-8">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-8 gap-y-8">
@@ -246,7 +244,7 @@ export function Footer() {
                 <Phone className="w-3.5 h-3.5 mt-0.5 text-sky-600 flex-shrink-0" />
                 <div>
                   <div className="text-xs font-semibold text-gray-400 group-hover:text-white">Hassan Jawad</div>
-                  <div className="text-[11px] text-gray-600">CEO · +971 52 394 6311</div>
+                  <div className="text-[11px] text-gray-600">Founder · +971 52 394 6311</div>
                 </div>
               </a>
               <a href="tel:+971567148381" className="flex items-start gap-2 text-gray-500 hover:text-white transition-colors group">
@@ -309,7 +307,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-
       {/* ── Bottom Bar ── */}
       <div className="relative z-10 border-t border-hero-green-500/10 bg-gradient-to-r from-dubai-blue-900/40 via-slate-950/80 to-hero-green-500/5">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
