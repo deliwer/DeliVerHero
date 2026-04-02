@@ -13,6 +13,7 @@ import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
+import { PaymentCTA } from "@/components/payment-cta";
 import { motion } from "framer-motion";
 
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
@@ -686,6 +687,17 @@ export default function Home() {
       </section>
 
       {/* Trust Signal Strip */}
+      {/* Payment CTA Banner */}
+      <section className="py-10 px-4 bg-slate-950">
+        <div className="max-w-4xl mx-auto">
+          <PaymentCTA
+            variant="banner"
+            title="Ready to Pay for Your Services?"
+            subtitle="Agreed services on WhatsApp? Pay securely via PayPal to formatix@deliwer.com — or ask us for bank transfer details for remote orders."
+          />
+        </div>
+      </section>
+
       <section id="trust-strip" className="py-12 bg-emerald-950/20 border-y border-white/5">
         <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 text-center">
           {[

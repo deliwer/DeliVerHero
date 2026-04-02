@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PaymentCTA } from "@/components/payment-cta";
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -498,6 +499,17 @@ export default function ConsultPage() {
               <p className="text-center text-gray-600 text-xs">Sessions are conducted via Zoom, Google Meet, or WhatsApp video. Response within 2 hours Mon–Sat.</p>
             </form>
           )}
+        </div>
+      </section>
+
+      {/* ── PAYMENT CTA ── */}
+      <section className="py-10 px-4 bg-slate-950">
+        <div className="max-w-3xl mx-auto">
+          <PaymentCTA
+            variant="card"
+            title="Pay for Your Consultation"
+            subtitle="Once you've agreed your session on WhatsApp, pay securely via PayPal or request bank transfer details for remote bookings."
+          />
         </div>
       </section>
 

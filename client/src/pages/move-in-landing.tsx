@@ -2,6 +2,7 @@ import { SEOMeta } from "@/components/seo-meta";
 import { CheckCircle, Zap, ArrowRight, Plane, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { PaymentCTA } from "@/components/payment-cta";
 
 export default function MoveInLanding() {
   return (
@@ -221,6 +222,17 @@ export default function MoveInLanding() {
       </section>
 
       {/* Final CTA */}
+      {/* Payment CTA */}
+      <section className="py-10 px-4 bg-slate-950">
+        <div className="max-w-4xl mx-auto">
+          <PaymentCTA
+            variant="banner"
+            title="Pay for Your Move-In Services"
+            subtitle="Agreed your move-in package on WhatsApp? Pay securely via PayPal or request bank transfer for remote orders."
+          />
+        </div>
+      </section>
+
       <section className="py-20 px-4 bg-gradient-to-br from-blue-600/20 via-slate-900 to-slate-900">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6">

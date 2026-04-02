@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { SiFacebook, SiTiktok, SiGoogle } from "react-icons/si";
 import { EmailSubscriptionForm } from "./email-subscription-form";
+import { PaymentCTA } from "./payment-cta";
 
 export function Footer() {
   const consumerLinks = [
@@ -214,6 +215,9 @@ export function Footer() {
               </h4>
               <EmailSubscriptionForm variant="footer" />
             </div>
+
+            {/* PayPal Payment CTA */}
+            <PaymentCTA variant="footer" />
           </div>
         </div>
 
