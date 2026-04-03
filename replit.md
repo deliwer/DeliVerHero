@@ -10,6 +10,12 @@ Ejari registration (via authorized RERA Trustee Centers) is the pivotal differen
 - **Move-Out Support**: Utility closure & deposit protection.
 - **Resident Services**: Ongoing home optimization & Ejari renewals.
 
+## Payment Integration Notes
+- **Stripe connector**: User dismissed the Replit OAuth connector — do NOT attempt again without user confirmation. If needed in future, ask user to provide `STRIPE_SECRET_KEY` directly as a secret instead.
+- **PayPal SDK**: `PAYPAL_CLIENT_ID` / `PAYPAL_CLIENT_SECRET` are set but return `invalid_client` 401 from PayPal sandbox — credentials likely incorrect or belong to wrong environment (sandbox vs live).
+- **Payment CTA**: `payment-cta.tsx` uses a direct PayPal email link (`formatix@deliwer.com`) — this works independently of any SDK.
+- **Current status**: No in-app checkout is functional. Business uses WhatsApp-first payment coordination as primary flow.
+
 ## Business Model (Revenue)
 - Tenants always pay only vendor market rates — DeliWer's 12% coordination fee is embedded in vendor contracts.
 - Affiliates/partners earn 30% of DeliWer's embedded coordination fee (shown only in affiliate/partner dashboards, never tenant-facing).
