@@ -160,6 +160,8 @@ export default function CheckoutPage() {
       );
     } else if (paymentMethod === "paypal") {
       const total = calculateTotal();
+      const AED_TO_USD = 3.67;
+      const totalUSD = (total / AED_TO_USD).toFixed(2);
       return (
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-8">
           <div className="container mx-auto px-4 max-w-4xl">
@@ -194,10 +196,13 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                   
+                  <p className="text-center text-xs text-gray-500 mb-4">
+                    PayPal processes in USD · {total.toLocaleString()} AED ≈ <strong className="text-gray-400">${totalUSD} USD</strong> (rate: 1 USD = 3.67 AED)
+                  </p>
                   <div className="flex justify-center">
                     <PayPalButton 
-                      amount={total.toFixed(2)}
-                      currency="AED"
+                      amount={totalUSD}
+                      currency="USD"
                       intent="CAPTURE"
                       onSuccess={(orderId) => handlePaymentSuccess(orderId)}
                       onError={(error) => {
