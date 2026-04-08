@@ -133,6 +133,27 @@ An autonomous, cron-based broker recruitment system at `/marketing/recruit` that
 - Dedup by email address (global across all campaigns)
 - Requires `SENDGRID_API_KEY` env var (runs in demo mode without it)
 
+## Capella Properties Collaboration & Transaction Support Layer (Added April 2026)
+
+### Positioning
+DeliWer is positioned as a **neutral move-in and transaction support layer** — not a broker, not a listing platform. Capella Properties is mentioned as one of several professional firms DeliWer can coordinate with (soft, neutral mention only — no links, no inventory, no lead passing).
+
+### New Page: `/transaction-support`
+- File: `client/src/pages/transaction-support.tsx`
+- Headline: "From Agreement to Move-In — Handled"
+- Sections: Gap positioning, Professional coordination (brokers/developers/landlords/corporate), soft Capella mention, client journey flow (5 steps — DeliWer activates after Step 2), value proposition (4 points), CTA
+- WhatsApp prefill: "I've finalized or am close to finalizing a property and need help with the move and setup"
+- SEO keywords embedded: move-in services Dubai, relocation support Dubai, after property purchase support Dubai, tenant setup Dubai, Ejari and moving Dubai
+- Static only — no backend required
+
+### Updated: `/broker-partner`
+- Reframed from "Get leads / earn commission" → "Deliver a complete client experience without operational burden"
+- Hero headline: "Deliver a Complete Client Experience."
+- Subtext: "DeliWer does not participate in property transactions — we enhance what happens after."
+- Step 3 updated: "Your Client Is Fully Settled" (vs. "You Earn Every Time")
+- Final CTA: "Partner With DeliWer" (vs. "Start Earning Today")
+- Earnings/referral link generator and scripts are preserved unchanged
+
 ## Maintenance Notes
 - Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.
 - Navigation component is `fixed top-0 z-[100]`. Pages need appropriate top padding (`pt-48` or `pt-32`).

@@ -139,6 +139,7 @@ const SeoMoveToCheaperRentDubai = lazy(() => import("@/pages/seo-move-to-cheaper
 const SeoDubaiRelocationConcierge = lazy(() => import("@/pages/seo-dubai-relocation-concierge"));
 const SeoMoveApartmentDubai = lazy(() => import("@/pages/seo-move-apartment-dubai"));
 const SetupPage = lazy(() => import("@/pages/setup"));
+const TransactionSupportPage = lazy(() => import("@/pages/transaction-support"));
 
 // Partner Distribution Pages
 const TypingCenterPartner = lazy(() => import("@/pages/typing-center-partner"));
@@ -380,6 +381,7 @@ function Router() {
         <Route path="/dubai-relocation-concierge" component={SeoDubaiRelocationConcierge} />
         <Route path="/move-apartment-dubai" component={SeoMoveApartmentDubai} />
         <Route path="/setup" component={SetupPage} />
+        <Route path="/transaction-support" component={TransactionSupportPage} />
         <Route path="/consult" component={lazy(() => import("@/pages/consult"))} />
 
         {/* Partner Distribution Network */}

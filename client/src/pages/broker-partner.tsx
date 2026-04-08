@@ -22,7 +22,7 @@ function openWA(msg: string) {
 const STEPS = [
   { n: "01", icon: Send,      title: "Share Your Link",          desc: "Send your personal referral link to clients after property viewing or lease signing." },
   { n: "02", icon: Home,      title: "DeliWer Handles Move-In",  desc: "Ejari, DEWA, movers, cleaning, internet — all coordinated in one place for your client." },
-  { n: "03", icon: TrendingUp,title: "You Earn Every Time",      desc: "Earn a commission on every completed service. No extra work required from you." },
+  { n: "03", icon: TrendingUp,title: "Your Client Is Fully Settled",desc: "Earn commission on completed services while your client gets a seamless move-in experience. No operational burden on your end." },
 ];
 
 const EARNINGS = [
@@ -196,8 +196,8 @@ export default function BrokerPartnerPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white pb-24 md:pb-0">
       <SEOMeta
-        title="Broker Partner Program | Earn Per Move-In Referral | DeliWer Dubai"
-        description="Real estate brokers earn AED 150–800+ per referral by sending tenants to DeliWer's move-in concierge. Ejari, DEWA, movers — handled. You earn. Generate your link now."
+        title="Professional Partner Program | Complete Client Experience | DeliWer Dubai"
+        description="DeliWer enhances what happens after the property deal. Brokers, developers, and landlords partner with DeliWer to deliver a complete, frictionless client experience — without additional operational workload."
       />
 
       <Navigation />
@@ -219,17 +219,16 @@ export default function BrokerPartnerPage() {
           <div className="absolute inset-x-0 -inset-y-12 -z-10 bg-slate-950/70 blur-2xl rounded-3xl pointer-events-none" />
 
           <Badge className="bg-purple-500/15 text-purple-300 border-purple-500/30 px-4 py-2 text-xs font-black uppercase tracking-widest rounded-full shadow-lg">
-            Broker Partner Program
+            Professional Partner Program
           </Badge>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.88] uppercase drop-shadow-2xl">
-            Close More Deals.<br />
-            <span className="text-purple-400">Earn More Per Client.</span>
+            Deliver a Complete<br />
+            <span className="text-purple-400">Client Experience.</span>
           </h1>
 
           <p className="text-lg text-gray-200 font-medium max-w-xl mx-auto leading-relaxed drop-shadow-lg bg-slate-950/40 rounded-2xl px-5 py-3 backdrop-blur-sm border border-white/5">
-            Help your tenants complete their move-in — Ejari, movers, DEWA, setup — in one flow. 
-            Earn a commission on every referral.
+            DeliWer does not participate in property transactions — we enhance what happens after. Help your clients move in without operational burden on your end.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -270,7 +269,7 @@ export default function BrokerPartnerPage() {
       <section className="py-16 px-4 border-t border-white/5">
         <div className="max-w-2xl mx-auto">
           <p className="text-center text-[10px] font-black uppercase tracking-widest text-purple-400 mb-2">How It Works</p>
-          <h2 className="text-2xl font-black uppercase tracking-tighter text-white text-center mb-10">Three Steps to Earning</h2>
+          <h2 className="text-2xl font-black uppercase tracking-tighter text-white text-center mb-10">Three Steps to a Complete Experience</h2>
           <div className="space-y-8">
             {STEPS.map((s) => (
               <div key={s.n} className="flex gap-5 items-start">
@@ -543,9 +542,9 @@ export default function BrokerPartnerPage() {
           <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto">
             <ArrowRight className="w-6 h-6 text-purple-400" />
           </div>
-          <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Start Earning Today</h2>
+          <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Partner With DeliWer</h2>
           <p className="text-gray-500 text-sm max-w-xs mx-auto">
-            Brokers onboard instantly. Generate your link above or get set up via WhatsApp in minutes.
+            Professionals partner instantly. Generate your referral link above or connect via WhatsApp in minutes.
           </p>
           <div className="flex flex-col gap-3">
             <Button
