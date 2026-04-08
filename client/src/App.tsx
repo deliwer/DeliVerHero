@@ -390,6 +390,7 @@ function Router() {
         <Route path="/partner-dashboard" component={PartnerDashboard} />
         <Route path="/partner-growth-kit" component={PartnerGrowthKit} />
         <Route path="/concierge-pricing" component={ConciergePricingPage} />
+        <Route path="/concierge" component={ConciergePricingPage} />
 
         {/* /move catch-all — partner referral links use /move?ref=code */}
         <Route path="/move">

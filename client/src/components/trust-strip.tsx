@@ -18,7 +18,7 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Start</span>
           </Link>
           <Link href="/concierge-pricing">
-            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Concierge</span>
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Pricing</span>
           </Link>
           <Link href="/partners">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Partners</span>

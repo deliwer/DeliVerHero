@@ -25,6 +25,9 @@ export default function ConciergePricingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950" />
         </div>
         <div className="max-w-3xl mx-auto text-center relative z-10 space-y-5">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+            Concierge Packages
+          </div>
           <p className="text-emerald-400 text-[10px] font-black uppercase tracking-widest">
             All Plans · Full Transparency · One Place
           </p>

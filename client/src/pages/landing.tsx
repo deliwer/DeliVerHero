@@ -132,7 +132,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="grid grid-cols-3 gap-2 max-w-2xl mx-auto w-full"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-2xl mx-auto w-full"
           >
             <button
               data-testid="funnel-btn-moving-in"
@@ -175,6 +175,18 @@ export default function LandingPage() {
                 <div className="text-[9px] text-gray-400 font-medium leading-tight">Exit from 900 AED</div>
               </div>
             </button>
+
+            <Link href="/transaction-support" data-testid="funnel-btn-just-signed">
+              <div className="group flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm border border-violet-500/30 hover:border-violet-500 rounded-xl transition-all text-center h-full">
+                <div className="w-8 h-8 bg-violet-500/10 rounded-lg flex items-center justify-center group-hover:bg-violet-500/20 transition-all">
+                  <CheckCircle2 className="w-4 h-4 text-violet-400" />
+                </div>
+                <div className="space-y-0.5">
+                  <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight">Just Signed?</div>
+                  <div className="text-[9px] text-gray-400 font-medium leading-tight">Post-deal support</div>
+                </div>
+              </div>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -280,38 +292,63 @@ export default function LandingPage() {
         </div>
       </section>
       {/* ============================================
-          SECTION 4 — HOW IT WORKS
+          SECTION 4 — TRANSACTION SUPPORT
          ============================================ */}
-      <section id="how-it-works" className="py-20 px-6 bg-slate-900/50 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-12">
+      <section id="how-it-works" className="relative py-20 px-6 bg-slate-900/50 border-b border-white/5 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80"
+            alt="Dubai apartment move-in"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-slate-900/95" />
+        </div>
+        <div className="max-w-4xl mx-auto relative z-10 space-y-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center space-y-2"
+            className="text-center space-y-4"
           >
-            <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              Simple Process
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              Transaction Support
             </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">How your move-in gets done</h2>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              From Agreement to Move-In —<br />
+              <span className="text-emerald-400">Handled</span>
+            </h2>
+            <p className="text-gray-400 font-medium max-w-xl mx-auto leading-relaxed">
+              DeliWer works alongside your broker, developer, or landlord to ensure everything after the deal is executed seamlessly.
+            </p>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { step: "01", title: "Tell us your property", desc: "WhatsApp us in seconds — property details, move date, what you need.", color: "emerald" },
-              { step: "02", title: "We plan your move", desc: "Ejari, movers, DEWA, internet — we sequence everything perfectly.", color: "blue" },
-              { step: "03", title: "Pay only when confirmed", desc: "No upfront fees to us. You pay vendors directly at market rates.", color: "violet" },
-              { step: "04", title: "Move in stress-free", desc: "Walk into a ready home. Everything sorted before you arrive.", color: "emerald" },
+              { step: "01", title: "Client chooses property", desc: "Any source — broker, developer, or self-found.", color: "slate" },
+              { step: "02", title: "Agreement confirmed", desc: "Tenancy signed or purchase confirmed with your broker.", color: "slate" },
+              { step: "03", title: "DeliWer activates", desc: "Ejari, DEWA, movers, setup — coordinated in one flow.", color: "emerald", highlight: true },
             ].map((s) => (
-              <div key={s.step} className="relative bg-white/5 border border-white/10 rounded-2xl p-6 space-y-3 hover:border-white/20 transition-all">
-                <div className={`text-4xl font-black ${s.color === "emerald" ? "text-emerald-500/30" : s.color === "blue" ? "text-blue-500/30" : "text-violet-500/30"}`}>{s.step}</div>
+              <div key={s.step} className={`relative bg-white/5 border rounded-2xl p-6 space-y-3 transition-all ${s.highlight ? "border-emerald-500/40 bg-emerald-500/5" : "border-white/10 hover:border-white/20"}`}>
+                {s.highlight && (
+                  <div className="absolute -top-2.5 left-4 bg-emerald-500 text-slate-950 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">
+                    DeliWer Starts Here
+                  </div>
+                )}
+                <div className={`text-4xl font-black ${s.highlight ? "text-emerald-500/40" : "text-white/10"}`}>{s.step}</div>
                 <h3 className="text-white font-black text-sm uppercase tracking-tight leading-snug">{s.title}</h3>
                 <p className="text-gray-500 text-xs font-medium leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
-          <div className="text-center">
-            <p className="text-emerald-400 font-black uppercase tracking-widest text-sm">No coordination fees. No confusion. No back-and-forth.</p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link href="/transaction-support">
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all" data-testid="cta-transaction-support">
+                <ArrowRight className="w-4 h-4 mr-2" /> See How It Works
+              </Button>
+            </Link>
+            <p className="text-gray-600 text-[11px] font-bold uppercase tracking-widest">DeliWer is not part of the deal — we make it real.</p>
           </div>
         </div>
       </section>
@@ -619,14 +656,29 @@ export default function LandingPage() {
           SECTION 7 — BROKER HOOK
          ============================================ */}
       <section className="py-20 px-6 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border-b border-white/5">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-4">
+          {/* Transaction Support teaser */}
+          <div className="bg-slate-900 border border-emerald-500/20 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="space-y-1 text-center sm:text-left">
+              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Just Finalized a Property?</p>
+              <p className="text-white font-black text-base">From Agreement to Move-In — Handled.</p>
+              <p className="text-gray-500 text-xs">DeliWer activates after the deal. We don't participate in transactions — we make them real.</p>
+            </div>
+            <Link href="/transaction-support" data-testid="cta-transaction-support-hook">
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-6 h-10 text-sm shrink-0 transition-all">
+                <ArrowRight className="w-4 h-4 mr-2" /> Learn More
+              </Button>
+            </Link>
+          </div>
+
+          {/* Broker CTA */}
           <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-10 md:p-14 text-center space-y-6">
             <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
               For Real Estate Agents
             </div>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Are you a real estate agent?</h2>
             <p className="text-gray-300 font-medium max-w-lg mx-auto text-lg">
-              Help your clients move in faster — and earn on every referral.
+              Deliver a complete client experience — without the operational burden. Earn on every referral.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/broker-partner" data-testid="cta-broker-partner">
@@ -634,18 +686,13 @@ export default function LandingPage() {
                   <ArrowRight className="w-5 h-5 mr-2" /> Generate My Referral Link
                 </Button>
               </Link>
-              <a
-                href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I'm%20a%20real%20estate%20agent%20and%20I%20want%20to%20join%20as%20a%20broker%20partner."
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid="cta-broker-partner-wa"
-              >
+              <Link href="/transaction-support" data-testid="cta-broker-transaction-support">
                 <Button variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest rounded-2xl h-14 px-8 text-sm">
-                  <MessageCircle className="w-5 h-5 mr-2" /> Join via WhatsApp
+                  <ArrowRight className="w-5 h-5 mr-2" /> Transaction Support
                 </Button>
-              </a>
+              </Link>
             </div>
-            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Free to join · Earn AED 150–800+ per client</p>
+            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">DeliWer does not participate in property transactions — we enhance what happens after.</p>
           </div>
         </div>
       </section>
