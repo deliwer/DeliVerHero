@@ -1,0 +1,172 @@
+Enhance the existing DeliWer.com website to support a strategic collaboration with Capella Properties.
+
+CRITICAL POSITIONING RULES:
+- DeliWer must remain independent (NOT a broker, NOT a listing platform)
+- Do NOT position Capella as exclusive or primary partner
+- Do NOT show property listings, prices, or inventory
+- Do NOT redirect users into a real estate funnel
+
+DeliWer must appear as:
+“A neutral move-in and transaction support layer that enhances ANY property journey”
+
+Capella must appear as:
+“One of several professional ecosystems that DeliWer can coordinate with”
+
+--------------------------------------------------
+
+1. ADD NEW PAGE: /transaction-support
+
+Purpose:
+Position DeliWer as the layer that activates AFTER or AROUND property decisions
+
+Headline:
+“From Agreement to Move-In — Handled”
+
+Subtext:
+“DeliWer works alongside your broker, developer, or landlord to ensure everything after the deal is executed seamlessly”
+
+CTA:
+[Start My Move Plan] → WhatsApp
+
+--------------------------------------------------
+
+2. ADD SECTION: “HOW WE WORK WITH PROFESSIONALS”
+
+Content:
+
+“We coordinate with:
+- Real estate brokers
+- Developers
+- Landlords
+- Corporate relocation teams
+
+Our role is simple:
+Ensure the client transitions from agreement to living without friction”
+
+IMPORTANT:
+Do NOT highlight any single company first
+Keep Capella neutral within ecosystem
+
+--------------------------------------------------
+
+3. ADD SUBSECTION (SOFT MENTION OF CAPELLA)
+
+Title:
+“Working Alongside Trusted Market Professionals”
+
+Text:
+“In select cases, DeliWer collaborates with established firms such as Capella Properties to ensure alignment between transaction timelines and move-in execution.”
+
+NO links to Capella
+NO inventory display
+NO lead passing
+
+--------------------------------------------------
+
+4. ADD VALUE PROPOSITION SECTION
+
+Title:
+“Why Professionals Work With DeliWer”
+
+Points:
+- Faster client readiness after agreement
+- Reduced drop-offs due to execution delays
+- Structured move-in coordination
+- Enhanced client experience without additional workload
+
+--------------------------------------------------
+
+5. ADD “CLIENT JOURNEY FLOW” VISUAL SECTION
+
+Flow:
+
+Step 1: Client chooses property (any source)
+Step 2: Agreement / confirmation
+Step 3: DeliWer activates
+Step 4: Moving, Ejari, setup
+Step 5: Client fully settled
+
+IMPORTANT:
+DeliWer starts AFTER Step 2
+(Not part of deal-making)
+
+--------------------------------------------------
+
+6. WHATSAPP ENTRY (NEUTRAL LANGUAGE)
+
+Prefill message:
+
+“I’ve finalized or am close to finalizing a property and need help with the move and setup”
+
+NOT:
+“I want a deal”
+“I want property options”
+
+--------------------------------------------------
+
+7. ENHANCE /PARTNERS OR /BROKER-PARTNER PAGE
+
+Reframe messaging:
+
+OLD:
+“Get leads / earn commission”
+
+NEW:
+“Deliver a complete client experience without operational burden”
+
+Add:
+“DeliWer does not participate in property transactions — we enhance what happens after”
+
+--------------------------------------------------
+
+8. ADD “MOVE-IN GUARANTEE STYLE” POSITIONING
+
+Title:
+“From Paper to Reality — Without Gaps”
+
+Text:
+“In Dubai, transactions move fast — but execution often doesn’t. DeliWer ensures there is no gap between agreement and actual move-in.”
+
+--------------------------------------------------
+
+9. OPTIONAL PRIVATE FLOW (IMPORTANT)
+
+Internally:
+- If user shows buying intent via WhatsApp
+- THEN manually introduce Capella or other partners
+
+BUT:
+Do NOT expose this flow publicly on website
+
+--------------------------------------------------
+
+10. SEO + GEO POSITIONING
+
+Add keywords naturally:
+
+- move-in services Dubai
+- relocation support Dubai
+- after property purchase support Dubai
+- tenant setup Dubai
+- ejari and moving Dubai
+
+--------------------------------------------------
+
+11. PERFORMANCE RULES
+
+- No backend required
+- Static enhancements only
+- Lightweight JS for WhatsApp prefill
+- Mobile-first optimization
+
+--------------------------------------------------
+
+FINAL POSITIONING:
+
+DeliWer is NOT in the transaction.
+
+DeliWer is the layer that makes the transaction REAL.
+
+Capella is NOT promoted.
+
+Capella is ENABLED.
