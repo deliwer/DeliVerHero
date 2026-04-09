@@ -596,6 +596,33 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
+
+          {/* ── DISTRESS DEALS HIGHLIGHT ── */}
+          <div className="relative bg-gradient-to-r from-amber-950/60 via-slate-900 to-amber-950/40 border border-amber-500/30 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-5 overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent pointer-events-none" />
+            <div className="shrink-0 w-12 h-12 bg-amber-500/15 border border-amber-500/30 rounded-xl flex items-center justify-center text-2xl relative z-10">
+              🔥
+            </div>
+            <div className="flex-1 text-center sm:text-left relative z-10">
+              <div className="inline-flex items-center gap-1.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" /> Distress Deals Available
+              </div>
+              <p className="text-white font-black text-sm leading-snug">Landlords offering rapid-move vacancies — Ejari, DEWA &amp; setup coordinated within 24 hrs.</p>
+              <p className="text-gray-500 text-[11px] mt-1">Ask us about current availability when you start your move-in on WhatsApp.</p>
+            </div>
+            <a
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%27d%20like%20to%20know%20about%20distress%20deal%20vacancies%20available%20now."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 relative z-10"
+              data-testid="cta-distress-deals"
+            >
+              <Button className="bg-amber-600 hover:bg-amber-500 text-white font-black rounded-xl px-5 h-9 text-xs shadow-lg shadow-amber-900/30 transition-all whitespace-nowrap">
+                <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> Ask on WhatsApp
+              </Button>
+            </a>
+          </div>
+
           {/* ── Trust Signals anchor — more reviews will be added here ── */}
           <div className="space-y-4">
             <div className="flex items-center justify-center gap-3">
