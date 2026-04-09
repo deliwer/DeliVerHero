@@ -1,9 +1,11 @@
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Navigation } from "@/components/navigation";
+import { Link } from "wouter";
 import {
   CheckCircle2, MessageCircle, ArrowRight, Users, Building2,
-  FileText, Home, Layers, ShieldCheck, Clock, Briefcase, Star,
+  FileText, Home, Layers, ShieldCheck, Clock, Briefcase, Star, Zap,
 } from "lucide-react";
 
 const WA_NUMBER = "971523946311";
@@ -82,12 +84,13 @@ export default function TransactionSupportPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white pb-24 md:pb-0">
       <SEOMeta
-        title="Transaction Support & Move-In Coordination Dubai | DeliWer"
-        description="DeliWer works alongside your broker, developer, or landlord to ensure everything after the deal is executed seamlessly. Move-in services Dubai — Ejari, DEWA, movers, setup."
+        title="Transaction Support — From Agreement to Move-In | DeliWer Dubai"
+        description="DeliWer activates after your property deal is done. Ejari registration, DEWA activation, movers, internet & cleaning — fully coordinated for brokers, landlords & tenants in Dubai."
       />
+      <Navigation />
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="relative py-24 md:py-36 px-4 overflow-hidden">
+      <section className="relative pt-32 md:pt-44 pb-24 md:pb-36 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1800&h=900&fit=crop&q=80"
@@ -126,6 +129,16 @@ export default function TransactionSupportPage() {
               <MessageCircle className="w-5 h-5 mr-2" />
               Start My Move Plan
             </Button>
+            <Link href="/broker-partner" data-testid="button-hero-broker-partner">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/20 text-white hover:bg-white/5 font-black rounded-2xl px-8 h-14 text-base"
+              >
+                <Zap className="w-5 h-5 mr-2 text-purple-400" />
+                Broker / Partner?
+              </Button>
+            </Link>
           </div>
 
           {/* Trust strip */}
@@ -291,6 +304,45 @@ export default function TransactionSupportPage() {
                 <p className="text-gray-500 text-sm leading-relaxed">{vp.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOR BROKERS & PARTNERS ────────────────────────── */}
+      <section className="py-20 px-4 bg-gradient-to-r from-purple-950/50 via-slate-950 to-purple-950/30 border-y border-purple-500/20">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1 space-y-4 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 bg-purple-500/15 border border-purple-500/25 rounded-full px-3 py-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                <span className="text-purple-300 text-[10px] font-black uppercase tracking-widest">For Real Estate Professionals</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white leading-tight">
+                Are you a broker or property professional?
+              </h2>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-lg">
+                Share DeliWer with your clients the moment the tenancy is signed. We handle everything after the deal — and you earn on every completed service.
+              </p>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-gray-500 font-semibold justify-center md:justify-start">
+                {["Studio: AED 150–300", "1BR: AED 300–600", "Villa: AED 800+", "Free to join"].map(t => (
+                  <span key={t} className="flex items-center gap-1">
+                    <span className="w-1 h-1 rounded-full bg-purple-400 shrink-0" />{t}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col gap-3 shrink-0 w-full md:w-auto">
+              <Link href="/broker-partner" data-testid="cta-ts-broker-partner">
+                <Button className="w-full md:w-auto bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-8 h-12 text-sm shadow-xl shadow-purple-900/30 transition-all">
+                  <Zap className="w-4 h-4 mr-2" /> Generate My Referral Link
+                </Button>
+              </Link>
+              <Link href="/partners" data-testid="cta-ts-partner-overview">
+                <Button variant="outline" className="w-full md:w-auto border-purple-500/30 text-purple-300 hover:bg-purple-500/10 font-black rounded-2xl px-8 h-11 text-sm">
+                  <ArrowRight className="w-4 h-4 mr-2" /> Partner Program Overview
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

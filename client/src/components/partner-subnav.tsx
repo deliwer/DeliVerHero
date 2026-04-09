@@ -5,7 +5,7 @@ const PARTNER_SUBNAV = [
   { label: "Overview", href: "/partners" },
   { label: "Brokers", href: "/brokers", aliases: ["/broker-partner"] },
   { label: "Join", href: "/partners/join" },
-  { label: "How It Works", href: "/partners/how-it-works" },
+  { label: "How It Works", href: "/transaction-support", aliases: ["/partners/how-it-works"] },
   { label: "Earnings", href: "/partners/earnings" },
   { label: "Resources", href: "/partners/resources" },
 ];

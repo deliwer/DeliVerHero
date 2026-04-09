@@ -5,7 +5,7 @@ export default function PartnersHowItWorks() {
   const [, setLocation] = useLocation();
 
   useEffect(() => {
-    setLocation("/partners");
+    setLocation("/transaction-support");
   }, [setLocation]);
 
   return null;
