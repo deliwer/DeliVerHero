@@ -238,11 +238,11 @@ export default function PartnersPage() {
                   Become a Partner
                 </Button>
               </Link>
-              <a href="#how-it-works">
+              <Link href="/transaction-support">
                 <Button size="lg" variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black h-14 px-10 text-lg">
                   How It Works
                 </Button>
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>
