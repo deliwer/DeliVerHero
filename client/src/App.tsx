@@ -128,6 +128,7 @@ const RelocationChecklist = lazy(() => import("@/pages/relocation-checklist"));
 const MoveInServicesDubai = lazy(() => import("@/pages/move-in-services-dubai"));
 const SettlingInDubaiGuide = lazy(() => import("@/pages/settling-in-dubai-guide"));
 const BrokerMoveInSupportDubai = lazy(() => import("@/pages/broker-move-in-support-dubai"));
+const BrokerMasterDB = lazy(() => import("@/pages/broker-master-db"));
 const AffiliateDashboardPage = lazy(() => import("@/pages/affiliate-dashboard"));
 const ExitDubaiPage = lazy(() => import("@/pages/exit-dubai"));
 const MoveCheaperRentPage = lazy(() => import("@/pages/move-cheaper-rent"));
@@ -364,6 +365,7 @@ function Router() {
         <Route path="/move-in-services-dubai" component={MoveInServicesDubai} />
         <Route path="/settling-in-dubai-guide" component={SettlingInDubaiGuide} />
         <Route path="/broker-move-in-support-dubai" component={BrokerMoveInSupportDubai} />
+        <Route path="/broker-master-db" component={BrokerMasterDB} />
 
         {/* Relocation Concierge Funnel Pages */}
         <Route path="/exit-dubai" component={ExitDubaiPage} />
