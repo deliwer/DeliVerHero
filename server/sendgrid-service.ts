@@ -27,7 +27,7 @@ export async function sendEmail(params: EmailParams): Promise<boolean> {
   try {
     const msg: any = {
       to: params.to,
-      from: params.from || 'noreply@deliwer.com',
+      from: params.from || 'info@deliwer.com',
       subject: params.subject,
     };
 
@@ -146,7 +146,7 @@ export async function sendCorporateWelcomeEmail(email: string, companyName: stri
 
   return sendEmail({
     to: email,
-    from: 'corporate@deliwer.com',
+    from: 'info@deliwer.com',
     subject,
     html
   });
@@ -229,7 +229,7 @@ export async function sendRelocateOnboardingEmail(
 
   return sendEmail({
     to: email,
-    from: 'service@deliwer.com',
+    from: 'info@deliwer.com',
     subject,
     html
   });
@@ -316,7 +316,7 @@ export async function sendCorporateCampaignEmail(
 
   return sendEmail({
     to: email,
-    from: 'corporate@deliwer.com',
+    from: 'info@deliwer.com',
     subject,
     html
   });

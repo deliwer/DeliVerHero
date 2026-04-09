@@ -226,7 +226,7 @@ async function sendAdminNotificationEmail(leadId: string, data: LeadData, overri
 
   const primarySent = await sendEmail({
     to: recipientEmail,
-    from: 'leads@deliwer.com',
+    from: 'info@deliwer.com',
     subject: `[NEW LEAD] ${data.serviceType.toUpperCase()} - ${data.name}`,
     html
   });
@@ -234,7 +234,7 @@ async function sendAdminNotificationEmail(leadId: string, data: LeadData, overri
   if (!primarySent) {
     return sendEmail({
       to: FALLBACK_EMAIL,
-      from: 'leads@deliwer.com',
+      from: 'info@deliwer.com',
       subject: `[URGENT - PRIMARY FAILED] New Lead: ${data.name}`,
       html
     });

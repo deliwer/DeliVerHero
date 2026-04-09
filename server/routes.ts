@@ -2177,7 +2177,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       
       // Send campaign emails
       const results = await sendBulkEmail(emailAddresses, {
-        from: 'corporate@deliwer.com',
+        from: 'info@deliwer.com',
         subject: campaign.subject,
         html: campaign.content
       });
@@ -2385,7 +2385,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const { sendEmail } = await import('./sendgrid-service.js');
       const testResult = await sendEmail({
         to: 'test@deliwer.com',
-        from: 'corporate@deliwer.com',
+        from: 'info@deliwer.com',
         subject: 'SendGrid Verification Test',
         text: 'This is a test to verify SendGrid configuration.'
       });
@@ -2560,7 +2560,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       // Send test email using the sendgrid service
       const testCampaign = {
         to: testEmail,
-        from: 'corporate@deliwer.com',
+        from: 'info@deliwer.com',
         subject: 'DeliWer Corporate Trade-in Test Campaign',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -2615,7 +2615,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       // Send test email to Shopify admin
       const result = await sendEmail({
         to: adminEmail,
-        from: 'corporate@deliwer.com',
+        from: 'info@deliwer.com',
         subject: `SendGrid Integration Test for ${shopDomain}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
