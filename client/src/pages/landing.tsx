@@ -188,6 +188,22 @@ export default function LandingPage() {
               </div>
             </Link>
           </motion.div>
+
+          {/* ── Partner pull-quote ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex items-center justify-center gap-3 pt-2"
+          >
+            <div className="h-px flex-1 max-w-[60px] bg-white/8" />
+            <Link href="/partners" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors group" data-testid="hero-partner-teaser">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="text-[10px] font-black uppercase tracking-widest">Broker or Agent? Earn AED 150–800+ per client</span>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <div className="h-px flex-1 max-w-[60px] bg-white/8" />
+          </motion.div>
         </div>
       </section>
       {/* ============================================

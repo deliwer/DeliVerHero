@@ -126,6 +126,19 @@ export function Navigation() {
             </button>
 
             <div className="w-px h-4 bg-white/10 mx-2" />
+
+            {!isChaintrack && (
+              <Link href="/partners">
+                <Button
+                  className="relative bg-emerald-600/15 hover:bg-emerald-600/25 text-emerald-300 border border-emerald-500/40 font-black uppercase tracking-widest text-[10px] px-4 rounded-xl gap-1.5 transition-all"
+                  data-testid="nav-partners-cta"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  Partner &amp; Earn
+                </Button>
+              </Link>
+            )}
+
             <Button
               variant="outline"
               className={`font-black uppercase tracking-widest text-[10px] px-6 rounded-xl ${
@@ -219,15 +232,20 @@ export function Navigation() {
               <div className="w-full h-px bg-white/10" />
             )}
             {!isChaintrack && (
-              <Link href="/broker-partner">
+              <Link href="/partners">
                 <Button
-                  variant="ghost"
-                  className="w-full justify-start text-xs font-black uppercase tracking-widest h-12 rounded-xl text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 border border-purple-900/30"
+                  className="w-full justify-between text-xs font-black uppercase tracking-widest h-14 rounded-xl bg-emerald-600/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-600/25 transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  data-testid="mobile-nav-broker-partner"
+                  data-testid="mobile-nav-partner-earn"
                 >
-                  <Handshake className="w-5 h-5 mr-3 text-purple-500" />
-                  Broker Partner Program
+                  <div className="flex items-center gap-3">
+                    <Handshake className="w-5 h-5 text-emerald-400 shrink-0" />
+                    <div className="text-left">
+                      <div>Partner &amp; Earn</div>
+                      <div className="text-[9px] text-emerald-500/70 normal-case font-bold tracking-normal">AED 150–800+ per client</div>
+                    </div>
+                  </div>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 </Button>
               </Link>
             )}
