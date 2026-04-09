@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2, ArrowRight, Link2, Share2, BarChart2, Wallet, RefreshCw, Network } from "lucide-react";
+import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2, ArrowRight, Link2, Share2, BarChart2, Wallet, RefreshCw, Network, DollarSign, Handshake } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
@@ -864,73 +864,177 @@ export default function PartnersPage() {
       {/* Ecosystem Partners Section */}
       <section className="py-32 px-4 bg-gradient-to-b from-slate-900/50 to-slate-950 border-t border-purple-500/20">
         <div className="max-w-5xl mx-auto">
+
+          {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <h2 className="text-5xl font-black uppercase mb-4">Ecosystem Partnerships</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto text-lg">Collaborate with DeliWer as part of your relocation, logistics, or brokerage services.</p>
+            <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/25 rounded-full px-4 py-1.5 mb-5">
+              <Handshake className="w-3.5 h-3.5 text-purple-400" />
+              <span className="text-purple-400 font-black text-[10px] uppercase tracking-widest">Ecosystem Partnerships</span>
+            </div>
+            <h2 className="text-5xl font-black uppercase tracking-tighter mb-4">
+              Your Brand. Their Move.<br />
+              <span className="text-purple-400">Everyone Wins.</span>
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto text-lg font-medium">
+              DeliWer integrates into your existing client journey — relocation, property, logistics, or community — adding a seamless service layer your clients already need.
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {[
-              { name: "Global Logistics Group", service: "Logistics & Relocation", color: "border-orange-500/30" },
-              { name: "Alreza Group", service: "Business Setup", color: "border-blue-500/30" },
-              { name: "Capella Properties", service: "Real Estate Partner", color: "border-green-500/30" },
-              { name: "DeBacci Capital", service: "Referral Network", color: "border-yellow-500/30" },
-              { name: "MyTablon", service: "Community Management", color: "border-red-500/30" },
-              { name: "Your Company", service: "Partner with us today", color: "border-emerald-500/30" }
-            ].map((partner, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+          {/* Partner logos / social proof strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-slate-900/60 border border-white/8 rounded-2xl p-6 mb-10"
+          >
+            <p className="text-center text-[10px] text-gray-500 font-black uppercase tracking-widest mb-6">Current Ecosystem Partners</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {[
+                { name: "Capella Properties", service: "Real Estate Partner", icon: "🏢", tag: "Tenant Referrals", border: "border-green-500/30 hover:border-green-500/70", badge: "bg-green-500/10 text-green-400" },
+                { name: "Global Logistics Group", service: "Logistics & Relocation", icon: "🚢", tag: "Arrival Activation", border: "border-orange-500/30 hover:border-orange-500/70", badge: "bg-orange-500/10 text-orange-400" },
+                { name: "Alreza Group", service: "Business Setup", icon: "💼", tag: "Expat Onboarding", border: "border-blue-500/30 hover:border-blue-500/70", badge: "bg-blue-500/10 text-blue-400" },
+                { name: "DeBacci Capital", service: "Referral Network", icon: "🤝", tag: "Commission Sharing", border: "border-yellow-500/30 hover:border-yellow-500/70", badge: "bg-yellow-500/10 text-yellow-400" },
+                { name: "MyTablon", service: "Community Management", icon: "🏘️", tag: "Building Communities", border: "border-red-500/30 hover:border-red-500/70", badge: "bg-red-500/10 text-red-400" },
+              ].map((partner, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.07 }}
+                  viewport={{ once: true }}
+                  className={`bg-slate-950/60 border ${partner.border} rounded-xl p-4 transition-all group cursor-default`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl shrink-0">{partner.icon}</span>
+                    <div className="min-w-0">
+                      <h3 className="font-black text-white text-sm leading-tight mb-1 group-hover:text-white transition-colors">{partner.name}</h3>
+                      <p className="text-gray-500 text-xs mb-2">{partner.service}</p>
+                      <span className={`inline-block text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${partner.badge}`}>{partner.tag}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* Open slot CTA */}
+              <motion.a
+                href="https://wa.me/971523946311?text=Hi+DeliWer%2C+I%27m+interested+in+an+ecosystem+partnership"
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.35 }}
                 viewport={{ once: true }}
-                className={`bg-slate-900/50 border ${partner.color} rounded-xl p-6 text-center hover:border-opacity-100 transition-all`}
+                className="bg-emerald-500/5 border-2 border-dashed border-emerald-500/40 hover:border-emerald-500/80 hover:bg-emerald-500/10 rounded-xl p-4 transition-all group flex items-center gap-3 cursor-pointer"
+                data-testid="ecosystem-open-slot-cta"
               >
-                <h3 className="text-xl font-black text-white mb-2">{partner.name}</h3>
-                <p className="text-gray-400 text-sm">{partner.service}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <Card className="bg-slate-900/70 border-purple-500/30 p-8 mb-12">
-            <h3 className="text-2xl font-black text-white mb-6">Partnership Opportunities</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <h4 className="font-black text-purple-300 mb-3">Relocation Referrals</h4>
-                <p className="text-gray-300 text-sm">
-                  Refer your clients moving to Dubai apartments and earn commission per move-in activation.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-black text-purple-300 mb-3">Logistics Integration</h4>
-                <p className="text-gray-300 text-sm">
-                  Coordinate home-ready timelines with shipping/cargo to ensure apartments are activated on arrival.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-black text-purple-300 mb-3">White-Label Services</h4>
-                <p className="text-gray-300 text-sm">
-                  Offer DeliWer's AquaCafe Move-In Welcome Service under your brand as part of your service ecosystem.
-                </p>
-              </div>
+                <span className="text-2xl shrink-0">➕</span>
+                <div>
+                  <h3 className="font-black text-emerald-400 text-sm leading-tight mb-1 group-hover:text-emerald-300 transition-colors">Your Company</h3>
+                  <p className="text-gray-500 text-xs mb-2">Open partnership slot</p>
+                  <span className="inline-block text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400">Apply via WhatsApp →</span>
+                </div>
+              </motion.a>
             </div>
-          </Card>
+          </motion.div>
 
-          <div className="text-center">
-            <p className="text-gray-400 mb-6">
-              Interested in partnership? Contact us via WhatsApp or email to explore collaboration.
-            </p>
-            <Link href="/relocation-alliance">
-              <Button size="lg" className="bg-purple-600 hover:bg-purple-500 font-black h-14 px-12 text-lg">
-                Explore Alliance Program →
-              </Button>
-            </Link>
-          </div>
+          {/* Partnership opportunity types — actionable */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-10"
+          >
+            <p className="text-center text-[10px] text-gray-500 font-black uppercase tracking-widest mb-6">How Partnerships Work</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {[
+                {
+                  icon: "🏡",
+                  title: "Tenant Referrals",
+                  color: "border-purple-500/30 bg-purple-950/10",
+                  titleColor: "text-purple-300",
+                  desc: "Your client signed a lease. You introduce DeliWer. We handle Ejari, DEWA, and move-in. You earn AED 150–800+ per activation — zero extra work.",
+                  earn: "AED 150–800+ per client",
+                  earnColor: "bg-purple-500/10 text-purple-300 border-purple-500/20",
+                  cta: "Start Referring →",
+                  href: "#partners-register-form",
+                },
+                {
+                  icon: "🚛",
+                  title: "Logistics Integration",
+                  color: "border-orange-500/30 bg-orange-950/10",
+                  titleColor: "text-orange-300",
+                  desc: "Coordinate home-ready timelines with your cargo and shipping schedule. We ensure the apartment is fully activated before your client's shipment arrives.",
+                  earn: "Co-branded service offering",
+                  earnColor: "bg-orange-500/10 text-orange-300 border-orange-500/20",
+                  cta: "Discuss Integration →",
+                  href: "https://wa.me/971523946311?text=Hi+DeliWer%2C+logistics+integration",
+                },
+                {
+                  icon: "🏷️",
+                  title: "White-Label Services",
+                  color: "border-blue-500/30 bg-blue-950/10",
+                  titleColor: "text-blue-300",
+                  desc: "Offer DeliWer's full move-in coordination — including AquaCafe Welcome Kits — under your own brand. Strengthen your client experience without building ops.",
+                  earn: "Custom revenue split",
+                  earnColor: "bg-blue-500/10 text-blue-300 border-blue-500/20",
+                  cta: "Explore White-Label →",
+                  href: "https://wa.me/971523946311?text=Hi+DeliWer%2C+white-label+interest",
+                },
+              ].map((opp, i) => (
+                <div key={i} className={`border ${opp.color} rounded-2xl p-6 space-y-4 flex flex-col`}>
+                  <div className="text-3xl">{opp.icon}</div>
+                  <div>
+                    <h4 className={`font-black uppercase tracking-tight text-base mb-2 ${opp.titleColor}`}>{opp.title}</h4>
+                    <p className="text-gray-400 text-sm font-medium leading-relaxed">{opp.desc}</p>
+                  </div>
+                  <div className={`inline-flex items-center gap-1.5 self-start border rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wider ${opp.earnColor}`}>
+                    <DollarSign className="w-3 h-3 shrink-0" />
+                    {opp.earn}
+                  </div>
+                  <div className="mt-auto pt-2">
+                    <a href={opp.href} onClick={opp.href.startsWith('#') ? undefined : undefined}>
+                      <Button size="sm" className={`w-full font-black text-xs uppercase tracking-widest h-9 ${opp.titleColor === 'text-purple-300' ? 'bg-purple-600/20 hover:bg-purple-600/40 text-purple-300 border border-purple-500/30' : opp.titleColor === 'text-orange-300' ? 'bg-orange-600/20 hover:bg-orange-600/40 text-orange-300 border border-orange-500/30' : 'bg-blue-600/20 hover:bg-blue-600/40 text-blue-300 border border-blue-500/30'}`} data-testid={`ecosystem-cta-${i}`}>
+                        {opp.cta}
+                      </Button>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* High-visibility CTA band */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-purple-950/60 via-slate-900/80 to-emerald-950/40 border border-purple-500/30 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+          >
+            <div className="space-y-2 text-center md:text-left">
+              <h3 className="text-2xl font-black uppercase tracking-tighter text-white">Ready to Integrate?</h3>
+              <p className="text-gray-400 font-medium text-sm max-w-md">
+                Message us on WhatsApp and we'll build a custom partnership structure that fits your business model within 24 hours.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <a href="https://wa.me/971523946311?text=Hi+DeliWer%2C+I%27m+interested+in+an+ecosystem+partnership" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 font-black h-12 px-8 text-sm uppercase tracking-widest gap-2 whitespace-nowrap" data-testid="ecosystem-whatsapp-cta">
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp Us
+                </Button>
+              </a>
+              <Link href="/relocation-alliance">
+                <Button size="lg" variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black h-12 px-8 text-sm uppercase tracking-widest whitespace-nowrap" data-testid="ecosystem-alliance-cta">
+                  Alliance Program →
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
       {/* Partner Examples Section */}
