@@ -878,7 +878,7 @@ export default function PartnersPage() {
             {[
               { name: "Global Logistics Group", service: "Logistics & Relocation", color: "border-orange-500/30" },
               { name: "Alreza Group", service: "Business Setup", color: "border-blue-500/30" },
-              { name: "ARO Overseas", service: "International Relocation", color: "border-green-500/30" },
+              { name: "Capella Properties", service: "Real Estate Partner", color: "border-green-500/30" },
               { name: "DeBacci Capital", service: "Referral Network", color: "border-yellow-500/30" },
               { name: "MyTablon", service: "Community Management", color: "border-red-500/30" },
               { name: "Your Company", service: "Partner with us today", color: "border-emerald-500/30" }
