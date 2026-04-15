@@ -5,7 +5,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2, ArrowRight, Link2, Share2, BarChart2, Wallet, RefreshCw, Network, DollarSign, Handshake } from "lucide-react";
+import { Copy, Check, Zap, Users, TrendingUp, Award, BarChart3, BookOpen, MessageCircle, CheckCircle2, ArrowRight, Link2, Share2, BarChart2, Wallet, RefreshCw, Network, DollarSign, Handshake, Crown, Star, Rocket, UserCheck, ChevronDown, Shield, Globe, Sparkles, Trophy } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
@@ -298,6 +299,370 @@ export default function PartnersPage() {
               </Button>
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ── NETWORK HIERARCHY ─────────────────────────────── */}
+      <section className="py-24 px-4 bg-gradient-to-b from-slate-950 via-slate-900/60 to-slate-950 relative overflow-hidden">
+        {/* Background radial glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-amber-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-[400px] h-[300px] bg-emerald-500/5 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-6xl mx-auto relative z-10 space-y-16">
+
+          {/* Section Header */}
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/30 rounded-full px-5 py-2">
+              <Crown className="w-4 h-4 text-amber-400" />
+              <span className="text-amber-400 text-[11px] font-black uppercase tracking-widest">Planet Heroes Network</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              Build Your Leadership Team.<br />
+              <span className="text-amber-400">Earn on Every Level.</span>
+            </h2>
+            <p className="text-gray-400 font-medium max-w-3xl mx-auto text-lg leading-relaxed">
+              Join as a Customer, grow into an Independent Distributor, lead a team as a Senior Distributor,
+              and build empires as a Leader — every tier earns commission on DeliWer's move-in and sustainability services,
+              compounded through your entire network.
+            </p>
+          </div>
+
+          {/* Hierarchy Pyramid Visual */}
+          <div className="space-y-4">
+
+            {/* LEADER */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0 }}
+              data-testid="tier-leader"
+              className="relative"
+            >
+              <div className="bg-gradient-to-r from-amber-950/60 via-amber-900/40 to-amber-950/60 border border-amber-500/40 rounded-3xl p-6 md:p-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  {/* Icon + Label */}
+                  <div className="flex items-center gap-4 shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-xl shadow-amber-900/50">
+                      <Crown className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/40 text-[10px] font-black uppercase tracking-widest mb-1">Tier 1 · Elite</Badge>
+                      <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-amber-300">Leader</h3>
+                    </div>
+                  </div>
+                  {/* Commission rates */}
+                  <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[
+                      { label: "Own Referral Rate", value: "30%", sub: "of coordination fee" },
+                      { label: "Team Override", value: "+10%", sub: "on Senior Distributors" },
+                      { label: "Deep Override", value: "+5%", sub: "on Ind. Distributors" },
+                      { label: "Avg Monthly", value: "AED 5,000+", sub: "at full team strength" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-3 text-center">
+                        <div className="text-xl md:text-2xl font-black text-amber-300">{stat.value}</div>
+                        <div className="text-[10px] font-black uppercase tracking-wider text-amber-400/70 mt-0.5">{stat.label}</div>
+                        <div className="text-[10px] text-gray-500 mt-0.5">{stat.sub}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Requirements */}
+                <div className="mt-5 pt-5 border-t border-amber-500/20 flex flex-wrap gap-x-6 gap-y-2">
+                  <div className="text-[11px] text-amber-400/80 font-black uppercase tracking-widest">Requirements:</div>
+                  {["5+ Senior Distributors in team", "Planet Hero: Gold Status", "Lifetime AquaCafe activation", "30-day active referral streak"].map(r => (
+                    <div key={r} className="flex items-center gap-1.5 text-[12px] text-gray-300 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                      {r}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Connector arrow down */}
+              <div className="flex justify-center mt-1 mb-1">
+                <ChevronDown className="w-6 h-6 text-amber-500/40" />
+              </div>
+            </motion.div>
+
+            {/* SENIOR DISTRIBUTOR */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              data-testid="tier-senior-distributor"
+              className="relative"
+            >
+              <div className="bg-gradient-to-r from-purple-950/60 via-purple-900/40 to-purple-950/60 border border-purple-500/40 rounded-3xl p-6 md:p-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <div className="flex items-center gap-4 shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shadow-xl shadow-purple-900/50">
+                      <Trophy className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 text-[10px] font-black uppercase tracking-widest mb-1">Tier 2 · Advanced</Badge>
+                      <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-purple-300">Senior Distributor</h3>
+                    </div>
+                  </div>
+                  <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[
+                      { label: "Own Referral Rate", value: "30%", sub: "of coordination fee" },
+                      { label: "Team Override", value: "+5%", sub: "on Ind. Distributors" },
+                      { label: "Bonus Threshold", value: "3 IDs", sub: "to unlock override" },
+                      { label: "Avg Monthly", value: "AED 1,500+", sub: "active team earning" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="bg-purple-500/10 border border-purple-500/20 rounded-2xl p-3 text-center">
+                        <div className="text-xl md:text-2xl font-black text-purple-300">{stat.value}</div>
+                        <div className="text-[10px] font-black uppercase tracking-wider text-purple-400/70 mt-0.5">{stat.label}</div>
+                        <div className="text-[10px] text-gray-500 mt-0.5">{stat.sub}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-5 pt-5 border-t border-purple-500/20 flex flex-wrap gap-x-6 gap-y-2">
+                  <div className="text-[11px] text-purple-400/80 font-black uppercase tracking-widest">Requirements:</div>
+                  {["3+ Independent Distributors in team", "Planet Hero: Silver Status", "AquaCafe activated", "90-day active status"].map(r => (
+                    <div key={r} className="flex items-center gap-1.5 text-[12px] text-gray-300 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                      {r}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-center mt-1 mb-1">
+                <ChevronDown className="w-6 h-6 text-purple-500/40" />
+              </div>
+            </motion.div>
+
+            {/* INDEPENDENT DISTRIBUTOR */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              data-testid="tier-independent-distributor"
+              className="relative"
+            >
+              <div className="bg-gradient-to-r from-emerald-950/60 via-emerald-900/40 to-emerald-950/60 border border-emerald-500/40 rounded-3xl p-6 md:p-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <div className="flex items-center gap-4 shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-xl shadow-emerald-900/50">
+                      <Rocket className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 text-[10px] font-black uppercase tracking-widest mb-1">Tier 3 · Active</Badge>
+                      <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-emerald-300">Independent Distributor</h3>
+                    </div>
+                  </div>
+                  <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[
+                      { label: "Own Referral Rate", value: "25%", sub: "of coordination fee" },
+                      { label: "Upgrade Bonus", value: "30%", sub: "after 5 conversions" },
+                      { label: "Per Referral", value: "AED 150+", sub: "Studio / 1BR rate" },
+                      { label: "Planet Points", value: "500 pts", sub: "per conversion" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-3 text-center">
+                        <div className="text-xl md:text-2xl font-black text-emerald-300">{stat.value}</div>
+                        <div className="text-[10px] font-black uppercase tracking-wider text-emerald-400/70 mt-0.5">{stat.label}</div>
+                        <div className="text-[10px] text-gray-500 mt-0.5">{stat.sub}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-5 pt-5 border-t border-emerald-500/20 flex flex-wrap gap-x-6 gap-y-2">
+                  <div className="text-[11px] text-emerald-400/80 font-black uppercase tracking-widest">Requirements:</div>
+                  {["AquaCafe Starter Kit activated (AED 99)", "Planet Hero: Bronze Status", "1+ successful referral within 30 days", "WhatsApp group with 10+ contacts"].map(r => (
+                    <div key={r} className="flex items-center gap-1.5 text-[12px] text-gray-300 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      {r}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-center mt-1 mb-1">
+                <ChevronDown className="w-6 h-6 text-emerald-500/40" />
+              </div>
+            </motion.div>
+
+            {/* CUSTOMER */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              data-testid="tier-customer"
+            >
+              <div className="bg-gradient-to-r from-slate-800/60 via-slate-800/40 to-slate-800/60 border border-slate-600/50 rounded-3xl p-6 md:p-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                  <div className="flex items-center gap-4 shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-500 to-slate-600 flex items-center justify-center shadow-xl shadow-slate-900/50">
+                      <UserCheck className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <Badge className="bg-slate-600/40 text-slate-300 border-slate-500/40 text-[10px] font-black uppercase tracking-widest mb-1">Tier 4 · Entry</Badge>
+                      <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-slate-200">Customer</h3>
+                    </div>
+                  </div>
+                  <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[
+                      { label: "Referral Credit", value: "15%", sub: "on referred sales" },
+                      { label: "Upgrade Path", value: "3 refs", sub: "to Ind. Distributor" },
+                      { label: "AquaCafe Deal", value: "AED 99", sub: "Starter Kit entry" },
+                      { label: "Planet Points", value: "100 pts", sub: "per successful ref" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="bg-slate-700/40 border border-slate-600/30 rounded-2xl p-3 text-center">
+                        <div className="text-xl md:text-2xl font-black text-slate-200">{stat.value}</div>
+                        <div className="text-[10px] font-black uppercase tracking-wider text-slate-400/80 mt-0.5">{stat.label}</div>
+                        <div className="text-[10px] text-gray-600 mt-0.5">{stat.sub}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-5 pt-5 border-t border-slate-600/30 flex flex-wrap gap-x-6 gap-y-2">
+                  <div className="text-[11px] text-slate-400/80 font-black uppercase tracking-widest">How to start:</div>
+                  {["Use DeliWer move-in services", "Share your unique referral link", "3 conversions → auto-upgrade to Ind. Distributor", "Earn Planet Points for every green action"].map(r => (
+                    <div key={r} className="flex items-center gap-1.5 text-[12px] text-gray-300 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      {r}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* AquaCafe Activation Deal Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            data-testid="aquacafe-activation-banner"
+            className="bg-gradient-to-r from-cyan-950/70 via-teal-900/50 to-cyan-950/70 border border-cyan-500/40 rounded-3xl p-8 md:p-10"
+          >
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="text-center md:text-left flex-1 space-y-3">
+                <div className="inline-flex items-center gap-2 bg-cyan-500/15 border border-cyan-500/30 rounded-full px-4 py-1.5 mb-1">
+                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <span className="text-cyan-400 text-[11px] font-black uppercase tracking-widest">AquaCafe Leadership Activation</span>
+                </div>
+                <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+                  Start Your Team With<br />
+                  <span className="text-cyan-400">The AquaCafe Deal</span>
+                </h3>
+                <p className="text-gray-300 font-medium leading-relaxed max-w-xl">
+                  The AED 99 AquaCafe Starter Kit is the gateway into the Planet Heroes network.
+                  Every team member you onboard through this deal activates your commission chain —
+                  earn on move-in services, water products, sustainability missions, and every referral your team makes.
+                </p>
+                <div className="flex flex-wrap gap-3 pt-1">
+                  {[
+                    { icon: Shield, label: "FREE Ionic Shower Filter (AED 399 value)" },
+                    { icon: Globe, label: "AED 100 Chill & Grill Voucher" },
+                    { icon: TrendingUp, label: "20% lifetime discount on water products" },
+                    { icon: Star, label: "Instant Planet Hero Bronze status" },
+                  ].map(({ icon: Icon, label }) => (
+                    <div key={label} className="flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-xl px-3 py-2">
+                      <Icon className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                      <span className="text-[12px] text-gray-200 font-semibold">{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-4 shrink-0">
+                <div className="text-center bg-cyan-500/10 border border-cyan-500/30 rounded-2xl p-6">
+                  <div className="text-5xl font-black text-cyan-300">AED 99</div>
+                  <div className="text-[11px] text-cyan-500/70 font-black uppercase tracking-widest mt-1">Starter Kit</div>
+                  <div className="text-[10px] text-gray-500 mt-0.5">Total value: AED 499+</div>
+                </div>
+                <Link href="/aquacafe-alliance">
+                  <Button data-testid="button-aquacafe-activate" size="lg" className="bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-2xl h-14 px-10 text-base shadow-2xl shadow-cyan-900/50 w-full">
+                    <Rocket className="w-5 h-5 mr-2" />
+                    Activate My Team Deal
+                  </Button>
+                </Link>
+                <a
+                  href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20to%20build%20a%20leadership%20team%20starting%20with%20the%20AquaCafe%20deal."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button data-testid="button-aquacafe-wa" variant="outline" className="border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10 font-black rounded-2xl px-8 h-11 text-sm w-full">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Ask on WhatsApp
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Gamification / Planet Hero Points Explainer */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Trophy,
+                color: "amber",
+                title: "Earn Planet Points",
+                desc: "Every referral, move-in booking, sustainability action and AquaCafe activation earns Planet Points. Points unlock higher hero tiers and exclusive rewards.",
+                points: ["500 pts — referral conversion", "200 pts — AquaCafe activation", "100 pts — sustainability mission", "1,000 pts — team member onboarded"],
+              },
+              {
+                icon: Crown,
+                color: "purple",
+                title: "Climb the Hero Tiers",
+                desc: "Planet Points drive your hero ranking from Bronze → Silver → Gold → Elite. Higher tiers unlock better commission overrides and exclusive leadership deals.",
+                points: ["Bronze Hero: 0–999 pts", "Silver Hero: 1,000–4,999 pts", "Gold Hero: 5,000–14,999 pts", "Elite Hero: 15,000+ pts"],
+              },
+              {
+                icon: Network,
+                color: "emerald",
+                title: "Network Multipliers",
+                desc: "Your earnings multiply with every layer of your team. Leaders with active downlines earn passively as their distributors convert — the deeper your network, the bigger your monthly payouts.",
+                points: ["Direct referral: 25–30%", "Senior team override: +5%", "Leader team override: +10%", "Full team: AED 5,000+/mo"],
+              },
+            ].map(({ icon: Icon, color, title, desc, points }) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                data-testid={`card-gamification-${title.toLowerCase().replace(/\s+/g, '-')}`}
+                className={`bg-${color}-950/40 border border-${color}-500/30 rounded-2xl p-6 space-y-4`}
+              >
+                <div className={`w-12 h-12 rounded-xl bg-${color}-500/20 flex items-center justify-center`}>
+                  <Icon className={`w-6 h-6 text-${color}-400`} />
+                </div>
+                <h4 className="text-lg font-black uppercase tracking-tight text-white">{title}</h4>
+                <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
+                <ul className="space-y-1.5">
+                  {points.map(pt => (
+                    <li key={pt} className="flex items-center gap-2 text-[12px] text-gray-300 font-medium">
+                      <span className={`w-1.5 h-1.5 rounded-full bg-${color}-400 shrink-0`} />
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA strip */}
+          <div className="flex flex-col md:flex-row gap-4 justify-center pt-4">
+            <Link href="/partners/join">
+              <Button data-testid="button-network-join-cta" size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-black h-14 px-12 text-lg shadow-2xl shadow-amber-900/40 rounded-2xl">
+                <Crown className="w-5 h-5 mr-2" />
+                Join the Leadership Network
+              </Button>
+            </Link>
+            <Link href="/planet-hero">
+              <Button data-testid="button-network-planet-hero-cta" size="lg" variant="outline" className="border-amber-500/40 text-amber-400 hover:bg-amber-500/10 font-black h-14 px-10 text-lg rounded-2xl">
+                <Star className="w-5 h-5 mr-2" />
+                Explore Planet Heroes
+              </Button>
+            </Link>
+          </div>
+
         </div>
       </section>
 
