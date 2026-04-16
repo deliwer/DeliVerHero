@@ -9,7 +9,9 @@ import {
   CheckCircle2, MessageCircle, Copy, Check, ShieldCheck,
   Star, Building2, ChevronDown, ChevronUp, QrCode, Zap,
   Home, ArrowRight, Users, TrendingUp, Clock, Send,
+  Crown, Droplets, ChefHat, Network, Sparkles,
 } from "lucide-react";
+import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp, logEvent } from "@/lib/referral";
 
@@ -261,6 +263,65 @@ export default function BrokerPartnerPage() {
                 {label}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CAREER PATH BANNER ─────────────────────────────── */}
+      <section className="py-10 px-4 bg-gradient-to-r from-amber-950/50 via-slate-900/80 to-amber-950/50 border-y border-amber-500/20">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1 space-y-3 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/25 rounded-full px-4 py-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-amber-400 text-[10px] font-black uppercase tracking-widest">Breakthrough Partner Career</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white leading-tight">
+              Turn Every Tenant Into<br className="hidden md:block" /> A Long-Term Income Stream.
+            </h2>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+              Go beyond the referral fee. Introduce your settled tenants to the AquaCafe deal,
+              Kangen Water home setup, and Planet Heroes network — then earn override commissions
+              as they build their own teams. Leader income: AED 5,000+/month.
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-gray-500 font-semibold pt-1 justify-center md:justify-start">
+              {[
+                { icon: Droplets, label: "AquaCafe AED 99 deal for tenants" },
+                { icon: ChefHat, label: "Baker's Kitchen dining perks" },
+                { icon: Crown, label: "Leader: AED 5,000+/mo" },
+                { icon: Network, label: "Kangen Water distributor training" },
+              ].map(({ icon: Icon, label }) => (
+                <span key={label} className="flex items-center gap-1.5">
+                  <Icon className="w-3 h-3 text-amber-400 shrink-0" />
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="shrink-0 flex flex-col gap-3 w-full md:w-auto">
+            <Link href="/partners/career" data-testid="button-broker-career-path-cta">
+              <Button
+                size="lg"
+                className="w-full md:w-auto bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl h-13 px-8 text-sm shadow-xl shadow-amber-900/40"
+              >
+                <Crown className="w-4 h-4 mr-2" />
+                See the Full Career Path
+              </Button>
+            </Link>
+            <a
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20to%20learn%20about%20building%20a%20team%20through%20the%20career%20path%20program."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="outline"
+                size="lg"
+                data-testid="button-broker-career-wa"
+                className="w-full md:w-auto border-amber-500/30 text-amber-400 hover:bg-amber-500/10 font-black rounded-2xl h-11 px-7 text-sm"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Ask on WhatsApp
+              </Button>
+            </a>
           </div>
         </div>
       </section>
