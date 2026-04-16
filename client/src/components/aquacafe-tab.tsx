@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Rocket, Users, Droplets, Home, Package, ChevronDown, ChevronUp, Crown } from "lucide-react";
+import { Star, MessageCircle, Gift, CheckCircle, Zap, Shield, Award, Heart, Target, Rocket, Users, Droplets, Home, Package, ChevronDown, ChevronUp, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { shopifyCartService } from "@/lib/shopify-cart";
+
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
+
+const WA_NUMBER = "971523946311";
+const WA_STARTER = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit. Can you help me get started?")}`;
+const buildWAPlan = (name: string, price: number) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi DeliWer! I'm interested in the ${name} (AED ${price.toLocaleString()}). Please share more details!`)}`;
 
 interface ProductFeatureProps {
   icon: React.ReactNode;
@@ -23,9 +27,7 @@ function ProductFeature({ icon, title, description }: ProductFeatureProps) {
 }
 
 export function AquaCafeTab() {
-  const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
   const [isMembershipExpanded, setIsMembershipExpanded] = useState(false);
-  const { toast } = useToast();
 
   const productFeatures = [
     {
@@ -102,94 +104,6 @@ export function AquaCafeTab() {
     }
   ];
 
-  const handleOrderNow = async (planId: string) => {
-    setIsOrderLoading(planId);
-    
-    try {
-      // Define product configurations for Shopify integration
-      const productConfig = {
-        'starter-kit': {
-          id: 'aquacafe-starter-kit',
-          variantId: 'gid://shopify/ProductVariant/starter-kit-default',
-          title: 'AquaCafe Planet Hero Starter Kit',
-          price: 99,
-          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
-        },
-        'hero-minimal': {
-          id: 'aquacafe-hero-minimal',
-          variantId: 'gid://shopify/ProductVariant/hero-minimal-default',
-          title: 'AquaCafe Hero Minimal - Undersink Purifier',
-          price: 1299,
-          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
-        },
-        'hero-premium': {
-          id: 'aquacafe-hero-premium',
-          variantId: 'gid://shopify/ProductVariant/hero-premium-default',
-          title: 'AquaCafe Hero Premium - Most Popular',
-          price: 1499,
-          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
-        },
-        'hero-elite': {
-          id: 'aquacafe-hero-elite',
-          variantId: 'gid://shopify/ProductVariant/hero-elite-default',
-          title: 'AquaCafe Hero Elite - Premium Experience',
-          price: 2299,
-          image: 'https://deliwer-ecosystem.vercel.app/assets/aquacafe_shower_main_1755270492134.jpg'
-        }
-      };
-
-      const product = productConfig[planId as keyof typeof productConfig];
-      
-      if (!product) {
-        throw new Error('Product configuration not found');
-      }
-
-      // Add product to Shopify cart
-      await shopifyCartService.addToCart({
-        id: product.id,
-        variantId: product.variantId,
-        title: product.title,
-        variant: 'Default',
-        price: product.price,
-        image: product.image,
-        quantity: 1
-      });
-
-      toast({
-        title: "Added to Cart!",
-        description: `${product.title} has been added to your cart`,
-      });
-
-      // Create checkout session and redirect to Shopify
-      const cartItems = await shopifyCartService.getCartItems();
-      const checkoutUrl = await shopifyCartService.createCheckout(cartItems);
-
-      toast({
-        title: "Redirecting to Checkout",
-        description: "Taking you to secure payment...",
-      });
-
-      // Redirect to Shopify checkout
-      window.location.href = checkoutUrl;
-      
-    } catch (error) {
-      console.error('Order error:', error);
-      
-      // Fallback to direct product page if cart integration fails
-      toast({
-        title: "Redirecting to Product Page",
-        description: "Opening product page for secure checkout...",
-      });
-      
-      if (planId === 'starter-kit') {
-        window.open('https://deliwer.com/products/aquacafe?starter=true&ref=PLANETHEROES', '_blank');
-      } else {
-        window.open(`https://deliwer.com/products/aquacafe?plan=${planId}&ref=HEROPROGRAM`, '_blank');
-      }
-    } finally {
-      setIsOrderLoading(null);
-    }
-  };
 
   return (
     <div className="w-full">
@@ -255,22 +169,12 @@ export function AquaCafeTab() {
 
               {/* CTA Button */}
               <Button
-                onClick={() => handleOrderNow('starter-kit')}
-                disabled={isOrderLoading === 'starter-kit'}
-                className="w-full lg:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black px-6 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-2xl transform hover:scale-105 transition-all disabled:opacity-70"
+                onClick={() => window.open(WA_STARTER, "_blank")}
+                className="w-full lg:w-auto bg-[#25D366] hover:bg-[#1ebe57] text-white px-6 sm:px-12 py-3 sm:py-4 text-lg sm:text-xl md:text-2xl font-bold rounded-xl shadow-2xl transform hover:scale-105 transition-all"
                 data-testid="button-join-planet-heroes"
               >
-                {isOrderLoading === 'starter-kit' ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 sm:h-6 sm:w-6 border-b-2 border-current mr-2 sm:mr-3"></div>
-                    PROCESSING...
-                  </>
-                ) : (
-                  <>
-                    <Rocket className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
-                    JOIN LOYALTY - AED 99
-                  </>
-                )}
+                <MessageCircle className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" />
+                WHATSAPP TO JOIN - AED 99
               </Button>
               
               <p className="text-amber-300 font-bold text-sm sm:text-base">
@@ -496,33 +400,12 @@ export function AquaCafeTab() {
                     </div>
                     
                     <Button
-                      onClick={() => handleOrderNow(plan.id)}
-                      disabled={isOrderLoading === plan.id}
-                      className={`w-full py-3 sm:py-4 font-bold text-sm sm:text-base md:text-lg rounded-xl transition-all transform hover:scale-105 ${
-                        plan.isHeroEntry
-                          ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70 shadow-2xl animate-pulse'
-                          : plan.popular
-                          ? 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black disabled:opacity-70'
-                          : 'bg-hero-green-500 hover:bg-hero-green-600 text-white disabled:opacity-70'
-                      }`}
+                      onClick={() => window.open(buildWAPlan(plan.name, plan.price), "_blank")}
+                      className="w-full py-3 sm:py-4 font-bold text-sm sm:text-base md:text-lg rounded-xl transition-all transform hover:scale-105 bg-[#25D366] hover:bg-[#1ebe57] text-white shadow-lg"
                       data-testid={`button-order-${plan.id}`}
                     >
-                      {isOrderLoading === plan.id ? (
-                        <>
-                          <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-current mr-2"></div>
-                          PROCESSING...
-                        </>
-                      ) : plan.isHeroEntry ? (
-                        <>
-                          <Rocket className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
-                          🚀 JOIN NOW!
-                        </>
-                      ) : (
-                        <>
-                          <ShoppingCart className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
-                          ORDER NOW
-                        </>
-                      )}
+                      <MessageCircle className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                      {plan.isHeroEntry ? 'WHATSAPP TO JOIN' : 'ORDER VIA WHATSAPP'}
                     </Button>
                   </CardContent>
                 </Card>

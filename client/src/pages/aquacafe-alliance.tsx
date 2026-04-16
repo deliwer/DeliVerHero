@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useLocation } from "wouter";
-import { shopifyCartService } from "@/lib/shopify-cart";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import { 
-  Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, 
+  Star, MessageCircle, Gift, CheckCircle, Zap, Shield, Award, Heart, 
   Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, 
   Phone, ChefHat, Utensils, Coffee, Quote, QrCode, Share2, Camera,
   Smartphone, Navigation, TrendingUp, Sparkles, Trophy, Timer
 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -24,70 +24,18 @@ import aquacafeCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755485915603.
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
 import bannerAquaCafe from "@assets/Banner_AquaCafe_1755270492134.jpg";
 
+const WA_NUMBER = "971523946311";
+const WA_STARTER_MSG = encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit — ionic shower filter + Chill & Grill voucher + 20% water discount. Please help me get started!");
+const openAquaCafeWhatsApp = () => window.open(`https://wa.me/${WA_NUMBER}?text=${WA_STARTER_MSG}`, "_blank");
+
 export default function AquaCafeAlliance() {
-  const [isOrderLoading, setIsOrderLoading] = useState(false);
   const [location] = useLocation();
-  const [, setLocation2] = useLocation();
   const { toast } = useToast();
 
   // Extract variant from URL params
   const urlParams = new URLSearchParams(location.split('?')[1] || '');
   const variant = urlParams.get('variant') || 'hero-minimal';
 
-  const handleOrderNow = async () => {
-    setIsOrderLoading(true);
-    
-    try {
-      // Define plan details based on variant
-      const planDetails = {
-        'hero-minimal': {
-          name: 'AquaCafe Hero Minimal - PLANET HERO ENTRY',
-          price: 1299
-        },
-        'hero-premium': {
-          name: 'AquaCafe Hero Premium',
-          price: 1499
-        },
-        'hero-elite': {
-          name: 'AquaCafe Hero Elite',
-          price: 2299
-        }
-      };
-
-      const plan = planDetails[variant as keyof typeof planDetails] || planDetails['hero-minimal'];
-
-      // Add to cart using our cart service
-      const aquacafeProduct = {
-        id: `aquacafe-${variant}`,
-        variantId: `gid://shopify/ProductVariant/aquacafe-${variant}`,
-        title: plan.name,
-        variant: variant,
-        price: plan.price,
-        image: "🌊",
-        quantity: 1,
-      };
-
-      await shopifyCartService.addToCart(aquacafeProduct);
-      
-      toast({
-        title: "Added to Cart!",
-        description: `${plan.name} added to your cart`,
-      });
-
-      // Navigate to our Stripe checkout
-      setLocation2('/checkout');
-      
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-      toast({
-        title: "Error",
-        description: "Failed to add to cart. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsOrderLoading(false);
-    }
-  };
 
   const [wellnessPassportActive, setWellnessPassportActive] = useState(false);
   const [journeyStep, setJourneyStep] = useState(0);
@@ -413,11 +361,12 @@ export default function AquaCafeAlliance() {
               </Button>
             </Link>
             <Button
-              onClick={handleOrderNow}
-              disabled={isOrderLoading}
-              className="bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-50 px-8 py-4 rounded-full font-bold transition-all duration-300 hover:scale-105"
+              onClick={openAquaCafeWhatsApp}
+              data-testid="button-wa-join-loyalty"
+              className="bg-[#25D366] text-white border-2 border-[#25D366] hover:bg-[#1ebe57] px-8 py-4 rounded-full font-bold transition-all duration-300 hover:scale-105"
             >
-              {isOrderLoading ? 'Processing...' : '🛒 Join Loyalty Program'}
+              <MessageCircle className="w-5 h-5 mr-2" />
+              WhatsApp to Join
             </Button>
           </div>
         </div>
@@ -602,11 +551,12 @@ export default function AquaCafeAlliance() {
                       <div className="text-2xl font-bold mb-2">AED 99 Starter Kit</div>
                       <div className="text-sm mb-3">Your gateway to exclusive rewards, referral bonuses & Dr Sven's network</div>
                       <Button 
-                        onClick={handleOrderNow}
-                        disabled={isOrderLoading}
-                        className="bg-white text-emerald-600 hover:bg-gray-100 font-bold px-6 py-2 rounded-full text-sm"
+                        onClick={openAquaCafeWhatsApp}
+                        data-testid="button-wa-join-now"
+                        className="bg-[#25D366] text-white hover:bg-[#1ebe57] font-bold px-6 py-2 rounded-full text-sm"
                       >
-                        {isOrderLoading ? 'Processing...' : '🛒 Join Now & Start Referring'}
+                        <MessageCircle className="w-4 h-4 mr-2 inline-block" />
+                        WhatsApp to Join
                       </Button>
                     </div>
                     <div className="grid grid-cols-2 gap-3 text-sm text-gray-700">
@@ -766,21 +716,12 @@ export default function AquaCafeAlliance() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                 <Button 
-                  onClick={handleOrderNow}
-                  disabled={isOrderLoading}
-                  className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-800 hover:from-yellow-500 hover:to-orange-600 text-xl px-10 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  onClick={openAquaCafeWhatsApp}
+                  data-testid="button-wa-join-alliance"
+                  className="bg-[#25D366] hover:bg-[#1ebe57] text-white text-xl px-10 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105"
                 >
-                  {isOrderLoading ? (
-                    <>
-                      <div className="animate-spin w-6 h-6 border-2 border-gray-600 border-t-transparent rounded-full mr-3"></div>
-                      Processing...
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingCart className="w-6 h-6 mr-3" />
-                      Join Alliance & Start Referring
-                    </>
-                  )}
+                  <MessageCircle className="w-6 h-6 mr-3" />
+                  WhatsApp to Join Alliance
                 </Button>
                 
                 <Link href="/contact">

@@ -1,20 +1,19 @@
 import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
-import { useLocation } from "wouter";
-import { shopifyCartService } from "@/lib/shopify-cart";
 import { Link } from "wouter";
-import { Star, ShoppingCart, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target, Eye, MapPin, Clock, ChefHat } from "lucide-react";
+import { Star, MessageCircle, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target, Eye, MapPin, Clock, ChefHat } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
 
+const WA_NUMBER = "971523946311";
+const buildWAUrl = (planName: string, price: number) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi DeliWer! I'm interested in the ${planName} (AED ${price.toLocaleString()}). Please share more details!`)}`;
+
 export default function AquaCafe() {
-  const [isOrderLoading, setIsOrderLoading] = useState<string | null>(null);
   const [arPreview, setArPreview] = useState<{ isOpen: boolean; product: any }>({ isOpen: false, product: null });
-  const { toast } = useToast();
-  const [, setLocation] = useLocation();
 
   const plans = [
     {
@@ -76,43 +75,6 @@ export default function AquaCafe() {
     }
   ];
 
-  const handleOrderNow = async (planId: string) => {
-    const plan = plans.find(p => p.id === planId);
-    if (!plan) return;
-    
-    setIsOrderLoading(planId);
-    
-    try {
-      const aquacafeProduct = {
-        id: `aquacafe-${planId}`,
-        variantId: `gid://shopify/ProductVariant/aquacafe-${planId}`,
-        title: plan.name,
-        variant: planId,
-        price: plan.price,
-        image: "🌊",
-        quantity: 1,
-      };
-
-      await shopifyCartService.addToCart(aquacafeProduct);
-      
-      toast({
-        title: "Added to Cart!",
-        description: `${plan.name} has been added to your cart`,
-      });
-
-      setLocation('/checkout');
-      
-    } catch (error) {
-      console.error('Error adding to cart:', error);
-      toast({
-        title: "Error",
-        description: "Failed to add to cart. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsOrderLoading(null);
-    }
-  };
 
   const handleARPreview = (plan: typeof plans[0]) => {
     const product = {
@@ -720,28 +682,12 @@ export default function AquaCafe() {
                       </Button>
                       
                       <Button
-                        onClick={() => handleOrderNow(plan.id)}
-                        disabled={isOrderLoading === plan.id}
-                        className={`w-full py-3 font-bold text-sm sm:text-base rounded-lg transition-all ${
-                          plan.isHeroEntry
-                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white disabled:opacity-70 shadow-lg'
-                            : plan.popular
-                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white disabled:opacity-70'
-                            : 'bg-emerald-500 hover:bg-emerald-600 text-white disabled:opacity-70'
-                        }`}
+                        onClick={() => window.open(buildWAUrl(plan.name, plan.price), "_blank")}
+                        className="w-full py-3 font-bold text-sm sm:text-base rounded-lg transition-all bg-[#25D366] hover:bg-[#1ebe57] text-white shadow-lg"
                         data-testid={`button-order-${plan.id}`}
                       >
-                        {isOrderLoading === plan.id ? (
-                          <>
-                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
-                            PROCESSING...
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingCart className="mr-2 w-4 h-4" />
-                            {plan.isHeroEntry ? 'START JOURNEY' : plan.popular ? 'UPGRADE NOW' : 'ORDER NOW'}
-                          </>
-                        )}
+                        <MessageCircle className="mr-2 w-4 h-4" />
+                        {plan.isHeroEntry ? 'WHATSAPP TO START' : plan.popular ? 'WHATSAPP TO UPGRADE' : 'ORDER VIA WHATSAPP'}
                       </Button>
                     </div>
                   </CardContent>

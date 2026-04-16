@@ -1,11 +1,12 @@
-import { ShoppingCart, Star, CheckCircle, Droplets, Zap, Shield, Award } from "lucide-react";
+import { MessageCircle, Star, CheckCircle, Droplets, Zap, Shield, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { shopifyCartService } from "@/lib/shopify-cart";
-import { useToast } from "@/hooks/use-toast";
 import { Product } from "@/types/cart";
-import { useState } from "react";
+
+const WA_NUMBER = "971523946311";
+const buildWAProduct = (name: string, price: number) =>
+  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi DeliWer! I'm interested in the ${name} (AED ${price}). Can you help me order it?`)}`;
 
 const products: Product[] = [
   {
@@ -75,37 +76,6 @@ const products: Product[] = [
 ];
 
 export function AquaCafeProductsSection() {
-  const [isLoading, setIsLoading] = useState<string | null>(null);
-  const { toast } = useToast();
-
-  const addToCart = async (product: Product) => {
-    setIsLoading(product.id);
-    
-    try {
-      await shopifyCartService.addToCart({
-        id: product.id,
-        variantId: product.variantId || `${product.id}-default`,
-        title: product.name,
-        variant: "Default",
-        price: product.price,
-        image: product.image,
-        quantity: 1
-      });
-      
-      toast({
-        title: "Added to Cart",
-        description: `${product.name} has been added to your cart`,
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to add item to cart. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(null);
-    }
-  };
 
   return (
     <section className="py-16 px-4 bg-gradient-to-br from-slate-800/80 to-slate-900/90 backdrop-blur-sm" data-testid="aquacafe-products">
@@ -185,24 +155,14 @@ export function AquaCafeProductsSection() {
                     </div>
                   </div>
 
-                  {/* Add to Cart Button */}
+                  {/* WhatsApp Order Button */}
                   <button
-                    onClick={() => addToCart(product)}
-                    disabled={isLoading === product.id}
-                    className="w-full bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 hover:from-hero-green-600 hover:to-dubai-blue-600 text-white py-3 rounded-lg font-medium transition-all inline-flex items-center justify-center group disabled:opacity-50"
+                    onClick={() => window.open(buildWAProduct(product.name, product.price), "_blank")}
+                    className="w-full bg-[#25D366] hover:bg-[#1ebe57] text-white py-3 rounded-lg font-medium transition-all inline-flex items-center justify-center"
                     data-testid={`button-add-to-cart-aquacafe-${product.id}`}
                   >
-                    {isLoading === product.id ? (
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
-                        Adding...
-                      </div>
-                    ) : (
-                      <>
-                        <ShoppingCart className="w-4 h-4 mr-2" />
-                        Add to Cart
-                      </>
-                    )}
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Order via WhatsApp
                   </button>
                 </div>
               </CardContent>
