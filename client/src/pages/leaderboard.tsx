@@ -434,8 +434,8 @@ export default function Leaderboard() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       <SEOMeta
         title="Dubai Future District Wellness Hub | Museum of the Future Tours & Healthy Living"
-        description="Discover Dubai's wellness & innovation hub for international travelers and residents. Museum of the Future tours, Downtown wellness journeys, healthy dining at Baker's Kitchen, La Perle show experiences, and sustainable living rewards. Join AED 99 membership for exclusive discounts."
-        keywords="Museum of the Future Dubai, Dubai wellness journey, Downtown Dubai experiences, healthy dining Dubai, sustainable living UAE, Dubai tourism, wellness travel Dubai, Museum of the Future tickets, La Perle Dubai, Baker's Kitchen Dubai, Dubai Future District, wellness hub Dubai, sustainable tourism, eco-friendly Dubai, Museum tour Dubai, international travelers Dubai"
+        description="Discover Dubai's wellness & innovation hub for international travelers and residents. Museum of the Future tours, Downtown wellness journeys, healthy dining at Chill & Grill, La Perle show experiences, and sustainable living rewards. Join AED 99 membership for exclusive discounts."
+        keywords="Museum of the Future Dubai, Dubai wellness journey, Downtown Dubai experiences, healthy dining Dubai, sustainable living UAE, Dubai tourism, wellness travel Dubai, Museum of the Future tickets, La Perle Dubai, Chill & Grill Dubai, Dubai Future District, wellness hub Dubai, sustainable tourism, eco-friendly Dubai, Museum tour Dubai, international travelers Dubai"
       />
       <div className="container mx-auto px-4 py-8">
         {/* Hero Header - Dubai Future District */}
@@ -857,7 +857,7 @@ export default function Leaderboard() {
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-white mb-2">Combine Museum Tour with Wellness Journey</h4>
                       <p className="text-gray-300 text-sm">
-                        Members who book a Museum tour get exclusive access to our Dubai Wellness Walk, including stops at Baker's Kitchen, Mazaya Center wellness experiences, and Downtown entertainment.
+                        Members who book a Museum tour get exclusive access to our Dubai Wellness Walk, including stops at Chill & Grill, Mazaya Center wellness experiences, and Downtown entertainment.
                       </p>
                     </div>
                     <Button className="bg-white/10 border border-white/20 text-white hover:bg-white/20">
@@ -932,7 +932,7 @@ export default function Leaderboard() {
                         <div className="w-12 h-12 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                           <Utensils className="w-6 h-6 text-amber-400" />
                         </div>
-                        <h3 className="font-bold text-white mb-3">Baker's Kitchen</h3>
+                        <h3 className="font-bold text-white mb-3">Chill & Grill</h3>
                         <p className="text-sm text-gray-300 mb-4">
                           Organic meals & Kangen water tasting at Mazaya Center
                         </p>
@@ -1006,7 +1006,7 @@ export default function Leaderboard() {
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-6">
-                  {/* Baker's Kitchen */}
+                  {/* Chill & Grill */}
                   <Card className="bg-slate-800/50 border-emerald-500/30 hover-elevate">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4 mb-4">
@@ -1014,7 +1014,7 @@ export default function Leaderboard() {
                           <ChefHat className="w-6 h-6 text-emerald-400" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-bold text-white mb-2">Baker's Kitchen</h3>
+                          <h3 className="text-lg font-bold text-white mb-2">Chill & Grill</h3>
                           <p className="text-gray-300 text-sm mb-3">
                             Organic healthy meals, fresh juices & Kangen water tasting experiences
                           </p>

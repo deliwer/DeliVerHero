@@ -313,7 +313,7 @@ function Router() {
         <Route path="/play" component={Play} />
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners/career" component={PartnersCareer} />
-        <Route path="/partners/join" component={PartnersJoin} />
+        <Route path="/partners/join"><Redirect to="/brokers" /></Route>
         <Route path="/partners/how-it-works" component={PartnersHowItWorks} />
         <Route path="/partners/earnings" component={PartnersEarnings} />
         <Route path="/partners/resources" component={PartnersResources} />

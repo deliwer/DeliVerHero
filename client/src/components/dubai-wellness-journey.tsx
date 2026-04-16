@@ -356,7 +356,7 @@ export function DubaiWellnessJourney({
       localStorage.setItem('wellness-passport', JSON.stringify(updatedPassport));
       toast({
         title: "Social Share Recorded!",
-        description: `You've earned ${updatedPassport.pointsEarned || 50} points! Next: visit Baker's Kitchen.`,
+        description: `You've earned ${updatedPassport.pointsEarned || 50} points! Next: visit Chill & Grill.`,
       });
     },
     onError: (error: any) => {
@@ -412,7 +412,7 @@ export function DubaiWellnessJourney({
     return {
       type: 'achievement' as const,
       title: 'AquaCafe Wellness Passport Activated',
-      description: `Just activated my Wellness Passport for free Kangen Water + healthy meal at Baker's Kitchen!`,
+      description: `Just activated my Wellness Passport for free Kangen Water + healthy meal at Chill & Grill!`,
       value: 150,
       url: `https://deliwer.com/aquacafe?ref=${referralCode}&passport=active`
     };
@@ -430,7 +430,7 @@ export function DubaiWellnessJourney({
     },
     {
       id: 2,
-      title: "Visit Baker's Kitchen",
+      title: "Visit Chill & Grill",
       description: "Show QR code for free Kangen Water tasting + set menu",
       icon: ChefHat,
       location: "Mazaya Center",
@@ -528,7 +528,7 @@ export function DubaiWellnessJourney({
                             <li>1. Enter your phone number below</li>
                             <li>2. Share your wellness moment on social media</li>
                             <li>3. Use hashtags: #WellnessWalkDubai #AquaCafeJourney</li>
-                            <li>4. Show QR code at Baker's Kitchen for FREE experience!</li>
+                            <li>4. Show QR code at Chill & Grill for FREE experience!</li>
                           </ol>
                         </div>
                         
@@ -563,7 +563,7 @@ export function DubaiWellnessJourney({
                                 className="w-32 h-32 mx-auto mb-2 border-2 border-emerald-300 rounded-lg"
                                 data-testid="img-wellness-passport-qr"
                               />
-                              <p className="text-sm text-emerald-600">Scan at Baker's Kitchen</p>
+                              <p className="text-sm text-emerald-600">Scan at Chill & Grill</p>
                             </div>
                           ) : (
                             <QrCode className="w-20 h-20 mx-auto mb-4 text-emerald-600" />

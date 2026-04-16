@@ -33,7 +33,7 @@ const FAST_START_STEPS = [
   {
     day: "Day 2–7",
     title: "Offer the AED 99 AquaCafe Deal",
-    desc: "Once your tenant confirms the move-in, introduce them to the AquaCafe Starter Kit. They get a FREE ionic shower filter (AED 399 value), a AED 100 Baker's Kitchen dining voucher, and lifetime water discounts. You earn a bonus on every activation.",
+    desc: "Once your tenant confirms the move-in, introduce them to the AquaCafe Starter Kit. They get a FREE ionic shower filter (AED 399 value), a AED 100 Chill & Grill dining voucher, and lifetime water discounts. You earn a bonus on every activation.",
     earn: "AED 50 bonus",
     earnLabel: "+ restaurant perks",
     color: "cyan",
@@ -73,7 +73,7 @@ const CAREER_TIERS = [
     timeline: "Start immediately",
     income: "AED 0–500/mo",
     how: "Use DeliWer services, refer friends organically, earn 15% referral credit.",
-    unlocks: ["Your personal referral link", "AquaCafe Starter Kit access", "Baker's Kitchen dining voucher", "100 Planet Points per referral"],
+    unlocks: ["Your personal referral link", "AquaCafe Starter Kit access", "Chill & Grill dining voucher", "100 Planet Points per referral"],
     upgrade: "Make 3 referrals → auto-upgrade",
   },
   {
@@ -86,7 +86,7 @@ const CAREER_TIERS = [
     timeline: "Within 30 days",
     income: "AED 500–2,000/mo",
     how: "Actively refer tenants and introduce others to the AquaCafe deal and DeliWer services.",
-    unlocks: ["25–30% commission on referrals", "AquaCafe distributor training", "Kangen Water demo access", "Baker's Kitchen partner dining", "Bronze Planet Hero status", "500 Planet Points per conversion"],
+    unlocks: ["25–30% commission on referrals", "AquaCafe distributor training", "Kangen Water demo access", "Chill & Grill partner dining", "Bronze Planet Hero status", "500 Planet Points per conversion"],
     upgrade: "3+ Ind. Distributors in team → Senior",
   },
   {
@@ -146,12 +146,12 @@ const KANGEN_STEPS = [
 
 const RESTAURANT_PERKS = [
   {
-    partner: "Baker's Kitchen UAE",
+    partner: "Chill & Grill",
     location: "Mazaya Centre, Dubai",
     perk: "FREE meal tasting on every AquaCafe activation",
     bonus: "AED 100 Chill & Grill voucher included in AED 99 kit",
     icon: ChefHat,
-    detail: "Dr. Sven The Baker's partnership: every new AquaCafe member gets a complimentary tasting session and can redeem the AED 100 voucher for pizza or boba tea.",
+    detail: "Chef at Chill & Grill's partnership: every new AquaCafe member gets a complimentary tasting session and can redeem the AED 100 voucher for pizza or boba tea.",
   },
   {
     partner: "AquaCafe Partner Network",
@@ -487,7 +487,7 @@ export default function PartnerCareerPage() {
                 <div className="space-y-3">
                   {[
                     { item: "FREE Ionic Shower Filter", value: "AED 399 value" },
-                    { item: "Baker's Kitchen Dining Voucher", value: "AED 100 value" },
+                    { item: "Chill & Grill Dining Voucher", value: "AED 100 value" },
                     { item: "Lifetime 20% water product discount", value: "Ongoing savings" },
                     { item: "Bronze Planet Hero Status", value: "Instant upgrade" },
                     { item: "Access to Kangen Water demos", value: "Free training sessions" },

@@ -86,7 +86,7 @@ export function AIConcierge() {
 
       const aiMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        content: enhancedContent + `\n\n💰 BONUS: Get Bakers Kitchen AED100 Kangen Water voucher when you refer friends! Join our Ambassador program to earn AED 4,200+ monthly.`,
+        content: enhancedContent + `\n\n💰 BONUS: Get Chill & Grill AED100 Kangen Water voucher when you refer friends! Join our Ambassador program to earn AED 4,200+ monthly.`,
         isUser: false,
         timestamp: new Date(),
         options: message.toLowerCase().includes('iphone') ? ['Complete order now', 'Share & earn', 'Join Ambassadors', 'Book pickup'] : 
@@ -119,7 +119,7 @@ export function AIConcierge() {
     // Handle Ambassador and sharing options
     if (option === 'Ambassador signup' || option === 'Join Ambassadors') {
       const affiliateSignupLink = `https://deliwer.com/partners?ref=AI${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
-      const shareText = `💰 Join DeliWer Ambassador Program! Earn AED 4,200+ monthly promoting sustainable tech trades and Bakers Kitchen vouchers: ${affiliateSignupLink}`;
+      const shareText = `💰 Join DeliWer Ambassador Program! Earn AED 4,200+ monthly promoting sustainable tech trades and Chill & Grill vouchers: ${affiliateSignupLink}`;
       
       if (navigator.share) {
         navigator.share({ title: 'Join Ambassador Program', text: shareText, url: affiliateSignupLink });
@@ -132,29 +132,29 @@ export function AIConcierge() {
     
     if (option === 'Share & earn' || option === 'Share deal' || option === 'Share platform') {
       const shareLink = `https://deliwer.com/?ref=SHARE${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
-      const shareText = `🚀 Check out DeliWer - World's First Sustainability Game! Trade iPhones for premium water systems + Bakers Kitchen AED100 Kangen Water vouchers: ${shareLink}`;
+      const shareText = `🚀 Check out DeliWer - World's First Sustainability Game! Trade iPhones for premium water systems + Chill & Grill AED100 Kangen Water vouchers: ${shareLink}`;
       
       if (navigator.share) {
         navigator.share({ title: 'DeliWer - Sustainability Game', text: shareText, url: shareLink });
       } else {
         navigator.clipboard.writeText(shareText);
-        alert('Link copied! Share with friends to earn Bakers Kitchen vouchers.');
+        alert('Link copied! Share with friends to earn Chill & Grill vouchers.');
       }
       return;
     }
     
     if (option === 'WhatsApp info') {
-      const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in the Ambassador Program. Can you share details about earning AED 4,200+ monthly and the Bakers Kitchen partnership?`;
+      const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in the Ambassador Program. Can you share details about earning AED 4,200+ monthly and the Chill & Grill partnership?`;
       window.open(whatsappLink, '_blank');
       return;
     }
     
     if (option === 'Get voucher') {
       const voucherLink = `https://deliwer.com/aquacafe?voucher=true&ref=AI${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
-      const shareText = `🎁 Get FREE Bakers Kitchen AED100 Kangen Water voucher! Planet Hero Starter Kit: ${voucherLink}`;
+      const shareText = `🎁 Get FREE Chill & Grill AED100 Kangen Water voucher! Planet Hero Starter Kit: ${voucherLink}`;
       
       if (navigator.share) {
-        navigator.share({ title: 'Free Bakers Kitchen Voucher', text: shareText, url: voucherLink });
+        navigator.share({ title: 'Free Chill & Grill Voucher', text: shareText, url: voucherLink });
       } else {
         window.open('/aquacafe', '_blank');
       }

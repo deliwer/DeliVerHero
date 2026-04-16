@@ -149,7 +149,7 @@ export default function AquaCafeAlliance() {
     window.open('https://maps.google.com/maps?q=Baker\'s+Kitchen+Mazaya+Center+Dubai', '_blank');
     toast({
       title: "Opening Maps",
-      description: "Directing you to Baker's Kitchen location",
+      description: "Directing you to Chill & Grill location",
     });
   };
 
@@ -206,7 +206,7 @@ export default function AquaCafeAlliance() {
       localStorage.setItem('wellness-passport', JSON.stringify(updatedPassport));
       toast({
         title: "Social Share Recorded!",
-        description: `You've earned ${updatedPassport.pointsEarned || 50} points! Next: visit Baker's Kitchen.`,
+        description: `You've earned ${updatedPassport.pointsEarned || 50} points! Next: visit Chill & Grill.`,
       });
     },
     onError: (error: any) => {
@@ -239,7 +239,7 @@ export default function AquaCafeAlliance() {
     return {
       type: 'achievement' as const,
       title: 'AquaCafe Wellness Passport Activated',
-      description: `Just activated my Wellness Passport for free Kangen Water + healthy meal at Baker's Kitchen!`,
+      description: `Just activated my Wellness Passport for free Kangen Water + healthy meal at Chill & Grill!`,
       value: 150,
       url: `https://deliwer.com/aquacafe-alliance?ref=${referralCode}&passport=active`
     };
@@ -257,7 +257,7 @@ export default function AquaCafeAlliance() {
     },
     {
       id: 2,
-      title: "Visit Baker's Kitchen",
+      title: "Visit Chill & Grill",
       description: "Show QR code for free Kangen Water tasting + set menu",
       icon: ChefHat,
       location: "Mazaya Center",
@@ -315,7 +315,7 @@ export default function AquaCafeAlliance() {
                   </div>
                   <span className="text-3xl font-bold text-emerald-600">+</span>
                   <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">
-                    Baker's Kitchen UAE
+                    Chill & Grill
                   </div>
                 </div>
                 
@@ -331,7 +331,7 @@ export default function AquaCafeAlliance() {
               </div>
 
               <p className="text-lg text-gray-700 mb-8 leading-relaxed max-w-2xl">
-                Introducing a first-of-its-kind alliance in Dubai — AquaCafe by DeliWer partners with Baker's Kitchen UAE, 
+                Introducing a first-of-its-kind alliance in Dubai — AquaCafe by DeliWer partners with Chill & Grill, 
                 serving revitalized Kangen Water with wholesome meals. Together, we empower families to live healthier and more sustainably.
               </p>
 
@@ -362,12 +362,12 @@ export default function AquaCafeAlliance() {
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-2xl">
                 <img 
                   src="https://static.wixstatic.com/media/74367b_9f4b70ed3be04cd89f9fd7dab4f3fec5~mv2.jpeg/v1/fill/w_1500,h_749,al_t,q_85,enc_avif,quality_auto/74367b_9f4b70ed3be04cd89f9fd7dab4f3fec5~mv2.jpeg" 
-                  alt="Baker's Kitchen UAE - Healthy Food & Wellness by Sven The Baker" 
+                  alt="Chill & Grill - Healthy Food & Wellness by Chill & Grill Chef" 
                   className="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-lg"
                 />
                 <div className="text-center mt-4">
                   <div className="text-lg font-bold text-gray-800 mb-2">Real Partnership, Real Results</div>
-                  <div className="text-gray-600">Pure water with wholesome meals at Baker's Kitchen</div>
+                  <div className="text-gray-600">Pure water with wholesome meals at Chill & Grill</div>
                 </div>
               </div>
             </div>
@@ -414,7 +414,7 @@ export default function AquaCafeAlliance() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Why AquaCafe + Baker's Kitchen?
+              Why AquaCafe + Chill & Grill?
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               When water meets food, true wellness begins. This partnership is built on shared values:
@@ -454,7 +454,7 @@ export default function AquaCafeAlliance() {
               </CardContent>
             </Card>
             
-            {/* Baker's Kitchen Card */}
+            {/* Chill & Grill Card */}
             <Card className="bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200 shadow-xl hover:shadow-2xl transition-shadow">
               <CardContent className="p-8">
                 <div className="text-center mb-6">
@@ -488,7 +488,7 @@ export default function AquaCafeAlliance() {
           </div>
         </div>
       </section>
-      {/* Message from #SvenTheBaker */}
+      {/* Message from #ChillAndGrill */}
       <section className="w-full py-16 px-4 bg-gradient-to-br from-amber-50 to-orange-50">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-3xl p-8 shadow-2xl">
@@ -498,19 +498,19 @@ export default function AquaCafeAlliance() {
                 <div className="w-32 h-32 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <ChefHat className="w-16 h-16 text-white" />
                 </div>
-                <h4 className="text-xl font-bold text-gray-800 mb-2">Dr. Sven The Baker</h4>
-                <p className="text-amber-600 font-semibold">Founder, Baker's Kitchen UAE</p>
+                <h4 className="text-xl font-bold text-gray-800 mb-2">Chef at Chill & Grill</h4>
+                <p className="text-amber-600 font-semibold">Founder, Chill & Grill</p>
               </div>
               
               {/* Quote */}
               <div className="md:col-span-2">
                 <Quote className="w-8 h-8 text-amber-500 mb-4" />
                 <blockquote className="text-lg text-gray-700 italic leading-relaxed mb-4">
-                  "Healthy food deserves healthy water. That's why at Baker's Kitchen, we proudly serve AquaCafe Kangen Water — 
+                  "Healthy food deserves healthy water. That's why at Chill & Grill, we proudly serve AquaCafe Kangen Water — 
                   for our guests, for our community, for a healthier Dubai."
                 </blockquote>
                 <div className="text-right">
-                  <span className="text-amber-600 font-bold">– Dr. Sven The Baker</span>
+                  <span className="text-amber-600 font-bold">– Chef at Chill & Grill</span>
                 </div>
               </div>
             </div>
@@ -523,7 +523,7 @@ export default function AquaCafeAlliance() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center bg-gradient-to-r from-emerald-500 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl">
               <Gift className="w-6 h-6 mr-3" />
-              AED 1299 Hero Minimal + Referral Rewards at Baker's Kitchen
+              AED 1299 Hero Minimal + Referral Rewards at Chill & Grill
               <Gift className="w-6 h-6 ml-3" />
             </div>
           </div>
@@ -537,7 +537,7 @@ export default function AquaCafeAlliance() {
                   Refer Friends & Earn Together
                 </h3>
                 <p className="text-gray-700 mb-6">
-                  Join our exclusive referral program and earn Baker's Kitchen vouchers when your friends become AquaCafe members!
+                  Join our exclusive referral program and earn Chill & Grill vouchers when your friends become AquaCafe members!
                 </p>
                 
                 <div className="space-y-4">
@@ -557,7 +557,7 @@ export default function AquaCafeAlliance() {
                     <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-sm">3</span>
                     </div>
-                    <span className="text-gray-700">Earn AED 100 Baker's Kitchen vouchers per successful referral</span>
+                    <span className="text-gray-700">Earn AED 100 Chill & Grill vouchers per successful referral</span>
                   </div>
                 </div>
                 
@@ -600,7 +600,7 @@ export default function AquaCafeAlliance() {
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-amber-500" />
-                        <span>Baker's Referral Reward</span>
+                        <span>Chill & Grill Referral Reward</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-cyan-500" />
@@ -626,7 +626,7 @@ export default function AquaCafeAlliance() {
               #SayNoToPlastic, SayYesToHealth
             </h2>
             <p className="text-xl text-emerald-100 max-w-3xl mx-auto">
-              Join AquaCafe and Baker's Kitchen in creating a sustainable future for Dubai
+              Join AquaCafe and Chill & Grill in creating a sustainable future for Dubai
             </p>
           </div>
           
@@ -658,7 +658,7 @@ export default function AquaCafeAlliance() {
 
           <div className="mt-12">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
-              <h4 className="text-xl font-bold mb-3">#SvenTheBaker #HealthyDubai #DeliWer</h4>
+              <h4 className="text-xl font-bold mb-3">#ChillAndGrill #HealthyDubai #DeliWer</h4>
               <p className="text-emerald-100">
                 Together, we're making Dubai healthier, one meal and one drop at a time.
               </p>
@@ -676,8 +676,8 @@ export default function AquaCafeAlliance() {
               🎆 Join the Alliance & Start Earning 🎆
             </h2>
             <p className="text-xl text-white/90 max-w-4xl mx-auto mb-8">
-              Become an AquaCafe member today and unlock exclusive access to Dr Sven The Baker's referral network. 
-              Every friend you refer earns you rewards at Baker's Kitchen!
+              Become an AquaCafe member today and unlock exclusive access to Dr Chill & Grill Chef's referral network. 
+              Every friend you refer earns you rewards at Chill & Grill!
             </p>
           </div>
           
@@ -695,7 +695,7 @@ export default function AquaCafeAlliance() {
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-emerald-300" />
-                  <span>AED 100 Baker's Kitchen vouchers per referral</span>
+                  <span>AED 100 Chill & Grill vouchers per referral</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-emerald-300" />
@@ -707,7 +707,7 @@ export default function AquaCafeAlliance() {
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-emerald-300" />
-                  <span>Exclusive wellness tips from Baker's Kitchen</span>
+                  <span>Exclusive wellness tips from Chill & Grill</span>
                 </div>
                 <div className="flex items-center gap-3 mt-4 p-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-lg border border-cyan-400/30">
                   <Sparkles className="w-5 h-5 text-cyan-300 animate-pulse" />
@@ -728,7 +728,7 @@ export default function AquaCafeAlliance() {
               <div className="space-y-4">
                 <div className="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-4 text-center">
                   <div className="text-lg font-bold text-gray-800">AED 100 Voucher</div>
-                  <div className="text-sm text-gray-700">Per successful referral at Baker's Kitchen</div>
+                  <div className="text-sm text-gray-700">Per successful referral at Chill & Grill</div>
                 </div>
                 <div className="bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl p-4 text-center">
                   <div className="text-lg font-bold text-white">500 Planet Points</div>
@@ -795,14 +795,14 @@ export default function AquaCafeAlliance() {
                 </div>
                 <span className="text-2xl">+</span>
                 <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-lg font-bold">
-                  Baker's Kitchen UAE
+                  Chill & Grill
                 </div>
               </div>
             </div>
             
             {/* Contact */}
             <div className="text-center">
-              <h4 className="text-lg font-bold mb-3">Visit Baker's Kitchen</h4>
+              <h4 className="text-lg font-bold mb-3">Visit Chill & Grill</h4>
               <div className="space-y-2 text-gray-300">
                 <div className="flex items-center justify-center gap-2">
                   <MapPin className="w-4 h-4" />
@@ -832,8 +832,8 @@ export default function AquaCafeAlliance() {
           </div>
           
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 DeliWer & Baker's Kitchen UAE. All rights reserved.</p>
-            <p className="mt-2 text-sm">#SvenTheBaker #HealthyDubai #DeliWer</p>
+            <p>&copy; 2024 DeliWer & Chill & Grill. All rights reserved.</p>
+            <p className="mt-2 text-sm">#ChillAndGrill #HealthyDubai #DeliWer</p>
           </div>
         </div>
       </footer>

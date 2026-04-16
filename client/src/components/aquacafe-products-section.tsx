@@ -228,8 +228,8 @@ export function AquaCafeProductsSection() {
               </a>
               <button
                 onClick={() => {
-                  const affiliateLink = `https://wa.me/971523946311?text=Hi! I'm interested in AquaCafe products and the Bakers Kitchen AED100 Kangen Water voucher offer. Can you help me choose the right system?`;
-                  const shareText = `💧 Need expert advice on water systems? Chat with DeliWer experts and get FREE Bakers Kitchen AED100 Kangen Water voucher! ${affiliateLink}`;
+                  const affiliateLink = `https://wa.me/971523946311?text=Hi! I'm interested in AquaCafe products and the Chill & Grill AED100 Kangen Water voucher offer. Can you help me choose the right system?`;
+                  const shareText = `💧 Need expert advice on water systems? Chat with DeliWer experts and get FREE Chill & Grill AED100 Kangen Water voucher! ${affiliateLink}`;
                   
                   if (navigator.share) {
                     navigator.share({ title: 'Get AquaCafe Expert Advice', text: shareText, url: affiliateLink });

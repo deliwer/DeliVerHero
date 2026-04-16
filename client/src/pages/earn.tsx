@@ -801,13 +801,13 @@ export default function Earn() {
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">
-                  Attend Baker's Kitchen sustainability workshop and Kangen Water demo
+                  Attend Chill & Grill sustainability workshop and Kangen Water demo
                 </p>
                 <Button 
                   onClick={() => {
                     toast({
                       title: "Event Registered",
-                      description: "See you at Baker's Kitchen Mazaya Center!"
+                      description: "See you at Chill & Grill Mazaya Center!"
                     });
                   }}
                   className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold"
@@ -845,7 +845,7 @@ export default function Earn() {
                 <div className="flex flex-col items-center">
                   <img 
                     src={bakersKitchenLogo} 
-                    alt="Baker's Kitchen UAE Logo" 
+                    alt="Chill & Grill Logo" 
                     className="h-16 sm:h-20 w-auto object-contain mb-2"
                   />
                   <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full font-bold text-xs">
@@ -860,7 +860,7 @@ export default function Earn() {
             </h2>
             
             <p className="text-lg sm:text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
-              AquaCafe + Baker's Kitchen: The perfect synergy of pure water and wholesome nutrition for earning rewards
+              AquaCafe + Chill & Grill: The perfect synergy of pure water and wholesome nutrition for earning rewards
             </p>
             
             <Link
@@ -914,11 +914,11 @@ export default function Earn() {
                 <div className="flex items-center gap-4 mb-4">
                   <img 
                     src={bakersKitchenLogo} 
-                    alt="Baker's Kitchen Logo" 
+                    alt="Chill & Grill Logo" 
                     className="h-10 w-auto object-contain"
                   />
                   <div>
-                    <h3 className="text-lg font-bold text-gray-800">Baker's Kitchen Perks</h3>
+                    <h3 className="text-lg font-bold text-gray-800">Chill & Grill Perks</h3>
                     <p className="text-amber-600 text-sm font-semibold">Redeem DXBs for dining vouchers</p>
                   </div>
                 </div>
@@ -947,7 +947,7 @@ export default function Earn() {
 
           <div className="text-center">
             <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-emerald-200 shadow-lg inline-block">
-              <div className="text-amber-600 font-bold text-base sm:text-lg mb-2">Visit Baker's Kitchen Mazaya Center</div>
+              <div className="text-amber-600 font-bold text-base sm:text-lg mb-2">Visit Chill & Grill Mazaya Center</div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-amber-500" />

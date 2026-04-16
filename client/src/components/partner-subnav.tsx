@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 
 const PARTNER_SUBNAV = [
   { label: "Overview", href: "/partners" },
+  { label: "Apply / Join", href: "/brokers", aliases: ["/broker-partner", "/partners/join"] },
   { label: "Career Path", href: "/partners/career" },
-  { label: "Brokers", href: "/brokers", aliases: ["/broker-partner"] },
-  { label: "Join", href: "/partners/join" },
+  { label: "AquaCafe", href: "/aquacafe-alliance" },
+  { label: "Earnings", href: "/earn", aliases: ["/partners/earnings"] },
   { label: "How It Works", href: "/transaction-support", aliases: ["/partners/how-it-works"] },
-  { label: "Earnings", href: "/partners/earnings" },
   { label: "Resources", href: "/partners/resources" },
 ];
 

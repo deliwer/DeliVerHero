@@ -90,7 +90,7 @@ export function IPhone17Launch() {
               className="border-2 border-hero-green-400 text-hero-green-200 hover:bg-hero-green-500/20 px-8 py-3 text-lg font-bold shadow-lg transform hover:scale-105 transition-all"
               onClick={() => {
                 const affiliateLink = `https://deliwer.com/community?ref=HERO${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
-                const shareText = `🚀 Join 12,847 Planet Heroes collecting points for iPhone 17 preorder access! Free to join with instant rewards and Bakers Kitchen AED100 Kangen Water vouchers! ${affiliateLink}`;
+                const shareText = `🚀 Join 12,847 Planet Heroes collecting points for iPhone 17 preorder access! Free to join with instant rewards and Chill & Grill AED100 Kangen Water vouchers! ${affiliateLink}`;
                 
                 if (navigator.share) {
                   navigator.share({ title: 'Join Planet Heroes Community', text: shareText, url: affiliateLink });

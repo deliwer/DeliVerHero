@@ -83,9 +83,9 @@ const ecoProducts: Product[] = [
     available: true
   },
   {
-    id: 'bakers-meals',
-    name: "Bakers Kitchen Healthy Meal Plan",
-    image: '/bakers-meals.jpg',
+    id: 'chill-grill-meals',
+    name: "Chill & Grill Healthy Meal Plan",
+    image: '/chill-grill-meals.jpg',
     points: 3500,
     value: 'AED 299/week',
     category: 'food',
