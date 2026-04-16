@@ -857,7 +857,7 @@ export default function Leaderboard() {
                     <div className="flex-1">
                       <h4 className="text-lg font-bold text-white mb-2">Combine Museum Tour with Wellness Journey</h4>
                       <p className="text-gray-300 text-sm">
-                        Members who book a Museum tour get exclusive access to our Dubai Wellness Walk, including stops at Chill & Grill, Mazaya Center wellness experiences, and Downtown entertainment.
+                        Members who book a Museum tour get exclusive access to our Dubai Wellness Walk, including stops at Chill & Grill, Clover Bay Tower, Business Bay wellness experiences, and Downtown entertainment.
                       </p>
                     </div>
                     <Button className="bg-white/10 border border-white/20 text-white hover:bg-white/20">
@@ -934,7 +934,7 @@ export default function Leaderboard() {
                         </div>
                         <h3 className="font-bold text-white mb-3">Chill & Grill</h3>
                         <p className="text-sm text-gray-300 mb-4">
-                          Organic meals & Kangen water tasting at Mazaya Center
+                          Organic meals & Kangen water tasting at Clover Bay Tower, Business Bay
                         </p>
                         <Badge className="bg-amber-500/20 text-amber-300 mb-2">+75 Points</Badge>
                         <div className="text-xs text-gray-400 mt-2">
@@ -1070,7 +1070,7 @@ export default function Leaderboard() {
                     </CardContent>
                   </Card>
 
-                  {/* Mazaya Center Wellness */}
+                  {/* Clover Bay Tower, Business Bay Wellness */}
                   <Card className="bg-slate-800/50 border-purple-500/30 hover-elevate">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4 mb-4">
@@ -1078,7 +1078,7 @@ export default function Leaderboard() {
                           <Heart className="w-6 h-6 text-purple-400" />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-bold text-white mb-2">Mazaya Center Partners</h3>
+                          <h3 className="text-lg font-bold text-white mb-2">Clover Bay Tower, Business Bay Partners</h3>
                           <p className="text-gray-300 text-sm mb-3">
                             Exclusive discounts at 15+ wellness & lifestyle merchants
                           </p>

@@ -807,7 +807,7 @@ export default function Earn() {
                   onClick={() => {
                     toast({
                       title: "Event Registered",
-                      description: "See you at Chill & Grill Mazaya Center!"
+                      description: "See you at Chill & Grill Clover Bay Tower, Business Bay!"
                     });
                   }}
                   className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold"
@@ -947,11 +947,11 @@ export default function Earn() {
 
           <div className="text-center">
             <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-emerald-200 shadow-lg inline-block">
-              <div className="text-amber-600 font-bold text-base sm:text-lg mb-2">Visit Chill & Grill Mazaya Center</div>
+              <div className="text-amber-600 font-bold text-base sm:text-lg mb-2">Visit Chill & Grill Clover Bay Tower, Business Bay</div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-amber-500" />
-                  <span>Mazaya Center, Business Bay</span>
+                  <span>Clover Bay Tower, Business Bay Dubai</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4 text-emerald-500" />

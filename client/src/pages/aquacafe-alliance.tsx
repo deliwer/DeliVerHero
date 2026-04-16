@@ -146,10 +146,10 @@ export default function AquaCafeAlliance() {
   }, [existingPassportQuery.data, phoneNumber]);
 
   const handleExperienceAlliance = () => {
-    window.open('https://maps.google.com/maps?q=Baker\'s+Kitchen+Mazaya+Center+Dubai', '_blank');
+    window.open('https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7', '_blank');
     toast({
       title: "Opening Maps",
-      description: "Directing you to Chill & Grill location",
+      description: "Directing you to Chill & Grill — Clover Bay Tower, Business Bay Dubai",
     });
   };
 
@@ -260,16 +260,16 @@ export default function AquaCafeAlliance() {
       title: "Visit Chill & Grill",
       description: "Show QR code for free Kangen Water tasting + set menu",
       icon: ChefHat,
-      location: "Mazaya Center",
+      location: "Clover Bay Tower, Business Bay",
       points: 100,
       completed: journeyStep >= 2
     },
     {
       id: 3,
       title: "Wellness Walk & Shop",
-      description: "Healthy stroll through Mazaya Center with exclusive discounts",
+      description: "Healthy stroll through Clover Bay Tower, Business Bay with exclusive discounts",
       icon: Navigation,
-      location: "Mazaya Center",
+      location: "Clover Bay Tower, Business Bay",
       points: 75,
       completed: journeyStep >= 3
     },
@@ -345,10 +345,15 @@ export default function AquaCafeAlliance() {
                 </Button>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 text-sm text-gray-600">
-                  <div className="flex items-center gap-2">
+                  <a
+                    href="https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-emerald-600 transition-colors"
+                  >
                     <MapPin className="w-4 h-4 text-amber-500" />
-                    <span>Mazaya Center, Business Bay</span>
-                  </div>
+                    <span className="underline underline-offset-2">Kangen Water Dubai — Clover Bay Tower, Business Bay</span>
+                  </a>
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4 text-emerald-500" />
                     <span>Open Daily 9AM-11PM</span>
@@ -361,13 +366,22 @@ export default function AquaCafeAlliance() {
             <div className="relative">
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-2xl">
                 <img 
-                  src="https://static.wixstatic.com/media/74367b_9f4b70ed3be04cd89f9fd7dab4f3fec5~mv2.jpeg/v1/fill/w_1500,h_749,al_t,q_85,enc_avif,quality_auto/74367b_9f4b70ed3be04cd89f9fd7dab4f3fec5~mv2.jpeg" 
-                  alt="Chill & Grill - Healthy Food & Wellness by Chill & Grill Chef" 
+                  src="https://images.unsplash.com/photo-1547592180-85f173990554?w=900&h=600&fit=crop&q=85" 
+                  alt="Chill & Grill — Healthy Food with Kangen Water, Clover Bay Tower Business Bay Dubai" 
                   className="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-lg"
                 />
                 <div className="text-center mt-4">
-                  <div className="text-lg font-bold text-gray-800 mb-2">Real Partnership, Real Results</div>
-                  <div className="text-gray-600">Pure water with wholesome meals at Chill & Grill</div>
+                  <div className="text-lg font-bold text-gray-800 mb-1">Real Food. Real Water. Real Results.</div>
+                  <div className="text-gray-500 text-sm">Healthy meals paired with Kangen Water at Chill &amp; Grill</div>
+                  <a
+                    href="https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-3 text-emerald-600 hover:text-emerald-700 font-semibold text-sm underline underline-offset-2"
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    Kangen Water Dubai — Find Us on Maps
+                  </a>
                 </div>
               </div>
             </div>
@@ -476,7 +490,9 @@ export default function AquaCafeAlliance() {
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span>Premium location in Mazaya Center</span>
+                    <a href="https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7" target="_blank" rel="noopener noreferrer" className="text-amber-600 underline underline-offset-2 hover:text-amber-700">
+                      Kangen Water Dubai — Clover Bay Tower, Business Bay
+                    </a>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-emerald-500" />
@@ -802,12 +818,18 @@ export default function AquaCafeAlliance() {
             
             {/* Contact */}
             <div className="text-center">
-              <h4 className="text-lg font-bold mb-3">Visit Chill & Grill</h4>
+              <h4 className="text-lg font-bold mb-3">Visit Chill &amp; Grill</h4>
               <div className="space-y-2 text-gray-300">
-                <div className="flex items-center justify-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Mazaya Center, Business Bay</span>
-                </div>
+                <a
+                  href="https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 hover:text-emerald-400 transition-colors"
+                >
+                  <MapPin className="w-4 h-4 text-emerald-400" />
+                  <span className="underline underline-offset-2">Kangen Water Dubai</span>
+                </a>
+                <div className="text-xs text-gray-500">Clover Bay Tower, Business Bay Dubai</div>
                 <div className="flex items-center justify-center gap-2">
                   <Clock className="w-4 h-4" />
                   <span>Open Daily 9AM-11PM</span>

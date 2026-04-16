@@ -205,9 +205,9 @@ const journeySteps: WellnessJourneyStep[] = [
   },
   {
     id: "mazaya-shopping",
-    title: "Mazaya Center Wellness Shopping",
+    title: "Clover Bay Tower, Business Bay Wellness Shopping",
     description: "Curated wellness shopping experience with special discounts",
-    location: "Mazaya Center - Premium Wellness Floor",
+    location: "Clover Bay Tower, Business Bay - Premium Wellness Floor",
     duration: "60 mins",
     icon: <ShoppingCart className="w-6 h-6" />,
     color: "text-amber-600",
@@ -433,16 +433,16 @@ export function DubaiWellnessJourney({
       title: "Visit Chill & Grill",
       description: "Show QR code for free Kangen Water tasting + set menu",
       icon: ChefHat,
-      location: "Mazaya Center",
+      location: "Clover Bay Tower, Business Bay",
       points: 100,
       completed: passportStep >= 2
     },
     {
       id: 3,
       title: "Wellness Walk & Shop",
-      description: "Healthy stroll through Mazaya Center with exclusive discounts",
+      description: "Healthy stroll through Clover Bay Tower, Business Bay with exclusive discounts",
       icon: Navigation,
-      location: "Mazaya Center",
+      location: "Clover Bay Tower, Business Bay",
       points: 75,
       completed: passportStep >= 3
     },
@@ -509,7 +509,7 @@ export function DubaiWellnessJourney({
                         </div>
                         <div className="flex items-center gap-3">
                           <CheckCircle className="w-5 h-5 text-emerald-500" />
-                          <span className="font-semibold">Mazaya Center Discounts (up to 20% off)</span>
+                          <span className="font-semibold">Clover Bay Tower, Business Bay Discounts (up to 20% off)</span>
                         </div>
                       </div>
                       <div className="mt-4 p-3 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg text-white text-center font-bold">
@@ -708,7 +708,7 @@ export function DubaiWellnessJourney({
           </div>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-6">
             The world's first luxury hotel-to-wellness track experience. Cycle or walk along Sheikh Zayed Road, 
-            earn exclusive <strong>La Perle Aqua Show perks</strong>, and complete your journey at Mazaya Center.
+            earn exclusive <strong>La Perle Aqua Show perks</strong>, and complete your journey at Clover Bay Tower, Business Bay.
           </p>
           
           {/* Journey Progress */}
