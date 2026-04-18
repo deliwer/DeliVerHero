@@ -56,7 +56,6 @@ export default function PlanetHero() {
           </div>
         </div>
       </div>
-
       <div className="max-w-6xl mx-auto px-4 -mt-16 relative z-20">
         {/* Core Pillars */}
         <div className="grid md:grid-cols-3 gap-8 mb-24">
@@ -73,7 +72,7 @@ export default function PlanetHero() {
           <Card className="bg-slate-900 border-slate-800 p-8 hover-elevate rounded-3xl relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-2 h-full bg-emerald-500" />
             <Recycle className="w-12 h-12 text-emerald-400 mb-6 group-hover:scale-110 transition-transform" />
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-4">Circular Loop</h3>
+            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-[#ffffff]">Circular Loop</h3>
             <p className="text-slate-400 leading-relaxed mb-6">Direct household collection of furniture and electronics for Dubai Municipality initiatives.</p>
             <div className="flex items-center text-emerald-400 font-bold text-sm uppercase tracking-widest">
               Active Initiative <ArrowUpRight className="w-4 h-4 ml-2" />
