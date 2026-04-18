@@ -197,8 +197,15 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
   const isValid = form.name && form.whatsapp && (step < 2 || (form.email && form.country && form.role));
 
   const handleSubmit = () => {
+    const isAquacafe = track === "aquacafe";
+    const enagicNote = isAquacafe
+      ? `\n\n*Enagic Sponsor Details:*\nSponsor: Rubab Hassan\nID: 3A #37000000659\nPlease register at: https://www.enagic.com using my Sponsor ID above.`
+      : "";
+    const intro = isAquacafe
+      ? `Hi DeliWer! I want to join the *AquaCafe Alliance* as an Enagic Independent Distributor under Sponsor ID 3A #37000000659 (Rubab Hassan).${enagicNote}`
+      : `Hi DeliWer! I want to join as a *Broker Partner* and start earning from Dubai move-in referrals.`;
     const msg = buildWhatsAppMessage({
-      intro: `Hi DeliWer! I want to join as a ${track === "broker" ? "Broker Partner" : "AquaCafe Alliance"} member.`,
+      intro,
       fields: {
         Name: form.name,
         Email: form.email,
@@ -756,77 +763,238 @@ export default function PartnersPage() {
       {/* ─── ENAGIC / AQUACAFE ALLIANCE DEEP SECTION ────────── */}
       <section className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}>
-              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 mb-4">AquaCafe × Enagic Alliance</Badge>
-              <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight mb-6">
-                Become a{" "}
-                <span className="text-cyan-400">Global Distributor</span>{" "}
-                Under DeliWer's Sponsorship
-              </h2>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                Enagic has been running the world's most successful direct sales compensation system for over 50 years. DeliWer is an official Enagic sponsor — when you join the AquaCafe Alliance, you tap into this proven 8-point pay structure under our existing network.
-              </p>
-              <div className="space-y-4 mb-8">
+          <div className="text-center mb-14">
+            <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 mb-4">AquaCafe × Enagic Alliance</Badge>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight">
+              Become a{" "}
+              <span className="text-cyan-400">Global Distributor</span>{" "}
+              Under DeliWer's Sponsorship
+            </h2>
+            <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+              Enagic has powered the world's most successful direct-sales water system for over 50 years. Join under our official sponsor ID — 100% online, from any country.
+            </p>
+          </div>
+
+          {/* ── SPONSOR CARD + DEMO ─── */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {/* Sponsor Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              className="bg-gradient-to-br from-cyan-950/60 to-slate-900 border border-cyan-500/30 rounded-3xl overflow-hidden"
+            >
+              <div className="bg-gradient-to-r from-cyan-700 to-blue-700 px-6 py-3 flex items-center gap-3">
+                <Shield className="w-4 h-4 text-white" />
+                <span className="text-white font-black text-xs uppercase tracking-widest">Your Enagic Sponsor</span>
+              </div>
+              <div className="p-6 space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-2xl shrink-0">
+                    👩‍💼
+                  </div>
+                  <div>
+                    <div className="text-xl font-black text-white">Rubab Hassan</div>
+                    <div className="text-cyan-400 font-black text-sm">Enagic Independent Distributor</div>
+                    <div className="text-gray-400 text-xs mt-0.5">Dubai, UAE</div>
+                  </div>
+                </div>
+                <div className="bg-slate-800/60 rounded-2xl p-4 border border-slate-700 space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-500 text-xs font-semibold uppercase tracking-wider">Sponsor ID</span>
+                    <span className="text-cyan-300 font-black text-sm tracking-widest">3A #37000000659</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-500 text-xs font-semibold uppercase tracking-wider">Rank</span>
+                    <span className="text-white font-bold text-sm">3A — Senior Distributor</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-500 text-xs font-semibold uppercase tracking-wider">Contact</span>
+                    <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-bold text-sm hover:text-emerald-300">
+                      +971 52 394 6311
+                    </a>
+                  </div>
+                </div>
+                <p className="text-gray-500 text-xs leading-relaxed">
+                  When registering on Enagic's website, enter this Sponsor ID to join directly under the DeliWer AquaCafe network and access our full marketing system.
+                </p>
+                <a
+                  href="https://www.enagic.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="link-enagic-register"
+                >
+                  <Button className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-black h-11 rounded-xl">
+                    Register on Enagic.com <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Kangen Water Demo */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+              className="bg-gradient-to-br from-blue-950/60 to-slate-900 border border-blue-500/30 rounded-3xl overflow-hidden"
+            >
+              <div className="bg-gradient-to-r from-blue-700 to-indigo-700 px-6 py-3 flex items-center gap-3">
+                <Droplets className="w-4 h-4 text-white" />
+                <span className="text-white font-black text-xs uppercase tracking-widest">Kangen Water Demo</span>
+              </div>
+              <div className="p-6 space-y-4">
+                <h3 className="text-xl font-black text-white">See the Science. Share the Demo.</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Use this interactive online demo to show prospects exactly how Kangen Water works — ionisation, pH levels, ORP, and the health difference. Share the link with anyone, anywhere.
+                </p>
+                <div className="bg-slate-800/60 rounded-2xl p-4 border border-slate-700">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Your Demo Link</div>
+                  <div className="flex items-center gap-2">
+                    <Globe className="w-4 h-4 text-blue-400 shrink-0" />
+                    <span className="text-blue-300 font-mono text-sm break-all">formatix.kangendemo.com</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    "Send to prospects before your pitch",
+                    "Works on mobile — perfect for WhatsApp sharing",
+                    "No login required for viewers",
+                    "Converts cold leads into warm buyers",
+                  ].map(p => (
+                    <div key={p} className="flex items-center gap-2 text-sm text-gray-300">
+                      <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
+                      {p}
+                    </div>
+                  ))}
+                </div>
+                <a
+                  href="http://formatix.kangendemo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="link-kangen-demo"
+                >
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black h-11 rounded-xl">
+                    <Play className="w-4 h-4 mr-2" /> Open Kangen Water Demo
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ── ENAGIC REGISTRATION STEPS ─── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            className="bg-slate-900 border border-cyan-500/20 rounded-3xl overflow-hidden mb-12"
+          >
+            <div className="bg-gradient-to-r from-cyan-800/60 to-blue-800/60 border-b border-cyan-500/20 px-8 py-5">
+              <h3 className="text-xl font-black text-white uppercase tracking-tight">How to Register as an Enagic Distributor Under DeliWer</h3>
+              <p className="text-cyan-300/70 text-sm mt-1">EWS Backoffice Registration — Step by Step</p>
+            </div>
+            <div className="p-8">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                  { icon: Globe, title: "Sell to homes anywhere", desc: "Dubai residents, UK expats, Asian markets — all reachable online through your distributor link" },
-                  { icon: Wifi, title: "100% digital onboarding", desc: "No physical forms. No in-person meetings. Register, get your ID, start sharing — all online" },
-                  { icon: RefreshCw, title: "Recurring override income", desc: "Every distributor in your downline generates income for you every time they sell a water system" },
-                  { icon: Shield, title: "Backed by a 50-year global brand", desc: "Enagic is publicly traded, BBB-accredited, and operates in 190 countries" },
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
-                      <item.icon className="w-5 h-5 text-cyan-400" />
+                  {
+                    step: 1,
+                    title: "Go to Enagic.com",
+                    desc: 'Visit enagic.com and click the "Register" or "Login" tab on the EWS Backoffice to begin your distributor registration.',
+                    color: "cyan",
+                    icon: Globe,
+                  },
+                  {
+                    step: 2,
+                    title: "Enter Sponsor Details",
+                    desc: "Input your Sponsor ID exactly as shown:\n\nSponsor: Rubab Hassan\nID: 3A #37000000659\n\nMatch the fields as registered in the Enagic system.",
+                    color: "blue",
+                    icon: UserPlus,
+                    highlight: true,
+                  },
+                  {
+                    step: 3,
+                    title: "Validate Your Identity",
+                    desc: "Choose phone (4-digit passcode via SMS/voice) or email (click link). English phone validation is available. Check spam if email doesn't arrive.",
+                    color: "indigo",
+                    icon: Shield,
+                  },
+                  {
+                    step: 4,
+                    title: "Activate & Start Earning",
+                    desc: "Complete registration as instructed. Your EWS Free Edition account activates. You're now in the DeliWer AquaCafe network and can recruit your own team.",
+                    color: "purple",
+                    icon: Zap,
+                  },
+                ].map((s, i) => (
+                  <div key={i} className={`relative rounded-2xl p-5 border ${s.highlight ? "border-cyan-500/50 bg-cyan-950/30" : "border-slate-800 bg-slate-800/30"}`}>
+                    {s.highlight && (
+                      <div className="absolute -top-2 left-4 bg-cyan-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        Key Step
+                      </div>
+                    )}
+                    <div className={`w-10 h-10 rounded-xl bg-${s.color}-500/15 border border-${s.color}-500/30 flex items-center justify-center mb-3`}>
+                      <s.icon className={`w-5 h-5 text-${s.color}-400`} />
                     </div>
-                    <div>
-                      <div className="font-black text-white text-sm mb-0.5">{item.title}</div>
-                      <div className="text-gray-500 text-xs leading-relaxed">{item.desc}</div>
-                    </div>
+                    <div className={`text-[10px] font-black uppercase tracking-widest text-${s.color}-400 mb-1`}>Step {s.step}</div>
+                    <div className="font-black text-white text-sm mb-2">{s.title}</div>
+                    <p className="text-gray-500 text-xs leading-relaxed whitespace-pre-line">{s.desc}</p>
+                    {s.highlight && (
+                      <div className="mt-3 bg-slate-900 rounded-xl p-3 border border-cyan-500/20">
+                        <div className="text-[9px] font-black uppercase text-gray-600 mb-1">Use Exactly</div>
+                        <div className="text-cyan-300 font-black text-xs">Rubab Hassan</div>
+                        <div className="text-cyan-400 font-mono text-xs">3A #37000000659</div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
-              <Button
-                data-testid="button-aquacafe-join"
-                onClick={() => scrollToFunnel("aquacafe")}
-                className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-black h-14 px-8 rounded-2xl"
-              >
-                <Droplets className="w-5 h-5 mr-2" /> Join AquaCafe Alliance Free
-              </Button>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} className="space-y-4">
-              {/* Comparison: Enagic vs AquaCafe Alliance */}
-              <div className="bg-slate-900 border border-cyan-500/20 rounded-3xl overflow-hidden">
-                <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-4">
-                  <h3 className="font-black text-white uppercase tracking-tight">Why Join Through DeliWer (Not Directly)?</h3>
-                </div>
-                <div className="p-6 space-y-4">
-                  {[
-                    { point: "No upfront purchase required to get your sponsor ID", icon: Check },
-                    { point: "DeliWer routes Dubai-based leads directly to your link", icon: Check },
-                    { point: "Full marketing support — templates, funnels, campaigns", icon: Check },
-                    { point: "Combined earning: DeliWer referrals + Enagic overrides", icon: Check },
-                    { point: "Arabic & English support team 24/7 via WhatsApp", icon: Check },
-                    { point: "Join from Philippines, India, UK, EU — any country", icon: Check },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <item.icon className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                      <span className="text-gray-300 text-sm">{item.point}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://www.enagic.com" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-black h-12 px-8 rounded-xl">
+                    Start Enagic Registration <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </a>
+                <a href="https://wa.me/971523946311?text=Hi%20Rubab!%20I%20want%20to%20join%20the%20AquaCafe%20Alliance%20under%20your%20Enagic%20ID%203A%20%2337000000659.%20Please%20guide%20me%20through%20the%20registration." target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 font-black h-12 px-8 rounded-xl">
+                    <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Rubab for Help
+                  </Button>
+                </a>
               </div>
+            </div>
+          </motion.div>
 
-              {/* Global Map Pins */}
-              <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6">
-                <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Active Alliance Members In</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["🇦🇪 Dubai", "🇬🇧 London", "🇵🇭 Manila", "🇮🇳 Mumbai", "🇩🇪 Berlin", "🇨🇦 Toronto", "🇦🇺 Sydney", "🇸🇬 Singapore", "🇿🇦 Johannesburg", "🇺🇸 New York", "🇯🇵 Tokyo", "🇧🇷 São Paulo"].map(city => (
-                    <span key={city} className="bg-slate-800 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700">{city}</span>
-                  ))}
-                </div>
+          {/* ── WHY JOIN THROUGH DELIWER + GLOBAL PINS ─── */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-900 border border-cyan-500/20 rounded-3xl overflow-hidden">
+              <div className="bg-gradient-to-r from-cyan-600 to-blue-600 px-6 py-4">
+                <h3 className="font-black text-white uppercase tracking-tight">Why Join Through DeliWer?</h3>
               </div>
-            </motion.div>
+              <div className="p-6 space-y-3">
+                {[
+                  { point: "No upfront purchase required to get your sponsor ID", icon: Check },
+                  { point: "DeliWer routes Dubai-based leads directly to your link", icon: Check },
+                  { point: "Full marketing support — templates, funnels, campaigns", icon: Check },
+                  { point: "Combined earning: DeliWer referrals + Enagic overrides", icon: Check },
+                  { point: "Arabic & English support team 24/7 via WhatsApp", icon: Check },
+                  { point: "Join from Philippines, India, UK, EU — any country", icon: Check },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <item.icon className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-sm">{item.point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6">
+              <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Active Alliance Members In</h3>
+              <div className="flex flex-wrap gap-2">
+                {["🇦🇪 Dubai", "🇬🇧 London", "🇵🇭 Manila", "🇮🇳 Mumbai", "🇩🇪 Berlin", "🇨🇦 Toronto", "🇦🇺 Sydney", "🇸🇬 Singapore", "🇿🇦 Johannesburg", "🇺🇸 New York", "🇯🇵 Tokyo", "🇧🇷 São Paulo"].map(city => (
+                  <span key={city} className="bg-slate-800 text-gray-300 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700">{city}</span>
+                ))}
+              </div>
+              <div className="mt-6 pt-6 border-t border-slate-800">
+                <Button
+                  data-testid="button-aquacafe-join"
+                  onClick={() => scrollToFunnel("aquacafe")}
+                  className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-black h-12 rounded-xl"
+                >
+                  <Droplets className="w-5 h-5 mr-2" /> Join AquaCafe Alliance Free
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

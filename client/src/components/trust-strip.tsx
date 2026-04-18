@@ -23,7 +23,7 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
           <Link href="/partners">
             <span className="cursor-pointer inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors uppercase tracking-widest text-[10px] font-black" data-testid="trust-strip-partners">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              Partner &amp; Earn
+              Business Opportunity
             </span>
           </Link>
           <Link href="/contact">
