@@ -10,7 +10,9 @@ import { useToast } from "@/hooks/use-toast";
 import { 
   Users, Target, MessageSquare, Send, TrendingUp, Zap, Shield, Search,
   CheckCircle2, Clock, ArrowRight, AlertTriangle, Loader2, Instagram, Phone,
-  Linkedin, Plus, Copy, Check, DollarSign, BarChart3, Eye, Settings
+  Linkedin, Plus, Copy, Check, DollarSign, BarChart3, Eye, Settings,
+  Globe, Droplets, Sparkles, MapPin, Star, Image, RefreshCw, ExternalLink,
+  Building2, Calendar
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -95,6 +97,17 @@ export default function MarketingDashboard() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDistributing, setIsDistributing] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
+
+  // Social Campaigns State
+  const [socialPlatform, setSocialPlatform] = useState<"gmb" | "meta">("gmb");
+  const [gmbPostType, setGmbPostType] = useState("update");
+  const [metaPostType, setMetaPostType] = useState("brand");
+  const [gmbContent, setGmbContent] = useState("");
+  const [metaContent, setMetaContent] = useState("");
+  const [isGenGmb, setIsGenGmb] = useState(false);
+  const [isGenMeta, setIsGenMeta] = useState(false);
+  const [publishedToday, setPublishedToday] = useState<string[]>([]);
+  const [selectedImageTemplate, setSelectedImageTemplate] = useState<string | null>(null);
 
   const generateContentMutation = useMutation({
     mutationFn: async () => {
@@ -292,13 +305,14 @@ export default function MarketingDashboard() {
         </header>
 
         <Tabs defaultValue="survival" className="space-y-6 relative z-10">
-          <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-1 bg-slate-900/90 backdrop-blur-xl border border-white/10 p-2 sticky top-0 z-20 shadow-2xl rounded-xl w-full">
-            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Survival</TabsTrigger>
-            <TabsTrigger value="whatsapp" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">WhatsApp</TabsTrigger>
-            <TabsTrigger value="intent" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Intent</TabsTrigger>
-            <TabsTrigger value="broker" className="data-[state=active]:bg-yellow-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Brokers</TabsTrigger>
-            <TabsTrigger value="partners" className="data-[state=active]:bg-orange-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">Affiliates</TabsTrigger>
-            <TabsTrigger value="seo" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs md:text-sm">SEO</TabsTrigger>
+          <TabsList className="grid grid-cols-4 md:grid-cols-7 gap-1 bg-slate-900/90 backdrop-blur-xl border border-white/10 p-2 sticky top-0 z-20 shadow-2xl rounded-xl w-full">
+            <TabsTrigger value="survival" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs">Survival</TabsTrigger>
+            <TabsTrigger value="whatsapp" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs">WhatsApp</TabsTrigger>
+            <TabsTrigger value="intent" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs">Intent</TabsTrigger>
+            <TabsTrigger value="broker" className="data-[state=active]:bg-yellow-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs">Brokers</TabsTrigger>
+            <TabsTrigger value="partners" className="data-[state=active]:bg-orange-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs">Affiliates</TabsTrigger>
+            <TabsTrigger value="seo" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs">SEO</TabsTrigger>
+            <TabsTrigger value="social" className="data-[state=active]:bg-pink-600 data-[state=active]:text-white data-[state=inactive]:bg-slate-800 data-[state=inactive]:text-gray-300 font-bold transition-all text-xs">Social</TabsTrigger>
           </TabsList>
 
           {/* SURVIVAL TAB */}
@@ -615,6 +629,374 @@ export default function MarketingDashboard() {
                   <p className="text-gray-500 text-xs font-medium">WhatsApp scripts & sharing tools</p>
                 </div>
               </a>
+            </div>
+          </TabsContent>
+
+          {/* SOCIAL CAMPAIGNS TAB */}
+          <TabsContent value="social" className="space-y-6 bg-pink-950/20 backdrop-blur-md p-6 rounded-2xl border border-pink-500/30 shadow-xl">
+            {/* Header + Daily Checklist */}
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="flex-1">
+                <h2 className="text-2xl font-black text-white flex items-center gap-2 mb-1">
+                  <Sparkles className="text-pink-400 w-6 h-6" />
+                  Social Media Campaign Studio
+                </h2>
+                <p className="text-gray-400 text-sm">Create posts for Google My Business (Kangen Water Dubai) and DeliWer Loyalty social pages. AI-generates content — you approve and publish.</p>
+              </div>
+              {/* Daily Activity Tracker */}
+              <div className="bg-slate-900 border border-pink-500/20 rounded-2xl p-4 min-w-[220px]">
+                <p className="text-[10px] font-black uppercase tracking-widest text-pink-400 mb-3">Today's Publishing Checklist</p>
+                <div className="space-y-2">
+                  {[
+                    { key: "gmb-kangen", label: "GMB: Kangen Water Dubai" },
+                    { key: "meta-deliwer", label: "Meta: DeliWer Loyalty" },
+                    { key: "gmb-deliwer", label: "GMB: DeliWer Business" },
+                    { key: "stories", label: "Stories / Reels" },
+                  ].map(item => (
+                    <button
+                      key={item.key}
+                      data-testid={`check-social-${item.key}`}
+                      onClick={() => setPublishedToday(prev =>
+                        prev.includes(item.key) ? prev.filter(k => k !== item.key) : [...prev, item.key]
+                      )}
+                      className={`w-full flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-xl border transition-all ${
+                        publishedToday.includes(item.key)
+                          ? "bg-pink-500/20 border-pink-500/50 text-pink-300"
+                          : "bg-slate-800 border-slate-700 text-gray-400 hover:border-pink-500/30"
+                      }`}
+                    >
+                      <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 ${publishedToday.includes(item.key) ? "text-pink-400" : "text-gray-600"}`} />
+                      {item.label}
+                      {publishedToday.includes(item.key) && <span className="ml-auto text-[9px] font-black text-pink-400">✓ DONE</span>}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-3 pt-3 border-t border-slate-800 text-center">
+                  <span className="text-2xl font-black text-pink-400">{publishedToday.length}</span>
+                  <span className="text-gray-500 text-xs font-semibold"> / 4 completed today</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Platform Selector */}
+            <div className="flex gap-3">
+              <button
+                data-testid="button-platform-gmb"
+                onClick={() => setSocialPlatform("gmb")}
+                className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-sm border transition-all ${socialPlatform === "gmb" ? "bg-blue-600 border-blue-500 text-white" : "bg-slate-800 border-slate-700 text-gray-400 hover:border-blue-500/40"}`}
+              >
+                <Globe className="w-4 h-4" /> Google My Business
+              </button>
+              <button
+                data-testid="button-platform-meta"
+                onClick={() => setSocialPlatform("meta")}
+                className={`flex items-center gap-2 px-5 py-3 rounded-2xl font-black text-sm border transition-all ${socialPlatform === "meta" ? "bg-gradient-to-r from-purple-600 to-pink-600 border-purple-500 text-white" : "bg-slate-800 border-slate-700 text-gray-400 hover:border-purple-500/40"}`}
+              >
+                <Instagram className="w-4 h-4" /> Meta Business Suite
+              </button>
+            </div>
+
+            {/* GMB Panel */}
+            {socialPlatform === "gmb" && (
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Kangen Water Dubai GMB */}
+                <Card className="bg-blue-900/30 border-blue-500/40">
+                  <CardHeader className="bg-blue-900/50 border-b border-blue-500/30">
+                    <CardTitle className="text-blue-200 flex items-center gap-2 text-base">
+                      <MapPin className="text-blue-400 w-5 h-5" />
+                      Kangen Water Dubai
+                      <Badge className="ml-auto bg-blue-500/20 text-blue-300 border-blue-500/40 text-[10px]">Google Profile</Badge>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-5 space-y-4">
+                    <div className="flex flex-wrap gap-2">
+                      {["update", "offer", "product", "event"].map(type => (
+                        <button
+                          key={type}
+                          data-testid={`button-gmb-type-${type}`}
+                          onClick={() => setGmbPostType(type)}
+                          className={`px-3 py-1 rounded-lg text-xs font-black uppercase transition-all ${gmbPostType === type ? "bg-blue-600 text-white" : "bg-slate-800 text-gray-400 hover:bg-slate-700"}`}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="bg-slate-900 rounded-xl p-4 border border-slate-700 min-h-[140px] text-sm text-gray-300 relative">
+                      {isGenGmb ? (
+                        <div className="flex items-center gap-2 text-blue-400">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span className="text-sm">Generating GMB post...</span>
+                        </div>
+                      ) : gmbContent ? (
+                        <p className="leading-relaxed whitespace-pre-line">{gmbContent}</p>
+                      ) : (
+                        <p className="text-gray-600 italic">Click "Generate" to create a {gmbPostType} post for the Kangen Water Dubai Google profile...</p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        data-testid="button-generate-gmb"
+                        disabled={isGenGmb}
+                        onClick={async () => {
+                          setIsGenGmb(true);
+                          try {
+                            const prompts: Record<string, string> = {
+                              update: "Write a Google My Business UPDATE post for 'Kangen Water Dubai'. Topic: benefits of ionized alkaline water for Dubai residents in the summer heat. Include a call to action. 80-120 words. Professional but warm tone.",
+                              offer: "Write a Google My Business OFFER post for 'Kangen Water Dubai'. Create a compelling limited-time offer for a Kangen water system demo. Include discount or bonus mention. 80-100 words.",
+                              product: "Write a Google My Business PRODUCT post for 'Kangen Water Dubai' featuring the Kangen K8 machine. Highlight its 8 pH levels and health benefits. 80-100 words.",
+                              event: "Write a Google My Business EVENT post for 'Kangen Water Dubai'. Promote a free live water demonstration event in Dubai Marina. Include date placeholder and RSVP call to action. 80-100 words.",
+                            };
+                            const res = await apiRequest("POST", "/api/concierge", {
+                              phone: "SYSTEM", name: "Founder", area: "Dubai",
+                              message: prompts[gmbPostType]
+                            });
+                            const data = await res.json();
+                            setGmbContent(data.reply || data.message || "");
+                          } finally {
+                            setIsGenGmb(false);
+                          }
+                        }}
+                        className="flex-1 bg-blue-600 hover:bg-blue-500 text-white font-black h-10 rounded-xl text-sm"
+                      >
+                        <Sparkles className="w-4 h-4 mr-1" /> Generate Post
+                      </Button>
+                      <Button
+                        data-testid="button-copy-gmb"
+                        disabled={!gmbContent}
+                        variant="outline"
+                        onClick={() => { navigator.clipboard.writeText(gmbContent); toast({ title: "Copied", description: "GMB post copied to clipboard" }); }}
+                        className="border-blue-500/40 text-blue-400 hover:bg-blue-500/10 h-10 px-3 rounded-xl"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <a href="https://business.google.com" target="_blank" rel="noopener noreferrer">
+                      <Button
+                        data-testid="button-open-gmb"
+                        variant="outline"
+                        className="w-full border-blue-500/30 text-blue-300 hover:bg-blue-500/10 font-bold h-10 rounded-xl text-sm"
+                        onClick={() => { if (gmbContent) { setPublishedToday(prev => prev.includes("gmb-kangen") ? prev : [...prev, "gmb-kangen"]); toast({ title: "Opening Google My Business", description: "Paste your generated post into the GMB dashboard." }); }}}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" /> Open Google My Business
+                      </Button>
+                    </a>
+                  </CardContent>
+                </Card>
+
+                {/* GMB Image Templates */}
+                <Card className="bg-slate-900/60 border-slate-700">
+                  <CardHeader className="border-b border-slate-700">
+                    <CardTitle className="text-white flex items-center gap-2 text-base">
+                      <Image className="text-blue-400 w-5 h-5" />
+                      Image Templates
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-5 space-y-4">
+                    <p className="text-gray-500 text-xs">Select a template style for your GMB post image. Use with Canva, Adobe Express, or Meta Creator Studio.</p>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { id: "kangen-promo", label: "Kangen Promo", bg: "from-blue-600 to-cyan-600", icon: Droplets, desc: "Water system offer" },
+                        { id: "health-tip", label: "Health Tip", bg: "from-emerald-600 to-teal-600", icon: Star, desc: "pH & wellness fact" },
+                        { id: "demo-invite", label: "Demo Invite", bg: "from-purple-600 to-pink-600", icon: Calendar, desc: "Event / live demo" },
+                        { id: "testimonial", label: "Testimonial", bg: "from-amber-600 to-orange-600", icon: Users, desc: "Customer story" },
+                      ].map(tmpl => (
+                        <button
+                          key={tmpl.id}
+                          data-testid={`button-img-template-${tmpl.id}`}
+                          onClick={() => { setSelectedImageTemplate(tmpl.id); toast({ title: `Template: ${tmpl.label}`, description: "Use this template in Canva or Meta Creator Studio" }); }}
+                          className={`relative rounded-xl overflow-hidden border-2 transition-all ${selectedImageTemplate === tmpl.id ? "border-pink-400 scale-105" : "border-transparent hover:border-slate-600"}`}
+                        >
+                          <div className={`bg-gradient-to-br ${tmpl.bg} p-4 text-white text-left`}>
+                            <tmpl.icon className="w-5 h-5 mb-2 opacity-80" />
+                            <div className="text-xs font-black">{tmpl.label}</div>
+                            <div className="text-[10px] opacity-70">{tmpl.desc}</div>
+                          </div>
+                          {selectedImageTemplate === tmpl.id && (
+                            <div className="absolute top-1.5 right-1.5 w-4 h-4 bg-pink-500 rounded-full flex items-center justify-center">
+                              <Check className="w-2.5 h-2.5 text-white" />
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="bg-slate-800 rounded-xl p-3 border border-slate-700">
+                      <p className="text-[10px] font-black uppercase text-gray-500 mb-2">Quick Links — Design Tools</p>
+                      <div className="space-y-1.5">
+                        {[
+                          { name: "Canva (Free)", url: "https://canva.com", color: "text-cyan-400" },
+                          { name: "Meta Creator Studio", url: "https://business.facebook.com/creatorstudio", color: "text-blue-400" },
+                          { name: "Adobe Express", url: "https://express.adobe.com", color: "text-red-400" },
+                        ].map(link => (
+                          <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={`flex items-center gap-2 text-xs font-semibold ${link.color} hover:underline`}>
+                            <ExternalLink className="w-3 h-3" /> {link.name}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {/* META Panel */}
+            {socialPlatform === "meta" && (
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* DeliWer Loyalty Meta Post */}
+                <Card className="bg-purple-900/30 border-purple-500/40">
+                  <CardHeader className="bg-purple-900/50 border-b border-purple-500/30">
+                    <CardTitle className="text-purple-200 flex items-center gap-2 text-base">
+                      <Instagram className="text-purple-400 w-5 h-5" />
+                      DeliWer Loyalty
+                      <Badge className="ml-auto bg-purple-500/20 text-purple-300 border-purple-500/40 text-[10px]">Facebook / Instagram</Badge>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-5 space-y-4">
+                    <div className="flex flex-wrap gap-2">
+                      {["brand", "promo", "water", "partner", "testimonial"].map(type => (
+                        <button
+                          key={type}
+                          data-testid={`button-meta-type-${type}`}
+                          onClick={() => setMetaPostType(type)}
+                          className={`px-3 py-1 rounded-lg text-xs font-black uppercase transition-all ${metaPostType === type ? "bg-purple-600 text-white" : "bg-slate-800 text-gray-400 hover:bg-slate-700"}`}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="bg-slate-900 rounded-xl p-4 border border-slate-700 min-h-[140px] text-sm text-gray-300">
+                      {isGenMeta ? (
+                        <div className="flex items-center gap-2 text-purple-400">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span className="text-sm">Generating social post...</span>
+                        </div>
+                      ) : metaContent ? (
+                        <p className="leading-relaxed whitespace-pre-line">{metaContent}</p>
+                      ) : (
+                        <p className="text-gray-600 italic">Click "Generate" to create a {metaPostType} post for DeliWer Loyalty social media...</p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        data-testid="button-generate-meta"
+                        disabled={isGenMeta}
+                        onClick={async () => {
+                          setIsGenMeta(true);
+                          try {
+                            const prompts: Record<string, string> = {
+                              brand: "Write an Instagram/Facebook post for 'DeliWer Loyalty' — Dubai's all-in-one home services brand. Energetic, premium feel. Highlight Ejari, DEWA, move-in concierge. Include 3-5 relevant hashtags. 80-120 words.",
+                              promo: "Write an Instagram promotional post for DeliWer's move-in package offer in Dubai. Create urgency (limited slots). Include a WhatsApp CTA. 3-5 hashtags. 80-100 words.",
+                              water: "Write an engaging Instagram post for 'DeliWer Loyalty' about Kangen Water and AquaCafe Alliance. Mention alkaline water benefits and the business opportunity. Include Kangen Water Dubai hashtags. 80-100 words.",
+                              partner: "Write a Facebook/Instagram post recruiting real estate brokers in Dubai to join the DeliWer Partner Program. AED 150-800 per referral. Warm, aspirational tone. 3-5 hashtags. 80-100 words.",
+                              testimonial: "Write a social media testimonial post for DeliWer from the perspective of a happy Dubai resident who just moved in. Natural voice. Mention Ejari or DEWA or water delivery. 3-5 hashtags. 80 words.",
+                            };
+                            const res = await apiRequest("POST", "/api/concierge", {
+                              phone: "SYSTEM", name: "Founder", area: "Dubai",
+                              message: prompts[metaPostType]
+                            });
+                            const data = await res.json();
+                            setMetaContent(data.reply || data.message || "");
+                          } finally {
+                            setIsGenMeta(false);
+                          }
+                        }}
+                        className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-black h-10 rounded-xl text-sm"
+                      >
+                        <Sparkles className="w-4 h-4 mr-1" /> Generate Post
+                      </Button>
+                      <Button
+                        data-testid="button-copy-meta"
+                        disabled={!metaContent}
+                        variant="outline"
+                        onClick={() => { navigator.clipboard.writeText(metaContent); toast({ title: "Copied", description: "Social post copied to clipboard" }); }}
+                        className="border-purple-500/40 text-purple-400 hover:bg-purple-500/10 h-10 px-3 rounded-xl"
+                      >
+                        <Copy className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    <a href="https://business.facebook.com/creatorstudio" target="_blank" rel="noopener noreferrer">
+                      <Button
+                        data-testid="button-open-meta"
+                        variant="outline"
+                        className="w-full border-purple-500/30 text-purple-300 hover:bg-purple-500/10 font-bold h-10 rounded-xl text-sm"
+                        onClick={() => { if (metaContent) { setPublishedToday(prev => prev.includes("meta-deliwer") ? prev : [...prev, "meta-deliwer"]); toast({ title: "Opening Meta Creator Studio", description: "Paste your post and schedule it in Meta Business Suite." }); }}}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" /> Open Meta Creator Studio
+                      </Button>
+                    </a>
+                  </CardContent>
+                </Card>
+
+                {/* Meta Post Preview */}
+                <Card className="bg-slate-900/60 border-slate-700">
+                  <CardHeader className="border-b border-slate-700">
+                    <CardTitle className="text-white flex items-center gap-2 text-base">
+                      <Eye className="text-purple-400 w-5 h-5" />
+                      Post Preview
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-5 space-y-4">
+                    {/* Simulated Post Card */}
+                    <div className="bg-white rounded-xl overflow-hidden shadow-lg text-gray-900">
+                      <div className="flex items-center gap-3 p-3 border-b border-gray-100">
+                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-black text-sm shrink-0">D</div>
+                        <div>
+                          <div className="text-sm font-black">DeliWer Loyalty</div>
+                          <div className="text-[10px] text-gray-400">Just now · 🌍</div>
+                        </div>
+                      </div>
+                      <div className="p-3">
+                        <p className="text-sm leading-relaxed text-gray-700">
+                          {metaContent
+                            ? metaContent.slice(0, 200) + (metaContent.length > 200 ? "..." : "")
+                            : <span className="text-gray-400 italic">Generate a post to see the preview here...</span>
+                          }
+                        </p>
+                      </div>
+                      <div className="bg-gradient-to-br from-emerald-400 to-teal-500 h-36 flex items-center justify-center">
+                        <div className="text-white text-center">
+                          <div className="text-2xl font-black">DeliWer</div>
+                          <div className="text-xs opacity-80">Dubai Home Services</div>
+                        </div>
+                      </div>
+                      <div className="flex gap-4 p-3 text-xs text-gray-500 border-t border-gray-100">
+                        <span>👍 Like</span><span>💬 Comment</span><span>↗ Share</span>
+                      </div>
+                    </div>
+                    {/* Quick links */}
+                    <div className="space-y-2">
+                      <p className="text-[10px] font-black uppercase text-gray-500">Publishing Platforms</p>
+                      {[
+                        { name: "Meta Business Suite", url: "https://business.facebook.com", color: "text-blue-400" },
+                        { name: "Google My Business", url: "https://business.google.com", color: "text-green-400" },
+                        { name: "Instagram (Mobile)", url: "https://instagram.com", color: "text-pink-400" },
+                        { name: "Facebook Pages", url: "https://www.facebook.com/pages", color: "text-indigo-400" },
+                      ].map(link => (
+                        <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className={`flex items-center gap-2 text-xs font-semibold ${link.color} hover:underline`}>
+                          <ExternalLink className="w-3 h-3" /> {link.name}
+                        </a>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
+            {/* Progress Summary */}
+            <div className="bg-slate-900 border border-pink-500/20 rounded-2xl p-5">
+              <p className="text-[10px] font-black uppercase tracking-widest text-pink-400 mb-4">This Week's Campaign Progress</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                {[
+                  { label: "GMB Posts Published", value: publishedToday.filter(k => k.startsWith("gmb")).length, color: "text-blue-400", max: 2 },
+                  { label: "Meta Posts Published", value: publishedToday.filter(k => k.startsWith("meta")).length, color: "text-purple-400", max: 2 },
+                  { label: "Content Generated", value: [gmbContent, metaContent].filter(Boolean).length, color: "text-pink-400", max: 2 },
+                  { label: "Daily Target", value: `${publishedToday.length}/4`, color: publishedToday.length >= 4 ? "text-emerald-400" : "text-amber-400", max: 4 },
+                ].map((stat, i) => (
+                  <div key={i} className="bg-slate-800/60 rounded-xl p-3 border border-slate-700">
+                    <div className={`text-2xl font-black ${stat.color}`}>{stat.value}</div>
+                    <div className="text-[10px] text-gray-500 font-semibold uppercase mt-0.5">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </TabsContent>
 

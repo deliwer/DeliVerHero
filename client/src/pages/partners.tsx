@@ -1000,7 +1000,7 @@ export default function PartnersPage() {
       </section>
 
       {/* ─── BROKER FOCUS SECTION ───────────────────────────── */}
-      <section className="py-24 px-4 bg-gradient-to-b from-slate-900/60 to-slate-950 border-y border-slate-800">
+      <section id="broker-focus" className="py-24 px-4 bg-gradient-to-b from-slate-900/60 to-slate-950 border-y border-slate-800">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-4">For Real Estate Brokers</Badge>
@@ -1062,6 +1062,142 @@ export default function PartnersPage() {
                 </Button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── DUAL-TRACK CTA STRIP ───────────────────────────── */}
+      <section className="py-16 px-4 bg-gradient-to-b from-slate-950 to-slate-900/80 border-y border-slate-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Two Paths. One Platform.</p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">
+              Ready to Start? Choose Your Track
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Broker Partner CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+              className="relative bg-gradient-to-br from-emerald-950/60 to-slate-900 border border-emerald-500/30 rounded-3xl p-8 flex flex-col gap-5"
+            >
+              <div className="absolute top-4 right-4 bg-emerald-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                🏆 Most Popular
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+                  <Building2 className="w-7 h-7 text-emerald-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-white">Broker Partner</h3>
+                  <p className="text-emerald-400 text-sm font-semibold">Real estate referral commissions</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3 bg-slate-900/60 rounded-2xl p-4 border border-slate-800">
+                <div className="text-center">
+                  <div className="text-2xl font-black text-emerald-400">AED 800+</div>
+                  <div className="text-[10px] text-gray-500 uppercase font-bold">Per Referral</div>
+                </div>
+                <div className="text-center border-x border-slate-700">
+                  <div className="text-2xl font-black text-emerald-400">35%</div>
+                  <div className="text-[10px] text-gray-500 uppercase font-bold">Commission</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-black text-emerald-400">24h</div>
+                  <div className="text-[10px] text-gray-500 uppercase font-bold">Payout</div>
+                </div>
+              </div>
+              <ul className="space-y-2">
+                {["Earn from clients you already work with", "Team override on agents you recruit", "100% online — share a link, done", "Monthly bank payouts, no delays"].map(p => (
+                  <li key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                <Button
+                  data-testid="button-cta-strip-broker-learn"
+                  onClick={() => {
+                    document.getElementById("broker-focus")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  variant="outline"
+                  className="flex-1 border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black h-11 rounded-xl"
+                >
+                  How It Works
+                </Button>
+                <Button
+                  data-testid="button-cta-strip-broker-join"
+                  onClick={() => scrollToFunnel("broker")}
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-black h-11 rounded-xl"
+                >
+                  Get My Partner Link <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* AquaCafe Alliance CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+              className="relative bg-gradient-to-br from-cyan-950/60 to-slate-900 border border-cyan-500/30 rounded-3xl p-8 flex flex-col gap-5"
+            >
+              <div className="absolute top-4 right-4 bg-cyan-500 text-slate-900 text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                🌊 Global Reach
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center">
+                  <Droplets className="w-7 h-7 text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-white">AquaCafe Alliance</h3>
+                  <p className="text-cyan-400 text-sm font-semibold">Enagic water system distribution</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-3 bg-slate-900/60 rounded-2xl p-4 border border-slate-800">
+                <div className="text-center">
+                  <div className="text-2xl font-black text-cyan-400">8pt</div>
+                  <div className="text-[10px] text-gray-500 uppercase font-bold">Pay System</div>
+                </div>
+                <div className="text-center border-x border-slate-700">
+                  <div className="text-2xl font-black text-cyan-400">190</div>
+                  <div className="text-[10px] text-gray-500 uppercase font-bold">Countries</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-black text-cyan-400">∞</div>
+                  <div className="text-[10px] text-gray-500 uppercase font-bold">Downline</div>
+                </div>
+              </div>
+              <div className="bg-slate-900/60 rounded-2xl p-3 border border-cyan-500/20 flex items-center gap-3">
+                <Shield className="w-5 h-5 text-cyan-400 shrink-0" />
+                <div>
+                  <div className="text-xs font-black text-white">Sponsor: Rubab Hassan · 3A #37000000659</div>
+                  <div className="text-[10px] text-gray-500">DeliWer Enagic Sponsor — Dubai, UAE</div>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                <a
+                  href="http://formatix.kangendemo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                  data-testid="link-cta-strip-kangen-demo"
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full border-cyan-500/40 text-cyan-400 hover:bg-cyan-500/10 font-black h-11 rounded-xl"
+                  >
+                    <Play className="w-4 h-4 mr-1" /> Watch Kangen Demo
+                  </Button>
+                </a>
+                <Button
+                  data-testid="button-cta-strip-aquacafe-join"
+                  onClick={() => scrollToFunnel("aquacafe")}
+                  className="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-black h-11 rounded-xl"
+                >
+                  Join the Alliance <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
