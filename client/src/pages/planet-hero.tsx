@@ -62,7 +62,7 @@ export default function PlanetHero() {
           <Card className="bg-slate-900 border-slate-800 p-8 hover-elevate rounded-3xl relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-2 h-full bg-blue-500" />
             <Droplets className="w-12 h-12 text-blue-400 mb-6 group-hover:scale-110 transition-transform" />
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-4">Saqi Kawthar</h3>
+            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-[#f7f7f7]">Saqi Kawthar</h3>
             <p className="text-slate-400 leading-relaxed mb-6">Funding local atmospheric water generators through high-end tech recycling.</p>
             <div className="flex items-center text-blue-400 font-bold text-sm uppercase tracking-widest">
               Live Project <ArrowUpRight className="w-4 h-4 ml-2" />
