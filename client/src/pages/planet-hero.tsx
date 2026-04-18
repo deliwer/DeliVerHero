@@ -82,7 +82,7 @@ export default function PlanetHero() {
           <Card className="bg-slate-900 border-slate-800 p-8 hover-elevate rounded-3xl relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-2 h-full bg-[#FFC845]" />
             <Handshake className="w-12 h-12 text-[#FFC845] mb-6 group-hover:scale-110 transition-transform" />
-            <h3 className="text-2xl font-black uppercase tracking-tight mb-4">Hero Rewards</h3>
+            <h3 className="text-2xl font-black uppercase tracking-tight mb-4 text-[#ffffff]">Hero Rewards</h3>
             <p className="text-slate-400 leading-relaxed mb-6">Exclusive benefits for participants in Dubai's leadership sustainability goals.</p>
             <div className="flex items-center text-[#FFC845] font-bold text-sm uppercase tracking-widest">
               Member Perks <ArrowUpRight className="w-4 h-4 ml-2" />
