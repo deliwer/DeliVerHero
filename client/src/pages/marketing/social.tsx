@@ -676,7 +676,7 @@ export default function SocialAgentPage() {
             {/* Outreach Playbook */}
             <Card className="bg-white/5 border-white/10">
               <CardContent className="p-6">
-                <h2 className="font-bold mb-4 flex items-center gap-2"><TrendingUp className="w-4 h-4 text-emerald-400" />Founder Outreach Playbook</h2>
+                <h2 className="font-bold mb-4 flex items-center gap-2 text-[#ffffff]"><TrendingUp className="w-4 h-4 text-emerald-400" />Founder Outreach Playbook</h2>
                 <div className="space-y-4">
                   {[
                     {
