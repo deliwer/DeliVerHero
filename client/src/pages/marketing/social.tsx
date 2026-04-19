@@ -523,7 +523,7 @@ export default function SocialAgentPage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-2 mb-0.5">
-                            <span className="font-semibold text-sm truncate" data-testid={`community-name-${community.id}`}>{community.name}</span>
+                            <span className="font-semibold text-sm truncate text-[#f5f5f5]" data-testid={`community-name-${community.id}`}>{community.name}</span>
                             {community.url && (
                               <a href={community.url} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors shrink-0">
                                 <ExternalLink className="w-3 h-3" />
