@@ -618,7 +618,7 @@ export default function SocialAgentPage() {
           <div className="space-y-6">
             <Card className="bg-white/5 border-white/10">
               <CardContent className="p-6">
-                <h2 className="font-bold mb-2 flex items-center gap-2"><MapPin className="w-4 h-4 text-amber-400" />Google My Business Targeting</h2>
+                <h2 className="font-bold mb-2 flex items-center gap-2 text-[#ffffff]"><MapPin className="w-4 h-4 text-amber-400" />Google My Business Targeting</h2>
                 <p className="text-sm text-gray-400 mb-4">
                   Search real estate companies by name to find their Google My Business profile and launch targeted outreach. The agent has pre-mapped GMB URLs for 35,000+ RERA-licensed brokerages.
                 </p>
