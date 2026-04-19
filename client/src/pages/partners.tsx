@@ -14,9 +14,54 @@ import {
   Zap, Star, Crown, Shield, Smartphone, MessageCircle, MapPin, Building2,
   Droplets, ChevronDown, ChevronRight, Copy, Check, Home, Rocket, Award,
   RefreshCw, BarChart2, Target, Eye, Clock, Wifi, UserPlus, Layers,
-  Play, XCircle
+  Play, XCircle, Lock
 } from "lucide-react";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
+
+// ─────────────────────────────────────────────
+// Partners Submenu
+// ─────────────────────────────────────────────
+function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
+  const items = [
+    { label: "Overview", id: "overview" },
+    { label: "Broker Partner", id: "broker-focus" },
+    { label: "Alliance", id: "alliance" },
+    { label: "How to Join", id: "join" },
+    { label: "FAQ", id: "faq" },
+  ];
+  return (
+    <div className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-lg">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex items-center justify-between h-11">
+          <nav className="flex items-center gap-0 overflow-x-auto scrollbar-none">
+            {items.map((item) => (
+              <button
+                key={item.id}
+                data-testid={`submenu-${item.id}`}
+                onClick={() => {
+                  const el = document.getElementById(item.id);
+                  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className="px-4 h-11 text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-emerald-400 hover:bg-white/5 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-emerald-500"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+          <a
+            href="/marketing/recruit"
+            data-testid="link-secret-marketing"
+            className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-700 hover:text-emerald-500 hover:bg-emerald-500/10 transition-all shrink-0 ml-2"
+            title=""
+            aria-label="Admin"
+          >
+            <Lock className="w-3.5 h-3.5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ─────────────────────────────────────────────
 // Data
@@ -478,9 +523,10 @@ export default function PartnersPage() {
         description="Join DeliWer's dual income network. Earn as a Dubai broker referral partner or become an AquaCafe Alliance global distributor. 100% online. No physical presence needed."
       />
       <Navigation />
+      <PartnersSubMenu onScrollTo={(id) => { const el = document.getElementById(id); el?.scrollIntoView({ behavior: "smooth" }); }} />
 
       {/* ─── HERO ───────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section id="overview" className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1800&h=900&fit=crop"
@@ -761,7 +807,7 @@ export default function PartnersPage() {
       </section>
 
       {/* ─── ENAGIC / AQUACAFE ALLIANCE DEEP SECTION ────────── */}
-      <section className="py-24 px-4">
+      <section id="alliance" className="py-24 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 mb-4">AquaCafe × Enagic Alliance</Badge>
@@ -1116,16 +1162,15 @@ export default function PartnersPage() {
                 ))}
               </ul>
               <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-                <Button
-                  data-testid="button-cta-strip-broker-learn"
-                  onClick={() => {
-                    document.getElementById("broker-focus")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  variant="outline"
-                  className="flex-1 border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black h-11 rounded-xl"
-                >
-                  How It Works
-                </Button>
+                <Link href="/partner-program">
+                  <Button
+                    data-testid="button-cta-strip-broker-learn"
+                    variant="outline"
+                    className="w-full border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black h-11 rounded-xl"
+                  >
+                    How It Works
+                  </Button>
+                </Link>
                 <Button
                   data-testid="button-cta-strip-broker-join"
                   onClick={() => scrollToFunnel("broker")}
@@ -1248,7 +1293,7 @@ export default function PartnersPage() {
       </section>
 
       {/* ─── FAQ ─────────────────────────────────────────────── */}
-      <section className="py-24 px-4">
+      <section id="faq" className="py-24 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-black uppercase tracking-tighter">

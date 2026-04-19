@@ -219,6 +219,7 @@ function Router() {
         <Route path="/marketing/legacy" component={MarketingLegacy} />
         <Route path="/marketing/legacy/affiliate-management" component={AffiliateManagement} />
         <Route path="/marketing/legacy/founder-dashboard" component={LegacyFounderDashboard} />
+        <Route path="/marketing/founder-dashboard" component={LegacyFounderDashboard} />
         <Route path="/sendgrid-dashboard" component={SendGridDashboard} />
         <Route path="/emergency-exit" component={EmergencyExitPage} />
         <Route path="/wartime-readiness" component={WartimeReadinessPage} />
