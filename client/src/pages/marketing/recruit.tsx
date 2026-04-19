@@ -485,6 +485,16 @@ export default function RecruitPage() {
             )}
           </div>
           <div className="flex items-center gap-2">
+            <Link href="/marketing/social">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-violet-500/40 text-violet-400 hover:bg-violet-500/10 h-8"
+                data-testid="button-social-agent"
+              >
+                🤖 Social Agent
+              </Button>
+            </Link>
             <Button
               onClick={downloadLatest}
               disabled={exporting}

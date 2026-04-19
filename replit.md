@@ -154,6 +154,43 @@ DeliWer is positioned as a **neutral move-in and transaction support layer** —
 - Final CTA: "Partner With DeliWer" (vs. "Start Earning Today")
 - Earnings/referral link generator and scripts are preserved unchanged
 
+## Social Handle Discovery & Community Outreach Agent (Added April 2026)
+
+### Overview
+An AI-powered social discovery agent at `/marketing/social` that scans the 35,000+ RERA broker Master DB to discover LinkedIn, Instagram, Twitter/X, Facebook, and Google My Business handles — then generates hyper-personalized outreach messages for each channel.
+
+### Schema Changes
+Added to `broker_master` table:
+- `linkedin_url`, `instagram_handle`, `twitter_handle`, `facebook_url`, `gmb_url` — discovered social handles
+- `social_discovery_status` — `pending | discovering | found | not_found`
+- `social_discovered_at` — timestamp of last discovery
+- `social_notes` — AI notes on broker's social presence
+
+### Services
+- `server/services/social-discovery-service.ts` — AI agent (GPT-4o-mini) that infers social handles from broker name, company, email domain, and RERA license. Batch-processes up to 500 brokers per run. Falls back to heuristic patterns when OpenAI is unavailable.
+- `server/services/community-outreach-service.ts` — 10 pre-mapped Dubai RE communities (WhatsApp, LinkedIn, Facebook, Telegram, Bayut, Dubizzle). Generates AI personalized outreach messages per platform. Includes broker direct-message generator for LinkedIn/Instagram/WhatsApp/Email.
+
+### API Routes
+- `GET /api/marketing/social-discovery/stats` — discovery progress + status breakdown
+- `POST /api/marketing/social-discovery/run` — trigger batch discovery (with `limit` param)
+- `PATCH /api/marketing/broker-master/:id/social` — manual social update for a broker
+- `GET /api/marketing/broker-master/:id/social` — fetch social data for a broker
+- `POST /api/marketing/broker-master/:id/direct-message` — generate personalized DM for a broker
+- `GET /api/marketing/communities` — list Dubai RE communities
+- `POST /api/marketing/communities/:id/message` — generate outreach message for a community
+- `GET /api/marketing/broker-social-list` — paginated broker list with social fields
+
+### Frontend (`/marketing/social`) — 4 Tabs
+1. **Discovery Agent** — Run AI batch scan with configurable batch size (25–500). Real-time progress. Status breakdown: pending/discovering/found/not_found.
+2. **Social Handles** — Filterable table of brokers with social data. Expandable rows show AI DM generator for each platform. WhatsApp deep links for instant outreach.
+3. **Communities** — 10 Dubai RE communities with engagement tips. AI message generator per community. Copy-to-clipboard + WhatsApp share.
+4. **GMB & Outreach** — Google My Business search + 8 top Dubai brokerages quick-launch. 4-step outreach playbook per channel (GMB, LinkedIn, Instagram, WhatsApp).
+
+### Access
+- From `/marketing/recruit` → "🤖 Social Agent" button in nav
+- Direct: `/marketing/social`
+- Requires `OPENAI_API_KEY` for AI inference (falls back to heuristic patterns without it)
+
 ## Maintenance Notes
 - Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.
 - Navigation component is `fixed top-0 z-[100]`. Pages need appropriate top padding (`pt-48` or `pt-32`).

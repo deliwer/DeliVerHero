@@ -1607,6 +1607,15 @@ export const brokerMaster = pgTable("broker_master", {
   source: text("source").notNull().default("manual"), // manual | rera_auto
   company: text("company"),
   deleted: boolean("deleted").notNull().default(false),
+  // ── Social Handles ────────────────────────────────────────────────────────
+  linkedinUrl: text("linkedin_url"),
+  instagramHandle: text("instagram_handle"),
+  twitterHandle: text("twitter_handle"),
+  facebookUrl: text("facebook_url"),
+  gmbUrl: text("gmb_url"),
+  socialDiscoveryStatus: text("social_discovery_status").default("pending"), // pending | discovering | found | not_found
+  socialDiscoveredAt: timestamp("social_discovered_at"),
+  socialNotes: text("social_notes"),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });

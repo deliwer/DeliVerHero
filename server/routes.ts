@@ -5008,6 +5008,170 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── Social Handle Discovery Agent ─────────────────────────────────────────
+  app.get("/api/marketing/social-discovery/stats", async (_req, res) => {
+    try {
+      const { getSocialDiscoveryStats, getDiscoveryStatus, isDiscoveryRunning } = await import('./services/social-discovery-service.js');
+      const stats = await getSocialDiscoveryStats();
+      const status = getDiscoveryStatus();
+      res.json({
+        isRunning: isDiscoveryRunning(),
+        progress: status.progress,
+        stats,
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/marketing/social-discovery/run", async (req, res) => {
+    try {
+      const { isDiscoveryRunning, runSocialDiscovery } = await import('./services/social-discovery-service.js');
+      if (isDiscoveryRunning()) {
+        return res.status(409).json({ error: 'Social discovery already running' });
+      }
+      const limit = Number(req.body?.limit) || 50;
+      runSocialDiscovery(limit).catch(err => console.error('[SOCIAL DISCOVERY] Run error:', err.message));
+      res.json({ started: true, message: `Social handle discovery started for up to ${limit} brokers` });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.patch("/api/marketing/broker-master/:id/social", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { linkedinUrl, instagramHandle, twitterHandle, facebookUrl, gmbUrl, socialNotes } = req.body;
+      const { updateBrokerSocial } = await import('./services/social-discovery-service.js');
+      await updateBrokerSocial(id, { linkedinUrl, instagramHandle, twitterHandle, facebookUrl, gmbUrl, socialNotes });
+      res.json({ success: true });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // GET /api/marketing/broker-master/:id/social — fetch social data for a broker
+  app.get("/api/marketing/broker-master/:id/social", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const [broker] = await db
+        .select({
+          id: brokerMaster.id,
+          name: brokerMaster.name,
+          company: brokerMaster.company,
+          linkedinUrl: brokerMaster.linkedinUrl,
+          instagramHandle: brokerMaster.instagramHandle,
+          twitterHandle: brokerMaster.twitterHandle,
+          facebookUrl: brokerMaster.facebookUrl,
+          gmbUrl: brokerMaster.gmbUrl,
+          socialDiscoveryStatus: brokerMaster.socialDiscoveryStatus,
+          socialDiscoveredAt: brokerMaster.socialDiscoveredAt,
+          socialNotes: brokerMaster.socialNotes,
+        })
+        .from(brokerMaster)
+        .where(eq(brokerMaster.id, id));
+      if (!broker) return res.status(404).json({ error: 'Broker not found' });
+      res.json(broker);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // POST /api/marketing/broker-master/:id/direct-message — generate direct outreach message
+  app.post("/api/marketing/broker-master/:id/direct-message", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { platform } = req.body;
+      const [broker] = await db
+        .select()
+        .from(brokerMaster)
+        .where(eq(brokerMaster.id, id));
+      if (!broker) return res.status(404).json({ error: 'Broker not found' });
+      const { generateBrokerDirectMessage } = await import('./services/community-outreach-service.js');
+      const message = await generateBrokerDirectMessage({
+        name: broker.name,
+        company: broker.company,
+        linkedinUrl: broker.linkedinUrl,
+        instagramHandle: broker.instagramHandle,
+        platform: platform || 'whatsapp',
+      });
+      res.json(message);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // GET /api/marketing/communities — list Dubai RE communities
+  app.get("/api/marketing/communities", async (_req, res) => {
+    try {
+      const { DUBAI_RE_COMMUNITIES } = await import('./services/community-outreach-service.js');
+      res.json(DUBAI_RE_COMMUNITIES);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // POST /api/marketing/communities/:id/message — generate outreach message for a community
+  app.post("/api/marketing/communities/:id/message", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { style = 'value_prop' } = req.body;
+      const { DUBAI_RE_COMMUNITIES, generateCommunityMessage } = await import('./services/community-outreach-service.js');
+      const community = DUBAI_RE_COMMUNITIES.find(c => c.id === id);
+      if (!community) return res.status(404).json({ error: 'Community not found' });
+      const message = await generateCommunityMessage(community, style);
+      res.json(message);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // GET /api/marketing/broker-master — with social fields included
+  app.get("/api/marketing/broker-social-list", async (req, res) => {
+    try {
+      const page = Number(req.query.page) || 1;
+      const limit = Number(req.query.limit) || 50;
+      const offset = (page - 1) * limit;
+      const status = req.query.status as string | undefined;
+
+      const whereClause = status
+        ? and(eq(brokerMaster.deleted, false), eq(brokerMaster.socialDiscoveryStatus, status))
+        : eq(brokerMaster.deleted, false);
+
+      const brokers = await db
+        .select({
+          id: brokerMaster.id,
+          name: brokerMaster.name,
+          email: brokerMaster.email,
+          phone: brokerMaster.phone,
+          company: brokerMaster.company,
+          license: brokerMaster.license,
+          linkedinUrl: brokerMaster.linkedinUrl,
+          instagramHandle: brokerMaster.instagramHandle,
+          twitterHandle: brokerMaster.twitterHandle,
+          facebookUrl: brokerMaster.facebookUrl,
+          gmbUrl: brokerMaster.gmbUrl,
+          socialDiscoveryStatus: brokerMaster.socialDiscoveryStatus,
+          socialDiscoveredAt: brokerMaster.socialDiscoveredAt,
+          socialNotes: brokerMaster.socialNotes,
+        })
+        .from(brokerMaster)
+        .where(whereClause)
+        .orderBy(desc(brokerMaster.createdAt))
+        .limit(limit)
+        .offset(offset);
+
+      const [totalRow] = await db
+        .select({ count: drizzleSql<number>`count(*)` })
+        .from(brokerMaster)
+        .where(whereClause);
+
+      res.json({ brokers, total: Number(totalRow?.count || 0), page, limit });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
