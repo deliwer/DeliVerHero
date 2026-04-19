@@ -69,7 +69,7 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
           <a
             href="/marketing/recruit"
             data-testid="link-secret-marketing"
-            className="w-7 h-7 rounded-lg flex items-center justify-center text-slate-700 hover:text-emerald-500 hover:bg-emerald-500/10 transition-all shrink-0 ml-2"
+            className="w-7 h-7 rounded-lg flex items-center justify-center hover:text-emerald-500 hover:bg-emerald-500/10 transition-all shrink-0 ml-2 bg-[#ffffff1a] text-[#00ffab]"
             title=""
             aria-label="Admin"
           >
