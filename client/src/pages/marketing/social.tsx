@@ -368,7 +368,7 @@ export default function SocialAgentPage() {
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap mb-1">
-                            <span className="font-semibold text-sm truncate" data-testid={`broker-name-${broker.id}`}>{broker.name}</span>
+                            <span className="font-semibold text-sm truncate text-[#ffffff]" data-testid={`broker-name-${broker.id}`}>{broker.name}</span>
                             {broker.company && <span className="text-xs text-gray-400 truncate">{broker.company}</span>}
                             <Badge className={`text-[10px] px-1.5 py-0 ${broker.socialDiscoveryStatus === "found" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" : broker.socialDiscoveryStatus === "discovering" ? "bg-blue-500/20 text-blue-400 border-blue-500/30" : "bg-gray-500/20 text-gray-400 border-gray-500/20"}`}>
                               {broker.socialDiscoveryStatus || "pending"}
