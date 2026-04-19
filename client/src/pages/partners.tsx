@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,6 +22,21 @@ import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 // Partners Submenu
 // ─────────────────────────────────────────────
 function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
+  const [navHeight, setNavHeight] = useState(0);
+
+  useEffect(() => {
+    const measure = () => {
+      const nav = document.getElementById("main-nav");
+      if (nav) setNavHeight(nav.getBoundingClientRect().height);
+    };
+    measure();
+    const nav = document.getElementById("main-nav");
+    if (!nav) return;
+    const ro = new ResizeObserver(measure);
+    ro.observe(nav);
+    return () => ro.disconnect();
+  }, []);
+
   const items = [
     { label: "Overview", id: "overview" },
     { label: "Broker Partner", id: "broker-focus" },
@@ -30,7 +45,10 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
     { label: "FAQ", id: "faq" },
   ];
   return (
-    <div className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800 shadow-lg">
+    <div
+      className="sticky z-40 bg-slate-950 border-b border-slate-800 shadow-lg"
+      style={{ top: navHeight || 0 }}
+    >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-11">
           <nav className="flex items-center gap-0 overflow-x-auto scrollbar-none">
