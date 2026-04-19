@@ -1641,6 +1641,28 @@ export const brokerAutomationLog = pgTable("broker_automation_log", {
 
 export type BrokerAutomationLog = typeof brokerAutomationLog.$inferSelect;
 
+// ─── Intent Signal Interception ──────────────────────────────────────────────
+
+export const intentSignals = pgTable("intent_signals", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  source: text("source").notNull(), // whatsapp_group | linkedin | facebook | instagram | telegram | bayut | dubizzle
+  community: text("community").notNull(),
+  signalText: text("signal_text").notNull(),
+  intentType: text("intent_type").notNull(), // relocation | moving | home_services | dewa_setup | ejari | broker_referral
+  intentScore: integer("intent_score").notNull().default(50), // 1-100
+  contactName: text("contact_name"),
+  contactHandle: text("contact_handle"),
+  area: text("area"),
+  status: text("status").notNull().default("new"), // new | contacted | converted | dismissed
+  aiResponse: text("ai_response"),
+  capturedAt: timestamp("captured_at").notNull().default(sql`now()`),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertIntentSignalSchema = createInsertSchema(intentSignals).omit({ id: true, createdAt: true });
+export type IntentSignal = typeof intentSignals.$inferSelect;
+export type InsertIntentSignal = z.infer<typeof insertIntentSignalSchema>;
+
 // ─── Broker Recruitment Campaigns ───────────────────────────────────────────
 
 export const brokerCampaigns = pgTable("broker_campaigns", {

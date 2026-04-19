@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useState, useEffect, useCallback } from "react";
+import { useQuery, useMutation, useQueryClient as useQC } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,77 +12,410 @@ import {
   CheckCircle2, Clock, ArrowRight, AlertTriangle, Loader2, Instagram, Phone,
   Linkedin, Plus, Copy, Check, DollarSign, BarChart3, Eye, Settings,
   Globe, Droplets, Sparkles, MapPin, Star, Image, RefreshCw, ExternalLink,
-  Building2, Calendar
+  Building2, Calendar, Radio, Antenna, Bot, Filter, ChevronDown, ChevronUp,
+  CircleDot, Wifi, XCircle, ThumbsUp, MessageCircle, User
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { SiWhatsapp, SiLinkedin, SiInstagram, SiFacebook, SiTelegram } from "react-icons/si";
 
 const RENTAL_HEAVY_AREAS = ["Marina", "JVC", "Business Bay", "Downtown", "Hills"];
 
-function IntentSnifferView({ leads, leadMutation }: { leads: any[], leadMutation: any }) {
+const SOURCE_CONFIG: Record<string, { label: string; Icon: any; color: string; bg: string }> = {
+  whatsapp_group: { label: "WhatsApp", Icon: SiWhatsapp, color: "#25D366", bg: "bg-green-500/10 border-green-500/30" },
+  linkedin: { label: "LinkedIn", Icon: SiLinkedin, color: "#0077B5", bg: "bg-blue-500/10 border-blue-500/30" },
+  facebook: { label: "Facebook", Icon: SiFacebook, color: "#1877F2", bg: "bg-blue-600/10 border-blue-600/30" },
+  instagram: { label: "Instagram", Icon: SiInstagram, color: "#E4405F", bg: "bg-pink-500/10 border-pink-500/30" },
+  telegram: { label: "Telegram", Icon: SiTelegram, color: "#26A5E4", bg: "bg-sky-500/10 border-sky-500/30" },
+  bayut: { label: "Bayut", Icon: Globe, color: "#F5A623", bg: "bg-amber-500/10 border-amber-500/30" },
+  dubizzle: { label: "Dubizzle", Icon: Globe, color: "#FF6B00", bg: "bg-orange-500/10 border-orange-500/30" },
+};
+
+const INTENT_CONFIG: Record<string, { label: string; color: string }> = {
+  relocation: { label: "🏙️ Relocation", color: "bg-violet-500/20 text-violet-300 border-violet-500/30" },
+  moving: { label: "📦 Moving", color: "bg-blue-500/20 text-blue-300 border-blue-500/30" },
+  home_services: { label: "🏠 Home Services", color: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" },
+  dewa_setup: { label: "⚡ DEWA Setup", color: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30" },
+  ejari: { label: "📄 Ejari", color: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30" },
+  broker_referral: { label: "🤝 Broker Ref", color: "bg-amber-500/20 text-amber-300 border-amber-500/30" },
+};
+
+interface IntentSignal {
+  id: string;
+  source: string;
+  community: string;
+  signalText: string;
+  intentType: string;
+  intentScore: number;
+  contactName?: string;
+  contactHandle?: string;
+  area?: string;
+  status: string;
+  aiResponse?: string;
+  capturedAt: string;
+}
+
+function ScoreBar({ score }: { score: number }) {
+  const color = score >= 90 ? "bg-red-500" : score >= 75 ? "bg-amber-500" : "bg-blue-500";
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
-          <Target className="text-emerald-500" />
-          Instagram Listening (Active Interceptions)
-        </h3>
-        <Badge variant="outline" className="border-emerald-500/50 text-emerald-400 animate-pulse">
-          Live Syncing
-        </Badge>
+    <div className="flex items-center gap-2">
+      <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+        <div className={`h-full rounded-full ${color} transition-all`} style={{ width: `${score}%` }} />
       </div>
-      
-      <div className="grid gap-4">
-        {leads.length === 0 ? (
-          <div className="text-center py-12 border-2 border-dashed border-white/5 rounded-2xl bg-slate-900/20">
-            <p className="text-gray-400 font-medium">No active interceptions found. Check Instagram DM scripts.</p>
-          </div>
-        ) : (
-          leads.map((lead) => (
-            <Card key={lead.id} className="bg-emerald-950/30 backdrop-blur-sm border-emerald-500/30 hover:border-emerald-500/50 transition-all shadow-md">
-              <CardContent className="p-5">
-                <div className="flex justify-between items-start">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-white text-lg">{lead.name}</span>
-                      <Badge className={
-                        lead.marketingStage === "intercepted" ? "bg-amber-500/30 text-amber-300 border border-amber-500/50" :
-                        lead.marketingStage === "handshake" ? "bg-blue-500/30 text-blue-300 border border-blue-500/50" :
-                        "bg-emerald-500/30 text-emerald-300 border border-emerald-500/50"
-                      }>
-                        {lead.marketingStage?.toUpperCase()}
-                      </Badge>
-                    </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-300">
-                      <span className="flex items-center gap-1"><Instagram size={14} /> @{lead.instagramHandle || 'unknown'}</span>
-                      <span className="flex items-center gap-1"><TrendingUp size={14} /> Intent: Relocation</span>
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    {lead.marketingStage === "intercepted" && (
-                      <Button 
-                        size="sm" 
-                        onClick={() => leadMutation.mutate({ id: lead.id, stage: "handshake" })}
-                        className="bg-blue-600 hover:bg-blue-500 text-white font-bold"
-                      >
-                        Log Handshake
-                      </Button>
-                    )}
-                    {lead.marketingStage === "handshake" && (
-                      <Button 
-                        size="sm" 
-                        onClick={() => leadMutation.mutate({ id: lead.id, stage: "redirected" })}
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold"
-                      >
-                        Confirm Redirect
-                      </Button>
-                    )}
-                  </div>
+      <span className={`text-xs font-bold ${score >= 90 ? "text-red-400" : score >= 75 ? "text-amber-400" : "text-blue-400"}`}>{score}</span>
+    </div>
+  );
+}
+
+function SignalCard({ signal, onStatusChange, onRespond }: {
+  signal: IntentSignal;
+  onStatusChange: (id: string, status: string) => void;
+  onRespond: (id: string) => Promise<string>;
+}) {
+  const { toast } = useToast();
+  const [expanded, setExpanded] = useState(false);
+  const [loadingResponse, setLoadingResponse] = useState(false);
+  const [response, setResponse] = useState(signal.aiResponse || "");
+  const [copied, setCopied] = useState(false);
+  const cfg = SOURCE_CONFIG[signal.source] || SOURCE_CONFIG.facebook;
+  const intentCfg = INTENT_CONFIG[signal.intentType] || { label: signal.intentType, color: "bg-gray-500/20 text-gray-300" };
+  const timeAgo = formatTimeAgo(signal.capturedAt);
+
+  const handleRespond = async () => {
+    setLoadingResponse(true);
+    try {
+      const msg = await onRespond(signal.id);
+      setResponse(msg);
+      setExpanded(true);
+    } finally {
+      setLoadingResponse(false);
+    }
+  };
+
+  const copyResponse = () => {
+    navigator.clipboard.writeText(response);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    toast({ title: "Copied", description: "Response copied to clipboard" });
+  };
+
+  if (signal.status === "dismissed") return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      layout
+    >
+      <Card className={`border transition-all ${signal.status === "contacted" ? "opacity-70 border-white/10 bg-white/3" : "bg-slate-900/80 border-purple-500/20 hover:border-purple-500/40"}`}>
+        <CardContent className="p-4">
+          {/* Top Row */}
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 ${cfg.bg}`}>
+                <cfg.Icon className="w-3.5 h-3.5" style={{ color: cfg.color }} />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs font-bold text-white truncate">{signal.community}</span>
+                  <Badge className={`text-[10px] px-1.5 py-0 border ${intentCfg.color}`}>{intentCfg.label}</Badge>
+                  {signal.status === "contacted" && <Badge className="text-[10px] px-1.5 py-0 bg-emerald-500/20 text-emerald-300 border-emerald-500/30">Contacted</Badge>}
+                  {signal.status === "converted" && <Badge className="text-[10px] px-1.5 py-0 bg-violet-500/20 text-violet-300 border-violet-500/30">Converted</Badge>}
                 </div>
-              </CardContent>
-            </Card>
-          ))
-        )}
+                <div className="flex items-center gap-2 text-[10px] text-gray-500 mt-0.5">
+                  <span>{timeAgo}</span>
+                  {signal.area && <><span>·</span><span className="flex items-center gap-0.5"><MapPin className="w-2.5 h-2.5" />{signal.area}</span></>}
+                  {signal.contactName && <><span>·</span><span className="flex items-center gap-0.5"><User className="w-2.5 h-2.5" />{signal.contactName}</span></>}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 shrink-0">
+              <div className="w-20">
+                <ScoreBar score={signal.intentScore} />
+              </div>
+              <button
+                data-testid={`button-expand-signal-${signal.id}`}
+                onClick={() => setExpanded(e => !e)}
+                className="text-gray-500 hover:text-white transition-colors p-1"
+              >
+                {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Signal Text */}
+          <p className="text-sm text-gray-200 leading-relaxed bg-white/5 rounded-xl p-3 border border-white/5 mb-3 italic">
+            "{signal.signalText}"
+          </p>
+
+          {/* Actions */}
+          <div className="flex items-center gap-2 flex-wrap">
+            {signal.status === "new" && (
+              <>
+                <Button
+                  data-testid={`button-respond-${signal.id}`}
+                  size="sm"
+                  onClick={handleRespond}
+                  disabled={loadingResponse}
+                  className="bg-purple-600 hover:bg-purple-700 text-white text-xs h-7 font-bold"
+                >
+                  {loadingResponse ? <Loader2 className="w-3 h-3 mr-1 animate-spin" /> : <Bot className="w-3 h-3 mr-1" />}
+                  AI Respond
+                </Button>
+                <Button
+                  data-testid={`button-claim-${signal.id}`}
+                  size="sm"
+                  variant="outline"
+                  onClick={() => { onStatusChange(signal.id, "contacted"); toast({ title: "Lead Claimed", description: `${signal.contactName || "Signal"} marked as contacted` }); }}
+                  className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 text-xs h-7"
+                >
+                  <ThumbsUp className="w-3 h-3 mr-1" />Claim
+                </Button>
+                <Button
+                  data-testid={`button-dismiss-${signal.id}`}
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => onStatusChange(signal.id, "dismissed")}
+                  className="text-gray-500 hover:text-red-400 text-xs h-7"
+                >
+                  <XCircle className="w-3 h-3" />
+                </Button>
+              </>
+            )}
+            {signal.status === "contacted" && (
+              <Button
+                size="sm"
+                onClick={() => { onStatusChange(signal.id, "converted"); toast({ title: "🎉 Converted!", description: "Signal marked as converted lead" }); }}
+                className="bg-violet-600 hover:bg-violet-700 text-white text-xs h-7"
+              >
+                <CheckCircle2 className="w-3 h-3 mr-1" />Mark Converted
+              </Button>
+            )}
+            {signal.contactHandle && (
+              <a
+                href={signal.source === "whatsapp_group"
+                  ? `https://wa.me/${signal.contactHandle.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(response || "Hi! I saw your message — I think we can help with DeliWer's move-in service.")}`
+                  : `https://wa.me/?text=${encodeURIComponent(response || signal.signalText)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-xs text-[#25D366] hover:opacity-80 transition-opacity"
+              >
+                <SiWhatsapp className="w-3 h-3" />WhatsApp
+              </a>
+            )}
+          </div>
+
+          {/* Expanded: AI Response */}
+          <AnimatePresence>
+            {expanded && response && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-3 pt-3 border-t border-white/10">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-purple-300 flex items-center gap-1"><Bot className="w-3 h-3" />AI Response Draft</span>
+                    <button
+                      data-testid={`button-copy-response-${signal.id}`}
+                      onClick={copyResponse}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                  <p className="text-sm text-gray-200 bg-purple-950/30 rounded-xl p-3 border border-purple-500/20 leading-relaxed">{response}</p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
+
+function formatTimeAgo(ts: string): string {
+  const diff = Date.now() - new Date(ts).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  return `${Math.floor(hrs / 24)}d ago`;
+}
+
+function IntentSnifferView({ leads: _leads, leadMutation: _leadMutation }: { leads: any[], leadMutation: any }) {
+  const { toast } = useToast();
+  const qc = useQC();
+  const [statusFilter, setStatusFilter] = useState("new");
+  const [sourceFilter, setSourceFilter] = useState("");
+  const [intentFilter, setIntentFilter] = useState("");
+  const [scanning, setScanning] = useState(false);
+
+  const { data: signals = [], isLoading, refetch } = useQuery<IntentSignal[]>({
+    queryKey: ["/api/marketing/intent-signals", statusFilter, sourceFilter, intentFilter],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (statusFilter) params.set("status", statusFilter);
+      if (sourceFilter) params.set("source", sourceFilter);
+      if (intentFilter) params.set("intentType", intentFilter);
+      const res = await fetch(`/api/marketing/intent-signals?${params}`);
+      return res.json();
+    },
+    refetchInterval: 30000,
+  });
+
+  const { data: stats } = useQuery({
+    queryKey: ["/api/marketing/intent-signals/stats"],
+    refetchInterval: 15000,
+  });
+
+  const scanNow = async () => {
+    setScanning(true);
+    try {
+      const res = await apiRequest("POST", "/api/marketing/intent-signals/generate", { count: 5 });
+      const data = await res.json();
+      await refetch();
+      toast({ title: "🎯 Scan Complete", description: data.message });
+    } finally {
+      setScanning(false);
+    }
+  };
+
+  const handleStatusChange = async (id: string, status: string) => {
+    await apiRequest("PATCH", `/api/marketing/intent-signals/${id}/status`, { status });
+    refetch();
+  };
+
+  const handleRespond = async (id: string): Promise<string> => {
+    const res = await apiRequest("POST", `/api/marketing/intent-signals/${id}/respond`, {});
+    const data = await res.json();
+    return data.message || "";
+  };
+
+  const newCount = (stats as any)?.byStatus?.find((s: any) => s.status === "new")?.count || 0;
+  const contactedCount = (stats as any)?.byStatus?.find((s: any) => s.status === "contacted")?.count || 0;
+  const convertedCount = (stats as any)?.byStatus?.find((s: any) => s.status === "converted")?.count || 0;
+
+  return (
+    <div className="space-y-5">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 className="text-xl font-black text-white flex items-center gap-2">
+            <Radio className="text-purple-400 w-5 h-5" />
+            Intent Interception System
+            <span className="flex items-center gap-1 text-xs text-purple-400 bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 rounded-full animate-pulse font-medium">
+              <CircleDot className="w-2.5 h-2.5" />LIVE
+            </span>
+          </h3>
+          <p className="text-gray-400 text-sm mt-0.5">
+            Listening to WhatsApp broker groups, LinkedIn, Facebook, Telegram & listing platforms for relocation intent
+          </p>
+        </div>
+        <Button
+          data-testid="button-scan-now"
+          onClick={scanNow}
+          disabled={scanning}
+          className="bg-purple-600 hover:bg-purple-700 text-white font-bold shrink-0"
+        >
+          {scanning ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Antenna className="w-4 h-4 mr-2" />}
+          {scanning ? "Scanning..." : "Scan Now"}
+        </Button>
       </div>
+
+      {/* Stats Strip */}
+      <div className="grid grid-cols-3 gap-3">
+        {[
+          { label: "New Signals", value: Number(newCount), color: "text-purple-400", border: "border-purple-500/20" },
+          { label: "Contacted", value: Number(contactedCount), color: "text-emerald-400", border: "border-emerald-500/20" },
+          { label: "Converted", value: Number(convertedCount), color: "text-violet-400", border: "border-violet-500/20" },
+        ].map(s => (
+          <div key={s.label} className={`bg-slate-900/80 rounded-xl border ${s.border} p-3 text-center`}>
+            <div className={`text-2xl font-black ${s.color}`}>{s.value}</div>
+            <div className="text-xs text-gray-500 font-medium">{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Filters */}
+      <div className="flex flex-wrap gap-2">
+        <div className="flex gap-1">
+          {["new", "contacted", "converted"].map(s => (
+            <button
+              key={s}
+              data-testid={`filter-status-${s}`}
+              onClick={() => setStatusFilter(s)}
+              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all border ${statusFilter === s ? "bg-purple-600 border-purple-500 text-white" : "border-white/10 text-gray-400 bg-slate-800 hover:text-white"}`}
+            >
+              {s.charAt(0).toUpperCase() + s.slice(1)}
+            </button>
+          ))}
+        </div>
+        <select
+          data-testid="filter-source"
+          value={sourceFilter}
+          onChange={e => setSourceFilter(e.target.value)}
+          className="bg-slate-800 border border-white/10 rounded-lg px-2 py-1 text-xs text-gray-300"
+        >
+          <option value="">All Channels</option>
+          {Object.entries(SOURCE_CONFIG).map(([k, v]) => <option key={k} value={k} className="bg-slate-900">{v.label}</option>)}
+        </select>
+        <select
+          data-testid="filter-intent"
+          value={intentFilter}
+          onChange={e => setIntentFilter(e.target.value)}
+          className="bg-slate-800 border border-white/10 rounded-lg px-2 py-1 text-xs text-gray-300"
+        >
+          <option value="">All Intent Types</option>
+          {Object.entries(INTENT_CONFIG).map(([k, v]) => <option key={k} value={k} className="bg-slate-900">{v.label}</option>)}
+        </select>
+      </div>
+
+      {/* Channel Coverage */}
+      <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+        {Object.entries(SOURCE_CONFIG).map(([key, cfg]) => (
+          <button
+            key={key}
+            data-testid={`channel-${key}`}
+            onClick={() => setSourceFilter(sourceFilter === key ? "" : key)}
+            className={`flex flex-col items-center gap-1 p-2 rounded-xl border text-xs font-medium transition-all ${sourceFilter === key ? `border-opacity-60 ${cfg.bg}` : "border-white/10 bg-slate-800/50 text-gray-500 hover:text-white"}`}
+          >
+            <cfg.Icon className="w-4 h-4" style={{ color: cfg.color }} />
+            <span className="text-[10px]">{cfg.label}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Signal Feed */}
+      {isLoading ? (
+        <div className="flex items-center justify-center py-16"><Loader2 className="w-6 h-6 animate-spin text-purple-400" /></div>
+      ) : signals.length === 0 ? (
+        <div className="text-center py-16 border-2 border-dashed border-purple-500/10 rounded-2xl bg-purple-950/10">
+          <Wifi className="w-8 h-8 text-purple-500/30 mx-auto mb-3" />
+          <p className="text-gray-400 font-medium text-sm">No {statusFilter} signals captured yet</p>
+          <p className="text-gray-600 text-xs mt-1">Click "Scan Now" to intercept intent from broker channels</p>
+          <Button onClick={scanNow} disabled={scanning} className="mt-4 bg-purple-600 hover:bg-purple-700 text-white text-sm">
+            {scanning ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Antenna className="w-4 h-4 mr-2" />}
+            Start Scan
+          </Button>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          <AnimatePresence mode="popLayout">
+            {signals.map(signal => (
+              <SignalCard
+                key={signal.id}
+                signal={signal}
+                onStatusChange={handleStatusChange}
+                onRespond={handleRespond}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
+      )}
     </div>
   );
 }

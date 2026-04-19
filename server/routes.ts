@@ -5008,6 +5008,62 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── Intent Signal Interception System ────────────────────────────────────
+  app.get("/api/marketing/intent-signals", async (req, res) => {
+    try {
+      const { getIntentSignals } = await import('./services/intent-interceptor-service.js');
+      const { status, source, intentType } = req.query as Record<string, string>;
+      const signals = await getIntentSignals({ status, source, intentType, limit: 100 });
+      res.json(signals);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.get("/api/marketing/intent-signals/stats", async (_req, res) => {
+    try {
+      const { getIntentStats } = await import('./services/intent-interceptor-service.js');
+      const stats = await getIntentStats();
+      res.json(stats);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/marketing/intent-signals/generate", async (req, res) => {
+    try {
+      const { generateNewSignals } = await import('./services/intent-interceptor-service.js');
+      const count = Number(req.body?.count) || 5;
+      const inserted = await generateNewSignals(count);
+      res.json({ inserted, message: `Generated ${inserted} new intent signals from broker channels` });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.patch("/api/marketing/intent-signals/:id/status", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      const { updateSignalStatus } = await import('./services/intent-interceptor-service.js');
+      await updateSignalStatus(id, status);
+      res.json({ success: true });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/marketing/intent-signals/:id/respond", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { generateAIResponse } = await import('./services/intent-interceptor-service.js');
+      const message = await generateAIResponse(id);
+      res.json({ message });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // ── Social Handle Discovery Agent ─────────────────────────────────────────
   app.get("/api/marketing/social-discovery/stats", async (_req, res) => {
     try {
