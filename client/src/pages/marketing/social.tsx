@@ -318,7 +318,7 @@ export default function SocialAgentPage() {
             {/* How it works */}
             <Card className="bg-white/5 border-white/10">
               <CardContent className="p-6">
-                <h3 className="font-bold mb-4 flex items-center gap-2"><Zap className="w-4 h-4 text-amber-400" />How the Agent Works</h3>
+                <h3 className="font-bold mb-4 flex items-center gap-2 text-[#f5f5f5]"><Zap className="w-4 h-4 text-amber-400" />How the Agent Works</h3>
                 <div className="grid sm:grid-cols-3 gap-4">
                   {[
                     { step: "1", title: "Ingests Broker Data", desc: "Reads name, company, email, and RERA license from Master DB" },
