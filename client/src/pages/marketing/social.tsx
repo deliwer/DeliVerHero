@@ -731,7 +731,7 @@ export default function SocialAgentPage() {
                     <div key={play.channel} className="p-4 rounded-xl bg-white/5 border border-white/10">
                       <div className="flex items-center gap-2 mb-2">
                         <play.icon className={`w-4 h-4 ${play.color}`} />
-                        <span className="font-semibold text-sm">{play.channel}</span>
+                        <span className="font-semibold text-sm text-[#ffffff]">{play.channel}</span>
                         <Badge className="text-[10px] bg-white/10 text-gray-400 border-white/10">{play.action}</Badge>
                       </div>
                       <ol className="space-y-1 pl-4">
