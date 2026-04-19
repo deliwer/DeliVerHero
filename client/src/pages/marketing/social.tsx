@@ -664,7 +664,7 @@ export default function SocialAgentPage() {
                     >
                       <div className="flex items-center gap-3">
                         <Building2 className="w-4 h-4 text-amber-400" />
-                        <span className="text-sm font-medium">{company.name}</span>
+                        <span className="text-sm font-medium text-[#ffffff]">{company.name}</span>
                       </div>
                       <ExternalLink className="w-3 h-3 text-gray-500 group-hover:text-amber-400 transition-colors" />
                     </a>
