@@ -191,7 +191,6 @@ export default function SocialAgentPage() {
           </nav>
         </div>
       </div>
-
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Hero */}
         <div className="mb-8">
@@ -216,7 +215,7 @@ export default function SocialAgentPage() {
             <Card key={kpi.label} className="bg-white/5 border-white/10">
               <CardContent className="p-4">
                 <kpi.icon className={`w-4 h-4 ${kpi.color} mb-2`} />
-                <div className="text-2xl font-black">{kpi.value}</div>
+                <div className="text-2xl font-black text-[#ffffff]">{kpi.value}</div>
                 <div className="text-xs text-gray-400">{kpi.label}</div>
               </CardContent>
             </Card>
