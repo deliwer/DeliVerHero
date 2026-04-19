@@ -328,7 +328,7 @@ export default function SocialAgentPage() {
                     <div key={s.step} className="flex gap-3">
                       <div className="w-7 h-7 rounded-full bg-violet-600/30 border border-violet-500/30 flex items-center justify-center text-xs font-bold text-violet-400 shrink-0">{s.step}</div>
                       <div>
-                        <div className="font-semibold text-sm mb-0.5">{s.title}</div>
+                        <div className="font-semibold text-sm mb-0.5 text-[#ffffff]">{s.title}</div>
                         <div className="text-xs text-gray-400">{s.desc}</div>
                       </div>
                     </div>
