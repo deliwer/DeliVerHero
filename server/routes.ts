@@ -5009,12 +5009,31 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   });
 
   // ── Intent Signal Interception System ────────────────────────────────────
+  app.get("/api/marketing/intent-signals/communities", async (_req, res) => {
+    try {
+      const { REAL_COMMUNITIES } = await import('./services/intent-interceptor-service.js');
+      res.json(REAL_COMMUNITIES);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   app.get("/api/marketing/intent-signals", async (req, res) => {
     try {
       const { getIntentSignals } = await import('./services/intent-interceptor-service.js');
-      const { status, source, intentType } = req.query as Record<string, string>;
-      const signals = await getIntentSignals({ status, source, intentType, limit: 100 });
+      const { status, source, intentType, captureType } = req.query as Record<string, string>;
+      const signals = await getIntentSignals({ status, source, intentType, captureType, limit: 100 });
       res.json(signals);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.post("/api/marketing/intent-signals", async (req, res) => {
+    try {
+      const { createManualSignal } = await import('./services/intent-interceptor-service.js');
+      const signal = await createManualSignal(req.body);
+      res.json(signal);
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }

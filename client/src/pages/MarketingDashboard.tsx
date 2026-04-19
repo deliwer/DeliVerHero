@@ -246,21 +246,277 @@ function formatTimeAgo(ts: string): string {
   return `${Math.floor(hrs / 24)}d ago`;
 }
 
+const COMMUNITY_SOURCE_ICON: Record<string, any> = {
+  facebook: SiFacebook,
+  linkedin: SiLinkedin,
+  telegram: SiTelegram,
+  instagram: SiInstagram,
+  reddit: Globe,
+  bayut: Globe,
+  dubizzle: Globe,
+};
+
+const COMMUNITY_SOURCE_COLOR: Record<string, string> = {
+  facebook: "#1877F2",
+  linkedin: "#0077B5",
+  telegram: "#26A5E4",
+  instagram: "#E4405F",
+  reddit: "#FF4500",
+  bayut: "#F5A623",
+  dubizzle: "#FF6B00",
+};
+
+interface Community {
+  id: string;
+  name: string;
+  source: string;
+  joinUrl: string;
+  memberCount: string;
+  verified: boolean;
+  description: string;
+  monitoringTip: string;
+  keywordAlerts: string[];
+}
+
+function CommunityCard({ community }: { community: Community }) {
+  const Icon = COMMUNITY_SOURCE_ICON[community.source] || Globe;
+  const color = COMMUNITY_SOURCE_COLOR[community.source] || "#888";
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <Card className="bg-slate-900/80 border-purple-500/10 hover:border-purple-500/30 transition-all">
+      <CardContent className="p-4">
+        <div className="flex items-start gap-3">
+          <div className="w-9 h-9 rounded-xl border border-white/10 flex items-center justify-center shrink-0 bg-slate-800">
+            <Icon className="w-4 h-4" style={{ color }} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap mb-1">
+              <span className="font-bold text-white text-sm">{community.name}</span>
+              {community.verified && (
+                <Badge className="text-[10px] px-1.5 py-0 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  <CheckCircle2 className="w-2.5 h-2.5 mr-0.5" />Verified
+                </Badge>
+              )}
+              <span className="text-[10px] text-gray-500">{community.memberCount}</span>
+            </div>
+            <p className="text-xs text-gray-400 leading-relaxed mb-2">{community.description}</p>
+            <div className="flex flex-wrap gap-1 mb-2">
+              {community.keywordAlerts.slice(0, 3).map(kw => (
+                <span key={kw} className="text-[10px] bg-purple-500/10 text-purple-300 border border-purple-500/20 px-1.5 py-0.5 rounded-md">"{kw}"</span>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-2 shrink-0">
+            <a href={community.joinUrl} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" className="text-xs h-7 bg-purple-600 hover:bg-purple-700 text-white font-bold">
+                <ExternalLink className="w-3 h-3 mr-1" />Open
+              </Button>
+            </a>
+            <button
+              data-testid={`expand-community-${community.id}`}
+              onClick={() => setExpanded(e => !e)}
+              className="text-gray-500 hover:text-white transition-colors"
+            >
+              {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+        <AnimatePresence>
+          {expanded && (
+            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+              <div className="mt-3 pt-3 border-t border-white/5">
+                <p className="text-[10px] font-bold uppercase text-amber-400 mb-1 tracking-widest">Monitoring Tip</p>
+                <p className="text-xs text-gray-300 leading-relaxed">{community.monitoringTip}</p>
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {community.keywordAlerts.map(kw => (
+                    <span key={kw} className="text-[10px] bg-amber-500/10 text-amber-300 border border-amber-500/20 px-1.5 py-0.5 rounded-md">"{kw}"</span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </CardContent>
+    </Card>
+  );
+}
+
+const INTENT_OPTIONS = [
+  { value: "relocation", label: "Relocation" },
+  { value: "moving", label: "Moving / Movers" },
+  { value: "home_services", label: "Home Services" },
+  { value: "dewa_setup", label: "DEWA Setup" },
+  { value: "ejari", label: "Ejari Registration" },
+  { value: "broker_referral", label: "Broker Referral" },
+];
+
+function LogSignalForm({ onSubmit }: { onSubmit: (data: any) => Promise<void> }) {
+  const [form, setForm] = useState({
+    source: "facebook",
+    community: "",
+    signalText: "",
+    intentType: "relocation",
+    intentScore: 85,
+    contactName: "",
+    contactHandle: "",
+    area: "",
+  });
+  const [saving, setSaving] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async () => {
+    if (!form.community || !form.signalText) {
+      toast({ title: "Required fields missing", description: "Community name and signal text are required.", variant: "destructive" });
+      return;
+    }
+    setSaving(true);
+    try {
+      await onSubmit(form);
+      setForm({ source: "facebook", community: "", signalText: "", intentType: "relocation", intentScore: 85, contactName: "", contactHandle: "", area: "" });
+      toast({ title: "Signal Logged", description: "Real signal captured and added to the feed." });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const fieldClass = "w-full bg-slate-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-purple-500/50";
+
+  return (
+    <div className="space-y-4">
+      <div className="bg-emerald-950/20 border border-emerald-500/20 rounded-xl p-3">
+        <p className="text-xs text-emerald-300 font-medium">
+          Log a signal you personally spotted in a real community. All fields except Community and Signal Text are optional — add what you have.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Platform</label>
+          <select
+            data-testid="log-source"
+            value={form.source}
+            onChange={e => setForm(f => ({ ...f, source: e.target.value }))}
+            className={fieldClass}
+          >
+            {Object.entries(SOURCE_CONFIG).map(([k, v]) => (
+              <option key={k} value={k} className="bg-slate-900">{v.label}</option>
+            ))}
+            <option value="reddit" className="bg-slate-900">Reddit</option>
+            <option value="other" className="bg-slate-900">Other</option>
+          </select>
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Community / Group Name *</label>
+          <Input
+            data-testid="log-community"
+            placeholder="e.g. Dubai Real Estate (Facebook)"
+            value={form.community}
+            onChange={e => setForm(f => ({ ...f, community: e.target.value }))}
+            className="bg-slate-800 border-white/10 text-white placeholder:text-gray-600 focus:border-purple-500/50"
+          />
+        </div>
+      </div>
+
+      <div className="space-y-1">
+        <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Signal Text — paste the exact post/message *</label>
+        <textarea
+          data-testid="log-signal-text"
+          rows={3}
+          placeholder='e.g. "Just signed my lease in JVC, need Ejari and DEWA sorted ASAP. Anyone know a good concierge?"'
+          value={form.signalText}
+          onChange={e => setForm(f => ({ ...f, signalText: e.target.value }))}
+          className={`${fieldClass} resize-none`}
+        />
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Intent Type</label>
+          <select
+            data-testid="log-intent-type"
+            value={form.intentType}
+            onChange={e => setForm(f => ({ ...f, intentType: e.target.value }))}
+            className={fieldClass}
+          >
+            {INTENT_OPTIONS.map(o => <option key={o.value} value={o.value} className="bg-slate-900">{o.label}</option>)}
+          </select>
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Intent Score (1–100)</label>
+          <div className="flex items-center gap-3">
+            <input
+              data-testid="log-intent-score"
+              type="range"
+              min="50"
+              max="100"
+              value={form.intentScore}
+              onChange={e => setForm(f => ({ ...f, intentScore: Number(e.target.value) }))}
+              className="flex-1 accent-purple-500"
+            />
+            <span className={`text-sm font-bold w-7 text-right ${form.intentScore >= 90 ? "text-red-400" : form.intentScore >= 75 ? "text-amber-400" : "text-blue-400"}`}>{form.intentScore}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-3">
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Contact Name</label>
+          <Input
+            data-testid="log-contact-name"
+            placeholder="Name from the post"
+            value={form.contactName}
+            onChange={e => setForm(f => ({ ...f, contactName: e.target.value }))}
+            className="bg-slate-800 border-white/10 text-white placeholder:text-gray-600 focus:border-purple-500/50"
+          />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Contact Handle / Phone</label>
+          <Input
+            data-testid="log-contact-handle"
+            placeholder="+971… or @username"
+            value={form.contactHandle}
+            onChange={e => setForm(f => ({ ...f, contactHandle: e.target.value }))}
+            className="bg-slate-800 border-white/10 text-white placeholder:text-gray-600 focus:border-purple-500/50"
+          />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-400 uppercase tracking-wide">Dubai Area</label>
+          <Input
+            data-testid="log-area"
+            placeholder="e.g. JVC, Marina..."
+            value={form.area}
+            onChange={e => setForm(f => ({ ...f, area: e.target.value }))}
+            className="bg-slate-800 border-white/10 text-white placeholder:text-gray-600 focus:border-purple-500/50"
+          />
+        </div>
+      </div>
+
+      <Button
+        data-testid="button-log-signal"
+        onClick={handleSubmit}
+        disabled={saving}
+        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+      >
+        {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Plus className="w-4 h-4 mr-2" />}
+        Log Real Signal
+      </Button>
+    </div>
+  );
+}
+
 function IntentSnifferView({ leads: _leads, leadMutation: _leadMutation }: { leads: any[], leadMutation: any }) {
   const { toast } = useToast();
-  const qc = useQC();
+  const [activeTab, setActiveTab] = useState<"feed" | "log" | "channels">("feed");
   const [statusFilter, setStatusFilter] = useState("new");
-  const [sourceFilter, setSourceFilter] = useState("");
-  const [intentFilter, setIntentFilter] = useState("");
-  const [scanning, setScanning] = useState(false);
+  const [captureTypeFilter, setCaptureTypeFilter] = useState("");
 
-  const { data: signals = [], isLoading, refetch } = useQuery<IntentSignal[]>({
-    queryKey: ["/api/marketing/intent-signals", statusFilter, sourceFilter, intentFilter],
+  const { data: signals = [], isLoading, refetch } = useQuery<(IntentSignal & { captureType: string })[]>({
+    queryKey: ["/api/marketing/intent-signals", statusFilter, captureTypeFilter],
     queryFn: async () => {
       const params = new URLSearchParams();
       if (statusFilter) params.set("status", statusFilter);
-      if (sourceFilter) params.set("source", sourceFilter);
-      if (intentFilter) params.set("intentType", intentFilter);
+      if (captureTypeFilter) params.set("captureType", captureTypeFilter);
       const res = await fetch(`/api/marketing/intent-signals?${params}`);
       return res.json();
     },
@@ -272,17 +528,13 @@ function IntentSnifferView({ leads: _leads, leadMutation: _leadMutation }: { lea
     refetchInterval: 15000,
   });
 
-  const scanNow = async () => {
-    setScanning(true);
-    try {
-      const res = await apiRequest("POST", "/api/marketing/intent-signals/generate", { count: 5 });
-      const data = await res.json();
-      await refetch();
-      toast({ title: "🎯 Scan Complete", description: data.message });
-    } finally {
-      setScanning(false);
-    }
-  };
+  const { data: communities = [] } = useQuery<Community[]>({
+    queryKey: ["/api/marketing/intent-signals/communities"],
+    queryFn: async () => {
+      const res = await fetch("/api/marketing/intent-signals/communities");
+      return res.json();
+    },
+  });
 
   const handleStatusChange = async (id: string, status: string) => {
     await apiRequest("PATCH", `/api/marketing/intent-signals/${id}/status`, { status });
@@ -295,125 +547,201 @@ function IntentSnifferView({ leads: _leads, leadMutation: _leadMutation }: { lea
     return data.message || "";
   };
 
+  const handleLogSignal = async (formData: any) => {
+    await apiRequest("POST", "/api/marketing/intent-signals", formData);
+    await refetch();
+    setActiveTab("feed");
+    setStatusFilter("new");
+    setCaptureTypeFilter("manual");
+  };
+
+  const manualCount = (stats as any)?.byCaptureType?.find((s: any) => s.captureType === "manual")?.count || 0;
   const newCount = (stats as any)?.byStatus?.find((s: any) => s.status === "new")?.count || 0;
-  const contactedCount = (stats as any)?.byStatus?.find((s: any) => s.status === "contacted")?.count || 0;
   const convertedCount = (stats as any)?.byStatus?.find((s: any) => s.status === "converted")?.count || 0;
 
   return (
     <div className="space-y-5">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h3 className="text-xl font-black text-white flex items-center gap-2">
             <Radio className="text-purple-400 w-5 h-5" />
             Intent Interception System
-            <span className="flex items-center gap-1 text-xs text-purple-400 bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 rounded-full animate-pulse font-medium">
-              <CircleDot className="w-2.5 h-2.5" />LIVE
+            <span className="flex items-center gap-1 text-xs text-purple-400 bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 rounded-full font-medium">
+              <CircleDot className="w-2.5 h-2.5 animate-pulse" />ACTIVE
             </span>
           </h3>
-          <p className="text-gray-400 text-sm mt-0.5">
-            Listening to WhatsApp broker groups, LinkedIn, Facebook, Telegram & listing platforms for relocation intent
+          <p className="text-gray-400 text-xs mt-0.5">
+            Monitor real communities for relocation intent — log what you find, generate outreach instantly
           </p>
         </div>
         <Button
-          data-testid="button-scan-now"
-          onClick={scanNow}
-          disabled={scanning}
-          className="bg-purple-600 hover:bg-purple-700 text-white font-bold shrink-0"
+          data-testid="button-log-new"
+          onClick={() => setActiveTab("log")}
+          className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold shrink-0"
         >
-          {scanning ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Antenna className="w-4 h-4 mr-2" />}
-          {scanning ? "Scanning..." : "Scan Now"}
+          <Plus className="w-4 h-4 mr-2" />Log Real Signal
         </Button>
       </div>
 
-      {/* Stats Strip */}
+      {/* Stats */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: "New Signals", value: Number(newCount), color: "text-purple-400", border: "border-purple-500/20" },
-          { label: "Contacted", value: Number(contactedCount), color: "text-emerald-400", border: "border-emerald-500/20" },
-          { label: "Converted", value: Number(convertedCount), color: "text-violet-400", border: "border-violet-500/20" },
+          { label: "Manual Captures", value: Number(manualCount), color: "text-emerald-400", border: "border-emerald-500/20", note: "Real signals" },
+          { label: "Active / New", value: Number(newCount), color: "text-purple-400", border: "border-purple-500/20", note: "Needs action" },
+          { label: "Converted", value: Number(convertedCount), color: "text-violet-400", border: "border-violet-500/20", note: "Closed leads" },
         ].map(s => (
           <div key={s.label} className={`bg-slate-900/80 rounded-xl border ${s.border} p-3 text-center`}>
             <div className={`text-2xl font-black ${s.color}`}>{s.value}</div>
             <div className="text-xs text-gray-500 font-medium">{s.label}</div>
+            <div className="text-[10px] text-gray-600">{s.note}</div>
           </div>
         ))}
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-2">
-        <div className="flex gap-1">
-          {["new", "contacted", "converted"].map(s => (
-            <button
-              key={s}
-              data-testid={`filter-status-${s}`}
-              onClick={() => setStatusFilter(s)}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all border ${statusFilter === s ? "bg-purple-600 border-purple-500 text-white" : "border-white/10 text-gray-400 bg-slate-800 hover:text-white"}`}
-            >
-              {s.charAt(0).toUpperCase() + s.slice(1)}
-            </button>
-          ))}
-        </div>
-        <select
-          data-testid="filter-source"
-          value={sourceFilter}
-          onChange={e => setSourceFilter(e.target.value)}
-          className="bg-slate-800 border border-white/10 rounded-lg px-2 py-1 text-xs text-gray-300"
-        >
-          <option value="">All Channels</option>
-          {Object.entries(SOURCE_CONFIG).map(([k, v]) => <option key={k} value={k} className="bg-slate-900">{v.label}</option>)}
-        </select>
-        <select
-          data-testid="filter-intent"
-          value={intentFilter}
-          onChange={e => setIntentFilter(e.target.value)}
-          className="bg-slate-800 border border-white/10 rounded-lg px-2 py-1 text-xs text-gray-300"
-        >
-          <option value="">All Intent Types</option>
-          {Object.entries(INTENT_CONFIG).map(([k, v]) => <option key={k} value={k} className="bg-slate-900">{v.label}</option>)}
-        </select>
-      </div>
-
-      {/* Channel Coverage */}
-      <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
-        {Object.entries(SOURCE_CONFIG).map(([key, cfg]) => (
+      {/* Sub-tab nav */}
+      <div className="flex gap-1 bg-slate-900/50 p-1 rounded-xl border border-white/5">
+        {([
+          { key: "feed", label: "Signal Feed", icon: Radio },
+          { key: "log", label: "Log Real Signal", icon: Plus },
+          { key: "channels", label: "Verified Channels", icon: Wifi },
+        ] as const).map(({ key, label, icon: Icon }) => (
           <button
             key={key}
-            data-testid={`channel-${key}`}
-            onClick={() => setSourceFilter(sourceFilter === key ? "" : key)}
-            className={`flex flex-col items-center gap-1 p-2 rounded-xl border text-xs font-medium transition-all ${sourceFilter === key ? `border-opacity-60 ${cfg.bg}` : "border-white/10 bg-slate-800/50 text-gray-500 hover:text-white"}`}
+            data-testid={`subtab-${key}`}
+            onClick={() => setActiveTab(key)}
+            className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === key ? "bg-purple-600 text-white" : "text-gray-400 hover:text-white"}`}
           >
-            <cfg.Icon className="w-4 h-4" style={{ color: cfg.color }} />
-            <span className="text-[10px]">{cfg.label}</span>
+            <Icon className="w-3.5 h-3.5" />{label}
           </button>
         ))}
       </div>
 
-      {/* Signal Feed */}
-      {isLoading ? (
-        <div className="flex items-center justify-center py-16"><Loader2 className="w-6 h-6 animate-spin text-purple-400" /></div>
-      ) : signals.length === 0 ? (
-        <div className="text-center py-16 border-2 border-dashed border-purple-500/10 rounded-2xl bg-purple-950/10">
-          <Wifi className="w-8 h-8 text-purple-500/30 mx-auto mb-3" />
-          <p className="text-gray-400 font-medium text-sm">No {statusFilter} signals captured yet</p>
-          <p className="text-gray-600 text-xs mt-1">Click "Scan Now" to intercept intent from broker channels</p>
-          <Button onClick={scanNow} disabled={scanning} className="mt-4 bg-purple-600 hover:bg-purple-700 text-white text-sm">
-            {scanning ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Antenna className="w-4 h-4 mr-2" />}
-            Start Scan
-          </Button>
+      {/* FEED TAB */}
+      {activeTab === "feed" && (
+        <div className="space-y-4">
+          {/* Filters */}
+          <div className="flex flex-wrap gap-2 items-center">
+            <div className="flex gap-1">
+              {["new", "contacted", "converted"].map(s => (
+                <button
+                  key={s}
+                  data-testid={`filter-status-${s}`}
+                  onClick={() => setStatusFilter(s)}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all border ${statusFilter === s ? "bg-purple-600 border-purple-500 text-white" : "border-white/10 text-gray-400 bg-slate-800 hover:text-white"}`}
+                >
+                  {s.charAt(0).toUpperCase() + s.slice(1)}
+                </button>
+              ))}
+            </div>
+            <div className="flex gap-1 ml-auto">
+              {[
+                { v: "", label: "All" },
+                { v: "manual", label: "✓ Real Only" },
+                { v: "ai_example", label: "AI Examples" },
+              ].map(o => (
+                <button
+                  key={o.v}
+                  data-testid={`filter-capture-${o.v || "all"}`}
+                  onClick={() => setCaptureTypeFilter(o.v)}
+                  className={`px-2 py-1 rounded-lg text-[10px] font-bold transition-all border ${captureTypeFilter === o.v ? (o.v === "manual" ? "bg-emerald-600 border-emerald-500 text-white" : "bg-slate-600 border-slate-500 text-white") : "border-white/10 text-gray-500 bg-slate-800 hover:text-white"}`}
+                >
+                  {o.label}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => refetch()}
+              className="text-gray-500 hover:text-white transition-colors"
+              data-testid="button-refresh-signals"
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* AI Example Banner */}
+          {captureTypeFilter !== "manual" && (
+            <div className="bg-slate-800/60 border border-white/10 rounded-xl p-3 flex gap-2 items-start">
+              <Bot className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
+              <div>
+                <p className="text-xs font-bold text-gray-300">AI Example signals are training references</p>
+                <p className="text-[11px] text-gray-500 mt-0.5">They show you WHAT real intent signals look like in each community. When you spot a real one, use <strong className="text-purple-300">"Log Real Signal"</strong> to capture it. Manually captured signals are tagged <span className="text-emerald-400 font-bold">REAL</span>.</p>
+              </div>
+            </div>
+          )}
+
+          {isLoading ? (
+            <div className="flex items-center justify-center py-12"><Loader2 className="w-6 h-6 animate-spin text-purple-400" /></div>
+          ) : signals.length === 0 ? (
+            <div className="text-center py-12 border-2 border-dashed border-purple-500/10 rounded-2xl bg-purple-950/5">
+              <Wifi className="w-8 h-8 text-purple-500/20 mx-auto mb-3" />
+              <p className="text-gray-400 font-medium text-sm">No {statusFilter} signals {captureTypeFilter ? "of this type " : ""}yet</p>
+              <div className="flex gap-3 justify-center mt-4">
+                <Button onClick={() => setActiveTab("log")} className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm">
+                  <Plus className="w-4 h-4 mr-1" />Log a Real Signal
+                </Button>
+                <Button onClick={() => setActiveTab("channels")} variant="outline" className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 text-sm">
+                  <Wifi className="w-4 h-4 mr-1" />View Channels
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {signals.map((signal: any) => (
+                <motion.div
+                  key={signal.id}
+                  className="relative"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                >
+                  <div className="absolute -top-1.5 left-3 z-10">
+                    {signal.captureType === "manual" ? (
+                      <span className="text-[9px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full tracking-widest uppercase">Real Capture</span>
+                    ) : (
+                      <span className="text-[9px] font-black bg-slate-600 text-gray-300 px-2 py-0.5 rounded-full tracking-widest uppercase">AI Example</span>
+                    )}
+                  </div>
+                  <div className="pt-2">
+                    <SignalCard
+                      signal={signal}
+                      onStatusChange={handleStatusChange}
+                      onRespond={handleRespond}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="space-y-3">
-          <AnimatePresence mode="popLayout">
-            {signals.map(signal => (
-              <SignalCard
-                key={signal.id}
-                signal={signal}
-                onStatusChange={handleStatusChange}
-                onRespond={handleRespond}
-              />
+      )}
+
+      {/* LOG TAB */}
+      {activeTab === "log" && (
+        <LogSignalForm onSubmit={handleLogSignal} />
+      )}
+
+      {/* CHANNELS TAB */}
+      {activeTab === "channels" && (
+        <div className="space-y-4">
+          <div className="bg-purple-950/20 border border-purple-500/20 rounded-xl p-4">
+            <h4 className="text-sm font-black text-purple-200 mb-1 flex items-center gap-2">
+              <Wifi className="w-4 h-4" />How to Use This System
+            </h4>
+            <ol className="text-xs text-gray-400 space-y-1.5 list-decimal list-inside">
+              <li>Join the verified communities below (click <strong className="text-white">Open</strong>)</li>
+              <li>Search each group for the keyword alerts shown on each card</li>
+              <li>When you spot someone asking for move-in / DEWA / Ejari help, come back here</li>
+              <li>Click <strong className="text-white">"Log Real Signal"</strong> and paste the exact post + contact info</li>
+              <li>Hit <strong className="text-white">"AI Respond"</strong> to generate a tailored outreach message, then send it</li>
+            </ol>
+          </div>
+
+          <div className="space-y-3">
+            {communities.map((community: Community) => (
+              <CommunityCard key={community.id} community={community} />
             ))}
-          </AnimatePresence>
+          </div>
         </div>
       )}
     </div>

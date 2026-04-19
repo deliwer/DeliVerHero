@@ -1654,6 +1654,7 @@ export const intentSignals = pgTable("intent_signals", {
   contactHandle: text("contact_handle"),
   area: text("area"),
   status: text("status").notNull().default("new"), // new | contacted | converted | dismissed
+  captureType: text("capture_type").notNull().default("ai_example"), // manual | ai_example
   aiResponse: text("ai_response"),
   capturedAt: timestamp("captured_at").notNull().default(sql`now()`),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
