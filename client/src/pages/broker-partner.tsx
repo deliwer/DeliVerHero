@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import {
   CheckCircle2, MessageCircle, Copy, Check, ShieldCheck,
-  Star, Building2, ChevronDown, ChevronUp, QrCode, Zap,
+  Star, Building2, ChevronDown, ChevronUp, ChevronRight, QrCode, Zap,
   Home, ArrowRight, Users, TrendingUp, Clock, Send,
   Crown, Droplets, ChefHat, Network, Sparkles, Award,
   Target, Megaphone, GraduationCap, Coffee, Utensils,
@@ -282,6 +282,37 @@ export default function BrokerPartnerPage() {
       <Navigation />
       <PartnerSubNav />
 
+      {/* ── CAREER PATH CONTEXT BANNER ───────────────────── */}
+      <div className="bg-slate-900 border-b border-emerald-500/20 py-0">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex items-center justify-between py-3 gap-4 overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Career Path</span>
+            </div>
+            {[
+              { stage: 1, label: "Broker Partner", earn: "AED 150–800", color: "text-emerald-400", active: true },
+              { stage: 2, label: "AquaCafe Starter", earn: "AED 50 bonus", color: "text-cyan-400", active: false },
+              { stage: 3, label: "Distributor", earn: "AED 2,500–5K", color: "text-purple-400", active: false },
+              { stage: 4, label: "Leader", earn: "AED 5K–15K", color: "text-amber-400", active: false },
+              { stage: 5, label: "Global Director", earn: "AED 50K+", color: "text-rose-400", active: false },
+            ].map((s, i, arr) => (
+              <div key={s.stage} className="flex items-center gap-2 shrink-0">
+                <div className={`flex flex-col items-center ${s.active ? "opacity-100" : "opacity-40"}`}>
+                  <span className={`text-[10px] font-black ${s.color}`}>{s.label}</span>
+                  <span className="text-[9px] text-gray-600">{s.earn}</span>
+                </div>
+                {i < arr.length - 1 && <ChevronRight className="w-3 h-3 text-slate-700 shrink-0" />}
+              </div>
+            ))}
+            <Link href="/partners" className="shrink-0">
+              <Button data-testid="button-broker-career-path-banner" size="sm" variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl text-xs h-8 px-3 whitespace-nowrap">
+                Full Path →
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* ── HERO ──────────────────────────────────────────── */}
       <section className="relative py-24 md:py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -450,10 +481,49 @@ export default function BrokerPartnerPage() {
               </div>
             ))}
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/partners/career">
               <Button data-testid="button-full-career-path" variant="outline" className="border-amber-500/30 text-amber-400 hover:bg-amber-500/10 font-black rounded-2xl px-8 h-12">
-                <Crown className="w-4 h-4 mr-2" /> View Full Career Path & Income Calculator
+                <Crown className="w-4 h-4 mr-2" /> Full Career Path
+              </Button>
+            </Link>
+            <Link href="/partners">
+              <Button data-testid="button-unified-partner-hub" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-12">
+                <ArrowRight className="w-4 h-4 mr-2" /> Partner Hub & Join Form
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── NEXT STEP BRIDGE ─────────────────────────────── */}
+      <section className="py-10 px-4 bg-gradient-to-r from-cyan-950/30 via-slate-900/80 to-cyan-950/30 border-y border-cyan-500/15">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+          <div className="flex items-center gap-4 shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-emerald-400" />
+            </div>
+            <ArrowRight className="w-6 h-6 text-gray-600" />
+            <div className="w-12 h-12 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center">
+              <Droplets className="w-6 h-6 text-cyan-400" />
+            </div>
+          </div>
+          <div className="flex-1">
+            <p className="text-cyan-400 text-[10px] font-black uppercase tracking-widest mb-1">Next Step in Your Career Path</p>
+            <h3 className="text-xl font-black uppercase tracking-tighter text-white">Broker Partner → AquaCafe Distributor</h3>
+            <p className="text-gray-400 text-sm mt-1 leading-relaxed max-w-xl">
+              Once your tenants are settled, introduce them to the AED 99 AquaCafe Starter Kit. You earn a bonus on every activation — and when they refer friends, you earn overrides.
+            </p>
+          </div>
+          <div className="shrink-0 flex flex-col sm:flex-row gap-3">
+            <Link href="/aquacafe-alliance">
+              <Button data-testid="button-broker-next-step-aquacafe" className="bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-2xl h-11 px-6">
+                <Droplets className="w-4 h-4 mr-2" /> AquaCafe AED 99
+              </Button>
+            </Link>
+            <Link href="/partners">
+              <Button data-testid="button-broker-next-step-career" variant="outline" className="border-slate-600 text-gray-300 hover:bg-slate-800 font-black rounded-2xl h-11 px-6">
+                Full Career Path
               </Button>
             </Link>
           </div>

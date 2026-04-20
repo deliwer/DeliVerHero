@@ -40,16 +40,19 @@ Static marketing hub with no backend/database dependency. Uses localStorage + UR
 - Backend routes: `/api/affiliate/track` (POST), `/api/affiliate/dashboard/:code` (GET) in `server/routes.ts`.
 - Frontend pages:
   - `/affiliate-dashboard` — affiliate earnings view.
-  - `/partners` — main partner overview with 4-tier commission structure (35% / 20–25% / 10–15% / 5–10%).
-  - `/partners/join` — signup form with auto-generated referral link.
+  - `/partners` — **Unified career funnel** (rebuilt). 5-stage career path: Broker Partner → AquaCafe Starter → Independent Distributor → Network Leader → Global Director. Has broker-focused CTA section, Kangen Alliance section, income calculator, and join form. This is the master conversion page.
+  - `/partner-program` — Slim "How Attribution Works" page (rebuilt). Shows commission tiers 20–35%, earning scenarios, 6-step tracking explainer, FAQ. Has prominent CTA banners pointing back to `/partners`.
+  - `/brokers` (broker-partner.tsx) — Broker-specific distributor page with career path progress strip banner, link generator, copy-paste scripts, application form. Added "Next Step → AquaCafe" bridge section and CTA to `/partners`.
+  - `/partners/career` — Full 5-tier career path with Fast Start steps + Kangen income breakdown.
+  - `/partners/join` — Redirects to `/brokers`.
   - `/partners/how-it-works` — 4-step process page.
   - `/partners/earnings` — earnings table with commission tiers by partner type.
   - `/partners/resources` — copy-paste WhatsApp/email/social templates.
   - `/partner-dashboard` — self-serve dashboard: enter referral code, view leads/earnings/status/top pages.
   - `/partner-growth-kit` — WhatsApp scripts (6 scenarios), pre-built landing page links, quick reference guide.
-  - `/broker-partner` — dedicated page for real estate brokers.
   - `/building-partner` — dedicated page for building security/concierge teams.
   - `/typing-center-partner` — dedicated page for Ejari typing centers.
+  - **Kangen/Enagic Alliance**: Sponsor is Rubab Hassan, ID 3A #37000000659. AED 99 AquaCafe Starter Kit (ionic shower + Chill & Grill voucher). Commissions AED 1,299–2,299 per water system unit.
 - Shared component: `client/src/components/partner-subnav.tsx` — sticky tab nav for all partner sub-pages.
 - Referral tracking: `?ref=code` captured globally in App.tsx → stored in localStorage/sessionStorage via `client/src/lib/referral.ts` → attached to every WhatsApp message.
 - Marketing Command Center (`/marketing/dashboard`) Affiliates tab shows: top 6 partners by revenue, channel breakdown by tier, summary stats, links to partner tools.
