@@ -1,7 +1,8 @@
 import { Link, useLocation } from "wouter";
 import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
-  Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake
+  Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
+  Flame, KeyRound, Briefcase, Percent, MapPin
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,8 @@ const CHAINTRACK_PATHS = [
   "/cobone-corporate", "/account-management",
 ];
 
+const REALESTATE_PATHS = ["/realestate", "/real-estate", "/damac"];
+
 const deliwerNavItems = [
   { path: "/ejari-dubai",    label: "Ejari",    id: "ejari",       icon: Home },
   { path: "/relocate",       label: "Move-In",  id: "relocation",  icon: Plane },
@@ -25,6 +28,15 @@ const deliwerNavItems = [
   { path: "/consult",        label: "Consult",  id: "consult",     icon: CalendarCheck },
   { path: "/aquacafe",       label: "AquaCafe", id: "aquacafe",    icon: Star },
   { path: "/errand",         label: "Errand",   id: "errand",      icon: ClipboardList },
+];
+
+const realestateNavItems = [
+  { path: "/realestate",        label: "Deals",      id: "re-deals",      icon: Flame },
+  { path: "/realestate#damac",  label: "DAMAC",      id: "re-damac",      icon: Crown },
+  { path: "/realestate#offers", label: "Inventory",  id: "re-inventory",  icon: KeyRound },
+  { path: "/realestate#brokers",label: "Brokers",    id: "re-brokers",    icon: Briefcase },
+  { path: "/realestate#commission", label: "Commission", id: "re-commission", icon: Percent },
+  { path: "/realestate#contact", label: "Contact",   id: "re-contact",    icon: MapPin },
 ];
 
 const chaintrackNavItems = [
@@ -42,18 +54,27 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isChaintrack = CHAINTRACK_PATHS.some((p) => location.startsWith(p));
-  const navItems = isChaintrack ? chaintrackNavItems : deliwerNavItems;
+  const isRealEstate = REALESTATE_PATHS.some((p) => location.startsWith(p));
+  const navItems = isChaintrack
+    ? chaintrackNavItems
+    : isRealEstate
+      ? realestateNavItems
+      : deliwerNavItems;
 
-  const isActive = (itemPath: string) => location === itemPath;
+  const isActive = (itemPath: string) => location === itemPath.split("#")[0];
 
-  const handleChaintrackToggle = () => {
-    if (isChaintrack) {
-      setLocation("/");
-    } else {
-      setLocation("/chaintrack");
-    }
+  const switchMode = (mode: "b2c" | "realty" | "b2b") => {
+    if (mode === "b2c") setLocation("/");
+    else if (mode === "realty") setLocation("/realestate");
+    else setLocation("/chaintrack");
     setIsMobileMenuOpen(false);
   };
+
+  const currentMode: "b2c" | "realty" | "b2b" = isChaintrack
+    ? "b2b"
+    : isRealEstate
+      ? "realty"
+      : "b2c";
 
   return (
     <div id="main-nav" className="w-full fixed top-0 z-[100]">
@@ -64,16 +85,20 @@ export function Navigation() {
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
         isChaintrack
           ? "bg-indigo-950/95 border-purple-500/20"
-          : "bg-slate-900/95 border-white/5"
+          : isRealEstate
+            ? "bg-slate-950/95 border-amber-500/20"
+            : "bg-slate-900/95 border-white/5"
       }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* LEFT: Logo */}
-          <Link href={isChaintrack ? "/chaintrack" : "/"} className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
+          <Link href={isChaintrack ? "/chaintrack" : isRealEstate ? "/realestate" : "/"} className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
             <div className="h-10 flex items-center justify-center group-hover:scale-105 transition-transform">
               <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
-            <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${isChaintrack ? "text-purple-300" : "text-white"}`}>
-              {isChaintrack ? "ChainTrack" : "DeliWer"}
+            <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
+              isChaintrack ? "text-purple-300" : isRealEstate ? "text-amber-300" : "text-white"
+            }`}>
+              {isChaintrack ? "ChainTrack" : isRealEstate ? "DeliWer Realty" : "DeliWer"}
             </span>
           </Link>
 
@@ -98,32 +123,48 @@ export function Navigation() {
 
             <div className="w-px h-4 bg-white/10 mx-2" />
 
-            {/* B2B / DeliWer toggle switch */}
-            <button
-              onClick={handleChaintrackToggle}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border transition-all duration-200 group ${
-                isChaintrack
-                  ? "border-purple-400/60 bg-purple-500/20 hover:bg-purple-500/30"
-                  : "border-purple-500/30 bg-purple-500/5 hover:border-purple-500/60 hover:bg-purple-500/15"
-              }`}
-              title={isChaintrack ? "Switch to DeliWer" : "Switch to ChainTrack B2B Wholesale"}
-              data-testid="button-chaintrack-toggle"
+            {/* 3-way mode switcher: B2C / Realty / B2B */}
+            <div
+              className="flex items-center gap-0.5 p-0.5 rounded-xl border border-white/10 bg-slate-800/50"
+              data-testid="mode-switcher"
             >
-              <span className={`text-[9px] font-black uppercase tracking-widest transition-colors ${isChaintrack ? "text-slate-400" : "text-slate-500"}`}>
+              <button
+                onClick={() => switchMode("b2c")}
+                className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg transition-all ${
+                  currentMode === "b2c"
+                    ? "bg-emerald-500/20 text-emerald-300"
+                    : "text-slate-400 hover:text-white"
+                }`}
+                title="DeliWer B2C Services"
+                data-testid="mode-b2c"
+              >
                 B2C
-              </span>
-              {/* Toggle pill */}
-              <div className={`relative w-10 h-5 rounded-full border flex items-center px-0.5 transition-colors duration-200 ${
-                isChaintrack ? "bg-purple-600 border-purple-400" : "bg-slate-700 border-slate-600"
-              }`}>
-                <div className={`w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ${
-                  isChaintrack ? "translate-x-5" : "translate-x-0"
-                }`} />
-              </div>
-              <span className={`text-[9px] font-black uppercase tracking-widest transition-colors ${isChaintrack ? "text-purple-300" : "text-purple-400 group-hover:text-purple-300"}`}>
+              </button>
+              <button
+                onClick={() => switchMode("realty")}
+                className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg transition-all ${
+                  currentMode === "realty"
+                    ? "bg-amber-500/20 text-amber-300"
+                    : "text-slate-400 hover:text-white"
+                }`}
+                title="DeliWer Realty — DAMAC Partner"
+                data-testid="mode-realty"
+              >
+                Realty
+              </button>
+              <button
+                onClick={() => switchMode("b2b")}
+                className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg transition-all ${
+                  currentMode === "b2b"
+                    ? "bg-purple-500/20 text-purple-300"
+                    : "text-slate-400 hover:text-white"
+                }`}
+                title="ChainTrack B2B Wholesale"
+                data-testid="mode-b2b"
+              >
                 B2B
-              </span>
-            </button>
+              </button>
+            </div>
 
             <div className="w-px h-4 bg-white/10 mx-2" />
 
@@ -179,33 +220,43 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className={`md:hidden absolute top-full left-0 right-0 border-b p-6 space-y-3 z-[70] shadow-2xl ${
-              isChaintrack ? "bg-indigo-950 border-purple-500/20" : "bg-slate-900 border-white/10"
+              isChaintrack
+                ? "bg-indigo-950 border-purple-500/20"
+                : isRealEstate
+                  ? "bg-slate-950 border-amber-500/20"
+                  : "bg-slate-900 border-white/10"
             }`}
           >
-            {/* B2B toggle row */}
-            <button
-              onClick={handleChaintrackToggle}
-              className={`w-full flex items-center justify-between px-5 h-14 rounded-xl border transition-all ${
-                isChaintrack
-                  ? "border-purple-400/50 bg-purple-500/15"
-                  : "border-purple-500/30 bg-purple-500/5 hover:bg-purple-500/10"
-              }`}
-              data-testid="button-chaintrack-toggle-mobile"
-            >
-              <div className="flex items-center gap-3">
-                <div className={`w-2 h-2 rounded-full ${isChaintrack ? "bg-purple-400" : "bg-slate-500"}`} />
-                <span className="text-xs font-black uppercase tracking-widest text-purple-400">
-                  {isChaintrack ? "ChainTrack B2B — Active" : "ChainTrack B2B Wholesale"}
-                </span>
-              </div>
-              <div className={`relative w-10 h-5 rounded-full border flex items-center px-0.5 transition-colors duration-200 ${
-                isChaintrack ? "bg-purple-600 border-purple-400" : "bg-slate-700 border-slate-600"
-              }`}>
-                <div className={`w-4 h-4 rounded-full bg-white shadow transition-transform duration-200 ${
-                  isChaintrack ? "translate-x-5" : "translate-x-0"
-                }`} />
-              </div>
-            </button>
+            {/* 3-way mode switcher */}
+            <div className="grid grid-cols-3 gap-1 p-1 rounded-xl border border-white/10 bg-slate-800/50">
+              <button
+                onClick={() => switchMode("b2c")}
+                className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
+                  currentMode === "b2c" ? "bg-emerald-500/20 text-emerald-300" : "text-slate-400"
+                }`}
+                data-testid="mode-b2c-mobile"
+              >
+                B2C
+              </button>
+              <button
+                onClick={() => switchMode("realty")}
+                className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
+                  currentMode === "realty" ? "bg-amber-500/20 text-amber-300" : "text-slate-400"
+                }`}
+                data-testid="mode-realty-mobile"
+              >
+                Realty
+              </button>
+              <button
+                onClick={() => switchMode("b2b")}
+                className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
+                  currentMode === "b2b" ? "bg-purple-500/20 text-purple-300" : "text-slate-400"
+                }`}
+                data-testid="mode-b2b-mobile"
+              >
+                B2B
+              </button>
+            </div>
 
             <div className="w-full h-px bg-white/10" />
 
