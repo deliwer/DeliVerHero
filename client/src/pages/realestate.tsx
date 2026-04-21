@@ -378,7 +378,7 @@ export default function RealEstate() {
                       <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-2">
                         {o.tag}
                       </Badge>
-                      <CardTitle className="text-xl">{o.title}</CardTitle>
+                      <CardTitle className="text-xl text-[#ffffff]">{o.title}</CardTitle>
                       <CardDescription className="text-slate-400 mt-1">
                         {o.type} · {o.location}
                       </CardDescription>
