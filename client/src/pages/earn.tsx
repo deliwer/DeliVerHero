@@ -17,6 +17,7 @@ import { DubaiWellnessJourney } from "@/components/dubai-wellness-journey";
 import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
 import { shopifyCartService } from "@/lib/shopify-cart";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
+import earnHeroBanner from "@assets/banner_1776801988936.jpg";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
@@ -81,13 +82,32 @@ export default function Earn() {
       </div>
       
       {/* Main Hero Section - Earn Rewards */}
-      <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-blue-500/10 relative overflow-hidden" data-testid="earn-hero-section">
-        <div className="absolute inset-0 opacity-10">
+      <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
+        {/* Hero banner image */}
+        <div className="relative w-full">
+          <img
+            src={earnHeroBanner}
+            alt="Plastic-free oceans — every action funds Dubai's sustainability"
+            className="w-full h-48 sm:h-72 md:h-96 object-cover"
+            data-testid="img-earn-hero-banner"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-emerald-50 via-emerald-50/30 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 px-4 pb-4 sm:pb-8 text-center">
+            <div className="inline-flex items-center bg-gradient-to-r from-emerald-700/95 to-cyan-700/95 backdrop-blur text-white rounded-full px-4 sm:px-6 py-2 sm:py-3 font-bold text-sm sm:text-lg shadow-2xl border border-white/20">
+              <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              Turn Plastic Into Rewards
+              <Trophy className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full py-8 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-blue-500/10 relative">
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full animate-pulse"></div>
           <div className="absolute top-32 right-20 w-12 h-12 bg-cyan-400 rounded-full animate-bounce"></div>
           <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-emerald-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
         </div>
-        
+
         <div className="w-full max-w-7xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center bg-gradient-to-r from-purple-600 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl animate-pulse">
             <Trophy className="w-6 h-6 mr-3" />

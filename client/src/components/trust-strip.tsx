@@ -26,6 +26,12 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
               Business Opportunity
             </span>
           </Link>
+          <Link href="/earn">
+            <span className="cursor-pointer inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition-colors uppercase tracking-widest text-[10px] font-black" data-testid="trust-strip-earn">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+              Earn Rewards
+            </span>
+          </Link>
           <Link href="/contact">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Contact</span>
           </Link>
