@@ -184,7 +184,7 @@ function IncomeSlider() {
         </div>
         <p className="text-[10px] text-gray-600 text-center">Based on average service basket. Actual results vary.</p>
       </div>
-      <Link href="#join">
+      <Link href="/earn">
         <Button data-testid="button-calculator-cta" className="w-full bg-emerald-600 hover:bg-emerald-500 font-black h-12 rounded-2xl">
           Start Earning This → <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
