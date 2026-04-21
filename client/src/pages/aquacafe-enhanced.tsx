@@ -431,18 +431,26 @@ export default function AquaCafeEnhanced() {
         {/* Products Section with DXB Earning */}
         <section id="products" className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
           <div className="container mx-auto max-w-7xl">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-700 px-6 py-3 rounded-full mb-6 border border-emerald-500/30">
-                <Gift className="w-5 h-5" />
-                <span className="font-bold">EARN PLANET IMPACT CREDITS (DXBs)</span>
+            <div className="relative rounded-3xl overflow-hidden mb-12 shadow-2xl" data-testid="hero-products-overlay">
+              <img
+                src={productsHeroBg}
+                alt="Pure beauty water — Kangen filtration"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/75 to-white/30 dark:from-gray-900/95 dark:via-gray-900/70 dark:to-gray-900/20" />
+              <div className="relative z-10 text-center px-6 py-16 md:py-24">
+                <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-700 px-6 py-3 rounded-full mb-6 border border-emerald-500/30 backdrop-blur">
+                  <Gift className="w-5 h-5" />
+                  <span className="font-bold">EARN PLANET IMPACT CREDITS (DXBs)</span>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-[#be185d] drop-shadow-md">
+                  Choose Your Water Filter & Start Earning
+                </h2>
+                <p className="text-center text-gray-800 dark:text-gray-100 mb-4 max-w-3xl mx-auto text-lg">
+                  All systems include free professional installation across Dubai, comprehensive warranty,
+                  <strong className="text-emerald-700 dark:text-emerald-400"> and instant Dubai Carbon Tokens (DXBs)</strong> to use toward future purchases or redeem for rewards.
+                </p>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#be185d]">
-                Choose Your Water Filter & Start Earning
-              </h2>
-              <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto text-lg">
-                All systems include free professional installation across Dubai, comprehensive warranty, 
-                <strong className="text-emerald-600"> and instant Dubai Carbon Tokens (DXBs)</strong> to use toward future purchases or redeem for rewards.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
