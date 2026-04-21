@@ -535,7 +535,7 @@ export default function RealEstate() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 text-[#94a3b8]">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="re-name" className="text-[#ffffff]">Full Name</Label>
