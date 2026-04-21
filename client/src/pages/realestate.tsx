@@ -330,7 +330,7 @@ export default function RealEstate() {
                 <div className="w-11 h-11 rounded-lg bg-amber-500/15 flex items-center justify-center mb-2">
                   <vp.icon className="w-5 h-5 text-amber-300" />
                 </div>
-                <CardTitle className="text-lg">{vp.title}</CardTitle>
+                <CardTitle className="text-lg text-[#ffffff]">{vp.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-slate-400 leading-relaxed">{vp.desc}</p>
