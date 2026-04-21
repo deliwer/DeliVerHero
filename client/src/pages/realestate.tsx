@@ -624,7 +624,7 @@ export default function RealEstate() {
                 </div>
               </div>
               <div>
-                <Label htmlFor="re-message">Notes</Label>
+                <Label htmlFor="re-message" className="text-[#ffffff]">Notes</Label>
                 <Textarea
                   id="re-message"
                   value={formData.message}
