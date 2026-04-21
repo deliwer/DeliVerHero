@@ -131,6 +131,7 @@ export default function Earn() {
             Join AquaCafe Loyalty, earn Dubai Carbon Tokens (DXBs), complete missions, and redeem rewards. Every action funds Dubai's sustainability initiatives.
           </p>
         </div>
+        </div>
       </section>
 
       {/* ⭐ AquaCafe Loyalty Gateway - LEAD WITH THIS */}
