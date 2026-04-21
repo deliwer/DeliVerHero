@@ -194,7 +194,7 @@ export function StarsSponsorshipSection() {
               </div>
 
               {/* Content Side */}
-              <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-primary/5 to-accent/5">
+              <div className="p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-primary/5 to-accent/5 text-[#ffffff]">
                 <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 mb-4 w-fit">
                   <Gamepad2 className="w-4 h-4 flex-shrink-0" />
                   <span className="font-bold text-sm text-emerald-500">RESIDENT IMPACT</span>
