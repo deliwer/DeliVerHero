@@ -1,796 +1,336 @@
-import { useState, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "wouter";
-import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { apiRequest } from "@/lib/queryClient";
-import {
-  Building2,
-  Home,
-  Briefcase,
+  Crown,
   TrendingDown,
   Handshake,
-  Crown,
   Zap,
-  ShieldCheck,
-  Percent,
-  KeyRound,
-  Phone,
-  ArrowRight,
   CheckCircle2,
-  MapPin,
-  Flame,
-  Award,
+  ArrowRight,
+  Phone,
+  Lock,
+  Sparkles,
+  Building2,
 } from "lucide-react";
 
-const damacOffers = [
-  {
-    title: "DAMAC Hills 2 — Distress Resale",
-    type: "Residential Villa",
-    location: "Dubailand",
-    priceLabel: "From AED 1.65M",
-    discount: "Up to 22% below market",
-    perks: ["Owner motivated", "Direct from owner", "DLD waiver applicable"],
-    tag: "Hot Deal",
-  },
-  {
-    title: "DAMAC Bay by Cavalli",
-    type: "Luxury Branded Apartment",
-    location: "Dubai Harbour",
-    priceLabel: "From AED 2.95M",
-    discount: "8% Preferred Partner Rebate",
-    perks: ["Post-handover plan", "0% commission to buyer", "Furnished options"],
-    tag: "Exclusive",
-  },
-  {
-    title: "DAMAC Lagoons — Resale Inventory",
-    type: "Townhouse / Villa",
-    location: "Dubailand",
-    priceLabel: "From AED 2.2M",
-    discount: "Below original developer price",
-    perks: ["Ready to move", "Crystal lagoon community", "High rental yield"],
-    tag: "Distress",
-  },
-  {
-    title: "DAMAC Towers — Business Bay",
-    type: "Commercial / Serviced Office",
-    location: "Business Bay",
-    priceLabel: "Lease from AED 95/sqft",
-    discount: "3 months rent-free option",
-    perks: ["Fitted units", "Flexible payment", "Investor priced"],
-    tag: "Commercial",
-  },
-];
-
-const valueProps = [
-  {
-    icon: Crown,
-    title: "DAMAC Preferred Partner",
-    desc: "Direct access to exclusive DAMAC inventory, owner pools, and pre-launch allocations through our partnership track.",
-  },
-  {
-    icon: TrendingDown,
-    title: "Distress Deals First",
-    desc: "Curated list of motivated-seller and post-war reset opportunities — both residential and commercial across Dubai.",
-  },
-  {
-    icon: Zap,
-    title: "Fast-Start Brokerage",
-    desc: "New company setup with RERA-licensed brokers to capture immediate cash flow from rent and sales commissions.",
-  },
-  {
-    icon: Handshake,
-    title: "Owner-Direct Network",
-    desc: "Close personal links with DAMAC owners unlock private listings unavailable on portals — better pricing, faster closings.",
-  },
-];
-
-const fastStartSteps = [
-  { step: "Day 1–7", title: "License & Brand", desc: "RERA brokerage license, trade name, ejari, and DAMAC partner onboarding." },
-  { step: "Day 8–21", title: "Inventory & Listings", desc: "Lock exclusive DAMAC stock + 200+ distress resale & rental listings live." },
-  { step: "Day 22–45", title: "First Commissions", desc: "Activate WhatsApp & buyer-network funnel; close first rent + resale deals." },
-  { step: "Day 46–90", title: "Scale & Recur", desc: "Hire commission-only agents, layer property management & relocation upsell." },
-];
+const WA_LINK =
+  "https://wa.me/971523946311?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20inventory%20through%20DeliWer.%20Please%20share%20details.";
 
 export default function RealEstate() {
-  const { toast } = useToast();
-  const formRef = useRef<HTMLDivElement>(null);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interest: "",
-    propertyType: "",
-    budget: "",
-    message: "I am interested in DAMAC distress deals and brokerage opportunities.",
-  });
-
-  const leadMutation = useMutation({
-    mutationFn: async (data: typeof formData) => {
-      return await apiRequest("POST", "/api/leads", {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        service: "Real Estate — DAMAC Partner",
-        message: `Interest: ${data.interest} | Type: ${data.propertyType} | Budget: ${data.budget} | ${data.message}`,
-      });
-    },
-    onSuccess: () => {
-      toast({
-        title: "Request received",
-        description: "Our DAMAC desk will reach out within 24 hours with matching inventory.",
-      });
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        interest: "",
-        propertyType: "",
-        budget: "",
-        message: "I am interested in DAMAC distress deals and brokerage opportunities.",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Could not submit",
-        description: "Please try again or WhatsApp us directly.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.phone) {
-      toast({
-        title: "Missing details",
-        description: "Name, email and phone are required.",
-        variant: "destructive",
-      });
-      return;
-    }
-    leadMutation.mutate(formData);
-  };
-
-  const scrollToForm = () => {
-    formRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Helmet>
-        <title>DeliWer Real Estate — DAMAC Preferred Partner | Distress Deals Dubai</title>
+        <title>Dubai Brokers: Access Below-Market DAMAC Units | DeliWer</title>
         <meta
           name="description"
-          content="Dubai commercial & residential distress deals, rentals and resale. DAMAC preferred partner brokerage with exclusive inventory, owner-direct pricing and fast-start commission model."
+          content="Join a limited group of Dubai brokers accessing distress-driven DAMAC inventory. Close faster and earn more per deal with DeliWer."
         />
-        <meta property="og:title" content="DeliWer Real Estate — DAMAC Preferred Partner" />
+        <meta
+          property="og:title"
+          content="Dubai Brokers: Access Below-Market DAMAC Units | DeliWer"
+        />
         <meta
           property="og:description"
-          content="Exclusive DAMAC inventory and distress deals in Dubai. Brokerage built for the post-war reset market."
+          content="Priority access to distress-driven DAMAC inventory + earn more per transaction with DeliWer move-in services."
         />
       </Helmet>
-      {/* Hero */}
+
+      {/* SECTION 1: HERO */}
       <section className="relative overflow-hidden border-b border-amber-500/20">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge
-                className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-5"
-                data-testid="badge-damac-partner"
-              >
-                <Crown className="w-3.5 h-3.5 mr-1.5" /> DAMAC Preferred Partner
-              </Badge>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-5">
-                Dubai Distress Deals &{" "}
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                  DAMAC Exclusives
-                </span>
-              </h1>
-              <p className="text-lg text-slate-300 mb-7 leading-relaxed">
-                A new brokerage built for the regional reset. Direct access to motivated-seller
-                inventory, exclusive DAMAC allocations, and owner-direct rental & resale across
-                Dubai's commercial and residential market.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Button
-                  size="lg"
-                  className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-                  onClick={scrollToForm}
-                  data-testid="button-hero-get-deals"
-                >
-                  Get Today's Deal List
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-amber-500/40 text-amber-200 hover:bg-amber-500/10"
-                  onClick={() =>
-                    window.open(
-                      "https://wa.me/971504547110?text=I%20want%20DAMAC%20distress%20deal%20list",
-                      "_blank"
-                    )
-                  }
-                  data-testid="button-hero-whatsapp"
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  WhatsApp Desk
-                </Button>
-                <Link href="/partners">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/10"
-                    data-testid="button-hero-partner-earn"
-                  >
-                    <Handshake className="w-4 h-4 mr-2" />
-                    Broker Career Path
-                  </Button>
-                </Link>
-              </div>
-              <div className="grid grid-cols-3 gap-4 mt-10 max-w-lg">
-                <div data-testid="stat-listings">
-                  <div className="text-2xl font-bold text-amber-300">200+</div>
-                  <div className="text-xs text-slate-400">Distress listings</div>
-                </div>
-                <div data-testid="stat-discount">
-                  <div className="text-2xl font-bold text-amber-300">22%</div>
-                  <div className="text-xs text-slate-400">Avg. below market</div>
-                </div>
-                <div data-testid="stat-close">
-                  <div className="text-2xl font-bold text-amber-300">14d</div>
-                  <div className="text-xs text-slate-400">Avg. close time</div>
-                </div>
-              </div>
-            </div>
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+          <Badge
+            className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-5"
+            data-testid="badge-broker-access"
+          >
+            <Crown className="w-3.5 h-3.5 mr-1.5" /> For Active Dubai Brokers
+          </Badge>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-5">
+            Access{" "}
+            <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+              Below-Market DAMAC Units
+            </span>{" "}
+            + Close Deals Faster
+          </h1>
+          <p className="text-lg sm:text-xl text-slate-300 mb-7 leading-relaxed max-w-3xl mx-auto">
+            For a limited group of active Dubai brokers. Get priority access to{" "}
+            <strong className="text-white">distress-driven inventory</strong> +{" "}
+            <strong className="text-white">earn more per transaction</strong>.
+          </p>
 
-            <Card className="bg-slate-900/70 border-amber-500/20 backdrop-blur">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-amber-300">
-                  <Flame className="w-5 h-5" />
-                  Today's Featured Opportunity
-                </CardTitle>
-                <CardDescription className="text-slate-400">
-                  Refreshed daily from owner-direct & DAMAC partner pool
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div className="text-xl font-semibold text-[#ffffff]">DAMAC Hills 2 — 4BR Villa</div>
-                    <div className="text-sm text-slate-400 flex items-center gap-1 mt-1">
-                      <MapPin className="w-3.5 h-3.5" /> Dubailand
-                    </div>
-                  </div>
-                  <Badge className="bg-red-500/15 text-red-300 border-red-500/30">
-                    -22% Distress
-                  </Badge>
-                </div>
-                <div className="grid grid-cols-2 gap-3 text-sm">
-                  <div className="bg-slate-800/60 rounded-lg p-3">
-                    <div className="text-slate-400 text-xs">Asking</div>
-                    <div className="text-amber-300 font-semibold">AED 1.65M</div>
-                  </div>
-                  <div className="bg-slate-800/60 rounded-lg p-3">
-                    <div className="text-slate-400 text-xs">Market</div>
-                    <div className="text-slate-300 font-semibold line-through">AED 2.12M</div>
-                  </div>
-                </div>
-                <ul className="text-sm text-slate-300 space-y-1.5">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Motivated owner — quick close
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Vacant on transfer
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" /> 0% buyer commission via partner
-                  </li>
-                </ul>
-                <Button
-                  className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-                  onClick={scrollToForm}
-                  data-testid="button-featured-claim"
-                >
-                  Reserve a Viewing
-                </Button>
-              </CardContent>
-            </Card>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/broker-partner">
+              <Button
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+                data-testid="button-hero-request-access"
+              >
+                Request Access
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/10"
+                data-testid="button-hero-whatsapp"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                WhatsApp Now
+              </Button>
+            </a>
+          </div>
+
+          <p
+            className="text-xs text-slate-400 mt-5 flex items-center justify-center gap-1.5"
+            data-testid="text-trust-line"
+          >
+            <Lock className="w-3.5 h-3.5" />
+            Limited broker onboarding • Priority access
+          </p>
+
+          <div className="mt-8 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 rounded-full px-4 py-2 text-sm">
+            <Sparkles className="w-4 h-4" />
+            Earn <strong className="text-white">AED 300–800 extra per deal</strong>{" "}
+            via DeliWer move-in services
           </div>
         </div>
       </section>
-      {/* Value Props */}
-      <section id="damac" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-32">
-        <div className="text-center mb-12">
-          <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
-            Why DeliWer Real Estate
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold">
-            Built for the Post-War Reset Market
-          </h2>
-          <p className="text-slate-400 mt-3 max-w-2xl mx-auto">
-            Regional uncertainty has reshuffled Dubai's property cap stack. We turn that
-            dislocation into commission income for brokers and below-market entry for buyers.
-          </p>
+
+      {/* SECTION 2: POSITIONING */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-5" data-testid="heading-positioning">
+          Not another listing source
+        </h2>
+        <p className="text-lg text-slate-300 leading-relaxed mb-3">
+          This is not a portal or open inventory list.
+        </p>
+        <p className="text-lg text-slate-300 leading-relaxed">
+          We work with a small pool of brokers to route serious buyers into{" "}
+          <strong className="text-white">below-market</strong> opportunities and help{" "}
+          <strong className="text-white">close deals faster</strong>.
+        </p>
+      </section>
+
+      {/* SECTION 3: VALUE STACK */}
+      <section className="bg-slate-900/40 border-y border-slate-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-value-stack">
+              What you unlock
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {[
+              {
+                icon: TrendingDown,
+                text: (
+                  <>
+                    <strong className="text-white">Distress-driven DAMAC inventory</strong>{" "}
+                    (below market)
+                  </>
+                ),
+              },
+              {
+                icon: Zap,
+                text: (
+                  <>
+                    <strong className="text-white">Faster deal closures</strong> with move-in
+                    support (utilities, essentials handled)
+                  </>
+                ),
+              },
+              {
+                icon: Sparkles,
+                text: (
+                  <>
+                    <strong className="text-white">Additional commission layer</strong> via
+                    DeliWer services
+                  </>
+                ),
+              },
+              {
+                icon: Handshake,
+                text: <>Buyer routing (when available)</>,
+              },
+            ].map((item, i) => (
+              <Card
+                key={i}
+                className="bg-slate-950/60 border-slate-800 hover-elevate"
+                data-testid={`card-value-${i}`}
+              >
+                <CardContent className="p-5 flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-lg bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+                    <item.icon className="w-5 h-5 text-amber-300" />
+                  </div>
+                  <p className="text-slate-300 leading-relaxed pt-2">{item.text}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
+            <Link href="/broker-partner">
+              <Button
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+                data-testid="button-value-request-access"
+              >
+                Request Access <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {valueProps.map((vp) => (
-            <Card
-              key={vp.title}
-              className="bg-slate-900/60 border-slate-800 hover-elevate"
-              data-testid={`card-value-${vp.title.toLowerCase().replace(/\s+/g, "-")}`}
+      </section>
+
+      {/* SECTION 4: WHY IT WORKS */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-why-it-works">
+            Why brokers are using this
+          </h2>
+        </div>
+        <p className="text-lg text-slate-300 leading-relaxed text-center mb-8">
+          In a slower market, <strong className="text-white">speed wins deals</strong>.
+        </p>
+        <div className="space-y-3 max-w-2xl mx-auto">
+          {[
+            "Remove friction at closing",
+            "Offer a ready-to-move-in advantage to buyers",
+            "Monetize beyond just commission",
+          ].map((t) => (
+            <div
+              key={t}
+              className="flex items-start gap-3 bg-slate-900/60 border border-slate-800 rounded-lg p-4"
+              data-testid={`item-why-${t.toLowerCase().replace(/\s+/g, "-")}`}
             >
-              <CardHeader>
-                <div className="w-11 h-11 rounded-lg bg-amber-500/15 flex items-center justify-center mb-2">
-                  <vp.icon className="w-5 h-5 text-amber-300" />
+              <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+              <span className="text-slate-200">{t}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 5: SCARCITY */}
+      <section className="bg-slate-900/40 border-y border-slate-800">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <Badge className="bg-red-500/15 text-red-300 border-red-500/30 mb-4">
+            <Lock className="w-3.5 h-3.5 mr-1.5" /> Limited Spots
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-5" data-testid="heading-scarcity">
+            Limited access
+          </h2>
+          <p className="text-lg text-slate-300 leading-relaxed mb-8">
+            We're onboarding a small number of active brokers to keep deal flow
+            high-quality.
+          </p>
+          <div className="space-y-3 text-left max-w-md mx-auto">
+            {["Not open to everyone", "Priority given to brokers closing monthly deals"].map(
+              (t) => (
+                <div
+                  key={t}
+                  className="flex items-center gap-3 bg-slate-950/60 border border-amber-500/20 rounded-lg p-4"
+                  data-testid={`item-scarcity-${t.toLowerCase().replace(/\s+/g, "-").slice(0, 30)}`}
+                >
+                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
+                  <span className="text-slate-200">{t}</span>
                 </div>
-                <CardTitle className="text-lg text-[#ffffff]">{vp.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-slate-400 leading-relaxed">{vp.desc}</p>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: PROCESS */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-process">
+            How it works
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-5">
+          {[
+            { n: "1", title: "Request access", desc: "Quick application — under 2 minutes." },
+            {
+              n: "2",
+              title: "Get added to priority broker pool",
+              desc: "Onboarded with deal flow & support.",
+            },
+            {
+              n: "3",
+              title: "Receive opportunities + close faster",
+              desc: "Distress inventory + move-in support.",
+            },
+          ].map((s) => (
+            <Card
+              key={s.n}
+              className="bg-slate-900/60 border-slate-800 hover-elevate"
+              data-testid={`card-step-${s.n}`}
+            >
+              <CardContent className="p-6">
+                <div className="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-bold flex items-center justify-center mb-3">
+                  {s.n}
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-1.5">{s.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{s.desc}</p>
               </CardContent>
             </Card>
           ))}
         </div>
-      </section>
-      {/* DAMAC Offers */}
-      <section id="offers" className="bg-slate-900/40 border-y border-slate-800 scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
-            <div>
-              <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
-                Live Inventory
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold">
-                DAMAC Exclusive & Distress Picks
-              </h2>
-              <p className="text-slate-400 mt-2">
-                Hand-picked across residential, branded, commercial and resale segments.
-              </p>
-            </div>
+        <div className="mt-8 flex flex-wrap gap-3 justify-center">
+          <Link href="/broker-partner">
             <Button
-              variant="outline"
-              className="border-amber-500/40 text-amber-200 hover:bg-amber-500/10"
-              onClick={scrollToForm}
-              data-testid="button-request-full-list"
+              size="lg"
+              className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+              data-testid="button-process-request-access"
             >
-              Request Full List
+              Request Access <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {damacOffers.map((o, idx) => (
-              <Card
-                key={idx}
-                className="bg-slate-950/60 border-slate-800 hover-elevate overflow-hidden"
-                data-testid={`card-offer-${idx}`}
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-2">
-                        {o.tag}
-                      </Badge>
-                      <CardTitle className="text-xl text-[#ffffff]">{o.title}</CardTitle>
-                      <CardDescription className="text-slate-400 mt-1">
-                        {o.type} · {o.location}
-                      </CardDescription>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-amber-300 font-semibold">{o.priceLabel}</div>
-                      <div className="text-xs text-emerald-400 mt-1">{o.discount}</div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-1.5 text-sm text-slate-300 mb-4">
-                    {o.perks.map((p) => (
-                      <li key={p} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    size="sm"
-                    className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-                    onClick={scrollToForm}
-                    data-testid={`button-offer-enquire-${idx}`}
-                  >
-                    Enquire Now <ArrowRight className="w-4 h-4 ml-1.5" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          </Link>
         </div>
       </section>
-      {/* Two business tracks */}
-      <section id="brokers" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-32">
-        <div className="grid lg:grid-cols-2 gap-6">
-          <Card className="bg-slate-900/60 border-amber-500/20">
-            <CardHeader>
-              <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 w-fit mb-2">
-                For Buyers & Tenants
-              </Badge>
-              <CardTitle className="text-2xl flex items-center gap-2 text-[#ffffff]">
-                <Home className="w-6 h-6 text-amber-300" />
-                Residential & Commercial Deals
-              </CardTitle>
-              <CardDescription className="text-slate-400">
-                Rent and buy below-market in the wake of the regional shake-out.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm text-slate-300">
-              {[
-                "Distress resale across DAMAC, Marina, JVC, Business Bay",
-                "Commercial offices & retail with flexible payment terms",
-                "Owner-direct rentals — no inflated portal pricing",
-                "End-to-end concierge: ejari, DEWA, move-in (DeliWer ecosystem)",
-              ].map((t) => (
-                <div key={t} className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span>{t}</span>
-                </div>
-              ))}
+
+      {/* SECTION 7: FINAL CTA */}
+      <section className="border-t border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <h2
+            className="text-3xl sm:text-5xl font-bold mb-6"
+            data-testid="heading-final-cta"
+          >
+            Get Access Before Slots Fill
+          </h2>
+          <p className="text-slate-300 mb-8 text-lg">
+            Limited broker onboarding window. Priority for brokers closing monthly.
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/broker-partner">
               <Button
-                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold mt-3"
-                onClick={scrollToForm}
-                data-testid="button-track-buyers"
-              >
-                Send Me Matching Properties
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-slate-900/60 border-amber-500/20">
-            <CardHeader>
-              <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 w-fit mb-2">
-                For Brokers & Partners
-              </Badge>
-              <CardTitle className="text-2xl flex items-center gap-2 text-[#ffffff]">
-                <Briefcase className="w-6 h-6 text-amber-300" />
-                Fast-Start Brokerage Model
-              </CardTitle>
-              <CardDescription className="text-slate-400">
-                Commission-based seats inside a new RERA-licensed company built around DAMAC.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm text-slate-300">
-              {[
-                "Up to 70% commission split on closed deals",
-                "Exclusive DAMAC inventory & qualified buyer leads",
-                "WhatsApp + AI lead engine plugged into DeliWer network",
-                "Zero desk fees — pure performance economics",
-              ].map((t) => (
-                <div key={t} className="flex items-start gap-2">
-                  <Percent className="w-4 h-4 text-amber-300 mt-0.5 flex-shrink-0" />
-                  <span>{t}</span>
-                </div>
-              ))}
-              <div className="flex flex-wrap gap-2 mt-3">
-                <Button
-                  className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-                  onClick={scrollToForm}
-                  data-testid="button-track-brokers"
-                >
-                  Apply as Broker Partner
-                </Button>
-                <Link href="/partners">
-                  <Button
-                    variant="outline"
-                    className="border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/10"
-                    data-testid="button-track-brokers-career"
-                  >
-                    <Handshake className="w-4 h-4 mr-2" />
-                    See Career Path
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Focused DAMAC Distress Inventory — Broker Opportunity */}
-        <div id="career" className="mt-10 scroll-mt-32">
-          <Card className="bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950 border-amber-500/40 overflow-hidden">
-            <CardContent className="p-6 sm:p-10">
-              <div className="grid lg:grid-cols-3 gap-8 items-center">
-                <div className="lg:col-span-2">
-                  <Badge className="bg-red-500/15 text-red-300 border-red-500/30 mb-3">
-                    <Flame className="w-3.5 h-3.5 mr-1.5" /> Live Inventory · Reset Market
-                  </Badge>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-                    DAMAC Distress Inventory — A Once-in-a-Cycle Window for Brokers
-                  </h3>
-                  <p className="text-slate-300 leading-relaxed mb-5">
-                    Dubai's post-war regional reset has unlocked a wave of motivated-seller
-                    DAMAC stock — villas, branded apartments, townhouses and Business Bay
-                    commercial units. As a DAMAC Preferred Partner desk, we route this
-                    inventory directly to our broker network before it ever hits the portals.
-                  </p>
-                  <div className="grid sm:grid-cols-3 gap-4 mb-6">
-                    <div className="bg-slate-900/60 rounded-xl p-4 border border-amber-500/20" data-testid="stat-broker-units">
-                      <div className="text-2xl font-bold text-amber-300">120+</div>
-                      <div className="text-xs text-slate-400 mt-1">Live DAMAC distress units</div>
-                    </div>
-                    <div className="bg-slate-900/60 rounded-xl p-4 border border-amber-500/20" data-testid="stat-broker-split">
-                      <div className="text-2xl font-bold text-amber-300">70%</div>
-                      <div className="text-xs text-slate-400 mt-1">Top broker commission split</div>
-                    </div>
-                    <div className="bg-slate-900/60 rounded-xl p-4 border border-amber-500/20" data-testid="stat-broker-payout">
-                      <div className="text-2xl font-bold text-amber-300">AED 25k+</div>
-                      <div className="text-xs text-slate-400 mt-1">Avg. payout per close</div>
-                    </div>
-                  </div>
-                  <ul className="space-y-2 text-sm text-slate-300 mb-6">
-                    {[
-                      "Pre-portal access to DAMAC Hills 2, Lagoons, Bay by Cavalli & Business Bay stock",
-                      "Qualified buyer leads from DeliWer's WhatsApp + AI funnel",
-                      "Career path: Agent → Senior Broker → Team Lead → Partner equity track",
-                      "Zero desk fees, RERA-licensed structure, fast 7-day onboarding",
-                    ].map((t) => (
-                      <li key={t} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                        <span>{t}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-wrap gap-3">
-                    <Link href="/partners">
-                      <Button
-                        size="lg"
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold"
-                        data-testid="button-broker-partners"
-                      >
-                        <Handshake className="w-4 h-4 mr-2" />
-                        Join Partner & Earn Program
-                      </Button>
-                    </Link>
-                    <Link href="/broker-partner">
-                      <Button
-                        size="lg"
-                        variant="outline"
-                        className="border-amber-500/50 text-amber-200 hover:bg-amber-500/10"
-                        data-testid="button-broker-career"
-                      >
-                        <Briefcase className="w-4 h-4 mr-2" />
-                        Broker Career Details
-                      </Button>
-                    </Link>
-                    <Button
-                      size="lg"
-                      variant="ghost"
-                      className="text-amber-200 hover:bg-amber-500/10"
-                      onClick={() =>
-                        window.open(
-                          "https://wa.me/971504547110?text=I%20want%20to%20join%20DAMAC%20broker%20desk",
-                          "_blank"
-                        )
-                      }
-                      data-testid="button-broker-whatsapp"
-                    >
-                      <Phone className="w-4 h-4 mr-2" />
-                      WhatsApp Recruiter
-                    </Button>
-                  </div>
-                </div>
-                <div className="hidden lg:block">
-                  <div className="bg-slate-950/60 rounded-2xl p-6 border border-amber-500/20">
-                    <div className="text-xs uppercase tracking-widest text-amber-300 font-bold mb-4">
-                      Inventory Snapshot
-                    </div>
-                    {[
-                      { name: "DAMAC Hills 2 Villas", count: 38, tag: "-22%" },
-                      { name: "DAMAC Lagoons TH", count: 27, tag: "-18%" },
-                      { name: "Bay by Cavalli", count: 19, tag: "Exclusive" },
-                      { name: "Business Bay Comm.", count: 41, tag: "Lease" },
-                    ].map((row) => (
-                      <div
-                        key={row.name}
-                        className="flex items-center justify-between py-2.5 border-b border-slate-800 last:border-b-0"
-                      >
-                        <div>
-                          <div className="text-sm text-white font-medium">{row.name}</div>
-                          <div className="text-[11px] text-slate-500">{row.count} units live</div>
-                        </div>
-                        <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 text-[10px]">
-                          {row.tag}
-                        </Badge>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-      {/* Fast Start Roadmap */}
-      <section id="commission" className="bg-slate-900/40 border-y border-slate-800 scroll-mt-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-10">
-            <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
-              90-Day Fast Start
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold">From Setup to Cash in 90 Days</h2>
-            <p className="text-slate-400 mt-3 max-w-2xl mx-auto">
-              A focused playbook to stand up a DAMAC-anchored brokerage and start booking
-              commissions immediately.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {fastStartSteps.map((s, i) => (
-              <Card
-                key={s.step}
-                className="bg-slate-950/60 border-slate-800"
-                data-testid={`card-step-${i}`}
-              >
-                <CardContent className="p-5">
-                  <div className="text-amber-300 text-xs font-semibold tracking-wider mb-2">
-                    {s.step}
-                  </div>
-                  <div className="font-semibold mb-1.5 flex items-center gap-2 text-[#ffffff]">
-                    <KeyRound className="w-4 h-4 text-amber-300" />
-                    {s.title}
-                  </div>
-                  <p className="text-sm text-slate-400 leading-relaxed">{s.desc}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* Lead Form */}
-      <section id="contact" ref={formRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-32">
-        <Card className="bg-slate-900/70 border-amber-500/30">
-          <CardHeader className="text-center">
-            <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mx-auto mb-3 w-fit">
-              <Award className="w-3.5 h-3.5 mr-1.5" />
-              Talk to the DAMAC Desk
-            </Badge>
-            <CardTitle className="text-2xl sm:text-3xl text-[#ffffff]">
-              Get Distress Deals & Partner Terms
-            </CardTitle>
-            <CardDescription className="text-slate-400">
-              Tell us what you need — we respond within 24 hours with matching inventory or
-              partner pack.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4 text-[#94a3b8]">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="re-name" className="text-[#ffffff]">Full Name</Label>
-                  <Input
-                    id="re-name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="bg-slate-950 border-slate-700"
-                    data-testid="input-name"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="re-phone" className="text-[#ffffff]">Phone / WhatsApp</Label>
-                  <Input
-                    id="re-phone"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="bg-slate-950 border-slate-700"
-                    data-testid="input-phone"
-                  />
-                </div>
-              </div>
-              <div className="text-[#ffffff]">
-                <Label htmlFor="re-email" className="text-[#ffffff]">Email</Label>
-                <Input
-                  id="re-email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-slate-950 border-slate-700"
-                  data-testid="input-email"
-                />
-              </div>
-              <div className="grid sm:grid-cols-3 gap-4">
-                <div className="text-[#94a3b8]">
-                  <Label className="text-[#ffffff]">I am a</Label>
-                  <Select
-                    value={formData.interest}
-                    onValueChange={(v) => setFormData({ ...formData, interest: v })}
-                  >
-                    <SelectTrigger className="bg-slate-950 border-slate-700" data-testid="select-interest">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="buyer">Buyer / Investor</SelectItem>
-                      <SelectItem value="tenant">Tenant</SelectItem>
-                      <SelectItem value="broker">Broker / Agent</SelectItem>
-                      <SelectItem value="owner">Owner Selling</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label className="text-[#ffffff]">Property Type</Label>
-                  <Select
-                    value={formData.propertyType}
-                    onValueChange={(v) => setFormData({ ...formData, propertyType: v })}
-                  >
-                    <SelectTrigger className="bg-slate-950 border-slate-700" data-testid="select-type">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="apartment">Apartment</SelectItem>
-                      <SelectItem value="villa">Villa / Townhouse</SelectItem>
-                      <SelectItem value="commercial">Commercial / Office</SelectItem>
-                      <SelectItem value="any">Any DAMAC Inventory</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label className="text-[#ffffff]">Budget</Label>
-                  <Select
-                    value={formData.budget}
-                    onValueChange={(v) => setFormData({ ...formData, budget: v })}
-                  >
-                    <SelectTrigger className="bg-slate-950 border-slate-700" data-testid="select-budget">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="under-1m">Under AED 1M</SelectItem>
-                      <SelectItem value="1-3m">AED 1M – 3M</SelectItem>
-                      <SelectItem value="3-7m">AED 3M – 7M</SelectItem>
-                      <SelectItem value="7m-plus">AED 7M+</SelectItem>
-                      <SelectItem value="rental">Rental Only</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div className="text-[#94a3b8] bg-[transparent]">
-                <Label htmlFor="re-message" className="text-[#ffffff]">{"Notes: "}</Label>
-                <Textarea
-                  id="re-message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={3}
-                  className="bg-slate-950 border-slate-700"
-                  data-testid="input-message"
-                />
-              </div>
-              <Button
-                type="submit"
                 size="lg"
-                disabled={leadMutation.isPending}
-                className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-                data-testid="button-submit-lead"
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+                data-testid="button-final-request-access"
               >
-                {leadMutation.isPending ? "Sending..." : "Send My Request"}
-                <ArrowRight className="w-4 h-4 ml-2" />
+                Request Access <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <p className="text-xs text-slate-500 text-center flex items-center justify-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                Confidential. Owner-direct. RERA-compliant.
-              </p>
-            </form>
-          </CardContent>
-        </Card>
+            </Link>
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/10"
+                data-testid="button-final-whatsapp"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                Chat on WhatsApp
+              </Button>
+            </a>
+          </div>
+        </div>
       </section>
+
       <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
         <div className="flex items-center justify-center gap-2 mb-1">
           <Building2 className="w-4 h-4 text-amber-300" />
@@ -798,6 +338,18 @@ export default function RealEstate() {
         </div>
         <div>realestate.deliwer.com · Dubai, UAE</div>
       </footer>
+
+      {/* Sticky WhatsApp Button (mobile + desktop) */}
+      <a
+        href={WA_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-testid="button-sticky-whatsapp"
+        className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold px-4 py-3 rounded-full shadow-lg shadow-emerald-500/30 transition-transform hover:scale-105"
+      >
+        <Phone className="w-5 h-5" />
+        <span className="hidden sm:inline">WhatsApp</span>
+      </a>
     </div>
   );
 }
