@@ -456,7 +456,7 @@ export default function RealEstate() {
               <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 w-fit mb-2">
                 For Brokers & Partners
               </Badge>
-              <CardTitle className="text-2xl flex items-center gap-2">
+              <CardTitle className="text-2xl flex items-center gap-2 text-[#ffffff]">
                 <Briefcase className="w-6 h-6 text-amber-300" />
                 Fast-Start Brokerage Model
               </CardTitle>
