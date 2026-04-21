@@ -12,8 +12,8 @@ Disallow: /account-management
 Disallow: /account
 Disallow: /profile
 Disallow: /admin
-Disallow: /marketing/control
-Disallow: /marketing/legacy
+Disallow: /marketing
+Disallow: /marketing/
 Disallow: /partner-dashboard
 Disallow: /hero-dashboard
 Disallow: /mission-control-saqi-kawthar

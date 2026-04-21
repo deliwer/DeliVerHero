@@ -31,7 +31,7 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
     { label: "Join Now", id: "join" },
   ];
   return (
-    <div className="sticky top-[104px] z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800 shadow-lg">
+    <div className="sticky top-[140px] z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800 shadow-lg">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16 gap-2">
           <nav className="flex items-center overflow-x-auto no-scrollbar flex-1 min-w-0">

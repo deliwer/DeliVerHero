@@ -101,6 +101,25 @@ export default function RealEstate() {
         </div>
       </section>
 
+      {/* SECTION 1B: PROOF STRIP */}
+      <section className="border-b border-slate-800 bg-slate-950/60" data-testid="section-proof-strip">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          {[
+            { v: "120+", l: "Active Dubai brokers" },
+            { v: "AED 800", l: "Avg extra per deal" },
+            { v: "10 min", l: "WhatsApp response" },
+            { v: "DAMAC", l: "Preferred Partner" },
+          ].map((s, i) => (
+            <div key={i} data-testid={`proof-stat-${i}`}>
+              <div className="text-2xl sm:text-3xl font-black text-amber-300">{s.v}</div>
+              <div className="text-[11px] uppercase tracking-widest text-slate-400 mt-1">
+                {s.l}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* SECTION 2: POSITIONING */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-5" data-testid="heading-positioning">
@@ -291,6 +310,58 @@ export default function RealEstate() {
               Request Access <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
+        </div>
+      </section>
+
+      {/* SECTION 6B: BROKER FAQ */}
+      <section className="bg-slate-900/40 border-y border-slate-800" data-testid="section-faq">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-faq">
+              Broker FAQs
+            </h2>
+            <p className="text-slate-400 mt-2 text-sm">
+              Quick answers to what brokers ask before joining
+            </p>
+          </div>
+          <div className="space-y-3">
+            {[
+              {
+                q: "Do I need a RERA card?",
+                a: "Yes — active RERA-licensed brokers only. We verify before granting inventory access.",
+              },
+              {
+                q: "Is there any signup fee?",
+                a: "No fees. Free to join. You only earn — we get paid when your buyer closes.",
+              },
+              {
+                q: "How is the AED 300–800 extra paid?",
+                a: "Per move-in service your buyer takes (Ejari, DEWA, movers, AquaCafe). Paid monthly via bank transfer with full statement.",
+              },
+              {
+                q: "Will I lose my client to DeliWer?",
+                a: "Never. Your client stays your client — we only handle move-in logistics. You keep the relationship and full sales commission.",
+              },
+              {
+                q: "How fast can I start?",
+                a: "Same day. Submit the form or WhatsApp us — onboarded brokers receive their first inventory drop within 24 hours.",
+              },
+            ].map((f, i) => (
+              <details
+                key={i}
+                className="group bg-slate-950/60 border border-slate-800 rounded-lg p-4 hover:border-amber-500/30 transition-colors"
+                data-testid={`faq-item-${i}`}
+              >
+                <summary className="cursor-pointer flex items-center justify-between gap-3 text-white font-semibold list-none">
+                  <span>{f.q}</span>
+                  <span className="text-amber-300 text-xl group-open:rotate-45 transition-transform shrink-0">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-slate-300 text-sm leading-relaxed">{f.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
