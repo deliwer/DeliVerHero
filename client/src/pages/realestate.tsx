@@ -548,7 +548,7 @@ export default function RealEstate() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="re-phone">Phone / WhatsApp</Label>
+                  <Label htmlFor="re-phone" className="text-[#ffffff]">Phone / WhatsApp</Label>
                   <Input
                     id="re-phone"
                     value={formData.phone}
