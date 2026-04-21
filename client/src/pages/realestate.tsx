@@ -570,7 +570,7 @@ export default function RealEstate() {
                 />
               </div>
               <div className="grid sm:grid-cols-3 gap-4">
-                <div>
+                <div className="text-[#ffffff]">
                   <Label>I am a</Label>
                   <Select
                     value={formData.interest}
