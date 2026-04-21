@@ -63,6 +63,25 @@ export function Navigation() {
 
   const isActive = (itemPath: string) => location === itemPath.split("#")[0];
 
+  const navigateToItem = (path: string) => {
+    setIsMobileMenuOpen(false);
+    const [base, hash] = path.split("#");
+    if (hash && location === base) {
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+    setLocation(path);
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        el?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+    }
+  };
+
   const switchMode = (mode: "b2c" | "realty" | "b2b") => {
     if (mode === "b2c") setLocation("/");
     else if (mode === "realty") setLocation("/realestate");
@@ -105,20 +124,21 @@ export function Navigation() {
           {/* CENTER: Nav Links (Desktop) */}
           <div className="hidden md:flex items-center gap-1 order-2 mx-auto">
             {navItems.map((item) => (
-              <Link key={item.id} href={item.path}>
-                <Button
-                  variant="ghost"
-                  className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
-                    isActive(item.path)
-                      ? isChaintrack
-                        ? "bg-purple-500/15 text-purple-300"
-                        : "bg-emerald-500/10 text-emerald-400"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                </Button>
-              </Link>
+              <Button
+                key={item.id}
+                variant="ghost"
+                onClick={() => navigateToItem(item.path)}
+                className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
+                  isActive(item.path)
+                    ? isChaintrack
+                      ? "bg-purple-500/15 text-purple-300"
+                      : "bg-emerald-500/10 text-emerald-400"
+                    : "text-gray-400 hover:text-white"
+                }`}
+                data-testid={`nav-${item.id}`}
+              >
+                {item.label}
+              </Button>
             ))}
 
             <div className="w-px h-4 bg-white/10 mx-2" />
@@ -261,22 +281,22 @@ export function Navigation() {
             <div className="w-full h-px bg-white/10" />
 
             {navItems.map((item) => (
-              <Link key={item.id} href={item.path}>
-                <Button
-                  variant="ghost"
-                  className={`w-full justify-start text-xs font-black uppercase tracking-widest h-14 rounded-xl ${
-                    isActive(item.path)
-                      ? isChaintrack
-                        ? "bg-purple-500/15 text-purple-300"
-                        : "bg-emerald-500/10 text-emerald-400"
-                      : "text-gray-400"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <item.icon className={`w-5 h-5 mr-3 ${isChaintrack ? "text-purple-500" : "text-emerald-500"}`} />
-                  {item.label}
-                </Button>
-              </Link>
+              <Button
+                key={item.id}
+                variant="ghost"
+                onClick={() => navigateToItem(item.path)}
+                className={`w-full justify-start text-xs font-black uppercase tracking-widest h-14 rounded-xl ${
+                  isActive(item.path)
+                    ? isChaintrack
+                      ? "bg-purple-500/15 text-purple-300"
+                      : "bg-emerald-500/10 text-emerald-400"
+                    : "text-gray-400"
+                }`}
+                data-testid={`nav-mobile-${item.id}`}
+              >
+                <item.icon className={`w-5 h-5 mr-3 ${isChaintrack ? "text-purple-500" : "text-emerald-500"}`} />
+                {item.label}
+              </Button>
             ))}
 
             {!isChaintrack && (

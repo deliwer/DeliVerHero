@@ -304,7 +304,7 @@ export default function RealEstate() {
         </div>
       </section>
       {/* Value Props */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section id="damac" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-32">
         <div className="text-center mb-12">
           <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
             Why DeliWer Real Estate
@@ -338,7 +338,7 @@ export default function RealEstate() {
         </div>
       </section>
       {/* DAMAC Offers */}
-      <section className="bg-slate-900/40 border-y border-slate-800">
+      <section id="offers" className="bg-slate-900/40 border-y border-slate-800 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
             <div>
@@ -410,7 +410,7 @@ export default function RealEstate() {
         </div>
       </section>
       {/* Two business tracks */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section id="brokers" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-32">
         <div className="grid lg:grid-cols-2 gap-6">
           <Card className="bg-slate-900/60 border-amber-500/20">
             <CardHeader>
@@ -484,7 +484,7 @@ export default function RealEstate() {
         </div>
       </section>
       {/* Fast Start Roadmap */}
-      <section className="bg-slate-900/40 border-y border-slate-800">
+      <section id="commission" className="bg-slate-900/40 border-y border-slate-800 scroll-mt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-10">
             <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
@@ -519,7 +519,7 @@ export default function RealEstate() {
         </div>
       </section>
       {/* Lead Form */}
-      <section ref={formRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section id="contact" ref={formRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-32">
         <Card className="bg-slate-900/70 border-amber-500/30">
           <CardHeader className="text-center">
             <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mx-auto mb-3 w-fit">
