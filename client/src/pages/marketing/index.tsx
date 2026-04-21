@@ -102,9 +102,9 @@ export default function MarketingHub() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-white font-sans">
-      {/* Sticky Nav */}
-      <div className="sticky top-0 z-50 bg-[#0a0f1e]/95 backdrop-blur border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      {/* Sticky Nav + Trust Strip — kept together so both stay always visible */}
+      <div className="sticky top-0 z-50 bg-[#0a0f1e]/95 backdrop-blur border-b border-white/10 shadow-lg shadow-black/20">
+        <div className="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-xl font-black tracking-tight">DELIWER</span>
             <span className="hidden sm:inline text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-500/30">
@@ -117,9 +117,8 @@ export default function MarketingHub() {
             <Link href="/marketing/founder-dashboard" className="text-xs px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all" data-testid="nav-command">Command</Link>
           </nav>
         </div>
+        <BrokerAccessBanner />
       </div>
-
-      <BrokerAccessBanner />
 
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
 
@@ -193,29 +192,54 @@ export default function MarketingHub() {
         {/* ── OVERVIEW TAB ── */}
         {tab === "overview" && (
           <div className="space-y-6">
-            {/* Recruit Banner */}
-            <Link href="/marketing/recruit" data-testid="section-recruit-cta">
-              <div className="group relative bg-slate-900 hover:bg-slate-800 border border-emerald-500/30 hover:border-emerald-500/60 rounded-2xl p-5 cursor-pointer transition-all duration-200 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent group-hover:from-emerald-500/10 transition-all" />
-                <div className="relative flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 text-2xl">📡</div>
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 px-2 py-0.5 rounded-full">Founder Only</span>
+            {/* Founder-Only CTAs: Recruit + Founder Dashboard */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link href="/marketing/recruit" data-testid="section-recruit-cta">
+                <div className="group relative h-full bg-slate-900 hover:bg-slate-800 border border-emerald-500/30 hover:border-emerald-500/60 rounded-2xl p-5 cursor-pointer transition-all duration-200 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-transparent group-hover:from-emerald-500/10 transition-all" />
+                  <div className="relative flex items-start justify-between gap-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 text-2xl">📡</div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 px-2 py-0.5 rounded-full">Founder Only</span>
+                        </div>
+                        <h3 className="font-black text-white text-lg leading-tight">Broker Recruitment Engine</h3>
+                        <p className="text-slate-400 text-sm mt-0.5">
+                          Auto-import &amp; email <strong className="text-emerald-400">32,302 licensed RERA brokers</strong> — Day-2 &amp; Day-5 follow-ups run automatically
+                        </p>
                       </div>
-                      <h3 className="font-black text-white text-lg leading-tight">Broker Recruitment Engine</h3>
-                      <p className="text-slate-400 text-sm mt-0.5">
-                        Auto-import &amp; email <strong className="text-emerald-400">32,302 licensed RERA brokers</strong> — Day-2 &amp; Day-5 follow-ups run automatically
-                      </p>
                     </div>
+                    <span className="shrink-0 inline-flex items-center gap-1.5 bg-emerald-500 group-hover:bg-emerald-400 text-black font-bold px-4 py-2 rounded-xl text-sm transition-colors whitespace-nowrap">
+                      Open →
+                    </span>
                   </div>
-                  <span className="shrink-0 inline-flex items-center gap-1.5 bg-emerald-500 group-hover:bg-emerald-400 text-black font-bold px-5 py-2.5 rounded-xl text-sm transition-colors whitespace-nowrap">
-                    Open →
-                  </span>
                 </div>
-              </div>
-            </Link>
+              </Link>
+
+              <Link href="/marketing/founder-dashboard" data-testid="section-founder-dashboard-cta">
+                <div className="group relative h-full bg-slate-900 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-500/60 rounded-2xl p-5 cursor-pointer transition-all duration-200 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 to-transparent group-hover:from-amber-500/10 transition-all" />
+                  <div className="relative flex items-start justify-between gap-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center shrink-0 text-2xl">🛰️</div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-xs font-bold uppercase tracking-widest text-amber-300 bg-amber-500/15 border border-amber-500/25 px-2 py-0.5 rounded-full">Founder Only</span>
+                        </div>
+                        <h3 className="font-black text-white text-lg leading-tight">Founder Dashboard</h3>
+                        <p className="text-slate-400 text-sm mt-0.5">
+                          Live <strong className="text-amber-300">command centre</strong> — campaigns, partner payouts, alerts and revenue health in one view
+                        </p>
+                      </div>
+                    </div>
+                    <span className="shrink-0 inline-flex items-center gap-1.5 bg-amber-500 group-hover:bg-amber-400 text-black font-bold px-4 py-2 rounded-xl text-sm transition-colors whitespace-nowrap">
+                      Open →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </div>
 
             {/* Partner Funnel Map */}
             <div className="bg-slate-900/60 border border-white/10 rounded-2xl p-6">
