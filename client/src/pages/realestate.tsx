@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -231,6 +232,17 @@ export default function RealEstate() {
                   <Phone className="w-4 h-4 mr-2" />
                   WhatsApp Desk
                 </Button>
+                <Link href="/partners">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/10"
+                    data-testid="button-hero-partner-earn"
+                  >
+                    <Handshake className="w-4 h-4 mr-2" />
+                    Broker Career Path
+                  </Button>
+                </Link>
               </div>
               <div className="grid grid-cols-3 gap-4 mt-10 max-w-lg">
                 <div data-testid="stat-listings">
@@ -472,13 +484,140 @@ export default function RealEstate() {
                   <span>{t}</span>
                 </div>
               ))}
-              <Button
-                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold mt-3"
-                onClick={scrollToForm}
-                data-testid="button-track-brokers"
-              >
-                Apply as Broker Partner
-              </Button>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <Button
+                  className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+                  onClick={scrollToForm}
+                  data-testid="button-track-brokers"
+                >
+                  Apply as Broker Partner
+                </Button>
+                <Link href="/partners">
+                  <Button
+                    variant="outline"
+                    className="border-emerald-500/40 text-emerald-200 hover:bg-emerald-500/10"
+                    data-testid="button-track-brokers-career"
+                  >
+                    <Handshake className="w-4 h-4 mr-2" />
+                    See Career Path
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Focused DAMAC Distress Inventory — Broker Opportunity */}
+        <div id="career" className="mt-10 scroll-mt-32">
+          <Card className="bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950 border-amber-500/40 overflow-hidden">
+            <CardContent className="p-6 sm:p-10">
+              <div className="grid lg:grid-cols-3 gap-8 items-center">
+                <div className="lg:col-span-2">
+                  <Badge className="bg-red-500/15 text-red-300 border-red-500/30 mb-3">
+                    <Flame className="w-3.5 h-3.5 mr-1.5" /> Live Inventory · Reset Market
+                  </Badge>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                    DAMAC Distress Inventory — A Once-in-a-Cycle Window for Brokers
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed mb-5">
+                    Dubai's post-war regional reset has unlocked a wave of motivated-seller
+                    DAMAC stock — villas, branded apartments, townhouses and Business Bay
+                    commercial units. As a DAMAC Preferred Partner desk, we route this
+                    inventory directly to our broker network before it ever hits the portals.
+                  </p>
+                  <div className="grid sm:grid-cols-3 gap-4 mb-6">
+                    <div className="bg-slate-900/60 rounded-xl p-4 border border-amber-500/20" data-testid="stat-broker-units">
+                      <div className="text-2xl font-bold text-amber-300">120+</div>
+                      <div className="text-xs text-slate-400 mt-1">Live DAMAC distress units</div>
+                    </div>
+                    <div className="bg-slate-900/60 rounded-xl p-4 border border-amber-500/20" data-testid="stat-broker-split">
+                      <div className="text-2xl font-bold text-amber-300">70%</div>
+                      <div className="text-xs text-slate-400 mt-1">Top broker commission split</div>
+                    </div>
+                    <div className="bg-slate-900/60 rounded-xl p-4 border border-amber-500/20" data-testid="stat-broker-payout">
+                      <div className="text-2xl font-bold text-amber-300">AED 25k+</div>
+                      <div className="text-xs text-slate-400 mt-1">Avg. payout per close</div>
+                    </div>
+                  </div>
+                  <ul className="space-y-2 text-sm text-slate-300 mb-6">
+                    {[
+                      "Pre-portal access to DAMAC Hills 2, Lagoons, Bay by Cavalli & Business Bay stock",
+                      "Qualified buyer leads from DeliWer's WhatsApp + AI funnel",
+                      "Career path: Agent → Senior Broker → Team Lead → Partner equity track",
+                      "Zero desk fees, RERA-licensed structure, fast 7-day onboarding",
+                    ].map((t) => (
+                      <li key={t} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-wrap gap-3">
+                    <Link href="/partners">
+                      <Button
+                        size="lg"
+                        className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold"
+                        data-testid="button-broker-partners"
+                      >
+                        <Handshake className="w-4 h-4 mr-2" />
+                        Join Partner & Earn Program
+                      </Button>
+                    </Link>
+                    <Link href="/broker-partner">
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="border-amber-500/50 text-amber-200 hover:bg-amber-500/10"
+                        data-testid="button-broker-career"
+                      >
+                        <Briefcase className="w-4 h-4 mr-2" />
+                        Broker Career Details
+                      </Button>
+                    </Link>
+                    <Button
+                      size="lg"
+                      variant="ghost"
+                      className="text-amber-200 hover:bg-amber-500/10"
+                      onClick={() =>
+                        window.open(
+                          "https://wa.me/971504547110?text=I%20want%20to%20join%20DAMAC%20broker%20desk",
+                          "_blank"
+                        )
+                      }
+                      data-testid="button-broker-whatsapp"
+                    >
+                      <Phone className="w-4 h-4 mr-2" />
+                      WhatsApp Recruiter
+                    </Button>
+                  </div>
+                </div>
+                <div className="hidden lg:block">
+                  <div className="bg-slate-950/60 rounded-2xl p-6 border border-amber-500/20">
+                    <div className="text-xs uppercase tracking-widest text-amber-300 font-bold mb-4">
+                      Inventory Snapshot
+                    </div>
+                    {[
+                      { name: "DAMAC Hills 2 Villas", count: 38, tag: "-22%" },
+                      { name: "DAMAC Lagoons TH", count: 27, tag: "-18%" },
+                      { name: "Bay by Cavalli", count: 19, tag: "Exclusive" },
+                      { name: "Business Bay Comm.", count: 41, tag: "Lease" },
+                    ].map((row) => (
+                      <div
+                        key={row.name}
+                        className="flex items-center justify-between py-2.5 border-b border-slate-800 last:border-b-0"
+                      >
+                        <div>
+                          <div className="text-sm text-white font-medium">{row.name}</div>
+                          <div className="text-[11px] text-slate-500">{row.count} units live</div>
+                        </div>
+                        <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 text-[10px]">
+                          {row.tag}
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>

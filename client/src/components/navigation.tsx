@@ -35,6 +35,7 @@ const realestateNavItems = [
   { path: "/realestate#damac",  label: "DAMAC",      id: "re-damac",      icon: Crown },
   { path: "/realestate#offers", label: "Inventory",  id: "re-inventory",  icon: KeyRound },
   { path: "/realestate#brokers",label: "Brokers",    id: "re-brokers",    icon: Briefcase },
+  { path: "/realestate#career", label: "Career",     id: "re-career",     icon: Handshake },
   { path: "/realestate#commission", label: "Commission", id: "re-commission", icon: Percent },
   { path: "/realestate#contact", label: "Contact",   id: "re-contact",    icon: MapPin },
 ];
