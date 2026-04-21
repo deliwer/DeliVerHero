@@ -240,7 +240,7 @@ export function StarsSponsorshipSection() {
         {/* Partners CTA - Refined for Calm, Human Feel */}
         <div className="mb-12 max-w-2xl mx-auto text-center">
           <div className="space-y-6">
-            <p className="text-lg text-muted-foreground italic">
+            <p className="text-lg italic text-[#ffffff]">
               "We believe in making Dubai's green transition simple for everyone."
             </p>
             <Link href="/partners" className="block">
