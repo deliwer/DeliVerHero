@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
+import { DistressBrokerTrack } from "@/components/marketing/distress-broker-track";
 import { PartnerSubNav } from "@/components/partner-subnav";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -281,6 +282,11 @@ export default function BrokerPartnerPage() {
       />
       <Navigation />
       <PartnerSubNav />
+
+      {/* DAMAC Distress Deals — Broker Track */}
+      <div className="max-w-6xl mx-auto px-4 pt-6">
+        <DistressBrokerTrack />
+      </div>
 
       {/* ── CAREER PATH CONTEXT BANNER ───────────────────── */}
       <div className="bg-slate-900 border-b border-emerald-500/20 py-0">

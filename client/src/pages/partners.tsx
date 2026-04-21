@@ -16,6 +16,7 @@ import {
   Clock, Lock, UserCheck, Layers, ChevronRight
 } from "lucide-react";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
+import bannerAquaCafe from "@assets/Banner_AquaCafe_1755270492134.jpg";
 
 const WA_NUMBER = "971523946311";
 
@@ -132,6 +133,8 @@ const CAREER_STAGES = [
     steps: ["Sell Kangen/Enagic water systems globally under DeliWer's sponsor ID", "Earn Enagic's 8-point distributor commission (AED 1,299–2,299/unit)", "Income compounds as your worldwide downline grows"],
     cta: { label: "Join Kangen Alliance", href: "/aquacafe-alliance" },
     badge: "🌍 Global",
+    image: bannerAquaCafe,
+    imageAlt: "AquaCafe Alliance — Kangen water systems hero",
   },
 ];
 
@@ -548,6 +551,27 @@ export default function PartnersPage() {
                   viewport={{ once: true }}
                   className={`border rounded-2xl p-6 ${colorMap[stage.color]}`}
                 >
+                  {(stage as any).image && (
+                    <div className="relative -m-6 mb-5 overflow-hidden rounded-t-2xl">
+                      <img
+                        src={(stage as any).image}
+                        alt={(stage as any).imageAlt || stage.title}
+                        className="w-full h-44 sm:h-56 object-cover"
+                        data-testid={`img-stage-hero-${stage.stage}`}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                      <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3">
+                        <span className="text-[10px] font-black uppercase tracking-widest bg-rose-500/30 text-rose-200 border border-rose-500/40 rounded-full px-2.5 py-1">
+                          Final Career Step
+                        </span>
+                        <Link href="/aquacafe-alliance">
+                          <span className="text-[10px] font-black uppercase tracking-widest bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-2.5 py-1 backdrop-blur cursor-pointer">
+                            Explore Alliance →
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                   <div className="flex flex-col md:flex-row md:items-start gap-5">
                     {/* Left: stage number + icon */}
                     <div className="flex items-center gap-4 md:w-16 md:flex-col md:items-center md:gap-2 shrink-0">

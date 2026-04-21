@@ -1,6 +1,7 @@
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/navigation";
+import { DistressBrokerTrack } from "@/components/marketing/distress-broker-track";
 import { Badge } from "@/components/ui/badge";
 import {
   ShieldCheck, Zap, BadgeCheck, Clock, ArrowRight, MessageSquare,
@@ -107,6 +108,13 @@ export default function PartnerProgram() {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* DAMAC Distress Deals — Broker Track */}
+      <section className="px-4 pb-6">
+        <div className="max-w-6xl mx-auto">
+          <DistressBrokerTrack />
         </div>
       </section>
 

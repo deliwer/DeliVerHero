@@ -2,6 +2,7 @@ import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/navigation";
+import { DistressBrokerTrack } from "@/components/marketing/distress-broker-track";
 import { Link } from "wouter";
 import {
   CheckCircle2, MessageCircle, ArrowRight, Users, Building2,
@@ -154,6 +155,13 @@ export default function TransactionSupportPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* DAMAC Distress Deals — Broker Track */}
+      <section className="px-4 pb-2">
+        <div className="max-w-6xl mx-auto">
+          <DistressBrokerTrack />
         </div>
       </section>
 

@@ -1,8 +1,18 @@
 import { Helmet } from "react-helmet";
 import { Link } from "wouter";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Crown,
   TrendingDown,
@@ -14,14 +24,308 @@ import {
   Lock,
   Sparkles,
   Building2,
+  MessageCircle,
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline.jpg";
 import dubaiApartment from "@assets/stock_images/dubai_apartment.jpg";
 import brokerHandshake from "@assets/stock_images/broker_handshake.jpg";
 import keysHandover from "@assets/stock_images/keys_handover.jpg";
 
+const WA_NUMBER = "971523946311";
 const WA_LINK =
   "https://wa.me/971523946311?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20inventory%20through%20DeliWer.%20Please%20share%20details.";
+
+const PROPERTY_INTERESTS = [
+  "Apartments (1-2BR)",
+  "Apartments (3BR+)",
+  "Villas",
+  "Townhouses",
+  "Branded Residences",
+  "Commercial / Business Bay",
+  "Mixed — open to all",
+];
+
+const BUDGET_RANGES = [
+  "Under AED 1M",
+  "AED 1M – 3M",
+  "AED 3M – 5M",
+  "AED 5M – 10M",
+  "AED 10M+",
+  "Multiple buyers — varied",
+];
+
+function RequestAccessForm() {
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    company: "",
+    rera: "",
+    interest: "",
+    budget: "",
+    notes: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const valid =
+    form.name && form.phone && form.interest && form.budget;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!valid) return;
+    const lines = [
+      "Hi DeliWer — Broker Access Request for DAMAC Distress Inventory",
+      "",
+      `Name: ${form.name}`,
+      `WhatsApp: ${form.phone}`,
+      form.email ? `Email: ${form.email}` : "",
+      form.company ? `Brokerage: ${form.company}` : "",
+      form.rera ? `RERA / BRN: ${form.rera}` : "",
+      `Interested in: ${form.interest}`,
+      `Buyer budget: ${form.budget}`,
+      form.notes ? `Notes: ${form.notes}` : "",
+      "",
+      "Please add me to the limited broker pool.",
+    ].filter(Boolean);
+    const msg = encodeURIComponent(lines.join("\n"));
+    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
+    setSubmitted(true);
+  };
+
+  return (
+    <section
+      id="request-access"
+      data-testid="section-request-access"
+      className="relative scroll-mt-32"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-amber-950/30 via-slate-950 to-slate-950 pointer-events-none" />
+      <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-8">
+          <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
+            <Lock className="w-3.5 h-3.5 mr-1.5" /> Limited Broker Slots
+          </Badge>
+          <h2
+            className="text-3xl sm:text-4xl font-bold mb-3"
+            data-testid="heading-request-access-form"
+          >
+            Request Broker Access
+          </h2>
+          <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto">
+            Tell us what your buyers are looking for. We'll match you to the live
+            DAMAC distress inventory and onboard you within 24 hours.
+          </p>
+        </div>
+
+        <Card className="bg-slate-900/80 border-amber-500/30 backdrop-blur">
+          <CardContent className="p-6 sm:p-8">
+            {submitted ? (
+              <div
+                className="text-center py-10 space-y-4"
+                data-testid="state-form-submitted"
+              >
+                <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500/20 border-2 border-emerald-500/50 flex items-center justify-center">
+                  <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">
+                  Request Sent on WhatsApp
+                </h3>
+                <p className="text-slate-300 max-w-md mx-auto">
+                  We'll review your details and reply within{" "}
+                  <strong className="text-white">10 minutes</strong> during
+                  business hours. Keep WhatsApp handy.
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => setSubmitted(false)}
+                  className="border-slate-600 text-slate-300"
+                  data-testid="button-form-restart"
+                >
+                  Submit another request
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      Full Name *
+                    </Label>
+                    <Input
+                      data-testid="input-access-name"
+                      required
+                      value={form.name}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, name: e.target.value }))
+                      }
+                      placeholder="e.g. Ahmed Hassan"
+                      className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      WhatsApp *
+                    </Label>
+                    <Input
+                      data-testid="input-access-phone"
+                      required
+                      type="tel"
+                      value={form.phone}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, phone: e.target.value }))
+                      }
+                      placeholder="+971 50 000 0000"
+                      className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      Email
+                    </Label>
+                    <Input
+                      data-testid="input-access-email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, email: e.target.value }))
+                      }
+                      placeholder="you@brokerage.ae"
+                      className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      Brokerage
+                    </Label>
+                    <Input
+                      data-testid="input-access-company"
+                      value={form.company}
+                      onChange={(e) =>
+                        setForm((f) => ({ ...f, company: e.target.value }))
+                      }
+                      placeholder="Company name"
+                      className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                    RERA / BRN
+                  </Label>
+                  <Input
+                    data-testid="input-access-rera"
+                    value={form.rera}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, rera: e.target.value }))
+                    }
+                    placeholder="Your RERA card or BRN number"
+                    className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
+                  />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      Interested In *
+                    </Label>
+                    <Select
+                      value={form.interest}
+                      onValueChange={(v) =>
+                        setForm((f) => ({ ...f, interest: v }))
+                      }
+                    >
+                      <SelectTrigger
+                        data-testid="select-access-interest"
+                        className="bg-slate-950 border-slate-700 text-white h-11"
+                      >
+                        <SelectValue placeholder="Apartments, villas, ..." />
+                      </SelectTrigger>
+                      <SelectContent className="bg-slate-900 border-slate-700 text-white">
+                        {PROPERTY_INTERESTS.map((p) => (
+                          <SelectItem
+                            key={p}
+                            value={p}
+                            className="focus:bg-slate-800"
+                          >
+                            {p}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      Buyer Budget *
+                    </Label>
+                    <Select
+                      value={form.budget}
+                      onValueChange={(v) =>
+                        setForm((f) => ({ ...f, budget: v }))
+                      }
+                    >
+                      <SelectTrigger
+                        data-testid="select-access-budget"
+                        className="bg-slate-950 border-slate-700 text-white h-11"
+                      >
+                        <SelectValue placeholder="Select budget range" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-slate-900 border-slate-700 text-white">
+                        {BUDGET_RANGES.map((b) => (
+                          <SelectItem
+                            key={b}
+                            value={b}
+                            className="focus:bg-slate-800"
+                          >
+                            {b}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                    Anything else? (optional)
+                  </Label>
+                  <textarea
+                    data-testid="input-access-notes"
+                    rows={3}
+                    value={form.notes}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, notes: e.target.value }))
+                    }
+                    placeholder="Specific community, timing, buyer profile..."
+                    className="w-full bg-slate-950 border border-slate-700 text-white placeholder:text-slate-600 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500/60"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={!valid}
+                  size="lg"
+                  className="w-full h-12 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-slate-950 font-black"
+                  data-testid="button-submit-access-request"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Submit via WhatsApp
+                </Button>
+
+                <p className="text-[11px] text-slate-500 text-center">
+                  Opens WhatsApp with your details pre-filled. We typically reply
+                  within 10 minutes.
+                </p>
+              </form>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+  );
+}
 
 export default function RealEstate() {
   return (
@@ -73,7 +377,7 @@ export default function RealEstate() {
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/broker-partner">
+            <a href="#request-access">
               <Button
                 size="lg"
                 className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
@@ -82,7 +386,7 @@ export default function RealEstate() {
                 Request Access
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </Link>
+            </a>
             <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
@@ -130,6 +434,9 @@ export default function RealEstate() {
           ))}
         </div>
       </section>
+
+      {/* SECTION 1C: REQUEST ACCESS FORM (restored, in-page) */}
+      <RequestAccessForm />
 
       {/* SECTION 2: POSITIONING */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
@@ -211,7 +518,7 @@ export default function RealEstate() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <Link href="/broker-partner">
+            <a href="#request-access">
               <Button
                 size="lg"
                 className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
@@ -219,7 +526,7 @@ export default function RealEstate() {
               >
                 Request Access <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -328,7 +635,7 @@ export default function RealEstate() {
           ))}
         </div>
         <div className="mt-8 flex flex-wrap gap-3 justify-center">
-          <Link href="/broker-partner">
+          <a href="#request-access">
             <Button
               size="lg"
               className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
@@ -336,7 +643,7 @@ export default function RealEstate() {
             >
               Request Access <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -412,7 +719,7 @@ export default function RealEstate() {
             Limited broker onboarding window. Priority for brokers closing monthly.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/broker-partner">
+            <a href="#request-access">
               <Button
                 size="lg"
                 className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
@@ -420,7 +727,7 @@ export default function RealEstate() {
               >
                 Request Access <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </Link>
+            </a>
             <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
