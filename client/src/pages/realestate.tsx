@@ -623,7 +623,7 @@ export default function RealEstate() {
                   </Select>
                 </div>
               </div>
-              <div>
+              <div className="text-[#94a3b8] bg-[transparent]">
                 <Label htmlFor="re-message" className="text-[#ffffff]">Notes</Label>
                 <Textarea
                   id="re-message"
