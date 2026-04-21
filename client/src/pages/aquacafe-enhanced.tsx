@@ -360,6 +360,74 @@ export default function AquaCafeEnhanced() {
           </div>
         </section>
 
+        {/* Lifestyle Showcase - Shower Filter (promoted above product packages) */}
+        <section className="py-16 px-4 bg-gradient-to-br from-purple-50 to-pink-50" data-testid="section-beauty-water">
+          <div className="container mx-auto max-w-7xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-pink-500/20 text-pink-700 px-6 py-3 rounded-full mb-6">
+                  <Sparkles className="w-5 h-5" />
+                  <span className="font-bold">BEAUTY WATER SOLUTION</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+                  Transform Your Beauty Routine
+                </h2>
+                <p className="text-lg text-gray-700 mb-6">
+                  Experience the difference of filtered shower water. Our ionic filtration systems remove chlorine 
+                  and impurities, leaving your skin softer and hair healthier.
+                </p>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-pink-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Sparkles className="w-5 h-5 text-pink-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800">Healthier Skin & Hair</h4>
+                      <p className="text-gray-600">Chlorine-free water for beauty & wellness</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Droplets className="w-5 h-5 text-cyan-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800">pH Balanced Water</h4>
+                      <p className="text-gray-600">Perfect for sensitive skin</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Gift className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800">Earn DXBs with Purchase</h4>
+                      <p className="text-gray-600">Included with AquaCafe membership</p>
+                    </div>
+                  </li>
+                </ul>
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-bold"
+                  onClick={() => {
+                    const productsSection = document.getElementById('products');
+                    productsSection?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  data-testid="button-shop-beauty-water"
+                >
+                  Shop Beauty Water Systems
+                </Button>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={showerFilterCollage} 
+                  alt="Ionic Shower Filter Collection" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Products Section with DXB Earning */}
         <section id="products" className="py-16 px-4 bg-gray-50 dark:bg-gray-800">
           <div className="container mx-auto max-w-7xl">
@@ -519,73 +587,6 @@ export default function AquaCafeEnhanced() {
                 >
                   Learn More About Earning DXBs →
                 </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Lifestyle Showcase - Shower Filter */}
-        <section className="py-16 px-4 bg-gradient-to-br from-purple-50 to-pink-50">
-          <div className="container mx-auto max-w-7xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-pink-500/20 text-pink-700 px-6 py-3 rounded-full mb-6">
-                  <Sparkles className="w-5 h-5" />
-                  <span className="font-bold">BEAUTY WATER SOLUTION</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-                  Transform Your Beauty Routine
-                </h2>
-                <p className="text-lg text-gray-700 mb-6">
-                  Experience the difference of filtered shower water. Our ionic filtration systems remove chlorine 
-                  and impurities, leaving your skin softer and hair healthier.
-                </p>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-pink-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Sparkles className="w-5 h-5 text-pink-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800">Healthier Skin & Hair</h4>
-                      <p className="text-gray-600">Chlorine-free water for beauty & wellness</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Droplets className="w-5 h-5 text-cyan-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800">pH Balanced Water</h4>
-                      <p className="text-gray-600">Perfect for sensitive skin</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Gift className="w-5 h-5 text-emerald-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800">Earn DXBs with Purchase</h4>
-                      <p className="text-gray-600">Included with AquaCafe membership</p>
-                    </div>
-                  </li>
-                </ul>
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-bold"
-                  onClick={() => {
-                    const productsSection = document.getElementById('products');
-                    productsSection?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Shop Beauty Water Systems
-                </Button>
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src={showerFilterCollage} 
-                  alt="Ionic Shower Filter Collection" 
-                  className="w-full h-full object-cover"
-                />
               </div>
             </div>
           </div>
