@@ -33,7 +33,7 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
   return (
     <div className="sticky top-[104px] z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800 shadow-lg">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-12 gap-2">
+        <div className="flex items-center justify-between h-16 gap-2">
           <nav className="flex items-center overflow-x-auto no-scrollbar flex-1 min-w-0">
             {items.map((item) => (
               <button
@@ -43,7 +43,7 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
                   const el = document.getElementById(item.id);
                   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
-                className="px-4 h-12 text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-emerald-400 hover:bg-white/5 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-emerald-500"
+                className="px-4 h-16 text-xs font-black uppercase tracking-widest text-gray-300 hover:text-emerald-400 hover:bg-white/5 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-emerald-500"
               >
                 {item.label}
               </button>
@@ -52,11 +52,11 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
           <a
             href="/marketing"
             data-testid="link-admin"
-            className="w-10 h-10 rounded-xl flex items-center justify-center hover:text-emerald-300 hover:bg-emerald-500/20 transition-all shrink-0 ml-2 bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
+            className="w-12 h-12 rounded-xl flex items-center justify-center hover:text-emerald-300 hover:bg-emerald-500/25 transition-all shrink-0 ml-2 bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 shadow-lg shadow-emerald-500/10"
             aria-label="Marketing Center"
             title="Marketing Center"
           >
-            <Lock className="w-5 h-5" />
+            <Lock className="w-6 h-6" />
           </a>
         </div>
       </div>

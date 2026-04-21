@@ -214,6 +214,100 @@ export default function MarketingHub() {
               </div>
             </Link>
 
+            {/* Partner Funnel Map */}
+            <div className="bg-slate-900/60 border border-white/10 rounded-2xl p-6">
+              <div className="flex items-start justify-between gap-4 mb-5 flex-wrap">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 px-2 py-0.5 rounded-full">Partner Funnel</span>
+                  <h3 className="font-black text-white text-lg mt-2">End-to-End Earning Path</h3>
+                  <p className="text-slate-400 text-sm mt-1">From cold broker → activated partner → recurring commission across DeliWer + DAMAC.</p>
+                </div>
+                <Link href="/partners" className="text-xs px-3 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 rounded-lg font-bold transition-all" data-testid="link-funnel-partners">
+                  Public Funnel →
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {[
+                  { step: "01", title: "Recruit", desc: "Auto-email 32k RERA brokers", href: "/marketing/recruit", color: "emerald", icon: "📡" },
+                  { step: "02", title: "Activate", desc: "Onboard via /partners funnel", href: "/partners", color: "cyan", icon: "🤝" },
+                  { step: "03", title: "Equip", desc: "Broker desk + DAMAC inventory", href: "/broker-partner", color: "amber", icon: "🏢" },
+                  { step: "04", title: "Earn", desc: "Move-in + DAMAC commissions", href: "/marketing/leaderboard", color: "purple", icon: "💸" },
+                ].map((s) => (
+                  <Link key={s.step} href={s.href} data-testid={`funnel-step-${s.step}`}>
+                    <div className="bg-slate-950/70 hover:bg-slate-900 border border-white/10 hover:border-emerald-500/40 rounded-xl p-4 h-full transition-all cursor-pointer">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-2xl">{s.icon}</span>
+                        <span className="text-[10px] font-black text-gray-600 tracking-widest">{s.step}</span>
+                      </div>
+                      <div className="text-white font-black text-sm mb-1">{s.title}</div>
+                      <div className="text-xs text-gray-500 leading-snug">{s.desc}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* DAMAC Distress Earning Source */}
+            <div className="relative bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950 border border-amber-500/40 rounded-2xl p-6 overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="relative grid lg:grid-cols-3 gap-6 items-center">
+                <div className="lg:col-span-2">
+                  <div className="flex items-center gap-2 mb-3 flex-wrap">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded-full">🔥 Live Earning Source</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-red-300 bg-red-500/15 border border-red-500/30 px-2 py-0.5 rounded-full">Reset Market</span>
+                  </div>
+                  <h3 className="font-black text-white text-xl mb-2">DAMAC Distress Inventory — Plug Brokers Into the Highest-Ticket Funnel</h3>
+                  <p className="text-slate-300 text-sm leading-relaxed mb-4">
+                    Route recruited brokers from the partner funnel directly into DAMAC distress deals — villas, branded apartments and Business Bay commercial. Pre-portal access, motivated sellers, AED 25k+ avg payout per close.
+                  </p>
+                  <div className="grid grid-cols-3 gap-3 mb-5">
+                    <div className="bg-slate-950/60 border border-amber-500/20 rounded-xl p-3 text-center">
+                      <div className="text-xl font-black text-amber-300">120+</div>
+                      <div className="text-[10px] text-gray-500 mt-0.5">Live distress units</div>
+                    </div>
+                    <div className="bg-slate-950/60 border border-amber-500/20 rounded-xl p-3 text-center">
+                      <div className="text-xl font-black text-amber-300">70%</div>
+                      <div className="text-[10px] text-gray-500 mt-0.5">Top broker split</div>
+                    </div>
+                    <div className="bg-slate-950/60 border border-amber-500/20 rounded-xl p-3 text-center">
+                      <div className="text-xl font-black text-amber-300">25k+</div>
+                      <div className="text-[10px] text-gray-500 mt-0.5">AED per close</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Link href="/realestate#career" className="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-black font-bold px-4 py-2 rounded-lg text-xs transition-all" data-testid="link-damac-broker-opp">
+                      🏆 Broker Opportunity →
+                    </Link>
+                    <Link href="/realestate#offers" className="inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/40 font-bold px-4 py-2 rounded-lg text-xs transition-all" data-testid="link-damac-inventory">
+                      📋 Live Inventory
+                    </Link>
+                    <a href={buildWhatsAppURL("damac", "marketing-hub")} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/40 font-bold px-4 py-2 rounded-lg text-xs transition-all" data-testid="link-damac-whatsapp">
+                      💬 WhatsApp Recruiter
+                    </a>
+                  </div>
+                </div>
+                <div className="hidden lg:block">
+                  <div className="bg-slate-950/70 border border-amber-500/20 rounded-2xl p-4">
+                    <div className="text-[10px] uppercase tracking-widest text-amber-300 font-black mb-3">Inventory Snapshot</div>
+                    {[
+                      { name: "DAMAC Hills 2 Villas", count: 38, tag: "-22%" },
+                      { name: "DAMAC Lagoons TH", count: 27, tag: "-18%" },
+                      { name: "Bay by Cavalli", count: 19, tag: "Excl." },
+                      { name: "Business Bay Comm.", count: 41, tag: "Lease" },
+                    ].map((row) => (
+                      <div key={row.name} className="flex items-center justify-between py-2 border-b border-slate-800 last:border-b-0">
+                        <div>
+                          <div className="text-xs text-white font-semibold">{row.name}</div>
+                          <div className="text-[10px] text-gray-600">{row.count} units live</div>
+                        </div>
+                        <span className="text-[10px] font-black text-amber-300 bg-amber-500/15 border border-amber-500/30 rounded-full px-2 py-0.5">{row.tag}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Status Breakdown + Lead Form side by side */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
