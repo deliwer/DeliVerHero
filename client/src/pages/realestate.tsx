@@ -588,7 +588,7 @@ export default function RealEstate() {
                   </Select>
                 </div>
                 <div>
-                  <Label>Property Type</Label>
+                  <Label className="text-[#ffffff]">Property Type</Label>
                   <Select
                     value={formData.propertyType}
                     onValueChange={(v) => setFormData({ ...formData, propertyType: v })}
