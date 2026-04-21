@@ -183,7 +183,6 @@ export default function RealEstate() {
           content="Exclusive DAMAC inventory and distress deals in Dubai. Brokerage built for the post-war reset market."
         />
       </Helmet>
-
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-amber-500/20">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950" />
@@ -304,7 +303,6 @@ export default function RealEstate() {
           </div>
         </div>
       </section>
-
       {/* Value Props */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
@@ -339,7 +337,6 @@ export default function RealEstate() {
           ))}
         </div>
       </section>
-
       {/* DAMAC Offers */}
       <section className="bg-slate-900/40 border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -412,7 +409,6 @@ export default function RealEstate() {
           </div>
         </div>
       </section>
-
       {/* Two business tracks */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-6">
@@ -487,7 +483,6 @@ export default function RealEstate() {
           </Card>
         </div>
       </section>
-
       {/* Fast Start Roadmap */}
       <section className="bg-slate-900/40 border-y border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -512,7 +507,7 @@ export default function RealEstate() {
                   <div className="text-amber-300 text-xs font-semibold tracking-wider mb-2">
                     {s.step}
                   </div>
-                  <div className="font-semibold mb-1.5 flex items-center gap-2">
+                  <div className="font-semibold mb-1.5 flex items-center gap-2 text-[#ffffff]">
                     <KeyRound className="w-4 h-4 text-amber-300" />
                     {s.title}
                   </div>
@@ -523,7 +518,6 @@ export default function RealEstate() {
           </div>
         </div>
       </section>
-
       {/* Lead Form */}
       <section ref={formRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Card className="bg-slate-900/70 border-amber-500/30">
@@ -658,7 +652,6 @@ export default function RealEstate() {
           </CardContent>
         </Card>
       </section>
-
       <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
         <div className="flex items-center justify-center gap-2 mb-1">
           <Building2 className="w-4 h-4 text-amber-300" />
