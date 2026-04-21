@@ -204,7 +204,7 @@ export function StarsSponsorshipSection() {
                   Live, Play, Impact Dubai
                 </h2>
 
-                <p className="text-base md:text-lg text-muted-foreground mb-6">
+                <p className="text-base md:text-lg mb-6 text-[#fafafa]">
                   Make Dubai your home and join Planet Hero Gaming. Every mission you complete in the game funds local environmental impact, from water security to e-waste recycling.
                 </p>
 
