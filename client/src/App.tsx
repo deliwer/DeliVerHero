@@ -233,6 +233,7 @@ function Router() {
         <Route path="/damac" component={RealEstate} />
         <Route path="/" component={Landing} />
         <Route path="/start" component={StartPage} />
+        <Route path="/launch" component={StartPage} />
         <Route path="/move-in-plan" component={MoveInPlan} />
         <Route path="/partner-program" component={PartnerProgram} />
         <Route path="/community-toolkit" component={CommunityToolkit} />
