@@ -31,10 +31,10 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
     { label: "Join Now", id: "join" },
   ];
   return (
-    <div className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur border-b border-slate-800 shadow-lg">
+    <div className="sticky top-[104px] z-30 bg-slate-950/95 backdrop-blur border-b border-slate-800 shadow-lg">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-11">
-          <nav className="flex items-center overflow-x-auto scrollbar-none">
+        <div className="flex items-center justify-between h-12 gap-2">
+          <nav className="flex items-center overflow-x-auto no-scrollbar flex-1 min-w-0">
             {items.map((item) => (
               <button
                 key={item.id}
@@ -43,19 +43,20 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
                   const el = document.getElementById(item.id);
                   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
-                className="px-4 h-11 text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-emerald-400 hover:bg-white/5 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-emerald-500"
+                className="px-4 h-12 text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-emerald-400 hover:bg-white/5 transition-all whitespace-nowrap border-b-2 border-transparent hover:border-emerald-500"
               >
                 {item.label}
               </button>
             ))}
           </nav>
           <a
-            href="/marketing/recruit"
+            href="/marketing"
             data-testid="link-admin"
-            className="w-7 h-7 rounded-lg flex items-center justify-center hover:text-emerald-500 hover:bg-emerald-500/10 transition-all shrink-0 ml-2 bg-white/10 text-emerald-400"
-            aria-label="Admin"
+            className="w-10 h-10 rounded-xl flex items-center justify-center hover:text-emerald-300 hover:bg-emerald-500/20 transition-all shrink-0 ml-2 bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
+            aria-label="Marketing Center"
+            title="Marketing Center"
           >
-            <Lock className="w-3.5 h-3.5" />
+            <Lock className="w-5 h-5" />
           </a>
         </div>
       </div>
