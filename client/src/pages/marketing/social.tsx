@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "wouter";
+import { BrokerAccessBanner, StickyBrokerWhatsApp } from "@/components/marketing/broker-enhancement-bar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -176,6 +177,7 @@ export default function SocialAgentPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-white font-sans">
+      <BrokerAccessBanner compact />
       {/* Header */}
       <div className="sticky top-0 z-50 bg-[#0a0f1e]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -747,6 +749,7 @@ export default function SocialAgentPage() {
           </div>
         )}
       </div>
+      <StickyBrokerWhatsApp />
     </div>
   );
 }

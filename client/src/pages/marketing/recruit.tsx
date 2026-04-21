@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Link } from "wouter";
+import { BrokerAccessBanner, StickyBrokerWhatsApp } from "@/components/marketing/broker-enhancement-bar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -469,6 +470,7 @@ export default function RecruitPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
+      <BrokerAccessBanner />
       {/* Header */}
       <div className="border-b border-slate-800 bg-slate-900/80 sticky top-[100px] z-10 backdrop-blur">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -1418,6 +1420,7 @@ export default function RecruitPage() {
         </div>
 
       </div>
+      <StickyBrokerWhatsApp />
     </div>
   );
 }

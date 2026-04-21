@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link } from "wouter";
 import { initTracker, getTracking, buildWhatsAppURL, submitLead, fetchSheetData, DEMO_LEADS, LeadPayload } from "@/lib/marketing-tracker";
+import { BrokerAccessBanner, StickyBrokerWhatsApp } from "@/components/marketing/broker-enhancement-bar";
 
 type TabId = "overview" | "leads" | "partners";
 
@@ -117,6 +118,8 @@ export default function MarketingHub() {
           </nav>
         </div>
       </div>
+
+      <BrokerAccessBanner />
 
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
 
@@ -579,6 +582,8 @@ export default function MarketingHub() {
           ))}
         </div>
       </div>
+
+      <StickyBrokerWhatsApp />
     </div>
   );
 }
