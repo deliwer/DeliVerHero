@@ -559,7 +559,7 @@ export default function RealEstate() {
                 </div>
               </div>
               <div className="text-[#ffffff]">
-                <Label htmlFor="re-email">Email</Label>
+                <Label htmlFor="re-email" className="text-[#ffffff]">Email</Label>
                 <Input
                   id="re-email"
                   type="email"
@@ -571,7 +571,7 @@ export default function RealEstate() {
               </div>
               <div className="grid sm:grid-cols-3 gap-4">
                 <div className="text-[#ffffff]">
-                  <Label>I am a</Label>
+                  <Label className="text-[#ffffff]">I am a</Label>
                   <Select
                     value={formData.interest}
                     onValueChange={(v) => setFormData({ ...formData, interest: v })}
@@ -605,7 +605,7 @@ export default function RealEstate() {
                   </Select>
                 </div>
                 <div>
-                  <Label>Budget</Label>
+                  <Label className="text-[#ffffff]">Budget</Label>
                   <Select
                     value={formData.budget}
                     onValueChange={(v) => setFormData({ ...formData, budget: v })}
