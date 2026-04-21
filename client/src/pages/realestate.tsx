@@ -558,7 +558,7 @@ export default function RealEstate() {
                   />
                 </div>
               </div>
-              <div>
+              <div className="text-[#ffffff]">
                 <Label htmlFor="re-email">Email</Label>
                 <Input
                   id="re-email"
