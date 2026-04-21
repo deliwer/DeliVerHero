@@ -421,7 +421,7 @@ export default function RealEstate() {
               <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 w-fit mb-2">
                 For Buyers & Tenants
               </Badge>
-              <CardTitle className="text-2xl flex items-center gap-2">
+              <CardTitle className="text-2xl flex items-center gap-2 text-[#ffffff]">
                 <Home className="w-6 h-6 text-amber-300" />
                 Residential & Commercial Deals
               </CardTitle>
