@@ -1,0 +1,44 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "y5vZkTh-MTw1BLqoiRlXS"
+uri = "file://attached_assets/stock_images/dubai_damac_skyline.jpg"
+type = "image"
+title = "Dubai skyline at sunset DAMAC luxury towers Business Bay marina"
+
+[[outputs]]
+id = "vO4KQGM5-bdEdwQeLvGxz"
+uri = "file://attached_assets/stock_images/dubai_luxury_apartment.jpg"
+type = "image"
+title = "luxury Dubai apartment interior modern penthouse view of skyline"
+
+[[outputs]]
+id = "BgKHkDcNpoWKL5duyOiXy"
+uri = "file://attached_assets/stock_images/broker_handshake_dubai.jpg"
+type = "image"
+title = "professional real estate broker handshake meeting Dubai office suit"
+
+[[outputs]]
+id = "n-BM6o4s7bcRqE1Wfb945"
+uri = "file://attached_assets/stock_images/dubai_skyline.jpg"
+type = "image"
+title = "Dubai skyline at sunset DAMAC luxury towers Business Bay marina"
+
+[[outputs]]
+id = "Y4luNkdwqeHiRB4oEoZy-"
+uri = "file://attached_assets/stock_images/dubai_apartment.jpg"
+type = "image"
+title = "luxury Dubai apartment interior modern penthouse view of skyline"
+
+[[outputs]]
+id = "06TDoxW3xpxggiRpJbaKm"
+uri = "file://attached_assets/stock_images/broker_handshake.jpg"
+type = "image"
+title = "professional real estate broker handshake meeting Dubai office suit"
+
+[[outputs]]
+id = "sQ0IedwjjfMFbfIlsTQKl"
+uri = "file://attached_assets/stock_images/keys_handover.jpg"
+type = "image"
+title = "modern keys handover apartment new home Dubai"

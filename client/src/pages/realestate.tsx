@@ -15,6 +15,10 @@ import {
   Sparkles,
   Building2,
 } from "lucide-react";
+import dubaiSkyline from "@assets/stock_images/dubai_skyline.jpg";
+import dubaiApartment from "@assets/stock_images/dubai_apartment.jpg";
+import brokerHandshake from "@assets/stock_images/broker_handshake.jpg";
+import keysHandover from "@assets/stock_images/keys_handover.jpg";
 
 const WA_LINK =
   "https://wa.me/971523946311?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20inventory%20through%20DeliWer.%20Please%20share%20details.";
@@ -40,7 +44,14 @@ export default function RealEstate() {
 
       {/* SECTION 1: HERO */}
       <section className="relative overflow-hidden border-b border-amber-500/20">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950" />
+        <img
+          src={dubaiSkyline}
+          alt="Dubai skyline at sunset with luxury DAMAC towers"
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          data-testid="img-hero-bg"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/85 via-slate-950/75 to-amber-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
           <Badge
             className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-5"
@@ -136,8 +147,15 @@ export default function RealEstate() {
       </section>
 
       {/* SECTION 3: VALUE STACK */}
-      <section className="bg-slate-900/40 border-y border-slate-800">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="relative overflow-hidden border-y border-slate-800">
+        <img
+          src={dubaiApartment}
+          alt="Luxury Dubai apartment interior"
+          className="absolute inset-0 w-full h-full object-cover opacity-25"
+          data-testid="img-value-bg"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/85 to-slate-950/90" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-10">
             <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-value-stack">
               What you unlock
@@ -207,7 +225,15 @@ export default function RealEstate() {
       </section>
 
       {/* SECTION 4: WHY IT WORKS */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="relative overflow-hidden">
+        <img
+          src={brokerHandshake}
+          alt="Real estate broker handshake"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          data-testid="img-why-bg"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-why-it-works">
             Why brokers are using this
@@ -231,6 +257,7 @@ export default function RealEstate() {
               <span className="text-slate-200">{t}</span>
             </div>
           ))}
+        </div>
         </div>
       </section>
 
@@ -366,8 +393,15 @@ export default function RealEstate() {
       </section>
 
       {/* SECTION 7: FINAL CTA */}
-      <section className="border-t border-amber-500/20 bg-gradient-to-br from-amber-500/10 via-slate-900 to-slate-950">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+      <section className="relative overflow-hidden border-t border-amber-500/20">
+        <img
+          src={keysHandover}
+          alt="Keys handover for new Dubai apartment"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          data-testid="img-cta-bg"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-amber-950/40 to-slate-950/90" />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <h2
             className="text-3xl sm:text-5xl font-bold mb-6"
             data-testid="heading-final-cta"
