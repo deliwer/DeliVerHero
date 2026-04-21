@@ -16,6 +16,7 @@ import waterFilter2 from "@assets/stock_images/5-stage_water_purifi_ca3daeaf.jpg
 import waterFilter3 from "@assets/stock_images/5-stage_water_purifi_b2e38594.jpg";
 import cleanWater1 from "@assets/stock_images/clean_water_sustaina_50892fbd.jpg";
 import cleanWater2 from "@assets/stock_images/clean_water_sustaina_b2e8ad83.jpg";
+import productsHeroBg from "@assets/without_text_1776804294454.jpg";
 import beautyWater1 from "@assets/Beauty_Water_1_1756065010937.jpg";
 import beautyWater2 from "@assets/Beauty_Water_2_1756065010940.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
@@ -190,7 +191,6 @@ export default function AquaCafeEnhanced() {
           {JSON.stringify(productJsonLd)}
         </script>
       </Helmet>
-
       <div className="min-h-screen bg-white dark:bg-gray-900">
         {/* Lifestyle Hero Section */}
         <section className="relative bg-gradient-to-br from-cyan-500 via-blue-600 to-teal-600 text-white py-20 px-4 overflow-hidden">
@@ -436,7 +436,7 @@ export default function AquaCafeEnhanced() {
                 <Gift className="w-5 h-5" />
                 <span className="font-bold">EARN PLANET IMPACT CREDITS (DXBs)</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#be185d]">
                 Choose Your Water Filter & Start Earning
               </h2>
               <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto text-lg">
