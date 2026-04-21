@@ -526,7 +526,7 @@ export default function RealEstate() {
               <Award className="w-3.5 h-3.5 mr-1.5" />
               Talk to the DAMAC Desk
             </Badge>
-            <CardTitle className="text-2xl sm:text-3xl">
+            <CardTitle className="text-2xl sm:text-3xl text-[#ffffff]">
               Get Distress Deals & Partner Terms
             </CardTitle>
             <CardDescription className="text-slate-400">
