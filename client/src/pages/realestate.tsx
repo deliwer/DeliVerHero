@@ -261,7 +261,7 @@ export default function RealEstate() {
               <CardContent className="space-y-4">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="text-xl font-semibold">DAMAC Hills 2 — 4BR Villa</div>
+                    <div className="text-xl font-semibold text-[#ffffff]">DAMAC Hills 2 — 4BR Villa</div>
                     <div className="text-sm text-slate-400 flex items-center gap-1 mt-1">
                       <MapPin className="w-3.5 h-3.5" /> Dubailand
                     </div>
