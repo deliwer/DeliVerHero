@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { getReferralLink } from "@/lib/marketing-tracker";
 import { BrokerAccessBanner, StickyBrokerWhatsApp } from "@/components/marketing/broker-enhancement-bar";
+import { MarketingSubNav } from "@/components/marketing/marketing-subnav";
 
 export default function PartnerOnboarding() {
   const [name, setName] = useState("");
@@ -35,6 +36,7 @@ export default function PartnerOnboarding() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-white font-sans">
+      <MarketingSubNav />
       <BrokerAccessBanner />
       <div className="sticky top-0 z-50 bg-[#0a0f1e]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">

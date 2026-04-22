@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { BrokerAccessBanner, StickyBrokerWhatsApp } from "@/components/marketing/broker-enhancement-bar";
+import { MarketingSubNav } from "@/components/marketing/marketing-subnav";
 
 const LEGACY_PAGES = [
   {
@@ -37,6 +38,7 @@ const LEGACY_PAGES = [
 export default function MarketingLegacy() {
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-white font-sans">
+      <MarketingSubNav />
       <BrokerAccessBanner compact />
       <div className="sticky top-0 z-50 bg-[#0a0f1e]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">

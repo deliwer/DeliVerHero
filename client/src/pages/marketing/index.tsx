@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { Link } from "wouter";
 import { initTracker, getTracking, buildWhatsAppURL, submitLead, fetchSheetData, DEMO_LEADS, LeadPayload } from "@/lib/marketing-tracker";
 import { BrokerAccessBanner, StickyBrokerWhatsApp } from "@/components/marketing/broker-enhancement-bar";
+import { MarketingSubNav } from "@/components/marketing/marketing-subnav";
 
 type TabId = "overview" | "leads" | "partners";
 
@@ -102,8 +103,9 @@ export default function MarketingHub() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-white font-sans">
+      <MarketingSubNav />
       {/* Sticky Nav + Trust Strip — kept together so both stay always visible */}
-      <div className="sticky top-0 z-50 bg-[#0a0f1e]/95 backdrop-blur border-b border-white/10 shadow-lg shadow-black/20">
+      <div className="bg-[#0a0f1e]/95 backdrop-blur border-b border-white/10 shadow-lg shadow-black/20">
         <div className="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-xl font-black tracking-tight">DELIWER</span>

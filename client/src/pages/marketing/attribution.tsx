@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
   Activity, Users, MessageCircle, Link2, RefreshCcw, Download,
-  Lock, Search, ArrowLeft, ExternalLink,
+  Search, ExternalLink,
 } from "lucide-react";
+import { MarketingSubNav } from "@/components/marketing/marketing-subnav";
 
 interface Entry {
   ref: string;
@@ -24,17 +25,6 @@ interface Totals {
   links: number;
   byRef: Record<string, number>;
 }
-
-const MARKETING_TABS = [
-  { href: "/marketing", label: "Hub" },
-  { href: "/marketing/dashboard", label: "Dashboard" },
-  { href: "/marketing/leaderboard", label: "Leaderboard" },
-  { href: "/marketing/partners", label: "Partners" },
-  { href: "/marketing/recruit", label: "Recruit" },
-  { href: "/marketing/social", label: "Social" },
-  { href: "/marketing/control", label: "Control" },
-  { href: "/marketing/attribution", label: "Attribution" },
-];
 
 export default function AttributionPage() {
   const [entries, setEntries] = useState<Entry[]>([]);
@@ -107,52 +97,16 @@ export default function AttributionPage() {
         description="Private founder-only attribution feed."
       />
 
-      {/* Founder header */}
-      <div className="bg-gradient-to-r from-rose-950/40 via-slate-900 to-slate-900 border-b border-rose-500/30">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Link href="/marketing">
-              <button className="text-gray-400 hover:text-white" data-testid="link-back-marketing">
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-            </Link>
-            <Lock className="w-4 h-4 text-rose-400" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-rose-300">
-              Founder Console · Private · Not Indexed
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button data-testid="button-refresh" onClick={load} disabled={loading} size="sm" variant="outline" className="border-slate-700 text-gray-300 hover:bg-slate-800">
-              <RefreshCcw className={`w-3.5 h-3.5 mr-2 ${loading ? "animate-spin" : ""}`} /> Refresh
-            </Button>
-            <Button data-testid="button-export" onClick={exportCSV} size="sm" className="bg-emerald-600 hover:bg-emerald-500 font-black">
-              <Download className="w-3.5 h-3.5 mr-2" /> Export CSV
-            </Button>
-          </div>
-        </div>
+      <MarketingSubNav />
 
-        {/* Marketing sub-nav */}
-        <div className="max-w-7xl mx-auto px-4 pb-2 -mt-1">
-          <nav className="flex items-center overflow-x-auto no-scrollbar gap-1">
-            {MARKETING_TABS.map((t) => {
-              const active = typeof window !== "undefined" && window.location.pathname === t.href;
-              return (
-                <Link key={t.href} href={t.href}>
-                  <span
-                    data-testid={`tab-${t.label.toLowerCase()}`}
-                    className={`px-3 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-lg whitespace-nowrap cursor-pointer transition-all ${
-                      active
-                        ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-                        : "text-gray-400 hover:text-white hover:bg-white/5 border border-transparent"
-                    }`}
-                  >
-                    {t.label}
-                  </span>
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
+      {/* Action bar */}
+      <div className="max-w-7xl mx-auto px-4 pt-5 flex items-center justify-end gap-2">
+        <Button data-testid="button-refresh" onClick={load} disabled={loading} size="sm" variant="outline" className="border-slate-700 text-gray-300 hover:bg-slate-800">
+          <RefreshCcw className={`w-3.5 h-3.5 mr-2 ${loading ? "animate-spin" : ""}`} /> Refresh
+        </Button>
+        <Button data-testid="button-export" onClick={exportCSV} size="sm" className="bg-emerald-600 hover:bg-emerald-500 font-black">
+          <Download className="w-3.5 h-3.5 mr-2" /> Export CSV
+        </Button>
       </div>
 
       {/* Hero */}
