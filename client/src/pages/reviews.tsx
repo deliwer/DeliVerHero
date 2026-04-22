@@ -5,6 +5,8 @@ import { Star, Quote, MapPin, ExternalLink } from "lucide-react";
 import { SiGoogle, SiWhatsapp } from "react-icons/si";
 import { SEOMeta } from "@/components/seo-meta";
 import { useState, useMemo } from "react";
+import NicoleImg from "@assets/Nicole_Oliver.jpeg";
+import BeckyImg from "@assets/Becky_Choi_1776889041274.jpeg";
 
 type ReviewService = "AquaCafe" | "Move-In" | "Visa" | "All";
 
@@ -21,6 +23,7 @@ interface Review {
   source: "google" | "whatsapp" | "direct";
   verified: boolean;
   reviewCount?: number;
+  image?: string;
 }
 
 const REVIEWS: Review[] = [
@@ -39,8 +42,8 @@ const REVIEWS: Review[] = [
     reviewCount: 10,
   },
   {
-    id: "bk-choi",
-    name: "bk choi",
+    id: "becky-choi",
+    name: "Becky Choi",
     initials: "BC",
     location: "Dubai",
     rating: 5,
@@ -50,6 +53,7 @@ const REVIEWS: Review[] = [
     source: "google",
     verified: true,
     reviewCount: 23,
+    image: BeckyImg,
   },
   {
     id: "syed-ghayoor-hassan",
@@ -343,9 +347,18 @@ export default function ReviewsPage() {
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center font-bold text-sm">
-                        {r.initials}
-                      </div>
+                      {r.image ? (
+                        <img
+                          src={r.image}
+                          alt={r.name}
+                          className="w-11 h-11 rounded-full object-cover border border-blue-500/30 shadow"
+                          data-testid={`img-review-${r.id}`}
+                        />
+                      ) : (
+                        <div className="w-11 h-11 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center font-bold text-sm">
+                          {r.initials}
+                        </div>
+                      )}
                       <div>
                         <div className="flex items-center gap-2 flex-wrap">
                           <p className="font-bold text-white text-sm">{r.name}</p>

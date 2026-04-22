@@ -18,6 +18,7 @@ import {
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
 import NicoleImg from "@assets/Nicole_Oliver.jpeg";
+import BeckyImg from "@assets/Becky_Choi_1776889041274.jpeg";
 import { useEffect, useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
@@ -731,12 +732,13 @@ export default function LandingPage() {
                   date: "1 week ago",
                 },
                 {
-                  id: "bk-choi",
+                  id: "becky-choi",
                   initials: "BC",
-                  name: "bk choi",
+                  name: "Becky Choi",
                   meta: "Dubai · Local Guide · 23 reviews",
                   quote: "Great service and professional people.",
                   date: "1 year ago",
+                  image: BeckyImg,
                 },
                 {
                   id: "syed-ghayoor",
@@ -757,9 +759,18 @@ export default function LandingPage() {
                     Google
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-300 font-black text-xs">
-                      {r.initials}
-                    </div>
+                    {(r as any).image ? (
+                      <img
+                        src={(r as any).image}
+                        alt={r.name}
+                        className="w-10 h-10 rounded-full object-cover border border-blue-500/40 shadow"
+                        data-testid={`img-landing-review-${r.id}`}
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-300 font-black text-xs">
+                        {r.initials}
+                      </div>
+                    )}
                     <div className="text-left">
                       <p className="text-white font-black text-xs">{r.name}</p>
                       <p className="text-gray-500 text-[10px]">{r.meta}</p>

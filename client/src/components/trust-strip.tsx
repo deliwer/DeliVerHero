@@ -171,7 +171,7 @@ const testimonials = [
   },
   {
     quote: "Great service and professional people.",
-    author: "bk choi",
+    author: "Becky Choi",
     location: "Dubai",
     rating: 5,
     verified: true,

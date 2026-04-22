@@ -3,6 +3,7 @@ import { Star, Quote } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import { useState, useEffect } from "react";
 import NicoleImg from "@assets/Nicole_Oliver.jpeg";
+import BeckyImg from "@assets/Becky_Choi_1776889041274.jpeg";
 
 interface Testimonial {
   id: number;
@@ -74,14 +75,15 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 6,
-    name: "bk choi",
+    name: "Becky Choi",
     location: "Dubai",
     rating: 5,
     text: "Great service and professional people.",
     date: "1 year ago",
     verified: true,
     source: "google",
-    reviewCount: 23
+    reviewCount: 23,
+    image: BeckyImg
   },
   {
     id: 7,
