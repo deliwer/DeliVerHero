@@ -67,6 +67,7 @@ const DeBacciWelcome = lazy(() => import("@/pages/partners/debacci-welcome"));
 const EGLCWelcome = lazy(() => import("@/pages/partners/eglc-welcome"));
 const MytablonWelcome = lazy(() => import("@/pages/partners/mytablon-welcome"));
 const PartnersJoin = lazy(() => import("@/pages/partners/join"));
+const JoinWelcome = lazy(() => import("@/pages/join"));
 const PartnersHowItWorks = lazy(() => import("@/pages/partners/how-it-works"));
 const PartnersEarnings = lazy(() => import("@/pages/partners/earnings"));
 const PartnersResources = lazy(() => import("@/pages/partners/resources"));
@@ -324,6 +325,12 @@ function Router() {
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners/career" component={PartnersCareer} />
         <Route path="/partners/join"><Redirect to="/brokers" /></Route>
+        <Route path="/join" component={JoinWelcome} />
+        <Route path="/welcome" component={JoinWelcome} />
+        <Route path="/invite" component={JoinWelcome} />
+        <Route path="/r/:code">
+          {(params) => <Redirect to={`/join?ref=${encodeURIComponent(params.code || "")}`} />}
+        </Route>
         <Route path="/partners/how-it-works" component={PartnersHowItWorks} />
         <Route path="/partners/earnings" component={PartnersEarnings} />
         <Route path="/partners/resources" component={PartnersResources} />

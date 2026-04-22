@@ -125,7 +125,23 @@ export function buildWhatsAppMessage(base: {
       if (value && value.trim()) parts.push(`${label}: ${value.trim()}.`);
     }
   }
-  if (ref?.code) parts.push(`Ref: ${ref.code}.`);
+  // ── Attribution block (commission accounting) ──
+  if (typeof window !== "undefined") {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const refName = params.get("refName") || params.get("from");
+      const team = params.get("team") || params.get("utm_campaign");
+      const channel = params.get("utm_source") || params.get("src");
+      if (ref?.code) parts.push(`Referrer Code: ${ref.code}.`);
+      if (refName) parts.push(`Referrer Name: ${refName.replace(/[-_+]/g, " ")}.`);
+      if (team) parts.push(`Team: ${team}.`);
+      if (channel) parts.push(`Channel: ${channel}.`);
+    } catch (_) {
+      if (ref?.code) parts.push(`Referrer Code: ${ref.code}.`);
+    }
+  } else if (ref?.code) {
+    parts.push(`Referrer Code: ${ref.code}.`);
+  }
   parts.push(`Source: ${typeof window !== "undefined" ? window.location.pathname : "deliwer.com"}.`);
   parts.push(
     `Time: ${new Date().toLocaleString("en-GB", { timeZone: "Asia/Dubai" })}.`

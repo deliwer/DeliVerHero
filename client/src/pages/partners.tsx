@@ -214,10 +214,14 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
   const ROLES_BROKER = ["Real Estate Broker", "Property Manager", "Leasing Agent", "Building Manager", "Typing Center", "Other"];
   const ROLES_AQUACAFE = ["Health & Wellness Seller", "Online Marketer", "Social Media Influencer", "Side Income Seeker", "Existing Enagic Distributor", "Other"];
 
-  const refLink = form.name ? `deliwer.com/join?ref=${form.name.toLowerCase().replace(/\s+/g, "")}&track=${track}` : "deliwer.com/join?ref=yourname";
+  const origin = typeof window !== "undefined" ? window.location.origin : "https://deliwer.com";
+  const refCode = form.name ? form.name.toLowerCase().replace(/[^a-z0-9]+/g, "") : "";
+  const refLink = refCode
+    ? `${origin}/join?ref=${refCode}&refName=${encodeURIComponent(form.name.trim())}${track ? `&track=${track}` : ""}`
+    : `${origin}/join?ref=yourname`;
 
   const copyLink = async () => {
-    await navigator.clipboard.writeText("https://" + refLink);
+    await navigator.clipboard.writeText(refLink);
     setCopied(true);
     toast({ title: "Link copied!", description: "Share it anywhere to start earning." });
     setTimeout(() => setCopied(false), 2000);
