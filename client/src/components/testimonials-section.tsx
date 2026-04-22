@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
+import { SiGoogle } from "react-icons/si";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { DirhamSymbol } from "@/components/ui/dirham-symbol";
 
@@ -12,9 +13,21 @@ interface Testimonial {
   text: string;
   value: string;
   reward: string;
+  verifiedGoogle?: boolean;
 }
 
 const testimonials: Testimonial[] = [
+  {
+    id: "0",
+    name: "Zoya Abassi",
+    initials: "ZA",
+    model: "AquaCafe Customer",
+    rating: 5,
+    text: "I recently had shower filters installed and I'm very happy with the results. The installation was smooth and hassle-free, and the team was professional and efficient. The water feels noticeably cleaner and gentler, especially on skin and hair. Would definitely recommend.",
+    value: "Verified",
+    reward: "Google Review",
+    verifiedGoogle: true,
+  },
   {
     id: "1",
     name: "Ahmed Al-Maktoum",
@@ -63,7 +76,19 @@ export function TestimonialsSection() {
                     <AvatarFallback className="bg-slate-800 text-white font-bold">{testimonial.initials}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <h3 className="text-white font-bold">{testimonial.name}</h3>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className="text-white font-bold">{testimonial.name}</h3>
+                      {testimonial.verifiedGoogle && (
+                        <span
+                          className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/30"
+                          title="Verified Google Review"
+                          data-testid={`badge-google-${testimonial.id}`}
+                        >
+                          <SiGoogle className="w-2.5 h-2.5" />
+                          Verified
+                        </span>
+                      )}
+                    </div>
                     <p className="text-blue-400 text-xs font-medium uppercase tracking-wider">{testimonial.model}</p>
                   </div>
                 </div>

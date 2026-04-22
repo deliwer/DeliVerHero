@@ -1,4 +1,5 @@
 import { MessageCircle, Mail, MapPin, CheckCircle, Phone, Star, Home, Users, Clock } from "lucide-react";
+import { SiGoogle } from "react-icons/si";
 import { Link } from "wouter";
 
 interface TrustStripProps {
@@ -138,6 +139,13 @@ export function PartnerStrip() {
 
 const testimonials = [
   {
+    quote: "Shower filters installed smoothly and hassle-free — water feels noticeably cleaner and gentler on skin and hair. Definitely recommend.",
+    author: "Zoya Abassi",
+    location: "Dubai",
+    rating: 5,
+    verified: true,
+  },
+  {
     quote: "Moved into Dubai in July, and our home was summer-ready on day one — hassle-free!",
     author: "Sarah",
     location: "Dubai Marina",
@@ -182,7 +190,19 @@ export function TestimonialCarousel({ variant = "dark", limit = 3 }: { variant?:
               ))}
             </div>
             <p className={`text-sm ${textClass} mb-3 leading-relaxed`}>"{t.quote}"</p>
-            <p className={`text-xs ${subTextClass}`}>— {t.author}, {t.location}</p>
+            <p className={`text-xs ${subTextClass} flex items-center gap-2 flex-wrap`}>
+              <span>— {t.author}, {t.location}</span>
+              {(t as any).verified && (
+                <span
+                  className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                  title="Verified Google Review"
+                  data-testid={`badge-google-verified-${i}`}
+                >
+                  <SiGoogle className="w-2.5 h-2.5" />
+                  Google
+                </span>
+              )}
+            </p>
           </div>
         ))}
       </div>

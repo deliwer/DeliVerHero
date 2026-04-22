@@ -108,6 +108,32 @@ const SCHEMA_ORG = JSON.stringify({
         },
         geoRadius: "80000",
       },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5.0",
+        reviewCount: "27",
+        bestRating: "5",
+        worstRating: "1",
+      },
+      review: [
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Zoya Abassi" },
+          datePublished: "2026-04-15",
+          reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+          reviewBody:
+            "I recently had shower filters installed in my shower heads, and I'm very happy with the results so far. The installation process was smooth and hassle-free, and the team was professional and efficient. Since using the filters, I've noticed a positive difference in water quality. The water feels cleaner and gentler, especially on skin and hair. Overall, a great experience so far — I would definitely recommend their service to anyone looking to improve their shower water quality.",
+          publisher: { "@type": "Organization", name: "Google" },
+        },
+        {
+          "@type": "Review",
+          author: { "@type": "Person", name: "Nicole Oliver" },
+          datePublished: "2026-04-15",
+          reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+          reviewBody:
+            "Just moved into my new place at Marina and DeliWer set up the complete water system for me — including a free hair shower filter! The difference is incredible, my hair feels so much softer. The installation team was fast and professional. Worth every dirham!",
+        },
+      ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "DeliWer Services",

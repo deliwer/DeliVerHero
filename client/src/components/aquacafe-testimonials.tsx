@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Star, Quote } from "lucide-react";
+import { SiGoogle } from "react-icons/si";
 import { useState, useEffect } from "react";
 import NicoleImg from "@assets/Nicole_Oliver.jpeg";
 
@@ -12,9 +13,23 @@ interface Testimonial {
   text: string;
   date: string;
   image?: string;
+  verified?: boolean;
+  source?: "google";
+  reviewCount?: number;
 }
 
 const testimonials: Testimonial[] = [
+  {
+    id: 0,
+    name: "Zoya Abassi",
+    location: "Dubai",
+    rating: 5,
+    text: "I recently had shower filters installed in my shower heads, and I'm very happy with the results so far. The installation process was smooth and hassle-free, and the team was professional and efficient. Since using the filters, I've noticed a positive difference in water quality. The water feels cleaner and gentler, especially on skin and hair. Overall, a great experience so far — I would definitely recommend their service to anyone looking to improve their shower water quality.",
+    date: "1 week ago",
+    verified: true,
+    source: "google",
+    reviewCount: 10
+  },
   {
     id: 1,
     name: "Nicole Oliver",
@@ -106,11 +121,26 @@ export function AquaCafeTestimonials() {
                     </div>
                   )}
                   <div>
-                    <p className="font-bold text-lg">{currentTestimonial.name}</p>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <p className="font-bold text-lg">{currentTestimonial.name}</p>
+                      {currentTestimonial.verified && currentTestimonial.source === "google" && (
+                        <span
+                          className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
+                          data-testid={`badge-verified-${currentTestimonial.id}`}
+                          title="Verified Google Review"
+                        >
+                          <SiGoogle className="w-3 h-3" />
+                          Verified Google Review
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-muted-foreground">
                       {currentTestimonial.location}
                       {currentTestimonial.nationality && (
                         <span className="ml-1 text-blue-500">· {currentTestimonial.nationality}</span>
+                      )}
+                      {currentTestimonial.reviewCount && (
+                        <span className="ml-1 text-muted-foreground">· {currentTestimonial.reviewCount} reviews</span>
                       )}
                     </p>
                   </div>
