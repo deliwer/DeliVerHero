@@ -47,7 +47,7 @@ const LEVELS = [
     icon: Coffee,
     desc: "Start by experiencing AquaCafe yourself. Get the AED 99 Starter Kit — includes ionic shower filter (AED 399 value) + Chill & Grill AED 99 dining voucher + 20% lifetime water discount.",
     cta: "Start as Customer",
-    ctaLink: "/aquacafe-alliance",
+    ctaLink: "/home-services",
   },
   {
     tier: "Independent Distributor",
@@ -305,7 +305,7 @@ export default function BrokerPartnerPage() {
             <Button data-testid="button-broker-apply-hero" size="lg" className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-10 h-14 text-lg shadow-2xl" onClick={scrollToApply}>
               <Zap className="w-5 h-5 mr-2" /> Apply Now — Free
             </Button>
-            <Link href="/aquacafe-alliance">
+            <Link href="/home-services">
               <Button data-testid="button-broker-aquacafe-hero" size="lg" variant="outline" className="border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10 font-black rounded-2xl px-8 h-14 text-base">
                 <Droplets className="w-5 h-5 mr-2" /> Start with AquaCafe AED 99
               </Button>
@@ -332,8 +332,8 @@ export default function BrokerPartnerPage() {
               { id: "earn", label: "Earnings" },
               { id: "apply", label: "Apply" },
               { id: "scripts", label: "Scripts" },
-              { id: "funnel", label: "Partner Funnel · Water" },
-              { id: "damac", label: "Partner Funnel · Real Estate" },
+              { id: "damac", label: "Career Path · Real Estate" },
+              { id: "funnel", label: "Career Path · Home Services" },
             ].map((item) => (
               <a
                 key={item.id}
@@ -424,7 +424,7 @@ export default function BrokerPartnerPage() {
                   </p>
                 </div>
               </div>
-              <Link href="/aquacafe-alliance">
+              <Link href="/home-services">
                 <Button data-testid="button-aquacafe-gateway-cta" size="lg" className="bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-2xl h-13 px-8 shadow-xl shadow-cyan-900/40">
                   <Droplets className="w-4 h-4 mr-2" /> Get the AED 99 Starter Kit
                 </Button>
@@ -522,7 +522,7 @@ export default function BrokerPartnerPage() {
             </p>
           </div>
           <div className="shrink-0 flex flex-col sm:flex-row gap-3">
-            <Link href="/aquacafe-alliance">
+            <Link href="/home-services">
               <Button data-testid="button-broker-next-step-aquacafe" className="bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-2xl h-11 px-6">
                 <Droplets className="w-4 h-4 mr-2" /> AquaCafe AED 99
               </Button>
@@ -742,7 +742,7 @@ export default function BrokerPartnerPage() {
                     </Button>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <Link href="/aquacafe-alliance" className="flex-1">
+                    <Link href="/home-services" className="flex-1">
                       <Button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-xl h-11 text-xs">
                         <Droplets className="w-4 h-4 mr-2" /> Activate AquaCafe AED 99
                       </Button>
@@ -760,33 +760,23 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* ── PARTNER FUNNEL · PATH A → AQUACAFE ALLIANCE ───────── */}
+      {/* ── CAREER PATH · TRACK B → HOME SERVICES (AquaCafe / Kangen) ── */}
       <section id="funnel" className="py-16 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-cyan-950/20 to-slate-950">
-        <div className="max-w-4xl mx-auto text-center space-y-3 mb-6">
-          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5">
-            <Target className="w-3.5 h-3.5 text-emerald-400" />
-            <span className="text-emerald-400 text-[10px] font-black uppercase tracking-widest">Partner Funnel · Choose Your Path (or Take Both)</span>
-          </div>
-          <p className="text-gray-500 text-xs max-w-xl mx-auto leading-relaxed">
-            Every DeliWer broker plugs into the same Partner Funnel. Pick the path that matches your network — or run both in parallel for stacked income.
-          </p>
-        </div>
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-2">
             <Droplets className="w-4 h-4 text-cyan-400" />
-            <span className="text-cyan-400 text-xs font-black uppercase tracking-widest">Path A · Water Setup → AquaCafe Alliance</span>
+            <span className="text-cyan-400 text-xs font-black uppercase tracking-widest">Career Path · Track B · Home Services</span>
           </div>
           <h2 className="text-3xl font-black uppercase tracking-tighter text-white">
-            Your Onboarding Path:<br />
-            <span className="text-cyan-400">Brokers → AquaCafe Alliance</span>
+            Brokers → <span className="text-cyan-400">Home Services Track</span>
           </h2>
           <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
             Every tenant you settle becomes an AquaCafe prospect. The AED 99 deal is your hook — Chill &amp; Grill dining voucher, ionic shower filter, water wellness. Once they're in, they refer their friends. Your override income grows automatically.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/aquacafe-alliance">
+            <Link href="/home-services">
               <Button data-testid="button-aquacafe-alliance-funnel" size="lg" className="bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-2xl h-14 px-10 shadow-xl shadow-cyan-900/40">
-                <Droplets className="w-5 h-5 mr-2" /> Explore AquaCafe Alliance
+                <Droplets className="w-5 h-5 mr-2" /> Explore Home Services
               </Button>
             </Link>
             <Link href="/partners/career">
@@ -798,18 +788,27 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* ── PARTNER FUNNEL · PATH B → REAL ESTATE / DAMAC DISTRESS ── */}
+      {/* ── CAREER PATH · TRACK A → REAL ESTATE / DAMAC DISTRESS ── */}
       <section id="damac" className="py-16 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-amber-950/15 to-slate-950">
+        <div className="max-w-4xl mx-auto text-center space-y-3 mb-6">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5">
+            <Target className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-emerald-400 text-[10px] font-black uppercase tracking-widest">Career Path · Choose Your Track (or Take Both)</span>
+          </div>
+          <p className="text-gray-500 text-xs max-w-xl mx-auto leading-relaxed">
+            Every DeliWer broker plugs into the same Career Path. Pick the track that matches your network — or run both in parallel for stacked income.
+          </p>
+        </div>
         <div className="max-w-4xl mx-auto text-center space-y-4 mb-8">
           <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2">
             <Building2 className="w-4 h-4 text-amber-400" />
-            <span className="text-amber-400 text-xs font-black uppercase tracking-widest">Path B · Real Estate → DAMAC Distress Deals</span>
+            <span className="text-amber-400 text-xs font-black uppercase tracking-widest">Career Path · Track A · Real Estate</span>
           </div>
           <h2 className="text-3xl font-black uppercase tracking-tighter text-white">
             Brokers → <span className="text-amber-400">Real Estate Track</span>
           </h2>
           <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
-            Already closing leases or sales? Skip the consumer funnel and plug straight into our distress-driven DAMAC inventory. Higher per-deal commissions on below-market units priced for fast movement. Run this alongside Path A for stacked income.
+            Already closing leases or sales? Plug straight into our distress-driven DAMAC inventory. Higher per-deal commissions on below-market units priced for fast movement. Run this alongside the Home Services track for stacked income.
           </p>
         </div>
         <div className="max-w-6xl mx-auto">
@@ -871,7 +870,7 @@ export default function BrokerPartnerPage() {
             <Button data-testid="button-broker-apply-final" size="lg" className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-2xl w-full" onClick={scrollToApply}>
               <Zap className="w-5 h-5 mr-2" /> Apply as a Distributor
             </Button>
-            <Link href="/aquacafe-alliance">
+            <Link href="/home-services">
               <Button data-testid="button-broker-aquacafe-final" size="lg" className="bg-cyan-700 hover:bg-cyan-600 text-white font-black rounded-2xl px-10 h-12 text-sm w-full">
                 <Droplets className="w-4 h-4 mr-2" /> Start with AquaCafe AED 99
               </Button>
@@ -895,7 +894,7 @@ export default function BrokerPartnerPage() {
         <Button data-testid="button-sticky-apply" size="lg" className="flex-1 bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl h-12 text-sm shadow-2xl" onClick={scrollToApply}>
           <Zap className="w-4 h-4 mr-2" /> Apply Now
         </Button>
-        <Link href="/aquacafe-alliance" className="flex-1">
+        <Link href="/home-services" className="flex-1">
           <Button size="lg" className="w-full bg-cyan-700 hover:bg-cyan-600 text-white font-black rounded-xl h-12 text-sm">
             <Droplets className="w-4 h-4 mr-2" /> AED 99 Deal
           </Button>

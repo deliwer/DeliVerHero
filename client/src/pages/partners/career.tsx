@@ -509,7 +509,7 @@ export default function PartnerCareerPage() {
                   <div className="text-xs text-cyan-500/70 font-black uppercase tracking-widest mt-2">Total Investment</div>
                   <div className="text-gray-500 text-xs mt-1">Total value: AED 499+</div>
                 </div>
-                <Link href="/aquacafe-alliance">
+                <Link href="/home-services">
                   <Button
                     data-testid="button-career-aquacafe-cta"
                     size="lg"

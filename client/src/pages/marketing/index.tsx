@@ -241,11 +241,11 @@ export default function MarketingHub() {
               </Link>
             </div>
 
-            {/* Partner Funnel Map */}
+            {/* Career Path Map */}
             <div className="bg-slate-900/60 border border-white/10 rounded-2xl p-6">
               <div className="flex items-start justify-between gap-4 mb-5 flex-wrap">
                 <div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 px-2 py-0.5 rounded-full">Partner Funnel</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 px-2 py-0.5 rounded-full">Career Path</span>
                   <h3 className="font-black text-white text-lg mt-2">End-to-End Earning Path</h3>
                   <p className="text-slate-400 text-sm mt-1">From cold broker → activated partner → recurring commission across DeliWer + DAMAC.</p>
                 </div>

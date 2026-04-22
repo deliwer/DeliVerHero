@@ -27,7 +27,7 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
   const items = [
     { label: "Career Path", id: "career-path" },
     { label: "Broker Track", id: "broker-focus" },
-    { label: "Kangen Alliance", id: "alliance" },
+    { label: "Home Services", id: "alliance" },
     { label: "Earn Calculator", id: "calculator" },
     { label: "Join Now", id: "join" },
   ];
@@ -92,7 +92,7 @@ const CAREER_STAGES = [
     color: "cyan",
     icon: Droplets,
     steps: ["Introduce settled tenants to the AED 99 AquaCafe Starter Kit", "They get ionic shower filter (AED 399 value) + Chill & Grill voucher", "You earn AED 50 per kit + 25% on all their future water orders"],
-    cta: { label: "See AquaCafe Deal", href: "/aquacafe-alliance" },
+    cta: { label: "See Home Services Deal", href: "/home-services" },
     badge: "💧 Recurring Revenue",
   },
   {
@@ -131,10 +131,10 @@ const CAREER_STAGES = [
     color: "rose",
     icon: Globe,
     steps: ["Sell Kangen/Enagic water systems globally under DeliWer's sponsor ID", "Earn Enagic's 8-point distributor commission (AED 1,299–2,299/unit)", "Income compounds as your worldwide downline grows"],
-    cta: { label: "Join Kangen Alliance", href: "/aquacafe-alliance" },
+    cta: { label: "Join Home Services", href: "/home-services" },
     badge: "🌍 Global",
     image: bannerAquaCafe,
-    imageAlt: "AquaCafe Alliance — Kangen water systems hero",
+    imageAlt: "Home Services — Kangen water systems hero",
   },
 ];
 
@@ -201,7 +201,7 @@ function IncomeSlider() {
 // ─────────────────────────────────────────────
 const TRACKS = [
   { id: "broker", label: "DeliWer Broker Partner", tagline: "Earn from Dubai move-in referrals", icon: Building2, badge: "🏆 Most Popular", color: "emerald" },
-  { id: "aquacafe", label: "AquaCafe Alliance", tagline: "Sell water systems globally", icon: Droplets, badge: "🌍 Global Income", color: "cyan" },
+  { id: "aquacafe", label: "Home Services", tagline: "Sell water systems globally", icon: Droplets, badge: "🌍 Global Income", color: "cyan" },
 ];
 
 function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
@@ -384,7 +384,7 @@ const FAQS = [
   { q: "Do I need to be in Dubai?", a: "No. Join and operate from anywhere. Dubai customers are reached through your digital link. No physical presence required, ever." },
   { q: "How do I get paid?", a: "Monthly bank transfer or PayPal. Commission is calculated at month end — percentage of DeliWer's vendor coordination fee per confirmed booking." },
   { q: "Do tenants pay extra because of my referral?", a: "Never. Vendors pay DeliWer a coordination fee embedded in their standard pricing. Your commission comes from DeliWer's share — the tenant's total is identical." },
-  { q: "What is the Kangen Alliance?", a: "DeliWer is an official Enagic sponsor. When you join AquaCafe Alliance, you become an independent distributor under our network, earning Enagic's global 8-point commission on water systems sold worldwide." },
+  { q: "What is the Home Services track (AquaCafe / Kangen Alliance)?", a: "DeliWer is an official Enagic sponsor. When you join the Home Services track, you become an independent distributor under our network, earning Enagic's global 8-point commission on water systems sold worldwide." },
   { q: "Can I do both the broker track and Kangen simultaneously?", a: "Yes — and most top earners do. Broker referrals get you immediate Dubai income; Kangen builds compounding worldwide income over time." },
   { q: "How quickly can I start earning?", a: "Same business day. Submit your form → receive your partner link via WhatsApp → share it with your first tenant. First commission unlocked immediately." },
 ];
@@ -423,8 +423,8 @@ export default function PartnersPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta
-        title="Partner & Earn — DeliWer Dubai | Broker Career Path + Kangen Alliance"
-        description="Turn every Dubai tenant referral into income. Broker partners earn AED 150–800 per move-in. Kangen Alliance distributors build worldwide passive income. 100% online, start today."
+        title="Partner & Earn — DeliWer Dubai | Broker Career Path + Home Services"
+        description="Turn every Dubai tenant referral into income. Broker partners earn AED 150–800 per move-in. Home Services distributors build worldwide passive income via Kangen/Enagic. 100% online, start today."
       />
       <Navigation />
       <PartnersSubMenu onScrollTo={(id) => { const el = document.getElementById(id); el?.scrollIntoView({ behavior: "smooth" }); }} />
@@ -484,7 +484,7 @@ export default function PartnersPage() {
                 size="lg"
                 className="bg-cyan-600 hover:bg-cyan-500 text-white font-black h-14 px-10 text-base rounded-2xl shadow-lg shadow-cyan-500/20"
               >
-                <Droplets className="w-5 h-5 mr-2" /> Join Kangen Alliance
+                <Droplets className="w-5 h-5 mr-2" /> Join Home Services
               </Button>
             </div>
           </motion.div>
@@ -564,7 +564,7 @@ export default function PartnersPage() {
                         <span className="text-[10px] font-black uppercase tracking-widest bg-rose-500/30 text-rose-200 border border-rose-500/40 rounded-full px-2.5 py-1">
                           Final Career Step
                         </span>
-                        <Link href="/aquacafe-alliance">
+                        <Link href="/home-services">
                           <span className="text-[10px] font-black uppercase tracking-widest bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-2.5 py-1 backdrop-blur cursor-pointer">
                             Explore Alliance →
                           </span>
@@ -731,15 +731,15 @@ export default function PartnersPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/aquacafe-alliance">
+              <Link href="/home-services">
                 <Button data-testid="button-alliance-cta-card" className="w-full bg-cyan-600 hover:bg-cyan-500 font-black rounded-2xl h-11">
-                  <Droplets className="w-4 h-4 mr-2" /> Join AquaCafe Alliance
+                  <Droplets className="w-4 h-4 mr-2" /> Join Home Services
                 </Button>
               </Link>
             </motion.div>
 
             <div className="order-1 md:order-2">
-              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 mb-5">AquaCafe × Kangen Alliance</Badge>
+              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 mb-5">Home Services · AquaCafe × Kangen</Badge>
               <h2 className="text-4xl font-black uppercase tracking-tighter text-white mb-4 leading-tight">
                 The Water Business<br />
                 <span className="text-cyan-400">That Scales Worldwide.</span>
@@ -762,9 +762,9 @@ export default function PartnersPage() {
                 ))}
               </ul>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/aquacafe-alliance">
+                <Link href="/home-services">
                   <Button data-testid="button-alliance-main-cta" className="bg-cyan-600 hover:bg-cyan-500 font-black h-12 px-8 rounded-2xl">
-                    <Droplets className="w-4 h-4 mr-2" /> See AquaCafe Alliance
+                    <Droplets className="w-4 h-4 mr-2" /> See Home Services
                   </Button>
                 </Link>
                 <Link href="/partners/career">

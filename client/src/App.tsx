@@ -309,6 +309,7 @@ function Router() {
           <Route path="/impact-dashboard" component={ImpactDashboard} />
           <Route path="/home-service/aquacafe" component={AquaCafe} />
           <Route path="/aquacafe" component={AquaCafe} />
+          <Route path="/home-services" component={AquaCafeAlliance} />
           <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
           <Route path="/products/aquacafe" component={AquaCafeAlliance} />
           <Route path="/products" component={Products} />

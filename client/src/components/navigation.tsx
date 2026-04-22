@@ -159,7 +159,7 @@ export function Navigation() {
                 title="DeliWer B2C Services"
                 data-testid="mode-b2c"
               >
-                B2C
+                Services
               </button>
               <button
                 onClick={() => switchMode("realty")}
@@ -183,7 +183,7 @@ export function Navigation() {
                 title="ChainTrack B2B Wholesale"
                 data-testid="mode-b2b"
               >
-                B2B
+                Trade
               </button>
             </div>
 
@@ -257,7 +257,7 @@ export function Navigation() {
                 }`}
                 data-testid="mode-b2c-mobile"
               >
-                B2C
+                Services
               </button>
               <button
                 onClick={() => switchMode("realty")}
@@ -275,7 +275,7 @@ export function Navigation() {
                 }`}
                 data-testid="mode-b2b-mobile"
               >
-                B2B
+                Trade
               </button>
             </div>
 
