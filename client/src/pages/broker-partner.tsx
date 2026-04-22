@@ -283,44 +283,8 @@ export default function BrokerPartnerPage() {
       <Navigation />
       <PartnerSubNav />
 
-      {/* DAMAC Distress Deals — Broker Track */}
-      <div className="max-w-6xl mx-auto px-4 pt-6">
-        <DistressBrokerTrack />
-      </div>
-
-      {/* ── CAREER PATH CONTEXT BANNER ───────────────────── */}
-      <div className="bg-slate-900 border-b border-emerald-500/20 py-0">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between py-3 gap-4 overflow-x-auto scrollbar-none">
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Career Path</span>
-            </div>
-            {[
-              { stage: 1, label: "Broker Partner", earn: "AED 150–800", color: "text-emerald-400", active: true },
-              { stage: 2, label: "AquaCafe Starter", earn: "AED 50 bonus", color: "text-cyan-400", active: false },
-              { stage: 3, label: "Distributor", earn: "AED 2,500–5K", color: "text-purple-400", active: false },
-              { stage: 4, label: "Leader", earn: "AED 5K–15K", color: "text-amber-400", active: false },
-              { stage: 5, label: "Global Director", earn: "AED 50K+", color: "text-rose-400", active: false },
-            ].map((s, i, arr) => (
-              <div key={s.stage} className="flex items-center gap-2 shrink-0">
-                <div className={`flex flex-col items-center ${s.active ? "opacity-100" : "opacity-40"}`}>
-                  <span className={`text-[10px] font-black ${s.color}`}>{s.label}</span>
-                  <span className="text-[9px] text-gray-600">{s.earn}</span>
-                </div>
-                {i < arr.length - 1 && <ChevronRight className="w-3 h-3 text-slate-700 shrink-0" />}
-              </div>
-            ))}
-            <Link href="/partners" className="shrink-0">
-              <Button data-testid="button-broker-career-path-banner" size="sm" variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl text-xs h-8 px-3 whitespace-nowrap">
-                Full Path →
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="relative py-24 md:py-32 px-4 overflow-hidden">
+      {/* ── HERO (promoted to top) ────────────────────────── */}
+      <section id="hero" className="relative pt-40 md:pt-48 pb-20 md:pb-28 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1800&h=900&fit=crop&q=80" alt="Dubai real estate" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/97 via-purple-950/75 to-slate-950/95" />
@@ -357,8 +321,68 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
+      {/* ── BROKER ANCHOR SUB-NAV (jump to important sections) ── */}
+      <div className="bg-slate-900/95 backdrop-blur border-y border-emerald-500/15" data-testid="broker-anchor-nav">
+        <div className="max-w-5xl mx-auto px-4 flex gap-1 overflow-x-auto scrollbar-none">
+          {[
+            { id: "who", label: "Who Can Join" },
+            { id: "aquacafe", label: "AquaCafe Gateway" },
+            { id: "ladder", label: "4-Level Ladder" },
+            { id: "earn", label: "Earnings" },
+            { id: "apply", label: "Apply" },
+            { id: "scripts", label: "Scripts" },
+            { id: "funnel", label: "Onboarding Path" },
+            { id: "damac", label: "DAMAC Distress" },
+          ].map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+              className="px-4 py-3 text-[10px] font-black uppercase tracking-widest whitespace-nowrap text-gray-400 hover:text-emerald-400 border-b-2 border-transparent hover:border-emerald-500 transition-all"
+              data-testid={`anchor-${item.id}`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* ── CAREER PATH CONTEXT BANNER ───────────────────── */}
+      <div className="bg-slate-900 border-b border-emerald-500/20 py-0">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex items-center justify-between py-3 gap-4 overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Career Path</span>
+            </div>
+            {[
+              { stage: 1, label: "Broker Partner", earn: "AED 150–800", color: "text-emerald-400", active: true },
+              { stage: 2, label: "AquaCafe Starter", earn: "AED 50 bonus", color: "text-cyan-400", active: false },
+              { stage: 3, label: "Distributor", earn: "AED 2,500–5K", color: "text-purple-400", active: false },
+              { stage: 4, label: "Leader", earn: "AED 5K–15K", color: "text-amber-400", active: false },
+              { stage: 5, label: "Global Director", earn: "AED 50K+", color: "text-rose-400", active: false },
+            ].map((s, i, arr) => (
+              <div key={s.stage} className="flex items-center gap-2 shrink-0">
+                <div className={`flex flex-col items-center ${s.active ? "opacity-100" : "opacity-40"}`}>
+                  <span className={`text-[10px] font-black ${s.color}`}>{s.label}</span>
+                  <span className="text-[9px] text-gray-600">{s.earn}</span>
+                </div>
+                {i < arr.length - 1 && <ChevronRight className="w-3 h-3 text-slate-700 shrink-0" />}
+              </div>
+            ))}
+            <Link href="/partners" className="shrink-0">
+              <Button data-testid="button-broker-career-path-banner" size="sm" variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl text-xs h-8 px-3 whitespace-nowrap">
+                Full Path →
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* ── WHO CAN JOIN ─────────────────────────────────── */}
-      <section className="py-16 px-4 border-t border-white/5 bg-slate-900/30">
+      <section id="who" className="py-16 px-4 border-t border-white/5 bg-slate-900/30">
         <div className="max-w-5xl mx-auto">
           <p className="text-center text-[10px] font-black uppercase tracking-widest text-purple-400 mb-2">Who Can Join</p>
           <h2 className="text-2xl font-black uppercase tracking-tighter text-white text-center mb-3">Built for Dubai's Connector Economy</h2>
@@ -389,7 +413,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── AQUACAFE GATEWAY ─────────────────────────────── */}
-      <section className="py-16 px-4 border-y border-cyan-500/15 bg-gradient-to-br from-cyan-950/40 via-slate-900/80 to-slate-950">
+      <section id="aquacafe" className="py-16 px-4 border-y border-cyan-500/15 bg-gradient-to-br from-cyan-950/40 via-slate-900/80 to-slate-950">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-10 items-center">
             <div className="flex-1 space-y-5">
@@ -449,7 +473,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── 4-LEVEL DISTRIBUTOR LADDER ───────────────────── */}
-      <section className="py-16 px-4 border-b border-white/5">
+      <section id="ladder" className="py-16 px-4 border-b border-white/5">
         <div className="max-w-5xl mx-auto">
           <p className="text-center text-[10px] font-black uppercase tracking-widest text-purple-400 mb-2">Distribution Ladder</p>
           <h2 className="text-2xl font-black uppercase tracking-tighter text-white text-center mb-3">Your Path from Customer to Leader</h2>
@@ -537,7 +561,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── EARN / GAMIFICATION CTA ──────────────────────── */}
-      <section className="py-12 px-4 bg-gradient-to-r from-amber-950/40 via-slate-900/60 to-amber-950/40 border-b border-amber-500/15">
+      <section id="earn" className="py-12 px-4 bg-gradient-to-r from-amber-950/40 via-slate-900/60 to-amber-950/40 border-b border-amber-500/15">
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
           <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/25 flex items-center justify-center shrink-0 mx-auto md:mx-0">
             <Award className="w-7 h-7 text-amber-400" />
@@ -614,7 +638,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── COPY-PASTE SCRIPTS ────────────────────────────── */}
-      <section className="py-16 px-4 border-b border-white/5 bg-slate-900/20">
+      <section id="scripts" className="py-16 px-4 border-b border-white/5 bg-slate-900/20">
         <div className="max-w-xl mx-auto space-y-4">
           <p className="text-center text-[10px] font-black uppercase tracking-widest text-purple-400 mb-2">Copy-Paste Scripts</p>
           <h2 className="text-2xl font-black uppercase tracking-tighter text-white text-center mb-6">Ready-to-Send Messages</h2>
@@ -761,7 +785,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── FUNNEL CTA → AQUACAFE ALLIANCE ───────────────── */}
-      <section className="py-16 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-cyan-950/20 to-slate-950">
+      <section id="funnel" className="py-16 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-cyan-950/20 to-slate-950">
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-2">
             <Target className="w-4 h-4 text-cyan-400" />
@@ -786,6 +810,26 @@ export default function BrokerPartnerPage() {
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── ALTERNATIVE FUNNEL → DAMAC DISTRESS DEALS ────── */}
+      <section id="damac" className="py-16 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-amber-950/15 to-slate-950">
+        <div className="max-w-4xl mx-auto text-center space-y-4 mb-8">
+          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2">
+            <Target className="w-4 h-4 text-amber-400" />
+            <span className="text-amber-400 text-xs font-black uppercase tracking-widest">Recruitment Funnel · Alternative Path</span>
+          </div>
+          <h2 className="text-3xl font-black uppercase tracking-tighter text-white">
+            Your Onboarding Path:<br />
+            <span className="text-amber-400">Brokers → Real Estate</span>
+          </h2>
+          <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
+            Already closing leases? Skip the consumer funnel and plug straight into our distress-driven DAMAC inventory. Earn higher per-deal commissions on below-market units priced for fast movement.
+          </p>
+        </div>
+        <div className="max-w-6xl mx-auto">
+          <DistressBrokerTrack />
         </div>
       </section>
 
