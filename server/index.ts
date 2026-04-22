@@ -10,6 +10,18 @@ const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false }));
 
+// ── Founder-only routes: block crawlers/AI bots at HTTP layer ───────────────
+// Adds noindex/nofollow/noarchive headers and Referrer-Policy for privacy.
+const PRIVATE_PATH_RE = /^\/(marketing|admin|investor-dashboard|affiliate-dashboard|corporate-dashboard|partner-dashboard|hero-dashboard|mission-control|sendgrid-dashboard|founder-dashboard|email-campaigns|account-management|api\/attribution|api\/log)(\/|$)/i;
+app.use((req, res, next) => {
+  if (PRIVATE_PATH_RE.test(req.path)) {
+    res.set("X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet, noimageindex");
+    res.set("Referrer-Policy", "no-referrer");
+    res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  }
+  next();
+});
+
 // Schedule daily WhatsApp campaign
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 setInterval(() => {

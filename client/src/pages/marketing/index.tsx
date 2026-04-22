@@ -114,6 +114,7 @@ export default function MarketingHub() {
           <nav className="flex items-center gap-1">
             <Link href="/marketing/leaderboard" className="text-xs px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all" data-testid="nav-leaderboard">Leaderboard</Link>
             <Link href="/marketing/recruit" className="text-xs px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all" data-testid="nav-recruit">Recruit</Link>
+            <Link href="/marketing/attribution" className="text-xs px-3 py-1.5 rounded-lg text-rose-300 hover:text-white hover:bg-rose-500/15 border border-rose-500/30 transition-all" data-testid="nav-attribution">Attribution</Link>
             <Link href="/marketing/founder-dashboard" className="text-xs px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all" data-testid="nav-command">Command</Link>
           </nav>
         </div>

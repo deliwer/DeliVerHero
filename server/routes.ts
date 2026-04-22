@@ -93,11 +93,43 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Log lead endpoint for referral tracking
   app.post("/api/log-lead", handleLogLead);
 
-  // Broker Engine event logger (DBE)
+  // Broker Engine event logger (DBE) — in-memory ring buffer for founder attribution view
+  const ATTRIBUTION_BUFFER: any[] = [];
+  const ATTRIBUTION_MAX = 500;
   app.post("/api/log", (req, res) => {
     const { ref, page, timestamp, action } = req.body || {};
-    console.log("[DBE]", { ref: ref || "direct", page, timestamp, action });
+    const entry = {
+      ref: ref || "direct",
+      page: page || "",
+      timestamp: timestamp || new Date().toISOString(),
+      action: action || "page_visit",
+      userAgent: (req.headers["user-agent"] as string) || "",
+      ip: (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() || req.socket.remoteAddress || "",
+    };
+    console.log("[DBE]", entry);
+    ATTRIBUTION_BUFFER.unshift(entry);
+    if (ATTRIBUTION_BUFFER.length > ATTRIBUTION_MAX) ATTRIBUTION_BUFFER.length = ATTRIBUTION_MAX;
     res.json({ ok: true });
+  });
+
+  // Founder-only attribution feed (consumed by /marketing/attribution).
+  // Crawlers blocked at HTTP layer via X-Robots-Tag noindex middleware in server/index.ts.
+  app.get("/api/attribution", (_req, res) => {
+    res.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+    res.set("Cache-Control", "no-store");
+    const totals = ATTRIBUTION_BUFFER.reduce(
+      (acc: any, e: any) => {
+        acc.total++;
+        if (e.action === "whatsapp_click") acc.whatsapp++;
+        if (e.action === "page_visit") acc.visits++;
+        if (e.action === "link_generated") acc.links++;
+        const k = e.ref || "direct";
+        acc.byRef[k] = (acc.byRef[k] || 0) + 1;
+        return acc;
+      },
+      { total: 0, whatsapp: 0, visits: 0, links: 0, byRef: {} as Record<string, number> }
+    );
+    res.json({ entries: ATTRIBUTION_BUFFER, totals });
   });
 
   // Broker Intel Routes
