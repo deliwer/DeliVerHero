@@ -168,6 +168,20 @@ const testimonials = [
     author: "Priya",
     location: "Business Bay",
     rating: 5
+  },
+  {
+    quote: "Great service and professional people.",
+    author: "bk choi",
+    location: "Dubai",
+    rating: 5,
+    verified: true,
+  },
+  {
+    quote: "Best service in town.",
+    author: "Syed Ghayoor Hassan",
+    location: "Dubai",
+    rating: 5,
+    verified: true,
   }
 ];
 

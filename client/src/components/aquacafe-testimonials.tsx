@@ -71,6 +71,28 @@ const testimonials: Testimonial[] = [
     rating: 5,
     text: "We love our AquaCafe system! No more heavy water bottles to carry. The water tastes pure and fresh. Installation was seamless.",
     date: "1 week ago"
+  },
+  {
+    id: 6,
+    name: "bk choi",
+    location: "Dubai",
+    rating: 5,
+    text: "Great service and professional people.",
+    date: "1 year ago",
+    verified: true,
+    source: "google",
+    reviewCount: 23
+  },
+  {
+    id: 7,
+    name: "Syed Ghayoor Hassan",
+    location: "Dubai",
+    rating: 5,
+    text: "Best service in town.",
+    date: "2 years ago",
+    verified: true,
+    source: "google",
+    reviewCount: 3
   }
 ];
 

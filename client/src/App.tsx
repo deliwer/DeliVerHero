@@ -296,6 +296,7 @@ function Router() {
         <Route path="/account" component={AccountConsolidated} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/about" component={AboutPage} />
+        <Route path="/reviews" component={lazy(() => import("./pages/reviews"))} />
         <Route path="/invest" component={InvestPage} />
         <Route path="/ewaste" component={EWastePage} />
         <Route path="/signup" component={SignupPage} />
