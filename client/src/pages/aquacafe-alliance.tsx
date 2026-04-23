@@ -250,88 +250,79 @@ export default function AquaCafeAlliance() {
         </div>
       </div>
       {/* Hero Section */}
-      <section className="w-full py-12 sm:py-20 px-4 bg-gradient-to-br from-emerald-500/10 via-white to-amber-500/10 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left: Partnership Branding */}
-            <div className="text-center lg:text-left">
-              <div className="mb-6">
-                {/* Partnership Logos */}
-                <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-4 mb-6">
-                  <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">
-                    AquaCafe by DeliWer
-                  </div>
-                  <span className="text-3xl font-bold text-emerald-600">+</span>
-                  <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">
-                    Chill & Grill
-                  </div>
-                </div>
-                
-                {/* Hero Headline */}
-                <div className="mb-6">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-4">
-                    Healthy Water
-                  </h1>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-6">
-                    Meets Healthy Food
-                  </h1>
-                </div>
-              </div>
+      <section className="w-full relative overflow-hidden">
+        {/* Background: Kangen / AquaCafe image */}
+        <img
+          src={aquacafeTradeIn}
+          alt="AquaCafe Kangen Water Starter Kit"
+          className="absolute inset-0 w-full h-full object-cover"
+          data-testid="img-hero-bg-kangen"
+        />
+        {/* Overlay for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/85 via-slate-900/75 to-amber-900/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-slate-950/40" />
 
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed max-w-2xl">
-                Introducing a first-of-its-kind alliance in Dubai — AquaCafe by DeliWer partners with Chill & Grill, 
-                serving revitalized Kangen Water with wholesome meals. Together, we empower families to live healthier and more sustainably.
-              </p>
-
-              <div className="space-y-4">
-                <Button
-                  onClick={handleExperienceAlliance}
-                  className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-8 py-4 text-lg font-bold rounded-xl shadow-lg transition-all"
-                >
-                  <Heart className="mr-3 w-6 h-6" />
-                  Experience the Alliance
-                </Button>
-                
-                <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 text-sm text-gray-600">
-                  <a
-                    href="https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 hover:text-emerald-600 transition-colors"
-                  >
-                    <MapPin className="w-4 h-4 text-amber-500" />
-                    <span className="underline underline-offset-2">Kangen Water Dubai — Clover Bay Tower, Business Bay</span>
-                  </a>
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-emerald-500" />
-                    <span>Open Daily 9AM-11PM</span>
-                  </div>
-                </div>
-              </div>
+        <div className="relative max-w-5xl mx-auto px-4 py-20 sm:py-28 text-center">
+          {/* Partnership Logos */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-7">
+            <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-2.5 rounded-full font-bold text-sm sm:text-base shadow-lg">
+              AquaCafe by DeliWer
             </div>
+            <span className="text-2xl font-bold text-emerald-300">+</span>
+            <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-5 py-2.5 rounded-full font-bold text-sm sm:text-base shadow-lg">
+              Chill & Grill
+            </div>
+          </div>
 
-            {/* Right: Lifestyle Image */}
-            <div className="relative">
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1547592180-85f173990554?w=900&h=600&fit=crop&q=85" 
-                  alt="Chill & Grill — Healthy Food with Kangen Water, Clover Bay Tower Business Bay Dubai" 
-                  className="w-full h-64 sm:h-80 object-cover rounded-2xl shadow-lg"
-                />
-                <div className="text-center mt-4">
-                  <div className="text-lg font-bold text-gray-800 mb-1">Real Food. Real Water. Real Results.</div>
-                  <div className="text-gray-500 text-sm">Healthy meals paired with Kangen Water at Chill &amp; Grill</div>
-                  <a
-                    href="https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-3 text-emerald-600 hover:text-emerald-700 font-semibold text-sm underline underline-offset-2"
-                  >
-                    <MapPin className="w-3.5 h-3.5" />
-                    Kangen Water Dubai — Find Us on Maps
-                  </a>
-                </div>
-              </div>
+          {/* Hero Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-white drop-shadow-lg">
+            <span className="bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">
+              Healthy Water
+            </span>{" "}
+            Meets{" "}
+            <span className="bg-gradient-to-r from-amber-300 to-orange-300 bg-clip-text text-transparent">
+              Healthy Food
+            </span>
+          </h1>
+
+          <p className="text-lg sm:text-xl text-slate-100 mb-9 leading-relaxed max-w-3xl mx-auto drop-shadow">
+            Dubai's first-of-its-kind alliance — AquaCafe Kangen Water served with wholesome meals at
+            Chill &amp; Grill and a growing network of restaurant partners. Live healthier, refer friends, earn rewards.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-7">
+            <Button
+              onClick={openAquaCafeWhatsApp}
+              data-testid="button-hero-order-aquacafe-deal"
+              className="w-full sm:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 px-8 py-4 text-lg font-black rounded-xl shadow-2xl shadow-amber-500/30 transition-all hover:scale-105"
+            >
+              <Gift className="mr-3 w-6 h-6" />
+              Order AquaCafe Deal — AED 99
+            </Button>
+            <Button
+              onClick={handleExperienceAlliance}
+              data-testid="button-hero-experience"
+              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur px-8 py-4 text-lg font-bold rounded-xl transition-all"
+            >
+              <Heart className="mr-3 w-5 h-5" />
+              Experience the Alliance
+            </Button>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-slate-200">
+            <a
+              href="https://maps.app.goo.gl/CPc5Ms4rToGQdYxg7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-amber-300 transition-colors"
+            >
+              <MapPin className="w-4 h-4 text-amber-300" />
+              <span className="underline underline-offset-2">Kangen Water Dubai — Clover Bay Tower, Business Bay</span>
+            </a>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-emerald-300" />
+              <span>Open Daily 9AM–11PM</span>
             </div>
           </div>
         </div>
@@ -532,50 +523,88 @@ export default function AquaCafeAlliance() {
               </div>
             </div>
 
-            {/* Right: Product Showcase */}
+            {/* Right: Tell-a-Friend Referral Showcase (Chill & Grill) */}
             <div className="relative">
               <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
-                <img 
-                  src={aquacafeTradeIn} 
-                  alt="AquaCafe Starter Kit" 
-                  className="w-full h-64 object-cover rounded-2xl shadow-md mb-6"
-                />
-                
+                <div className="relative rounded-2xl overflow-hidden shadow-md mb-6">
+                  <img
+                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&h=600&fit=crop&q=85"
+                    alt="Chill & Grill restaurant — friends dining together with Kangen Water"
+                    className="w-full h-64 object-cover"
+                    data-testid="img-chill-grill-referral"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute top-3 left-3 bg-amber-500 text-slate-950 text-xs font-black uppercase tracking-widest px-2.5 py-1 rounded-md shadow">
+                    Tell a Friend · Earn Together
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                    <div className="text-lg font-black drop-shadow">AED 100 Restaurant Voucher</div>
+                    <div className="text-xs text-white/90 drop-shadow">+ FREE Shower Filter for every friend who joins</div>
+                  </div>
+                </div>
+
                 <div className="bg-gradient-to-r from-emerald-50 to-amber-50 rounded-xl p-6 border border-emerald-200">
                   <div className="text-center">
-                    <div className="text-xl font-bold text-gray-800 mb-3">Partnership Exclusive Benefits</div>
-                    
-                    {/* Membership Starter Kit CTA */}
-                    <div className="mb-6 p-4 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl text-white">
-                      <div className="text-lg font-bold mb-2">🚀 Start Your Membership Journey</div>
-                      <div className="text-2xl font-bold mb-2">AED 99 Starter Kit</div>
-                      <div className="text-sm mb-3">Your gateway to exclusive rewards, referral bonuses & Dr Sven's network</div>
-                      <Button 
+                    <div className="text-xl font-bold text-gray-800 mb-1">The AquaCafe Referral Deal</div>
+                    <div className="text-xs text-gray-500 mb-4">
+                      Share with friends → they join → you both win
+                    </div>
+
+                    {/* Reward stack */}
+                    <div className="grid grid-cols-2 gap-3 mb-5 text-left">
+                      <div className="bg-white rounded-xl p-3 border border-amber-200">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Gift className="w-4 h-4 text-amber-500" />
+                          <span className="text-xs font-black uppercase tracking-widest text-amber-600">For You</span>
+                        </div>
+                        <div className="text-sm font-bold text-gray-800">AED 100 Voucher</div>
+                        <div className="text-[11px] text-gray-500">Redeem at Chill &amp; Grill or any restaurant partner</div>
+                      </div>
+                      <div className="bg-white rounded-xl p-3 border border-emerald-200">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Droplets className="w-4 h-4 text-emerald-500" />
+                          <span className="text-xs font-black uppercase tracking-widest text-emerald-600">For Friend</span>
+                        </div>
+                        <div className="text-sm font-bold text-gray-800">FREE Shower Filter</div>
+                        <div className="text-[11px] text-gray-500">Plus full AquaCafe membership perks</div>
+                      </div>
+                    </div>
+
+                    {/* Restaurant partners menu variety */}
+                    <div className="bg-white rounded-xl p-3 border border-gray-200 mb-5 text-left">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Utensils className="w-4 h-4 text-orange-500" />
+                        <span className="text-xs font-black uppercase tracking-widest text-orange-600">
+                          Restaurant Partner Menus
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {["Pizza for Two", "Boba Tea", "Healthy Bowls", "Family Grill", "Breakfast Combo", "Dessert Box"].map((m) => (
+                          <span
+                            key={m}
+                            className="text-[11px] px-2 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 font-semibold"
+                          >
+                            {m}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="text-[11px] text-gray-500 mt-2">
+                        Restaurant partners offer a variety of menus to acquire new customers — your voucher works across the network.
+                      </div>
+                    </div>
+
+                    {/* Order CTA */}
+                    <div className="p-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-white">
+                      <div className="text-base font-bold mb-1">🎁 Start Referring · AED 99 Starter Kit</div>
+                      <div className="text-xs mb-3 text-white/90">Activate your account, get your referral link, and start earning vouchers + free shower filters today.</div>
+                      <Button
                         onClick={openAquaCafeWhatsApp}
-                        data-testid="button-wa-join-now"
-                        className="bg-[#25D366] text-white hover:bg-[#1ebe57] font-bold px-6 py-2 rounded-full text-sm"
+                        data-testid="button-wa-order-deal"
+                        className="bg-white text-orange-600 hover:bg-amber-50 font-bold px-6 py-2 rounded-full text-sm w-full"
                       >
                         <MessageCircle className="w-4 h-4 mr-2 inline-block" />
-                        WhatsApp to Join
+                        Order AquaCafe Deal on WhatsApp
                       </Button>
-                    </div>
-                    <div className="grid grid-cols-2 gap-3 text-sm text-gray-700">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-emerald-500" />
-                        <span>Join Kangen Network</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-amber-500" />
-                        <span>Chill & Grill Referral Reward</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-cyan-500" />
-                        <span>Kangen Water Experience</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-purple-500" />
-                        <span>Premium Installation</span>
-                      </div>
                     </div>
                   </div>
                 </div>
