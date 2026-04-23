@@ -157,6 +157,81 @@ export default function Earn() {
         </div>
       </section>
 
+      {/* ⭐ PROMOTED: AquaCafe Loyalty Bundle — standalone section directly below hero */}
+      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-950 to-emerald-950/40 border-y border-emerald-500/20" data-testid="aquacafe-loyalty-bundle-section">
+        <div className="max-w-5xl mx-auto bg-gradient-to-br from-slate-900/70 to-emerald-900/40 rounded-3xl p-6 sm:p-8 border-2 border-emerald-500/40 shadow-2xl" data-testid="loyalty-bundle-section">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full mb-3 border border-amber-400/40 text-xs sm:text-sm font-bold uppercase tracking-widest">
+              <Gift className="w-4 h-4" />
+              AquaCafe Loyalty Bundle · AED 1,000+ value
+            </div>
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
+              One AED 99 Kit. <span className="text-emerald-400">Three Lifetime Benefits.</span>
+            </h3>
+            <p className="text-gray-300 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
+              Join the water track and unlock the referral system — every friend you bring earns you both rewards.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-slate-800/60 rounded-2xl p-4 border border-cyan-500/40 flex gap-3" data-testid="bundle-card-shower">
+              <img src={showerFilterCollage} alt="Free Ionic Shower Filter" className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover flex-shrink-0" data-testid="image-shower-filter" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Droplets className="w-4 h-4 text-cyan-400" />
+                  <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">AED 399</Badge>
+                </div>
+                <h4 className="text-base font-bold text-white leading-tight">FREE Ionic Shower Filter</h4>
+                <p className="text-xs text-gray-400 mt-1">Beauty & skincare filtration</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/60 rounded-2xl p-4 border border-blue-500/40 flex gap-3" data-testid="bundle-card-membership">
+              <img src={membershipCard} alt="AquaCafe Membership Card" className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover flex-shrink-0" data-testid="image-membership-card" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Crown className="w-4 h-4 text-blue-400" />
+                  <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">AED 299</Badge>
+                </div>
+                <h4 className="text-base font-bold text-white leading-tight">Membership Card & Setup</h4>
+                <p className="text-xs text-gray-400 mt-1">Pro install + lifetime support</p>
+              </div>
+            </div>
+
+            <div className="bg-slate-800/60 rounded-2xl p-4 border border-amber-500/40 flex gap-3" data-testid="bundle-card-voucher">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0">
+                <Utensils className="w-10 h-10 text-white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-1.5 mb-1">
+                  <Gift className="w-4 h-4 text-amber-400" />
+                  <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">Per referral</Badge>
+                </div>
+                <h4 className="text-base font-bold text-white leading-tight">AED 100 Chill &amp; Grill Voucher</h4>
+                <p className="text-xs text-gray-400 mt-1">+ FREE filter for every friend</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 text-center">
+            <div className="bg-emerald-500/10 rounded-xl p-2.5 border border-emerald-500/30">
+              <div className="text-emerald-300 text-[11px] font-bold uppercase tracking-wider">1. Join</div>
+              <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">AED 99 starter kit</div>
+            </div>
+            <div className="bg-cyan-500/10 rounded-xl p-2.5 border border-cyan-500/30">
+              <div className="text-cyan-300 text-[11px] font-bold uppercase tracking-wider">2. Refer</div>
+              <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Share your link</div>
+            </div>
+            <div className="bg-amber-500/10 rounded-xl p-2.5 border border-amber-500/30">
+              <div className="text-amber-300 text-[11px] font-bold uppercase tracking-wider">3. Earn</div>
+              <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Voucher + filter</div>
+            </div>
+          </div>
+
+          <WaterTrackJoinForm />
+        </div>
+      </section>
+
       {/* ⭐ The Circle Dubai: iPhone Trade-In Hub (with merged AquaCafe Loyalty Gateway) */}
       <section className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 to-cyan-900/30" data-testid="circle-dubai-tradein">
         <div className="max-w-7xl mx-auto">
@@ -176,75 +251,51 @@ export default function Earn() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Trade-in Value Calculator */}
-            <Card className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 border-2 border-blue-500/50 hover-elevate" data-testid="card-tradein-calculator">
-              <CardHeader className="text-center">
-                <Smartphone className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-                <CardTitle className="text-white text-2xl">Check Your iPhone Value</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-300 text-lg mb-6">
-                  Select your iPhone model and condition to see instant valuation + DXB rewards
+          {/* Consolidated Hub Concepts — Value · Impact · Multipliers in one panel */}
+          <div className="bg-slate-800/50 rounded-2xl p-6 sm:p-8 border border-blue-500/30 mb-12" data-testid="hub-concepts-consolidated">
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Smartphone className="w-8 h-8 text-blue-400 flex-shrink-0" />
+                  <h3 className="text-white font-bold text-lg">Check Your iPhone Value</h3>
+                </div>
+                <p className="text-gray-300 text-sm">
+                  Select your iPhone model and condition to see instant valuation + DXB rewards.
                 </p>
-                <Link 
+                <Link
                   href="/exchange"
-                  className="inline-block w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-lg transition-all"
+                  className="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 text-sm font-bold"
                   data-testid="button-check-value"
                 >
-                  <Smartphone className="w-5 h-5 inline mr-2" />
-                  Get Instant Quote
+                  <Smartphone className="w-4 h-4" /> Get Instant Quote →
                 </Link>
-              </CardContent>
-            </Card>
+              </div>
 
-            {/* Environmental Impact */}
-            <Card className="bg-gradient-to-br from-emerald-900/50 to-green-900/50 border-2 border-emerald-500/50 hover-elevate" data-testid="card-environmental-impact">
-              <CardHeader className="text-center">
-                <Leaf className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
-                <CardTitle className="text-white text-2xl">Environmental Impact</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="space-y-4 text-gray-300">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-emerald-400" />
-                    <span>Prevents toxic e-waste</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-emerald-400" />
-                    <span>Recovers precious metals</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-emerald-400" />
-                    <span>Supports circular economy</span>
-                  </div>
+              <div className="space-y-3 md:border-l md:border-r md:border-white/10 md:px-6">
+                <div className="flex items-center gap-3">
+                  <Leaf className="w-8 h-8 text-emerald-400 flex-shrink-0" />
+                  <h3 className="text-white font-bold text-lg">Environmental Impact</h3>
                 </div>
-              </CardContent>
-            </Card>
+                <ul className="space-y-1.5 text-gray-300 text-sm">
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Prevents toxic e-waste</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Recovers precious metals</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Supports circular economy</li>
+                </ul>
+              </div>
 
-            {/* Reward Multipliers */}
-            <Card className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-2 border-purple-500/50 hover-elevate" data-testid="card-reward-multipliers">
-              <CardHeader className="text-center">
-                <Zap className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                <CardTitle className="text-white text-2xl">DXB Multipliers</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-300 mb-4">
-                  AquaCafe members get bonus multipliers:
-                </p>
-                <div className="space-y-3">
-                  <Badge className="bg-blue-500/30 text-blue-300 px-4 py-2 text-lg">
-                    Level 2: 2X DXBs
-                  </Badge>
-                  <Badge className="bg-purple-500/30 text-purple-300 px-4 py-2 text-lg">
-                    Level 3: 2.5X DXBs
-                  </Badge>
-                  <Badge className="bg-amber-500/30 text-amber-300 px-4 py-2 text-lg">
-                    Level 4: 3X DXBs
-                  </Badge>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Zap className="w-8 h-8 text-purple-400 flex-shrink-0" />
+                  <h3 className="text-white font-bold text-lg">DXB Multipliers</h3>
                 </div>
-              </CardContent>
-            </Card>
+                <p className="text-gray-300 text-sm">AquaCafe members get bonus multipliers:</p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge className="bg-blue-500/30 text-blue-300 px-2.5 py-1 text-xs">Level 2: 2X</Badge>
+                  <Badge className="bg-purple-500/30 text-purple-300 px-2.5 py-1 text-xs">Level 3: 2.5X</Badge>
+                  <Badge className="bg-amber-500/30 text-amber-300 px-2.5 py-1 text-xs">Level 4: 3X</Badge>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Trade-in Process */}
@@ -326,156 +377,39 @@ export default function Earn() {
             </div>
           </div>
 
-          {/* Consolidated Bundle: Shower Filter + Membership + Chill & Grill Voucher + Join Form */}
-          <div className="mb-12 bg-gradient-to-br from-slate-900/70 to-emerald-900/40 rounded-3xl p-6 sm:p-8 border-2 border-emerald-500/40 shadow-2xl" data-testid="loyalty-bundle-section">
-            <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full mb-3 border border-amber-400/40 text-xs sm:text-sm font-bold uppercase tracking-widest">
-                <Gift className="w-4 h-4" />
-                AquaCafe Loyalty Bundle · AED 1,000+ value
-              </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
-                One AED 99 Kit. <span className="text-emerald-400">Three Lifetime Benefits.</span>
-              </h3>
-              <p className="text-gray-300 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
-                Join the water track and unlock the referral system — every friend you bring earns you both rewards.
-              </p>
-            </div>
-
-            {/* 3-up benefit cards */}
-            <div className="grid md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-slate-800/60 rounded-2xl p-4 border border-cyan-500/40 flex gap-3" data-testid="bundle-card-shower">
-                <img src={showerFilterCollage} alt="Free Ionic Shower Filter" className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover flex-shrink-0" data-testid="image-shower-filter" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <Droplets className="w-4 h-4 text-cyan-400" />
-                    <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">AED 399</Badge>
-                  </div>
-                  <h4 className="text-base font-bold text-white leading-tight">FREE Ionic Shower Filter</h4>
-                  <p className="text-xs text-gray-400 mt-1">Beauty & skincare filtration</p>
-                </div>
-              </div>
-
-              <div className="bg-slate-800/60 rounded-2xl p-4 border border-blue-500/40 flex gap-3" data-testid="bundle-card-membership">
-                <img src={membershipCard} alt="AquaCafe Membership Card" className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover flex-shrink-0" data-testid="image-membership-card" />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <Crown className="w-4 h-4 text-blue-400" />
-                    <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">AED 299</Badge>
-                  </div>
-                  <h4 className="text-base font-bold text-white leading-tight">Membership Card & Setup</h4>
-                  <p className="text-xs text-gray-400 mt-1">Pro install + lifetime support</p>
-                </div>
-              </div>
-
-              <div className="bg-slate-800/60 rounded-2xl p-4 border border-amber-500/40 flex gap-3" data-testid="bundle-card-voucher">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0">
-                  <Utensils className="w-10 h-10 text-white" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <Gift className="w-4 h-4 text-amber-400" />
-                    <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">Per referral</Badge>
-                  </div>
-                  <h4 className="text-base font-bold text-white leading-tight">AED 100 Chill &amp; Grill Voucher</h4>
-                  <p className="text-xs text-gray-400 mt-1">+ FREE filter for every friend</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Referral how-it-works strip */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 text-center">
-              <div className="bg-emerald-500/10 rounded-xl p-2.5 border border-emerald-500/30">
-                <div className="text-emerald-300 text-[11px] font-bold uppercase tracking-wider">1. Join</div>
-                <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">AED 99 starter kit</div>
-              </div>
-              <div className="bg-cyan-500/10 rounded-xl p-2.5 border border-cyan-500/30">
-                <div className="text-cyan-300 text-[11px] font-bold uppercase tracking-wider">2. Refer</div>
-                <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Share your link</div>
-              </div>
-              <div className="bg-amber-500/10 rounded-xl p-2.5 border border-amber-500/30">
-                <div className="text-amber-300 text-[11px] font-bold uppercase tracking-wider">3. Earn</div>
-                <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Voucher + filter</div>
-              </div>
-            </div>
-
-            {/* Join Form — WhatsApp submission for water track */}
-            <WaterTrackJoinForm />
-          </div>
-
-          {/* 3-Step Journey */}
-          <div className="mb-12">
-            <h3 className="text-4xl font-black text-white text-center mb-12">
+          {/* Consolidated 3-Step Loyalty Journey — Join · Earn · Redeem in one unified div */}
+          <div className="bg-slate-800/40 rounded-2xl p-6 sm:p-8 border border-emerald-500/30" data-testid="loyalty-journey-consolidated">
+            <h3 className="text-2xl sm:text-3xl font-black text-white text-center mb-6">
               Simple 3-Step Loyalty Journey
             </h3>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="relative">
-                <div className="bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border-2 border-blue-500/50 rounded-2xl p-8 text-center">
-                  <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-4xl font-black text-blue-400">1</span>
-                  </div>
-                  <h4 className="text-3xl font-bold text-white mb-4">Join</h4>
-                  <p className="text-gray-300 text-lg mb-6">
-                    Get AED 99 Starter Kit with FREE Filter, Card & Level 2 Status
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-cyan-400">
-                      <CheckCircle className="w-5 h-5" />
-                      <span>Instant activation</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-cyan-400">
-                      <CheckCircle className="w-5 h-5" />
-                      <span>1000 welcome DXBs</span>
-                    </div>
-                  </div>
+            <div className="grid md:grid-cols-3 gap-4 md:gap-2 items-stretch">
+              <div className="flex md:flex-col items-center md:text-center gap-3" data-testid="journey-step-join">
+                <div className="w-14 h-14 bg-blue-500/20 border border-blue-500/40 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl font-black text-blue-400">1</span>
                 </div>
-                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                  <ArrowRight className="w-8 h-8 text-emerald-400" />
+                <div className="flex-1">
+                  <h4 className="text-lg font-bold text-white">Join</h4>
+                  <p className="text-gray-300 text-sm mt-1">AED 99 Starter Kit · FREE Filter · Level 2 status · 1,000 welcome DXBs</p>
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="bg-gradient-to-br from-emerald-900/40 to-green-900/40 border-2 border-emerald-500/50 rounded-2xl p-8 text-center">
-                  <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <span className="text-4xl font-black text-emerald-400">2</span>
-                  </div>
-                  <h4 className="text-3xl font-bold text-white mb-4">Earn</h4>
-                  <p className="text-gray-300 text-lg mb-6">
-                    Collect DXBs through iPhone trade-ins, referrals, purchases
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-emerald-400">
-                      <Smartphone className="w-5 h-5" />
-                      <span>iPhone trade-ins</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-emerald-400">
-                      <Users className="w-5 h-5" />
-                      <span>Friend referrals</span>
-                    </div>
-                  </div>
+              <div className="flex md:flex-col items-center md:text-center gap-3 md:border-l md:border-r md:border-white/10 md:px-4" data-testid="journey-step-earn">
+                <div className="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl font-black text-emerald-400">2</span>
                 </div>
-                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                  <ArrowRight className="w-8 h-8 text-amber-400" />
+                <div className="flex-1">
+                  <h4 className="text-lg font-bold text-white">Earn</h4>
+                  <p className="text-gray-300 text-sm mt-1">Collect DXBs via iPhone trade-ins, friend referrals & purchases</p>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-amber-900/40 to-orange-900/40 border-2 border-amber-500/50 rounded-2xl p-8 text-center">
-                <div className="w-20 h-20 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl font-black text-amber-400">3</span>
+              <div className="flex md:flex-col items-center md:text-center gap-3" data-testid="journey-step-redeem">
+                <div className="w-14 h-14 bg-amber-500/20 border border-amber-500/40 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl font-black text-amber-400">3</span>
                 </div>
-                <h4 className="text-3xl font-bold text-white mb-4">Redeem</h4>
-                <p className="text-gray-300 text-lg mb-6">
-                  Use DXBs for vouchers, iPhones, water systems & rewards
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-amber-400">
-                    <Utensils className="w-5 h-5" />
-                    <span>Chill & Grill meals</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-amber-400">
-                    <Smartphone className="w-5 h-5" />
-                    <span>Latest iPhones</span>
-                  </div>
+                <div className="flex-1">
+                  <h4 className="text-lg font-bold text-white">Redeem</h4>
+                  <p className="text-gray-300 text-sm mt-1">Vouchers, Chill & Grill meals, latest iPhones, water systems & more</p>
                 </div>
               </div>
             </div>
