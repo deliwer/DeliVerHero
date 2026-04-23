@@ -157,10 +157,135 @@ export default function Earn() {
         </div>
       </section>
 
-      {/* ⭐ AquaCafe Loyalty Gateway - LEAD WITH THIS */}
-      <section className="w-full py-16 px-4 bg-gradient-to-br from-emerald-900/40 to-blue-900/40 border-y-4 border-emerald-500/50 backdrop-blur-sm" data-testid="aquacafe-loyalty-gateway">
+      {/* ⭐ The Circle Dubai: iPhone Trade-In Hub (with merged AquaCafe Loyalty Gateway) */}
+      <section className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 to-cyan-900/30" data-testid="circle-dubai-tradein">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900/60 to-blue-900/60 border-2 border-emerald-500/50 p-12">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-6 py-3 rounded-full mb-6 border border-blue-500/50">
+              <Recycle className="w-6 h-6 flex-shrink-0" />
+              <span className="font-bold text-lg">INSPIRED BY THE CIRCLE DUBAI</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+              iPhone Trade-In Hub
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mt-2">
+                E-Waste to Rewards
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+              Following Dubai Municipality's The Circle initiative for responsible e-waste collection, trade your old iPhone and earn up to <strong className="text-emerald-400">5,000 DXBs</strong> plus instant credit toward water filtration systems.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Trade-in Value Calculator */}
+            <Card className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 border-2 border-blue-500/50 hover-elevate" data-testid="card-tradein-calculator">
+              <CardHeader className="text-center">
+                <Smartphone className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                <CardTitle className="text-white text-2xl">Check Your iPhone Value</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-gray-300 text-lg mb-6">
+                  Select your iPhone model and condition to see instant valuation + DXB rewards
+                </p>
+                <Link 
+                  href="/exchange"
+                  className="inline-block w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-lg transition-all"
+                  data-testid="button-check-value"
+                >
+                  <Smartphone className="w-5 h-5 inline mr-2" />
+                  Get Instant Quote
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Environmental Impact */}
+            <Card className="bg-gradient-to-br from-emerald-900/50 to-green-900/50 border-2 border-emerald-500/50 hover-elevate" data-testid="card-environmental-impact">
+              <CardHeader className="text-center">
+                <Leaf className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
+                <CardTitle className="text-white text-2xl">Environmental Impact</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <div className="space-y-4 text-gray-300">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-emerald-400" />
+                    <span>Prevents toxic e-waste</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-emerald-400" />
+                    <span>Recovers precious metals</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-6 h-6 text-emerald-400" />
+                    <span>Supports circular economy</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Reward Multipliers */}
+            <Card className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-2 border-purple-500/50 hover-elevate" data-testid="card-reward-multipliers">
+              <CardHeader className="text-center">
+                <Zap className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                <CardTitle className="text-white text-2xl">DXB Multipliers</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-gray-300 mb-4">
+                  AquaCafe members get bonus multipliers:
+                </p>
+                <div className="space-y-3">
+                  <Badge className="bg-blue-500/30 text-blue-300 px-4 py-2 text-lg">
+                    Level 2: 2X DXBs
+                  </Badge>
+                  <Badge className="bg-purple-500/30 text-purple-300 px-4 py-2 text-lg">
+                    Level 3: 2.5X DXBs
+                  </Badge>
+                  <Badge className="bg-amber-500/30 text-amber-300 px-4 py-2 text-lg">
+                    Level 4: 3X DXBs
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Trade-in Process */}
+          <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-500/30 mb-12">
+            <h3 className="text-3xl font-bold text-white text-center mb-8">
+              📱 How iPhone Trade-In Works
+            </h3>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-blue-400">1</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Get Quote</h4>
+                <p className="text-gray-400 text-sm">Select model & condition</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-cyan-400">2</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Ship or Drop-off</h4>
+                <p className="text-gray-400 text-sm">Free pickup or visit us</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-emerald-400">3</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Verification</h4>
+                <p className="text-gray-400 text-sm">We inspect your device</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl font-bold text-purple-400">4</span>
+                </div>
+                <h4 className="font-bold text-white mb-2">Get Rewarded!</h4>
+                <p className="text-gray-400 text-sm">Instant DXBs + credit</p>
+              </div>
+            </div>
+          </div>
+
+          {/* ── MERGED: AquaCafe Loyalty Gateway ── */}
+          <div className="text-center mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900/60 to-blue-900/60 border-2 border-emerald-500/50 p-12" data-testid="aquacafe-loyalty-gateway">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.15)_0%,transparent_70%)]"></div>
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-6 py-3 rounded-full mb-6 border border-emerald-500/50">
@@ -352,135 +477,6 @@ export default function Earn() {
                     <span>Latest iPhones</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ⭐ The Circle Dubai: iPhone Trade-In Hub - ENHANCED */}
-      <section className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 to-cyan-900/30" data-testid="circle-dubai-tradein">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-6 py-3 rounded-full mb-6 border border-blue-500/50">
-              <Recycle className="w-6 h-6 flex-shrink-0" />
-              <span className="font-bold text-lg">INSPIRED BY THE CIRCLE DUBAI</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-              iPhone Trade-In Hub
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mt-2">
-                E-Waste to Rewards
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              Following Dubai Municipality's The Circle initiative for responsible e-waste collection, trade your old iPhone and earn up to <strong className="text-emerald-400">5,000 DXBs</strong> plus instant credit toward water filtration systems.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Trade-in Value Calculator */}
-            <Card className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 border-2 border-blue-500/50 hover-elevate" data-testid="card-tradein-calculator">
-              <CardHeader className="text-center">
-                <Smartphone className="w-16 h-16 text-blue-400 mx-auto mb-4" />
-                <CardTitle className="text-white text-2xl">Check Your iPhone Value</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-300 text-lg mb-6">
-                  Select your iPhone model and condition to see instant valuation + DXB rewards
-                </p>
-                <Link 
-                  href="/exchange"
-                  className="inline-block w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-3 px-6 rounded-lg transition-all"
-                  data-testid="button-check-value"
-                >
-                  <Smartphone className="w-5 h-5 inline mr-2" />
-                  Get Instant Quote
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* Environmental Impact */}
-            <Card className="bg-gradient-to-br from-emerald-900/50 to-green-900/50 border-2 border-emerald-500/50 hover-elevate" data-testid="card-environmental-impact">
-              <CardHeader className="text-center">
-                <Leaf className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
-                <CardTitle className="text-white text-2xl">Environmental Impact</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="space-y-4 text-gray-300">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-emerald-400" />
-                    <span>Prevents toxic e-waste</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-emerald-400" />
-                    <span>Recovers precious metals</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-6 h-6 text-emerald-400" />
-                    <span>Supports circular economy</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Reward Multipliers */}
-            <Card className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-2 border-purple-500/50 hover-elevate" data-testid="card-reward-multipliers">
-              <CardHeader className="text-center">
-                <Zap className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                <CardTitle className="text-white text-2xl">DXB Multipliers</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-300 mb-4">
-                  AquaCafe members get bonus multipliers:
-                </p>
-                <div className="space-y-3">
-                  <Badge className="bg-blue-500/30 text-blue-300 px-4 py-2 text-lg">
-                    Level 2: 2X DXBs
-                  </Badge>
-                  <Badge className="bg-purple-500/30 text-purple-300 px-4 py-2 text-lg">
-                    Level 3: 2.5X DXBs
-                  </Badge>
-                  <Badge className="bg-amber-500/30 text-amber-300 px-4 py-2 text-lg">
-                    Level 4: 3X DXBs
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Trade-in Process */}
-          <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-500/30">
-            <h3 className="text-3xl font-bold text-white text-center mb-8">
-              📱 How iPhone Trade-In Works
-            </h3>
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-blue-400">1</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Get Quote</h4>
-                <p className="text-gray-400 text-sm">Select model & condition</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-cyan-400">2</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Ship or Drop-off</h4>
-                <p className="text-gray-400 text-sm">Free pickup or visit us</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-emerald-400">3</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Verification</h4>
-                <p className="text-gray-400 text-sm">We inspect your device</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-purple-400">4</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Get Rewarded!</h4>
-                <p className="text-gray-400 text-sm">Instant DXBs + credit</p>
               </div>
             </div>
           </div>
