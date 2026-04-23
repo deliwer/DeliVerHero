@@ -213,18 +213,39 @@ export default function Earn() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 text-center">
-            <div className="bg-emerald-500/10 rounded-xl p-2.5 border border-emerald-500/30">
-              <div className="text-emerald-300 text-[11px] font-bold uppercase tracking-wider">1. Join</div>
-              <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">AED 99 starter kit</div>
-            </div>
-            <div className="bg-cyan-500/10 rounded-xl p-2.5 border border-cyan-500/30">
-              <div className="text-cyan-300 text-[11px] font-bold uppercase tracking-wider">2. Refer</div>
-              <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Share your link</div>
-            </div>
-            <div className="bg-amber-500/10 rounded-xl p-2.5 border border-amber-500/30">
-              <div className="text-amber-300 text-[11px] font-bold uppercase tracking-wider">3. Earn</div>
-              <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Voucher + filter</div>
+          {/* Unified 3-Step Loyalty Journey — Join · Earn · Redeem */}
+          <div className="bg-slate-900/50 rounded-2xl p-4 sm:p-5 border border-emerald-500/30 mb-6" data-testid="loyalty-journey-consolidated">
+            <h4 className="text-sm sm:text-base font-bold text-white text-center mb-4 uppercase tracking-wider">
+              Simple 3-Step Loyalty Journey
+            </h4>
+            <div className="grid md:grid-cols-3 gap-3 items-stretch">
+              <div className="flex md:flex-col items-center md:text-center gap-3" data-testid="journey-step-join">
+                <div className="w-10 h-10 bg-blue-500/20 border border-blue-500/40 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-base font-black text-blue-400">1</span>
+                </div>
+                <div className="flex-1">
+                  <h5 className="text-sm font-bold text-white">Join</h5>
+                  <p className="text-gray-400 text-xs mt-0.5">AED 99 kit · FREE filter · 1,000 DXBs</p>
+                </div>
+              </div>
+              <div className="flex md:flex-col items-center md:text-center gap-3 md:border-l md:border-r md:border-white/10 md:px-3" data-testid="journey-step-earn">
+                <div className="w-10 h-10 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-base font-black text-emerald-400">2</span>
+                </div>
+                <div className="flex-1">
+                  <h5 className="text-sm font-bold text-white">Earn</h5>
+                  <p className="text-gray-400 text-xs mt-0.5">Trade-ins, referrals & purchases</p>
+                </div>
+              </div>
+              <div className="flex md:flex-col items-center md:text-center gap-3" data-testid="journey-step-redeem">
+                <div className="w-10 h-10 bg-amber-500/20 border border-amber-500/40 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-base font-black text-amber-400">3</span>
+                </div>
+                <div className="flex-1">
+                  <h5 className="text-sm font-bold text-white">Redeem</h5>
+                  <p className="text-gray-400 text-xs mt-0.5">Vouchers · meals · iPhones · water</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -291,125 +312,71 @@ export default function Earn() {
             </div>
           </div>
 
-          {/* Consolidated Hub Concepts — Value · Impact · Multipliers in one panel */}
-          <div className="bg-slate-800/50 rounded-2xl p-6 sm:p-8 border border-blue-500/30 mb-12" data-testid="hub-concepts-consolidated">
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Smartphone className="w-8 h-8 text-blue-400 flex-shrink-0" />
-                  <h3 className="text-white font-bold text-lg">Check Your iPhone Value</h3>
+          {/* ── UNIFIED iPhone Trade-In Hub: Concepts + How-It-Works in ONE card ── */}
+          <div className="bg-slate-800/50 rounded-2xl border border-blue-500/30 overflow-hidden" data-testid="tradein-hub-unified">
+            {/* Concepts row */}
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-6 p-5 sm:p-6">
+              <div className="flex gap-3" data-testid="hub-concept-value">
+                <Smartphone className="w-6 h-6 text-blue-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-white font-bold text-sm">Check iPhone Value</h3>
+                  <p className="text-gray-400 text-xs mt-0.5">Instant valuation + DXB rewards.</p>
+                  <Link
+                    href="/exchange"
+                    className="inline-flex items-center gap-1 text-blue-300 hover:text-blue-200 text-xs font-bold mt-1"
+                    data-testid="button-check-value"
+                  >
+                    Get Instant Quote →
+                  </Link>
                 </div>
-                <p className="text-gray-300 text-sm">
-                  Select your iPhone model and condition to see instant valuation + DXB rewards.
-                </p>
-                <Link
-                  href="/exchange"
-                  className="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 text-sm font-bold"
-                  data-testid="button-check-value"
-                >
-                  <Smartphone className="w-4 h-4" /> Get Instant Quote →
-                </Link>
               </div>
 
-              <div className="space-y-3 md:border-l md:border-r md:border-white/10 md:px-6">
-                <div className="flex items-center gap-3">
-                  <Leaf className="w-8 h-8 text-emerald-400 flex-shrink-0" />
-                  <h3 className="text-white font-bold text-lg">Environmental Impact</h3>
+              <div className="flex gap-3 md:border-l md:border-r md:border-white/10 md:px-6" data-testid="hub-concept-impact">
+                <Leaf className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-white font-bold text-sm">Environmental Impact</h3>
+                  <p className="text-gray-400 text-xs mt-0.5">Prevents e-waste · recovers metals · powers the circular economy.</p>
                 </div>
-                <ul className="space-y-1.5 text-gray-300 text-sm">
-                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Prevents toxic e-waste</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Recovers precious metals</li>
-                  <li className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" /> Supports circular economy</li>
-                </ul>
               </div>
 
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Zap className="w-8 h-8 text-purple-400 flex-shrink-0" />
-                  <h3 className="text-white font-bold text-lg">DXB Multipliers</h3>
-                </div>
-                <p className="text-gray-300 text-sm">AquaCafe members get bonus multipliers:</p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-blue-500/30 text-blue-300 px-2.5 py-1 text-xs">Level 2: 2X</Badge>
-                  <Badge className="bg-purple-500/30 text-purple-300 px-2.5 py-1 text-xs">Level 3: 2.5X</Badge>
-                  <Badge className="bg-amber-500/30 text-amber-300 px-2.5 py-1 text-xs">Level 4: 3X</Badge>
+              <div className="flex gap-3" data-testid="hub-concept-multipliers">
+                <Zap className="w-6 h-6 text-purple-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-white font-bold text-sm">DXB Multipliers</h3>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    <Badge className="bg-blue-500/30 text-blue-300 px-2 py-0 text-[10px]">L2: 2X</Badge>
+                    <Badge className="bg-purple-500/30 text-purple-300 px-2 py-0 text-[10px]">L3: 2.5X</Badge>
+                    <Badge className="bg-amber-500/30 text-amber-300 px-2 py-0 text-[10px]">L4: 3X</Badge>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Trade-in Process */}
-          <div className="bg-slate-800/50 rounded-2xl p-8 border border-blue-500/30 mb-12">
-            <h3 className="text-3xl font-bold text-white text-center mb-8">
-              📱 How iPhone Trade-In Works
-            </h3>
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-blue-400">1</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Get Quote</h4>
-                <p className="text-gray-400 text-sm">Select model & condition</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-cyan-400">2</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Ship or Drop-off</h4>
-                <p className="text-gray-400 text-sm">Free pickup or visit us</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-emerald-400">3</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Verification</h4>
-                <p className="text-gray-400 text-sm">We inspect your device</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-purple-400">4</span>
-                </div>
-                <h4 className="font-bold text-white mb-2">Get Rewarded!</h4>
-                <p className="text-gray-400 text-sm">Instant DXBs + credit</p>
-              </div>
+            {/* Divider with title */}
+            <div className="bg-slate-900/40 border-t border-blue-500/20 px-5 sm:px-6 py-3 text-center">
+              <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">
+                📱 How iPhone Trade-In Works
+              </h4>
             </div>
-          </div>
 
-          {/* Consolidated 3-Step Loyalty Journey — Join · Earn · Redeem in one unified div */}
-          <div className="bg-slate-800/40 rounded-2xl p-6 sm:p-8 border border-emerald-500/30" data-testid="loyalty-journey-consolidated">
-            <h3 className="text-2xl sm:text-3xl font-black text-white text-center mb-6">
-              Simple 3-Step Loyalty Journey
-            </h3>
-            <div className="grid md:grid-cols-3 gap-4 md:gap-2 items-stretch">
-              <div className="flex md:flex-col items-center md:text-center gap-3" data-testid="journey-step-join">
-                <div className="w-14 h-14 bg-blue-500/20 border border-blue-500/40 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl font-black text-blue-400">1</span>
+            {/* How-it-works steps */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-5 sm:p-6">
+              {[
+                { n: 1, ring: 'bg-blue-500/20 border-blue-500/40', text: 'text-blue-400', title: 'Get Quote', desc: 'Select model & condition' },
+                { n: 2, ring: 'bg-cyan-500/20 border-cyan-500/40', text: 'text-cyan-400', title: 'Ship or Drop-off', desc: 'Free pickup or visit us' },
+                { n: 3, ring: 'bg-emerald-500/20 border-emerald-500/40', text: 'text-emerald-400', title: 'Verification', desc: 'We inspect your device' },
+                { n: 4, ring: 'bg-purple-500/20 border-purple-500/40', text: 'text-purple-400', title: 'Get Rewarded', desc: 'Instant DXBs + credit' },
+              ].map((s) => (
+                <div key={s.n} className="flex md:flex-col items-center md:text-center gap-2.5">
+                  <div className={`w-9 h-9 ${s.ring} border rounded-full flex items-center justify-center flex-shrink-0`}>
+                    <span className={`text-sm font-black ${s.text}`}>{s.n}</span>
+                  </div>
+                  <div className="flex-1">
+                    <h5 className="text-white font-bold text-xs sm:text-sm">{s.title}</h5>
+                    <p className="text-gray-400 text-[11px] sm:text-xs mt-0.5">{s.desc}</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h4 className="text-lg font-bold text-white">Join</h4>
-                  <p className="text-gray-300 text-sm mt-1">AED 99 Starter Kit · FREE Filter · Level 2 status · 1,000 welcome DXBs</p>
-                </div>
-              </div>
-
-              <div className="flex md:flex-col items-center md:text-center gap-3 md:border-l md:border-r md:border-white/10 md:px-4" data-testid="journey-step-earn">
-                <div className="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl font-black text-emerald-400">2</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-lg font-bold text-white">Earn</h4>
-                  <p className="text-gray-300 text-sm mt-1">Collect DXBs via iPhone trade-ins, friend referrals & purchases</p>
-                </div>
-              </div>
-
-              <div className="flex md:flex-col items-center md:text-center gap-3" data-testid="journey-step-redeem">
-                <div className="w-14 h-14 bg-amber-500/20 border border-amber-500/40 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-2xl font-black text-amber-400">3</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-lg font-bold text-white">Redeem</h4>
-                  <p className="text-gray-300 text-sm mt-1">Vouchers, Chill & Grill meals, latest iPhones, water systems & more</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -452,48 +419,25 @@ export default function Earn() {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Card className="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 border-emerald-500/40 mb-8">
-              <CardContent className="p-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
-                    <Star className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-4">What are DXBs?</h3>
-                    <div className="space-y-3 text-gray-300">
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
-                        <div>
-                          <p className="font-semibold text-white">Universal Currency</p>
-                          <p className="text-sm">Use DXBs across our entire ecosystem - water delivery, premium products, restaurant rewards, and sustainability initiatives</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
-                        <div>
-                          <p className="font-semibold text-white">Real Value</p>
-                          <p className="text-sm"><strong className="text-emerald-400">100 DXBs = $10 value</strong> - transparent and consistent pricing you can trust</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
-                        <div>
-                          <p className="font-semibold text-white">Impact Tracking</p>
-                          <p className="text-sm">Every DXB earned represents real environmental impact - CO₂ reduction, water saved, and e-waste recycled through your actions</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 mt-1 flex-shrink-0 text-emerald-400" />
-                        <div>
-                          <p className="font-semibold text-white">Flexible Usage</p>
-                          <p className="text-sm">Redeem for cash, products, water subscriptions, or donate to sustainability projects - you choose how to use your rewards</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Compact DXB pillars — 4 inline pills */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6" data-testid="dxb-pillars">
+              <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Universal</div>
+                <div className="text-white text-xs mt-1">One currency, full ecosystem</div>
+              </div>
+              <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Real Value</div>
+                <div className="text-white text-xs mt-1">100 DXBs = $10</div>
+              </div>
+              <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Impact</div>
+                <div className="text-white text-xs mt-1">Tracks CO₂ & water saved</div>
+              </div>
+              <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Flexible</div>
+                <div className="text-white text-xs mt-1">Cash · products · donate</div>
+              </div>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="bg-slate-800/50 border-slate-700">
@@ -555,15 +499,6 @@ export default function Earn() {
               </Card>
             </div>
 
-            <div className="mt-8 text-center bg-gradient-to-r from-emerald-900/20 to-cyan-900/20 rounded-2xl p-6 border border-emerald-500/30">
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center justify-center gap-2">
-                <Sparkles className="w-5 h-5 text-emerald-400" />
-                Simple, Transparent, Impactful
-              </h3>
-              <p className="text-gray-300 max-w-3xl mx-auto">
-                No confusing point systems or multiple currencies. Just DXBs - one unified reward that combines real value with environmental impact tracking.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -617,36 +552,32 @@ export default function Earn() {
       </section>
 
       {/* Missions Hub - Activities to Earn DXBs */}
-      <section className="w-full py-12 px-4 bg-gradient-to-br from-blue-50 to-emerald-50" data-testid="missions-hub">
+      <section className="w-full py-10 px-4 bg-gradient-to-br from-blue-50 to-emerald-50" data-testid="missions-hub">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-              Earn More DXBs - Missions Hub
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+              Earn More DXBs · Missions Hub
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Complete missions to earn Dubai Carbon Tokens. Every action contributes to Dubai's circular economy and funds global sustainability initiatives.
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+              Quick actions that earn Dubai Carbon Tokens.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* iPhone Trade-in Mission */}
-            <Card className="bg-white border-blue-300 shadow-lg hover:shadow-xl transition-all">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Smartphone className="w-6 h-6 text-blue-600" />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            <Card className="bg-white border-blue-200 shadow-sm hover:shadow-md transition-all">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Smartphone className="w-5 h-5 text-blue-600" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-800">iPhone Trade-in</h3>
-                    <p className="text-sm text-blue-600 font-bold">Up to 5,000 DXBs</p>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-gray-800 text-sm">iPhone Trade-in</h3>
+                    <p className="text-xs text-blue-600 font-bold">Up to 5,000 DXBs</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  Trade your old iPhone and get instant DXBs plus credit toward AquaCafe water systems
-                </p>
-                <Link 
+                <Link
                   href="/exchange"
-                  className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-center transition-all"
+                  className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-1.5 px-3 rounded-lg text-center transition-all"
                   data-testid="button-mission-tradein"
                 >
                   Start Trade-in
@@ -654,25 +585,22 @@ export default function Earn() {
               </CardContent>
             </Card>
 
-            {/* Join AquaCafe Mission */}
-            <Card className="bg-white border-emerald-300 shadow-lg hover:shadow-xl transition-all">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                    <Droplets className="w-6 h-6 text-emerald-600" />
+            <Card className="bg-white border-emerald-200 shadow-sm hover:shadow-md transition-all">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Droplets className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-800">AquaCafe Membership</h3>
-                    <p className="text-sm text-emerald-600 font-bold">1,000 DXBs</p>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-gray-800 text-sm">AquaCafe Membership</h3>
+                    <p className="text-xs text-emerald-600 font-bold">1,000 DXBs</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  Get the AED 99 Starter Kit and become a Planet Hero Level 2 member with instant DXBs
-                </p>
-                <Button 
+                <Button
                   onClick={handleOrderStarterKit}
                   disabled={isOrderLoading}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold"
+                  size="sm"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
                   data-testid="button-mission-membership"
                 >
                   {isOrderLoading ? "Adding..." : "Join Now"}
@@ -680,29 +608,26 @@ export default function Earn() {
               </CardContent>
             </Card>
 
-            {/* Referral Mission */}
-            <Card className="bg-white border-amber-300 shadow-lg hover:shadow-xl transition-all">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
-                    <Users className="w-6 h-6 text-amber-600" />
+            <Card className="bg-white border-amber-200 shadow-sm hover:shadow-md transition-all">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="w-5 h-5 text-amber-600" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-800">Referral Bonus</h3>
-                    <p className="text-sm text-amber-600 font-bold">500 DXBs + AED 100</p>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-gray-800 text-sm">Referral Bonus</h3>
+                    <p className="text-xs text-amber-600 font-bold">500 DXBs + AED 100</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  Refer a friend to AquaCafe and both get AED 100 Chill & Grill voucher + 500 DXBs
-                </p>
-                <Button 
+                <Button
                   onClick={() => {
                     toast({
                       title: "Referral Code",
                       description: "Your unique referral code: HERO" + Math.random().toString(36).substr(2, 6).toUpperCase()
                     });
                   }}
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold"
+                  size="sm"
+                  className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold"
                   data-testid="button-mission-referral"
                 >
                   Get Referral Code
@@ -710,29 +635,26 @@ export default function Earn() {
               </CardContent>
             </Card>
 
-            {/* Daily Check-in */}
-            <Card className="bg-white border-purple-300 shadow-lg hover:shadow-xl transition-all">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                    <Star className="w-6 h-6 text-purple-600" />
+            <Card className="bg-white border-purple-200 shadow-sm hover:shadow-md transition-all">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Star className="w-5 h-5 text-purple-600" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-800">Daily Check-in</h3>
-                    <p className="text-sm text-purple-600 font-bold">50 DXBs/Day</p>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-gray-800 text-sm">Daily Check-in</h3>
+                    <p className="text-xs text-purple-600 font-bold">50 DXBs/day</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  Log in daily to collect 50 DXBs and maintain your streak
-                </p>
-                <Button 
+                <Button
                   onClick={() => {
                     toast({
                       title: "Daily Reward Claimed!",
                       description: "+50 DXBs earned! Come back tomorrow for more!"
                     });
                   }}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold"
+                  size="sm"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold"
                   data-testid="button-mission-checkin"
                 >
                   Claim Daily Reward
@@ -740,24 +662,20 @@ export default function Earn() {
               </CardContent>
             </Card>
 
-            {/* Eco Challenge */}
-            <Card className="bg-white border-green-300 shadow-lg hover:shadow-xl transition-all">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                    <TreePine className="w-6 h-6 text-green-600" />
+            <Card className="bg-white border-green-200 shadow-sm hover:shadow-md transition-all">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <TreePine className="w-5 h-5 text-green-600" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-800">Plastic-Free Week</h3>
-                    <p className="text-sm text-green-600 font-bold">1,000 DXBs</p>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-gray-800 text-sm">Plastic-Free Week</h3>
+                    <p className="text-xs text-green-600 font-bold">1,000 DXBs</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  Complete the 7-day plastic-free challenge and document your journey
-                </p>
-                <Link 
+                <Link
                   href="/collect"
-                  className="inline-block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg text-center transition-all"
+                  className="inline-block w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-sm py-1.5 px-3 rounded-lg text-center transition-all"
                   data-testid="button-mission-challenge"
                 >
                   Start Challenge
@@ -765,32 +683,29 @@ export default function Earn() {
               </CardContent>
             </Card>
 
-            {/* Community Event */}
-            <Card className="bg-white border-pink-300 shadow-lg hover:shadow-xl transition-all">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-pink-600" />
+            <Card className="bg-white border-pink-200 shadow-sm hover:shadow-md transition-all">
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Heart className="w-5 h-5 text-pink-600" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-gray-800">Community Event</h3>
-                    <p className="text-sm text-pink-600 font-bold">750 DXBs</p>
+                  <div className="min-w-0">
+                    <h3 className="font-bold text-gray-800 text-sm">Community Event</h3>
+                    <p className="text-xs text-pink-600 font-bold">750 DXBs</p>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  Attend Chill & Grill sustainability workshop and Kangen Water demo
-                </p>
-                <Button 
+                <Button
                   onClick={() => {
                     toast({
                       title: "Event Registered",
                       description: "See you at Chill & Grill Clover Bay Tower, Business Bay!"
                     });
                   }}
-                  className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold"
+                  size="sm"
+                  className="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold"
                   data-testid="button-mission-event"
                 >
-                  Register for Event
+                  Register
                 </Button>
               </CardContent>
             </Card>
