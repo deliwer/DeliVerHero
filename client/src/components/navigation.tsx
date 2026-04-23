@@ -31,13 +31,10 @@ const deliwerNavItems = [
 ];
 
 const realestateNavItems = [
-  { path: "/realestate",        label: "Deals",      id: "re-deals",      icon: Flame },
-  { path: "/realestate#damac",  label: "DAMAC",      id: "re-damac",      icon: Crown },
-  { path: "/realestate#offers", label: "Inventory",  id: "re-inventory",  icon: KeyRound },
-  { path: "/realestate#brokers",label: "Brokers",    id: "re-brokers",    icon: Briefcase },
-  { path: "/realestate#career", label: "Career",     id: "re-career",     icon: Handshake },
-  { path: "/realestate#commission", label: "Commission", id: "re-commission", icon: Percent },
-  { path: "/realestate#contact", label: "Contact",   id: "re-contact",    icon: MapPin },
+  { path: "/realestate#partner",     label: "Find Property", id: "re-find",       icon: KeyRound },
+  { path: "/realestate#partner",     label: "List Property", id: "re-list",       icon: Building2 },
+  { path: "/realestate#brokers",     label: "Brokers",       id: "re-brokers",    icon: Handshake },
+  { path: "/realestate#developers",  label: "Developers",    id: "re-developers", icon: Crown },
 ];
 
 const chaintrackNavItems = [
@@ -98,8 +95,8 @@ export function Navigation() {
 
   return (
     <div id="main-nav" className="w-full fixed top-0 z-[100]">
-      {/* 0. Emergency Preparedness Banner */}
-      <EmergencyBanner />
+      {/* 0. Emergency Preparedness Banner — hidden on Realty for focus */}
+      {!isRealEstate && <EmergencyBanner />}
 
       {/* 1. Main Navigation Bar */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
@@ -226,12 +223,14 @@ export function Navigation() {
         </div>
       </nav>
 
-      {/* 2. Trust Strip Bar */}
-      <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-2 px-4 overflow-x-auto no-scrollbar relative z-50">
-        <div className="max-w-7xl mx-auto flex justify-start min-w-max">
-          <TrustStrip variant="dark" showContact={true} />
+      {/* 2. Trust Strip Bar — hidden on Realty for focus */}
+      {!isRealEstate && (
+        <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-2 px-4 overflow-x-auto no-scrollbar relative z-50">
+          <div className="max-w-7xl mx-auto flex justify-start min-w-max">
+            <TrustStrip variant="dark" showContact={true} />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* 3. Mobile Nav Dropdown */}
       <AnimatePresence>
