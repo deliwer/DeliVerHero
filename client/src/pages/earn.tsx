@@ -157,8 +157,41 @@ export default function Earn() {
         </div>
       </section>
 
+      {/* ── Sticky Submenu — quick scroll-to navigation ── */}
+      <nav className="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg" data-testid="earn-submenu">
+        <div className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
+          <div className="flex items-center gap-2 min-w-max">
+            {[
+              { id: 'section-bundle', label: 'Bundle', icon: Gift },
+              { id: 'section-tradein', label: 'Trade-In', icon: Smartphone },
+              { id: 'section-stars', label: 'Stars', icon: Star },
+              { id: 'section-dxbs', label: 'DXBs', icon: Sparkles },
+              { id: 'section-win', label: 'Win', icon: Trophy },
+              { id: 'section-missions', label: 'Missions', icon: Target },
+              { id: 'section-partners', label: 'Partners', icon: Users },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    const el = document.getElementById(item.id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/60 hover:bg-emerald-600/30 border border-slate-700 hover:border-emerald-500/60 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition-all whitespace-nowrap"
+                  data-testid={`submenu-${item.label.toLowerCase()}`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+
       {/* ⭐ PROMOTED: AquaCafe Loyalty Bundle — standalone section directly below hero */}
-      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-950 to-emerald-950/40 border-y border-emerald-500/20" data-testid="aquacafe-loyalty-bundle-section">
+      <section id="section-bundle" className="w-full py-12 px-4 bg-gradient-to-br from-slate-950 to-emerald-950/40 border-y border-emerald-500/20 scroll-mt-16" data-testid="aquacafe-loyalty-bundle-section">
         <div className="max-w-5xl mx-auto bg-gradient-to-br from-slate-900/70 to-emerald-900/40 rounded-3xl p-6 sm:p-8 border-2 border-emerald-500/40 shadow-2xl" data-testid="loyalty-bundle-section">
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full mb-3 border border-amber-400/40 text-xs sm:text-sm font-bold uppercase tracking-widest">
@@ -254,7 +287,7 @@ export default function Earn() {
       </section>
 
       {/* ⭐ Unified: iPhone Trade-In × Circular Economy Hub */}
-      <section className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 via-emerald-900/20 to-cyan-900/30" data-testid="circle-dubai-tradein">
+      <section id="section-tradein" className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 via-emerald-900/20 to-cyan-900/30 scroll-mt-16" data-testid="circle-dubai-tradein">
         <div className="max-w-7xl mx-auto">
           {/* ── UNIFIED HERO: iPhone Trade-In × Circular Economy Hub ── */}
           <div className="text-center mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-900/60 via-slate-900/60 to-emerald-900/60 border-2 border-emerald-500/40 p-8 sm:p-12" data-testid="tradein-circular-hub-hero">
@@ -383,7 +416,7 @@ export default function Earn() {
       </section>
 
       {/* ⭐ Stars & DXB Monetization - Fund Sustainability */}
-      <section className="w-full py-16 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white" data-testid="stars-pic-monetization">
+      <section id="section-stars" className="w-full py-16 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white scroll-mt-16" data-testid="stars-pic-monetization">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
@@ -403,7 +436,7 @@ export default function Earn() {
       </section>
 
       {/* Dubai Carbon Tokens (DXBs) - Unified Rewards System */}
-      <section className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900" data-testid="pics-rewards-section">
+      <section id="section-dxbs" className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900 scroll-mt-16" data-testid="pics-rewards-section">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
@@ -504,7 +537,7 @@ export default function Earn() {
       </section>
 
       {/* AquaCafe Heroes Tombola - Win Prizes While Earning */}
-      <section className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5 relative overflow-hidden" data-testid="tombola-section">
+      <section id="section-win" className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5 relative overflow-hidden scroll-mt-16" data-testid="tombola-section">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full animate-pulse"></div>
           <div className="absolute top-32 right-20 w-12 h-12 bg-cyan-400 rounded-full animate-bounce"></div>
@@ -552,7 +585,7 @@ export default function Earn() {
       </section>
 
       {/* Missions Hub - Activities to Earn DXBs */}
-      <section className="w-full py-10 px-4 bg-gradient-to-br from-blue-50 to-emerald-50" data-testid="missions-hub">
+      <section id="section-missions" className="w-full py-10 px-4 bg-gradient-to-br from-blue-50 to-emerald-50 scroll-mt-16" data-testid="missions-hub">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
@@ -714,7 +747,7 @@ export default function Earn() {
       </section>
 
       {/* Partnership Section */}
-      <section className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
+      <section id="section-partners" className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden scroll-mt-16" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
           <div className="text-center mb-8 sm:mb-12">
             <div className="flex flex-col items-center justify-center gap-4 mb-6">
