@@ -12,8 +12,50 @@ import {
   Crown, Trophy, Rocket, UserCheck, CheckCircle2, MessageCircle,
   ArrowRight, Zap, Star, Droplets, Gift, Home, Users, TrendingUp,
   Shield, Utensils, ChefHat, Smartphone, Network, DollarSign,
-  Clock, Sparkles, Copy, Check, Building2, Play, Award, Globe
+  Clock, Sparkles, Copy, Check, Building2, Play, Award, Globe,
+  Lock, FileSignature, KeyRound, Handshake, ShieldCheck
 } from "lucide-react";
+
+const REALTY_EXCLUSIVE_BENEFITS = [
+  {
+    icon: KeyRound,
+    title: "Exclusive Inventory Intelligence",
+    desc: "Daily WhatsApp drops on rental demand by community + distress sale alerts, sourced and vetted by DeliWer Realty before they hit any portal.",
+  },
+  {
+    icon: Building2,
+    title: "Reserved Developer & Community Pool",
+    desc: "Lock specific developers (Emaar, DAMAC, Nakheel, Sobha, Aldar, Meraas) and communities (Downtown, Marina, JVC, Dubai Hills, Palm) — capped seats per area.",
+  },
+  {
+    icon: Handshake,
+    title: "Co-Branded Closing Power",
+    desc: "Use the DeliWer Realty intelligence dossier in client meetings — closes faster because the data, demand signal, and move-in stack come bundled.",
+  },
+  {
+    icon: DollarSign,
+    title: "Shared Commission Splits",
+    desc: "Standard 50/50 commission share on routed leases & sales, plus the full move-in service override (AED 300–800/deal) on top — paid monthly with statement.",
+  },
+];
+
+const REALTY_NDA_TERMS = [
+  {
+    icon: FileSignature,
+    title: "NCA — Non-Circumvention Agreement",
+    desc: "You agree not to bypass DeliWer Realty on any tenant, buyer, landlord or developer introduced through the network.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "NDA — Confidentiality",
+    desc: "All inventory dossiers, demand signal feeds and pricing intelligence stay inside the network. Sharing outside = immediate revocation.",
+  },
+  {
+    icon: Lock,
+    title: "Non-Compete · Reserved Areas",
+    desc: "While active, you agree not to source or close inventory in your reserved community pool through competing platforms.",
+  },
+];
 
 function cleanName(name: string) {
   return name.toLowerCase().trim().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
@@ -63,6 +105,26 @@ const FAST_START_STEPS = [
 ];
 
 const CAREER_TIERS = [
+  {
+    tier: "Realty Inner Circle",
+    badge: "Inner Circle · NDA-Gated",
+    icon: Crown,
+    color: "amber",
+    gradient: "from-amber-950/70 to-emerald-950/40",
+    border: "border-amber-500/50",
+    timeline: "Invite + NDA only",
+    income: "AED 10,000–50,000+/mo",
+    how: "Receive DeliWer Realty's exclusive inventory intelligence (rentals + distress sales) under NCA / NDA / Non-Compete. You close the deal — we share commissions 50/50 plus you keep the full move-in service override.",
+    unlocks: [
+      "Reserved developer & community pool",
+      "Daily WhatsApp inventory + demand intelligence",
+      "Co-branded closing dossier per deal",
+      "50/50 commission share on routed deals",
+      "Move-in override (AED 300–800) on top",
+      "Capped seats — no overlap inside your area",
+    ],
+    upgrade: "Apply via WhatsApp · NCA + NDA signing required",
+  },
   {
     tier: "Customer",
     badge: "Entry · Free",
@@ -356,6 +418,139 @@ export default function PartnerCareerPage() {
           ))}
         </div>
       </div>
+
+      {/* ── DELIWER REALTY EXCLUSIVE TRACK ───────────────── */}
+      <section id="realty-exclusive" className="relative py-24 px-4 bg-gradient-to-b from-slate-950 via-amber-950/15 to-slate-950 border-y border-amber-500/30 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(251,191,36,0.08),transparent_50%)] pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/40 rounded-full px-5 py-2">
+              <Crown className="w-4 h-4 text-amber-400" />
+              <span className="text-amber-400 text-[11px] font-black uppercase tracking-widest">DeliWer Realty · Inner Circle Track</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              Source the Inventory.<br />
+              <span className="bg-gradient-to-r from-amber-400 via-orange-300 to-emerald-400 bg-clip-text text-transparent">You Close. We Share.</span>
+            </h2>
+            <p className="text-gray-300 font-medium max-w-3xl mx-auto text-lg leading-relaxed">
+              The career path now plugs directly into the <Link href="/realestate" className="text-amber-300 underline decoration-amber-500/40 underline-offset-4">DeliWer Realty</Link> intelligence engine.
+              Trusted, capped-seat broker members receive vetted rental and distress-sale inventory under <strong className="text-white">NCA + NDA + Non-Compete</strong> —
+              you bring the close, we share the commission.
+            </p>
+          </div>
+
+          {/* 4 benefit cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {REALTY_EXCLUSIVE_BENEFITS.map((b, i) => {
+              const Icon = b.icon;
+              return (
+                <motion.div
+                  key={b.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  data-testid={`card-realty-benefit-${i}`}
+                  className="bg-slate-900/70 border border-amber-500/25 rounded-2xl p-6 hover:border-amber-500/50 transition-colors"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-amber-300" />
+                  </div>
+                  <h3 className="text-lg font-black text-white mb-2 uppercase tracking-tight">{b.title}</h3>
+                  <p className="text-sm text-gray-300 leading-relaxed">{b.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* NDA / NCA / Non-Compete strip */}
+          <div className="bg-slate-950/80 border border-amber-500/40 rounded-3xl p-8 md:p-10" data-testid="card-realty-nda-terms">
+            <div className="text-center mb-8">
+              <Badge className="bg-emerald-500/15 border-emerald-500/30 text-emerald-300 mb-3 text-[10px] font-black uppercase tracking-widest">
+                <Lock className="w-3 h-3 mr-1.5" /> Trust Architecture
+              </Badge>
+              <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight">
+                Why It's Closed by Design
+              </h3>
+              <p className="text-gray-400 text-sm mt-2 max-w-2xl mx-auto">
+                Exclusivity protects deal density. Members sign three short, standard agreements before going live — same day.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {REALTY_NDA_TERMS.map((t, i) => {
+                const Icon = t.icon;
+                return (
+                  <div
+                    key={t.title}
+                    data-testid={`card-realty-nda-${i}`}
+                    className="bg-amber-500/5 border border-amber-500/25 rounded-2xl p-5"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-amber-300" />
+                      </div>
+                      <h4 className="text-sm font-black text-white uppercase tracking-tight leading-tight">{t.title}</h4>
+                    </div>
+                    <p className="text-xs text-gray-300 leading-relaxed">{t.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Commission split visual */}
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              { tag: "Layer A", title: "Sourced by DeliWer Realty", amt: "50% Share", note: "Standard 50/50 commission split on every routed lease & sale closure.", color: "amber" },
+              { tag: "Layer B", title: "Closed by You", amt: "50% Share", note: "You retain 50% of gross commission — paid monthly with full deal-by-deal statement.", color: "emerald" },
+              { tag: "Layer C", title: "Move-In Service Override", amt: "AED 300–800", note: "100% yours, on top of the split — for every Ejari, DEWA, movers or AquaCafe activation.", color: "purple" },
+            ].map((t, i) => (
+              <div
+                key={i}
+                data-testid={`card-realty-split-${i}`}
+                className={`${bgMap[t.color]} border rounded-2xl p-6`}
+              >
+                <div className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">{t.tag}</div>
+                <div className="text-base font-black text-white mb-2">{t.title}</div>
+                <div className={`text-3xl font-black ${colorMap[t.color]} mb-3`}>{t.amt}</div>
+                <p className="text-xs text-gray-300 leading-relaxed">{t.note}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Apply CTA */}
+          <div className="flex flex-col md:flex-row gap-4 justify-center pt-2">
+            <a
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NCA%20%2F%20NDA%20%2F%20Non-Compete%20to%20get%20started."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                data-testid="button-realty-exclusive-apply"
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-400 text-black font-black h-14 px-10 text-base rounded-2xl shadow-2xl shadow-amber-900/40"
+              >
+                <Crown className="w-5 h-5 mr-2" />
+                Apply for Inner Circle · Sign NDA
+              </Button>
+            </a>
+            <Link href="/realestate">
+              <Button
+                data-testid="button-realty-exclusive-learn"
+                size="lg"
+                variant="outline"
+                className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-14 px-8 text-base rounded-2xl"
+              >
+                <Building2 className="w-4 h-4 mr-2" />
+                See Realty Intelligence Model
+              </Button>
+            </Link>
+          </div>
+          <p className="text-center text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
+            Capped seats per community · Active RERA brokers only · Same-day onboarding
+          </p>
+        </div>
+      </section>
 
       {/* ── FAST START: QUICK WINS ───────────────────────── */}
       <section id="fast-start" className="py-24 px-4 bg-gradient-to-b from-slate-950 to-slate-900/50">

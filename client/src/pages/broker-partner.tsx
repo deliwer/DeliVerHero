@@ -656,6 +656,109 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
+      {/* ── REALTY INNER CIRCLE · NDA-GATED INTELLIGENCE ── */}
+      <section id="realty-inner-circle" className="relative py-20 px-4 border-b border-amber-500/30 bg-gradient-to-b from-slate-950 via-amber-950/15 to-slate-950 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(251,191,36,0.08),transparent_55%)] pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto space-y-10">
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/40 rounded-full px-5 py-2">
+              <Crown className="w-4 h-4 text-amber-400" />
+              <span className="text-amber-400 text-[11px] font-black uppercase tracking-widest">DeliWer Realty · Inner Circle Intelligence</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              Where Inventory Meets <span className="bg-gradient-to-r from-amber-400 via-orange-300 to-emerald-400 bg-clip-text text-transparent">Trusted Closers.</span>
+            </h2>
+            <p className="text-gray-300 font-medium max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+              The broker funnel now extends into <Link href="/realestate" className="text-amber-300 underline decoration-amber-500/40 underline-offset-4">DeliWer Realty</Link> — a closed,
+              capped-seat network where exclusive members receive vetted rental and distress-sale intelligence under
+              <strong className="text-white"> NCA + NDA + Non-Compete</strong>, then close deals and share commissions.
+            </p>
+          </div>
+
+          {/* 4-up benefits */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              { icon: Building2, title: "Reserved Developer & Community Pool", desc: "Lock specific developers (Emaar, DAMAC, Nakheel, Sobha, Aldar, Meraas) and communities (Downtown, Marina, JVC, Dubai Hills, Palm). Capped seats per area." },
+              { icon: Sparkles, title: "Exclusive Inventory Intelligence", desc: "Daily WhatsApp drops on rental demand by community + distress sale alerts — sourced and vetted before they hit any portal." },
+              { icon: Layers, title: "Co-Branded Closing Dossier", desc: "Use the DeliWer Realty intelligence pack in client meetings: demand signal, comparable rents, move-in stack, AquaCafe perks — all in one." },
+              { icon: TrendingUp, title: "50/50 Commission Share + Move-In Override", desc: "Standard 50/50 split on every routed lease & sale, plus the full AED 300–800 move-in service override on top. Paid monthly with statement." },
+            ].map((b, i) => (
+              <div
+                key={b.title}
+                data-testid={`broker-realty-benefit-${i}`}
+                className="bg-slate-900/70 border border-amber-500/25 rounded-2xl p-6 hover:border-amber-500/50 transition-colors"
+              >
+                <div className="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center mb-4">
+                  <b.icon className="w-6 h-6 text-amber-300" />
+                </div>
+                <h3 className="text-base md:text-lg font-black text-white mb-2 uppercase tracking-tight">{b.title}</h3>
+                <p className="text-sm text-gray-300 leading-relaxed">{b.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* NDA architecture */}
+          <div className="bg-slate-950/80 border border-amber-500/40 rounded-3xl p-7 md:p-9" data-testid="broker-realty-nda">
+            <div className="text-center mb-7">
+              <Badge className="bg-emerald-500/15 border-emerald-500/30 text-emerald-300 mb-3 text-[10px] font-black uppercase tracking-widest">
+                <ShieldCheck className="w-3 h-3 mr-1.5" /> Trust Architecture · Closed by Design
+              </Badge>
+              <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight">
+                Three Short Agreements · Same-Day Onboarding
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {[
+                { title: "NCA · Non-Circumvention", desc: "No bypassing DeliWer Realty on any tenant, buyer, landlord or developer routed through the network." },
+                { title: "NDA · Confidentiality", desc: "Inventory dossiers, pricing intelligence and demand signals stay inside the network. Sharing externally = revocation." },
+                { title: "Non-Compete · Reserved Areas", desc: "While active, you don't source or close inventory in your reserved community pool through competing platforms." },
+              ].map((t, i) => (
+                <div
+                  key={t.title}
+                  data-testid={`broker-realty-nda-term-${i}`}
+                  className="bg-amber-500/5 border border-amber-500/25 rounded-2xl p-5"
+                >
+                  <h4 className="text-sm font-black text-white uppercase tracking-tight mb-2">{t.title}</h4>
+                  <p className="text-xs text-gray-300 leading-relaxed">{t.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Apply CTA strip */}
+          <div className="flex flex-col md:flex-row gap-4 justify-center pt-2">
+            <a
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NCA%20%2F%20NDA%20%2F%20Non-Compete%20to%20get%20started."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                data-testid="button-broker-realty-apply"
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-400 text-black font-black h-14 px-10 text-base rounded-2xl shadow-2xl shadow-amber-900/40"
+              >
+                <Crown className="w-5 h-5 mr-2" />
+                Apply for Inner Circle · Sign NDA
+              </Button>
+            </a>
+            <Link href="/realestate">
+              <Button
+                data-testid="button-broker-realty-learn"
+                size="lg"
+                variant="outline"
+                className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-14 px-8 text-base rounded-2xl"
+              >
+                <Building2 className="w-4 h-4 mr-2" />
+                See the Realty Intelligence Engine
+              </Button>
+            </Link>
+          </div>
+          <p className="text-center text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
+            Active RERA brokers only · Capped seats per community · Same-day NDA onboarding
+          </p>
+        </div>
+      </section>
+
       {/* ── PARTNER APPLICATION FORM ─────────────────────── */}
       <section ref={applyRef} id="apply" className="py-16 px-4 border-b border-white/5 bg-slate-900/40">
         <div className="max-w-2xl mx-auto">
