@@ -235,8 +235,16 @@ export default function LandingPage() {
       {/* ============================================
           SECTION 2 — PROBLEM / PAIN
          ============================================ */}
-      <section className="py-20 px-6 bg-slate-900/70 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-10">
+      <section className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80"
+            alt="Dubai apartment moving in"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-900/85 to-slate-950/95" />
+        </div>
+        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -255,15 +263,22 @@ export default function LandingPage() {
               { icon: "💸", text: "Hidden costs and last-minute surprises" },
               { icon: "📞", text: "No single point of coordination" },
             ].map((item) => (
-              <div key={item.text} className="flex items-start gap-3 bg-red-500/5 border border-red-500/15 rounded-xl p-4">
+              <div key={item.text} className="flex items-start gap-3 bg-red-500/10 backdrop-blur-sm border border-red-500/20 rounded-xl p-4">
                 <span className="text-xl shrink-0">{item.icon}</span>
-                <span className="text-gray-300 font-bold text-sm leading-snug">{item.text}</span>
+                <span className="text-gray-200 font-bold text-sm leading-snug">{item.text}</span>
               </div>
             ))}
           </div>
-          <p className="text-center text-gray-500 font-black uppercase tracking-widest text-sm">
+          <p className="text-center text-gray-300 font-black uppercase tracking-widest text-sm">
             You've found your home. Now comes the hard part.
           </p>
+          <div className="flex justify-center">
+            <Link href="/start">
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-12 text-sm shadow-lg shadow-emerald-900/30 transition-all" data-testid="cta-problem-start">
+                <ArrowRight className="w-4 h-4 mr-2" /> Start Your Stress-Free Move-In
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
       {/* ============================================

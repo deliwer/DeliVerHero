@@ -15,11 +15,11 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
     <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm">
       {showContact && (
         <>
-          <Link href="/start">
-            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Start</span>
-          </Link>
-          <Link href="/concierge-pricing">
-            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Pricing</span>
+          <Link href="/earn">
+            <span className="cursor-pointer inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition-colors uppercase tracking-widest text-[10px] font-black" data-testid="trust-strip-earn">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+              Earn Rewards
+            </span>
           </Link>
           <Link href="/partners">
             <span className="cursor-pointer inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors uppercase tracking-widest text-[10px] font-black" data-testid="trust-strip-partners">
@@ -27,11 +27,8 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
               Business Opportunity
             </span>
           </Link>
-          <Link href="/earn">
-            <span className="cursor-pointer inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 transition-colors uppercase tracking-widest text-[10px] font-black" data-testid="trust-strip-earn">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
-              Earn Rewards
-            </span>
+          <Link href="/concierge-pricing">
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Pricing</span>
           </Link>
           <Link href="/contact">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Contact</span>
