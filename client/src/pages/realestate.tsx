@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet";
-import { Link } from "wouter";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,6 +24,19 @@ import {
   Sparkles,
   Building2,
   MessageCircle,
+  Home,
+  Briefcase,
+  Users,
+  Truck,
+  ShieldCheck,
+  Repeat,
+  Eye,
+  FileSignature,
+  Network,
+  KeyRound,
+  Search,
+  PlusCircle,
+  Globe2,
 } from "lucide-react";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline.jpg";
 import dubaiApartment from "@assets/stock_images/dubai_apartment.jpg";
@@ -33,72 +45,64 @@ import keysHandover from "@assets/stock_images/keys_handover.jpg";
 
 const WA_NUMBER = "971523946311";
 const WA_LINK =
-  "https://wa.me/971523946311?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20inventory%20through%20DeliWer.%20Please%20share%20details.";
-
-const PROPERTY_INTERESTS = [
-  "Rental — Apartments (Studio/1BR)",
-  "Rental — Apartments (2-3BR)",
-  "Rental — Villas / Townhouses",
-  "Sale — Distress / Below-Market Apartments",
-  "Sale — Distress / Below-Market Villas",
-  "Branded Residences",
-  "Commercial / Business Bay",
-  "Mixed — open to all",
-];
-
-const BUDGET_RANGES = [
-  "Rental — Under AED 80K/yr",
-  "Rental — AED 80–150K/yr",
-  "Rental — AED 150–300K/yr",
-  "Rental — AED 300K+/yr",
-  "Sale — Under AED 1M",
-  "Sale — AED 1M – 3M",
-  "Sale — AED 3M – 10M",
-  "Sale — AED 10M+",
-  "Multiple tenants/buyers — varied",
-];
+  "https://wa.me/971523946311?text=Hi%20DeliWer%20Real%20Estate%20%E2%80%94%20I%27d%20like%20to%20learn%20more%20about%20your%20infrastructure%20platform.";
 
 const DEVELOPERS = [
-  "EMAAR", "DAMAC", "NAKHEEL", "MERAAS", "SOBHA", "DUBAI PROPERTIES", "ALDAR", "AZIZI", "ELLINGTON", "BINGHATTI",
+  "EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "DANUBE", "ALDAR", "AZIZI", "ELLINGTON", "BINGHATTI",
 ];
 
-const COMMUNITIES = [
-  "Downtown", "Dubai Marina", "JVC", "JVT", "Business Bay", "Dubai Hills", "Arabian Ranches",
-  "DAMAC Hills", "Palm Jumeirah", "MBR City", "Town Square", "Al Furjan", "JLT", "Mirdif",
+const ROLES = [
+  "Buyer",
+  "Tenant",
+  "Relocation Client",
+  "Independent Broker",
+  "Licensed Brokerage Partner",
+  "Developer",
+  "Landlord (Rental Inventory)",
+  "Landlord (Distress Inventory)",
+  "Strategic Partner",
 ];
 
-function RequestAccessForm() {
+const INTERESTS = [
+  "Find a property to buy",
+  "Find a property to rent",
+  "Relocate to Dubai",
+  "List rental inventory",
+  "List sale inventory (incl. distress)",
+  "Distribute developer inventory",
+  "Join broker network",
+  "Move-in services only",
+];
+
+function PartnerForm() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
     company: "",
-    rera: "",
+    role: "",
     interest: "",
-    budget: "",
     notes: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const valid =
-    form.name && form.phone && form.interest && form.budget;
+  const valid = form.name && form.phone && form.role && form.interest;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!valid) return;
     const lines = [
-      "Hi DeliWer — Broker Access Request for DAMAC Distress Inventory",
+      "Hi DeliWer Real Estate — Partnership Request",
       "",
       `Name: ${form.name}`,
       `WhatsApp: ${form.phone}`,
       form.email ? `Email: ${form.email}` : "",
-      form.company ? `Brokerage: ${form.company}` : "",
-      form.rera ? `RERA / BRN: ${form.rera}` : "",
+      form.company ? `Company: ${form.company}` : "",
+      `Role: ${form.role}`,
       `Interested in: ${form.interest}`,
-      `Buyer budget: ${form.budget}`,
       form.notes ? `Notes: ${form.notes}` : "",
       "",
-      "Please add me to the limited broker pool.",
+      "Please reach out with next steps.",
     ].filter(Boolean);
     const msg = encodeURIComponent(lines.join("\n"));
     window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, "_blank");
@@ -107,25 +111,25 @@ function RequestAccessForm() {
 
   return (
     <section
-      id="request-access"
-      data-testid="section-request-access"
-      className="relative scroll-mt-32"
+      id="partner"
+      data-testid="section-partner-form"
+      className="relative scroll-mt-24"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-950/30 via-slate-950 to-slate-950 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-amber-950/20 via-slate-950 to-slate-950 pointer-events-none" />
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-8">
           <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
-            <Lock className="w-3.5 h-3.5 mr-1.5" /> Limited Broker Slots
+            <Network className="w-3.5 h-3.5 mr-1.5" /> Join the Platform
           </Badge>
           <h2
             className="text-3xl sm:text-4xl font-bold mb-3"
-            data-testid="heading-request-access-form"
+            data-testid="heading-partner-form"
           >
-            Join the Commission-Only Broker Network
+            One Form. Every Role.
           </h2>
           <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto">
-            Tell us what your tenants &amp; buyers are looking for. We'll route live
-            rental and below-market inventory across all major Dubai developers — onboarded within 24 hours.
+            Whether you're buying, renting, listing, partnering or distributing —
+            tell us who you are and we'll route you to the right desk.
           </p>
         </div>
 
@@ -145,7 +149,7 @@ function RequestAccessForm() {
                 <p className="text-slate-300 max-w-md mx-auto">
                   We'll review your details and reply within{" "}
                   <strong className="text-white">10 minutes</strong> during
-                  business hours. Keep WhatsApp handy.
+                  business hours.
                 </p>
                 <Button
                   variant="outline"
@@ -164,7 +168,7 @@ function RequestAccessForm() {
                       Full Name *
                     </Label>
                     <Input
-                      data-testid="input-access-name"
+                      data-testid="input-partner-name"
                       required
                       value={form.name}
                       onChange={(e) =>
@@ -179,7 +183,7 @@ function RequestAccessForm() {
                       WhatsApp *
                     </Label>
                     <Input
-                      data-testid="input-access-phone"
+                      data-testid="input-partner-phone"
                       required
                       type="tel"
                       value={form.phone}
@@ -198,66 +202,51 @@ function RequestAccessForm() {
                       Email
                     </Label>
                     <Input
-                      data-testid="input-access-email"
+                      data-testid="input-partner-email"
                       type="email"
                       value={form.email}
                       onChange={(e) =>
                         setForm((f) => ({ ...f, email: e.target.value }))
                       }
-                      placeholder="you@brokerage.ae"
+                      placeholder="you@company.ae"
                       className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
                     />
                   </div>
                   <div className="space-y-1.5">
                     <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                      Brokerage
+                      Company / Brokerage
                     </Label>
                     <Input
-                      data-testid="input-access-company"
+                      data-testid="input-partner-company"
                       value={form.company}
                       onChange={(e) =>
                         setForm((f) => ({ ...f, company: e.target.value }))
                       }
-                      placeholder="Company name"
+                      placeholder="Optional"
                       className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
                     />
                   </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                    RERA / BRN
-                  </Label>
-                  <Input
-                    data-testid="input-access-rera"
-                    value={form.rera}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, rera: e.target.value }))
-                    }
-                    placeholder="Your RERA card or BRN number"
-                    className="bg-slate-950 border-slate-700 text-white placeholder:text-slate-600 h-11"
-                  />
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                      Interested In *
+                      I am a *
                     </Label>
                     <Select
-                      value={form.interest}
+                      value={form.role}
                       onValueChange={(v) =>
-                        setForm((f) => ({ ...f, interest: v }))
+                        setForm((f) => ({ ...f, role: v }))
                       }
                     >
                       <SelectTrigger
-                        data-testid="select-access-interest"
+                        data-testid="select-partner-role"
                         className="bg-slate-950 border-slate-700 text-white h-11"
                       >
-                        <SelectValue placeholder="Apartments, villas, ..." />
+                        <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
                       <SelectContent className="bg-slate-900 border-slate-700 text-white">
-                        {PROPERTY_INTERESTS.map((p) => (
+                        {ROLES.map((p) => (
                           <SelectItem
                             key={p}
                             value={p}
@@ -271,22 +260,22 @@ function RequestAccessForm() {
                   </div>
                   <div className="space-y-1.5">
                     <Label className="text-xs font-bold uppercase tracking-widest text-slate-400">
-                      Buyer Budget *
+                      I want to *
                     </Label>
                     <Select
-                      value={form.budget}
+                      value={form.interest}
                       onValueChange={(v) =>
-                        setForm((f) => ({ ...f, budget: v }))
+                        setForm((f) => ({ ...f, interest: v }))
                       }
                     >
                       <SelectTrigger
-                        data-testid="select-access-budget"
+                        data-testid="select-partner-interest"
                         className="bg-slate-950 border-slate-700 text-white h-11"
                       >
-                        <SelectValue placeholder="Select budget range" />
+                        <SelectValue placeholder="Select intent" />
                       </SelectTrigger>
                       <SelectContent className="bg-slate-900 border-slate-700 text-white">
-                        {BUDGET_RANGES.map((b) => (
+                        {INTERESTS.map((b) => (
                           <SelectItem
                             key={b}
                             value={b}
@@ -305,13 +294,13 @@ function RequestAccessForm() {
                     Anything else? (optional)
                   </Label>
                   <textarea
-                    data-testid="input-access-notes"
+                    data-testid="input-partner-notes"
                     rows={3}
                     value={form.notes}
                     onChange={(e) =>
                       setForm((f) => ({ ...f, notes: e.target.value }))
                     }
-                    placeholder="Specific community, timing, buyer profile..."
+                    placeholder="Community, budget, timing, inventory size..."
                     className="w-full bg-slate-950 border border-slate-700 text-white placeholder:text-slate-600 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-amber-500/60"
                   />
                 </div>
@@ -321,7 +310,7 @@ function RequestAccessForm() {
                   disabled={!valid}
                   size="lg"
                   className="w-full h-12 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-slate-950 font-black"
-                  data-testid="button-submit-access-request"
+                  data-testid="button-submit-partner-request"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Submit via WhatsApp
@@ -344,18 +333,19 @@ export default function RealEstate() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Helmet>
-        <title>Dubai Brokers: Access Below-Market DAMAC Units | DeliWer</title>
+        <title>DeliWer Real Estate — Dubai's Real Estate Infrastructure Platform</title>
         <meta
           name="description"
-          content="Join a limited group of Dubai brokers accessing distress-driven DAMAC inventory. Close faster and earn more per deal with DeliWer."
+          content="Buy, rent, invest and move in — all in one platform. DeliWer connects developers, landlords, brokers, tenants and buyers across Dubai with managed transactions and post-move-in services."
         />
+        <meta name="keywords" content="Dubai rentals, Dubai property investment, distress property Dubai, developer inventory Dubai, move-in services Dubai" />
         <meta
           property="og:title"
-          content="Dubai Brokers: Access Below-Market DAMAC Units | DeliWer"
+          content="DeliWer Real Estate — Dubai's Real Estate Infrastructure Platform"
         />
         <meta
           property="og:description"
-          content="Priority access to distress-driven DAMAC inventory + earn more per transaction with DeliWer move-in services."
+          content="Access premium developer inventory, distress opportunities, rentals, relocation support and move-in services through DeliWer's infrastructure platform."
         />
       </Helmet>
 
@@ -363,7 +353,7 @@ export default function RealEstate() {
       <section className="relative overflow-hidden border-b border-amber-500/20">
         <img
           src={dubaiSkyline}
-          alt="Dubai skyline at sunset with luxury DAMAC towers"
+          alt="Dubai skyline at sunset"
           className="absolute inset-0 w-full h-full object-cover opacity-40"
           data-testid="img-hero-bg"
         />
@@ -372,29 +362,29 @@ export default function RealEstate() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
           <Badge
             className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-5"
-            data-testid="badge-broker-access"
+            data-testid="badge-platform"
           >
-            <Crown className="w-3.5 h-3.5 mr-1.5" /> Dubai Rental Reset · Broker Intelligence Network
+            <Globe2 className="w-3.5 h-3.5 mr-1.5" /> Real Estate Infrastructure Platform · Dubai
           </Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-5">
-            Dubai's New Rental Reality —{" "}
+            Dubai Real Estate,{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">
-              Supply Now Outpaces Demand
+              Reinvented Beyond Brokerage
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-slate-300 mb-4 leading-relaxed max-w-3xl mx-auto">
-            Population shift, expat exits and reshuffling preferences after the war have flipped the rental market.{" "}
-            <strong className="text-white">Indigenous tenants and remaining expats now hold the leverage</strong> — and brokers
-            who move first close first.
+            <strong className="text-white">Buy, Rent, Invest &amp; Move In — all in one platform.</strong>{" "}
+            Access premium developer inventory, distress opportunities, rentals,
+            relocation support and move-in services through DeliWer's infrastructure platform.
           </p>
           <p className="text-sm sm:text-base text-slate-400 mb-7 leading-relaxed max-w-3xl mx-auto">
-            DeliWer routes verified <strong className="text-white">rental-ready inventory</strong> across all major developers
-            and communities to a closed broker pool — plus a secondary stream of{" "}
-            <strong className="text-amber-300">distress &amp; below-market sale deals</strong> when sellers need speed.
+            DeliWer is <em>not</em> a brokerage. We are{" "}
+            <strong className="text-amber-300">demand + inventory distribution + move-in infrastructure</strong>.
+            A licensed real estate partner handles every contract, escrow and formal closing.
           </p>
 
           {/* Developer logos strip */}
-          <div className="flex flex-wrap gap-2 justify-center mb-3" data-testid="strip-developers">
+          <div className="flex flex-wrap gap-2 justify-center mb-7" data-testid="strip-developers">
             {DEVELOPERS.map((d) => (
               <span
                 key={d}
@@ -405,39 +395,48 @@ export default function RealEstate() {
               </span>
             ))}
           </div>
-          {/* Communities strip */}
-          <div className="flex flex-wrap gap-1.5 justify-center mb-7 max-w-3xl mx-auto" data-testid="strip-communities">
-            {COMMUNITIES.map((c) => (
-              <span
-                key={c}
-                className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-emerald-500/5 border border-emerald-500/20 text-emerald-200/80"
-                data-testid={`chip-community-${c.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                {c}
-              </span>
-            ))}
-          </div>
 
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href="#request-access">
+            <a href="#partner">
               <Button
                 size="lg"
                 className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold"
-                data-testid="button-hero-request-access"
+                data-testid="button-hero-find"
               >
-                Join Broker Network
-                <ArrowRight className="w-4 h-4 ml-2" />
+                <Search className="w-4 h-4 mr-2" />
+                Find Property
               </Button>
             </a>
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
+            <a href="#partner">
+              <Button
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+                data-testid="button-hero-list"
+              >
+                <PlusCircle className="w-4 h-4 mr-2" />
+                List Property
+              </Button>
+            </a>
+            <a href="#brokers">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/10"
+                data-testid="button-hero-broker"
+              >
+                <Handshake className="w-4 h-4 mr-2" />
+                Partner as Broker
+              </Button>
+            </a>
+            <a href="#developers">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-amber-500/50 text-amber-200 hover:bg-amber-500/10"
-                data-testid="button-hero-whatsapp"
+                data-testid="button-hero-developer"
               >
-                <Phone className="w-4 h-4 mr-2" />
-                WhatsApp Broker Desk
+                <Building2 className="w-4 h-4 mr-2" />
+                Developer Partnerships
               </Button>
             </a>
           </div>
@@ -446,190 +445,255 @@ export default function RealEstate() {
             className="text-xs text-slate-400 mt-5 flex items-center justify-center gap-1.5"
             data-testid="text-trust-line"
           >
-            <Lock className="w-3.5 h-3.5" />
-            Commission-only · Zero signup fee · RERA-verified brokers only
+            <ShieldCheck className="w-3.5 h-3.5" />
+            Licensed closing partner · Managed lead distribution · CRM-tracked transactions
           </p>
-
-          <div className="mt-8 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 rounded-full px-4 py-2 text-sm">
-            <Sparkles className="w-4 h-4" />
-            <strong className="text-white">100% commission-only referral model</strong> — earn on every closed lease &amp; sale
-          </div>
         </div>
       </section>
 
-      {/* SECTION 1B: PROOF STRIP */}
-      <section className="border-b border-slate-800 bg-slate-950/60" data-testid="section-proof-strip">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {[
-            { v: "10+", l: "Major developers covered" },
-            { v: "Rental-First", l: "Primary deal flow" },
-            { v: "Commission-Only", l: "Zero broker fees" },
-            { v: "10 min", l: "WhatsApp response" },
-          ].map((s, i) => (
-            <div key={i} data-testid={`proof-stat-${i}`}>
-              <div className="text-2xl sm:text-3xl font-black text-amber-300">{s.v}</div>
-              <div className="text-[11px] uppercase tracking-widest text-slate-400 mt-1">
-                {s.l}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 1C: REQUEST ACCESS FORM (restored, in-page) */}
-      <RequestAccessForm />
-
-      {/* SECTION 2: POSITIONING */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-5" data-testid="heading-positioning">
-          Not another listing source
-        </h2>
-        <p className="text-lg text-slate-300 leading-relaxed mb-3">
-          This is not a portal or open inventory list.
-        </p>
-        <p className="text-lg text-slate-300 leading-relaxed">
-          We work with a small pool of brokers to route serious buyers into{" "}
-          <strong className="text-white">below-market</strong> opportunities and help{" "}
-          <strong className="text-white">close deals faster</strong>.
-        </p>
-      </section>
-
-      {/* SECTION 3: VALUE STACK */}
-      <section className="relative overflow-hidden border-y border-slate-800">
-        <img
-          src={dubaiApartment}
-          alt="Luxury Dubai apartment interior"
-          className="absolute inset-0 w-full h-full object-cover opacity-25"
-          data-testid="img-value-bg"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/85 to-slate-950/90" />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-value-stack">
-              What you unlock
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-5">
+      {/* SECTION 1B: WHO WE WORK WITH */}
+      <section className="border-b border-slate-800 bg-slate-950/60" data-testid="section-audiences">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <p className="text-center text-xs uppercase tracking-widest text-slate-400 mb-5">
+            One platform · Eight stakeholders
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
             {[
-              {
-                icon: Building2,
-                text: (
-                  <>
-                    <strong className="text-white">Rental-first inventory</strong> across Emaar,
-                    DAMAC, Nakheel, Sobha, Meraas, Aldar, Ellington &amp; more
-                  </>
-                ),
-              },
-              {
-                icon: TrendingDown,
-                text: (
-                  <>
-                    <strong className="text-white">Secondary distress &amp; below-market sale deals</strong>{" "}
-                    when sellers need fast exit
-                  </>
-                ),
-              },
-              {
-                icon: Zap,
-                text: (
-                  <>
-                    <strong className="text-white">Faster lease &amp; closure cycles</strong> with
-                    DeliWer move-in support (Ejari, DEWA, movers handled)
-                  </>
-                ),
-              },
-              {
-                icon: Sparkles,
-                text: (
-                  <>
-                    <strong className="text-white">100% commission-only</strong> — no signup,
-                    no retainer, paid on every closed lease &amp; sale
-                  </>
-                ),
-              },
-            ].map((item, i) => (
-              <Card
+              { icon: Building2, label: "Developers" },
+              { icon: KeyRound, label: "Landlords" },
+              { icon: Home, label: "Rental Owners" },
+              { icon: Briefcase, label: "Brokerages" },
+              { icon: Handshake, label: "Brokers" },
+              { icon: Users, label: "Tenants" },
+              { icon: Crown, label: "Buyers" },
+              { icon: Truck, label: "Relocation" },
+            ].map((a, i) => (
+              <div
                 key={i}
-                className="bg-slate-950/60 border-slate-800 hover-elevate"
-                data-testid={`card-value-${i}`}
+                className="flex flex-col items-center gap-1.5 bg-slate-900/40 border border-slate-800 rounded-lg p-3 text-center"
+                data-testid={`audience-${a.label.toLowerCase()}`}
               >
-                <CardContent className="p-5 flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-lg bg-amber-500/15 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-amber-300" />
-                  </div>
-                  <p className="text-slate-300 leading-relaxed pt-2">{item.text}</p>
-                </CardContent>
-              </Card>
+                <a.icon className="w-5 h-5 text-amber-300" />
+                <span className="text-xs text-slate-200 font-semibold">{a.label}</span>
+              </div>
             ))}
           </div>
-
-          <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <a href="#request-access">
-              <Button
-                size="lg"
-                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-                data-testid="button-value-request-access"
-              >
-                Request Access <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </a>
-          </div>
         </div>
       </section>
 
-      {/* SECTION 3B: BROKER INTELLIGENCE + COMMISSION-ONLY ENGINE */}
-      <section className="relative border-y border-emerald-500/20 bg-gradient-to-b from-slate-950 via-emerald-950/15 to-slate-950" data-testid="section-broker-intel">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* SECTION 2: HOW DELIWER REVENUE WORKS */}
+      <section className="relative overflow-hidden border-b border-slate-800" data-testid="section-revenue">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-10">
             <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-3">
-              <Crown className="w-3.5 h-3.5 mr-1.5" /> Broker Intelligence Engine
+              <Sparkles className="w-3.5 h-3.5 mr-1.5" /> Five Revenue Streams
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-broker-intel">
-              The Commission-Only Referral System Rewriting Dubai Real Estate
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-revenue">
+              How DeliWer Revenue Works
             </h2>
             <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
-              Built for the post-war reality: shrinking demand, expat reshuffle, and an indigenous rental market
-              that finally negotiates back. We arm you with the live signal — you close the deal.
+              We monetize across the full property lifecycle — from inventory to closing
+              to recurring move-in services.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5 mb-10">
+          <div className="grid md:grid-cols-2 gap-5">
+            {/* 1. Developer Inventory */}
+            <Card className="bg-slate-900/60 border-slate-800 hover-elevate" data-testid="card-revenue-developer">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-11 h-11 rounded-lg bg-amber-500/15 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-amber-300" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-amber-300/80">Stream 1</div>
+                    <h3 className="text-lg font-bold text-white">Developer Inventory Revenue</h3>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+                  Developers provide inventory · DeliWer generates demand · Licensed
+                  partner brokerage closes the deal.
+                </p>
+                <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-3">
+                  <div className="text-[10px] uppercase tracking-widest text-slate-400 mb-1">Sample split</div>
+                  <div className="text-sm text-white font-semibold">Developer commission: 4–7%</div>
+                  <div className="text-xs text-slate-300 mt-1">
+                    Split between Broker · Licensed Brokerage Partner · DeliWer
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 2. Rental Commission */}
+            <Card className="bg-slate-900/60 border-slate-800 hover-elevate" data-testid="card-revenue-rental">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-11 h-11 rounded-lg bg-emerald-500/15 flex items-center justify-center">
+                    <Home className="w-5 h-5 text-emerald-300" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-emerald-300/80">Stream 2</div>
+                    <h3 className="text-lg font-bold text-white">Rental Commission Revenue</h3>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+                  DeliWer provides leads · Broker facilitates showings · Licensed
+                  partner handles the closing.
+                </p>
+                <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-3">
+                  <div className="text-[10px] uppercase tracking-widest text-slate-400 mb-1">Flow</div>
+                  <div className="text-xs text-slate-200 font-mono">
+                    Lead → Viewing → Offer → Ejari → Commission
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 3. Distress Property */}
+            <Card className="bg-slate-900/60 border-slate-800 hover-elevate" data-testid="card-revenue-distress">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-11 h-11 rounded-lg bg-orange-500/15 flex items-center justify-center">
+                    <TrendingDown className="w-5 h-5 text-orange-300" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-orange-300/80">Stream 3</div>
+                    <h3 className="text-lg font-bold text-white">Distress Property Revenue</h3>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+                  Urgent sellers, distress buyers, below-market deals and quick liquidation
+                  opportunities — matched fast.
+                </p>
+                <div className="grid grid-cols-3 gap-2 text-center">
+                  {["Referral fees", "Closing commissions", "Asset services"].map((x) => (
+                    <div key={x} className="rounded-md border border-orange-500/30 bg-orange-500/5 p-2 text-[11px] text-orange-200 font-semibold">
+                      {x}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 4. Move-In Revenue (highlighted) */}
+            <Card className="bg-gradient-to-br from-amber-500/10 to-emerald-500/10 border-amber-500/40 hover-elevate ring-1 ring-amber-500/30" data-testid="card-revenue-movein">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-11 h-11 rounded-lg bg-amber-500/25 flex items-center justify-center">
+                    <Truck className="w-5 h-5 text-amber-200" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-amber-300">Stream 4 · Major Differentiator</div>
+                    <h3 className="text-lg font-bold text-white">Move-In Revenue</h3>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-200 mb-3 leading-relaxed">
+                  After every transaction, DeliWer monetizes the move-in lifecycle:
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {[
+                    "Ejari", "DEWA", "Internet", "Moving", "Furniture",
+                    "Water Delivery", "Repairs", "Maintenance", "Emergency Prep",
+                  ].map((s) => (
+                    <span
+                      key={s}
+                      className="text-[11px] px-2 py-1 rounded-full bg-white/10 border border-amber-300/30 text-amber-100 font-semibold"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 5. Property Management */}
+            <Card className="bg-slate-900/60 border-slate-800 hover-elevate md:col-span-2" data-testid="card-revenue-pm">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-11 h-11 rounded-lg bg-emerald-500/15 flex items-center justify-center">
+                    <Repeat className="w-5 h-5 text-emerald-300" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-emerald-300/80">Stream 5</div>
+                    <h3 className="text-lg font-bold text-white">Property Management Revenue</h3>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-300 mb-3 leading-relaxed">
+                  Recurring landlord revenue across the holding period:
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center">
+                  {[
+                    "Tenant sourcing",
+                    "Renewals",
+                    "Maintenance",
+                    "Furnishing",
+                    "Short-term optimization",
+                  ].map((x) => (
+                    <div key={x} className="rounded-md border border-emerald-500/30 bg-emerald-500/5 p-2 text-[11px] text-emerald-200 font-semibold">
+                      {x}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: HOW WE PROTECT TRANSACTIONS */}
+      <section className="relative border-b border-slate-800" data-testid="section-protection">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-emerald-950/10 to-slate-950 pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-3">
+              <ShieldCheck className="w-3.5 h-3.5 mr-1.5" /> Anti-Leakage by Design
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-protection">
+              How We Protect Transactions
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
+              Every lead, viewing and contract is governed by infrastructure designed
+              to keep deals — and revenue — inside the network.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
             {[
               {
-                icon: TrendingDown,
-                title: "Live Market Signal",
-                desc: "Daily WhatsApp drops on rental demand by community, distress sale alerts, and developer-specific incentive windows.",
+                icon: Network,
+                title: "Managed Lead Distribution",
+                desc: "No raw leads distributed. Every lead routed through DeliWer's qualification and assignment layer.",
               },
               {
-                icon: Building2,
-                title: "Multi-Developer Reach",
-                desc: "Emaar · DAMAC · Nakheel · Sobha · Meraas · Aldar · Azizi · Ellington · Binghatti — one broker pool, every major developer.",
+                icon: Eye,
+                title: "Controlled Viewing Process",
+                desc: "DeliWer or the licensed partner controls first access — viewings logged and chaperoned where needed.",
               },
               {
-                icon: Handshake,
-                title: "Tenant & Buyer Routing",
-                desc: "Indigenous-leaning tenants and serious buyers routed straight to vetted brokers — no portal, no cold leads.",
+                icon: FileSignature,
+                title: "Licensed Closing Process",
+                desc: "All contracts, escrow and formal closings are executed exclusively by our licensed real estate partner.",
               },
               {
-                icon: Sparkles,
-                title: "Commission-Only Model",
-                desc: "Zero signup. Zero retainer. Zero monthly fee. You earn on every closed lease, every sale, every move-in service.",
+                icon: Repeat,
+                title: "CRM Tracking",
+                desc: "Viewing → Offer → Contract → Closing — every stage timestamped, attributed and auditable.",
               },
               {
-                icon: Zap,
-                title: "60-Second Onboarding",
-                desc: "RERA-verified brokers go live the same day — first inventory drop within 24 hours, paid out monthly.",
+                icon: Crown,
+                title: "Broker Membership Access",
+                desc: "Optional plans (Free · Pro · Enterprise) determine inventory tier, lead volume and override structure.",
               },
               {
                 icon: Lock,
                 title: "Closed Network Advantage",
-                desc: "Capped pool per community to protect deal density. Your leads don't compete with 500 other agents.",
+                desc: "Capped pool per community — your leads don't compete with hundreds of agents on portals.",
               },
             ].map((item, i) => (
               <Card
                 key={i}
                 className="bg-slate-950/70 border-emerald-500/20 hover-elevate"
-                data-testid={`card-intel-${i}`}
+                data-testid={`card-protect-${i}`}
               >
                 <CardContent className="p-5">
                   <div className="w-11 h-11 rounded-lg bg-emerald-500/15 flex items-center justify-center mb-3">
@@ -642,223 +706,288 @@ export default function RealEstate() {
             ))}
           </div>
 
-          {/* Commission tiers */}
-          <div className="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-6 sm:p-8" data-testid="card-commission-tiers">
+          {/* Membership tiers */}
+          <div className="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-6 sm:p-8" data-testid="card-membership-tiers">
             <h3 className="text-xl sm:text-2xl font-bold text-center mb-2">
-              Commission-Only · Three Earning Layers
+              Broker Membership Plans
             </h3>
             <p className="text-center text-slate-400 text-sm mb-6">
-              Stack all three. No caps. Paid monthly via bank transfer with full statement.
+              Choose the access tier that matches your deal volume.
             </p>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 {
-                  tag: "Layer 1",
-                  title: "Rental Commissions",
-                  amt: "Standard 5%",
-                  note: "Annual rent commission on every closed lease — landlord-paid.",
+                  tag: "Free",
+                  title: "Starter",
+                  amt: "AED 0",
+                  features: ["Rental leads", "Standard inventory", "Monthly payouts"],
+                  color: "border-slate-600 bg-slate-800/30",
+                },
+                {
+                  tag: "Pro",
+                  title: "Active Broker",
+                  amt: "Performance-based",
+                  features: ["Distress feed access", "Priority lead routing", "Move-in overrides"],
                   color: "border-emerald-500/40 bg-emerald-500/5",
                 },
                 {
-                  tag: "Layer 2",
-                  title: "Distress Sale Bonus",
-                  amt: "Up to 3% gross",
-                  note: "On below-market sale closures from our distress inventory feed.",
+                  tag: "Enterprise",
+                  title: "Brokerage Partner",
+                  amt: "Custom",
+                  features: ["Developer inventory", "White-label CRM", "Co-branded campaigns"],
                   color: "border-amber-500/40 bg-amber-500/5",
-                },
-                {
-                  tag: "Layer 3",
-                  title: "Move-In Service Override",
-                  amt: "AED 300–800/deal",
-                  note: "Per buyer/tenant who uses DeliWer Ejari, DEWA, movers or AquaCafe.",
-                  color: "border-orange-500/40 bg-orange-500/5",
                 },
               ].map((t, i) => (
                 <div
                   key={i}
                   className={`rounded-xl border ${t.color} p-5`}
-                  data-testid={`tier-${i}`}
+                  data-testid={`membership-${t.tag.toLowerCase()}`}
                 >
                   <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
                     {t.tag}
                   </div>
                   <div className="text-base font-bold text-white mb-1">{t.title}</div>
-                  <div className="text-2xl font-black text-amber-300 mb-2">{t.amt}</div>
-                  <p className="text-xs text-slate-300 leading-relaxed">{t.note}</p>
+                  <div className="text-2xl font-black text-amber-300 mb-3">{t.amt}</div>
+                  <ul className="space-y-1.5">
+                    {t.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-xs text-slate-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
-            </div>
-            <div className="mt-7 flex flex-wrap gap-3 justify-center">
-              <a href="#request-access">
-                <Button
-                  size="lg"
-                  className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold"
-                  data-testid="button-intel-request-access"
-                >
-                  Onboard as Broker · Free <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: WHY IT WORKS */}
-      <section className="relative overflow-hidden">
+      {/* SECTION 4: BROKER PARTNERSHIP */}
+      <section
+        id="brokers"
+        className="relative overflow-hidden border-b border-slate-800 scroll-mt-24"
+        data-testid="section-brokers"
+      >
         <img
           src={brokerHandshake}
           alt="Real estate broker handshake"
           className="absolute inset-0 w-full h-full object-cover opacity-20"
-          data-testid="img-why-bg"
+          data-testid="img-brokers-bg"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950" />
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-why-it-works">
-            Why brokers are using this
-          </h2>
-        </div>
-        <p className="text-lg text-slate-300 leading-relaxed text-center mb-8">
-          In a slower market, <strong className="text-white">speed wins deals</strong>.
-        </p>
-        <div className="space-y-3 max-w-2xl mx-auto">
-          {[
-            "Remove friction at closing",
-            "Offer a ready-to-move-in advantage to buyers",
-            "Monetize beyond just commission",
-          ].map((t) => (
-            <div
-              key={t}
-              className="flex items-start gap-3 bg-slate-900/60 border border-slate-800 rounded-lg p-4"
-              data-testid={`item-why-${t.toLowerCase().replace(/\s+/g, "-")}`}
-            >
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-              <span className="text-slate-200">{t}</span>
-            </div>
-          ))}
-        </div>
-        </div>
-      </section>
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-3">
+              <Handshake className="w-3.5 h-3.5 mr-1.5" /> Broker Partnerships
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-brokers">
+              Close More Deals Without Paying for Leads
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
+              Plug into a feed of developer inventory, rental leads, distress deals
+              and relocation clients — backed by recurring move-in overrides.
+            </p>
+          </div>
 
-      {/* SECTION 5: SCARCITY */}
-      <section className="bg-slate-900/40 border-y border-slate-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <Badge className="bg-red-500/15 text-red-300 border-red-500/30 mb-4">
-            <Lock className="w-3.5 h-3.5 mr-1.5" /> Limited Spots
-          </Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-5" data-testid="heading-scarcity">
-            Limited access
-          </h2>
-          <p className="text-lg text-slate-300 leading-relaxed mb-8">
-            We're onboarding a small number of active brokers to keep deal flow
-            high-quality.
-          </p>
-          <div className="space-y-3 text-left max-w-md mx-auto">
-            {["Not open to everyone", "Priority given to brokers closing monthly deals"].map(
-              (t) => (
-                <div
-                  key={t}
-                  className="flex items-center gap-3 bg-slate-950/60 border border-amber-500/20 rounded-lg p-4"
-                  data-testid={`item-scarcity-${t.toLowerCase().replace(/\s+/g, "-").slice(0, 30)}`}
-                >
-                  <CheckCircle2 className="w-5 h-5 text-amber-300 flex-shrink-0" />
-                  <span className="text-slate-200">{t}</span>
-                </div>
-              )
-            )}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {[
+              { icon: Building2, t: "Developer inventory" },
+              { icon: Home, t: "Rental leads" },
+              { icon: TrendingDown, t: "Distress inventory" },
+              { icon: Truck, t: "Relocation clients" },
+              { icon: Repeat, t: "Recurring referral revenue" },
+              { icon: ShieldCheck, t: "Licensed closing support" },
+            ].map((b, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 bg-slate-950/70 border border-slate-800 rounded-lg p-4"
+                data-testid={`broker-benefit-${i}`}
+              >
+                <b.icon className="w-5 h-5 text-emerald-300 flex-shrink-0" />
+                <span className="text-slate-200 text-sm font-semibold">{b.t}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 justify-center">
+            <a href="https://www.deliwer.com/broker-partner" target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold"
+                data-testid="button-brokers-partner"
+              >
+                Partner With DeliWer <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </a>
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/10"
+                data-testid="button-brokers-whatsapp"
+              >
+                <Phone className="w-4 h-4 mr-2" /> Talk to Broker Desk
+              </Button>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: PROCESS */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-process">
-            How it works
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            { n: "1", title: "Request access", desc: "Quick application — under 2 minutes." },
-            {
-              n: "2",
-              title: "Get added to priority broker pool",
-              desc: "Onboarded with deal flow & support.",
-            },
-            {
-              n: "3",
-              title: "Receive opportunities + close faster",
-              desc: "Distress inventory + move-in support.",
-            },
-          ].map((s) => (
-            <Card
-              key={s.n}
-              className="bg-slate-900/60 border-slate-800 hover-elevate"
-              data-testid={`card-step-${s.n}`}
-            >
-              <CardContent className="p-6">
-                <div className="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-bold flex items-center justify-center mb-3">
-                  {s.n}
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-1.5">{s.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{s.desc}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-8 flex flex-wrap gap-3 justify-center">
-          <a href="#request-access">
-            <Button
-              size="lg"
-              className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-              data-testid="button-process-request-access"
-            >
-              Request Access <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </a>
+      {/* SECTION 5: DEVELOPER PARTNERSHIP */}
+      <section
+        id="developers"
+        className="relative overflow-hidden border-b border-slate-800 scroll-mt-24"
+        data-testid="section-developers"
+      >
+        <img
+          src={dubaiApartment}
+          alt="Luxury Dubai apartment interior"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+          data-testid="img-developers-bg"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-amber-950/30 to-slate-950/90" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
+              <Building2 className="w-3.5 h-3.5 mr-1.5" /> Developer Partnerships
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-developers">
+              Sell Inventory Faster Through DeliWer Distribution
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
+              Move units faster with an end-to-end demand engine —
+              from broker network to relocation clients to post-move-in monetization.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {[
+              { icon: Network, t: "Broker network" },
+              { icon: Truck, t: "Relocation clients" },
+              { icon: Repeat, t: "Move-in monetization" },
+              { icon: Users, t: "Tenant conversion" },
+            ].map((b, i) => (
+              <Card key={i} className="bg-slate-950/70 border-amber-500/20 hover-elevate" data-testid={`developer-benefit-${i}`}>
+                <CardContent className="p-5 text-center">
+                  <div className="w-11 h-11 mx-auto rounded-lg bg-amber-500/15 flex items-center justify-center mb-3">
+                    <b.icon className="w-5 h-5 text-amber-300" />
+                  </div>
+                  <div className="text-sm font-bold text-white">{b.t}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 justify-center">
+            <a href="#partner">
+              <Button
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+                data-testid="button-developers-partner"
+              >
+                Partner With Us <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 6B: BROKER FAQ */}
+      {/* SECTION 6: CUSTOMER FUNNEL VISUAL */}
+      <section className="border-b border-slate-800 bg-slate-950" data-testid="section-funnel">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-funnel">
+              The DeliWer Funnel
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
+              From inventory to move-in to recurring revenue — every step of the
+              transaction lives on one platform.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-7 gap-3 items-stretch">
+            {[
+              { icon: Building2, t: "Developer / Landlord Inventory", c: "amber" },
+              { icon: Globe2, t: "DeliWer Platform", c: "emerald" },
+              { icon: Network, t: "Broker Network", c: "emerald" },
+              { icon: FileSignature, t: "Licensed Brokerage Partner", c: "amber" },
+              { icon: Users, t: "Buyer / Tenant", c: "emerald" },
+              { icon: Truck, t: "Move-In Services", c: "amber" },
+              { icon: Repeat, t: "Recurring Revenue", c: "emerald" },
+            ].map((s, i, arr) => (
+              <div key={i} className="relative flex flex-col items-center" data-testid={`funnel-step-${i}`}>
+                <div
+                  className={`w-full h-full rounded-xl border p-4 flex flex-col items-center text-center gap-2 ${
+                    s.c === "amber"
+                      ? "border-amber-500/30 bg-amber-500/5"
+                      : "border-emerald-500/30 bg-emerald-500/5"
+                  }`}
+                >
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                      s.c === "amber" ? "bg-amber-500/20" : "bg-emerald-500/20"
+                    }`}
+                  >
+                    <s.icon className={`w-5 h-5 ${s.c === "amber" ? "text-amber-300" : "text-emerald-300"}`} />
+                  </div>
+                  <div className="text-[11px] sm:text-xs font-bold text-white leading-tight">
+                    {s.t}
+                  </div>
+                  <div className="text-[10px] text-slate-400">Step {i + 1}</div>
+                </div>
+                {i < arr.length - 1 && (
+                  <ArrowRight className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-600 z-10" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: PARTNER FORM */}
+      <PartnerForm />
+
+      {/* SECTION 8: FAQ */}
       <section className="bg-slate-900/40 border-y border-slate-800" data-testid="section-faq">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-8">
             <h2 className="text-3xl sm:text-4xl font-bold" data-testid="heading-faq">
-              Broker FAQs
+              Frequently Asked
             </h2>
             <p className="text-slate-400 mt-2 text-sm">
-              Quick answers to what brokers ask before joining
+              Quick answers from the DeliWer Real Estate platform
             </p>
           </div>
           <div className="space-y-3">
             {[
               {
-                q: "Is this rental, sale, or both?",
-                a: "Both — but rental is primary. The post-war population shift has flipped Dubai into a tenant-favoured market with supply outpacing demand. Sale deals are secondary, focused on distress and below-market inventory when sellers need a fast exit.",
+                q: "Is DeliWer a brokerage?",
+                a: "No. DeliWer is a real estate infrastructure platform — demand generation, inventory distribution and move-in services. A separate licensed real estate partner handles every contract, escrow and formal closing.",
+              },
+              {
+                q: "Who is DeliWer Real Estate for?",
+                a: "Developers, landlords, rental owners, brokerages, independent brokers, tenants, buyers, relocation clients and strategic partners — all transacting on one platform.",
+              },
+              {
+                q: "How do brokers get paid?",
+                a: "Through standard rental commissions, distress sale bonuses on closures from our distress feed, and per-deal overrides on move-in services (Ejari, DEWA, movers, AquaCafe). Paid monthly with a full statement.",
+              },
+              {
+                q: "How does DeliWer prevent broker leakage?",
+                a: "Managed lead distribution, controlled first viewings, licensed closing process, and CRM tracking from viewing → offer → contract → closing. Optional broker membership tiers (Free / Pro / Enterprise) determine access.",
               },
               {
                 q: "Which developers and communities are covered?",
-                a: "Emaar, DAMAC, Nakheel, Sobha, Meraas, Aldar, Azizi, Ellington, Binghatti, Dubai Properties — across Downtown, Marina, Business Bay, Dubai Hills, JVC, JVT, Palm Jumeirah, MBR City, Arabian Ranches, DAMAC Hills, Town Square, Al Furjan, JLT, Mirdif and more.",
+                a: "DAMAC, Emaar, Sobha, Danube, Nakheel, Meraas, Aldar, Azizi, Ellington, Binghatti — across Downtown, Marina, Business Bay, Dubai Hills, JVC, JVT, Palm Jumeirah, MBR City, Arabian Ranches and more.",
               },
               {
-                q: "Do I need a RERA card?",
-                a: "Yes — active RERA-licensed brokers only. We verify before granting inventory access.",
+                q: "What are move-in services?",
+                a: "Post-transaction monetization: Ejari, DEWA, internet, moving, furniture, water delivery, repairs, maintenance and emergency preparedness packages. This is DeliWer's major differentiator and a recurring revenue layer.",
               },
               {
-                q: "Is there any signup or monthly fee?",
-                a: "Zero. 100% commission-only. No signup, no retainer, no monthly. You only earn — we only earn when you close.",
-              },
-              {
-                q: "How does the three-layer commission stack work?",
-                a: "Layer 1: standard rental commission on every closed lease. Layer 2: up to 3% bonus on distress sale closures. Layer 3: AED 300–800 per move-in service (Ejari, DEWA, movers, AquaCafe). All paid monthly via bank transfer with full statement.",
-              },
-              {
-                q: "Will I lose my client to DeliWer?",
-                a: "Never. Your client stays your client — we only handle move-in logistics. You keep the relationship and full sales / leasing commission.",
-              },
-              {
-                q: "How fast can I start?",
-                a: "Same day. Submit the form or WhatsApp us — onboarded brokers receive their first inventory drop and live market signal within 24 hours.",
+                q: "How fast can I get started?",
+                a: "Same day. Submit the partner form or WhatsApp us — onboarded partners are routed to the right desk and typically activated within 24 hours.",
               },
             ].map((f, i) => (
               <details
@@ -879,7 +1008,7 @@ export default function RealEstate() {
         </div>
       </section>
 
-      {/* SECTION 7: FINAL CTA */}
+      {/* SECTION 9: FINAL CTA */}
       <section className="relative overflow-hidden border-t border-amber-500/20">
         <img
           src={keysHandover}
@@ -893,19 +1022,24 @@ export default function RealEstate() {
             className="text-3xl sm:text-5xl font-bold mb-6"
             data-testid="heading-final-cta"
           >
-            Get Access Before Slots Fill
+            Dubai's First Real Estate{" "}
+            <span className="bg-gradient-to-r from-emerald-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">
+              Transaction + Move-In
+            </span>{" "}
+            Infrastructure Platform
           </h2>
           <p className="text-slate-300 mb-8 text-lg">
-            Limited broker onboarding window. Priority for brokers closing monthly.
+            Buyers · Tenants · Developers · Brokers · Landlords · Partners — one platform,
+            measurable revenue streams.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href="#request-access">
+            <a href="#partner">
               <Button
                 size="lg"
                 className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
-                data-testid="button-final-request-access"
+                data-testid="button-final-partner"
               >
-                Request Access <ArrowRight className="w-4 h-4 ml-2" />
+                Get Started <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
             <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
@@ -926,12 +1060,12 @@ export default function RealEstate() {
       <footer className="border-t border-slate-800 py-8 text-center text-sm text-slate-500">
         <div className="flex items-center justify-center gap-2 mb-1">
           <Building2 className="w-4 h-4 text-amber-300" />
-          DeliWer Real Estate · DAMAC Preferred Partner
+          DeliWer Real Estate · Infrastructure Platform · Closings via Licensed Partner
         </div>
         <div>realestate.deliwer.com · Dubai, UAE</div>
       </footer>
 
-      {/* Sticky WhatsApp Button (mobile + desktop) */}
+      {/* Sticky WhatsApp Button */}
       <a
         href={WA_LINK}
         target="_blank"
