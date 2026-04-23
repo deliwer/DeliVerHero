@@ -576,28 +576,30 @@ export default function RealEstate() {
             </Card>
 
             {/* 4. Move-In Revenue (highlighted) */}
-            <Card className="bg-gradient-to-br from-amber-500/10 to-emerald-500/10 border-amber-500/40 hover-elevate ring-1 ring-amber-500/30" data-testid="card-revenue-movein">
+            <Card className="bg-gradient-to-br from-amber-500/20 via-slate-900/80 to-emerald-500/15 border-amber-400/60 hover-elevate ring-2 ring-amber-400/40 shadow-lg shadow-amber-500/10" data-testid="card-revenue-movein">
               <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-11 h-11 rounded-lg bg-amber-500/25 flex items-center justify-center">
-                    <Truck className="w-5 h-5 text-amber-200" />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-amber-400 flex items-center justify-center shadow-md shadow-amber-500/30">
+                    <Truck className="w-6 h-6 text-slate-950" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-black uppercase tracking-widest text-amber-300">Stream 4 · Major Differentiator</div>
-                    <h3 className="text-lg font-bold text-white">Move-In Revenue</h3>
+                    <div className="inline-block text-[10px] font-black uppercase tracking-widest text-slate-950 bg-amber-300 px-2 py-0.5 rounded mb-1">
+                      Stream 4 · Major Differentiator
+                    </div>
+                    <h3 className="text-xl font-bold text-white">Move-In Revenue</h3>
                   </div>
                 </div>
-                <p className="text-sm text-slate-200 mb-3 leading-relaxed">
+                <p className="text-sm text-white mb-4 leading-relaxed font-medium">
                   After every transaction, DeliWer monetizes the move-in lifecycle:
                 </p>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {[
                     "Ejari", "DEWA", "Internet", "Moving", "Furniture",
                     "Water Delivery", "Repairs", "Maintenance", "Emergency Prep",
                   ].map((s) => (
                     <span
                       key={s}
-                      className="text-[11px] px-2 py-1 rounded-full bg-white/10 border border-amber-300/30 text-amber-100 font-semibold"
+                      className="text-xs px-3 py-1.5 rounded-full bg-amber-400 border border-amber-300 text-slate-950 font-bold shadow-sm"
                     >
                       {s}
                     </span>
