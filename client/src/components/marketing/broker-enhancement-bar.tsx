@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 
 export const BROKER_WA_LINK =
-  "https://wa.me/971523946311?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20inventory%20through%20DeliWer.%20Please%20share%20details.";
+  "https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker.%20Interested%20in%20your%20commission-only%20rental%20%2B%20distress-sale%20referral%20network%20across%20all%20major%20Dubai%20developers.";
 
 export function BrokerAccessBanner({ compact = false }: { compact?: boolean }) {
   return (
@@ -12,20 +12,19 @@ export function BrokerAccessBanner({ compact = false }: { compact?: boolean }) {
       <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center gap-3 justify-between">
         <div className="flex items-center gap-3 min-w-0">
           <span className="text-[10px] font-black uppercase tracking-widest text-amber-300 bg-amber-500/20 border border-amber-500/40 px-2 py-0.5 rounded-full whitespace-nowrap">
-            🔥 Broker Access
+            🔥 Broker Network
           </span>
           {!compact && (
             <p className="text-xs sm:text-sm text-slate-200 truncate">
-              Active Dubai brokers — get priority access to{" "}
-              <strong className="text-white">below-market DAMAC inventory</strong> +{" "}
-              <strong className="text-emerald-300">AED 300–800 extra per deal</strong>{" "}
-              via DeliWer move-in services.
+              <strong className="text-white">Rental-first</strong> + distress sale inventory across{" "}
+              <strong className="text-white">Emaar · DAMAC · Nakheel · Sobha · Aldar</strong> —{" "}
+              <strong className="text-emerald-300">100% commission-only</strong>, zero signup.
             </p>
           )}
           {compact && (
             <p className="text-xs text-slate-200 truncate">
-              <strong className="text-white">Below-market DAMAC</strong> for active brokers ·{" "}
-              <strong className="text-emerald-300">+AED 300–800 per deal</strong>
+              <strong className="text-white">Rental + distress</strong> · all major developers ·{" "}
+              <strong className="text-emerald-300">commission-only</strong>
             </p>
           )}
         </div>

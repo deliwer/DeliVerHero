@@ -36,22 +36,35 @@ const WA_LINK =
   "https://wa.me/971523946311?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20inventory%20through%20DeliWer.%20Please%20share%20details.";
 
 const PROPERTY_INTERESTS = [
-  "Apartments (1-2BR)",
-  "Apartments (3BR+)",
-  "Villas",
-  "Townhouses",
+  "Rental — Apartments (Studio/1BR)",
+  "Rental — Apartments (2-3BR)",
+  "Rental — Villas / Townhouses",
+  "Sale — Distress / Below-Market Apartments",
+  "Sale — Distress / Below-Market Villas",
   "Branded Residences",
   "Commercial / Business Bay",
   "Mixed — open to all",
 ];
 
 const BUDGET_RANGES = [
-  "Under AED 1M",
-  "AED 1M – 3M",
-  "AED 3M – 5M",
-  "AED 5M – 10M",
-  "AED 10M+",
-  "Multiple buyers — varied",
+  "Rental — Under AED 80K/yr",
+  "Rental — AED 80–150K/yr",
+  "Rental — AED 150–300K/yr",
+  "Rental — AED 300K+/yr",
+  "Sale — Under AED 1M",
+  "Sale — AED 1M – 3M",
+  "Sale — AED 3M – 10M",
+  "Sale — AED 10M+",
+  "Multiple tenants/buyers — varied",
+];
+
+const DEVELOPERS = [
+  "EMAAR", "DAMAC", "NAKHEEL", "MERAAS", "SOBHA", "DUBAI PROPERTIES", "ALDAR", "AZIZI", "ELLINGTON", "BINGHATTI",
+];
+
+const COMMUNITIES = [
+  "Downtown", "Dubai Marina", "JVC", "JVT", "Business Bay", "Dubai Hills", "Arabian Ranches",
+  "DAMAC Hills", "Palm Jumeirah", "MBR City", "Town Square", "Al Furjan", "JLT", "Mirdif",
 ];
 
 function RequestAccessForm() {
@@ -108,11 +121,11 @@ function RequestAccessForm() {
             className="text-3xl sm:text-4xl font-bold mb-3"
             data-testid="heading-request-access-form"
           >
-            Request Broker Access
+            Join the Commission-Only Broker Network
           </h2>
           <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto">
-            Tell us what your buyers are looking for. We'll match you to the live
-            DAMAC distress inventory and onboard you within 24 hours.
+            Tell us what your tenants &amp; buyers are looking for. We'll route live
+            rental and below-market inventory across all major Dubai developers — onboarded within 24 hours.
           </p>
         </div>
 
@@ -358,32 +371,61 @@ export default function RealEstate() {
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
           <Badge
-            className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-5"
+            className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-5"
             data-testid="badge-broker-access"
           >
-            <Crown className="w-3.5 h-3.5 mr-1.5" /> For Active Dubai Brokers
+            <Crown className="w-3.5 h-3.5 mr-1.5" /> Dubai Rental Reset · Broker Intelligence Network
           </Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-5">
-            Access{" "}
-            <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-              Below-Market DAMAC Units
-            </span>{" "}
-            + Close Deals Faster
+            Dubai's New Rental Reality —{" "}
+            <span className="bg-gradient-to-r from-emerald-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">
+              Supply Now Outpaces Demand
+            </span>
           </h1>
-          <p className="text-lg sm:text-xl text-slate-300 mb-7 leading-relaxed max-w-3xl mx-auto">
-            For a limited group of active Dubai brokers. Get priority access to{" "}
-            <strong className="text-white">distress-driven inventory</strong> +{" "}
-            <strong className="text-white">earn more per transaction</strong>.
+          <p className="text-lg sm:text-xl text-slate-300 mb-4 leading-relaxed max-w-3xl mx-auto">
+            Population shift, expat exits and reshuffling preferences after the war have flipped the rental market.{" "}
+            <strong className="text-white">Indigenous tenants and remaining expats now hold the leverage</strong> — and brokers
+            who move first close first.
           </p>
+          <p className="text-sm sm:text-base text-slate-400 mb-7 leading-relaxed max-w-3xl mx-auto">
+            DeliWer routes verified <strong className="text-white">rental-ready inventory</strong> across all major developers
+            and communities to a closed broker pool — plus a secondary stream of{" "}
+            <strong className="text-amber-300">distress &amp; below-market sale deals</strong> when sellers need speed.
+          </p>
+
+          {/* Developer logos strip */}
+          <div className="flex flex-wrap gap-2 justify-center mb-3" data-testid="strip-developers">
+            {DEVELOPERS.map((d) => (
+              <span
+                key={d}
+                className="text-[10px] sm:text-xs font-black tracking-widest px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-200"
+                data-testid={`chip-developer-${d.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                {d}
+              </span>
+            ))}
+          </div>
+          {/* Communities strip */}
+          <div className="flex flex-wrap gap-1.5 justify-center mb-7 max-w-3xl mx-auto" data-testid="strip-communities">
+            {COMMUNITIES.map((c) => (
+              <span
+                key={c}
+                className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-emerald-500/5 border border-emerald-500/20 text-emerald-200/80"
+                data-testid={`chip-community-${c.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
 
           <div className="flex flex-wrap gap-3 justify-center">
             <a href="#request-access">
               <Button
                 size="lg"
-                className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold"
+                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold"
                 data-testid="button-hero-request-access"
               >
-                Request Access
+                Join Broker Network
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
@@ -391,11 +433,11 @@ export default function RealEstate() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-emerald-500/50 text-emerald-200 hover:bg-emerald-500/10"
+                className="border-amber-500/50 text-amber-200 hover:bg-amber-500/10"
                 data-testid="button-hero-whatsapp"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                WhatsApp Now
+                WhatsApp Broker Desk
               </Button>
             </a>
           </div>
@@ -405,13 +447,12 @@ export default function RealEstate() {
             data-testid="text-trust-line"
           >
             <Lock className="w-3.5 h-3.5" />
-            Limited broker onboarding • Priority access
+            Commission-only · Zero signup fee · RERA-verified brokers only
           </p>
 
           <div className="mt-8 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 rounded-full px-4 py-2 text-sm">
             <Sparkles className="w-4 h-4" />
-            Earn <strong className="text-white">AED 300–800 extra per deal</strong>{" "}
-            via DeliWer move-in services
+            <strong className="text-white">100% commission-only referral model</strong> — earn on every closed lease &amp; sale
           </div>
         </div>
       </section>
@@ -420,10 +461,10 @@ export default function RealEstate() {
       <section className="border-b border-slate-800 bg-slate-950/60" data-testid="section-proof-strip">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
-            { v: "120+", l: "Active Dubai brokers" },
-            { v: "AED 800", l: "Avg extra per deal" },
+            { v: "10+", l: "Major developers covered" },
+            { v: "Rental-First", l: "Primary deal flow" },
+            { v: "Commission-Only", l: "Zero broker fees" },
             { v: "10 min", l: "WhatsApp response" },
-            { v: "DAMAC", l: "Preferred Partner" },
           ].map((s, i) => (
             <div key={i} data-testid={`proof-stat-${i}`}>
               <div className="text-2xl sm:text-3xl font-black text-amber-300">{s.v}</div>
@@ -471,11 +512,20 @@ export default function RealEstate() {
           <div className="grid sm:grid-cols-2 gap-5">
             {[
               {
+                icon: Building2,
+                text: (
+                  <>
+                    <strong className="text-white">Rental-first inventory</strong> across Emaar,
+                    DAMAC, Nakheel, Sobha, Meraas, Aldar, Ellington &amp; more
+                  </>
+                ),
+              },
+              {
                 icon: TrendingDown,
                 text: (
                   <>
-                    <strong className="text-white">Distress-driven DAMAC inventory</strong>{" "}
-                    (below market)
+                    <strong className="text-white">Secondary distress &amp; below-market sale deals</strong>{" "}
+                    when sellers need fast exit
                   </>
                 ),
               },
@@ -483,8 +533,8 @@ export default function RealEstate() {
                 icon: Zap,
                 text: (
                   <>
-                    <strong className="text-white">Faster deal closures</strong> with move-in
-                    support (utilities, essentials handled)
+                    <strong className="text-white">Faster lease &amp; closure cycles</strong> with
+                    DeliWer move-in support (Ejari, DEWA, movers handled)
                   </>
                 ),
               },
@@ -492,14 +542,10 @@ export default function RealEstate() {
                 icon: Sparkles,
                 text: (
                   <>
-                    <strong className="text-white">Additional commission layer</strong> via
-                    DeliWer services
+                    <strong className="text-white">100% commission-only</strong> — no signup,
+                    no retainer, paid on every closed lease &amp; sale
                   </>
                 ),
-              },
-              {
-                icon: Handshake,
-                text: <>Buyer routing (when available)</>,
               },
             ].map((item, i) => (
               <Card
@@ -527,6 +573,132 @@ export default function RealEstate() {
                 Request Access <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3B: BROKER INTELLIGENCE + COMMISSION-ONLY ENGINE */}
+      <section className="relative border-y border-emerald-500/20 bg-gradient-to-b from-slate-950 via-emerald-950/15 to-slate-950" data-testid="section-broker-intel">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-3">
+              <Crown className="w-3.5 h-3.5 mr-1.5" /> Broker Intelligence Engine
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-broker-intel">
+              The Commission-Only Referral System Rewriting Dubai Real Estate
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
+              Built for the post-war reality: shrinking demand, expat reshuffle, and an indigenous rental market
+              that finally negotiates back. We arm you with the live signal — you close the deal.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5 mb-10">
+            {[
+              {
+                icon: TrendingDown,
+                title: "Live Market Signal",
+                desc: "Daily WhatsApp drops on rental demand by community, distress sale alerts, and developer-specific incentive windows.",
+              },
+              {
+                icon: Building2,
+                title: "Multi-Developer Reach",
+                desc: "Emaar · DAMAC · Nakheel · Sobha · Meraas · Aldar · Azizi · Ellington · Binghatti — one broker pool, every major developer.",
+              },
+              {
+                icon: Handshake,
+                title: "Tenant & Buyer Routing",
+                desc: "Indigenous-leaning tenants and serious buyers routed straight to vetted brokers — no portal, no cold leads.",
+              },
+              {
+                icon: Sparkles,
+                title: "Commission-Only Model",
+                desc: "Zero signup. Zero retainer. Zero monthly fee. You earn on every closed lease, every sale, every move-in service.",
+              },
+              {
+                icon: Zap,
+                title: "60-Second Onboarding",
+                desc: "RERA-verified brokers go live the same day — first inventory drop within 24 hours, paid out monthly.",
+              },
+              {
+                icon: Lock,
+                title: "Closed Network Advantage",
+                desc: "Capped pool per community to protect deal density. Your leads don't compete with 500 other agents.",
+              },
+            ].map((item, i) => (
+              <Card
+                key={i}
+                className="bg-slate-950/70 border-emerald-500/20 hover-elevate"
+                data-testid={`card-intel-${i}`}
+              >
+                <CardContent className="p-5">
+                  <div className="w-11 h-11 rounded-lg bg-emerald-500/15 flex items-center justify-center mb-3">
+                    <item.icon className="w-5 h-5 text-emerald-300" />
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-1.5">{item.title}</h3>
+                  <p className="text-sm text-slate-300 leading-relaxed">{item.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Commission tiers */}
+          <div className="bg-slate-950/80 border border-amber-500/30 rounded-2xl p-6 sm:p-8" data-testid="card-commission-tiers">
+            <h3 className="text-xl sm:text-2xl font-bold text-center mb-2">
+              Commission-Only · Three Earning Layers
+            </h3>
+            <p className="text-center text-slate-400 text-sm mb-6">
+              Stack all three. No caps. Paid monthly via bank transfer with full statement.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                {
+                  tag: "Layer 1",
+                  title: "Rental Commissions",
+                  amt: "Standard 5%",
+                  note: "Annual rent commission on every closed lease — landlord-paid.",
+                  color: "border-emerald-500/40 bg-emerald-500/5",
+                },
+                {
+                  tag: "Layer 2",
+                  title: "Distress Sale Bonus",
+                  amt: "Up to 3% gross",
+                  note: "On below-market sale closures from our distress inventory feed.",
+                  color: "border-amber-500/40 bg-amber-500/5",
+                },
+                {
+                  tag: "Layer 3",
+                  title: "Move-In Service Override",
+                  amt: "AED 300–800/deal",
+                  note: "Per buyer/tenant who uses DeliWer Ejari, DEWA, movers or AquaCafe.",
+                  color: "border-orange-500/40 bg-orange-500/5",
+                },
+              ].map((t, i) => (
+                <div
+                  key={i}
+                  className={`rounded-xl border ${t.color} p-5`}
+                  data-testid={`tier-${i}`}
+                >
+                  <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
+                    {t.tag}
+                  </div>
+                  <div className="text-base font-bold text-white mb-1">{t.title}</div>
+                  <div className="text-2xl font-black text-amber-300 mb-2">{t.amt}</div>
+                  <p className="text-xs text-slate-300 leading-relaxed">{t.note}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-7 flex flex-wrap gap-3 justify-center">
+              <a href="#request-access">
+                <Button
+                  size="lg"
+                  className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold"
+                  data-testid="button-intel-request-access"
+                >
+                  Onboard as Broker · Free <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -661,24 +833,32 @@ export default function RealEstate() {
           <div className="space-y-3">
             {[
               {
+                q: "Is this rental, sale, or both?",
+                a: "Both — but rental is primary. The post-war population shift has flipped Dubai into a tenant-favoured market with supply outpacing demand. Sale deals are secondary, focused on distress and below-market inventory when sellers need a fast exit.",
+              },
+              {
+                q: "Which developers and communities are covered?",
+                a: "Emaar, DAMAC, Nakheel, Sobha, Meraas, Aldar, Azizi, Ellington, Binghatti, Dubai Properties — across Downtown, Marina, Business Bay, Dubai Hills, JVC, JVT, Palm Jumeirah, MBR City, Arabian Ranches, DAMAC Hills, Town Square, Al Furjan, JLT, Mirdif and more.",
+              },
+              {
                 q: "Do I need a RERA card?",
                 a: "Yes — active RERA-licensed brokers only. We verify before granting inventory access.",
               },
               {
-                q: "Is there any signup fee?",
-                a: "No fees. Free to join. You only earn — we get paid when your buyer closes.",
+                q: "Is there any signup or monthly fee?",
+                a: "Zero. 100% commission-only. No signup, no retainer, no monthly. You only earn — we only earn when you close.",
               },
               {
-                q: "How is the AED 300–800 extra paid?",
-                a: "Per move-in service your buyer takes (Ejari, DEWA, movers, AquaCafe). Paid monthly via bank transfer with full statement.",
+                q: "How does the three-layer commission stack work?",
+                a: "Layer 1: standard rental commission on every closed lease. Layer 2: up to 3% bonus on distress sale closures. Layer 3: AED 300–800 per move-in service (Ejari, DEWA, movers, AquaCafe). All paid monthly via bank transfer with full statement.",
               },
               {
                 q: "Will I lose my client to DeliWer?",
-                a: "Never. Your client stays your client — we only handle move-in logistics. You keep the relationship and full sales commission.",
+                a: "Never. Your client stays your client — we only handle move-in logistics. You keep the relationship and full sales / leasing commission.",
               },
               {
                 q: "How fast can I start?",
-                a: "Same day. Submit the form or WhatsApp us — onboarded brokers receive their first inventory drop within 24 hours.",
+                a: "Same day. Submit the form or WhatsApp us — onboarded brokers receive their first inventory drop and live market signal within 24 hours.",
               },
             ].map((f, i) => (
               <details
