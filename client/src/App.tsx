@@ -99,6 +99,7 @@ const Leaderboard = lazy(() => import("@/pages/leaderboard"));
 const ImpactDashboard = lazy(() => import("@/pages/impact-dashboard"));
 const AquaCafe = lazy(() => import("@/pages/aquacafe-enhanced"));
 const AquaCafeAlliance = lazy(() => import("@/pages/aquacafe-alliance"));
+const RestaurantPartners = lazy(() => import("@/pages/restaurant-partners"));
 const Products = lazy(() => import("@/pages/products"));
 const IcelandicGlacialLandingPage = lazy(() => import("@/pages/icelandic-glacial"));
 const Exchange = lazy(() => import("@/pages/exchange"));
@@ -315,6 +316,7 @@ function Router() {
           <Route path="/aquacafe" component={AquaCafe} />
           <Route path="/home-services" component={AquaCafeAlliance} />
           <Route path="/aquacafe-alliance" component={AquaCafeAlliance} />
+          <Route path="/restaurant-partners" component={RestaurantPartners} />
           <Route path="/products/aquacafe" component={AquaCafeAlliance} />
           <Route path="/products" component={Products} />
         <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />

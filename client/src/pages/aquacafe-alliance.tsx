@@ -439,6 +439,47 @@ export default function AquaCafeAlliance() {
                     <span>Commitment to health & sustainability</span>
                   </div>
                 </div>
+
+                {/* Home Delivery — Restaurant Partner Directory */}
+                <div className="mt-6 bg-white rounded-2xl border-2 border-amber-300 p-5 shadow-sm">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow">
+                      <Utensils className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-black uppercase tracking-widest text-amber-600">
+                        Home Delivery
+                      </div>
+                      <div className="text-base font-bold text-gray-900 leading-tight">
+                        Order from your nearest partner
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-3 leading-snug">
+                    Chill &amp; Grill now delivers across Dubai through a growing network of restaurant partners.
+                    Find the closest kitchen, choose from a variety of menus, and apply your{" "}
+                    <strong className="text-amber-700">AED 100 referral voucher</strong> at checkout.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {["Business Bay", "Downtown", "Marina", "JLT", "JVC", "Deira"].map((area) => (
+                      <span
+                        key={area}
+                        className="text-[11px] px-2 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700 font-semibold"
+                      >
+                        {area}
+                      </span>
+                    ))}
+                  </div>
+                  <Link href="/restaurant-partners">
+                    <Button
+                      data-testid="button-restaurant-partner-directory"
+                      className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold rounded-xl shadow"
+                    >
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Find Nearest Partner · View Directory
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </div>
