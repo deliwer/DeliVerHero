@@ -81,56 +81,82 @@ export default function Earn() {
         </div>
       </div>
       
-      {/* Main Hero Section - Earn Rewards */}
+      {/* Consolidated Hero — Say No To Plastic + AquaCafe Loyalty Career Path */}
       <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
-        {/* Hero banner image */}
+        {/* Hero banner image (kept) */}
         <div className="relative w-full">
           <img
             src={earnHeroBanner}
-            alt="Plastic-free oceans — every action funds Dubai's sustainability"
-            className="w-full h-48 sm:h-72 md:h-96 object-cover"
+            alt="Say No To Plastic — Dubai sustainability through AquaCafe by DeliWer"
+            className="w-full h-[420px] sm:h-[520px] md:h-[600px] object-cover"
             data-testid="img-earn-hero-banner"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-emerald-50 via-emerald-50/30 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 px-4 pb-4 sm:pb-8 text-center">
-            <div className="inline-flex items-center bg-gradient-to-r from-emerald-700/95 to-cyan-700/95 backdrop-blur text-white rounded-full px-4 sm:px-6 py-2 sm:py-3 font-bold text-sm sm:text-lg shadow-2xl border border-white/20">
-              <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              Turn Plastic Into Rewards
-              <Trophy className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+          {/* Dark/teal overlay for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/55 to-emerald-950/85" />
+
+          {/* Hero content */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 text-center">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur text-emerald-200 px-4 sm:px-5 py-2 rounded-full mb-5 border border-emerald-300/40 font-bold text-xs sm:text-sm uppercase tracking-widest">
+                <Leaf className="w-4 h-4" />
+                Say No To Plastic
+                <Leaf className="w-4 h-4" />
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-5 leading-[1.05] drop-shadow-2xl">
+                Say No To Plastic.
+                <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+                  Build Your Loyalty Career.
+                </span>
+              </h1>
+
+              <p className="text-base sm:text-lg md:text-xl text-slate-100 mb-7 max-w-3xl mx-auto leading-relaxed drop-shadow">
+                <strong className="text-white">AquaCafe by DeliWer</strong> is more than a deal — it's a{" "}
+                <strong className="text-emerald-300">loyalty member network</strong> with a clear career path.
+                Start with <strong className="text-amber-300">Kangen Water home services</strong> as your gateway,
+                graduate into Move-in &amp; Setup home services, and earn lifetime rewards at every step.
+              </p>
+
+              {/* Career path strip */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 max-w-3xl mx-auto mb-7">
+                <CareerStep n="1" label="Starter Kit" sub="AED 99 · Kangen Water" tone="emerald" icon={Droplets} />
+                <CareerStep n="2" label="Home Services" sub="Move-in · Water Setup" tone="cyan" icon={Home} />
+                <CareerStep n="3" label="Earn DXBs" sub="Trade-ins · Referrals" tone="blue" icon={Star} />
+                <CareerStep n="4" label="Career Tier" sub="Voucher + Rewards" tone="amber" icon={Crown} />
+              </div>
+
+              {/* Primary + Secondary CTAs */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-3">
+                <a
+                  href={`https://wa.me/971523946311?text=${encodeURIComponent(
+                    "Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit and join the Loyalty Network — please get me started."
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="button-wa-order-starter-kit"
+                  className="w-full sm:w-auto inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white px-7 py-4 rounded-full text-base sm:text-lg font-black shadow-2xl transition-all hover:scale-105"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Order AED 99 Starter Kit on WhatsApp
+                </a>
+                <Button
+                  size="lg"
+                  onClick={handleOrderStarterKit}
+                  disabled={isOrderLoading}
+                  data-testid="button-order-starter-kit-hero"
+                  className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur font-bold px-7 py-4 text-base sm:text-lg rounded-full disabled:opacity-50"
+                >
+                  <Zap className="w-5 h-5 mr-2" />
+                  {isOrderLoading ? "Adding…" : "Add to Cart"}
+                </Button>
+              </div>
+
+              <div className="text-xs sm:text-sm text-slate-300">
+                Includes FREE Ionic Shower Filter · Membership Card · 1,000 Welcome DXBs ·{" "}
+                <span className="text-amber-300 font-semibold">AED 1,000+ lifetime value</span>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="w-full py-8 sm:py-12 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-blue-500/10 relative">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full animate-pulse"></div>
-          <div className="absolute top-32 right-20 w-12 h-12 bg-cyan-400 rounded-full animate-bounce"></div>
-          <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-emerald-400 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
-        </div>
-
-        <div className="w-full max-w-7xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center bg-gradient-to-r from-purple-600 to-amber-500 text-white rounded-full px-8 py-4 mb-6 font-bold text-xl shadow-2xl animate-pulse">
-            <Trophy className="w-6 h-6 mr-3" />
-            EARN REWARDS
-            <Trophy className="w-6 h-6 ml-3" />
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-6 leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-600 to-cyan-600 animate-pulse drop-shadow-2xl">
-              Impact Commerce Gateway
-            </span>
-          </h1>
-          
-          <h2 className="text-xl sm:text-2xl md:text-3xl mb-6 font-bold">
-            <span className="text-emerald-600 drop-shadow-lg">Water Filtration</span> • 
-            <span className="text-blue-600 drop-shadow-lg">iPhone Trade-ins</span> • 
-            <span className="text-amber-600 drop-shadow-lg">Earn DXBs</span>
-          </h2>
-          
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Join AquaCafe Loyalty, earn Dubai Carbon Tokens (DXBs), complete missions, and redeem rewards. Every action funds Dubai's sustainability initiatives.
-          </p>
-        </div>
         </div>
       </section>
 
@@ -1035,6 +1061,41 @@ export default function Earn() {
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+const TONE_MAP: Record<string, { ring: string; bg: string; text: string; iconBg: string }> = {
+  emerald: { ring: "ring-emerald-300/40", bg: "bg-emerald-500/15", text: "text-emerald-200", iconBg: "bg-emerald-500/30" },
+  cyan:    { ring: "ring-cyan-300/40",    bg: "bg-cyan-500/15",    text: "text-cyan-200",    iconBg: "bg-cyan-500/30" },
+  blue:    { ring: "ring-blue-300/40",    bg: "bg-blue-500/15",    text: "text-blue-200",    iconBg: "bg-blue-500/30" },
+  amber:   { ring: "ring-amber-300/40",   bg: "bg-amber-500/15",   text: "text-amber-200",   iconBg: "bg-amber-500/30" },
+};
+
+function CareerStep({
+  n,
+  label,
+  sub,
+  tone,
+  icon: Icon,
+}: {
+  n: string;
+  label: string;
+  sub: string;
+  tone: keyof typeof TONE_MAP;
+  icon: React.ComponentType<{ className?: string }>;
+}) {
+  const t = TONE_MAP[tone];
+  return (
+    <div className={`relative ${t.bg} backdrop-blur rounded-xl p-3 ring-1 ${t.ring} text-left`}>
+      <div className="flex items-center gap-2 mb-1.5">
+        <div className={`w-7 h-7 rounded-lg ${t.iconBg} flex items-center justify-center font-black text-white text-xs`}>
+          {n}
+        </div>
+        <Icon className={`w-4 h-4 ${t.text}`} />
+      </div>
+      <div className="text-sm font-bold text-white leading-tight">{label}</div>
+      <div className={`text-[11px] ${t.text} mt-0.5`}>{sub}</div>
     </div>
   );
 }
