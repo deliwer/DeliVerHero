@@ -232,23 +232,63 @@ export default function Earn() {
         </div>
       </section>
 
-      {/* ⭐ The Circle Dubai: iPhone Trade-In Hub (with merged AquaCafe Loyalty Gateway) */}
-      <section className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 to-cyan-900/30" data-testid="circle-dubai-tradein">
+      {/* ⭐ Unified: iPhone Trade-In × Circular Economy Hub */}
+      <section className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 via-emerald-900/20 to-cyan-900/30" data-testid="circle-dubai-tradein">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-6 py-3 rounded-full mb-6 border border-blue-500/50">
-              <Recycle className="w-6 h-6 flex-shrink-0" />
-              <span className="font-bold text-lg">INSPIRED BY THE CIRCLE DUBAI</span>
+          {/* ── UNIFIED HERO: iPhone Trade-In × Circular Economy Hub ── */}
+          <div className="text-center mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-900/60 via-slate-900/60 to-emerald-900/60 border-2 border-emerald-500/40 p-8 sm:p-12" data-testid="tradein-circular-hub-hero">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.12)_0%,transparent_70%)]"></div>
+            <div className="relative z-10">
+              <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+                <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full border border-blue-500/50 text-xs sm:text-sm font-bold">
+                  <Recycle className="w-4 h-4" />
+                  INSPIRED BY THE CIRCLE DUBAI
+                </div>
+                <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 px-4 py-2 rounded-full border border-emerald-500/50 text-xs sm:text-sm font-bold">
+                  <Gift className="w-4 h-4" />
+                  AQUACAFE LOYALTY GATEWAY
+                </div>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
+                iPhone Trade-In × <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Circular Economy Hub</span>
+              </h2>
+              <p className="text-base sm:text-xl text-gray-300 max-w-4xl mx-auto mb-6 leading-relaxed">
+                Dubai's unified sustainability platform — trade your old iPhone for up to <strong className="text-emerald-400">5,000 DXBs</strong>, unlock water filtration commerce, and earn continuous rewards through the AED 99 Starter Kit.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+                <Badge className="bg-amber-500/30 text-amber-300 px-4 py-2 text-base font-bold border border-amber-500/50">
+                  <Crown className="w-4 h-4 mr-2" />
+                  Lifetime Membership
+                </Badge>
+                <span className="text-2xl font-black text-white hidden sm:inline">→</span>
+                <span className="text-2xl sm:text-3xl font-black text-emerald-400">AED 1,000+ Value</span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button
+                  size="lg"
+                  onClick={handleOrderStarterKit}
+                  disabled={isOrderLoading}
+                  className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-black px-8 py-6 text-lg sm:text-xl shadow-2xl rounded-full border-2 border-white/20 disabled:opacity-50"
+                  data-testid="button-order-starter-kit-hero"
+                >
+                  <Zap className="w-6 h-6 mr-2" />
+                  {isOrderLoading ? "ADDING TO CART..." : "START JOURNEY · AED 99"}
+                </Button>
+                <Link
+                  href="/exchange"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-black px-8 py-6 text-lg sm:text-xl shadow-2xl rounded-full border-2 border-white/20"
+                  data-testid="button-tradein-hero"
+                >
+                  <Smartphone className="w-6 h-6" />
+                  TRADE IN iPHONE
+                </Link>
+              </div>
+              <p className="text-gray-400 mt-3 text-xs sm:text-sm">
+                Join thousands of Dubai residents building a sustainable future
+              </p>
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-              iPhone Trade-In Hub
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mt-2">
-                E-Waste to Rewards
-              </span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              Following Dubai Municipality's The Circle initiative for responsible e-waste collection, trade your old iPhone and earn up to <strong className="text-emerald-400">5,000 DXBs</strong> plus instant credit toward water filtration systems.
-            </p>
           </div>
 
           {/* Consolidated Hub Concepts — Value · Impact · Multipliers in one panel */}
@@ -332,48 +372,6 @@ export default function Earn() {
                 <h4 className="font-bold text-white mb-2">Get Rewarded!</h4>
                 <p className="text-gray-400 text-sm">Instant DXBs + credit</p>
               </div>
-            </div>
-          </div>
-
-          {/* ── MERGED: AquaCafe Loyalty Gateway ── */}
-          <div className="text-center mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900/60 to-blue-900/60 border-2 border-emerald-500/50 p-12" data-testid="aquacafe-loyalty-gateway">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.15)_0%,transparent_70%)]"></div>
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-6 py-3 rounded-full mb-6 border border-emerald-500/50">
-                <Gift className="w-6 h-6" />
-                <span className="font-bold text-lg">AQUACAFE LOYALTY GATEWAY</span>
-              </div>
-              <h2 className="text-5xl md:text-7xl font-black text-white mb-6">
-                Your Circular Economy Hub
-                <span className="block text-emerald-400 mt-2">AED 99 Starter Kit</span>
-              </h2>
-              <p className="text-2xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-                The gateway to Dubai's most innovative sustainability platform. Join AquaCafe Loyalty and unlock iPhone trade-ins, water filtration commerce, and continuous DXB rewards.
-              </p>
-              
-              {/* Lifetime Value Badge */}
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
-                <Badge className="bg-amber-500/30 text-amber-300 px-6 py-3 text-xl font-bold border-2 border-amber-500/50">
-                  <Crown className="w-6 h-6 mr-2" />
-                  Lifetime Membership Benefits
-                </Badge>
-                <span className="text-3xl font-black text-white">→</span>
-                <span className="text-4xl font-black text-emerald-400">AED 1000+ Value</span>
-              </div>
-
-              <Button 
-                size="lg"
-                onClick={handleOrderStarterKit}
-                disabled={isOrderLoading}
-                className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-500 hover:to-green-500 text-white font-black px-12 py-8 text-2xl shadow-2xl rounded-full border-4 border-white/20 disabled:opacity-50"
-                data-testid="button-order-starter-kit-hero"
-              >
-                <Zap className="w-8 h-8 mr-3" />
-                {isOrderLoading ? "ADDING TO CART..." : "START YOUR JOURNEY - AED 99"}
-              </Button>
-              <p className="text-gray-400 mt-4 text-sm">
-                Join thousands of Dubai residents building a sustainable future
-              </p>
             </div>
           </div>
 
