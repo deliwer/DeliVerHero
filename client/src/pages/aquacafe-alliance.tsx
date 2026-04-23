@@ -758,13 +758,49 @@ export default function AquaCafeAlliance() {
                   <MessageCircle className="w-6 h-6 mr-3" />
                   WhatsApp to Join Alliance
                 </Button>
-                
+
+                <Link href="/earn">
+                  <Button
+                    data-testid="button-earn-rewards-funnel"
+                    className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 text-xl px-10 py-4 rounded-full font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  >
+                    <Trophy className="w-6 h-6 mr-3" />
+                    Earn Rewards & Career Path
+                  </Button>
+                </Link>
+
                 <Link href="/contact">
                   <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-emerald-600 text-xl px-10 py-4 rounded-full font-bold">
                     <Phone className="w-6 h-6 mr-3" />
                     Questions? Contact Us
                   </Button>
                 </Link>
+              </div>
+
+              {/* Partner Recruitment Funnel: /home-services → /earn */}
+              <div className="bg-gradient-to-r from-amber-500/15 to-orange-500/15 border border-amber-400/40 rounded-2xl p-4 sm:p-5 mb-6 text-left max-w-3xl mx-auto" data-testid="recruitment-funnel-earn">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/30 flex items-center justify-center flex-shrink-0">
+                    <Trophy className="w-5 h-5 text-amber-200" />
+                  </div>
+                  <div className="flex-1 text-white/95">
+                    <div className="font-bold text-base sm:text-lg mb-1">
+                      New: Loyalty Career Path on the Earn page
+                    </div>
+                    <div className="text-sm text-white/85 mb-2">
+                      Home Services is the gateway. Once your Kangen setup is in, graduate into the{" "}
+                      <strong>AquaCafe Loyalty Network</strong> — earn DXBs, unlock referral vouchers, and climb partner tiers.
+                    </div>
+                    <Link
+                      href="/earn"
+                      data-testid="link-funnel-earn"
+                      className="inline-flex items-center text-amber-200 hover:text-white font-bold text-sm underline underline-offset-2"
+                    >
+                      Open Earn page → Career Path & Referral System
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </div>
+                </div>
               </div>
               
               <div className="text-sm text-white/80">

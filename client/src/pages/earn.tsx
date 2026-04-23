@@ -21,9 +21,6 @@ import earnHeroBanner from "@assets/banner_1776801988936.jpg";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
-import pizzaImage from "@assets/stock_images/delicious_pizza_clos_ace0f742.jpg";
-import bobaTeaImage from "@assets/stock_images/kulfi_indian_ice_cre_64eeba10.jpg";
-import happyDiningImage from "@assets/stock_images/happy_people_eating__21b9cf0b.jpg";
 
 export default function Earn() {
   const { toast } = useToast();
@@ -204,35 +201,80 @@ export default function Earn() {
             </div>
           </div>
 
-          {/* What's Included */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-slate-800/50 rounded-2xl p-6 border-2 border-cyan-500/50">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Droplets className="w-8 h-8 text-cyan-400" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-2">FREE Ionic Shower Filter</h3>
-                  <Badge className="bg-amber-500/30 text-amber-300 mb-3">AED 399 value</Badge>
-                  <p className="text-gray-300">Premium beauty & skincare filtration system</p>
-                </div>
+          {/* Consolidated Bundle: Shower Filter + Membership + Chill & Grill Voucher + Join Form */}
+          <div className="mb-12 bg-gradient-to-br from-slate-900/70 to-emerald-900/40 rounded-3xl p-6 sm:p-8 border-2 border-emerald-500/40 shadow-2xl" data-testid="loyalty-bundle-section">
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full mb-3 border border-amber-400/40 text-xs sm:text-sm font-bold uppercase tracking-widest">
+                <Gift className="w-4 h-4" />
+                AquaCafe Loyalty Bundle · AED 1,000+ value
               </div>
-              <img src={showerFilterCollage} alt="Free Shower Filter" className="w-full rounded-lg shadow-lg" data-testid="image-shower-filter" />
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
+                One AED 99 Kit. <span className="text-emerald-400">Three Lifetime Benefits.</span>
+              </h3>
+              <p className="text-gray-300 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
+                Join the water track and unlock the referral system — every friend you bring earns you both rewards.
+              </p>
             </div>
 
-            <div className="bg-slate-800/50 rounded-2xl p-6 border-2 border-blue-500/50">
-              <div className="flex items-start gap-4 mb-4">
-                <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Crown className="w-8 h-8 text-blue-400" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-2">Membership Card & Setup</h3>
-                  <Badge className="bg-amber-500/30 text-amber-300 mb-3">AED 299 value</Badge>
-                  <p className="text-gray-300">Professional installation & lifetime support</p>
+            {/* 3-up benefit cards */}
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-slate-800/60 rounded-2xl p-4 border border-cyan-500/40 flex gap-3" data-testid="bundle-card-shower">
+                <img src={showerFilterCollage} alt="Free Ionic Shower Filter" className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover flex-shrink-0" data-testid="image-shower-filter" />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <Droplets className="w-4 h-4 text-cyan-400" />
+                    <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">AED 399</Badge>
+                  </div>
+                  <h4 className="text-base font-bold text-white leading-tight">FREE Ionic Shower Filter</h4>
+                  <p className="text-xs text-gray-400 mt-1">Beauty & skincare filtration</p>
                 </div>
               </div>
-              <img src={membershipCard} alt="Membership Card" className="w-full rounded-lg shadow-lg" data-testid="image-membership-card" />
+
+              <div className="bg-slate-800/60 rounded-2xl p-4 border border-blue-500/40 flex gap-3" data-testid="bundle-card-membership">
+                <img src={membershipCard} alt="AquaCafe Membership Card" className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg object-cover flex-shrink-0" data-testid="image-membership-card" />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <Crown className="w-4 h-4 text-blue-400" />
+                    <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">AED 299</Badge>
+                  </div>
+                  <h4 className="text-base font-bold text-white leading-tight">Membership Card & Setup</h4>
+                  <p className="text-xs text-gray-400 mt-1">Pro install + lifetime support</p>
+                </div>
+              </div>
+
+              <div className="bg-slate-800/60 rounded-2xl p-4 border border-amber-500/40 flex gap-3" data-testid="bundle-card-voucher">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0">
+                  <Utensils className="w-10 h-10 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <Gift className="w-4 h-4 text-amber-400" />
+                    <Badge className="bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0">Per referral</Badge>
+                  </div>
+                  <h4 className="text-base font-bold text-white leading-tight">AED 100 Chill &amp; Grill Voucher</h4>
+                  <p className="text-xs text-gray-400 mt-1">+ FREE filter for every friend</p>
+                </div>
+              </div>
             </div>
+
+            {/* Referral how-it-works strip */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 text-center">
+              <div className="bg-emerald-500/10 rounded-xl p-2.5 border border-emerald-500/30">
+                <div className="text-emerald-300 text-[11px] font-bold uppercase tracking-wider">1. Join</div>
+                <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">AED 99 starter kit</div>
+              </div>
+              <div className="bg-cyan-500/10 rounded-xl p-2.5 border border-cyan-500/30">
+                <div className="text-cyan-300 text-[11px] font-bold uppercase tracking-wider">2. Refer</div>
+                <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Share your link</div>
+              </div>
+              <div className="bg-amber-500/10 rounded-xl p-2.5 border border-amber-500/30">
+                <div className="text-amber-300 text-[11px] font-bold uppercase tracking-wider">3. Earn</div>
+                <div className="text-white text-xs sm:text-sm font-semibold mt-0.5">Voucher + filter</div>
+              </div>
+            </div>
+
+            {/* Join Form — WhatsApp submission for water track */}
+            <WaterTrackJoinForm />
           </div>
 
           {/* 3-Step Journey */}
@@ -593,46 +635,6 @@ export default function Earn() {
               <p className="text-gray-300 max-w-3xl mx-auto">
                 No confusing point systems or multiple currencies. Just DXBs - one unified reward that combines real value with environmental impact tracking.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Chill & Grill Partnership Experience */}
-      <section className="w-full py-12 px-4 bg-gradient-to-r from-orange-900/30 to-red-900/30" data-testid="chill-grill-partnership">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-6 py-3 rounded-full mb-6 border border-orange-500/30">
-              <Utensils className="w-6 h-6" />
-              <span className="font-bold text-lg">🤝 PARTNERSHIP EXPERIENCE</span>
-            </div>
-            <h2 className="text-4xl font-black text-white mb-4">
-              Chill & Grill: Pizza + Boba Tea for Two
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Your membership includes exclusive access to healthy dining experiences. Every friend you refer earns you both D100 vouchers.
-            </p>
-          </div>
-
-          {/* Lifestyle Gallery */}
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-pizza">
-              <img src={pizzaImage} alt="Delicious Pizza" className="w-full h-64 object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <p className="text-white font-bold text-xl">Authentic Pizzas</p>
-              </div>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-boba">
-              <img src={bobaTeaImage} alt="Boba Tea" className="w-full h-64 object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <p className="text-white font-bold text-xl">Premium Boba Tea</p>
-              </div>
-            </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl" data-testid="image-dining">
-              <img src={happyDiningImage} alt="Happy Dining Experience" className="w-full h-64 object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
-                <p className="text-white font-bold text-xl">Memorable Moments</p>
-              </div>
             </div>
           </div>
         </div>
@@ -1071,6 +1073,77 @@ const TONE_MAP: Record<string, { ring: string; bg: string; text: string; iconBg:
   blue:    { ring: "ring-blue-300/40",    bg: "bg-blue-500/15",    text: "text-blue-200",    iconBg: "bg-blue-500/30" },
   amber:   { ring: "ring-amber-300/40",   bg: "bg-amber-500/15",   text: "text-amber-200",   iconBg: "bg-amber-500/30" },
 };
+
+function WaterTrackJoinForm() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [area, setArea] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = `Hi DeliWer! I'd like to join the AquaCafe by DeliWer Water Track Loyalty Network.
+%0A%0A*Name:* ${name || "—"}
+%0A*Phone:* ${phone || "—"}
+%0A*Area:* ${area || "—"}
+%0A%0APlease send me the AED 99 Starter Kit (FREE Ionic Shower Filter + Membership Card + 1,000 Welcome DXBs) and activate my referral link.`;
+    window.open(`https://wa.me/971523946311?text=${message}`, "_blank");
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      data-testid="form-water-track-join"
+      className="bg-slate-950/60 rounded-2xl p-4 sm:p-5 border border-emerald-400/40"
+    >
+      <div className="flex items-center gap-2 mb-3">
+        <Phone className="w-4 h-4 text-emerald-300" />
+        <div className="text-sm sm:text-base font-bold text-white">
+          Join the Water Track — submit on WhatsApp
+        </div>
+      </div>
+      <div className="grid sm:grid-cols-3 gap-2 mb-3">
+        <input
+          type="text"
+          required
+          placeholder="Full name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          data-testid="input-join-name"
+          className="px-3 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-emerald-400"
+        />
+        <input
+          type="tel"
+          required
+          placeholder="WhatsApp number"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          data-testid="input-join-phone"
+          className="px-3 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-emerald-400"
+        />
+        <input
+          type="text"
+          required
+          placeholder="Area in Dubai"
+          value={area}
+          onChange={(e) => setArea(e.target.value)}
+          data-testid="input-join-area"
+          className="px-3 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-emerald-400"
+        />
+      </div>
+      <button
+        type="submit"
+        data-testid="button-submit-join-water-track"
+        className="w-full inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white font-black px-6 py-3 rounded-full text-sm sm:text-base shadow-lg transition-all hover:scale-[1.02]"
+      >
+        <Phone className="w-4 h-4 mr-2" />
+        Submit & Open WhatsApp · AED 99
+      </button>
+      <p className="text-[11px] text-slate-400 mt-2 text-center">
+        We'll confirm your starter kit, install slot, and referral link by WhatsApp.
+      </p>
+    </form>
+  );
+}
 
 function CareerStep({
   n,
