@@ -7,10 +7,14 @@ import { Progress } from "@/components/ui/progress";
 import { 
   Coins, Trophy, Target, TrendingUp, Gift, Star, Crown, AlertTriangle, Users, 
   Droplets, Zap, Award, Gamepad2, Medal, Sparkles, Clock, Atom, Rocket,
-  CheckCircle, Heart, ShoppingCart, ChevronRight, ArrowRight, Leaf, ChevronUp, ChevronDown
+  CheckCircle, Heart, ShoppingCart, ChevronRight, ArrowRight, Leaf, ChevronUp, ChevronDown,
+  Smartphone, TreePine
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { TombolaWidget } from "@/components/tombola-widget";
+import { CouponsPanel } from "@/components/coupons-panel";
+import { StarsSponsorshipSection } from "@/components/stars-sponsorship-section";
+import { shopifyCartService } from "@/lib/shopify-cart";
 import { useToast } from "@/hooks/use-toast";
 import type { PlanetMission } from "@shared/schema";
 
@@ -41,7 +45,39 @@ export default function Play() {
   const [heroId] = useState("current-hero-id"); // This would come from auth context
   const [isLoyaltyMember, setIsLoyaltyMember] = useState(false); // Check loyalty status
   const [isTombolaExpanded, setIsTombolaExpanded] = useState(false);
+  const [isOrderLoading, setIsOrderLoading] = useState(false);
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
+
+  const handleOrderStarterKit = async () => {
+    setIsOrderLoading(true);
+    try {
+      const starterKitProduct = {
+        id: "aquacafe-starter-kit",
+        variantId: "aquacafe-starter-kit-loyalty-gateway",
+        title: "AquaCafe Planet Hero Starter Kit - Loyalty Gateway",
+        variant: "Standard",
+        price: 99,
+        quantity: 1,
+        image: "/aquacafe_shower_main_1755270492134.jpg",
+      };
+      await shopifyCartService.addToCart(starterKitProduct);
+      toast({
+        title: "Added to Cart!",
+        description: "AquaCafe Loyalty Starter Kit (AED 99) - Your gateway to sustainability rewards",
+      });
+      setLocation('/cart');
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast({
+        title: "Error",
+        description: "Failed to add to cart. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsOrderLoading(false);
+    }
+  };
 
   // Fetch missions for the missions tab
   const { data: missions, isLoading: missionsLoading } = useQuery<PlanetMission[]>({
@@ -627,6 +663,300 @@ export default function Play() {
             </div>
           )}
         </div>
+
+        {/* ⭐ Stars & DXB Monetization - Fund Sustainability (moved from /earn) */}
+        <section id="section-stars" className="w-full py-16 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white scroll-mt-[200px] rounded-2xl mb-12" data-testid="stars-pic-monetization">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
+                <Star className="w-4 h-4 flex-shrink-0" />
+                <span className="font-bold text-sm">MONETIZE SUSTAINABILITY</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                Support Global Sustainability with <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Stars & DXBs</span>
+              </h2>
+              <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
+                Purchase Dubai Carbon Tokens directly to support clean water access, e-waste recycling, and environmental awareness campaigns.
+                <strong className="text-emerald-400"> 100 DXBs = $10 value</strong>
+              </p>
+            </div>
+            <StarsSponsorshipSection />
+          </div>
+        </section>
+
+        {/* Dubai Carbon Tokens (DXBs) - Unified Rewards System (moved from /earn) */}
+        <section id="section-dxbs" className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900 scroll-mt-[200px] rounded-2xl mb-12" data-testid="pics-rewards-section">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
+                <Star className="w-4 h-4 flex-shrink-0" />
+                <span className="font-bold text-sm">UNIFIED REWARDS SYSTEM</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                Earn <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Dubai Carbon Tokens (DXBs)</span>
+              </h2>
+              <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
+                One simple reward system that tracks your environmental impact and gives you real value. Use DXBs for products, water delivery, dining, and more.
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6" data-testid="dxb-pillars">
+                <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                  <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Universal</div>
+                  <div className="text-white text-xs mt-1">One currency, full ecosystem</div>
+                </div>
+                <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                  <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Real Value</div>
+                  <div className="text-white text-xs mt-1">100 DXBs = $10</div>
+                </div>
+                <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                  <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Impact</div>
+                  <div className="text-white text-xs mt-1">Tracks CO₂ & water saved</div>
+                </div>
+                <div className="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-3 text-center">
+                  <div className="text-emerald-300 text-[10px] font-bold uppercase tracking-wider">Flexible</div>
+                  <div className="text-white text-xs mt-1">Cash · products · donate</div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card className="bg-slate-800/50 border-slate-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                        <Smartphone className="w-6 h-6 text-white" />
+                      </div>
+                      <h4 className="text-xl font-bold text-white">Earn DXBs</h4>
+                    </div>
+                    <ul className="space-y-2 text-gray-300 text-sm">
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" /><span>iPhone trade-ins (up to 22,000 DXBs)</span></li>
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" /><span>Shopping sustainable products</span></li>
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" /><span>Completing sustainability missions</span></li>
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-shrink-0" /><span>Referring friends and family</span></li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-slate-800/50 border-slate-700">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+                        <Gift className="w-6 h-6 text-white" />
+                      </div>
+                      <h4 className="text-xl font-bold text-white">Use DXBs</h4>
+                    </div>
+                    <ul className="space-y-2 text-gray-300 text-sm">
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" /><span>Premium water filtration systems</span></li>
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" /><span>Free water delivery subscriptions</span></li>
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" /><span>Restaurant vouchers & dining rewards</span></li>
+                      <li className="flex items-start gap-2"><div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0" /><span>Cash withdrawal or sustainability donations</span></li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AquaCafe Heroes Tombola - Win Prizes While Earning (moved from /earn) */}
+        <section id="section-win" className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5 relative overflow-hidden scroll-mt-[200px] rounded-2xl mb-12" data-testid="tombola-section">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-32 right-20 w-12 h-12 bg-cyan-400 rounded-full animate-bounce"></div>
+            <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute bottom-32 right-1/3 w-8 h-8 bg-blue-300 rounded-full animate-bounce" style={{ animationDelay: '2s' }}></div>
+          </div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Droplets className="w-8 h-8 text-cyan-300" />
+                <h2 className="text-3xl font-bold text-white">Win Rewards While You Earn</h2>
+                <Leaf className="w-8 h-8 text-emerald-300" />
+              </div>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-4">
+                🌊 <strong>Every spin saves our planet!</strong> Win exclusive AquaCafe prizes, digital coupons, and bonus DXBs while supporting clean water initiatives.
+              </p>
+              <div className="flex items-center justify-center gap-6 text-sm text-gray-400">
+                <div className="flex items-center gap-2"><Target className="w-4 h-4" /><span>Zero Plastic Waste</span></div>
+                <div className="flex items-center gap-2"><Zap className="w-4 h-4" /><span>Clean Energy Powered</span></div>
+                <div className="flex items-center gap-2"><Award className="w-4 h-4" /><span>Hero Impact Certified</span></div>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div className="flex justify-center">
+                <TombolaWidget heroId="founder-1" theme="aquacafe" size="full" />
+              </div>
+              <div className="flex justify-center">
+                <CouponsPanel heroId="founder-1" theme="aquacafe" showTitle={true} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Missions Hub - Activities to Earn DXBs (moved from /earn) */}
+        <section id="section-missions" className="w-full py-10 px-4 bg-gradient-to-br from-blue-50 to-emerald-50 scroll-mt-[200px] rounded-2xl mb-12" data-testid="missions-hub">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+                Earn More DXBs · Missions Hub
+              </h2>
+              <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+                Quick actions that earn Dubai Carbon Tokens.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+              <Card className="bg-white border-blue-200 shadow-sm hover:shadow-md transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Smartphone className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-gray-800 text-sm">iPhone Trade-in</h3>
+                      <p className="text-xs text-blue-600 font-bold">Up to 5,000 DXBs</p>
+                    </div>
+                  </div>
+                  <Link
+                    href="/exchange"
+                    className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-1.5 px-3 rounded-lg text-center transition-all"
+                    data-testid="button-mission-tradein"
+                  >
+                    Start Trade-in
+                  </Link>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white border-emerald-200 shadow-sm hover:shadow-md transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Droplets className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-gray-800 text-sm">AquaCafe Membership</h3>
+                      <p className="text-xs text-emerald-600 font-bold">1,000 DXBs</p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={handleOrderStarterKit}
+                    disabled={isOrderLoading}
+                    size="sm"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+                    data-testid="button-mission-membership"
+                  >
+                    {isOrderLoading ? "Adding..." : "Join Now"}
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white border-amber-200 shadow-sm hover:shadow-md transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Users className="w-5 h-5 text-amber-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-gray-800 text-sm">Referral Bonus</h3>
+                      <p className="text-xs text-amber-600 font-bold">500 DXBs + AED 100</p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => {
+                      toast({
+                        title: "Referral Code",
+                        description: "Your unique referral code: HERO" + Math.random().toString(36).substr(2, 6).toUpperCase(),
+                      });
+                    }}
+                    size="sm"
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold"
+                    data-testid="button-mission-referral"
+                  >
+                    Get Referral Code
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white border-purple-200 shadow-sm hover:shadow-md transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Star className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-gray-800 text-sm">Daily Check-in</h3>
+                      <p className="text-xs text-purple-600 font-bold">50 DXBs/day</p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => {
+                      toast({
+                        title: "Daily Reward Claimed!",
+                        description: "+50 DXBs earned! Come back tomorrow for more!",
+                      });
+                    }}
+                    size="sm"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold"
+                    data-testid="button-mission-checkin"
+                  >
+                    Claim Daily Reward
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white border-green-200 shadow-sm hover:shadow-md transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <TreePine className="w-5 h-5 text-green-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-gray-800 text-sm">Plastic-Free Week</h3>
+                      <p className="text-xs text-green-600 font-bold">1,000 DXBs</p>
+                    </div>
+                  </div>
+                  <Link
+                    href="/collect"
+                    className="inline-block w-full bg-green-600 hover:bg-green-700 text-white font-semibold text-sm py-1.5 px-3 rounded-lg text-center transition-all"
+                    data-testid="button-mission-challenge"
+                  >
+                    Start Challenge
+                  </Link>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white border-pink-200 shadow-sm hover:shadow-md transition-all">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Heart className="w-5 h-5 text-pink-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-gray-800 text-sm">Community Event</h3>
+                      <p className="text-xs text-pink-600 font-bold">750 DXBs</p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={() => {
+                      toast({
+                        title: "Event Registered",
+                        description: "See you at Chill & Grill Clover Bay Tower, Business Bay!",
+                      });
+                    }}
+                    size="sm"
+                    className="w-full bg-pink-600 hover:bg-pink-700 text-white font-semibold"
+                    data-testid="button-mission-event"
+                  >
+                    Register
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
 
         {/* Call to Action - Join AquaCafe for Full Benefits */}
         {!isLoyaltyMember && (
