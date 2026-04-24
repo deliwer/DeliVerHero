@@ -62,24 +62,9 @@ export default function Earn() {
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 to-cyan-50">
-      {/* Navigation Bar */}
-      <div className="w-full max-w-7xl mx-auto px-4 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm">
-        <Link href="/" className="flex items-center gap-2 text-emerald-800 hover:text-emerald-600 transition-colors" data-testid="link-back-home">
-          <Home className="w-5 h-5" />
-          <span className="font-semibold">DeliWer</span>
-        </Link>
-        <div className="flex gap-2">
-          <Link href="/aquacafe" className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-sm hover:bg-emerald-700 transition-colors" data-testid="link-aquacafe">
-            AquaCafe Shop
-          </Link>
-          <Link href="/collect" className="px-4 py-2 rounded-xl bg-purple-600 text-white text-sm hover:bg-purple-700 transition-colors" data-testid="link-play">
-            Play
-          </Link>
-        </div>
-      </div>
-      
-      {/* ── Sticky Submenu — positioned ABOVE the hero, sits below fixed Trust Strip nav (~140px) ── */}
-      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg mt-[120px] sm:mt-[140px]" data-testid="earn-submenu">
+      {/* ── Sticky Submenu — sits flush below the global Trust Strip with zero gap ── */}
+      {/* Global <main> has pt-[100px]; +mt-[40px] places submenu top at y=140px, exactly under the Trust Strip */}
+      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg mt-[20px] sm:mt-[40px]" data-testid="earn-submenu">
         <div className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
           <div className="flex items-center gap-2 min-w-max">
             {[
