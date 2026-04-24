@@ -157,8 +157,8 @@ export default function Earn() {
         </div>
       </section>
 
-      {/* ── Sticky Submenu — quick scroll-to navigation ── */}
-      <nav className="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg" data-testid="earn-submenu">
+      {/* ── Sticky Submenu — sits just below fixed Trust Strip nav (~140px) ── */}
+      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg" data-testid="earn-submenu">
         <div className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
           <div className="flex items-center gap-2 min-w-max">
             {[
@@ -191,7 +191,7 @@ export default function Earn() {
       </nav>
 
       {/* ⭐ PROMOTED: AquaCafe Loyalty Bundle — standalone section directly below hero */}
-      <section id="section-bundle" className="w-full py-12 px-4 bg-gradient-to-br from-slate-950 to-emerald-950/40 border-y border-emerald-500/20 scroll-mt-16" data-testid="aquacafe-loyalty-bundle-section">
+      <section id="section-bundle" className="w-full py-12 px-4 bg-gradient-to-br from-slate-950 to-emerald-950/40 border-y border-emerald-500/20 scroll-mt-[200px]" data-testid="aquacafe-loyalty-bundle-section">
         <div className="max-w-5xl mx-auto bg-gradient-to-br from-slate-900/70 to-emerald-900/40 rounded-3xl p-6 sm:p-8 border-2 border-emerald-500/40 shadow-2xl" data-testid="loyalty-bundle-section">
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full mb-3 border border-amber-400/40 text-xs sm:text-sm font-bold uppercase tracking-widest">
@@ -287,7 +287,7 @@ export default function Earn() {
       </section>
 
       {/* ⭐ Unified: iPhone Trade-In × Circular Economy Hub */}
-      <section id="section-tradein" className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 via-emerald-900/20 to-cyan-900/30 scroll-mt-16" data-testid="circle-dubai-tradein">
+      <section id="section-tradein" className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 via-emerald-900/20 to-cyan-900/30 scroll-mt-[200px]" data-testid="circle-dubai-tradein">
         <div className="max-w-7xl mx-auto">
           {/* ── UNIFIED HERO: iPhone Trade-In × Circular Economy Hub ── */}
           <div className="text-center mb-12 relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-900/60 via-slate-900/60 to-emerald-900/60 border-2 border-emerald-500/40 p-8 sm:p-12" data-testid="tradein-circular-hub-hero">
@@ -416,7 +416,7 @@ export default function Earn() {
       </section>
 
       {/* ⭐ Stars & DXB Monetization - Fund Sustainability */}
-      <section id="section-stars" className="w-full py-16 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white scroll-mt-16" data-testid="stars-pic-monetization">
+      <section id="section-stars" className="w-full py-16 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white scroll-mt-[200px]" data-testid="stars-pic-monetization">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
@@ -436,7 +436,7 @@ export default function Earn() {
       </section>
 
       {/* Dubai Carbon Tokens (DXBs) - Unified Rewards System */}
-      <section id="section-dxbs" className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900 scroll-mt-16" data-testid="pics-rewards-section">
+      <section id="section-dxbs" className="w-full py-12 px-4 bg-gradient-to-br from-slate-800 to-slate-900 scroll-mt-[200px]" data-testid="pics-rewards-section">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full border border-emerald-500/30 mb-4">
@@ -537,7 +537,7 @@ export default function Earn() {
       </section>
 
       {/* AquaCafe Heroes Tombola - Win Prizes While Earning */}
-      <section id="section-win" className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5 relative overflow-hidden scroll-mt-16" data-testid="tombola-section">
+      <section id="section-win" className="w-full py-12 px-4 bg-gradient-to-br from-cyan-600/5 to-blue-600/5 relative overflow-hidden scroll-mt-[200px]" data-testid="tombola-section">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full animate-pulse"></div>
           <div className="absolute top-32 right-20 w-12 h-12 bg-cyan-400 rounded-full animate-bounce"></div>
@@ -585,7 +585,7 @@ export default function Earn() {
       </section>
 
       {/* Missions Hub - Activities to Earn DXBs */}
-      <section id="section-missions" className="w-full py-10 px-4 bg-gradient-to-br from-blue-50 to-emerald-50 scroll-mt-16" data-testid="missions-hub">
+      <section id="section-missions" className="w-full py-10 px-4 bg-gradient-to-br from-blue-50 to-emerald-50 scroll-mt-[200px]" data-testid="missions-hub">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
@@ -747,7 +747,7 @@ export default function Earn() {
       </section>
 
       {/* Partnership Section */}
-      <section id="section-partners" className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden scroll-mt-16" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
+      <section id="section-partners" className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden scroll-mt-[200px]" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
           <div className="text-center mb-8 sm:mb-12">
             <div className="flex flex-col items-center justify-center gap-4 mb-6">
