@@ -21,6 +21,12 @@ import earnHeroBanner from "@assets/banner_1776801988936.jpg";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
+import bankEmiratesNBD from "@assets/bank-logos/emirates-nbd.png";
+import bankADCB from "@assets/bank-logos/adcb.png";
+import bankDIB from "@assets/bank-logos/dib.png";
+import bankFAB from "@assets/bank-logos/fab.png";
+import bankMashreq from "@assets/bank-logos/mashreq.png";
+import bankHSBC from "@assets/bank-logos/hsbc.png";
 
 export default function Earn() {
   const { toast } = useToast();
@@ -62,11 +68,12 @@ export default function Earn() {
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950">
-      {/* ── Sticky Submenu — overlays the top of the hero, sits flush below the Trust Strip ── */}
-      {/* Internal pt absorbs the gap between the Trust Strip and the visible nav content,
-          so the dark submenu bar visually fills any space without a light gap showing */}
-      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-b border-emerald-500/30 shadow-lg pt-[20px] sm:pt-[40px]" data-testid="earn-submenu">
-        <div className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
+      {/* ── Earn Submenu — sits in normal flow directly above the hero ── */}
+      {/* Positioned right below the global nav (TopBanner + Navigation + Trust Strip)
+          and above the hero. Not sticky, so the hero is fully visible and never hidden.
+          Top padding compensates for the fixed global nav height. */}
+      <nav className="relative z-30 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg pt-[40px] sm:pt-[50px]" data-testid="earn-submenu">
+        <div className="max-w-7xl mx-auto px-3 py-3 overflow-x-auto">
           <div className="flex items-center gap-2 min-w-max">
             {[
               { id: 'section-bundle', label: 'Bundle', icon: Gift },
@@ -75,6 +82,7 @@ export default function Earn() {
               { id: 'section-dxbs', label: 'DXBs', icon: Sparkles },
               { id: 'section-win', label: 'Win', icon: Trophy },
               { id: 'section-missions', label: 'Missions', icon: Target },
+              { id: 'section-mortgage', label: 'Mortgage', icon: Building2 },
               { id: 'section-partners', label: 'Partners', icon: Users },
             ].map((item) => {
               const Icon = item.icon;
@@ -98,9 +106,8 @@ export default function Earn() {
       </nav>
 
       {/* Consolidated Hero — Say No To Plastic + AquaCafe Loyalty Career Path */}
-      {/* Negative top margin pulls the hero up so its banner image extends BEHIND the
-          sticky submenu — submenu visually overlays the top edge of the hero text overlay */}
-      <section className="w-full relative overflow-hidden -mt-[60px] sm:-mt-[80px]" data-testid="earn-hero-section">
+      {/* Hero now sits cleanly below the submenu — no negative margin, fully visible */}
+      <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
         {/* Hero banner image (kept) */}
         <div className="relative w-full">
           <img
@@ -730,6 +737,111 @@ export default function Earn() {
                 </Button>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* ⭐ Mortgage Referral Partners — UAE Financial Institutions */}
+      <section
+        id="section-mortgage"
+        className="w-full py-12 sm:py-16 px-4 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/30 border-y border-emerald-500/20 scroll-mt-[200px]"
+        data-testid="mortgage-partners-section"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-2 bg-amber-500/15 text-amber-300 px-4 py-2 rounded-full mb-4 border border-amber-400/40 text-xs sm:text-sm font-bold uppercase tracking-widest">
+              <Building2 className="w-4 h-4" />
+              Mortgage Referral Partners
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
+              Refer a Mortgage Deal.{" "}
+              <span className="bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
+                Earn Lifetime DXBs.
+              </span>
+            </h2>
+            <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              DeliWer is partnered with the UAE's leading banks for home-loan and mortgage deals.
+              Refer a buyer or property owner — and earn DXBs the moment the deal closes.
+            </p>
+          </div>
+
+          {/* Bank logo strip */}
+          <div className="bg-white/95 rounded-2xl p-5 sm:p-6 border border-white/10 shadow-xl mb-6" data-testid="mortgage-bank-logos">
+            <div className="text-center text-[11px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">
+              Trusted Mortgage Partners
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6 items-center">
+              {[
+                { src: bankEmiratesNBD, alt: "Emirates NBD", id: "emirates-nbd" },
+                { src: bankADCB,         alt: "Abu Dhabi Commercial Bank (ADCB)", id: "adcb" },
+                { src: bankFAB,          alt: "First Abu Dhabi Bank (FAB)", id: "fab" },
+                { src: bankDIB,          alt: "Dubai Islamic Bank", id: "dib" },
+                { src: bankMashreq,      alt: "Mashreq Bank", id: "mashreq" },
+                { src: bankHSBC,         alt: "HSBC UAE", id: "hsbc" },
+              ].map((bank) => (
+                <div
+                  key={bank.id}
+                  className="flex items-center justify-center h-16 sm:h-20 px-2 grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all"
+                  data-testid={`bank-logo-${bank.id}`}
+                >
+                  <img
+                    src={bank.src}
+                    alt={bank.alt}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Referral mechanics */}
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-slate-900/60 rounded-2xl p-5 border border-emerald-500/30" data-testid="mortgage-step-refer">
+              <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/50 flex items-center justify-center mb-3">
+                <span className="text-base font-black text-emerald-400">1</span>
+              </div>
+              <h3 className="text-white font-bold text-base mb-1">Send a Referral</h3>
+              <p className="text-slate-400 text-sm">
+                Share a buyer, seller or end-user looking for a UAE mortgage via WhatsApp.
+              </p>
+            </div>
+            <div className="bg-slate-900/60 rounded-2xl p-5 border border-cyan-500/30" data-testid="mortgage-step-match">
+              <div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mb-3">
+                <span className="text-base font-black text-cyan-400">2</span>
+              </div>
+              <h3 className="text-white font-bold text-base mb-1">We Match the Bank</h3>
+              <p className="text-slate-400 text-sm">
+                Our advisors place the file with the right partner bank for the best rate.
+              </p>
+            </div>
+            <div className="bg-slate-900/60 rounded-2xl p-5 border border-amber-500/30" data-testid="mortgage-step-earn">
+              <div className="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center mb-3">
+                <span className="text-base font-black text-amber-400">3</span>
+              </div>
+              <h3 className="text-white font-bold text-base mb-1">Earn on Closing</h3>
+              <p className="text-slate-400 text-sm">
+                When the mortgage funds, you receive DXBs + a cash referral fee.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <a
+              href={`https://wa.me/971523946311?text=${encodeURIComponent(
+                "Hi DeliWer! I'd like to refer a mortgage deal — please share the partner-bank options and referral terms."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-refer-mortgage-deal"
+              className="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white px-7 py-4 rounded-full text-base sm:text-lg font-black shadow-2xl transition-all hover:scale-105"
+            >
+              <Phone className="w-5 h-5 mr-2" />
+              Refer a Mortgage Deal on WhatsApp
+            </a>
+            <p className="text-xs text-slate-400 mt-3">
+              Bank logos shown are partner brands. All mortgages are subject to UAE Central Bank regulations and individual bank approval.
+            </p>
           </div>
         </div>
       </section>
