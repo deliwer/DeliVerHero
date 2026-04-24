@@ -51,6 +51,17 @@ const DEVELOPERS = [
   "EMAAR", "DAMAC", "NAKHEEL", "SOBHA", "MERAAS", "DANUBE", "ALDAR", "AZIZI", "ELLINGTON", "BINGHATTI",
 ];
 
+const FINANCE_PARTNERS = [
+  { name: "DIB", full: "Dubai Islamic Bank", tag: "Sharia-compliant home finance" },
+  { name: "ENBD", full: "Emirates NBD", tag: "Resident & non-resident mortgages" },
+  { name: "HSBC", full: "HSBC UAE", tag: "Premier expat mortgage solutions" },
+  { name: "CBD", full: "Commercial Bank of Dubai", tag: "Flexible buy-to-let financing" },
+  { name: "RAKBANK", full: "RAKBANK", tag: "Competitive fixed-rate home loans" },
+  { name: "ADCB", full: "Abu Dhabi Commercial Bank", tag: "Up to 80% LTV financing" },
+  { name: "FAB", full: "First Abu Dhabi Bank", tag: "Tailored UAE national & expat plans" },
+  { name: "MASHREQ", full: "Mashreq Bank", tag: "Pre-approval in 48 hours" },
+];
+
 const ROLES = [
   "Buyer",
   "Tenant",
@@ -892,6 +903,97 @@ export default function RealEstate() {
               </Button>
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 5b: FINANCE PARTNERS — UAE banks for mortgages & buyer funding */}
+      <section
+        id="finance-partners"
+        className="relative overflow-hidden border-b border-slate-800 scroll-mt-24"
+        data-testid="section-finance-partners"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950/20 to-slate-950" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center mb-10">
+            <Badge className="bg-blue-500/15 text-blue-300 border-blue-500/30 mb-3">
+              <ShieldCheck className="w-3.5 h-3.5 mr-1.5" /> Finance Partners
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-finance-partners">
+              Mortgage & Funding Deals — Pre-arranged for Our Buyers
+            </h2>
+            <p className="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto">
+              DeliWer refers qualified buyers directly to UAE's leading banks for
+              competitive mortgage rates, fast pre-approvals, and exclusive funding
+              packages on developer & resale inventory.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {FINANCE_PARTNERS.map((p) => (
+              <Card
+                key={p.name}
+                className="bg-slate-950/70 border-blue-500/20 hover-elevate"
+                data-testid={`finance-partner-${p.name.toLowerCase()}`}
+              >
+                <CardContent className="p-5 text-center">
+                  <div className="w-14 h-14 mx-auto rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-3">
+                    <span className="font-black text-blue-300 text-sm tracking-tight">{p.name}</span>
+                  </div>
+                  <div className="text-sm font-bold text-white mb-1">{p.full}</div>
+                  <div className="text-xs text-slate-400 leading-snug">{p.tag}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-3 mb-8">
+            {[
+              { icon: Repeat, t: "Pre-approval in 48 hours" },
+              { icon: ShieldCheck, t: "Resident & non-resident options" },
+              { icon: Network, t: "Sharia-compliant & conventional" },
+            ].map((b, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 bg-slate-950/70 border border-blue-500/20 rounded-lg p-4"
+                data-testid={`finance-benefit-${i}`}
+              >
+                <b.icon className="w-5 h-5 text-blue-300 flex-shrink-0" />
+                <span className="text-slate-200 text-sm font-semibold">{b.t}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 justify-center">
+            <a href="#partner">
+              <Button
+                size="lg"
+                className="bg-blue-500 hover:bg-blue-400 text-slate-950 font-semibold"
+                data-testid="button-finance-request"
+              >
+                Request Mortgage Pre-Approval <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </a>
+            <a
+              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(
+                "Hi DeliWer Real Estate — I'd like to be referred to a UAE bank for mortgage / property funding."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-blue-500/50 text-blue-200 hover:bg-blue-500/10"
+                data-testid="button-finance-whatsapp"
+              >
+                <Phone className="w-4 h-4 mr-2" /> Talk to Finance Desk
+              </Button>
+            </a>
+          </div>
+
+          <p className="text-center text-xs text-slate-500 mt-6 max-w-2xl mx-auto">
+            Bank referrals are facilitated by DeliWer. Final approval, terms and rates are issued by the respective bank under their UAE Central Bank-regulated lending policies.
+          </p>
         </div>
       </section>
 

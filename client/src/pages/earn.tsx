@@ -78,6 +78,39 @@ export default function Earn() {
         </div>
       </div>
       
+      {/* ── Sticky Submenu — positioned ABOVE the hero, sits below fixed Trust Strip nav (~140px) ── */}
+      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg mt-[120px] sm:mt-[140px]" data-testid="earn-submenu">
+        <div className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
+          <div className="flex items-center gap-2 min-w-max">
+            {[
+              { id: 'section-bundle', label: 'Bundle', icon: Gift },
+              { id: 'section-tradein', label: 'Trade-In', icon: Smartphone },
+              { id: 'section-stars', label: 'Stars', icon: Star },
+              { id: 'section-dxbs', label: 'DXBs', icon: Sparkles },
+              { id: 'section-win', label: 'Win', icon: Trophy },
+              { id: 'section-missions', label: 'Missions', icon: Target },
+              { id: 'section-partners', label: 'Partners', icon: Users },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    const el = document.getElementById(item.id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/60 hover:bg-emerald-600/30 border border-slate-700 hover:border-emerald-500/60 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition-all whitespace-nowrap"
+                  data-testid={`submenu-${item.label.toLowerCase()}`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+
       {/* Consolidated Hero — Say No To Plastic + AquaCafe Loyalty Career Path */}
       <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
         {/* Hero banner image (kept) */}
@@ -156,39 +189,6 @@ export default function Earn() {
           </div>
         </div>
       </section>
-
-      {/* ── Sticky Submenu — sits just below fixed Trust Strip nav (~140px) ── */}
-      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg" data-testid="earn-submenu">
-        <div className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
-          <div className="flex items-center gap-2 min-w-max">
-            {[
-              { id: 'section-bundle', label: 'Bundle', icon: Gift },
-              { id: 'section-tradein', label: 'Trade-In', icon: Smartphone },
-              { id: 'section-stars', label: 'Stars', icon: Star },
-              { id: 'section-dxbs', label: 'DXBs', icon: Sparkles },
-              { id: 'section-win', label: 'Win', icon: Trophy },
-              { id: 'section-missions', label: 'Missions', icon: Target },
-              { id: 'section-partners', label: 'Partners', icon: Users },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    const el = document.getElementById(item.id);
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/60 hover:bg-emerald-600/30 border border-slate-700 hover:border-emerald-500/60 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition-all whitespace-nowrap"
-                  data-testid={`submenu-${item.label.toLowerCase()}`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
 
       {/* ⭐ PROMOTED: AquaCafe Loyalty Bundle — standalone section directly below hero */}
       <section id="section-bundle" className="w-full py-12 px-4 bg-gradient-to-br from-slate-950 to-emerald-950/40 border-y border-emerald-500/20 scroll-mt-[200px]" data-testid="aquacafe-loyalty-bundle-section">
