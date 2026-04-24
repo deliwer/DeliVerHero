@@ -61,10 +61,11 @@ export default function Earn() {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 to-cyan-50">
-      {/* ── Sticky Submenu — sits flush below the global Trust Strip with zero gap ── */}
-      {/* Global <main> has pt-[100px]; +mt-[40px] places submenu top at y=140px, exactly under the Trust Strip */}
-      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-emerald-500/30 shadow-lg mt-[20px] sm:mt-[40px]" data-testid="earn-submenu">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950">
+      {/* ── Sticky Submenu — overlays the top of the hero, sits flush below the Trust Strip ── */}
+      {/* Internal pt absorbs the gap between the Trust Strip and the visible nav content,
+          so the dark submenu bar visually fills any space without a light gap showing */}
+      <nav className="sticky top-[120px] sm:top-[140px] z-40 w-full bg-slate-950/95 backdrop-blur border-b border-emerald-500/30 shadow-lg pt-[20px] sm:pt-[40px]" data-testid="earn-submenu">
         <div className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
           <div className="flex items-center gap-2 min-w-max">
             {[
@@ -97,7 +98,9 @@ export default function Earn() {
       </nav>
 
       {/* Consolidated Hero — Say No To Plastic + AquaCafe Loyalty Career Path */}
-      <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
+      {/* Negative top margin pulls the hero up so its banner image extends BEHIND the
+          sticky submenu — submenu visually overlays the top edge of the hero text overlay */}
+      <section className="w-full relative overflow-hidden -mt-[60px] sm:-mt-[80px]" data-testid="earn-hero-section">
         {/* Hero banner image (kept) */}
         <div className="relative w-full">
           <img
