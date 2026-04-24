@@ -52,14 +52,21 @@ const DEVELOPERS = [
 ];
 
 const FINANCE_PARTNERS = [
-  { name: "DIB", full: "Dubai Islamic Bank", tag: "Sharia-compliant home finance" },
-  { name: "ENBD", full: "Emirates NBD", tag: "Resident & non-resident mortgages" },
-  { name: "HSBC", full: "HSBC UAE", tag: "Premier expat mortgage solutions" },
-  { name: "CBD", full: "Commercial Bank of Dubai", tag: "Flexible buy-to-let financing" },
-  { name: "RAKBANK", full: "RAKBANK", tag: "Competitive fixed-rate home loans" },
-  { name: "ADCB", full: "Abu Dhabi Commercial Bank", tag: "Up to 80% LTV financing" },
-  { name: "FAB", full: "First Abu Dhabi Bank", tag: "Tailored UAE national & expat plans" },
-  { name: "MASHREQ", full: "Mashreq Bank", tag: "Pre-approval in 48 hours" },
+  { name: "DIB",     full: "Dubai Islamic Bank",        tag: "Sharia-compliant home finance",        bg: "#006A4E", fg: "#FFFFFF" },
+  { name: "ENBD",    full: "Emirates NBD",              tag: "Resident & non-resident mortgages",    bg: "#1B3A6B", fg: "#FFFFFF" },
+  { name: "HSBC",    full: "HSBC UAE",                  tag: "Premier expat mortgage solutions",     bg: "#DB0011", fg: "#FFFFFF" },
+  { name: "CBD",     full: "Commercial Bank of Dubai",  tag: "Flexible buy-to-let financing",        bg: "#7B0023", fg: "#FFFFFF" },
+  { name: "RAKBANK", full: "RAKBANK",                   tag: "Competitive fixed-rate home loans",    bg: "#FFC72C", fg: "#0B0B0B" },
+  { name: "ADCB",    full: "Abu Dhabi Commercial Bank", tag: "Up to 80% LTV financing",              bg: "#E2231A", fg: "#FFFFFF" },
+  { name: "FAB",     full: "First Abu Dhabi Bank",      tag: "Tailored UAE national & expat plans",  bg: "#003E7E", fg: "#FFFFFF" },
+  { name: "MASHREQ", full: "Mashreq Bank",              tag: "Pre-approval in 48 hours",             bg: "#FF6F1B", fg: "#FFFFFF" },
+];
+
+const FINANCE_PROCESS = [
+  { n: 1, t: "Submit Request",   d: "Tell us your budget, residency status & property of interest." },
+  { n: 2, t: "DeliWer Pre-screen", d: "We match you to the bank(s) most likely to approve your profile." },
+  { n: 3, t: "Bank Referral",    d: "Warm introduction to the bank's mortgage desk — no cold queues." },
+  { n: 4, t: "Approval & Closing", d: "Bank issues offer; DeliWer coordinates handover & move-in." },
 ];
 
 const ROLES = [
@@ -928,29 +935,48 @@ export default function RealEstate() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
             {FINANCE_PARTNERS.map((p) => (
               <Card
                 key={p.name}
-                className="bg-slate-950/70 border-blue-500/20 hover-elevate"
+                className="relative bg-slate-950/70 border-blue-500/20 hover-elevate overflow-hidden"
                 data-testid={`finance-partner-${p.name.toLowerCase()}`}
               >
+                {/* Referral Partner badge — top-right corner */}
+                <div className="absolute top-2 right-2 z-10">
+                  <span
+                    className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-blue-500/15 text-blue-300 border border-blue-500/30"
+                    data-testid={`badge-referral-${p.name.toLowerCase()}`}
+                  >
+                    <Network className="w-2.5 h-2.5" />
+                    Referral
+                  </span>
+                </div>
+
                 <CardContent className="p-5 text-center">
-                  <div className="w-14 h-14 mx-auto rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-3">
-                    <span className="font-black text-blue-300 text-sm tracking-tight">{p.name}</span>
+                  {/* Branded "logo" pill — uses each bank's signature brand color */}
+                  <div
+                    className="w-full h-16 mx-auto rounded-lg flex items-center justify-center mb-3 shadow-md"
+                    style={{ backgroundColor: p.bg, color: p.fg }}
+                    data-testid={`logo-${p.name.toLowerCase()}`}
+                  >
+                    <span className="font-black text-base sm:text-lg tracking-tight">
+                      {p.name}
+                    </span>
                   </div>
-                  <div className="text-sm font-bold text-white mb-1">{p.full}</div>
-                  <div className="text-xs text-slate-400 leading-snug">{p.tag}</div>
+                  <div className="text-sm font-bold text-white mb-1 leading-tight">{p.full}</div>
+                  <div className="text-[11px] text-slate-400 leading-snug">{p.tag}</div>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <div className="grid md:grid-cols-3 gap-3 mb-8">
+          {/* ── Quick benefit pills ── */}
+          <div className="grid md:grid-cols-3 gap-3 mb-10">
             {[
-              { icon: Repeat, t: "Pre-approval in 48 hours" },
-              { icon: ShieldCheck, t: "Resident & non-resident options" },
-              { icon: Network, t: "Sharia-compliant & conventional" },
+              { icon: Repeat,       t: "Pre-approval in 48 hours" },
+              { icon: ShieldCheck,  t: "Resident & non-resident options" },
+              { icon: Network,      t: "Sharia-compliant & conventional" },
             ].map((b, i) => (
               <div
                 key={i}
@@ -963,6 +989,45 @@ export default function RealEstate() {
             ))}
           </div>
 
+          {/* ── PROCESS — How the referral partnership works ── */}
+          <div
+            className="bg-slate-950/60 border border-blue-500/20 rounded-2xl p-5 sm:p-6 mb-8"
+            data-testid="finance-process-block"
+          >
+            <div className="flex items-center justify-center gap-2 mb-5">
+              <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 text-[10px] uppercase tracking-widest">
+                <Network className="w-3 h-3 mr-1.5" />
+                Active Referral Partnerships
+              </Badge>
+            </div>
+            <h3 className="text-center text-lg sm:text-xl font-bold text-white mb-1">
+              How the Bank Referral Process Works
+            </h3>
+            <p className="text-center text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto mb-6">
+              DeliWer holds active introducer relationships with the banks above. You stay in control — we just open the right door, faster.
+            </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {FINANCE_PROCESS.map((s, i, arr) => (
+                <div
+                  key={s.n}
+                  className="relative flex flex-col items-center text-center bg-slate-900/60 border border-blue-500/20 rounded-xl p-4"
+                  data-testid={`finance-process-step-${s.n}`}
+                >
+                  <div className="w-9 h-9 rounded-full bg-blue-500/15 border border-blue-500/40 flex items-center justify-center mb-2">
+                    <span className="text-sm font-black text-blue-300">{s.n}</span>
+                  </div>
+                  <div className="text-sm font-bold text-white mb-1">{s.t}</div>
+                  <div className="text-[11px] text-slate-400 leading-snug">{s.d}</div>
+                  {i < arr.length - 1 && (
+                    <ArrowRight className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 z-10" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── CTAs ── */}
           <div className="flex flex-wrap gap-3 justify-center">
             <a href="#partner">
               <Button
@@ -991,9 +1056,23 @@ export default function RealEstate() {
             </a>
           </div>
 
-          <p className="text-center text-xs text-slate-500 mt-6 max-w-2xl mx-auto">
-            Bank referrals are facilitated by DeliWer. Final approval, terms and rates are issued by the respective bank under their UAE Central Bank-regulated lending policies.
-          </p>
+          {/* ── DISCLAIMER — partnership nature & regulatory framing ── */}
+          <div
+            className="mt-8 max-w-3xl mx-auto bg-slate-950/60 border border-slate-800 rounded-xl p-4 sm:p-5 text-left"
+            data-testid="finance-disclaimer"
+          >
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="w-4 h-4 text-blue-300 flex-shrink-0 mt-0.5" />
+              <div className="space-y-2">
+                <p className="text-[11px] sm:text-xs font-bold text-blue-200 uppercase tracking-widest">
+                  Partnership & Regulatory Disclosure
+                </p>
+                <p className="text-[11px] sm:text-xs text-slate-400 leading-relaxed">
+                  DeliWer operates as an <strong className="text-slate-300">independent referral introducer</strong> to the banks listed above. Bank logos and trademarks remain the property of their respective owners and are shown for identification of active referral channels only. DeliWer is <strong className="text-slate-300">not a licensed mortgage broker</strong> and does not provide financial advice. All applications, pricing, eligibility checks, credit decisions and final approvals are issued solely by the respective bank under <strong className="text-slate-300">UAE Central Bank-regulated lending policies</strong>. Some referrals may earn DeliWer a standard introducer fee from the bank — this never affects the rate or terms offered to you.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
