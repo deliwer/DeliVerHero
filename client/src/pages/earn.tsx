@@ -204,12 +204,6 @@ export default function Earn() {
                 Start with <strong className="text-amber-300">Kangen Water home services</strong> as your gateway,
                 graduate into Move-in &amp; Setup home services, and earn lifetime rewards at every step.
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 max-w-3xl mx-auto mb-7">
-                <CareerStep n="1" label="Starter Kit" sub="AED 99 · Kangen Water" tone="emerald" icon={Droplets} />
-                <CareerStep n="2" label="Home Services" sub="Move-in · Water Setup" tone="cyan" icon={Home} />
-                <CareerStep n="3" label="Earn DXBs" sub="Trade-ins · Referrals" tone="blue" icon={Star} />
-                <CareerStep n="4" label="Career Tier" sub="Voucher + Rewards" tone="amber" icon={Crown} />
-              </div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-3">
                 <a href={`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit and join the Loyalty Network — please get me started.")}`}
                   target="_blank" rel="noopener noreferrer" data-testid="button-wa-order-starter-kit"
