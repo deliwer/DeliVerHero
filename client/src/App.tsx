@@ -105,6 +105,8 @@ const Products = lazy(() => import("@/pages/products"));
 const IcelandicGlacialLandingPage = lazy(() => import("@/pages/icelandic-glacial"));
 const Exchange = lazy(() => import("@/pages/exchange"));
 const Earn = lazy(() => import("@/pages/earn"));
+const TellAFriend = lazy(() => import("@/pages/taf"));
+const Wellness = lazy(() => import("@/pages/wellness"));
 const Collect = lazy(() => import("@/pages/collect"));
 const Redeem = lazy(() => import("@/pages/redeem"));
 const Play = lazy(() => import("@/pages/play"));
@@ -325,7 +327,10 @@ function Router() {
         <Route path="/products/icelandic-glacial" component={IcelandicGlacialLandingPage} />
         <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
         <Route path="/exchange" component={Exchange} />
-        <Route path="/earn" component={Earn} />
+        <Route path="/taf" component={TellAFriend} />
+        <Route path="/earn" component={TellAFriend} />
+        <Route path="/wellness" component={Wellness} />
+        <Route path="/earn/legacy" component={Earn} />
         <Route path="/collect" component={Collect} />
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
