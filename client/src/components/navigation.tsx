@@ -161,7 +161,7 @@ export function Navigation() {
                   }`}
                   title="DeliWer B2C Services"
                   data-testid="mode-b2c"
-                >Home Services</button>
+                >Home Service</button>
                 <button
                   onClick={() => switchMode("realty")}
                   className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
