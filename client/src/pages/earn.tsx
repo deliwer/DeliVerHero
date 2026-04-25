@@ -90,7 +90,6 @@ export default function Earn() {
           </div>
         </div>
       </nav>
-
       {/* Consolidated Hero — Say No To Plastic + AquaCafe Loyalty Career Path */}
       {/* Hero now sits cleanly below the submenu — no negative margin, fully visible */}
       <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
@@ -116,9 +115,7 @@ export default function Earn() {
 
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-5 leading-[1.05] drop-shadow-2xl">
                 Say No To Plastic.
-                <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">
-                  Build Your Loyalty Career.
-                </span>
+                <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">Lunch is on us.</span>
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl text-slate-100 mb-7 max-w-3xl mx-auto leading-relaxed drop-shadow">
@@ -170,7 +167,6 @@ export default function Earn() {
           </div>
         </div>
       </section>
-
       {/* ⭐ PROMOTED: AquaCafe Loyalty Bundle — standalone section directly below hero */}
       <section id="section-bundle" className="w-full py-12 px-4 bg-gradient-to-br from-slate-950 to-emerald-950/40 border-y border-emerald-500/20 scroll-mt-[200px]" data-testid="aquacafe-loyalty-bundle-section">
         <div className="max-w-5xl mx-auto bg-gradient-to-br from-slate-900/70 to-emerald-900/40 rounded-3xl p-6 sm:p-8 border-2 border-emerald-500/40 shadow-2xl" data-testid="loyalty-bundle-section">
@@ -266,7 +262,6 @@ export default function Earn() {
           <WaterTrackJoinForm />
         </div>
       </section>
-
       {/* ⭐ Unified: iPhone Trade-In × Circular Economy Hub */}
       <section id="section-tradein" className="w-full py-16 px-4 bg-gradient-to-br from-blue-900/30 via-emerald-900/20 to-cyan-900/30 scroll-mt-[200px]" data-testid="circle-dubai-tradein">
         <div className="max-w-7xl mx-auto">
@@ -395,8 +390,6 @@ export default function Earn() {
           </div>
         </div>
       </section>
-
-
       {/* Partnership Section */}
       <section id="section-partners" className="w-full py-8 sm:py-16 px-2 sm:px-4 bg-gradient-to-br from-cyan-500/10 via-emerald-500/10 to-amber-500/10 relative overflow-hidden scroll-mt-[200px]" data-testid="partnership-hero" style={{ maxWidth: '100vw' }}>
         <div className="w-full max-w-full mx-auto" style={{ maxWidth: '100vw' }}>
@@ -538,7 +531,6 @@ export default function Earn() {
           </div>
         </div>
       </section>
-
       {/* Dubai Wellness Journey Passport */}
       <DubaiWellnessJourney 
         variant="aquacafe"
@@ -551,7 +543,6 @@ export default function Earn() {
           window.location.href = '/aquacafe';
         }}
       />
-
       {/* CTA Footer */}
       <footer className="w-full border-t border-emerald-200 mt-8 bg-gradient-to-r from-emerald-50 to-cyan-50">
         <div className="w-full max-w-7xl mx-auto px-4 py-8">
