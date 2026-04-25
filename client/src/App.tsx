@@ -28,6 +28,7 @@ import MaintenanceConcierge from "@/pages/maintenance-concierge";
 import ResidentSupportConcierge from "@/pages/resident-support-concierge";
 import BusinessSetup from "@/pages/BusinessSetup";
 import RealEstate from "@/pages/realestate";
+import HomeAccess from "@/pages/home-access";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import Residence from "@/pages/residence";
 import FindAPlace from "@/pages/residence/find-a-place";
@@ -232,7 +233,8 @@ function Router() {
         <Route path="/wartime-readiness" component={WartimeReadinessPage} />
         <Route path="/admin/alerts" component={AdminAlertsPage} />
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
-        <Route path="/finance" component={RealEstate} />
+        <Route path="/home-access" component={HomeAccess} />
+        <Route path="/finance" component={HomeAccess} />
         <Route path="/realestate" component={RealEstate} />
         <Route path="/real-estate" component={RealEstate} />
         <Route path="/damac" component={RealEstate} />
