@@ -38,6 +38,12 @@ import {
   BadgeCheck,
   Flame,
   ChevronRight,
+  Handshake,
+  Briefcase,
+  Users,
+  Trophy,
+  Rocket,
+  GraduationCap,
 } from "lucide-react";
 
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_sunset_21b85db0.jpg";
@@ -955,6 +961,187 @@ export default function RealEstate() {
                 <div className="text-sm text-slate-400 mt-1" dangerouslySetInnerHTML={{ __html: d }} />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BROKERS & PARTNERS CAREER PATH */}
+      <section id="partners" className="relative scroll-mt-24 border-b border-slate-900">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-emerald-950/10 to-slate-950 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <Badge className="bg-cyan-500/15 text-cyan-300 border-cyan-500/30 mb-3">
+              <Briefcase className="w-3.5 h-3.5 mr-1.5" /> Brokers · Mortgage Advisors · Developer Reps
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-partners">
+              Build a recurring income with DeliWer Finance
+            </h2>
+            <p className="text-slate-300">
+              We&apos;re building Dubai&apos;s home-ownership concierge — and we pay generously to the people who bring buyers, sellers and tenants into the funnel. WhatsApp-first onboarding, no portals to log into, payouts in AED.
+            </p>
+          </div>
+
+          {/* Career path tracks */}
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                icon: Handshake,
+                tier: "Track 1 · Independent Broker",
+                tagline: "RERA cardholders & freelance agents",
+                payout: "Up to 50%",
+                payoutLabel: "commission share",
+                accent: "from-emerald-500 to-teal-600",
+                badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+                bullets: [
+                  "Refer buyers, tenants or sellers via WhatsApp",
+                  "We close finance + concierge — you keep your client",
+                  "50/50 commission split on every closure",
+                  "Recurring override on AquaCafe + move-in services",
+                ],
+                cta: "Apply as Independent Broker",
+                msg: "Hi DeliWer Finance — I'm an independent / RERA broker applying to the Independent Broker track. Please share onboarding & commission terms.",
+              },
+              {
+                icon: Users,
+                tier: "Track 2 · Mortgage Advisor",
+                tagline: "Bank relationship managers & freelancers",
+                payout: "Per-deal",
+                payoutLabel: "AED 2,000 – 8,000",
+                accent: "from-cyan-500 to-blue-600",
+                badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
+                bullets: [
+                  "Place pre-approved buyers with our developers",
+                  "We send you warm leads weekly via WhatsApp",
+                  "Fixed bounty per disbursed mortgage",
+                  "Bonus tier for first-time buyer conversions",
+                ],
+                cta: "Apply as Mortgage Advisor",
+                msg: "Hi DeliWer Finance — I'm a mortgage advisor applying to the Mortgage Advisor track. Please share lead-flow & bounty terms.",
+              },
+              {
+                icon: Trophy,
+                tier: "Track 3 · Developer Rep",
+                tagline: "Inventory managers at developers",
+                payout: "Inventory",
+                payoutLabel: "distribution partner",
+                accent: "from-amber-500 to-orange-600",
+                badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/30",
+                bullets: [
+                  "Push payment-plan inventory through our funnel",
+                  "Co-branded WhatsApp drops to 8K+ buyers",
+                  "Priority placement on /finance#payment-plans",
+                  "Monthly demand & yield intelligence dossier",
+                ],
+                cta: "Apply as Developer Partner",
+                msg: "Hi DeliWer Finance — I represent a developer and want to distribute inventory through your platform. Please share partner terms.",
+              },
+            ].map(({ icon: Icon, tier, tagline, payout, payoutLabel, accent, badgeClass, bullets, cta, msg }) => (
+              <Card
+                key={tier}
+                className="bg-slate-900/70 border-slate-800 hover:border-slate-700 transition overflow-hidden flex flex-col"
+                data-testid={`card-track-${tier.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              >
+                <div className={`h-1.5 bg-gradient-to-r ${accent}`} />
+                <CardContent className="p-6 flex flex-col flex-1">
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-emerald-300" />
+                    </div>
+                    <div className={`text-right border rounded-lg px-2.5 py-1 ${badgeClass}`}>
+                      <div className="text-base font-black leading-none">{payout}</div>
+                      <div className="text-[9px] uppercase tracking-widest opacity-80 mt-0.5">{payoutLabel}</div>
+                    </div>
+                  </div>
+                  <div className="text-[11px] uppercase tracking-widest text-slate-500">{tier}</div>
+                  <div className="text-lg font-bold text-white mt-0.5 mb-3">{tagline}</div>
+
+                  <ul className="space-y-2 mb-5 text-sm text-slate-300 flex-1">
+                    {bullets.map((b) => (
+                      <li key={b} className="flex gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    onClick={() => window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank")}
+                    className="w-full h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black"
+                    data-testid={`button-apply-${tier.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    {cta}
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Onboarding journey */}
+          <div className="mt-12">
+            <div className="text-center mb-8">
+              <Badge className="bg-fuchsia-500/15 text-fuchsia-300 border-fuchsia-500/30 mb-3">
+                <Rocket className="w-3.5 h-3.5 mr-1.5" /> Onboarding · 3 Steps · WhatsApp-first
+              </Badge>
+              <h3 className="text-2xl sm:text-3xl font-bold" data-testid="heading-onboarding">
+                Live and earning in 48 hours
+              </h3>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-4">
+              {[
+                { n: "01", icon: MessageCircle, t: "Apply on WhatsApp", d: "Pick your track. Send your name, RERA / company and city. No portal sign-up." },
+                { n: "02", icon: GraduationCap, t: "Quick onboarding call", d: "15-minute briefing on commission, NCA / NDA, lead-routing rules." },
+                { n: "03", icon: Sparkles,      t: "Get your first leads", d: "We push qualified buyer / tenant intent into your WhatsApp the same week." },
+                { n: "04", icon: Wallet,        t: "Get paid in AED",     d: "Payouts on closure or disbursement — bank transfer or wallet, your choice." },
+              ].map(({ n, icon: Icon, t, d }) => (
+                <div
+                  key={n}
+                  className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 hover:border-slate-700 transition"
+                  data-testid={`step-onboarding-${n}`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="text-2xl font-black text-slate-700">{n}</div>
+                    <div className="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center justify-center">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                  </div>
+                  <div className="font-bold text-white">{t}</div>
+                  <div className="text-sm text-slate-400 mt-1">{d}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom partner CTA bar */}
+          <div className="mt-10 rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 via-cyan-500/5 to-emerald-500/10 p-6 sm:p-7">
+            <div className="grid md:grid-cols-3 gap-5 items-center">
+              <div className="md:col-span-2">
+                <div className="text-xs font-bold uppercase tracking-widest text-emerald-300 mb-1">
+                  Not sure which track fits?
+                </div>
+                <div className="text-xl sm:text-2xl font-bold text-white">
+                  Talk to our partner desk on WhatsApp — we&apos;ll route you in 10 minutes.
+                </div>
+              </div>
+              <div className="flex flex-wrap md:justify-end gap-2">
+                <Button
+                  className="h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black"
+                  onClick={() => window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi DeliWer Finance — I'd like to join the partner network. Please help me pick the right track.")}`, "_blank")}
+                  data-testid="button-partner-desk"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" /> Chat with Partner Desk
+                </Button>
+                <Button
+                  variant="outline"
+                  className="h-11 border-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white"
+                  onClick={() => window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi DeliWer Finance — please send me the partner deck (commission tiers + onboarding).")}`, "_blank")}
+                  data-testid="button-partner-deck"
+                >
+                  Get partner deck
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

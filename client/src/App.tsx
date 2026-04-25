@@ -232,6 +232,7 @@ function Router() {
         <Route path="/wartime-readiness" component={WartimeReadinessPage} />
         <Route path="/admin/alerts" component={AdminAlertsPage} />
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
+        <Route path="/finance" component={RealEstate} />
         <Route path="/realestate" component={RealEstate} />
         <Route path="/real-estate" component={RealEstate} />
         <Route path="/damac" component={RealEstate} />

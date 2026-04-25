@@ -18,7 +18,7 @@ const CHAINTRACK_PATHS = [
   "/cobone-corporate", "/account-management",
 ];
 
-const REALESTATE_PATHS = ["/realestate", "/real-estate", "/damac"];
+const REALESTATE_PATHS = ["/finance", "/realestate", "/real-estate", "/damac"];
 
 const deliwerNavItems = [
   { path: "/ejari-dubai",    label: "Ejari",    id: "ejari",       icon: Home },
@@ -31,10 +31,11 @@ const deliwerNavItems = [
 ];
 
 const realestateNavItems = [
-  { path: "/realestate#partner",     label: "Find Property", id: "re-find",       icon: KeyRound },
-  { path: "/realestate#partner",     label: "List Property", id: "re-list",       icon: Building2 },
-  { path: "/realestate#brokers",     label: "Brokers",       id: "re-brokers",    icon: Handshake },
-  { path: "/realestate#developers",  label: "Developers",    id: "re-developers", icon: Crown },
+  { path: "/finance#eligibility",    label: "Eligibility",   id: "fin-eligibility", icon: KeyRound },
+  { path: "/finance#payment-plans",  label: "Payment Plans", id: "fin-plans",       icon: Building2 },
+  { path: "/finance#calculator",     label: "Calculator",    id: "fin-calc",        icon: Percent },
+  { path: "/finance#concierge",      label: "Concierge",     id: "fin-concierge",   icon: Briefcase },
+  { path: "/finance#partners",       label: "Partners",      id: "fin-partners",    icon: Handshake },
 ];
 
 const chaintrackNavItems = [
@@ -82,7 +83,7 @@ export function Navigation() {
 
   const switchMode = (mode: "b2c" | "realty" | "b2b") => {
     if (mode === "b2c") setLocation("/");
-    else if (mode === "realty") setLocation("/realestate");
+    else if (mode === "realty") setLocation("/finance");
     else setLocation("/chaintrack");
     setIsMobileMenuOpen(false);
   };
@@ -108,14 +109,14 @@ export function Navigation() {
       }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* LEFT: Logo */}
-          <Link href={isChaintrack ? "/chaintrack" : isRealEstate ? "/realestate" : "/"} className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
+          <Link href={isChaintrack ? "/chaintrack" : isRealEstate ? "/finance" : "/"} className="flex items-center gap-3 group order-1 mr-auto md:mr-0">
             <div className="h-10 flex items-center justify-center group-hover:scale-105 transition-transform">
               <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
             <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
-              isChaintrack ? "text-purple-300" : isRealEstate ? "text-amber-300" : "text-white"
+              isChaintrack ? "text-purple-300" : isRealEstate ? "text-emerald-300" : "text-white"
             }`}>
-              {isChaintrack ? "ChainTrack" : isRealEstate ? "DeliWer Realty" : "DeliWer"}
+              {isChaintrack ? "ChainTrack" : isRealEstate ? "DeliWer Finance" : "DeliWer"}
             </span>
           </Link>
 
@@ -162,13 +163,13 @@ export function Navigation() {
                 onClick={() => switchMode("realty")}
                 className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg transition-all ${
                   currentMode === "realty"
-                    ? "bg-amber-500/20 text-amber-300"
+                    ? "bg-emerald-500/20 text-emerald-300"
                     : "text-slate-400 hover:text-white"
                 }`}
-                title="DeliWer Realty — DAMAC Partner"
-                data-testid="mode-realty"
+                title="DeliWer Finance — Mortgages, Payment Plans & Move-In"
+                data-testid="mode-finance"
               >
-                Realty
+                Finance
               </button>
               <button
                 onClick={() => switchMode("b2b")}
@@ -261,11 +262,11 @@ export function Navigation() {
               <button
                 onClick={() => switchMode("realty")}
                 className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
-                  currentMode === "realty" ? "bg-amber-500/20 text-amber-300" : "text-slate-400"
+                  currentMode === "realty" ? "bg-emerald-500/20 text-emerald-300" : "text-slate-400"
                 }`}
-                data-testid="mode-realty-mobile"
+                data-testid="mode-finance-mobile"
               >
-                Realty
+                Finance
               </button>
               <button
                 onClick={() => switchMode("b2b")}

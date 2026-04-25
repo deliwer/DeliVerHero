@@ -5,6 +5,7 @@ export function WhatsAppSticky() {
   const [location] = useLocation();
 
   const isBrokerSurface =
+    location.startsWith("/finance") ||
     location.startsWith("/realestate") ||
     location.startsWith("/marketing") ||
     location.startsWith("/broker") ||
