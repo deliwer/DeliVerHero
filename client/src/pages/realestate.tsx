@@ -52,17 +52,33 @@ import dubaiFamily from "@assets/stock_images/dubai_family_diverse_5745a5cf.jpg"
 import keysHandover from "@assets/stock_images/keys_handover.jpg";
 import damacSkyline from "@assets/stock_images/dubai_damac_skyline.jpg";
 
+import logoDIB from "@assets/bank-logos/dib.png";
+import logoENBD from "@assets/bank-logos/emirates-nbd.png";
+import logoHSBC from "@assets/bank-logos/hsbc.png";
+import logoADCB from "@assets/bank-logos/adcb.png";
+import logoFAB from "@assets/bank-logos/fab.png";
+import logoMashreq from "@assets/bank-logos/mashreq.png";
+
 const WA_NUMBER = "971523946311";
 
-const FINANCE_PARTNERS = [
-  { name: "DIB",     full: "Dubai Islamic Bank",        tag: "Sharia-compliant home finance",        bg: "#006A4E", fg: "#FFFFFF" },
-  { name: "ENBD",    full: "Emirates NBD",              tag: "Resident & non-resident mortgages",    bg: "#1B3A6B", fg: "#FFFFFF" },
-  { name: "HSBC",    full: "HSBC UAE",                  tag: "Premier expat mortgage solutions",     bg: "#DB0011", fg: "#FFFFFF" },
-  { name: "CBD",     full: "Commercial Bank of Dubai",  tag: "Flexible buy-to-let financing",        bg: "#7B0023", fg: "#FFFFFF" },
-  { name: "RAKBANK", full: "RAKBANK",                   tag: "Competitive fixed-rate home loans",    bg: "#FFC72C", fg: "#0B0B0B" },
-  { name: "ADCB",    full: "Abu Dhabi Commercial Bank", tag: "Up to 80% LTV financing",              bg: "#E2231A", fg: "#FFFFFF" },
-  { name: "FAB",     full: "First Abu Dhabi Bank",      tag: "Tailored UAE national & expat plans",  bg: "#003E7E", fg: "#FFFFFF" },
-  { name: "MASHREQ", full: "Mashreq Bank",              tag: "Pre-approval in 48 hours",             bg: "#FF6F1B", fg: "#FFFFFF" },
+type FinancePartner = {
+  name: string;
+  full: string;
+  tag: string;
+  bg: string;
+  fg: string;
+  logo?: string;
+};
+
+const FINANCE_PARTNERS: FinancePartner[] = [
+  { name: "DIB",     full: "Dubai Islamic Bank",        tag: "Sharia-compliant home finance",     bg: "#006A4E", fg: "#FFFFFF", logo: logoDIB },
+  { name: "ENBD",    full: "Emirates NBD",              tag: "Resident & non-resident mortgages", bg: "#1B3A6B", fg: "#FFFFFF", logo: logoENBD },
+  { name: "HSBC",    full: "HSBC UAE",                  tag: "Premier expat mortgage solutions",  bg: "#DB0011", fg: "#FFFFFF", logo: logoHSBC },
+  { name: "ADCB",    full: "Abu Dhabi Commercial Bank", tag: "Up to 80% LTV financing",           bg: "#E2231A", fg: "#FFFFFF", logo: logoADCB },
+  { name: "FAB",     full: "First Abu Dhabi Bank",      tag: "Tailored UAE national & expat plans", bg: "#003E7E", fg: "#FFFFFF", logo: logoFAB },
+  { name: "MASHREQ", full: "Mashreq Bank",              tag: "Pre-approval in 48 hours",          bg: "#FF6F1B", fg: "#FFFFFF", logo: logoMashreq },
+  { name: "CBD",     full: "Commercial Bank of Dubai",  tag: "Flexible buy-to-let financing",     bg: "#7B0023", fg: "#FFFFFF" },
+  { name: "RAKBANK", full: "RAKBANK",                   tag: "Competitive fixed-rate home loans", bg: "#FFC72C", fg: "#0B0B0B" },
 ];
 
 const DEVELOPER_PLANS = [
@@ -722,16 +738,31 @@ export default function RealEstate() {
                   {FINANCE_PARTNERS.map((b) => (
                     <div
                       key={b.name}
-                      className="rounded-xl border border-slate-800 bg-slate-950/80 hover:border-slate-700 transition p-3 flex flex-col items-center justify-center text-center min-h-[96px]"
+                      className="group rounded-xl border border-slate-800 bg-slate-950/80 hover:border-slate-700 transition p-3 flex flex-col items-center justify-between text-center min-h-[112px]"
                       data-testid={`bank-${b.name.toLowerCase()}`}
+                      title={b.full}
                     >
-                      <div
-                        className="w-full rounded-md flex items-center justify-center font-black text-base tracking-tight py-2 mb-2"
-                        style={{ backgroundColor: b.bg, color: b.fg }}
-                      >
-                        {b.name}
+                      {b.logo ? (
+                        <div className="w-full h-12 rounded-md bg-white flex items-center justify-center px-2.5 mb-2 ring-1 ring-slate-200/10">
+                          <img
+                            src={b.logo}
+                            alt={`${b.full} logo`}
+                            className="max-h-9 max-w-full object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className="w-full h-12 rounded-md flex items-center justify-center font-black text-base tracking-tight mb-2"
+                          style={{ backgroundColor: b.bg, color: b.fg }}
+                        >
+                          {b.name}
+                        </div>
+                      )}
+                      <div>
+                        <div className="text-[11px] font-bold text-slate-200 leading-tight">{b.full}</div>
+                        <div className="text-[10px] text-slate-500 leading-tight mt-0.5">{b.tag}</div>
                       </div>
-                      <div className="text-[10px] text-slate-400 leading-tight">{b.tag}</div>
                     </div>
                   ))}
                 </div>
@@ -750,9 +781,31 @@ export default function RealEstate() {
                 </div>
               </div>
 
-              <p className="text-xs text-slate-500 mt-3 text-center">
-                Indicative figures only. Final terms set by the lender based on your profile. DeliWer earns a referral commission from finance partners — at no extra cost to you.
-              </p>
+              {/* Structured disclaimer block */}
+              <div
+                className="mt-4 rounded-xl border border-slate-800 bg-slate-950/60 p-4 sm:p-5"
+                data-testid="block-finance-disclaimer"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 shrink-0 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 flex items-center justify-center">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-[11px] font-bold uppercase tracking-widest text-cyan-300 mb-2">
+                      How DeliWer earns &amp; what to know
+                    </div>
+                    <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-1.5 text-xs text-slate-400">
+                      <li className="flex gap-1.5"><span className="text-emerald-400">•</span><span><span className="text-slate-200 font-semibold">Zero buyer fees.</span> Banks &amp; brokers pay our referral fee, not you.</span></li>
+                      <li className="flex gap-1.5"><span className="text-emerald-400">•</span><span><span className="text-slate-200 font-semibold">Bank-neutral.</span> We compare lenders — you choose &amp; sign directly.</span></li>
+                      <li className="flex gap-1.5"><span className="text-emerald-400">•</span><span><span className="text-slate-200 font-semibold">Indicative figures.</span> Final rate, LTV &amp; tenure set by the lender.</span></li>
+                      <li className="flex gap-1.5"><span className="text-emerald-400">•</span><span><span className="text-slate-200 font-semibold">UAE-regulated.</span> All terms follow UAE Central Bank &amp; DLD rules.</span></li>
+                    </ul>
+                    <div className="text-[10px] text-slate-600 mt-3">
+                      Bank logos are property of their respective owners and shown for identification only. DeliWer is a referral concierge, not a licensed mortgage broker; all loan agreements are issued and signed directly with the lending bank.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
