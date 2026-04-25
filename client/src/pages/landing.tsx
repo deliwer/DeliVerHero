@@ -78,17 +78,17 @@ export default function LandingPage() {
             className="space-y-5"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/15 border border-emerald-500/30 rounded-full text-emerald-400 text-[10px] font-black uppercase tracking-widest">
-              Dubai Relocation · One WhatsApp Away
+              Dubai Move-In Concierge · One WhatsApp Away
             </div>
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white">
-              Found a Home?{" "}
+              From{" "}
               <span className="text-emerald-400" style={{ textShadow: "0 0 40px rgba(16,185,129,0.45)" }}>
-                Complete Your Move-In
+                Keys to Kettle
               </span>
               {" "}in 24 Hours.
             </h1>
             <p className="text-lg md:text-xl text-gray-300 font-medium max-w-xl mx-auto leading-relaxed">
-              Ejari, movers, DEWA, internet, cleaning — everything handled for you in one place.
+              Ejari, movers, DEWA, internet, cleaning — vetted vendors, flat-rate pricing, one WhatsApp thread.
             </p>
             <p className="text-sm text-emerald-400 font-black uppercase tracking-widest">
               Move now. Pay only when services are executed. No upfront coordination fees.

@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import { Link } from "wouter";
 import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -585,6 +586,7 @@ function EligibilityForm() {
 }
 
 export default function RealEstate() {
+  const [showFullDisclosure, setShowFullDisclosure] = useState(false);
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -620,12 +622,19 @@ export default function RealEstate() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-slate-950/75 to-emerald-950/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/50" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
-          <Badge
-            className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-5"
-            data-testid="badge-hero"
-          >
-            <Home className="w-3.5 h-3.5 mr-1.5" /> Dubai Home Ownership · Concierge
-          </Badge>
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+            <Badge
+              className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+              data-testid="badge-hero"
+            >
+              <Home className="w-3.5 h-3.5 mr-1.5" /> Dubai Home Ownership · Concierge
+            </Badge>
+            <Link href="/" data-testid="link-hero-home">
+              <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 rounded-full px-3 py-1 transition-all cursor-pointer">
+                ← Just need move-in? <span className="text-emerald-300">DeliWer Home</span>
+              </span>
+            </Link>
+          </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-5">
             Own Your Home in Dubai —{" "}
             <span className="bg-gradient-to-r from-emerald-300 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">
@@ -896,49 +905,40 @@ export default function RealEstate() {
         </div>
       </section>
 
-      {/* SECTION 4: MOVE-IN CONCIERGE */}
+      {/* SECTION 4: MOVE-IN CONCIERGE — slim teaser, full flow lives on home root */}
       <section id="concierge" className="relative scroll-mt-24 border-b border-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-          <div className="grid lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="relative rounded-2xl overflow-hidden border border-slate-800">
-                <img src={keysHandover} alt="Keys handover" className="w-full h-72 lg:h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5">
-                  <Badge className="bg-emerald-500/20 text-emerald-200 border-emerald-500/40 mb-2">Move-in concierge</Badge>
-                  <div className="text-xl font-black text-white">From keys to kettle in 24 hours</div>
-                  <div className="text-sm text-slate-300">Vetted vendors, flat-rate pricing, single WhatsApp thread.</div>
-                </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+          <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/30 overflow-hidden">
+            <div className="grid md:grid-cols-5 items-stretch">
+              <div className="md:col-span-2 relative min-h-[200px]">
+                <img src={keysHandover} alt="Keys handover" className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-950/40 via-slate-950/10 to-slate-900" />
               </div>
-            </div>
-
-            <div className="lg:col-span-7 order-1 lg:order-2">
-              <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-3">
-                <Truck className="w-3.5 h-3.5 mr-1.5" /> Step 4 · Move-In Concierge
-              </Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-3" data-testid="heading-concierge">
-                Everything you need to move in — handled in one place
-              </h2>
-              <p className="text-slate-300 mb-6">
-                Once your offer is accepted, DeliWer takes over. Ejari, DEWA, internet, movers, water, deep-clean — coordinated by one concierge so you walk into a ready home.
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-3">
-                {CONCIERGE_SERVICES.map(({ icon: Icon, t, d }) => (
-                  <div
-                    key={t}
-                    className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 hover:border-slate-700 transition"
-                    data-testid={`concierge-${t.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              <div className="md:col-span-3 p-6 sm:p-8 flex flex-col justify-center">
+                <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 self-start mb-3">
+                  <Truck className="w-3.5 h-3.5 mr-1.5" /> Step 4 · Move-In Concierge
+                </Badge>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2" data-testid="heading-concierge">
+                  From keys to kettle in 24 hours
+                </h2>
+                <p className="text-sm text-slate-300 mb-5">
+                  Once your offer is accepted, DeliWer handles Ejari, DEWA, internet, movers and deep-clean — vetted vendors, flat-rate, one WhatsApp thread.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <Link href="/" data-testid="link-concierge-home">
+                    <Button className="h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black">
+                      <Home className="w-4 h-4 mr-2" /> See full move-in flow
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="outline"
+                    className="h-11 border-slate-700 text-slate-200 hover:bg-slate-800 hover:text-white"
+                    onClick={() => window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi DeliWer — I just bought a home in Dubai and need full move-in concierge (Ejari, DEWA, movers, internet).")}`, "_blank")}
+                    data-testid="button-concierge-whatsapp"
                   >
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center justify-center">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <div className="font-bold text-white">{t}</div>
-                    </div>
-                    <div className="text-sm text-slate-400">{d}</div>
-                  </div>
-                ))}
+                    <MessageCircle className="w-4 h-4 mr-2" /> Start on WhatsApp
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -993,28 +993,6 @@ export default function RealEstate() {
             >
               Get this week&apos;s investor list <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* TRUST / WHY DELIWER */}
-      <section className="border-b border-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { i: Landmark,   t: "Bank-neutral",   d: "We compare lenders for you. You pick. You sign." },
-              { i: ShieldCheck,t: "RERA-aware",     d: "All transactions follow Dubai Land Department rules." },
-              { i: Sparkles,   t: "Single thread",  d: "One WhatsApp covers finance, plans and move-in." },
-              { i: Wallet,     t: "You pay zero",   d: "Banks &amp; developers pay our referral fee, not you." },
-            ].map(({ i: Icon, t, d }) => (
-              <div key={t} className="rounded-xl border border-slate-800 bg-slate-900/50 p-5" data-testid={`trust-${t.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}>
-                <div className="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center justify-center mb-3">
-                  <Icon className="w-4 h-4" />
-                </div>
-                <div className="font-bold text-white" dangerouslySetInnerHTML={{ __html: t }} />
-                <div className="text-sm text-slate-400 mt-1" dangerouslySetInnerHTML={{ __html: d }} />
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -1240,7 +1218,22 @@ export default function RealEstate() {
             ))}
           </div>
 
-          {/* Detailed disclosure body */}
+          {/* Read full / collapse toggle */}
+          <div className="flex justify-center mb-6">
+            <button
+              type="button"
+              onClick={() => setShowFullDisclosure((v) => !v)}
+              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-300 hover:text-emerald-300 border border-slate-700 hover:border-emerald-500/40 rounded-full px-4 py-2 transition-all"
+              data-testid="button-toggle-disclosure"
+              aria-expanded={showFullDisclosure}
+            >
+              {showFullDisclosure ? "Hide full disclosure" : "Read full disclosure"}
+              <ChevronRight className={`w-3.5 h-3.5 transition-transform ${showFullDisclosure ? "rotate-90" : ""}`} />
+            </button>
+          </div>
+
+          {/* Detailed disclosure body — collapsed by default to reduce overload */}
+          {showFullDisclosure && (
           <div className="grid lg:grid-cols-2 gap-5">
             <div
               className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6"
@@ -1322,6 +1315,7 @@ export default function RealEstate() {
               </ul>
             </div>
           </div>
+          )}
 
           {/* Footer fineprint */}
           <div className="mt-8 rounded-xl border border-slate-800 bg-slate-900/40 px-5 py-4 text-[11px] leading-relaxed text-slate-500">
