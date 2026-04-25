@@ -16,6 +16,7 @@ import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_175548269630
 const STEPS = [
   {
     n: "1",
+    sectionId: "section-bundle",
     accent: "from-cyan-500 to-blue-600",
     border: "border-cyan-500/40",
     color: "text-cyan-300",
@@ -23,11 +24,10 @@ const STEPS = [
     title: "Upgrade your water",
     sub: "AED 99 Starter Kit — alkaline Kangen water at home, FREE shower filter installed.",
     dxb: "1,000 DXBs",
-    cta: "Get Kit",
-    href: "#section-bundle",
   },
   {
     n: "2",
+    sectionId: "section-tradein",
     accent: "from-blue-500 to-violet-600",
     border: "border-blue-500/40",
     color: "text-blue-300",
@@ -35,11 +35,10 @@ const STEPS = [
     title: "Trade old electronics",
     sub: "Hand in any iPhone or device. Recover metals, earn DXBs, fund your next upgrade.",
     dxb: "Up to 5,000 DXBs",
-    cta: "Trade In",
-    href: "/exchange",
   },
   {
     n: "3",
+    sectionId: "section-wellness",
     accent: "from-amber-500 to-orange-500",
     border: "border-amber-500/40",
     color: "text-amber-300",
@@ -47,8 +46,6 @@ const STEPS = [
     title: "Redeem for real meals",
     sub: "Use DXBs for set lunches at Chill & Grill and partner restaurants across Dubai.",
     dxb: "AED 89–100 vouchers",
-    cta: "See Partners",
-    href: "#section-wellness",
   },
 ];
 
@@ -124,11 +121,16 @@ export default function Earn() {
               </p>
 
               {/* 3-step process */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
                 {STEPS.map((s) => {
                   const Icon = s.icon;
                   return (
-                    <div key={s.n} className={`bg-slate-900/70 backdrop-blur rounded-2xl border ${s.border} p-4 text-left`} data-testid={`hero-step-${s.n}`}>
+                    <button
+                      key={s.n}
+                      onClick={() => { const el = document.getElementById(s.sectionId); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+                      className={`bg-slate-900/70 backdrop-blur rounded-2xl border ${s.border} p-4 text-left hover:brightness-110 hover:scale-[1.02] transition-all cursor-pointer w-full`}
+                      data-testid={`hero-step-${s.n}`}
+                    >
                       <div className="flex items-center gap-2 mb-2">
                         <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${s.accent} flex items-center justify-center font-black text-white text-xs flex-shrink-0`}>{s.n}</div>
                         <Icon className={`w-4 h-4 ${s.color}`} />
@@ -136,22 +138,10 @@ export default function Earn() {
                       </div>
                       <div className="text-sm font-bold text-white mb-0.5">{s.title}</div>
                       <div className="text-[11px] text-slate-400 leading-snug">{s.sub}</div>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
-
-              {/* Primary CTA */}
-              <a
-                href={`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit and join the Loyalty Network — please get me started.")}`}
-                target="_blank" rel="noopener noreferrer" data-testid="button-wa-hero"
-                className="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white px-8 py-4 rounded-full text-base sm:text-lg font-black shadow-2xl transition-all hover:scale-105">
-                <Phone className="w-5 h-5 mr-2" />Order AED 99 Starter Kit on WhatsApp
-              </a>
-              <p className="text-slate-400 text-xs mt-3">
-                FREE Ionic Shower Filter · Membership Card · 1,000 Welcome DXBs ·{" "}
-                <span className="text-amber-300 font-semibold">AED 1,000+ lifetime value</span>
-              </p>
             </div>
           </div>
         </div>
