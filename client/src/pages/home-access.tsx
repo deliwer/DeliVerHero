@@ -537,11 +537,19 @@ Please walk me through next steps.`;
   );
 }
 
-// ─── Sticky Comparison Bar ───────────────────────────────────────────────────
-function StickyHomeAccessBar() {
+// ─── Smart Path Menu (sticky, Decision Tool aware) ───────────────────────────
+const PATH_LINKS: { label: string; href: string; match: Recommendation["path"][] }[] = [
+  { label: "Rent", href: "#rental", match: ["rent", "finance-later"] },
+  { label: "Lease-to-Own", href: "#lease-to-own", match: ["lease-to-own"] },
+  { label: "Buy", href: "#mortgage", match: ["buy"] },
+  { label: "Finance", href: "#mortgage", match: ["buy", "finance-later"] },
+  { label: "Developers", href: "#developers", match: [] },
+  { label: "Move In", href: "#move-in", match: [] },
+];
+
+function SmartPathMenu() {
   const [input, setInput] = useState<DecisionInput | null>(null);
-  const [scrolled, setScrolled] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
+  const [stuck, setStuck] = useState(false);
 
   useEffect(() => {
     const sync = () => setInput(loadStoredDecision());
@@ -559,20 +567,17 @@ function StickyHomeAccessBar() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 600);
+    const onScroll = () => setStuck(window.scrollY > 480);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (dismissed || !input || !scrolled) return null;
-
-  const filledCount = Object.values(input).filter((v) => v && v.length > 0).length;
-  if (filledCount < 3) return null;
-
+  const filledCount = input
+    ? Object.values(input).filter((v) => v && v.length > 0).length
+    : 0;
   const hasAll = filledCount === 6;
-  const rec = hasAll ? recommend(input) : null;
-  const Icon = rec?.icon ?? Compass;
+  const rec = hasAll && input ? recommend(input) : null;
 
   const summaryLabel = rec
     ? rec.path === "rent"
@@ -582,97 +587,116 @@ function StickyHomeAccessBar() {
       : rec.path === "buy"
       ? "Buy now"
       : "Rent → Buy later"
-    : `${filledCount}/6 answered`;
+    : null;
 
-  const accent = rec?.accent ?? "from-emerald-500 to-teal-600";
-
-  const waLines = [
-    rec
-      ? `Hi DeliWer — based on the Home Access tool, my recommended path is: ${rec.title}.`
-      : "Hi DeliWer — I started the Home Access tool and want to compare my mortgage options.",
-    "",
-    input.salary && `Salary: ${input.salary}`,
-    input.budget && `Budget: ${input.budget}`,
-    input.downPayment && `Down payment: ${input.downPayment}`,
-    input.residency && `Residency: ${input.residency}`,
-    input.area && `Area: ${input.area}`,
-    input.timeline && `Timeline: ${input.timeline}`,
-    "",
-    "Please share matching mortgage and lease-to-own options.",
-  ].filter(Boolean) as string[];
+  const waLines = input
+    ? ([
+        rec
+          ? `Hi DeliWer — based on the Home Access tool, my recommended path is: ${rec.title}.`
+          : "Hi DeliWer — I started the Home Access tool and want to compare my options.",
+        "",
+        input.salary && `Salary: ${input.salary}`,
+        input.budget && `Budget: ${input.budget}`,
+        input.downPayment && `Down payment: ${input.downPayment}`,
+        input.residency && `Residency: ${input.residency}`,
+        input.area && `Area: ${input.area}`,
+        input.timeline && `Timeline: ${input.timeline}`,
+        "",
+        "Please share matching mortgage and lease-to-own options.",
+      ].filter(Boolean) as string[])
+    : ["Hi DeliWer — I'd like help renting, lease-to-own or buying a home in Dubai."];
 
   const waHref = buildWA(waLines.join("\n"));
 
   return (
-    <div
-      className="fixed bottom-4 left-4 right-4 sm:right-24 md:left-1/2 md:-translate-x-1/2 md:right-auto md:bottom-5 z-40 md:max-w-2xl"
-      data-testid="bar-sticky-home-access"
+    <section
+      className={`sticky top-0 z-30 border-y border-slate-800 transition-all ${
+        stuck
+          ? "bg-slate-950/95 backdrop-blur shadow-lg shadow-slate-950/40"
+          : "bg-slate-900/40"
+      }`}
+      data-testid="section-smart-path-menu"
     >
-      <div className="relative bg-slate-900/95 backdrop-blur border border-emerald-500/30 rounded-2xl shadow-2xl shadow-emerald-900/30 p-3 sm:p-4">
-        <button
-          onClick={() => setDismissed(true)}
-          aria-label="Dismiss"
-          className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-slate-800 border border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center text-sm font-bold leading-none"
-          data-testid="button-sticky-dismiss"
-        >
-          ×
-        </button>
-
-        <div className="flex items-center gap-3">
-          <div
-            className={`hidden sm:flex w-11 h-11 rounded-xl bg-gradient-to-br ${accent} items-center justify-center shrink-0`}
-          >
-            <Icon className="w-5 h-5 text-white" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Status pill (left) */}
+          <div className="shrink-0 hidden sm:flex items-center gap-2">
+            {rec ? (
+              <a
+                href="#decision-tool"
+                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${rec.accent} text-white text-xs font-bold shadow-md`}
+                data-testid="badge-recommended-path"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                {summaryLabel}
+              </a>
+            ) : input && filledCount > 0 ? (
+              <a
+                href="#decision-tool"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold"
+                data-testid="badge-progress"
+              >
+                <Compass className="w-3.5 h-3.5" />
+                {filledCount}/6 · Continue
+              </a>
+            ) : (
+              <span className="text-slate-400 font-bold uppercase tracking-widest text-xs">
+                Help me
+              </span>
+            )}
           </div>
 
-          <div className="flex-1 min-w-0">
-            <div className="text-[10px] uppercase tracking-widest text-emerald-300 font-bold">
-              {hasAll ? "Your recommended path" : "Continue your assessment"}
+          {/* Scrollable menu (center) */}
+          <nav className="flex-1 overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-1 sm:gap-1.5 min-w-max">
+              {PATH_LINKS.map((p) => {
+                const isRecommended = rec ? p.match.includes(rec.path) : false;
+                return (
+                  <a
+                    key={p.label}
+                    href={p.href}
+                    className={`px-3 py-1.5 rounded-full text-sm font-semibold transition whitespace-nowrap ${
+                      isRecommended
+                        ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40"
+                        : "text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent"
+                    }`}
+                    data-testid={`link-path-${p.label.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    {p.label}
+                  </a>
+                );
+              })}
             </div>
-            <div
-              className="text-white font-bold text-sm sm:text-base truncate"
-              data-testid="text-sticky-summary"
-            >
-              {summaryLabel}
-              {input.area ? ` · ${input.area}` : ""}
-            </div>
+          </nav>
+
+          {/* CTAs (right) */}
+          <div className="shrink-0 flex items-center gap-2">
+            <a href="#mortgage" className="hidden md:block">
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-blue-500/40 bg-blue-500/10 text-blue-200 hover:bg-blue-500/20 hover:text-white font-bold h-9"
+                data-testid="button-menu-mortgage"
+              >
+                <Banknote className="w-4 h-4 mr-1.5" /> Compare Mortgages
+              </Button>
+            </a>
+            <a href={waHref} target="_blank" rel="noopener noreferrer">
+              <Button
+                size="sm"
+                className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold h-9"
+                data-testid="button-menu-whatsapp"
+              >
+                <MessageCircle className="w-4 h-4 sm:mr-1.5" />
+                <span className="hidden sm:inline">
+                  {rec ? "WhatsApp My Path" : "WhatsApp Advisor"}
+                </span>
+              </Button>
+            </a>
           </div>
-
-          <a href="#mortgage" className="hidden sm:block">
-            <Button
-              size="sm"
-              variant="outline"
-              className="border-blue-500/50 bg-blue-500/10 text-blue-200 hover:bg-blue-500/20 font-bold h-10"
-              data-testid="button-sticky-mortgage"
-            >
-              <Banknote className="w-4 h-4 mr-1.5" /> Compare Mortgages
-            </Button>
-          </a>
-
-          <a href={waHref} target="_blank" rel="noopener noreferrer">
-            <Button
-              size="sm"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold h-10"
-              data-testid="button-sticky-whatsapp"
-            >
-              <MessageCircle className="w-4 h-4 sm:mr-1.5" />
-              <span className="hidden sm:inline">WhatsApp Advisor</span>
-            </Button>
-          </a>
         </div>
-
-        <a href="#mortgage" className="sm:hidden mt-2 block">
-          <Button
-            size="sm"
-            variant="outline"
-            className="w-full border-blue-500/50 bg-blue-500/10 text-blue-200 hover:bg-blue-500/20 font-bold h-9"
-            data-testid="button-sticky-mortgage-mobile"
-          >
-            <Banknote className="w-4 h-4 mr-1.5" /> Compare Mortgages
-          </Button>
-        </a>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -810,31 +834,8 @@ export default function HomeAccess() {
         </div>
       </section>
 
-      {/* ── PATH STRIP ────────────────────────────────────────────────────── */}
-      <section className="border-y border-slate-800 bg-slate-900/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
-            <span className="text-slate-400 font-bold uppercase tracking-widest text-xs">Help me</span>
-            {[
-              { label: "Rent", href: "#rental" },
-              { label: "Lease", href: "#lease-to-own" },
-              { label: "Lease-to-Own", href: "#lease-to-own" },
-              { label: "Buy", href: "#mortgage" },
-              { label: "Finance", href: "#mortgage" },
-              { label: "Move In", href: "#move-in" },
-            ].map((p) => (
-              <a
-                key={p.label}
-                href={p.href}
-                className="text-slate-200 hover:text-emerald-300 font-semibold flex items-center gap-1 transition"
-                data-testid={`link-path-${p.label.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                {p.label} <ChevronRight className="w-3.5 h-3.5" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── SMART PATH MENU (sticky, Decision Tool aware) ──────────────────── */}
+      <SmartPathMenu />
 
       {/* ── DECISION TOOL ─────────────────────────────────────────────────── */}
       <section id="decision-tool" className="scroll-mt-24" data-testid="section-decision-tool">
@@ -1239,7 +1240,6 @@ export default function HomeAccess() {
         </div>
       </section>
 
-      <StickyHomeAccessBar />
       <HomeAccessWhatsAppPill />
     </div>
   );
