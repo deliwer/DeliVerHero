@@ -142,47 +142,53 @@ export function Navigation() {
 
             <div className="w-px h-4 bg-white/10 mx-2" />
 
-            {/* 3-way mode switcher: B2C / Realty / B2B */}
-            <div
-              className="flex items-center gap-0.5 p-0.5 rounded-xl border border-white/10 bg-slate-800/50"
-              data-testid="mode-switcher"
-            >
-              <button
-                onClick={() => switchMode("b2c")}
-                className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg transition-all ${
-                  currentMode === "b2c"
-                    ? "bg-emerald-500/20 text-emerald-300"
-                    : "text-slate-400 hover:text-white"
-                }`}
-                title="DeliWer B2C Services"
-                data-testid="mode-b2c"
+            {/* 3-way mode switcher: B2C / Realty / B2B — HIGHLIGHTED */}
+            <div className="relative flex items-center gap-1.5">
+              <span className="hidden lg:inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-widest text-emerald-300/90">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Switch
+              </span>
+              <div
+                className="flex items-center gap-0.5 p-1 rounded-xl border border-emerald-500/40 bg-slate-900 shadow-[0_0_0_1px_rgba(16,185,129,0.15),0_0_18px_-4px_rgba(16,185,129,0.45)] ring-1 ring-emerald-500/20"
+                data-testid="mode-switcher"
               >
-                Services
-              </button>
-              <button
-                onClick={() => switchMode("realty")}
-                className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg transition-all ${
-                  currentMode === "realty"
-                    ? "bg-emerald-500/20 text-emerald-300"
-                    : "text-slate-400 hover:text-white"
-                }`}
-                title="DeliWer Finance — Mortgages, Payment Plans & Move-In"
-                data-testid="mode-finance"
-              >
-                Finance
-              </button>
-              <button
-                onClick={() => switchMode("b2b")}
-                className={`text-[9px] font-black uppercase tracking-widest px-2.5 py-1.5 rounded-lg transition-all ${
-                  currentMode === "b2b"
-                    ? "bg-purple-500/20 text-purple-300"
-                    : "text-slate-400 hover:text-white"
-                }`}
-                title="ChainTrack B2B Wholesale"
-                data-testid="mode-b2b"
-              >
-                Trade
-              </button>
+                <button
+                  onClick={() => switchMode("b2c")}
+                  className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
+                    currentMode === "b2c"
+                      ? "bg-emerald-500 text-slate-950 shadow-md"
+                      : "text-slate-300 hover:text-white hover:bg-slate-800"
+                  }`}
+                  title="DeliWer B2C Services"
+                  data-testid="mode-b2c"
+                >
+                  Services
+                </button>
+                <button
+                  onClick={() => switchMode("realty")}
+                  className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
+                    currentMode === "realty"
+                      ? "bg-emerald-500 text-slate-950 shadow-md"
+                      : "text-slate-300 hover:text-white hover:bg-slate-800"
+                  }`}
+                  title="DeliWer Finance — Mortgages, Payment Plans & Move-In"
+                  data-testid="mode-finance"
+                >
+                  Finance
+                </button>
+                <button
+                  onClick={() => switchMode("b2b")}
+                  className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
+                    currentMode === "b2b"
+                      ? "bg-purple-500 text-white shadow-md"
+                      : "text-slate-300 hover:text-white hover:bg-slate-800"
+                  }`}
+                  title="ChainTrack B2B Wholesale"
+                  data-testid="mode-b2b"
+                >
+                  Trade
+                </button>
+              </div>
             </div>
 
             <div className="w-px h-4 bg-white/10 mx-2" />
@@ -248,35 +254,41 @@ export function Navigation() {
                   : "bg-slate-900 border-white/10"
             }`}
           >
-            {/* 3-way mode switcher */}
-            <div className="grid grid-cols-3 gap-1 p-1 rounded-xl border border-white/10 bg-slate-800/50">
-              <button
-                onClick={() => switchMode("b2c")}
-                className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
-                  currentMode === "b2c" ? "bg-emerald-500/20 text-emerald-300" : "text-slate-400"
-                }`}
-                data-testid="mode-b2c-mobile"
-              >
-                Services
-              </button>
-              <button
-                onClick={() => switchMode("realty")}
-                className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
-                  currentMode === "realty" ? "bg-emerald-500/20 text-emerald-300" : "text-slate-400"
-                }`}
-                data-testid="mode-finance-mobile"
-              >
-                Finance
-              </button>
-              <button
-                onClick={() => switchMode("b2b")}
-                className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
-                  currentMode === "b2b" ? "bg-purple-500/20 text-purple-300" : "text-slate-400"
-                }`}
-                data-testid="mode-b2b-mobile"
-              >
-                Trade
-              </button>
+            {/* 3-way mode switcher — HIGHLIGHTED */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-emerald-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                Switch view
+              </div>
+              <div className="grid grid-cols-3 gap-1 p-1 rounded-xl border border-emerald-500/40 bg-slate-900 ring-1 ring-emerald-500/20 shadow-[0_0_18px_-4px_rgba(16,185,129,0.45)]">
+                <button
+                  onClick={() => switchMode("b2c")}
+                  className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
+                    currentMode === "b2c" ? "bg-emerald-500 text-slate-950 shadow-md" : "text-slate-300 hover:bg-slate-800"
+                  }`}
+                  data-testid="mode-b2c-mobile"
+                >
+                  Services
+                </button>
+                <button
+                  onClick={() => switchMode("realty")}
+                  className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
+                    currentMode === "realty" ? "bg-emerald-500 text-slate-950 shadow-md" : "text-slate-300 hover:bg-slate-800"
+                  }`}
+                  data-testid="mode-finance-mobile"
+                >
+                  Finance
+                </button>
+                <button
+                  onClick={() => switchMode("b2b")}
+                  className={`text-[10px] font-black uppercase tracking-widest h-11 rounded-lg transition-all ${
+                    currentMode === "b2b" ? "bg-purple-500 text-white shadow-md" : "text-slate-300 hover:bg-slate-800"
+                  }`}
+                  data-testid="mode-b2b-mobile"
+                >
+                  Trade
+                </button>
+              </div>
             </div>
 
             <div className="w-full h-px bg-white/10" />

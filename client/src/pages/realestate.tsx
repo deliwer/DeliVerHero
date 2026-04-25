@@ -44,6 +44,7 @@ import {
   Trophy,
   Rocket,
   GraduationCap,
+  FileText,
 } from "lucide-react";
 
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_sunset_21b85db0.jpg";
@@ -1201,6 +1202,133 @@ export default function RealEstate() {
 
       {/* ELIGIBILITY FORM */}
       <EligibilityForm />
+
+      {/* REGULATORY DISCLOSURE & LIABILITY PROTECTION */}
+      <section id="disclosure" className="relative scroll-mt-24 border-b border-slate-900 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <Badge className="bg-slate-700/40 text-slate-200 border-slate-600 mb-3">
+              <ShieldCheck className="w-3.5 h-3.5 mr-1.5" /> Regulatory Disclosure &amp; Disclaimer
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2" data-testid="heading-disclosure">
+              Important information about DeliWer Finance
+            </h2>
+            <p className="text-sm text-slate-400">
+              Read this notice carefully before using any service on this page. By engaging with DeliWer Finance via WhatsApp or web you confirm you have understood and accepted the terms below.
+            </p>
+          </div>
+
+          {/* Top regulatory pills */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+            {[
+              { i: Landmark,    t: "Concierge, not a lender",   d: "Loans are issued solely by licensed UAE banks." },
+              { i: ShieldCheck, t: "UAE Central Bank rules",    d: "All mortgage products are bank-regulated." },
+              { i: Building2,   t: "DLD &amp; RERA aware",      d: "Property transfers follow Dubai Land Department." },
+              { i: FileText,    t: "No advice given",            d: "Information is general only — not financial advice." },
+            ].map(({ i: Icon, t, d }) => (
+              <div
+                key={t}
+                className="rounded-xl border border-slate-800 bg-slate-900/60 p-4"
+                data-testid={`disclosure-pill-${t.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              >
+                <div className="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 flex items-center justify-center mb-2">
+                  <Icon className="w-4 h-4" />
+                </div>
+                <div className="font-bold text-white text-sm" dangerouslySetInnerHTML={{ __html: t }} />
+                <div className="text-xs text-slate-400 mt-1" dangerouslySetInnerHTML={{ __html: d }} />
+              </div>
+            ))}
+          </div>
+
+          {/* Detailed disclosure body */}
+          <div className="grid lg:grid-cols-2 gap-5">
+            <div
+              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6"
+              data-testid="block-disclosure-nature"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center justify-center">
+                  <Landmark className="w-4 h-4" />
+                </div>
+                <div className="text-sm font-black uppercase tracking-widest text-emerald-300">
+                  Nature of service
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-slate-300">
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" /><span>DeliWer Finance is a <span className="text-white font-semibold">referral &amp; concierge service</span>. We are not a bank, mortgage broker, real-estate broker, fund or licensed financial advisor.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" /><span>All <span className="text-white font-semibold">mortgage products</span> are issued, underwritten and serviced exclusively by UAE-licensed banks regulated by the <span className="text-white font-semibold">Central Bank of the UAE</span>.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" /><span>All <span className="text-white font-semibold">property transactions</span> are executed by RERA-registered brokers and the <span className="text-white font-semibold">Dubai Land Department (DLD)</span>. Title transfer, Oqood, NOC and Ejari are managed under DLD rules.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" /><span>Developer payment plans are direct contracts between the buyer and the developer. DeliWer is not a party to the sale.</span></li>
+              </ul>
+            </div>
+
+            <div
+              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6"
+              data-testid="block-disclosure-no-advice"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-300 flex items-center justify-center">
+                  <FileText className="w-4 h-4" />
+                </div>
+                <div className="text-sm font-black uppercase tracking-widest text-amber-300">
+                  No advice · Indicative figures
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-slate-300">
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" /><span>Content on this page is <span className="text-white font-semibold">general information only</span> and does not constitute legal, tax, investment or financial advice. Consult a qualified professional before deciding.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" /><span>Rates, LTV, tenure, fees and yields shown are <span className="text-white font-semibold">indicative</span>, may change without notice and are subject to lender / developer approval and prevailing market conditions.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" /><span>Eligibility, final pricing and contractual terms are determined solely by the bank, developer or service provider — not DeliWer.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-amber-300 shrink-0 mt-0.5" /><span>Past performance, rental yields and capital appreciation figures are not a guarantee of future results.</span></li>
+              </ul>
+            </div>
+
+            <div
+              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6"
+              data-testid="block-disclosure-liability"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300 flex items-center justify-center">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div className="text-sm font-black uppercase tracking-widest text-rose-300">
+                  Liability protection &amp; non-encumbrance
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-slate-300">
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-rose-300 shrink-0 mt-0.5" /><span>DeliWer accepts <span className="text-white font-semibold">no liability</span> for losses, damages, missed opportunities or any direct, indirect, incidental or consequential claim arising from reliance on the information shown here.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-rose-300 shrink-0 mt-0.5" /><span>DeliWer holds <span className="text-white font-semibold">no charge, lien, mortgage, encumbrance or beneficial interest</span> over any property, deposit or loan facility introduced through this page.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-rose-300 shrink-0 mt-0.5" /><span>All payments — down payments, fees, instalments, transfer charges — are made <span className="text-white font-semibold">directly to the bank, developer or DLD</span>. DeliWer never holds client funds in escrow.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-rose-300 shrink-0 mt-0.5" /><span>DeliWer is compensated by referral fees from finance / property partners — disclosed on request — at <span className="text-white font-semibold">no extra cost</span> to the buyer.</span></li>
+              </ul>
+            </div>
+
+            <div
+              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6"
+              data-testid="block-disclosure-data"
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4" />
+                </div>
+                <div className="text-sm font-black uppercase tracking-widest text-cyan-300">
+                  WhatsApp · Data &amp; consent
+                </div>
+              </div>
+              <ul className="space-y-2 text-sm text-slate-300">
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" /><span>By initiating a WhatsApp chat you consent to DeliWer contacting you on that number to coordinate your finance, property or move-in request.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" /><span>Personal data shared on WhatsApp is processed in line with the <span className="text-white font-semibold">UAE Personal Data Protection Law (PDPL)</span> and shared with relevant banks / developers only with your consent.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" /><span>You may withdraw consent and request deletion at any time by sending <span className="text-white font-semibold">"STOP"</span> or <span className="text-white font-semibold">"DELETE"</span> on the same WhatsApp thread.</span></li>
+                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" /><span>Bank, developer, regulator and city names &amp; logos used on this page belong to their respective owners and are shown for identification only.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Footer fineprint */}
+          <div className="mt-8 rounded-xl border border-slate-800 bg-slate-900/40 px-5 py-4 text-[11px] leading-relaxed text-slate-500">
+            <span className="text-slate-300 font-bold">DeliWer Finance</span> is a trading division of DeliWer Concierge Services, Dubai. We operate as a digital concierge connecting buyers with UAE-licensed banks, RERA-registered brokers and approved property developers. Nothing on this page is an offer, solicitation or invitation to buy or sell any financial product or property, nor does it create a fiduciary, advisory or agency relationship between DeliWer and the user. Use of this site, the WhatsApp service and all referral introductions is governed by UAE law and the courts of Dubai. © {new Date().getFullYear()} DeliWer. All rights reserved.
+          </div>
+        </div>
+      </section>
 
       {/* FINAL CTA */}
       <section className="relative">
