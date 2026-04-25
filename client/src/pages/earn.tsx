@@ -280,7 +280,7 @@ export default function Earn() {
                 </div>
               </div>
               <h2 className="text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
-                iPhone Trade-In × <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Circular Economy Hub</span>
+                iPhone Trade-In × <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Flipping</span>
               </h2>
               <p className="text-base sm:text-xl text-gray-300 max-w-4xl mx-auto mb-6 leading-relaxed">
                 Dubai's unified sustainability platform — trade your old iPhone for up to <strong className="text-emerald-400">5,000 DXBs</strong>, unlock water filtration commerce, and earn continuous rewards through the AED 99 Starter Kit.
