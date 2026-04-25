@@ -181,7 +181,7 @@ export function Navigation() {
                   }`}
                   title="ChainTrack B2B Wholesale"
                   data-testid="mode-b2b"
-                >Shop</button>
+                >iPhone Flipping</button>
               </div>
             </div>
 
