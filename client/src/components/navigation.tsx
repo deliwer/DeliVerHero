@@ -171,7 +171,7 @@ export function Navigation() {
                   }`}
                   title="DeliWer Finance — Mortgages, Payment Plans & Move-In"
                   data-testid="mode-finance"
-                >Home Access</button>
+                >My Home</button>
                 <button
                   onClick={() => switchMode("b2b")}
                   className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
