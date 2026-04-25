@@ -537,168 +537,39 @@ Please walk me through next steps.`;
   );
 }
 
-// ─── Smart Path Menu (sticky, Decision Tool aware) ───────────────────────────
-const PATH_LINKS: { label: string; href: string; match: Recommendation["path"][] }[] = [
-  { label: "Rent", href: "#rental", match: ["rent", "finance-later"] },
-  { label: "Lease-to-Own", href: "#lease-to-own", match: ["lease-to-own"] },
-  { label: "Buy", href: "#mortgage", match: ["buy"] },
-  { label: "Finance", href: "#mortgage", match: ["buy", "finance-later"] },
-  { label: "Developers", href: "#developers", match: [] },
-  { label: "Move In", href: "#move-in", match: [] },
+// ─── Referral Partners (brokers + distributor career path) ───────────────────
+const PARTNER_TRACKS = [
+  {
+    badge: "For RERA & independent brokers",
+    title: "Become a Home Access Broker",
+    desc: "Plug into our buyer demand for rentals, lease-to-own and mortgage leads. We handle WhatsApp intake, qualification and move-in logistics — you close.",
+    perks: [
+      "Pre-qualified WhatsApp leads",
+      "Co-branded buyer journey",
+      "Settlement support end-to-end",
+    ],
+    cta: "Apply as Broker",
+    waMsg:
+      "Hi DeliWer — I'm a RERA / independent broker applying to the Home Access Broker track. Please share onboarding & commission terms.",
+    accent: "from-emerald-500 to-teal-600",
+    icon: Handshake,
+  },
+  {
+    badge: "Distributor career path",
+    title: "Refer & Earn — Grow to Lead",
+    desc: "Start as a distributor referring renters and buyers from your network. Climb to Senior Distributor and District Lead as your closed-loop volume grows.",
+    perks: [
+      "Tiered commissions per closed deal",
+      "Distributor → Senior → District Lead",
+      "Quarterly bonuses on team volume",
+    ],
+    cta: "Join Distributor Program",
+    waMsg:
+      "Hi DeliWer — I'd like to join the Home Access Distributor Program and learn the career-path commission tiers.",
+    accent: "from-amber-500 to-orange-600",
+    icon: TrendingUp,
+  },
 ];
-
-function SmartPathMenu() {
-  const [input, setInput] = useState<DecisionInput | null>(null);
-  const [stuck, setStuck] = useState(false);
-
-  useEffect(() => {
-    const sync = () => setInput(loadStoredDecision());
-    sync();
-    const onUpdate = () => sync();
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === HOME_ACCESS_STORAGE_KEY) sync();
-    };
-    window.addEventListener("deliwer:home-access-updated", onUpdate);
-    window.addEventListener("storage", onStorage);
-    return () => {
-      window.removeEventListener("deliwer:home-access-updated", onUpdate);
-      window.removeEventListener("storage", onStorage);
-    };
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setStuck(window.scrollY > 480);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const filledCount = input
-    ? Object.values(input).filter((v) => v && v.length > 0).length
-    : 0;
-  const hasAll = filledCount === 6;
-  const rec = hasAll && input ? recommend(input) : null;
-
-  const summaryLabel = rec
-    ? rec.path === "rent"
-      ? "Rent now"
-      : rec.path === "lease-to-own"
-      ? "Lease-to-Own"
-      : rec.path === "buy"
-      ? "Buy now"
-      : "Rent → Buy later"
-    : null;
-
-  const waLines = input
-    ? ([
-        rec
-          ? `Hi DeliWer — based on the Home Access tool, my recommended path is: ${rec.title}.`
-          : "Hi DeliWer — I started the Home Access tool and want to compare my options.",
-        "",
-        input.salary && `Salary: ${input.salary}`,
-        input.budget && `Budget: ${input.budget}`,
-        input.downPayment && `Down payment: ${input.downPayment}`,
-        input.residency && `Residency: ${input.residency}`,
-        input.area && `Area: ${input.area}`,
-        input.timeline && `Timeline: ${input.timeline}`,
-        "",
-        "Please share matching mortgage and lease-to-own options.",
-      ].filter(Boolean) as string[])
-    : ["Hi DeliWer — I'd like help renting, lease-to-own or buying a home in Dubai."];
-
-  const waHref = buildWA(waLines.join("\n"));
-
-  return (
-    <section
-      className={`sticky top-0 z-30 border-y border-slate-800 transition-all ${
-        stuck
-          ? "bg-slate-950/95 backdrop-blur shadow-lg shadow-slate-950/40"
-          : "bg-slate-900/40"
-      }`}
-      data-testid="section-smart-path-menu"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div className="flex items-center gap-3 sm:gap-4">
-          {/* Status pill (left) */}
-          <div className="shrink-0 hidden sm:flex items-center gap-2">
-            {rec ? (
-              <a
-                href="#decision-tool"
-                className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${rec.accent} text-white text-xs font-bold shadow-md`}
-                data-testid="badge-recommended-path"
-              >
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                {summaryLabel}
-              </a>
-            ) : input && filledCount > 0 ? (
-              <a
-                href="#decision-tool"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold"
-                data-testid="badge-progress"
-              >
-                <Compass className="w-3.5 h-3.5" />
-                {filledCount}/6 · Continue
-              </a>
-            ) : (
-              <span className="text-slate-400 font-bold uppercase tracking-widest text-xs">
-                Help me
-              </span>
-            )}
-          </div>
-
-          {/* Scrollable menu (center) */}
-          <nav className="flex-1 overflow-x-auto scrollbar-none">
-            <div className="flex items-center gap-1 sm:gap-1.5 min-w-max">
-              {PATH_LINKS.map((p) => {
-                const isRecommended = rec ? p.match.includes(rec.path) : false;
-                return (
-                  <a
-                    key={p.label}
-                    href={p.href}
-                    className={`px-3 py-1.5 rounded-full text-sm font-semibold transition whitespace-nowrap ${
-                      isRecommended
-                        ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40"
-                        : "text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent"
-                    }`}
-                    data-testid={`link-path-${p.label.toLowerCase().replace(/\s+/g, "-")}`}
-                  >
-                    {p.label}
-                  </a>
-                );
-              })}
-            </div>
-          </nav>
-
-          {/* CTAs (right) */}
-          <div className="shrink-0 flex items-center gap-2">
-            <a href="#mortgage" className="hidden md:block">
-              <Button
-                size="sm"
-                variant="outline"
-                className="border-blue-500/40 bg-blue-500/10 text-blue-200 hover:bg-blue-500/20 hover:text-white font-bold h-9"
-                data-testid="button-menu-mortgage"
-              >
-                <Banknote className="w-4 h-4 mr-1.5" /> Compare Mortgages
-              </Button>
-            </a>
-            <a href={waHref} target="_blank" rel="noopener noreferrer">
-              <Button
-                size="sm"
-                className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold h-9"
-                data-testid="button-menu-whatsapp"
-              >
-                <MessageCircle className="w-4 h-4 sm:mr-1.5" />
-                <span className="hidden sm:inline">
-                  {rec ? "WhatsApp My Path" : "WhatsApp Advisor"}
-                </span>
-              </Button>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─── WhatsApp Pill (page-specific, consistent with site-wide pill) ───────────
 function HomeAccessWhatsAppPill() {
@@ -833,9 +704,6 @@ export default function HomeAccess() {
           </div>
         </div>
       </section>
-
-      {/* ── SMART PATH MENU (sticky, Decision Tool aware) ──────────────────── */}
-      <SmartPathMenu />
 
       {/* ── DECISION TOOL ─────────────────────────────────────────────────── */}
       <section id="decision-tool" className="scroll-mt-24" data-testid="section-decision-tool">
@@ -1201,6 +1069,86 @@ export default function HomeAccess() {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PARTNERS (brokers + distributor career path) ────────────────── */}
+      <section id="partners" className="scroll-mt-24" data-testid="section-partners">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <div className="text-center mb-12">
+            <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-3">
+              <Handshake className="w-3.5 h-3.5 mr-1.5" /> Refer & Earn
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" data-testid="heading-partners">
+              Grow your income with Home Access
+            </h2>
+            <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+              Two ways to partner: onboard as a licensed broker, or join the
+              distributor career path and grow from referrer to district lead.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {PARTNER_TRACKS.map((p) => (
+              <Card
+                key={p.title}
+                className="bg-slate-900/70 border-slate-800 hover:border-emerald-500/40 transition overflow-hidden"
+                data-testid={`card-partner-${p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+              >
+                <div className={`h-1.5 bg-gradient-to-r ${p.accent}`} />
+                <CardContent className="p-6 sm:p-8 space-y-5">
+                  <div className="flex items-start gap-4">
+                    <div
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${p.accent} flex items-center justify-center shrink-0`}
+                    >
+                      <p.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <Badge className="bg-slate-800 text-slate-300 border-slate-700 mb-2 text-xs">
+                        {p.badge}
+                      </Badge>
+                      <h3 className="text-xl sm:text-2xl font-bold text-white">
+                        {p.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">{p.desc}</p>
+                  <ul className="space-y-2">
+                    {p.perks.map((perk) => (
+                      <li key={perk} className="flex gap-2 text-slate-200 text-sm">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        {perk}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <a
+                      href={buildWA(p.waMsg)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1"
+                    >
+                      <Button
+                        className={`w-full bg-gradient-to-r ${p.accent} hover:opacity-90 text-white font-bold`}
+                        data-testid={`button-partner-${p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                      >
+                        <MessageCircle className="w-4 h-4 mr-2" /> {p.cta}
+                      </Button>
+                    </a>
+                    <Link href="/partners" className="flex-1">
+                      <Button
+                        variant="outline"
+                        className="w-full border-slate-600 text-slate-200 hover:bg-slate-800 font-bold"
+                        data-testid={`button-partner-learn-${p.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                      >
+                        Program Details <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>

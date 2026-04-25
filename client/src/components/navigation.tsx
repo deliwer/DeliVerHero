@@ -18,7 +18,7 @@ const CHAINTRACK_PATHS = [
   "/cobone-corporate", "/account-management",
 ];
 
-const REALESTATE_PATHS = ["/finance", "/realestate", "/real-estate", "/damac"];
+const REALESTATE_PATHS = ["/home-access", "/finance", "/realestate", "/real-estate", "/damac"];
 
 const deliwerNavItems = [
   { path: "/ejari-dubai",    label: "Ejari",    id: "ejari",       icon: Home },
@@ -31,11 +31,12 @@ const deliwerNavItems = [
 ];
 
 const realestateNavItems = [
-  { path: "/finance#eligibility",    label: "Eligibility",   id: "fin-eligibility", icon: KeyRound },
-  { path: "/finance#payment-plans",  label: "Payment Plans", id: "fin-plans",       icon: Building2 },
-  { path: "/finance#calculator",     label: "Calculator",    id: "fin-calc",        icon: Percent },
-  { path: "/finance#concierge",      label: "Concierge",     id: "fin-concierge",   icon: Briefcase },
-  { path: "/finance#partners",       label: "Partners",      id: "fin-partners",    icon: Handshake },
+  { path: "/home-access#decision-tool", label: "Compare",      id: "ha-compare",   icon: KeyRound },
+  { path: "/home-access#lease-to-own",  label: "Lease-to-Own", id: "ha-lto",       icon: RefreshCw },
+  { path: "/home-access#mortgage",      label: "Mortgage",     id: "ha-mortgage",  icon: Percent },
+  { path: "/home-access#developers",    label: "Developers",   id: "ha-dev",       icon: Building2 },
+  { path: "/home-access#move-in",       label: "Move-In",      id: "ha-movein",    icon: Truck },
+  { path: "/home-access#partners",      label: "Refer & Earn", id: "ha-refer",     icon: Handshake },
 ];
 
 const chaintrackNavItems = [
