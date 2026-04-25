@@ -328,9 +328,8 @@ function Router() {
         <Route path="/icelandic-glacial" component={IcelandicGlacialLandingPage} />
         <Route path="/exchange" component={Exchange} />
         <Route path="/taf" component={TellAFriend} />
-        <Route path="/earn" component={TellAFriend} />
+        <Route path="/earn" component={Earn} />
         <Route path="/wellness" component={Wellness} />
-        <Route path="/earn/legacy" component={Earn} />
         <Route path="/collect" component={Collect} />
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
