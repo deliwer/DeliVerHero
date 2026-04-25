@@ -182,9 +182,7 @@ export function Navigation() {
                   }`}
                   title="ChainTrack B2B Wholesale"
                   data-testid="mode-b2b"
-                >
-                  Trade
-                </button>
+                >Shop</button>
               </div>
             </div>
 
