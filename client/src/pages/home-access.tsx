@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import { Link } from "wouter";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -302,16 +302,59 @@ function recommend(input: DecisionInput): Recommendation {
   };
 }
 
+const HOME_ACCESS_STORAGE_KEY = "deliwer_home_access_decision_v1";
+
+function loadStoredDecision(): DecisionInput | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(HOME_ACCESS_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+    return {
+      salary: parsed.salary || "",
+      budget: parsed.budget || "",
+      downPayment: parsed.downPayment || "",
+      residency: parsed.residency || "",
+      area: parsed.area || "",
+      timeline: parsed.timeline || "",
+    };
+  } catch {
+    return null;
+  }
+}
+
+function persistDecision(input: DecisionInput) {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(HOME_ACCESS_STORAGE_KEY, JSON.stringify(input));
+    window.dispatchEvent(new CustomEvent("deliwer:home-access-updated"));
+  } catch {
+    /* noop */
+  }
+}
+
 function DecisionTool() {
-  const [step, setStep] = useState(0);
-  const [input, setInput] = useState<DecisionInput>({
+  const stored = loadStoredDecision();
+  const empty: DecisionInput = {
     salary: "",
     budget: "",
     downPayment: "",
     residency: "",
     area: "",
     timeline: "",
-  });
+  };
+  const initial = stored ?? empty;
+  const initialAllFilled = stored
+    ? Object.values(stored).every((v) => v && v.length > 0)
+    : false;
+
+  const [step, setStep] = useState(initialAllFilled ? 6 : 0);
+  const [input, setInput] = useState<DecisionInput>(initial);
+
+  useEffect(() => {
+    persistDecision(input);
+  }, [input]);
 
   const fields: { key: keyof DecisionInput; label: string; options: string[]; icon: typeof Wallet }[] = [
     { key: "salary", label: "Monthly salary band", options: SALARY_BANDS, icon: Wallet },
@@ -491,6 +534,180 @@ Please walk me through next steps.`;
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+// ─── Sticky Comparison Bar ───────────────────────────────────────────────────
+function StickyHomeAccessBar() {
+  const [input, setInput] = useState<DecisionInput | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    const sync = () => setInput(loadStoredDecision());
+    sync();
+    const onUpdate = () => sync();
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === HOME_ACCESS_STORAGE_KEY) sync();
+    };
+    window.addEventListener("deliwer:home-access-updated", onUpdate);
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.removeEventListener("deliwer:home-access-updated", onUpdate);
+      window.removeEventListener("storage", onStorage);
+    };
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 600);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  if (dismissed || !input || !scrolled) return null;
+
+  const filledCount = Object.values(input).filter((v) => v && v.length > 0).length;
+  if (filledCount < 3) return null;
+
+  const hasAll = filledCount === 6;
+  const rec = hasAll ? recommend(input) : null;
+  const Icon = rec?.icon ?? Compass;
+
+  const summaryLabel = rec
+    ? rec.path === "rent"
+      ? "Rent now"
+      : rec.path === "lease-to-own"
+      ? "Lease-to-Own"
+      : rec.path === "buy"
+      ? "Buy now"
+      : "Rent → Buy later"
+    : `${filledCount}/6 answered`;
+
+  const accent = rec?.accent ?? "from-emerald-500 to-teal-600";
+
+  const waLines = [
+    rec
+      ? `Hi DeliWer — based on the Home Access tool, my recommended path is: ${rec.title}.`
+      : "Hi DeliWer — I started the Home Access tool and want to compare my mortgage options.",
+    "",
+    input.salary && `Salary: ${input.salary}`,
+    input.budget && `Budget: ${input.budget}`,
+    input.downPayment && `Down payment: ${input.downPayment}`,
+    input.residency && `Residency: ${input.residency}`,
+    input.area && `Area: ${input.area}`,
+    input.timeline && `Timeline: ${input.timeline}`,
+    "",
+    "Please share matching mortgage and lease-to-own options.",
+  ].filter(Boolean) as string[];
+
+  const waHref = buildWA(waLines.join("\n"));
+
+  return (
+    <div
+      className="fixed bottom-4 left-4 right-4 sm:right-24 md:left-1/2 md:-translate-x-1/2 md:right-auto md:bottom-5 z-40 md:max-w-2xl"
+      data-testid="bar-sticky-home-access"
+    >
+      <div className="relative bg-slate-900/95 backdrop-blur border border-emerald-500/30 rounded-2xl shadow-2xl shadow-emerald-900/30 p-3 sm:p-4">
+        <button
+          onClick={() => setDismissed(true)}
+          aria-label="Dismiss"
+          className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-slate-800 border border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white flex items-center justify-center text-sm font-bold leading-none"
+          data-testid="button-sticky-dismiss"
+        >
+          ×
+        </button>
+
+        <div className="flex items-center gap-3">
+          <div
+            className={`hidden sm:flex w-11 h-11 rounded-xl bg-gradient-to-br ${accent} items-center justify-center shrink-0`}
+          >
+            <Icon className="w-5 h-5 text-white" />
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <div className="text-[10px] uppercase tracking-widest text-emerald-300 font-bold">
+              {hasAll ? "Your recommended path" : "Continue your assessment"}
+            </div>
+            <div
+              className="text-white font-bold text-sm sm:text-base truncate"
+              data-testid="text-sticky-summary"
+            >
+              {summaryLabel}
+              {input.area ? ` · ${input.area}` : ""}
+            </div>
+          </div>
+
+          <a href="#mortgage" className="hidden sm:block">
+            <Button
+              size="sm"
+              variant="outline"
+              className="border-blue-500/50 bg-blue-500/10 text-blue-200 hover:bg-blue-500/20 font-bold h-10"
+              data-testid="button-sticky-mortgage"
+            >
+              <Banknote className="w-4 h-4 mr-1.5" /> Compare Mortgages
+            </Button>
+          </a>
+
+          <a href={waHref} target="_blank" rel="noopener noreferrer">
+            <Button
+              size="sm"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold h-10"
+              data-testid="button-sticky-whatsapp"
+            >
+              <MessageCircle className="w-4 h-4 sm:mr-1.5" />
+              <span className="hidden sm:inline">WhatsApp Advisor</span>
+            </Button>
+          </a>
+        </div>
+
+        <a href="#mortgage" className="sm:hidden mt-2 block">
+          <Button
+            size="sm"
+            variant="outline"
+            className="w-full border-blue-500/50 bg-blue-500/10 text-blue-200 hover:bg-blue-500/20 font-bold h-9"
+            data-testid="button-sticky-mortgage-mobile"
+          >
+            <Banknote className="w-4 h-4 mr-1.5" /> Compare Mortgages
+          </Button>
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ─── WhatsApp Pill (page-specific, consistent with site-wide pill) ───────────
+function HomeAccessWhatsAppPill() {
+  const handleClick = () => {
+    try {
+      const currentClicks = parseInt(localStorage.getItem("wa_clicks") || "0");
+      localStorage.setItem("wa_clicks", (currentClicks + 1).toString());
+    } catch {
+      /* noop */
+    }
+    const stored = loadStoredDecision();
+    const filled = stored && Object.values(stored).filter((v) => v && v.length > 0).length;
+    const intro =
+      stored && filled
+        ? `Hi DeliWer — I'm exploring Home Access options${
+            stored.area ? ` in ${stored.area}` : ""
+          }${stored.budget ? ` (budget ${stored.budget})` : ""}. Please help me with next steps.`
+        : "Hi DeliWer — I'd like help renting, lease-to-own or buying a home in Dubai.";
+    window.open(buildWA(intro), "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      data-testid="button-home-access-whatsapp"
+      title="Chat on WhatsApp — reply within 10 minutes"
+      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5b] text-white font-semibold px-4 py-3 rounded-full shadow-lg shadow-emerald-900/30 transition-transform hover:scale-105 active:scale-95"
+    >
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+      <span className="hidden sm:inline whitespace-nowrap">Chat on WhatsApp</span>
+    </button>
   );
 }
 
@@ -1021,6 +1238,9 @@ export default function HomeAccess() {
           </div>
         </div>
       </section>
+
+      <StickyHomeAccessBar />
+      <HomeAccessWhatsAppPill />
     </div>
   );
 }
