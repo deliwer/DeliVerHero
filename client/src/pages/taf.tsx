@@ -134,7 +134,6 @@ export default function TellAFriend() {
         />
         <link rel="canonical" href="https://deliwer.com/taf" />
       </Helmet>
-
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-slate-800">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/40 via-slate-950 to-amber-900/20" />
@@ -147,9 +146,7 @@ export default function TellAFriend() {
             data-testid="heading-taf-hero"
           >
             Tell a friend.{" "}
-            <span className="bg-gradient-to-r from-emerald-400 via-amber-300 to-orange-400 bg-clip-text text-transparent">
-              Lunch is on us.
-            </span>
+            <span className="bg-gradient-to-r from-emerald-400 via-amber-300 to-orange-400 bg-clip-text text-transparent">Build Your Loyalty Career.</span>
           </h1>
           <p className="text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
             No commissions. No network marketing. Just share the Planet Hero
@@ -198,7 +195,6 @@ export default function TellAFriend() {
           </p>
         </div>
       </section>
-
       {/* HOW IT WORKS */}
       <section className="border-b border-slate-800" data-testid="section-how-it-works">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
@@ -236,7 +232,6 @@ export default function TellAFriend() {
           </div>
         </div>
       </section>
-
       {/* RESTAURANT PARTNERS */}
       <section
         id="restaurants"
@@ -307,7 +302,6 @@ export default function TellAFriend() {
           </div>
         </div>
       </section>
-
       {/* CASUAL VS COMMERCIAL CLARIFIER */}
       <section className="border-b border-slate-800" data-testid="section-clarifier">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
@@ -391,7 +385,6 @@ export default function TellAFriend() {
           </div>
         </div>
       </section>
-
       {/* FINAL CTA */}
       <section className="relative overflow-hidden" data-testid="section-final-cta">
         <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/20 via-slate-950 to-slate-950" />
