@@ -98,7 +98,6 @@ export function Navigation() {
     <div id="main-nav" className="w-full fixed top-0 z-[100]">
       {/* 0. Emergency Preparedness Banner — hidden on Realty for focus */}
       {!isRealEstate && <EmergencyBanner />}
-
       {/* 1. Main Navigation Bar */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
         isChaintrack
@@ -173,9 +172,7 @@ export function Navigation() {
                   }`}
                   title="DeliWer Finance — Mortgages, Payment Plans & Move-In"
                   data-testid="mode-finance"
-                >
-                  Finance
-                </button>
+                >Buy/Lease</button>
                 <button
                   onClick={() => switchMode("b2b")}
                   className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
@@ -229,7 +226,6 @@ export function Navigation() {
           </Button>
         </div>
       </nav>
-
       {/* 2. Trust Strip Bar — hidden on Realty for focus */}
       {!isRealEstate && (
         <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-2 px-4 overflow-x-auto no-scrollbar relative z-50">
@@ -238,7 +234,6 @@ export function Navigation() {
           </div>
         </div>
       )}
-
       {/* 3. Mobile Nav Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
