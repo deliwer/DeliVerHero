@@ -739,15 +739,23 @@ export default function HomeAccess() {
                 data-testid={`card-mortgage-${p.name.toLowerCase()}`}
               >
                 <div
-                  className="h-24 flex items-center justify-center relative"
-                  style={{ background: p.bg }}
+                  className="h-40 flex items-center justify-center relative p-6 bg-white"
                 >
                   {p.logo ? (
-                    <img src={p.logo} alt={p.full} className="max-h-12 max-w-[70%] object-contain" />
+                    <img
+                      src={p.logo}
+                      alt={p.full}
+                      className="max-h-24 max-w-[85%] object-contain drop-shadow-sm"
+                    />
                   ) : (
-                    <div className="text-white font-black text-2xl tracking-tight">{p.initials}</div>
+                    <div
+                      className="text-white font-black text-4xl sm:text-5xl tracking-tight px-6 py-4 rounded-xl"
+                      style={{ background: p.bg }}
+                    >
+                      {p.initials}
+                    </div>
                   )}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 group-hover:opacity-20 transition`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-0 group-hover:opacity-10 transition pointer-events-none`} />
                 </div>
                 <CardContent className="p-5 space-y-2">
                   <h3 className="font-bold text-white text-lg">{p.full}</h3>
@@ -887,7 +895,7 @@ export default function HomeAccess() {
                     <MessageCircle className="w-4 h-4 mr-2" /> Find Me a Rental
                   </Button>
                 </a>
-                <Link href="/move-in-services-dubai">
+                <Link href="/relocate">
                   <Button variant="outline" className="border-slate-600 text-slate-200 hover:bg-slate-800" data-testid="button-rental-move-in">
                     See Move-In Services <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -933,7 +941,7 @@ export default function HomeAccess() {
           </div>
 
           <div className="mt-10 text-center">
-            <Link href="/move-in-services-dubai">
+            <Link href="/relocate">
               <Button variant="outline" className="border-slate-600 text-slate-200 hover:bg-slate-800 h-12 px-6 font-bold" data-testid="button-move-in-explore">
                 Explore Full Move-In Suite <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
