@@ -5,6 +5,7 @@ import { Star, MessageCircle, Gift, CheckCircle, Zap, Shield, Award, Heart, Home
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ARPreview } from "@/components/ar-preview";
+import { useToast } from "@/hooks/use-toast";
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
 
@@ -14,6 +15,7 @@ const buildWAUrl = (planName: string, price: number) =>
 
 export default function AquaCafe() {
   const [arPreview, setArPreview] = useState<{ isOpen: boolean; product: any }>({ isOpen: false, product: null });
+  const { toast } = useToast();
 
   const plans = [
     {

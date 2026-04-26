@@ -6,7 +6,7 @@ import {
   Zap, MessageSquare, CheckCircle2, Thermometer, Droplets, 
   AlertTriangle, Coins, ShieldCheck, Check, Home as HomeIcon,
   Wrench, Cpu, Layout, ArrowRight, LogOut, ClipboardList, CalendarCheck, UserCheck,
-  Package, Settings, MoveHorizontal, Truck, FileCheck, Clock, Star, Building2, ChevronDown
+  Package, Settings, MoveHorizontal, Truck, FileCheck, Clock, Star, Building2, ChevronDown, Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
