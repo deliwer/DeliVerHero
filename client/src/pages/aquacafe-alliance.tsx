@@ -234,21 +234,6 @@ export default function AquaCafeAlliance() {
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 via-white to-amber-50">
-      {/* Navigation Bar */}
-      <div className="w-full max-w-none mx-0 px-4 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm border-b border-emerald-100">
-        <Link href="/" className="flex items-center gap-2 text-emerald-800 hover:text-emerald-600 transition-colors">
-          <Home className="w-5 h-5" />
-          <span className="font-semibold">DeliWer</span>
-        </Link>
-        <div className="flex gap-2">
-          <Link href="/products" className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-sm hover:bg-emerald-700 transition-colors">
-            Shop All
-          </Link>
-          <Link href="/exchange" className="px-4 py-2 rounded-xl bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors">
-            Start Earning
-          </Link>
-        </div>
-      </div>
       {/* Hero Section */}
       <section className="w-full relative overflow-hidden">
         {/* Background: Kangen / AquaCafe image */}
