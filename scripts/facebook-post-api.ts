@@ -50,14 +50,12 @@ export async function postToFacebookPage(message: string, link?: string) {
 }
 
 // Simple CLI runner
-import { fileURLToPath } from 'url';
-
 const isMainModule = () => {
-  if (typeof process !== 'undefined' && process.argv[1]) {
-    const scriptPath = fileURLToPath(import.meta.url);
-    return process.argv[1] === scriptPath || process.argv[1].endsWith('facebook-post-api.ts');
-  }
-  return false;
+  if (typeof process === 'undefined' || !process.argv[1]) return false;
+  // Only treat as a CLI run when invoked directly via tsx/node on the .ts source.
+  // After bundling (e.g. esbuild into dist/index.js) the URL/argv check below
+  // would falsely return true and auto-execute the CLI side-effects.
+  return process.argv[1].endsWith('facebook-post-api.ts');
 };
 
 if (isMainModule()) {
