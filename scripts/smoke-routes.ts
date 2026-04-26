@@ -6,6 +6,7 @@ const APP_FILE = path.resolve(process.cwd(), "client/src/App.tsx");
 const BASE_URL = process.env.SMOKE_BASE_URL || `http://localhost:${process.env.PORT || 5000}`;
 const PAGE_TIMEOUT_MS = 10000;
 const CONCURRENCY = Number(process.env.SMOKE_CONCURRENCY || 8);
+const STATIC_ONLY = process.argv.includes("--static-only");
 
 const ROUTE_RE = /<Route\s+path=["']([^"']+)["']/g;
 
@@ -90,6 +91,11 @@ function runStaticCheck(): { issues: StaticIssue[]; tscError?: string } {
     for (const i of issues) {
       console.log(`   ✖ ${i.file}:${i.line}  Cannot find name '${i.name}'`);
     }
+  }
+
+  if (STATIC_ONLY) {
+    console.log("[smoke] --static-only flag set, skipping HTTP route pings.");
+    process.exit(issues.length > 0 ? 1 : 0);
   }
 
   const routes = discoverRoutes();

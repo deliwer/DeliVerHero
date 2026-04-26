@@ -8,8 +8,8 @@ packages = ["imagemagick"]
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["node", "./dist/index.cjs"]
+build = ["bash", "scripts/predeploy.sh"]
+run = ["node", "dist/index.js"]
 
 [[ports]]
 localPort = 5000
