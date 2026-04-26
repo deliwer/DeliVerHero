@@ -26,7 +26,7 @@ const deliwerNavItems = [
   { path: "/exit-dubai",     label: "Move-Out", id: "move-out",    icon: LogOut },
   { path: "/setup",          label: "Setup",    id: "setup",       icon: Building2 },
   { path: "/consult",        label: "Consult",  id: "consult",     icon: CalendarCheck },
-  { path: "/aquacafe",       label: "AquaCafe", id: "aquacafe",    icon: Star },
+  { path: "/aquacafe",       label: "Home Service", id: "aquacafe",    icon: Star },
   { path: "/errand",         label: "Errand",   id: "errand",      icon: ClipboardList },
 ];
 
