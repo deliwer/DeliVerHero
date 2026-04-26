@@ -6,7 +6,6 @@ const PARTNER_SUBNAV = [
   { label: "Apply / Join", href: "/brokers", aliases: ["/broker-partner", "/partners/join"] },
   { label: "Career Path", href: "/partners/career" },
   { label: "Home Services", href: "/home-services", aliases: ["/aquacafe-alliance"] },
-  { label: "Earnings", href: "/earn", aliases: ["/partners/earnings"] },
   { label: "How It Works", href: "/transaction-support", aliases: ["/partners/how-it-works"] },
   { label: "Resources", href: "/partners/resources" },
 ];
