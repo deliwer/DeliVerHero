@@ -260,7 +260,7 @@ export function Navigation() {
                   }`}
                   data-testid="mode-b2c-mobile"
                 >
-                  Services
+                  Home Service
                 </button>
                 <button
                   onClick={() => switchMode("realty")}
@@ -269,7 +269,7 @@ export function Navigation() {
                   }`}
                   data-testid="mode-finance-mobile"
                 >
-                  Finance
+                  My Home
                 </button>
                 <button
                   onClick={() => switchMode("b2b")}
@@ -278,7 +278,7 @@ export function Navigation() {
                   }`}
                   data-testid="mode-b2b-mobile"
                 >
-                  Trade
+                  iPhone Flip
                 </button>
               </div>
             </div>

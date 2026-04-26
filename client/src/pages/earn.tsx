@@ -12,6 +12,7 @@ import earnHeroBanner from "@assets/banner_1776801988936.jpg";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
+import wellnessDiningImg from "@assets/stock_images/modern_wellness_luxu_b13619f6.jpg";
 
 const STEPS = [
   {
@@ -191,12 +192,11 @@ export default function Earn() {
               {/* Card 3 */}
               <Link href="#section-wellness" data-testid="bundle-card-wellness"
                 className="bg-slate-900/80 rounded-2xl border border-amber-500/40 overflow-hidden flex flex-col group hover:border-amber-400/70 transition">
-                <div className="w-full h-48 bg-gradient-to-br from-amber-500/20 via-orange-500/15 to-rose-500/10 flex flex-col items-center justify-center gap-3 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500 to-orange-600 opacity-15" />
-                  <img src={bakersKitchenLogo} alt="Chill & Grill" className="h-16 w-auto object-contain relative z-10 opacity-90" />
-                  <div className="flex gap-2 relative z-10">
-                    <Utensils className="w-6 h-6 text-amber-300" />
-                    <Heart className="w-6 h-6 text-rose-300" />
+                <div className="w-full h-48 relative overflow-hidden">
+                  <img src={wellnessDiningImg} alt="Wellness & Healthy Dining" className="w-full h-full object-cover object-center" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" />
+                  <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                    <img src={bakersKitchenLogo} alt="Chill & Grill" className="h-9 w-auto object-contain drop-shadow-md" />
                   </div>
                 </div>
                 <div className="p-5 flex flex-col flex-1">
