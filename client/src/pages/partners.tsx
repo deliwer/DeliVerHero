@@ -10,13 +10,12 @@ import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "@/components/navigation";
 import { Link } from "wouter";
 import {
-  Globe, Users, TrendingUp, DollarSign, CheckCircle2, ArrowRight, Network,
-  Zap, Star, Crown, Shield, Smartphone, MessageCircle, MapPin, Building2,
-  Droplets, ChevronDown, Copy, Check, Home, Rocket, Award,
-  Clock, Lock, UserCheck, Layers, ChevronRight
+  Globe, Users, DollarSign, CheckCircle2, ArrowRight,
+  Zap, Shield, Smartphone, MessageCircle, Building2,
+  Droplets, ChevronDown, Copy, Check,
+  Lock
 } from "lucide-react";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
-import bannerAquaCafe from "@assets/Banner_AquaCafe_1755270492134.jpg";
 
 const WA_NUMBER = "971523946311";
 
@@ -25,9 +24,8 @@ const WA_NUMBER = "971523946311";
 // ─────────────────────────────────────────────
 function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
   const items = [
-    { label: "Career Path", id: "career-path" },
-    { label: "Broker Track", id: "broker-focus" },
-    { label: "Home Services", id: "alliance" },
+    { label: "Broker Partner", id: "broker-focus" },
+    { label: "Home Services Partner", id: "alliance" },
     { label: "Earn Calculator", id: "calculator" },
     { label: "Join Now", id: "join" },
   ];
@@ -64,79 +62,6 @@ function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
     </div>
   );
 }
-
-// ─────────────────────────────────────────────
-// Career Path Data
-// ─────────────────────────────────────────────
-const CAREER_STAGES = [
-  {
-    stage: 1,
-    title: "Broker Partner",
-    subtitle: "Start earning from day one",
-    when: "Today — immediate",
-    earn: "AED 150–800",
-    earnLabel: "per move-in referral",
-    color: "emerald",
-    icon: Building2,
-    steps: ["Share your unique referral link with every tenant you work with", "They book Ejari, DEWA, movers — DeliWer handles everything", "You earn per confirmed booking, monthly bank transfer"],
-    cta: { label: "Get My Broker Link", href: "/brokers" },
-    badge: "🏆 Most Popular Start",
-  },
-  {
-    stage: 2,
-    title: "AquaCafe Starter",
-    subtitle: "Layer in wellness income",
-    when: "Week 1 — after first referral",
-    earn: "AED 50 bonus",
-    earnLabel: "+ 25% on water orders",
-    color: "cyan",
-    icon: Droplets,
-    steps: ["Introduce settled tenants to the AED 99 AquaCafe Starter Kit", "They get ionic shower filter (AED 399 value) + Chill & Grill voucher", "You earn AED 50 per kit + 25% on all their future water orders"],
-    cta: { label: "See Home Services Deal", href: "/home-services" },
-    badge: "💧 Recurring Revenue",
-  },
-  {
-    stage: 3,
-    title: "Independent Distributor",
-    subtitle: "Build your own team",
-    when: "After 2 referrals — automatic upgrade",
-    earn: "AED 2,500–5,000",
-    earnLabel: "per month",
-    color: "purple",
-    icon: UserCheck,
-    steps: ["Refer 2 customers → auto-upgraded to Distributor status", "Earn 25–30% commission on every personal sale", "+5% override on your referred customers' purchases"],
-    cta: { label: "See Distributor Path", href: "/partners/career" },
-    badge: "📈 Team Income",
-  },
-  {
-    stage: 4,
-    title: "Network Leader",
-    subtitle: "Override income on your team's sales",
-    when: "Month 2–3 — 10 active customers",
-    earn: "AED 5,000–15,000",
-    earnLabel: "per month",
-    color: "amber",
-    icon: Crown,
-    steps: ["10 active customers unlocks Senior Distributor rank", "Earn 10% override on Senior teams + 5% on ID teams", "Brokers you recruit compound your income automatically"],
-    cta: { label: "View Network Income", href: "/partners/career" },
-    badge: "👑 Passive Overrides",
-  },
-  {
-    stage: 5,
-    title: "Global Director",
-    subtitle: "Kangen water systems — worldwide",
-    when: "Month 6+ — any country",
-    earn: "AED 50,000+",
-    earnLabel: "per month",
-    color: "rose",
-    icon: Globe,
-    steps: ["Sell Kangen/Enagic water systems globally under DeliWer's sponsor ID", "Earn Enagic's 8-point distributor commission (AED 1,299–2,299/unit)", "Income compounds as your worldwide downline grows"],
-    cta: { label: "Join Home Services", href: "/home-services" },
-    badge: "🌍 Global",
-    image: bannerAquaCafe,
-    imageAlt: "Home Services — Kangen water systems hero",
-  },
-];
 
 // ─────────────────────────────────────────────
 // Income Slider
@@ -443,19 +368,19 @@ export default function PartnersPage() {
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/40 rounded-full px-5 py-2 mb-8">
               <Globe className="w-4 h-4 text-emerald-400" />
-              <span className="text-emerald-300 font-black text-xs uppercase tracking-widest">Career Path — Dubai + Worldwide</span>
+              <span className="text-emerald-300 font-black text-xs uppercase tracking-widest">Join the DeliWer Network — Step 1</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6">
-              Every Tenant
+              Choose Your
               <br />
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Is Income.
+                Partner Path.
               </span>
             </h1>
 
             <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-4 leading-relaxed">
-              Refer one tenant — earn AED 150–800. Introduce them to AquaCafe — earn monthly. Build a team — earn while you sleep. This is the full DeliWer career path.
+              Two simple ways to start: become a <span className="text-emerald-400 font-bold">Broker Partner</span> earning from Dubai move-ins, or a <span className="text-cyan-400 font-bold">Home Services Partner</span> selling water systems worldwide. Pick the one that fits — both are free to join.
             </p>
 
             {/* Trust pills */}
@@ -512,125 +437,126 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─── CAREER PATH ─── */}
-      <section id="career-path" className="py-24 px-4">
+      {/* ─── CHOOSE YOUR PATH (BASIC INTRO) ─── */}
+      <section id="choose-path" className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-4">Your 5-Stage Career Path</Badge>
+          <div className="text-center mb-12">
+            <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-4">Step 1 · Pick Your Track</Badge>
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">
-              Start Today.{" "}
-              <span className="text-emerald-400">Scale Forever.</span>
+              Two Simple Paths.{" "}
+              <span className="text-emerald-400">One Network.</span>
             </h2>
-            <p className="text-gray-400 mt-3 max-w-xl mx-auto">
-              Each stage unlocks the next. Most partners reach Stage 3 within 30 days.
+            <p className="text-gray-400 mt-3 max-w-2xl mx-auto">
+              Start with the path that fits you today. You can always add the other later — most top earners run both.
             </p>
           </div>
 
-          <div className="space-y-4">
-            {CAREER_STAGES.map((stage, i) => {
-              const Icon = stage.icon;
-              const colorMap: Record<string, string> = {
-                emerald: "border-emerald-500/30 bg-emerald-950/20",
-                cyan: "border-cyan-500/30 bg-cyan-950/20",
-                purple: "border-purple-500/30 bg-purple-950/20",
-                amber: "border-amber-500/30 bg-amber-950/20",
-                rose: "border-rose-500/30 bg-rose-950/20",
-              };
-              const iconColor: Record<string, string> = {
-                emerald: "text-emerald-400 bg-emerald-500/15 border-emerald-500/30",
-                cyan: "text-cyan-400 bg-cyan-500/15 border-cyan-500/30",
-                purple: "text-purple-400 bg-purple-500/15 border-purple-500/30",
-                amber: "text-amber-400 bg-amber-500/15 border-amber-500/30",
-                rose: "text-rose-400 bg-rose-500/15 border-rose-500/30",
-              };
-              const earnColor: Record<string, string> = {
-                emerald: "text-emerald-400", cyan: "text-cyan-400", purple: "text-purple-400", amber: "text-amber-400", rose: "text-rose-400",
-              };
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07 }}
-                  viewport={{ once: true }}
-                  className={`border rounded-2xl p-6 ${colorMap[stage.color]}`}
-                >
-                  {(stage as any).image && (
-                    <div className="relative -m-6 mb-5 overflow-hidden rounded-t-2xl">
-                      <img
-                        src={(stage as any).image}
-                        alt={(stage as any).imageAlt || stage.title}
-                        className="w-full h-44 sm:h-56 object-cover"
-                        data-testid={`img-stage-hero-${stage.stage}`}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                      <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between gap-3">
-                        <span className="text-[10px] font-black uppercase tracking-widest bg-rose-500/30 text-rose-200 border border-rose-500/40 rounded-full px-2.5 py-1">
-                          Final Career Step
-                        </span>
-                        <Link href="/home-services">
-                          <span className="text-[10px] font-black uppercase tracking-widest bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-2.5 py-1 backdrop-blur cursor-pointer">
-                            Explore Alliance →
-                          </span>
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex flex-col md:flex-row md:items-start gap-5">
-                    {/* Left: stage number + icon */}
-                    <div className="flex items-center gap-4 md:w-16 md:flex-col md:items-center md:gap-2 shrink-0">
-                      <div className={`w-12 h-12 rounded-xl border flex items-center justify-center shrink-0 ${iconColor[stage.color]}`}>
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <span className={`text-xs font-black uppercase tracking-widest ${earnColor[stage.color]}`}>Stage {stage.stage}</span>
-                    </div>
-
-                    {/* Center: content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-wrap items-start gap-3 mb-1">
-                        <h3 className="text-xl font-black text-white">{stage.title}</h3>
-                        <span className="text-[10px] font-black bg-slate-800 text-gray-400 border border-slate-700 rounded-full px-2 py-0.5">{stage.badge}</span>
-                      </div>
-                      <p className="text-sm text-gray-400 mb-3">{stage.subtitle} · <span className="text-gray-500">{stage.when}</span></p>
-                      <ul className="space-y-1.5">
-                        {stage.steps.map((step, si) => (
-                          <li key={si} className="flex items-start gap-2 text-sm text-gray-300">
-                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${earnColor[stage.color]}`} />
-                            {step}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Right: earnings + CTA */}
-                    <div className="md:text-right shrink-0 md:w-44">
-                      <div className={`text-2xl font-black ${earnColor[stage.color]}`}>{stage.earn}</div>
-                      <div className="text-xs text-gray-500 mb-4">{stage.earnLabel}</div>
-                      <Link href={stage.cta.href}>
-                        <Button
-                          data-testid={`button-career-cta-${stage.stage}`}
-                          size="sm"
-                          className={`font-black rounded-xl w-full text-xs ${
-                            stage.color === "emerald" ? "bg-emerald-600 hover:bg-emerald-500" :
-                            stage.color === "cyan" ? "bg-cyan-600 hover:bg-cyan-500" :
-                            stage.color === "purple" ? "bg-purple-600 hover:bg-purple-500" :
-                            stage.color === "amber" ? "bg-amber-600 hover:bg-amber-500" :
-                            "bg-rose-600 hover:bg-rose-500"
-                          } text-white`}
-                        >
-                          {stage.cta.label} <ArrowRight className="w-3 h-3 ml-1" />
-                        </Button>
-                      </Link>
-                    </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {/* Broker Partner intro card */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="border border-emerald-500/30 bg-emerald-950/20 rounded-3xl p-7 flex flex-col"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-5">
+                <Building2 className="w-7 h-7 text-emerald-400" />
+              </div>
+              <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 self-start mb-3">🏆 Most Popular Start</Badge>
+              <h3 className="text-2xl font-black text-white mb-2">Broker Partner</h3>
+              <p className="text-sm text-gray-400 mb-5 leading-relaxed">
+                Already work with tenants? Share one link after each lease. We handle Ejari, DEWA, movers, setup — you earn per confirmed booking.
+              </p>
+              <div className="space-y-2 mb-6">
+                {[
+                  "AED 150–800 per move-in referral",
+                  "Zero extra work — share one link",
+                  "Monthly bank payouts",
+                ].map(p => (
+                  <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    {p}
                   </div>
-                </motion.div>
-              );
-            })}
+                ))}
+              </div>
+              <div className="mt-auto flex flex-col gap-2">
+                <Button
+                  data-testid="button-choose-broker"
+                  onClick={() => scrollToJoin("broker")}
+                  className="bg-emerald-600 hover:bg-emerald-500 font-black h-12 rounded-2xl"
+                >
+                  <Building2 className="w-4 h-4 mr-2" /> Start as Broker Partner
+                </Button>
+                <Link href="/brokers">
+                  <Button
+                    data-testid="button-choose-broker-learn"
+                    variant="outline"
+                    className="w-full border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-11 rounded-2xl"
+                  >
+                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Home Services Partner intro card */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.08 }}
+              className="border border-cyan-500/30 bg-cyan-950/20 rounded-3xl p-7 flex flex-col"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center mb-5">
+                <Droplets className="w-7 h-7 text-cyan-400" />
+              </div>
+              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 self-start mb-3">🌍 Global Income</Badge>
+              <h3 className="text-2xl font-black text-white mb-2">Home Services Partner</h3>
+              <p className="text-sm text-gray-400 mb-5 leading-relaxed">
+                Sell wellness water systems and home setup kits worldwide under DeliWer's official Enagic sponsorship — start with the AED 99 AquaCafe kit.
+              </p>
+              <div className="space-y-2 mb-6">
+                {[
+                  "AED 50 bonus + 25% on water orders",
+                  "Sell from any country, any time",
+                  "Official Enagic sponsor included",
+                ].map(p => (
+                  <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                    {p}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-auto flex flex-col gap-2">
+                <Button
+                  data-testid="button-choose-aquacafe"
+                  onClick={() => scrollToJoin("aquacafe")}
+                  className="bg-cyan-600 hover:bg-cyan-500 font-black h-12 rounded-2xl"
+                >
+                  <Droplets className="w-4 h-4 mr-2" /> Start as Home Services Partner
+                </Button>
+                <Link href="/home-services">
+                  <Button
+                    data-testid="button-choose-aquacafe-learn"
+                    variant="outline"
+                    className="w-full border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 font-black h-11 rounded-2xl"
+                  >
+                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Path connector visual */}
           <div className="text-center mt-8">
-            <p className="text-gray-600 text-sm">Each stage builds on the last — your income compounds automatically</p>
+            <p className="text-gray-500 text-sm">
+              Want to see the full growth ladder — Independent Distributor, Network Leader, Global Director?{" "}
+              <Link href="/partners/career">
+                <span className="text-emerald-400 font-bold hover:text-emerald-300 cursor-pointer underline-offset-4 hover:underline" data-testid="link-full-career-path">
+                  Explore the Career Path →
+                </span>
+              </Link>
+            </p>
           </div>
         </div>
       </section>

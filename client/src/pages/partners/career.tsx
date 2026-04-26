@@ -735,6 +735,152 @@ export default function PartnerCareerPage() {
         </div>
       </section>
 
+      {/* ── GROWTH LEVELS · NETWORK MARKETING & REFERRAL SYSTEMS ──── */}
+      <section id="growth-levels" className="py-24 px-4 bg-gradient-to-b from-slate-950 via-purple-950/15 to-slate-950 border-y border-purple-500/20">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 bg-purple-500/15 border border-purple-500/30 rounded-full px-5 py-2">
+              <Network className="w-4 h-4 text-purple-400" />
+              <span className="text-purple-400 text-[11px] font-black uppercase tracking-widest">Network Marketing & Referral Growth</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+              Three Growth Levels.<br />
+              <span className="text-purple-400">Compounding Income.</span>
+            </h2>
+            <p className="text-gray-400 font-medium max-w-2xl mx-auto text-lg leading-relaxed">
+              Once you've made your first referrals, the system automatically opens up the next levels.
+              Each one stacks team-based override income on top of what you already earn — this is where network marketing kicks in.
+            </p>
+          </div>
+
+          <div className="space-y-5">
+            {[
+              {
+                level: 3,
+                title: "Independent Distributor",
+                subtitle: "Build your own team",
+                when: "After 2 referrals — automatic upgrade",
+                earn: "AED 2,500–5,000",
+                earnLabel: "per month",
+                color: "purple",
+                icon: UserCheck,
+                steps: [
+                  "Refer 2 customers → auto-upgraded to Distributor status",
+                  "Earn 25–30% commission on every personal sale",
+                  "+5% override on your referred customers' purchases",
+                ],
+                badge: "📈 Team Income Activated",
+              },
+              {
+                level: 4,
+                title: "Network Leader",
+                subtitle: "Override income on your team's sales",
+                when: "Month 2–3 — 10 active customers",
+                earn: "AED 5,000–15,000",
+                earnLabel: "per month",
+                color: "amber",
+                icon: Crown,
+                steps: [
+                  "10 active customers unlocks Senior Distributor rank",
+                  "Earn 10% override on Senior teams + 5% on ID teams",
+                  "Brokers you recruit compound your income automatically",
+                ],
+                badge: "👑 Passive Overrides",
+              },
+              {
+                level: 5,
+                title: "Global Director",
+                subtitle: "Kangen water systems — worldwide",
+                when: "Month 6+ — any country",
+                earn: "AED 50,000+",
+                earnLabel: "per month",
+                color: "rose",
+                icon: Globe,
+                steps: [
+                  "Sell Kangen/Enagic water systems globally under DeliWer's sponsor ID",
+                  "Earn Enagic's 8-point distributor commission (AED 1,299–2,299/unit)",
+                  "Income compounds as your worldwide downline grows",
+                ],
+                badge: "🌍 Global Network",
+              },
+            ].map((stage, i) => {
+              const Icon = stage.icon;
+              const wrapMap: Record<string, string> = {
+                purple: "border-purple-500/30 bg-purple-950/20",
+                amber: "border-amber-500/30 bg-amber-950/20",
+                rose: "border-rose-500/30 bg-rose-950/20",
+              };
+              const iconMap: Record<string, string> = {
+                purple: "text-purple-400 bg-purple-500/15 border-purple-500/30",
+                amber: "text-amber-400 bg-amber-500/15 border-amber-500/30",
+                rose: "text-rose-400 bg-rose-500/15 border-rose-500/30",
+              };
+              const accentMap: Record<string, string> = {
+                purple: "text-purple-400",
+                amber: "text-amber-400",
+                rose: "text-rose-400",
+              };
+              return (
+                <motion.div
+                  key={stage.level}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  data-testid={`card-growth-level-${stage.level}`}
+                  className={`border rounded-2xl p-6 ${wrapMap[stage.color]}`}
+                >
+                  <div className="flex flex-col md:flex-row md:items-start gap-5">
+                    <div className="flex items-center gap-4 md:w-20 md:flex-col md:items-center md:gap-2 shrink-0">
+                      <div className={`w-12 h-12 rounded-xl border flex items-center justify-center shrink-0 ${iconMap[stage.color]}`}>
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className={`text-xs font-black uppercase tracking-widest ${accentMap[stage.color]}`}>Level {stage.level}</span>
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-start gap-3 mb-1">
+                        <h3 className="text-xl font-black text-white">{stage.title}</h3>
+                        <span className="text-[10px] font-black bg-slate-800 text-gray-400 border border-slate-700 rounded-full px-2 py-0.5">{stage.badge}</span>
+                      </div>
+                      <p className="text-sm text-gray-400 mb-3">{stage.subtitle} · <span className="text-gray-500">{stage.when}</span></p>
+                      <ul className="space-y-1.5">
+                        {stage.steps.map((step, si) => (
+                          <li key={si} className="flex items-start gap-2 text-sm text-gray-300">
+                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${accentMap[stage.color]}`} />
+                            {step}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="md:text-right shrink-0 md:w-44">
+                      <div className={`text-2xl font-black ${accentMap[stage.color]}`}>{stage.earn}</div>
+                      <div className="text-xs text-gray-500">{stage.earnLabel}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="text-center pt-4 space-y-3">
+            <p className="text-gray-500 text-sm">
+              Each level builds on the last — your income compounds as your network grows
+            </p>
+            <Link href="/partners">
+              <Button
+                data-testid="button-back-to-partners"
+                variant="outline"
+                className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black rounded-2xl h-12 px-8"
+              >
+                <ArrowRight className="w-4 h-4 mr-2 rotate-180" /> Start at Step 1 — Pick Your Path
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── CAREER LADDER ────────────────────────────────── */}
       <section className="py-24 px-4 bg-gradient-to-b from-slate-950 via-slate-900/40 to-slate-950">
         <div className="max-w-6xl mx-auto space-y-14">
