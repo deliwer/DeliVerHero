@@ -11,7 +11,7 @@ import { TooltipManager } from "@/components/tooltip-manager";
 import { ImagePerformanceMonitor } from "@/components/image-performance-monitor";
 import { FloatingErrandTips } from "@/components/floating-errand-tips";
 import { BackToTop } from "@/components/back-to-top";
-import { Suspense, useEffect, lazy } from "react";
+import { Suspense, useEffect, useState, lazy } from "react";
 import { useLocation } from "wouter";
 
 // Import core pages directly for faster initial load or if they are critical
@@ -480,6 +480,30 @@ function Router() {
 
 import { WhatsAppSticky } from "@/components/whatsapp-sticky";
 
+function MainShell({ children }: { children: React.ReactNode }) {
+  const [navHeight, setNavHeight] = useState(140);
+
+  useEffect(() => {
+    const nav = document.getElementById("main-nav");
+    if (!nav) return;
+    const update = () => setNavHeight(nav.offsetHeight);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(nav);
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  return (
+    <main style={{ paddingTop: navHeight }}>
+      {children}
+    </main>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -487,9 +511,9 @@ function App() {
         <div className="min-h-screen bg-dubai-gradient">
           <StickyNeonHeadline />
           <Navigation />
-          <main className="pt-[100px]">
+          <MainShell>
             <Router />
-          </main>
+          </MainShell>
           <Footer />
           <WhatsAppSticky />
           <FloatingErrandTips />

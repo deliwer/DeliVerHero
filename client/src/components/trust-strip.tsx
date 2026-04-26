@@ -12,7 +12,7 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
   const iconClass = variant === "dark" ? "text-emerald-400" : "text-emerald-600";
   
   return (
-    <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm">
+    <div className="inline-flex items-center gap-4 md:gap-8 text-sm whitespace-nowrap">
       {showContact && (
         <>
           <Link href="/earn">
