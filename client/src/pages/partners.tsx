@@ -411,6 +411,28 @@ export default function PartnersPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll-down hint */}
+        <motion.button
+          type="button"
+          data-testid="button-hero-scroll-hint"
+          onClick={() => document.getElementById("choose-path")?.scrollIntoView({ behavior: "smooth" })}
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-gray-300 hover:text-emerald-300 transition-colors group"
+        >
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80 group-hover:opacity-100">
+            Pick Your Path
+          </span>
+          <motion.span
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="flex items-center justify-center w-8 h-8 rounded-full border border-emerald-400/40 bg-slate-950/40 backdrop-blur-sm"
+          >
+            <ChevronDown className="w-4 h-4 text-emerald-300" />
+          </motion.span>
+        </motion.button>
       </section>
 
       {/* ─── CHOOSE YOUR PATH (BASIC INTRO) ─── */}
