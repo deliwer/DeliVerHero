@@ -42,7 +42,7 @@ Static marketing hub with no backend/database dependency. Uses localStorage + UR
   - `/affiliate-dashboard` — affiliate earnings view.
   - `/partners` — **Unified career funnel** (rebuilt). 5-stage career path: Broker Partner → AquaCafe Starter → Independent Distributor → Network Leader → Global Director. Has broker-focused CTA section, Kangen Alliance section, income calculator, and join form. This is the master conversion page.
   - `/partner-program` — Slim "How Attribution Works" page (rebuilt). Shows commission tiers 20–35%, earning scenarios, 6-step tracking explainer, FAQ. Has prominent CTA banners pointing back to `/partners`.
-  - `/brokers` (broker-partner.tsx) — Broker-specific distributor page with career path progress strip banner, link generator, copy-paste scripts, application form. Added "Next Step → AquaCafe" bridge section and CTA to `/partners`.
+  - `/brokers` (broker-partner.tsx) — Real-estate-focused broker referral career page (rentals + secondary market deals). Sections: hero, unified anchor sub-nav, Who Can Join (RERA brokers, secondary market specialists, rental agents, PMs, independent agents, brokerage teams), What You Earn (50/50 split + AED 300–800 move-in override), Realty Inner Circle (NDA-gated reserved community pool with NCA/NDA/Non-Compete), DAMAC Distress Track, application form, link generator, copy-paste scripts (real-estate focused), bridge to `/career` for full career growth path. AquaCafe/distributor-ladder/Track-B-home-services sections were removed and live on `/career` (alias of `/partners/career`).
   - `/partners/career` — Full 5-tier career path with Fast Start steps + Kangen income breakdown.
   - `/partners/join` — Redirects to `/brokers`.
   - `/partners/how-it-works` — 4-step process page.

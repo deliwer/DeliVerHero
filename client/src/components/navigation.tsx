@@ -21,13 +21,13 @@ const CHAINTRACK_PATHS = [
 const REALESTATE_PATHS = ["/home-access", "/finance", "/realestate", "/real-estate", "/damac"];
 
 const deliwerNavItems = [
-  { path: "/ejari-dubai",    label: "Ejari",    id: "ejari",       icon: Home },
-  { path: "/relocate",       label: "Move-In",  id: "relocation",  icon: Plane },
-  { path: "/exit-dubai",     label: "Move-Out", id: "move-out",    icon: LogOut },
-  { path: "/setup",          label: "Setup",    id: "setup",       icon: Building2 },
-  { path: "/consult",        label: "Consult",  id: "consult",     icon: CalendarCheck },
-  { path: "/aquacafe",       label: "Home Service", id: "aquacafe",    icon: Star },
-  { path: "/errand",         label: "Errand",   id: "errand",      icon: ClipboardList },
+  { path: "/ejari-dubai",    label: "Ejari",        id: "ejari",       icon: Home },
+  { path: "/relocate",       label: "Move-In",      id: "relocation",  icon: Plane },
+  { path: "/exit-dubai",     label: "Move-Out",     id: "move-out",    icon: LogOut },
+  { path: "/home-services",  label: "Home Service", id: "home-service", icon: Star },
+  { path: "/errand",         label: "Errand",       id: "errand",      icon: ClipboardList },
+  { path: "/setup",          label: "Setup",        id: "setup",       icon: Building2 },
+  { path: "/consult",        label: "Consult",      id: "consult",     icon: CalendarCheck },
 ];
 
 const realestateNavItems = [

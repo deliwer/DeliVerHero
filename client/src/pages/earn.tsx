@@ -5,6 +5,7 @@ import {
   Smartphone, Crown, Recycle, Globe, TreePine, Flame,
   Utensils, Sparkles, ArrowRight, Heart,
   MapPin, Coffee, Salad, Soup, Trophy, Zap, ChevronDown,
+  Gamepad2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
@@ -85,19 +86,61 @@ function CollapsibleSection({
   );
 }
 
+const SUBNAV_ITEMS: { id: string; label: string; icon: typeof Gift; cls: string }[] = [
+  { id: "section-bundle",   label: "AED 99 Bundle",  icon: Gift,     cls: "text-cyan-300 hover:bg-cyan-500/15 hover:border-cyan-500/40" },
+  { id: "section-tradein",  label: "Trade-In",       icon: Recycle,  cls: "text-blue-300 hover:bg-blue-500/15 hover:border-blue-500/40" },
+  { id: "section-wellness", label: "Wellness Lunch", icon: Utensils, cls: "text-amber-300 hover:bg-amber-500/15 hover:border-amber-500/40" },
+  { id: "section-play",     label: "Play & Earn",    icon: Gamepad2, cls: "text-purple-300 hover:bg-purple-500/15 hover:border-purple-500/40" },
+];
+
+function scrollToEarnSection(id: string) {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 160;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+}
+
 export default function Earn() {
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950">
+
+      {/* ── UNIFIED TOP SUB-NAV (sits above the hero, sticky below the global nav) ── */}
+      <nav
+        data-testid="earn-top-subnav"
+        className="sticky top-[88px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-white/10 shadow-lg"
+      >
+        <div className="max-w-5xl mx-auto px-3 sm:px-4 flex items-center gap-1 overflow-x-auto no-scrollbar py-2">
+          <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-emerald-400 mr-2 whitespace-nowrap">
+            <Globe className="w-3 h-3" /> Earn Steps:
+          </span>
+          {SUBNAV_ITEMS.map((s) => {
+            const Icon = s.icon;
+            return (
+              <button
+                key={s.id}
+                onClick={() => scrollToEarnSection(s.id)}
+                data-testid={`subnav-${s.id}`}
+                className={`flex items-center gap-1.5 whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-3 sm:px-4 h-9 text-[11px] sm:text-xs font-black uppercase tracking-widest transition-colors ${s.cls}`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
 
       {/* ── HERO ── */}
       <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
         {/* Banner image */}
         <div className="relative w-full">
           <img src={earnHeroBanner} alt="Say No To Plastic — Earn DXBs with AquaCafe by DeliWer"
-            className="w-full h-[calc(100svh-100px)] min-h-[620px] object-cover object-center" data-testid="img-earn-hero-banner" />
+            className="w-full h-[calc(100svh-160px)] min-h-[520px] object-cover object-center" data-testid="img-earn-hero-banner" />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/55 to-slate-950" />
 
-          <div className="absolute inset-0 flex flex-col justify-center pt-8 sm:pt-12">
+          <div className="absolute inset-0 flex flex-col justify-center pt-6">
             <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 text-center">
 
               {/* Brand lockup */}
@@ -111,31 +154,25 @@ export default function Earn() {
                 Say No To Plastic.
                 <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">Lunch is on us.</span>
               </h1>
-              <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
+              <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-7 leading-relaxed">
                 Earn <strong className="text-emerald-300">DXB tokens</strong> by switching to filtered water, trading in old electronics and attending wellness events. Redeem for real restaurant meals across Dubai. Every action for the planet earns you something back.
               </p>
 
-              {/* 3-step process */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
-                {STEPS.map((s) => {
-                  const Icon = s.icon;
-                  return (
-                    <button
-                      key={s.n}
-                      onClick={() => { const el = document.getElementById(s.sectionId); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }}
-                      className={`bg-slate-900/70 backdrop-blur rounded-2xl border ${s.border} p-4 text-left hover:brightness-110 hover:scale-[1.02] transition-all cursor-pointer w-full`}
-                      data-testid={`hero-step-${s.n}`}
-                    >
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className={`w-7 h-7 rounded-lg bg-gradient-to-br ${s.accent} flex items-center justify-center font-black text-white text-xs flex-shrink-0`}>{s.n}</div>
-                        <Icon className={`w-4 h-4 ${s.color}`} />
-                        <span className={`text-[10px] font-black ${s.color} bg-white/5 border border-white/10 px-1.5 py-0.5 rounded-full ml-auto`}>{s.dxb}</span>
-                      </div>
-                      <div className="text-sm font-bold text-white mb-0.5">{s.title}</div>
-                      <div className="text-[11px] text-slate-400 leading-snug">{s.sub}</div>
-                    </button>
-                  );
-                })}
+              {/* Single primary CTA — sub-nav above handles section navigation */}
+              <div className="flex flex-wrap justify-center gap-3" data-testid="earn-hero-cta-row">
+                <a
+                  href={`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer! I'd like the AquaCafe AED 99 Starter Kit — please activate my membership and referral link.")}`}
+                  target="_blank" rel="noopener noreferrer"
+                  data-testid="button-hero-wa"
+                  className="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white font-black px-8 py-3.5 rounded-full text-sm sm:text-base shadow-2xl transition-all hover:scale-105">
+                  <Phone className="w-4 h-4 mr-2" /> Start AED 99 on WhatsApp
+                </a>
+                <button
+                  onClick={() => scrollToEarnSection("section-bundle")}
+                  data-testid="button-hero-explore"
+                  className="inline-flex items-center justify-center bg-slate-900/70 backdrop-blur hover:bg-slate-800 border border-white/15 text-white font-black px-7 py-3.5 rounded-full text-sm sm:text-base transition-all">
+                  <Sparkles className="w-4 h-4 mr-2" /> Explore the 4 Earn Steps
+                </button>
               </div>
             </div>
           </div>

@@ -336,6 +336,7 @@ function Router() {
         <Route path="/play" component={Play} />
         <Route path="/rewards" component={Rewards} />
         <Route path="/partners/career" component={PartnersCareer} />
+        <Route path="/career"><Redirect to="/partners/career" /></Route>
         <Route path="/partners/join"><Redirect to="/brokers" /></Route>
         <Route path="/join" component={JoinWelcome} />
         <Route path="/welcome" component={JoinWelcome} />
