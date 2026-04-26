@@ -93,10 +93,10 @@ export default function Earn() {
         {/* Banner image */}
         <div className="relative w-full">
           <img src={earnHeroBanner} alt="Say No To Plastic — Earn DXBs with AquaCafe by DeliWer"
-            className="w-full h-[480px] sm:h-[580px] md:h-[660px] object-cover" data-testid="img-earn-hero-banner" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/60 to-slate-950" />
+            className="w-full h-[calc(100svh-100px)] min-h-[620px] object-cover object-center" data-testid="img-earn-hero-banner" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/55 to-slate-950" />
 
-          <div className="absolute inset-0 flex flex-col justify-center">
+          <div className="absolute inset-0 flex flex-col justify-center pt-8 sm:pt-12">
             <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 text-center">
 
               {/* Brand lockup */}
