@@ -107,10 +107,6 @@ export default function Earn() {
                 </div>
               </div>
 
-              {/* Headline */}
-              <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur text-emerald-200 px-4 py-1.5 rounded-full mb-4 border border-emerald-300/40 font-bold text-xs uppercase tracking-widest">
-                <Leaf className="w-3.5 h-3.5" />Say No To Plastic<Leaf className="w-3.5 h-3.5" />
-              </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-3 leading-[1.05] drop-shadow-2xl">
                 Say No To Plastic.
                 <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">Lunch is on us.</span>
