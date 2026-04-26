@@ -12,7 +12,7 @@ import earnHeroBanner from "@assets/banner_1776801988936.jpg";
 import bakersKitchenLogo from "@assets/BK_Logo_1756289175349.jpg";
 import showerFilterCollage from "@assets/collage_1755270492135.jpg";
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
-import wellnessDiningImg from "@assets/stock_images/modern_wellness_luxu_b13619f6.jpg";
+import wellnessDiningImg from "@assets/stock_images/happy_people_eating__cf5d7d81.jpg";
 
 const STEPS = [
   {
@@ -194,10 +194,7 @@ export default function Earn() {
                 className="bg-slate-900/80 rounded-2xl border border-amber-500/40 overflow-hidden flex flex-col group hover:border-amber-400/70 transition">
                 <div className="w-full h-48 relative overflow-hidden">
                   <img src={wellnessDiningImg} alt="Wellness & Healthy Dining" className="w-full h-full object-cover object-center" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" />
-                  <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                    <img src={bakersKitchenLogo} alt="Chill & Grill" className="h-9 w-auto object-contain drop-shadow-md" />
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
                 </div>
                 <div className="p-5 flex flex-col flex-1">
                   <Badge className="self-start bg-amber-500/30 text-amber-300 text-[10px] px-2 py-0 mb-2">Per referral</Badge>
