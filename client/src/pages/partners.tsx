@@ -420,23 +420,6 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─── SOCIAL PROOF BAR ─── */}
-      <section className="border-y border-slate-800 bg-slate-900/50">
-        <div className="max-w-5xl mx-auto px-4 py-7 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {[
-            { label: "Active Partners", value: "2,400+", color: "text-emerald-400" },
-            { label: "Countries", value: "38", color: "text-cyan-400" },
-            { label: "Avg Monthly Earn", value: "AED 6,200", color: "text-purple-400" },
-            { label: "Activation Time", value: "< 24 hrs", color: "text-amber-400" },
-          ].map((s, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }} viewport={{ once: true }}>
-              <div className={`text-3xl font-black ${s.color}`}>{s.value}</div>
-              <div className="text-xs text-gray-500 font-semibold uppercase tracking-wider mt-0.5">{s.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       {/* ─── CHOOSE YOUR PATH (BASIC INTRO) ─── */}
       <section id="choose-path" className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
