@@ -1154,40 +1154,6 @@ export default function HomeAccess() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" data-testid="section-final-cta">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url(${damacSkyline})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/95 to-slate-950" />
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
-          <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-4">
-            <Sparkles className="w-3.5 h-3.5 mr-1.5" /> One platform. Every path.
-          </Badge>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-5" data-testid="heading-final-cta">
-            Your Dubai home — your way
-          </h2>
-          <p className="text-slate-300 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
-            Whether you're moving in next week or buying in two years, start the
-            same place: one WhatsApp thread with a DeliWer Home Access advisor.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="#decision-tool">
-              <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold h-12 px-8 w-full sm:w-auto" data-testid="button-final-check-options">
-                Check My Options <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </a>
-            <a href={heroWA} target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="border-slate-500 bg-slate-900/70 text-white hover:bg-slate-800 font-bold h-12 px-8 w-full sm:w-auto" data-testid="button-final-advisor">
-                <MessageCircle className="w-5 h-5 mr-2" /> Speak to Advisor
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-
       <HomeAccessWhatsAppPill />
     </div>
   );
