@@ -185,7 +185,7 @@ export default function SetupPage() {
           </Badge>
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-none mb-6 drop-shadow-2xl">
             Build Your Base <br />
-            <span className="text-emerald-400">In The World's</span><br />
+            <span className="text-emerald-400">In Center of the World</span><br />
             Safest Business Hub
           </h1>
           <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-4 drop-shadow-lg">

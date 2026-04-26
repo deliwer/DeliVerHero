@@ -393,8 +393,8 @@ Please walk me through next steps.`;
       <Card className="bg-slate-900/80 border-emerald-500/30 backdrop-blur" data-testid="card-decision-result">
         <CardContent className="p-6 sm:p-8 space-y-6">
           <div className="flex items-start gap-4">
-            <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${result.accent} flex items-center justify-center shrink-0`}>
-              <Icon className="w-7 h-7 text-white" />
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shrink-0">
+              <Star className="w-7 h-7 text-white fill-white" />
             </div>
             <div>
               <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-2">
