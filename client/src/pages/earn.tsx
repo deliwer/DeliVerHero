@@ -102,8 +102,6 @@ export default function Earn() {
 
               {/* Brand lockup */}
               <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
-                <img src={aquacafeLogo} alt="AquaCafe by DeliWer" className="h-8 w-auto object-contain" />
-                <span className="text-white/25 text-xl font-thin">×</span>
                 <div className="inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full border border-amber-400/40 text-[10px] sm:text-xs font-black uppercase tracking-widest">
                   <Globe className="w-3 h-3" /> Dubai Planet Heroes
                 </div>
