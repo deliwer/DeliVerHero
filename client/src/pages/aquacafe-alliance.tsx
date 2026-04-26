@@ -7,7 +7,7 @@ import {
   Star, MessageCircle, Gift, CheckCircle, Zap, Shield, Award, Heart, 
   Home, Users, Rocket, Target, Eye, Droplets, Leaf, MapPin, Clock, 
   Phone, ChefHat, Utensils, Coffee, Quote, QrCode, Share2, Camera,
-  Smartphone, Navigation, TrendingUp, Sparkles, Trophy, Timer
+  Smartphone, Navigation, TrendingUp, Sparkles, Trophy, Timer, ArrowRight
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
