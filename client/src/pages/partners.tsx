@@ -16,6 +16,7 @@ import {
   Lock
 } from "lucide-react";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
+import heroPartnersImg from "@assets/generated_images/diverse_business_team_in_dubai_office_meeting.png";
 
 const WA_NUMBER = "971523946311";
 
@@ -359,19 +360,26 @@ export default function PartnersPage() {
       <PartnersSubMenu onScrollTo={(id) => { const el = document.getElementById(id); el?.scrollIntoView({ behavior: "smooth" }); }} />
 
       {/* ─── HERO ─── */}
-      <section className="relative py-28 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/50 via-slate-950 to-slate-950 pointer-events-none" />
-        <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-emerald-500/8 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-cyan-500/8 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative min-h-[78vh] flex items-center px-4 overflow-hidden">
+        {/* Real-life Dubai partner team background */}
+        <img
+          src={heroPartnersImg}
+          alt="Dubai partner team meeting"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          data-testid="img-hero-partners"
+        />
+        {/* Dark overlays for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-slate-950 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/70 via-transparent to-slate-950/70 pointer-events-none" />
 
-        <div className="relative max-w-5xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
-            <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/40 rounded-full px-5 py-2 mb-8">
-              <Globe className="w-4 h-4 text-emerald-400" />
-              <span className="text-emerald-300 font-black text-xs uppercase tracking-widest">Join the DeliWer Network — Step 1</span>
+        <div className="relative max-w-3xl mx-auto text-center py-20">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/50 rounded-full px-5 py-2 mb-8 backdrop-blur-sm">
+              <Globe className="w-4 h-4 text-emerald-300" />
+              <span className="text-emerald-200 font-black text-xs uppercase tracking-widest">Join the DeliWer Network</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6">
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.95] mb-6 drop-shadow-2xl">
               Choose Your
               <br />
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
@@ -379,41 +387,26 @@ export default function PartnersPage() {
               </span>
             </h1>
 
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-4 leading-relaxed">
-              Two simple ways to start: become a <span className="text-emerald-400 font-bold">Broker Partner</span> earning from Dubai move-ins, or a <span className="text-cyan-400 font-bold">Home Services Partner</span> selling water systems worldwide. Pick the one that fits — both are free to join.
+            <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto mb-10 leading-relaxed">
+              Two simple ways to earn with us. Pick one — both are free to join.
             </p>
 
-            {/* Trust pills */}
-            <div className="flex flex-wrap justify-center gap-3 mb-10">
-              {[
-                { icon: Shield, label: "No upfront cost" },
-                { icon: Users, label: "Tenants pay the same" },
-                { icon: Zap, label: "Start same day" },
-                { icon: Globe, label: "Work from anywhere" },
-              ].map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-2 bg-slate-800/80 border border-slate-700 rounded-full px-4 py-2 text-sm text-gray-300">
-                  <Icon className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="font-semibold">{label}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button
                 data-testid="button-hero-broker-cta"
                 onClick={() => scrollToJoin("broker")}
                 size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-10 text-base rounded-2xl shadow-lg shadow-emerald-500/20"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-emerald-900/40"
               >
-                <Building2 className="w-5 h-5 mr-2" /> Join as Broker Partner
+                <Building2 className="w-5 h-5 mr-2" /> Broker Partner
               </Button>
               <Button
                 data-testid="button-hero-alliance-cta"
                 onClick={() => scrollToJoin("aquacafe")}
                 size="lg"
-                className="bg-cyan-600 hover:bg-cyan-500 text-white font-black h-14 px-10 text-base rounded-2xl shadow-lg shadow-cyan-500/20"
+                className="bg-cyan-600 hover:bg-cyan-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-cyan-900/40"
               >
-                <Droplets className="w-5 h-5 mr-2" /> Join Home Services
+                <Droplets className="w-5 h-5 mr-2" /> Home Services
               </Button>
             </div>
           </motion.div>
