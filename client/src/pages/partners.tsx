@@ -462,8 +462,15 @@ export default function PartnersPage() {
               </div>
               <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 self-start mb-3">🏆 Most Popular Start</Badge>
               <h3 className="text-2xl font-black text-white mb-2">Broker Partner</h3>
+              <div className="flex items-start gap-2 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-3 py-2.5 mb-4" data-testid="hint-broker-fit">
+                <Users className="w-4 h-4 text-emerald-300 shrink-0 mt-0.5" />
+                <p className="text-xs text-emerald-100 leading-relaxed">
+                  <span className="font-black uppercase tracking-wider text-emerald-300 text-[10px] block mb-0.5">Best for you if…</span>
+                  You already work with tenants, landlords, or buyers in Dubai.
+                </p>
+              </div>
               <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-                Already work with tenants? Share one link after each lease. We handle Ejari, DEWA, movers, setup — you earn per confirmed booking.
+                Share one link after each lease. We handle Ejari, DEWA, movers, setup — you earn per confirmed booking.
               </p>
               <div className="space-y-2 mb-6">
                 {[
@@ -510,8 +517,15 @@ export default function PartnersPage() {
               </div>
               <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 self-start mb-3">🌍 Global Income</Badge>
               <h3 className="text-2xl font-black text-white mb-2">Home Services Partner</h3>
+              <div className="flex items-start gap-2 bg-cyan-500/10 border border-cyan-500/25 rounded-xl px-3 py-2.5 mb-4" data-testid="hint-aquacafe-fit">
+                <Globe className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
+                <p className="text-xs text-cyan-100 leading-relaxed">
+                  <span className="font-black uppercase tracking-wider text-cyan-300 text-[10px] block mb-0.5">Best for you if…</span>
+                  You want to earn from anywhere — even outside Dubai — and like wellness products.
+                </p>
+              </div>
               <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-                Sell wellness water systems and home setup kits worldwide under DeliWer's official Enagic sponsorship — start with the AED 99 AquaCafe kit.
+                Sell water systems and home kits worldwide under DeliWer's official Enagic sponsorship — start with the AED 99 AquaCafe kit.
               </p>
               <div className="space-y-2 mb-6">
                 {[
