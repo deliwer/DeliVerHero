@@ -133,16 +133,6 @@ const MOVE_IN_SERVICES = [
   { icon: ClipboardCheck, t: "Readiness Audit", d: "AC service, deep-clean, locks changed before handover." },
 ];
 
-// ─── Revenue Model Streams ───────────────────────────────────────────────────
-const REVENUE_STREAMS = [
-  { icon: Banknote, t: "Mortgage Referrals", d: "Bank & broker commissions when financing closes." },
-  { icon: Repeat, t: "Lease-to-Own Partnerships", d: "Revenue share from developer rent-to-own programs." },
-  { icon: KeyRound, t: "Rental Placements", d: "Landlord-side fees on verified tenant placements." },
-  { icon: Building2, t: "Developer Referrals", d: "Off-plan & ready-unit commissions from partner developers." },
-  { icon: Truck, t: "Move-In Services", d: "One-time fees on Ejari, DEWA, internet, movers, furnishing." },
-  { icon: Sparkles, t: "Recurring Home Services", d: "Subscriptions: water, cleaning, AC service, maintenance." },
-];
-
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function fmtAED(n: number) {
   if (!isFinite(n)) return "—";
@@ -1032,44 +1022,6 @@ export default function HomeAccess() {
                 Explore Full Move-In Suite <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── REVENUE MODEL ─────────────────────────────────────────────────── */}
-      <section className="bg-slate-900/40 border-y border-slate-800" data-testid="section-revenue">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="text-center mb-12">
-            <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-3">
-              <TrendingUp className="w-3.5 h-3.5 mr-1.5" /> How DeliWer Earns
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" data-testid="heading-revenue">
-              Six revenue streams. One trusted advisor.
-            </h2>
-            <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-              We're not a brokerage and not a mortgage company. We're a Home Access
-              Platform — paid by the partners we connect you to, never by you twice.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {REVENUE_STREAMS.map((r) => (
-              <div
-                key={r.t}
-                className="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-amber-500/40 transition"
-                data-testid={`card-revenue-${r.t.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
-                    <r.icon className="w-5 h-5 text-amber-300" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white mb-1">{r.t}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">{r.d}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
