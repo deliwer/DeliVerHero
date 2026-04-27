@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import {
   Droplets, Leaf, Phone, Gift,
@@ -103,13 +103,29 @@ function scrollToEarnSection(id: string) {
 }
 
 export default function Earn() {
-  return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950">
+  const [navHeight, setNavHeight] = useState(104);
 
-      {/* ── UNIFIED TOP SUB-NAV (sits above the hero, sticky below the global nav) ── */}
+  useEffect(() => {
+    const nav = document.getElementById("main-nav");
+    if (!nav) return;
+    const update = () => setNavHeight(nav.offsetHeight);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950"
+      style={{ paddingTop: navHeight }}
+    >
+
+      {/* ── UNIFIED TOP SUB-NAV (sits directly under the global top bars, hero remains visible) ── */}
       <nav
         data-testid="earn-top-subnav"
-        className="sticky top-[88px] z-40 w-full bg-slate-950/95 backdrop-blur border-y border-white/10 shadow-lg"
+        className="sticky z-40 w-full bg-slate-950/95 backdrop-blur border-y border-white/10 shadow-lg"
+        style={{ top: navHeight }}
       >
         <div className="max-w-5xl mx-auto px-3 sm:px-4 flex items-center gap-1 overflow-x-auto no-scrollbar py-2">
           <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-emerald-400 mr-2 whitespace-nowrap">
@@ -137,7 +153,7 @@ export default function Earn() {
         {/* Banner image */}
         <div className="relative w-full">
           <img src={earnHeroBanner} alt="Say No To Plastic — Earn DXBs with AquaCafe by DeliWer"
-            className="w-full h-[calc(100svh-160px)] min-h-[520px] object-cover object-center" data-testid="img-earn-hero-banner" />
+            className="w-full h-[calc(100svh-220px)] min-h-[480px] object-cover object-center" data-testid="img-earn-hero-banner" />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/55 to-slate-950" />
 
           <div className="absolute inset-0 flex flex-col justify-center pt-6">

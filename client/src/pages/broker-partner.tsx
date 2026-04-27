@@ -223,7 +223,7 @@ export default function BrokerPartnerPage() {
       <PartnerSubNav />
 
       {/* ── HERO ────────────────────────── */}
-      <section id="hero" className="relative pt-40 md:pt-48 pb-20 md:pb-28 px-4 overflow-hidden">
+      <section id="hero" className="relative pt-24 md:pt-28 pb-16 md:pb-20 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1800&h=900&fit=crop&q=80" alt="Dubai real estate" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/97 via-purple-950/75 to-slate-950/95" />
@@ -643,51 +643,25 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* ── BRIDGE TO FULL CAREER PATH ──────────────────── */}
-      <section className="py-12 px-4 bg-gradient-to-r from-emerald-950/40 via-slate-900/80 to-emerald-950/40 border-b border-emerald-500/15">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center shrink-0 mx-auto md:mx-0">
-            <Crown className="w-7 h-7 text-emerald-400" />
-          </div>
-          <div className="flex-1">
-            <p className="text-emerald-400 text-[10px] font-black uppercase tracking-widest mb-1">Looking for the Full Picture?</p>
-            <h3 className="text-xl font-black uppercase tracking-tighter text-white">Complete Career Growth Path</h3>
-            <p className="text-gray-400 text-sm mt-1 leading-relaxed max-w-xl">
-              Distributor levels, team override income, leadership ranks, fast-start playbook and the full DeliWer earning ladder live on the dedicated career page.
-            </p>
-          </div>
-          <div className="shrink-0">
-            <Link href="/career">
-              <Button data-testid="button-bridge-to-career" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-12 px-8 shadow-xl shadow-emerald-900/40">
-                <ArrowRight className="w-4 h-4 mr-2" /> See Full Career Path
+      {/* ── FINAL CTA + BRIDGE TO FULL CAREER PATH ──────── */}
+      <section className="py-14 px-4 bg-gradient-to-r from-emerald-950/40 via-slate-900/80 to-emerald-950/40 border-b border-emerald-500/15">
+        <div className="max-w-4xl mx-auto text-center space-y-5">
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">Ready to Close Your First Deal?</h2>
+          <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
+            Apply above to route rental and resale deals — or jump to the full DeliWer career path for distributor levels, override income and leadership ranks.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
+            <Button data-testid="button-broker-apply-final" size="lg" className="flex-1 bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl h-12 text-sm shadow-2xl" onClick={scrollToApply}>
+              <Zap className="w-4 h-4 mr-2" /> Apply as a Broker
+            </Button>
+            <Button data-testid="button-broker-final-wa" size="lg" variant="outline" className="flex-1 border-white/10 text-white hover:bg-white/5 font-black rounded-2xl h-12 text-sm" onClick={handleJoinWhatsApp}>
+              <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
+            </Button>
+            <Link href="/career" className="flex-1">
+              <Button data-testid="button-bridge-to-career" size="lg" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-12 text-sm shadow-xl shadow-emerald-900/40">
+                <Crown className="w-4 h-4 mr-2" /> Full Career Path
               </Button>
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── FINAL CTA ─────────────────────────────────────── */}
-      <section className="py-20 px-4 text-center">
-        <div className="max-w-md mx-auto space-y-5">
-          <div className="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto">
-            <ArrowRight className="w-6 h-6 text-purple-400" />
-          </div>
-          <h2 className="text-3xl font-black uppercase tracking-tighter text-white">Ready to Start?</h2>
-          <p className="text-gray-500 text-sm max-w-xs mx-auto">Apply above and start routing rental and resale deals through the broker network.</p>
-          <div className="flex flex-col gap-3">
-            <Button data-testid="button-broker-apply-final" size="lg" className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-2xl w-full" onClick={scrollToApply}>
-              <Zap className="w-5 h-5 mr-2" /> Apply as a Broker
-            </Button>
-            <Button data-testid="button-broker-final-wa" size="lg" variant="outline" className="border-white/10 text-white hover:bg-white/5 font-black rounded-2xl px-10 h-12 text-sm w-full" onClick={handleJoinWhatsApp}>
-              <MessageCircle className="w-4 h-4 mr-2" /> Join via WhatsApp
-            </Button>
-          </div>
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 pt-2">
-            {TRUST.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-1.5 text-slate-500 text-[11px] font-semibold">
-                <Icon className="w-3 h-3 text-purple-400 shrink-0" /> {label}
-              </div>
-            ))}
           </div>
         </div>
       </section>
