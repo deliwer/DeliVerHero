@@ -3,15 +3,27 @@ import { useEffect, useState } from "react";
 
 const PARTNER_SUBNAV = [
   { label: "Overview", href: "/partners" },
-  { label: "Apply / Join", href: "/brokers", aliases: ["/broker-partner", "/partners/join"] },
+  { label: "Broker Partner", href: "/brokers", aliases: ["/broker-partner", "/partners/join"] },
   { label: "Career Path", href: "/partners/career" },
   { label: "How It Works", href: "/transaction-support", aliases: ["/partners/how-it-works"] },
   { label: "Resources", href: "/partners/resources" },
 ];
 
+const BROKER_ANCHORS = [
+  { id: "who", label: "Who Can Join" },
+  { id: "highlights", label: "What You Earn" },
+  { id: "realty-inner-circle", label: "Realty Inner Circle" },
+  { id: "damac", label: "DAMAC Distress Track" },
+  { id: "apply", label: "Apply" },
+  { id: "scripts", label: "Scripts" },
+];
+
+const BROKER_ROUTES = ["/brokers", "/broker-partner", "/partners/join"];
+
 export function PartnerSubNav() {
   const [location] = useLocation();
   const [navHeight, setNavHeight] = useState(104);
+  const isBrokerRoute = BROKER_ROUTES.includes(location);
 
   useEffect(() => {
     const nav = document.getElementById("main-nav");
@@ -25,10 +37,17 @@ export function PartnerSubNav() {
     return () => observer.disconnect();
   }, []);
 
+  const scrollToAnchor = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div
       className="sticky z-[90] bg-slate-900/95 backdrop-blur border-b border-white/10"
       style={{ top: navHeight }}
+      data-testid="partner-subnav"
     >
       <div className="max-w-5xl mx-auto px-4 flex gap-1 overflow-x-auto scrollbar-none">
         {PARTNER_SUBNAV.map((item) => {
@@ -41,6 +60,7 @@ export function PartnerSubNav() {
                     ? "border-emerald-500 text-emerald-400"
                     : "border-transparent text-gray-500 hover:text-gray-300"
                 }`}
+                data-testid={`subnav-${item.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
               >
                 {item.label}
               </button>
@@ -48,6 +68,35 @@ export function PartnerSubNav() {
           );
         })}
       </div>
+
+      {isBrokerRoute && (
+        <div className="border-t border-emerald-500/15 bg-slate-950/60" data-testid="broker-anchor-row">
+          <div className="max-w-6xl mx-auto px-4 flex items-center gap-2 overflow-x-auto scrollbar-none">
+            <div className="flex gap-1 flex-1">
+              {BROKER_ANCHORS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => scrollToAnchor(item.id)}
+                  className="px-3 py-2.5 text-[10px] font-black uppercase tracking-widest whitespace-nowrap text-gray-400 hover:text-emerald-400 border-b-2 border-transparent hover:border-emerald-500 transition-all"
+                  data-testid={`anchor-${item.id}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            <Link href="/career" className="shrink-0">
+              <button
+                type="button"
+                className="border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-lg text-[10px] uppercase tracking-widest h-7 px-3 whitespace-nowrap transition-colors"
+                data-testid="button-broker-career-path-banner"
+              >
+                Full Career Path →
+              </button>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

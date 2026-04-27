@@ -336,6 +336,35 @@ export default function HomeServices() {
         </div>
       </section>
 
+      {/* AquaCafe Membership CTA */}
+      <section className="w-full py-14 px-4 bg-gradient-to-r from-emerald-700 via-emerald-600 to-cyan-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent" />
+        <div className="relative max-w-5xl mx-auto grid md:grid-cols-[1fr_auto] items-center gap-6">
+          <div className="text-white">
+            <Badge className="bg-white/15 border border-white/30 text-white px-3 py-1 mb-3">
+              <Sparkles className="w-3.5 h-3.5 mr-2" />
+              Powered by AquaCafe
+            </Badge>
+            <h2 className="text-2xl md:text-3xl font-black mb-2 leading-tight">
+              Activate Your AquaCafe Membership for AED 99
+            </h2>
+            <p className="text-white/90 text-sm md:text-base max-w-2xl leading-relaxed">
+              The Home Services setup is part of the AquaCafe ecosystem — a wellness loyalty network with a FREE Ionic Shower Filter, lifetime member support, AED 100 dining vouchers and 1,000 welcome DXBs.
+            </p>
+          </div>
+          <Link href="/aquacafe">
+            <Button
+              data-testid="button-aquacafe-banner"
+              className="w-full md:w-auto bg-white text-emerald-700 hover:bg-emerald-50 font-black px-8 py-6 text-base rounded-2xl shadow-2xl whitespace-nowrap"
+            >
+              <Droplets className="mr-2 w-5 h-5" />
+              Discover AquaCafe
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       {/* Two tracks: Distributor + Restaurant Partner */}
       <section className="w-full py-16 px-4 bg-gradient-to-br from-slate-50 to-emerald-50">
         <div className="max-w-6xl mx-auto">

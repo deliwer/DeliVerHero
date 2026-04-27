@@ -6,14 +6,28 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <!-- ═══ CORE / HIGHEST PRIORITY ═══ -->
-  <url><loc>https://www.deliwer.com/</loc><lastmod>2025-03-31</lastmod><changefreq>daily</changefreq><priority>1.0</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/ejari-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/relocate</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/exit-dubai</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/setup</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/consult</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/aquacafe</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/errand</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/</loc><lastmod>2026-04-27</lastmod><changefreq>daily</changefreq><priority>1.0</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/ejari-dubai</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/exit-dubai</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/setup</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/consult</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/aquacafe</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/home-services</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/earn</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/errand</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+
+  <!-- ═══ RECRUITMENT / BROKER & PARTNER FUNNEL ═══ -->
+  <url><loc>https://www.deliwer.com/brokers</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/career</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/resources</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/career</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/transaction-support</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/restaurant-partners</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/exchange</loc><lastmod>2026-04-27</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/taf</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/play</loc><lastmod>2026-04-27</lastmod><changefreq>monthly</changefreq><priority>0.65</priority><mobile:mobile/></url>
 
   <!-- ═══ MOVE-IN & EJARI SERVICES ═══ -->
   <url><loc>https://www.deliwer.com/ejari-registration</loc><lastmod>2025-03-31</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>

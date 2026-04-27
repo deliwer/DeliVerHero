@@ -260,40 +260,6 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* ── UNIFIED BROKER SUB-NAV ── */}
-      <div className="bg-slate-900/95 backdrop-blur border-y border-emerald-500/15" data-testid="broker-anchor-nav">
-        <div className="max-w-6xl mx-auto px-4 flex items-center gap-2 overflow-x-auto scrollbar-none">
-          <div className="flex gap-1 flex-1">
-            {[
-              { id: "who", label: "Who Can Join" },
-              { id: "highlights", label: "What You Earn" },
-              { id: "realty-inner-circle", label: "Realty Inner Circle" },
-              { id: "damac", label: "DAMAC Distress Track" },
-              { id: "apply", label: "Apply" },
-              { id: "scripts", label: "Scripts" },
-            ].map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-                className="px-4 py-3 text-[10px] font-black uppercase tracking-widest whitespace-nowrap text-gray-400 hover:text-emerald-400 border-b-2 border-transparent hover:border-emerald-500 transition-all"
-                data-testid={`anchor-${item.id}`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <Link href="/career" className="shrink-0">
-            <Button data-testid="button-broker-career-path-banner" size="sm" variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl text-[10px] uppercase tracking-widest h-8 px-3 whitespace-nowrap">
-              Full Career Path →
-            </Button>
-          </Link>
-        </div>
-      </div>
-
       {/* ── WHO CAN JOIN ─────────────────────────────────── */}
       <section id="who" className="py-16 px-4 border-t border-white/5 bg-slate-900/30">
         <div className="max-w-5xl mx-auto">

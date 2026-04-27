@@ -154,8 +154,8 @@ export default function Earn() {
                 Say No To Plastic.
                 <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-amber-300 bg-clip-text text-transparent">Lunch is on us.</span>
               </h1>
-              <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-7 leading-relaxed">
-                Earn <strong className="text-emerald-300">DXB tokens</strong> by switching to filtered water, trading in old electronics and attending wellness events. Redeem for real restaurant meals across Dubai. Every action for the planet earns you something back.
+              <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-7 leading-relaxed">
+                Earn <strong className="text-emerald-300">DXB tokens</strong> for switching to filtered water, trading old electronics and joining wellness events — redeem for real restaurant meals across Dubai.
               </p>
 
               {/* Single primary CTA — sub-nav above handles section navigation */}
@@ -167,12 +167,6 @@ export default function Earn() {
                   className="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white font-black px-8 py-3.5 rounded-full text-sm sm:text-base shadow-2xl transition-all hover:scale-105">
                   <Phone className="w-4 h-4 mr-2" /> Start AED 99 on WhatsApp
                 </a>
-                <button
-                  onClick={() => scrollToEarnSection("section-bundle")}
-                  data-testid="button-hero-explore"
-                  className="inline-flex items-center justify-center bg-slate-900/70 backdrop-blur hover:bg-slate-800 border border-white/15 text-white font-black px-7 py-3.5 rounded-full text-sm sm:text-base transition-all">
-                  <Sparkles className="w-4 h-4 mr-2" /> Explore the 4 Earn Steps
-                </button>
               </div>
             </div>
           </div>
