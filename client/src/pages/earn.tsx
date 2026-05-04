@@ -118,7 +118,6 @@ export default function Earn() {
   return (
     <div
       className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950"
-      style={{ paddingTop: navHeight }}
     >
 
       {/* ── UNIFIED TOP SUB-NAV (sits directly under the global top bars, hero remains visible) ── */}
