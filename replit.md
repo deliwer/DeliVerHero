@@ -1,200 +1,85 @@
 # DeliWer.com Project Context
 
 ## Overview
-DeliWer.com is a Dubai move-in/move-out/relocation concierge platform with a WhatsApp-first conversion funnel. 
-Ejari registration (via authorized RERA Trustee Centers) is the pivotal differentiator, positioning DeliWer as a **home operator** — not just a broker or contractor.
+DeliWer.com is a Dubai-based move-in/move-out/relocation concierge platform. Its core purpose is to streamline the relocation process in Dubai, with a key differentiator being Ejari registration support through authorized RERA Trustee Centers, positioning DeliWer as a "home operator." The platform primarily uses a WhatsApp-first conversion funnel.
 
-## Key Services
-- **Ejari Support**: Foundational service (Pivotal).
-- **Starter Move-In Bundle**: Movers + Ejari + DEWA + Water filter, AED 3,250–4,500 by unit size.
-- **Move-Out Support**: Utility closure & deposit protection.
-- **Resident Services**: Ongoing home optimization & Ejari renewals.
+**Key Services:**
+- Ejari registration and support.
+- Comprehensive move-in bundles (movers, Ejari, DEWA, water filter).
+- Move-out support (utility closure, deposit protection).
+- Ongoing resident services and Ejari renewals.
 
-## Payment Integration Notes
-- **Stripe connector**: User dismissed the Replit OAuth connector — do NOT attempt again without user confirmation. If needed in future, ask user to provide `STRIPE_SECRET_KEY` directly as a secret instead.
-- **PayPal SDK**: `PAYPAL_CLIENT_ID` / `PAYPAL_CLIENT_SECRET` are set but return `invalid_client` 401 from PayPal sandbox — credentials likely incorrect or belong to wrong environment (sandbox vs live).
-- **Payment CTA**: `payment-cta.tsx` uses a direct PayPal email link (`formatix@deliwer.com`) — this works independently of any SDK.
-- **Current status**: No in-app checkout is functional. Business uses WhatsApp-first payment coordination as primary flow.
+**Business Vision & Market Potential:**
+DeliWer aims to solve the operational complexities of moving in Dubai, offering a neutral transaction support layer rather than acting as a broker or listing platform. It monetizes by embedding a coordination fee within vendor contracts, ensuring tenants pay market rates. The platform is expanding into relocation intelligence tools and automated broker recruitment to capture a broader market share and enhance operational efficiency.
 
-## Business Model (Revenue)
-- Tenants always pay only vendor market rates — DeliWer's 12% coordination fee is embedded in vendor contracts.
-- Affiliates/partners earn 30% of DeliWer's embedded coordination fee (shown only in affiliate/partner dashboards, never tenant-facing).
-- Bundle cost by unit: Studio AED 3,250 · 1BR AED 3,600 · 2BR AED 4,000 · 3BR/Villa AED 4,500.
-
-## Marketing Command Center (`/marketing`)
-Static marketing hub with no backend/database dependency. Uses localStorage + URL params for tracking, Google Sheets (via Apps Script webhook) for lead storage, and demo data fallback when sheet is unconfigured.
-- `/marketing` — Hub: lead capture form, WhatsApp CTA, quick-action tiles
-- `/marketing/dashboard` — Partner dashboard: enter partner name, view filtered leads/earnings, copy referral link
-- `/marketing/leaderboard` — Weekly/monthly/all-time partner rankings with podium
-- `/marketing/partners` — Partner onboarding: generate unique referral link, commission tiers (15/25/35%)
-- `/marketing/control` — Founder command center: KPIs, revenue breakdown, lead table, partner analytics
-- Tracking lib: `client/src/lib/marketing-tracker.ts` — `initTracker()`, `getTracking()`, `submitLead()`, `fetchSheetData()`
-- To connect Google Sheets: replace `GOOGLE_SHEET_WEBHOOK_URL` and `GOOGLE_SHEET_JSON_URL` in `marketing-tracker.ts`
-- `/marketing/legacy` — Legacy reference index (all previous marketing pages, fully intact, no modifications)
-- `/marketing/legacy/affiliate-management` → `affiliate-management.tsx` (original affiliate command center)
-- `/marketing/legacy/founder-dashboard` → `MarketingDashboard.tsx` (original founder dashboard)
-- `/affiliate-dashboard` and `/planet-hero-affiliates` retain their existing routes (linked from legacy index)
-
-## Affiliate & Partner System
-- Schema: `affiliates` + `affiliateLeads` tables in `shared/schema.ts`.
-- Backend routes: `/api/affiliate/track` (POST), `/api/affiliate/dashboard/:code` (GET) in `server/routes.ts`.
-- Frontend pages:
-  - `/affiliate-dashboard` — affiliate earnings view.
-  - `/partners` — **Unified career funnel** (rebuilt). 5-stage career path: Broker Partner → AquaCafe Starter → Independent Distributor → Network Leader → Global Director. Has broker-focused CTA section, Kangen Alliance section, income calculator, and join form. This is the master conversion page.
-  - `/partner-program` — Slim "How Attribution Works" page (rebuilt). Shows commission tiers 20–35%, earning scenarios, 6-step tracking explainer, FAQ. Has prominent CTA banners pointing back to `/partners`.
-  - `/brokers` (broker-partner.tsx) — Real-estate-focused broker referral career page (rentals + secondary market deals). Sections: hero, unified anchor sub-nav, Who Can Join (RERA brokers, secondary market specialists, rental agents, PMs, independent agents, brokerage teams), What You Earn (50/50 split + AED 300–800 move-in override), Realty Inner Circle (NDA-gated reserved community pool with NCA/NDA/Non-Compete), DAMAC Distress Track, application form, link generator, copy-paste scripts (real-estate focused), bridge to `/career` for full career growth path. AquaCafe/distributor-ladder/Track-B-home-services sections were removed and live on `/career` (alias of `/partners/career`).
-  - `/partners/career` — Full 5-tier career path with Fast Start steps + Kangen income breakdown.
-  - `/partners/join` — Redirects to `/brokers`.
-  - `/partners/how-it-works` — 4-step process page.
-  - `/partners/earnings` — earnings table with commission tiers by partner type.
-  - `/partners/resources` — copy-paste WhatsApp/email/social templates.
-  - `/partner-dashboard` — self-serve dashboard: enter referral code, view leads/earnings/status/top pages.
-  - `/partner-growth-kit` — WhatsApp scripts (6 scenarios), pre-built landing page links, quick reference guide.
-  - `/building-partner` — dedicated page for building security/concierge teams.
-  - `/typing-center-partner` — dedicated page for Ejari typing centers.
-  - **Kangen/Enagic Alliance**: Sponsor is Rubab Hassan, ID 3A #37000000659. AED 99 AquaCafe Starter Kit (ionic shower + Chill & Grill voucher). Commissions AED 1,299–2,299 per water system unit.
-- Shared component: `client/src/components/partner-subnav.tsx` — sticky tab nav for all partner sub-pages.
-- Referral tracking: `?ref=code` captured globally in App.tsx → stored in localStorage/sessionStorage via `client/src/lib/referral.ts` → attached to every WhatsApp message.
-- Marketing Command Center (`/marketing/dashboard`) Affiliates tab shows: top 6 partners by revenue, channel breakdown by tier, summary stats, links to partner tools.
-
-## Tech Stack
-- Frontend: React (Vite), Tailwind CSS, Framer Motion, Lucide Icons, Shadcn UI components.
-- Routing: `wouter` for SPA routing.
-- Backend: Express (serving on port 5000).
-
-## Design System
-- Theme: Dark-centric with `emerald-500` as the primary brand color.
-- UI: Heavy emphasis on uppercase, bold typography, and "Dubai Living" visual style.
-- Funnel: WhatsApp-first (CTAs link to `wa.me/971523946311`).
-
-## Recent Refactors
-- **Navigation**: Fixed top nav with a trust strip immediately below.
-- **Funnel Optimization**: Residents page updated to prioritize Move-In 399 and Ejari 199 cards.
-- **Home Router**: Landing page updated with a 4-card "Dubai Home Operating System" block.
-- **Operator Differentiator**: Emphasized DeliWer as an "Operator" vs brokers or contractors.
-- **`/start` page rewrite**: Removed AED 399 / AquaCafe pricing. Now shows new uniform pricing model (AED 3,250–4,500 vendor costs), psychological comparison block (DIY vs DeliWer), apartment-type cost estimator (Studio–3BR), "What DeliWer Coordinates" service grid, and updated WhatsApp CTAs with pre-filled messages including apartment type and referral code.
-- **`/move-in-plan` page (new)**: Move-in planning form — date, apartment type, area, service toggles (movers/Ejari/DEWA). On submit shows a personalised step-by-step plan and cost range with WhatsApp "Start Coordination" CTA.
-
-## Relocation Intelligence Platform (Added March 2026)
-Homepage headline updated to "Everything After Ejari — Handled." with 5 primary CTA buttons and 4 scenario cards.
-
-New pages added:
-- `/move-dubai` — Relocation Decision Hub with 4 scenarios + intelligence tool links
-- `/move-vs-renew-dubai` — Move vs Renew Calculator (no DB, pure JS)
-- `/rent-increase-calculator-dubai` — RERA rent increase cap calculator
-- `/are-you-overpaying-rent-dubai` — Rental overpayment detector (market rate comparison)
-- `/dubai-rent-comparison` — Visual rent comparison across 14 Dubai areas
-- `/dubai-moving-trends` — Moving trend insights and migration routes
-- `/dubai-move-score` — 5-factor personalised move score tool
-- `/dubai-rent-increase-rules` — SEO guide: RERA rent increase rules + FAQ
-- `/tenancy-renewal-dubai-guide` — SEO guide: tenancy renewal process + checklist + FAQ
-
-URL aliases (redirects):
-- `/leave-dubai` → `/exit-dubai`
-- `/move-cheaper-rent-dubai` → `/move-cheaper-rent`
-- `/moving-apartment-dubai` → `/moving-apartment-dubai-guide`
-
-All pages are static (no DB required), WhatsApp-first, referral-aware.
-
-## Broker Recruitment Automation Engine (Added March 2026)
-
-### Overview
-An autonomous, cron-based broker recruitment system at `/marketing/recruit` that continuously fetches UAE brokers, sends onboarding emails, and runs follow-up sequences without manual intervention.
-
-### Architecture
-- **Broker Master Table** (`broker_master`): Central lifecycle DB tracking every broker. Statuses: `new → sent → followed_up → converted`.
-- **Automation Log Table** (`broker_automation_log`): Records every run (daily, followup, manual) with stats.
-
-### Services
-- `server/services/broker-fetch-service.ts` — Attempts to pull broker list from Dubai Land Dept (RERA) API. Parses JSON or XLSX response. Falls back gracefully.
-- `server/services/broker-followup-service.ts` — Follow-up engine: FU#1 at 2-day silence, FU#2 at 5-day silence. Each with distinct email copy.
-- `server/services/broker-automation.ts` — Orchestrator: daily cycle (fetch + email new) + follow-up cycle. Also exposes `getAutomationStatus()`.
-
-### Cron Schedule (server/index.ts)
-- **Every 24h**: `runDailyAutomation()` — fetches RERA, detects new brokers, emails up to 300/day
-- **Every 6h**: `runFollowUpAutomation()` — sends FU#1 (2-day) and FU#2 (5-day) follow-ups
-- **On startup (30s delay)**: Initial follow-up pass
-
-### API Routes
-- `GET /api/marketing/automation/status` — Live stats + recent logs
-- `POST /api/marketing/broker-fetch` — Manual RERA trigger
-- `POST /api/marketing/broker-followup/run` — Manual follow-up trigger
-- `GET /api/marketing/broker-master` — Paginated broker list
-- `POST /api/marketing/broker-master/seed` — Sync past campaigns into master
-- `GET /api/marketing/automation/logs` — Recent run logs
-
-### Frontend (`/marketing/recruit`)
-- **Automation Engine panel**: Live stats (total, new today, sent, followed-up, converted)
-- **RERA Auto-Fetch card**: One-click fetch from Dubai Land Dept
-- **Follow-up Engine card**: Manual trigger + last run time
-- **Broker Master DB card**: View/paginate all tracked brokers, seed from past campaigns
-- **Manual Campaign section**: Preserved existing XLSX upload → campaign launch flow
-
-### Email Campaigns (anti-spam built in)
-- 1.5s delay between sends
-- Max 300 emails/day
-- Dedup by email address (global across all campaigns)
-- Requires `SENDGRID_API_KEY` env var (runs in demo mode without it)
-
-## Capella Properties Collaboration & Transaction Support Layer (Added April 2026)
-
-### Positioning
-DeliWer is positioned as a **neutral move-in and transaction support layer** — not a broker, not a listing platform. Capella Properties is mentioned as one of several professional firms DeliWer can coordinate with (soft, neutral mention only — no links, no inventory, no lead passing).
-
-### New Page: `/transaction-support`
-- File: `client/src/pages/transaction-support.tsx`
-- Headline: "From Agreement to Move-In — Handled"
-- Sections: Gap positioning, Professional coordination (brokers/developers/landlords/corporate), soft Capella mention, client journey flow (5 steps — DeliWer activates after Step 2), value proposition (4 points), CTA
-- WhatsApp prefill: "I've finalized or am close to finalizing a property and need help with the move and setup"
-- SEO keywords embedded: move-in services Dubai, relocation support Dubai, after property purchase support Dubai, tenant setup Dubai, Ejari and moving Dubai
-- Static only — no backend required
-
-### Updated: `/broker-partner`
-- Reframed from "Get leads / earn commission" → "Deliver a complete client experience without operational burden"
-- Hero headline: "Deliver a Complete Client Experience."
-- Subtext: "DeliWer does not participate in property transactions — we enhance what happens after."
-- Step 3 updated: "Your Client Is Fully Settled" (vs. "You Earn Every Time")
-- Final CTA: "Partner With DeliWer" (vs. "Start Earning Today")
-- Earnings/referral link generator and scripts are preserved unchanged
-
-## Social Handle Discovery & Community Outreach Agent (Added April 2026)
-
-### Overview
-An AI-powered social discovery agent at `/marketing/social` that scans the 35,000+ RERA broker Master DB to discover LinkedIn, Instagram, Twitter/X, Facebook, and Google My Business handles — then generates hyper-personalized outreach messages for each channel.
-
-### Schema Changes
-Added to `broker_master` table:
-- `linkedin_url`, `instagram_handle`, `twitter_handle`, `facebook_url`, `gmb_url` — discovered social handles
-- `social_discovery_status` — `pending | discovering | found | not_found`
-- `social_discovered_at` — timestamp of last discovery
-- `social_notes` — AI notes on broker's social presence
-
-### Services
-- `server/services/social-discovery-service.ts` — AI agent (GPT-4o-mini) that infers social handles from broker name, company, email domain, and RERA license. Batch-processes up to 500 brokers per run. Falls back to heuristic patterns when OpenAI is unavailable.
-- `server/services/community-outreach-service.ts` — 10 pre-mapped Dubai RE communities (WhatsApp, LinkedIn, Facebook, Telegram, Bayut, Dubizzle). Generates AI personalized outreach messages per platform. Includes broker direct-message generator for LinkedIn/Instagram/WhatsApp/Email.
-
-### API Routes
-- `GET /api/marketing/social-discovery/stats` — discovery progress + status breakdown
-- `POST /api/marketing/social-discovery/run` — trigger batch discovery (with `limit` param)
-- `PATCH /api/marketing/broker-master/:id/social` — manual social update for a broker
-- `GET /api/marketing/broker-master/:id/social` — fetch social data for a broker
-- `POST /api/marketing/broker-master/:id/direct-message` — generate personalized DM for a broker
-- `GET /api/marketing/communities` — list Dubai RE communities
-- `POST /api/marketing/communities/:id/message` — generate outreach message for a community
-- `GET /api/marketing/broker-social-list` — paginated broker list with social fields
-
-### Frontend (`/marketing/social`) — 4 Tabs
-1. **Discovery Agent** — Run AI batch scan with configurable batch size (25–500). Real-time progress. Status breakdown: pending/discovering/found/not_found.
-2. **Social Handles** — Filterable table of brokers with social data. Expandable rows show AI DM generator for each platform. WhatsApp deep links for instant outreach.
-3. **Communities** — 10 Dubai RE communities with engagement tips. AI message generator per community. Copy-to-clipboard + WhatsApp share.
-4. **GMB & Outreach** — Google My Business search + 8 top Dubai brokerages quick-launch. 4-step outreach playbook per channel (GMB, LinkedIn, Instagram, WhatsApp).
-
-### Access
-- From `/marketing/recruit` → "🤖 Social Agent" button in nav
-- Direct: `/marketing/social`
-- Requires `OPENAI_API_KEY` for AI inference (falls back to heuristic patterns without it)
-
-## Maintenance Notes
+## User Preferences
+- User dismissed the Replit OAuth connector — do NOT attempt again without user confirmation. If needed in future, ask user to provide `STRIPE_SECRET_KEY` directly as a secret instead.
+- Do not make changes to the folder `/marketing/legacy`.
+- Do not make changes to the files `affiliate-management.tsx` and `MarketingDashboard.tsx`.
 - Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.
-- Navigation component is `fixed top-0 z-[100]`. Pages need appropriate top padding (`pt-48` or `pt-32`).
 - No AQARI or Injaz references; use "authorized RERA Appointed Trustee Centers" only.
+
+## System Architecture
+
+**UI/UX Design:**
+- **Theme:** Dark-centric with `emerald-500` as the primary brand color.
+- **Typography:** Heavy emphasis on uppercase, bold text.
+- **Visual Style:** "Dubai Living" aesthetic.
+- **Navigation:** Fixed top navigation with a trust strip immediately below. Pages require appropriate top padding (`pt-48` or `pt-32`) to accommodate.
+- **Conversion Funnel:** WhatsApp-first approach, with all CTAs linking to `wa.me/971523946311`.
+
+**Technical Implementations & Features:**
+
+1.  **Marketing Command Center (`/marketing`):**
+    *   Static site for marketing, lead capture, and partner management.
+    *   Uses `localStorage` and URL parameters for tracking.
+    *   Integrates with Google Sheets (via Apps Script webhook) for lead storage; includes demo data fallback.
+    *   Features a partner dashboard, leaderboard, partner onboarding, and founder command center.
+
+2.  **Affiliate & Partner System:**
+    *   **Database Schema:** `affiliates` and `affiliateLeads` tables.
+    *   **Backend Routes:** API endpoints for tracking and dashboard access.
+    *   **Frontend Pages:** Unified career funnel (`/partners`), attribution explanation (`/partner-program`), broker-focused pages (`/brokers`), and various partner resources/dashboards.
+    *   **Referral Tracking:** `?ref=code` captured globally and stored locally, attached to WhatsApp messages.
+    *   **Kangen/Enagic Alliance:** Dedicated support and commission structure.
+
+3.  **Relocation Intelligence Platform:**
+    *   A suite of static, JavaScript-powered tools and guides for relocation decisions.
+    *   Includes calculators (move vs. renew, rent increase), rent comparison tools, moving trends, and personalized move scoring.
+    *   All pages are static, WhatsApp-first, and referral-aware.
+
+4.  **Broker Recruitment Automation Engine:**
+    *   **Purpose:** Autonomous, cron-based system for recruiting UAE brokers.
+    *   **Architecture:** `broker_master` table (tracking broker lifecycle) and `broker_automation_log` table (logging automation runs).
+    *   **Services:** Broker fetching from Dubai Land Dept (RERA) API, automated email follow-up sequences, and an orchestrator service.
+    *   **Cron Schedule:** Daily RERA fetch and new broker emails; 6-hourly follow-ups.
+    *   **API Routes:** Endpoints for status, manual triggers, broker list management, and logging.
+    *   **Frontend (`/marketing/recruit`):** Panels for automation status, manual triggers, broker database view, and legacy campaign seeding.
+    *   **Email Campaigns:** Anti-spam measures (delays, daily limits, deduplication). Requires `SENDGRID_API_KEY`.
+
+5.  **Capella Properties Collaboration & Transaction Support Layer:**
+    *   **Positioning:** DeliWer acts as a neutral transaction support layer.
+    *   **New Page (`/transaction-support`):** Explains DeliWer's role in the post-agreement phase, featuring a soft mention of Capella Properties (without direct integration or lead passing).
+    *   **Updated (`/broker-partner`):** Reframed messaging to emphasize client experience enhancement rather than lead generation for brokers.
+
+6.  **Social Handle Discovery & Community Outreach Agent:**
+    *   **Purpose:** AI-powered social discovery and personalized outreach for brokers.
+    *   **Schema Changes:** `broker_master` table extended with social handle fields and discovery status.
+    *   **Services:** AI agent (`GPT-4o-mini`) for inferring social handles from broker data; a community outreach service for generating personalized messages for various platforms and direct messages.
+    *   **API Routes:** Endpoints for discovery status, triggering discovery, updating broker social data, generating direct messages, and community message generation.
+    *   **Frontend (`/marketing/social`):** Four tabs for managing the discovery agent, viewing social handles, engaging with communities, and GMB/outreach playbooks.
+    *   **Requirements:** Requires `OPENAI_API_KEY` for AI inference.
+
+**Core Technology Stack:**
+- **Frontend:** React (Vite), Tailwind CSS, Framer Motion, Lucide Icons, Shadcn UI components.
+- **Routing:** `wouter` for client-side routing.
+- **Backend:** Express (Node.js), serving on port 5000.
+
+## External Dependencies
+
+-   **Stripe:** Payment gateway (API integration details need user confirmation for direct secret key).
+-   **PayPal:** Payment gateway (SDK integration has credential issues; direct email link `formatix@deliwer.com` is a fallback).
+-   **Google Sheets:** Used via Apps Script webhooks for lead storage in the Marketing Command Center.
+-   **SendGrid:** Email API for broker recruitment automation (requires `SENDGRID_API_KEY`).
+-   **OpenAI:** AI services (GPT-4o-mini) for social handle discovery and personalized outreach (requires `OPENAI_API_KEY`).
+-   **Dubai Land Department (RERA) API:** Source for broker list data in the recruitment engine.
