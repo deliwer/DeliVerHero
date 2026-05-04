@@ -115,4 +115,22 @@ router.get("/referrers/:refId/qr", async (req, res) => {
   }
 });
 
+// ── Seed sample referrer on startup ──────────────────────────────────────────
+async function seedSampleReferrer() {
+  try {
+    const existing = await db.select().from(tenantReferrers).limit(1);
+    if (existing.length === 0) {
+      await db.insert(tenantReferrers).values({
+        name: "DeliWer Demo (Building Guard)",
+        whatsapp: "+971523946311",
+        refId: "DEMO01",
+      });
+      console.log("[tenant-capture] Sample referrer seeded: DEMO01");
+    }
+  } catch (err) {
+    console.warn("[tenant-capture] Could not seed sample referrer:", err);
+  }
+}
+seedSampleReferrer();
+
 export default router;

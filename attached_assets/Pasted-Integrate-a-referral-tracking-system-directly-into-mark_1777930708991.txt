@@ -1,0 +1,207 @@
+Integrate a referral tracking system directly into:
+
+/marketing
+
+Use Google Sheets as the ONLY database (no SQLite or local DB).
+
+Google account:
+admin@deliwer.com
+
+----------------------------------------
+TECH STACK
+----------------------------------------
+- Node.js + Express backend
+- Google Sheets API (via service account or OAuth)
+- Frontend: existing UI (Tailwind if available)
+- Use fetch/AJAX (no heavy frameworks)
+
+----------------------------------------
+GOAL
+----------------------------------------
+Turn /marketing into a live referral + lead tracking engine powered by Google Sheets.
+
+----------------------------------------
+GOOGLE SHEET STRUCTURE
+----------------------------------------
+
+Spreadsheet Name:
+DeliWer_Referral_System
+
+Sheet 1: REFERRERS
+Columns:
+A: id
+B: name
+C: phone
+D: role
+E: referral_code
+F: created_at
+
+Sheet 2: LEADS
+Columns:
+A: id
+B: ref_code
+C: client_name
+D: phone
+E: location
+F: type
+G: notes
+H: status
+I: commission_amount
+J: payout_status
+K: created_at
+
+----------------------------------------
+FEATURES
+----------------------------------------
+
+1) REFERRAL JOIN (TOP OF /marketing)
+
+Form:
+- Name
+- Phone
+- Role dropdown
+
+On submit:
+- Generate unique code: DLW-XXXX
+- Append row in REFERRERS sheet
+- Return:
+
+"Your Code: DLW-XXXX"
+
+Generate WhatsApp link:
+https://wa.me/971523946311?text=Hi%20I%20am%20interested%20in%20water%20solution%20Code%3A%20DLW-XXXX
+
+Buttons:
+[Copy Link]
+[Share on WhatsApp]
+
+----------------------------------------
+
+2) LEAD SUBMISSION FORM
+
+Fields:
+- Referral Code (required)
+- Client Name
+- Phone
+- Location
+- Type (Apartment / Villa / Building / Project)
+- Notes
+
+On submit:
+- Validate referral code exists in REFERRERS sheet
+- Append to LEADS sheet
+- Default:
+  status = "new"
+  commission_amount = 0
+  payout_status = "pending"
+
+----------------------------------------
+
+3) STATUS + COMMISSION LOGIC
+
+When updating (admin only):
+
+Rules:
+- status = "contacted" → commission_amount = 100
+- status = "closed" → commission_amount = 500
+
+Update row in Google Sheet
+
+----------------------------------------
+
+4) ADMIN MODE (HIDDEN)
+
+Route:
+/marketing?admin=true
+
+Login:
+Simple password check using ENV:
+ADMIN_PASSWORD
+
+Features:
+- Fetch all LEADS from sheet
+- Display table:
+  ref_code | client | status | commission | payout
+
+- Editable dropdown for status
+- Update writes back to Google Sheets
+
+Summary:
+- Total Leads
+- Closed Deals
+- Total Commission
+
+----------------------------------------
+
+5) GOOGLE SHEETS API SETUP
+
+Use:
+googleapis npm package
+
+Steps:
+- Authenticate via service account JSON
+- Share the sheet with service account email
+- Use Sheets API v4
+
+Functions to implement:
+
+appendReferrer(data)
+appendLead(data)
+getReferrers()
+getLeads()
+updateLeadStatus(id, status)
+
+----------------------------------------
+
+6) REFERRAL CODE GENERATION
+
+- Format: DLW-1000 → DLW-9999
+- Ensure uniqueness by checking sheet
+
+----------------------------------------
+
+7) UI REQUIREMENTS
+
+- Mobile-first (WhatsApp users)
+- Clean cards
+- Big buttons:
+  Copy / Share
+- Toasts:
+  "Code generated"
+  "Lead submitted"
+
+----------------------------------------
+
+8) SECURITY
+
+- Validate referral code before accepting lead
+- Sanitize inputs
+- Do not expose Google credentials in frontend
+
+----------------------------------------
+
+9) SEED DATA
+
+If sheet is empty:
+- Add 2 sample referrers
+- Add 3 leads
+
+----------------------------------------
+
+FINAL RESULT
+
+/marketing becomes:
+
+[ Join & Get Code ]
+→ stored in Google Sheets
+
+[ Submit Lead ]
+→ tracked in Google Sheets
+
+[ Admin Panel ]
+→ live sheet dashboard
+
+----------------------------------------
+
+PROJECT NAME:
+"DeliWer Marketing – Google Sheets Referral Engine"
