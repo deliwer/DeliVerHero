@@ -9,6 +9,7 @@ const TABS = [
   { href: "/marketing/recruit", label: "Recruit" },
   { href: "/marketing/social", label: "Social" },
   { href: "/marketing/control", label: "Control" },
+  { href: "/marketing/tenant-leads", label: "Tenant Leads", highlight: true as const },
   { href: "/marketing/founder-dashboard", label: "Command" },
   { href: "/marketing/attribution", label: "Attribution", accent: true as const },
 ];
@@ -38,10 +39,11 @@ export function MarketingSubNav() {
           {TABS.map((t) => {
             const active = location === t.href || (t.href !== "/marketing" && location.startsWith(t.href));
             const isAccent = (t as any).accent;
+            const isHighlight = (t as any).highlight;
             return (
               <Link key={t.href} href={t.href}>
                 <span
-                  data-testid={`marketing-subnav-${t.label.toLowerCase()}`}
+                  data-testid={`marketing-subnav-${t.label.toLowerCase().replace(/ /g, "-")}`}
                   className={`px-3.5 h-10 inline-flex items-center text-[11px] font-black uppercase tracking-widest rounded-xl whitespace-nowrap cursor-pointer transition-all border ${
                     active
                       ? isAccent
@@ -49,6 +51,8 @@ export function MarketingSubNav() {
                         : "bg-emerald-500/20 text-emerald-200 border-emerald-500/50 shadow shadow-emerald-500/20"
                       : isAccent
                       ? "text-rose-300 border-rose-500/30 hover:bg-rose-500/15"
+                      : isHighlight
+                      ? "text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/10"
                       : "text-gray-300 border-slate-700 hover:bg-white/5 hover:text-white"
                   }`}
                 >
