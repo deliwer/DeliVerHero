@@ -61,6 +61,7 @@ import fulfillmentRoutes from "./routes/fulfillment";
 import membershipRoutes from "./routes/memberships";
 import relocateRoutes from "./routes/relocate";
 import tenantCaptureRoutes from "./routes/tenant-capture";
+import marketingReferralRoutes from "./routes/marketing-referral";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 import { processPurchase, aedToFils } from "./payment-processing";
 import { sendWhatsApp } from "./utils/sendWhatsApp";
@@ -369,6 +370,7 @@ Source: Website Concierge Page
   // Register relocate membership routes
   app.use("/api/relocate", relocateRoutes);
   app.use("/api/tenant-capture", tenantCaptureRoutes);
+  app.use("/api/marketing-referral", marketingReferralRoutes);
 
   // PayPal payment endpoints - referenced from PayPal integration blueprint
   app.get("/api/paypal/setup", async (req, res) => {

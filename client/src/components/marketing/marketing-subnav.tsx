@@ -10,6 +10,7 @@ const TABS = [
   { href: "/marketing/social", label: "Social" },
   { href: "/marketing/control", label: "Control" },
   { href: "/marketing/tenant-leads", label: "Tenant Leads", highlight: true as const },
+  { href: "/marketing/referral-engine", label: "Referral Engine", highlight: true as const },
   { href: "/marketing/founder-dashboard", label: "Command" },
   { href: "/marketing/attribution", label: "Attribution", accent: true as const },
 ];

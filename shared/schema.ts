@@ -1801,3 +1801,36 @@ export const tenantLeads = pgTable("tenant_leads", {
 export const insertTenantLeadSchema = createInsertSchema(tenantLeads).omit({ id: true, createdAt: true, score: true });
 export type TenantLead = typeof tenantLeads.$inferSelect;
 export type InsertTenantLead = z.infer<typeof insertTenantLeadSchema>;
+
+// ── Marketing Referral Engine ──────────────────────────────────────────────────
+
+export const marketingReferrers = pgTable("marketing_referrers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  phone: text("phone").notNull(),
+  role: text("role").notNull().default("agent"),
+  refCode: text("ref_code").notNull().unique(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertMarketingReferrerSchema = createInsertSchema(marketingReferrers).omit({ id: true, createdAt: true });
+export type MarketingReferrer = typeof marketingReferrers.$inferSelect;
+export type InsertMarketingReferrer = z.infer<typeof insertMarketingReferrerSchema>;
+
+export const marketingLeads = pgTable("marketing_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  refCode: text("ref_code").notNull(),
+  clientName: text("client_name").notNull(),
+  phone: text("phone").notNull(),
+  location: text("location"),
+  type: text("type"),
+  notes: text("notes"),
+  status: text("status").notNull().default("new"),
+  commissionAmount: integer("commission_amount").notNull().default(0),
+  payoutStatus: text("payout_status").notNull().default("pending"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertMarketingLeadSchema = createInsertSchema(marketingLeads).omit({ id: true, createdAt: true });
+export type MarketingLead = typeof marketingLeads.$inferSelect;
+export type InsertMarketingLead = z.infer<typeof insertMarketingLeadSchema>;
