@@ -1767,3 +1767,37 @@ export const tipsSendLog = pgTable("tips_send_log", {
   type: text("type").notNull().default("daily_tips"),
   subject: text("subject").notNull().default(""),
 });
+
+// ── Tenant Capture System ─────────────────────────────────────────────────────
+
+export const tenantReferrers = pgTable("tenant_referrers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  whatsapp: text("whatsapp").notNull(),
+  refId: text("ref_id").notNull().unique(),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertTenantReferrerSchema = createInsertSchema(tenantReferrers).omit({ id: true, createdAt: true });
+export type TenantReferrer = typeof tenantReferrers.$inferSelect;
+export type InsertTenantReferrer = z.infer<typeof insertTenantReferrerSchema>;
+
+export const tenantLeads = pgTable("tenant_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  phone: text("phone").notNull(),
+  intent: text("intent").notNull(),
+  servicesNeeded: text("services_needed").array().notNull().default(sql`'{}'::text[]`),
+  propertyType: text("property_type"),
+  location: text("location"),
+  budget: text("budget"),
+  timeline: text("timeline"),
+  referrerId: text("referrer_id"),
+  status: text("status").notNull().default("new"),
+  score: integer("score").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertTenantLeadSchema = createInsertSchema(tenantLeads).omit({ id: true, createdAt: true, score: true });
+export type TenantLead = typeof tenantLeads.$inferSelect;
+export type InsertTenantLead = z.infer<typeof insertTenantLeadSchema>;
