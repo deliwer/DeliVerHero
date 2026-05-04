@@ -1,0 +1,184 @@
+Build a production-ready web app called “DeliWer Tenant Capture System”.
+
+STACK:
+- Frontend: React (Vite)
+- Backend: Node.js (Express)
+- Database: SQLite (simple, upgradeable later)
+- Deployment: Replit-ready (single repo)
+
+CORE PURPOSE:
+Capture tenant leads via QR/referral links, route them via WhatsApp, and store structured data for brokers + services.
+
+-------------------------------------
+
+FEATURE 1: REFERRER-BASED ENTRY SYSTEM
+
+Each distributor (guard, broker, tenant) gets:
+- Unique referral ID (e.g. ?ref=DXB123)
+- Optional custom WhatsApp number
+- Optional custom QR code
+
+When a user lands:
+- System detects ?ref=
+- Stores it with the lead
+
+-------------------------------------
+
+FEATURE 2: TENANT CAPTURE FLOW (MOBILE FIRST)
+
+Build a clean mobile UI with 4-step flow:
+
+STEP 1:
+“Set up your new home in 30 seconds”
+Buttons:
+- I just moved in
+- I’m upgrading my home
+- I’m looking to move
+
+STEP 2:
+Collect:
+- Name
+- WhatsApp number (required)
+
+STEP 3:
+Collect:
+- Property type (Apartment / Villa / Office)
+- Location (dropdown or text)
+- Budget range
+- Timeline (Immediate / 1 month / browsing)
+
+STEP 4:
+“What do you need?”
+Multi-select:
+- Water / filtration
+- AC / maintenance
+- Cleaning
+- Appliances
+- Looking for property (rent/buy)
+
+-------------------------------------
+
+FEATURE 3: WHATSAPP REDIRECT ENGINE (CRITICAL)
+
+After submission:
+
+IF referrer has WhatsApp:
+→ Redirect user to:
+https://wa.me/<referrer_number>?text=PRE-FILLED MESSAGE
+
+ELSE:
+→ Default to DeliWer WhatsApp:
+https://wa.me/971523946311
+
+MESSAGE FORMAT:
+“Hi, I just submitted my home setup request:
+
+Name: {name}
+Location: {location}
+Need: {services}
+Timeline: {timeline}
+
+Please assist.”
+
+-------------------------------------
+
+FEATURE 4: LEAD STORAGE
+
+Store all leads in database:
+
+Fields:
+- id
+- name
+- phone
+- intent (move-in / upgrade / moving)
+- services_needed (array)
+- property_type
+- location
+- budget
+- timeline
+- referrer_id
+- timestamp
+
+-------------------------------------
+
+FEATURE 5: SIMPLE ADMIN DASHBOARD
+
+Route: /admin
+
+Features:
+- View all leads
+- Filter by:
+  - referrer
+  - intent
+  - service
+- Export CSV
+- Mark lead as:
+  - new
+  - contacted
+  - converted
+
+-------------------------------------
+
+FEATURE 6: REFERRER MANAGEMENT
+
+Simple interface:
+
+Add referrer:
+- Name
+- WhatsApp number
+- Referral ID
+
+Generate:
+- Unique referral link
+- QR code (using library)
+
+Example:
+deliwer.replit.app/?ref=DXB123
+
+-------------------------------------
+
+FEATURE 7: VIRAL LOOP DESIGN
+
+Add section on homepage:
+
+“Earn by referring”
+Button:
+→ Generates personal referral link (basic version)
+
+-------------------------------------
+
+UI REQUIREMENTS:
+- Clean, modern, mobile-first
+- WhatsApp-style UX
+- Big buttons, minimal typing
+- Fast loading
+
+-------------------------------------
+
+BONUS FEATURES (if possible):
+
+1. Auto WhatsApp fallback:
+If user abandons form → show “Continue on WhatsApp”
+
+2. Lead scoring:
+High intent if:
+- Immediate timeline
+- “Looking for property” selected
+
+3. Multi-language toggle:
+English / Arabic
+
+-------------------------------------
+
+OUTPUT:
+- Fully working app
+- Clear file structure
+- Instructions to run
+- Sample referrer pre-loaded
+
+-------------------------------------
+
+IMPORTANT:
+- Optimize for viral sharing via WhatsApp
+- Keep flow frictionless
+- Assume users are non-technical (guards, tenants)

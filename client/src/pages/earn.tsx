@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import {
   Droplets, Leaf, Phone, Gift,
@@ -104,6 +104,8 @@ function scrollToEarnSection(id: string) {
 
 export default function Earn() {
   const [navHeight, setNavHeight] = useState(104);
+  const [subnavHeight, setSubnavHeight] = useState(53);
+  const subnavRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const nav = document.getElementById("main-nav");
@@ -115,15 +117,26 @@ export default function Earn() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const el = subnavRef.current;
+    if (!el) return;
+    const update = () => setSubnavHeight(el.offsetHeight);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950"
     >
 
-      {/* ── UNIFIED TOP SUB-NAV (sits directly under the global top bars, hero remains visible) ── */}
+      {/* ── UNIFIED TOP SUB-NAV — fixed directly under the global nav bars ── */}
       <nav
+        ref={subnavRef}
         data-testid="earn-top-subnav"
-        className="sticky z-40 w-full bg-slate-950/95 backdrop-blur border-y border-white/10 shadow-lg"
+        className="fixed z-50 w-full bg-slate-950/95 backdrop-blur border-y border-white/10 shadow-lg"
         style={{ top: navHeight }}
       >
         <div className="max-w-5xl mx-auto px-3 sm:px-4 flex items-center gap-1 overflow-x-auto no-scrollbar py-2">
@@ -146,6 +159,9 @@ export default function Earn() {
           })}
         </div>
       </nav>
+
+      {/* Spacer to push content below the fixed subnav */}
+      <div style={{ height: subnavHeight }} />
 
       {/* ── HERO ── */}
       <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
