@@ -170,7 +170,7 @@ export default function ErrandPage() {
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">First Errand Special</p>
-                      <p className="text-2xl font-bold text-orange-500">AED 29</p>
+                      <p className="text-2xl font-bold text-orange-500">AED 49</p>
                       <p className="text-sm text-muted-foreground">Was AED 49</p>
                     </div>
                     <Badge variant="secondary" className="bg-orange-500/20 text-orange-400">
