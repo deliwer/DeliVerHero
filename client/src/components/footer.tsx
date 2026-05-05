@@ -72,7 +72,7 @@ export function Footer() {
   ];
 
   const b2bLinks = [
-    { label: "Broker Partner Program", url: "/broker-partner" },
+    { label: "Broker Partner Program", url: "/brokers" },
     { label: "ChainTrack B2B", url: "/chaintrack" },
     { label: "Corporate Trade-in", url: "/corporate" },
     { label: "Ambassadors", url: "/partners" },

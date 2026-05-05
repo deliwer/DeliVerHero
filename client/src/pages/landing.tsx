@@ -845,7 +845,7 @@ export default function LandingPage() {
               Deliver a complete client experience — without the operational burden. Earn on every referral.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/broker-partner" data-testid="cta-broker-partner">
+              <Link href="/brokers" data-testid="cta-broker-partner">
                 <Button className="bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest rounded-2xl h-14 px-10 text-sm shadow-xl shadow-purple-900/30 transition-all">
                   <ArrowRight className="w-5 h-5 mr-2" /> Generate My Referral Link
                 </Button>

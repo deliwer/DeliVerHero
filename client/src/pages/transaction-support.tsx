@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/navigation";
 import { DistressBrokerTrack } from "@/components/marketing/distress-broker-track";
+import { BrokerCTABanner } from "@/components/broker-cta-banner";
 import { Link } from "wouter";
 import {
   CheckCircle2, MessageCircle, ArrowRight, Users, Building2,
@@ -385,6 +386,13 @@ export default function TransactionSupportPage() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── BROKER CTA STRIP ──────────────────────────────── */}
+      <section className="py-10 px-4 bg-slate-950 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <BrokerCTABanner context="RERA Broker? Refer your clients after agreement — earn AED 300–800 per move-in, free to join." />
         </div>
       </section>
 
