@@ -242,7 +242,20 @@ export default function EjariDubai() {
 
       {/* ───── HERO SECTION ───── */}
       <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/10 to-transparent pointer-events-none" />
+        {/* Background video */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src={ejariVideoSrc} type="video/mp4" />
+        </video>
+        {/* Overlay to keep text legible */}
+        <div className="absolute inset-0 bg-slate-950/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-transparent to-slate-950 pointer-events-none" />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -341,38 +354,6 @@ export default function EjariDubai() {
               </div>
             </div>
 
-            {/* Video Section */}
-            <div className="mb-6 max-w-2xl mx-auto w-full">
-              <div className="rounded-3xl overflow-hidden border border-white/10 bg-slate-900 shadow-2xl">
-                <div className="aspect-video relative cursor-pointer">
-                  <video
-                    id="ejari-video"
-                    className="w-full h-full object-cover"
-                    controls
-                    playsInline
-                    muted={false}
-                    autoPlay={false}
-                    preload="metadata"
-                    poster="/deliwer-logo.png"
-                    onClick={(e) => {
-                      const video = e.currentTarget;
-                      if (video.paused) { video.play(); } else { video.pause(); }
-                    }}
-                  >
-                    <source
-                      src={ejariVideoSrc}
-                      type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-                <div className="p-4 bg-slate-900/50 backdrop-blur-sm border-t border-white/5 text-left">
-                  <p className="text-sm text-gray-400 font-medium">
-                    Watch: How DeliWer coordinates your Ejari registration from home.
-                  </p>
-                </div>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
