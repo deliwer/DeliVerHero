@@ -46,34 +46,39 @@ export function PaymentCTA({
 
   if (variant === "footer") {
     return (
-      <div className="mt-8 p-5 bg-[#003087]/20 border border-[#0070BA]/30 rounded-xl" data-testid="payment-cta-footer">
-        <div className="flex items-center gap-2 mb-3">
-          <SiPaypal className="w-5 h-5 text-[#00B2FF]" />
-          <span className="text-sm font-black text-white uppercase tracking-widest">Pay for Services</span>
+      <div
+        className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 p-5 bg-[#003087]/20 border border-[#0070BA]/30 rounded-xl"
+        data-testid="payment-cta-footer"
+      >
+        <div className="flex items-start gap-3 flex-1 min-w-0">
+          <SiPaypal className="w-5 h-5 text-[#00B2FF] shrink-0 mt-0.5" />
+          <div className="min-w-0">
+            <p className="text-sm font-black text-white uppercase tracking-widest mb-0.5">Pay for Services</p>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              Agreed services on WhatsApp? Send payment to <span className="text-[#00B2FF] font-semibold">{PAYPAL_EMAIL}</span> via PayPal, or request bank transfer details.
+            </p>
+          </div>
         </div>
-        <p className="text-xs text-gray-400 mb-4 leading-relaxed">
-          Agreed services on WhatsApp? Send payment directly to <span className="text-[#00B2FF] font-semibold">{PAYPAL_EMAIL}</span> via PayPal, or ask us for bank transfer details.
-        </p>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-row sm:flex-col lg:flex-row gap-2 shrink-0 w-full sm:w-auto">
           <a
             href={PAYPAL_LINK}
             target="_blank"
             rel="noopener noreferrer"
             data-testid="button-paypal-footer"
-            className="inline-flex items-center justify-center gap-2 bg-[#0070BA] hover:bg-[#005ea6] text-white px-4 py-2.5 rounded-lg font-bold text-xs transition-colors w-full"
+            className="inline-flex items-center justify-center gap-2 bg-[#0070BA] hover:bg-[#005ea6] text-white px-4 py-2.5 rounded-lg font-bold text-xs transition-colors flex-1 sm:flex-none whitespace-nowrap"
           >
             <SiPaypal className="w-3.5 h-3.5" />
-            Pay via PayPal — formatix@deliwer.com
+            Pay via PayPal
           </a>
           <a
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
             data-testid="button-bank-transfer-footer"
-            className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-gray-400 hover:text-white px-4 py-2 rounded-lg font-bold text-xs transition-colors w-full"
+            className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-gray-400 hover:text-white px-4 py-2.5 rounded-lg font-bold text-xs transition-colors flex-1 sm:flex-none whitespace-nowrap"
           >
             <Building2 className="w-3.5 h-3.5" />
-            Request Bank Transfer (remote orders)
+            Bank Transfer
           </a>
         </div>
       </div>

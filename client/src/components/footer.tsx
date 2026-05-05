@@ -302,9 +302,12 @@ export function Footer() {
             </h3>
             <EmailSubscriptionForm variant="footer" />
 
-            {/* PayPal Payment CTA */}
-            <PaymentCTA variant="footer" />
           </div>
+        </div>
+
+        {/* ── Full-width Payment CTA ── */}
+        <div className="mt-6 pt-6 border-t border-white/5">
+          <PaymentCTA variant="footer" />
         </div>
       </div>
       {/* ── Bottom Bar ── */}

@@ -271,12 +271,12 @@ export default function BrokerPartnerPage() {
       <PartnerSubNav />
 
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="relative pt-24 md:pt-28 pb-16 px-4 overflow-hidden">
+      <section className="relative min-h-[580px] md:min-h-[640px] flex items-center pt-24 md:pt-28 pb-16 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1800&h=900&fit=crop&q=80" alt="Dubai real estate" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/97 via-purple-950/80 to-slate-950/96" />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/85 via-purple-950/60 to-slate-950/85" />
         </div>
-        <div className="max-w-2xl mx-auto text-center relative z-10 space-y-6">
+        <div className="max-w-2xl mx-auto text-center relative z-10 space-y-6 bg-slate-950/55 backdrop-blur-sm rounded-3xl px-8 py-10 border border-white/5 shadow-2xl shadow-black/50">
           <Badge className="bg-purple-500/15 text-purple-300 border-purple-500/30 px-4 py-2 text-xs font-black uppercase tracking-widest rounded-full">
             DeliWer Broker Program
           </Badge>
