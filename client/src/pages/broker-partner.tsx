@@ -375,7 +375,7 @@ export default function BrokerPartnerPage() {
                 <MapPin className="w-4 h-4 text-purple-400" />
               </div>
               <Select value={selectedArea} onValueChange={(v) => { setSelectedArea(v); setShowCalc(true); }}>
-                <SelectTrigger className="bg-slate-800 border-slate-700 text-white h-11 flex-1" data-testid="select-area">
+                <SelectTrigger className="bg-slate-800 border-slate-700 h-11 flex-1 text-[#ffffff]" data-testid="select-area">
                   <SelectValue placeholder="Where do you operate?" />
                 </SelectTrigger>
                 <SelectContent className="bg-slate-900 border-white/10 text-white">
