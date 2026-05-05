@@ -1834,3 +1834,120 @@ export const marketingLeads = pgTable("marketing_leads", {
 export const insertMarketingLeadSchema = createInsertSchema(marketingLeads).omit({ id: true, createdAt: true });
 export type MarketingLead = typeof marketingLeads.$inferSelect;
 export type InsertMarketingLead = z.infer<typeof insertMarketingLeadSchema>;
+
+// ── Al Habtoor Polo Inventory (unit numbers stored server-side only, never exposed) ───────────
+export const habtoorInventory = pgTable("habtoor_inventory", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  serialNo: integer("serial_no").notNull(),
+  // HPV unit number is NEVER returned in any API response
+  hpvUnit: integer("hpv_unit").notNull(),
+  unitType: text("unit_type").notNull(), // 4BR | 5BR | 6BR
+  salePrice: integer("sale_price").notNull(),
+  buaSqft: integer("bua_sqft").notNull(),
+  areaSqft: real("area_sqft").notNull(),
+  structureType: text("structure_type").notNull(), // Semi Detached | Villa
+  status: text("status").notNull(), // Vacant | Rented | Hotel
+  views: text("views").notNull(), // Community | Polo Field 1 | Polo Field 2 | Polo Field 3 | Stick & Ball Field | Stable View
+  isActive: boolean("is_active").notNull().default(true),
+  claimsCount: integer("claims_count").notNull().default(0),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+export type HabtoorInventory = typeof habtoorInventory.$inferSelect;
+
+// ── Broker NDA / NCA Acceptance ───────────────────────────────────────────────────────────────
+export const brokerNdaAcceptance = pgTable("broker_nda_acceptance", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  brokerPhone: text("broker_phone").notNull(),
+  brokerName: text("broker_name").notNull(),
+  brokerEmail: text("broker_email"),
+  reraLicense: text("rera_license"),
+  brokerage: text("brokerage"),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  acceptedAt: timestamp("accepted_at").notNull().default(sql`now()`),
+});
+export const insertBrokerNdaSchema = createInsertSchema(brokerNdaAcceptance).omit({ id: true, acceptedAt: true });
+export type BrokerNdaAcceptance = typeof brokerNdaAcceptance.$inferSelect;
+export type InsertBrokerNda = z.infer<typeof insertBrokerNdaSchema>;
+
+// ── Property Lead Claims ───────────────────────────────────────────────────────────────────────
+export const propertyLeadClaims = pgTable("property_lead_claims", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  propertyId: varchar("property_id").notNull().references(() => habtoorInventory.id),
+  brokerPhone: text("broker_phone").notNull(),
+  brokerName: text("broker_name").notNull(),
+  brokerEmail: text("broker_email"),
+  reraLicense: text("rera_license"),
+  brokerage: text("brokerage"),
+  clientName: text("client_name"),
+  clientPhone: text("client_phone"),
+  clientNationality: text("client_nationality"),
+  clientBudget: text("client_budget"),
+  claimNotes: text("claim_notes"),
+  status: text("status").notNull().default("active"), // active | closed | expired | disputed | blacklisted
+  whatsappSent: boolean("whatsapp_sent").notNull().default(false),
+  deliwerRefCode: text("deliwer_ref_code").notNull(), // audit trail code
+  ipAddress: text("ip_address"),
+  claimedAt: timestamp("claimed_at").notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at"), // claim expires if no deal in 60 days
+  closedAt: timestamp("closed_at"),
+});
+export const insertPropertyLeadClaimSchema = createInsertSchema(propertyLeadClaims).omit({ id: true, claimedAt: true, closedAt: true });
+export type PropertyLeadClaim = typeof propertyLeadClaims.$inferSelect;
+export type InsertPropertyLeadClaim = z.infer<typeof insertPropertyLeadClaimSchema>;
+
+// ── Deal Closure Reports ───────────────────────────────────────────────────────────────────────
+export const dealClosureReports = pgTable("deal_closure_reports", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  claimId: varchar("claim_id").notNull().references(() => propertyLeadClaims.id),
+  propertyId: varchar("property_id").notNull().references(() => habtoorInventory.id),
+  brokerPhone: text("broker_phone").notNull(),
+  brokerName: text("broker_name").notNull(),
+  closingPrice: integer("closing_price"),
+  tenantName: text("tenant_name"),
+  tenantPhone: text("tenant_phone"),
+  tenantEmail: text("tenant_email"),
+  tenantNationality: text("tenant_nationality"),
+  reraTransactionNo: text("rera_transaction_no"), // RERA deal registration number
+  closingChannel: text("closing_channel").notNull().default("deliwer"), // deliwer | disputed
+  deliwerCommissionAed: integer("deliwer_commission_aed"),
+  brokerCommissionAed: integer("broker_commission_aed"),
+  notes: text("notes"),
+  verificationStatus: text("verification_status").notNull().default("pending"), // pending | verified | disputed | fraud
+  reportedAt: timestamp("reported_at").notNull().default(sql`now()`),
+});
+export const insertDealClosureSchema = createInsertSchema(dealClosureReports).omit({ id: true, reportedAt: true });
+export type DealClosureReport = typeof dealClosureReports.$inferSelect;
+export type InsertDealClosureReport = z.infer<typeof insertDealClosureSchema>;
+
+// ── Virtual Tour Requests ─────────────────────────────────────────────────────────────────────
+export const virtualTourRequests = pgTable("virtual_tour_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  propertyId: varchar("property_id").notNull().references(() => habtoorInventory.id),
+  brokerPhone: text("broker_phone").notNull(),
+  brokerName: text("broker_name").notNull(),
+  clientName: text("client_name"),
+  clientPhone: text("client_phone"),
+  preferredDate: text("preferred_date"),
+  preferredTime: text("preferred_time"),
+  tourType: text("tour_type").notNull().default("recorded"), // recorded | live
+  status: text("status").notNull().default("pending"), // pending | scheduled | completed | cancelled
+  scheduledAt: timestamp("scheduled_at"),
+  requestedAt: timestamp("requested_at").notNull().default(sql`now()`),
+});
+export const insertVirtualTourRequestSchema = createInsertSchema(virtualTourRequests).omit({ id: true, requestedAt: true, scheduledAt: true });
+export type VirtualTourRequest = typeof virtualTourRequests.$inferSelect;
+export type InsertVirtualTourRequest = z.infer<typeof insertVirtualTourRequestSchema>;
+
+// ── Broker Blacklist ───────────────────────────────────────────────────────────────────────────
+export const brokerBlacklist = pgTable("broker_blacklist", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  brokerPhone: text("broker_phone").notNull().unique(),
+  brokerName: text("broker_name"),
+  brokerEmail: text("broker_email"),
+  reraLicense: text("rera_license"),
+  reason: text("reason").notNull(), // bypass_deliwer | poaching | fraud | nda_breach
+  evidenceNotes: text("evidence_notes"),
+  addedBy: text("added_by").notNull().default("system"),
+  blacklistedAt: timestamp("blacklisted_at").notNull().default(sql`now()`),
+});

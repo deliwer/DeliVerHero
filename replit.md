@@ -19,6 +19,32 @@ DeliWer aims to solve the operational complexities of moving in Dubai, offering 
 - Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.
 - No AQARI or Injaz references; use "authorized RERA Appointed Trustee Centers" only.
 
+## Al Habtoor Polo Lead Claim System (`/brokers` → `#habtoor-polo`)
+
+**Purpose:** NDA-gated exclusive inventory system for 55 villas/semi-detached at Al Habtoor Polo Resort & Club, with full lead claiming, VR tour requests, deal closure reporting, and anti-poaching enforcement.
+
+**Key security rules:**
+- HPV unit numbers are stored in DB but **NEVER** returned in any API response (`maskProperty()` strips `hpvUnit`)
+- All access is gated behind NDA/NCA acceptance (stored in `broker_nda_acceptance`)
+- Blacklisted brokers are denied NDA acceptance and all subsequent actions
+- Every claim gets a `DLW-HPV-{timestamp36}-{random}` audit ref code and expires in 60 days
+- IP address is logged on every NDA and claim submission
+
+**New DB tables:** `habtoor_inventory`, `broker_nda_acceptance`, `property_lead_claims`, `deal_closure_reports`, `virtual_tour_requests`, `broker_blacklist`
+
+**API routes** (`/api/habtoor/`):
+- `GET /inventory` — masked property list (requires NDA accepted on frontend)
+- `POST /nda` — record NDA/NCA acceptance; blocks blacklisted numbers
+- `GET /nda-status?phone=` — check if broker has accepted NDA
+- `POST /claim` — claim a lead on a property (NDA required, generates DLW ref code)
+- `GET /my-claims?phone=` — broker's claim history with enriched property data
+- `POST /deal-report` — report deal closure with tenant details for commission processing
+- `POST /vr-request` — request virtual tour (recorded or live), generates WhatsApp URL
+- `GET /blacklist-check?phone=` — check if a number is blacklisted
+- `POST /blacklist` — admin only, requires header `x-admin-token: deliwer-admin-2026`
+
+**WhatsApp coordination number:** `971523946311`
+
 ## System Architecture
 
 **UI/UX Design:**

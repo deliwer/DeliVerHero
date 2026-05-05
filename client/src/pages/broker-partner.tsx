@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
 import { DistressBrokerTrack } from "@/components/marketing/distress-broker-track";
@@ -16,13 +18,588 @@ import {
   Crown, Sparkles, Award, Layers, BadgeCheck, KeyRound,
   FileSignature, Lock, BarChart2, MousePointer, Wallet,
   ChevronRight, AlertCircle, Activity, MapPin, Calculator,
-  Hash, Target,
+  Hash, Target, Eye, Video, Send, Shield, X, BanIcon,
+  ClipboardCheck, AlertTriangle, Building, Ruler, Camera,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp, logEvent } from "@/lib/referral";
 
 function openWA(msg: string) { openWhatsApp(msg); }
+
+// ── Habtoor Polo NDA-gated Inventory Section ───────────────────────────────
+
+type HabtoorProperty = {
+  id: string; serialNo: number; unitType: string; salePrice: number;
+  buaSqft: number; areaSqft: number; structureType: string;
+  status: string; views: string; claimsCount: number;
+};
+
+function formatMillions(n: number) {
+  return n >= 1_000_000 ? `AED ${(n / 1_000_000).toFixed(1).replace(/\.0$/, "")}M` : `AED ${n.toLocaleString()}`;
+}
+
+function statusBadge(s: string) {
+  if (s === "Vacant")  return "bg-emerald-500/15 text-emerald-400 border-emerald-500/30";
+  if (s === "Rented")  return "bg-amber-500/15 text-amber-400 border-amber-500/30";
+  if (s === "Hotel")   return "bg-sky-500/15 text-sky-400 border-sky-500/30";
+  return "bg-slate-700 text-gray-400 border-white/10";
+}
+
+function HabtoorSection() {
+  const { toast } = useToast();
+  const qc = useQueryClient();
+
+  // ── Identity state (persisted in localStorage for session)
+  const [phone, setPhone] = useState(() => typeof window !== "undefined" ? localStorage.getItem("hpv_phone") || "" : "");
+  const [name,  setName]  = useState(() => typeof window !== "undefined" ? localStorage.getItem("hpv_name")  || "" : "");
+  const [email, setEmail] = useState("");
+  const [rera,  setRera]  = useState("");
+  const [brokerage, setBrokerage] = useState("");
+
+  // ── UI state
+  const [ndaStep, setNdaStep] = useState<"form" | "terms" | "done">("form");
+  const [ndaChecked, setNdaChecked] = useState(false);
+  const [filterType, setFilterType] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [activeModal, setActiveModal] = useState<"claim" | "vr" | "report" | "my-claims" | null>(null);
+  const [selectedProp, setSelectedProp] = useState<HabtoorProperty | null>(null);
+
+  // ── Claim form
+  const [claimClient, setClaimClient] = useState({ name: "", phone: "", nationality: "", budget: "", notes: "" });
+
+  // ── VR form
+  const [vrForm, setVrForm] = useState({ clientName: "", clientPhone: "", preferredDate: "", preferredTime: "", tourType: "recorded" });
+
+  // ── Report form
+  const [reportForm, setReportForm] = useState({ claimId: "", closingPrice: "", tenantName: "", tenantPhone: "", tenantEmail: "", tenantNationality: "", reraTransactionNo: "", notes: "" });
+
+  // ── NDA status query
+  const ndaQuery = useQuery<{ accepted: boolean; blacklisted?: boolean }>({
+    queryKey: ["/api/habtoor/nda-status", phone],
+    queryFn: () => phone.length > 6 ? fetch(`/api/habtoor/nda-status?phone=${encodeURIComponent(phone)}`).then(r => r.json()) : Promise.resolve({ accepted: false }),
+    enabled: phone.length > 6,
+  });
+  const ndaAccepted = ndaQuery.data?.accepted === true;
+  const isBlacklisted = ndaQuery.data?.blacklisted === true;
+
+  // ── Inventory query (only if NDA accepted)
+  const inventoryQuery = useQuery<HabtoorProperty[]>({
+    queryKey: ["/api/habtoor/inventory"],
+    queryFn: () => fetch("/api/habtoor/inventory").then(r => r.json()),
+    enabled: ndaAccepted,
+  });
+
+  // ── My claims query
+  const myClaimsQuery = useQuery<any[]>({
+    queryKey: ["/api/habtoor/my-claims", phone],
+    queryFn: () => fetch(`/api/habtoor/my-claims?phone=${encodeURIComponent(phone)}`).then(r => r.json()),
+    enabled: ndaAccepted && activeModal === "my-claims",
+  });
+
+  // ── Mutations
+  const ndaMutation = useMutation({
+    mutationFn: (body: any) => apiRequest("POST", "/api/habtoor/nda", body),
+    onSuccess: () => {
+      localStorage.setItem("hpv_phone", phone);
+      localStorage.setItem("hpv_name", name);
+      qc.invalidateQueries({ queryKey: ["/api/habtoor/nda-status", phone] });
+      setNdaStep("done");
+      toast({ title: "Access granted", description: "You now have access to the Al Habtoor Polo inventory under NDA/NCA." });
+    },
+    onError: (e: any) => toast({ title: "Error", description: e.message || "Could not record NDA", variant: "destructive" }),
+  });
+
+  const claimMutation = useMutation({
+    mutationFn: (body: any) => apiRequest("POST", "/api/habtoor/claim", body),
+    onSuccess: (data: any) => {
+      qc.invalidateQueries({ queryKey: ["/api/habtoor/inventory"] });
+      setActiveModal(null);
+      const msg = `Lead Claim — Ref: ${data.deliwerRefCode}\nBroker: ${name} (${phone})\nProperty: ${selectedProp?.unitType} ${selectedProp?.structureType} | ${selectedProp?.views}\nClient: ${claimClient.name || "TBC"}\n\nThis claim is logged and protected under NDA/NCA. DeliWer will coordinate access.`;
+      window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+      toast({ title: "Lead claimed!", description: `Ref: ${data.deliwerRefCode}. WhatsApp confirmation sent to DeliWer.` });
+      setClaimClient({ name: "", phone: "", nationality: "", budget: "", notes: "" });
+    },
+    onError: (e: any) => toast({ title: "Claim failed", description: e.message || "Try again", variant: "destructive" }),
+  });
+
+  const vrMutation = useMutation({
+    mutationFn: (body: any) => apiRequest("POST", "/api/habtoor/vr-request", body),
+    onSuccess: (data: any) => {
+      setActiveModal(null);
+      window.open(data.whatsappUrl, "_blank");
+      toast({ title: "VR Tour requested!", description: "DeliWer will coordinate with the property manager. WhatsApp sent." });
+      setVrForm({ clientName: "", clientPhone: "", preferredDate: "", preferredTime: "", tourType: "recorded" });
+    },
+    onError: (e: any) => toast({ title: "Request failed", description: e.message || "Try again", variant: "destructive" }),
+  });
+
+  const reportMutation = useMutation({
+    mutationFn: (body: any) => apiRequest("POST", "/api/habtoor/deal-report", body),
+    onSuccess: () => {
+      setActiveModal(null);
+      toast({ title: "Deal reported!", description: "DeliWer will verify and process commission. Thank you for closing via DeliWer channels." });
+      setReportForm({ claimId: "", closingPrice: "", tenantName: "", tenantPhone: "", tenantEmail: "", tenantNationality: "", reraTransactionNo: "", notes: "" });
+    },
+    onError: (e: any) => toast({ title: "Report failed", description: e.message || "Try again", variant: "destructive" }),
+  });
+
+  // ── Filtered inventory
+  const inventory = inventoryQuery.data || [];
+  const filtered = inventory.filter(p => {
+    if (filterType !== "all" && p.unitType !== filterType) return false;
+    if (filterStatus !== "all" && p.status.trim() !== filterStatus) return false;
+    return true;
+  });
+
+  function openClaim(p: HabtoorProperty) { setSelectedProp(p); setActiveModal("claim"); }
+  function openVR(p: HabtoorProperty)    { setSelectedProp(p); setActiveModal("vr"); }
+  function closeModal() { setActiveModal(null); setSelectedProp(null); }
+
+  function handleNdaSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!phone.trim() || !name.trim()) {
+      toast({ title: "Name & phone required", variant: "destructive" }); return;
+    }
+    if (!ndaChecked) {
+      toast({ title: "Please accept the NDA/NCA terms", variant: "destructive" }); return;
+    }
+    ndaMutation.mutate({ brokerPhone: phone.trim(), brokerName: name.trim(), brokerEmail: email.trim() || undefined, reraLicense: rera.trim() || undefined, brokerage: brokerage.trim() || undefined });
+  }
+
+  function handleClaim(e: React.FormEvent) {
+    e.preventDefault();
+    if (!selectedProp) return;
+    claimMutation.mutate({ propertyId: selectedProp.id, brokerPhone: phone, brokerName: name, brokerEmail: email || undefined, reraLicense: rera || undefined, brokerage: brokerage || undefined, clientName: claimClient.name || undefined, clientPhone: claimClient.phone || undefined, clientNationality: claimClient.nationality || undefined, clientBudget: claimClient.budget || undefined, claimNotes: claimClient.notes || undefined });
+  }
+
+  function handleVR(e: React.FormEvent) {
+    e.preventDefault();
+    if (!selectedProp) return;
+    vrMutation.mutate({ propertyId: selectedProp.id, brokerPhone: phone, brokerName: name, ...vrForm });
+  }
+
+  function handleReport(e: React.FormEvent) {
+    e.preventDefault();
+    if (!selectedProp || !reportForm.claimId) return;
+    reportMutation.mutate({ propertyId: selectedProp.id, brokerPhone: phone, brokerName: name, claimId: reportForm.claimId, closingPrice: reportForm.closingPrice ? parseInt(reportForm.closingPrice) : undefined, tenantName: reportForm.tenantName || undefined, tenantPhone: reportForm.tenantPhone || undefined, tenantEmail: reportForm.tenantEmail || undefined, tenantNationality: reportForm.tenantNationality || undefined, reraTransactionNo: reportForm.reraTransactionNo || undefined, notes: reportForm.notes || undefined, closingChannel: "deliwer" });
+  }
+
+  const inputCls = "bg-slate-900 border-white/10 text-white placeholder:text-gray-600 h-10 text-sm";
+  const labelCls = "text-[10px] font-black uppercase tracking-widest text-amber-400";
+
+  return (
+    <section id="habtoor-polo" className="py-16 px-4 bg-slate-950 border-t border-white/5">
+      <div className="max-w-5xl mx-auto space-y-10">
+
+        {/* ── Header ── */}
+        <div className="text-center space-y-3">
+          <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest rounded-full">
+            <Shield className="w-3 h-3 mr-1.5" /> Inner Circle — Confidential Inventory
+          </Badge>
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
+            Al Habtoor Polo<br /><span className="text-amber-400">Exclusive Listing Access</span>
+          </h2>
+          <p className="text-gray-400 text-sm max-w-xl mx-auto leading-relaxed">
+            55 villas &amp; semi-detached homes at Al Habtoor Polo Resort &amp; Club, Dubai. Access is gated by NDA/NCA. Unit numbers are never disclosed — all viewings are arranged via DeliWer with full property-manager coordination.
+          </p>
+
+          {/* ── Anti-poaching warning ── */}
+          <div className="inline-flex items-start gap-3 bg-red-950/40 border border-red-500/25 rounded-2xl px-5 py-4 text-left max-w-2xl mx-auto">
+            <AlertTriangle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+            <div>
+              <p className="text-red-300 font-black text-xs uppercase tracking-wide mb-1">Zero-Tolerance Anti-Poaching Policy</p>
+              <p className="text-red-200/70 text-xs leading-relaxed">
+                All tenant data is logged and cross-referenced. Any deal closed outside DeliWer channels, or any broker found bypassing DeliWer or approaching landlords/managers directly, will be permanently blacklisted from the network and reported to RERA. Tenant data is retained as evidence.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* ── NDA Gate ── */}
+        {isBlacklisted ? (
+          <div className="max-w-lg mx-auto text-center space-y-4 py-8">
+            <BanIcon className="w-12 h-12 text-red-500 mx-auto" />
+            <h3 className="text-xl font-black text-red-400 uppercase">Access Denied</h3>
+            <p className="text-gray-500 text-sm">This number has been restricted from the DeliWer broker network. Contact DeliWer if you believe this is an error.</p>
+          </div>
+        ) : !ndaAccepted ? (
+          <Card className="max-w-xl mx-auto bg-slate-900/80 border-amber-500/20 rounded-2xl">
+            <CardContent className="p-6 space-y-5">
+              {ndaStep !== "terms" ? (
+                <>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                      <Lock className="w-5 h-5 text-amber-400" />
+                    </div>
+                    <div>
+                      <p className="font-black text-white text-sm uppercase tracking-tight">NDA / NCA Required</p>
+                      <p className="text-gray-500 text-xs">Enter your details to access the confidential property list</p>
+                    </div>
+                  </div>
+                  <form onSubmit={e => { e.preventDefault(); setNdaStep("terms"); }} className="space-y-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1.5">
+                        <Label className={labelCls}>Full Name *</Label>
+                        <Input data-testid="input-hpv-name" placeholder="Your name" value={name} onChange={e => setName(e.target.value)} className={inputCls} required />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label className={labelCls}>WhatsApp Phone *</Label>
+                        <Input data-testid="input-hpv-phone" placeholder="+971 50 000 0000" value={phone} onChange={e => setPhone(e.target.value)} className={inputCls} required />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-1.5">
+                        <Label className={labelCls}>RERA License No.</Label>
+                        <Input data-testid="input-hpv-rera" placeholder="Optional but recommended" value={rera} onChange={e => setRera(e.target.value)} className={inputCls} />
+                      </div>
+                      <div className="space-y-1.5">
+                        <Label className={labelCls}>Brokerage / Agency</Label>
+                        <Input data-testid="input-hpv-brokerage" placeholder="Your company" value={brokerage} onChange={e => setBrokerage(e.target.value)} className={inputCls} />
+                      </div>
+                    </div>
+                    <div className="space-y-1.5">
+                      <Label className={labelCls}>Email</Label>
+                      <Input data-testid="input-hpv-email" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} className={inputCls} />
+                    </div>
+                    <Button type="submit" data-testid="button-hpv-review-nda" className="w-full h-10 bg-amber-600 hover:bg-amber-500 text-black font-black uppercase tracking-widest rounded-xl text-sm">
+                      <FileSignature className="w-4 h-4 mr-2" /> Review NDA / NCA Terms
+                    </Button>
+                  </form>
+                </>
+              ) : (
+                <form onSubmit={handleNdaSubmit} className="space-y-4">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-amber-400 mb-1">Non-Disclosure & Non-Circumvention Agreement</p>
+                  <div className="bg-slate-950 border border-white/10 rounded-xl p-4 space-y-2 text-xs text-gray-400 leading-relaxed max-h-52 overflow-y-auto">
+                    <p className="font-bold text-white">DeliWer Realty — NDA / NCA (Summary)</p>
+                    <p>By accepting, <strong className="text-white">{name}</strong> (<strong className="text-white">{phone}</strong>) agrees to the following binding terms:</p>
+                    <p><strong className="text-amber-300">1. Confidentiality.</strong> All property details, unit references, owner/landlord identities, tenant data, and pricing received through DeliWer are strictly confidential and may not be shared with any third party without prior written consent from DeliWer.</p>
+                    <p><strong className="text-amber-300">2. Non-Circumvention.</strong> Broker shall not directly or indirectly contact property owners, landlords, or managers identified through DeliWer's network. All communications must be routed through DeliWer.</p>
+                    <p><strong className="text-amber-300">3. Exclusive Channel.</strong> All deals arising from properties accessed through this platform must be registered and closed through DeliWer's RERA-licensed brokerage channels.</p>
+                    <p><strong className="text-amber-300">4. Tenant Data Protection.</strong> Client/tenant data submitted during lead claims is logged and retained. Any match with deals closed outside DeliWer constitutes a breach of this agreement.</p>
+                    <p><strong className="text-amber-300">5. Enforcement.</strong> Breach entitles DeliWer to: (a) permanent blacklisting from the network, (b) RERA complaint filing, (c) pursuit of damages equivalent to the commission lost. IP address and device data are logged.</p>
+                    <p><strong className="text-amber-300">6. Virtual Viewing.</strong> Property tours (live or recorded) are facilitated without exposing unit numbers. Broker agrees not to attempt to identify units through external means.</p>
+                    <p className="text-gray-500 text-[10px]">This agreement is governed by UAE law. By ticking the checkbox below, you acknowledge you have read, understood, and accept these terms.</p>
+                  </div>
+                  <label className="flex items-start gap-3 cursor-pointer" data-testid="label-hpv-nda-accept">
+                    <div className={`w-5 h-5 rounded border mt-0.5 flex items-center justify-center shrink-0 cursor-pointer transition-colors ${ndaChecked ? "bg-amber-500 border-amber-500" : "border-white/20 bg-slate-900"}`} onClick={() => setNdaChecked(!ndaChecked)}>
+                      {ndaChecked && <Check className="w-3 h-3 text-black" />}
+                    </div>
+                    <span className="text-xs text-gray-300 leading-relaxed">I, <strong className="text-white">{name}</strong>, confirm that I have read and agree to the NDA/NCA terms above. I understand that my IP, device data and any submitted tenant information may be used as evidence in the event of a breach.</span>
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button type="button" variant="outline" className="border-white/10 text-gray-400 hover:bg-white/5 font-black rounded-xl h-10 text-xs" onClick={() => setNdaStep("form")}>
+                      Back
+                    </Button>
+                    <Button type="submit" data-testid="button-hpv-accept-nda" disabled={!ndaChecked || ndaMutation.isPending} className="h-10 bg-amber-600 hover:bg-amber-500 text-black font-black uppercase tracking-widest rounded-xl text-xs">
+                      {ndaMutation.isPending ? "Recording..." : "Accept & Access Inventory"}
+                    </Button>
+                  </div>
+                </form>
+              )}
+            </CardContent>
+          </Card>
+        ) : (
+          /* ── Inventory (NDA accepted) ── */
+          <div className="space-y-6">
+
+            {/* ── Access confirmed banner ── */}
+            <div className="flex flex-wrap items-center justify-between gap-4 bg-emerald-950/30 border border-emerald-500/20 rounded-2xl px-5 py-3">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                <span className="text-emerald-300 font-black text-sm">NDA Active — {name}</span>
+                <span className="text-gray-500 text-xs">· All access is logged</span>
+              </div>
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline" data-testid="button-hpv-my-claims" className="border-amber-500/30 text-amber-300 hover:bg-amber-500/10 text-xs font-black rounded-xl h-8" onClick={() => setActiveModal("my-claims")}>
+                  <ClipboardCheck className="w-3.5 h-3.5 mr-1.5" /> My Claims
+                </Button>
+              </div>
+            </div>
+
+            {/* ── Filters ── */}
+            <div className="flex flex-wrap gap-3 items-center">
+              <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Filter:</span>
+              {["all", "4BR", "5BR", "6BR"].map(t => (
+                <button key={t} data-testid={`filter-type-${t}`} onClick={() => setFilterType(t)} className={`px-3 py-1 rounded-lg text-xs font-black border transition-colors ${filterType === t ? "bg-amber-500/20 border-amber-500/40 text-amber-300" : "border-white/10 text-gray-500 hover:border-white/20"}`}>
+                  {t === "all" ? "All Types" : t}
+                </button>
+              ))}
+              <div className="w-px h-4 bg-white/10 mx-1" />
+              {["all", "Vacant", "Rented", "Hotel"].map(s => (
+                <button key={s} data-testid={`filter-status-${s}`} onClick={() => setFilterStatus(s)} className={`px-3 py-1 rounded-lg text-xs font-black border transition-colors ${filterStatus === s ? "bg-purple-500/20 border-purple-500/40 text-purple-300" : "border-white/10 text-gray-500 hover:border-white/20"}`}>
+                  {s === "all" ? "All Status" : s}
+                </button>
+              ))}
+              <span className="ml-auto text-[10px] text-gray-600 font-bold">{filtered.length} of {inventory.length} properties</span>
+            </div>
+
+            {/* ── Property grid ── */}
+            {inventoryQuery.isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {Array.from({ length: 6 }).map((_, i) => <div key={i} className="h-52 rounded-2xl bg-slate-800/60 animate-pulse" />)}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filtered.map(p => (
+                  <div key={p.id} data-testid={`card-property-${p.id}`} className="bg-slate-900 border border-white/8 rounded-2xl p-5 space-y-4 hover:border-amber-500/30 transition-colors group">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className="font-black text-white text-lg leading-none">{p.unitType}</p>
+                        <p className="text-gray-500 text-xs mt-0.5">{p.structureType}</p>
+                      </div>
+                      <Badge className={`${statusBadge(p.status.trim())} text-[10px] font-black px-2 py-0.5 rounded-lg border`}>
+                        {p.status.trim()}
+                      </Badge>
+                    </div>
+                    <div className="space-y-1.5">
+                      <p className="text-amber-400 font-black text-xl">{formatMillions(p.salePrice)}</p>
+                      <div className="flex items-center gap-1 text-gray-500 text-xs">
+                        <MapPin className="w-3 h-3 shrink-0" /> {p.views}
+                      </div>
+                      <div className="flex gap-4 text-gray-600 text-xs">
+                        <span>{p.buaSqft.toLocaleString()} BUA sqft</span>
+                        <span>{Math.round(p.areaSqft).toLocaleString()} Plot sqft</span>
+                      </div>
+                      <div className="text-gray-700 text-[10px] font-bold">
+                        {p.claimsCount > 0 ? `${p.claimsCount} active claim${p.claimsCount !== 1 ? "s" : ""}` : "No claims yet"}
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 pt-1">
+                      <Button size="sm" data-testid={`button-claim-${p.id}`} onClick={() => openClaim(p)} className="h-8 bg-amber-600 hover:bg-amber-500 text-black font-black rounded-lg text-xs">
+                        <Target className="w-3.5 h-3.5 mr-1" /> Claim Lead
+                      </Button>
+                      <Button size="sm" data-testid={`button-vr-${p.id}`} variant="outline" onClick={() => openVR(p)} className="h-8 border-purple-500/30 text-purple-300 hover:bg-purple-500/10 font-black rounded-lg text-xs">
+                        <Video className="w-3.5 h-3.5 mr-1" /> VR Tour
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* ── Trust pillars ── */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
+              {[
+                { icon: Shield, label: "NDA Protected", color: "text-amber-400" },
+                { icon: Eye, label: "No Unit Numbers", color: "text-purple-400" },
+                { icon: ClipboardCheck, label: "RERA Channels Only", color: "text-emerald-400" },
+                { icon: AlertTriangle, label: "Audit Trail Active", color: "text-red-400" },
+              ].map(({ icon: Icon, label, color }) => (
+                <div key={label} className="flex items-center gap-2.5 bg-slate-900/60 border border-white/6 rounded-xl px-4 py-3">
+                  <Icon className={`w-4 h-4 shrink-0 ${color}`} />
+                  <span className="text-gray-400 text-xs font-bold">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── Modals ── */}
+        {activeModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm" onClick={e => { if (e.target === e.currentTarget) closeModal(); }}>
+            <div className="bg-slate-900 border border-white/10 rounded-2xl w-full max-w-md shadow-2xl overflow-y-auto max-h-[90vh]">
+
+              {/* ── My Claims Modal ── */}
+              {activeModal === "my-claims" && (
+                <div className="p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-black text-white uppercase text-sm">My Active Claims</h3>
+                    <button onClick={closeModal} className="text-gray-500 hover:text-white"><X className="w-5 h-5" /></button>
+                  </div>
+                  {myClaimsQuery.isLoading && <div className="h-20 bg-slate-800 animate-pulse rounded-xl" />}
+                  {myClaimsQuery.data?.length === 0 && <p className="text-gray-500 text-sm text-center py-6">No claims yet. Claim a lead from the inventory above.</p>}
+                  {myClaimsQuery.data?.map((c: any) => (
+                    <div key={c.id} data-testid={`claim-row-${c.id}`} className="bg-slate-800 border border-white/8 rounded-xl p-4 space-y-2">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <p className="font-black text-white text-sm">{c.property?.unitType} {c.property?.structureType}</p>
+                          <p className="text-gray-500 text-xs">{c.property?.views} · {c.property ? formatMillions(c.property.salePrice) : ""}</p>
+                        </div>
+                        <Badge className={`text-[10px] font-black border px-2 py-0.5 ${c.status === "active" ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30" : "bg-slate-700 text-gray-400 border-white/10"}`}>
+                          {c.status}
+                        </Badge>
+                      </div>
+                      <p className="text-gray-600 text-[10px] font-mono">{c.deliwerRefCode}</p>
+                      {c.status === "active" && (
+                        <Button size="sm" className="w-full h-8 bg-purple-600 hover:bg-purple-500 text-white font-black text-xs rounded-lg" onClick={() => { setSelectedProp(c.property); setReportForm(p => ({ ...p, claimId: c.id })); setActiveModal("report"); }}>
+                          <ClipboardCheck className="w-3.5 h-3.5 mr-1.5" /> Report Deal Closure
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* ── Claim Lead Modal ── */}
+              {activeModal === "claim" && selectedProp && (
+                <form onSubmit={handleClaim} className="p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-black text-white uppercase text-sm">Claim Lead</h3>
+                      <p className="text-amber-400 text-xs font-bold">{selectedProp.unitType} {selectedProp.structureType} · {selectedProp.views} · {formatMillions(selectedProp.salePrice)}</p>
+                    </div>
+                    <button type="button" onClick={closeModal} className="text-gray-500 hover:text-white"><X className="w-5 h-5" /></button>
+                  </div>
+                  <div className="bg-amber-950/30 border border-amber-500/20 rounded-xl p-3 text-xs text-amber-200/80 leading-relaxed">
+                    <strong className="text-amber-300">Claiming this lead</strong> records your name, phone, IP address and client details. All deal activity is monitored. Closing outside DeliWer channels constitutes NDA breach.
+                  </div>
+                  <div className="space-y-3">
+                    <p className="text-[10px] font-black uppercase text-gray-500 tracking-widest">Your Identity (from NDA)</p>
+                    <div className="flex gap-2 text-xs text-gray-400 bg-slate-800 rounded-xl px-3 py-2">
+                      <span className="font-bold text-white">{name}</span> <span>·</span> <span>{phone}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <p className="text-[10px] font-black uppercase text-gray-500 tracking-widest">Client Details (optional but recommended)</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="space-y-1">
+                        <Label className={labelCls}>Client Name</Label>
+                        <Input data-testid="input-claim-client-name" placeholder="Client name" value={claimClient.name} onChange={e => setClaimClient(p => ({ ...p, name: e.target.value }))} className={inputCls} />
+                      </div>
+                      <div className="space-y-1">
+                        <Label className={labelCls}>Client Phone</Label>
+                        <Input data-testid="input-claim-client-phone" placeholder="+971 ..." value={claimClient.phone} onChange={e => setClaimClient(p => ({ ...p, phone: e.target.value }))} className={inputCls} />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="space-y-1">
+                        <Label className={labelCls}>Nationality</Label>
+                        <Input data-testid="input-claim-nationality" placeholder="e.g. British" value={claimClient.nationality} onChange={e => setClaimClient(p => ({ ...p, nationality: e.target.value }))} className={inputCls} />
+                      </div>
+                      <div className="space-y-1">
+                        <Label className={labelCls}>Budget Range</Label>
+                        <Input data-testid="input-claim-budget" placeholder="e.g. AED 6-7M" value={claimClient.budget} onChange={e => setClaimClient(p => ({ ...p, budget: e.target.value }))} className={inputCls} />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Notes</Label>
+                      <Input data-testid="input-claim-notes" placeholder="Any additional context" value={claimClient.notes} onChange={e => setClaimClient(p => ({ ...p, notes: e.target.value }))} className={inputCls} />
+                    </div>
+                  </div>
+                  <Button type="submit" data-testid="button-submit-claim" disabled={claimMutation.isPending} className="w-full h-10 bg-amber-600 hover:bg-amber-500 text-black font-black uppercase rounded-xl text-sm">
+                    {claimMutation.isPending ? "Claiming..." : "Claim Lead + Notify DeliWer via WhatsApp"}
+                  </Button>
+                </form>
+              )}
+
+              {/* ── VR Tour Modal ── */}
+              {activeModal === "vr" && selectedProp && (
+                <form onSubmit={handleVR} className="p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-black text-white uppercase text-sm">Request Virtual Tour</h3>
+                      <p className="text-purple-400 text-xs font-bold">{selectedProp.unitType} {selectedProp.structureType} · {selectedProp.views}</p>
+                    </div>
+                    <button type="button" onClick={closeModal} className="text-gray-500 hover:text-white"><X className="w-5 h-5" /></button>
+                  </div>
+                  <div className="bg-purple-950/30 border border-purple-500/20 rounded-xl p-3 text-xs text-purple-200/80 leading-relaxed">
+                    DeliWer coordinates with the property manager or landlord to arrange a <strong className="text-purple-300">live video call</strong> or send a <strong className="text-purple-300">recorded walkthrough</strong>. Unit numbers and exact locations are never disclosed in the media.
+                  </div>
+                  <div className="space-y-1">
+                    <Label className={labelCls}>Tour Type *</Label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {["recorded", "live"].map(t => (
+                        <button key={t} type="button" data-testid={`button-tour-type-${t}`} onClick={() => setVrForm(p => ({ ...p, tourType: t }))} className={`py-2 rounded-xl text-xs font-black border transition-colors ${vrForm.tourType === t ? "bg-purple-500/20 border-purple-500/40 text-purple-300" : "border-white/10 text-gray-500"}`}>
+                          {t === "recorded" ? "📹 Recorded Video" : "🔴 Live Video Call"}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Client Name</Label>
+                      <Input data-testid="input-vr-client-name" placeholder="Optional" value={vrForm.clientName} onChange={e => setVrForm(p => ({ ...p, clientName: e.target.value }))} className={inputCls} />
+                    </div>
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Client Phone</Label>
+                      <Input data-testid="input-vr-client-phone" placeholder="Optional" value={vrForm.clientPhone} onChange={e => setVrForm(p => ({ ...p, clientPhone: e.target.value }))} className={inputCls} />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Preferred Date</Label>
+                      <Input data-testid="input-vr-date" type="date" value={vrForm.preferredDate} onChange={e => setVrForm(p => ({ ...p, preferredDate: e.target.value }))} className={inputCls} />
+                    </div>
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Preferred Time</Label>
+                      <Input data-testid="input-vr-time" type="time" value={vrForm.preferredTime} onChange={e => setVrForm(p => ({ ...p, preferredTime: e.target.value }))} className={inputCls} />
+                    </div>
+                  </div>
+                  <Button type="submit" data-testid="button-submit-vr" disabled={vrMutation.isPending} className="w-full h-10 bg-purple-600 hover:bg-purple-500 text-white font-black uppercase rounded-xl text-sm">
+                    {vrMutation.isPending ? "Requesting..." : <><Camera className="w-4 h-4 mr-2" /> Request Tour via WhatsApp</>}
+                  </Button>
+                </form>
+              )}
+
+              {/* ── Deal Report Modal ── */}
+              {activeModal === "report" && selectedProp && (
+                <form onSubmit={handleReport} className="p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-black text-white uppercase text-sm">Report Deal Closure</h3>
+                      <p className="text-emerald-400 text-xs font-bold">{selectedProp.unitType} {selectedProp.structureType} · {selectedProp.views}</p>
+                    </div>
+                    <button type="button" onClick={closeModal} className="text-gray-500 hover:text-white"><X className="w-5 h-5" /></button>
+                  </div>
+                  <div className="bg-emerald-950/30 border border-emerald-500/20 rounded-xl p-3 text-xs text-emerald-200/80 leading-relaxed">
+                    Report the deal so DeliWer can verify, process commission, and register the transaction through RERA-licensed channels. Tenant data is retained for anti-poaching audit.
+                  </div>
+                  {!reportForm.claimId && (
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Your Claim Ref Code *</Label>
+                      <Input data-testid="input-report-claim-id" placeholder="DLW-HPV-... (from My Claims)" value={reportForm.claimId} onChange={e => setReportForm(p => ({ ...p, claimId: e.target.value }))} className={inputCls} required />
+                    </div>
+                  )}
+                  {reportForm.claimId && <p className="text-gray-600 text-[10px] font-mono">Claim: {reportForm.claimId.slice(0, 8).toUpperCase()}...</p>}
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Closing Price (AED)</Label>
+                      <Input data-testid="input-report-price" type="number" placeholder="e.g. 6200000" value={reportForm.closingPrice} onChange={e => setReportForm(p => ({ ...p, closingPrice: e.target.value }))} className={inputCls} />
+                    </div>
+                    <div className="space-y-1">
+                      <Label className={labelCls}>RERA Txn No.</Label>
+                      <Input data-testid="input-report-rera" placeholder="Optional" value={reportForm.reraTransactionNo} onChange={e => setReportForm(p => ({ ...p, reraTransactionNo: e.target.value }))} className={inputCls} />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Tenant Name *</Label>
+                      <Input data-testid="input-report-tenant-name" placeholder="Full name" value={reportForm.tenantName} onChange={e => setReportForm(p => ({ ...p, tenantName: e.target.value }))} className={inputCls} />
+                    </div>
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Tenant Phone *</Label>
+                      <Input data-testid="input-report-tenant-phone" placeholder="+971 ..." value={reportForm.tenantPhone} onChange={e => setReportForm(p => ({ ...p, tenantPhone: e.target.value }))} className={inputCls} />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Tenant Email</Label>
+                      <Input data-testid="input-report-tenant-email" type="email" placeholder="Optional" value={reportForm.tenantEmail} onChange={e => setReportForm(p => ({ ...p, tenantEmail: e.target.value }))} className={inputCls} />
+                    </div>
+                    <div className="space-y-1">
+                      <Label className={labelCls}>Tenant Nationality</Label>
+                      <Input data-testid="input-report-nationality" placeholder="e.g. British" value={reportForm.tenantNationality} onChange={e => setReportForm(p => ({ ...p, tenantNationality: e.target.value }))} className={inputCls} />
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <Label className={labelCls}>Notes</Label>
+                    <Input data-testid="input-report-notes" placeholder="Any additional details" value={reportForm.notes} onChange={e => setReportForm(p => ({ ...p, notes: e.target.value }))} className={inputCls} />
+                  </div>
+                  <Button type="submit" data-testid="button-submit-report" disabled={reportMutation.isPending || !reportForm.claimId} className="w-full h-10 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase rounded-xl text-sm">
+                    {reportMutation.isPending ? "Submitting..." : <><Send className="w-4 h-4 mr-2" /> Submit Deal Report</>}
+                  </Button>
+                </form>
+              )}
+
+            </div>
+          </div>
+        )}
+
+      </div>
+    </section>
+  );
+}
 
 // ── Static data ────────────────────────────────────────────────────────────
 
@@ -954,6 +1531,9 @@ export default function BrokerPartnerPage() {
           </div>
         </div>
       </section>
+
+      {/* ── AL HABTOOR POLO INVENTORY ─────────────────────── */}
+      <HabtoorSection />
 
       {/* ── STICKY MOBILE BAR ─────────────────────────────── */}
       <div data-testid="sticky-mobile-bar" className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10 p-3 flex gap-2">
