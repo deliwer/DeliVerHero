@@ -880,7 +880,7 @@ export default function BrokerPartnerPage() {
 
           {/* ── Broker Control Dashboard link ── */}
           <div className="flex justify-center pt-1">
-            <Link href="/marketing/recruit">
+            <Link href="/marketing/recruit" className="text-[#ffffff]">
               <button data-testid="button-broker-control-dashboard" className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/30 rounded-xl px-5 py-2.5 transition-all bg-white/5 hover:bg-emerald-500/10 font-bold uppercase tracking-widest">
                 <BarChart2 className="w-3.5 h-3.5" /> Broker Control Dashboard &amp; Management
               </button>
@@ -1321,7 +1321,7 @@ export default function BrokerPartnerPage() {
                 <Crown className="w-5 h-5 mr-2" /> Apply for Inner Circle · Sign NDA
               </Button>
             </a>
-            <Link href="/realestate">
+            <Link href="/realestate" className="text-[#ffffff]">
               <Button data-testid="button-realty-engine" size="lg" variant="outline" className="border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/10 font-black h-13 px-8 text-sm rounded-2xl">
                 <Building2 className="w-4 h-4 mr-2" /> Realty Intelligence Engine
               </Button>
@@ -1488,7 +1488,7 @@ export default function BrokerPartnerPage() {
                     </Button>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <Link href="/realestate" className="flex-1">
+                    <Link href="/realestate" className="flex-1 text-[#ffffff]">
                       <Button className="w-full bg-amber-600 hover:bg-amber-500 text-white font-black rounded-xl h-10 text-xs">
                         <Building2 className="w-4 h-4 mr-2" /> Realty Engine
                       </Button>
