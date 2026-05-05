@@ -88,7 +88,7 @@ export default function ErrandPage() {
               <p className="text-xl text-white/95 mb-4 max-w-xl font-semibold" data-testid="text-errand-hero-description">
                 Stuck in Dubai traffic? Buried in errands? Our trusted runners handle your entire to-do list so you reclaim your time and focus on what truly matters.
               </p>
-              <p className="text-lg text-white/80 mb-8 max-w-xl">2-4 hour turnaround. Professional, vetted runners. Tracking every step. Just AED 99 for your first errand.</p>
+              <p className="text-lg text-white/80 mb-8 max-w-xl">2-4 hour turnaround. Professional, vetted runners. Tracking every step. Just AED 49 for your first errand.</p>
               <div className="flex flex-wrap gap-4">
                 <CalendlyButton 
                   size="lg" 
