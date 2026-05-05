@@ -1,0 +1,379 @@
+Here’s a **high-conversion Replit prompt** that builds your upgraded **/brokers page + Broker Hub** with:
+
+* 🔒 Lead ownership system
+* 💰 Commission visibility
+* 🧠 Agentic earning assistant
+* ⚡ Conversion psychology baked into UI
+* 🚫 Founder controls excluded (private)
+
+This is NOT just UI — it encodes behavior.
+
+---
+
+# 🚀 REPLIT PROMPT — DELIWER BROKERS (CONVERSION-ENGINE VERSION)
+
+**Build a web app page at: `/brokers`**
+
+This is the **main entry gateway for brokers/partners** in the DeliWer ecosystem.
+
+---
+
+# 🎯 OBJECTIVE
+
+Turn brokers into active earners by:
+
+* Showing **real earning potential instantly**
+* Creating **urgency + scarcity**
+* Allowing brokers to **capture or claim deals**
+* Making **commission visible and trackable**
+* Enforcing **lead ownership + attribution**
+
+This is NOT a marketplace.
+
+This is:
+
+> **A controlled deal-distribution + earning engine**
+
+---
+
+# 🧱 TECH STACK
+
+* Frontend: Next.js (preferred) or React
+* Backend: Node.js (Express)
+* Database: JSON or Google Sheets API
+* Auth: Simple login (email/phone)
+* Mobile-first responsive design
+
+---
+
+# 🧭 PAGE STRUCTURE (UI WIREFRAME)
+
+---
+
+## 🔴 1. HERO SECTION (ABOVE THE FOLD — CRITICAL)
+
+**Goal: Immediate hook → earnings + urgency**
+
+### UI:
+
+**Headline:**
+
+> “Turn Your Network Into Income with DeliWer”
+
+**Subheadline:**
+
+> “Access verified rental & commercial deals. Earn per transaction.”
+
+**Live Stats Bar (dynamic mock):**
+
+* “27 Active Opportunities”
+* “AED 148,000 Commission in Pipeline”
+* “12 Brokers Closed Deals This Week”
+
+**Primary CTA (bold):**
+👉 “Start Earning Now”
+
+**Secondary CTA:**
+👉 “I Have a Deal”
+
+---
+
+## 🟠 2. EARNING PREVIEW CALCULATOR (HOOK)
+
+**Interactive card:**
+
+Prompt:
+
+> “Where do you operate?”
+
+Dropdown:
+
+* Dubai / Sharjah / Ajman
+
+Then show:
+
+* “Available deals in your area: 8”
+* “Avg commission per deal: AED 2,800”
+* “Potential this week: AED 22,400”
+
+CTA:
+👉 “Unlock These Deals”
+
+---
+
+## 🟡 3. BROKER ACTION PANEL (CORE UX)
+
+3 BIG buttons (card style):
+
+### 1. 🔍 Find Deals
+
+* Opens dashboard
+* Shows available opportunities
+
+### 2. 📥 Capture a Deal
+
+* Form with options:
+
+  * I have a tenant
+  * I have a landlord
+  * I found a vacant unit
+* Creates Lead ID
+
+### 3. 💰 Track My Earnings
+
+* Opens earnings panel
+* Shows commission pipeline
+
+---
+
+## 🔵 4. LIVE OPPORTUNITY FEED (SCARCITY ENGINE)
+
+Display cards like:
+
+---
+
+**Card Example:**
+
+* “2BR Apartment – Al Nahda”
+* “Tenant Needed”
+* “Est. Commission: AED 3,200”
+* “Priority: HIGH”
+
+⚠️ Badge:
+
+> “Only 2 brokers can claim”
+
+Buttons:
+👉 “Claim Lead”
+
+---
+
+### Behavior:
+
+* When clicked:
+
+  * Assign Lead ID
+  * Lock ownership
+  * Reduce available slots
+
+---
+
+## 🧠 5. AI BROKER ASSISTANT (AGENTIC CORE)
+
+Chat-style UI:
+
+Title:
+
+> “DeliWer AI — Your Deal Assistant”
+
+---
+
+### First Message:
+
+> “You are in Sharjah.
+> 6 high-demand rental units need tenants this week.
+> Avg commission: AED 3,000.
+> Want me to assign you 2 deals?”
+
+Buttons:
+👉 “Assign Deals”
+👉 “Show More Options”
+
+---
+
+### Behavior:
+
+* Assigns leads
+* Creates ownership
+* Updates dashboard
+
+---
+
+## 🟣 6. LEAD OWNERSHIP SYSTEM (VISIBLE TRUST)
+
+Each claimed/captured lead shows:
+
+* Lead ID: LD-2026-0012
+
+* Owner: You
+
+* Status:
+
+  * New
+  * In Progress
+  * Closed
+
+* Source:
+
+  * Claimed / Captured / Assigned
+
+---
+
+## 🟢 7. EARNINGS DASHBOARD (ADDICTION LOOP)
+
+Show:
+
+* Total Pipeline: AED X
+* Closed Earnings: AED X
+* Pending Deals: X
+
+---
+
+### Deal Table:
+
+| Lead ID | Type | Value | Commission | Status |
+| ------- | ---- | ----- | ---------- | ------ |
+
+---
+
+## 🟤 8. REFERRAL → “CAPTURE SYSTEM”
+
+Each broker gets:
+
+* Unique code
+* Share link
+
+Example:
+
+```
+deliwer.com/brokers?ref=BRK102
+```
+
+Track:
+
+* Leads generated
+* Conversion
+* Earnings
+
+---
+
+## ⚫ 9. WHATSAPP TRACKING INTEGRATION
+
+Each lead generates:
+
+```
+wa.me/971523946311?text=LD-2026-0012
+```
+
+Button:
+👉 “Continue on WhatsApp”
+
+---
+
+# 🔐 SYSTEM RULES (IMPORTANT)
+
+* First claim = ownership lock
+* All leads must have:
+
+  * Lead ID
+  * Timestamp
+  * Owner ID
+* No editing ownership without admin log
+* Brokers see ONLY their data
+
+---
+
+# 🧪 MOCK DATA REQUIRED
+
+### Brokers:
+
+* 10 sample brokers
+* Include:
+
+  * Name
+  * Area
+  * Score
+
+### Opportunities:
+
+* 15 listings
+* Mix:
+
+  * Residential
+  * Commercial
+* Include:
+
+  * Location
+  * Commission
+  * Slots available
+
+### Leads:
+
+* Simulate:
+
+  * Claimed
+  * Closed
+  * Pending
+
+---
+
+# 🎨 DESIGN SYSTEM
+
+* Clean SaaS UI
+* Card-based layout
+* Dark + light contrast
+* Mobile-first
+* Big buttons (WhatsApp-style usability)
+
+---
+
+# 🧠 CONVERSION PSYCHOLOGY RULES (MANDATORY)
+
+* Always show:
+
+  * Money (AED)
+  * Scarcity (“Only 2 slots left”)
+  * Urgency (“This week”)
+* Use:
+
+  * Progress bars
+  * Earnings counters
+  * Missed opportunities alerts
+
+Example:
+
+> “You missed 2 deals worth AED 6,400 today”
+
+---
+
+# 🚫 DO NOT INCLUDE
+
+* Founder dashboard
+* Inventory editing
+* Admin controls
+
+---
+
+# ⚡ OUTPUT EXPECTATION
+
+Working prototype with:
+
+* Landing page (/brokers)
+* Broker login
+* Dashboard
+* Opportunity feed
+* AI assistant (rule-based)
+* Lead ownership system
+* Earnings tracking
+* Referral capture system
+
+---
+
+# 🔥 FINAL POSITIONING
+
+This should feel like:
+
+> “A private deal engine where brokers compete and earn”
+
+NOT:
+
+* A listing website
+* A generic marketplace
+
+---
+
+If you want next step, I can build:
+
+* The **Google Sheets backend schema (plug-and-play with this UI)**
+* Or the **exact AI assistant logic + scripts that drive behavior**
+* Or the **WhatsApp automation layer that closes deals from this system**
