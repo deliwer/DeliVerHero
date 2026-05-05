@@ -1,3 +1,4 @@
+import ejariVideoSrc from "@assets/Ejari-Service-Final_injaz_1772144918784.mp4";
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -359,7 +360,7 @@ export default function EjariDubai() {
                     }}
                   >
                     <source
-                      src="https://deliwer.com/attached_assets/Ejari-Service-Final_injaz_1772144918784.mp4"
+                      src={ejariVideoSrc}
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.
