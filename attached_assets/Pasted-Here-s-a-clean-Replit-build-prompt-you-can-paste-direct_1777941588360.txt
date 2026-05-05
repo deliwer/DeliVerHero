@@ -1,0 +1,237 @@
+Here’s a **clean Replit build prompt** you can paste directly to generate your **DeliWer Broker Hub (Upwork-style, but controlled ecosystem)**.
+
+This is designed so:
+
+* Founder dashboard stays private (NOT built here)
+* Brokers get **limited, self-serve access**
+* System is **opportunity-driven + AI-guided**
+* Starts from your existing **broker master DB (Dubai Land Department list)**
+
+---
+
+# 🚀 REPLIT PROMPT — DELIWER BROKER HUB (v1)
+
+**Build a web app called: “DeliWer Broker Hub”**
+
+## 🎯 Objective
+
+Create a broker-facing dashboard for the DeliWer ecosystem that allows registered brokers to:
+
+* Discover rental & commercial opportunities
+* Receive AI-guided earning suggestions
+* Track referrals and commissions
+* Engage with leads provided by the founder/admin system
+
+This is NOT a marketplace like Property Finder.
+It is a **controlled opportunity distribution + broker activation system**.
+
+Founder/admin dashboard is NOT included and must remain private.
+
+---
+
+# 🧱 TECH STACK
+
+* Frontend: React (or Next.js preferred)
+* Backend: Node.js (Express)
+* Database: Simple JSON or Google Sheets API (no complex DB required for v1)
+* Auth: Simple login (email + OTP or password placeholder)
+* Hosting: Replit compatible
+
+---
+
+# 🧭 CORE SECTIONS
+
+## 1. Broker Login Page
+
+* Simple login screen
+* Fields:
+
+  * Name
+  * Email / Phone
+  * Broker License ID (optional)
+* After login → redirect to dashboard
+
+---
+
+## 2. Broker Dashboard (Main Hub)
+
+### A. Overview Panel
+
+Show:
+
+* Total leads assigned
+* Active opportunities
+* Closed deals
+* Estimated commissions
+* Performance score (simple dummy metric for now)
+
+---
+
+### B. “AI Opportunity Assistant” (Core Feature)
+
+Create a chat-style interface:
+
+Title: **“DeliWer AI Broker Assistant”**
+
+It should:
+
+* Ask brokers:
+
+  * “Are you looking for rental leads or commercial deals today?”
+  * “Which area are you focusing on?”
+* Then respond with:
+
+  * Suggested opportunities
+  * Priority actions (e.g. “Contact landlord”, “Follow up tenant”)
+  * Earnings potential estimate
+
+This is NOT real AI yet — can be rule-based responses.
+
+---
+
+### C. Opportunity Feed (Most Important Section)
+
+Display a list of “Available Opportunities” coming from a mock dataset:
+
+Each card includes:
+
+* Property type (Apartment / Office / Warehouse)
+* Location (Dubai / Sharjah etc.)
+* Estimated rent value
+* Lead type:
+
+  * Tenant needed
+  * Landlord listing
+* Priority score (High / Medium / Low)
+* “Claim Lead” button
+
+When clicked:
+
+* Assign lead to broker
+* Mark status as “In Progress”
+
+---
+
+### D. Broker Referral System
+
+Each broker has:
+
+* Unique referral code
+* Shareable link:
+
+  * “Refer a client → earn commission”
+
+Track:
+
+* Leads referred
+* Conversion status
+* Estimated earnings
+
+---
+
+### E. Performance & Earnings Panel
+
+Show:
+
+* Total closed deals
+* Pending deals
+* Commission estimate
+* Simple leaderboard (optional mock data)
+
+---
+
+## 3. Data Source (Mock for now)
+
+Create a sample dataset:
+
+BROKERS (from DLD master DB simulation)
+
+* Name
+* License ID
+* Area
+* Activity score
+
+OPPORTUNITIES:
+
+* 10–20 sample rental listings
+* Include Dubai + Sharjah properties
+* Mix residential + commercial
+
+REFERRALS:
+
+* Track basic referral entries
+
+---
+
+## 4. SYSTEM RULES
+
+* Brokers can ONLY:
+
+  * View opportunities
+  * Claim leads
+  * Update status
+  * See their earnings
+
+* Brokers CANNOT:
+
+  * Access other brokers’ data
+  * Access founder/admin controls
+  * Modify inventory source
+
+---
+
+## 5. USER EXPERIENCE GOAL
+
+Make it feel like:
+
+> “Upwork for real estate brokers inside a controlled ecosystem”
+
+But NOT a public marketplace.
+
+Focus on:
+
+* Scarcity of opportunities
+* Guided earning flow
+* AI-driven suggestions
+* Fast claim-based workflow
+
+---
+
+## 6. FUTURE EXTENSION HOOKS (DO NOT BUILD YET)
+
+Leave placeholders for:
+
+* Dubai Land Department API integration
+* Property Finder / Bayut scraping module
+* Real landlord inventory ingestion
+* WhatsApp lead automation system
+
+---
+
+## 🔥 DESIGN STYLE
+
+* Clean SaaS dashboard
+* Dark + white minimal UI
+* High contrast cards
+* Mobile responsive (important for brokers using phones)
+
+---
+
+## OUTPUT EXPECTATION
+
+Generate a working prototype with:
+
+* Login
+* Dashboard
+* Opportunity feed
+* AI chat interface (rule-based)
+* Referral tracking UI
+* Simple mock database
+
+---
+
+If you want next step, I can build:
+
+* The **exact AI broker conversation system (what it says line-by-line)**
+* Or the **data structure for Dubai Land Department broker + inventory ingestion**
+* Or the **WhatsApp automation layer that feeds leads into this hub**
