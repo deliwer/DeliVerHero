@@ -869,10 +869,7 @@ export default function BrokerPartnerPage() {
             Add a referral income stream to your existing broker business. Free to start, no targets, no minimums — just share your link after viewings.
           </p>
 
-          {/* ── Live stats ── */}
-          <LiveStatBar />
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-1">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
             <Button data-testid="button-hero-get-link" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-2xl shadow-emerald-900/40" onClick={() => scrollTo(generatorRef)}>
               <Zap className="w-5 h-5 mr-2" /> Get My Free Referral Link
             </Button>
@@ -888,18 +885,6 @@ export default function BrokerPartnerPage() {
                 <BarChart2 className="w-3.5 h-3.5" /> Broker Control Dashboard &amp; Management
               </button>
             </Link>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            {[
-              { icon: ShieldCheck, label: "RERA Trustee Centre" },
-              { icon: Clock, label: "24h WhatsApp Response" },
-              { icon: Star, label: "Active Broker Network" },
-              { icon: Users, label: "Serving Tenants Across Dubai" },
-            ].map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-1.5 text-slate-400 text-xs font-semibold">
-                <Icon className="w-3.5 h-3.5 text-purple-400 shrink-0" /> {label}
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -1072,60 +1057,6 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* ── EARNING CALCULATOR ───────────────────────────── */}
-      <section className="py-14 px-4 bg-slate-950 border-b border-white/5">
-        <div className="max-w-xl mx-auto space-y-6">
-          <div className="text-center space-y-2">
-            <p className="text-[10px] font-black uppercase tracking-widest text-purple-400">Earning Calculator</p>
-            <h2 className="text-2xl font-black uppercase tracking-tighter text-white">See Your Potential This Week</h2>
-            <p className="text-gray-500 text-sm">Pick your area — see live deal volume and average commission.</p>
-          </div>
-          <div className="bg-slate-900 border border-purple-500/20 rounded-2xl p-6 space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-500/25 flex items-center justify-center shrink-0">
-                <MapPin className="w-4 h-4 text-purple-400" />
-              </div>
-              <Select value={selectedArea} onValueChange={(v) => { setSelectedArea(v); setShowCalc(true); }}>
-                <SelectTrigger className="bg-slate-800 border-slate-700 h-11 flex-1 text-[#ffffff]" data-testid="select-area">
-                  <SelectValue placeholder="Where do you operate?" />
-                </SelectTrigger>
-                <SelectContent className="bg-slate-900 border-white/10 text-white">
-                  {Object.keys(AREA_DATA).map(a => <SelectItem key={a} value={a} className="text-white">{a}</SelectItem>)}
-                </SelectContent>
-              </Select>
-            </div>
-
-            {showCalc && calcData ? (
-              <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { label: "Deals Available", value: String(calcData.deals), accent: "text-emerald-300" },
-                    { label: "Avg Commission", value: formatAED(calcData.avgComm), accent: "text-purple-300" },
-                    { label: "Potential / Week", value: formatAED(calcData.deals * calcData.avgComm), accent: "text-amber-300" },
-                  ].map(s => (
-                    <div key={s.label} className="text-center bg-slate-800/60 rounded-xl p-3 border border-white/5">
-                      <div className={`text-lg font-black ${s.accent}`}>{s.value}</div>
-                      <div className="text-[10px] text-gray-500 font-semibold mt-0.5 uppercase tracking-wide">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest border ${priorityColor(calcData.priority)}`}>
-                  <Activity className="w-3 h-3" /> {calcData.priority} Demand · {selectedArea}
-                </div>
-                <Button data-testid="button-calc-unlock" className="w-full bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl h-11 text-sm" onClick={() => scrollTo(generatorRef)}>
-                  <Zap className="w-4 h-4 mr-2" /> Unlock These Deals — Get My Link
-                </Button>
-              </div>
-            ) : (
-              <div className="text-center py-4 text-gray-700">
-                <Calculator className="w-8 h-8 mx-auto mb-2 opacity-20" />
-                <p className="text-xs">Select your area to see potential earnings</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* ── REFERRAL LINK GENERATOR (THE HOOK) ──────────── */}
       <section ref={generatorRef} id="get-link" className="py-16 px-4 bg-slate-900/50 border-b border-white/5">
         <div className="max-w-lg mx-auto space-y-6">
@@ -1207,57 +1138,6 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* ── PERFORMANCE TRACKING (INNER CIRCLE TEASER) ───── */}
-      <section className="py-14 px-4 bg-slate-900/30 border-b border-white/5">
-        <div className="max-w-3xl mx-auto space-y-6">
-          <div className="text-center space-y-2">
-            <p className="text-[10px] font-black uppercase tracking-widest text-amber-400">Inner Circle Members Only</p>
-            <h2 className="text-2xl font-black uppercase tracking-tighter text-white">Track Every Deal You Close</h2>
-            <p className="text-gray-500 text-sm max-w-md mx-auto">Inner circle brokers see clicks, referrals and commissions in real time. Join to unlock your dashboard.</p>
-          </div>
-
-          {/* Missed opportunity alert */}
-          <div className="flex items-start gap-3 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3" data-testid="missed-opp-alert">
-            <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-            <p className="text-red-300 text-xs font-semibold leading-relaxed">
-              <span className="font-black">Without a dashboard:</span> brokers typically miss 2–3 commission opportunities per week because they can't see which referrals converted.
-            </p>
-          </div>
-
-          {/* Blurred dashboard */}
-          <div className="relative rounded-2xl border border-amber-500/25 overflow-hidden">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-white/5 blur-[3px] select-none pointer-events-none" aria-hidden="true">
-              {[
-                { icon: MousePointer, label: "Link Clicks", value: "247", sub: "this month" },
-                { icon: Users,        label: "Clients Referred", value: "18", sub: "move-ins booked" },
-                { icon: CheckCircle2, label: "Deals Closed", value: "11", sub: "confirmed" },
-                { icon: Wallet,       label: "Earned", value: "AED 6,600", sub: "pending payout" },
-              ].map((stat) => (
-                <div key={stat.label} className="bg-slate-900 p-5 text-center space-y-1">
-                  <stat.icon className="w-5 h-5 text-amber-400 mx-auto mb-2" />
-                  <div className="text-2xl font-black text-white">{stat.value}</div>
-                  <div className="text-[10px] font-black text-amber-300 uppercase tracking-wider">{stat.label}</div>
-                  <div className="text-[10px] text-gray-600">{stat.sub}</div>
-                </div>
-              ))}
-            </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/75 backdrop-blur-sm gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center">
-                <Lock className="w-7 h-7 text-amber-400" />
-              </div>
-              <div className="text-center space-y-1.5">
-                <p className="font-black text-white text-base uppercase tracking-tight">Unlock Your Dashboard</p>
-                <p className="text-gray-400 text-xs max-w-xs mx-auto">Join the Inner Circle to track clicks, referrals and commissions live.</p>
-              </div>
-              <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20broker%20and%20want%20to%20join%20the%20Inner%20Circle%20to%20unlock%20my%20performance%20dashboard." target="_blank" rel="noopener noreferrer" className="text-[#ffffff]">
-                <Button data-testid="button-unlock-dashboard" className="bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl h-10 px-6 text-sm shadow-lg shadow-amber-900/40">
-                  <Crown className="w-4 h-4 mr-2" /> Apply for Inner Circle
-                </Button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── WHAT YOU EARN ────────────────────────────────── */}
       <section id="what-you-earn" className="py-14 px-4 border-b border-white/5 bg-slate-950">
@@ -1288,30 +1168,6 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
-      {/* ── WHO THIS IS FOR ──────────────────────────────── */}
-      <section className="py-14 px-4 bg-slate-900/30 border-b border-white/5">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-center text-[10px] font-black uppercase tracking-widest text-purple-400 mb-2">Who Can Join</p>
-          <h2 className="text-2xl font-black uppercase tracking-tighter text-white text-center mb-8">Built for Dubai's Real Estate Closers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {BROKER_TYPES.map((item) => (
-              <div
-                key={item.label}
-                data-testid={`who-join-${item.label.toLowerCase().replace(/\s/g, "-")}`}
-                className="rounded-2xl border border-purple-500/20 bg-slate-900 p-5 flex gap-4"
-              >
-                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
-                  <item.icon className="w-5 h-5 text-purple-400" />
-                </div>
-                <div>
-                  <p className="font-black text-white text-sm uppercase tracking-tight mb-1">{item.label}</p>
-                  <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── LIVE OPPORTUNITY FEED ────────────────────────── */}
       <section className="py-14 px-4 bg-slate-950 border-b border-white/5">
