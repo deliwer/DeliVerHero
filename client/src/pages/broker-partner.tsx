@@ -331,7 +331,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── REFERRAL LINK GENERATOR (THE HOOK) ──────────── */}
-      <section ref={generatorRef} className="py-16 px-4 bg-slate-950 border-b border-white/5">
+      <section ref={generatorRef} id="get-link" className="py-16 px-4 bg-slate-950 border-b border-white/5">
         <div className="max-w-lg mx-auto space-y-6">
           <div className="text-center space-y-2">
             <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Start Here · Free</p>
@@ -444,7 +444,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── WHAT YOU EARN ────────────────────────────────── */}
-      <section className="py-14 px-4 border-b border-white/5 bg-slate-950">
+      <section id="what-you-earn" className="py-14 px-4 border-b border-white/5 bg-slate-950">
         <div className="max-w-4xl mx-auto">
           <p className="text-center text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-2">What You Earn</p>
           <h2 className="text-2xl font-black uppercase tracking-tighter text-white text-center mb-8">Real Income, Stacked Per Deal.</h2>
@@ -592,7 +592,7 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── DAMAC DISTRESS INVENTORY ─────────────────────── */}
-      <section className="py-14 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-amber-950/10 to-slate-950">
+      <section id="damac" className="py-14 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-amber-950/10 to-slate-950">
         <div className="max-w-4xl mx-auto text-center space-y-3 mb-8">
           <Badge className="bg-amber-500/10 border-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-widest">
             Secondary Market · DAMAC Distress Inventory

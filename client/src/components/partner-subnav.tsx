@@ -10,12 +10,12 @@ const PARTNER_SUBNAV = [
 ];
 
 const BROKER_ANCHORS = [
-  { id: "who", label: "Who Can Join" },
-  { id: "highlights", label: "What You Earn" },
-  { id: "realty-inner-circle", label: "Realty Inner Circle" },
-  { id: "damac", label: "DAMAC Distress Track" },
-  { id: "apply", label: "Apply" },
+  { id: "get-link", label: "Get My Link" },
+  { id: "what-you-earn", label: "What You Earn" },
+  { id: "inner-circle", label: "Inner Circle" },
+  { id: "damac", label: "DAMAC Track" },
   { id: "scripts", label: "Scripts" },
+  { id: "apply", label: "Apply" },
 ];
 
 const BROKER_ROUTES = ["/brokers", "/broker-partner", "/partners/join"];
