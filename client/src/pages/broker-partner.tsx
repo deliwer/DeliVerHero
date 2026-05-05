@@ -880,9 +880,9 @@ export default function BrokerPartnerPage() {
 
           {/* ── Broker Control Dashboard link ── */}
           <div className="flex justify-center pt-1">
-            <Link href="/habtoor-admin" className="text-[#ffffff]">
+            <Link href="/partner-dashboard" className="text-[#ffffff]">
               <button data-testid="button-broker-control-dashboard" className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/30 rounded-xl px-5 py-2.5 transition-all bg-white/5 hover:bg-emerald-500/10 font-bold uppercase tracking-widest">
-                <BarChart2 className="w-3.5 h-3.5" /> Broker Tracking &amp; Management
+                <BarChart2 className="w-3.5 h-3.5" /> Broker Operations Dashboard
               </button>
             </Link>
           </div>
