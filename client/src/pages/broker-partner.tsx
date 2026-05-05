@@ -880,6 +880,15 @@ export default function BrokerPartnerPage() {
               <Crown className="w-5 h-5 mr-2" /> Inner Circle
             </Button>
           </div>
+
+          {/* ── Broker Control Dashboard link ── */}
+          <div className="flex justify-center pt-1">
+            <Link href="/marketing/recruit">
+              <button data-testid="button-broker-control-dashboard" className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/30 rounded-xl px-5 py-2.5 transition-all bg-white/5 hover:bg-emerald-500/10 font-bold uppercase tracking-widest">
+                <BarChart2 className="w-3.5 h-3.5" /> Broker Control Dashboard &amp; Management
+              </button>
+            </Link>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {[
               { icon: ShieldCheck, label: "RERA Trustee Centre" },
@@ -935,6 +944,131 @@ export default function BrokerPartnerPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ── DEVELOPER & COMMUNITY OPPORTUNITIES ─────────── */}
+      <section id="communities" className="py-16 px-4 bg-slate-950 border-b border-white/5">
+        <div className="max-w-5xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Exclusive Inventory Access</p>
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">Developer &amp; Community Opportunities</h2>
+            <p className="text-gray-500 text-sm max-w-lg mx-auto">Choose your track. Each community has its own inventory, commission structure and access gate. NDA required for all tracks.</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Al Habtoor Polo */}
+            <button
+              data-testid="community-card-habtoor"
+              onClick={() => document.getElementById("habtoor-polo")?.scrollIntoView({ behavior: "smooth" })}
+              className="group text-left bg-slate-900 border border-amber-500/25 hover:border-amber-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-amber-500/5 hover:shadow-lg hover:shadow-amber-900/20"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                  <Crown className="w-5 h-5 text-amber-400" />
+                </div>
+                <Badge className="bg-amber-500/10 border-amber-500/25 text-amber-400 text-[9px] font-black uppercase tracking-wide">Active</Badge>
+              </div>
+              <div>
+                <p className="font-black text-white text-sm uppercase tracking-tight">Al Habtoor Polo</p>
+                <p className="text-amber-400/80 text-[10px] font-bold mt-0.5">Resort &amp; Club</p>
+              </div>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Building className="w-3 h-3 text-amber-400" /> 55 Villas &amp; Semi-Detached</div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Lock className="w-3 h-3 text-amber-400" /> NDA / NCA Gated</div>
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold"><TrendingUp className="w-3 h-3" /> 50/50 Split + Override</div>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10px] text-amber-400 font-black uppercase tracking-wider group-hover:gap-2.5 transition-all">
+                <ChevronRight className="w-3.5 h-3.5" /> View Inventory
+              </div>
+            </button>
+
+            {/* DAMAC */}
+            <button
+              data-testid="community-card-damac"
+              onClick={() => document.getElementById("damac")?.scrollIntoView({ behavior: "smooth" })}
+              className="group text-left bg-slate-900 border border-purple-500/25 hover:border-purple-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-purple-500/5 hover:shadow-lg hover:shadow-purple-900/20"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
+                  <Building2 className="w-5 h-5 text-purple-400" />
+                </div>
+                <Badge className="bg-purple-500/10 border-purple-500/25 text-purple-400 text-[9px] font-black uppercase tracking-wide">Distress</Badge>
+              </div>
+              <div>
+                <p className="font-black text-white text-sm uppercase tracking-tight">DAMAC</p>
+                <p className="text-purple-400/80 text-[10px] font-bold mt-0.5">Secondary Market</p>
+              </div>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Building className="w-3 h-3 text-purple-400" /> Below-Market Resale Units</div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Lock className="w-3 h-3 text-purple-400" /> Inner Circle Access</div>
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold"><TrendingUp className="w-3 h-3" /> Higher Per-Deal Commission</div>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10px] text-purple-400 font-black uppercase tracking-wider group-hover:gap-2.5 transition-all">
+                <ChevronRight className="w-3.5 h-3.5" /> View Distress Inventory
+              </div>
+            </button>
+
+            {/* SAMANA */}
+            <a
+              data-testid="community-card-samana"
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20SAMANA%20community%20inventory%20access.%20Please%20share%20the%20NDA."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group text-left bg-slate-900 border border-sky-500/25 hover:border-sky-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-sky-500/5 hover:shadow-lg hover:shadow-sky-900/20 block"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="w-11 h-11 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center shrink-0">
+                  <Sparkles className="w-5 h-5 text-sky-400" />
+                </div>
+                <Badge className="bg-sky-500/10 border-sky-500/25 text-sky-400 text-[9px] font-black uppercase tracking-wide">New</Badge>
+              </div>
+              <div>
+                <p className="font-black text-white text-sm uppercase tracking-tight">SAMANA</p>
+                <p className="text-sky-400/80 text-[10px] font-bold mt-0.5">Developer Track</p>
+              </div>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Building className="w-3 h-3 text-sky-400" /> Off-Plan &amp; Handover Units</div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Lock className="w-3 h-3 text-sky-400" /> NDA Required</div>
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold"><TrendingUp className="w-3 h-3" /> Developer Commission Rate</div>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10px] text-sky-400 font-black uppercase tracking-wider group-hover:gap-2.5 transition-all">
+                <MessageCircle className="w-3.5 h-3.5" /> Request Access
+              </div>
+            </a>
+
+            {/* MEYDAN */}
+            <a
+              data-testid="community-card-meydan"
+              href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20MEYDAN%20community%20inventory%20access.%20Please%20share%20the%20NDA."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group text-left bg-slate-900 border border-emerald-500/25 hover:border-emerald-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-emerald-500/5 hover:shadow-lg hover:shadow-emerald-900/20 block"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-emerald-400" />
+                </div>
+                <Badge className="bg-emerald-500/10 border-emerald-500/25 text-emerald-400 text-[9px] font-black uppercase tracking-wide">New</Badge>
+              </div>
+              <div>
+                <p className="font-black text-white text-sm uppercase tracking-tight">MEYDAN</p>
+                <p className="text-emerald-400/80 text-[10px] font-bold mt-0.5">Community Track</p>
+              </div>
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Building className="w-3 h-3 text-emerald-400" /> Villas &amp; Townhouses</div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-400"><Lock className="w-3 h-3 text-emerald-400" /> NDA Required</div>
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-bold"><TrendingUp className="w-3 h-3" /> High-Value Lease Splits</div>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-black uppercase tracking-wider group-hover:gap-2.5 transition-all">
+                <MessageCircle className="w-3.5 h-3.5" /> Request Access
+              </div>
+            </a>
+          </div>
+
+          <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+            More communities coming · EMAAR · NAKHEEL · MERAAS · Contact DeliWer to reserve your track
+          </p>
         </div>
       </section>
 
@@ -1344,9 +1478,14 @@ export default function BrokerPartnerPage() {
       </section>
 
       {/* ── DAMAC DISTRESS INVENTORY ─────────────────────── */}
-      <section id="damac" className="py-14 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-amber-950/10 to-slate-950">
+      <section id="damac" className="py-14 px-4 border-b border-white/5 bg-gradient-to-br from-slate-950 via-purple-950/10 to-slate-950">
         <div className="max-w-4xl mx-auto text-center space-y-3 mb-8">
-          <Badge className="bg-amber-500/10 border-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-widest">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Developer &amp; Community Opportunities</span>
+            <ChevronRight className="w-3 h-3 text-gray-600" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-purple-400">DAMAC Track</span>
+          </div>
+          <Badge className="bg-purple-500/10 border-purple-500/20 text-purple-400 text-[10px] font-black uppercase tracking-widest">
             Secondary Market · DAMAC Distress Inventory
           </Badge>
           <h2 className="text-2xl font-black uppercase tracking-tighter text-white">Below-Market Resale Track</h2>
