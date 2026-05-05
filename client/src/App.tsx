@@ -198,6 +198,7 @@ const WartimeReadinessPage = lazy(() => import("@/pages/wartime-readiness"));
 const AdminAlertsPage = lazy(() => import("@/pages/admin-alerts"));
 const CapturePage = lazy(() => import("@/pages/capture"));
 const CaptureAdmin = lazy(() => import("@/pages/capture-admin"));
+const HabtoorAdmin = lazy(() => import("@/pages/habtoor-admin"));
 const CaptureReferrers = lazy(() => import("@/pages/capture-referrers"));
 const MarketingTenantLeads = lazy(() => import("@/pages/marketing/tenant-leads"));
 const MarketingTenantReferrers = lazy(() => import("@/pages/marketing/tenant-referrers"));
@@ -246,6 +247,7 @@ function Router() {
         <Route path="/admin/alerts" component={AdminAlertsPage} />
         <Route path="/capture" component={CapturePage} />
         <Route path="/capture-admin" component={CaptureAdmin} />
+        <Route path="/habtoor-admin" component={HabtoorAdmin} />
         <Route path="/capture-referrers" component={CaptureReferrers} />
         <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
         <Route path="/home-access" component={HomeAccess} />

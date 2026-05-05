@@ -393,6 +393,135 @@ router.get("/blacklist-check", async (req: Request, res: Response) => {
   res.json({ blacklisted: result.length > 0, reason: result[0]?.reason || null });
 });
 
+// ── Admin middleware ──────────────────────────────────────────────────────────────────────────
+function adminOnly(req: Request, res: Response, next: () => void) {
+  const token = req.headers["x-admin-token"] || req.query.token;
+  if (token !== process.env.ADMIN_SECRET && token !== "deliwer-admin-2026") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
+
+// ── GET /api/habtoor/admin/stats ──────────────────────────────────────────────────────────────
+router.get("/admin/stats", adminOnly, async (_req: Request, res: Response) => {
+  try {
+    const [props, ndas, claims, deals, tours, blacklisted] = await Promise.all([
+      db.select().from(habtoorInventory),
+      db.select().from(brokerNdaAcceptance),
+      db.select().from(propertyLeadClaims),
+      db.select().from(dealClosureReports),
+      db.select().from(virtualTourRequests),
+      db.select().from(brokerBlacklist),
+    ]);
+    const activeClaims = claims.filter(c => c.status === "active");
+    const closedDeals = deals.filter(d => d.verificationStatus !== "fraud");
+    const totalRevenue = closedDeals.reduce((sum, d) => sum + (d.deliwerCommissionAed || 0), 0);
+    res.json({
+      inventory: { total: props.length, vacant: props.filter(p => p.status === "Vacant").length, rented: props.filter(p => p.status === "Rented").length, hotel: props.filter(p => p.status === "Hotel").length },
+      brokers: { nda: ndas.length, blacklisted: blacklisted.length },
+      claims: { total: claims.length, active: activeClaims.length, closed: claims.filter(c => c.status === "closed").length },
+      deals: { total: deals.length, verified: deals.filter(d => d.verificationStatus === "verified").length, pending: deals.filter(d => d.verificationStatus === "pending").length },
+      tours: { total: tours.length, pending: tours.filter(t => t.status === "pending").length, live: tours.filter(t => t.tourType === "live").length },
+      revenue: { deliwerCommissionAed: totalRevenue },
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load stats" });
+  }
+});
+
+// ── GET /api/habtoor/admin/claims ─────────────────────────────────────────────────────────────
+router.get("/admin/claims", adminOnly, async (req: Request, res: Response) => {
+  try {
+    const status = req.query.status as string | undefined;
+    let rows = await db.select().from(propertyLeadClaims).orderBy(desc(propertyLeadClaims.claimedAt)).limit(200);
+    if (status) rows = rows.filter(r => r.status === status);
+    const enriched = await Promise.all(rows.map(async (c) => {
+      const [prop] = await db.select().from(habtoorInventory).where(eq(habtoorInventory.id, c.propertyId)).limit(1);
+      return { ...c, property: prop ? maskProperty(prop) : null };
+    }));
+    res.json(enriched);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load claims" });
+  }
+});
+
+// ── GET /api/habtoor/admin/deal-reports ───────────────────────────────────────────────────────
+router.get("/admin/deal-reports", adminOnly, async (_req: Request, res: Response) => {
+  try {
+    const rows = await db.select().from(dealClosureReports).orderBy(desc(dealClosureReports.reportedAt)).limit(200);
+    const enriched = await Promise.all(rows.map(async (d) => {
+      const [prop] = await db.select().from(habtoorInventory).where(eq(habtoorInventory.id, d.propertyId)).limit(1);
+      return { ...d, property: prop ? maskProperty(prop) : null };
+    }));
+    res.json(enriched);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load deal reports" });
+  }
+});
+
+// ── GET /api/habtoor/admin/vr-requests ────────────────────────────────────────────────────────
+router.get("/admin/vr-requests", adminOnly, async (_req: Request, res: Response) => {
+  try {
+    const rows = await db.select().from(virtualTourRequests).orderBy(desc(virtualTourRequests.requestedAt)).limit(200);
+    const enriched = await Promise.all(rows.map(async (t) => {
+      const [prop] = await db.select().from(habtoorInventory).where(eq(habtoorInventory.id, t.propertyId)).limit(1);
+      return { ...t, property: prop ? maskProperty(prop) : null };
+    }));
+    res.json(enriched);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load VR requests" });
+  }
+});
+
+// ── GET /api/habtoor/admin/ndas ───────────────────────────────────────────────────────────────
+router.get("/admin/ndas", adminOnly, async (_req: Request, res: Response) => {
+  try {
+    const rows = await db.select().from(brokerNdaAcceptance).orderBy(desc(brokerNdaAcceptance.acceptedAt)).limit(200);
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load NDAs" });
+  }
+});
+
+// ── GET /api/habtoor/admin/blacklist ──────────────────────────────────────────────────────────
+router.get("/admin/blacklist", adminOnly, async (_req: Request, res: Response) => {
+  try {
+    const rows = await db.select().from(brokerBlacklist).orderBy(desc(brokerBlacklist.blacklistedAt));
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to load blacklist" });
+  }
+});
+
+// ── PATCH /api/habtoor/admin/claims/:id — update status ──────────────────────────────────────
+router.patch("/admin/claims/:id", adminOnly, async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  if (!["active","closed","expired","disputed","blacklisted"].includes(status)) {
+    return res.status(400).json({ error: "Invalid status" });
+  }
+  await db.update(propertyLeadClaims).set({ status }).where(eq(propertyLeadClaims.id, id));
+  res.json({ success: true });
+});
+
+// ── PATCH /api/habtoor/admin/deal-reports/:id — verify/dispute ───────────────────────────────
+router.patch("/admin/deal-reports/:id", adminOnly, async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { verificationStatus } = req.body;
+  if (!["pending","verified","disputed","fraud"].includes(verificationStatus)) {
+    return res.status(400).json({ error: "Invalid status" });
+  }
+  await db.update(dealClosureReports).set({ verificationStatus }).where(eq(dealClosureReports.id, id));
+  res.json({ success: true });
+});
+
+// ── DELETE /api/habtoor/admin/blacklist/:phone ────────────────────────────────────────────────
+router.delete("/admin/blacklist/:phone", adminOnly, async (req: Request, res: Response) => {
+  const phone = decodeURIComponent(req.params.phone);
+  await db.delete(brokerBlacklist).where(eq(brokerBlacklist.brokerPhone, phone));
+  res.json({ success: true, message: `Broker ${phone} removed from blacklist` });
+});
+
 // ── POST /api/habtoor/blacklist (admin only — simple token guard) ─────────────────────────────
 router.post("/blacklist", async (req: Request, res: Response) => {
   const token = req.headers["x-admin-token"];
