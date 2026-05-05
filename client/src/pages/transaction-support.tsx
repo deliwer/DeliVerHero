@@ -340,7 +340,7 @@ export default function TransactionSupportPage() {
               </div>
             </div>
             <div className="flex flex-col gap-3 shrink-0 w-full md:w-auto">
-              <Link href="/broker-partner" data-testid="cta-ts-broker-partner">
+              <Link href="/brokers" data-testid="cta-ts-broker-partner">
                 <Button className="w-full md:w-auto bg-purple-600 hover:bg-purple-500 text-white font-black rounded-2xl px-8 h-12 text-sm shadow-xl shadow-purple-900/30 transition-all">
                   <Zap className="w-4 h-4 mr-2" /> Generate My Referral Link
                 </Button>

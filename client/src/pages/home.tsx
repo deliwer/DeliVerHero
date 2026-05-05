@@ -14,6 +14,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrustStrip, PartnerStrip } from "@/components/trust-strip";
 import { PaymentCTA } from "@/components/payment-cta";
+import { BrokerCTABanner } from "@/components/broker-cta-banner";
 import { motion } from "framer-motion";
 
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
@@ -683,6 +684,13 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Broker CTA */}
+      <section className="py-8 px-4 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <BrokerCTABanner context="RERA Broker? Refer your clients after lease signing. Earn AED 300–800 per move-in — no minimums, free to join." />
         </div>
       </section>
 

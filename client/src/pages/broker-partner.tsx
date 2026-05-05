@@ -174,6 +174,7 @@ export default function BrokerPartnerPage() {
   // Calculator
   const [selectedArea, setSelectedArea] = useState("");
   const [showCalc, setShowCalc] = useState(false);
+  const [claimedSlots, setClaimedSlots] = useState<Record<string, number>>({});
 
   const generatorRef = useRef<HTMLDivElement>(null);
   const applyRef = useRef<HTMLDivElement>(null);
@@ -214,6 +215,9 @@ export default function BrokerPartnerPage() {
   }
 
   function claimOpportunity(opp: typeof MOCK_OPPORTUNITIES[0]) {
+    const remaining = Math.max(0, opp.slots - (claimedSlots[opp.id] || 0));
+    if (remaining === 0) return;
+    setClaimedSlots(prev => ({ ...prev, [opp.id]: (prev[opp.id] || 0) + 1 }));
     const msg = `Hi DeliWer — I'm a broker and I want to claim opportunity ${opp.id} (${opp.type} · ${opp.area}). My referral code: ${generatedRef || "pending"}`;
     window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
   }
@@ -619,48 +623,55 @@ export default function BrokerPartnerPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {MOCK_OPPORTUNITIES.map((opp) => (
-              <div
-                key={opp.id}
-                data-testid={`opportunity-${opp.id}`}
-                className="bg-slate-900 border border-white/8 rounded-2xl p-5 space-y-4 hover:border-emerald-500/25 transition-colors"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <p className="font-black text-white text-sm uppercase tracking-tight">{opp.type}</p>
-                    <p className="text-gray-500 text-xs mt-0.5 flex items-center gap-1"><MapPin className="w-3 h-3" />{opp.area}</p>
+            {MOCK_OPPORTUNITIES.map((opp) => {
+              const remaining = Math.max(0, opp.slots - (claimedSlots[opp.id] || 0));
+              const isFull = remaining === 0;
+              return (
+                <div
+                  key={opp.id}
+                  data-testid={`opportunity-${opp.id}`}
+                  className={`bg-slate-900 border rounded-2xl p-5 space-y-4 transition-colors ${isFull ? "border-slate-700/50 opacity-60" : "border-white/8 hover:border-emerald-500/25"}`}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="font-black text-white text-sm uppercase tracking-tight">{opp.type}</p>
+                      <p className="text-gray-500 text-xs mt-0.5 flex items-center gap-1"><MapPin className="w-3 h-3" />{opp.area}</p>
+                    </div>
+                    <Badge className={`text-[9px] font-black uppercase border shrink-0 ${isFull ? "bg-slate-700/50 text-gray-500 border-white/10" : priorityColor(opp.priority)}`}>
+                      {isFull ? "FULL" : opp.priority}
+                    </Badge>
                   </div>
-                  <Badge className={`text-[9px] font-black uppercase border shrink-0 ${priorityColor(opp.priority)}`}>{opp.priority}</Badge>
-                </div>
 
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-500">{opp.need}</span>
-                    <span className="font-black text-emerald-300">{formatAED(opp.commission)}</span>
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-gray-500">{opp.need}</span>
+                      <span className="font-black text-emerald-300">{formatAED(opp.commission)}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      {Array.from({ length: 3 }).map((_, i) => (
+                        <div key={i} className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${i < remaining ? "bg-emerald-500" : "bg-slate-700"}`} />
+                      ))}
+                      <span className={`text-[10px] font-semibold ml-1 shrink-0 transition-colors ${isFull ? "text-red-400" : remaining === 1 ? "text-amber-400" : "text-gray-500"}`}>
+                        {isFull ? "Claimed" : remaining === 1 ? "1 slot left!" : `${remaining} slots`}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    {Array.from({ length: 3 }).map((_, i) => (
-                      <div key={i} className={`h-1.5 flex-1 rounded-full ${i < opp.slots ? "bg-emerald-500" : "bg-slate-700"}`} />
-                    ))}
-                    <span className="text-[10px] text-gray-500 font-semibold ml-1 shrink-0">
-                      {opp.slots === 1 ? "1 slot left" : `${opp.slots} slots`}
-                    </span>
-                  </div>
-                </div>
 
-                <div className="flex items-center justify-between">
-                  <code className="text-[10px] text-gray-600 font-mono">{opp.id}</code>
-                  <Button
-                    data-testid={`button-claim-${opp.id}`}
-                    size="sm"
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl h-8 px-4 text-xs"
-                    onClick={() => claimOpportunity(opp)}
-                  >
-                    Claim Lead →
-                  </Button>
+                  <div className="flex items-center justify-between">
+                    <code className="text-[10px] text-gray-600 font-mono">{opp.id}</code>
+                    <Button
+                      data-testid={`button-claim-${opp.id}`}
+                      size="sm"
+                      disabled={isFull}
+                      className={`font-black rounded-xl h-8 px-4 text-xs transition-all ${isFull ? "bg-slate-700 text-gray-500 cursor-not-allowed" : "bg-emerald-600 hover:bg-emerald-500 text-white"}`}
+                      onClick={() => claimOpportunity(opp)}
+                    >
+                      {isFull ? "All Claimed" : "Claim Lead →"}
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Gated — more behind inner circle */}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PaymentCTA } from "@/components/payment-cta";
+import { BrokerCTABanner } from "@/components/broker-cta-banner";
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -510,6 +511,13 @@ export default function ConsultPage() {
             title="Pay for Your Consultation"
             subtitle="Once you've agreed your session on WhatsApp, pay securely via PayPal or request bank transfer details for remote bookings."
           />
+        </div>
+      </section>
+
+      {/* Broker CTA */}
+      <section className="py-8 px-4 bg-slate-950 border-b border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <BrokerCTABanner context="Real estate broker? Refer relocating clients to DeliWer and earn AED 300–800 per move-in — free to join." />
         </div>
       </section>
 

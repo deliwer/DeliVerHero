@@ -3,6 +3,7 @@ import { CheckCircle, Zap, ArrowRight, Plane, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { PaymentCTA } from "@/components/payment-cta";
+import { BrokerCTABanner } from "@/components/broker-cta-banner";
 
 export default function MoveInLanding() {
   return (
@@ -230,6 +231,13 @@ export default function MoveInLanding() {
             title="Pay for Your Move-In Services"
             subtitle="Agreed your move-in package on WhatsApp? Pay securely via PayPal or request bank transfer for remote orders."
           />
+        </div>
+      </section>
+
+      {/* Broker CTA */}
+      <section className="py-8 px-4 bg-slate-950 border-b border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <BrokerCTABanner context="Real estate broker? Share this page with your clients after lease signing and earn AED 300–800 per move-in." />
         </div>
       </section>
 

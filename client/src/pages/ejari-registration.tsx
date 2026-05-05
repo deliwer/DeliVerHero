@@ -117,10 +117,10 @@ export default function EjariRegistration() {
             </div>
             <div>
               <p className="text-white font-black text-sm uppercase tracking-tight">Are you a real estate broker?</p>
-              <p className="text-gray-500 text-xs">Refer clients to DeliWer and earn AED 150–800+ per move-in.</p>
+              <p className="text-gray-500 text-xs">Refer clients after Ejari signing. Earn AED 300–800 per move-in — free to join, instant link.</p>
             </div>
           </div>
-          <Link href="/broker-partner" data-testid="button-ejari-reg-broker-cta">
+          <Link href="/brokers" data-testid="button-ejari-reg-broker-cta">
             <Button
               size="sm"
               className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl px-6 h-10 text-xs shrink-0"
