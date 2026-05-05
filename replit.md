@@ -75,6 +75,21 @@ DeliWer aims to solve the operational complexities of moving in Dubai, offering 
 - **Routing:** `wouter` for client-side routing.
 - **Backend:** Express (Node.js), serving on port 5000.
 
+## Replit Environment
+
+- **Runtime:** Node.js 20, PostgreSQL 16
+- **Dev server:** `npm run dev` (tsx + Vite HMR) on port 5000
+- **Production build:** `npm run build` → `node dist/index.js`
+- **Database:** Replit-managed PostgreSQL (DATABASE_URL auto-injected)
+- **Workflow:** "Start application" → `npm run dev`, port 5000
+- **Secrets needed for full functionality (add via Secrets tab):**
+  - `OPENAI_API_KEY` — AI concierge chat and social discovery
+  - `SENDGRID_API_KEY` — Email campaigns and broker recruitment
+  - `STRIPE_SECRET_KEY` — Stripe payment processing
+  - `PAYPAL_CLIENT_ID` + `PAYPAL_CLIENT_SECRET` — PayPal payments
+  - `WHATSAPP_TOKEN` + `WHATSAPP_PHONE_NUMBER_ID` — WhatsApp notifications
+- All integrations gracefully degrade when keys are absent (demo/simulation mode)
+
 ## External Dependencies
 
 -   **Stripe:** Payment gateway (API integration details need user confirmation for direct secret key).
