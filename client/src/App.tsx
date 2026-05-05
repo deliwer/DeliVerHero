@@ -198,7 +198,7 @@ const WartimeReadinessPage = lazy(() => import("@/pages/wartime-readiness"));
 const AdminAlertsPage = lazy(() => import("@/pages/admin-alerts"));
 const CapturePage = lazy(() => import("@/pages/capture"));
 const CaptureAdmin = lazy(() => import("@/pages/capture-admin"));
-const HabtoorAdmin = lazy(() => import("@/pages/habtoor-admin"));
+const HabtoorAdmin = lazy(() => import("@/pages/partner-dashboard"));
 const CaptureReferrers = lazy(() => import("@/pages/capture-referrers"));
 const MarketingTenantLeads = lazy(() => import("@/pages/marketing/tenant-leads"));
 const MarketingTenantReferrers = lazy(() => import("@/pages/marketing/tenant-referrers"));

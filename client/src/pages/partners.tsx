@@ -392,14 +392,15 @@ export default function PartnersPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Button
-                data-testid="button-hero-broker-cta"
-                onClick={() => scrollToJoin("broker")}
-                size="lg"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-emerald-900/40"
-              >
-                <Building2 className="w-5 h-5 mr-2" /> Broker Partner
-              </Button>
+              <Link href="/brokers">
+                <Button
+                  data-testid="button-hero-broker-cta"
+                  size="lg"
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-emerald-900/40"
+                >
+                  <Building2 className="w-5 h-5 mr-2" /> Broker Partner
+                </Button>
+              </Link>
               <Button
                 data-testid="button-hero-alliance-cta"
                 onClick={() => scrollToJoin("aquacafe")}
