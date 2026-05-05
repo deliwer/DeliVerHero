@@ -961,7 +961,7 @@ export default function BrokerPartnerPage() {
             <button
               data-testid="community-card-habtoor"
               onClick={() => document.getElementById("habtoor-polo")?.scrollIntoView({ behavior: "smooth" })}
-              className="group text-left bg-slate-900 border border-amber-500/25 hover:border-amber-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-amber-500/5 hover:shadow-lg hover:shadow-amber-900/20"
+              className="group text-left text-[#ffffff] bg-slate-900 border border-amber-500/25 hover:border-amber-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-amber-500/5 hover:shadow-lg hover:shadow-amber-900/20"
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
@@ -987,7 +987,7 @@ export default function BrokerPartnerPage() {
             <button
               data-testid="community-card-damac"
               onClick={() => document.getElementById("damac")?.scrollIntoView({ behavior: "smooth" })}
-              className="group text-left bg-slate-900 border border-purple-500/25 hover:border-purple-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-purple-500/5 hover:shadow-lg hover:shadow-purple-900/20"
+              className="group text-left text-[#ffffff] bg-slate-900 border border-purple-500/25 hover:border-purple-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-purple-500/5 hover:shadow-lg hover:shadow-purple-900/20"
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
@@ -1015,7 +1015,7 @@ export default function BrokerPartnerPage() {
               href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20SAMANA%20community%20inventory%20access.%20Please%20share%20the%20NDA."
               target="_blank"
               rel="noopener noreferrer"
-              className="group text-left bg-slate-900 border border-sky-500/25 hover:border-sky-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-sky-500/5 hover:shadow-lg hover:shadow-sky-900/20 block"
+              className="group text-left text-[#ffffff] bg-slate-900 border border-sky-500/25 hover:border-sky-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-sky-500/5 hover:shadow-lg hover:shadow-sky-900/20 block"
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="w-11 h-11 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center shrink-0">
@@ -1043,7 +1043,7 @@ export default function BrokerPartnerPage() {
               href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20MEYDAN%20community%20inventory%20access.%20Please%20share%20the%20NDA."
               target="_blank"
               rel="noopener noreferrer"
-              className="group text-left bg-slate-900 border border-emerald-500/25 hover:border-emerald-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-emerald-500/5 hover:shadow-lg hover:shadow-emerald-900/20 block"
+              className="group text-left text-[#ffffff] bg-slate-900 border border-emerald-500/25 hover:border-emerald-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-emerald-500/5 hover:shadow-lg hover:shadow-emerald-900/20 block"
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0">
