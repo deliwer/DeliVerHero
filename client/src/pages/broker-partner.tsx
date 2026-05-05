@@ -1249,7 +1249,7 @@ export default function BrokerPartnerPage() {
                 <p className="font-black text-white text-base uppercase tracking-tight">Unlock Your Dashboard</p>
                 <p className="text-gray-400 text-xs max-w-xs mx-auto">Join the Inner Circle to track clicks, referrals and commissions live.</p>
               </div>
-              <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20broker%20and%20want%20to%20join%20the%20Inner%20Circle%20to%20unlock%20my%20performance%20dashboard." target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20broker%20and%20want%20to%20join%20the%20Inner%20Circle%20to%20unlock%20my%20performance%20dashboard." target="_blank" rel="noopener noreferrer" className="text-[#ffffff]">
                 <Button data-testid="button-unlock-dashboard" className="bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl h-10 px-6 text-sm shadow-lg shadow-amber-900/40">
                   <Crown className="w-4 h-4 mr-2" /> Apply for Inner Circle
                 </Button>
@@ -1393,7 +1393,7 @@ export default function BrokerPartnerPage() {
                 <p className="font-black text-white text-sm uppercase tracking-tight">+ 24 More Opportunities This Week</p>
                 <p className="text-gray-500 text-xs">Inner Circle members get full deal flow — residential, commercial, DAMAC distress.</p>
               </div>
-              <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20broker%20and%20want%20Inner%20Circle%20access%20to%20the%20full%20opportunity%20feed." target="_blank" rel="noopener noreferrer" className="shrink-0">
+              <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20broker%20and%20want%20Inner%20Circle%20access%20to%20the%20full%20opportunity%20feed." target="_blank" rel="noopener noreferrer" className="shrink-0 text-[#ffffff]">
                 <Button data-testid="button-more-opps" className="bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl h-10 px-6 text-sm shadow-lg shadow-amber-900/30">
                   <Crown className="w-4 h-4 mr-2" /> Unlock Full Feed
                 </Button>
@@ -1460,7 +1460,7 @@ export default function BrokerPartnerPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NDA%20to%20get%20started." target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NDA%20to%20get%20started." target="_blank" rel="noopener noreferrer" className="text-[#ffffff]">
               <Button data-testid="button-inner-circle-apply" size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-black h-13 px-10 text-sm rounded-2xl shadow-2xl shadow-amber-900/40">
                 <Crown className="w-5 h-5 mr-2" /> Apply for Inner Circle · Sign NDA
               </Button>
@@ -1637,7 +1637,7 @@ export default function BrokerPartnerPage() {
                         <Building2 className="w-4 h-4 mr-2" /> Realty Engine
                       </Button>
                     </Link>
-                    <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%20just%20applied%20as%20a%20broker%20and%20want%20to%20learn%20about%20the%20Inner%20Circle." target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%20just%20applied%20as%20a%20broker%20and%20want%20to%20learn%20about%20the%20Inner%20Circle." target="_blank" rel="noopener noreferrer" className="flex-1 text-[#ffffff]">
                       <Button variant="outline" className="w-full border-amber-500/30 text-amber-400 hover:bg-amber-500/10 font-black rounded-xl h-10 text-xs">
                         <Crown className="w-4 h-4 mr-2" /> Inner Circle
                       </Button>
