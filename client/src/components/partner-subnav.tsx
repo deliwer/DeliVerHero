@@ -12,6 +12,7 @@ const PARTNER_SUBNAV = [
 const BROKER_ANCHORS = [
   { id: "get-link", label: "Get My Link" },
   { id: "communities", label: "Communities" },
+  { id: "opportunities", label: "Opportunities" },
   { id: "what-you-earn", label: "What You Earn" },
   { id: "inner-circle", label: "Inner Circle" },
   { id: "damac", label: "DAMAC Track" },

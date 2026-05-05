@@ -880,9 +880,9 @@ export default function BrokerPartnerPage() {
 
           {/* ── Broker Control Dashboard link ── */}
           <div className="flex justify-center pt-1">
-            <Link href="/marketing/recruit" className="text-[#ffffff]">
+            <Link href="/habtoor-admin" className="text-[#ffffff]">
               <button data-testid="button-broker-control-dashboard" className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/30 rounded-xl px-5 py-2.5 transition-all bg-white/5 hover:bg-emerald-500/10 font-bold uppercase tracking-widest">
-                <BarChart2 className="w-3.5 h-3.5" /> Broker Control Dashboard &amp; Management
+                <BarChart2 className="w-3.5 h-3.5" /> Broker Tracking &amp; Management
               </button>
             </Link>
           </div>
@@ -1170,7 +1170,7 @@ export default function BrokerPartnerPage() {
 
 
       {/* ── LIVE OPPORTUNITY FEED ────────────────────────── */}
-      <section className="py-14 px-4 bg-slate-950 border-b border-white/5">
+      <section id="opportunities" className="py-14 px-4 bg-slate-950 border-b border-white/5">
         <div className="max-w-4xl mx-auto space-y-6">
           <div className="flex items-start justify-between gap-4 flex-wrap">
             <div className="space-y-1">
