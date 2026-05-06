@@ -1487,7 +1487,7 @@ export default function BrokerPartnerPage() {
             <button
               data-testid="button-action-find-deals"
               onClick={() => document.getElementById("opportunities")?.scrollIntoView({ behavior: "smooth" })}
-              className="group bg-slate-900 border border-emerald-500/25 hover:border-emerald-400/60 rounded-2xl p-5 text-left transition-all hover:bg-emerald-500/5 space-y-3"
+              className="group bg-slate-900 border border-emerald-500/25 hover:border-emerald-400/60 rounded-2xl p-5 text-left transition-all hover:bg-emerald-500/5 space-y-3 text-[#ffffff]"
             >
               <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
                 <Eye className="w-5 h-5 text-emerald-400" />
@@ -1504,7 +1504,7 @@ export default function BrokerPartnerPage() {
             <button
               data-testid="button-action-capture-deal"
               onClick={() => setShowCapture(v => !v)}
-              className="group bg-slate-900 border border-purple-500/25 hover:border-purple-400/60 rounded-2xl p-5 text-left transition-all hover:bg-purple-500/5 space-y-3"
+              className="group bg-slate-900 border border-purple-500/25 hover:border-purple-400/60 rounded-2xl p-5 text-left transition-all hover:bg-purple-500/5 space-y-3 text-[#ffffff]"
             >
               <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center">
                 <Send className="w-5 h-5 text-purple-400" />
@@ -1521,7 +1521,7 @@ export default function BrokerPartnerPage() {
             <button
               data-testid="button-action-track-earnings"
               onClick={() => window.open("https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%20want%20to%20check%20my%20earnings%20and%20commission%20status.", "_blank")}
-              className="group bg-slate-900 border border-amber-500/25 hover:border-amber-400/60 rounded-2xl p-5 text-left transition-all hover:bg-amber-500/5 space-y-3"
+              className="group bg-slate-900 border border-amber-500/25 hover:border-amber-400/60 rounded-2xl p-5 text-left transition-all hover:bg-amber-500/5 space-y-3 text-[#ffffff]"
             >
               <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center">
                 <Wallet className="w-5 h-5 text-amber-400" />
