@@ -22,8 +22,6 @@ import relocateHero from "@/assets/images/relocate-hero.jpg";
 import moveOutBg from "@/assets/images/move-out-bg.jpg";
 import moveInBg from "@/assets/images/move-in-bg.jpg";
 
-import { Navigation } from "@/components/navigation";
-
 export default function Relocate() {
   const [location] = useLocation();
   const activationRef = useRef<HTMLDivElement>(null);
@@ -51,10 +49,8 @@ export default function Relocate() {
         <meta name="description" content="DeliWer coordinates your full Dubai move-in — Ejari, DEWA, movers, and water filter — at normal vendor market rates. WhatsApp to start in 60 seconds." />
       </Helmet>
 
-      <Navigation />
-
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-4 pt-24">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-40 scale-105"
           style={{ backgroundImage: `url(${relocateHero})` }}
