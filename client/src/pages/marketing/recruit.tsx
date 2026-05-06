@@ -178,6 +178,9 @@ export default function RecruitPage() {
   const [pastCampaigns, setPastCampaigns] = useState<Campaign[]>([]);
   const [showPast, setShowPast] = useState(false);
   const [exporting, setExporting] = useState(false);
+  const [showScripts, setShowScripts] = useState(false);
+  const [activeScript, setActiveScript] = useState(0);
+  const [copiedScript, setCopiedScript] = useState<number | null>(null);
   const [showMaster, setShowMaster] = useState(false);
   const [masterPage, setMasterPage] = useState(1);
   const [masterSearch, setMasterSearch] = useState("");
@@ -1398,6 +1401,265 @@ export default function RecruitPage() {
             </CardContent>
           </Card>
         )}
+
+        {/* ── WHATSAPP RESPONSE SCRIPTS ─────────────────────────── */}
+        {(() => {
+          const WA_SCRIPTS = [
+            {
+              step: "Step 1 — After Registration",
+              label: "Registration Confirmed",
+              color: "emerald",
+              trigger: "Broker sends their intro / profile message",
+              body: `Hi [NAME] 👋 Welcome to the DeliWer Broker Partner Program!
+
+Your profile is registered ✅
+
+Details on file:
+• RERA: [RERA or "Not provided"]
+• Agency: [BROKERAGE or "Independent"]
+
+Next step — please confirm you accept our partner terms by replying:
+
+"I confirm and accept the DeliWer partner terms"
+
+Terms summary:
+• AED 150–800 per confirmed move-in referral
+• 50/50 commission split on routed sales & leases
+• Monthly bank payouts (no targets, no minimums)
+• All tenant activity routes exclusively through DeliWer
+• No direct approach to landlords or property managers
+
+We'll activate your referral link as soon as you confirm. 🔗
+— DeliWer Team | deliwer.com/brokers`,
+            },
+            {
+              step: "Step 2 — After Terms Accepted",
+              label: "Terms Confirmed",
+              color: "purple",
+              trigger: "Broker replies confirming acceptance of terms",
+              body: `✅ Welcome aboard — you're officially a DeliWer Broker Partner!
+
+Your referral link is being generated now. You'll receive it in the next message.
+
+In the meantime:
+• Save this number: +971 52 394 6311 (DeliWer Ops)
+• Mention DeliWer to every tenant signing a contract
+• Services we handle: Ejari, DEWA, movers, water filter
+
+Your link is coming right up 🔗
+— DeliWer Team | deliwer.com/brokers`,
+            },
+            {
+              step: "Step 3 — After Link Request",
+              label: "Link Activated",
+              color: "amber",
+              trigger: "Broker requests their referral link activation",
+              body: `🔗 Your referral link is now LIVE!
+
+Your ref code: [REF_CODE]
+Your link: https://deliwer.com/move-in?ref=[REF_CODE]
+
+Every tenant who books through this link is automatically tracked to you — no manual follow-up needed.
+
+Share it everywhere:
+• WhatsApp status & groups
+• Instagram / LinkedIn bio
+• Email signature
+• Give directly to tenants at contract signing
+
+First confirmed move-in = your first commission 💰
+
+Track your referrals: deliwer.com/partner-dashboard
+— DeliWer Team | deliwer.com/brokers`,
+            },
+            {
+              step: "Step 4 — After First Referral",
+              label: "Referral Received",
+              color: "sky",
+              trigger: "Broker sends their first tenant referral details",
+              body: `📋 Referral received — thank you!
+
+Tenant: [TENANT_NAME]
+Our team will contact them within 2 hours.
+
+Your ref code [REF_CODE] is now tagged to this lead. You'll earn AED 150–800 when their move-in confirms.
+
+We handle everything from here:
+✅ Ejari registration
+✅ DEWA activation
+✅ Movers coordination
+✅ Water filter setup
+
+We'll send you a confirmation once the booking is confirmed. 🤝
+— DeliWer Team | deliwer.com/brokers`,
+            },
+            {
+              step: "Step 5 — After Payout Request",
+              label: "Payout Statement",
+              color: "yellow",
+              trigger: "Broker requests their monthly commission statement",
+              body: `💰 Commission Statement — [MONTH]
+
+Ref Code: [REF_CODE]
+
+Referrals this period:
+• Confirmed move-ins: [COUNT]
+• Total earned: AED [AMOUNT]
+
+Breakdown:
+[PASTE LINE-BY-LINE BREAKDOWN HERE]
+
+Transfer initiated to: [BANK ON FILE]
+Expected arrival: 2–3 business days
+
+Thank you for being a DeliWer Partner! 🏆
+Questions? Reply here anytime.
+— DeliWer Team | deliwer.com/brokers`,
+            },
+          ];
+
+          const colorMap: Record<string, { badge: string; tab: string; border: string; accent: string }> = {
+            emerald: { badge: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30", tab: "border-emerald-500 text-emerald-400 bg-emerald-500/5", border: "border-emerald-500/20", accent: "text-emerald-400" },
+            purple:  { badge: "bg-purple-500/10 text-purple-400 border-purple-500/30",   tab: "border-purple-500 text-purple-400 bg-purple-500/5",   border: "border-purple-500/20",  accent: "text-purple-400" },
+            amber:   { badge: "bg-amber-500/10 text-amber-400 border-amber-500/30",      tab: "border-amber-500 text-amber-400 bg-amber-500/5",      border: "border-amber-500/20",   accent: "text-amber-400" },
+            sky:     { badge: "bg-sky-500/10 text-sky-400 border-sky-500/30",            tab: "border-sky-500 text-sky-400 bg-sky-500/5",            border: "border-sky-500/20",     accent: "text-sky-400" },
+            yellow:  { badge: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",   tab: "border-yellow-500 text-yellow-400 bg-yellow-500/5",   border: "border-yellow-500/20",  accent: "text-yellow-400" },
+          };
+
+          const cur = WA_SCRIPTS[activeScript];
+          const cc = colorMap[cur.color];
+
+          async function copyScript(idx: number) {
+            try {
+              await navigator.clipboard.writeText(WA_SCRIPTS[idx].body);
+              setCopiedScript(idx);
+              setTimeout(() => setCopiedScript(null), 2500);
+            } catch {}
+          }
+
+          return (
+            <Card className="bg-slate-900 border-slate-800">
+              <CardContent className="p-6">
+                {/* Header toggle */}
+                <button
+                  data-testid="button-toggle-scripts"
+                  onClick={() => setShowScripts(!showScripts)}
+                  className="w-full flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-green-500/10 border border-green-500/25 flex items-center justify-center">
+                      <SiWhatsapp className="w-4 h-4 text-green-400" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white font-bold text-sm uppercase tracking-wide">WhatsApp Response Scripts</p>
+                      <p className="text-slate-500 text-xs">5 team saved-replies for the broker onboarding funnel — one per step</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge className="bg-green-500/10 text-green-400 border-green-500/25 text-[10px] font-black uppercase hidden sm:flex">
+                      Team Only
+                    </Badge>
+                    {showScripts ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                  </div>
+                </button>
+
+                {showScripts && (
+                  <div className="mt-5 space-y-4">
+                    {/* How to use callout */}
+                    <div className="bg-slate-800/60 border border-slate-700 rounded-xl px-4 py-3 flex gap-3 items-start">
+                      <Activity className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
+                      <div className="text-xs text-slate-400 leading-relaxed">
+                        <span className="text-white font-semibold">How to use:</span> Save each message as a WhatsApp Business "Quick Reply" (Settings → Business Tools → Quick Replies). Fill in the <span className="text-amber-400 font-mono">[BRACKETS]</span> before sending. Each script corresponds to the message the broker sent in their onboarding step.
+                      </div>
+                    </div>
+
+                    {/* Step tabs */}
+                    <div className="flex gap-2 overflow-x-auto pb-1">
+                      {WA_SCRIPTS.map((s, i) => {
+                        const tc = colorMap[s.color];
+                        return (
+                          <button
+                            key={i}
+                            data-testid={`script-tab-${i}`}
+                            onClick={() => setActiveScript(i)}
+                            className={`px-3 py-2 rounded-xl border text-xs font-black uppercase tracking-widest whitespace-nowrap transition-all shrink-0 ${
+                              activeScript === i
+                                ? `${tc.tab} border-b-2`
+                                : "border-slate-700 text-slate-500 hover:text-slate-300 hover:border-slate-600"
+                            }`}
+                          >
+                            {i + 1}. {s.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {/* Active script card */}
+                    <div className={`rounded-xl border ${cc.border} bg-slate-950/60`}>
+                      {/* Script header */}
+                      <div className="px-5 pt-4 pb-3 border-b border-slate-800/80 flex items-center justify-between gap-3 flex-wrap">
+                        <div>
+                          <p className={`text-[10px] font-black uppercase tracking-widest ${cc.accent}`}>{cur.step}</p>
+                          <p className="text-slate-400 text-xs mt-0.5 flex items-center gap-1.5">
+                            <Clock className="w-3 h-3" /> Trigger: {cur.trigger}
+                          </p>
+                        </div>
+                        <button
+                          data-testid={`button-copy-script-${activeScript}`}
+                          onClick={() => copyScript(activeScript)}
+                          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all border ${
+                            copiedScript === activeScript
+                              ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                              : "border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 bg-slate-800/50"
+                          }`}
+                        >
+                          {copiedScript === activeScript
+                            ? <><Check className="w-3.5 h-3.5" /> Copied</>
+                            : <><Copy className="w-3.5 h-3.5" /> Copy Message</>
+                          }
+                        </button>
+                      </div>
+
+                      {/* Script body */}
+                      <div className="px-5 py-4">
+                        <pre className="text-xs text-slate-300 leading-relaxed font-mono whitespace-pre-wrap break-words">{cur.body}</pre>
+                      </div>
+
+                      {/* Placeholders legend */}
+                      <div className="px-5 pb-4">
+                        <div className="flex flex-wrap gap-1.5">
+                          {[...cur.body.matchAll(/\[([^\]]+)\]/g)].map(m => m[1]).filter((v, i, a) => a.indexOf(v) === i).map(ph => (
+                            <span key={ph} className="inline-flex items-center bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-mono px-2 py-0.5 rounded">
+                              [{ph}]
+                            </span>
+                          ))}
+                        </div>
+                        {cur.body.includes("[") && (
+                          <p className="text-[10px] text-slate-600 mt-2">Fill in all highlighted placeholders before sending.</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Copy all as bundle */}
+                    <div className="flex items-center justify-between pt-1">
+                      <p className="text-xs text-slate-600">All 5 scripts are ready to paste into WhatsApp Business Quick Replies.</p>
+                      <button
+                        data-testid="button-copy-all-scripts"
+                        onClick={async () => {
+                          const all = WA_SCRIPTS.map((s, i) => `=== ${i + 1}. ${s.step} ===\nTrigger: ${s.trigger}\n\n${s.body}`).join("\n\n" + "─".repeat(60) + "\n\n");
+                          try { await navigator.clipboard.writeText(all); setCopiedScript(99); setTimeout(() => setCopiedScript(null), 2500); } catch {}
+                        }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 text-xs font-black uppercase tracking-widest transition-all"
+                      >
+                        {copiedScript === 99 ? <><Check className="w-3.5 h-3.5 text-emerald-400" /> All Copied!</> : <><Copy className="w-3.5 h-3.5" /> Copy All 5</>}
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })()}
 
         {/* Info strip */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
