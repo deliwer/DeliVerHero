@@ -2179,7 +2179,7 @@ export default function BrokerPartnerPage() {
                         <div className="space-y-1.5">
                           <Label className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Area of Focus</Label>
                           <Select value={appForm.areaFocus} onValueChange={v => setAppForm(p => ({ ...p, areaFocus: v }))}>
-                            <SelectTrigger className="bg-slate-900 border-white/10 text-white h-10 text-sm" data-testid="select-area-focus">
+                            <SelectTrigger className="bg-slate-900 border-white/10 h-10 text-sm text-[#ffffff]" data-testid="select-area-focus">
                               <SelectValue placeholder="Select area" />
                             </SelectTrigger>
                             <SelectContent className="bg-slate-900 border-white/10 text-white">
