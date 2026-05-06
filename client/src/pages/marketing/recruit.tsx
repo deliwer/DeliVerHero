@@ -79,6 +79,16 @@ interface AutomationLog {
   completedAt?: string;
 }
 
+interface TrackedBroker {
+  id: string;
+  name: string;
+  phone: string;
+  step: number;
+  stepSentAt: (string | null)[];
+  notes: string;
+  addedAt: string;
+}
+
 interface LocalFileStats {
   exists: boolean;
   totalBrokers: number;
@@ -181,6 +191,52 @@ export default function RecruitPage() {
   const [showScripts, setShowScripts] = useState(false);
   const [activeScript, setActiveScript] = useState(0);
   const [copiedScript, setCopiedScript] = useState<number | null>(null);
+  const [showTracker, setShowTracker] = useState(false);
+  const [trackerBrokers, setTrackerBrokers] = useState<TrackedBroker[]>(() => {
+    try { return JSON.parse(localStorage.getItem("ob_tracker") || "[]"); } catch { return []; }
+  });
+  const [trackerName, setTrackerName] = useState("");
+  const [trackerPhone, setTrackerPhone] = useState("");
+  const [trackerNotes, setTrackerNotes] = useState("");
+  const [trackerEdit, setTrackerEdit] = useState<string | null>(null);
+
+  function saveTracker(list: TrackedBroker[]) {
+    setTrackerBrokers(list);
+    try { localStorage.setItem("ob_tracker", JSON.stringify(list)); } catch {}
+  }
+
+  function addBroker() {
+    if (!trackerName.trim()) return;
+    const entry: TrackedBroker = {
+      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      name: trackerName.trim(),
+      phone: trackerPhone.trim(),
+      step: 0,
+      stepSentAt: [null, null, null, null, null],
+      notes: trackerNotes.trim(),
+      addedAt: new Date().toISOString(),
+    };
+    saveTracker([entry, ...trackerBrokers]);
+    setTrackerName(""); setTrackerPhone(""); setTrackerNotes("");
+  }
+
+  function markStep(id: string, stepIdx: number) {
+    saveTracker(trackerBrokers.map(b => {
+      if (b.id !== id) return b;
+      const sent = [...b.stepSentAt];
+      sent[stepIdx] = sent[stepIdx] ? null : new Date().toISOString();
+      const highestSent = sent.reduce((acc, s, i) => (s ? i : acc), -1);
+      return { ...b, stepSentAt: sent, step: Math.max(0, highestSent) };
+    }));
+  }
+
+  function removeBroker(id: string) {
+    saveTracker(trackerBrokers.filter(b => b.id !== id));
+  }
+
+  function updateNotes(id: string, notes: string) {
+    saveTracker(trackerBrokers.map(b => b.id === id ? { ...b, notes } : b));
+  }
   const [showMaster, setShowMaster] = useState(false);
   const [masterPage, setMasterPage] = useState(1);
   const [masterSearch, setMasterSearch] = useState("");
@@ -1654,6 +1710,259 @@ Questions? Reply here anytime.
                         {copiedScript === 99 ? <><Check className="w-3.5 h-3.5 text-emerald-400" /> All Copied!</> : <><Copy className="w-3.5 h-3.5" /> Copy All 5</>}
                       </button>
                     </div>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          );
+        })()}
+
+        {/* ── ONBOARDING STATUS TRACKER ────────────────────────── */}
+        {(() => {
+          const STEP_LABELS = ["Register", "Terms", "Link", "Referral", "Payout"];
+          const STEP_COLORS = ["emerald", "purple", "amber", "sky", "yellow"];
+          const DOT_ON: Record<string, string> = {
+            emerald: "bg-emerald-500 border-emerald-400",
+            purple:  "bg-purple-500 border-purple-400",
+            amber:   "bg-amber-500 border-amber-400",
+            sky:     "bg-sky-500 border-sky-400",
+            yellow:  "bg-yellow-500 border-yellow-400",
+          };
+          const DOT_OFF = "bg-slate-800 border-slate-700 hover:border-slate-500";
+
+          const WA_NUM = "971523946311";
+          const WA_MSGS: Record<number, (b: TrackedBroker) => string> = {
+            0: (b) => `Hi ${b.name}! 👋 Following up on your DeliWer broker registration.\n\nPlease reply with your profile details:\n• Full name\n• RERA license no.\n• Agency / brokerage\n• Area of focus\n\n— DeliWer Team`,
+            1: (b) => `Hi ${b.name}! ✅ Please confirm you accept the DeliWer partner terms by replying:\n\n"I confirm and accept the DeliWer partner terms"\n\n— DeliWer Team`,
+            2: (b) => `Hi ${b.name}! 🔗 Your referral link is ready — requesting activation now.\n\n— DeliWer Team`,
+            3: (b) => `Hi ${b.name}! 📋 Following up — do you have a tenant ready to refer?\n\nSend us: Tenant name, WhatsApp, area, and move-in date.\n— DeliWer Team`,
+            4: (b) => `Hi ${b.name}! 💰 Ready to process your commission payout.\n\nPlease confirm the period (month/year) and we'll send your statement.\n— DeliWer Team`,
+          };
+
+          const nextPendingStep = (b: TrackedBroker) => {
+            for (let i = 0; i < 5; i++) if (!b.stepSentAt[i]) return i;
+            return -1; // all done
+          };
+
+          return (
+            <Card className="bg-slate-900 border-slate-800">
+              <CardContent className="p-6">
+                {/* Header toggle */}
+                <button
+                  data-testid="button-toggle-tracker"
+                  onClick={() => setShowTracker(!showTracker)}
+                  className="w-full flex items-center justify-between group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/25 flex items-center justify-center">
+                      <Users className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white font-bold text-sm uppercase tracking-wide">Broker Onboarding Tracker</p>
+                      <p className="text-slate-500 text-xs">
+                        Track each broker's step progress — saved locally, no database
+                        {trackerBrokers.length > 0 && <span className="ml-2 text-blue-400">{trackerBrokers.length} broker{trackerBrokers.length !== 1 ? "s" : ""} tracked</span>}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {trackerBrokers.length > 0 && (
+                      <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/25 text-[10px] font-black uppercase hidden sm:flex">
+                        {trackerBrokers.filter(b => nextPendingStep(b) === -1).length}/{trackerBrokers.length} done
+                      </Badge>
+                    )}
+                    {showTracker ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                  </div>
+                </button>
+
+                {showTracker && (
+                  <div className="mt-5 space-y-5">
+
+                    {/* Add broker form */}
+                    <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 space-y-3">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Add a Broker to Track</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                          <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Name *</label>
+                          <Input
+                            data-testid="input-tracker-name"
+                            placeholder="Broker full name"
+                            value={trackerName}
+                            onChange={e => setTrackerName(e.target.value)}
+                            onKeyDown={e => e.key === "Enter" && addBroker()}
+                            className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-600 h-9 text-sm"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">WhatsApp</label>
+                          <Input
+                            data-testid="input-tracker-phone"
+                            placeholder="+971 50 000 0000"
+                            value={trackerPhone}
+                            onChange={e => setTrackerPhone(e.target.value)}
+                            onKeyDown={e => e.key === "Enter" && addBroker()}
+                            className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-600 h-9 text-sm"
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Notes (optional)</label>
+                        <Input
+                          data-testid="input-tracker-notes"
+                          placeholder="Agency, area, source..."
+                          value={trackerNotes}
+                          onChange={e => setTrackerNotes(e.target.value)}
+                          onKeyDown={e => e.key === "Enter" && addBroker()}
+                          className="bg-slate-900 border-slate-700 text-white placeholder:text-slate-600 h-9 text-sm"
+                        />
+                      </div>
+                      <button
+                        data-testid="button-add-broker"
+                        onClick={addBroker}
+                        disabled={!trackerName.trim()}
+                        className="flex items-center gap-2 px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-black uppercase tracking-widest transition-all"
+                      >
+                        <Users className="w-3.5 h-3.5" /> Add to Tracker
+                      </button>
+                    </div>
+
+                    {/* Broker rows */}
+                    {trackerBrokers.length === 0 ? (
+                      <div className="text-center py-8 text-slate-600 text-sm">
+                        No brokers tracked yet. Add one above to start.
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {/* Step legend */}
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <span className="text-[10px] text-slate-600 uppercase font-bold tracking-widest">Steps:</span>
+                          {STEP_LABELS.map((l, i) => (
+                            <span key={i} className="flex items-center gap-1.5 text-[10px] text-slate-500">
+                              <span className={`w-2.5 h-2.5 rounded-full ${DOT_ON[STEP_COLORS[i]]}`} />
+                              {i + 1}. {l}
+                            </span>
+                          ))}
+                          <span className="text-[10px] text-slate-600 ml-auto">Click dots to toggle sent/pending</span>
+                        </div>
+
+                        {trackerBrokers.map((b) => {
+                          const next = nextPendingStep(b);
+                          const allDone = next === -1;
+                          const sentCount = b.stepSentAt.filter(Boolean).length;
+                          const digits = b.phone.replace(/[^0-9]/g, "")
+                            .replace(/^00971/, "971").replace(/^9710(\d)/, "971$1").replace(/^0(\d)/, "971$1");
+                          const waUrl = b.phone
+                            ? `https://wa.me/${digits}?text=${encodeURIComponent(WA_MSGS[next === -1 ? 4 : next](b))}`
+                            : `https://wa.me/${WA_NUM}?text=${encodeURIComponent(WA_MSGS[next === -1 ? 4 : next](b))}`;
+
+                          return (
+                            <div
+                              key={b.id}
+                              data-testid={`tracker-row-${b.id}`}
+                              className={`rounded-xl border p-4 transition-all ${allDone ? "border-emerald-500/20 bg-emerald-950/20" : "border-slate-800 bg-slate-800/30"}`}
+                            >
+                              <div className="flex items-start gap-3 flex-wrap">
+                                {/* Name & meta */}
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <p className="text-white font-bold text-sm truncate">{b.name}</p>
+                                    {allDone && <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/25 text-[10px] font-black uppercase shrink-0">All Steps Sent</Badge>}
+                                    {!allDone && sentCount > 0 && (
+                                      <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/25 text-[10px] font-black uppercase shrink-0">
+                                        Step {sentCount}/{STEP_LABELS.length}
+                                      </Badge>
+                                    )}
+                                  </div>
+                                  {b.phone && <p className="text-slate-500 text-xs mt-0.5 font-mono">{b.phone}</p>}
+                                  {b.notes && <p className="text-slate-600 text-xs mt-0.5 italic">{b.notes}</p>}
+                                </div>
+
+                                {/* Action buttons */}
+                                <div className="flex items-center gap-2 shrink-0">
+                                  {b.phone && (
+                                    <a
+                                      href={waUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      data-testid={`tracker-wa-${b.id}`}
+                                      title={`WhatsApp ${b.name} — Step ${next + 1} message`}
+                                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 hover:bg-green-500/20 text-xs font-bold transition-all"
+                                    >
+                                      <SiWhatsapp className="w-3.5 h-3.5" />
+                                      {allDone ? "Follow up" : `Step ${next + 1}`}
+                                    </a>
+                                  )}
+                                  <button
+                                    data-testid={`tracker-edit-${b.id}`}
+                                    onClick={() => setTrackerEdit(trackerEdit === b.id ? null : b.id)}
+                                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-700 text-slate-500 hover:text-white hover:border-slate-500 transition-all text-xs"
+                                    title="Edit notes"
+                                  >
+                                    ✏️
+                                  </button>
+                                  <button
+                                    data-testid={`tracker-remove-${b.id}`}
+                                    onClick={() => removeBroker(b.id)}
+                                    className="w-7 h-7 flex items-center justify-center rounded-lg border border-slate-700 text-slate-600 hover:text-red-400 hover:border-red-500/30 transition-all"
+                                    title="Remove from tracker"
+                                  >
+                                    <XCircle className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
+                              </div>
+
+                              {/* Step dots */}
+                              <div className="flex items-center gap-2 mt-3">
+                                {STEP_LABELS.map((sl, si) => {
+                                  const isSent = !!b.stepSentAt[si];
+                                  const col = STEP_COLORS[si];
+                                  return (
+                                    <button
+                                      key={si}
+                                      data-testid={`tracker-step-${b.id}-${si}`}
+                                      onClick={() => markStep(b.id, si)}
+                                      title={`${sl} — ${isSent ? "Sent " + new Date(b.stepSentAt[si]!).toLocaleDateString("en-AE") : "Not sent yet — click to mark sent"}`}
+                                      className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-[10px] font-black uppercase transition-all ${isSent ? `${DOT_ON[col]} text-white border-transparent` : `${DOT_OFF} text-slate-600`}`}
+                                    >
+                                      {isSent && <Check className="w-2.5 h-2.5" />}
+                                      {si + 1}. {sl}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+
+                              {/* Inline note edit */}
+                              {trackerEdit === b.id && (
+                                <div className="mt-3 flex gap-2">
+                                  <Input
+                                    data-testid={`tracker-notes-edit-${b.id}`}
+                                    defaultValue={b.notes}
+                                    placeholder="Notes..."
+                                    onBlur={e => { updateNotes(b.id, e.target.value); setTrackerEdit(null); }}
+                                    onKeyDown={e => { if (e.key === "Enter") { updateNotes(b.id, (e.target as HTMLInputElement).value); setTrackerEdit(null); } }}
+                                    autoFocus
+                                    className="bg-slate-900 border-slate-700 text-white text-xs h-8 flex-1"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Clear all */}
+                    {trackerBrokers.length > 0 && (
+                      <div className="flex justify-end pt-1">
+                        <button
+                          data-testid="button-clear-tracker"
+                          onClick={() => { if (confirm("Clear all tracked brokers?")) saveTracker([]); }}
+                          className="text-[10px] text-slate-700 hover:text-red-500 uppercase tracking-widest font-bold transition-colors"
+                        >
+                          Clear all tracker data
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
               </CardContent>
