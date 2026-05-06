@@ -13,7 +13,8 @@ import {
   MapPin,
   AlertTriangle,
   Radio,
-  ShieldCheck
+  ShieldCheck,
+  Building2
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
@@ -58,11 +59,10 @@ export default function LandingPage() {
         description="Move into your Dubai home stress-free. DeliWer handles Ejari registration, DEWA activation, water setup, and full relocation support. Pay only normal vendor rates. Also: free emergency evacuation exit plans and UAE crisis readiness for Dubai expats."
         keywords="move in Dubai, Ejari registration Dubai, DEWA activation Dubai, Dubai relocation services, Dubai expat services, Dubai tenant support, home setup Dubai, moving to Dubai, UAE emergency exit plan, Dubai crisis preparedness, wartime readiness UAE, expat evacuation Dubai"
       />
-      <Navigation />
       {/* ============================================
           MAIN HERO — Are You Overpaying Rent?
          ============================================ */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-40 pb-20 px-4 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center pb-20 px-4 overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
@@ -590,6 +590,67 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      {/* ============================================
+          BROKER CAPTURE BANNER
+         ============================================ */}
+      <section className="relative py-0 px-4 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <Link href="/broker-onboard" data-testid="banner-broker-onboard">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="group relative flex flex-col md:flex-row items-center justify-between gap-6 px-8 py-7 bg-gradient-to-r from-slate-900 via-emerald-950/40 to-slate-900 border border-emerald-500/25 hover:border-emerald-500/50 rounded-3xl cursor-pointer transition-all hover:shadow-[0_0_60px_-12px_rgba(16,185,129,0.35)] overflow-hidden"
+            >
+              {/* Glow backdrop */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-emerald-900/25 via-transparent to-transparent pointer-events-none" />
+
+              {/* LEFT: identity */}
+              <div className="relative z-10 flex items-center gap-5">
+                <div className="shrink-0 w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center group-hover:bg-emerald-500/25 transition-colors">
+                  <Building2 className="w-6 h-6 text-emerald-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">For Dubai Brokers & Agents</span>
+                  </div>
+                  <p className="text-white font-black text-lg md:text-xl uppercase tracking-tight leading-tight">
+                    Your Clients Need Ejari. <span className="text-emerald-400">You Get Paid.</span>
+                  </p>
+                  <p className="text-gray-500 text-xs mt-0.5 font-semibold">
+                    Refer once. Earn AED 150–800+ per client. Zero extra work.
+                  </p>
+                </div>
+              </div>
+
+              {/* CENTER: mini stats */}
+              <div className="relative z-10 hidden md:flex items-center gap-6">
+                {[
+                  { label: "Ejari Referral", value: "AED 150" },
+                  { label: "Move-In Bundle", value: "AED 500" },
+                  { label: "Exclusive Deal", value: "AED 800+" },
+                ].map(s => (
+                  <div key={s.label} className="text-center">
+                    <p className="text-emerald-400 font-black text-base">{s.value}</p>
+                    <p className="text-gray-600 text-[10px] font-bold uppercase tracking-wider">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* RIGHT: CTA */}
+              <div className="relative z-10 flex items-center gap-3 shrink-0">
+                <span className="hidden sm:block text-xs font-black uppercase tracking-widest text-gray-500">60-sec activation</span>
+                <div className="flex items-center gap-2 bg-emerald-500 group-hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest text-xs px-5 py-3 rounded-xl transition-colors whitespace-nowrap">
+                  Activate Now
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </motion.div>
+          </Link>
+        </div>
+      </section>
+
       {/* SOLUTION SECTION */}
       <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

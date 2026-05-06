@@ -633,7 +633,7 @@ export default function PartnersPage() {
                 </div>
               ))}
               <div className="pt-3 border-t border-slate-700">
-                <Link href="/brokers">
+                <Link href="/broker-onboard">
                   <Button data-testid="button-broker-income-cta" className="w-full bg-emerald-600 hover:bg-emerald-500 font-black rounded-2xl h-11">
                     Start Earning → <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
