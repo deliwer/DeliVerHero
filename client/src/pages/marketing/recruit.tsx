@@ -1951,9 +1951,43 @@ Questions? Reply here anytime.
                       </div>
                     )}
 
-                    {/* Clear all */}
+                    {/* Export + Clear */}
                     {trackerBrokers.length > 0 && (
-                      <div className="flex justify-end pt-1">
+                      <div className="flex items-center justify-between pt-1 flex-wrap gap-3">
+                        <button
+                          data-testid="button-export-tracker"
+                          onClick={() => {
+                            const STEP_LABELS_EXP = ["Register", "Terms", "Link", "Referral", "Payout"];
+                            const headers = [
+                              "Name", "Phone", "Notes",
+                              ...STEP_LABELS_EXP.map(l => `${l} Sent`),
+                              ...STEP_LABELS_EXP.map(l => `${l} Date`),
+                              "Steps Complete", "Added",
+                            ];
+                            const rows = trackerBrokers.map(b => [
+                              b.name,
+                              b.phone,
+                              b.notes,
+                              ...b.stepSentAt.map(s => s ? "Yes" : "No"),
+                              ...b.stepSentAt.map(s => s ? new Date(s).toLocaleDateString("en-AE") : ""),
+                              b.stepSentAt.filter(Boolean).length + "/" + STEP_LABELS_EXP.length,
+                              new Date(b.addedAt).toLocaleDateString("en-AE"),
+                            ]);
+                            const csv = [headers, ...rows]
+                              .map(r => r.map(v => `"${String(v ?? "").replace(/"/g, '""')}"`).join(","))
+                              .join("\n");
+                            const blob = new Blob([csv], { type: "text/csv" });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement("a");
+                            a.href = url;
+                            a.download = `deliwer-broker-tracker-${new Date().toISOString().slice(0,10)}.csv`;
+                            a.click();
+                            URL.revokeObjectURL(url);
+                          }}
+                          className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 text-xs font-black uppercase tracking-widest transition-all"
+                        >
+                          <Download className="w-3.5 h-3.5" /> Export CSV
+                        </button>
                         <button
                           data-testid="button-clear-tracker"
                           onClick={() => { if (confirm("Clear all tracked brokers?")) saveTracker([]); }}
