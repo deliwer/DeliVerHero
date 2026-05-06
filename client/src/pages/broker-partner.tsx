@@ -1155,6 +1155,13 @@ export default function BrokerPartnerPage() {
 
   // AI Assistant widget
   const [aiOpen, setAiOpen] = useState(false);
+  const [commissionTotal, setCommissionTotal] = useState(847200);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCommissionTotal(prev => prev + Math.floor(Math.random() * 800 + 200));
+    }, 4200);
+    return () => clearInterval(id);
+  }, []);
   const [aiAssigned, setAiAssigned] = useState(false);
   const [captureForm, setCaptureForm] = useState({ clientType: "", phone: "", unit: "" });
   const [showCapture, setShowCapture] = useState(false);
@@ -1277,6 +1284,35 @@ export default function BrokerPartnerPage() {
           </p>
 
           <LiveStatBar />
+
+          {/* ── Animated commission counter ── */}
+          <div className="flex items-center justify-center gap-3 py-1">
+            <div className="flex items-center gap-2 bg-emerald-950/50 border border-emerald-500/20 rounded-2xl px-5 py-3">
+              <div className="flex flex-col items-center">
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-0.5">Paid to brokers this week</p>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xs font-black text-emerald-300">AED</span>
+                  <span
+                    data-testid="text-commission-counter"
+                    className="text-2xl font-black text-white tabular-nums tracking-tight transition-all duration-700"
+                  >
+                    {commissionTotal.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              <div className="w-px h-10 bg-white/10" />
+              <div className="flex flex-col items-center">
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-0.5">And climbing</p>
+                <div className="flex items-center gap-1">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span className="text-emerald-300 font-black text-xs">Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
             <Button data-testid="button-hero-get-link" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-2xl shadow-emerald-900/40" onClick={() => scrollTo(generatorRef)}>
