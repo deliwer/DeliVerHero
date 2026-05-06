@@ -4545,18 +4545,23 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
 
   // ─── Broker Master & Automation Routes ──────────────────────────────────────
 
-  // GET /api/marketing/broker-master — list brokers in master with pagination + search
+  // GET /api/marketing/broker-master — list brokers in master with pagination + search + status filter
   app.get("/api/marketing/broker-master", async (req, res) => {
     try {
       const page = parseInt(String(req.query.page || '1'));
       const limit = parseInt(String(req.query.limit || '50'));
       const offset = (page - 1) * limit;
       const search = String(req.query.search || '').trim().toLowerCase();
+      const statusFilter = String(req.query.status || '').trim();
 
       const baseWhere = eq(brokerMaster.deleted, false);
-      const whereClause = search
-        ? and(baseWhere, drizzleSql`(lower(${brokerMaster.name}) like ${'%' + search + '%'} or lower(${brokerMaster.email}) like ${'%' + search + '%'} or lower(coalesce(${brokerMaster.company}, '')) like ${'%' + search + '%'})`)
-        : baseWhere;
+      let whereClause = baseWhere as any;
+      if (search) {
+        whereClause = and(whereClause, drizzleSql`(lower(${brokerMaster.name}) like ${'%' + search + '%'} or lower(${brokerMaster.email}) like ${'%' + search + '%'} or lower(coalesce(${brokerMaster.company}, '')) like ${'%' + search + '%'})`);
+      }
+      if (statusFilter && statusFilter !== 'all') {
+        whereClause = and(whereClause, eq(brokerMaster.status, statusFilter));
+      }
 
       const brokers = await db.select()
         .from(brokerMaster)
