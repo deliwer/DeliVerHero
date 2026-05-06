@@ -1354,6 +1354,9 @@ export default function BrokerPartnerPage() {
         </div>
       </section>
 
+      {/* ── AL HABTOOR POLO INVENTORY ─────────────────────── */}
+      <HabtoorSection />
+
       {/* ── COPY-PASTE SCRIPTS ────────────────────────────── */}
       <section id="scripts" className="py-14 px-4 border-b border-white/5 bg-slate-900/20">
         <div className="max-w-xl mx-auto space-y-4">
@@ -1526,9 +1529,6 @@ export default function BrokerPartnerPage() {
           </div>
         </div>
       </section>
-
-      {/* ── AL HABTOOR POLO INVENTORY ─────────────────────── */}
-      <HabtoorSection />
 
       {/* ── STICKY MOBILE BAR ─────────────────────────────── */}
       <div data-testid="sticky-mobile-bar" className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10 p-3 flex gap-2">
