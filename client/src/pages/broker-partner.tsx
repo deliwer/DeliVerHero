@@ -2226,7 +2226,7 @@ export default function BrokerPartnerPage() {
             className="group flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-4 py-3 shadow-2xl shadow-emerald-900/50 transition-all hover:scale-105"
           >
             <Sparkles className="w-4 h-4" />
-            <span className="text-sm hidden sm:block">AI Assistant</span>
+            <span className="text-sm hidden sm:block text-[#ffffff]">AI Assistant</span>
             <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
           </button>
         )}
