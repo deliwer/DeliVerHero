@@ -2018,7 +2018,7 @@ export default function BrokerPartnerPage() {
                     <div className="space-y-1.5">
                       <Label className="text-[10px] font-black uppercase text-emerald-400 tracking-widest">Broker Type *</Label>
                       <Select value={appForm.partnerType} onValueChange={v => setAppForm(p => ({ ...p, partnerType: v }))}>
-                        <SelectTrigger className="bg-slate-900 border-white/10 text-white h-11" data-testid="select-partner-type">
+                        <SelectTrigger className="bg-slate-900 border-white/10 h-11 text-[#ffffff]" data-testid="select-partner-type">
                           <SelectValue placeholder="Select your role" />
                         </SelectTrigger>
                         <SelectContent className="bg-slate-900 border-white/10 text-white">
