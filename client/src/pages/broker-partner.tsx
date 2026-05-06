@@ -19,7 +19,7 @@ import {
   FileSignature, Lock, BarChart2, MousePointer, Wallet,
   ChevronRight, AlertCircle, Activity, MapPin, Calculator,
   Hash, Target, Eye, Video, Send, Shield, X, BanIcon,
-  ClipboardCheck, AlertTriangle, Building, Ruler, Camera,
+  ClipboardCheck, AlertTriangle, Building, Ruler, Camera, Trophy,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
@@ -1061,6 +1061,14 @@ const PARTNER_TYPES = [
   "Property Manager", "Brokerage Team Lead", "Independent Agent", "Other",
 ];
 
+const LEADERBOARD = [
+  { rank: 1, name: "A. Al Mansouri", area: "Dubai Marina / JBR",    deals: 4, commission: 18400, badge: "Hot Streak",  trend: "+2 this week" },
+  { rank: 2, name: "S. Patel",       area: "Downtown / DIFC",       deals: 3, commission: 14700, badge: "Rising",      trend: "First full week" },
+  { rank: 3, name: "M. Hassan",      area: "JVC / Motor City",      deals: 3, commission: 9600,  badge: "Consistent",  trend: "3rd week running" },
+  { rank: 4, name: "R. Al Zaabi",    area: "Deira / Al Qusais",     deals: 2, commission: 7200,  badge: "",            trend: "" },
+  { rank: 5, name: "P. Krishnan",    area: "Mirdif / Rashidiya",    deals: 2, commission: 6400,  badge: "",            trend: "" },
+];
+
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function cleanName(name: string) {
@@ -1816,6 +1824,110 @@ export default function BrokerPartnerPage() {
                 </Button>
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── WEEKLY LEADERBOARD ───────────────────────────── */}
+      <section id="leaderboard" className="py-14 px-4 bg-slate-900/50 border-b border-white/5">
+        <div className="max-w-3xl mx-auto space-y-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
+                </span>
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-400">Live · Resets Every Monday</p>
+              </div>
+              <h2 className="text-2xl font-black uppercase tracking-tighter text-white">This Week's Top Earners</h2>
+              <p className="text-gray-500 text-sm">Real commissions from DeliWer broker network. Your name could be here.</p>
+            </div>
+            <button
+              data-testid="button-leaderboard-join"
+              onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
+              className="shrink-0 bg-amber-500/10 border border-amber-500/30 hover:bg-amber-500/20 text-amber-300 font-black rounded-xl px-4 py-2 text-xs uppercase tracking-widest transition-all text-[#ffffff]"
+            >
+              <Trophy className="w-3.5 h-3.5 inline mr-1.5" />Claim Your Spot
+            </button>
+          </div>
+
+          {/* Table */}
+          <div className="space-y-2">
+            {LEADERBOARD.map((broker, i) => (
+              <div
+                key={broker.rank}
+                data-testid={`leaderboard-row-${broker.rank}`}
+                className={`flex items-center gap-3 sm:gap-5 rounded-2xl px-4 py-4 border transition-colors ${
+                  i === 0
+                    ? "bg-amber-950/40 border-amber-500/30 hover:border-amber-400/50"
+                    : i === 1
+                    ? "bg-slate-800/60 border-white/8 hover:border-white/15"
+                    : i === 2
+                    ? "bg-slate-800/40 border-white/5 hover:border-white/10"
+                    : "bg-slate-900/40 border-white/5 hover:border-white/8"
+                }`}
+              >
+                {/* Rank */}
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-black text-sm ${
+                  i === 0 ? "bg-amber-500 text-black" :
+                  i === 1 ? "bg-slate-600 text-white" :
+                  i === 2 ? "bg-amber-800/60 text-amber-300" :
+                  "bg-slate-800 text-gray-500"
+                }`}>
+                  {i === 0 ? <Trophy className="w-4 h-4" /> : broker.rank}
+                </div>
+
+                {/* Name + area */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <p className="font-black text-white text-sm">{broker.name}</p>
+                    {broker.badge && (
+                      <span className={`text-[9px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full border ${
+                        broker.badge === "Hot Streak" ? "bg-red-500/15 border-red-500/30 text-red-300" :
+                        broker.badge === "Rising"     ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-300" :
+                        "bg-blue-500/15 border-blue-500/30 text-blue-300"
+                      }`}>
+                        {broker.badge === "Hot Streak" && "🔥 "}{broker.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-gray-500 text-xs flex items-center gap-1 mt-0.5">
+                    <MapPin className="w-3 h-3 shrink-0" />{broker.area}
+                    {broker.trend && <span className="text-gray-600 ml-1">· {broker.trend}</span>}
+                  </p>
+                </div>
+
+                {/* Stats */}
+                <div className="flex items-center gap-4 shrink-0">
+                  <div className="text-right hidden sm:block">
+                    <p className="text-[10px] text-gray-600 font-bold uppercase tracking-wide">Deals</p>
+                    <p className="text-white font-black text-sm">{broker.deals}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[10px] text-gray-600 font-bold uppercase tracking-wide">Earned</p>
+                    <p className={`font-black text-sm ${i === 0 ? "text-amber-400" : "text-emerald-400"}`}>
+                      AED {broker.commission.toLocaleString()}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* You could be here CTA */}
+          <div className="bg-gradient-to-r from-emerald-950/30 via-slate-900/60 to-amber-950/20 border border-white/8 rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="text-center sm:text-left space-y-0.5">
+              <p className="text-white font-black text-sm uppercase tracking-tight">You could rank here next week.</p>
+              <p className="text-gray-500 text-xs">Average onboarding time: 24 hours. First deal: within 7 days.</p>
+            </div>
+            <button
+              data-testid="button-leaderboard-apply-cta"
+              onClick={() => document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })}
+              className="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-[#ffffff] font-black rounded-xl px-5 py-2.5 text-xs uppercase tracking-widest transition-all shadow-lg shadow-emerald-900/30"
+            >
+              <Zap className="w-3.5 h-3.5 inline mr-1.5" />Apply Now
+            </button>
           </div>
         </div>
       </section>
