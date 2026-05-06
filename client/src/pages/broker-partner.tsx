@@ -1710,7 +1710,7 @@ export default function BrokerPartnerPage() {
               <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400">Your Weekly Earning Potential</p>
             </div>
             <Select value={selectedArea} onValueChange={v => { setSelectedArea(v); setShowCalc(true); }}>
-              <SelectTrigger className="bg-slate-800 border-white/10 text-white h-10 text-sm rounded-xl" data-testid="select-area-calc">
+              <SelectTrigger className="bg-slate-800 border-white/10 h-10 text-sm rounded-xl text-[#ffffff]" data-testid="select-area-calc">
                 <SelectValue placeholder="Select your area of focus" />
               </SelectTrigger>
               <SelectContent className="bg-slate-900 border-white/10 text-white">
@@ -2154,7 +2154,7 @@ export default function BrokerPartnerPage() {
                         <div className="space-y-1.5">
                           <Label className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Deals Closed (Last 30 Days)</Label>
                           <Select value={appForm.dealsClosed} onValueChange={v => setAppForm(p => ({ ...p, dealsClosed: v }))}>
-                            <SelectTrigger className="bg-slate-900 border-white/10 text-white h-10 text-sm" data-testid="select-deals-closed">
+                            <SelectTrigger className="bg-slate-900 border-white/10 h-10 text-sm text-[#ffffff]" data-testid="select-deals-closed">
                               <SelectValue placeholder="Select range" />
                             </SelectTrigger>
                             <SelectContent className="bg-slate-900 border-white/10 text-white">
@@ -2165,7 +2165,7 @@ export default function BrokerPartnerPage() {
                         <div className="space-y-1.5">
                           <Label className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Active Tenants / Landlords?</Label>
                           <Select value={appForm.hasTenants} onValueChange={v => setAppForm(p => ({ ...p, hasTenants: v }))}>
-                            <SelectTrigger className="bg-slate-900 border-white/10 text-white h-10 text-sm" data-testid="select-has-tenants">
+                            <SelectTrigger className="bg-slate-900 border-white/10 h-10 text-sm text-[#ffffff]" data-testid="select-has-tenants">
                               <SelectValue placeholder="Select..." />
                             </SelectTrigger>
                             <SelectContent className="bg-slate-900 border-white/10 text-white">
