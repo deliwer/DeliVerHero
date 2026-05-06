@@ -1138,12 +1138,18 @@ export default function BrokerPartnerPage() {
   const [expandedScript, setExpandedScript] = useState<number | null>(null);
   const [showQR, setShowQR] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [appForm, setAppForm] = useState({ fullName: "", companyName: "", partnerType: "", email: "", phone: "" });
+  const [appForm, setAppForm] = useState({ fullName: "", companyName: "", partnerType: "", email: "", phone: "", dealsClosed: "", hasTenants: "", areaFocus: "" });
 
   // Calculator
   const [selectedArea, setSelectedArea] = useState("");
   const [showCalc, setShowCalc] = useState(false);
   const [claimedSlots, setClaimedSlots] = useState<Record<string, number>>({});
+
+  // AI Assistant widget
+  const [aiOpen, setAiOpen] = useState(false);
+  const [aiAssigned, setAiAssigned] = useState(false);
+  const [captureForm, setCaptureForm] = useState({ clientType: "", phone: "", unit: "" });
+  const [showCapture, setShowCapture] = useState(false);
 
   const generatorRef = useRef<HTMLDivElement>(null);
   const applyRef = useRef<HTMLDivElement>(null);
@@ -1253,20 +1259,23 @@ export default function BrokerPartnerPage() {
           <Badge className="bg-purple-500/15 text-purple-300 border-purple-500/30 px-4 py-2 text-xs font-black uppercase tracking-widest rounded-full">
             DeliWer Broker Program
           </Badge>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.9] uppercase">
-            Refer Once.<br />
-            <span className="text-purple-400">Get Paid Every Time.</span>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tighter leading-[0.9] uppercase">
+            Access Real Estate Deals.<br />
+            <span className="text-emerald-400">Earn Per Closing</span>{" "}
+            <span className="text-purple-400">with DeliWer.</span>
           </h1>
           <p className="text-base text-gray-300 max-w-md mx-auto leading-relaxed">
-            Add a referral income stream to your existing broker business. Free to start, no targets, no minimums — just share your link after viewings.
+            Join Dubai's fastest-growing broker referral network. Real deals, real commissions, zero upfront cost. Start earning today.
           </p>
+
+          <LiveStatBar />
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
             <Button data-testid="button-hero-get-link" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-2xl shadow-emerald-900/40" onClick={() => scrollTo(generatorRef)}>
-              <Zap className="w-5 h-5 mr-2" /> Get My Free Referral Link
+              <Zap className="w-5 h-5 mr-2" /> Start Earning Now
             </Button>
-            <Button data-testid="button-hero-inner-circle" size="lg" variant="outline" className="border-amber-500/30 text-amber-300 hover:bg-amber-500/10 font-black rounded-2xl px-8 h-14 text-base" onClick={() => document.getElementById("inner-circle")?.scrollIntoView({ behavior: "smooth" })}>
-              <Crown className="w-5 h-5 mr-2" /> Inner Circle
+            <Button data-testid="button-hero-have-deal" size="lg" variant="outline" className="border-amber-500/30 text-amber-300 hover:bg-amber-500/10 font-black rounded-2xl px-8 h-14 text-base" onClick={() => document.getElementById("opportunities")?.scrollIntoView({ behavior: "smooth" })}>
+              <Target className="w-5 h-5 mr-2" /> I Have a Deal
             </Button>
           </div>
 
@@ -1280,6 +1289,29 @@ export default function BrokerPartnerPage() {
           </div>
         </div>
       </section>
+
+      {/* ── MICRO-ALERT STRIP ────────────────────────────── */}
+      <div className="bg-slate-900/80 border-b border-white/5 px-4 py-2.5">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8">
+          <div className="flex items-center gap-2 text-xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+            </span>
+            <span className="text-red-300 font-black">2 opportunities claimed in the last hour</span>
+          </div>
+          <div className="hidden sm:block w-px h-4 bg-white/10" />
+          <div className="flex items-center gap-2 text-xs text-amber-300 font-black">
+            <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
+            You missed AED 6,400 in deals today — don't miss tomorrow's
+          </div>
+          <div className="hidden sm:block w-px h-4 bg-white/10" />
+          <div className="flex items-center gap-2 text-xs text-gray-400 font-bold">
+            <Users className="w-3.5 h-3.5 text-emerald-400" />
+            10 brokers onboarding this week · <span className="text-emerald-400">4 slots left</span>
+          </div>
+        </div>
+      </div>
 
       {/* ── 3-STEP CAREER PATH ───────────────────────────── */}
       <section className="py-14 px-4 bg-slate-900/40 border-y border-white/5">
@@ -1449,6 +1481,108 @@ export default function BrokerPartnerPage() {
           <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
             More communities coming · EMAAR · NAKHEEL · MERAAS · Contact DeliWer to reserve your track
           </p>
+
+          {/* ── Action Layer ── */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <button
+              data-testid="button-action-find-deals"
+              onClick={() => document.getElementById("opportunities")?.scrollIntoView({ behavior: "smooth" })}
+              className="group bg-slate-900 border border-emerald-500/25 hover:border-emerald-400/60 rounded-2xl p-5 text-left transition-all hover:bg-emerald-500/5 space-y-3"
+            >
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+                <Eye className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <p className="font-black text-white text-sm uppercase tracking-tight">Find Deals</p>
+                <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">Browse open opportunities with slot availability and live commissions.</p>
+              </div>
+              <div className="flex items-center gap-1 text-[10px] text-emerald-400 font-black uppercase tracking-wider group-hover:gap-2 transition-all">
+                <ChevronRight className="w-3.5 h-3.5" /> View Feed
+              </div>
+            </button>
+
+            <button
+              data-testid="button-action-capture-deal"
+              onClick={() => setShowCapture(v => !v)}
+              className="group bg-slate-900 border border-purple-500/25 hover:border-purple-400/60 rounded-2xl p-5 text-left transition-all hover:bg-purple-500/5 space-y-3"
+            >
+              <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center">
+                <Send className="w-5 h-5 text-purple-400" />
+              </div>
+              <div>
+                <p className="font-black text-white text-sm uppercase tracking-tight">Capture a Deal</p>
+                <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">Submit a tenant, landlord, or vacant unit for immediate commission processing.</p>
+              </div>
+              <div className="flex items-center gap-1 text-[10px] text-purple-400 font-black uppercase tracking-wider group-hover:gap-2 transition-all">
+                <ChevronRight className="w-3.5 h-3.5" /> Submit Now
+              </div>
+            </button>
+
+            <button
+              data-testid="button-action-track-earnings"
+              onClick={() => window.open("https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%20want%20to%20check%20my%20earnings%20and%20commission%20status.", "_blank")}
+              className="group bg-slate-900 border border-amber-500/25 hover:border-amber-400/60 rounded-2xl p-5 text-left transition-all hover:bg-amber-500/5 space-y-3"
+            >
+              <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center">
+                <Wallet className="w-5 h-5 text-amber-400" />
+              </div>
+              <div>
+                <p className="font-black text-white text-sm uppercase tracking-tight">Track Earnings</p>
+                <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">View pending commissions, closed deals, and monthly statements via WhatsApp.</p>
+              </div>
+              <div className="flex items-center gap-1 text-[10px] text-amber-400 font-black uppercase tracking-wider group-hover:gap-2 transition-all">
+                <ChevronRight className="w-3.5 h-3.5" /> Open Earnings
+              </div>
+            </button>
+          </div>
+
+          {/* ── Quick Capture Form (inline, toggled) ── */}
+          {showCapture && (
+            <div className="bg-slate-900 border border-purple-500/25 rounded-2xl p-5 space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="flex items-center justify-between">
+                <p className="text-[11px] font-black uppercase tracking-widest text-purple-400">Capture a Deal</p>
+                <button onClick={() => setShowCapture(false)} className="text-gray-600 hover:text-white transition-colors"><X className="w-4 h-4" /></button>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Client Type</label>
+                  <Select value={captureForm.clientType} onValueChange={v => setCaptureForm(p => ({ ...p, clientType: v }))}>
+                    <SelectTrigger className="bg-slate-800 border-white/10 text-white h-9 text-sm rounded-xl" data-testid="select-capture-type">
+                      <SelectValue placeholder="Select..." />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-900 border-white/10 text-white">
+                      <SelectItem value="tenant" className="text-white">Tenant</SelectItem>
+                      <SelectItem value="landlord" className="text-white">Landlord</SelectItem>
+                      <SelectItem value="vacant" className="text-white">Vacant Unit</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Client Phone</label>
+                  <Input data-testid="input-capture-phone" placeholder="+971 50 000 0000" value={captureForm.phone} onChange={e => setCaptureForm(p => ({ ...p, phone: e.target.value }))} className="bg-slate-800 border-white/10 text-white placeholder:text-gray-600 h-9 text-sm rounded-xl" />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Unit / Area</label>
+                  <Input data-testid="input-capture-unit" placeholder="e.g. 2BR JVC" value={captureForm.unit} onChange={e => setCaptureForm(p => ({ ...p, unit: e.target.value }))} className="bg-slate-800 border-white/10 text-white placeholder:text-gray-600 h-9 text-sm rounded-xl" />
+                </div>
+              </div>
+              <Button
+                data-testid="button-capture-submit"
+                className="w-full h-10 bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest rounded-xl text-sm"
+                onClick={() => {
+                  if (!captureForm.clientType) { toast({ title: "Select client type", variant: "destructive" }); return; }
+                  const lid = generateLeadId();
+                  const msg = `Deal Capture — ${lid}\nType: ${captureForm.clientType}\nPhone: ${captureForm.phone || "TBC"}\nUnit: ${captureForm.unit || "TBC"}\nBroker ref: ${generatedRef || "pending"}`;
+                  window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+                  toast({ title: `Deal captured! Ref: ${lid}`, description: "DeliWer will coordinate within 2 hours." });
+                  setShowCapture(false);
+                  setCaptureForm({ clientType: "", phone: "", unit: "" });
+                }}
+              >
+                <Send className="w-4 h-4 mr-2" /> Submit Deal to DeliWer
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -1560,6 +1694,38 @@ export default function BrokerPartnerPage() {
           <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest mt-6">
             Full commission details and payouts unlocked in the Inner Circle
           </p>
+
+          {/* ── Earnings Calculator ── */}
+          <div className="bg-slate-900 border border-emerald-500/20 rounded-2xl p-5 mt-2">
+            <div className="flex items-center gap-2 mb-4">
+              <Calculator className="w-4 h-4 text-emerald-400 shrink-0" />
+              <p className="text-[11px] font-black uppercase tracking-widest text-emerald-400">Your Weekly Earning Potential</p>
+            </div>
+            <Select value={selectedArea} onValueChange={v => { setSelectedArea(v); setShowCalc(true); }}>
+              <SelectTrigger className="bg-slate-800 border-white/10 text-white h-10 text-sm rounded-xl" data-testid="select-area-calc">
+                <SelectValue placeholder="Select your area of focus" />
+              </SelectTrigger>
+              <SelectContent className="bg-slate-900 border-white/10 text-white">
+                {Object.keys(AREA_DATA).map(a => <SelectItem key={a} value={a} className="text-white">{a}</SelectItem>)}
+              </SelectContent>
+            </Select>
+            {showCalc && calcData && (
+              <div className="grid grid-cols-3 gap-3 mt-4 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                <div className="bg-slate-800 border border-white/5 rounded-xl p-3 text-center">
+                  <p className="text-emerald-400 font-black text-lg">{calcData.deals}</p>
+                  <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wide mt-0.5">Deals Available</p>
+                </div>
+                <div className="bg-slate-800 border border-white/5 rounded-xl p-3 text-center">
+                  <p className="text-white font-black text-lg">AED {calcData.avgComm.toLocaleString()}</p>
+                  <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wide mt-0.5">Avg Commission</p>
+                </div>
+                <div className="bg-emerald-950/50 border border-emerald-500/25 rounded-xl p-3 text-center">
+                  <p className="text-emerald-300 font-black text-lg">AED {(calcData.deals * calcData.avgComm).toLocaleString()}</p>
+                  <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wide mt-0.5">Potential</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -1725,6 +1891,30 @@ export default function BrokerPartnerPage() {
           <p className="text-center text-[10px] text-gray-600 uppercase tracking-widest font-semibold">
             Active RERA brokers only · Capped seats · Same-day onboarding
           </p>
+
+          {/* ── Office Access + Support Trust Layer ── */}
+          <div className="bg-slate-900/60 border border-amber-500/15 rounded-2xl p-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="space-y-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5"><Building className="w-3.5 h-3.5" /> Office Access</p>
+              <div className="space-y-1.5">
+                {["Twar — Al Qusais", "Business Bay — Central Hub", "Deira — RERA Walk-in Support"].map(loc => (
+                  <div key={loc} className="flex items-center gap-2 text-xs text-gray-400">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> {loc}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-amber-400 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> Support Includes</p>
+              <div className="space-y-1.5">
+                {["Ejari Processing — same day", "PRO Services — all tenancy types", "Documentation Handling — end to end"].map(s => (
+                  <div key={s} className="flex items-center gap-2 text-xs text-gray-400">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0" /> {s}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1846,6 +2036,47 @@ export default function BrokerPartnerPage() {
                         <Input data-testid="input-phone" placeholder="+971 50 000 0000" value={appForm.phone} onChange={e => setAppForm(p => ({ ...p, phone: e.target.value }))} className="bg-slate-900 border-white/10 text-white placeholder:text-gray-600 h-11" />
                       </div>
                     </div>
+                    <div className="border-t border-white/5 pt-4 space-y-3">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-purple-400">Activity Profile</p>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-1.5">
+                          <Label className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Deals Closed (Last 30 Days)</Label>
+                          <Select value={appForm.dealsClosed} onValueChange={v => setAppForm(p => ({ ...p, dealsClosed: v }))}>
+                            <SelectTrigger className="bg-slate-900 border-white/10 text-white h-10 text-sm" data-testid="select-deals-closed">
+                              <SelectValue placeholder="Select range" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-slate-900 border-white/10 text-white">
+                              {["0", "1–2", "3–5", "6–10", "10+"].map(v => <SelectItem key={v} value={v} className="text-white">{v}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-1.5">
+                          <Label className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Active Tenants / Landlords?</Label>
+                          <Select value={appForm.hasTenants} onValueChange={v => setAppForm(p => ({ ...p, hasTenants: v }))}>
+                            <SelectTrigger className="bg-slate-900 border-white/10 text-white h-10 text-sm" data-testid="select-has-tenants">
+                              <SelectValue placeholder="Select..." />
+                            </SelectTrigger>
+                            <SelectContent className="bg-slate-900 border-white/10 text-white">
+                              <SelectItem value="tenants" className="text-white">Active Tenants</SelectItem>
+                              <SelectItem value="landlords" className="text-white">Active Landlords</SelectItem>
+                              <SelectItem value="both" className="text-white">Both</SelectItem>
+                              <SelectItem value="neither" className="text-white">Neither Yet</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div className="space-y-1.5">
+                          <Label className="text-[10px] font-black uppercase text-gray-400 tracking-widest">Area of Focus</Label>
+                          <Select value={appForm.areaFocus} onValueChange={v => setAppForm(p => ({ ...p, areaFocus: v }))}>
+                            <SelectTrigger className="bg-slate-900 border-white/10 text-white h-10 text-sm" data-testid="select-area-focus">
+                              <SelectValue placeholder="Select area" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-slate-900 border-white/10 text-white">
+                              {Object.keys(AREA_DATA).map(a => <SelectItem key={a} value={a} className="text-white">{a}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    </div>
                     <Button type="submit" data-testid="button-submit-partner" size="lg" className="w-full h-12 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-xl shadow-xl shadow-emerald-500/20 text-sm">
                       Get My Referral Link + Lead ID <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -1924,6 +2155,82 @@ export default function BrokerPartnerPage() {
           </div>
         </div>
       </section>
+
+      {/* ── URGENCY FOOTER STRIP ─────────────────────────── */}
+      <div className="py-4 px-4 bg-red-950/30 border-t border-red-500/20">
+        <p className="text-center text-sm font-black text-red-300 uppercase tracking-widest">
+          ⚡ Only 10 brokers will be onboarded this week. Applications close Sunday.
+        </p>
+      </div>
+
+      {/* ── AI ASSISTANT WIDGET ─────────────────────────── */}
+      <div className="fixed bottom-20 right-4 z-50 md:bottom-6 md:right-6" data-testid="ai-assistant-widget">
+        {aiOpen ? (
+          <div className="w-80 bg-slate-900 border border-emerald-500/30 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
+            <div className="flex items-center justify-between px-4 py-3 bg-emerald-950/60 border-b border-emerald-500/20">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs font-black text-emerald-300 uppercase tracking-widest">DeliWer AI Assistant</span>
+              </div>
+              <button onClick={() => setAiOpen(false)} className="text-gray-500 hover:text-white transition-colors"><X className="w-4 h-4" /></button>
+            </div>
+            <div className="p-4 space-y-4">
+              {!aiAssigned ? (
+                <>
+                  <p className="text-sm text-gray-300 leading-relaxed bg-slate-800/60 rounded-xl px-3 py-3 border border-white/5">
+                    You are in <strong className="text-white">{selectedArea || "Dubai"}</strong>.<br />
+                    <strong className="text-emerald-400">{selectedArea ? AREA_DATA[selectedArea]?.deals ?? 6 : 6} rental units</strong> need tenants this week.<br />
+                    Avg commission <strong className="text-white">AED {selectedArea ? AREA_DATA[selectedArea]?.avgComm.toLocaleString() ?? "3,000" : "3,000"}</strong>.<br />
+                    <span className="text-gray-400 text-xs">Want me to assign deals?</span>
+                  </p>
+                  <div className="flex gap-2">
+                    <Button
+                      data-testid="button-ai-assign-deals"
+                      size="sm"
+                      className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl h-9 text-xs"
+                      onClick={() => {
+                        setAiAssigned(true);
+                        toast({ title: "Deals assigned!", description: `${selectedArea ? AREA_DATA[selectedArea]?.deals ?? 6 : 6} opportunities queued for you. Check the feed below.` });
+                        document.getElementById("opportunities")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                    >
+                      <Zap className="w-3 h-3 mr-1" /> Assign Deals
+                    </Button>
+                    <Button
+                      data-testid="button-ai-show-more"
+                      size="sm"
+                      variant="outline"
+                      className="flex-1 border-white/10 text-gray-400 hover:bg-white/5 font-black rounded-xl h-9 text-xs"
+                      onClick={() => { setSelectedArea("Dubai Marina / JBR"); setShowCalc(true); document.getElementById("what-you-earn")?.scrollIntoView({ behavior: "smooth" }); }}
+                    >
+                      Show More
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <div className="space-y-3 text-center py-2">
+                  <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto" />
+                  <p className="text-sm font-black text-white">Deals assigned to your queue!</p>
+                  <p className="text-xs text-gray-400">Scroll down to the Open Opportunities feed to claim your slots.</p>
+                  <Button size="sm" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl h-9 text-xs" onClick={() => { setAiOpen(false); document.getElementById("opportunities")?.scrollIntoView({ behavior: "smooth" }); }}>
+                    View Opportunities
+                  </Button>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <button
+            data-testid="button-ai-open"
+            onClick={() => setAiOpen(true)}
+            className="group flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-4 py-3 shadow-2xl shadow-emerald-900/50 transition-all hover:scale-105"
+          >
+            <Sparkles className="w-4 h-4" />
+            <span className="text-sm hidden sm:block">AI Assistant</span>
+            <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          </button>
+        )}
+      </div>
 
       {/* ── STICKY MOBILE BAR ─────────────────────────────── */}
       <div data-testid="sticky-mobile-bar" className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10 p-3 flex gap-2">
