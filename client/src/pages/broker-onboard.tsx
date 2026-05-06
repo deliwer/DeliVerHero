@@ -207,6 +207,51 @@ export default function BrokerOnboard() {
         </motion.div>
       </section>
 
+      {/* ── BROKER PORTAL HIGHLIGHT ─────────────────────────────────────────── */}
+      <section className="py-8 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+          >
+            <Link href="/brokers" data-testid="banner-full-broker-portal">
+              <div className="group relative flex flex-col sm:flex-row items-center justify-between gap-5 px-7 py-6 rounded-3xl overflow-hidden cursor-pointer border border-violet-500/30 hover:border-violet-400/60 bg-gradient-to-r from-violet-950/50 via-slate-900 to-violet-950/40 hover:shadow-[0_0_60px_-12px_rgba(139,92,246,0.45)] transition-all">
+                {/* Glow */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-violet-800/20 via-transparent to-transparent pointer-events-none" />
+
+                {/* Exclusive badge — top right corner */}
+                <div className="absolute top-0 right-0 bg-violet-500 text-white text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-bl-2xl">
+                  Members Area
+                </div>
+
+                {/* LEFT: text */}
+                <div className="relative z-10 flex items-center gap-4">
+                  <div className="shrink-0 w-12 h-12 rounded-2xl bg-violet-500/15 border border-violet-500/30 flex items-center justify-center group-hover:bg-violet-500/25 transition-colors">
+                    <Building2 className="w-5 h-5 text-violet-400" />
+                  </div>
+                  <div>
+                    <p className="text-white font-black text-base md:text-lg uppercase tracking-tight leading-tight">
+                      Full Broker Portal — <span className="text-violet-400">Dashboard, Claims & Inventory</span>
+                    </p>
+                    <p className="text-gray-500 text-xs mt-0.5 font-semibold">
+                      Lead claims · Deal reports · VR tour requests · Habtoor Polo NDA access
+                    </p>
+                  </div>
+                </div>
+
+                {/* RIGHT: pill CTA */}
+                <div className="relative z-10 shrink-0 flex items-center gap-2 bg-violet-500 group-hover:bg-violet-400 text-white font-black uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition-colors whitespace-nowrap">
+                  <Shield className="w-3.5 h-3.5" />
+                  Enter Portal
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── EARNINGS TABLE ──────────────────────────────────────────────────── */}
       <section id="earn-section" className="py-24 px-4">
         <div className="max-w-5xl mx-auto">
