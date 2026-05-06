@@ -1,126 +1,59 @@
-# DeliWer.com Project Context
+# DeliWer — Dubai move-in/move-out concierge platform (WhatsApp-first)
 
-## Overview
-DeliWer.com is a Dubai-based move-in/move-out/relocation concierge platform. Its core purpose is to streamline the relocation process in Dubai, with a key differentiator being Ejari registration support through authorized RERA Trustee Centers, positioning DeliWer as a "home operator." The platform primarily uses a WhatsApp-first conversion funnel.
-
-**Key Services:**
-- Ejari registration and support.
-- Comprehensive move-in bundles (movers, Ejari, DEWA, water filter).
-- Move-out support (utility closure, deposit protection).
-- Ongoing resident services and Ejari renewals.
-
-**Business Vision & Market Potential:**
-DeliWer aims to solve the operational complexities of moving in Dubai, offering a neutral transaction support layer rather than acting as a broker or listing platform. It monetizes by embedding a coordination fee within vendor contracts, ensuring tenants pay market rates. The platform is expanding into relocation intelligence tools and automated broker recruitment to capture a broader market share and enhance operational efficiency.
-
-## User Preferences
-- User dismissed the Replit OAuth connector — do NOT attempt again without user confirmation. If needed in future, ask user to provide `STRIPE_SECRET_KEY` directly as a secret instead.
-- Do not make changes to the folder `/marketing/legacy`.
-- Do not make changes to the files `affiliate-management.tsx` and `MarketingDashboard.tsx`.
-- Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`) to avoid verbatim match errors.
-- No AQARI or Injaz references; use "authorized RERA Appointed Trustee Centers" only.
-
-## Al Habtoor Polo Lead Claim System (`/brokers` → `#habtoor-polo`)
-
-**Purpose:** NDA-gated exclusive inventory system for 55 villas/semi-detached at Al Habtoor Polo Resort & Club, with full lead claiming, VR tour requests, deal closure reporting, and anti-poaching enforcement.
-
-**Key security rules:**
-- HPV unit numbers are stored in DB but **NEVER** returned in any API response (`maskProperty()` strips `hpvUnit`)
-- All access is gated behind NDA/NCA acceptance (stored in `broker_nda_acceptance`)
-- Blacklisted brokers are denied NDA acceptance and all subsequent actions
-- Every claim gets a `DLW-HPV-{timestamp36}-{random}` audit ref code and expires in 60 days
-- IP address is logged on every NDA and claim submission
-
-**New DB tables:** `habtoor_inventory`, `broker_nda_acceptance`, `property_lead_claims`, `deal_closure_reports`, `virtual_tour_requests`, `broker_blacklist`
-
-**API routes** (`/api/habtoor/`):
-- `GET /inventory` — masked property list (requires NDA accepted on frontend)
-- `POST /nda` — record NDA/NCA acceptance; blocks blacklisted numbers
-- `GET /nda-status?phone=` — check if broker has accepted NDA
-- `POST /claim` — claim a lead on a property (NDA required, generates DLW ref code)
-- `GET /my-claims?phone=` — broker's claim history with enriched property data
-- `POST /deal-report` — report deal closure with tenant details for commission processing
-- `POST /vr-request` — request virtual tour (recorded or live), generates WhatsApp URL
-- `GET /blacklist-check?phone=` — check if a number is blacklisted
-- `POST /blacklist` — admin only, requires header `x-admin-token: deliwer-admin-2026`
-
-**WhatsApp coordination number:** `971523946311`
-
-## System Architecture
-
-**UI/UX Design:**
-- **Theme:** Dark-centric with `emerald-500` as the primary brand color.
-- **Typography:** Heavy emphasis on uppercase, bold text.
-- **Visual Style:** "Dubai Living" aesthetic.
-- **Navigation:** Fixed top navigation with a trust strip immediately below. Pages require appropriate top padding (`pt-48` or `pt-32`) to accommodate.
-- **Conversion Funnel:** WhatsApp-first approach, with all CTAs linking to `wa.me/971523946311`.
-
-**Technical Implementations & Features:**
-
-1.  **Marketing Command Center (`/marketing`):**
-    *   Static site for marketing, lead capture, and partner management.
-    *   Uses `localStorage` and URL parameters for tracking.
-    *   Integrates with Google Sheets (via Apps Script webhook) for lead storage; includes demo data fallback.
-    *   Features a partner dashboard, leaderboard, partner onboarding, and founder command center.
-
-2.  **Affiliate & Partner System:**
-    *   **Database Schema:** `affiliates` and `affiliateLeads` tables.
-    *   **Backend Routes:** API endpoints for tracking and dashboard access.
-    *   **Frontend Pages:** Unified career funnel (`/partners`), attribution explanation (`/partner-program`), broker-focused pages (`/brokers`), and various partner resources/dashboards.
-    *   **Referral Tracking:** `?ref=code` captured globally and stored locally, attached to WhatsApp messages.
-    *   **Kangen/Enagic Alliance:** Dedicated support and commission structure.
-
-3.  **Relocation Intelligence Platform:**
-    *   A suite of static, JavaScript-powered tools and guides for relocation decisions.
-    *   Includes calculators (move vs. renew, rent increase), rent comparison tools, moving trends, and personalized move scoring.
-    *   All pages are static, WhatsApp-first, and referral-aware.
-
-4.  **Broker Recruitment Automation Engine:**
-    *   **Purpose:** Autonomous, cron-based system for recruiting UAE brokers.
-    *   **Architecture:** `broker_master` table (tracking broker lifecycle) and `broker_automation_log` table (logging automation runs).
-    *   **Services:** Broker fetching from Dubai Land Dept (RERA) API, automated email follow-up sequences, and an orchestrator service.
-    *   **Cron Schedule:** Daily RERA fetch and new broker emails; 6-hourly follow-ups.
-    *   **API Routes:** Endpoints for status, manual triggers, broker list management, and logging.
-    *   **Frontend (`/marketing/recruit`):** Panels for automation status, manual triggers, broker database view, and legacy campaign seeding.
-    *   **Email Campaigns:** Anti-spam measures (delays, daily limits, deduplication). Requires `SENDGRID_API_KEY`.
-
-5.  **Capella Properties Collaboration & Transaction Support Layer:**
-    *   **Positioning:** DeliWer acts as a neutral transaction support layer.
-    *   **New Page (`/transaction-support`):** Explains DeliWer's role in the post-agreement phase, featuring a soft mention of Capella Properties (without direct integration or lead passing).
-    *   **Updated (`/broker-partner`):** Reframed messaging to emphasize client experience enhancement rather than lead generation for brokers.
-
-6.  **Social Handle Discovery & Community Outreach Agent:**
-    *   **Purpose:** AI-powered social discovery and personalized outreach for brokers.
-    *   **Schema Changes:** `broker_master` table extended with social handle fields and discovery status.
-    *   **Services:** AI agent (`GPT-4o-mini`) for inferring social handles from broker data; a community outreach service for generating personalized messages for various platforms and direct messages.
-    *   **API Routes:** Endpoints for discovery status, triggering discovery, updating broker social data, generating direct messages, and community message generation.
-    *   **Frontend (`/marketing/social`):** Four tabs for managing the discovery agent, viewing social handles, engaging with communities, and GMB/outreach playbooks.
-    *   **Requirements:** Requires `OPENAI_API_KEY` for AI inference.
-
-**Core Technology Stack:**
-- **Frontend:** React (Vite), Tailwind CSS, Framer Motion, Lucide Icons, Shadcn UI components.
-- **Routing:** `wouter` for client-side routing.
-- **Backend:** Express (Node.js), serving on port 5000.
-
-## Replit Environment
-
-- **Runtime:** Node.js 20, PostgreSQL 16
-- **Dev server:** `npm run dev` (tsx + Vite HMR) on port 5000
-- **Production build:** `npm run build` → `node dist/index.js`
-- **Database:** Replit-managed PostgreSQL (DATABASE_URL auto-injected)
-- **Workflow:** "Start application" → `npm run dev`, port 5000
-- **Secrets needed for full functionality (add via Secrets tab):**
+## Run & Operate
+- **Dev:** `npm run dev` (tsx + Vite HMR on port 5000)
+- **Build:** `npm run build` → `node dist/index.js`
+- **DB push:** `npm run db:push`
+- **Required env vars:** `DATABASE_URL` (auto-injected by Replit PostgreSQL)
+- **Optional secrets (add via Secrets tab for full functionality):**
   - `OPENAI_API_KEY` — AI concierge chat and social discovery
   - `SENDGRID_API_KEY` — Email campaigns and broker recruitment
-  - `STRIPE_SECRET_KEY` — Stripe payment processing
+  - `STRIPE_SECRET_KEY` — Stripe payments
   - `PAYPAL_CLIENT_ID` + `PAYPAL_CLIENT_SECRET` — PayPal payments
   - `WHATSAPP_TOKEN` + `WHATSAPP_PHONE_NUMBER_ID` — WhatsApp notifications
-- All integrations gracefully degrade when keys are absent (demo/simulation mode)
+- All integrations degrade gracefully when keys are absent (demo/simulation mode)
 
-## External Dependencies
+## Stack
+- **Frontend:** React 18, Vite, Tailwind CSS, Radix UI / Shadcn, Framer Motion, Wouter routing
+- **Backend:** Express (Node.js 20) served via tsx in dev, esbuild bundle in prod
+- **DB:** Drizzle ORM + PostgreSQL 16 (Replit-managed)
+- **Runtime:** Node.js 20, PostgreSQL 16
 
--   **Stripe:** Payment gateway (API integration details need user confirmation for direct secret key).
--   **PayPal:** Payment gateway (SDK integration has credential issues; direct email link `formatix@deliwer.com` is a fallback).
--   **Google Sheets:** Used via Apps Script webhooks for lead storage in the Marketing Command Center.
--   **SendGrid:** Email API for broker recruitment automation (requires `SENDGRID_API_KEY`).
--   **OpenAI:** AI services (GPT-4o-mini) for social handle discovery and personalized outreach (requires `OPENAI_API_KEY`).
--   **Dubai Land Department (RERA) API:** Source for broker list data in the recruitment engine.
+## Where things live
+- `server/index.ts` — Express entry point + cron scheduler
+- `server/routes.ts` — All main API routes (~5 k lines)
+- `server/routes/` — Sub-routers (admin, wellness, habtoor, memberships, etc.)
+- `server/services/` — WhatsApp agent, broker automation, tips broadcast, etc.
+- `client/src/` — React SPA (`App.tsx` = router, `pages/` = page components)
+- `shared/schema.ts` — Drizzle schema (source of truth for DB tables)
+- `vite.config.ts` — Vite config (root=`client/`, aliases `@`, `@shared`, `@assets`)
+
+## Architecture decisions
+- Single Express server serves both API and SPA (Vite middleware in dev, static in prod)
+- Auth is custom session-based (email/password via `/api/auth/*`) stored in localStorage; no external auth provider
+- `client/src/lib/firebase.ts` is a local simulation stub — no real Firebase dependency
+- All third-party integrations (OpenAI, Stripe, SendGrid, PayPal, WhatsApp) check for env vars at startup and disable gracefully if absent
+- Habtoor inventory API masks `hpvUnit` field on every response to prevent data leaks
+
+## Product
+- Move-in concierge: Ejari, DEWA, movers, cleaning, water filter bundled
+- Broker recruitment automation (RERA API fetch + email follow-up sequences)
+- Partner/affiliate system with referral tracking (`?ref=code`)
+- Al Habtoor Polo lead claiming system (NDA-gated, anti-poaching)
+- Wellness passport, vouchers, memberships, Dubai Marathon features
+- WhatsApp-first conversion funnel across all pages
+
+## User preferences
+- Do NOT re-attempt Replit OAuth connector without user confirmation
+- Do not modify `/marketing/legacy` folder
+- Do not modify `affiliate-management.tsx` or `MarketingDashboard.tsx`
+- Use `write()` for full rewrites of key pages (`landing.tsx`, `ResidentsPage.tsx`, `Navigation.tsx`)
+- No AQARI or Injaz references — use "authorized RERA Appointed Trustee Centers" only
+- Stripe key: ask user to add `STRIPE_SECRET_KEY` directly as a secret
+
+## Gotchas
+- Port 5000 is the only exposed port; all traffic routes through it (API + SPA)
+- `path` is imported twice in `server/routes.ts` (both `import fs from "fs"` area and later `import * as path`) — works but worth noting
+- `SESSION_SECRET` secret is set; `connect-pg-simple` used for session storage
+- `ADMIN_PASSWORD` defaults to `"deliwer2024"` if not set; `ADMIN_SECRET` defaults to `"deliwer-admin-2026"`
+- Cron jobs start immediately on server boot (WhatsApp, tips broadcast, broker follow-ups)
