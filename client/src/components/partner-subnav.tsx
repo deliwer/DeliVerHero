@@ -11,6 +11,7 @@ const PARTNER_SUBNAV = [
 
 const BROKER_ANCHORS = [
   { id: "get-link", label: "Get My Link" },
+  { id: "onboard", label: "Onboard" },
   { id: "communities", label: "Communities" },
   { id: "opportunities", label: "Opportunities" },
   { id: "what-you-earn", label: "What You Earn" },

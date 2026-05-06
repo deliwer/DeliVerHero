@@ -601,6 +601,398 @@ function HabtoorSection() {
   );
 }
 
+// ── WhatsApp Agentic Onboarding Wizard ─────────────────────────────────────
+
+const WA_OB = "971523946311";
+
+interface OBData {
+  name: string; phone: string; rera: string; brokerage: string; area: string;
+  code: string; tenantName: string; tenantPhone: string;
+  moveArea: string; moveDate: string; services: string; month: string;
+}
+const OB_DEFAULT: OBData = {
+  name: "", phone: "", rera: "", brokerage: "", area: "",
+  code: "", tenantName: "", tenantPhone: "",
+  moveArea: "", moveDate: "", services: "", month: "",
+};
+
+function buildOBMsg(step: number, d: OBData): string {
+  switch (step) {
+    case 0: return `Hi DeliWer 👋 I want to join the Broker Partner program.
+
+Name: ${d.name || "—"}
+WhatsApp: ${d.phone || "—"}
+RERA License: ${d.rera || "—"}
+Agency / Brokerage: ${d.brokerage || "—"}
+Area of focus: ${d.area || "—"}
+
+Please register my account and confirm receipt.
+— deliwer.com/brokers`;
+    case 1: return `Hi DeliWer ✅ I confirm and accept the Broker Partner terms:
+
+• AED 150–800 per confirmed move-in referral
+• 50/50 commission split on routed sales & leases
+• Monthly bank payouts
+• All tenant activity routes exclusively through DeliWer
+• No direct approach to landlords or property managers
+
+Name: ${d.name || "—"} | ${d.phone || "—"}
+
+Ready to receive my unique referral link.
+— deliwer.com/brokers`;
+    case 2: return `Hi DeliWer 🔗 Please activate my referral link.
+
+Name: ${d.name || "—"}
+Phone: ${d.phone || "—"}
+RERA: ${d.rera || "—"}${d.code ? `\nRef Code (if pre-assigned): ${d.code}` : ""}
+
+Ready to start referring clients.
+— deliwer.com/brokers`;
+    case 3: return `Hi DeliWer 📋 Sending my first referral:
+
+Tenant Name: ${d.tenantName || "—"}
+Tenant Phone: ${d.tenantPhone || "—"}
+Area / Property: ${d.moveArea || "—"}
+Approx Move-In: ${d.moveDate || "—"}
+Services Needed: ${d.services || "Ejari + DEWA + Movers"}
+
+My Ref Code: ${d.code || "—"}
+
+Please contact them with the DeliWer move-in package.
+— deliwer.com/brokers`;
+    case 4: return `Hi DeliWer 💰 Requesting my payout statement.
+
+Name: ${d.name || "—"}
+Ref Code: ${d.code || "—"}
+Period: ${d.month || "—"}
+
+Please send my commission breakdown and initiate transfer.
+— deliwer.com/brokers`;
+    default: return "";
+  }
+}
+
+const OB_STEPS = [
+  {
+    label: "Register",
+    title: "Introduce Yourself",
+    subtitle: "Send your broker profile — DeliWer confirms receipt within 2–4 hrs",
+    icon: Users,
+    color: "emerald",
+    fields: [
+      { key: "name",      label: "Full Name",           placeholder: "Your full name",           required: true },
+      { key: "phone",     label: "WhatsApp Number",     placeholder: "+971 50 000 0000",         required: true },
+      { key: "rera",      label: "RERA License No.",    placeholder: "Optional but recommended", required: false },
+      { key: "brokerage", label: "Agency / Brokerage",  placeholder: "Your company",             required: false },
+      { key: "area",      label: "Primary Area / Focus",placeholder: "e.g. Dubai Marina, JVC",  required: false },
+    ],
+    afterSend: "DeliWer replies within 2–4 hrs confirming your profile is registered.",
+  },
+  {
+    label: "Confirm Terms",
+    title: "Accept Commission Structure",
+    subtitle: "One message confirms you understand the partner terms — no paperwork",
+    icon: CheckCircle2,
+    color: "purple",
+    fields: [],
+    afterSend: "DeliWer replies with your unique referral code and link activation.",
+  },
+  {
+    label: "Get Your Link",
+    title: "Request Your Referral Link",
+    subtitle: "Once DeliWer sends your code, you can start sharing immediately",
+    icon: Zap,
+    color: "amber",
+    fields: [
+      { key: "code", label: "Your Ref Code (if already received)", placeholder: "e.g. debacci — leave blank if not yet received", required: false },
+    ],
+    afterSend: "DeliWer activates your trackable link. Share it with every tenant you sign.",
+  },
+  {
+    label: "First Referral",
+    title: "Send Your First Tenant",
+    subtitle: "One message hands off the tenant — DeliWer handles everything from here",
+    icon: Send,
+    color: "sky",
+    fields: [
+      { key: "tenantName",  label: "Tenant Name",          placeholder: "Full name",                required: true },
+      { key: "tenantPhone", label: "Tenant WhatsApp",       placeholder: "+971 50 000 0000",         required: true },
+      { key: "moveArea",    label: "Area / Property",       placeholder: "e.g. Dubai Marina, Apt 12B",required: false },
+      { key: "moveDate",    label: "Approx Move-In Date",   placeholder: "e.g. June 2026",           required: false },
+      { key: "services",    label: "Services Needed",       placeholder: "Ejari + DEWA + Movers",    required: false },
+    ],
+    afterSend: "DeliWer contacts the tenant directly and handles the full move-in. You earn when it confirms.",
+  },
+  {
+    label: "Get Paid",
+    title: "Request Your Commission",
+    subtitle: "Monthly payouts — one message triggers your earnings statement",
+    icon: Wallet,
+    color: "yellow",
+    fields: [
+      { key: "month", label: "Month / Period", placeholder: "e.g. May 2026", required: true },
+    ],
+    afterSend: "DeliWer sends your commission breakdown within 24 hrs and initiates bank transfer.",
+  },
+];
+
+const COLOR_MAP: Record<string, { badge: string; border: string; btn: string; text: string; bg: string; dot: string }> = {
+  emerald: { badge: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30", border: "border-emerald-500/30", btn: "bg-emerald-600 hover:bg-emerald-500", text: "text-emerald-400", bg: "bg-emerald-500/5", dot: "bg-emerald-500" },
+  purple:  { badge: "bg-purple-500/15 text-purple-400 border-purple-500/30",   border: "border-purple-500/30",   btn: "bg-purple-600 hover:bg-purple-500",   text: "text-purple-400",  bg: "bg-purple-500/5",  dot: "bg-purple-500" },
+  amber:   { badge: "bg-amber-500/15 text-amber-400 border-amber-500/30",      border: "border-amber-500/30",    btn: "bg-amber-600 hover:bg-amber-500",    text: "text-amber-400",   bg: "bg-amber-500/5",   dot: "bg-amber-500" },
+  sky:     { badge: "bg-sky-500/15 text-sky-400 border-sky-500/30",            border: "border-sky-500/30",      btn: "bg-sky-600 hover:bg-sky-500",        text: "text-sky-400",     bg: "bg-sky-500/5",     dot: "bg-sky-500" },
+  yellow:  { badge: "bg-yellow-500/15 text-yellow-400 border-yellow-500/30",   border: "border-yellow-500/30",   btn: "bg-yellow-500 hover:bg-yellow-400 text-black", text: "text-yellow-400", bg: "bg-yellow-500/5", dot: "bg-yellow-500" },
+};
+
+function BrokerWhatsAppOnboarding() {
+  const { toast } = useToast();
+  const [step, setStep] = useState<number>(() => {
+    try { return parseInt(localStorage.getItem("ob_step") || "0", 10); } catch { return 0; }
+  });
+  const [data, setData] = useState<OBData>(() => {
+    try { return { ...OB_DEFAULT, ...(JSON.parse(localStorage.getItem("ob_data") || "{}")) }; } catch { return OB_DEFAULT; }
+  });
+  const [sent, setSent] = useState<number[]>(() => {
+    try { return JSON.parse(localStorage.getItem("ob_sent") || "[]"); } catch { return []; }
+  });
+  const [copied, setCopied] = useState(false);
+
+  function persist(newData: OBData, newStep: number, newSent: number[]) {
+    try {
+      localStorage.setItem("ob_step", String(newStep));
+      localStorage.setItem("ob_data", JSON.stringify(newData));
+      localStorage.setItem("ob_sent", JSON.stringify(newSent));
+    } catch {}
+  }
+
+  function setField(key: keyof OBData, val: string) {
+    const nd = { ...data, [key]: val };
+    setData(nd);
+    persist(nd, step, sent);
+  }
+
+  function goToStep(s: number) {
+    setStep(s);
+    persist(data, s, sent);
+  }
+
+  function markSent() {
+    const ns = [...new Set([...sent, step])];
+    setSent(ns);
+    persist(data, step, ns);
+  }
+
+  function advanceStep() {
+    markSent();
+    const next = Math.min(step + 1, OB_STEPS.length - 1);
+    goToStep(next);
+    setTimeout(() => window.scrollBy({ top: 100, behavior: "smooth" }), 80);
+  }
+
+  async function copyMsg() {
+    try {
+      await navigator.clipboard.writeText(buildOBMsg(step, data));
+      setCopied(true);
+      toast({ title: "Message copied", description: "Paste it into any chat app." });
+      setTimeout(() => setCopied(false), 2500);
+    } catch {}
+  }
+
+  function openWaStep() {
+    const msg = buildOBMsg(step, data);
+    window.open(`https://wa.me/${WA_OB}?text=${encodeURIComponent(msg)}`, "_blank");
+  }
+
+  const cur = OB_STEPS[step];
+  const c = COLOR_MAP[cur.color];
+  const Icon = cur.icon;
+  const msg = buildOBMsg(step, data);
+  const isSent = sent.includes(step);
+  const allDone = sent.length === OB_STEPS.length;
+
+  return (
+    <div id="onboard" className="py-16 px-4 bg-gradient-to-b from-slate-950 via-slate-900/40 to-slate-950 border-b border-white/5">
+      <div className="max-w-3xl mx-auto space-y-8">
+
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <Badge className="bg-emerald-500/10 border-emerald-500/25 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5">
+            <MessageCircle className="w-3 h-3 mr-1.5" /> WhatsApp Onboarding — Zero Cost · No API
+          </Badge>
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">
+            5-Step Broker Activation
+          </h2>
+          <p className="text-gray-500 text-sm max-w-lg mx-auto">
+            Complete your setup entirely over WhatsApp. Each step generates a ready-to-send message — you just tap send.
+          </p>
+        </div>
+
+        {/* Step Progress */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          {OB_STEPS.map((s, i) => {
+            const done = sent.includes(i);
+            const active = i === step;
+            const cc = COLOR_MAP[s.color];
+            const SIcon = s.icon;
+            return (
+              <button
+                key={i}
+                data-testid={`ob-step-${i}`}
+                onClick={() => goToStep(i)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-xs font-black whitespace-nowrap transition-all shrink-0 ${
+                  done  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400" :
+                  active ? `${cc.bg} ${cc.border} ${cc.text}` :
+                  "border-white/8 text-gray-600 hover:text-gray-400 hover:border-white/15"
+                }`}
+              >
+                {done ? <CheckCircle2 className="w-3.5 h-3.5" /> : <SIcon className="w-3.5 h-3.5" />}
+                <span className="hidden sm:inline">{s.label}</span>
+                <span className="sm:hidden">{i + 1}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Step Card */}
+        <div className={`rounded-2xl border ${c.border} ${c.bg} overflow-hidden`}>
+
+          {/* Step header */}
+          <div className="px-6 pt-6 pb-4 space-y-1">
+            <div className="flex items-center gap-3">
+              <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${c.badge}`}>
+                <Icon className="w-4.5 h-4.5" />
+              </div>
+              <div>
+                <p className={`text-[10px] font-black uppercase tracking-widest ${c.text}`}>Step {step + 1} of {OB_STEPS.length} · {cur.label}</p>
+                <h3 className="text-white font-black text-lg uppercase tracking-tight leading-none">{cur.title}</h3>
+              </div>
+              {isSent && <Badge className="ml-auto bg-emerald-500/15 text-emerald-400 border-emerald-500/30 text-[10px] font-black uppercase">✓ Sent</Badge>}
+            </div>
+            <p className="text-gray-400 text-sm pl-12">{cur.subtitle}</p>
+          </div>
+
+          <div className="px-6 pb-6 space-y-5">
+            {/* Form Fields */}
+            {cur.fields.length > 0 && (
+              <div className={`grid grid-cols-1 ${cur.fields.length >= 4 ? "sm:grid-cols-2" : ""} gap-3`}>
+                {cur.fields.map(f => (
+                  <div key={f.key} className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+                      {f.label}{f.required && <span className={`ml-1 ${c.text}`}>*</span>}
+                    </label>
+                    <Input
+                      data-testid={`ob-field-${f.key}`}
+                      placeholder={f.placeholder}
+                      value={(data as any)[f.key]}
+                      onChange={e => setField(f.key as keyof OBData, e.target.value)}
+                      className="bg-slate-900 border-white/10 text-white placeholder:text-gray-600 h-10 text-sm rounded-xl"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Message Preview */}
+            <div className="space-y-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Message Preview</p>
+              <div className="bg-slate-950 border border-white/8 rounded-xl p-4 relative group">
+                <pre className="text-xs text-gray-300 leading-relaxed font-mono whitespace-pre-wrap break-words">{msg}</pre>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-3">
+              <div className="flex gap-3">
+                <button
+                  data-testid={`ob-copy-${step}`}
+                  onClick={copyMsg}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:border-white/20 text-xs font-black uppercase tracking-widest transition-all bg-white/3 hover:bg-white/6"
+                >
+                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copied ? "Copied" : "Copy"}
+                </button>
+                <button
+                  data-testid={`ob-send-${step}`}
+                  onClick={openWaStep}
+                  className={`flex-1 flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-white text-sm font-black uppercase tracking-widest transition-all ${c.btn} shadow-lg`}
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  Open in WhatsApp → Send
+                </button>
+              </div>
+
+              {/* After-send info + advance */}
+              <div className="bg-slate-900/60 border border-white/6 rounded-xl px-4 py-3 flex items-start gap-3">
+                <Clock className="w-4 h-4 text-gray-500 shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-xs text-gray-400 leading-relaxed">{cur.afterSend}</p>
+                </div>
+              </div>
+
+              {/* Confirm + advance */}
+              <div className="flex gap-3">
+                {step > 0 && (
+                  <button
+                    data-testid="ob-back"
+                    onClick={() => goToStep(step - 1)}
+                    className="px-4 py-2 rounded-xl border border-white/10 text-gray-500 hover:text-white text-xs font-black uppercase tracking-widest transition-all"
+                  >
+                    ← Back
+                  </button>
+                )}
+                {step < OB_STEPS.length - 1 ? (
+                  <button
+                    data-testid="ob-advance"
+                    onClick={advanceStep}
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white text-xs font-black uppercase tracking-widest transition-all"
+                  >
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> I've Sent This → Next Step
+                  </button>
+                ) : (
+                  <button
+                    data-testid="ob-finish"
+                    onClick={advanceStep}
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black uppercase tracking-widest transition-all"
+                  >
+                    <Star className="w-3.5 h-3.5" /> Complete Onboarding
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Completion Banner */}
+        {allDone && (
+          <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-2xl px-6 py-5 flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+            </div>
+            <div>
+              <p className="font-black text-emerald-300 text-sm uppercase tracking-wide">Onboarding Complete</p>
+              <p className="text-gray-400 text-xs mt-0.5">You've sent all 5 steps. DeliWer is processing your account. Track your earnings at <Link href="/partner-dashboard" className="text-emerald-400 hover:underline">Partner Dashboard →</Link></p>
+            </div>
+          </div>
+        )}
+
+        {/* Reset link */}
+        <div className="text-center">
+          <button
+            data-testid="ob-reset"
+            onClick={() => {
+              try { localStorage.removeItem("ob_step"); localStorage.removeItem("ob_data"); localStorage.removeItem("ob_sent"); } catch {}
+              setStep(0); setData(OB_DEFAULT); setSent([]);
+            }}
+            className="text-[10px] text-gray-700 hover:text-gray-500 uppercase tracking-widest font-bold transition-colors"
+          >
+            Reset onboarding progress
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Static data ────────────────────────────────────────────────────────────
 
 const CAREER_STEPS = [
@@ -931,6 +1323,9 @@ export default function BrokerPartnerPage() {
           </div>
         </div>
       </section>
+
+      {/* ── WHATSAPP ONBOARDING WIZARD ───────────────────── */}
+      <BrokerWhatsAppOnboarding />
 
       {/* ── DEVELOPER & COMMUNITY OPPORTUNITIES ─────────── */}
       <section id="communities" className="py-16 px-4 bg-slate-950 border-b border-white/5">
