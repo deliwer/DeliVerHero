@@ -329,6 +329,25 @@ export default function AdminBrokerMasterPage() {
               <Play className="w-3.5 h-3.5 mr-1.5" />
               {triggerDailyMutation.isPending ? "Starting…" : "Run Daily Emails"}
             </Button>
+            <a
+              data-testid="button-export-view"
+              href={`/api/marketing/broker-master/export${(() => {
+                const p = new URLSearchParams();
+                if (debouncedSearch) p.set("search", debouncedSearch);
+                if (statusFilter !== "all") p.set("status", statusFilter);
+                const s = p.toString();
+                return s ? `?${s}` : "";
+              })()}`}
+              download
+              className="flex items-center gap-1.5 px-3 h-9 rounded-xl bg-slate-800 border border-white/10 text-gray-300 hover:border-white/25 hover:text-white transition-all text-xs font-black"
+              title="Export current view as Excel"
+            >
+              <Download className="w-3.5 h-3.5" />
+              Export
+              {(debouncedSearch || statusFilter !== "all") && (
+                <span className="text-emerald-400 text-[9px] uppercase tracking-wide">filtered</span>
+              )}
+            </a>
             <Button
               data-testid="button-open-campaign"
               size="sm"

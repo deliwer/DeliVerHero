@@ -4458,6 +4458,71 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // GET /api/marketing/broker-master/export — download filtered broker list as Excel
+  app.get("/api/marketing/broker-master/export", async (req, res) => {
+    try {
+      const XLSX = await import('xlsx');
+      const search = String(req.query.search || '').trim().toLowerCase();
+      const statusFilter = String(req.query.status || '').trim();
+
+      let whereClause: any = eq(brokerMaster.deleted, false);
+      if (search) {
+        whereClause = and(whereClause, drizzleSql`(lower(${brokerMaster.name}) like ${'%' + search + '%'} or lower(${brokerMaster.email}) like ${'%' + search + '%'} or lower(coalesce(${brokerMaster.company}, '')) like ${'%' + search + '%'})`);
+      }
+      if (statusFilter && statusFilter !== 'all') {
+        whereClause = and(whereClause, eq(brokerMaster.status, statusFilter));
+      }
+
+      const rows_data = await db.select({
+        Name:        brokerMaster.name,
+        Email:       brokerMaster.email,
+        Phone:       brokerMaster.phone,
+        Company:     brokerMaster.company,
+        License:     brokerMaster.license,
+        Status:      brokerMaster.status,
+        Source:      brokerMaster.source,
+        FollowUps:   brokerMaster.followUpCount,
+        RefCode:     brokerMaster.refCode,
+        PartnerLink: brokerMaster.partnerLink,
+        CreatedAt:   brokerMaster.createdAt,
+      }).from(brokerMaster)
+        .where(whereClause)
+        .orderBy(desc(brokerMaster.createdAt))
+        .limit(10000);
+
+      const rows = rows_data.map(r => ({
+        ...r,
+        Phone:      r.Phone || '',
+        Company:    r.Company || '',
+        License:    r.License || '',
+        RefCode:    r.RefCode || '',
+        PartnerLink: r.PartnerLink || '',
+        CreatedAt:  r.CreatedAt ? new Date(r.CreatedAt).toLocaleString('en-AE', { timeZone: 'Asia/Dubai' }) : '',
+      }));
+
+      const ws = XLSX.utils.json_to_sheet(rows);
+      // Auto-size columns
+      const colWidths = Object.keys(rows[0] || {}).map(k => ({ wch: Math.max(k.length, 18) }));
+      ws['!cols'] = colWidths;
+
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Brokers');
+      const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' });
+
+      const datePart = new Date().toISOString().slice(0, 10);
+      const labelPart = statusFilter && statusFilter !== 'all' ? `_${statusFilter}` : '';
+      const searchPart = search ? `_${search.replace(/[^a-z0-9]/gi, '').substring(0, 15)}` : '';
+      const filename = `broker_master${labelPart}${searchPart}_${datePart}.xlsx`;
+
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      res.send(buf);
+    } catch (err: any) {
+      console.error('[BROKER EXPORT]', err);
+      res.status(500).json({ error: 'Export failed' });
+    }
+  });
+
   // GET /api/marketing/broker-campaign/:id/export — download entries as Excel
   app.get("/api/marketing/broker-campaign/:id/export", async (req, res) => {
     try {
