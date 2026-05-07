@@ -13,6 +13,7 @@ const TABS = [
   { href: "/marketing/referral-engine", label: "Referral Engine", highlight: true as const },
   { href: "/marketing/founder-dashboard", label: "Command" },
   { href: "/marketing/attribution", label: "Attribution", accent: true as const },
+  { href: "/admin/brokers", label: "Broker DB", highlight: true as const },
 ];
 
 export function MarketingSubNav() {

@@ -46,6 +46,15 @@ interface Campaign {
   completedAt: string | null;
 }
 
+interface CompanyRow {
+  company: string | null;
+  total: number;
+  newCount: number;
+  sentCount: number;
+  followedUp: number;
+  converted: number;
+}
+
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const STATUS_CONFIG: Record<string, { label: string; badge: string }> = {
@@ -96,6 +105,9 @@ export default function AdminBrokerMasterPage() {
   const [bulkStatusPicker, setBulkStatusPicker] = useState(false);
   const [bulkStatusTarget, setBulkStatusTarget] = useState("unsubscribed");
 
+  // Company breakdown
+  const [showCompanies, setShowCompanies] = useState(false);
+
   // Campaign modal
   const [showCampaign, setShowCampaign] = useState(false);
   const [campaignName, setCampaignName] = useState("");
@@ -133,6 +145,13 @@ export default function AdminBrokerMasterPage() {
     queryFn: () => fetch("/api/marketing/broker-campaigns").then(r => r.json()),
     enabled: authed,
     refetchInterval: 15000,
+  });
+
+  const companiesQuery = useQuery<CompanyRow[]>({
+    queryKey: ["/api/marketing/broker-master/companies"],
+    queryFn: () => fetch("/api/marketing/broker-master/companies?limit=30").then(r => r.json()),
+    enabled: authed && showCompanies,
+    staleTime: 60000,
   });
 
   // ── Mutations ────────────────────────────────────────────────────────────────
@@ -387,6 +406,77 @@ export default function AdminBrokerMasterPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* ── Company Breakdown Panel ── */}
+        <div className="bg-slate-900 border border-white/8 rounded-2xl overflow-hidden">
+          <button
+            data-testid="button-toggle-companies"
+            onClick={() => setShowCompanies(v => !v)}
+            className="w-full flex items-center justify-between px-5 py-3 hover:bg-white/3 transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <Building2 className="w-4 h-4 text-emerald-400" />
+              <p className="text-xs font-black uppercase tracking-widest text-gray-300">Top Brokerages by Uncontacted Brokers</p>
+              {companiesQuery.isFetching && <RefreshCw className="w-3 h-3 text-gray-500 animate-spin" />}
+            </div>
+            <ChevronRight className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${showCompanies ? "rotate-90" : ""}`} />
+          </button>
+
+          {showCompanies && (
+            <div className="border-t border-white/5 px-5 py-4">
+              {companiesQuery.isLoading ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {Array.from({ length: 9 }).map((_, i) => (
+                    <div key={i} className="h-16 bg-slate-800 rounded-xl animate-pulse" />
+                  ))}
+                </div>
+              ) : !companiesQuery.data?.length ? (
+                <p className="text-gray-600 text-sm py-4 text-center">No company data — company names are only present for the 2,980 XLS-imported brokers.</p>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                    {(companiesQuery.data ?? []).map((row, i) => {
+                      const pctNew = row.total > 0 ? (row.newCount / row.total) * 100 : 0;
+                      const pctSent = row.total > 0 ? (row.sentCount / row.total) * 100 : 0;
+                      const pctConverted = row.total > 0 ? (row.converted / row.total) * 100 : 0;
+                      return (
+                        <button
+                          key={row.company}
+                          data-testid={`company-row-${i}`}
+                          onClick={() => {
+                            setSearch(row.company ?? "");
+                            setStatusFilter("all");
+                            setPage(1);
+                          }}
+                          className="text-left bg-slate-800/60 border border-white/6 rounded-xl px-4 py-3 hover:border-emerald-500/30 hover:bg-slate-800 transition-all group"
+                        >
+                          <div className="flex items-start justify-between gap-2 mb-2">
+                            <p className="text-white text-xs font-black leading-tight line-clamp-1 group-hover:text-emerald-300 transition-colors">
+                              {row.company}
+                            </p>
+                            <span className="text-[10px] font-black text-gray-500 shrink-0 tabular-nums">{Number(row.total).toLocaleString()}</span>
+                          </div>
+                          {/* Stacked mini bar */}
+                          <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden flex">
+                            <div className="h-full bg-blue-500 transition-all" style={{ width: `${pctNew}%` }} title={`${row.newCount} new`} />
+                            <div className="h-full bg-amber-500 transition-all" style={{ width: `${pctSent}%` }} title={`${row.sentCount} sent`} />
+                            <div className="h-full bg-emerald-500 transition-all" style={{ width: `${pctConverted}%` }} title={`${row.converted} converted`} />
+                          </div>
+                          <div className="flex items-center gap-3 mt-1.5 text-[9px] font-black uppercase tracking-wide">
+                            <span className="text-blue-400">{Number(row.newCount).toLocaleString()} new</span>
+                            {row.sentCount > 0 && <span className="text-amber-400">{Number(row.sentCount).toLocaleString()} sent</span>}
+                            {row.converted > 0 && <span className="text-emerald-400">{Number(row.converted).toLocaleString()} conv.</span>}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <p className="text-[10px] text-gray-600 font-bold mt-3">Click any brokerage to filter the table. Only brokers with company data shown (2,980 from XLS import).</p>
+                </>
+              )}
+            </div>
+          )}
         </div>
 
         {/* ── Search + Filter ── */}

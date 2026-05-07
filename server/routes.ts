@@ -4458,6 +4458,29 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // GET /api/marketing/broker-master/companies — top companies by broker count
+  app.get("/api/marketing/broker-master/companies", async (req, res) => {
+    try {
+      const limit = Math.min(parseInt(String(req.query.limit || '30')), 100);
+      const rows = await db.select({
+        company:   brokerMaster.company,
+        total:     drizzleSql<number>`count(*)`,
+        newCount:  drizzleSql<number>`count(*) filter (where ${brokerMaster.status} = 'new')`,
+        sentCount: drizzleSql<number>`count(*) filter (where ${brokerMaster.status} = 'sent')`,
+        followedUp:drizzleSql<number>`count(*) filter (where ${brokerMaster.status} = 'followed_up')`,
+        converted: drizzleSql<number>`count(*) filter (where ${brokerMaster.status} = 'converted')`,
+      })
+        .from(brokerMaster)
+        .where(and(eq(brokerMaster.deleted, false), drizzleSql`${brokerMaster.company} is not null`))
+        .groupBy(brokerMaster.company)
+        .orderBy(drizzleSql`count(*) desc`)
+        .limit(limit);
+      res.json(rows);
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to fetch company breakdown' });
+    }
+  });
+
   // GET /api/marketing/broker-master/export — download filtered broker list as Excel
   app.get("/api/marketing/broker-master/export", async (req, res) => {
     try {

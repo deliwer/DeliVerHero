@@ -2004,6 +2004,24 @@ Questions? Reply here anytime.
           );
         })()}
 
+        {/* Admin shortcut */}
+        <a
+          href="/admin/brokers"
+          data-testid="link-broker-master-admin"
+          className="flex items-center justify-between gap-4 px-5 py-4 rounded-2xl border border-emerald-500/25 bg-emerald-950/30 hover:bg-emerald-950/50 hover:border-emerald-500/40 transition-all group"
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center shrink-0">
+              <Database className="w-4 h-4 text-emerald-400" />
+            </div>
+            <div>
+              <p className="text-white font-black text-sm">Broker Master Admin</p>
+              <p className="text-emerald-400/70 text-xs font-bold">36,151 RERA brokers · Search, filter, bulk update, export, campaign launch</p>
+            </div>
+          </div>
+          <ChevronRight className="w-4 h-4 text-emerald-400 shrink-0 group-hover:translate-x-0.5 transition-transform" />
+        </a>
+
         {/* Info strip */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           {[
