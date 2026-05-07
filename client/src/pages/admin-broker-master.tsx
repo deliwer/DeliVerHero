@@ -9,7 +9,7 @@ import {
   RotateCcw, ChevronLeft, ChevronRight, Building2, Mail,
   Phone, BadgeCheck, X, BarChart2, Send, Clock, CheckCircle2,
   AlertCircle, Download, TrendingUp, Square, CheckSquare,
-  MinusSquare, Tag, ShieldOff,
+  MinusSquare, Tag, ShieldOff, StickyNote,
 } from "lucide-react";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -24,6 +24,7 @@ interface Broker {
   status: string;
   source: string;
   followUpCount: number;
+  notes: string | null;
   createdAt: string;
 }
 
@@ -108,6 +109,10 @@ export default function AdminBrokerMasterPage() {
   // Company breakdown
   const [showCompanies, setShowCompanies] = useState(false);
 
+  // Notes inline editor
+  const [notesBroker, setNotesBroker] = useState<string | null>(null);
+  const [noteText, setNoteText] = useState("");
+
   // Campaign modal
   const [showCampaign, setShowCampaign] = useState(false);
   const [campaignName, setCampaignName] = useState("");
@@ -184,6 +189,16 @@ export default function AdminBrokerMasterPage() {
       toast({ title: `Removed ${data.deleted} broker${data.deleted !== 1 ? "s" : ""}` });
     },
     onError: (e: any) => toast({ title: "Delete failed", description: e.message, variant: "destructive" }),
+  });
+
+  const notesMutation = useMutation({
+    mutationFn: ({ id, notes }: { id: string; notes: string }) =>
+      apiRequest("PATCH", `/api/marketing/broker-master/${id}/notes`, { notes }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/marketing/broker-master"] });
+      setNotesBroker(null);
+    },
+    onError: (e: any) => toast({ title: "Failed to save note", description: e.message, variant: "destructive" }),
   });
 
   const campaignControlMutation = useMutation({
@@ -644,66 +659,131 @@ export default function AdminBrokerMasterPage() {
             ) : brokers.map(broker => {
               const sc = STATUS_CONFIG[broker.status] ?? { label: broker.status, badge: "bg-slate-700/50 border-white/10 text-gray-500" };
               const isSelected = selected.has(broker.id);
+              const isEditingNote = notesBroker === broker.id;
+              const hasNote = !!broker.notes;
               return (
                 <div
                   key={broker.id}
-                  data-testid={`broker-row-${broker.id}`}
-                  onClick={() => toggleOne(broker.id)}
-                  className={`grid grid-cols-1 sm:grid-cols-[auto_2fr_2fr_1.5fr_1fr_1fr_1fr_auto] gap-2 sm:gap-3 px-4 py-3 transition-colors cursor-pointer items-center ${
-                    isSelected ? "bg-emerald-950/30 border-l-2 border-emerald-500" : "hover:bg-white/2 border-l-2 border-transparent"
-                  }`}
+                  className={`border-l-2 transition-colors ${isSelected ? "border-emerald-500 bg-emerald-950/30" : "border-transparent hover:bg-white/2"}`}
                 >
-                  {/* Checkbox */}
-                  <div className="hidden sm:block" onClick={e => { e.stopPropagation(); toggleOne(broker.id); }}>
-                    {isSelected
-                      ? <CheckSquare className="w-4 h-4 text-emerald-400 shrink-0" />
-                      : <Square className="w-4 h-4 text-gray-700 hover:text-gray-400 shrink-0 transition-colors" />}
-                  </div>
-
-                  <div className="min-w-0">
-                    <p className={`text-sm font-bold truncate ${isSelected ? "text-emerald-100" : "text-white"}`}>{broker.name}</p>
-                    <p className="text-gray-600 text-[10px] sm:hidden truncate">{broker.email}</p>
-                  </div>
-
-                  <p className="text-gray-400 text-xs truncate hidden sm:block">
-                    {broker.company
-                      ? <span className="flex items-center gap-1"><Building2 className="w-3 h-3 shrink-0" />{broker.company}</span>
-                      : <span className="text-gray-700">—</span>}
-                  </p>
-
-                  <p className="text-gray-400 text-xs truncate hidden sm:block">
-                    <a
-                      href={`mailto:${broker.email}`}
-                      onClick={e => e.stopPropagation()}
-                      className="hover:text-emerald-400 transition-colors flex items-center gap-1"
-                    >
-                      <Mail className="w-3 h-3 shrink-0" />{broker.email}
-                    </a>
-                  </p>
-
-                  <p className="text-gray-500 text-xs truncate hidden sm:block">
-                    {broker.phone
-                      ? <span className="flex items-center gap-1"><Phone className="w-3 h-3 shrink-0" />{broker.phone}</span>
-                      : <span className="text-gray-700">—</span>}
-                  </p>
-
-                  <p className="text-gray-500 text-xs hidden sm:block">{broker.license || "—"}</p>
-
-                  <div className="hidden sm:block">
-                    <span className={`text-[9px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full border ${sc.badge}`}>
-                      {sc.label}
-                    </span>
-                  </div>
-
-                  <button
-                    data-testid={`button-delete-broker-${broker.id}`}
-                    onClick={e => { e.stopPropagation(); deleteMutation.mutate(broker.id); }}
-                    disabled={deleteMutation.isPending}
-                    className="text-gray-700 hover:text-red-400 transition-colors shrink-0"
-                    title="Remove from active list"
+                  {/* Main row */}
+                  <div
+                    data-testid={`broker-row-${broker.id}`}
+                    onClick={() => toggleOne(broker.id)}
+                    className="grid grid-cols-1 sm:grid-cols-[auto_2fr_2fr_1.5fr_1fr_1fr_1fr_auto] gap-2 sm:gap-3 px-4 py-3 cursor-pointer items-center"
                   >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
+                    {/* Checkbox */}
+                    <div className="hidden sm:block" onClick={e => { e.stopPropagation(); toggleOne(broker.id); }}>
+                      {isSelected
+                        ? <CheckSquare className="w-4 h-4 text-emerald-400 shrink-0" />
+                        : <Square className="w-4 h-4 text-gray-700 hover:text-gray-400 shrink-0 transition-colors" />}
+                    </div>
+
+                    <div className="min-w-0">
+                      <p className={`text-sm font-bold truncate ${isSelected ? "text-emerald-100" : "text-white"}`}>{broker.name}</p>
+                      <p className="text-gray-600 text-[10px] sm:hidden truncate">{broker.email}</p>
+                    </div>
+
+                    <p className="text-gray-400 text-xs truncate hidden sm:block">
+                      {broker.company
+                        ? <span className="flex items-center gap-1"><Building2 className="w-3 h-3 shrink-0" />{broker.company}</span>
+                        : <span className="text-gray-700">—</span>}
+                    </p>
+
+                    <p className="text-gray-400 text-xs truncate hidden sm:block">
+                      <a
+                        href={`mailto:${broker.email}`}
+                        onClick={e => e.stopPropagation()}
+                        className="hover:text-emerald-400 transition-colors flex items-center gap-1"
+                      >
+                        <Mail className="w-3 h-3 shrink-0" />{broker.email}
+                      </a>
+                    </p>
+
+                    <p className="text-gray-500 text-xs truncate hidden sm:block">
+                      {broker.phone
+                        ? <span className="flex items-center gap-1"><Phone className="w-3 h-3 shrink-0" />{broker.phone}</span>
+                        : <span className="text-gray-700">—</span>}
+                    </p>
+
+                    <p className="text-gray-500 text-xs hidden sm:block">{broker.license || "—"}</p>
+
+                    <div className="hidden sm:block">
+                      <span className={`text-[9px] font-black uppercase tracking-wide px-2 py-0.5 rounded-full border ${sc.badge}`}>
+                        {sc.label}
+                      </span>
+                    </div>
+
+                    {/* Actions: note + delete */}
+                    <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
+                      <button
+                        data-testid={`button-note-broker-${broker.id}`}
+                        title={hasNote ? "Edit note" : "Add note"}
+                        onClick={() => {
+                          if (isEditingNote) {
+                            setNotesBroker(null);
+                          } else {
+                            setNotesBroker(broker.id);
+                            setNoteText(broker.notes ?? "");
+                          }
+                        }}
+                        className={`transition-colors ${hasNote ? "text-amber-400 hover:text-amber-300" : "text-gray-700 hover:text-amber-400"}`}
+                      >
+                        <StickyNote className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        data-testid={`button-delete-broker-${broker.id}`}
+                        onClick={() => deleteMutation.mutate(broker.id)}
+                        disabled={deleteMutation.isPending}
+                        className="text-gray-700 hover:text-red-400 transition-colors shrink-0"
+                        title="Remove from active list"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Inline notes editor */}
+                  {isEditingNote && (
+                    <div className="px-4 pb-3 flex items-start gap-2" onClick={e => e.stopPropagation()}>
+                      <StickyNote className="w-3.5 h-3.5 text-amber-400 mt-2 shrink-0" />
+                      <textarea
+                        data-testid={`textarea-note-${broker.id}`}
+                        autoFocus
+                        rows={2}
+                        placeholder="Call outcome, LinkedIn reply, context… (auto-saves on blur, or ⌘↵)"
+                        value={noteText}
+                        onChange={e => setNoteText(e.target.value)}
+                        onBlur={() => notesMutation.mutate({ id: broker.id, notes: noteText })}
+                        onKeyDown={e => {
+                          if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                            notesMutation.mutate({ id: broker.id, notes: noteText });
+                          }
+                          if (e.key === "Escape") setNotesBroker(null);
+                        }}
+                        className="flex-1 bg-slate-800 border border-amber-500/30 rounded-xl text-xs text-white placeholder:text-gray-600 px-3 py-2 resize-none focus:outline-none focus:border-amber-500/60 transition-colors"
+                      />
+                      <button
+                        data-testid={`button-save-note-${broker.id}`}
+                        onClick={() => notesMutation.mutate({ id: broker.id, notes: noteText })}
+                        disabled={notesMutation.isPending}
+                        className="text-[10px] font-black uppercase tracking-wide text-amber-400 hover:text-amber-300 mt-2 disabled:opacity-50 transition-colors whitespace-nowrap"
+                      >
+                        {notesMutation.isPending ? "Saving…" : "Save ↵"}
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Collapsed note preview */}
+                  {!isEditingNote && hasNote && (
+                    <button
+                      className="w-full text-left px-4 pb-2.5 flex items-start gap-2"
+                      onClick={e => { e.stopPropagation(); setNotesBroker(broker.id); setNoteText(broker.notes ?? ""); }}
+                    >
+                      <StickyNote className="w-3 h-3 text-amber-400/60 mt-0.5 shrink-0" />
+                      <p className="text-[10px] text-amber-200/50 leading-relaxed line-clamp-1">{broker.notes}</p>
+                    </button>
+                  )}
                 </div>
               );
             })}

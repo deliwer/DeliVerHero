@@ -1616,6 +1616,7 @@ export const brokerMaster = pgTable("broker_master", {
   socialDiscoveryStatus: text("social_discovery_status").default("pending"), // pending | discovering | found | not_found
   socialDiscoveredAt: timestamp("social_discovered_at"),
   socialNotes: text("social_notes"),
+  notes: text("notes"),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });

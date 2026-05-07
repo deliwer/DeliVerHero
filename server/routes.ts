@@ -4676,6 +4676,20 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // PATCH /api/marketing/broker-master/:id/notes — update admin notes on a broker
+  app.patch("/api/marketing/broker-master/:id/notes", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { notes } = req.body;
+      await db.update(brokerMaster)
+        .set({ notes: notes ?? null, updatedAt: new Date() })
+        .where(eq(brokerMaster.id, id));
+      res.json({ success: true, id, notes: notes ?? null });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to update notes' });
+    }
+  });
+
   // DELETE /api/marketing/broker-master/:id — soft-delete (remove from active list)
   app.delete("/api/marketing/broker-master/:id", async (req, res) => {
     try {
