@@ -4614,6 +4614,45 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // PATCH /api/marketing/broker-master/bulk-status — bulk update status for selected broker IDs
+  app.patch("/api/marketing/broker-master/bulk-status", async (req, res) => {
+    try {
+      const { ids, status } = req.body;
+      const validStatuses = ['new', 'sent', 'followed_up', 'converted', 'unsubscribed'];
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ error: 'ids must be a non-empty array' });
+      }
+      if (!status || !validStatuses.includes(status)) {
+        return res.status(400).json({ error: `status must be one of: ${validStatuses.join(', ')}` });
+      }
+      const result = await db.update(brokerMaster)
+        .set({ status, updatedAt: new Date() })
+        .where(drizzleSql`${brokerMaster.id} = ANY(${ids}::uuid[])`)
+        .returning({ id: brokerMaster.id });
+      res.json({ success: true, updated: result.length });
+    } catch (err: any) {
+      console.error('[BULK STATUS]', err);
+      res.status(500).json({ error: 'Failed to bulk update status' });
+    }
+  });
+
+  // PATCH /api/marketing/broker-master/bulk-delete — bulk soft-delete selected brokers
+  app.patch("/api/marketing/broker-master/bulk-delete", async (req, res) => {
+    try {
+      const { ids } = req.body;
+      if (!Array.isArray(ids) || ids.length === 0) {
+        return res.status(400).json({ error: 'ids must be a non-empty array' });
+      }
+      const result = await db.update(brokerMaster)
+        .set({ deleted: true, updatedAt: new Date() })
+        .where(drizzleSql`${brokerMaster.id} = ANY(${ids}::uuid[])`)
+        .returning({ id: brokerMaster.id });
+      res.json({ success: true, deleted: result.length });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to bulk delete brokers' });
+    }
+  });
+
   // GET /api/marketing/automation/status — get automation engine status + stats
   app.get("/api/marketing/automation/status", async (_req, res) => {
     try {
