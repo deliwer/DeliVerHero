@@ -539,7 +539,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
                     <Package className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Step 3 — Relocation & Family Support</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-[#ffffff]">Step 3 — Relocation & Family Support</h3>
                   <p className="text-slate-400 font-bold leading-relaxed">
                     For families and tenants requiring full coordination across utilities, scheduling, and phased move-in.
                   </p>
