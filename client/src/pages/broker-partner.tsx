@@ -1516,6 +1516,19 @@ export default function BrokerPartnerPage() {
       <Navigation />
       <PartnerSubNav />
 
+      {/* ── JOURNEY BREADCRUMB ───────────────────────────── */}
+      <div className="bg-slate-900/70 border-b border-white/5 px-4 py-2 hidden sm:block">
+        <div className="max-w-4xl mx-auto flex items-center justify-center gap-2.5 text-[9px] font-black uppercase tracking-widest">
+          <Link href="/partners">
+            <span data-testid="breadcrumb-partners" className="text-gray-600 hover:text-emerald-400 transition-colors cursor-pointer">Partners Overview</span>
+          </Link>
+          <ChevronRight className="w-3 h-3 text-gray-700 shrink-0" />
+          <span className="text-emerald-400">Broker Program</span>
+          <ChevronRight className="w-3 h-3 text-gray-700 shrink-0" />
+          <span className="text-gray-600">Apply &amp; Earn</span>
+        </div>
+      </div>
+
       {/* ── HERO ──────────────────────────────────────────── */}
       <section className="relative min-h-[580px] md:min-h-[640px] flex items-center pt-24 md:pt-28 pb-16 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -2561,9 +2574,18 @@ export default function BrokerPartnerPage() {
 
       {/* ── URGENCY FOOTER STRIP ─────────────────────────── */}
       <div className="py-4 px-4 bg-red-950/30 border-t border-red-500/20">
-        <p className="text-center text-sm font-black text-red-300 uppercase tracking-widest">
-          ⚡ Only 10 brokers will be onboarded this week. Applications close Sunday.
-        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <p className="text-sm font-black text-red-300 uppercase tracking-widest text-center">
+            ⚡ Only 10 brokers will be onboarded this week. Applications close Sunday.
+          </p>
+          <button
+            data-testid="button-urgency-get-slot"
+            onClick={() => scrollTo(generatorRef)}
+            className="shrink-0 inline-flex items-center gap-2 bg-red-500 hover:bg-red-400 text-white font-black text-xs uppercase tracking-widest rounded-xl px-5 py-2.5 transition-all shadow-lg shadow-red-900/40 whitespace-nowrap"
+          >
+            <Zap className="w-3.5 h-3.5" /> Get My Slot
+          </button>
+        </div>
       </div>
 
       {/* ── AI ASSISTANT WIDGET ─────────────────────────── */}

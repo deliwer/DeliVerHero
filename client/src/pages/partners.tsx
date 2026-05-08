@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -296,11 +296,18 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
                 <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Your link will be</p>
                 <span className="text-emerald-400 font-mono text-sm">{refLink}</span>
               </div>
-              <div className="flex gap-3 justify-center">
-                <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-green-600 hover:bg-green-500 font-black rounded-xl"><MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Team</Button>
-                </a>
-                <Button data-testid="button-funnel-restart" onClick={() => { setStep(1); setTrack(""); setForm({ name: "", email: "", whatsapp: "", country: "", role: "" }); }} variant="outline" className="border-slate-600 text-gray-400 rounded-xl">Start Over</Button>
+              <div className="flex flex-col gap-3 items-center">
+                <div className="flex gap-3 justify-center">
+                  <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer">
+                    <Button className="bg-green-600 hover:bg-green-500 font-black rounded-xl"><MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Team</Button>
+                  </a>
+                  <Button data-testid="button-funnel-restart" onClick={() => { setStep(1); setTrack(""); setForm({ name: "", email: "", whatsapp: "", country: "", role: "" }); }} variant="outline" className="border-slate-600 text-gray-400 rounded-xl">Start Over</Button>
+                </div>
+                <Link href="/brokers" className="w-full">
+                  <Button data-testid="button-funnel-goto-brokers" variant="outline" className="w-full border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl h-11">
+                    <ArrowRight className="w-4 h-4 mr-2" /> Explore Broker Tools &amp; Open Deals
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           )}
@@ -352,6 +359,16 @@ export default function PartnersPage() {
     if (track) setSelectedTrack(track);
     funnelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("path") === "broker") {
+      const timer = setTimeout(() => {
+        document.getElementById("broker-focus")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
@@ -489,22 +506,22 @@ export default function PartnersPage() {
                 ))}
               </div>
               <div className="mt-auto flex flex-col gap-2">
-                <Button
-                  data-testid="button-choose-broker"
-                  onClick={() => scrollToJoin("broker")}
-                  className="bg-emerald-600 hover:bg-emerald-500 font-black h-12 rounded-2xl"
-                >
-                  <Building2 className="w-4 h-4 mr-2" /> Start as Broker Partner
-                </Button>
                 <Link href="/brokers">
                   <Button
                     data-testid="button-choose-broker-learn"
-                    variant="outline"
-                    className="w-full border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-11 rounded-2xl"
+                    className="w-full bg-emerald-600 hover:bg-emerald-500 font-black h-12 rounded-2xl"
                   >
-                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                    <Building2 className="w-4 h-4 mr-2" /> See Full Broker Program <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
+                <Button
+                  data-testid="button-choose-broker"
+                  onClick={() => scrollToJoin("broker")}
+                  variant="outline"
+                  className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-11 rounded-2xl"
+                >
+                  Start as Broker Partner
+                </Button>
               </div>
             </motion.div>
 
@@ -809,13 +826,14 @@ export default function PartnersPage() {
                 <p className="font-black text-white text-sm">Ready to Start?</p>
                 <p className="text-gray-500 text-xs mt-1">Join as a broker partner after Day 1.</p>
               </div>
-              <button
-                data-testid="button-academy-join-cta"
-                onClick={() => { const el = document.getElementById("join"); el?.scrollIntoView({ behavior: "smooth" }); }}
-                className="text-[10px] font-black uppercase tracking-widest text-white bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg transition-all"
-              >
-                Join Now →
-              </button>
+              <Link href="/brokers">
+                <button
+                  data-testid="button-academy-join-cta"
+                  className="text-[10px] font-black uppercase tracking-widest text-white bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg transition-all"
+                >
+                  Join Now →
+                </button>
+              </Link>
             </motion.div>
           </div>
 
