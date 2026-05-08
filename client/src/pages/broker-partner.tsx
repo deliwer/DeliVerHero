@@ -20,6 +20,7 @@ import {
   ChevronRight, AlertCircle, Activity, MapPin, Calculator,
   Hash, Target, Eye, Video, Send, Shield, X, BanIcon,
   ClipboardCheck, AlertTriangle, Building, Ruler, Camera, Trophy,
+  Flame, BookOpen, Handshake, Rocket, Network,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
@@ -1134,6 +1135,233 @@ function priorityColor(p: string) {
   return "bg-slate-700/60 text-gray-400 border-white/10";
 }
 
+// ── Broker Stage Tracker ────────────────────────────────────────────────────
+
+const STAGES = [
+  {
+    id: 0,
+    label: "Dreamer",
+    icon: Flame,
+    color: "amber",
+    tagline: "I want to work in Dubai",
+    description: "You know Dubai has opportunity — you're figuring out where to start.",
+    unlock: "Watch: How Brokers Make Money (Day 1)",
+    cta: "Start Learning Free",
+    ctaLink: "https://www.youtube.com/@vdeliwer",
+    ctaExternal: true,
+  },
+  {
+    id: 1,
+    label: "Learner",
+    icon: BookOpen,
+    color: "blue",
+    tagline: "How do brokers earn?",
+    description: "You understand commissions, rental cycles, and the move-in funnel.",
+    unlock: "Watch: How To Find Your First Client (Day 4)",
+    cta: "Continue Free Training",
+    ctaLink: "https://www.youtube.com/@vdeliwer",
+    ctaExternal: true,
+  },
+  {
+    id: 2,
+    label: "Networker",
+    icon: Network,
+    color: "cyan",
+    tagline: "I can find tenants remotely",
+    description: "You actively source leads through expat groups, WhatsApp, and referrals.",
+    unlock: "Join as Broker Partner — get your referral link",
+    cta: "Get My Broker Link",
+    ctaLink: "#get-link",
+    ctaExternal: false,
+  },
+  {
+    id: 3,
+    label: "Hunter",
+    icon: Target,
+    color: "purple",
+    tagline: "I know how to capture deals",
+    description: "You're claiming leads, sending referrals, and closing move-in commissions.",
+    unlock: "Claim your first deal from the opportunities feed",
+    cta: "View Open Deals",
+    ctaLink: "#opportunities",
+    ctaExternal: false,
+  },
+  {
+    id: 4,
+    label: "Revenue Partner",
+    icon: Rocket,
+    color: "emerald",
+    tagline: "I generate commissions consistently",
+    description: "You have a steady deal pipeline, team sub-codes, and monthly payouts.",
+    unlock: "Apply for Inner Circle — premium deal access + mentorship",
+    cta: "Join Inner Circle",
+    ctaLink: "#inner-circle",
+    ctaExternal: false,
+  },
+];
+
+const STAGE_COLORS: Record<string, { border: string; badge: string; icon: string; btn: string; dot: string; ring: string }> = {
+  amber:   { border: "border-amber-500/50",   badge: "bg-amber-500/20 text-amber-300 border-amber-500/40",   icon: "bg-amber-500/15 text-amber-300",   btn: "bg-amber-500 hover:bg-amber-400 text-black",   dot: "bg-amber-400",   ring: "ring-amber-500/40" },
+  blue:    { border: "border-blue-500/50",     badge: "bg-blue-500/20 text-blue-300 border-blue-500/40",     icon: "bg-blue-500/15 text-blue-300",     btn: "bg-blue-600 hover:bg-blue-500 text-white",     dot: "bg-blue-400",    ring: "ring-blue-500/40" },
+  cyan:    { border: "border-cyan-500/50",     badge: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",     icon: "bg-cyan-500/15 text-cyan-300",     btn: "bg-cyan-600 hover:bg-cyan-500 text-white",     dot: "bg-cyan-400",    ring: "ring-cyan-500/40" },
+  purple:  { border: "border-purple-500/50",   badge: "bg-purple-500/20 text-purple-300 border-purple-500/40", icon: "bg-purple-500/15 text-purple-300", btn: "bg-purple-600 hover:bg-purple-500 text-white", dot: "bg-purple-400",  ring: "ring-purple-500/40" },
+  emerald: { border: "border-emerald-500/50",  badge: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40", icon: "bg-emerald-500/15 text-emerald-300", btn: "bg-emerald-600 hover:bg-emerald-500 text-white", dot: "bg-emerald-400", ring: "ring-emerald-500/40" },
+};
+
+function BrokerStageTracker() {
+  const [activeStage, setActiveStage] = useState<number>(() => {
+    try { return parseInt(localStorage.getItem("broker_stage") || "0", 10); } catch { return 0; }
+  });
+
+  function selectStage(id: number) {
+    setActiveStage(id);
+    try { localStorage.setItem("broker_stage", String(id)); } catch {}
+  }
+
+  const stage = STAGES[activeStage];
+  const c = STAGE_COLORS[stage.color];
+  const Icon = stage.icon;
+  const isLast = activeStage === STAGES.length - 1;
+
+  function handleCta() {
+    if (stage.ctaExternal) {
+      window.open(stage.ctaLink, "_blank");
+    } else {
+      const el = document.querySelector(stage.ctaLink);
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function advance() {
+    const next = Math.min(activeStage + 1, STAGES.length - 1);
+    selectStage(next);
+  }
+
+  return (
+    <section id="stage-tracker" className="py-14 px-4 bg-gradient-to-b from-slate-950 to-slate-900/60 border-b border-white/5">
+      <div className="max-w-4xl mx-auto space-y-8">
+
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Where Are You Now?</p>
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white">Your Broker Journey Starts Here</h2>
+          <p className="text-gray-500 text-sm">Pick your stage — we'll show you exactly what to do next.</p>
+        </div>
+
+        {/* Stage Path — horizontal stepper */}
+        <div className="relative flex items-center justify-between gap-1 md:gap-0">
+          {/* Connector line behind bubbles */}
+          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-slate-800 z-0 mx-6 md:mx-10" />
+          <div
+            className="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-amber-500 via-cyan-500 to-emerald-500 z-0 mx-6 md:mx-10 transition-all duration-500"
+            style={{ width: `${(activeStage / (STAGES.length - 1)) * 100}%` }}
+          />
+
+          {STAGES.map((s) => {
+            const SIcon = s.icon;
+            const sc = STAGE_COLORS[s.color];
+            const isActive = s.id === activeStage;
+            const isPast   = s.id < activeStage;
+            return (
+              <button
+                key={s.id}
+                data-testid={`stage-btn-${s.id}`}
+                onClick={() => selectStage(s.id)}
+                className="relative z-10 flex flex-col items-center gap-1.5 group"
+              >
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
+                  isActive
+                    ? `${sc.icon} ${sc.border} ring-4 ${sc.ring} scale-110 shadow-lg`
+                    : isPast
+                      ? "bg-slate-700 border-slate-600 text-gray-300"
+                      : "bg-slate-900 border-slate-700 text-gray-600 group-hover:border-slate-500 group-hover:text-gray-400"
+                }`}>
+                  {isPast && !isActive
+                    ? <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                    : <SIcon className="w-5 h-5" />
+                  }
+                </div>
+                <span className={`text-[9px] font-black uppercase tracking-widest transition-colors hidden sm:block ${
+                  isActive ? STAGE_COLORS[s.color].badge.split(" ")[1] : "text-gray-600 group-hover:text-gray-400"
+                }`}>{s.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active Stage Detail Card */}
+        <div className={`rounded-2xl border ${c.border} bg-slate-900 p-6 md:p-8 space-y-5 transition-all duration-300`}>
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-4">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${c.icon}`}>
+                <Icon className="w-7 h-7" />
+              </div>
+              <div>
+                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border ${c.badge} inline-block mb-1`}>
+                  Stage {activeStage + 1} of {STAGES.length} — {stage.label}
+                </span>
+                <p className="text-white font-black text-lg leading-tight">"{stage.tagline}"</p>
+              </div>
+            </div>
+            {!isLast && (
+              <button
+                data-testid="button-stage-advance"
+                onClick={advance}
+                className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-emerald-400 border border-white/10 hover:border-emerald-500/40 rounded-xl px-4 py-2 transition-all whitespace-nowrap"
+              >
+                Level Up →
+              </button>
+            )}
+          </div>
+
+          <p className="text-gray-400 text-sm leading-relaxed">{stage.description}</p>
+
+          <div className="flex items-center gap-2 bg-slate-800/60 border border-white/5 rounded-xl px-4 py-3">
+            <ChevronRight className="w-4 h-4 text-emerald-400 shrink-0" />
+            <p className="text-sm text-gray-300"><span className="font-bold text-emerald-400">Next unlock:</span> {stage.unlock}</p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 pt-1">
+            <button
+              data-testid="button-stage-cta"
+              onClick={handleCta}
+              className={`flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-xl font-black text-sm uppercase tracking-widest transition-all shadow-lg ${c.btn}`}
+            >
+              <Zap className="w-4 h-4" />
+              {stage.cta}
+            </button>
+            {!isLast && (
+              <button
+                data-testid="button-stage-im-here"
+                onClick={advance}
+                className="flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-xl font-black text-sm uppercase tracking-widest border border-white/10 hover:border-white/25 text-gray-400 hover:text-white transition-all"
+              >
+                I'm already here →
+              </button>
+            )}
+          </div>
+
+          {/* Mini progress dots */}
+          <div className="flex items-center justify-center gap-2 pt-1">
+            {STAGES.map((s) => (
+              <button key={s.id} onClick={() => selectStage(s.id)} className="group">
+                <div className={`rounded-full transition-all duration-300 ${
+                  s.id === activeStage
+                    ? `w-6 h-2 ${STAGE_COLORS[s.color].dot}`
+                    : s.id < activeStage
+                      ? "w-2 h-2 bg-emerald-600"
+                      : "w-2 h-2 bg-slate-700 group-hover:bg-slate-600"
+                }`} />
+              </button>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 // ── Main page ──────────────────────────────────────────────────────────────
 
 export default function BrokerPartnerPage() {
@@ -1356,6 +1584,9 @@ export default function BrokerPartnerPage() {
           </div>
         </div>
       </div>
+
+      {/* ── BROKER STAGE TRACKER ─────────────────────────── */}
+      <BrokerStageTracker />
 
       {/* ── 3-STEP CAREER PATH ───────────────────────────── */}
       <section className="py-14 px-4 bg-slate-900/40 border-y border-white/5">
