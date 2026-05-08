@@ -155,6 +155,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ── Broker Funnel Event Tracking ──────────────────────────────────────────
+  app.post("/api/broker/funnel-event", async (req, res) => {
+    try {
+      const { event, page, stage, utmSource, sessionId } = req.body;
+      if (!event || typeof event !== "string") return res.status(400).json({ error: "event required" });
+      await storage.logBrokerFunnelEvent({ event, page, stage, utmSource, sessionId });
+      res.json({ ok: true });
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to log event" });
+    }
+  });
+
+  app.get("/api/broker/funnel-report", async (_req, res) => {
+    try {
+      const report = await storage.getBrokerFunnelReport();
+      res.json(report);
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch report" });
+    }
+  });
+
   // Initialize founders
   await storage.initializeFounders([
     { name: "Hassan Jawad", phone: "971523946311" },

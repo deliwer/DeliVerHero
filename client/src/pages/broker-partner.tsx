@@ -26,6 +26,7 @@ import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp, logEvent } from "@/lib/referral";
 import { contactInfo } from "@/lib/contact-info";
+import { trackFunnel } from "@/lib/funnel-track";
 
 function openWA(msg: string) { openWhatsApp(msg); }
 
@@ -1221,6 +1222,7 @@ function BrokerStageTracker() {
 
   function selectStage(id: number) {
     setActiveStage(id);
+    trackFunnel("stage_selected", { page: "/brokers", stage: STAGES[id].label });
     try { localStorage.setItem("broker_stage", String(id)); } catch {}
   }
 
@@ -1358,7 +1360,10 @@ function BrokerStageTracker() {
             </div>
             <button
               data-testid="button-stage-whatsapp"
-              onClick={() => window.open(`https://wa.me/${contactInfo.company.whatsapp}?text=${encodeURIComponent(stage.waMessage)}`, "_blank")}
+              onClick={() => {
+                trackFunnel("stage_whatsapp", { page: "/brokers", stage: stage.label });
+                window.open(`https://wa.me/${contactInfo.company.whatsapp}?text=${encodeURIComponent(stage.waMessage)}`, "_blank");
+              }}
               className="shrink-0 inline-flex items-center gap-1.5 bg-[#25d366] hover:bg-[#20b958] text-black font-black text-[10px] uppercase tracking-widest rounded-lg px-3 py-2 transition-all whitespace-nowrap"
             >
               <MessageCircle className="w-3 h-3" /> WhatsApp Me
@@ -1408,6 +1413,9 @@ export default function BrokerPartnerPage() {
   // AI Assistant widget
   const [aiOpen, setAiOpen] = useState(false);
   const [commissionTotal, setCommissionTotal] = useState(847200);
+  useEffect(() => {
+    trackFunnel("brokers_page_view", { page: "/brokers" });
+  }, []);
   useEffect(() => {
     const id = setInterval(() => {
       setCommissionTotal(prev => prev + Math.floor(Math.random() * 800 + 200));
@@ -1580,10 +1588,10 @@ export default function BrokerPartnerPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-            <Button data-testid="button-hero-get-link" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-2xl shadow-emerald-900/40" onClick={() => scrollTo(generatorRef)}>
+            <Button data-testid="button-hero-get-link" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-base shadow-2xl shadow-emerald-900/40" onClick={() => { trackFunnel("hero_start_earning", { page: "/brokers" }); scrollTo(generatorRef); }}>
               <Zap className="w-5 h-5 mr-2" /> Start Earning Now
             </Button>
-            <Button data-testid="button-hero-have-deal" size="lg" variant="outline" className="border-amber-500/30 text-amber-300 hover:bg-amber-500/10 font-black rounded-2xl px-8 h-14 text-base" onClick={() => document.getElementById("opportunities")?.scrollIntoView({ behavior: "smooth" })}>
+            <Button data-testid="button-hero-have-deal" size="lg" variant="outline" className="border-amber-500/30 text-amber-300 hover:bg-amber-500/10 font-black rounded-2xl px-8 h-14 text-base" onClick={() => { trackFunnel("hero_have_deal", { page: "/brokers" }); document.getElementById("opportunities")?.scrollIntoView({ behavior: "smooth" }); }}>
               <Target className="w-5 h-5 mr-2" /> I Have a Deal
             </Button>
           </div>
@@ -2580,7 +2588,7 @@ export default function BrokerPartnerPage() {
           </p>
           <button
             data-testid="button-urgency-get-slot"
-            onClick={() => scrollTo(generatorRef)}
+            onClick={() => { trackFunnel("urgency_get_slot", { page: "/brokers" }); scrollTo(generatorRef); }}
             className="shrink-0 inline-flex items-center gap-2 bg-red-500 hover:bg-red-400 text-white font-black text-xs uppercase tracking-widest rounded-xl px-5 py-2.5 transition-all shadow-lg shadow-red-900/40 whitespace-nowrap"
           >
             <Zap className="w-3.5 h-3.5" /> Get My Slot

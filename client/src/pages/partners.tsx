@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { SiYoutube } from "react-icons/si";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
+import { trackFunnel } from "@/lib/funnel-track";
 import heroPartnersImg from "@assets/generated_images/diverse_business_team_in_dubai_office_meeting.png";
 
 const WA_NUMBER = "971523946311";
@@ -158,6 +159,7 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
 
   const handleSubmit = () => {
     const isAquacafe = track === "aquacafe";
+    trackFunnel("funnel_submitted", { page: "/partners", stage: track });
     const intro = isAquacafe
       ? `Hi DeliWer! I want to join the *AquaCafe Alliance* as an Enagic Independent Distributor under Sponsor ID 3A #37000000659 (Rubab Hassan).`
       : `Hi DeliWer! I want to join as a *Broker Partner* and start earning from Dubai move-in referrals.`;
@@ -304,7 +306,12 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
                   <Button data-testid="button-funnel-restart" onClick={() => { setStep(1); setTrack(""); setForm({ name: "", email: "", whatsapp: "", country: "", role: "" }); }} variant="outline" className="border-slate-600 text-gray-400 rounded-xl">Start Over</Button>
                 </div>
                 <Link href="/brokers" className="w-full">
-                  <Button data-testid="button-funnel-goto-brokers" variant="outline" className="w-full border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl h-11">
+                  <Button
+                    data-testid="button-funnel-goto-brokers"
+                    variant="outline"
+                    className="w-full border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl h-11"
+                    onClick={() => trackFunnel("funnel_goto_brokers", { page: "/partners" })}
+                  >
                     <ArrowRight className="w-4 h-4 mr-2" /> Explore Broker Tools &amp; Open Deals
                   </Button>
                 </Link>
@@ -363,6 +370,7 @@ export default function PartnersPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("path") === "broker") {
+      trackFunnel("partners_broker_auto_scroll", { page: "/partners" });
       const timer = setTimeout(() => {
         document.getElementById("broker-focus")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 500);
@@ -510,6 +518,7 @@ export default function PartnersPage() {
                   <Button
                     data-testid="button-choose-broker-learn"
                     className="w-full bg-emerald-600 hover:bg-emerald-500 font-black h-12 rounded-2xl"
+                    onClick={() => trackFunnel("partners_broker_cta", { page: "/partners" })}
                   >
                     <Building2 className="w-4 h-4 mr-2" /> See Full Broker Program <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -830,6 +839,7 @@ export default function PartnersPage() {
                 <button
                   data-testid="button-academy-join-cta"
                   className="text-[10px] font-black uppercase tracking-widest text-white bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg transition-all"
+                  onClick={() => trackFunnel("academy_join_cta", { page: "/partners" })}
                 >
                   Join Now →
                 </button>

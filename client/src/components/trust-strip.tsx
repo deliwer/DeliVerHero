@@ -1,6 +1,7 @@
 import { MessageCircle, Mail, MapPin, CheckCircle, Phone, Star, Home, Users, Clock, Play } from "lucide-react";
 import { SiGoogle, SiYoutube } from "react-icons/si";
 import { Link } from "wouter";
+import { trackFunnel } from "@/lib/funnel-track";
 
 interface TrustStripProps {
   variant?: "light" | "dark";
@@ -46,7 +47,11 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
             </span>
           </Link>
           <Link href="/partners?path=broker">
-            <span className="cursor-pointer inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors uppercase tracking-widest text-[10px] font-black" data-testid="trust-strip-partners">
+            <span
+              className="cursor-pointer inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors uppercase tracking-widest text-[10px] font-black"
+              data-testid="trust-strip-partners"
+              onClick={() => trackFunnel("trust_strip_click", { page: "trust-strip" })}
+            >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
               Business Opportunity
             </span>

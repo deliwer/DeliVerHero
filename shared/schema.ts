@@ -1952,3 +1952,16 @@ export const brokerBlacklist = pgTable("broker_blacklist", {
   addedBy: text("added_by").notNull().default("system"),
   blacklistedAt: timestamp("blacklisted_at").notNull().default(sql`now()`),
 });
+
+// ── Broker Funnel Events ───────────────────────────────────────────────────────────────────────
+// Records every meaningful touchpoint in the trust-strip → /partners → /brokers → apply funnel
+export const brokerFunnelEvents = pgTable("broker_funnel_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  event: text("event").notNull(),         // e.g. trust_strip_click | partners_broker_cta | stage_selected
+  page: text("page"),                     // pathname where the event fired
+  stage: text("stage"),                   // for stage_selected / stage_whatsapp events
+  utmSource: text("utm_source"),          // ?path=broker or ?utm_source=...
+  sessionId: text("session_id"),          // browser session ID (set in sessionStorage)
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+export type BrokerFunnelEvent = typeof brokerFunnelEvents.$inferSelect;
