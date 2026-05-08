@@ -13,6 +13,30 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
   
   return (
     <div className="inline-flex items-center gap-4 md:gap-8 text-sm whitespace-nowrap">
+      {/* YouTube Channel CTA — positioned first for max conversion */}
+      <a
+        href="https://www.youtube.com/@vdeliwer"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative inline-flex items-center gap-2.5 pr-3 pl-0.5 py-0.5 rounded-lg border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 hover:border-red-500/60 transition-all duration-300 shrink-0"
+        data-testid="trust-strip-youtube"
+      >
+        <span className="absolute inset-0 rounded-lg animate-pulse bg-red-500/5 pointer-events-none" />
+        {/* Mini video thumbnail */}
+        <div className="relative w-[52px] h-[30px] rounded-md overflow-hidden bg-slate-800 border border-red-500/30 shrink-0 flex items-center justify-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-900/60 via-slate-900/80 to-slate-800/90" />
+          <div className="relative z-10 w-6 h-6 rounded-full bg-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+            <Play className="w-3 h-3 text-white fill-white ml-0.5" />
+          </div>
+          <SiYoutube className="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 text-red-500/80" />
+        </div>
+        <div className="flex flex-col gap-0.5">
+          <span className="uppercase tracking-widest text-[8px] font-black text-red-400/70 leading-none">Free Training</span>
+          <span className="uppercase tracking-widest text-[9px] font-black text-red-300 group-hover:text-red-200 transition-colors leading-none">Watch Now →</span>
+        </div>
+      </a>
+      <div className="h-5 w-px bg-white/10 shrink-0" />
+
       {showContact && (
         <>
           <Link href="/earn">
@@ -61,23 +85,6 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
         <span>Verified Services</span>
       </div>
 
-      {/* YouTube Channel CTA */}
-      <div className="h-4 w-px bg-white/10 hidden md:block mx-1" />
-      <a
-        href="https://www.youtube.com/@vdeliwer"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative inline-flex items-center gap-2 px-3 py-1 rounded-full border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 hover:border-red-500/70 transition-all duration-300"
-        data-testid="trust-strip-youtube"
-      >
-        {/* Pulse glow ring */}
-        <span className="absolute inset-0 rounded-full animate-pulse bg-red-500/10 pointer-events-none" />
-        <SiYoutube className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:scale-110 transition-transform" />
-        <span className="uppercase tracking-widest text-[9px] font-black text-red-400 group-hover:text-red-300 transition-colors leading-none">
-          Learn How Dubai Brokers Earn
-        </span>
-        <Play className="w-2.5 h-2.5 text-red-400/70 fill-red-400/70 shrink-0" />
-      </a>
     </div>
   );
 }

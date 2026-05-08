@@ -225,7 +225,7 @@ export function Navigation() {
       </nav>
       {/* 2. Trust Strip Bar — hidden on Realty for focus */}
       {!isRealEstate && (
-        <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-2 px-4 overflow-x-auto no-scrollbar relative z-50">
+        <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-1 px-4 overflow-x-auto no-scrollbar relative z-50">
           <div className="max-w-7xl mx-auto flex justify-start min-w-max">
             <TrustStrip variant="dark" showContact={true} />
           </div>
