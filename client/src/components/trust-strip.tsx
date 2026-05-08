@@ -1,5 +1,5 @@
-import { MessageCircle, Mail, MapPin, CheckCircle, Phone, Star, Home, Users, Clock } from "lucide-react";
-import { SiGoogle } from "react-icons/si";
+import { MessageCircle, Mail, MapPin, CheckCircle, Phone, Star, Home, Users, Clock, Play } from "lucide-react";
+import { SiGoogle, SiYoutube } from "react-icons/si";
 import { Link } from "wouter";
 
 interface TrustStripProps {
@@ -60,6 +60,24 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
         <CheckCircle className={`w-4 h-4 ${iconClass}`} />
         <span>Verified Services</span>
       </div>
+
+      {/* YouTube Channel CTA */}
+      <div className="h-4 w-px bg-white/10 hidden md:block mx-1" />
+      <a
+        href="https://www.youtube.com/@vdeliwer"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative inline-flex items-center gap-2 px-3 py-1 rounded-full border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 hover:border-red-500/70 transition-all duration-300"
+        data-testid="trust-strip-youtube"
+      >
+        {/* Pulse glow ring */}
+        <span className="absolute inset-0 rounded-full animate-pulse bg-red-500/10 pointer-events-none" />
+        <SiYoutube className="w-3.5 h-3.5 text-red-500 shrink-0 group-hover:scale-110 transition-transform" />
+        <span className="uppercase tracking-widest text-[9px] font-black text-red-400 group-hover:text-red-300 transition-colors leading-none">
+          Learn How Dubai Brokers Earn
+        </span>
+        <Play className="w-2.5 h-2.5 text-red-400/70 fill-red-400/70 shrink-0" />
+      </a>
     </div>
   );
 }
