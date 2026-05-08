@@ -503,7 +503,7 @@ export default function Home() {
                       Most Popular
                     </Badge>
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Step 2 — Move-In Activation (AED 399)</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-[#ffffff]">Step 2 — Move-In Activation (AED 399)</h3>
                   <p className="text-emerald-50 font-bold leading-relaxed">
                     A structured 60–90 minute visit to activate and prepare your apartment before move-in.
                   </p>
