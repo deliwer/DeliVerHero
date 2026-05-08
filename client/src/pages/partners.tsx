@@ -13,8 +13,10 @@ import {
   Globe, Users, DollarSign, CheckCircle2, ArrowRight,
   Zap, Shield, Smartphone, MessageCircle, Building2,
   Droplets, ChevronDown, Copy, Check,
-  Lock
+  Lock, Play, BookOpen, TrendingUp, Handshake, Repeat2,
+  Network, Rocket, Target,
 } from "lucide-react";
+import { SiYoutube } from "react-icons/si";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 import heroPartnersImg from "@assets/generated_images/diverse_business_team_in_dubai_office_meeting.png";
 
@@ -26,6 +28,7 @@ const WA_NUMBER = "971523946311";
 function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
   const items = [
     { label: "Broker Partner", id: "broker-focus" },
+    { label: "Broker Academy", id: "broker-academy" },
     { label: "Home Services Partner", id: "alliance" },
     { label: "Earn Calculator", id: "calculator" },
     { label: "Join Now", id: "join" },
@@ -641,6 +644,212 @@ export default function PartnersPage() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ─── BROKER ACADEMY SECTION ─── */}
+      <section id="broker-academy" className="py-20 px-4 bg-slate-950">
+        <div className="max-w-5xl mx-auto space-y-12">
+
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/30 bg-red-500/10">
+              <SiYoutube className="w-4 h-4 text-red-500" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-red-400">Free Video Training</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
+              7-Day Dubai Broker<br />
+              <span className="text-emerald-400">Starter Path</span>
+            </h2>
+            <p className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">
+              Short dopamine-driven lessons. No formal training. Start earning before you finish the series.
+            </p>
+            <a
+              href="https://www.youtube.com/@vdeliwer"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-academy-youtube"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-600 hover:bg-red-500 text-white font-black text-xs uppercase tracking-widest transition-all shadow-lg shadow-red-900/40 hover:scale-105"
+            >
+              <Play className="w-3.5 h-3.5 fill-white" />
+              Watch on @vdeliwer
+            </a>
+          </div>
+
+          {/* Daily Opportunity Ticker */}
+          <div className="overflow-hidden border border-emerald-500/20 rounded-xl bg-emerald-950/20 py-2.5 px-0">
+            <div className="flex gap-8 animate-[marquee_28s_linear_infinite] whitespace-nowrap w-max">
+              {[
+                "🟢 New tenant lead added — JVC 2BR",
+                "💰 Broker closed AED 4,200 commission",
+                "🏠 Move-in request received — Dubai Marina",
+                "🟢 New tenant lead — Business Bay studio",
+                "⚡ 3 move-in bookings in Sharjah today",
+                "💰 Broker earned AED 1,800 this week",
+                "🏠 New listing: Dubai South 1BR Vacant",
+                "🟢 Ejari processing speed improved — same day",
+                "💰 Broker closed AED 4,200 commission",
+                "⚡ DEWA activations: 12 completed today",
+                "🟢 New tenant lead added — JVC 2BR",
+                "💰 Broker closed AED 4,200 commission",
+                "🏠 Move-in request received — Dubai Marina",
+                "🟢 New tenant lead — Business Bay studio",
+                "⚡ 3 move-in bookings in Sharjah today",
+              ].map((item, i) => (
+                <span key={i} className="text-[11px] font-bold text-emerald-300/80 uppercase tracking-widest shrink-0">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* 7-Day Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {[
+              {
+                day: 1,
+                icon: DollarSign,
+                color: "emerald",
+                title: "How Brokers Make Money",
+                desc: "Commissions, rental cycles, and the move-in funnel explained simply.",
+              },
+              {
+                day: 2,
+                icon: Target,
+                color: "amber",
+                title: "How To Find Tenants",
+                desc: "Facebook groups, WhatsApp, LinkedIn — simple sourcing that works.",
+              },
+              {
+                day: 3,
+                icon: BookOpen,
+                color: "blue",
+                title: "What is Ejari?",
+                desc: "The Dubai rental contract system — what brokers must know.",
+              },
+              {
+                day: 4,
+                icon: Handshake,
+                color: "purple",
+                title: "First Client Remotely",
+                desc: "Networking, referrals, and introductions without being in Dubai.",
+              },
+              {
+                day: 5,
+                icon: Repeat2,
+                color: "cyan",
+                title: "How the Move-In Funnel Works",
+                desc: "Water, utilities, setup, movers — no listings needed to earn.",
+              },
+              {
+                day: 6,
+                icon: Network,
+                color: "pink",
+                title: "Become a Power Networker",
+                desc: "Leverage apartment groups, communities, and tenant referrals.",
+              },
+              {
+                day: 7,
+                icon: Rocket,
+                color: "amber",
+                title: "Scale Into a Dubai Career",
+                desc: "The full roadmap from side income to professional broker.",
+              },
+            ].map(({ day, icon: Icon, color, title, desc }) => {
+              const colorMap: Record<string, { border: string; badge: string; icon: string; btn: string }> = {
+                emerald: { border: "border-emerald-500/30 hover:border-emerald-500/60", badge: "bg-emerald-500/20 text-emerald-400", icon: "text-emerald-400 bg-emerald-500/15", btn: "bg-emerald-600 hover:bg-emerald-500" },
+                amber:   { border: "border-amber-500/30 hover:border-amber-500/60",   badge: "bg-amber-500/20 text-amber-400",   icon: "text-amber-400 bg-amber-500/15",   btn: "bg-amber-600 hover:bg-amber-500" },
+                blue:    { border: "border-blue-500/30 hover:border-blue-500/60",     badge: "bg-blue-500/20 text-blue-400",     icon: "text-blue-400 bg-blue-500/15",     btn: "bg-blue-600 hover:bg-blue-500" },
+                purple:  { border: "border-purple-500/30 hover:border-purple-500/60", badge: "bg-purple-500/20 text-purple-400", icon: "text-purple-400 bg-purple-500/15", btn: "bg-purple-600 hover:bg-purple-500" },
+                cyan:    { border: "border-cyan-500/30 hover:border-cyan-500/60",     badge: "bg-cyan-500/20 text-cyan-400",     icon: "text-cyan-400 bg-cyan-500/15",     btn: "bg-cyan-600 hover:bg-cyan-500" },
+                pink:    { border: "border-pink-500/30 hover:border-pink-500/60",     badge: "bg-pink-500/20 text-pink-400",     icon: "text-pink-400 bg-pink-500/15",     btn: "bg-pink-600 hover:bg-pink-500" },
+              };
+              const c = colorMap[color] ?? colorMap.emerald;
+              return (
+                <motion.a
+                  key={day}
+                  href="https://www.youtube.com/@vdeliwer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid={`card-academy-day-${day}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: day * 0.05 }}
+                  className={`group relative flex flex-col gap-4 p-5 rounded-2xl bg-slate-900 border ${c.border} transition-all duration-300 hover:-translate-y-0.5 cursor-pointer`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full ${c.badge}`}>Day {day}</span>
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${c.icon}`}>
+                      <Icon className="w-4.5 h-4.5" />
+                    </div>
+                  </div>
+                  <div className="flex-1 space-y-1.5">
+                    <h3 className="font-black text-white text-sm leading-tight">{title}</h3>
+                    <p className="text-gray-500 text-xs leading-relaxed">{desc}</p>
+                  </div>
+                  <div className={`inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-white px-3 py-1.5 rounded-lg ${c.btn} transition-all`}>
+                    <Play className="w-2.5 h-2.5 fill-white" />
+                    Watch Free
+                  </div>
+                </motion.a>
+              );
+            })}
+
+            {/* Bonus CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-col items-center justify-center gap-4 p-5 rounded-2xl border border-dashed border-emerald-500/30 bg-emerald-950/10 text-center"
+            >
+              <TrendingUp className="w-8 h-8 text-emerald-400" />
+              <div>
+                <p className="font-black text-white text-sm">Ready to Start?</p>
+                <p className="text-gray-500 text-xs mt-1">Join as a broker partner after Day 1.</p>
+              </div>
+              <button
+                data-testid="button-academy-join-cta"
+                onClick={() => { const el = document.getElementById("join"); el?.scrollIntoView({ behavior: "smooth" }); }}
+                className="text-[10px] font-black uppercase tracking-widest text-white bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg transition-all"
+              >
+                Join Now →
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Move-In Funnel Infographic */}
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl p-6 md:p-8">
+            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-6 text-center">The Move-In Funnel — Your Secret to Earning Without Listings</p>
+            <div className="flex flex-wrap justify-center items-center gap-2 md:gap-0">
+              {[
+                { label: "Move-In",    desc: "Tenant signs lease",       color: "emerald" },
+                { label: "Utilities",  desc: "DEWA, water, internet",    color: "cyan"    },
+                { label: "Docs",       desc: "Ejari registration",       color: "blue"    },
+                { label: "Services",   desc: "Movers, cleaning, setup",  color: "purple"  },
+                { label: "Referrals",  desc: "Friends & family",         color: "amber"   },
+                { label: "Commission", desc: "Your AED payout",          color: "emerald" },
+              ].map(({ label, desc, color }, i, arr) => {
+                const dot: Record<string, string> = { emerald: "bg-emerald-400", cyan: "bg-cyan-400", blue: "bg-blue-400", purple: "bg-purple-400", amber: "bg-amber-400" };
+                const txt: Record<string, string> = { emerald: "text-emerald-400", cyan: "text-cyan-400", blue: "text-blue-400", purple: "text-purple-400", amber: "text-amber-400" };
+                return (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="flex flex-col items-center text-center w-20">
+                      <div className={`w-2.5 h-2.5 rounded-full ${dot[color]} mb-2`} />
+                      <span className={`text-[11px] font-black uppercase ${txt[color]}`}>{label}</span>
+                      <span className="text-[9px] text-gray-600 leading-tight mt-0.5">{desc}</span>
+                    </div>
+                    {i < arr.length - 1 && (
+                      <ArrowRight className="w-4 h-4 text-gray-700 shrink-0 hidden md:block" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <p className="text-center text-[10px] text-gray-600 uppercase tracking-widest font-bold mt-6">Every tenant is a multi-service opportunity. You refer once — we handle the rest.</p>
+          </div>
+
         </div>
       </section>
 

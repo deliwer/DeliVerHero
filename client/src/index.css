@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Marquee / Ticker Animation */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* iPhone Launch Event Custom Animations */
 @keyframes iphone-pulse-glow {
   0%, 100% {
