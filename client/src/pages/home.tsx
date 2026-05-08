@@ -188,7 +188,6 @@ export default function Home() {
         `}
         </script>
       </Helmet>
-
       {/* ── HERO ── */}
       <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden px-4 text-center">
         <div
@@ -242,7 +241,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
       {/* ── THE PAIN ── */}
       <section className="py-20 px-4 bg-slate-900/60 border-y border-white/5">
         <div className="max-w-4xl mx-auto space-y-10">
@@ -287,7 +285,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ==========================================
            STARTER MOVE-IN BUNDLE SECTION
          ========================================== */}
@@ -435,7 +432,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <div className="py-12 border-y border-white/5 bg-slate-900/50">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-4">
           <p className="text-emerald-400 font-black uppercase tracking-[0.3em] text-xs">Plan → Activate → Settle</p>
@@ -444,7 +440,6 @@ export default function Home() {
           </p>
         </div>
       </div>
-
       <section id="service-cards" className="py-24 px-6 bg-slate-950">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-20 space-y-6">
@@ -463,7 +458,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
                     <ClipboardList className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight">Step 1 — Move-In Planning Session</h3>
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-[#ffffff]">Step 1 — Move-In Planning Session</h3>
                   <p className="text-slate-400 font-bold leading-relaxed">
                     We structure everything between lease signing and home readiness.
                   </p>
@@ -569,7 +564,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* How the Process Works */}
       <section className="py-20 px-6 bg-slate-900/30 border-y border-white/5">
         <div className="max-w-3xl mx-auto text-center space-y-10">
@@ -589,7 +583,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* A Trusted Partner During Your Move */}
       <section className="py-20 px-6 bg-emerald-950/20 border-y border-emerald-500/10">
         <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -617,7 +610,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Trust / Living Image Section */}
       <section className="relative py-24 md:py-32 overflow-hidden text-white">
         <div 
@@ -642,7 +634,6 @@ export default function Home() {
           </Button>
         </div>
       </section>
-
       {/* SEO Focused Paragraph */}
       <section className="py-12 bg-slate-950 border-b border-white/5">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -651,7 +642,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
       {/* Water Discovery Section */}
       <section id="water-setup-dubai" className="py-24 px-6 bg-slate-900 border-y border-white/5">
         <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -666,7 +656,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* FAQ Section */}
       <section id="move-in-faq" className="py-24 px-6 bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-16">
@@ -686,14 +675,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Broker CTA */}
       <section className="py-8 px-4 bg-slate-950 border-b border-white/5">
         <div className="max-w-4xl mx-auto">
           <BrokerCTABanner context="RERA Broker? Refer your clients after lease signing. Earn AED 300–800 per move-in — no minimums, free to join." />
         </div>
       </section>
-
       {/* Trust Signal Strip */}
       {/* Payment CTA Banner */}
       <section className="py-10 px-4 bg-slate-950">
@@ -705,7 +692,6 @@ export default function Home() {
           />
         </div>
       </section>
-
       <section id="trust-strip" className="py-12 bg-emerald-950/20 border-y border-white/5">
         <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-8 md:gap-16 text-center">
           {[
@@ -718,7 +704,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
       {/* Simple Footer */}
       <footer className="py-16 px-4 border-t border-white/5 bg-slate-950">
         <div className="max-w-4xl mx-auto text-center space-y-8">
