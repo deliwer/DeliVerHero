@@ -25,6 +25,7 @@ import {
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp, logEvent } from "@/lib/referral";
+import { contactInfo } from "@/lib/contact-info";
 
 function openWA(msg: string) { openWhatsApp(msg); }
 
@@ -1149,6 +1150,7 @@ const STAGES = [
     cta: "Start Learning Free",
     ctaLink: "https://www.youtube.com/@vdeliwer",
     ctaExternal: true,
+    waMessage: "Hi DeliWer 👋 I'm just starting out and want to learn how brokers earn in Dubai. Can you send me the Day 1 free training? 🔥 (Stage: Dreamer)",
   },
   {
     id: 1,
@@ -1161,6 +1163,7 @@ const STAGES = [
     cta: "Continue Free Training",
     ctaLink: "https://www.youtube.com/@vdeliwer",
     ctaExternal: true,
+    waMessage: "Hi DeliWer 📚 I understand the basics of commissions and rental cycles. Can you send me the Day 4 training on finding my first client? (Stage: Learner)",
   },
   {
     id: 2,
@@ -1173,6 +1176,7 @@ const STAGES = [
     cta: "Get My Broker Link",
     ctaLink: "#get-link",
     ctaExternal: false,
+    waMessage: "Hi DeliWer 🔗 I'm actively sourcing tenants remotely and ready to get my broker referral link. Can we set this up now? (Stage: Networker)",
   },
   {
     id: 3,
@@ -1185,6 +1189,7 @@ const STAGES = [
     cta: "View Open Deals",
     ctaLink: "#opportunities",
     ctaExternal: false,
+    waMessage: "Hi DeliWer 🎯 I have deal leads ready to refer. Can you show me today's open opportunities so I can claim one? (Stage: Hunter)",
   },
   {
     id: 4,
@@ -1197,6 +1202,7 @@ const STAGES = [
     cta: "Join Inner Circle",
     ctaLink: "#inner-circle",
     ctaExternal: false,
+    waMessage: "Hi DeliWer 🚀 I'm generating consistent commissions and want to apply for the Inner Circle — premium deal access and mentorship. Let's talk! (Stage: Revenue Partner)",
   },
 ];
 
@@ -1339,6 +1345,24 @@ function BrokerStageTracker() {
                 I'm already here →
               </button>
             )}
+          </div>
+
+          {/* WhatsApp re-engagement */}
+          <div className="flex items-center gap-3 bg-[#075e54]/20 border border-[#25d366]/20 rounded-xl px-4 py-3">
+            <div className="w-8 h-8 rounded-full bg-[#25d366]/20 flex items-center justify-center shrink-0">
+              <MessageCircle className="w-4 h-4 text-[#25d366]" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#25d366] mb-0.5">Get personalised guidance</p>
+              <p className="text-xs text-gray-400 truncate">We'll message you the exact next step for a <span className="text-white font-bold">{stage.label}</span>.</p>
+            </div>
+            <button
+              data-testid="button-stage-whatsapp"
+              onClick={() => window.open(`https://wa.me/${contactInfo.company.whatsapp}?text=${encodeURIComponent(stage.waMessage)}`, "_blank")}
+              className="shrink-0 inline-flex items-center gap-1.5 bg-[#25d366] hover:bg-[#20b958] text-black font-black text-[10px] uppercase tracking-widest rounded-lg px-3 py-2 transition-all whitespace-nowrap"
+            >
+              <MessageCircle className="w-3 h-3" /> WhatsApp Me
+            </button>
           </div>
 
           {/* Mini progress dots */}
