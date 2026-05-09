@@ -154,6 +154,7 @@ export class MemStorage implements IStorage {
     const events = this.brokerFunnelEventsList;
     const byEvent: Record<string, number> = {};
     const byStage: Record<string, number> = {};
+    const byUtmSource: Record<string, number> = {};
     const uniqueSessions = new Set<string>();
 
     for (const e of events) {
@@ -162,6 +163,8 @@ export class MemStorage implements IStorage {
       if (e.event === "stage_selected" && e.stage) {
         byStage[e.stage] = (byStage[e.stage] || 0) + 1;
       }
+      const src = e.utmSource || "direct";
+      byUtmSource[src] = (byUtmSource[src] || 0) + 1;
     }
 
     const FUNNEL_STEPS = [
@@ -179,11 +182,17 @@ export class MemStorage implements IStorage {
 
     const funnel = FUNNEL_STEPS.map(step => ({ step, count: byEvent[step] || 0 }));
 
+    const utmSourceChart = Object.entries(byUtmSource)
+      .map(([source, count]) => ({ source, count }))
+      .sort((a, b) => b.count - a.count);
+
     return {
       total: events.length,
       uniqueSessions: uniqueSessions.size,
       byEvent,
       byStage,
+      byUtmSource,
+      utmSourceChart,
       funnel,
       recentEvents: [...events].reverse().slice(0, 30),
     };

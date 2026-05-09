@@ -1,13 +1,36 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { fetchSheetData, buildWhatsAppURL, DEMO_LEADS } from "@/lib/marketing-tracker";
 import { BrokerAccessBanner, StickyBrokerWhatsApp } from "@/components/marketing/broker-enhancement-bar";
 import { MarketingSubNav } from "@/components/marketing/marketing-subnav";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
+} from "recharts";
+
+const UTM_COLORS = ["#10b981", "#3b82f6", "#f59e0b", "#8b5cf6", "#ef4444", "#06b6d4", "#f97316"];
+const FUNNEL_LABELS: Record<string, string> = {
+  trust_strip_click: "Trust Strip Click",
+  partners_broker_auto_scroll: "Partners Auto-scroll",
+  partners_broker_cta: "Partners CTA",
+  academy_join_cta: "Academy Join CTA",
+  brokers_page_view: "Brokers Page View",
+  stage_selected: "Stage Selected",
+  stage_whatsapp: "Stage WhatsApp",
+  funnel_submitted: "Form Submitted",
+  funnel_goto_brokers: "Go to Brokers CTA",
+  urgency_get_slot: "Urgency Get Slot",
+};
 
 export default function FounderControl() {
   const [leads, setLeads] = useState<any[]>([]);
-  const [view, setView] = useState<"overview" | "leads" | "partners">("overview");
+  const [view, setView] = useState<"overview" | "leads" | "partners" | "funnel">("overview");
   const [filter, setFilter] = useState("all");
+
+  const { data: funnelReport, isLoading: funnelLoading } = useQuery<any>({
+    queryKey: ["/api/broker/funnel-report"],
+    refetchInterval: 30000,
+  });
 
   useEffect(() => {
     document.title = "Founder Command Center | DeliWer";
@@ -122,7 +145,7 @@ export default function FounderControl() {
         </div>
 
         <div className="flex items-center gap-1 mb-4 border-b border-white/10 pb-1">
-          {(["overview", "leads", "partners"] as const).map((t) => (
+          {(["overview", "leads", "partners", "funnel"] as const).map((t) => (
             <button
               key={t}
               onClick={() => setView(t)}
@@ -131,7 +154,7 @@ export default function FounderControl() {
               }`}
               data-testid={`tab-${t}`}
             >
-              {t}
+              {t === "funnel" ? "Broker Funnel" : t}
             </button>
           ))}
         </div>
@@ -269,6 +292,115 @@ export default function FounderControl() {
                 </tbody>
               </table>
             </div>
+          </div>
+        )}
+
+        {view === "funnel" && (
+          <div className="space-y-6">
+            {/* Summary KPIs */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { label: "Total Events", value: funnelReport?.total ?? "—", color: "text-white", icon: "📊" },
+                { label: "Unique Sessions", value: funnelReport?.uniqueSessions ?? "—", color: "text-blue-400", icon: "👤" },
+                { label: "Form Submissions", value: funnelReport?.byEvent?.funnel_submitted ?? 0, color: "text-emerald-400", icon: "✅" },
+                { label: "UTM Sources", value: funnelReport?.utmSourceChart?.length ?? 0, color: "text-amber-400", icon: "🔗" },
+              ].map((s) => (
+                <div key={s.label} className="bg-white/5 border border-white/10 rounded-xl p-4" data-testid={`funnel-kpi-${s.label.toLowerCase().replace(/\s/g, "-")}`}>
+                  <div className="text-xl mb-1">{s.icon}</div>
+                  <div className={`text-2xl font-black ${s.color}`}>{funnelLoading ? "…" : s.value}</div>
+                  <div className="text-xs font-medium mt-0.5 text-gray-400">{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* UTM Source Breakdown */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-bold text-sm">UTM Source Breakdown</h3>
+                <span className="text-xs text-gray-500">Total funnel events by traffic source</span>
+              </div>
+              {funnelLoading ? (
+                <div className="h-48 flex items-center justify-center text-gray-500 text-sm">Loading…</div>
+              ) : !funnelReport?.utmSourceChart?.length ? (
+                <div className="h-48 flex flex-col items-center justify-center text-gray-500 text-sm gap-2">
+                  <span className="text-3xl">📭</span>
+                  <span>No funnel events recorded yet.</span>
+                  <span className="text-xs text-gray-600">Events are tracked as visitors move through the broker funnel.</span>
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height={220}>
+                  <BarChart data={funnelReport.utmSourceChart} margin={{ top: 4, right: 8, left: -16, bottom: 4 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <XAxis dataKey="source" tick={{ fill: "#9ca3af", fontSize: 11 }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fill: "#9ca3af", fontSize: 11 }} axisLine={false} tickLine={false} allowDecimals={false} />
+                    <Tooltip
+                      contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 8, fontSize: 12 }}
+                      labelStyle={{ color: "#fff", fontWeight: 700 }}
+                      itemStyle={{ color: "#10b981" }}
+                      formatter={(v: number) => [v, "Events"]}
+                    />
+                    <Bar dataKey="count" radius={[4, 4, 0, 0]} maxBarSize={56}>
+                      {funnelReport.utmSourceChart.map((_: any, idx: number) => (
+                        <Cell key={idx} fill={UTM_COLORS[idx % UTM_COLORS.length]} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
+            </div>
+
+            {/* Funnel Step Drop-off */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-bold text-sm">Broker Funnel Step Analysis</h3>
+                <span className="text-xs text-gray-500">Events per stage — identifies drop-off points</span>
+              </div>
+              {funnelLoading ? (
+                <div className="h-48 flex items-center justify-center text-gray-500 text-sm">Loading…</div>
+              ) : (
+                <div className="space-y-2.5">
+                  {(funnelReport?.funnel ?? []).map((step: { step: string; count: number }, i: number) => {
+                    const maxCount = Math.max(1, ...((funnelReport?.funnel ?? []).map((s: any) => s.count)));
+                    const pct = Math.round((step.count / maxCount) * 100);
+                    const label = FUNNEL_LABELS[step.step] ?? step.step;
+                    return (
+                      <div key={step.step} className="flex items-center gap-3" data-testid={`funnel-step-${i}`}>
+                        <span className="text-xs text-gray-500 w-5 text-right font-mono">{i + 1}</span>
+                        <div className="flex-1">
+                          <div className="flex justify-between text-xs mb-1">
+                            <span className="text-gray-300">{label}</span>
+                            <span className="font-semibold text-white">{step.count}</span>
+                          </div>
+                          <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                            <div
+                              className="h-full rounded-full transition-all duration-500"
+                              style={{ width: `${pct}%`, backgroundColor: UTM_COLORS[i % UTM_COLORS.length] }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Stage Distribution */}
+            {funnelReport?.byStage && Object.keys(funnelReport.byStage).length > 0 && (
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                <h3 className="font-bold text-sm mb-4">Career Stage Interest</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {Object.entries(funnelReport.byStage as Record<string, number>)
+                    .sort(([, a], [, b]) => b - a)
+                    .map(([stage, count], i) => (
+                      <div key={stage} className="bg-white/5 border border-white/10 rounded-xl p-3 text-center" data-testid={`stage-dist-${i}`}>
+                        <div className="text-xl font-black" style={{ color: UTM_COLORS[i % UTM_COLORS.length] }}>{count}</div>
+                        <div className="text-xs text-gray-400 mt-0.5 capitalize">{stage}</div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
