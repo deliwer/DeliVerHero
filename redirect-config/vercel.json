@@ -1,0 +1,72 @@
+{
+  // ─────────────────────────────────────────────────────────────────────────────
+  // vercel.json — Redirect configuration for realestate.deliwer.com
+  //
+  // Purpose:
+  //   Any request to https://realestate.deliwer.com/* is permanently redirected
+  //   to https://deliwer.com/realestate (301 — search engines transfer link equity).
+  //
+  // Deploy this file as its own Vercel project (see DEPLOYMENT.md).
+  // It does NOT affect the main deliwer.com deployment.
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  // Tell Vercel which custom domain(s) this project owns.
+  // In the Vercel dashboard you must also add this domain under Project → Domains.
+  "domains": ["realestate.deliwer.com"],
+
+  "redirects": [
+    {
+      // ── Primary redirect ────────────────────────────────────────────────────
+      // Matches the bare root (/) of realestate.deliwer.com
+      // and redirects to the /realestate page on the main domain.
+      //
+      // 301 = permanent redirect (cached by browsers & indexed by search engines).
+      // Use 302 during testing so browsers don't cache prematurely.
+      "source": "/",
+      "destination": "https://deliwer.com/realestate",
+      "permanent": true
+    },
+    {
+      // ── Wildcard catch-all ───────────────────────────────────────────────────
+      // Matches any path under realestate.deliwer.com (e.g. /listings, /contact)
+      // and sends users to the main /realestate page.
+      //
+      // Change destination to "https://deliwer.com/realestate/:path*" if you
+      // want to preserve sub-paths on the destination side.
+      "source": "/(.*)",
+      "destination": "https://deliwer.com/realestate",
+      "permanent": true
+    }
+  ],
+
+  // ── Optional: URL rewrite alternative ────────────────────────────────────────
+  // If you want the browser URL to STAY as realestate.deliwer.com while
+  // SERVING the content from deliwer.com/realestate, comment out the
+  // "redirects" block above and uncomment the "rewrites" block below.
+  //
+  // NOTE: rewrites work only if deliwer.com/realestate does NOT block
+  //       proxy/iframe requests (check X-Frame-Options / CSP headers).
+  //
+  // "rewrites": [
+  //   {
+  //     "source": "/",
+  //     "destination": "https://deliwer.com/realestate"
+  //   },
+  //   {
+  //     "source": "/(.*)",
+  //     "destination": "https://deliwer.com/realestate/:path*"
+  //   }
+  // ],
+
+  // ── Security headers (good practice even for a redirect-only project) ────────
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options",   "value": "nosniff" },
+        { "key": "X-Frame-Options",           "value": "DENY" },
+        { "key": "Referrer-Policy",           "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
