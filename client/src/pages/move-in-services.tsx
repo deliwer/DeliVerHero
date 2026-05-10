@@ -28,6 +28,7 @@ import jvcBoxes from "@assets/generated_images/jvc_dubai_apartment_move-in_boxes
 import cleaningImage from "@assets/generated_images/jvc_dubai_apartment_cleaning_service.png";
 import maintenanceImage from "@assets/generated_images/jvc_dubai_ac_maintenance_service.png";
 import { SiWhatsapp } from "react-icons/si";
+import { BrokerCTABanner } from "@/components/broker-cta-banner";
 import { BuildingSEOBlock } from "@/components/building-seo-block";
 import { dubaiBuildings } from "@/data/dubai-buildings";
 
@@ -534,6 +535,13 @@ export default function MoveInServices() {
               Don't see your building? Contact us via WhatsApp and we'll customize a solution for your community.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Broker CTA */}
+      <section className="py-10 px-4 bg-slate-900/40 border-t border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <BrokerCTABanner context="Real estate broker? Refer your clients after lease signing and earn AED 150–800 per move-in — no subscription, instant link." />
         </div>
       </section>
 

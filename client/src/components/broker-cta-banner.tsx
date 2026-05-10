@@ -37,7 +37,7 @@ export function BrokerCTABanner({ variant = "strip", context }: BrokerCTABannerP
             </span>
           ))}
         </div>
-        <Link href="/brokers">
+        <Link href="/broker-onboard">
           <Button
             data-testid="button-broker-cta-card"
             className="w-full bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl h-10 text-sm"
@@ -71,7 +71,7 @@ export function BrokerCTABanner({ variant = "strip", context }: BrokerCTABannerP
           </p>
         </div>
       </div>
-      <Link href="/brokers" className="shrink-0 w-full sm:w-auto">
+      <Link href="/broker-onboard" className="shrink-0 w-full sm:w-auto">
         <Button
           data-testid="button-broker-cta-strip"
           className="w-full sm:w-auto bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl h-9 px-5 text-xs whitespace-nowrap"

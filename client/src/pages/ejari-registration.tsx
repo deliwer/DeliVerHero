@@ -120,7 +120,7 @@ export default function EjariRegistration() {
               <p className="text-gray-500 text-xs">Refer clients after Ejari signing. Earn AED 300–800 per move-in — free to join, instant link.</p>
             </div>
           </div>
-          <Link href="/brokers" data-testid="button-ejari-reg-broker-cta">
+          <Link href="/broker-onboard" data-testid="button-ejari-reg-broker-cta">
             <Button
               size="sm"
               className="bg-purple-600 hover:bg-purple-500 text-white font-black rounded-xl px-6 h-10 text-xs shrink-0"

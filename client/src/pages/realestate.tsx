@@ -48,6 +48,7 @@ import {
   FileText,
 } from "lucide-react";
 
+import { BrokerCTABanner } from "@/components/broker-cta-banner";
 import dubaiSkyline from "@assets/stock_images/dubai_skyline_sunset_21b85db0.jpg";
 import dubaiVilla from "@assets/stock_images/dubai_luxury_villa_i_9244d415.jpg";
 import dubaiFamily from "@assets/stock_images/dubai_family_diverse_5745a5cf.jpg";
@@ -1358,6 +1359,13 @@ export default function RealEstate() {
               <Phone className="w-4 h-4 mr-2" /> Speak to Finance Advisor
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Broker CTA */}
+      <section className="py-10 px-4 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <BrokerCTABanner context="RERA broker? Refer buyers or tenants to DeliWer after deal close — earn AED 150–800+ per move-in referral, free to join." />
         </div>
       </section>
     </div>

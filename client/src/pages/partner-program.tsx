@@ -101,7 +101,7 @@ export default function PartnerProgram() {
                   <ArrowRight className="w-4 h-4 mr-2" /> See Full Career Path
                 </Button>
               </Link>
-              <Link href="/brokers">
+              <Link href="/broker-onboard">
                 <Button data-testid="button-hero-broker" size="lg" variant="outline" className="border-white/20 text-gray-300 hover:text-white font-black h-13 px-10 text-base rounded-2xl">
                   <MessageSquare className="w-4 h-4 mr-2" /> Broker Partner Path
                 </Button>

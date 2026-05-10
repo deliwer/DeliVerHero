@@ -1172,7 +1172,7 @@ export default function PartnerCareerPage() {
                 Join the Network on WhatsApp
               </Button>
             </a>
-            <Link href="/brokers">
+            <Link href="/broker-onboard">
               <Button
                 data-testid="button-career-broker-cta"
                 size="lg"
