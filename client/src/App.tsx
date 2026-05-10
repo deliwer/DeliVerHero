@@ -246,6 +246,12 @@ function Router() {
       setLocation('/ejari-registration');
       return;
     }
+
+    // Domain-based routing for water.deliwer.com → AquaCafe water filter portal
+    if ((hostname === 'water.deliwer.com' || hostname === 'www.water.deliwer.com') && location === '/') {
+      setLocation('/aquacafe');
+      return;
+    }
     
     // Global referral capture — store ?ref= param from any page visit
     import("@/lib/referral").then(({ captureReferral }) => captureReferral());
