@@ -234,6 +234,12 @@ function Router() {
       setLocation('/earn');
       return;
     }
+
+    // Domain-based routing for move.deliwer.com → move-in services portal
+    if ((hostname === 'move.deliwer.com' || hostname === 'www.move.deliwer.com') && location === '/') {
+      setLocation('/move-in-services');
+      return;
+    }
     
     // Global referral capture — store ?ref= param from any page visit
     import("@/lib/referral").then(({ captureReferral }) => captureReferral());
