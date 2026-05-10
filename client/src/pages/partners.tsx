@@ -138,6 +138,13 @@ const TRACKS = [
 function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
   const [step, setStep] = useState(1);
   const [track, setTrack] = useState(defaultTrack || "");
+
+  useEffect(() => {
+    if (defaultTrack && defaultTrack !== track) {
+      setTrack(defaultTrack);
+      setStep(1);
+    }
+  }, [defaultTrack]);
   const [form, setForm] = useState({ name: "", email: "", whatsapp: "", country: "", role: "" });
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
@@ -186,7 +193,13 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
     <div className="bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden">
       <div className="h-1 bg-slate-800">
         <motion.div
-          className="h-full bg-gradient-to-r from-emerald-500 to-cyan-500"
+          className={`h-full bg-gradient-to-r ${
+            track === "phone-flipper"
+              ? "from-purple-500 to-fuchsia-500"
+              : track === "home-services"
+              ? "from-cyan-500 to-teal-400"
+              : "from-emerald-500 to-teal-500"
+          }`}
           animate={{ width: `${(step / 3) * 100}%` }}
           transition={{ duration: 0.4 }}
         />
@@ -197,30 +210,37 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
             <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
               <div className="text-center space-y-1 mb-7">
                 <div className="text-emerald-400 text-xs font-black uppercase tracking-widest">Step 1 of 3</div>
-                <h3 className="text-2xl font-black text-white">Choose Your Path</h3>
-                <p className="text-gray-500 text-sm">Both are free. Most earners run both.</p>
+                <h3 className="text-2xl font-black text-white">Choose Your Track</h3>
+                <p className="text-gray-500 text-sm">All three are free. Most top earners run more than one.</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {TRACKS.map(t => (
-                  <button
-                    key={t.id}
-                    data-testid={`button-track-${t.id}`}
-                    onClick={() => setTrack(t.id)}
-                    className={`relative rounded-2xl p-5 border-2 text-left transition-all ${
-                      track === t.id
-                        ? t.id === "broker" ? "border-emerald-500 bg-emerald-500/10" : "border-cyan-500 bg-cyan-500/10"
-                        : "border-slate-700 bg-slate-800 hover:border-slate-500"
-                    }`}
-                  >
-                    <span className={`absolute top-3 right-3 text-[10px] font-black px-2 py-0.5 rounded-full ${t.id === "broker" ? "bg-emerald-500/20 text-emerald-300" : "bg-cyan-500/20 text-cyan-300"}`}>
-                      {t.badge}
-                    </span>
-                    <t.icon className={`w-7 h-7 mb-3 ${t.id === "broker" ? "text-emerald-400" : "text-cyan-400"}`} />
-                    <div className="font-black text-white text-sm mb-1">{t.label}</div>
-                    <div className="text-gray-400 text-xs">{t.tagline}</div>
-                    {track === t.id && <CheckCircle2 className={`w-5 h-5 absolute bottom-4 right-4 ${t.id === "broker" ? "text-emerald-400" : "text-cyan-400"}`} />}
-                  </button>
-                ))}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                {TRACKS.map(t => {
+                  const TRACK_COLORS: Record<string, { border: string; bg: string; badge: string; badgeText: string; icon: string; check: string }> = {
+                    "real-estate":  { border: "border-emerald-500", bg: "bg-emerald-500/10", badge: "bg-emerald-500/20", badgeText: "text-emerald-300", icon: "text-emerald-400", check: "text-emerald-400" },
+                    "home-services":{ border: "border-cyan-500",    bg: "bg-cyan-500/10",    badge: "bg-cyan-500/20",    badgeText: "text-cyan-300",    icon: "text-cyan-400",    check: "text-cyan-400"    },
+                    "phone-flipper":{ border: "border-purple-500",  bg: "bg-purple-500/10",  badge: "bg-purple-500/20",  badgeText: "text-purple-300",  icon: "text-purple-400",  check: "text-purple-400"  },
+                  };
+                  const c = TRACK_COLORS[t.id] ?? TRACK_COLORS["real-estate"];
+                  const selected = track === t.id;
+                  return (
+                    <button
+                      key={t.id}
+                      data-testid={`button-track-${t.id}`}
+                      onClick={() => setTrack(t.id)}
+                      className={`relative rounded-2xl p-5 border-2 text-left transition-all ${
+                        selected ? `${c.border} ${c.bg}` : "border-slate-700 bg-slate-800 hover:border-slate-500"
+                      }`}
+                    >
+                      <span className={`absolute top-3 right-3 text-[10px] font-black px-2 py-0.5 rounded-full ${c.badge} ${c.badgeText}`}>
+                        {t.badge}
+                      </span>
+                      <t.icon className={`w-6 h-6 mb-3 ${c.icon}`} />
+                      <div className="font-black text-white text-sm mb-1 pr-2 leading-tight">{t.label}</div>
+                      <div className="text-gray-400 text-xs leading-snug">{t.tagline}</div>
+                      {selected && <CheckCircle2 className={`w-5 h-5 absolute bottom-4 right-4 ${c.check}`} />}
+                    </button>
+                  );
+                })}
               </div>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="space-y-2">
@@ -289,39 +309,47 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
             </motion.div>
           )}
 
-          {step === 3 && (
-            <motion.div key="step3" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8 space-y-6">
-              <div className="w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-500/50 flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-10 h-10 text-emerald-400" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-white mb-2">You're In The Network!</h3>
-                <p className="text-gray-400">Your partner link will be activated and sent to your WhatsApp within the same business day.</p>
-              </div>
-              <div className="bg-slate-800 rounded-2xl p-4 border border-emerald-500/30">
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Your link will be</p>
-                <span className="text-emerald-400 font-mono text-sm">{refLink}</span>
-              </div>
-              <div className="flex flex-col gap-3 items-center">
-                <div className="flex gap-3 justify-center">
-                  <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-green-600 hover:bg-green-500 font-black rounded-xl"><MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Team</Button>
-                  </a>
-                  <Button data-testid="button-funnel-restart" onClick={() => { setStep(1); setTrack(""); setForm({ name: "", email: "", whatsapp: "", country: "", role: "" }); }} variant="outline" className="border-slate-600 text-gray-400 rounded-xl">Start Over</Button>
+          {step === 3 && (() => {
+            const STEP3_META: Record<string, { href: string; label: string; icon: React.ReactNode; borderColor: string; textColor: string; hoverBg: string; linkColor: string; ringColor: string; checkColor: string; eventKey: string }> = {
+              "real-estate":  { href: "/realestate",  label: "Explore Real Estate Track",   icon: <Building2 className="w-4 h-4 mr-2" />,  borderColor: "border-emerald-500/50", textColor: "text-emerald-400", hoverBg: "hover:bg-emerald-500/10", linkColor: "border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10", ringColor: "bg-emerald-500/20 border-emerald-500/50", checkColor: "text-emerald-400", eventKey: "funnel_goto_real_estate"  },
+              "home-services":{ href: "/earn",         label: "Explore Home Services Track", icon: <Droplets className="w-4 h-4 mr-2" />,   borderColor: "border-cyan-500/50",    textColor: "text-cyan-400",    hoverBg: "hover:bg-cyan-500/10",    linkColor: "border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10",       ringColor: "bg-cyan-500/20 border-cyan-500/50",       checkColor: "text-cyan-400",    eventKey: "funnel_goto_home_services"  },
+              "phone-flipper":{ href: "/chaintrack",   label: "Open ChainTrack Platform",    icon: <RefreshCw className="w-4 h-4 mr-2" />,  borderColor: "border-purple-500/50",  textColor: "text-purple-400",  hoverBg: "hover:bg-purple-500/10",  linkColor: "border-purple-500/30 text-purple-400 hover:bg-purple-500/10", ringColor: "bg-purple-500/20 border-purple-500/50",   checkColor: "text-purple-400",  eventKey: "funnel_goto_chaintrack"     },
+            };
+            const m = STEP3_META[track] ?? STEP3_META["real-estate"];
+            return (
+              <motion.div key="step3" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-8 space-y-6">
+                <div className={`w-20 h-20 rounded-full ${m.ringColor} border-2 flex items-center justify-center mx-auto`}>
+                  <CheckCircle2 className={`w-10 h-10 ${m.checkColor}`} />
                 </div>
-                <Link href="/realestate" className="w-full">
-                  <Button
-                    data-testid="button-funnel-goto-real-estate"
-                    variant="outline"
-                    className="w-full border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl h-11"
-                    onClick={() => trackFunnel("funnel_goto_real_estate", { page: "/partners" })}
-                  >
-                    <ArrowRight className="w-4 h-4 mr-2" /> Explore Real Estate Track
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
-          )}
+                <div>
+                  <h3 className="text-2xl font-black text-white mb-2">You're In The Network!</h3>
+                  <p className="text-gray-400">Your partner link will be activated and sent to your WhatsApp within the same business day.</p>
+                </div>
+                <div className={`bg-slate-800 rounded-2xl p-4 border ${m.borderColor}`}>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Your link will be</p>
+                  <span className={`${m.textColor} font-mono text-sm`}>{refLink}</span>
+                </div>
+                <div className="flex flex-col gap-3 items-center">
+                  <div className="flex gap-3 justify-center">
+                    <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-green-600 hover:bg-green-500 font-black rounded-xl"><MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Team</Button>
+                    </a>
+                    <Button data-testid="button-funnel-restart" onClick={() => { setStep(1); setTrack(""); setForm({ name: "", email: "", whatsapp: "", country: "", role: "" }); }} variant="outline" className="border-slate-600 text-gray-400 rounded-xl">Start Over</Button>
+                  </div>
+                  <Link href={m.href} className="w-full">
+                    <Button
+                      data-testid={`button-funnel-goto-${track}`}
+                      variant="outline"
+                      className={`w-full font-black rounded-xl h-11 border ${m.linkColor}`}
+                      onClick={() => trackFunnel(m.eventKey, { page: "/partners" })}
+                    >
+                      {m.icon} {m.label} <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })()}
         </AnimatePresence>
       </div>
     </div>
