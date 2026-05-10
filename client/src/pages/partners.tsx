@@ -159,6 +159,30 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
     ? `${origin}/join?ref=${refCode}&refName=${encodeURIComponent(form.name.trim())}${track ? `&track=${track}` : ""}`
     : `${origin}/join?ref=yourname`;
 
+  // ── Pre-populated WhatsApp deep-link (track + partial form data) ──
+  const TRACK_WA_INTROS: Record<string, string> = {
+    "real-estate":   "Hi DeliWer! I want to join the *Real Estate Track* and start earning from Dubai property referrals.",
+    "home-services": "Hi DeliWer! I want to join the *Home Services (Kangen Water) Track* as an Enagic Independent Distributor under Sponsor ID 3A #37000000659 (Rubab Hassan).",
+    "phone-flipper": "Hi DeliWer! I want to join the *Phone Flipper Track* and start buying, flipping and earning on devices via ChainTrack.",
+  };
+  const TRACK_LABELS: Record<string, string> = {
+    "real-estate":   "Real Estate Track",
+    "home-services": "Home Services (Kangen Water)",
+    "phone-flipper": "Phone Flipper Track",
+  };
+  const waIntro = track ? (TRACK_WA_INTROS[track] ?? "Hi DeliWer! I want to join as a partner.") : "Hi DeliWer! I want to join as a partner.";
+  const waDeepMsg = buildWhatsAppMessage({
+    intro: waIntro,
+    fields: {
+      ...(form.name     ? { Name:     form.name }     : {}),
+      ...(form.whatsapp ? { WhatsApp: form.whatsapp } : {}),
+      ...(form.country  ? { Country:  form.country }  : {}),
+      ...(form.role     ? { Role:     form.role }     : {}),
+      ...(track         ? { Track:    TRACK_LABELS[track] ?? track } : {}),
+    },
+  });
+  const waTrackUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waDeepMsg)}`;
+
   const copyLink = async () => {
     await navigator.clipboard.writeText(refLink);
     setCopied(true);
@@ -255,6 +279,24 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
               <Button data-testid="button-funnel-next-step1" onClick={() => setStep(2)} disabled={!track || !form.name || !form.whatsapp} size="lg" className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 font-black h-14 text-lg rounded-2xl">
                 Continue <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
+
+              {/* Escape hatch — skip form, open WA pre-loaded with track context */}
+              {track && (
+                <div className="mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between gap-3">
+                  <p className="text-xs text-gray-500 leading-snug">
+                    Prefer to skip the form?
+                  </p>
+                  <a href={waTrackUrl} target="_blank" rel="noopener noreferrer" data-testid="link-funnel-quick-wa">
+                    <Button
+                      size="sm"
+                      className="bg-green-700 hover:bg-green-600 font-black rounded-xl h-9 text-xs shrink-0"
+                      onClick={() => trackFunnel("funnel_quick_wa", { page: "/partners", track })}
+                    >
+                      <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> Message Us on WhatsApp
+                    </Button>
+                  </a>
+                </div>
+              )}
             </motion.div>
           )}
 
@@ -331,8 +373,10 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
                 </div>
                 <div className="flex flex-col gap-3 items-center">
                   <div className="flex gap-3 justify-center">
-                    <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer">
-                      <Button className="bg-green-600 hover:bg-green-500 font-black rounded-xl"><MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Team</Button>
+                    <a href={waTrackUrl} target="_blank" rel="noopener noreferrer" data-testid="link-step3-whatsapp">
+                      <Button className="bg-green-600 hover:bg-green-500 font-black rounded-xl" onClick={() => trackFunnel("step3_wa_click", { page: "/partners", track })}>
+                        <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Team
+                      </Button>
                     </a>
                     <Button data-testid="button-funnel-restart" onClick={() => { setStep(1); setTrack(""); setForm({ name: "", email: "", whatsapp: "", country: "", role: "" }); }} variant="outline" className="border-slate-600 text-gray-400 rounded-xl">Start Over</Button>
                   </div>
@@ -1150,11 +1194,25 @@ export default function PartnersPage() {
 
               <div className="mt-8 p-5 rounded-2xl bg-slate-900 border border-slate-800">
                 <p className="text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Or message us directly</p>
-                <a href={`https://wa.me/${WA_NUMBER}?text=Hi%20DeliWer!%20I%20want%20to%20join%20as%20a%20partner.`} target="_blank" rel="noopener noreferrer">
-                  <Button data-testid="button-whatsapp-direct" className="bg-green-600 hover:bg-green-500 font-black w-full h-11 rounded-xl">
-                    <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp: +971 52 394 6311
-                  </Button>
-                </a>
+                {(() => {
+                  const SIDEBAR_INTROS: Record<string, string> = {
+                    "real-estate":   "Hi DeliWer! I want to join the *Real Estate Track* and start earning from Dubai property referrals.",
+                    "home-services": "Hi DeliWer! I want to join the *Home Services (Kangen Water) Track* as an Enagic Independent Distributor.",
+                    "phone-flipper": "Hi DeliWer! I want to join the *Phone Flipper Track* via ChainTrack.",
+                  };
+                  const intro = selectedTrack ? (SIDEBAR_INTROS[selectedTrack] ?? "Hi DeliWer! I want to join as a partner.") : "Hi DeliWer! I want to join as a partner.";
+                  const trackLabel = selectedTrack === "real-estate" ? "Real Estate Track" : selectedTrack === "home-services" ? "Home Services (Kangen Water)" : selectedTrack === "phone-flipper" ? "Phone Flipper Track" : "";
+                  const sidebarMsg = [intro, trackLabel ? `Track: ${trackLabel}.` : "", `Source: ${typeof window !== "undefined" ? window.location.pathname : "/partners"}.`].filter(Boolean).join("\n");
+                  const sidebarWaUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(sidebarMsg)}`;
+                  return (
+                    <a href={sidebarWaUrl} target="_blank" rel="noopener noreferrer" data-testid="link-sidebar-whatsapp-direct" onClick={() => trackFunnel("sidebar_wa_direct", { page: "/partners", track: selectedTrack })}>
+                      <Button data-testid="button-whatsapp-direct" className="bg-green-600 hover:bg-green-500 font-black w-full h-11 rounded-xl">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        {selectedTrack ? `WhatsApp — Join ${selectedTrack === "real-estate" ? "Real Estate" : selectedTrack === "home-services" ? "Home Services" : "Phone Flipper"} Track` : "WhatsApp: +971 52 394 6311"}
+                      </Button>
+                    </a>
+                  );
+                })()}
               </div>
             </div>
 
