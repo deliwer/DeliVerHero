@@ -216,6 +216,12 @@ function Router() {
       setLocation('/chaintrack');
       return;
     }
+
+    // Domain-based routing for realestate.deliwer.com
+    if ((hostname === 'realestate.deliwer.com' || hostname === 'www.realestate.deliwer.com') && location === '/') {
+      setLocation('/realestate');
+      return;
+    }
     
     // Global referral capture — store ?ref= param from any page visit
     import("@/lib/referral").then(({ captureReferral }) => captureReferral());
