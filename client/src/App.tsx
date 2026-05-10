@@ -222,6 +222,12 @@ function Router() {
       setLocation('/realestate');
       return;
     }
+
+    // Domain-based routing for brokers.deliwer.com → dedicated broker portal
+    if ((hostname === 'brokers.deliwer.com' || hostname === 'www.brokers.deliwer.com') && location === '/') {
+      setLocation('/broker-onboard');
+      return;
+    }
     
     // Global referral capture — store ?ref= param from any page visit
     import("@/lib/referral").then(({ captureReferral }) => captureReferral());
