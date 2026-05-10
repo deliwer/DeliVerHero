@@ -228,6 +228,12 @@ function Router() {
       setLocation('/broker-onboard');
       return;
     }
+
+    // Domain-based routing for earn.deliwer.com → affiliate/influencer earn page
+    if ((hostname === 'earn.deliwer.com' || hostname === 'www.earn.deliwer.com') && location === '/') {
+      setLocation('/earn');
+      return;
+    }
     
     // Global referral capture — store ?ref= param from any page visit
     import("@/lib/referral").then(({ captureReferral }) => captureReferral());
