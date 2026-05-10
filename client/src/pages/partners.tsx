@@ -14,7 +14,7 @@ import {
   Zap, Shield, Smartphone, MessageCircle, Building2,
   Droplets, ChevronDown, Copy, Check,
   Lock, Play, BookOpen, TrendingUp, Handshake, Repeat2,
-  Network, Rocket, Target,
+  Network, Rocket, Target, RefreshCw,
 } from "lucide-react";
 import { SiYoutube } from "react-icons/si";
 import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
@@ -28,9 +28,9 @@ const WA_NUMBER = "971523946311";
 // ─────────────────────────────────────────────
 function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
   const items = [
-    { label: "Broker Partner", id: "broker-focus" },
-    { label: "Broker Academy", id: "broker-academy" },
-    { label: "Home Services Partner", id: "alliance" },
+    { label: "Real Estate Track", id: "real-estate-track" },
+    { label: "Home Services Track", id: "home-services-track" },
+    { label: "Phone Flipper Track", id: "phone-flipper-track" },
     { label: "Earn Calculator", id: "calculator" },
     { label: "Join Now", id: "join" },
   ];
@@ -117,7 +117,7 @@ function IncomeSlider() {
         </div>
         <p className="text-[10px] text-gray-600 text-center">Based on average service basket. Actual results vary.</p>
       </div>
-      <Link href="/brokers">
+      <Link href="/realestate">
         <Button data-testid="button-calculator-cta" className="w-full bg-emerald-600 hover:bg-emerald-500 font-black h-12 rounded-2xl">
           Start Earning This → <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
@@ -130,8 +130,9 @@ function IncomeSlider() {
 // Join Funnel (3-step form)
 // ─────────────────────────────────────────────
 const TRACKS = [
-  { id: "broker", label: "DeliWer Broker Partner", tagline: "Earn from Dubai move-in referrals", icon: Building2, badge: "🏆 Most Popular", color: "emerald" },
-  { id: "aquacafe", label: "Home Services", tagline: "Sell water systems globally", icon: Droplets, badge: "🌍 Global Income", color: "cyan" },
+  { id: "real-estate", label: "Real Estate Track", tagline: "Earn from Dubai property referrals", icon: Building2, badge: "🏆 Most Popular", color: "emerald" },
+  { id: "home-services", label: "Home Services (Kangen Water)", tagline: "Sell water systems globally", icon: Droplets, badge: "🌍 Global Income", color: "cyan" },
+  { id: "phone-flipper", label: "Phone Flipper Track", tagline: "Buy, flip & earn on devices", icon: RefreshCw, badge: "📱 Fast Cash", color: "purple" },
 ];
 
 function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
@@ -141,8 +142,9 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
 
-  const ROLES_BROKER = ["Real Estate Broker", "Property Manager", "Leasing Agent", "Building Manager", "Typing Center", "Other"];
-  const ROLES_AQUACAFE = ["Health & Wellness Seller", "Online Marketer", "Social Media Influencer", "Side Income Seeker", "Existing Enagic Distributor", "Other"];
+  const ROLES_REAL_ESTATE = ["Real Estate Broker", "Property Manager", "Leasing Agent", "Building Manager", "Typing Center", "Other"];
+  const ROLES_HOME_SERVICES = ["Health & Wellness Seller", "Online Marketer", "Social Media Influencer", "Side Income Seeker", "Existing Enagic Distributor", "Other"];
+  const ROLES_PHONE_FLIPPER = ["Individual Reseller", "Retail Shop Owner", "Wholesale Buyer", "Online Seller", "Tech Enthusiast", "Other"];
 
   const origin = typeof window !== "undefined" ? window.location.origin : "https://deliwer.com";
   const refCode = form.name ? form.name.toLowerCase().replace(/[^a-z0-9]+/g, "") : "";
@@ -158,11 +160,13 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
   };
 
   const handleSubmit = () => {
-    const isAquacafe = track === "aquacafe";
     trackFunnel("funnel_submitted", { page: "/partners", stage: track });
-    const intro = isAquacafe
-      ? `Hi DeliWer! I want to join the *AquaCafe Alliance* as an Enagic Independent Distributor under Sponsor ID 3A #37000000659 (Rubab Hassan).`
-      : `Hi DeliWer! I want to join as a *Broker Partner* and start earning from Dubai move-in referrals.`;
+    const intro = track === "home-services"
+      ? `Hi DeliWer! I want to join the *Home Services (Kangen Water) Track* as an Enagic Independent Distributor under Sponsor ID 3A #37000000659 (Rubab Hassan).`
+      : track === "phone-flipper"
+      ? `Hi DeliWer! I want to join the *Phone Flipper Track* and start buying, flipping and earning on devices via ChainTrack.`
+      : `Hi DeliWer! I want to join the *Real Estate Track* and start earning from Dubai property referrals.`;
+    const trackLabel = track === "real-estate" ? "Real Estate Track" : track === "home-services" ? "Home Services (Kangen Water)" : "Phone Flipper Track";
     const msg = buildWhatsAppMessage({
       intro,
       fields: {
@@ -171,7 +175,7 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
         WhatsApp: form.whatsapp,
         Country: form.country,
         Role: form.role,
-        Track: track === "broker" ? "DeliWer Broker Partner" : "AquaCafe Alliance (Enagic)",
+        Track: trackLabel,
       },
     });
     openWhatsApp(msg);
@@ -258,7 +262,7 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
                         <SelectValue placeholder="Select..." />
                       </SelectTrigger>
                       <SelectContent className="bg-slate-800 border-slate-600 text-white">
-                        {(track === "broker" ? ROLES_BROKER : ROLES_AQUACAFE).map(r => (
+                        {(track === "home-services" ? ROLES_HOME_SERVICES : track === "phone-flipper" ? ROLES_PHONE_FLIPPER : ROLES_REAL_ESTATE).map(r => (
                           <SelectItem key={r} value={r} className="hover:bg-slate-700 focus:bg-slate-700">{r}</SelectItem>
                         ))}
                       </SelectContent>
@@ -305,14 +309,14 @@ function JoinFunnel({ defaultTrack }: { defaultTrack?: string }) {
                   </a>
                   <Button data-testid="button-funnel-restart" onClick={() => { setStep(1); setTrack(""); setForm({ name: "", email: "", whatsapp: "", country: "", role: "" }); }} variant="outline" className="border-slate-600 text-gray-400 rounded-xl">Start Over</Button>
                 </div>
-                <Link href="/brokers" className="w-full">
+                <Link href="/realestate" className="w-full">
                   <Button
-                    data-testid="button-funnel-goto-brokers"
+                    data-testid="button-funnel-goto-real-estate"
                     variant="outline"
                     className="w-full border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl h-11"
-                    onClick={() => trackFunnel("funnel_goto_brokers", { page: "/partners" })}
+                    onClick={() => trackFunnel("funnel_goto_real_estate", { page: "/partners" })}
                   >
-                    <ArrowRight className="w-4 h-4 mr-2" /> Explore Broker Tools &amp; Open Deals
+                    <ArrowRight className="w-4 h-4 mr-2" /> Explore Real Estate Track
                   </Button>
                 </Link>
               </div>
@@ -372,7 +376,7 @@ export default function PartnersPage() {
     if (params.get("path") === "broker") {
       trackFunnel("partners_broker_auto_scroll", { page: "/partners" });
       const timer = setTimeout(() => {
-        document.getElementById("broker-focus")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("real-estate-track")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 500);
       return () => clearTimeout(timer);
     }
@@ -381,8 +385,8 @@ export default function PartnersPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta
-        title="Partner & Earn — DeliWer Dubai | Broker Career Path + Home Services"
-        description="Turn every Dubai tenant referral into income. Broker partners earn AED 150–800 per move-in. Home Services distributors build worldwide passive income via Kangen/Enagic. 100% online, start today."
+        title="Partner & Earn — DeliWer Dubai | Real Estate · Home Services · Phone Flipper Tracks"
+        description="Three ways to earn with DeliWer: Real Estate Track (AED 150–800/referral), Home Services Kangen Water Track (global income), and Phone Flipper Track via ChainTrack. 100% online, start today."
       />
       <Navigation />
       <PartnersSubMenu onScrollTo={(id) => { const el = document.getElementById(id); el?.scrollIntoView({ behavior: "smooth" }); }} />
@@ -416,27 +420,27 @@ export default function PartnersPage() {
             </h1>
 
             <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto mb-10 leading-relaxed">
-              Two simple ways to earn with us. Pick one — both are free to join.
+              Three tracks. One network. All free to join — pick the one that fits you today.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/brokers">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center flex-wrap">
+              <Button
+                data-testid="button-hero-broker-track-cta"
+                size="lg"
+                onClick={() => document.getElementById("broker-track")?.scrollIntoView({ behavior: "smooth" })}
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-emerald-900/40"
+              >
+                <Building2 className="w-5 h-5 mr-2" /> Broker Track
+              </Button>
+              <Link href="/chaintrack">
                 <Button
-                  data-testid="button-hero-broker-cta"
+                  data-testid="button-hero-phone-flipper-cta"
                   size="lg"
-                  className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-emerald-900/40"
+                  className="bg-purple-600 hover:bg-purple-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-purple-900/40"
                 >
-                  <Building2 className="w-5 h-5 mr-2" /> Broker Partner
+                  <RefreshCw className="w-5 h-5 mr-2" /> Phone Flipper Track
                 </Button>
               </Link>
-              <Button
-                data-testid="button-hero-alliance-cta"
-                onClick={() => scrollToJoin("aquacafe")}
-                size="lg"
-                className="bg-cyan-600 hover:bg-cyan-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-cyan-900/40"
-              >
-                <Droplets className="w-5 h-5 mr-2" /> Home Services
-              </Button>
             </div>
           </motion.div>
         </div>
@@ -464,130 +468,167 @@ export default function PartnersPage() {
         </motion.button>
       </section>
 
-      {/* ─── CHOOSE YOUR PATH (BASIC INTRO) ─── */}
+      {/* ─── CHOOSE YOUR PATH ─── */}
       <section id="choose-path" className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-4">Step 1 · Pick Your Track</Badge>
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">
-              Two Simple Paths.{" "}
+              Three Tracks.{" "}
               <span className="text-emerald-400">One Network.</span>
             </h2>
             <p className="text-gray-400 mt-3 max-w-2xl mx-auto">
-              Start with the path that fits you today. You can always add the other later — most top earners run both.
+              Start with the track that fits you today. Top earners run more than one.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-5">
-            {/* Broker Partner intro card */}
+          <div className="space-y-5">
+
+            {/* ── BROKER TRACK (parent) ── */}
             <motion.div
+              id="broker-track"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="border border-emerald-500/30 bg-emerald-950/20 rounded-3xl p-7 flex flex-col"
+              className="border border-emerald-500/40 bg-emerald-950/20 rounded-3xl p-7"
             >
-              <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center mb-5">
-                <Building2 className="w-7 h-7 text-emerald-400" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                  <Building2 className="w-7 h-7 text-emerald-400" />
+                </div>
+                <div>
+                  <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-1">🏆 Broker Track</Badge>
+                  <h3 className="text-2xl font-black text-white leading-tight">Two Sub-Tracks Inside</h3>
+                  <p className="text-gray-400 text-sm mt-0.5">Both are free. Choose one or run both in parallel.</p>
+                </div>
               </div>
-              <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 self-start mb-3">🏆 Most Popular Start</Badge>
-              <h3 className="text-2xl font-black text-white mb-2">Broker Partner</h3>
-              <div className="flex items-start gap-2 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-3 py-2.5 mb-4" data-testid="hint-broker-fit">
-                <Users className="w-4 h-4 text-emerald-300 shrink-0 mt-0.5" />
-                <p className="text-xs text-emerald-100 leading-relaxed">
-                  <span className="font-black uppercase tracking-wider text-emerald-300 text-[10px] block mb-0.5">Best for you if…</span>
-                  You already work with tenants, landlords, or buyers in Dubai.
-                </p>
-              </div>
-              <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-                Share one link after each lease. We handle Ejari, DEWA, movers, setup — you earn per confirmed booking.
-              </p>
-              <div className="space-y-2 mb-6">
-                {[
-                  "AED 150–800 per move-in referral",
-                  "Zero extra work — share one link",
-                  "Monthly bank payouts",
-                ].map(p => (
-                  <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                    {p}
+
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* Sub-track 1 — Real Estate */}
+                <div className="border border-emerald-500/25 bg-slate-900/60 rounded-2xl p-6 flex flex-col" data-testid="card-real-estate-track">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/15 flex items-center justify-center shrink-0">
+                      <Building2 className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Sub-Track 1</p>
+                      <h4 className="text-base font-black text-white">Real Estate Track</h4>
+                    </div>
                   </div>
-                ))}
-              </div>
-              <div className="mt-auto flex flex-col gap-2">
-                <Link href="/brokers">
-                  <Button
-                    data-testid="button-choose-broker-learn"
-                    className="w-full bg-emerald-600 hover:bg-emerald-500 font-black h-12 rounded-2xl"
-                    onClick={() => trackFunnel("partners_broker_cta", { page: "/partners" })}
-                  >
-                    <Building2 className="w-4 h-4 mr-2" /> See Full Broker Program <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
-                <Button
-                  data-testid="button-choose-broker"
-                  onClick={() => scrollToJoin("broker")}
-                  variant="outline"
-                  className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-11 rounded-2xl"
-                >
-                  Start as Broker Partner
-                </Button>
+                  <div className="flex items-start gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-3 py-2 mb-4" data-testid="hint-real-estate-fit">
+                    <Users className="w-3.5 h-3.5 text-emerald-300 shrink-0 mt-0.5" />
+                    <p className="text-xs text-emerald-100 leading-relaxed">
+                      <span className="font-black text-emerald-300 text-[10px] uppercase block mb-0.5">Best if…</span>
+                      You work with tenants, landlords or buyers in Dubai.
+                    </p>
+                  </div>
+                  <div className="space-y-1.5 mb-5 flex-1">
+                    {["AED 150–800 per move-in referral", "Share one link after each lease signing", "Monthly bank payouts"].map(p => (
+                      <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        {p}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col gap-2 mt-auto">
+                    <Link href="/realestate">
+                      <Button data-testid="button-real-estate-track-cta" className="w-full bg-emerald-600 hover:bg-emerald-500 font-black h-11 rounded-2xl" onClick={() => trackFunnel("partners_real_estate_cta", { page: "/partners" })}>
+                        <Building2 className="w-4 h-4 mr-2" /> Go to Real Estate Track <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                    <Button data-testid="button-choose-real-estate-join" onClick={() => scrollToJoin("real-estate")} variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-10 rounded-2xl text-sm">
+                      Join Real Estate Track
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Sub-track 2 — Home Services */}
+                <div className="border border-cyan-500/25 bg-slate-900/60 rounded-2xl p-6 flex flex-col" data-testid="card-home-services-track">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-9 h-9 rounded-xl bg-cyan-500/15 flex items-center justify-center shrink-0">
+                      <Droplets className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-cyan-400">Sub-Track 2</p>
+                      <h4 className="text-base font-black text-white">Home Services Track</h4>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-xl px-3 py-2 mb-4" data-testid="hint-home-services-fit">
+                    <Globe className="w-3.5 h-3.5 text-cyan-300 shrink-0 mt-0.5" />
+                    <p className="text-xs text-cyan-100 leading-relaxed">
+                      <span className="font-black text-cyan-300 text-[10px] uppercase block mb-0.5">Best if…</span>
+                      You want global income from Kangen Water — even outside Dubai.
+                    </p>
+                  </div>
+                  <div className="space-y-1.5 mb-5 flex-1">
+                    {["AED 50 bonus + 25% on water orders", "Sell from any country, any time", "Official Enagic sponsor included"].map(p => (
+                      <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                        {p}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col gap-2 mt-auto">
+                    <Link href="/earn">
+                      <Button data-testid="button-home-services-track-cta" className="w-full bg-cyan-600 hover:bg-cyan-500 font-black h-11 rounded-2xl">
+                        <Droplets className="w-4 h-4 mr-2" /> Go to Home Services Track <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                    <Button data-testid="button-choose-home-services-join" onClick={() => scrollToJoin("home-services")} variant="outline" className="border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 font-black h-10 rounded-2xl text-sm">
+                      Join Home Services Track
+                    </Button>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
-            {/* Home Services Partner intro card */}
+            {/* ── PHONE FLIPPER TRACK (standalone) ── */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="border border-cyan-500/30 bg-cyan-950/20 rounded-3xl p-7 flex flex-col"
+              transition={{ delay: 0.1 }}
+              className="border border-purple-500/40 bg-purple-950/20 rounded-3xl p-7 flex flex-col md:flex-row gap-7 items-start"
+              data-testid="card-phone-flipper-track"
             >
-              <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center mb-5">
-                <Droplets className="w-7 h-7 text-cyan-400" />
+              <div className="w-14 h-14 rounded-2xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
+                <RefreshCw className="w-7 h-7 text-purple-400" />
               </div>
-              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 self-start mb-3">🌍 Global Income</Badge>
-              <h3 className="text-2xl font-black text-white mb-2">Home Services Partner</h3>
-              <div className="flex items-start gap-2 bg-cyan-500/10 border border-cyan-500/25 rounded-xl px-3 py-2.5 mb-4" data-testid="hint-aquacafe-fit">
-                <Globe className="w-4 h-4 text-cyan-300 shrink-0 mt-0.5" />
-                <p className="text-xs text-cyan-100 leading-relaxed">
-                  <span className="font-black uppercase tracking-wider text-cyan-300 text-[10px] block mb-0.5">Best for you if…</span>
-                  You want to earn from anywhere — even outside Dubai — and like wellness products.
-                </p>
-              </div>
-              <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-                Sell water systems and home kits worldwide under DeliWer's official Enagic sponsorship — start with the AED 99 AquaCafe kit.
-              </p>
-              <div className="space-y-2 mb-6">
-                {[
-                  "AED 50 bonus + 25% on water orders",
-                  "Sell from any country, any time",
-                  "Official Enagic sponsor included",
-                ].map(p => (
-                  <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    {p}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-auto flex flex-col gap-2">
-                <Button
-                  data-testid="button-choose-aquacafe"
-                  onClick={() => scrollToJoin("aquacafe")}
-                  className="bg-cyan-600 hover:bg-cyan-500 font-black h-12 rounded-2xl"
-                >
-                  <Droplets className="w-4 h-4 mr-2" /> Start as Home Services Partner
-                </Button>
-                <Link href="/home-services">
-                  <Button
-                    data-testid="button-choose-aquacafe-learn"
-                    variant="outline"
-                    className="w-full border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 font-black h-11 rounded-2xl"
-                  >
-                    Learn More <ArrowRight className="w-4 h-4 ml-2" />
+              <div className="flex-1">
+                <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 mb-2">📱 Phone Flipper Track</Badge>
+                <h3 className="text-2xl font-black text-white mb-2">Phone Flipper Track</h3>
+                <div className="flex items-start gap-2 bg-purple-500/10 border border-purple-500/20 rounded-xl px-3 py-2.5 mb-4 max-w-sm" data-testid="hint-phone-flipper-fit">
+                  <Smartphone className="w-4 h-4 text-purple-300 shrink-0 mt-0.5" />
+                  <p className="text-xs text-purple-100 leading-relaxed">
+                    <span className="font-black text-purple-300 text-[10px] uppercase block mb-0.5">Best if…</span>
+                    You want to buy, flip and earn cash on pre-owned phones and electronics.
+                  </p>
+                </div>
+                <div className="grid sm:grid-cols-3 gap-2 mb-6">
+                  {[
+                    "B2B wholesale pricing on devices",
+                    "Reverse-bid auctions via ChainTrack",
+                    "Fast cash — buy low, flip high",
+                  ].map(p => (
+                    <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
+                      {p}
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link href="/chaintrack">
+                    <Button data-testid="button-phone-flipper-main-cta" className="bg-purple-600 hover:bg-purple-500 font-black h-12 px-8 rounded-2xl">
+                      <RefreshCw className="w-4 h-4 mr-2" /> Open ChainTrack Platform <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </Link>
+                  <Button data-testid="button-phone-flipper-join" onClick={() => scrollToJoin("phone-flipper")} variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black h-12 px-8 rounded-2xl">
+                    Join Phone Flipper Track
                   </Button>
-                </Link>
+                </div>
               </div>
             </motion.div>
+
           </div>
 
           <div className="text-center mt-8">
@@ -603,12 +644,12 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─── BROKER FOCUS SECTION ─── */}
-      <section id="broker-focus" className="py-20 px-4 bg-emerald-950/20 border-y border-emerald-500/15">
+      {/* ─── REAL ESTATE TRACK DETAIL ─── */}
+      <section id="real-estate-track" className="py-20 px-4 bg-emerald-950/20 border-y border-emerald-500/15">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-5">For Real Estate Brokers</Badge>
+              <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-5">Broker Track → Real Estate Track</Badge>
               <h2 className="text-4xl font-black uppercase tracking-tighter text-white mb-4 leading-tight">
                 You Already Work With Tenants.<br />
                 <span className="text-emerald-400">You're Leaving AED on the Table.</span>
@@ -632,9 +673,9 @@ export default function PartnersPage() {
                 ))}
               </ul>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link href="/brokers">
-                  <Button data-testid="button-broker-focus-cta" className="bg-emerald-600 hover:bg-emerald-500 font-black h-12 px-8 rounded-2xl">
-                    <Building2 className="w-4 h-4 mr-2" /> Get My Broker Link
+                <Link href="/realestate">
+                  <Button data-testid="button-real-estate-track-cta-detail" className="bg-emerald-600 hover:bg-emerald-500 font-black h-12 px-8 rounded-2xl">
+                    <Building2 className="w-4 h-4 mr-2" /> Go to Real Estate Track
                   </Button>
                 </Link>
                 <Link href="/partner-program">
@@ -835,13 +876,13 @@ export default function PartnersPage() {
                 <p className="font-black text-white text-sm">Ready to Start?</p>
                 <p className="text-gray-500 text-xs mt-1">Join as a broker partner after Day 1.</p>
               </div>
-              <Link href="/brokers">
+              <Link href="/realestate">
                 <button
                   data-testid="button-academy-join-cta"
                   className="text-[10px] font-black uppercase tracking-widest text-white bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg transition-all"
                   onClick={() => trackFunnel("academy_join_cta", { page: "/partners" })}
                 >
-                  Join Now →
+                  Real Estate Track →
                 </button>
               </Link>
             </motion.div>
@@ -881,8 +922,8 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* ─── KANGEN ALLIANCE SECTION ─── */}
-      <section id="alliance" className="py-20 px-4">
+      {/* ─── HOME SERVICES TRACK DETAIL ─── */}
+      <section id="home-services-track" className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             {/* Income card */}
@@ -919,7 +960,7 @@ export default function PartnersPage() {
             </motion.div>
 
             <div className="order-1 md:order-2">
-              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 mb-5">Home Services · AquaCafe × Kangen</Badge>
+              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/40 mb-5">Broker Track → Home Services Track · AquaCafe × Kangen</Badge>
               <h2 className="text-4xl font-black uppercase tracking-tighter text-white mb-4 leading-tight">
                 The Water Business<br />
                 <span className="text-cyan-400">That Scales Worldwide.</span>
@@ -954,6 +995,78 @@ export default function PartnersPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── PHONE FLIPPER TRACK DETAIL ─── */}
+      <section id="phone-flipper-track" className="py-20 px-4 bg-purple-950/20 border-y border-purple-500/15">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 mb-5">Phone Flipper Track</Badge>
+              <h2 className="text-4xl font-black uppercase tracking-tighter text-white mb-4 leading-tight">
+                Buy Low. Flip Fast.<br />
+                <span className="text-purple-400">Earn Cash on Devices.</span>
+              </h2>
+              <p className="text-gray-400 mb-6 leading-relaxed">
+                ChainTrack is DeliWer's B2B sustainability hub for pre-owned mobiles and household goods. Join as a Phone Flipper — access reverse-bid auctions, wholesale pricing and verified device lots straight from the source.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "B2B wholesale pricing — iPhones, Samsung, appliances and more",
+                  "Reverse-bid auction system — you set the price, suppliers compete",
+                  "Verified device grading: A, B, ASIS lots with full transparency",
+                  "Operating from Dubai Airport Freezone — 15,000+ verified trades",
+                  "Earn DXB rewards on every qualifying trade",
+                ].map(point => (
+                  <li key={point} className="flex items-start gap-3 text-sm text-gray-300">
+                    <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/chaintrack">
+                  <Button data-testid="button-phone-flipper-main-detail-cta" className="bg-purple-600 hover:bg-purple-500 font-black h-12 px-8 rounded-2xl">
+                    <RefreshCw className="w-4 h-4 mr-2" /> Open ChainTrack Platform
+                  </Button>
+                </Link>
+                <Button
+                  data-testid="button-phone-flipper-join-detail"
+                  onClick={() => scrollToJoin("phone-flipper")}
+                  variant="outline"
+                  className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black h-12 px-8 rounded-2xl"
+                >
+                  Join Phone Flipper Track
+                </Button>
+              </div>
+            </div>
+
+            {/* Earnings snapshot */}
+            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="bg-slate-900 border border-slate-700 rounded-3xl p-7 space-y-4">
+              <p className="text-xs font-black uppercase tracking-widest text-purple-400">Typical Flipper Scenarios</p>
+              {[
+                { type: "Starter Flipper",  action: "Buy 5 units/month",  earn: "AED 500–1,500",    note: "Weekend side hustle" },
+                { type: "Active Flipper",   action: "Buy 25 units/month", earn: "AED 2,500–7,500",   note: "Part-time operation" },
+                { type: "Power Buyer",      action: "50+ units/month",    earn: "AED 10,000–25,000+", note: "B2B wholesale scale" },
+              ].map(({ type, action, earn, note }, i) => (
+                <div key={i} className={`rounded-2xl p-4 border ${i === 2 ? "border-purple-500/40 bg-purple-950/30" : "border-slate-800 bg-slate-800/50"}`}>
+                  <div className="flex justify-between items-start mb-1">
+                    <span className="font-black text-white text-sm">{type}</span>
+                    <span className="text-purple-400 font-black text-sm">{earn}</span>
+                  </div>
+                  <div className="text-xs text-gray-500">{action} · {note}</div>
+                </div>
+              ))}
+              <div className="pt-3 border-t border-slate-700">
+                <Link href="/chaintrack">
+                  <Button data-testid="button-phone-flipper-income-cta" className="w-full bg-purple-600 hover:bg-purple-500 font-black rounded-2xl h-11">
+                    Start Flipping → <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
