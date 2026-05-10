@@ -17,7 +17,7 @@ import {
   Network, Rocket, Target, RefreshCw,
 } from "lucide-react";
 import { SiYoutube } from "react-icons/si";
-import { buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
+import { buildWhatsAppMessage, openWhatsApp, getReferral } from "@/lib/referral";
 import { trackFunnel } from "@/lib/funnel-track";
 import heroPartnersImg from "@assets/generated_images/diverse_business_team_in_dubai_office_meeting.png";
 
@@ -437,11 +437,22 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export default function PartnersPage() {
   const funnelRef = useRef<HTMLDivElement>(null);
   const [selectedTrack, setSelectedTrack] = useState<string>("");
+  const [referral, setReferral] = useState<{ code: string; name?: string } | null>(null);
 
   const scrollToJoin = (track?: string) => {
     if (track) setSelectedTrack(track);
     funnelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  // Capture referral attribution on mount
+  useEffect(() => {
+    const ref = getReferral();
+    if (ref?.code) {
+      const params = new URLSearchParams(window.location.search);
+      const refName = params.get("refName") || params.get("from") || undefined;
+      setReferral({ code: ref.code, name: refName });
+    }
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -1165,6 +1176,31 @@ export default function PartnersPage() {
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <Badge className="bg-slate-800 text-gray-400 border-slate-700 mb-5">Free to Join · Activate Today</Badge>
+
+              {/* Referral attribution banner */}
+              {referral && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3 bg-emerald-950/50 border border-emerald-500/30 rounded-2xl px-4 py-3 mb-5"
+                  data-testid="banner-referral-attribution"
+                >
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
+                    <Handshake className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-black uppercase tracking-widest text-emerald-400 mb-0.5">Referred Partner</p>
+                    <p className="text-sm text-gray-300 leading-snug">
+                      {referral.name
+                        ? <>You were invited by <span className="font-black text-white">{referral.name.replace(/[-_+]/g, " ")}</span>. Their commission is automatically tracked.</>
+                        : <>You arrived via partner code <span className="font-mono font-black text-white">{referral.code}</span>. Commission is automatically tracked.</>
+                      }
+                    </p>
+                  </div>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                </motion.div>
+              )}
+
               <h2 className="text-4xl font-black uppercase tracking-tighter text-white mb-4">
                 Ready to{" "}
                 <span className="text-emerald-400">Start Earning?</span>
@@ -1200,9 +1236,17 @@ export default function PartnersPage() {
                     "home-services": "Hi DeliWer! I want to join the *Home Services (Kangen Water) Track* as an Enagic Independent Distributor.",
                     "phone-flipper": "Hi DeliWer! I want to join the *Phone Flipper Track* via ChainTrack.",
                   };
+                  const SIDEBAR_TRACK_LABELS: Record<string, string> = {
+                    "real-estate":   "Real Estate Track",
+                    "home-services": "Home Services (Kangen Water)",
+                    "phone-flipper": "Phone Flipper Track",
+                  };
                   const intro = selectedTrack ? (SIDEBAR_INTROS[selectedTrack] ?? "Hi DeliWer! I want to join as a partner.") : "Hi DeliWer! I want to join as a partner.";
-                  const trackLabel = selectedTrack === "real-estate" ? "Real Estate Track" : selectedTrack === "home-services" ? "Home Services (Kangen Water)" : selectedTrack === "phone-flipper" ? "Phone Flipper Track" : "";
-                  const sidebarMsg = [intro, trackLabel ? `Track: ${trackLabel}.` : "", `Source: ${typeof window !== "undefined" ? window.location.pathname : "/partners"}.`].filter(Boolean).join("\n");
+                  // Route through buildWhatsAppMessage so referrer code + name are auto-appended
+                  const sidebarMsg = buildWhatsAppMessage({
+                    intro,
+                    fields: selectedTrack ? { Track: SIDEBAR_TRACK_LABELS[selectedTrack] ?? selectedTrack } : {},
+                  });
                   const sidebarWaUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(sidebarMsg)}`;
                   return (
                     <a href={sidebarWaUrl} target="_blank" rel="noopener noreferrer" data-testid="link-sidebar-whatsapp-direct" onClick={() => trackFunnel("sidebar_wa_direct", { page: "/partners", track: selectedTrack })}>
@@ -1230,11 +1274,17 @@ export default function PartnersPage() {
           </div>
           <div className="text-center mt-10">
             <p className="text-gray-500 text-sm mb-4">Still have questions?</p>
-            <a href={`https://wa.me/${WA_NUMBER}?text=Hi%20DeliWer%2C%20I%20have%20a%20question%20about%20the%20partner%20program.`} target="_blank" rel="noopener noreferrer">
-              <Button data-testid="button-faq-whatsapp" variant="outline" className="border-slate-600 text-gray-300 hover:bg-slate-800 font-black rounded-xl">
-                <MessageCircle className="w-4 h-4 mr-2" /> Ask Us on WhatsApp
-              </Button>
-            </a>
+            <Button
+              data-testid="button-faq-whatsapp"
+              variant="outline"
+              className="border-slate-600 text-gray-300 hover:bg-slate-800 font-black rounded-xl"
+              onClick={() => {
+                trackFunnel("faq_wa_click", { page: "/partners" });
+                openWhatsApp(buildWhatsAppMessage({ intro: "Hi DeliWer! I have a question about the partner program." }));
+              }}
+            >
+              <MessageCircle className="w-4 h-4 mr-2" /> Ask Us on WhatsApp
+            </Button>
           </div>
         </div>
       </section>
