@@ -240,6 +240,12 @@ function Router() {
       setLocation('/move-in-services');
       return;
     }
+
+    // Domain-based routing for ejari.deliwer.com → Ejari registration portal
+    if ((hostname === 'ejari.deliwer.com' || hostname === 'www.ejari.deliwer.com') && location === '/') {
+      setLocation('/ejari-registration');
+      return;
+    }
     
     // Global referral capture — store ?ref= param from any page visit
     import("@/lib/referral").then(({ captureReferral }) => captureReferral());
