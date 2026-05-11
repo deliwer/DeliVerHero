@@ -46,16 +46,6 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
               Earn Rewards
             </span>
           </Link>
-          <Link href="/partners?path=broker">
-            <span
-              className="cursor-pointer inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors uppercase tracking-widest text-[10px] font-black"
-              data-testid="trust-strip-partners"
-              onClick={() => trackFunnel("trust_strip_click", { page: "trust-strip" })}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              Business Opportunity
-            </span>
-          </Link>
           <Link href="/concierge-pricing">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Pricing</span>
           </Link>
