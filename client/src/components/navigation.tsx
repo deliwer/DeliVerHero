@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
   Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
-  Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone
+  Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -44,11 +44,12 @@ const deliwerNavItems = [
 // ── Broker / ChainTrack nav items ────────────────────────────────────────────
 // Primary: broker & partner pages. Secondary: Phone Flipping link to marketplace.
 const brokerNavItems = [
-  { path: "/broker-onboard",        label: "Broker Portal",    id: "ct-broker",      icon: Briefcase },
-  { path: "/partners",              label: "Partner Program",  id: "ct-partners",    icon: Users },
-  { path: "/partner-program",       label: "Career Path",      id: "ct-career",      icon: BookOpen },
-  { path: "/affiliate-dashboard",   label: "Dashboard",        id: "ct-dashboard",   icon: LayoutGrid },
-  { path: "/chaintrack",            label: "Phone Flipping",   id: "ct-flipper",     icon: Smartphone },
+  { path: "/broker-onboard",                          label: "Broker Portal",  id: "ct-broker",    icon: Briefcase,    external: false },
+  { path: "/partners",                               label: "Partner Program", id: "ct-partners",  icon: Users,        external: false },
+  { path: "/partner-program",                        label: "Career Path",     id: "ct-career",    icon: BookOpen,     external: false },
+  { path: "/partner-dashboard",                      label: "Dashboard",       id: "ct-dashboard", icon: LayoutGrid,   external: false },
+  { path: "https://www.youtube.com/@vdeliwer",       label: "Training",        id: "ct-training",  icon: Youtube,      external: true  },
+  { path: "/chaintrack",                             label: "Phone Flipping",  id: "ct-flipper",   icon: Smartphone,   external: false },
 ];
 
 // ── Phone Flipper sub-nav (original ChainTrack marketplace nav) ───────────────
@@ -88,8 +89,12 @@ export function Navigation() {
 
   const isActive = (itemPath: string) => location === itemPath.split("#")[0];
 
-  const navigateToItem = (path: string) => {
+  const navigateToItem = (path: string, external?: boolean) => {
     setIsMobileMenuOpen(false);
+    if (external) {
+      window.open(path, "_blank", "noopener,noreferrer");
+      return;
+    }
     const [base, hash] = path.split("#");
     if (hash && location === base) {
       const el = document.getElementById(hash);
@@ -150,9 +155,11 @@ export function Navigation() {
               <Button
                 key={item.id}
                 variant="ghost"
-                onClick={() => navigateToItem(item.path)}
+                onClick={() => navigateToItem(item.path, item.external)}
                 className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
-                  isActive(item.path)
+                  item.external
+                    ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                    : isActive(item.path)
                     ? isBrokerSide
                       ? "bg-purple-500/15 text-purple-300"
                       : "bg-emerald-500/10 text-emerald-400"
@@ -297,9 +304,11 @@ export function Navigation() {
               <Button
                 key={item.id}
                 variant="ghost"
-                onClick={() => navigateToItem(item.path)}
+                onClick={() => navigateToItem(item.path, item.external)}
                 className={`w-full justify-start text-xs font-black uppercase tracking-widest h-14 rounded-xl ${
-                  isActive(item.path)
+                  item.external
+                    ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                    : isActive(item.path)
                     ? isBrokerSide
                       ? "bg-purple-500/15 text-purple-300"
                       : "bg-emerald-500/10 text-emerald-400"
@@ -307,7 +316,7 @@ export function Navigation() {
                 }`}
                 data-testid={`nav-mobile-${item.id}`}
               >
-                <item.icon className={`w-5 h-5 mr-3 ${isBrokerSide ? "text-purple-500" : "text-emerald-500"}`} />
+                <item.icon className={`w-5 h-5 mr-3 ${item.external ? "text-red-500" : isBrokerSide ? "text-purple-500" : "text-emerald-500"}`} />
                 {item.label}
               </Button>
             ))}

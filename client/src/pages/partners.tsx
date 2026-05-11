@@ -468,8 +468,10 @@ export default function PartnersPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta
-        title="Partner & Earn — DeliWer Dubai | Real Estate · Home Services · Phone Flipper Tracks"
-        description="Three ways to earn with DeliWer: Real Estate Track (AED 150–800/referral), Home Services Kangen Water Track (global income), and Phone Flipper Track via ChainTrack. 100% online, start today."
+        title="Broker & Partner Program — ChainTrack by DeliWer Dubai | Earn AED 150–800 Per Referral"
+        description="Join Dubai's #1 broker partner program. Real Estate Track (AED 150–800/referral), Home Services Track, and Phone Flipper Track via ChainTrack. RERA brokers, freelancers & side-hustlers welcome. 100% online, start today."
+        keywords="broker partner program Dubai, earn with DeliWer, real estate referral commission Dubai, ChainTrack broker portal, RERA broker income, affiliate program Dubai, partner dashboard DeliWer"
+        canonical="https://www.deliwer.com/partners"
       />
       <Navigation />
       <PartnersSubMenu onScrollTo={(id) => { const el = document.getElementById(id); el?.scrollIntoView({ behavior: "smooth" }); }} />

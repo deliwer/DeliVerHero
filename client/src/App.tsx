@@ -137,7 +137,7 @@ const MoveInServicesDubai = lazy(() => import("@/pages/move-in-services-dubai"))
 const SettlingInDubaiGuide = lazy(() => import("@/pages/settling-in-dubai-guide"));
 const BrokerMoveInSupportDubai = lazy(() => import("@/pages/broker-move-in-support-dubai"));
 const BrokerMasterDB = lazy(() => import("@/pages/broker-master-db"));
-const AffiliateDashboardPage = lazy(() => import("@/pages/affiliate-dashboard"));
+// AffiliateDashboardPage merged into PartnerDashboard — redirect handled below
 const ExitDubaiPage = lazy(() => import("@/pages/exit-dubai"));
 const MoveCheaperRentPage = lazy(() => import("@/pages/move-cheaper-rent"));
 const LandlordTurnoverPage = lazy(() => import("@/pages/landlord-turnover"));
@@ -288,7 +288,7 @@ function Router() {
         <Route path="/capture-admin" component={CaptureAdmin} />
         <Route path="/habtoor-admin" component={HabtoorAdmin} />
         <Route path="/capture-referrers" component={CaptureReferrers} />
-        <Route path="/affiliate-dashboard" component={AffiliateDashboardPage} />
+        <Route path="/affiliate-dashboard"><Redirect to="/partner-dashboard" /></Route>
         <Route path="/home-access" component={HomeAccess} />
         <Route path="/finance" component={HomeAccess} />
         <Route path="/realestate" component={RealEstate} />

@@ -206,8 +206,10 @@ export default function PartnerDashboard() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <SEOMeta
-        title="Partner Operations Dashboard | DeliWer Dubai"
-        description="Unified partner operations dashboard — track referral leads, earnings, Al Habtoor Polo inventory claims, deal reports, and VR tour requests."
+        title="Partner & Affiliate Dashboard | ChainTrack by DeliWer Dubai"
+        description="Your unified broker and affiliate dashboard — track referral leads, commission earnings, Al Habtoor Polo inventory claims, deal reports, and VR tour requests. Formerly /affiliate-dashboard."
+        canonical="https://www.deliwer.com/partner-dashboard"
+        keywords="partner dashboard DeliWer, broker dashboard Dubai, affiliate earnings tracker, referral commission Dubai, ChainTrack broker portal"
       />
       <Navigation />
 

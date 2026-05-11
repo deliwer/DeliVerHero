@@ -70,7 +70,7 @@ const FAST_START_STEPS = [
     earnLabel: "per move-in",
     color: "emerald",
     icon: Home,
-    cta: { label: "Get Your Broker Link", href: "/brokers" },
+    cta: { label: "Get Your Broker Link", href: "/broker-onboard" },
   },
   {
     day: "Day 2–7",
