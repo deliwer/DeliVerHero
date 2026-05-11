@@ -37,6 +37,7 @@ const deliwerNavItems = [
   { path: "/errand",         label: "Errand",       id: "errand",       icon: ClipboardList },
   { path: "/setup",          label: "Setup",        id: "setup",        icon: Building2 },
   { path: "/realestate",     label: "My Home",      id: "realestate",   icon: MapPin },
+  { path: "/earn",           label: "Earnings",     id: "earn",         icon: DollarSign },
   { path: "/consult",        label: "Consult",      id: "consult",      icon: CalendarCheck },
 ];
 
@@ -46,7 +47,6 @@ const brokerNavItems = [
   { path: "/broker-onboard",        label: "Broker Portal",    id: "ct-broker",      icon: Briefcase },
   { path: "/partners",              label: "Partner Program",  id: "ct-partners",    icon: Users },
   { path: "/partner-program",       label: "Career Path",      id: "ct-career",      icon: BookOpen },
-  { path: "/earn",                  label: "Earnings",         id: "ct-earnings",    icon: DollarSign },
   { path: "/affiliate-dashboard",   label: "Dashboard",        id: "ct-dashboard",   icon: LayoutGrid },
   { path: "/chaintrack",            label: "Phone Flipping",   id: "ct-flipper",     icon: Smartphone },
 ];
