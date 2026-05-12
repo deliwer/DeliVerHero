@@ -247,6 +247,33 @@ export function Navigation() {
         </div>
       </nav>
 
+      {/* ── YouTube Training Bar — broker side only ── */}
+      {isBrokerSide && (
+        <a
+          href="https://www.youtube.com/@vdeliwer"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-testid="bar-youtube-training"
+          className="flex items-center justify-center gap-3 py-2.5 px-4 bg-red-600/90 backdrop-blur-sm border-b border-red-500/40 hover:bg-red-500/90 transition-colors relative z-50 group"
+        >
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-white flex items-center justify-center shrink-0 shadow group-hover:scale-105 transition-transform">
+              <Youtube className="w-4 h-4 text-red-600 fill-red-600" />
+            </div>
+            <span className="text-[11px] font-black uppercase tracking-widest text-white">
+              Free Broker Training
+            </span>
+            <span className="hidden sm:inline text-red-200 text-[11px] font-semibold">·</span>
+            <span className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-red-100">
+              Watch Now → youtube.com/@vdeliwer
+            </span>
+          </div>
+          <span className="ml-1 px-2 py-0.5 rounded-full bg-white/20 text-white text-[9px] font-black uppercase tracking-widest shrink-0">
+            Free
+          </span>
+        </a>
+      )}
+
       {/* ── Trust Strip — consumer side only ── */}
       {!isBrokerSide && (
         <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-1 px-4 overflow-x-auto no-scrollbar relative z-50">

@@ -220,12 +220,26 @@ export default function BrokerOnboard() {
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center px-4">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-emerald-500/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/6 rounded-full blur-[100px]" />
-          <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-amber-500/5 rounded-full blur-[80px]" />
+          {/* Dubai skyline photo */}
+          <img
+            src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            aria-hidden="true"
+          />
+          {/* Base dark overlay */}
+          <div className="absolute inset-0 bg-slate-950/60" />
+          {/* Radial scrim behind text */}
+          <div className="absolute inset-0" style={{background: "radial-gradient(ellipse 80% 85% at 50% 50%, rgba(2,6,23,0.90) 0%, rgba(2,6,23,0.65) 55%, transparent 100%)"}} />
+          {/* Top vignette */}
+          <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-slate-950/90 to-transparent" />
+          {/* Bottom vignette */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-slate-950 to-transparent" />
+          {/* Emerald bloom */}
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-emerald-500/8 rounded-full blur-[120px]" />
         </div>
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: "linear-gradient(rgba(16,185,129,1) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,1) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
