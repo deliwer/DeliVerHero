@@ -346,6 +346,12 @@ function Router() {
           {(params: { rest?: string }) => <Redirect to={`/residents${params.rest ? '/' + params.rest : ''}`} />}
         </Route>
 
+        {/* My Home — Flexible Rentals Module */}
+        <Route path="/myhome/flexible-rentals" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
+        <Route path="/myhome/shared-living" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
+        <Route path="/myhome/subletting" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
+        <Route path="/flexible-rentals" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
+
         {/* Core Site Pages */}
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />

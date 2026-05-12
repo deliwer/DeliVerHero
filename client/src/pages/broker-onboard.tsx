@@ -7,6 +7,7 @@ import {
   KeyRound, Handshake, Calculator, Clock, Users, TrendingUp,
   FileText, Zap, Award, DollarSign, BarChart3, Info
 } from "lucide-react";
+import { ReferralLinkBar } from "@/components/referral-link-bar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -629,13 +630,24 @@ export default function BrokerOnboard() {
       <section className="py-24 px-4">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 mb-4 font-black uppercase tracking-widest text-xs">
-              Free Tool
+            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-4 font-black uppercase tracking-widest text-xs">
+              <Zap className="w-3 h-3 mr-1" /> Your Commission Link
             </Badge>
             <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
-              Generate Your <span className="text-blue-400">Referral Link</span>
+              Copy Your <span className="text-emerald-400">Referral Link</span>
             </h2>
-            <p className="mt-2 text-gray-500 text-sm">Instant. No login. No contract to sign first.</p>
+            <p className="mt-2 text-gray-500 text-sm">Instant. No login. Share it and start earning.</p>
+          </div>
+
+          {/* ── Prominent Referral Link Bar ── */}
+          <div className="mb-8">
+            <ReferralLinkBar defaultName={name} />
+          </div>
+
+          <div className="relative flex items-center gap-3 mb-8">
+            <div className="flex-1 h-px bg-white/8" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-gray-600">or activate via whatsapp for commission setup</span>
+            <div className="flex-1 h-px bg-white/8" />
           </div>
 
           <div className="bg-slate-950 border border-white/8 rounded-2xl p-8 space-y-4">

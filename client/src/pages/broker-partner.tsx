@@ -27,6 +27,7 @@ import { useToast } from "@/hooks/use-toast";
 import { buildWhatsAppMessage, openWhatsApp, logEvent } from "@/lib/referral";
 import { contactInfo } from "@/lib/contact-info";
 import { trackFunnel } from "@/lib/funnel-track";
+import { ReferralLinkBar } from "@/components/referral-link-bar";
 
 function openWA(msg: string) { openWhatsApp(msg); }
 
@@ -875,6 +876,9 @@ function BrokerWhatsAppOnboarding() {
           </div>
 
           <div className="px-6 pb-6 space-y-5">
+            {/* Referral Link Bar — always visible above form fields */}
+            <ReferralLinkBar compact label="Your Broker Referral Link — Copy & Share" />
+
             {/* Form Fields */}
             {cur.fields.length > 0 && (
               <div className={`grid grid-cols-1 ${cur.fields.length >= 4 ? "sm:grid-cols-2" : ""} gap-3`}>

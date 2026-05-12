@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navigation } from "@/components/navigation";
 import { SEOMeta } from "@/components/seo-meta";
+import { ReferralLinkBar } from "@/components/referral-link-bar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -312,6 +313,19 @@ export default function PartnerGrowthKit() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Referral Link Bar — prominent above all scripts */}
+      <section className="pb-4 pt-10 px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-3 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">
+              Step 0 — Get Your Link Before Sending Any Script
+            </p>
+          </div>
+          <ReferralLinkBar label="Copy Your Referral Link First — Add It to Every Script" />
         </div>
       </section>
 
