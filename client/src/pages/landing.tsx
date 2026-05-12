@@ -323,102 +323,146 @@ export default function LandingPage() {
         </div>
       </section>
       {/* ============================================
-          FLEX RENTALS FEATURE SPOTLIGHT
+          FLEX RENTALS — CENTRAL REVENUE FEATURE
          ============================================ */}
-      <section className="relative py-16 px-6 border-b border-white/5 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-emerald-500/4 rounded-full blur-[120px] pointer-events-none" />
-        <div className="max-w-4xl mx-auto relative z-10">
+      <section className="relative overflow-hidden border-b border-white/5">
+        {/* Full-bleed photo background */}
+        <img
+          src="https://images.unsplash.com/photo-1560185007-5f0bb1866cab?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-slate-950/70" />
+        <div className="absolute inset-0" style={{background: "radial-gradient(ellipse 90% 100% at 50% 60%, rgba(2,6,23,0.88) 0%, rgba(2,6,23,0.55) 60%, transparent 100%)"}} />
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/8 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20">
+          {/* Top badges */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="grid md:grid-cols-2 gap-8 items-center"
+            className="flex flex-wrap justify-center gap-2 mb-8"
           >
-            {/* Left — copy */}
-            <div className="space-y-5">
-              <div className="flex flex-wrap gap-2">
-                <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-                  <Zap className="w-3 h-3" /> DeliWer's Biggest Survival Hack
-                </div>
-                <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-                  <Flame className="w-3 h-3" /> Just Launched
-                </div>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white leading-tight">
-                Can't afford a full apartment?<br />
-                <span className="text-emerald-400">Find a room this week.</span>
-              </h2>
-              <p className="text-gray-400 font-medium leading-relaxed">
-                Shared villas, partition rooms, private rooms, and studios across Dubai —
-                all without annual contracts or cheques. Move in from <span className="text-white font-black">AED 550/month.</span>
-              </p>
-              <div className="space-y-2.5">
-                {[
-                  { label: "No annual contract — pay month to month", color: "emerald" },
-                  { label: "Bills included options available", color: "teal" },
-                  { label: "Same-day WhatsApp response", color: "blue" },
-                  { label: "Broker referral attribution built in", color: "violet" },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span className="text-sm font-semibold text-gray-300">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3 pt-1">
-                <Link href="/flexible-rentals">
-                  <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all gap-2" data-testid="cta-flex-rentals-spotlight">
-                    <Key className="w-4 h-4" /> Find My Room Now
-                  </Button>
-                </Link>
-                <Link href="/flexible-rentals">
-                  <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-xl px-6 h-11 text-sm transition-all">
-                    Browse All Listings →
-                  </Button>
-                </Link>
-              </div>
+            <div className="inline-flex items-center gap-2 bg-red-500/15 border border-red-500/30 text-red-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
+              <Flame className="w-3 h-3" /> Dubai Rents Up 60% in 3 Years
             </div>
+            <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
+              <Zap className="w-3 h-3" /> The Survival Hack
+            </div>
+            <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
+              11+ Available Now
+            </div>
+          </motion.div>
 
-            {/* Right — live stats grid */}
-            <div className="space-y-3">
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { value: "15+", label: "Active Listings", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
-                  { value: "AED 550", label: "Starting From /mo", color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
-                  { value: "12+", label: "Dubai Areas", color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
-                  { value: "< 2hrs", label: "Avg Response Time", color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
-                ].map((s) => (
-                  <div key={s.label} className={`rounded-2xl border p-4 space-y-1 ${s.bg}`}>
-                    <p className={`text-2xl font-black ${s.color}`}>{s.value}</p>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 leading-tight">{s.label}</p>
-                  </div>
-                ))}
+          {/* Hero headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-center mb-6"
+          >
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.88] text-white mb-4">
+              Dubai Rents<br />
+              <span className="text-red-400">Are Breaking</span><br />
+              <span className="text-emerald-400">People.</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-300 font-black uppercase tracking-tight max-w-2xl mx-auto">
+              We fixed that.
+            </p>
+            <p className="text-gray-400 font-medium max-w-xl mx-auto mt-3 leading-relaxed">
+              Rooms, shared villas, studios — month to month. No cheques. No annual lock-in.
+              Move in from <span className="text-white font-black">AED 550/month.</span>
+            </p>
+          </motion.div>
+
+          {/* Stats bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="flex flex-wrap justify-center gap-6 mb-10 text-center"
+          >
+            {[
+              { value: "AED 550", label: "Starting from /mo" },
+              { value: "15+", label: "Active listings" },
+              { value: "12+", label: "Areas covered" },
+              { value: "< 2hrs", label: "Response time" },
+            ].map((s) => (
+              <div key={s.label} className="space-y-0.5">
+                <p className="text-2xl font-black text-emerald-400">{s.value}</p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">{s.label}</p>
               </div>
-              <div className="bg-slate-900 border border-slate-700/50 rounded-2xl p-4 space-y-3">
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-600">Housing types available</p>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    { label: "Shared Villa", color: "text-amber-400 bg-amber-500/10 border-amber-500/25" },
-                    { label: "Partition Room", color: "text-blue-400 bg-blue-500/10 border-blue-500/25" },
-                    { label: "Private Room", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25" },
-                    { label: "Bed Space", color: "text-violet-400 bg-violet-500/10 border-violet-500/25" },
-                    { label: "Studio", color: "text-rose-400 bg-rose-500/10 border-rose-500/25" },
-                  ].map((t) => (
-                    <span key={t.label} className={`inline-flex items-center border rounded-lg px-2.5 py-1 text-[10px] font-black uppercase tracking-wider ${t.color}`}>
-                      {t.label}
-                    </span>
-                  ))}
-                </div>
-                <Link href="/flexible-rentals">
-                  <div className="flex items-center justify-between pt-1 group cursor-pointer">
-                    <span className="text-xs font-black text-gray-500 uppercase tracking-widest group-hover:text-emerald-400 transition-colors">View all listings</span>
-                    <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all" />
-                  </div>
-                </Link>
-              </div>
-            </div>
+            ))}
+          </motion.div>
+
+          {/* Property type pills */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="flex flex-wrap justify-center gap-2 mb-10"
+          >
+            {[
+              { label: "Shared Villa", color: "text-amber-400 bg-amber-500/10 border-amber-500/25" },
+              { label: "Partition Room", color: "text-blue-400 bg-blue-500/10 border-blue-500/25" },
+              { label: "Private Room", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25" },
+              { label: "Bed Space", color: "text-violet-400 bg-violet-500/10 border-violet-500/25" },
+              { label: "Studio", color: "text-rose-400 bg-rose-500/10 border-rose-500/25" },
+            ].map((t) => (
+              <span key={t.label} className={`inline-flex items-center border rounded-xl px-3 py-1.5 text-[10px] font-black uppercase tracking-widest ${t.color}`}>
+                {t.label}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* Primary CTAs */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link href="/flexible-rentals">
+              <Button
+                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest text-sm px-10 h-14 rounded-2xl shadow-[0_0_40px_-8px_rgba(16,185,129,0.7)] transition-all hover:shadow-[0_0_60px_-8px_rgba(16,185,129,0.9)] gap-2"
+                data-testid="cta-flex-rentals-main"
+              >
+                <Key className="w-5 h-5" /> Find My Room Now
+              </Button>
+            </Link>
+            <Link href="/flexible-rentals">
+              <Button
+                variant="outline"
+                className="border-white/25 text-white hover:bg-white/8 hover:border-white/50 font-black uppercase tracking-widest text-sm px-8 h-14 rounded-2xl transition-all gap-2"
+                data-testid="cta-flex-rentals-browse"
+              >
+                Browse All 15+ Listings <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Checklist row */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.25 }}
+            className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-8"
+          >
+            {["No annual contract", "Bills included options", "Same-day WhatsApp response", "Broker attribution built in", "Verified listings"].map((t) => (
+              <span key={t} className="flex items-center gap-1.5 text-[11px] text-gray-400 font-bold">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" /> {t}
+              </span>
+            ))}
           </motion.div>
         </div>
       </section>

@@ -274,6 +274,27 @@ export function Navigation() {
         </a>
       )}
 
+      {/* ── Flex Living Announcement Bar — consumer side only ── */}
+      {!isBrokerSide && (
+        <a
+          href="/flexible-rentals"
+          data-testid="bar-flex-living-announcement"
+          className="flex items-center justify-center gap-3 py-2 px-4 bg-emerald-700/95 backdrop-blur-sm border-b border-emerald-500/30 hover:bg-emerald-600/95 transition-colors relative z-50 group"
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse shrink-0" />
+          <span className="text-[11px] font-black uppercase tracking-widest text-white">
+            Flex Living
+          </span>
+          <span className="hidden sm:inline text-emerald-300 text-[11px] font-semibold">·</span>
+          <span className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-emerald-100">
+            Rooms &amp; Villas from AED 550/mo · No Annual Contract · Move In This Week
+          </span>
+          <span className="ml-1 px-2 py-0.5 rounded-full bg-white/20 text-white text-[9px] font-black uppercase tracking-widest shrink-0 group-hover:bg-white/30 transition-colors">
+            Browse Rooms →
+          </span>
+        </a>
+      )}
+
       {/* ── Trust Strip — consumer side only ── */}
       {!isBrokerSide && (
         <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-1 px-4 overflow-x-auto no-scrollbar relative z-50">

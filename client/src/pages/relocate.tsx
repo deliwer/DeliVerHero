@@ -14,7 +14,8 @@ import {
   AlertTriangle,
   CheckCircle2,
   MessageSquare,
-  Briefcase
+  Briefcase,
+  Key,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip } from "@/components/trust-strip";
@@ -96,6 +97,26 @@ export default function Relocate() {
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── FLEX LIVING CROSSSELL ── */}
+      <section className="py-5 px-4 bg-emerald-950/50 border-y border-emerald-500/20">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0">
+              <Key className="w-5 h-5 text-emerald-400" />
+            </div>
+            <div>
+              <p className="font-black text-white text-sm uppercase tracking-tight">Still looking for a place?</p>
+              <p className="text-emerald-400/80 text-xs font-semibold mt-0.5">Rooms &amp; villas from AED 550/mo · No annual contract · Move in this week</p>
+            </div>
+          </div>
+          <Link href="/flexible-rentals">
+            <Button className="bg-emerald-600 hover:bg-emerald-500 font-black text-sm rounded-xl px-6 h-10 whitespace-nowrap shrink-0 gap-2" data-testid="cta-relocate-flex-crosssell">
+              <Key className="w-4 h-4" /> Browse Flex Living Rooms <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
         </div>
       </section>
 
