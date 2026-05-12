@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { SEOMeta } from "@/components/seo-meta";
-import { MessageCircle, MapPin, Key } from "lucide-react";
+import { MessageCircle, Key, X } from "lucide-react";
 import {
   FLEXIBLE_LISTINGS,
   PROPERTY_TYPE_LABELS,
@@ -20,6 +20,14 @@ const TYPE_PILLS: { label: string; value: PropertyType | "all" }[] = [
   { label: "Studio", value: "studio" },
   { label: "Partition", value: "partition" },
   { label: "Bed Space", value: "bedspace" },
+];
+
+const BUDGET_OPTIONS = [
+  { label: "Under AED 1,000", wa: "My monthly budget is under AED 1,000. I'm looking for a bed space or partition room." },
+  { label: "AED 1,000 – 2,000", wa: "My monthly budget is AED 1,000–2,000. I'm looking for a private or partition room." },
+  { label: "AED 2,000 – 3,500", wa: "My monthly budget is AED 2,000–3,500. I'm interested in a villa share or private room." },
+  { label: "AED 3,500 – 5,000", wa: "My monthly budget is AED 3,500–5,000. I'm looking for a studio or villa room." },
+  { label: "AED 5,000+", wa: "My monthly budget is AED 5,000 or more. I'm interested in a studio or full apartment." },
 ];
 
 function buildWAInquiry(listing: FlexibleListing, brokerRef: string): string {
@@ -43,6 +51,119 @@ function buildGeneralWA(brokerRef: string): string {
     .filter(Boolean)
     .join("\n");
 }
+
+function buildBudgetWA(budgetMsg: string, brokerRef: string): string {
+  return [
+    `Hello DeliWer 👋`,
+    ``,
+    budgetMsg,
+    ``,
+    `Please send me available options. No annual contract preferred.`,
+    brokerRef ? `Referred by: ${brokerRef}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
+// ── Budget Quiz Sheet ───────────────────────────────────────────────────────
+
+function BudgetQuizSheet({
+  visible,
+  onDismiss,
+  brokerRef,
+}: {
+  visible: boolean;
+  onDismiss: () => void;
+  brokerRef: string;
+}) {
+  function pick(option: (typeof BUDGET_OPTIONS)[number]) {
+    const msg = buildBudgetWA(option.wa, brokerRef);
+    logEvent({
+      ref: brokerRef || undefined,
+      page: "/flexible-rentals",
+      timestamp: new Date().toISOString(),
+      action: "budget_quiz_complete",
+    });
+    onDismiss();
+    window.open(
+      `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,
+      "_blank"
+    );
+  }
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={onDismiss}
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+          />
+
+          {/* Sheet */}
+          <motion.div
+            key="sheet"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 32, stiffness: 320 }}
+            className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900 border-t border-white/10 rounded-t-3xl px-5 pt-5 pb-8 max-w-lg mx-auto"
+          >
+            {/* Handle */}
+            <div className="w-10 h-1 bg-white/15 rounded-full mx-auto mb-6" />
+
+            <div className="flex items-start justify-between mb-5">
+              <div>
+                <p className="text-white font-semibold text-base">
+                  What's your monthly budget?
+                </p>
+                <p className="text-gray-500 text-sm mt-0.5">
+                  We'll send matching options on WhatsApp.
+                </p>
+              </div>
+              <button
+                onClick={onDismiss}
+                data-testid="button-quiz-dismiss"
+                className="text-gray-600 hover:text-gray-400 transition-colors p-1 -mr-1 mt-0.5"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              {BUDGET_OPTIONS.map((opt) => (
+                <button
+                  key={opt.label}
+                  onClick={() => pick(opt)}
+                  data-testid={`button-budget-${opt.label.replace(/\s+/g, "-")}`}
+                  className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl border border-white/8 hover:border-white/20 hover:bg-white/5 text-left transition-colors group"
+                >
+                  <span className="text-gray-300 text-sm font-medium group-hover:text-white transition-colors">
+                    {opt.label}
+                  </span>
+                  <MessageCircle className="w-4 h-4 text-gray-600 group-hover:text-[#25D366] transition-colors shrink-0" />
+                </button>
+              ))}
+            </div>
+
+            <p className="text-center text-xs text-gray-700 mt-4">
+              Opens WhatsApp · No forms · No commitment
+            </p>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// ── Listing Card ────────────────────────────────────────────────────────────
 
 function ListingCard({
   listing,
@@ -77,8 +198,12 @@ function ListingCard({
       className="bg-slate-900/60 border border-white/8 rounded-2xl p-6 flex flex-col gap-5 hover:border-white/15 transition-colors"
     >
       <div className="flex flex-col gap-1.5">
-        <span className="text-xs text-gray-500 font-medium">{typeLabel} · {listing.area}</span>
-        <h3 className="text-white font-semibold text-base leading-snug">{listing.title}</h3>
+        <span className="text-xs text-gray-500 font-medium">
+          {typeLabel} · {listing.area}
+        </span>
+        <h3 className="text-white font-semibold text-base leading-snug">
+          {listing.title}
+        </h3>
         {listing.highlight && (
           <p className="text-emerald-400 text-sm">{listing.highlight}</p>
         )}
@@ -90,7 +215,9 @@ function ListingCard({
         </span>
         <span className="text-gray-500 text-sm mb-0.5">/month</span>
         {listing.billsIncluded && (
-          <span className="ml-2 mb-0.5 text-xs text-teal-400 font-medium">bills incl.</span>
+          <span className="ml-2 mb-0.5 text-xs text-teal-400 font-medium">
+            bills incl.
+          </span>
         )}
       </div>
 
@@ -106,7 +233,9 @@ function ListingCard({
       </div>
 
       <div className="flex items-center justify-between pt-1 border-t border-white/5">
-        <span className="text-xs text-gray-600">Available: {listing.availableFrom}</span>
+        <span className="text-xs text-gray-600">
+          Available: {listing.availableFrom}
+        </span>
         <button
           onClick={inquire}
           data-testid={`button-inquire-${listing.id}`}
@@ -120,8 +249,11 @@ function ListingCard({
   );
 }
 
+// ── Page ────────────────────────────────────────────────────────────────────
+
 export default function FlexibleRentalsPage() {
   const [selectedType, setSelectedType] = useState<PropertyType | "all">("all");
+  const [quizVisible, setQuizVisible] = useState(false);
 
   const brokerRef = useMemo(() => {
     if (typeof window === "undefined") return "";
@@ -133,6 +265,17 @@ export default function FlexibleRentalsPage() {
       localStorage.getItem("deliwer_ref") ||
       ""
     );
+  }, []);
+
+  // Show quiz after 8 s — only once per session
+  useEffect(() => {
+    const already = sessionStorage.getItem("flex_quiz_shown");
+    if (already) return;
+    const timer = setTimeout(() => {
+      setQuizVisible(true);
+      sessionStorage.setItem("flex_quiz_shown", "1");
+    }, 8000);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -159,6 +302,10 @@ export default function FlexibleRentalsPage() {
     );
   }
 
+  function openQuiz() {
+    setQuizVisible(true);
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <SEOMeta
@@ -166,6 +313,13 @@ export default function FlexibleRentalsPage() {
         description="Find flexible monthly accommodation in Dubai — rooms, shared villas, studios, bed spaces. No annual contract. Move in this week via WhatsApp."
       />
       <Navigation />
+
+      {/* Budget quiz sheet */}
+      <BudgetQuizSheet
+        visible={quizVisible}
+        onDismiss={() => setQuizVisible(false)}
+        brokerRef={brokerRef}
+      />
 
       {/* ── HERO ── */}
       <section className="relative pt-28 pb-20 px-4 overflow-hidden">
@@ -185,8 +339,11 @@ export default function FlexibleRentalsPage() {
           </p>
 
           <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-            A place to stay.<br />
-            <span className="text-gray-400 font-normal">No annual contract required.</span>
+            A place to stay.
+            <br />
+            <span className="text-gray-400 font-normal">
+              No annual contract required.
+            </span>
           </h1>
 
           <p className="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto">
@@ -196,7 +353,7 @@ export default function FlexibleRentalsPage() {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
             <button
-              onClick={openWA}
+              onClick={openQuiz}
               data-testid="button-find-place-wa"
               className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#22c55e] text-white font-semibold px-8 py-3.5 rounded-2xl transition-colors text-sm"
             >
@@ -204,7 +361,11 @@ export default function FlexibleRentalsPage() {
               Find my place on WhatsApp
             </button>
             <button
-              onClick={() => document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById("listings")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               data-testid="button-browse-listings"
               className="flex items-center justify-center gap-2 border border-white/15 hover:border-white/30 text-gray-400 hover:text-white font-medium px-8 py-3.5 rounded-2xl transition-colors text-sm"
             >
@@ -221,7 +382,9 @@ export default function FlexibleRentalsPage() {
       {/* ── HOW IT WORKS ── */}
       <section className="py-16 px-4">
         <div className="max-w-3xl mx-auto">
-          <p className="text-center text-gray-500 text-sm font-medium mb-10">How it works</p>
+          <p className="text-center text-gray-500 text-sm font-medium mb-10">
+            How it works
+          </p>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -241,9 +404,13 @@ export default function FlexibleRentalsPage() {
               },
             ].map((step) => (
               <div key={step.n} className="space-y-3">
-                <span className="text-3xl font-bold text-slate-800">{step.n}</span>
+                <span className="text-3xl font-bold text-slate-800">
+                  {step.n}
+                </span>
                 <h3 className="text-white font-semibold">{step.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {step.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -253,7 +420,6 @@ export default function FlexibleRentalsPage() {
       {/* ── LISTINGS ── */}
       <section id="listings" className="py-16 px-4">
         <div className="max-w-5xl mx-auto space-y-8">
-
           {/* Type filter */}
           <div className="flex flex-wrap gap-2">
             {TYPE_PILLS.map((pill) => (
@@ -275,12 +441,18 @@ export default function FlexibleRentalsPage() {
           {/* Grid */}
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
             {filtered.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} brokerRef={brokerRef} />
+              <ListingCard
+                key={listing.id}
+                listing={listing}
+                brokerRef={brokerRef}
+              />
             ))}
           </div>
 
           {filtered.length === 0 && (
-            <p className="text-center text-gray-600 py-16">No listings in this category right now.</p>
+            <p className="text-center text-gray-600 py-16">
+              No listings in this category right now.
+            </p>
           )}
         </div>
       </section>
@@ -292,16 +464,16 @@ export default function FlexibleRentalsPage() {
             Not sure what you need?
           </h2>
           <p className="text-gray-500 leading-relaxed">
-            Message us on WhatsApp. Tell us your budget and we'll handle the rest —
-            no forms, no long process.
+            Tell us your budget and we'll find the right fit — no forms, no
+            long process.
           </p>
           <button
-            onClick={openWA}
-            data-testid="button-bottom-wa"
+            onClick={openQuiz}
+            data-testid="button-bottom-quiz"
             className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#22c55e] text-white font-semibold px-8 py-3.5 rounded-2xl transition-colors text-sm"
           >
             <MessageCircle className="w-4 h-4" />
-            WhatsApp us now
+            What's your budget?
           </button>
 
           <div className="pt-4 border-t border-white/5">
