@@ -485,9 +485,21 @@ export default function FlexibleRentalsPage() {
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden pt-20 pb-10 px-4">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-emerald-500/5 rounded-full blur-[130px]" />
-          <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-violet-500/4 rounded-full blur-[100px]" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+          {/* Real-life photo background */}
+          <img
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            aria-hidden="true"
+          />
+          {/* Dark overlay to keep text readable */}
+          <div className="absolute inset-0 bg-slate-950/82" />
+          {/* Bottom fade into page */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-950 to-transparent" />
+          {/* Subtle emerald tint layer */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-emerald-500/8 rounded-full blur-[130px]" />
+          {/* Subtle grid texture over photo */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
