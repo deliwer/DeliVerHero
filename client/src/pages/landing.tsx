@@ -14,7 +14,10 @@ import {
   AlertTriangle,
   Radio,
   ShieldCheck,
-  Building2
+  Building2,
+  Key,
+  Flame,
+  Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
@@ -215,6 +218,37 @@ export default function LandingPage() {
             </Link>
           </motion.div>
 
+          {/* ── Flexible Rentals Quick-Pick ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="max-w-2xl mx-auto w-full"
+          >
+            <Link href="/flexible-rentals" data-testid="funnel-btn-flexible-rentals">
+              <div className="group flex items-center justify-between gap-4 px-5 py-3.5 bg-emerald-500/8 backdrop-blur-sm border border-emerald-500/30 hover:border-emerald-500/60 hover:bg-emerald-500/12 rounded-xl transition-all">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-emerald-500/15 rounded-lg flex items-center justify-center group-hover:bg-emerald-500/25 transition-all shrink-0">
+                    <Key className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <div>
+                    <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight flex items-center gap-2">
+                      Find a Room / Shared Villa
+                      <span className="bg-emerald-500 text-slate-950 text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full">New</span>
+                    </div>
+                    <div className="text-[9px] text-emerald-400/80 font-semibold leading-tight">No contract · from AED 550/mo · move in this week</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="flex items-center gap-1 text-[9px] font-black text-amber-400 uppercase tracking-wider">
+                    <Flame className="w-3 h-3" /> 11 available
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+
           {/* ── Partner pull-quote ── */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -281,6 +315,107 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      {/* ============================================
+          FLEX RENTALS FEATURE SPOTLIGHT
+         ============================================ */}
+      <section className="relative py-16 px-6 border-b border-white/5 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-emerald-500/4 rounded-full blur-[120px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="grid md:grid-cols-2 gap-8 items-center"
+          >
+            {/* Left — copy */}
+            <div className="space-y-5">
+              <div className="flex flex-wrap gap-2">
+                <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
+                  <Zap className="w-3 h-3" /> DeliWer's Biggest Survival Hack
+                </div>
+                <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
+                  <Flame className="w-3 h-3" /> Just Launched
+                </div>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white leading-tight">
+                Can't afford a full apartment?<br />
+                <span className="text-emerald-400">Find a room this week.</span>
+              </h2>
+              <p className="text-gray-400 font-medium leading-relaxed">
+                Shared villas, partition rooms, private rooms, and studios across Dubai —
+                all without annual contracts or cheques. Move in from <span className="text-white font-black">AED 550/month.</span>
+              </p>
+              <div className="space-y-2.5">
+                {[
+                  { label: "No annual contract — pay month to month", color: "emerald" },
+                  { label: "Bills included options available", color: "teal" },
+                  { label: "Same-day WhatsApp response", color: "blue" },
+                  { label: "Broker referral attribution built in", color: "violet" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span className="text-sm font-semibold text-gray-300">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                <Link href="/flexible-rentals">
+                  <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all gap-2" data-testid="cta-flex-rentals-spotlight">
+                    <Key className="w-4 h-4" /> Find My Room Now
+                  </Button>
+                </Link>
+                <Link href="/flexible-rentals">
+                  <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-xl px-6 h-11 text-sm transition-all">
+                    Browse All Listings →
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — live stats grid */}
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { value: "15+", label: "Active Listings", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
+                  { value: "AED 550", label: "Starting From /mo", color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
+                  { value: "12+", label: "Dubai Areas", color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+                  { value: "< 2hrs", label: "Avg Response Time", color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
+                ].map((s) => (
+                  <div key={s.label} className={`rounded-2xl border p-4 space-y-1 ${s.bg}`}>
+                    <p className={`text-2xl font-black ${s.color}`}>{s.value}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 leading-tight">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-slate-900 border border-slate-700/50 rounded-2xl p-4 space-y-3">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-600">Housing types available</p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { label: "Shared Villa", color: "text-amber-400 bg-amber-500/10 border-amber-500/25" },
+                    { label: "Partition Room", color: "text-blue-400 bg-blue-500/10 border-blue-500/25" },
+                    { label: "Private Room", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25" },
+                    { label: "Bed Space", color: "text-violet-400 bg-violet-500/10 border-violet-500/25" },
+                    { label: "Studio", color: "text-rose-400 bg-rose-500/10 border-rose-500/25" },
+                  ].map((t) => (
+                    <span key={t.label} className={`inline-flex items-center border rounded-lg px-2.5 py-1 text-[10px] font-black uppercase tracking-wider ${t.color}`}>
+                      {t.label}
+                    </span>
+                  ))}
+                </div>
+                <Link href="/flexible-rentals">
+                  <div className="flex items-center justify-between pt-1 group cursor-pointer">
+                    <span className="text-xs font-black text-gray-500 uppercase tracking-widest group-hover:text-emerald-400 transition-colors">View all listings</span>
+                    <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all" />
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ============================================
           SECTION 3 (UNIFIED) — WHAT DELIVERWER HANDLES
          ============================================ */}
