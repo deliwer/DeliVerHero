@@ -152,38 +152,104 @@ function BudgetQuizSheet({
   );
 }
 
+// ── Shared card image placeholder per type ─────────────────────────────────────
+
+const TYPE_FALLBACK_IMAGES: Record<string, string> = {
+  "villa-share": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+  room: "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?auto=format&fit=crop&w=800&q=80",
+  studio: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
+  partition: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
+  bedspace: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80",
+};
+
 // ── Static Listing Card ────────────────────────────────────────────────────────
 
 function StaticListingCard({ listing, brokerRef }: { listing: FlexibleListing; brokerRef: string }) {
+  const [imgErr, setImgErr] = useState(false);
+
   function inquire() {
     logEvent({ ref: brokerRef || undefined, page: "/flexible-rentals", timestamp: new Date().toISOString(), action: "whatsapp_click" });
     openWA(listing.whatsappNumber, buildWAInquiry(listing, brokerRef));
   }
+
+  const imgSrc = imgErr ? TYPE_FALLBACK_IMAGES[listing.type] : listing.image;
+
   return (
-    <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+    <motion.div
+      initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
       transition={{ duration: 0.35 }}
-      className="bg-slate-900/60 border border-white/8 rounded-2xl p-6 flex flex-col gap-4 hover:border-white/16 transition-colors">
-      <div className="flex flex-col gap-1">
-        <span className="text-xs text-gray-500 font-medium">{PROPERTY_TYPE_LABELS[listing.type]} · {listing.area}</span>
-        <h3 className="text-white font-semibold text-base leading-snug">{listing.title}</h3>
-        {listing.highlight && <p className="text-emerald-400 text-sm">{listing.highlight}</p>}
+      className="bg-slate-900/60 border border-white/8 rounded-2xl overflow-hidden flex flex-col hover:border-white/16 transition-colors group"
+    >
+      {/* Image */}
+      <div className="relative h-48 overflow-hidden bg-slate-800 shrink-0">
+        <img
+          src={imgSrc}
+          alt={listing.title}
+          onError={() => setImgErr(true)}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        {/* Overlay badges */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+        <div className="absolute top-3 left-3 flex gap-1.5">
+          <span className="text-[10px] font-semibold text-white bg-slate-900/80 backdrop-blur-sm border border-white/10 rounded-lg px-2 py-1">
+            {PROPERTY_TYPE_LABELS[listing.type]}
+          </span>
+          {listing.badge && (
+            <span className="text-[10px] font-semibold text-amber-300 bg-amber-500/20 border border-amber-500/30 backdrop-blur-sm rounded-lg px-2 py-1">
+              {listing.badge}
+            </span>
+          )}
+        </div>
+        {listing.status === "limited" && (
+          <div className="absolute top-3 right-3">
+            <span className="text-[10px] font-semibold text-red-300 bg-red-500/20 border border-red-500/30 backdrop-blur-sm rounded-lg px-2 py-1">
+              Last rooms
+            </span>
+          </div>
+        )}
+        <div className="absolute bottom-3 left-3">
+          <span className="text-white font-bold text-lg leading-none drop-shadow-lg">
+            AED {listing.monthlyPrice.toLocaleString()}
+            <span className="text-gray-300 text-xs font-normal ml-1">/mo</span>
+          </span>
+        </div>
       </div>
-      <div className="flex items-end gap-1">
-        <span className="text-2xl font-bold text-white">AED {listing.monthlyPrice.toLocaleString()}</span>
-        <span className="text-gray-500 text-sm mb-0.5">/month</span>
-        {listing.billsIncluded && <span className="ml-2 mb-0.5 text-xs text-teal-400 font-medium">bills incl.</span>}
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {listing.amenities.slice(0, 3).map((a) => (
-          <span key={a} className="text-xs text-gray-500 bg-white/5 rounded-lg px-2.5 py-1">{a}</span>
-        ))}
-      </div>
-      <div className="flex items-center justify-between pt-1 border-t border-white/5">
-        <span className="text-xs text-gray-600">Available: {listing.availableFrom}</span>
-        <button onClick={inquire} data-testid={`button-inquire-${listing.id}`}
-          className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#22c55e] text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors">
-          <MessageCircle className="w-3.5 h-3.5" /> Inquire
-        </button>
+
+      {/* Content */}
+      <div className="p-4 flex flex-col gap-3 flex-1">
+        <div>
+          <p className="text-xs text-gray-500 mb-0.5">{listing.area} · {listing.community}</p>
+          <h3 className="text-white font-semibold text-sm leading-snug">{listing.title}</h3>
+          {listing.highlight && (
+            <p className="text-emerald-400 text-xs mt-1">{listing.highlight}</p>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-1.5">
+          {listing.amenities.slice(0, 4).map((a) => (
+            <span key={a} className="text-[11px] text-gray-500 bg-white/5 rounded-md px-2 py-0.5">{a}</span>
+          ))}
+          {listing.amenities.length > 4 && (
+            <span className="text-[11px] text-gray-600 px-1">+{listing.amenities.length - 4}</span>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
+          <div className="flex items-center gap-2">
+            {listing.billsIncluded && (
+              <span className="text-[10px] text-teal-400 font-medium bg-teal-500/10 rounded-md px-2 py-0.5">Bills incl.</span>
+            )}
+            <span className="text-[11px] text-gray-600">From {listing.availableFrom}</span>
+          </div>
+          <button
+            onClick={inquire}
+            data-testid={`button-inquire-${listing.id}`}
+            className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#22c55e] text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition-colors"
+          >
+            <MessageCircle className="w-3.5 h-3.5" /> Inquire
+          </button>
+        </div>
       </div>
     </motion.div>
   );
@@ -192,42 +258,83 @@ function StaticListingCard({ listing, brokerRef }: { listing: FlexibleListing; b
 // ── DB Listing Card ────────────────────────────────────────────────────────────
 
 function DBListingCard({ listing, brokerRef }: { listing: FlexListingDB; brokerRef: string }) {
+  const [imgErr, setImgErr] = useState(false);
+
   function inquire() {
-    const msg = buildWAInquiry(listing, brokerRef);
-    openWA(WA_NUMBER, msg);
+    openWA(WA_NUMBER, buildWAInquiry(listing, brokerRef));
   }
+
   const typeLabel = PROPERTY_TYPE_LABELS[listing.type as PropertyType] || listing.type;
+  const fallbackImg = TYPE_FALLBACK_IMAGES[listing.type] || TYPE_FALLBACK_IMAGES["room"];
+  const imgSrc = imgErr || !("image" in listing && (listing as any).image)
+    ? fallbackImg
+    : (listing as any).image;
+
   return (
-    <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+    <motion.div
+      initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
       transition={{ duration: 0.35 }}
-      className="bg-slate-900/80 border border-emerald-500/20 rounded-2xl p-6 flex flex-col gap-4 hover:border-emerald-500/35 transition-colors">
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex flex-col gap-1">
-          <span className="text-xs text-gray-500 font-medium">{typeLabel} · {listing.area}</span>
-          <h3 className="text-white font-semibold text-base leading-snug">{listing.title}</h3>
+      className="bg-slate-900/80 border border-emerald-500/20 rounded-2xl overflow-hidden flex flex-col hover:border-emerald-500/35 transition-colors group"
+    >
+      {/* Image */}
+      <div className="relative h-48 overflow-hidden bg-slate-800 shrink-0">
+        <img
+          src={imgSrc}
+          alt={listing.title}
+          onError={() => setImgErr(true)}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+        <div className="absolute top-3 left-3 flex gap-1.5">
+          <span className="text-[10px] font-semibold text-white bg-slate-900/80 backdrop-blur-sm border border-white/10 rounded-lg px-2 py-1">
+            {typeLabel}
+          </span>
+          <span className="text-[10px] font-semibold text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 backdrop-blur-sm rounded-lg px-2 py-1">
+            New listing
+          </span>
         </div>
-        <span className="shrink-0 text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2.5 py-1 mt-0.5">
-          New
-        </span>
-      </div>
-      <div className="flex items-end gap-1">
-        <span className="text-2xl font-bold text-white">AED {listing.monthlyPrice.toLocaleString()}</span>
-        <span className="text-gray-500 text-sm mb-0.5">/month</span>
-        {listing.billsIncluded && <span className="ml-2 mb-0.5 text-xs text-teal-400 font-medium">bills incl.</span>}
-      </div>
-      {listing.amenities.length > 0 && (
-        <div className="flex flex-wrap gap-2">
-          {listing.amenities.slice(0, 3).map((a) => (
-            <span key={a} className="text-xs text-gray-500 bg-white/5 rounded-lg px-2.5 py-1">{a}</span>
-          ))}
+        <div className="absolute bottom-3 left-3">
+          <span className="text-white font-bold text-lg leading-none drop-shadow-lg">
+            AED {listing.monthlyPrice.toLocaleString()}
+            <span className="text-gray-300 text-xs font-normal ml-1">/mo</span>
+          </span>
         </div>
-      )}
-      <div className="flex items-center justify-between pt-1 border-t border-white/5">
-        <span className="text-xs text-gray-600">Available: {listing.availableFrom}</span>
-        <button onClick={inquire} data-testid={`button-inquire-db-${listing.id}`}
-          className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#22c55e] text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors">
-          <MessageCircle className="w-3.5 h-3.5" /> Inquire
-        </button>
+      </div>
+
+      {/* Content */}
+      <div className="p-4 flex flex-col gap-3 flex-1">
+        <div>
+          <p className="text-xs text-gray-500 mb-0.5">{listing.area}{listing.community ? ` · ${listing.community}` : ""}</p>
+          <h3 className="text-white font-semibold text-sm leading-snug">{listing.title}</h3>
+        </div>
+
+        {listing.amenities.length > 0 && (
+          <div className="flex flex-wrap gap-1.5">
+            {listing.amenities.slice(0, 4).map((a) => (
+              <span key={a} className="text-[11px] text-gray-500 bg-white/5 rounded-md px-2 py-0.5">{a}</span>
+            ))}
+            {listing.amenities.length > 4 && (
+              <span className="text-[11px] text-gray-600 px-1">+{listing.amenities.length - 4}</span>
+            )}
+          </div>
+        )}
+
+        <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
+          <div className="flex items-center gap-2">
+            {listing.billsIncluded && (
+              <span className="text-[10px] text-teal-400 font-medium bg-teal-500/10 rounded-md px-2 py-0.5">Bills incl.</span>
+            )}
+            <span className="text-[11px] text-gray-600">From {listing.availableFrom}</span>
+          </div>
+          <button
+            onClick={inquire}
+            data-testid={`button-inquire-db-${listing.id}`}
+            className="flex items-center gap-1.5 bg-[#25D366] hover:bg-[#22c55e] text-white text-xs font-semibold px-3.5 py-2 rounded-xl transition-colors"
+          >
+            <MessageCircle className="w-3.5 h-3.5" /> Inquire
+          </button>
+        </div>
       </div>
     </motion.div>
   );

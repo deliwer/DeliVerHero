@@ -22,6 +22,7 @@ export interface FlexibleListing {
   spotsLeft?: number;
   gender?: "any" | "male" | "female" | "couples";
   billsIncluded?: boolean;
+  image: string;
 }
 
 export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
@@ -45,6 +46,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     spotsLeft: 1,
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-102",
@@ -64,6 +66,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "All bills included",
     gender: "any",
     billsIncluded: true,
+    image: "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-103",
@@ -82,6 +85,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     spotsLeft: 2,
     gender: "male",
     billsIncluded: true,
+    image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-104",
@@ -101,6 +105,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Garden & pool access",
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-105",
@@ -121,6 +126,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Monthly, no annual lock-in",
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-106",
@@ -141,6 +147,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Ideal for company housing",
     gender: "male",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1537726235470-8504e3beef77?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-107",
@@ -158,6 +165,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "5-min walk to metro",
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-108",
@@ -179,6 +187,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     spotsLeft: 1,
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-109",
@@ -199,6 +208,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Lake view from bedroom",
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-110",
@@ -219,6 +229,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Netflix & housekeeping included",
     gender: "any",
     billsIncluded: true,
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-111",
@@ -237,6 +248,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Safe, quiet female-only floor",
     gender: "female",
     billsIncluded: true,
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-112",
@@ -258,6 +270,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     spotsLeft: 1,
     gender: "couples",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-113",
@@ -274,6 +287,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Near tech companies",
     gender: "male",
     billsIncluded: true,
+    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-114",
@@ -295,6 +309,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     spotsLeft: 1,
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80",
   },
   {
     id: "FR-115",
@@ -316,6 +331,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     spotsLeft: 1,
     gender: "any",
     billsIncluded: false,
+    image: "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
