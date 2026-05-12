@@ -622,7 +622,7 @@ export default function PartnersPage() {
                       </Button>
                     </Link>
                     <Button data-testid="button-choose-real-estate-join" onClick={() => scrollToJoin("real-estate")} variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black h-10 rounded-2xl text-sm">
-                      Join Real Estate Track
+                      Join Broker Track
                     </Button>
                   </div>
                 </div>
