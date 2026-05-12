@@ -492,14 +492,18 @@ export default function FlexibleRentalsPage() {
             className="absolute inset-0 w-full h-full object-cover object-center"
             aria-hidden="true"
           />
-          {/* Dark overlay to keep text readable */}
-          <div className="absolute inset-0 bg-slate-950/82" />
+          {/* Base dark overlay — lighter so the photo reads through */}
+          <div className="absolute inset-0 bg-slate-950/60" />
+          {/* Radial gradient scrim centered on the text column */}
+          <div className="absolute inset-0" style={{background: "radial-gradient(ellipse 80% 90% at 50% 45%, rgba(2,6,23,0.88) 0%, rgba(2,6,23,0.65) 55%, transparent 100%)"}} />
+          {/* Top-to-bottom vignette so the nav area stays dark */}
+          <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-slate-950/90 to-transparent" />
           {/* Bottom fade into page */}
-          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-slate-950 to-transparent" />
-          {/* Subtle emerald tint layer */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-emerald-500/8 rounded-full blur-[130px]" />
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-slate-950 to-transparent" />
+          {/* Subtle emerald bloom behind headline */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-emerald-500/8 rounded-full blur-[120px]" />
           {/* Subtle grid texture over photo */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto">
