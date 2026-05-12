@@ -229,6 +229,12 @@ function Router() {
       return;
     }
 
+    // Domain-based routing for rentals.deliwer.com → Flex Living rentals portal
+    if ((hostname === 'rentals.deliwer.com' || hostname === 'www.rentals.deliwer.com') && location === '/') {
+      setLocation('/flexible-rentals');
+      return;
+    }
+
     // Domain-based routing for earn.deliwer.com → affiliate/influencer earn page
     if ((hostname === 'earn.deliwer.com' || hostname === 'www.earn.deliwer.com') && location === '/') {
       setLocation('/earn');
