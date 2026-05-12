@@ -1953,6 +1953,30 @@ export const brokerBlacklist = pgTable("broker_blacklist", {
   blacklistedAt: timestamp("blacklisted_at").notNull().default(sql`now()`),
 });
 
+// ── Flex Living Inventory ──────────────────────────────────────────────────────────────────────
+// Submitted by property managers / landlords via /flex-living page
+export const flexListings = pgTable("flex_listings", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  area: text("area").notNull(),
+  community: text("community"),
+  type: text("type").notNull(), // villa-share | partition | room | bedspace | studio
+  monthlyPrice: integer("monthly_price").notNull(),
+  amenities: text("amenities").array().notNull().default(sql`'{}'::text[]`),
+  billsIncluded: boolean("bills_included").notNull().default(false),
+  availableFrom: text("available_from").notNull().default("Immediate"),
+  status: text("status").notNull().default("pending"), // pending | active | filled
+  managerName: text("manager_name").notNull(),
+  managerPhone: text("manager_phone").notNull(),
+  notes: text("notes"),
+  brokerRef: text("broker_ref"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertFlexListingSchema = createInsertSchema(flexListings).omit({ id: true, createdAt: true });
+export type FlexListing = typeof flexListings.$inferSelect;
+export type InsertFlexListing = z.infer<typeof insertFlexListingSchema>;
+
 // ── Broker Funnel Events ───────────────────────────────────────────────────────────────────────
 // Records every meaningful touchpoint in the trust-strip → /partners → /brokers → apply funnel
 export const brokerFunnelEvents = pgTable("broker_funnel_events", {

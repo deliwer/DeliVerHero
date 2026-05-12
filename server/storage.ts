@@ -1,7 +1,7 @@
 import pg from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { brokers, type Broker, type InsertBroker, users, heroes, tradeIns, impactStats, referrals, contacts, conciergeConversations, founderStreaks } from "@shared/schema";
-import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type FounderStreak, type InsertFounderStreak } from "@shared/schema";
+import { brokers, type Broker, type InsertBroker, users, heroes, tradeIns, impactStats, referrals, contacts, conciergeConversations, founderStreaks, flexListings } from "@shared/schema";
+import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type FounderStreak, type InsertFounderStreak, type FlexListing, type InsertFlexListing } from "@shared/schema";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -20,6 +20,9 @@ export interface IStorage {
   updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<any>;
   logBrokerFunnelEvent(event: { event: string; page?: string; stage?: string; utmSource?: string; sessionId?: string }): Promise<void>;
   getBrokerFunnelReport(): Promise<any>;
+  getFlexListings(status?: string): Promise<FlexListing[]>;
+  createFlexListing(listing: InsertFlexListing): Promise<FlexListing>;
+  updateFlexListingStatus(id: string, status: string): Promise<FlexListing | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -29,6 +32,7 @@ export class MemStorage implements IStorage {
   private founderStreaks: Map<string, FounderStreak>;
   private brokers: Map<string, Broker>;
   private brokerFunnelEventsList: Array<{ id: string; event: string; page?: string; stage?: string; utmSource?: string; sessionId?: string; createdAt: Date }>;
+  private flexListingsMap: Map<string, FlexListing>;
   sessionStore: any;
 
   constructor() {
@@ -38,6 +42,46 @@ export class MemStorage implements IStorage {
     this.founderStreaks = new Map();
     this.brokers = new Map();
     this.brokerFunnelEventsList = [];
+    this.flexListingsMap = new Map();
+  }
+
+  async getFlexListings(status?: string): Promise<FlexListing[]> {
+    const all = Array.from(this.flexListingsMap.values()).sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    if (status) return all.filter((l) => l.status === status);
+    return all;
+  }
+
+  async createFlexListing(listing: InsertFlexListing): Promise<FlexListing> {
+    const id = `fl_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    const newListing: FlexListing = {
+      id,
+      title: listing.title,
+      area: listing.area,
+      community: listing.community ?? null,
+      type: listing.type,
+      monthlyPrice: listing.monthlyPrice,
+      amenities: listing.amenities ?? [],
+      billsIncluded: listing.billsIncluded ?? false,
+      availableFrom: listing.availableFrom ?? "Immediate",
+      status: listing.status ?? "pending",
+      managerName: listing.managerName,
+      managerPhone: listing.managerPhone,
+      notes: listing.notes ?? null,
+      brokerRef: listing.brokerRef ?? null,
+      createdAt: new Date(),
+    };
+    this.flexListingsMap.set(id, newListing);
+    return newListing;
+  }
+
+  async updateFlexListingStatus(id: string, status: string): Promise<FlexListing | undefined> {
+    const listing = this.flexListingsMap.get(id);
+    if (!listing) return undefined;
+    const updated = { ...listing, status };
+    this.flexListingsMap.set(id, updated);
+    return updated;
   }
 
   async getBrokers(): Promise<Broker[]> {
