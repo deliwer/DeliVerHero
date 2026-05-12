@@ -36,7 +36,6 @@ const deliwerNavItems = [
   { path: "/home-services",  label: "Home Service", id: "home-service", icon: Star },
   { path: "/errand",         label: "Errand",       id: "errand",       icon: ClipboardList },
   { path: "/setup",          label: "Setup",        id: "setup",        icon: Building2 },
-  { path: "/realestate",     label: "My Home",      id: "realestate",   icon: MapPin },
   { path: "/earn",           label: "Earnings",     id: "earn",         icon: DollarSign },
   { path: "/consult",        label: "Consult",      id: "consult",      icon: CalendarCheck },
 ];
