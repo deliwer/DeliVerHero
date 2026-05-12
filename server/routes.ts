@@ -79,9 +79,9 @@ if (process.env.STRIPE_SECRET_KEY) {
 
 // Initialize OpenAI only if API key is available
 let openai: OpenAI | null = null;
-if (process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY) {
+if (process.env.OPENAI_API_KEY) {
   openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY || process.env.VITE_OPENAI_API_KEY || "",
+    apiKey: process.env.OPENAI_API_KEY,
   });
 } else {
   console.log("OPENAI_API_KEY not set - AI chat functionality will be disabled");

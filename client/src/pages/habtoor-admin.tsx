@@ -62,7 +62,7 @@ export default function HabtoorAdmin() {
 
   function login(e: React.FormEvent) {
     e.preventDefault();
-    if (tokenInput === ADMIN_TOKEN || tokenInput === (import.meta.env.VITE_ADMIN_SECRET || "")) {
+    if (tokenInput === ADMIN_TOKEN) {
       localStorage.setItem("hpv_admin_token", tokenInput);
       setToken(tokenInput);
     } else {

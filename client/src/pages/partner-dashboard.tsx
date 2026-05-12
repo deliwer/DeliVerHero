@@ -131,7 +131,7 @@ export default function PartnerDashboard() {
 
   function hpvLogin(e: React.FormEvent) {
     e.preventDefault();
-    if (hpvTokenInput === ADMIN_TOKEN || hpvTokenInput === (import.meta.env.VITE_ADMIN_SECRET || "")) {
+    if (hpvTokenInput === ADMIN_TOKEN) {
       localStorage.setItem("hpv_admin_token", hpvTokenInput);
       setHpvToken(hpvTokenInput);
     } else {

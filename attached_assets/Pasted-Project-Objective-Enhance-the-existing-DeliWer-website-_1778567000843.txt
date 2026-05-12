@@ -1,0 +1,192 @@
+Project Objective:
+
+Enhance the existing DeliWer website hosted on Vercel by adding a new “Flexible Rentals / Shared Living” flow under the existing “My Home” menu without modifying or disturbing any existing pages, navigation structure, business flows, APIs, or user journeys currently active on the website.
+
+Purpose:
+
+Create a lightweight, scalable, and reversible real estate subletting / flexible renting module focused on:
+
+* Shared villas
+* Partition rooms
+* Bed spaces
+* Flexible monthly stays
+* On-demand accommodation
+* Cost-sharing housing
+* Temporary workforce housing
+* Affordable urban living solutions
+
+The solution must support:
+
+* Property owners
+* Brokers / affiliates
+* Technical services teams
+* Management consultancy services
+* Real estate partners
+
+Key Requirements:
+
+1. Existing Website Preservation
+
+* Do NOT redesign the existing website.
+* Do NOT disturb existing pages, sections, menus, layouts, CSS, APIs, or flows.
+* Add the new module as an extension inside the existing “My Home” section only.
+* Maintain full compatibility with current Vercel static hosting architecture.
+
+2. New “Flexible Rentals” Subsection
+   Inside “My Home”, create:
+
+* Flexible Rentals
+* Shared Living
+* Subletting Solutions
+* Affordable Stay Options
+
+This should appear as an additional tab/card/section only.
+
+3. Static Inventory System (No Database)
+   Do NOT use a backend database.
+
+Instead:
+
+* Create a lightweight inventory system using static JSON files.
+* Store listings inside:
+  /data/flexible-rentals.json
+
+Each listing should contain:
+
+* Property ID
+* Property title
+* Area/location
+* Type (villa, partition, room, bedspace, apartment)
+* Monthly price
+* Capacity
+* Amenities
+* Images
+* Broker/partner attribution
+* WhatsApp contact number
+* Availability status
+
+4. WhatsApp-Based Lead Flow
+   Avoid traditional booking systems.
+
+Instead:
+
+* Every property card must include:
+  “Inquire on WhatsApp”
+* Clicking the button should open WhatsApp with a prefilled message.
+
+Example:
+“Hello DeliWer, I am interested in Flexible Rental Property ID FR-102 in Al Nahda.”
+
+Use:
+https://wa.me/
+
+Enable attribution tracking by appending:
+
+* Property ID
+* Broker code
+* Source page
+* Campaign tag
+
+5. Partner / Broker Attribution
+   Support the existing DeliWer ecosystem model:
+
+* Brokers
+* Affiliates
+* Technical services companies
+* Property managers
+* Consultancy partners
+
+Implement lightweight attribution through:
+
+* URL parameters
+* Local storage
+* Query strings
+
+Example:
+?ref=broker001
+
+Preserve attribution during navigation and WhatsApp inquiry generation.
+
+6. Technical Services Integration
+   Add optional service tags under listings:
+
+* Partition fitting
+* Maintenance
+* Furnishing
+* AC servicing
+* WiFi setup
+* Cleaning
+* Government documentation support
+
+These should connect conceptually with:
+
+* Technical services company
+* Management consultancy company
+* Real estate company ecosystem
+
+7. Frontend Requirements
+   Use the existing frontend framework and styling already present on DeliWer.
+
+Requirements:
+
+* Mobile-first responsive layout
+* Fast-loading static pages
+* SEO-friendly structure
+* Clean cards/grid layout
+* Minimal animations
+* Preserve current design language
+
+8. Suggested New Pages
+   Create only additive pages:
+
+/myhome/flexible-rentals
+/myhome/shared-living
+/myhome/subletting
+/myhome/partner-listings
+
+Do not modify other existing routes.
+
+9. Reversible Deployment
+   Implementation must remain:
+
+* Modular
+* Reversible
+* Isolated from existing flows
+
+All new functionality should be removable without affecting the main platform.
+
+10. Business Positioning
+    Position this module as:
+    “Austerity-driven affordable urban living and flexible accommodation solution during economic slowdown and changing housing demand.”
+
+Focus on:
+
+* Cost reduction
+* Extra income for property owners
+* Better utilization of vacant spaces
+* Flexible living
+* Shared economy
+* Urban capacity optimization
+
+11. Deployment
+    Deploy directly to existing Vercel hosting with:
+
+* No backend dependency
+* No database dependency
+* Static rendering compatibility
+* SEO optimization
+* Existing analytics preservation
+
+12. Future Scalability Preparation
+    Structure the module so future upgrades can support:
+
+* API integration
+* Dynamic inventory
+* Real estate dashboards
+* AI recommendations
+* Booking systems
+* Payment integration
+* Referral systems
+* Agent onboarding
+
+without requiring a rebuild.
