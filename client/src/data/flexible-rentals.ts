@@ -1,11 +1,6 @@
 export type PropertyType = "villa-share" | "partition" | "room" | "bedspace" | "studio";
 export type AvailStatus = "available" | "limited" | "enquire";
 
-export interface ServiceTag {
-  label: string;
-  color: string;
-}
-
 export interface FlexibleListing {
   id: string;
   title: string;
@@ -24,6 +19,9 @@ export interface FlexibleListing {
   beds?: number;
   baths?: number;
   highlight?: string;
+  spotsLeft?: number;
+  gender?: "any" | "male" | "female" | "couples";
+  billsIncluded?: boolean;
 }
 
 export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
@@ -44,6 +42,9 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "Pool & gym included",
+    spotsLeft: 1,
+    gender: "any",
+    billsIncluded: false,
   },
   {
     id: "FR-102",
@@ -61,6 +62,8 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "All bills included",
+    gender: "any",
+    billsIncluded: true,
   },
   {
     id: "FR-103",
@@ -76,6 +79,9 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     status: "limited",
     badge: "Value Pick",
     highlight: "Lowest cost per night",
+    spotsLeft: 2,
+    gender: "male",
+    billsIncluded: true,
   },
   {
     id: "FR-104",
@@ -93,6 +99,8 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "Garden & pool access",
+    gender: "any",
+    billsIncluded: false,
   },
   {
     id: "FR-105",
@@ -111,6 +119,8 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "Monthly, no annual lock-in",
+    gender: "any",
+    billsIncluded: false,
   },
   {
     id: "FR-106",
@@ -129,6 +139,8 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 4,
     baths: 2,
     highlight: "Ideal for company housing",
+    gender: "male",
+    billsIncluded: false,
   },
   {
     id: "FR-107",
@@ -144,6 +156,8 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     availableFrom: "Immediate",
     status: "available",
     highlight: "5-min walk to metro",
+    gender: "any",
+    billsIncluded: false,
   },
   {
     id: "FR-108",
@@ -162,6 +176,9 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "Min 1 month, no annual needed",
+    spotsLeft: 1,
+    gender: "any",
+    billsIncluded: false,
   },
   {
     id: "FR-109",
@@ -180,6 +197,8 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "Lake view from bedroom",
+    gender: "any",
+    billsIncluded: false,
   },
   {
     id: "FR-110",
@@ -198,6 +217,105 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "Netflix & housekeeping included",
+    gender: "any",
+    billsIncluded: true,
+  },
+  {
+    id: "FR-111",
+    title: "Female-Only Partition Room — Quiet Compound",
+    area: "Mirdif",
+    community: "Uptown Mirdif",
+    type: "partition",
+    monthlyPrice: 1050,
+    capacity: 1,
+    amenities: ["AC", "Shared Kitchen", "WiFi", "DEWA Included", "Security", "Nearby Mall"],
+    services: ["Partition Fitting", "Cleaning"],
+    whatsappNumber: "971523946311",
+    availableFrom: "Immediate",
+    status: "available",
+    badge: "Female Only",
+    highlight: "Safe, quiet female-only floor",
+    gender: "female",
+    billsIncluded: true,
+  },
+  {
+    id: "FR-112",
+    title: "Couples Room in Shared Villa",
+    area: "Al Furjan",
+    community: "Al Furjan West",
+    type: "villa-share",
+    monthlyPrice: 3500,
+    capacity: 2,
+    amenities: ["Private AC", "En-suite Bathroom", "Garden", "Parking", "WiFi", "Shared Pool"],
+    services: ["Cleaning", "Maintenance"],
+    whatsappNumber: "971523946311",
+    availableFrom: "Immediate",
+    status: "available",
+    badge: "Couples OK",
+    beds: 1,
+    baths: 1,
+    highlight: "Garden villa, couples welcome",
+    spotsLeft: 1,
+    gender: "couples",
+    billsIncluded: false,
+  },
+  {
+    id: "FR-113",
+    title: "Bed Space — Executive Shared Flat",
+    area: "Silicon Oasis",
+    community: "Cedre Villas",
+    type: "bedspace",
+    monthlyPrice: 650,
+    capacity: 1,
+    amenities: ["AC", "WiFi", "DEWA Included", "Locker", "Shared Kitchen", "Parking"],
+    whatsappNumber: "971523946311",
+    availableFrom: "Immediate",
+    status: "available",
+    highlight: "Near tech companies",
+    gender: "male",
+    billsIncluded: true,
+  },
+  {
+    id: "FR-114",
+    title: "Premium Room in 5BR Jumeirah Villa",
+    area: "Jumeirah",
+    community: "Jumeirah 3",
+    type: "villa-share",
+    monthlyPrice: 4200,
+    capacity: 1,
+    amenities: ["En-suite Bathroom", "Pool", "Maid Service", "Parking", "WiFi", "Private Entrance"],
+    services: ["Cleaning", "Furnishing", "Maintenance"],
+    whatsappNumber: "971523946311",
+    availableFrom: "Immediate",
+    status: "limited",
+    badge: "Luxury",
+    beds: 1,
+    baths: 1,
+    highlight: "Private entrance, maid service",
+    spotsLeft: 1,
+    gender: "any",
+    billsIncluded: false,
+  },
+  {
+    id: "FR-115",
+    title: "Short-Term Studio — Move in This Week",
+    area: "Downtown Dubai",
+    community: "Burj Views",
+    type: "studio",
+    monthlyPrice: 6500,
+    capacity: 2,
+    amenities: ["Full Kitchen", "Balcony", "Pool & Gym", "Concierge", "WiFi", "Burj View", "Parking"],
+    services: ["Furnishing", "Cleaning", "WiFi Setup"],
+    whatsappNumber: "971523946311",
+    availableFrom: "Immediate",
+    status: "limited",
+    badge: "Burj View",
+    beds: 1,
+    baths: 1,
+    highlight: "Burj Khalifa view, move in now",
+    spotsLeft: 1,
+    gender: "any",
+    billsIncluded: false,
   },
 ];
 
@@ -221,14 +339,4 @@ export const STATUS_CONFIG: Record<AvailStatus, { label: string; color: string }
   available: { label: "Available Now", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25" },
   limited: { label: "Last Rooms", color: "text-amber-400 bg-amber-500/10 border-amber-500/25" },
   enquire: { label: "Enquire", color: "text-blue-400 bg-blue-500/10 border-blue-500/25" },
-};
-
-export const SERVICE_TAG_COLORS: Record<string, string> = {
-  "Partition Fitting": "text-slate-300 bg-slate-700/50 border-slate-600/30",
-  Maintenance: "text-slate-300 bg-slate-700/50 border-slate-600/30",
-  Furnishing: "text-slate-300 bg-slate-700/50 border-slate-600/30",
-  "AC Servicing": "text-slate-300 bg-slate-700/50 border-slate-600/30",
-  "WiFi Setup": "text-slate-300 bg-slate-700/50 border-slate-600/30",
-  Cleaning: "text-slate-300 bg-slate-700/50 border-slate-600/30",
-  "Government Documentation Support": "text-slate-300 bg-slate-700/50 border-slate-600/30",
 };

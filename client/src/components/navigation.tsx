@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
   Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
-  Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube
+  Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube, Key
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -36,6 +36,7 @@ const deliwerNavItems = [
   { path: "/home-services",  label: "Home Service", id: "home-service", icon: Star },
   { path: "/errand",         label: "Errand",       id: "errand",       icon: ClipboardList },
   { path: "/setup",          label: "Setup",        id: "setup",        icon: Building2 },
+  { path: "/flexible-rentals", label: "Flex Living",  id: "flex-living",  icon: Key },
   { path: "/consult",        label: "Consult",      id: "consult",      icon: CalendarCheck },
 ];
 
