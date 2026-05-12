@@ -357,6 +357,7 @@ function Router() {
         <Route path="/myhome/shared-living" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
         <Route path="/myhome/subletting" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
         <Route path="/flexible-rentals" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
+        <Route path="/flex-living" component={lazy(() => import("./pages/myhome/flexible-rentals"))} />
 
         {/* Core Site Pages */}
         <Route path="/privacy" component={Privacy} />
