@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Helmet } from "react-helmet";
+import { SEOMeta } from "@/components/seo-meta";
 import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -144,10 +144,20 @@ export default function BusinessSetup() {
       </aside>
 
       <main className="flex-1">
-        <Helmet>
-        <title>Business Setup Dubai | Company Formation & PRO Services | DeliWer</title>
-        <meta name="description" content="Professional company setup, PRO services, and visa assistance in Dubai. Fast-track your business with DeliWer's corporate services management." />
-      </Helmet>
+        <SEOMeta
+          title="Business Setup Dubai | Free Zone & Mainland Company Formation | DeliWer"
+          description="Set up a company in Dubai with expert support. DeliWer handles Free Zone and mainland license applications, PRO services, visa assistance, and document clearing. Fast-track your Dubai business formation via WhatsApp."
+          canonical="https://www.deliwer.com/business-setup"
+          keywords="Business Setup Dubai, Dubai company formation, Free Zone Dubai, DAFZA company setup, Dubai South free zone, mainland trade license Dubai, PRO services Dubai, Golden Visa Dubai, visa assistance Dubai, company registration Dubai, DeliWer business setup"
+          faqs={[
+            { question: "How do I set up a company in Dubai?", answer: "To set up a company in Dubai you choose between a Free Zone license (DAFZA, Dubai South, Commercity, etc.) or a mainland trade license. DeliWer guides you through selecting the right structure, prepares the documents, and coordinates with the relevant authorities. WhatsApp +971523946311 to start." },
+            { question: "What is the difference between Free Zone and mainland in Dubai?", answer: "A Dubai Free Zone company is 100% foreign-owned and ideal for international business, but restricted from trading directly within the UAE market. A mainland company can trade anywhere in the UAE but requires a local service agent or partner for some license types. DeliWer helps you choose the right structure." },
+            { question: "How long does Dubai business setup take?", answer: "Free Zone company formation in Dubai can take 3–7 business days with correct documents. Mainland licenses typically take 5–14 business days. DeliWer fast-tracks the process by coordinating all filings and follow-ups." },
+            { question: "Can I get a UAE Golden Visa through business setup?", answer: "Yes. Qualifying business owners and investors in Dubai can apply for a 5–10 year UAE Golden (Investor) Visa. DeliWer can coordinate both the company setup and the Golden Visa application simultaneously." }
+          ]}
+          serviceSchema={{ name: "Dubai Business Setup & Company Formation", description: "DeliWer handles Free Zone and mainland company formation, PRO services, visa assistance, and document clearing for businesses in Dubai." }}
+          dateModified="2026-05-12"
+        />
 
       {/* Hero Section */}
       <section className="relative py-24 flex items-center justify-center overflow-hidden">

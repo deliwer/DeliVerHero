@@ -226,8 +226,19 @@ export default function EjariDubai() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta
-        title="Ejari Registration in Dubai – Easy Home Service Support | DeliWer"
-        description="Register your Ejari with guided support and move-in coordination. DeliWer coordinates Ejari registration through official RERA trustee centers and helps with your full move-in readiness in Dubai."
+        title="Ejari Registration Dubai | RERA-Authorized Trustee Center Support | DeliWer"
+        description="Ejari registration is legally required for every Dubai rental contract. DeliWer coordinates the full process through RERA-authorized Trustee Centers — you provide the documents, we handle the rest. Fast, reliable, and covering all Dubai areas."
+        canonical="https://www.deliwer.com/ejari-dubai"
+        keywords="Ejari Dubai, Ejari Registration Dubai, How to register Ejari, Ejari documents required, RERA Trustee Center Dubai, Ejari fee Dubai, Ejari online Dubai, Ejari for tenants Dubai, move-in Ejari Dubai, DEWA Ejari Dubai, DeliWer Ejari"
+        faqs={[
+          { question: "What is Ejari and why is it required in Dubai?", answer: "Ejari is Dubai's official tenancy contract registration system, managed by RERA (Real Estate Regulatory Agency) under the Dubai Land Department. It is legally required for all rental contracts in Dubai. Without Ejari, tenants cannot activate DEWA, apply for a residence visa, or use their address for government services." },
+          { question: "How much does Ejari registration cost in Dubai?", answer: "The Dubai government (DLD/RERA) fee for Ejari registration is AED 220. DeliWer charges an additional service fee for coordinating the full process on your behalf. See deliwer.com/concierge-pricing for the current service fee." },
+          { question: "What documents are needed to register Ejari?", answer: "To register Ejari in Dubai you need: the signed tenancy contract, the tenant's Emirates ID, the landlord's Emirates ID or passport, and the property title deed. DeliWer will guide you through the exact documents needed for your specific case." },
+          { question: "How long does Ejari registration take?", answer: "Ejari registration typically takes 1–3 business days. With the correct documents submitted, DeliWer can often complete it same-day. WhatsApp +971523946311 to start." },
+          { question: "Can a tenant register Ejari themselves in Dubai?", answer: "Yes, but only through RERA-authorized Trustee Centers — you cannot register Ejari at home online without visiting an authorized center. DeliWer coordinates the process on your behalf so you don't need to visit in person." }
+        ]}
+        serviceSchema={{ name: "Ejari Registration Dubai", description: "DeliWer coordinates Ejari registration for Dubai tenants through RERA-authorized Trustee Centers. Covers all Dubai areas.", price: "AED 220" }}
+        dateModified="2026-05-12"
       />
 
       {/* JSON-LD Schema Markup */}

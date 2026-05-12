@@ -32,8 +32,18 @@ export default function DewaActivation() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta 
-        title="DEWA Activation Dubai | Electricity Setup | DeliWer"
-        description="Get DEWA electricity activated quickly. DeliWer coordinates meter registration and setup. AED 399 included in AquaCafe Move-In Welcome Service."
+        title="DEWA Activation Dubai | Electricity & Water Connection Setup | DeliWer"
+        description="Need DEWA activated in your new Dubai apartment? DeliWer coordinates the full DEWA electricity and water connection setup on your behalf. Requires a valid Ejari certificate. Fast, same-day coordination available via WhatsApp."
+        canonical="https://www.deliwer.com/dewa-activation"
+        keywords="DEWA Activation Dubai, DEWA electricity setup Dubai, DEWA connection Dubai, DEWA meter Dubai, DEWA registration new tenant, DEWA move-in Dubai, electricity activation Dubai, DEWA AED deposit, DeliWer DEWA"
+        faqs={[
+          { question: "How do I activate DEWA for a new apartment in Dubai?", answer: "To activate DEWA (Dubai Electricity and Water Authority) for a new apartment, you need a valid Ejari certificate, Emirates ID, and the property details. DeliWer handles the full DEWA activation process on your behalf — WhatsApp +971523946311 to start." },
+          { question: "How long does DEWA activation take in Dubai?", answer: "DEWA activation typically takes 1–3 business days after document submission. DeliWer coordinates the process and follows up on your behalf for faster resolution." },
+          { question: "What is the DEWA security deposit in Dubai?", answer: "DEWA charges a refundable security deposit when connecting a new account. The amount varies by property type (apartment vs. villa) and is refunded when you close the DEWA account on moving out." },
+          { question: "Do I need Ejari before DEWA activation?", answer: "Yes. A valid Ejari certificate is required to activate DEWA in Dubai. DeliWer can coordinate both Ejari registration and DEWA activation together as part of the move-in concierge." }
+        ]}
+        serviceSchema={{ name: "DEWA Activation Dubai", description: "DeliWer coordinates DEWA electricity and water activation for new Dubai tenants. Same-day coordination available." }}
+        dateModified="2026-05-12"
       />
       <Navigation />
 

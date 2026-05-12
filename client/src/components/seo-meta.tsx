@@ -20,6 +20,7 @@ interface SEOMetaProps {
     price?: string;
     area?: string;
   };
+  dateModified?: string;
 }
 
 const SITE_NAME = "DeliWer";
@@ -27,30 +28,41 @@ const BASE_URL = "https://www.deliwer.com";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/deliwer-og-image.png`;
 
 const DEFAULT_KEYWORDS =
-  // Core services
+  // Core move-in services
   "Ejari Dubai, Ejari Registration Dubai, DEWA Activation Dubai, Move-In Services Dubai, " +
   "Dubai Relocation, Moving to Dubai, Dubai Tenant Services, Apartment Activation Dubai, " +
   "Move-Out Services Dubai, Movers Dubai, Cleaning Dubai, Internet Setup Dubai, " +
+  // Flex living / monthly rooms
+  "Room for Rent Dubai Monthly, Flex Living Dubai, Monthly Rooms Dubai, " +
+  "Shared Villa Dubai Monthly, Partition Room Dubai, Bed Space Dubai, Studio Dubai Monthly, " +
+  "Room Rent Dubai No Annual Contract, Furnished Room Dubai Monthly, " +
+  "Dubai Shared Accommodation, Monthly Rental Dubai, Short-Term Rental Dubai, " +
+  "Co-Living Dubai, Room for Rent JVC Dubai, Room for Rent Dubai Marina, " +
+  "Room for Rent Business Bay, Room for Rent Al Barsha, Room for Rent Deira, " +
+  "Room for Rent International City, Dubizzle Dubai Rooms, " +
   // Business
-  "Dubai Business Setup, Free Zone Dubai, DAFZA, Dubai South Free Zone, Commercity Dubai, " +
+  "Dubai Business Setup, Free Zone Dubai, DAFZA, Dubai South Free Zone, " +
   "Golden Visa Dubai, Investor Visa UAE, Dubai Company Formation, Mainland License Dubai, " +
   "Relocation Consultant Dubai, " +
   // Ejari specifics
   "Ejari Renewal Dubai, Ejari Cancellation Dubai, How to Register Ejari, Ejari Documents, " +
-  "Ejari Transfer Dubai, RERA Dubai, Dubai Land Department, " +
+  "Ejari Transfer Dubai, RERA Dubai, Dubai Land Department, RERA Trustee Center Dubai, " +
   // Move-in areas
   "Move In JVC Dubai, Move In Dubai Marina, Move In Business Bay Dubai, Move In Downtown Dubai, " +
   "Move In Al Nahda Dubai, Move In Al Barsha Dubai, Move In Deira Dubai, Move In JLT Dubai, " +
   "Move In Dubai Hills, Move In Palm Jumeirah, Move In Karama Dubai, Move In Bur Dubai, " +
-  "Move In International City Dubai, Move In Discovery Gardens Dubai, " +
-  // GEO / expat intent
+  "Move In International City Dubai, Move In Discovery Gardens Dubai, Move In Mirdif Dubai, " +
+  "Move In Silicon Oasis Dubai, Move In Al Furjan Dubai, Move In Jumeirah Dubai, " +
+  // GEO / expat intent — phrases AI engines answer
   "Dubai Expats, Dubai Rent Increase, UAE Tenancy Law, Dubai Rental Market, " +
+  "How to move to Dubai, Moving to Dubai guide, Dubai expat housing, " +
   "Bayut Dubai, Property Finder Dubai, Dubizzle Dubai, " +
   // DeliWer brand
   "DeliWer, DeliWer Dubai, AquaCafe Dubai, Icelandic Glacial Dubai, " +
   // Emergency / preparedness
   "UAE emergency exit plan, Dubai evacuation plan, expat safety Dubai, emergency preparedness UAE";
 
+// Comprehensive organization schema reused across all pages
 const SCHEMA_ORG = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
@@ -62,9 +74,10 @@ const SCHEMA_ORG = JSON.stringify({
       logo: `${BASE_URL}/deliwer-logo.png`,
       image: `${BASE_URL}/deliwer-og-image.png`,
       description:
-        "DeliWer is Dubai's all-in-one move-in and relocation platform — handling Ejari registration, DEWA activation, movers coordination, cleaning, internet setup, Free Zone company formation, Golden Visa assistance, and professional relocation concierge for expats and entrepreneurs.",
+        "DeliWer is Dubai's all-in-one move-in and relocation platform — handling Ejari registration through RERA-authorized Trustee Centers, DEWA activation, movers, professional cleaning, internet setup, water filtration, flexible monthly accommodation (rooms, shared villas, studios, bed spaces with no annual contract), Dubai business setup in Free Zones, and full relocation concierge for expats and entrepreneurs.",
       telephone: "+971523946311",
       email: "info@deliwer.com",
+      foundingDate: "2023",
       areaServed: [
         { "@type": "City", name: "Dubai" },
         { "@type": "City", name: "Sharjah" },
@@ -86,9 +99,9 @@ const SCHEMA_ORG = JSON.stringify({
         },
         {
           "@type": "ContactPoint",
-          email: "admin@deliwer.com",
-          contactType: "reservation",
-          description: "Book a relocation consultation session",
+          url: "https://wa.me/971523946311",
+          contactType: "sales",
+          description: "WhatsApp — fastest response, no forms required",
         },
       ],
       sameAs: [
@@ -122,7 +135,7 @@ const SCHEMA_ORG = JSON.stringify({
           datePublished: "2026-04-15",
           reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
           reviewBody:
-            "I recently had shower filters installed in my shower heads, and I'm very happy with the results so far. The installation process was smooth and hassle-free, and the team was professional and efficient. Since using the filters, I've noticed a positive difference in water quality. The water feels cleaner and gentler, especially on skin and hair. Overall, a great experience so far — I would definitely recommend their service to anyone looking to improve their shower water quality.",
+            "I recently had shower filters installed in my shower heads, and I'm very happy with the results. The installation process was smooth and hassle-free, and the team was professional and efficient. The water feels cleaner and gentler, especially on skin and hair. I would definitely recommend their service.",
           publisher: { "@type": "Organization", name: "Google" },
         },
         {
@@ -131,17 +144,18 @@ const SCHEMA_ORG = JSON.stringify({
           datePublished: "2026-04-15",
           reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
           reviewBody:
-            "Just moved into my new place at Marina and DeliWer set up the complete water system for me — including a free hair shower filter! The difference is incredible, my hair feels so much softer. The installation team was fast and professional. Worth every dirham!",
+            "Just moved into my new place at Marina and DeliWer set up the complete water system for me — including a free hair shower filter! The installation team was fast and professional. Worth every dirham!",
         },
       ],
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "DeliWer Services",
         itemListElement: [
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ejari Registration Dubai" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "DEWA Activation Dubai" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Move-In Concierge Dubai" } },
-          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Move-Out Concierge Dubai" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Ejari Registration Dubai", description: "RERA-authorized Ejari registration for Dubai tenancy contracts" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "DEWA Activation Dubai", description: "Electricity and water connection activation for new Dubai apartments" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Move-In Concierge Dubai", description: "Full move-in coordination: Ejari, DEWA, movers, cleaning, internet setup" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Move-Out Concierge Dubai", description: "Ejari cancellation, final cleaning, and exit coordination" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Flex Living Dubai — Monthly Rooms", description: "Flexible monthly rooms, shared villas, studios and bed spaces in Dubai with no annual contract. From AED 550/month." } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "Movers Dubai" } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "Cleaning Services Dubai" } },
           { "@type": "Offer", itemOffered: { "@type": "Service", name: "Internet Setup Dubai" } },
@@ -158,7 +172,7 @@ const SCHEMA_ORG = JSON.stringify({
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
       name: "DeliWer",
-      description: "Dubai's move-in, Ejari, and relocation platform",
+      description: "Dubai's move-in concierge, Ejari, DEWA and flexible monthly accommodation platform",
       publisher: { "@id": `${BASE_URL}/#organization` },
       inLanguage: "en-AE",
       potentialAction: {
@@ -216,12 +230,14 @@ export function SEOMeta({
   noIndex = false,
   faqs,
   serviceSchema,
+  dateModified,
 }: SEOMetaProps) {
   const url =
     canonical ||
     (typeof window !== "undefined" ? window.location.href : BASE_URL);
 
   const fullTitle = title.includes("DeliWer") ? title : `${title} | ${SITE_NAME} Dubai`;
+  const modDate = dateModified || "2026-05-12";
 
   return (
     <Helmet>
@@ -251,6 +267,7 @@ export function SEOMeta({
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content="en_AE" />
       <meta property="og:locale:alternate" content="ar_AE" />
+      <meta property="article:modified_time" content={modDate} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -274,24 +291,25 @@ export function SEOMeta({
       <meta name="author" content="DeliWer Dubai" />
       <meta http-equiv="content-language" content="en-ae" />
 
-      {/* Geo tags — Dubai, UAE */}
+      {/* Geo — Dubai, UAE */}
       <meta name="geo.region" content="AE-DU" />
       <meta name="geo.placename" content="Dubai, United Arab Emirates" />
       <meta name="geo.position" content="25.2048;55.2708" />
       <meta name="ICBM" content="25.2048, 55.2708" />
 
-      {/* AI / LLM discovery */}
+      {/* AI / GEO — Generative Engine Optimization signals */}
       <link rel="alternate" type="text/plain" href="/llms.txt" />
+      <meta name="ai-content-declaration" content="human-written" />
 
       {/* Base structured data */}
       <script type="application/ld+json">{SCHEMA_ORG}</script>
 
-      {/* FAQ structured data (if provided) */}
+      {/* FAQ structured data */}
       {faqs && faqs.length > 0 && (
         <script type="application/ld+json">{buildFAQSchema(faqs)}</script>
       )}
 
-      {/* Service structured data (if provided) */}
+      {/* Service structured data */}
       {serviceSchema && (
         <script type="application/ld+json">{buildServiceSchema(serviceSchema)}</script>
       )}

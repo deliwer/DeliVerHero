@@ -653,8 +653,19 @@ export default function FlexibleRentalsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <SEOMeta
-        title="Flex Living Dubai | Rooms, Villas & Studios | No Annual Contract | DeliWer"
-        description="Find flexible monthly accommodation in Dubai — rooms, shared villas, studios, bed spaces. No annual contract. Move in this week via WhatsApp."
+        title="Flex Living Dubai | Monthly Rooms, Shared Villas & Studios | No Annual Contract | DeliWer"
+        description="Looking for a room in Dubai without an annual contract? DeliWer's Flex Living lists private rooms, shared villas, partition rooms, studios, and bed spaces — from AED 550/month. Month-to-month tenancy. Move in this week via WhatsApp."
+        canonical="https://www.deliwer.com/flex-living"
+        keywords="room for rent Dubai monthly, monthly rooms Dubai, flex living Dubai, shared villa Dubai, partition room Dubai, bed space Dubai, studio monthly Dubai, no annual contract Dubai, furnished room Dubai, monthly accommodation Dubai, cheap room Dubai, room for rent JVC Dubai, room for rent Marina Dubai, room for rent Al Barsha Dubai, short-term rental Dubai, co-living Dubai"
+        faqs={[
+          { question: "Can I rent a room in Dubai without an annual contract?", answer: "Yes. DeliWer's Flex Living service offers rooms, shared villas, partition rooms, studios, and bed spaces across Dubai on a month-to-month basis — no annual contract required. Prices start from AED 550/month. WhatsApp +971523946311 or browse listings at deliwer.com/flex-living." },
+          { question: "What types of accommodation are available on Flex Living?", answer: "Flex Living offers: private rooms in shared villas, partition rooms, bed spaces, studio apartments, and room-only setups — all on flexible monthly terms with no annual contract. Options available across all major Dubai areas." },
+          { question: "What is the cheapest monthly room available in Dubai?", answer: "Bed spaces in Dubai typically start from AED 550–800/month. Partition rooms start from AED 800–1,200/month. Private rooms in shared villas range from AED 1,500–4,000/month. DeliWer's Flex Living lists verified options in these categories across Dubai." },
+          { question: "I have a room or villa to list — how do I submit it?", answer: "If you are a landlord, property manager, or broker with an available room or space in Dubai, click 'I have a space' on the Flex Living page at deliwer.com/flex-living and submit the details. DeliWer will review and publish the listing within 24 hours." },
+          { question: "How do brokers earn from Flex Living?", answer: "Dubai brokers can generate a personal referral link from the Flex Living page. When a tenant you referred completes a placement, you earn AED 150–800 commission within the 30-day attribution window. No exclusivity required." }
+        ]}
+        serviceSchema={{ name: "Flex Living Dubai — Monthly Rooms No Annual Contract", description: "Flexible monthly rooms, shared villas, studios and bed spaces in Dubai with no annual contract required. From AED 550/month." }}
+        dateModified="2026-05-12"
       />
       <Navigation />
 

@@ -58,9 +58,17 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">
       <SEOMeta 
-        title="Move-In Services Dubai | Ejari, DEWA & Home Setup | DeliWer"
-        description="Move into your Dubai home stress-free. DeliWer handles Ejari registration, DEWA activation, water setup, and full relocation support. Pay only normal vendor rates. Also: free emergency evacuation exit plans and UAE crisis readiness for Dubai expats."
-        keywords="move in Dubai, Ejari registration Dubai, DEWA activation Dubai, Dubai relocation services, Dubai expat services, Dubai tenant support, home setup Dubai, moving to Dubai, UAE emergency exit plan, Dubai crisis preparedness, wartime readiness UAE, expat evacuation Dubai"
+        title="DeliWer | Move-In Concierge, Ejari, DEWA & Flex Living — Dubai"
+        description="DeliWer is Dubai's all-in-one move-in platform. We coordinate Ejari registration, DEWA activation, movers, cleaning, internet, and flexible monthly rooms — all via one WhatsApp. No annual contract on rooms. No complicated forms. Every Dubai area."
+        canonical="https://www.deliwer.com/"
+        keywords="move in Dubai, Ejari registration Dubai, DEWA activation Dubai, flex living Dubai, monthly rooms Dubai no annual contract, Dubai relocation services, Dubai expat services, home setup Dubai, moving to Dubai, room for rent Dubai monthly, DeliWer Dubai"
+        faqs={[
+          { question: "What does DeliWer do?", answer: "DeliWer is Dubai's all-in-one move-in and relocation platform. We coordinate Ejari registration, DEWA activation, movers, cleaning, internet setup, and flexible monthly accommodation — all via WhatsApp. One contact, no complicated forms." },
+          { question: "Can I find a monthly room in Dubai without an annual contract?", answer: "Yes. DeliWer's Flex Living service offers rooms, shared villas, studios, and bed spaces in Dubai on a month-to-month basis with no annual contract. Prices from AED 550/month. Visit deliwer.com/flex-living." },
+          { question: "How do I start with DeliWer?", answer: "WhatsApp DeliWer at +971523946311. Tell us what you need — Ejari, DEWA, movers, a place to stay — and we'll coordinate everything on your behalf." },
+          { question: "What areas of Dubai does DeliWer cover?", answer: "DeliWer covers all Dubai areas including JVC, Dubai Marina, Business Bay, Downtown, Al Barsha, Deira, JLT, Dubai Hills, International City, Karama, Mirdif, Silicon Oasis, Al Furjan, and 35+ more neighbourhoods." }
+        ]}
+        dateModified="2026-05-12"
       />
       {/* ============================================
           MAIN HERO — Are You Overpaying Rent?
