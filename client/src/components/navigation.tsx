@@ -271,8 +271,8 @@ export function Navigation() {
           </span>
         </a>
       )}
-      {/* ── Flex Living Announcement Bar — consumer side only ── */}
-      {!isBrokerSide && (
+      {/* ── Flex Living Announcement Bar — consumer side only, hidden on the flex-living page itself ── */}
+      {!isBrokerSide && location !== "/flexible-rentals" && (
         <a
           href="/flexible-rentals"
           data-testid="bar-flex-living-announcement"
