@@ -2,7 +2,8 @@ import { Link, useLocation } from "wouter";
 import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
   Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
-  Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube, Key
+  Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube, Key,
+  Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -13,8 +14,6 @@ import { EmergencyBanner } from "@/components/emergency-banner";
 import logoPng from "@assets/deliwer logo_1755631850889.png";
 
 // ── Broker/ChainTrack side paths ─────────────────────────────────────────────
-// Includes all /partners, /broker*, and original ChainTrack inventory paths.
-// Any path that starts with one of these activates the Brokers/ChainTrack nav.
 const CHAINTRACK_PATHS = [
   "/chaintrack", "/bulk-purchasing", "/bulk-tradein",
   "/fulfillment", "/membership-plans", "/corporate",
@@ -24,8 +23,22 @@ const CHAINTRACK_PATHS = [
   "/planet-hero-affiliates", "/affiliate-dashboard",
 ];
 
-// ── Consumer side paths that show the DeliWer nav ────────────────────────────
-// /realestate and /home-access are now folded into the Home Service consumer side.
+// ── Management / Admin paths — live under the Partners (broker) side ──────────
+const MANAGEMENT_PATHS = [
+  "/marketing",
+  "/admin",
+  "/operations",
+  "/sendgrid-dashboard",
+  "/capture-admin",
+  "/habtoor-admin",
+  "/investor-dashboard",
+  "/corporate-dashboard",
+  "/broker-master-db",
+  "/email-campaigns",
+  "/mission-control-saqi-kawthar",
+];
+
+// ── Consumer side paths (unused placeholder kept for future expansion) ────────
 const REALESTATE_PATHS: string[] = [];
 
 // ── Consumer / Home Service nav items (DeliWer.com) ─────────────────────────
@@ -40,8 +53,7 @@ const deliwerNavItems = [
   { path: "/consult",        label: "Consult",      id: "consult",      icon: CalendarCheck },
 ];
 
-// ── Broker / ChainTrack nav items ────────────────────────────────────────────
-// Primary: broker & partner pages. Secondary: Phone Flipping link to marketplace.
+// ── Broker / Partner nav items ────────────────────────────────────────────────
 const brokerNavItems = [
   { path: "/broker-onboard",                          label: "Broker Portal",  id: "ct-broker",    icon: Briefcase,    external: false },
   { path: "/partners",                               label: "Partner Program", id: "ct-partners",  icon: Users,        external: false },
@@ -51,8 +63,17 @@ const brokerNavItems = [
   { path: "/chaintrack",                             label: "Phone Flipping",  id: "ct-flipper",   icon: Smartphone,   external: false },
 ];
 
+// ── Management / Admin nav items — shown when inside admin/marketing paths ────
+const managementNavItems = [
+  { path: "/marketing",           label: "Marketing Hub",  id: "mgmt-marketing",  icon: Megaphone,  external: false },
+  { path: "/partner-dashboard",   label: "Partner Dash",   id: "mgmt-partner",    icon: LayoutGrid, external: false },
+  { path: "/admin/brokers",       label: "Broker Admin",   id: "mgmt-brokers",    icon: UserCheck,  external: false },
+  { path: "/admin/flex-rentals",  label: "Flex Admin",     id: "mgmt-flex",       icon: Settings,   external: false },
+  { path: "/sendgrid-dashboard",  label: "Email Campaigns",id: "mgmt-email",      icon: Mail,       external: false },
+  { path: "/broker-master-db",    label: "Broker DB",      id: "mgmt-db",         icon: Database,   external: false },
+];
+
 // ── Phone Flipper sub-nav (original ChainTrack marketplace nav) ───────────────
-// Shown when user is deep inside /chaintrack/* paths.
 const chaintrackNavItems = [
   { path: "/chaintrack",       label: "Marketplace", id: "ct-marketplace", icon: LayoutGrid },
   { path: "/bulk-purchasing",  label: "Bulk Buy",    id: "ct-bulk",        icon: Package },
@@ -67,24 +88,26 @@ const chaintrackNavItems = [
 const DEEP_CHAINTRACK_PATHS = [
   "/chaintrack", "/bulk-purchasing", "/bulk-tradein",
   "/fulfillment", "/membership-plans", "/corporate",
-  "/cobone-corporate", "/account-management",
+  "/cobone-corporate",
 ];
 
 export function Navigation() {
   const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const isBrokerSide = CHAINTRACK_PATHS.some((p) => location.startsWith(p));
+  const isManagementSide = MANAGEMENT_PATHS.some((p) => location === p || location.startsWith(p + "/"));
+  const isBrokerSide = isManagementSide || CHAINTRACK_PATHS.some((p) => location.startsWith(p));
   const isDeepChaintrack = DEEP_CHAINTRACK_PATHS.some((p) => location.startsWith(p));
 
-  // Nav items: deep ChainTrack marketplace paths get the phone-flipper nav;
-  // all other broker-side paths get the broker-primary nav;
-  // everything else gets the DeliWer consumer nav.
-  const navItems = isDeepChaintrack
-    ? chaintrackNavItems
-    : isBrokerSide
-      ? brokerNavItems
-      : deliwerNavItems;
+  // Nav items: management paths → admin nav; deep ChainTrack → phone-flipper nav;
+  // other broker-side paths → broker nav; everything else → consumer nav.
+  const navItems = isManagementSide
+    ? managementNavItems
+    : isDeepChaintrack
+      ? chaintrackNavItems
+      : isBrokerSide
+        ? brokerNavItems
+        : deliwerNavItems;
 
   const isActive = (itemPath: string) => location === itemPath.split("#")[0];
 
@@ -124,6 +147,7 @@ export function Navigation() {
     <div id="main-nav" className="w-full fixed top-0 z-[100]">
       {/* Emergency banner — consumer side only */}
       {!isBrokerSide && <EmergencyBanner />}
+
       {/* ── Main Nav Bar ── */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
         isBrokerSide
@@ -140,11 +164,18 @@ export function Navigation() {
             <div className="h-10 flex items-center justify-center group-hover:scale-105 transition-transform">
               <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
-            <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
-              isBrokerSide ? "text-purple-300" : "text-white"
-            }`}>
-              {isBrokerSide ? "ChainTrack" : "DeliWer"}
-            </span>
+            <div className="flex flex-col leading-none">
+              <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
+                isBrokerSide ? "text-purple-300" : "text-white"
+              }`}>
+                {isManagementSide ? "DeliWer" : isBrokerSide ? "ChainTrack" : "DeliWer"}
+              </span>
+              {isManagementSide && (
+                <span className="text-[8px] font-black uppercase tracking-widest text-purple-400/70">
+                  Partner Admin
+                </span>
+              )}
+            </div>
           </Link>
 
           {/* CENTER: Nav Links (Desktop) */}
@@ -153,9 +184,9 @@ export function Navigation() {
               <Button
                 key={item.id}
                 variant="ghost"
-                onClick={() => navigateToItem(item.path, item.external)}
+                onClick={() => navigateToItem(item.path, (item as any).external)}
                 className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
-                  item.external
+                  (item as any).external
                     ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
                     : isActive(item.path)
                     ? isBrokerSide
@@ -206,20 +237,32 @@ export function Navigation() {
 
             <div className="w-px h-4 bg-white/10 mx-2" />
 
-            {/* Partner & Earn — gateway on consumer side; crossover link on broker side */}
-            <Link href="/partners">
-              <Button
-                className={`relative font-black uppercase tracking-widest text-[10px] px-4 rounded-xl gap-1.5 transition-all ${
-                  isBrokerSide
-                    ? "bg-purple-600/15 hover:bg-purple-600/25 text-purple-300 border border-purple-500/40"
-                    : "bg-emerald-600/15 hover:bg-emerald-600/25 text-emerald-300 border border-emerald-500/40"
-                }`}
-                data-testid="nav-partners-cta"
-              >
-                <span className={`w-1.5 h-1.5 rounded-full animate-pulse shrink-0 ${isBrokerSide ? "bg-purple-400" : "bg-emerald-400"}`} />
-                {isBrokerSide ? "Broker Hub" : "Partner & Earn"}
-              </Button>
-            </Link>
+            {/* Partner & Earn / Broker Hub / Admin CTA */}
+            {isManagementSide ? (
+              <Link href="/partners">
+                <Button
+                  className="relative font-black uppercase tracking-widest text-[10px] px-4 rounded-xl gap-1.5 transition-all bg-purple-600/15 hover:bg-purple-600/25 text-purple-300 border border-purple-500/40"
+                  data-testid="nav-admin-back-partners"
+                >
+                  <Shield className="w-3 h-3" />
+                  Partner Hub
+                </Button>
+              </Link>
+            ) : (
+              <Link href="/partners">
+                <Button
+                  className={`relative font-black uppercase tracking-widest text-[10px] px-4 rounded-xl gap-1.5 transition-all ${
+                    isBrokerSide
+                      ? "bg-purple-600/15 hover:bg-purple-600/25 text-purple-300 border border-purple-500/40"
+                      : "bg-emerald-600/15 hover:bg-emerald-600/25 text-emerald-300 border border-emerald-500/40"
+                  }`}
+                  data-testid="nav-partners-cta"
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full animate-pulse shrink-0 ${isBrokerSide ? "bg-purple-400" : "bg-emerald-400"}`} />
+                  {isBrokerSide ? "Broker Hub" : "Partner & Earn"}
+                </Button>
+              </Link>
+            )}
 
             <Button
               variant="outline"
@@ -245,8 +288,9 @@ export function Navigation() {
           </Button>
         </div>
       </nav>
-      {/* ── YouTube Training Bar — broker side only ── */}
-      {isBrokerSide && (
+
+      {/* ── YouTube Training Bar — broker side only (not on management paths) ── */}
+      {isBrokerSide && !isManagementSide && (
         <a
           href="https://www.youtube.com/@vdeliwer"
           target="_blank"
@@ -271,6 +315,21 @@ export function Navigation() {
           </span>
         </a>
       )}
+
+      {/* ── Management breadcrumb bar — admin/marketing paths only ── */}
+      {isManagementSide && (
+        <div className="flex items-center gap-2 py-1.5 px-4 bg-purple-950/80 backdrop-blur-sm border-b border-purple-500/20 relative z-50">
+          <Shield className="w-3 h-3 text-purple-400/60 shrink-0" />
+          <span className="text-[9px] font-black uppercase tracking-widest text-purple-400/60">
+            Partner Admin
+          </span>
+          <span className="text-purple-500/30 text-[10px]">·</span>
+          <span className="text-[9px] font-black uppercase tracking-widest text-purple-300/40">
+            Private · Not Indexed
+          </span>
+        </div>
+      )}
+
       {/* ── Flex Living Announcement Bar — consumer side only ── */}
       {!isBrokerSide && (
         <a
@@ -291,6 +350,7 @@ export function Navigation() {
           </span>
         </a>
       )}
+
       {/* ── Trust Strip — consumer side only ── */}
       {!isBrokerSide && (
         <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-1 px-4 overflow-x-auto no-scrollbar relative z-50">
@@ -299,6 +359,7 @@ export function Navigation() {
           </div>
         </div>
       )}
+
       {/* ── Mobile Nav Dropdown ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -342,13 +403,23 @@ export function Navigation() {
 
             <div className="w-full h-px bg-white/10" />
 
+            {/* Management section label for mobile */}
+            {isManagementSide && (
+              <div className="flex items-center gap-2 py-1">
+                <Shield className="w-3.5 h-3.5 text-purple-400/60" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-purple-400/60">
+                  Partner Admin
+                </span>
+              </div>
+            )}
+
             {navItems.map((item) => (
               <Button
                 key={item.id}
                 variant="ghost"
-                onClick={() => navigateToItem(item.path, item.external)}
+                onClick={() => navigateToItem(item.path, (item as any).external)}
                 className={`w-full justify-start text-xs font-black uppercase tracking-widest h-14 rounded-xl ${
-                  item.external
+                  (item as any).external
                     ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
                     : isActive(item.path)
                     ? isBrokerSide
@@ -358,7 +429,7 @@ export function Navigation() {
                 }`}
                 data-testid={`nav-mobile-${item.id}`}
               >
-                <item.icon className={`w-5 h-5 mr-3 ${item.external ? "text-red-500" : isBrokerSide ? "text-purple-500" : "text-emerald-500"}`} />
+                <item.icon className={`w-5 h-5 mr-3 ${(item as any).external ? "text-red-500" : isBrokerSide ? "text-purple-500" : "text-emerald-500"}`} />
                 {item.label}
               </Button>
             ))}
