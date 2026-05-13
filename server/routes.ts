@@ -78,11 +78,17 @@ if (process.env.STRIPE_SECRET_KEY) {
   console.log("STRIPE_SECRET_KEY not set - payment functionality will be disabled");
 }
 
-// Initialize OpenAI via Replit AI Integrations (no user key required)
-const openai = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY,
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-});
+// Initialize OpenAI lazily — only if an API key is available
+let openai: OpenAI | null = null;
+const openaiApiKey = process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY;
+if (openaiApiKey) {
+  openai = new OpenAI({
+    apiKey: openaiApiKey,
+    baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+  });
+} else {
+  console.log("OPENAI_API_KEY not set - AI functionality will be disabled");
+}
 
 // Temporary token storage for QR codes (use Redis in production)
 const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: boolean }>();

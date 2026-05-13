@@ -3,10 +3,11 @@ import { intentSignals } from '@shared/schema';
 import { eq, desc, and, sql } from 'drizzle-orm';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY,
+const openaiApiKey = process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY;
+const openai = openaiApiKey ? new OpenAI({
+  apiKey: openaiApiKey,
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-});
+}) : null;
 
 // ─── REAL, VERIFIED DUBAI COMMUNITIES ────────────────────────────────────────
 // These are real, publicly accessible communities. Join links verified manually.

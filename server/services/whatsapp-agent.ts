@@ -1,10 +1,11 @@
 import { storage } from "../storage";
 import OpenAI from "openai";
 
-const openai: OpenAI = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY,
+const openaiApiKey = process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY;
+const openai: OpenAI | null = openaiApiKey ? new OpenAI({
+  apiKey: openaiApiKey,
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-});
+}) : null;
 
 const CUSTOMER_SERVICE_NUMBERS = ["+971504547110", "+971523946311", "+971567148381"];
 const WHATSAPP_API_URL = `https://graph.facebook.com/v18.0/${process.env.PHONE_NUMBER_ID}/messages`;
