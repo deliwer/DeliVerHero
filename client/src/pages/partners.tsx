@@ -15,6 +15,7 @@ import {
   Droplets, ChevronDown, Copy, Check,
   Lock, Play, BookOpen, TrendingUp, Handshake, Repeat2,
   Network, Rocket, Target, RefreshCw,
+  Megaphone, LayoutGrid, UserCheck, Settings, Mail, Database, BellRing, BarChart3,
 } from "lucide-react";
 import { SiYoutube } from "react-icons/si";
 import { buildWhatsAppMessage, openWhatsApp, getReferral } from "@/lib/referral";
@@ -432,8 +433,71 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 // ─────────────────────────────────────────────
-// Main Page
+// Admin Quick Access — visible only after gate unlock
 // ─────────────────────────────────────────────
+const ADMIN_LINKS = [
+  { href: "/marketing",          label: "Marketing Hub",    icon: Megaphone,  color: "violet" },
+  { href: "/partner-dashboard",  label: "Partner Dash",     icon: LayoutGrid, color: "purple" },
+  { href: "/admin/brokers",      label: "Broker Admin",     icon: UserCheck,  color: "indigo" },
+  { href: "/admin/flex-rentals", label: "Flex Admin",       icon: Settings,   color: "blue"   },
+  { href: "/sendgrid-dashboard", label: "Email Campaigns",  icon: Mail,       color: "sky"    },
+  { href: "/broker-master-db",   label: "Broker DB",        icon: Database,   color: "cyan"   },
+  { href: "/admin/alerts",       label: "Alerts",           icon: BellRing,   color: "amber"  },
+  { href: "/marketing/tenant-leads", label: "Tenant Leads", icon: BarChart3,  color: "emerald"},
+] as const;
+
+const COLOR_MAP: Record<string, string> = {
+  violet:  "border-violet-500/30 hover:border-violet-400/60 hover:bg-violet-500/8 text-violet-300 hover:text-violet-200",
+  purple:  "border-purple-500/30 hover:border-purple-400/60 hover:bg-purple-500/8 text-purple-300 hover:text-purple-200",
+  indigo:  "border-indigo-500/30 hover:border-indigo-400/60 hover:bg-indigo-500/8 text-indigo-300 hover:text-indigo-200",
+  blue:    "border-blue-500/30  hover:border-blue-400/60  hover:bg-blue-500/8  text-blue-300  hover:text-blue-200",
+  sky:     "border-sky-500/30   hover:border-sky-400/60   hover:bg-sky-500/8   text-sky-300   hover:text-sky-200",
+  cyan:    "border-cyan-500/30  hover:border-cyan-400/60  hover:bg-cyan-500/8  text-cyan-300  hover:text-cyan-200",
+  amber:   "border-amber-500/30 hover:border-amber-400/60 hover:bg-amber-500/8 text-amber-300 hover:text-amber-200",
+  emerald: "border-emerald-500/30 hover:border-emerald-400/60 hover:bg-emerald-500/8 text-emerald-300 hover:text-emerald-200",
+};
+
+function AdminQuickAccess() {
+  const [unlocked, setUnlocked] = useState(false);
+
+  useEffect(() => {
+    setUnlocked(sessionStorage.getItem("dw_founder_auth") === "1");
+  }, []);
+
+  if (!unlocked) return null;
+
+  return (
+    <section className="border-b border-purple-500/20 bg-purple-950/40 backdrop-blur-sm px-4 py-5">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-center gap-2 mb-4">
+          <Shield className="w-3.5 h-3.5 text-purple-400/60 shrink-0" />
+          <span className="text-[9px] font-black uppercase tracking-widest text-purple-400/60">
+            Partner Admin — Quick Access
+          </span>
+          <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-purple-500/30">
+            Private · Not Indexed
+          </span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+          {ADMIN_LINKS.map(({ href, label, icon: Icon, color }) => (
+            <a
+              key={href}
+              href={href}
+              data-testid={`admin-shortcut-${label.toLowerCase().replace(/\s+/g, "-")}`}
+              className={`flex flex-col items-center gap-2 py-3 px-2 rounded-xl border bg-white/[0.02] transition-all group ${COLOR_MAP[color]}`}
+            >
+              <Icon className="w-5 h-5 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
+              <span className="text-[9px] font-black uppercase tracking-wider text-center leading-tight opacity-70 group-hover:opacity-100 transition-opacity">
+                {label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function PartnersPage() {
   const funnelRef = useRef<HTMLDivElement>(null);
   const [selectedTrack, setSelectedTrack] = useState<string>("");
@@ -475,6 +539,7 @@ export default function PartnersPage() {
       />
       <Navigation />
       <PartnersSubMenu onScrollTo={(id) => { const el = document.getElementById(id); el?.scrollIntoView({ behavior: "smooth" }); }} />
+      <AdminQuickAccess />
 
       {/* ─── HERO ─── */}
       <section className="relative min-h-[78vh] flex items-center px-4 overflow-hidden">
