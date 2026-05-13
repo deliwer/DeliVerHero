@@ -10,7 +10,6 @@ export function WhatsAppSticky() {
     location.startsWith("/brokers");
 
   if (isBrokerSurface) return null;
-  if (location === "/flexible-rentals") return null;
 
   const handleClick = () => {
     const currentClicks = parseInt(localStorage.getItem("wa_clicks") || "0");

@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Navigation } from "@/components/navigation";
 import { SEOMeta } from "@/components/seo-meta";
 import {
   MessageCircle, X, Check, Users, Building2, Layers, Home,
@@ -1036,7 +1035,6 @@ export default function FlexibleRentalsPage() {
         title="Flexible Rentals Dubai & Sharjah | Rooms, Studios, Bed Spaces | Rentals by DeliWer"
         description="Find rooms, bed spaces, partitions, studios and shared villas in Dubai & Sharjah — no annual contracts. Video tours, verified brokers, instant WhatsApp viewing booking."
       />
-      <Navigation />
 
       {/* ── HERO ─────────────────────────────────────────────────────────────── */}
       <section className="relative pt-20 pb-14 overflow-hidden">
@@ -1333,6 +1331,17 @@ export default function FlexibleRentalsPage() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* ── FLOATING WHATSAPP ─────────────────────────────────────────────────── */}
+      <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1 }} className="fixed bottom-6 right-5 z-30">
+        <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
+          <button onClick={() => openWA(WA_NUMBER, "Hello DeliWer 👋\n\nI need help finding flexible accommodation in Dubai or Sharjah.")}
+            className="flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1fbd5a] active:scale-95 text-white font-bold px-4 py-3 rounded-2xl shadow-[0_8px_32px_rgba(37,211,102,0.4)] transition-all">
+            <MessageCircle className="w-5 h-5 shrink-0" />
+            <span className="text-sm">Chat with us</span>
+          </button>
+        </motion.div>
+      </motion.div>
 
       {/* Budget Quiz */}
       <BudgetQuizSheet visible={showBudgetQuiz} onDismiss={() => setShowBudgetQuiz(false)} brokerRef={brokerRef} />
