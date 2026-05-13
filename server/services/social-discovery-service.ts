@@ -3,7 +3,10 @@ import { brokerMaster } from '@shared/schema';
 import { eq, isNull, or, sql } from 'drizzle-orm';
 import OpenAI from 'openai';
 
-const openai = process.env.OPENAI_API_KEY ? new OpenAI() : null;
+const openai = new OpenAI({
+  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY,
+  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+});
 
 export interface SocialDiscoveryResult {
   brokerId: string;

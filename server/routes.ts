@@ -78,15 +78,11 @@ if (process.env.STRIPE_SECRET_KEY) {
   console.log("STRIPE_SECRET_KEY not set - payment functionality will be disabled");
 }
 
-// Initialize OpenAI only if API key is available
-let openai: OpenAI | null = null;
-if (process.env.OPENAI_API_KEY) {
-  openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-} else {
-  console.log("OPENAI_API_KEY not set - AI chat functionality will be disabled");
-}
+// Initialize OpenAI via Replit AI Integrations (no user key required)
+const openai = new OpenAI({
+  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || process.env.OPENAI_API_KEY,
+  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+});
 
 // Temporary token storage for QR codes (use Redis in production)
 const qrTokens = new Map<string, { passportId: string; expiresAt: Date; used: boolean }>();
@@ -1307,13 +1303,6 @@ Reply DONE when completed.`;
 
   // AI Concierge Chat
   app.post("/api/ai-chat", async (req, res) => {
-    if (!openai) {
-      return res.status(503).json({ 
-        error: "AI service not configured",
-        fallback: "Hi! I'm the DeliWer AI Concierge 🤖 I can help you calculate your iPhone trade-in value and start your hero journey. What iPhone model would you like to trade?"
-      });
-    }
-    
     try {
       const { message, context } = req.body;
       
@@ -1474,13 +1463,6 @@ Context: ${JSON.stringify(context || {})}`
   });
 
   app.post("/api/ai-deli/chat", async (req, res) => {
-    if (!openai) {
-      return res.status(503).json({ 
-        error: "AI service not configured",
-        fallback: "Hi! I'm Deli, your AI pricing assistant 🤖 I help ensure you get the best value for your devices. What would you like to know?"
-      });
-    }
-    
     try {
       const { message, deviceContext } = req.body;
       
