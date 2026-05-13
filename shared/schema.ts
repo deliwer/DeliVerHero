@@ -1970,12 +1970,49 @@ export const flexListings = pgTable("flex_listings", {
   managerPhone: text("manager_phone").notNull(),
   notes: text("notes"),
   brokerRef: text("broker_ref"),
+  youtubeUrl: text("youtube_url"),
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
 export const insertFlexListingSchema = createInsertSchema(flexListings).omit({ id: true, createdAt: true });
 export type FlexListing = typeof flexListings.$inferSelect;
 export type InsertFlexListing = z.infer<typeof insertFlexListingSchema>;
+
+// ── Flex Listing Reviews ───────────────────────────────────────────────────────
+export const flexListingReviews = pgTable("flex_listing_reviews", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  listingId: text("listing_id").notNull(),
+  reviewerName: text("reviewer_name").notNull(),
+  reviewerPhone: text("reviewer_phone"),
+  rating: integer("rating").notNull(),
+  reviewText: text("review_text").notNull(),
+  stayType: text("stay_type"),
+  verified: boolean("verified").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertFlexListingReviewSchema = createInsertSchema(flexListingReviews).omit({ id: true, createdAt: true });
+export type FlexListingReview = typeof flexListingReviews.$inferSelect;
+export type InsertFlexListingReview = z.infer<typeof insertFlexListingReviewSchema>;
+
+// ── Viewing Requests ───────────────────────────────────────────────────────────
+export const viewingRequests = pgTable("viewing_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  listingId: text("listing_id").notNull(),
+  listingTitle: text("listing_title").notNull(),
+  listingArea: text("listing_area").notNull(),
+  requesterName: text("requester_name").notNull(),
+  requesterPhone: text("requester_phone").notNull(),
+  preferredDate: text("preferred_date"),
+  message: text("message"),
+  status: text("status").notNull().default("pending"),
+  brokerRef: text("broker_ref"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertViewingRequestSchema = createInsertSchema(viewingRequests).omit({ id: true, createdAt: true });
+export type ViewingRequest = typeof viewingRequests.$inferSelect;
+export type InsertViewingRequest = z.infer<typeof insertViewingRequestSchema>;
 
 // ── Broker Funnel Events ───────────────────────────────────────────────────────────────────────
 // Records every meaningful touchpoint in the trust-strip → /partners → /brokers → apply funnel

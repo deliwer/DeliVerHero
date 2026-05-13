@@ -23,6 +23,9 @@ export interface FlexibleListing {
   gender?: "any" | "male" | "female" | "couples";
   billsIncluded?: boolean;
   image: string;
+  youtubeUrl?: string;
+  managerName?: string;
+  managerPhone?: string;
 }
 
 export const FLEXIBLE_LISTINGS: FlexibleListing[] = [

@@ -1,7 +1,19 @@
 import pg from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { brokers, type Broker, type InsertBroker, users, heroes, tradeIns, impactStats, referrals, contacts, conciergeConversations, founderStreaks, flexListings } from "@shared/schema";
-import { type User, type InsertUser, type ConciergeConversation, type InsertConciergeConversation, type FounderStreak, type InsertFounderStreak, type FlexListing, type InsertFlexListing } from "@shared/schema";
+import {
+  brokers, type Broker, type InsertBroker,
+  users, heroes, tradeIns, impactStats, referrals, contacts,
+  conciergeConversations, founderStreaks,
+  flexListings, flexListingReviews, viewingRequests,
+} from "@shared/schema";
+import {
+  type User, type InsertUser,
+  type ConciergeConversation, type InsertConciergeConversation,
+  type FounderStreak, type InsertFounderStreak,
+  type FlexListing, type InsertFlexListing,
+  type FlexListingReview, type InsertFlexListingReview,
+  type ViewingRequest, type InsertViewingRequest,
+} from "@shared/schema";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -20,9 +32,16 @@ export interface IStorage {
   updateLeadRequirements(id: string, requirements: string, whatsappResponses: any[]): Promise<any>;
   logBrokerFunnelEvent(event: { event: string; page?: string; stage?: string; utmSource?: string; sessionId?: string }): Promise<void>;
   getBrokerFunnelReport(): Promise<any>;
+  // Flex Listings
   getFlexListings(status?: string): Promise<FlexListing[]>;
   createFlexListing(listing: InsertFlexListing): Promise<FlexListing>;
   updateFlexListingStatus(id: string, status: string): Promise<FlexListing | undefined>;
+  // Reviews
+  getFlexListingReviews(listingId: string): Promise<FlexListingReview[]>;
+  createFlexListingReview(review: InsertFlexListingReview): Promise<FlexListingReview>;
+  // Viewing Requests
+  createViewingRequest(request: InsertViewingRequest): Promise<ViewingRequest>;
+  getViewingRequests(status?: string): Promise<ViewingRequest[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -33,6 +52,8 @@ export class MemStorage implements IStorage {
   private brokers: Map<string, Broker>;
   private brokerFunnelEventsList: Array<{ id: string; event: string; page?: string; stage?: string; utmSource?: string; sessionId?: string; createdAt: Date }>;
   private flexListingsMap: Map<string, FlexListing>;
+  private flexListingReviewsMap: Map<string, FlexListingReview>;
+  private viewingRequestsMap: Map<string, ViewingRequest>;
   sessionStore: any;
 
   constructor() {
@@ -43,6 +64,8 @@ export class MemStorage implements IStorage {
     this.brokers = new Map();
     this.brokerFunnelEventsList = [];
     this.flexListingsMap = new Map();
+    this.flexListingReviewsMap = new Map();
+    this.viewingRequestsMap = new Map();
   }
 
   async getFlexListings(status?: string): Promise<FlexListing[]> {
@@ -70,6 +93,7 @@ export class MemStorage implements IStorage {
       managerPhone: listing.managerPhone,
       notes: listing.notes ?? null,
       brokerRef: listing.brokerRef ?? null,
+      youtubeUrl: listing.youtubeUrl ?? null,
       createdAt: new Date(),
     };
     this.flexListingsMap.set(id, newListing);
@@ -84,15 +108,64 @@ export class MemStorage implements IStorage {
     return updated;
   }
 
+  async getFlexListingReviews(listingId: string): Promise<FlexListingReview[]> {
+    return Array.from(this.flexListingReviewsMap.values())
+      .filter((r) => r.listingId === listingId)
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  async createFlexListingReview(review: InsertFlexListingReview): Promise<FlexListingReview> {
+    const id = `rev_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    const newReview: FlexListingReview = {
+      id,
+      listingId: review.listingId,
+      reviewerName: review.reviewerName,
+      reviewerPhone: review.reviewerPhone ?? null,
+      rating: review.rating,
+      reviewText: review.reviewText,
+      stayType: review.stayType ?? null,
+      verified: review.verified ?? false,
+      createdAt: new Date(),
+    };
+    this.flexListingReviewsMap.set(id, newReview);
+    return newReview;
+  }
+
+  async createViewingRequest(request: InsertViewingRequest): Promise<ViewingRequest> {
+    const id = `vr_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    const newReq: ViewingRequest = {
+      id,
+      listingId: request.listingId,
+      listingTitle: request.listingTitle,
+      listingArea: request.listingArea,
+      requesterName: request.requesterName,
+      requesterPhone: request.requesterPhone,
+      preferredDate: request.preferredDate ?? null,
+      message: request.message ?? null,
+      status: request.status ?? "pending",
+      brokerRef: request.brokerRef ?? null,
+      createdAt: new Date(),
+    };
+    this.viewingRequestsMap.set(id, newReq);
+    return newReq;
+  }
+
+  async getViewingRequests(status?: string): Promise<ViewingRequest[]> {
+    const all = Array.from(this.viewingRequestsMap.values())
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    if (status) return all.filter((r) => r.status === status);
+    return all;
+  }
+
   async getBrokers(): Promise<Broker[]> {
     return Array.from(this.brokers.values()).sort((a, b) => b.tier - a.tier);
   }
 
   async addBroker(insertBroker: InsertBroker): Promise<Broker> {
     const id = Math.random().toString(36).substring(7);
-    const broker: Broker = { 
-      ...insertBroker, 
-      id, 
+    const broker: Broker = {
+      ...insertBroker,
+      id,
       createdAt: new Date(),
       isVerified: insertBroker.isVerified ?? false,
       tier: insertBroker.tier ?? 3,
@@ -124,12 +197,8 @@ export class MemStorage implements IStorage {
       if (!existing) {
         const id = Math.random().toString(36).substring(7);
         this.founderStreaks.set(id, {
-          id,
-          name: f.name,
-          phone: f.phone,
-          streak: 0,
-          lastPosted: null,
-          updatedAt: new Date()
+          id, name: f.name, phone: f.phone, streak: 0,
+          lastPosted: null, updatedAt: new Date()
         });
       }
     }
@@ -145,7 +214,16 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = Math.random().toString(36).substring(7);
-    const user: User = { ...insertUser, id, createdAt: new Date(), updatedAt: new Date(), email: insertUser.email || null, firstName: insertUser.firstName || null, lastName: insertUser.lastName || null, phone: insertUser.phone || null, address: insertUser.address || null, city: insertUser.city || "Dubai", userType: insertUser.userType || "consumer", companyName: insertUser.companyName || null, businessLicense: insertUser.businessLicense || null, tradeLicense: insertUser.tradeLicense || null, isB2BVerified: insertUser.isB2BVerified || false, b2bVerifiedAt: insertUser.b2bVerifiedAt || null, membershipTierId: insertUser.membershipTierId || null, stripeCustomerId: insertUser.stripeCustomerId || null };
+    const user: User = {
+      ...insertUser, id, createdAt: new Date(), updatedAt: new Date(),
+      email: insertUser.email || null, firstName: insertUser.firstName || null,
+      lastName: insertUser.lastName || null, phone: insertUser.phone || null,
+      address: insertUser.address || null, city: insertUser.city || "Dubai",
+      userType: insertUser.userType || "consumer", companyName: insertUser.companyName || null,
+      businessLicense: insertUser.businessLicense || null, tradeLicense: insertUser.tradeLicense || null,
+      isB2BVerified: insertUser.isB2BVerified || false, b2bVerifiedAt: insertUser.b2bVerifiedAt || null,
+      membershipTierId: insertUser.membershipTierId || null, stripeCustomerId: insertUser.stripeCustomerId || null,
+    };
     this.users.set(id, user);
     return user;
   }
@@ -156,7 +234,13 @@ export class MemStorage implements IStorage {
 
   async createConciergeConversation(conv: InsertConciergeConversation): Promise<ConciergeConversation> {
     const id = Math.random().toString(36).substring(7);
-    const newConv: ConciergeConversation = { ...conv, id, moveInTiming: conv.moveInTiming || null, area: conv.area || null, propertyType: conv.propertyType || null, waterCheck: conv.waterCheck || null, cleaningCheck: conv.cleaningCheck || null, fixesCheck: conv.fixesCheck || null, lastMessageAt: new Date(), createdAt: new Date() };
+    const newConv: ConciergeConversation = {
+      ...conv, id,
+      moveInTiming: conv.moveInTiming || null, area: conv.area || null,
+      propertyType: conv.propertyType || null, waterCheck: conv.waterCheck || null,
+      cleaningCheck: conv.cleaningCheck || null, fixesCheck: conv.fixesCheck || null,
+      lastMessageAt: new Date(), createdAt: new Date()
+    };
     this.conciergeConversations.set(id, newConv);
     return newConv;
   }
@@ -212,35 +296,20 @@ export class MemStorage implements IStorage {
     }
 
     const FUNNEL_STEPS = [
-      "trust_strip_click",
-      "partners_broker_auto_scroll",
-      "partners_broker_cta",
-      "academy_join_cta",
-      "brokers_page_view",
-      "stage_selected",
-      "stage_whatsapp",
-      "funnel_submitted",
-      "funnel_goto_brokers",
-      "urgency_get_slot",
+      "trust_strip_click", "partners_broker_auto_scroll", "partners_broker_cta",
+      "academy_join_cta", "brokers_page_view", "stage_selected",
+      "stage_whatsapp", "funnel_submitted", "funnel_goto_brokers", "urgency_get_slot",
     ];
 
     const funnel = FUNNEL_STEPS.map(step => ({ step, count: byEvent[step] || 0 }));
-
     const utmSourceChart = Object.entries(byUtmSource)
       .map(([source, count]) => ({ source, count }))
       .sort((a, b) => b.count - a.count);
 
     return {
-      total: events.length,
-      uniqueSessions: uniqueSessions.size,
-      byEvent,
-      byStage,
-      byUtmSource,
-      utmSourceChart,
-      funnel,
+      total: events.length, uniqueSessions: uniqueSessions.size,
+      byEvent, byStage, byUtmSource, utmSourceChart, funnel,
       recentEvents: [...events].reverse().slice(0, 30),
     };
   }
 }
-
-export const storage = new MemStorage();
