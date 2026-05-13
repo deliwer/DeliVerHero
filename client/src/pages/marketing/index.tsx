@@ -122,7 +122,6 @@ export default function MarketingHub() {
         </div>
         <BrokerAccessBanner />
       </div>
-
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
 
         {/* Header */}
@@ -592,7 +591,6 @@ export default function MarketingHub() {
         )}
 
       </div>
-
       {/* Footer Stats */}
       <div className="border-t border-white/10 py-10 px-4 mt-8">
         <div className="max-w-6xl mx-auto grid grid-cols-3 gap-6 text-center">
@@ -609,7 +607,7 @@ export default function MarketingHub() {
           ))}
         </div>
         {/* Secret founder access — not linked publicly */}
-        <div className="max-w-6xl mx-auto mt-8 flex items-center justify-end">
+        <div className="max-w-6xl mx-auto mt-8 flex items-center justify-end text-[#00ff2f] bg-[#00ff2f00] opacity-[0.5]">
           <a
             href="/admin/flex-rentals"
             title=""
@@ -623,7 +621,6 @@ export default function MarketingHub() {
           </a>
         </div>
       </div>
-
       <StickyBrokerWhatsApp />
     </div>
   );
