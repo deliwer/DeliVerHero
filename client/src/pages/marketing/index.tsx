@@ -607,17 +607,18 @@ export default function MarketingHub() {
           ))}
         </div>
         {/* Secret founder access — not linked publicly */}
-        <div className="max-w-6xl mx-auto flex items-center justify-end border-t-[#ffffff] border-r-[#ffffff] border-b-[#ffffff] border-l-[#ffffff] bg-[#0011ff8c] opacity-[0.25] mt-[50px] ml-[0px] mb-[50px] pl-[50px] pr-[50px] pt-[50px] pb-[50px] text-[#ff0000]">
+        <div className="max-w-6xl mx-auto flex items-center justify-end py-10 px-4">
           <a
             href="/admin/flex-rentals"
-            title=""
+            title="deliwer-admin-2026"
             aria-label="Internal"
-            className="opacity-[0.04] hover:opacity-20 transition-opacity duration-500 text-white"
+            className="group opacity-[0.06] hover:opacity-40 transition-opacity duration-500 text-white flex flex-col items-center gap-1.5"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
+            <span className="text-[9px] font-mono tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500 select-none">deliwer-admin-2026</span>
           </a>
         </div>
       </div>
