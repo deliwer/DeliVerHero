@@ -607,7 +607,7 @@ export default function MarketingHub() {
           ))}
         </div>
         {/* Secret founder access — not linked publicly */}
-        <div className="max-w-6xl mx-auto mt-8 flex items-center justify-end text-[#00ff2f] bg-[#00ff2f00] opacity-[0.5] pl-[10px] pr-[10px]">
+        <div className="max-w-6xl mx-auto mt-8 flex items-center justify-end text-[#00ff2f] bg-[#00ff2f00] opacity-[0.5] pl-[10px] pr-[10px] pt-[10px] pb-[10px] ml-[500px] border-t-[#ffffff] border-r-[#ffffff] border-b-[#ffffff] border-l-[#ffffff]">
           <a
             href="/admin/flex-rentals"
             title=""
