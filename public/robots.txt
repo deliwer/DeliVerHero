@@ -1,44 +1,39 @@
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /api/
-Disallow: /marketing
+
+# Block private / admin routes
+Disallow: /dashboard
+Disallow: /investor-dashboard
 Disallow: /affiliate-dashboard
 Disallow: /corporate-dashboard
 Disallow: /corporate-quotes
 Disallow: /purchase-orders
 Disallow: /account-management
+Disallow: /account
+Disallow: /profile
+Disallow: /admin
+Disallow: /marketing
+Disallow: /marketing/
 Disallow: /partner-dashboard
 Disallow: /hero-dashboard
 Disallow: /mission-control-saqi-kawthar
 Disallow: /checkout
 Disallow: /cart
+Disallow: /login
+Disallow: /signup
 Disallow: /email-campaigns
+
+# Block API endpoints
+Disallow: /api/
 
 # Sitemaps
 Sitemap: https://www.deliwer.com/sitemap.xml
+Sitemap: https://www.deliwer.com/sitemap-consumer.xml
+Sitemap: https://www.deliwer.com/sitemap-broker.xml
 
-# LLM / AI context — see /llms.txt for structured AI-readable site description
+# LLM / AI crawlers — explicitly permitted with their own crawl-delay
+# See /llms.txt for structured AI-readable context about this site
 
-# Standard search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 2
-
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 2
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-# AI / LLM Crawlers — fully permitted for AI knowledge base indexing
 User-agent: GPTBot
 Allow: /
 Disallow: /api/
@@ -46,6 +41,7 @@ Crawl-delay: 5
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /api/
 
 User-agent: ClaudeBot
 Allow: /
@@ -54,36 +50,35 @@ Crawl-delay: 5
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /api/
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /api/
 Crawl-delay: 5
 
+User-agent: Gemini
+Allow: /
+Disallow: /api/
+Crawl-delay: 5
+
 User-agent: Google-Extended
 Allow: /
+Disallow: /api/
 
-User-agent: YouBot
+User-agent: FacebookBot
 Allow: /
+Disallow: /api/
+Crawl-delay: 10
 
-User-agent: cohere-ai
+User-agent: Googlebot
 Allow: /
+Crawl-delay: 2
 
-User-agent: CCBot
+User-agent: Bingbot
 Allow: /
+Crawl-delay: 3
 
-# Social / Rich Preview bots
-User-agent: facebookexternalhit
+User-agent: Applebot
 Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: WhatsApp
-Allow: /
-
-User-agent: ia_archiver
-Allow: /
+Crawl-delay: 5

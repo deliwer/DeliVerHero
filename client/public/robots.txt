@@ -28,6 +28,8 @@ Disallow: /api/
 
 # Sitemaps
 Sitemap: https://www.deliwer.com/sitemap.xml
+Sitemap: https://www.deliwer.com/sitemap-consumer.xml
+Sitemap: https://www.deliwer.com/sitemap-broker.xml
 
 # LLM / AI crawlers — explicitly permitted with their own crawl-delay
 # See /llms.txt for structured AI-readable context about this site
