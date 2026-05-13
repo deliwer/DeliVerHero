@@ -608,6 +608,20 @@ export default function MarketingHub() {
             </div>
           ))}
         </div>
+        {/* Secret founder access — not linked publicly */}
+        <div className="max-w-6xl mx-auto mt-8 flex items-center justify-end">
+          <a
+            href="/admin/flex-rentals"
+            title=""
+            aria-label="Internal"
+            className="opacity-[0.04] hover:opacity-20 transition-opacity duration-500 text-white"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <StickyBrokerWhatsApp />

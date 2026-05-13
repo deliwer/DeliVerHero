@@ -38,10 +38,13 @@ export interface IStorage {
   updateFlexListingStatus(id: string, status: string): Promise<FlexListing | undefined>;
   // Reviews
   getFlexListingReviews(listingId: string): Promise<FlexListingReview[]>;
+  getAllFlexListingReviews(): Promise<FlexListingReview[]>;
   createFlexListingReview(review: InsertFlexListingReview): Promise<FlexListingReview>;
+  verifyFlexListingReview(id: string): Promise<FlexListingReview | undefined>;
   // Viewing Requests
   createViewingRequest(request: InsertViewingRequest): Promise<ViewingRequest>;
   getViewingRequests(status?: string): Promise<ViewingRequest[]>;
+  updateViewingRequestStatus(id: string, status: string): Promise<ViewingRequest | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -114,6 +117,19 @@ export class MemStorage implements IStorage {
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
+  async getAllFlexListingReviews(): Promise<FlexListingReview[]> {
+    return Array.from(this.flexListingReviewsMap.values())
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  async verifyFlexListingReview(id: string): Promise<FlexListingReview | undefined> {
+    const review = this.flexListingReviewsMap.get(id);
+    if (!review) return undefined;
+    const updated = { ...review, verified: true };
+    this.flexListingReviewsMap.set(id, updated);
+    return updated;
+  }
+
   async createFlexListingReview(review: InsertFlexListingReview): Promise<FlexListingReview> {
     const id = `rev_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
     const newReview: FlexListingReview = {
@@ -155,6 +171,14 @@ export class MemStorage implements IStorage {
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     if (status) return all.filter((r) => r.status === status);
     return all;
+  }
+
+  async updateViewingRequestStatus(id: string, status: string): Promise<ViewingRequest | undefined> {
+    const req = this.viewingRequestsMap.get(id);
+    if (!req) return undefined;
+    const updated = { ...req, status };
+    this.viewingRequestsMap.set(id, updated);
+    return updated;
   }
 
   async getBrokers(): Promise<Broker[]> {

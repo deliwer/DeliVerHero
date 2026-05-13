@@ -1,13 +1,25 @@
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { db } from "../db";
 import {
   flexListings, insertFlexListingSchema,
   flexListingReviews, insertFlexListingReviewSchema,
   viewingRequests, insertViewingRequestSchema,
 } from "@shared/schema";
-import { eq, desc, and, sql } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 import { z } from "zod";
 import { storage } from "../storage";
+
+// ── Admin auth middleware ──────────────────────────────────────────────────────
+
+const ADMIN_SECRET = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+
+function requireAdmin(req: Request, res: Response, next: NextFunction) {
+  const token = req.headers["x-admin-token"] as string;
+  if (token !== ADMIN_SECRET) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
 
 const router = Router();
 
@@ -202,4 +214,124 @@ router.patch("/:id/status", async (req, res) => {
   }
 });
 
+// ── ADMIN: GET /api/flex-listings/admin/stats ─────────────────────────────────
+router.get("/admin/stats", requireAdmin, async (req, res) => {
+  try {
+    let allListings: any[] = [];
+    let allViewings: any[] = [];
+    let allReviews: any[] = [];
+    try {
+      allListings = await db.select().from(flexListings).orderBy(desc(flexListings.createdAt));
+    } catch { allListings = await storage.getFlexListings(); }
+    try {
+      allViewings = await db.select().from(viewingRequests).orderBy(desc(viewingRequests.createdAt));
+    } catch { allViewings = await storage.getViewingRequests(); }
+    try {
+      allReviews = await db.select().from(flexListingReviews).orderBy(desc(flexListingReviews.createdAt));
+    } catch { allReviews = await storage.getAllFlexListingReviews(); }
+
+    res.json({
+      totalListings: allListings.length,
+      pendingListings: allListings.filter(l => l.status === "pending").length,
+      activeListings: allListings.filter(l => l.status === "active").length,
+      filledListings: allListings.filter(l => l.status === "filled").length,
+      totalViewings: allViewings.length,
+      pendingViewings: allViewings.filter(v => v.status === "pending").length,
+      confirmedViewings: allViewings.filter(v => v.status === "confirmed").length,
+      totalReviews: allReviews.length,
+      verifiedReviews: allReviews.filter(r => r.verified).length,
+    });
+  } catch (err) {
+    console.error("admin/stats error:", err);
+    res.status(500).json({ error: "Failed to fetch admin stats" });
+  }
+});
+
+// ── ADMIN: GET /api/flex-listings/admin/listings ──────────────────────────────
+router.get("/admin/listings", requireAdmin, async (req, res) => {
+  try {
+    let rows: any[] = [];
+    try {
+      rows = await db.select().from(flexListings).orderBy(desc(flexListings.createdAt));
+    } catch { rows = await storage.getFlexListings(); }
+    res.json({ listings: rows });
+  } catch (err) {
+    console.error("admin/listings error:", err);
+    res.status(500).json({ error: "Failed to fetch listings" });
+  }
+});
+
+// ── ADMIN: GET /api/flex-listings/admin/viewings ──────────────────────────────
+router.get("/admin/viewings", requireAdmin, async (req, res) => {
+  try {
+    let rows: any[] = [];
+    try {
+      rows = await db.select().from(viewingRequests).orderBy(desc(viewingRequests.createdAt));
+    } catch { rows = await storage.getViewingRequests(); }
+    res.json({ requests: rows });
+  } catch (err) {
+    console.error("admin/viewings error:", err);
+    res.status(500).json({ error: "Failed to fetch viewings" });
+  }
+});
+
+// ── ADMIN: GET /api/flex-listings/admin/reviews ───────────────────────────────
+router.get("/admin/reviews", requireAdmin, async (req, res) => {
+  try {
+    let rows: any[] = [];
+    try {
+      rows = await db.select().from(flexListingReviews).orderBy(desc(flexListingReviews.createdAt));
+    } catch { rows = await storage.getAllFlexListingReviews(); }
+    res.json({ reviews: rows });
+  } catch (err) {
+    console.error("admin/reviews error:", err);
+    res.status(500).json({ error: "Failed to fetch reviews" });
+  }
+});
+
+// ── ADMIN: PATCH /api/flex-listings/viewing-requests/:id/status ───────────────
+router.patch("/viewing-requests/:id/status", requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = z.object({ status: z.enum(["pending", "confirmed", "cancelled"]) }).parse(req.body);
+    let record: any;
+    try {
+      const [row] = await db
+        .update(viewingRequests)
+        .set({ status })
+        .where(eq(viewingRequests.id, id))
+        .returning();
+      record = row;
+    } catch { record = await storage.updateViewingRequestStatus(id, status); }
+    if (!record) return res.status(404).json({ error: "Viewing request not found" });
+    res.json({ request: record });
+  } catch (err) {
+    if (err instanceof z.ZodError) return res.status(400).json({ error: "Invalid status" });
+    console.error("viewing-requests PATCH error:", err);
+    res.status(500).json({ error: "Failed to update" });
+  }
+});
+
+// ── ADMIN: PATCH /api/flex-listings/reviews/:id/verify ───────────────────────
+router.patch("/reviews/:id/verify", requireAdmin, async (req, res) => {
+  try {
+    const { id } = req.params;
+    let record: any;
+    try {
+      const [row] = await db
+        .update(flexListingReviews)
+        .set({ verified: true })
+        .where(eq(flexListingReviews.id, id))
+        .returning();
+      record = row;
+    } catch { record = await storage.verifyFlexListingReview(id); }
+    if (!record) return res.status(404).json({ error: "Review not found" });
+    res.json({ review: record });
+  } catch (err) {
+    console.error("reviews verify PATCH error:", err);
+    res.status(500).json({ error: "Failed to verify review" });
+  }
+});
+
 export default router;
+
