@@ -553,6 +553,7 @@ function Router() {
 }
 
 import { WhatsAppSticky } from "@/components/whatsapp-sticky";
+import { PrivateGate } from "@/components/private-gate";
 
 function MainShell({ children }: { children: React.ReactNode }) {
   const [navHeight, setNavHeight] = useState(140);
@@ -573,7 +574,7 @@ function MainShell({ children }: { children: React.ReactNode }) {
 
   return (
     <main style={{ paddingTop: navHeight }}>
-      {children}
+      <PrivateGate>{children}</PrivateGate>
     </main>
   );
 }

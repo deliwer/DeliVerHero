@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // ── Founder-only routes: block crawlers/AI bots at HTTP layer ───────────────
 // Adds noindex/nofollow/noarchive headers and Referrer-Policy for privacy.
-const PRIVATE_PATH_RE = /^\/(marketing|admin|investor-dashboard|affiliate-dashboard|corporate-dashboard|partner-dashboard|hero-dashboard|mission-control|sendgrid-dashboard|founder-dashboard|email-campaigns|account-management|api\/attribution|api\/log)(\/|$)/i;
+const PRIVATE_PATH_RE = /^\/(marketing|admin|operations|investor-dashboard|affiliate-dashboard|corporate-dashboard|partner-dashboard|hero-dashboard|mission-control|sendgrid-dashboard|founder-dashboard|email-campaigns|account-management|capture-admin|habtoor-admin|broker-master-db|api\/attribution|api\/log)(\/|$)/i;
 app.use((req, res, next) => {
   if (PRIVATE_PATH_RE.test(req.path)) {
     res.set("X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet, noimageindex");
