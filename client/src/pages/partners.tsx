@@ -459,10 +459,20 @@ const COLOR_MAP: Record<string, string> = {
 
 function AdminQuickAccess() {
   const [unlocked, setUnlocked] = useState(false);
+  const [locking, setLocking] = useState(false);
 
   useEffect(() => {
     setUnlocked(sessionStorage.getItem("dw_founder_auth") === "1");
   }, []);
+
+  const lockSession = () => {
+    setLocking(true);
+    setTimeout(() => {
+      sessionStorage.removeItem("dw_founder_auth");
+      setUnlocked(false);
+      setLocking(false);
+    }, 600);
+  };
 
   if (!unlocked) return null;
 
@@ -474,9 +484,18 @@ function AdminQuickAccess() {
           <span className="text-[9px] font-black uppercase tracking-widest text-purple-400/60">
             Partner Admin — Quick Access
           </span>
-          <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-purple-500/30">
+          <span className="text-[9px] font-black uppercase tracking-widest text-purple-500/30 ml-2">
             Private · Not Indexed
           </span>
+          <button
+            onClick={lockSession}
+            data-testid="button-lock-session"
+            title="Lock session — clears founder access"
+            className={`ml-auto flex items-center gap-1.5 px-3 py-1 rounded-lg border border-red-900/40 text-red-500/50 hover:text-red-400 hover:border-red-500/40 hover:bg-red-500/8 transition-all text-[9px] font-black uppercase tracking-widest ${locking ? "opacity-50 pointer-events-none" : ""}`}
+          >
+            <Lock className="w-3 h-3" />
+            {locking ? "Locking…" : "Lock Session"}
+          </button>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
           {ADMIN_LINKS.map(({ href, label, icon: Icon, color }) => (
