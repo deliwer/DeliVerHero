@@ -124,7 +124,6 @@ export function Navigation() {
     <div id="main-nav" className="w-full fixed top-0 z-[100]">
       {/* Emergency banner — consumer side only */}
       {!isBrokerSide && <EmergencyBanner />}
-
       {/* ── Main Nav Bar ── */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
         isBrokerSide
@@ -191,7 +190,7 @@ export function Navigation() {
                   }`}
                   title="DeliWer — Home Services for residents"
                   data-testid="mode-b2c"
-                >Home Service</button>
+                >Tenants</button>
                 <button
                   onClick={() => switchMode("b2b")}
                   className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
@@ -246,7 +245,6 @@ export function Navigation() {
           </Button>
         </div>
       </nav>
-
       {/* ── YouTube Training Bar — broker side only ── */}
       {isBrokerSide && (
         <a
@@ -273,7 +271,6 @@ export function Navigation() {
           </span>
         </a>
       )}
-
       {/* ── Flex Living Announcement Bar — consumer side only ── */}
       {!isBrokerSide && (
         <a
@@ -294,7 +291,6 @@ export function Navigation() {
           </span>
         </a>
       )}
-
       {/* ── Trust Strip — consumer side only ── */}
       {!isBrokerSide && (
         <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-1 px-4 overflow-x-auto no-scrollbar relative z-50">
@@ -303,7 +299,6 @@ export function Navigation() {
           </div>
         </div>
       )}
-
       {/* ── Mobile Nav Dropdown ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
