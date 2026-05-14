@@ -729,6 +729,42 @@ export default function EjariDubai() {
         </div>
       </section>
 
+      {/* ───── VIRTUAL EJARI FOR BUSINESS CTA ───── */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl border border-teal-500/20 bg-gradient-to-br from-teal-950/60 via-slate-950 to-slate-950 p-7 sm:p-10">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(20,184,166,0.10)_0%,transparent_65%)] pointer-events-none" />
+            <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <div className="shrink-0 w-12 h-12 rounded-2xl bg-teal-500/15 border border-teal-500/25 flex items-center justify-center">
+                <Building2 className="w-6 h-6 text-teal-400" />
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <p className="text-white font-black text-lg">Need Ejari for a commercial license?</p>
+                  <span className="text-[9px] font-black uppercase tracking-widest text-teal-300 bg-teal-500/15 border border-teal-500/25 rounded-full px-2 py-0.5">DLD Registered</span>
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  DeliWer provides Virtual Ejari contracts for trade licenses, RERA broker cards, IFZA, SHAMS, DED mainland, and freelance permits — delivered within 48 hrs. No office visit required.
+                </p>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {["Mainland LLC", "IFZA", "SHAMS", "RERA Broker Card", "Freelance Permit", "DED"].map(t => (
+                    <span key={t} className="text-[10px] font-semibold text-teal-300/60 bg-teal-950/50 border border-teal-500/15 rounded-md px-2 py-0.5">{t}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 shrink-0">
+                <Link href="/virtual-ejari">
+                  <Button className="bg-teal-600 hover:bg-teal-500 text-white font-bold whitespace-nowrap flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" /> Virtual Ejari →
+                  </Button>
+                </Link>
+                <p className="text-center text-gray-700 text-[10px]">From AED 1,500/year</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ───── FAQ SECTION ───── */}
       <section className="py-24 px-4">
         <div className="max-w-3xl mx-auto">

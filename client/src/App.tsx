@@ -59,6 +59,7 @@ const MoveInPlan = lazy(() => import("@/pages/move-in-plan"));
 const EjariRegistration = lazy(() => import("@/pages/ejari-registration"));
 const DewaActivation = lazy(() => import("@/pages/dewa-activation"));
 const EjariRenewal = lazy(() => import("@/pages/ejari-renewal"));
+const VirtualEjari = lazy(() => import("@/pages/virtual-ejari"));
 const MoveToDubai = lazy(() => import("@/pages/move-to-dubai"));
 const MarinaGateMoveIn = lazy(() => import("@/pages/marina-gate-move-in"));
 const AffiliateManagement = lazy(() => import("@/pages/affiliate-management"));
@@ -315,6 +316,9 @@ function Router() {
         <Route path="/relocation-alliance" component={RelocationAlliance} />
         <Route path="/ejari-registration" component={EjariRegistration} />
         <Route path="/ejari-renewal" component={EjariRenewal} />
+        <Route path="/virtual-ejari" component={VirtualEjari} />
+        <Route path="/ejari-commercial" component={VirtualEjari} />
+        <Route path="/ejari-for-business" component={VirtualEjari} />
         <Route path="/dewa-activation" component={DewaActivation} />
         <Route path="/move-to-dubai" component={MoveToDubai} />
         <Route path="/marina-gate-move-in" component={MarinaGateMoveIn} />

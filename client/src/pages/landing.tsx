@@ -508,18 +508,36 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
-              { icon: "📄", label: "Ejari Registration" },
-              { icon: "🚛", label: "Movers & Packing" },
-              { icon: "⚡", label: "DEWA & Utility Setup" },
-              { icon: "📶", label: "Internet Connection" },
-              { icon: "🧹", label: "Cleaning & Preparation" },
-              { icon: "📦", label: "Storage & Logistics" },
+              { icon: "📄", label: "Ejari Registration", href: "/ejari-dubai" },
+              { icon: "🚛", label: "Movers & Packing", href: "/relocate" },
+              { icon: "⚡", label: "DEWA & Utility Setup", href: "/dewa-activation" },
+              { icon: "📶", label: "Internet Connection", href: "/setup" },
+              { icon: "🧹", label: "Cleaning & Preparation", href: "/home-services" },
+              { icon: "📦", label: "Storage & Logistics", href: "/relocate" },
             ].map((s) => (
-              <div key={s.label} className="group flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-white/15 rounded-xl transition-all">
-                <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{s.icon}</span>
-                <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
-              </div>
+              <Link key={s.label} href={s.href}>
+                <div className="group flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-white/15 rounded-xl transition-all cursor-pointer h-full">
+                  <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{s.icon}</span>
+                  <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
+                </div>
+              </Link>
             ))}
+          </div>
+
+          {/* Virtual Ejari for Business — inline CTA */}
+          <div className="relative overflow-hidden rounded-2xl border border-teal-500/20 bg-teal-950/30 px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="shrink-0 w-9 h-9 rounded-xl bg-teal-500/15 border border-teal-500/25 flex items-center justify-center">
+              <span className="text-base">🏢</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white font-bold text-sm">Need Ejari for a business license?</p>
+              <p className="text-gray-500 text-xs mt-0.5">Virtual Ejari — DLD-registered address for trade licenses, RERA broker cards &amp; freelance permits. Delivered in 48 hrs.</p>
+            </div>
+            <Link href="/virtual-ejari">
+              <div className="shrink-0 flex items-center gap-1.5 text-xs font-bold text-teal-400 hover:text-teal-300 border border-teal-500/25 hover:border-teal-500/40 px-4 py-2 rounded-xl transition-colors whitespace-nowrap cursor-pointer">
+                Virtual Ejari →
+              </div>
+            </Link>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

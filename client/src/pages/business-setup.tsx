@@ -222,6 +222,49 @@ export default function BusinessSetup() {
         </div>
       </section>
 
+      {/* Virtual Ejari CTA */}
+      <section className="py-10 px-4 bg-slate-50 dark:bg-slate-900/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl border border-teal-500/20 bg-gradient-to-br from-teal-950/80 via-slate-950 to-slate-950 p-7 sm:p-10">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(20,184,166,0.10)_0%,transparent_65%)] pointer-events-none" />
+            <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <div className="flex-1">
+                <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-teal-400 bg-teal-500/10 border border-teal-500/20 px-3 py-1 rounded-full mb-3">
+                  Required for license activation
+                </div>
+                <h3 className="text-white font-black text-xl sm:text-2xl mb-2">Need a Virtual Ejari for your license address?</h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                  Every Dubai trade license, RERA broker card, or freelance permit requires a DLD-registered address. DeliWer provides a Virtual Ejari contract — an official Ejari tenancy contract registered on the DLD portal — without renting a physical office. Delivered within 48 hours.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["DED Mainland LLC", "IFZA", "SHAMS", "RERA Broker Card", "Freelance Permit", "DET License", "DIFC Address"].map(t => (
+                    <span key={t} className="text-[10px] font-semibold text-teal-300/60 bg-teal-950/50 border border-teal-500/15 rounded-md px-2 py-0.5">{t}</span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/virtual-ejari">
+                    <Button className="bg-teal-600 hover:bg-teal-500 text-white font-bold flex items-center gap-2">
+                      Learn About Virtual Ejari →
+                    </Button>
+                  </Link>
+                  <a href="https://wa.me/971523946311?text=Hello%20DeliWer%20%F0%9F%91%8B%0A%0AI%20need%20a%20Virtual%20Ejari%20for%20my%20commercial%20license.%0A%0ALicense%20type%20%2F%20authority%3A%0ACompany%20name%3A" target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 flex items-center gap-2">
+                      WhatsApp for Quick Quote
+                    </Button>
+                  </a>
+                </div>
+              </div>
+              <div className="shrink-0 text-center hidden sm:block">
+                <p className="text-teal-400 font-black text-3xl">48h</p>
+                <p className="text-gray-500 text-xs">delivery</p>
+                <p className="text-white font-black text-xl mt-3">AED 1,500</p>
+                <p className="text-gray-500 text-xs">per year</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Lead Form */}
       <section id="lead-form" ref={formRef} className="py-20 relative">
         <div 
