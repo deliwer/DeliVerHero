@@ -1007,6 +1007,7 @@ export default function FlexibleRentalsPage() {
 
   const [mode, setMode] = useState<Mode>("find");
   const [activeType, setActiveType] = useState<PropertyType | "all">("all");
+  const [ejariOnly, setEjariOnly] = useState(false);
   const [showBudgetQuiz, setShowBudgetQuiz] = useState(false);
   const [hostSuccess, setHostSuccess] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -1031,15 +1032,17 @@ export default function FlexibleRentalsPage() {
     const sf = FLEXIBLE_LISTINGS.filter(l => {
       if (activeType !== "all" && l.type !== activeType) return false;
       if (q && !l.title.toLowerCase().includes(q) && !l.area.toLowerCase().includes(q)) return false;
+      if (ejariOnly && !l.ejariVerified) return false;
       return true;
     });
     const df = dbListings.filter(l => {
       if (activeType !== "all" && l.type !== activeType) return false;
       if (q && !l.title.toLowerCase().includes(q) && !l.area.toLowerCase().includes(q)) return false;
+      if (ejariOnly) return false;
       return true;
     });
     return { static: sf, db: df };
-  }, [activeType, searchQuery, dbListings]);
+  }, [activeType, ejariOnly, searchQuery, dbListings]);
 
   const totalActive = statsData?.active ?? (FLEXIBLE_LISTINGS.length + dbListings.length);
 
@@ -1169,6 +1172,11 @@ export default function FlexibleRentalsPage() {
                       {p.icon} {p.label}
                     </button>
                   ))}
+                  <button
+                    onClick={() => setEjariOnly(v => !v)}
+                    className={`flex items-center gap-1.5 shrink-0 px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${ejariOnly ? "bg-teal-500 text-white border-teal-400 shadow-[0_0_16px_rgba(20,184,166,0.35)]" : "border-teal-500/30 text-teal-400 hover:border-teal-400/50 hover:bg-teal-500/10 bg-teal-950/30"}`}>
+                    <Shield className="w-3.5 h-3.5" /> Ejari Verified
+                  </button>
                 </div>
                 <div className="flex items-center justify-between">
                   <p className="text-gray-500 text-sm"><span className="text-white font-bold">{filtered.static.length + filtered.db.length}</span> listings found</p>
@@ -1207,6 +1215,108 @@ export default function FlexibleRentalsPage() {
                   <MessageCircle className="w-4 h-4" /> Match Me on WhatsApp
                 </button>
               </motion.div>
+
+              {/* ── VIRTUAL EJARI — COMMERCIAL LICENSE ─────────────────────────────── */}
+              <section className="mt-16" id="virtual-ejari">
+                <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  className="relative overflow-hidden rounded-3xl border border-teal-500/20 bg-gradient-to-br from-teal-950/60 via-[#0d1117] to-[#060810]">
+                  {/* glow */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(20,184,166,0.10)_0%,transparent_65%)] pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-72 h-72 bg-teal-500/5 rounded-full blur-[80px] pointer-events-none" />
+
+                  <div className="relative p-6 sm:p-10">
+                    {/* Header */}
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-8">
+                      <div className="shrink-0 w-12 h-12 rounded-2xl bg-teal-500/15 border border-teal-500/25 flex items-center justify-center">
+                        <Shield className="w-6 h-6 text-teal-400" />
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                          <h2 className="text-white font-black text-2xl sm:text-3xl leading-tight">Virtual Ejari</h2>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-teal-300 bg-teal-500/15 border border-teal-500/25 rounded-full px-2.5 py-0.5">DLD Registered</span>
+                        </div>
+                        <p className="text-gray-400 text-sm sm:text-base max-w-xl">
+                          Get a DLD-registered Ejari contract for your commercial license address — without renting a full office. Ideal for freelancers, mainland LLCs, sole proprietors, and IFZA/SHAMS license holders needing a valid Dubai address.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Two-column: what's included + process */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                      {/* What's included */}
+                      <div className="bg-white/3 border border-white/6 rounded-2xl p-5">
+                        <p className="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                          <Check className="w-4 h-4 text-teal-400" /> What's Included
+                        </p>
+                        <ul className="space-y-3">
+                          {[
+                            { icon: "📄", text: "Ejari-registered tenancy contract (DLD system)" },
+                            { icon: "🏢", text: "Official Dubai address for license submission" },
+                            { icon: "✅", text: "RERA-compliant unit — approved for business use" },
+                            { icon: "🔏", text: "Stamped contract + digital copy within 48 hrs" },
+                            { icon: "♻️", text: "Annual renewal support included" },
+                          ].map(i => (
+                            <li key={i.text} className="flex items-start gap-2.5 text-sm text-gray-400">
+                              <span className="shrink-0 mt-0.5">{i.icon}</span>
+                              <span>{i.text}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Process */}
+                      <div className="bg-white/3 border border-white/6 rounded-2xl p-5">
+                        <p className="text-white font-bold text-sm mb-4 flex items-center gap-2">
+                          <Zap className="w-4 h-4 text-amber-400" /> How It Works
+                        </p>
+                        <ol className="space-y-3.5">
+                          {[
+                            { step: "1", label: "WhatsApp us your license type & authority (DED, IFZA, SHAMS, RERA…)" },
+                            { step: "2", label: "We assign a DLD-registered unit in an approved building" },
+                            { step: "3", label: "Ejari contract generated & stamped under DLD portal" },
+                            { step: "4", label: "Submit to your licensing authority — done in 48 hrs" },
+                          ].map(s => (
+                            <li key={s.step} className="flex items-start gap-3 text-sm text-gray-400">
+                              <span className="shrink-0 w-5 h-5 rounded-full bg-teal-500/20 border border-teal-500/30 flex items-center justify-center text-[10px] font-black text-teal-400 mt-0.5">{s.step}</span>
+                              <span>{s.label}</span>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    </div>
+
+                    {/* Who it's for */}
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {["Freelance Permit", "Mainland LLC", "Sole Proprietorship", "IFZA License", "SHAMS License", "RERA Broker Card", "DET License", "DIFC / ADGM"].map(tag => (
+                        <span key={tag} className="text-[11px] font-semibold text-teal-300/70 bg-teal-950/50 border border-teal-500/20 rounded-lg px-3 py-1">{tag}</span>
+                      ))}
+                    </div>
+
+                    {/* Regulatory note */}
+                    <div className="flex items-start gap-2.5 bg-amber-950/30 border border-amber-500/15 rounded-xl p-4 mb-7">
+                      <Shield className="w-3.5 h-3.5 text-amber-400/60 shrink-0 mt-0.5" />
+                      <p className="text-[10px] text-amber-200/50 leading-relaxed">
+                        <span className="font-black uppercase tracking-wider text-amber-300/60">Regulatory Note · </span>
+                        Virtual Ejari contracts are issued under Dubai Law No. 26 of 2007. The registered address must correspond to a real, DLD-enrolled unit. DeliWer facilitates Ejari registration through authorised RERA Appointed Trustee Centres only. The contract is valid for business address purposes; it does not confer residential occupancy rights. Clients must verify with their licensing authority (DED, RERA, IFZA, SHAMS, DIFC) that the unit type satisfies their jurisdiction's requirements.{" "}
+                        <a href="https://dubailand.gov.ae/en/eservices/ejari-system/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-amber-300/70 transition-colors">DLD Ejari Portal ↗</a>
+                      </p>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                      <button
+                        onClick={() => openWA("971523946311", "Hello DeliWer 👋\n\nI'm interested in a Virtual Ejari contract for my commercial license.\n\nLicense type / authority:\nCompany name:\n\nPlease advise on next steps.")}
+                        className="flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1fbd5a] active:scale-95 text-white font-bold px-7 py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,211,102,0.25)] text-sm">
+                        <MessageCircle className="w-4 h-4" /> Get Virtual Ejari — WhatsApp
+                      </button>
+                      <div className="text-xs text-gray-600 leading-relaxed">
+                        <p>Ready within <span className="text-white font-semibold">48 hours</span> · Starts from <span className="text-white font-semibold">AED 1,500/yr</span></p>
+                        <p className="mt-0.5">Renewal reminders included · DLD portal submission handled</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </section>
 
               {/* Lifestyle categories */}
               <section className="mt-16">
