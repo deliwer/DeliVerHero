@@ -50,7 +50,6 @@ const deliwerNavItems = [
   { path: "/exit-dubai",       label: "Move-Out",        id: "move-out",       icon: LogOut },
   { path: "/home-services",    label: "Home Service",    id: "home-service",   icon: Star },
   { path: "/errand",           label: "Errand",          id: "errand",         icon: ClipboardList },
-  { path: "/setup",            label: "Setup",           id: "setup",          icon: CalendarCheck },
 ];
 
 // ── Broker / Partner nav items ────────────────────────────────────────────────
