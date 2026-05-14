@@ -15,6 +15,7 @@ import {
 import { logEvent } from "@/lib/referral";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import heroFlexImg from "@assets/generated_images/happy_family_in_modern_dubai_luxury_apartment.png";
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
@@ -1038,7 +1039,17 @@ export default function FlexibleRentalsPage() {
 
       {/* ── HERO ─────────────────────────────────────────────────────────────── */}
       <section className="relative pt-20 pb-14 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/30 via-[#060810] to-[#060810]" />
+        {/* Background image */}
+        <img
+          src={heroFlexImg}
+          alt="Modern Dubai apartment — flexible living"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+        />
+        {/* Dark overlays for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060810]/80 via-[#060810]/70 to-[#060810] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060810]/60 via-transparent to-[#060810]/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/20 via-transparent to-transparent pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center mb-6">
@@ -1090,6 +1101,18 @@ export default function FlexibleRentalsPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ── RERA / DLD DISCLAIMER ────────────────────────────────────────────── */}
+      <div className="bg-amber-950/30 border-y border-amber-500/15 px-4 py-3">
+        <div className="max-w-6xl mx-auto flex items-start gap-3">
+          <Shield className="w-3.5 h-3.5 text-amber-400/70 shrink-0 mt-0.5" />
+          <p className="text-[10px] leading-relaxed text-amber-200/50">
+            <span className="font-black uppercase tracking-wider text-amber-300/60">Regulatory Notice · </span>
+            Shared accommodation in Dubai is subject to Dubai Law No. 26 of 2007 and RERA Circular No. 19. All listings require a valid Ejari-registered tenancy contract. Subletting or co-tenancy arrangements require the landlord's prior written consent. Occupancy limits are governed by Dubai Municipality regulations (maximum 4–6 persons per unit depending on size). Certain communities and strata-title buildings prohibit shared tenancy — tenants must verify with building management before signing. DeliWer connects tenants with RERA-licensed brokers; all transactions must comply with DLD and RERA requirements. This platform does not constitute legal tenancy advice.{" "}
+            <a href="https://dubailand.gov.ae" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-amber-300/70 transition-colors">Dubai Land Department ↗</a>
+          </p>
+        </div>
+      </div>
 
       {/* ── MODE TOGGLE ──────────────────────────────────────────────────────── */}
       <div className="sticky top-0 z-20 bg-[#060810]/95 backdrop-blur-xl border-b border-white/6">
