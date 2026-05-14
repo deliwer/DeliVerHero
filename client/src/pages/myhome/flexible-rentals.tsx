@@ -724,6 +724,7 @@ function ListingCard({ listing, brokerRef, isNew = false, onOpen }: { listing: A
   const badge = isStatic ? staticL.badge : (isNew ? "New" : null);
   const highlight = isStatic ? staticL.highlight : null;
   const gender = isStatic ? staticL.gender : null;
+  const ejariVerified = isStatic ? staticL.ejariVerified === true : false;
   const status = isStatic ? staticL.status : "available";
   const genderBadge = gender === "female" ? "👩 Ladies" : gender === "couples" ? "💑 Couples" : gender === "male" ? "👨 Male" : null;
 
@@ -769,6 +770,15 @@ function ListingCard({ listing, brokerRef, isNew = false, onOpen }: { listing: A
           {status === "limited" && <span className="text-[9px] font-bold text-red-300 bg-red-500/25 border border-red-500/30 backdrop-blur-sm rounded-lg px-2 py-0.5">LAST ROOM</span>}
         </div>
 
+        {/* Ejari Verified overlay badge */}
+        {ejariVerified && (
+          <div className="absolute top-3 right-3 mt-8">
+            <span className="flex items-center gap-1 text-[9px] font-black uppercase tracking-wide text-teal-300 bg-teal-950/80 border border-teal-500/50 backdrop-blur-sm rounded-lg px-2 py-1 shadow-[0_0_10px_rgba(20,184,166,0.25)]">
+              <Shield className="w-2.5 h-2.5" /> Ejari
+            </span>
+          </div>
+        )}
+
         {/* Gender badge */}
         {genderBadge && <div className="absolute bottom-10 left-3"><span className="text-[10px] font-semibold text-white/80 bg-black/50 backdrop-blur-sm rounded-lg px-2 py-0.5">{genderBadge}</span></div>}
 
@@ -790,6 +800,13 @@ function ListingCard({ listing, brokerRef, isNew = false, onOpen }: { listing: A
           </div>
           <h3 className="text-white font-bold text-sm leading-snug">{listing.title}</h3>
           {highlight && <p className="text-emerald-400 text-xs mt-1 font-medium">✓ {highlight}</p>}
+          {ejariVerified && (
+            <div className="flex items-center gap-1.5 mt-2">
+              <span className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider text-teal-300 bg-teal-950/60 border border-teal-500/30 rounded-md px-2 py-0.5">
+                <Shield className="w-2.5 h-2.5 shrink-0" /> Ejari Verified Contract
+              </span>
+            </div>
+          )}
         </div>
 
         {listing.amenities.length > 0 && (

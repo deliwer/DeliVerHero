@@ -26,6 +26,7 @@ export interface FlexibleListing {
   youtubeUrl?: string;
   managerName?: string;
   managerPhone?: string;
+  ejariVerified?: boolean;
 }
 
 export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
@@ -49,6 +50,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     spotsLeft: 1,
     gender: "any",
     billsIncluded: false,
+    ejariVerified: true,
     image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -108,6 +110,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     highlight: "Garden & pool access",
     gender: "any",
     billsIncluded: false,
+    ejariVerified: true,
     image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -127,6 +130,7 @@ export const FLEXIBLE_LISTINGS: FlexibleListing[] = [
     beds: 1,
     baths: 1,
     highlight: "Monthly, no annual lock-in",
+    ejariVerified: true,
     gender: "any",
     billsIncluded: false,
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
