@@ -44,8 +44,7 @@ const REALESTATE_PATHS: string[] = [];
 // ── Consumer / Home Service nav items (DeliWer.com) ─────────────────────────
 const deliwerNavItems = [
   { path: "/flexible-rentals", label: "Flex Living",     id: "flex-living",    icon: Key },
-  { path: "/ejari-dubai",      label: "Ejari",           id: "ejari",          icon: Home },
-  { path: "/virtual-ejari",    label: "Biz Ejari",       id: "virtual-ejari",  icon: Building2 },
+  { path: "/ejari",            label: "Ejari",           id: "ejari",          icon: Building2 },
   { path: "/relocate",         label: "Move-In",         id: "relocation",     icon: Plane },
   { path: "/exit-dubai",       label: "Move-Out",        id: "move-out",       icon: LogOut },
   { path: "/home-services",    label: "Home Service",    id: "home-service",   icon: Star },

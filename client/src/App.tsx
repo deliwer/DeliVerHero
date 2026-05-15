@@ -316,9 +316,15 @@ function Router() {
         <Route path="/relocation-alliance" component={RelocationAlliance} />
         <Route path="/ejari-registration" component={EjariRegistration} />
         <Route path="/ejari-renewal" component={EjariRenewal} />
-        <Route path="/virtual-ejari" component={VirtualEjari} />
-        <Route path="/ejari-commercial" component={VirtualEjari} />
-        <Route path="/ejari-for-business" component={VirtualEjari} />
+        <Route path="/virtual-ejari">
+          {() => { window.location.replace("/ejari"); return null; }}
+        </Route>
+        <Route path="/ejari-commercial">
+          {() => { window.location.replace("/ejari"); return null; }}
+        </Route>
+        <Route path="/ejari-for-business">
+          {() => { window.location.replace("/ejari"); return null; }}
+        </Route>
         <Route path="/dewa-activation" component={DewaActivation} />
         <Route path="/move-to-dubai" component={MoveToDubai} />
         <Route path="/marina-gate-move-in" component={MarinaGateMoveIn} />
@@ -421,8 +427,10 @@ function Router() {
         <Route path="/partners/resources" component={PartnersResources} />
         <Route path="/partners" component={Partners} />
         <Route path="/welcome" component={Welcome} />
-        <Route path="/ejari-dubai" component={lazy(() => import("./pages/ejari-dubai"))} />
-        <Route path="/ejari" component={lazy(() => import("./pages/ejari-dubai"))} />
+        <Route path="/ejari-dubai">
+          {() => { window.location.replace("/ejari"); return null; }}
+        </Route>
+        <Route path="/ejari" component={lazy(() => import("./pages/ejari"))} />
         <Route path="/relocation-for-founders" component={RelocationForFounders} />
         <Route path="/dashboard" component={HeroDashboard} />
         <Route path="/investor-dashboard" component={InvestorDashboard} />
