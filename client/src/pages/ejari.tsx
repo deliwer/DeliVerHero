@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { SEOMeta } from "@/components/seo-meta";
@@ -348,6 +348,193 @@ export default function EjariPage() {
   );
 }
 
+// ── Inline quote form ─────────────────────────────────────────────────────────
+
+const AUTHORITIES = [
+  "DED — Mainland Trade License",
+  "IFZA — Free Zone",
+  "SHAMS — Sharjah Free Zone",
+  "RERA — Broker Card",
+  "Dubai Freelance Permit",
+  "DET — Tourism License",
+  "DIFC / ADGM",
+  "Dubai South Free Zone",
+  "Meydan Free Zone",
+  "DAFZA / JAFZA",
+  "Other — I'll specify on WhatsApp",
+];
+
+function QuoteForm() {
+  const [licenseType, setLicenseType] = useState("");
+  const [authority, setAuthority] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [urgency, setUrgency] = useState<"standard" | "express">("standard");
+  const [submitted, setSubmitted] = useState(false);
+
+  const isReady = licenseType.trim().length > 0 && authority.length > 0;
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!isReady) return;
+    const msg =
+      `Hello DeliWer 👋\n\nI'd like a quote for a Business Ejari contract.\n\n` +
+      `License type: ${licenseType}\n` +
+      `Licensing authority: ${authority}\n` +
+      `Company / applicant name: ${companyName || "To be confirmed"}\n` +
+      `Processing: ${urgency === "express" ? "Express (same-day)" : "Standard (48 hrs)"}\n\n` +
+      `Please confirm availability and pricing.`;
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+    openWA(msg);
+  };
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="max-w-5xl mx-auto px-4 py-6"
+    >
+      <div className="relative overflow-hidden rounded-3xl border border-teal-500/30 bg-gradient-to-br from-teal-950/70 via-[#0a1018] to-[#060810] p-6 sm:p-8 shadow-[0_0_60px_-20px_rgba(20,184,166,0.25)]">
+        {/* glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(20,184,166,0.1)_0%,transparent_60%)] pointer-events-none" />
+
+        <div className="relative">
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-teal-500/15 border border-teal-500/30 flex items-center justify-center shrink-0">
+              <MessageCircle className="w-5 h-5 text-teal-400" />
+            </div>
+            <div>
+              <p className="text-white font-black text-base leading-none">Get an Instant Quote</p>
+              <p className="text-gray-500 text-xs mt-0.5">Fill in 3 fields — we'll reply within the hour</p>
+            </div>
+            <div className="ml-auto hidden sm:flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-teal-400 bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+              No forms — opens WhatsApp
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            {/* License type */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                License Type <span className="text-teal-400">*</span>
+              </label>
+              <input
+                type="text"
+                value={licenseType}
+                onChange={e => setLicenseType(e.target.value)}
+                placeholder="e.g. LLC, Sole Proprietorship, Freelance Permit…"
+                className="bg-white/5 border border-white/10 hover:border-teal-500/40 focus:border-teal-500/60 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-colors"
+                data-testid="quote-license-type"
+              />
+            </div>
+
+            {/* Authority */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                Licensing Authority <span className="text-teal-400">*</span>
+              </label>
+              <select
+                value={authority}
+                onChange={e => setAuthority(e.target.value)}
+                className="bg-white/5 border border-white/10 hover:border-teal-500/40 focus:border-teal-500/60 rounded-xl px-4 py-3 text-sm text-white outline-none transition-colors appearance-none cursor-pointer"
+                style={{ backgroundImage: "none" }}
+                data-testid="quote-authority"
+              >
+                <option value="" disabled className="bg-slate-900 text-gray-400">Select authority…</option>
+                {AUTHORITIES.map(a => (
+                  <option key={a} value={a} className="bg-slate-900 text-white">{a}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Company name */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                Company / Applicant Name <span className="text-gray-600 font-medium normal-case tracking-normal">(optional)</span>
+              </label>
+              <input
+                type="text"
+                value={companyName}
+                onChange={e => setCompanyName(e.target.value)}
+                placeholder="As it will appear on the license"
+                className="bg-white/5 border border-white/10 hover:border-teal-500/40 focus:border-teal-500/60 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-colors"
+                data-testid="quote-company-name"
+              />
+            </div>
+
+            {/* Urgency */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Processing Speed</label>
+              <div className="flex gap-2 h-[46px]">
+                <button
+                  type="button"
+                  onClick={() => setUrgency("standard")}
+                  className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl border text-xs font-black uppercase tracking-widest transition-all ${
+                    urgency === "standard"
+                      ? "bg-teal-500/15 border-teal-500/50 text-teal-300"
+                      : "bg-white/3 border-white/8 text-gray-500 hover:text-white hover:border-white/20"
+                  }`}
+                  data-testid="quote-urgency-standard"
+                >
+                  <Clock className="w-3 h-3" /> 48 hrs
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUrgency("express")}
+                  className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl border text-xs font-black uppercase tracking-widest transition-all ${
+                    urgency === "express"
+                      ? "bg-amber-500/15 border-amber-500/50 text-amber-300"
+                      : "bg-white/3 border-white/8 text-gray-500 hover:text-white hover:border-white/20"
+                  }`}
+                  data-testid="quote-urgency-express"
+                >
+                  <Zap className="w-3 h-3" /> Same-day
+                </button>
+              </div>
+            </div>
+
+            {/* Submit */}
+            <div className="sm:col-span-2">
+              <button
+                type="submit"
+                disabled={!isReady}
+                data-testid="quote-submit"
+                className={`w-full flex items-center justify-center gap-2.5 font-bold px-7 py-4 rounded-2xl transition-all text-sm ${
+                  submitted
+                    ? "bg-emerald-600 text-white"
+                    : isReady
+                    ? "bg-[#25D366] hover:bg-[#1fbd5a] active:scale-[0.98] text-white shadow-[0_0_30px_rgba(37,211,102,0.3)]"
+                    : "bg-white/5 text-gray-600 border border-white/8 cursor-not-allowed"
+                }`}
+              >
+                {submitted ? (
+                  <>
+                    <CheckCircle2 className="w-4 h-4" /> Opening WhatsApp…
+                  </>
+                ) : (
+                  <>
+                    <MessageCircle className="w-4 h-4" />
+                    {isReady ? "Get My Quote on WhatsApp →" : "Fill in license type & authority to continue"}
+                  </>
+                )}
+              </button>
+              {urgency === "express" && isReady && !submitted && (
+                <p className="text-center text-amber-400/70 text-[11px] mt-2 font-semibold">
+                  Express +AED 500 · Same-day Trustee Centre slot subject to availability
+                </p>
+              )}
+            </div>
+          </form>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 // ── Business Ejari section ────────────────────────────────────────────────────
 
 function BusinessEjariContent({ waMsg }: { waMsg: string }) {
@@ -368,6 +555,9 @@ function BusinessEjariContent({ waMsg }: { waMsg: string }) {
           </div>
         </motion.div>
       </section>
+
+      {/* Inline quote form */}
+      <QuoteForm />
 
       {/* What's included + Pricing */}
       <section className="max-w-5xl mx-auto px-4 py-6">
