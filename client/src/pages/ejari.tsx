@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { SEOMeta } from "@/components/seo-meta";
@@ -199,8 +199,6 @@ export default function EjariPage() {
     }
   }, [location]);
 
-  const bizWaMsg = "Hello DeliWer 👋\n\nI need a Business Ejari contract for my commercial license.\n\nLicense type / authority:\nCompany / applicant name:\n\nPlease advise on availability and pricing.";
-
   const handleResWhatsApp = () => {
     const ref = localStorage.getItem("deliwer_ref");
     const referral = ref ? JSON.parse(ref) : {};
@@ -307,7 +305,7 @@ export default function EjariPage() {
       <AnimatePresence mode="wait">
         {activeTab === "business" ? (
           <motion.div key="business" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
-            <BusinessEjariContent waMsg={bizWaMsg} />
+            <BusinessEjariContent />
           </motion.div>
         ) : (
           <motion.div key="residential" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.25 }}>
@@ -348,46 +346,257 @@ export default function EjariPage() {
   );
 }
 
-// ── Inline quote form ─────────────────────────────────────────────────────────
+// ── DED/DLD cost build-up packages ───────────────────────────────────────────
 
-const AUTHORITIES = [
-  "DED — Mainland Trade License",
-  "IFZA — Free Zone",
-  "SHAMS — Sharjah Free Zone",
-  "RERA — Broker Card",
-  "Dubai Freelance Permit",
-  "DET — Tourism License",
-  "DIFC / ADGM",
-  "Dubai South Free Zone",
-  "Meydan Free Zone",
-  "DAFZA / JAFZA",
-  "Other — I'll specify on WhatsApp",
-];
+const GOVT_FEES = {
+  dldRegistration: 220,    // DLD Ejari registration fee — fixed by DLD
+  trusteeCentre: 125,      // RERA Trustee Centre processing fee
+  knowledgeInnovation: 20, // Knowledge (AED 10) + Innovation (AED 10) fees
+};
+const GOVT_TOTAL = Object.values(GOVT_FEES).reduce((a, b) => a + b, 0); // 365
 
-function QuoteForm() {
-  const [licenseType, setLicenseType] = useState("");
-  const [authority, setAuthority] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [urgency, setUrgency] = useState<"standard" | "express">("standard");
-  const [submitted, setSubmitted] = useState(false);
+const BIZ_PACKAGES = [
+  {
+    id: "starter",
+    name: "Starter",
+    subtitle: "RERA Broker Card · DED Mainland · DET Tourism",
+    price: 900,
+    delivery: "48 hrs",
+    highlight: false,
+    accent: "teal",
+    bestFor: ["RERA Broker Card", "DED Mainland Trade License", "DET Tourism License", "Sole Proprietorship"],
+    breakdown: [
+      { label: "DLD Ejari registration fee", amount: 220, govt: true },
+      { label: "RERA Trustee Centre fee",    amount: 125, govt: true },
+      { label: "Knowledge & Innovation fee", amount:  20, govt: true },
+      { label: "DeliWer coordination",       amount: 535, govt: false },
+    ],
+    waText: "Hello DeliWer 👋\n\nI'd like the Starter Business Ejari (AED 900/yr).\n\nAuthority: [DED / RERA / DET]\nLicense type:\nCompany name:\n\nPlease confirm availability.",
+  },
+  {
+    id: "freezone",
+    name: "Free Zone",
+    subtitle: "IFZA · SHAMS · DAFZA · Dubai South · DIFC",
+    price: 1500,
+    delivery: "48 hrs",
+    highlight: true,
+    accent: "cyan",
+    bestFor: ["IFZA Free Zone", "SHAMS Sharjah", "DAFZA / JAFZA", "Dubai South", "Meydan Free Zone", "DIFC / ADGM"],
+    breakdown: [
+      { label: "DLD Ejari registration fee",          amount: 220, govt: true  },
+      { label: "RERA Trustee Centre fee",             amount: 125, govt: true  },
+      { label: "Knowledge & Innovation fee",          amount:  20, govt: true  },
+      { label: "Commercial-grade unit assignment",    amount: 250, govt: false },
+      { label: "DeliWer coordination",               amount: 885, govt: false },
+    ],
+    waText: "Hello DeliWer 👋\n\nI'd like the Free Zone Business Ejari (AED 1,500/yr).\n\nFree zone / authority: [IFZA / SHAMS / DAFZA / Dubai South / DIFC]\nLicense type:\nCompany name:\n\nPlease confirm availability.",
+  },
+  {
+    id: "express",
+    name: "Express",
+    subtitle: "Any authority · Priority slot · Same-day",
+    price: 2000,
+    delivery: "Same-day",
+    highlight: false,
+    accent: "amber",
+    bestFor: ["Urgent license applications", "Any authority", "License renewal deadlines", "Bank account opening rush"],
+    breakdown: [
+      { label: "DLD Ejari registration fee",       amount: 220, govt: true  },
+      { label: "RERA Trustee Centre fee",          amount: 125, govt: true  },
+      { label: "Knowledge & Innovation fee",       amount:  20, govt: true  },
+      { label: "Commercial-grade unit assignment", amount: 250, govt: false },
+      { label: "Priority Trustee Centre slot",     amount: 300, govt: false },
+      { label: "DeliWer coordination",             amount: 785, govt: false },
+    ],
+    waText: "Hello DeliWer 👋\n\nI need Express Business Ejari (AED 2,000/yr) — same-day processing.\n\nAuthority:\nLicense type:\nCompany name:\n\nPlease confirm a same-day slot is available.",
+  },
+] as const;
 
-  const isReady = licenseType.trim().length > 0 && authority.length > 0;
+const RENEWAL_WA = "Hello DeliWer 👋\n\nI'm an existing client and need to renew my Business Ejari (AED 700/yr).\n\nCurrent Ejari contract number (if known):\nAuthority:\n\nPlease initiate the renewal.";
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!isReady) return;
-    const msg =
-      `Hello DeliWer 👋\n\nI'd like a quote for a Business Ejari contract.\n\n` +
-      `License type: ${licenseType}\n` +
-      `Licensing authority: ${authority}\n` +
-      `Company / applicant name: ${companyName || "To be confirmed"}\n` +
-      `Processing: ${urgency === "express" ? "Express (same-day)" : "Standard (48 hrs)"}\n\n` +
-      `Please confirm availability and pricing.`;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    openWA(msg);
-  };
+const ACCENT: Record<string, { card: string; badge: string; check: string; amount: string }> = {
+  teal:  { card: "border-teal-500/30 hover:border-teal-500/55",  badge: "bg-teal-500/12 text-teal-300 border-teal-500/30",  check: "text-teal-400",  amount: "text-teal-300" },
+  cyan:  { card: "border-cyan-500/40 hover:border-cyan-400/65 shadow-[0_0_32px_-8px_rgba(34,211,238,0.18)]",  badge: "bg-cyan-500/12 text-cyan-300 border-cyan-500/30",   check: "text-cyan-400",  amount: "text-cyan-300" },
+  amber: { card: "border-amber-500/25 hover:border-amber-500/50", badge: "bg-amber-500/12 text-amber-300 border-amber-500/30", check: "text-amber-400", amount: "text-amber-300" },
+};
 
+function PricingPackages() {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  return (
+    <section className="max-w-5xl mx-auto px-4 py-8">
+      <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
+        <div className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-teal-400 bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 rounded-full mb-3">
+          <Shield className="w-3 h-3" /> Transparent DLD-Based Pricing
+        </div>
+        <h2 className="text-white font-black text-2xl sm:text-3xl">Standard Packages</h2>
+        <p className="text-gray-500 text-sm mt-2 max-w-lg mx-auto">
+          Government fees are fixed by the Dubai Land Department. Every dirham is shown below — no surprises.
+        </p>
+        <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1 mt-4 px-5 py-2.5 rounded-xl bg-white/3 border border-white/8 text-xs">
+          <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 mr-1">Fixed govt fees (all packages):</span>
+          <span className="text-gray-400">DLD <span className="text-white font-bold">AED {GOVT_FEES.dldRegistration}</span></span>
+          <span className="text-white/20">·</span>
+          <span className="text-gray-400">Trustee Centre <span className="text-white font-bold">AED {GOVT_FEES.trusteeCentre}</span></span>
+          <span className="text-white/20">·</span>
+          <span className="text-gray-400">Knowledge &amp; Innovation <span className="text-white font-bold">AED {GOVT_FEES.knowledgeInnovation}</span></span>
+          <span className="text-white/20">=</span>
+          <span className="font-black text-teal-400">AED {GOVT_TOTAL} govt</span>
+        </div>
+      </motion.div>
+
+      {/* Package cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
+        {BIZ_PACKAGES.map((pkg, i) => {
+          const s = ACCENT[pkg.accent];
+          const isOpen = openId === pkg.id;
+          const govtSub = pkg.breakdown.filter(b => b.govt).reduce((a, b) => a + b.amount, 0);
+          const svcSub  = pkg.breakdown.filter(b => !b.govt).reduce((a, b) => a + b.amount, 0);
+          return (
+            <motion.div
+              key={pkg.id}
+              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
+              className={`relative flex flex-col rounded-2xl border bg-white/2 transition-all duration-200 ${s.card} ${pkg.highlight ? "bg-gradient-to-b from-cyan-950/30 to-[#060810]" : ""}`}
+            >
+              {pkg.highlight && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-cyan-500 text-slate-950 text-[10px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap">
+                  Most Popular
+                </div>
+              )}
+
+              <div className="p-5 flex-1 pt-6">
+                <p className="text-white font-black text-lg">{pkg.name}</p>
+                <p className="text-gray-500 text-[11px] leading-snug mt-0.5 mb-4">{pkg.subtitle}</p>
+
+                {/* Price */}
+                <div className="mb-4">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-black text-white">AED {pkg.price.toLocaleString()}</span>
+                    <span className="text-gray-500 text-xs">/year</span>
+                  </div>
+                  <p className="text-gray-600 text-[11px] mt-0.5">≈ AED {Math.round(pkg.price / 12)}/mo · renewal AED 700</p>
+                </div>
+
+                {/* Delivery badge */}
+                <div className="mb-4">
+                  <span className={`inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest border rounded-full px-3 py-1 ${s.badge}`}>
+                    {pkg.delivery === "Same-day" ? <Zap className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
+                    {pkg.delivery}
+                  </span>
+                </div>
+
+                {/* Best for */}
+                <div className="space-y-1.5 mb-5">
+                  {pkg.bestFor.map(b => (
+                    <div key={b} className="flex items-center gap-2 text-xs text-gray-400">
+                      <Check className={`w-3 h-3 shrink-0 ${s.check}`} /> {b}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Cost breakdown toggle */}
+                <button
+                  onClick={() => setOpenId(isOpen ? null : pkg.id)}
+                  className="w-full flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-gray-300 border border-white/6 hover:border-white/15 rounded-xl px-3 py-2 transition-all"
+                  data-testid={`breakdown-toggle-${pkg.id}`}
+                >
+                  View cost breakdown {isOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                </button>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-3 space-y-1.5">
+                        <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 mb-2">Government fees — fixed by DLD</p>
+                        {pkg.breakdown.filter(b => b.govt).map(b => (
+                          <div key={b.label} className="flex justify-between text-[11px]">
+                            <span className="text-gray-500">{b.label}</span>
+                            <span className="text-gray-400 font-semibold">AED {b.amount}</span>
+                          </div>
+                        ))}
+                        <div className="flex justify-between text-[11px] border-t border-white/6 pt-1.5">
+                          <span className="text-gray-500 font-bold">Govt sub-total</span>
+                          <span className={`font-black ${s.amount}`}>AED {govtSub}</span>
+                        </div>
+                        {svcSub > 0 && (
+                          <>
+                            <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 mt-3 mb-2">DeliWer service fees</p>
+                            {pkg.breakdown.filter(b => !b.govt).map(b => (
+                              <div key={b.label} className="flex justify-between text-[11px]">
+                                <span className="text-gray-500">{b.label}</span>
+                                <span className="text-gray-400 font-semibold">AED {b.amount}</span>
+                              </div>
+                            ))}
+                            <div className="flex justify-between text-[11px] border-t border-white/6 pt-1.5">
+                              <span className="text-gray-500 font-bold">Service sub-total</span>
+                              <span className="text-gray-400 font-black">AED {svcSub}</span>
+                            </div>
+                          </>
+                        )}
+                        <div className="flex justify-between text-sm border-t border-white/10 pt-2 mt-1">
+                          <span className="text-white font-black">Total / year</span>
+                          <span className={`font-black text-base ${s.amount}`}>AED {pkg.price.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <div className="p-5 pt-0">
+                <button
+                  onClick={() => openWA(pkg.waText)}
+                  data-testid={`btn-pkg-${pkg.id}`}
+                  className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fbd5a] active:scale-[0.97] text-white font-bold px-5 py-3 rounded-xl transition-all text-sm shadow-[0_0_20px_-4px_rgba(37,211,102,0.3)]"
+                >
+                  <MessageCircle className="w-4 h-4" /> Get This Package
+                </button>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Renewal row */}
+      <motion.div initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+        className="flex flex-col sm:flex-row items-center justify-between gap-4 px-5 py-4 rounded-2xl border border-white/8 bg-white/2">
+        <div className="flex items-center gap-4">
+          <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+            <RefreshCw className="w-4 h-4 text-gray-400" />
+          </div>
+          <div>
+            <p className="text-white font-bold text-sm">Annual Renewal — Existing Clients</p>
+            <p className="text-gray-500 text-xs mt-0.5">
+              Govt fees AED {GOVT_TOTAL} + DeliWer AED 335 · 30-day advance reminder included
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-4 shrink-0">
+          <div className="text-right">
+            <p className="text-white font-black text-xl">AED 700</p>
+            <p className="text-gray-600 text-[10px]">/year</p>
+          </div>
+          <button
+            onClick={() => openWA(RENEWAL_WA)}
+            data-testid="btn-renewal"
+            className="flex items-center gap-2 bg-white/8 hover:bg-white/15 border border-white/10 text-white font-bold px-4 py-2.5 rounded-xl transition-all text-xs whitespace-nowrap"
+          >
+            <MessageCircle className="w-3.5 h-3.5" /> Renew on WhatsApp
+          </button>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ── Setup crossover ───────────────────────────────────────────────────────────
+
+function SetupCrossover() {
   return (
     <motion.section
       initial={{ opacity: 0, y: 20 }}
@@ -395,140 +604,51 @@ function QuoteForm() {
       viewport={{ once: true }}
       className="max-w-5xl mx-auto px-4 py-6"
     >
-      <div className="relative overflow-hidden rounded-3xl border border-teal-500/30 bg-gradient-to-br from-teal-950/70 via-[#0a1018] to-[#060810] p-6 sm:p-8 shadow-[0_0_60px_-20px_rgba(20,184,166,0.25)]">
-        {/* glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(20,184,166,0.1)_0%,transparent_60%)] pointer-events-none" />
+      <div className="relative overflow-hidden rounded-3xl border border-emerald-500/25 bg-gradient-to-br from-emerald-950/50 via-[#0a1018] to-[#060810] p-6 sm:p-8">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(16,185,129,0.07)_0%,transparent_65%)] pointer-events-none" />
+        <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          {/* Icon */}
+          <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0">
+            <Briefcase className="w-6 h-6 text-emerald-400" />
+          </div>
 
-        <div className="relative">
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-teal-500/15 border border-teal-500/30 flex items-center justify-center shrink-0">
-              <MessageCircle className="w-5 h-5 text-teal-400" />
+          {/* Text */}
+          <div className="flex-1">
+            <div className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-2">
+              <ArrowRight className="w-3 h-3" /> Next step in your business funnel
             </div>
-            <div>
-              <p className="text-white font-black text-base leading-none">Get an Instant Quote</p>
-              <p className="text-gray-500 text-xs mt-0.5">Fill in 3 fields — we'll reply within the hour</p>
-            </div>
-            <div className="ml-auto hidden sm:flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-teal-400 bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-              No forms — opens WhatsApp
+            <h3 className="text-white font-black text-xl leading-tight mb-2">
+              Need the Trade License Too?
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+              Business Ejari gives you the registered address. The next step is the trade license itself — DED Mainland, IFZA, SHAMS, or any Dubai Free Zone. DeliWer handles company formation, visa sponsorship, and bank account opening end-to-end.
+            </p>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {["Free Zone Formation", "DED Mainland License", "Investor & Golden Visa", "Bank Account Opening"].map(s => (
+                <span key={s} className="text-[11px] text-emerald-300/70 bg-emerald-950/60 border border-emerald-500/20 rounded-lg px-3 py-1 font-semibold">
+                  {s}
+                </span>
+              ))}
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-            {/* License type */}
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                License Type <span className="text-teal-400">*</span>
-              </label>
-              <input
-                type="text"
-                value={licenseType}
-                onChange={e => setLicenseType(e.target.value)}
-                placeholder="e.g. LLC, Sole Proprietorship, Freelance Permit…"
-                className="bg-white/5 border border-white/10 hover:border-teal-500/40 focus:border-teal-500/60 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-colors"
-                data-testid="quote-license-type"
-              />
-            </div>
-
-            {/* Authority */}
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                Licensing Authority <span className="text-teal-400">*</span>
-              </label>
-              <select
-                value={authority}
-                onChange={e => setAuthority(e.target.value)}
-                className="bg-white/5 border border-white/10 hover:border-teal-500/40 focus:border-teal-500/60 rounded-xl px-4 py-3 text-sm text-white outline-none transition-colors appearance-none cursor-pointer"
-                style={{ backgroundImage: "none" }}
-                data-testid="quote-authority"
-              >
-                <option value="" disabled className="bg-slate-900 text-gray-400">Select authority…</option>
-                {AUTHORITIES.map(a => (
-                  <option key={a} value={a} className="bg-slate-900 text-white">{a}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* Company name */}
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                Company / Applicant Name <span className="text-gray-600 font-medium normal-case tracking-normal">(optional)</span>
-              </label>
-              <input
-                type="text"
-                value={companyName}
-                onChange={e => setCompanyName(e.target.value)}
-                placeholder="As it will appear on the license"
-                className="bg-white/5 border border-white/10 hover:border-teal-500/40 focus:border-teal-500/60 rounded-xl px-4 py-3 text-sm text-white placeholder:text-gray-600 outline-none transition-colors"
-                data-testid="quote-company-name"
-              />
-            </div>
-
-            {/* Urgency */}
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Processing Speed</label>
-              <div className="flex gap-2 h-[46px]">
-                <button
-                  type="button"
-                  onClick={() => setUrgency("standard")}
-                  className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl border text-xs font-black uppercase tracking-widest transition-all ${
-                    urgency === "standard"
-                      ? "bg-teal-500/15 border-teal-500/50 text-teal-300"
-                      : "bg-white/3 border-white/8 text-gray-500 hover:text-white hover:border-white/20"
-                  }`}
-                  data-testid="quote-urgency-standard"
-                >
-                  <Clock className="w-3 h-3" /> 48 hrs
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setUrgency("express")}
-                  className={`flex-1 flex items-center justify-center gap-1.5 rounded-xl border text-xs font-black uppercase tracking-widest transition-all ${
-                    urgency === "express"
-                      ? "bg-amber-500/15 border-amber-500/50 text-amber-300"
-                      : "bg-white/3 border-white/8 text-gray-500 hover:text-white hover:border-white/20"
-                  }`}
-                  data-testid="quote-urgency-express"
-                >
-                  <Zap className="w-3 h-3" /> Same-day
-                </button>
-              </div>
-            </div>
-
-            {/* Submit */}
-            <div className="sm:col-span-2">
+          {/* CTAs */}
+          <div className="shrink-0 flex flex-col gap-2 w-full sm:w-auto">
+            <Link href="/setup">
               <button
-                type="submit"
-                disabled={!isReady}
-                data-testid="quote-submit"
-                className={`w-full flex items-center justify-center gap-2.5 font-bold px-7 py-4 rounded-2xl transition-all text-sm ${
-                  submitted
-                    ? "bg-emerald-600 text-white"
-                    : isReady
-                    ? "bg-[#25D366] hover:bg-[#1fbd5a] active:scale-[0.98] text-white shadow-[0_0_30px_rgba(37,211,102,0.3)]"
-                    : "bg-white/5 text-gray-600 border border-white/8 cursor-not-allowed"
-                }`}
+                data-testid="btn-setup-crossover"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 active:scale-[0.97] text-white font-bold px-6 py-3.5 rounded-xl transition-all text-sm shadow-lg shadow-emerald-900/30"
               >
-                {submitted ? (
-                  <>
-                    <CheckCircle2 className="w-4 h-4" /> Opening WhatsApp…
-                  </>
-                ) : (
-                  <>
-                    <MessageCircle className="w-4 h-4" />
-                    {isReady ? "Get My Quote on WhatsApp →" : "Fill in license type & authority to continue"}
-                  </>
-                )}
+                <Briefcase className="w-4 h-4" /> View Business Setup →
               </button>
-              {urgency === "express" && isReady && !submitted && (
-                <p className="text-center text-amber-400/70 text-[11px] mt-2 font-semibold">
-                  Express +AED 500 · Same-day Trustee Centre slot subject to availability
-                </p>
-              )}
-            </div>
-          </form>
+            </Link>
+            <button
+              onClick={() => openWA("Hello DeliWer 👋\n\nI already have (or need) a Business Ejari and now want help setting up the actual trade license and company in Dubai.\n\nLicense type I'm considering:\nFree zone / Mainland:\n\nPlease advise.")}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 font-semibold px-6 py-3 rounded-xl transition-all text-sm"
+            >
+              <MessageCircle className="w-4 h-4" /> Ask on WhatsApp
+            </button>
+          </div>
         </div>
       </div>
     </motion.section>
@@ -537,7 +657,7 @@ function QuoteForm() {
 
 // ── Business Ejari section ────────────────────────────────────────────────────
 
-function BusinessEjariContent({ waMsg }: { waMsg: string }) {
+function BusinessEjariContent() {
   return (
     <div>
       {/* Who it's for */}
@@ -556,10 +676,10 @@ function BusinessEjariContent({ waMsg }: { waMsg: string }) {
         </motion.div>
       </section>
 
-      {/* Inline quote form */}
-      <QuoteForm />
+      {/* Standard pricing packages */}
+      <PricingPackages />
 
-      {/* What's included + Pricing */}
+      {/* What's included */}
       <section className="max-w-5xl mx-auto px-4 py-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <motion.div initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
@@ -577,34 +697,6 @@ function BusinessEjariContent({ waMsg }: { waMsg: string }) {
             </ul>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-            className="bg-gradient-to-br from-teal-950/60 via-[#0d1117] to-[#060810] border border-teal-500/20 rounded-2xl p-6 flex flex-col">
-            <p className="text-white font-bold text-sm mb-5 flex items-center gap-2">
-              <Star className="w-4 h-4 text-amber-400" /> Pricing
-            </p>
-            <div className="space-y-4 flex-1">
-              {[
-                { tier: "Standard", price: "AED 1,500", note: "per year", sub: "Delivered within 48 hrs · all license types", highlight: false },
-                { tier: "Express", price: "AED 2,000", note: "per year", sub: "Same-day processing · priority Trustee Centre slot", highlight: true },
-                { tier: "Renewal", price: "AED 1,200", note: "per year", sub: "Existing clients · 30-day advance reminder included", highlight: false },
-              ].map(p => (
-                <div key={p.tier} className={`rounded-xl border p-4 ${p.highlight ? "border-teal-500/40 bg-teal-500/10" : "border-white/6 bg-white/2"}`}>
-                  <div className="flex items-baseline gap-1.5 mb-0.5">
-                    <span className="text-white font-black text-xl">{p.price}</span>
-                    <span className="text-gray-500 text-xs">{p.note}</span>
-                    {p.highlight && <span className="text-[9px] font-black uppercase tracking-widest text-teal-300 bg-teal-500/15 border border-teal-500/30 rounded-full px-2 py-0.5 ml-1">Popular</span>}
-                  </div>
-                  <p className="text-xs font-semibold text-gray-500">{p.tier}</p>
-                  <p className="text-xs text-gray-600 mt-1">{p.sub}</p>
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={() => openWA(waMsg)}
-              className="mt-5 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fbd5a] active:scale-95 text-white font-bold px-5 py-3 rounded-xl transition-all text-sm">
-              <MessageCircle className="w-4 h-4" /> Get a Quote on WhatsApp
-            </button>
-          </motion.div>
         </div>
       </section>
 
@@ -675,7 +767,7 @@ function BusinessEjariContent({ waMsg }: { waMsg: string }) {
             <div className="flex flex-col gap-3">
               <button
                 data-testid="button-biz-ejari-cta-wa"
-                onClick={() => openWA(waMsg)}
+                onClick={() => openWA("Hello DeliWer 👋\n\nI need a Business Ejari contract for my commercial license.\n\nLicense type / authority:\nCompany / applicant name:\n\nPlease advise on availability and pricing.")}
                 className="flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1fbd5a] active:scale-95 text-white font-bold px-7 py-4 rounded-2xl transition-all shadow-[0_0_20px_rgba(37,211,102,0.25)] text-sm">
                 <MessageCircle className="w-4 h-4" /> Start on WhatsApp →
               </button>
@@ -706,11 +798,15 @@ function BusinessEjariContent({ waMsg }: { waMsg: string }) {
         </div>
       </section>
 
+      {/* Setup crossover — funnel into /setup */}
+      <SetupCrossover />
+
       {/* Related links */}
       <section className="max-w-5xl mx-auto px-4 pb-10">
         <div className="border-t border-white/6 pt-8 flex flex-wrap gap-3">
           <span className="text-gray-600 text-xs mr-2 mt-1">Related services:</span>
           {[
+            { label: "Business Setup", href: "/setup" },
             { label: "Ejari Renewal", href: "/ejari-renewal" },
             { label: "Flex Living Rentals", href: "/flexible-rentals" },
             { label: "Move-In Coordination", href: "/relocate" },
