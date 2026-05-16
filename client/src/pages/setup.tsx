@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Building2, Shield, TrendingUp, Globe, CheckCircle2, ArrowRight,
   Briefcase, FileText, Zap, Star, Users, DollarSign, Lock, Award,
-  Plane, Package, Truck, Cpu, MapPin,
+  Plane, Package, Truck, Cpu, MapPin, Landmark,
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import heroBg from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
@@ -93,6 +93,26 @@ const freezones = [
     ],
     stat: "AED 100B",
     statLabel: "UAE AI Investment Target",
+  },
+  {
+    icon: Landmark,
+    name: "DIFC",
+    full: "Dubai International Financial Centre",
+    location: "Financial District, Downtown Dubai",
+    locationIcon: MapPin,
+    tag: "MENA's Premier Financial & Legal Hub",
+    color: "from-yellow-900/40 to-slate-800/60",
+    border: "border-yellow-500/30",
+    accent: "text-yellow-400",
+    highlights: [
+      "6,500+ registered companies including 40% of the world's top financial institutions",
+      "DIFC Courts — independent common law jurisdiction with English-language proceedings",
+      "100% foreign ownership and zero tax on profits and personal income",
+      "Preferred for financial services, law firms, family offices, and fintech",
+      "Gateway to the $7.5 trillion GCC and broader MENA financial market",
+    ],
+    stat: "6,500+",
+    statLabel: "Registered Companies",
   },
 ];
 
@@ -268,7 +288,7 @@ export default function SetupPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {freezones.map((fz) => (
               <div
                 key={fz.name}
@@ -329,7 +349,7 @@ export default function SetupPage() {
               One Country. Four Powerhouse Zones.
             </h3>
             <p className="text-gray-400 max-w-3xl mx-auto text-sm leading-relaxed">
-              DAFZA and Dubai South serve air logistics and trade. Commercity leads MENA e-commerce. The AI District powers the next generation of tech and artificial intelligence companies. DeliWer matches your business to the right zone and handles the full setup — licence, visa, and bank account.
+              DAFZA and Dubai South serve air logistics and trade. Commercity leads MENA e-commerce. The AI District powers the next generation of tech companies. DIFC is the financial and legal nerve centre of the Middle East. DeliWer matches your business to the right zone and handles the full setup — licence, visa, and bank account.
             </p>
           </div>
         </div>

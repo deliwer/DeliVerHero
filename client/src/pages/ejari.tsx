@@ -376,12 +376,12 @@ const BIZ_PACKAGES = [
   {
     id: "freezone",
     name: "Free Zone",
-    subtitle: "IFZA · SHAMS · DAFZA · Dubai South · DIFC",
+    subtitle: "IFZA · SHAMS · DAFZA · AI District · DIFC",
     price: 1500,
     delivery: "48 hrs",
     highlight: true,
     accent: "cyan",
-    bestFor: ["IFZA Free Zone", "SHAMS Sharjah", "DAFZA / JAFZA", "Dubai South", "Meydan Free Zone", "DIFC / ADGM"],
+    bestFor: ["IFZA Free Zone", "SHAMS Sharjah", "DAFZA / JAFZA", "Dubai South", "AI District", "DIFC / ADGM"],
     breakdown: [
       { label: "DLD Ejari registration fee",          amount: 220, govt: true  },
       { label: "RERA Trustee Centre fee",             amount: 125, govt: true  },
@@ -389,7 +389,7 @@ const BIZ_PACKAGES = [
       { label: "Commercial-grade unit assignment",    amount: 250, govt: false },
       { label: "DeliWer coordination",               amount: 885, govt: false },
     ],
-    waText: "Hello DeliWer 👋\n\nI'd like the Free Zone Business Ejari (AED 1,500/yr).\n\nFree zone / authority: [IFZA / SHAMS / DAFZA / Dubai South / DIFC]\nLicense type:\nCompany name:\n\nPlease confirm availability.",
+    waText: "Hello DeliWer 👋\n\nI'd like the Free Zone Business Ejari (AED 1,500/yr).\n\nFree zone / authority: [IFZA / SHAMS / DAFZA / AI District / DIFC]\nLicense type:\nCompany name:\n\nPlease confirm availability.",
   },
   {
     id: "express",
