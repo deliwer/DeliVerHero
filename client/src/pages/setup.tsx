@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Building2, Shield, TrendingUp, Globe, CheckCircle2, ArrowRight,
   Briefcase, FileText, Zap, Star, Users, DollarSign, Lock, Award,
-  Plane, Package, Truck
+  Plane, Package, Truck, Cpu, MapPin,
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import heroBg from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
@@ -18,7 +18,8 @@ const freezones = [
     icon: Plane,
     name: "DAFZA",
     full: "Dubai Airport Freezone Authority",
-    airport: "Dubai International Airport (DXB)",
+    location: "Dubai International Airport (DXB)",
+    locationIcon: Plane,
     tag: "Most Connected Freezone in the World",
     color: "from-sky-900/40 to-slate-800/60",
     border: "border-sky-500/30",
@@ -37,7 +38,8 @@ const freezones = [
     icon: Truck,
     name: "Dubai South",
     full: "Dubai South Free Zone",
-    airport: "Al Maktoum International Airport (DWC)",
+    location: "Al Maktoum International Airport (DWC)",
+    locationIcon: Plane,
     tag: "The World's Largest Airport — Under Construction",
     color: "from-emerald-900/40 to-slate-800/60",
     border: "border-emerald-500/30",
@@ -56,7 +58,8 @@ const freezones = [
     icon: Package,
     name: "Commercity",
     full: "Dubai Commercity",
-    airport: "Al Maktoum International Airport (DWC)",
+    location: "Al Maktoum International Airport (DWC)",
+    locationIcon: Plane,
     tag: "MENA's First Dedicated E-Commerce Freezone",
     color: "from-violet-900/40 to-slate-800/60",
     border: "border-violet-500/30",
@@ -70,6 +73,26 @@ const freezones = [
     ],
     stat: "30 km²",
     statLabel: "Dedicated E-Commerce Zone",
+  },
+  {
+    icon: Cpu,
+    name: "AI District",
+    full: "Dubai AI District",
+    location: "Dubai Internet City, Sheikh Zayed Road",
+    locationIcon: MapPin,
+    tag: "UAE's National AI Innovation Hub",
+    color: "from-indigo-900/40 to-slate-800/60",
+    border: "border-indigo-500/30",
+    accent: "text-indigo-400",
+    highlights: [
+      "UAE's dedicated hub for AI, machine learning, and deep-tech companies",
+      "Backed by AED 100 billion UAE national AI investment strategy",
+      "Fast-track licences for AI startups, labs, and enterprise AI divisions",
+      "Home to GITEX Global — the world's largest AI and tech event",
+      "Access to UAE government AI procurement and pilot programmes",
+    ],
+    stat: "AED 100B",
+    statLabel: "UAE AI Investment Target",
   },
 ];
 
@@ -223,7 +246,7 @@ export default function SetupPage() {
         </div>
       </section>
 
-      {/* ── AIRPORT FREE ZONES SPOTLIGHT ── */}
+      {/* ── BUSINESS DISTRICTS SPOTLIGHT ── */}
       <section id="freezones" className="py-24 px-4 relative">
         {/* Subtle background image */}
         <div
@@ -235,21 +258,21 @@ export default function SetupPage() {
         <div className="relative max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <Badge className="mb-4 bg-sky-500/10 text-sky-400 border border-sky-500/20 text-xs font-bold uppercase tracking-widest px-4 py-2">
-              Premium Airport Free Zones
+              Premium Business Districts &amp; Free Zones
             </Badge>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight mb-5">
-              Built Around Dubai's <span className="text-sky-400">Two Airports</span>
+              Dubai's <span className="text-sky-400">Leading Business Destinations</span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto text-lg leading-relaxed">
-              DAFZA, Dubai South, and Commercity are purpose-built around Dubai International and Al Maktoum airports — giving your business direct access to 90M+ annual passengers, instant air freight, and the most globally connected supply chain on earth.
+              From airport logistics hubs to the UAE's national AI innovation district — Dubai offers purpose-built zones for every industry. DeliWer sets you up in the right one, fast.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {freezones.map((fz) => (
               <div
                 key={fz.name}
-                className={`relative bg-gradient-to-br ${fz.color} border ${fz.border} rounded-3xl overflow-hidden group hover:scale-[1.02] transition-transform duration-300`}
+                className={`relative bg-gradient-to-br ${fz.color} border ${fz.border} rounded-3xl overflow-hidden group hover:scale-[1.01] transition-transform duration-300`}
                 data-testid={`card-freezone-${fz.name.toLowerCase().replace(/\s/g, "-")}`}
               >
                 {/* Header */}
@@ -260,8 +283,8 @@ export default function SetupPage() {
                   <div className={`text-xs font-black uppercase tracking-widest ${fz.accent} mb-1`}>{fz.name}</div>
                   <h3 className="text-white font-black text-xl leading-tight mb-1">{fz.full}</h3>
                   <div className="flex items-center gap-2 text-gray-400 text-xs mb-3">
-                    <Plane className="w-3 h-3" />
-                    {fz.airport}
+                    <fz.locationIcon className="w-3 h-3 shrink-0" />
+                    {fz.location}
                   </div>
                   <Badge className={`bg-white/5 border border-white/10 text-gray-300 text-[10px] font-bold uppercase tracking-wider px-3 py-1`}>
                     {fz.tag}
@@ -299,14 +322,14 @@ export default function SetupPage() {
             ))}
           </div>
 
-          {/* Global connectivity callout */}
-          <div className="mt-10 bg-gradient-to-r from-sky-900/20 to-emerald-900/20 border border-white/10 rounded-2xl p-8 text-center">
+          {/* Callout */}
+          <div className="mt-10 bg-gradient-to-r from-sky-900/20 via-indigo-900/20 to-emerald-900/20 border border-white/10 rounded-2xl p-8 text-center">
             <Globe className="w-8 h-8 text-emerald-400 mx-auto mb-3" />
             <h3 className="font-black text-white text-xl uppercase tracking-tight mb-3">
-              Unmatched Global Connectivity
+              One Country. Four Powerhouse Zones.
             </h3>
             <p className="text-gray-400 max-w-3xl mx-auto text-sm leading-relaxed">
-              Dubai International (DXB) is the world's busiest international airport by passenger volume. Al Maktoum International (DWC) is set to become the world's largest. Together, they position businesses registered in DAFZA, Dubai South, and Commercity at the centre of global trade flows — connecting Europe, Asia, Africa, and the Americas with sub-24-hour freight reach to 2.5 billion people.
+              DAFZA and Dubai South serve air logistics and trade. Commercity leads MENA e-commerce. The AI District powers the next generation of tech and artificial intelligence companies. DeliWer matches your business to the right zone and handles the full setup — licence, visa, and bank account.
             </p>
           </div>
         </div>
