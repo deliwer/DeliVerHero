@@ -129,6 +129,7 @@ const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
+const FreightBrokerPage = lazy(() => import("@/pages/freight-broker"));
 const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer"));
 const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
 const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
@@ -468,6 +469,9 @@ function Router() {
         
         {/* ChainTrack Logistics — Dubai/Gawadar Corridor */}
         <Route path="/logistics" component={ChainTrackLogisticsPage} />
+
+        {/* ChainTrack Freight Broker Network */}
+        <Route path="/freight-broker" component={FreightBrokerPage} />
 
         {/* ChainTrack B2B Wholesale Inventory */}
         <Route path="/chaintrack" component={ChainTrackPage} />

@@ -73,6 +73,8 @@ export function Footer() {
 
   const b2bLinks = [
     { label: "Broker Partner Program", url: "/brokers" },
+    { label: "ChainTrack Logistics", url: "/logistics" },
+    { label: "Freight Broker Network", url: "/freight-broker" },
     { label: "ChainTrack B2B", url: "/chaintrack" },
     { label: "Corporate Trade-in", url: "/corporate" },
     { label: "Ambassadors", url: "/partners" },

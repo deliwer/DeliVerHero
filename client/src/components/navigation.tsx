@@ -3,7 +3,7 @@ import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
   Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
   Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube, Key,
-  Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield
+  Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield, Anchor, Route
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ const CHAINTRACK_PATHS = [
   "/partners", "/broker-onboard", "/broker-onboarding", "/brokers",
   "/partner-program", "/partner-dashboard", "/corporate-partner-portal",
   "/planet-hero-affiliates", "/affiliate-dashboard",
+  "/logistics", "/freight-broker",
 ];
 
 // ── Management / Admin paths — live under the Partners (broker) side ──────────
@@ -55,10 +56,10 @@ const deliwerNavItems = [
 const brokerNavItems = [
   { path: "/broker-onboard",                          label: "Broker Portal",  id: "ct-broker",    icon: Briefcase,    external: false },
   { path: "/partners",                               label: "Partner Program", id: "ct-partners",  icon: Users,        external: false },
-  { path: "/partner-program",                        label: "Career Path",     id: "ct-career",    icon: BookOpen,     external: false },
+  { path: "/logistics",                              label: "Logistics",       id: "ct-logistics", icon: Anchor,       external: false },
+  { path: "/freight-broker",                         label: "Freight Broker",  id: "ct-freight",   icon: Route,        external: false },
   { path: "/partner-dashboard",                      label: "Dashboard",       id: "ct-dashboard", icon: LayoutGrid,   external: false },
   { path: "https://www.youtube.com/@vdeliwer",       label: "Training",        id: "ct-training",  icon: Youtube,      external: true  },
-  { path: "/chaintrack",                             label: "Phone Flipping",  id: "ct-flipper",   icon: Smartphone,   external: false },
 ];
 
 // ── Management / Admin nav items — shown when inside admin/marketing paths ────
@@ -71,13 +72,13 @@ const managementNavItems = [
   { path: "/broker-master-db",    label: "Broker DB",      id: "mgmt-db",         icon: Database,   external: false },
 ];
 
-// ── Phone Flipper sub-nav (original ChainTrack marketplace nav) ───────────────
+// ── ChainTrack deep-nav (marketplace + logistics) ────────────────────────────
 const chaintrackNavItems = [
+  { path: "/logistics",        label: "Logistics",   id: "ct-logistics",   icon: Anchor },
+  { path: "/freight-broker",   label: "Freight",     id: "ct-freight",     icon: Route },
   { path: "/chaintrack",       label: "Marketplace", id: "ct-marketplace", icon: LayoutGrid },
   { path: "/bulk-purchasing",  label: "Bulk Buy",    id: "ct-bulk",        icon: Package },
-  { path: "/bulk-tradein",     label: "Trade-In",    id: "ct-tradein",     icon: RefreshCw },
   { path: "/fulfillment",      label: "Fulfillment", id: "ct-fulfillment", icon: Truck },
-  { path: "/membership-plans", label: "Membership",  id: "ct-membership",  icon: Crown },
   { path: "/corporate",        label: "Corporate",   id: "ct-corporate",   icon: Building2 },
   { path: "/partners",         label: "← Brokers",  id: "ct-back",        icon: Users },
 ];
@@ -86,7 +87,7 @@ const chaintrackNavItems = [
 const DEEP_CHAINTRACK_PATHS = [
   "/chaintrack", "/bulk-purchasing", "/bulk-tradein",
   "/fulfillment", "/membership-plans", "/corporate",
-  "/cobone-corporate",
+  "/cobone-corporate", "/logistics", "/freight-broker",
 ];
 
 export function Navigation() {
