@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "wouter";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Plane,
   Ship,
@@ -8,6 +8,7 @@ import {
   ArrowRight,
   MapPin,
   TrendingUp,
+  TrendingDown,
   Zap,
   Shield,
   Building2,
@@ -26,7 +27,17 @@ import {
   Layers,
   Navigation,
   Wind,
+  RefreshCw,
+  Radio,
+  Newspaper,
+  Activity,
+  AlertCircle,
+  Waves,
+  ChevronRight,
+  ExternalLink,
+  Gauge,
 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -174,6 +185,391 @@ const PARTNER_TIERS = [
   },
 ];
 
+// ─── Types (mirrored from backend) ───────────────────────────────────────────
+
+interface CorridorItem {
+  id: string;
+  category: "geopolitical" | "infrastructure" | "trade" | "rates";
+  urgency: "critical" | "update" | "watch";
+  headline: string;
+  summary: string;
+  source: string;
+  region: string;
+  tsLabel: string;
+  tsOffset: number;
+  icon: string;
+  link: string | null;
+}
+
+interface RouteStatus {
+  id: string;
+  label: string;
+  status: "operational" | "disrupted" | "limited";
+  note: string;
+}
+
+interface FreightRate {
+  lane: string;
+  rate: string;
+  change: number;
+  unit: string;
+}
+
+interface CorridorNewsResponse {
+  items: CorridorItem[];
+  routeStatus: RouteStatus[];
+  freightRates: FreightRate[];
+  generatedAt: string;
+}
+
+// ─── Category / Urgency meta ─────────────────────────────────────────────────
+
+const CATEGORY_META = {
+  geopolitical: { label: "Geopolitical", color: "bg-red-500/15 text-red-300 border-red-500/30" },
+  infrastructure: { label: "Infrastructure", color: "bg-amber-500/15 text-amber-300 border-amber-500/30" },
+  trade: { label: "Trade", color: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30" },
+  rates: { label: "Rates", color: "bg-sky-500/15 text-sky-300 border-sky-500/30" },
+};
+
+const URGENCY_META = {
+  critical: { label: "Breaking", dot: "bg-red-400 animate-pulse", badge: "bg-red-500/20 text-red-300 border-red-500/30" },
+  update: { label: "Update", dot: "bg-amber-400", badge: "bg-amber-500/20 text-amber-300 border-amber-500/30" },
+  watch: { label: "Watch", dot: "bg-slate-500", badge: "bg-slate-700/50 text-slate-400 border-slate-600/30" },
+};
+
+const ROUTE_STATUS_META = {
+  operational: { label: "Operational", dot: "bg-emerald-400", text: "text-emerald-400", bar: "bg-emerald-500" },
+  disrupted: { label: "Disrupted", dot: "bg-red-400 animate-pulse", text: "text-red-400", bar: "bg-red-500" },
+  limited: { label: "Limited", dot: "bg-amber-400", text: "text-amber-400", bar: "bg-amber-500" },
+};
+
+// ─── Ticker component ────────────────────────────────────────────────────────
+
+function NewsTicker({ items }: { items: CorridorItem[] }) {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % items.length), 5000);
+    return () => clearInterval(t);
+  }, [items.length]);
+  if (!items.length) return null;
+  const item = items[idx];
+  return (
+    <div className="flex items-center gap-3 min-w-0">
+      <span className={`w-2 h-2 rounded-full shrink-0 ${URGENCY_META[item.urgency].dot}`} />
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={item.id}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.35 }}
+          className="text-xs text-slate-300 font-medium truncate"
+        >
+          <span className={`font-black mr-2 ${item.urgency === "critical" ? "text-red-400" : "text-amber-400"}`}>
+            {item.region} ·
+          </span>
+          {item.headline}
+        </motion.p>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ─── Intelligence Feed ───────────────────────────────────────────────────────
+
+function CorridorIntelligence() {
+  const [filter, setFilter] = useState<"all" | CorridorItem["category"]>("all");
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const [secondsAgo, setSecondsAgo] = useState(0);
+
+  const { data, isLoading, refetch, isFetching } = useQuery<CorridorNewsResponse>({
+    queryKey: ["/api/logistics/corridor-news"],
+    refetchInterval: 60000,
+  });
+
+  // Tick up "updated X seconds ago"
+  useEffect(() => {
+    if (!data) return;
+    setSecondsAgo(0);
+    const t = setInterval(() => setSecondsAgo((s) => s + 1), 1000);
+    return () => clearInterval(t);
+  }, [data]);
+
+  const items = data?.items ?? [];
+  const routeStatus = data?.routeStatus ?? [];
+  const freightRates = data?.freightRates ?? [];
+
+  const filteredItems = filter === "all" ? items : items.filter((i) => i.category === filter);
+
+  const categoryTabs: Array<{ id: "all" | CorridorItem["category"]; label: string }> = [
+    { id: "all", label: "All" },
+    { id: "geopolitical", label: "Geopolitical" },
+    { id: "infrastructure", label: "Infrastructure" },
+    { id: "trade", label: "Trade" },
+    { id: "rates", label: "Rates" },
+  ];
+
+  return (
+    <section id="intelligence" className="py-24 px-6 border-t border-slate-800 bg-slate-950">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Section header */}
+        <AnimatedSection className="mb-12">
+          <AnimatedItem>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-6">
+              <div>
+                <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 gap-1.5 mb-4">
+                  <Radio className="w-3 h-3 animate-pulse" />
+                  Live Corridor Intelligence
+                </Badge>
+                <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+                  Market Intel &amp;{" "}
+                  <span className="text-amber-400">Route Signals</span>
+                </h2>
+                <p className="text-slate-400 mt-3 max-w-xl text-lg leading-relaxed">
+                  Curated geopolitical, infrastructure, and freight rate intelligence for the Dubai–Gawadar corridor. Updated continuously.
+                </p>
+              </div>
+              <div className="flex items-center gap-3 shrink-0">
+                <span className="text-[10px] text-slate-600 hidden sm:block">
+                  {isFetching ? "Refreshing…" : `Updated ${secondsAgo}s ago`}
+                </span>
+                <button
+                  onClick={() => refetch()}
+                  disabled={isFetching}
+                  className="p-2 rounded-xl border border-slate-700 hover:border-slate-600 text-slate-500 hover:text-slate-300 transition-all disabled:opacity-40"
+                  data-testid="btn-intel-refresh"
+                >
+                  <RefreshCw className={`w-4 h-4 ${isFetching ? "animate-spin" : ""}`} />
+                </button>
+              </div>
+            </div>
+          </AnimatedItem>
+
+          {/* Live ticker bar */}
+          {!isLoading && items.length > 0 && (
+            <AnimatedItem>
+              <div className="flex items-center gap-3 rounded-xl border border-amber-500/20 bg-amber-500/5 px-4 py-2.5 mb-8 overflow-hidden">
+                <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-[9px] font-black uppercase tracking-widest shrink-0 gap-1">
+                  <Activity className="w-2.5 h-2.5" />
+                  Live
+                </Badge>
+                <NewsTicker items={items} />
+              </div>
+            </AnimatedItem>
+          )}
+        </AnimatedSection>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+
+          {/* ── LEFT: News cards (2/3 width) ────────────────────────────── */}
+          <div className="lg:col-span-2 space-y-4">
+
+            {/* Category filter tabs */}
+            <div className="flex items-center gap-1.5 flex-wrap mb-6">
+              {categoryTabs.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setFilter(t.id)}
+                  data-testid={`btn-intel-filter-${t.id}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    filter === t.id
+                      ? "bg-amber-500 text-slate-950"
+                      : "bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+              <span className="ml-auto text-[10px] text-slate-600 font-medium">
+                {filteredItems.length} item{filteredItems.length !== 1 ? "s" : ""}
+              </span>
+            </div>
+
+            {isLoading ? (
+              Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5 animate-pulse h-28" />
+              ))
+            ) : (
+              <AnimatePresence mode="popLayout">
+                {filteredItems.map((item, i) => {
+                  const cat = CATEGORY_META[item.category];
+                  const urg = URGENCY_META[item.urgency];
+                  const isOpen = expanded === item.id;
+                  return (
+                    <motion.div
+                      key={item.id}
+                      layout
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.97 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 transition-colors overflow-hidden"
+                    >
+                      <button
+                        className="w-full text-left p-5"
+                        onClick={() => setExpanded(isOpen ? null : item.id)}
+                        data-testid={`btn-intel-item-${item.id}`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex flex-col items-center gap-1.5 shrink-0 pt-0.5">
+                            <span className={`w-2 h-2 rounded-full ${urg.dot}`} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                              <Badge className={`text-[9px] font-black border px-2 py-0 h-4 ${urg.badge}`}>
+                                {urg.label}
+                              </Badge>
+                              <Badge className={`text-[9px] font-bold border px-2 py-0 h-4 ${cat.color}`}>
+                                {cat.label}
+                              </Badge>
+                              <span className="text-[9px] text-slate-600 font-medium">{item.region}</span>
+                            </div>
+                            <p className="text-sm font-bold text-white leading-snug pr-4">{item.headline}</p>
+                            <div className="flex items-center gap-3 mt-2">
+                              <span className="text-[10px] text-slate-600">{item.source}</span>
+                              <span className="text-[10px] text-slate-700">·</span>
+                              <span className="text-[10px] text-slate-600">{item.tsLabel}</span>
+                            </div>
+                          </div>
+                          <ChevronRight className={`w-4 h-4 text-slate-600 shrink-0 mt-1 transition-transform ${isOpen ? "rotate-90" : ""}`} />
+                        </div>
+                      </button>
+
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-5 pb-5 pt-0 border-t border-slate-800 mt-0">
+                              <p className="text-sm text-slate-400 leading-relaxed pt-4">{item.summary}</p>
+                              <div className="flex items-center gap-2 mt-3">
+                                <AlertCircle className="w-3 h-3 text-slate-600 shrink-0" />
+                                <p className="text-[10px] text-slate-600">Source: {item.source}</p>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            )}
+          </div>
+
+          {/* ── RIGHT: Status board + rates (1/3 width) ─────────────────── */}
+          <div className="space-y-5">
+
+            {/* Route Status Board */}
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800">
+                <Gauge className="w-4 h-4 text-amber-400" />
+                <span className="text-xs font-black uppercase tracking-widest text-white">Route Status</span>
+              </div>
+              <div className="divide-y divide-slate-800">
+                {isLoading
+                  ? Array.from({ length: 5 }).map((_, i) => (
+                      <div key={i} className="px-4 py-3 animate-pulse">
+                        <div className="h-3 bg-slate-800 rounded w-3/4 mb-1.5" />
+                        <div className="h-2 bg-slate-800 rounded w-1/2" />
+                      </div>
+                    ))
+                  : routeStatus.map((rs) => {
+                      const meta = ROUTE_STATUS_META[rs.status];
+                      return (
+                        <div key={rs.id} className="px-4 py-3" data-testid={`status-route-${rs.id}`}>
+                          <div className="flex items-center justify-between gap-2 mb-1">
+                            <span className="text-[10px] font-bold text-slate-300 leading-tight">{rs.label}</span>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              <span className={`w-1.5 h-1.5 rounded-full ${meta.dot}`} />
+                              <span className={`text-[9px] font-black uppercase ${meta.text}`}>{meta.label}</span>
+                            </div>
+                          </div>
+                          <p className="text-[9px] text-slate-600">{rs.note}</p>
+                        </div>
+                      );
+                    })}
+              </div>
+            </div>
+
+            {/* Freight Rates */}
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800">
+                <BarChart3 className="w-4 h-4 text-emerald-400" />
+                <span className="text-xs font-black uppercase tracking-widest text-white">Freight Rates</span>
+              </div>
+              <div className="divide-y divide-slate-800">
+                {isLoading
+                  ? Array.from({ length: 4 }).map((_, i) => (
+                      <div key={i} className="px-4 py-3 animate-pulse">
+                        <div className="h-3 bg-slate-800 rounded w-2/3 mb-1.5" />
+                        <div className="h-2 bg-slate-800 rounded w-1/3" />
+                      </div>
+                    ))
+                  : freightRates.map((fr, i) => (
+                      <div key={i} className="px-4 py-3" data-testid={`rate-lane-${i}`}>
+                        <p className="text-[10px] font-bold text-slate-300 mb-0.5">{fr.lane}</p>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-black text-white">{fr.rate}</span>
+                          <div className={`flex items-center gap-0.5 text-[9px] font-black ${
+                            fr.change < 0 ? "text-emerald-400" : "text-red-400"
+                          }`}>
+                            {fr.change < 0
+                              ? <TrendingDown className="w-3 h-3" />
+                              : <TrendingUp className="w-3 h-3" />}
+                            {Math.abs(fr.change)}% {fr.unit}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+              </div>
+            </div>
+
+            {/* CPEC Info Box */}
+            <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 space-y-2">
+              <div className="flex items-center gap-2">
+                <Anchor className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span className="text-xs font-black text-emerald-300">CPEC Free Zone Access</span>
+              </div>
+              <p className="text-[10px] text-emerald-300/60 leading-relaxed">
+                Cargo entering Gawadar via DeliWer Logistics receives bonded CPEC Free Zone status — no re-export duty on UAE-origin goods onward to Central Asia.
+              </p>
+              <Link href="/logistics-funnel">
+                <button className="text-[10px] text-emerald-400 font-bold flex items-center gap-1 hover:text-emerald-300 transition-colors mt-1">
+                  Apply for access <ChevronRight className="w-3 h-3" />
+                </button>
+              </Link>
+            </div>
+
+            {/* Subscribe CTA */}
+            <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4">
+              <Newspaper className="w-5 h-5 text-amber-400 mb-2" />
+              <p className="text-xs font-black text-white mb-1">Get the Weekly Brief</p>
+              <p className="text-[10px] text-slate-500 mb-3 leading-relaxed">
+                Monday morning corridor intelligence digest for active freight partners.
+              </p>
+              <a href="mailto:intelligence@chaintrack.com?subject=Weekly Brief Subscription">
+                <Button size="sm" className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold gap-1.5 h-8">
+                  Subscribe to Weekly Brief
+                  <ArrowRight className="w-3 h-3" />
+                </Button>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Main page ───────────────────────────────────────────────────────────────
+
 export default function ChainTrackLogisticsPage() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -210,6 +606,10 @@ export default function ChainTrackLogisticsPage() {
             <a href="#opportunity" className="hover:text-white transition-colors">Why Now</a>
             <a href="#pioneer" className="hover:text-white transition-colors">Our Edge</a>
             <a href="#partners" className="hover:text-white transition-colors">Partners</a>
+            <a href="#intelligence" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
+              <Radio className="w-3 h-3 text-amber-500 animate-pulse" />
+              Intel
+            </a>
             <Link href="/freight-broker" className="hover:text-amber-400 transition-colors">Freight Brokers</Link>
           </nav>
           <div className="flex items-center gap-3">
@@ -653,6 +1053,9 @@ export default function ChainTrackLogisticsPage() {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* ── CORRIDOR INTELLIGENCE FEED ── */}
+      <CorridorIntelligence />
 
       {/* ── FINAL CTA ── */}
       <section className="py-24 px-6 border-t border-slate-800">

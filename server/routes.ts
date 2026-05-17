@@ -57,6 +57,7 @@ import wellnessJourneyRoutes from "./routes/wellness-journey";
 import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
+import logisticsIntelligenceRoutes from "./routes/logistics-intelligence";
 import fulfillmentRoutes from "./routes/fulfillment";
 import membershipRoutes from "./routes/memberships";
 import relocateRoutes from "./routes/relocate";
@@ -385,6 +386,9 @@ Source: Website Concierge Page
 
   // Register ChainTrack export-import compliance routes
   app.use("/api/chaintrack", chaintrackRoutes);
+
+  // Register Logistics Corridor Intelligence routes
+  app.use("/api/logistics", logisticsIntelligenceRoutes);
 
   // Register Fulfillment by DeliWer routes
   app.use("/api/fulfillment", fulfillmentRoutes);
