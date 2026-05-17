@@ -128,6 +128,7 @@ const RestaurantRewards = lazy(() => import("@/pages/restaurant-rewards"));
 const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
+const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
 const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer"));
 const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
 const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
@@ -214,8 +215,12 @@ function Router() {
   useEffect(() => {
     // Domain-based routing for ChainTrack - handles both www.chaintrack.com and chaintrack.com
     const hostname = window.location.hostname;
+    if ((hostname === 'logistics.chaintrack.com' || hostname === 'www.logistics.chaintrack.com') && location === '/') {
+      setLocation('/logistics');
+      return;
+    }
     if ((hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
-      setLocation('/chaintrack');
+      setLocation('/logistics');
       return;
     }
 
@@ -461,6 +466,9 @@ function Router() {
         <Route path="/corporate" component={CorporateCombined} />
         <Route path="/partnership" component={Partners} />
         
+        {/* ChainTrack Logistics — Dubai/Gawadar Corridor */}
+        <Route path="/logistics" component={ChainTrackLogisticsPage} />
+
         {/* ChainTrack B2B Wholesale Inventory */}
         <Route path="/chaintrack" component={ChainTrackPage} />
 
